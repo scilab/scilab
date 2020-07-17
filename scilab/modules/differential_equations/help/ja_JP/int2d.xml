@@ -16,8 +16,10 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="int2d" xml:lang="ja">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="int2d" xml:lang="ja">
     <refnamediv>
 
         <refname>int2d</refname>
@@ -30,7 +32,10 @@
 
         <title>呼び出し手順</title>
 
-        <synopsis>[I,err]=int2d(X,Y,f [,params])</synopsis>
+        <synopsis>
+            [I, err] = int2d(X, Y, f)
+            [I, err] = int2d(X, Y, f, params)
+        </synopsis>
 
     </refsynopsisdiv>
 
@@ -327,10 +332,10 @@
         <title>例</title>
 
         <programlisting role="example"><![CDATA[
-X=[0,0;1,1;1,0];
-Y=[0,0;0,1;1,1];
+X = [0,0;1,1;1,0];
+Y = [0,0;0,1;1,1];
 deff('z=f(x,y)','z=cos(x+y)')
-[I,e]=int2d(X,Y,f)
+[I,e] = int2d(X, Y, f)
 // 正方形の区間 [0 1]x[0 1] で被積分関数を計算します
  ]]></programlisting>
 
@@ -341,37 +346,21 @@ deff('z=f(x,y)','z=cos(x+y)')
         <title>参照</title>
 
         <simplelist type="inline">
-
             <member>
-
-                <link linkend="intc">intc</link>
-
+                <link linkend="mesh2d">mesh2d</link>
             </member>
-
             <member>
-
-                <link linkend="intl">intl</link>
-
-            </member>
-
-            <member>
-
                 <link linkend="int3d">int3d</link>
-
             </member>
-
             <member>
-
                 <link linkend="intg">intg</link>
-
             </member>
-
             <member>
-
-                <link linkend="mesh">mesh</link>
-
+                <link linkend="intl">intl</link>
             </member>
-
+            <member>
+                <link linkend="intc">intc</link>
+            </member>
         </simplelist>
 
     </refsection>

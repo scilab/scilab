@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="champ">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="champ">
     <refnamediv>
         <refname>champ</refname>
-        <refpurpose>2D vector field plot</refpurpose>
+        <refpurpose>plots as arrows a field of 2D vectors</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            champ(x, y, fx, fy, [arfact, rect, strf])
+            champ()  // example
+            champ(x, y, fx, fy)
+            champ(x, y, fx, fy, arfact)
+            champ(x, y, fx, fy, arfact, rect)
+            champ(x, y, fx, fy, arfact, rect, strf)
             champ(x, y, fx, fy, &lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
@@ -31,7 +38,10 @@
             <varlistentry>
                 <term>x, y</term>
                 <listitem>
-                    <para>two vectors which define the grid.</para>
+                    <para>
+                        vectors of decimal numbers, which define the grid of nodes
+                        = coordinates of arrows starting points.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -73,8 +83,7 @@
                     <para>
                         an optional argument of type <literal>real</literal>
                         which gives a scale factor for the display of the arrow
-                        heads on the plot (default value is
-                        <literal>1.0</literal>).
+                        heads on the plot (default value is <literal>1.0</literal>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -104,60 +113,140 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>champ</function> draws a 2D vector field. The length of
-            the arrows is proportional to the intensity of the field.
+            <literal>champ(…)</literal> plots a field of 2D vectors with arrows.
         </para>
         <para>
-            If you want colored arrows with the color of the arrows depending on
-            the intensity of the field, set <literal>gce().colored = "on"</literal>.
+            By default, all arrows have the same color, and their length is
+            proportional to the local intensity of the field (norm of vectors).
+            In addition, all lengths are normalized according to the longest arrow.
         </para>
         <para>
-            Enter the command <code>champ()</code> to see a demo.
+            When setting <literal>gce().colored = "on"</literal>,
+            each arrow becomes as long as possible in its cell, and is colored
+            according to the local intensity of the field.
         </para>
         <para>
-            Be cautioned about the fact that using <link linkend="meshgrid">meshgrid</link> function before
-            using <code>champ</code> requires adjustment. For more details, see the last example below.
+            After calling <literal>champ(…)</literal>, <literal>gce()</literal>
+            returns the handle of the field of arrows, of type <literal>Champ</literal>,
+            whose <link linkend="champ_properties">properties</link> can be post-processed.
+        </para>
+        <para>
+            Enter the command <literal>champ()</literal> to see an example.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// using rect as plot boundaries
-champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
- ]]></programlisting>
+x = -4:6;
+X = ndgrid(x);
+[fx, fy] =  (rand(X)-0.5, rand(X)-0.5);
+
+clf
+gcf().color_map = jetcolormap(50);
+
+// Field's intensity = arrows length
+subplot(2,2,1)
+champ(x, x, fx, fy)
+
+// With bigger arrow heads
+subplot(2,2,2)
+champ(x, x, fx, fy, arfact=1.7)
+title("arfact=1.7", "fontsize",3)
+
+// Field's intensity = arrows color
+xsetech([0 0.5 0.55 0.5])
+champ(x, x, fx, fy, arfact=1.7)
+gce().colored = "on";
+title("arfact=1.7, .colored=""on""", "fontsize",3)
+colorbar
+
+// Field's intensity = color, + imposed boundaries
+subplot(2,2,4)
+champ(x, x, fx, fy, rect=[-5,-6,9,7],strf="011")
+gce().colored = "on";
+title("rect=[-5,-6,9,6], strf=""011"", .colored=""on""", "fontsize",3)
+
+gcf().axes_size = [740 680];
+    ]]></programlisting>
         <scilab:image>
-            champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2);
+            x = -4:6;
+            X = ndgrid(x);
+            [fx, fy] =  (rand(X)-0.5, rand(X)-0.5);
+
+            clf
+            gcf().color_map = jetcolormap(50);
+
+            // Field's intensity = arrows length
+            subplot(2,2,1)
+            champ(x, x, fx, fy)
+
+            // With bigger arrow heads
+            subplot(2,2,2)
+            champ(x, x, fx, fy, arfact=1.7)
+            title("arfact=1.7", "fontsize",3)
+
+            // Field's intensity = arrows color
+            xsetech([0 0.5 0.55 0.5])
+            champ(x, x, fx, fy, arfact=1.7)
+            gce().colored = "on";
+            title("arfact=1.7, .colored=""on""", "fontsize",3)
+            L = sqrt(fx.^2 + fy.^2);
+            colorbar(min(L), max(L));
+
+            // Field's intensity = color, + imposed boundaries
+            subplot(2,2,4)
+            champ(x, x, fx, fy, rect=[-5,-6,9,7],strf="011")
+            gce().colored = "on";
+            title("rect=[-5,-6,9,6], strf=""011"", .colored=""on""", "fontsize",3)
+
+            gcf().axes_size = [740 680];
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// using (x,y) to get boundaries
-clf()
-champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
- ]]></programlisting>
-        <scilab:image>
-            champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-// using meshgrid to get fx and fy
-clf()
-x = linspace(-1,1,30);
-y = linspace(-1,1,30);
-[X,Y] = meshgrid(x,y);
-fy = 2.*Y;
-fx = 2.*X;
-champ(x,y,fx',fy'); //here we have transposed fx and fy
+x = -1.2:0.11:0.7;
+y = -1:0.11:0.5;
+[X, Y] = ndgrid(x, y);
+[fx, fy] = (2*X, 2*Y);
+
+clf
+xsetech([0 0 0.45 1])
+champ(x, y, fx, fy)
+title(".colored = ""off"" (default)", "fontsize",3)
+xsetech([0.45 0 0.55 1])
+champ(x, y, fx, fy)
+title(".colored = ""on""", "fontsize",3)
+gce().colored = "on";
+
+gcf().color_map = jetcolormap(100);
+colorbar
 ]]></programlisting>
         <scilab:image>
-            x = linspace(-1,1,30);
-            y = linspace(-1,1,30);
-            [X,Y] = meshgrid(x,y);
-            fy = 2.*Y;
-            fx = 2.*X;
-            champ(x,y,fx',fy');
+            x = -1.2:0.11:0.7;
+            y = -1:0.11:0.5;
+            [X, Y] = ndgrid(x, y);
+            [fx, fy] = (2*X, 2*Y);
+
+            clf
+            xsetech([0 0 0.45 1])
+            champ(x, y, fx, fy)
+            title(".colored = ""off"" (default)", "fontsize",3)
+            xsetech([0.45 0 0.55 1])
+            champ(x, y, fx, fy)
+            title(".colored = ""on""", "fontsize",3)
+            gce().colored = "on";
+
+            gcf().color_map = jetcolormap(100);
+            L = sqrt(fx.^2 + fy.^2);
+            colorbar(min(L), max(L));
+
+            gcf().axes_size = [720 340];
         </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="champ_properties">champ_properties</link>
+            </member>
             <member>
                 <link linkend="fchamp">fchamp</link>
             </member>

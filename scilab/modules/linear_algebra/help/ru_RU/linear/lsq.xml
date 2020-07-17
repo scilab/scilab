@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="lsq">
+    <refnamediv>
+        <refname>lsq</refname>
+        <refpurpose>
+            линейное решение наименьших квадратов A*X=B с минимальной norm(X)
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            X = lsq(A, B)
+            X = lsq(A, B, tol)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>вещественная или комплексная матрица (m x n)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>вещественная или комплексная матрица (m x p)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>
+                        положительный скаляр, используемый для определения действительного ранга
+                        <varname>A</varname> (определяемого как порядок наибольшей главной
+                        треугольной подматрицы <literal>R11</literal> в QR-разложении с выбором
+                        ведущего элемента <varname>A</varname>, чьё оцененое число
+                        обусловленности &lt;= 1/tol. Значение <varname>tol</varname> по
+                        умолчанию устанавливается равным <literal>sqrt(%eps)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>вещественная или комплексная матрица (n x p)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>X=lsq(A,B)</literal> вычисляет решение наименьших квадратов с минимальной
+            нормой уравнения <literal>A*X=B</literal>, при этом <literal>X = A \ B</literal>
+            вычисляет решение наименьших квадратов с ненулевыми компонентами не более
+            <literal>rank(A)</literal> на столбец.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Сcылки</title>
+        <para>
+            Функция <literal>lsq</literal> основана на функциях LApack DGELSY для
+            вещественных матриц и ZGELSY для комплексных матриц.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+//Build the data
+x=(1:10)';
+
+y1=3*x+4.5+3*rand(x,'normal');
+y2=1.8*x+0.5+2*rand(x,'normal');
+plot2d(x,[y1,y2],[-2,-3])
+//Find the linear regression
+A=[x,ones(x)];B=[y1,y2];
+X=lsq(A,B);
+
+y1e=X(1,1)*x+X(2,1);
+y2e=X(1,2)*x+X(2,2);
+plot2d(x,[y1e,y2e],[2,3])
+
+// Разница между lsq(A,b) и A\b
+A=rand(4,2)*rand(2,3);//ранг матрицы 2
+b=rand(4,1);
+X1=lsq(A,b)
+X2=A\b
+[A*X1-b, A*X2-b] //остатки от деления одинаковы
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="backslash">обратная косая черта</link>
+            </member>
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
+            <member>
+                <link linkend="pinv">pinv</link>
+            </member>
+            <member>
+                <link linkend="rank">rank</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

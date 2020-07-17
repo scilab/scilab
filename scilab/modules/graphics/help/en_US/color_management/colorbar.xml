@@ -136,7 +136,7 @@
         </para>
         <para>
             When the current axes embeds an object of graphical type among
-            {"Matplot" "Fec" "Fac3d" "Plot3d" "Grayplot"} and its related U data,
+            {"Matplot" "Fec" "Fac3d" "Plot3d" "Grayplot" "Champ"} and its related U data,
             it is possible to skip <literal>umin</literal> or/and <literal>umax</literal> values.
             <literal>min(U)</literal> or/and <literal>max(U)</literal> are then retrieved
             from data and used to set the color bar. For a "Matplot" object, the case
@@ -660,6 +660,9 @@ exec("SCI/modules/graphics/demos/colormap/colormaps.dem.sce",-1)
             </member>
             <member>
                 <link linkend="surf">surf</link>
+            </member>
+            <member>
+                <link linkend="champ">champ</link>
             </member>
             <member>
                 <link linkend="printf_conversion">Cformat rules</link>

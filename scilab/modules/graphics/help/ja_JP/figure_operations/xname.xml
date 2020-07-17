@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-
  * Copyright (C) ENPC - Jean-Philippe Chancelier
-
  *
-
-
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -17,82 +11,59 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-
  *
-
  -->
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="xname">
-
     <refnamediv>
-
         <refname>xname</refname>
-
-        <refpurpose>カレントのグラフィックウインドウの名前を変更する</refpurpose>
-
+        <refpurpose>カレントのグラフィックウインドウの名前を変更する
+            <emphasis role="bold">(obsolete)</emphasis>)
+        </refpurpose>
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
         <synopsis>xname(name)</synopsis>
-
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
                 <term>name</term>
-
                 <listitem>
-
                     <para>文字列, 新しいグラフィックウインドウの名前.</para>
-
                 </listitem>
-
             </varlistentry>
-
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
+        <warning>
+            <literal>xname()</literal> is obsolete. It will be removed in Scilab 6.2.x.
+            Please use <literal>gcf().figure_name = "New name"</literal> instead.
+        </warning>
         <para>
-
             <literal>xname</literal>はカレントのグラフィックウインドウの
-
             名前を変更します.
-
         </para>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
-
         <programlisting role="example"><![CDATA[
-
 xname("Empty graphic")
-
 x=-%pi*2:0.1:%pi*2;
-
 plot(x,sin(x))
-
 xname("sin(x) with x between -%pi*2 and %pi*2")
-
  ]]></programlisting>
-
     </refsection>
-
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    xname() declared obsolete. Replaced with gcf().figure_name="New name".
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
-

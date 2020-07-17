@@ -50,7 +50,7 @@
         <title>Description</title>
         <para>Computes the element-wise cosecant of the argument. The cosecant is
             a periodic function defined as <literal>1/sin(x)</literal>.
-            For real data the results are real and in <literal>]-∞ -1] ∪ [1 ∞[</literal>.
+            For real data the results are real and in <literal>]-∞,-1] ∪ [1,∞[</literal>.
         </para>
     </refsection>
     <refsection>

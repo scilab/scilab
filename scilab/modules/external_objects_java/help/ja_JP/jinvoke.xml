@@ -153,7 +153,7 @@
 
                jcode = jinvoke(cb, "getRGB");
 
-               jremove System Color T c cb jcode;
+               jremove System Color String str T c cb jcode;
       ]]></programlisting>
 
     </refsection>

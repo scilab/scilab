@@ -173,10 +173,13 @@
                 <term>fill_mode: </term>
                 <listitem>
                     <para>
-                        この論理値プロパティにより,<literal>box</literal> プロパティが
-                        <literal>"on"</literal>の時にボックスの背景を塗りつぶすかどうかを指定できます.
-                        <literal>fill_mode</literal> が <literal>"off"</literal>の場合,
-                        ボックスの背景は透明ではありません..
+                        <literal>"on"</literal>: enables the box background, provided that
+                        <literal>.box="on"</literal> as well. The background's color can
+                        then be set with the <literal>.background</literal> property.
+                    </para>
+                    <para>
+                      <literal>"off"</literal> (default): disables the box background,
+                      that becomes transparent.
                     </para>
                 </listitem>
             </varlistentry>

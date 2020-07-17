@@ -191,6 +191,10 @@ Feature changes and additions
 * `atomsGetInstalledPath` is no longer sensitive to the case or completeness of the modules names. Providing the modules versions is now optional.
 * `function` replaces `mc` as the new overloading code for functions in Scilab language.
 
+6.1.1
+* `gsort` is fully enabled for sparse vectors and 2D matrices, in all `g, r, c, lr, lc` methods. It was formerly limited to real or complex vectors and only to the `g` mode. All boolean, real or complex vector or 2D matrices can now be sorted with any method. Multi-level sorting is enabled for all types of sparse input.
+* `unique` is enabled for any 2D sparse arrays, in simple, 'c' and 'r' modes.
+
 Help pages:
 -----------
 
@@ -238,6 +242,7 @@ Obsolete functions or features
 * `hist3d` is renamed `bar3d`. The former `hist3d` function is declared obsolete and will be replaced by an actual 3D histogram function in Scilab 6.2.
 * `scatter3` is obsolete. Please use `scatter3d` instead.
 * `saveafterncommands` is canceled. It will be removed from Scilab 6.1.x
+* `xname` is obsolete. It will be removed from Scilab 6.2.x. Please use `gcf().figure_name` instead.
 
 Removed Functions
 -----------------
@@ -264,10 +269,44 @@ Known issues
 Bug Fixes
 ---------
 
+### Bugs fixed in 6.2.0:
+
+
 ### Bugs fixed in 6.1.1:
+
 * [#3188](https://bugzilla.scilab.org/3188): `part()` was slower than in Scilab 4.1.2.
+* [#8059](https://bugzilla.scilab.org/8059): A local `.wgetrc` config file could make troubles in `atomsDownload`.
+* [#9909](https://bugzilla.scilab.org/9909): In the help browser, add a way to open the online version of the current page.
+* [#12889](https://bugzilla.scilab.org/12889): In the help browser, add a menu allowing to select the language of help pages, regardless of the language of the session.
+* [#14873](https://bugzilla.scilab.org/14873): `setfield` page: The output and the 6.0 history were documented only on the en_US version. The input was wrongly restricted to matrices, while any Scilab object is acceptable. The specific role of `setfield` for mlists was not really described nor illustrated. The example did not include any call to setfield.
+* [#15839](https://bugzilla.scilab.org/15839): `gsort`: the only sparse possible input were real or complex vectors, and only with the `g` method.
+* [#15842](https://bugzilla.scilab.org/15842): `unique` could not process 2D sparse matrices.
+* [#16106](https://bugzilla.scilab.org/16106): Xcos sciblk4 user-defined blocks did not handle opar and odstate/oz correctly.
+* [#16122](https://bugzilla.scilab.org/16122): concat polynomials with <> var did not raise an error.
+* [#16274](https://bugzilla.scilab.org/16274): assert_checkequal() did not considered equal matching Nan or void elements in (nested) containers.
+* [#16337](https://bugzilla.scilab.org/16337): The 3rd output of `[U,km,ku] = unique(..)` was not implemented.
 * [#16342](https://bugzilla.scilab.org/16342): `strcat()` was much slower in Scilab 6.0.2.
+* [#16350](https://bugzilla.scilab.org/16350): in if/while conditions, the empty sparse boolean was considered as TRUE.
+* [#16358](https://bugzilla.scilab.org/16358): `isdef([],..)` yielded an error instead of returning [].
 * [#16365](https://bugzilla.scilab.org/16365): `median(m,"r")` and `median(m,"c")` yielded wrong results (6.1.0 regression)
+* [#16366](https://bugzilla.scilab.org/16366): `plot([0 1], ":")` plotted a dash-dotted curve instead of a dotted one.
+* [#16369](https://bugzilla.scilab.org/16369): Right divisions / involving one or two sparse numerical matrices were no longer supported.
+* [#16370](https://bugzilla.scilab.org/16370): `msprintf()` did not handle LaTeX dollars anymore.
+* [#16374](https://bugzilla.scilab.org/16374): Any plot with datatips saved in Scilab 5.5 could not be loaded in Scilab 6.
+* [#16391](https://bugzilla.scilab.org/16391): `csvRead()` was crashing with CSV files containing empty lines.
+* [#16397](https://bugzilla.scilab.org/16397): display of long (real) column vectors was slow (regression).
+* [#16399](https://bugzilla.scilab.org/16399): `mtlb_zeros([])` was crashing Scilab.
+* [#16401](https://bugzilla.scilab.org/16401): global `external_object_java` class was crashing Scilab.
+* [#16403](https://bugzilla.scilab.org/16403): 1D extraction of matrix with implicit index had wrong dimensions.
+* [#16406](https://bugzilla.scilab.org/16406): `edit_curv` yielded an error when reading data.
+* [#16408](https://bugzilla.scilab.org/16408): toJSON(var, indent, filename) is the right call sequence. Documentation has been udpated.
+* [#16445](https://bugzilla.scilab.org/16445): `colorbar(..)` ignored how to guess `umin` and `umax` for a Champ object (with .colored="on").
+* [#16449](https://bugzilla.scilab.org/16449): Insertion of implicit vector in Cell was crahsing Scilab
+* [#16450](https://bugzilla.scilab.org/16450): Concatenating encoded integers with decimal or complex numbers was not possible.
+* [#16452](https://bugzilla.scilab.org/16452): `setdiff(sparse([1 3 0 2]), sparse([3 7]))` missed returning 0, and wrongly returned 3.
+* [#16454](https://bugzilla.scilab.org/16454): `gsort` yielded an error when sorting any sparse vector including some NaN.
+* [#16473](https://bugzilla.scilab.org/16473): Deleting rows in a sparse squared the matrix with padding zeros (Scilab 6 regression).
+
 
 ### Bugs fixed in 6.1.0:
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
@@ -280,7 +319,7 @@ Bug Fixes
 * [#7724](https://bugzilla.scilab.org/7724): When a figure is created in .auto_resize="on" mode, its .axes_size sets its .figure_size accordingly, not the reverse. But this was not documented.
 * [#7732](https://bugzilla.scilab.org/7732): The `datafit` help page needed to be fixed and overhauled.
 * [#7765](https://bugzilla.scilab.org/7765): `champ1` is useless. `champ().colored` is available for a long time.
-* [#7777](https://bugzilla.scilab.org/7777): `ged` did not allow moving several objects. 
+* [#7777](https://bugzilla.scilab.org/7777): `ged` did not allow moving several objects.
 * [#7948](https://bugzilla.scilab.org/7948): `gsort` could not perform multilevel sorting, and could not sort complex numbers completely.
 * [#7967](https://bugzilla.scilab.org/7967): The tricky size `[ny,nx]` of `meshgrid(x,y)` results and usages with graphics was not enough documented.
 * [#8301](https://bugzilla.scilab.org/8301): `definedfields` wrongly considered as defined void elements in lists, tlists and mlists.
@@ -304,7 +343,7 @@ Bug Fixes
 * [#11852](https://bugzilla.scilab.org/11852): File browser didn't update after file creation or removal.
 * [#11363](https://bugzilla.scilab.org/11363): `show_window()` did not raise the current graphics window.
 * [#12013](https://bugzilla.scilab.org/12013): `bitset` did not work for numbers greater than 2^32-1.
-* [#12302](https://bugzilla.scilab.org/12302): Blocks of legends could not be moved interactively. 
+* [#12302](https://bugzilla.scilab.org/12302): Blocks of legends could not be moved interactively.
 * [#12428](https://bugzilla.scilab.org/12428): A part of an error message from `toprint` was not translated.
 * [#12520](https://bugzilla.scilab.org/12520): Variable browser did not display the size of the variables.
 * [#12534](https://bugzilla.scilab.org/12534): Variable browser did not display the size of the variables.
@@ -320,7 +359,7 @@ Bug Fixes
 * [#14501](https://bugzilla.scilab.org/14501): `strsubst` crashed on consecutive occurrences.
 * [#14557](https://bugzilla.scilab.org/14557): `csim` failed when the system has no state.
 * [#14498](https://bugzilla.scilab.org/14498): `size([],3)` returned 1 instead of 0.
-* [#14487](https://bugzilla.scilab.org/14487): matrix indexing was not coherent with MATLAB. 
+* [#14487](https://bugzilla.scilab.org/14487): matrix indexing was not coherent with MATLAB.
 * [#14502](https://bugzilla.scilab.org/14502): `Demo > GUI > Uicontrols 2` could not be exported to a file.
 * [#14585](https://bugzilla.scilab.org/14585): `closeEditvar()` had to be replaced with `editvar("close")`.
 * [#14604](https://bugzilla.scilab.org/14604): `emptystr` is 40x slower with 6.0.0 wrt 5.5.2
@@ -480,6 +519,7 @@ Bug Fixes
 * [#16197](https://bugzilla.scilab.org/16197): result of extraction was not decomplexified when applicable.
 * [#16199](https://bugzilla.scilab.org/16199): In the documentation, `zpk2tf` and `zpk2ss` examples yielded an error.
 * [#16200](https://bugzilla.scilab.org/16200): Concatenation of transposed cells crashed Scilab.
+* [#16204](https://bugzilla.scilab.org/16204): `for i=1:$, end` crashed Scilab.
 * [#16208](https://bugzilla.scilab.org/16208): Using 3D string matrix with old C-api gateways may crash Scilab.
 * [#16209](https://bugzilla.scilab.org/16209): `grand` causes a freeze after several consecutive calls when using default base generator.
 * [#16210](https://bugzilla.scilab.org/16210): The uicontrol.units = "normalized" property was not described.
@@ -517,3 +557,7 @@ Bug Fixes
 * [#16323](https://bugzilla.scilab.org/16323): `conj(sparse(x))` was complex when x is real.
 * [#16325](https://bugzilla.scilab.org/16325): `mgetl` could not read single line data which is greater than ~260,000 characters.
 * [#16333](https://bugzilla.scilab.org/16333): `tree_show` crashed for an input Xcos block.
+* [#16373](https://bugzilla.scilab.org/16373): Scilab Crashed or showing wrong output when running on Arm processor
+* [#16459](https://bugzilla.scilab.org/16459): The display of one column hypermatrix was wrong.
+* [#16463](https://bugzilla.scilab.org/16463): `matrix(sparse([]),[0 0])` yielded `[]` instead of `sparse([])`.
+* [#16483](https://bugzilla.scilab.org/16483): substraction of complex polynomial matrices was broken (Scilab 6 regression).

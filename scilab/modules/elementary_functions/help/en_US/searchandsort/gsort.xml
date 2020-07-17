@@ -19,7 +19,7 @@
           xmlns:scilab="http://www.scilab.org" xml:id="gsort" xml:lang="en">
     <refnamediv>
         <refname>gsort</refname>
-        <refpurpose>sorting by quick sort algorithm</refpurpose>
+        <refpurpose>sorts boolean, numerical and text arrays</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -37,8 +37,9 @@
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    Scalar, vector, matrix or hypermatrix of booleans, integers, real or complex
-                    numbers, or text, or a sparse vector of real numbers.
+                    Scalar, vector, matrix or hypermatrix of booleans, integers, real or
+                    complex numbers, or text. Sparse matrices of real numbers,
+                    of complex numbers, or of booleans can also be sorted.
                     <note>
                         Overloading for unhandled types is allowed.
                     </note>
@@ -238,6 +239,9 @@
             Extended UTF characters are supported.
         </para>
         <para>
+            Sorting boolean arrays is mostly useful with the "r", "c", "lr" or "lc" methods.
+        </para>
+        <para>
             <note>
                 Whatever is the chosen method, <emphasis role="bold">the algorithm preserves the
                 relative order of elements with equal values.
@@ -394,26 +398,31 @@ v = ['Scilab' '3.1'
 ]]></screen>
         </para>
         <para>
-            Lexicographic sorting of columns:
+            Lexicographic sorting of boolean columns:
         </para>
         <para>
         <programlisting role="example"><![CDATA[
-m  = [ 0.  1.  0.  1.  1.  1.  0.  1.
-       0.  0.  1.  1.  1.  1.  0.  0.
-       0.  0.  1.  1.  0.  0.  0.  0.
-     ];
-
-[s, k] = gsort(m, "lc", "i")  // sorting columns
+m  = [ 0 1 0 1 1 1 0 1
+       0 0 1 1 1 1 0 0
+       0 0 1 1 0 0 0 0 ]==1;
+m
+[s, k] = gsort(m, "lc")  // sorting columns in decreasing order
 ]]>     </programlisting>
-            <screen><![CDATA[
---> [s, k] = gsort(m, "lc", "i")
+        <screen><![CDATA[
+--> m
+ m  =
+  F T F T T T F T
+  F F T T T T F F
+  F F T T F F F F
+
+--> [s, k] = gsort(m, "lc")
  s  =
-   0.   0.   0.   1.   1.   1.   1.   1.
-   0.   0.   1.   0.   0.   1.   1.   1.
-   0.   0.   1.   0.   0.   0.   0.   1.
+  T T T T T F F F
+  T T T F F T F F
+  T F F F F T F F
 
  k  =
-   1.   7.   3.   2.   8.   5.   6.   4.
+   4.   5.   6.   2.   8.   3.   1.   7.
 ]]></screen>
         </para>
     <refsect3>
@@ -616,8 +625,19 @@ P = evstr(P)
                         </listitem>
                         <listitem>
                             Multilevel sorting added with the rankFuncs option.
+                            Complete sorting of complex numbers is now possible.
                         </listitem>
                     </itemizedlist>
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revremark>
+                    gsort() was formerly limited to real or complex vectors,
+                    and only to the `g` method. It is now fully enabled for sparse
+                    vectors and 2D matrices of booleans, real or complex numbers,
+                    in all `g, r, c, lr, lc` methods. Multi-level sorting is
+                    enabled for all types of sparse input.
                 </revremark>
             </revision>
         </revhistory>

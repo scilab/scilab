@@ -5,7 +5,7 @@
           xml:lang="ja" xml:id="backslash">
     <refnamediv>
         <refname>backslash</refname>
-        <refpurpose>(\) 左行列除算.</refpurpose>
+        <refpurpose>(\) 左行列除算: exact or least square solution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
@@ -122,6 +122,9 @@ mprintf('\ntime with backslash: %.3f\n',toc());
                 <link linkend="slash">slash</link>
             </member>
             <member>
+                <link linkend="lsq">lsq</link>
+            </member>
+            <member>
                 <link linkend="inv">inv</link>
             </member>
             <member>
@@ -132,6 +135,9 @@ mprintf('\ntime with backslash: %.3f\n',toc());
             </member>
             <member>
                 <link linkend="umfpack">umfpack</link>
+            </member>
+            <member>
+                <link linkend="datafit">datafit</link>
             </member>
             <member>
                 <link linkend="krondivide">kron .\.</link>

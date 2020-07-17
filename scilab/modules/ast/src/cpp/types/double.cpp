@@ -392,6 +392,33 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             ostr << std::endl;
         }
     }
+    else if (isVector() && getCols() == 1 && isComplex() == false)
+    {
+        // real column vector
+
+        // compute the number of ligne to print in function of max line
+        int iLinesToPrint = getRows() - m_iRows1PrintState;
+        if ((iMaxLines == 0 && iLinesToPrint >= MAX_LINES) || (iMaxLines != 0 && iLinesToPrint >= iMaxLines))
+        {
+            // Number of lines to print exceeds the max lines allowed
+            iLinesToPrint = iMaxLines ? iMaxLines : MAX_LINES;
+        }
+
+        // print lines
+        for (int i = 0; i < iLinesToPrint; i++)
+        {
+            printDoubleValue(ostr, m_pRealData[m_iRows1PrintState + i]);
+            ostr << std::endl;
+        }
+
+        // Record what line we were at
+        m_iRows1PrintState += iLinesToPrint;
+        if(m_iRows1PrintState != getRows())
+        {
+            // ask before continue to print
+            return false;
+        }
+    }
     else // matrix
     {
         std::wostringstream ostemp;
@@ -525,6 +552,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             //compute the row size for padding for the full matrix.
             for (int iCols1 = 0; iCols1 < getCols() ; iCols1++)
             {
+                DoubleFormat dfR, dfI;
                 for (int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
                 {
                     int iTotalWidth = 0;
@@ -532,13 +560,12 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     _piDims[1] = iCols1;
                     int iPos = getIndex(_piDims);
 
-                    DoubleFormat dfR, dfI;
                     getComplexFormat(m_pRealData[iPos], m_pImgData[iPos], &iTotalWidth, &dfR, &dfI);
                     // keep track of real and imaginary part width for further alignment
                     piISize[iCols1] = std::max(piISize[iCols1], dfI.iWidth);
                     piRSize[iCols1] = std::max(piRSize[iCols1], dfR.iWidth);
-                    piSize[iCols1]  = std::max(piSize[iCols1], iTotalWidth);
                 }
+                piSize[iCols1] = piISize[iCols1] + piRSize[iCols1] + 2 * (dfR.bPrintBlank ? BLANK_SIZE : 0) + BLANK_SIZE + SIZE_SYMBOL_I;
             }
 
             for (int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)

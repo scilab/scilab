@@ -19,7 +19,7 @@
         <refpurpose>mot-clé utilisé dans une structure while ... end </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
+        <title>Syntaxe</title>
         <synopsis>
             while expr ,instructions,..., end
             while expr do instructions,..., end

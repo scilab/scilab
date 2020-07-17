@@ -4,6 +4,12 @@
         <refname>pause</refname>
         <refpurpose>режим паузы, вызов клавиатуры</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            pause
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Описание</title>
         <para>

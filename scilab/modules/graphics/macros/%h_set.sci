@@ -55,8 +55,12 @@ function hdl = %h_set(varargin)
                         //          but a 1x4 assigment is possible
                         h(prop) = rhs(j,:);
                     else
-                        msg = _("%s: Unsupported assignment for property ''%s''.\n")
-                        error(msprintf(msg, "%h_set", prop))
+                        try
+                            h(prop) = rhs
+                        catch
+                            msg = _("%s: Unsupported assignment for property ''%s''.\n")
+                            error(msprintf(msg, "%h_set", prop))
+                        end
                     end
                     hdl(j) = h;
                 end

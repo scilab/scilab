@@ -21,7 +21,6 @@
 #include "expandPathVariable.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
-#include "stringToComplex.h"
 #include "mclose.h"
 #include "mgetl.h"
 #include "mopen.h"
@@ -30,6 +29,7 @@
 #include "sci_malloc.h"
 #include "sciprint.h"
 #include "splitLine.h"
+#include "stringToComplex.h"
 #include "strsubst.h"
 #include <stdio.h>
 #include <string.h>
@@ -184,7 +184,6 @@ int csvTextScanInPlace(wchar_t** text, int nbLines, const wchar_t* separator,
 {
     stringToComplexError ierr = STRINGTOCOMPLEX_ERROR;
 
-
     // per line
     for (int i = 0; i < nbLines; i++)
     {
@@ -225,15 +224,14 @@ int csvTextScanInPlace(wchar_t** text, int nbLines, const wchar_t* separator,
                     break;
                 }
                 // adapt zeroIndex to be within the range
-                zeroIndex = i - iRange[0] + 1
-                            + (iRange[2] - iRange[0] + 1) * (j - iRange[1] + 1);
+                zeroIndex = i - iRange[0] + 1 + (iRange[2] - iRange[0] + 1) * (j - iRange[1] + 1);
             }
 
             // decode in double or string
             if (pDblRealValues != NULL)
             {
                 doublecomplex v = stringToComplexWInPlace(start, end, decimal,
-                                  TRUE, &ierr);
+                                                          TRUE, &ierr);
                 if (ierr == STRINGTOCOMPLEX_NO_ERROR)
                 {
                     // the imag part of a complex number is allocated on demand
@@ -242,9 +240,7 @@ int csvTextScanInPlace(wchar_t** text, int nbLines, const wchar_t* separator,
                         size_t n;
                         if (haveRange)
                         {
-                            n = (iRange[2] - iRange[0] + 1)
-                                * (iRange[3] - iRange[1] + 1)
-                                * sizeof(double);
+                            n = (iRange[2] - iRange[0] + 1) * (iRange[3] - iRange[1] + 1) * sizeof(double);
                         }
                         else
                         {
@@ -493,40 +489,37 @@ static void removeEmptyLinesAtEnd(wchar_t** lines, int* nonEmptyLines)
 // =============================================================================
 static void moveEmptyLinesToEnd(wchar_t** lines, int* nonEmptyLines)
 {
-    const int len = *nonEmptyLines;
-    int nbLinesToRemove = 0;
-
     if (lines)
     {
-        for (int i = 0; i < len; i++)
+        // move the blank lines at the end
+        int last = *nonEmptyLines - 1;
+        for (int i = last; i >= 0; i--)
         {
             if (hasOnlyBlankCharacters(&lines[i]))
             {
-                nbLinesToRemove++;
-
-                // move the lines at the end
-                for (int j = i + 1; j < len; i++, j++)
-                {
-                    // hopefully, empty lines have been flagged by hasOnlyBlankCharacters
-                    if (*(lines[j]) != L'\0')
-                    {
-                        // swap
-                        wchar_t* str = lines[i];
-                        lines[i] = lines[j];
-                        lines[j] = str;
-                    }
-                }
-
+                // swap
+                wchar_t* str = lines[i];
+                memmove(&lines[i], &lines[i+1], (last - i + 1) * sizeof(wchar_t*));
+                lines[last] = str;
+                last--;
             }
         }
-    }
 
-    *nonEmptyLines = len - nbLinesToRemove;
+        *nonEmptyLines = last + 1;
+    }
 }
 // =============================================================================
 static int hasOnlyBlankCharacters(wchar_t** line)
 {
     const wchar_t* iter = *line;
+
+    // EMPTY_STR is a tagged, non-allocated value for the empty string. It is 
+    // used to flag a blank string.
+    if (*line == EMPTY_STR)
+    {
+        return 1;
+    }
+
     while (*iter == L'\t' || *iter == L'\r' || *iter == L'\n' || *iter == L' ')
     {
         iter++;

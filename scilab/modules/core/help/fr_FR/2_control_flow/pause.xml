@@ -4,6 +4,12 @@
         <refname>pause</refname>
         <refpurpose>mode de pause, attente clavier  </refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxe</title>
+        <synopsis>
+            pause
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Description</title>
         <para>

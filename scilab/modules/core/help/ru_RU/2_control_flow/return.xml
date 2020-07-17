@@ -24,7 +24,7 @@
         <title>Синтаксис</title>
         <synopsis>
             return
-            [x1,..,xn]=return(a1,..,an)
+            [x1,..,xn] = return(a1,..,an)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

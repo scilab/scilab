@@ -1,4 +1,3 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
@@ -7,7 +6,16 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 //exists
+
+// []
+assert_checkequal(exists([]),[]);
+assert_checkequal(exists([],"a"), []);
+assert_checkequal(exists([],"l"), []);
+assert_checkequal(exists([],"n"), []);
 
 a=1;
 assert_checkequal(exists('a'), 1);

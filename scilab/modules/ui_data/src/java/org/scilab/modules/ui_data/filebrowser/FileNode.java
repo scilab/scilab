@@ -19,16 +19,15 @@ import java.io.File;
 import java.util.Comparator;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
-
 import javax.swing.Icon;
 import javax.swing.SortOrder;
-
 import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
 /**
  * Handle a File as a node in the JTree
+ *
  * @author Calixte DENIZET
  */
 public class FileNode {
@@ -62,6 +61,7 @@ public class FileNode {
 
     /**
      * Default constructor
+     *
      * @param file the file in this node
      */
     public FileNode(File file, int position) {
@@ -89,16 +89,15 @@ public class FileNode {
         return position;
     }
 
-    /**
-     * @param pat the pattern to filter the files
-     */
+    /** @param pat the pattern to filter the files */
     public void setFilter(Pattern pat) {
         this.pat = pat;
         resetChildren();
     }
 
     /**
-     * @param order the order to use to sort the file. If order is positive, then ascending order is used.
+     * @param order the order to use to sort the file. If order is positive, then ascending order is
+     *     used.
      */
     public void setOrder(int order) {
         this.order = order;
@@ -139,15 +138,14 @@ public class FileNode {
         setOrder(sign * order);
     }
 
-    /**
-     * @return the used order
-     */
+    /** @return the used order */
     public SortOrder getOrder() {
         return order > 0 ? SortOrder.ASCENDING : SortOrder.DESCENDING;
     }
 
     /**
      * Sort a column according to the natural order for its.
+     *
      * @param nameColumn the column name
      */
     public void toggleSortOrder(String nameColumn) {
@@ -180,6 +178,7 @@ public class FileNode {
 
     /**
      * Sort the files
+     *
      * @param order the order to use
      * @param files the files to order
      * @return the ordered FileNodes
@@ -198,9 +197,7 @@ public class FileNode {
         }
     }
 
-    /**
-     * Returns the string to be used to display this leaf in the JTree.
-     */
+    /** Returns the string to be used to display this leaf in the JTree. */
     public String toString() {
         String name = file.getName();
         if (name.isEmpty()) {
@@ -209,37 +206,27 @@ public class FileNode {
         return name;
     }
 
-    /**
-     * @return the file associated with this node
-     */
+    /** @return the file associated with this node */
     public File getFile() {
         return file;
     }
 
-    /**
-     * @return true if this represents the user-home directory
-     */
+    /** @return true if this represents the user-home directory */
     public boolean isUserHome() {
         return userHome;
     }
 
-    /**
-     * @return true if this represents the SCI directory
-     */
+    /** @return true if this represents the SCI directory */
     public boolean isSCI() {
         return sci;
     }
 
-    /**
-     * @return the last modified time for this file
-     */
+    /** @return the last modified time for this file */
     public long getLastModified() {
         return lastModified;
     }
 
-    /**
-     * @return the icon associated with this file
-     */
+    /** @return the icon associated with this file */
     public Icon getIcon() {
         if (icon == null) {
             icon = FileUtils.getIconForFile(file);
@@ -248,16 +235,12 @@ public class FileNode {
         return icon;
     }
 
-    /**
-     * @return true if the file is not a directory or if it is an empty one
-     */
+    /** @return true if the file is not a directory or if it is an empty one */
     public boolean isLeaf() {
         return isEmpty;
     }
 
-    /**
-     * @return the number of files in the directory representated by this file
-     */
+    /** @return the number of files in the directory representated by this file */
     public int getChildrenCount() {
         if (!isEmpty) {
             synchronized (file) {
@@ -274,14 +257,16 @@ public class FileNode {
         return 0;
     }
 
-    /**
-     * @return the children FileNode of this FileNode
-     */
+    /** @return the children FileNode of this FileNode */
     protected Object[] getChildren() {
         if (children == null && !isEmpty) {
             children = listFiles();
         }
 
+        return children;
+    }
+
+    public FileNode[] getRawChildren() {
         return children;
     }
 
@@ -321,23 +306,18 @@ public class FileNode {
         return null;
     }
 
-    /**
-     * Reset children only
-     */
+    /** Reset children only */
     public void resetChildren() {
         children = null;
+        isEmpty = isFile || CommonFileUtils.isEmptyDirectory(file.getAbsolutePath()) == 1;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public boolean equals(Object o) {
         return (o instanceof FileNode) && ((FileNode) o).file.equals(file);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public int hashCode() {
         return file.hashCode();
     }

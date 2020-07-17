@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,23 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="champ" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="champ" xml:lang="pt">
     <refnamediv>
         <refname>champ</refname>
         <refpurpose>esboço de campo vetorial 2d</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>champ(x,y,fx,fy,[arfact,rect,strf])
-            champ(x,y,fx,fy,&lt;opt_args&gt;)
+        <synopsis>
+            champ()  // example
+            champ(x, y, fx, fy)
+            champ(x, y, fx, fy, arfact)
+            champ(x, y, fx, fy, arfact, rect)
+            champ(x, y, fx, fy, arfact, rect, strf)
+            champ(x, y, fx, fy, &lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,7 +38,10 @@
             <varlistentry>
                 <term>x,y</term>
                 <listitem>
-                    <para>dois vetores que definem o grid</para>
+                    <para>
+                        vectors of decimal numbers, which define the grid of nodes
+                        = coordinates of arrows starting points.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -94,30 +105,140 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            <literal>champ</literal> desenha um campo vetorial 2d. O comprimento
-            das setas é proporcional é proporcional à intensidade do campo.
-        </para>
-        <para>Se você quiser setas coloridas com a cor das setas dependendo da
-            intensidade do campo, use <literal>gce().colored = "on"</literal>.
+            <literal>champ(…)</literal> plota um campo de vetores 2D com setas.
         </para>
         <para>
-            Entre com o comando <literal>champ()</literal> para visualizar uma
-            demonstração.
+            By default, all arrows have the same color, and their length is
+            proportional to the local intensity of the field (norm of vectors).
+            In addition, all lengths are normalized according to the longest arrow.
+        </para>
+        <para>
+            When setting <literal>gce().colored = "on"</literal>,
+            each arrow becomes as long as possible in its cell, and is colored
+            according to the local intensity of the field.
+        </para>
+        <para>
+            After calling <literal>champ(…)</literal>, <literal>gce()</literal>
+            returns the handle of the field of arrows, of type <literal>Champ</literal>,
+            whose <link linkend="champ_properties">properties</link> can be post-processed.
+        </para>
+        <para>
+            Entre com o comando <literal>champ()</literal> para visualizar um exemplo.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-// usando rect como fronteiras do esboço
-champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
-// usando (x,y) para conseguir obter
-clf()
-champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
- ]]></programlisting>
+x = -4:6;
+X = ndgrid(x);
+[fx, fy] =  (rand(X)-0.5, rand(X)-0.5);
+
+clf
+gcf().color_map = jetcolormap(50);
+
+// Field's intensity = arrows length
+subplot(2,2,1)
+champ(x, x, fx, fy)
+
+// With bigger arrow heads
+subplot(2,2,2)
+champ(x, x, fx, fy, arfact=1.7)
+title("arfact=1.7", "fontsize",3)
+
+// Field's intensity = arrows color
+xsetech([0 0.5 0.55 0.5])
+champ(x, x, fx, fy, arfact=1.7)
+gce().colored = "on";
+title("arfact=1.7, .colored=""on""", "fontsize",3)
+colorbar
+
+// Field's intensity = color, + imposed boundaries
+subplot(2,2,4)
+champ(x, x, fx, fy, rect=[-5,-6,9,7],strf="011")
+gce().colored = "on";
+title("rect=[-5,-6,9,6], strf=""011"", .colored=""on""", "fontsize",3)
+
+gcf().axes_size = [740 680];
+    ]]></programlisting>
+        <scilab:image>
+            x = -4:6;
+            X = ndgrid(x);
+            [fx, fy] =  (rand(X)-0.5, rand(X)-0.5);
+
+            clf
+            gcf().color_map = jetcolormap(50);
+
+            // Field's intensity = arrows length
+            subplot(2,2,1)
+            champ(x, x, fx, fy)
+
+            // With bigger arrow heads
+            subplot(2,2,2)
+            champ(x, x, fx, fy, arfact=1.7)
+            title("arfact=1.7", "fontsize",3)
+
+            // Field's intensity = arrows color
+            xsetech([0 0.5 0.55 0.5])
+            champ(x, x, fx, fy, arfact=1.7)
+            gce().colored = "on";
+            title("arfact=1.7, .colored=""on""", "fontsize",3)
+            L = sqrt(fx.^2 + fy.^2);
+            colorbar(min(L), max(L));
+
+            // Field's intensity = color, + imposed boundaries
+            subplot(2,2,4)
+            champ(x, x, fx, fy, rect=[-5,-6,9,7],strf="011")
+            gce().colored = "on";
+            title("rect=[-5,-6,9,6], strf=""011"", .colored=""on""", "fontsize",3)
+
+            gcf().axes_size = [740 680];
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+x = -1.2:0.11:0.7;
+y = -1:0.11:0.5;
+[X, Y] = ndgrid(x, y);
+[fx, fy] = (2*X, 2*Y);
+
+clf
+xsetech([0 0 0.45 1])
+champ(x, y, fx, fy)
+title(".colored = ""off"" (default)", "fontsize",3)
+xsetech([0.45 0 0.55 1])
+champ(x, y, fx, fy)
+title(".colored = ""on""", "fontsize",3)
+gce().colored = "on";
+
+gcf().color_map = jetcolormap(100);
+colorbar
+]]></programlisting>
+        <scilab:image>
+            x = -1.2:0.11:0.7;
+            y = -1:0.11:0.5;
+            [X, Y] = ndgrid(x, y);
+            [fx, fy] = (2*X, 2*Y);
+
+            clf
+            xsetech([0 0 0.45 1])
+            champ(x, y, fx, fy)
+            title(".colored = ""off"" (default)", "fontsize",3)
+            xsetech([0.45 0 0.55 1])
+            champ(x, y, fx, fy)
+            title(".colored = ""on""", "fontsize",3)
+            gce().colored = "on";
+
+            gcf().color_map = jetcolormap(100);
+            L = sqrt(fx.^2 + fy.^2);
+            colorbar(min(L), max(L));
+
+            gcf().axes_size = [720 340];
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="champ_properties">champ_properties</link>
+            </member>
             <member>
                 <link linkend="fchamp">fchamp</link>
             </member>

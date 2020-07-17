@@ -5,7 +5,7 @@
           xml:lang="en" xml:id="backslash">
     <refnamediv>
         <refname>backslash</refname>
-        <refpurpose>(\) left matrix division.</refpurpose>
+        <refpurpose>(\) left matrix division: Exact or least square solution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -119,6 +119,9 @@ mprintf('\ntime with backslash: %.3f\n',toc());
                 <link linkend="slash">slash</link>
             </member>
             <member>
+                <link linkend="lsq">lsq</link>
+            </member>
+            <member>
                 <link linkend="inv">inv</link>
             </member>
             <member>
@@ -129,6 +132,9 @@ mprintf('\ntime with backslash: %.3f\n',toc());
             </member>
             <member>
                 <link linkend="umfpack">umfpack</link>
+            </member>
+            <member>
+                <link linkend="datafit">datafit</link>
             </member>
             <member>
                 <link linkend="krondivide">kron .\.</link>

@@ -773,18 +773,24 @@ function varargout = %_sodload(%__varnameList__)
     //
     function h = createDatatip(datatipProperties)
 
-        fields = fieldnames(datatipProperties);
+        fields = fieldnames(datatipProperties)';
         fields(1) = [];
 
         tip_data = datatipProperties("data");
         h = datatipCreate(%POLYLINE, tip_data);
-
-        for i = 1:size(fields, "*")
-            if fields(i) == "data" then
-                continue;
+        for f = fields
+            if f == "data" then
+                continue
             end
-
-            set(h, fields(i), datatipProperties(fields(i)));
+            v = datatipProperties(f)
+            if f == "z_component" // up to 5.5.2: http://bugzilla.scilab.org/16374
+                if v=="on"
+                    [f, v] = ("display_components", "xyz")
+                else
+                    continue
+                end
+            end
+            set(h, f, v);
         end
     endfunction
 

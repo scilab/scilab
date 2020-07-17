@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,46 +19,37 @@
           xmlns:scilab="http://www.scilab.org" xml:id="complex" xml:lang="ru">
     <refnamediv>
         <refname>complex</refname>
-        <refpurpose>Создание комплексного числа.</refpurpose>
+        <refpurpose>Построение массива комплексных чисел по их частям</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            c=complex(a)
-            c=complex(a,b)
+            c = complex(u)
+            c = complex(a, b)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>a</term>
+                <term>u, a, b</term>
                 <listitem>
-                    <para>
-                        вещественная матрица значений двойной точности размером 1 на 1 или
-                        <literal>n</literal> на <literal>m</literal>, реальная часть.
-                        Если <literal>a</literal> имеет мнимую часть, то сформируется ошибка.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>b</term>
-                <listitem>
-                    <para>
-                        вещественная матрица значений двойной точности размером 1 на 1 или
-                        <literal>n</literal> на <literal>m</literal>, реальная часть (по умолчанию
-                        <literal>b=0</literal>).
-                        Если <literal>b</literal> имеет мнимую часть, то сформируется ошибка.
-                    </para>
+                    скаляры, векторы, матрицы и гиперматрицы вещественных чисел.
+                    Если оба <varname>a</varname> и <varname>b</varname> не скаляры,
+                    то они должны быть одинакового размера.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>c</term>
                 <listitem>
-                    <para>
-                        комплексная матрица значений двойной точности размером <literal>n</literal> на
-                        <literal>m</literal>, комплексное число.
-                    </para>
+                    Массив комплексных чисел того же размера, что и <varname>u</varname> или
+                    <varname>a</varname> и <varname>b</varname>.
+                    Если <varname>u</varname> является разрежённой, либо если <varname>a</varname> и
+                    <varname>b</varname> имеют одинаковые размеры и обе являются разрежёнными,
+                    то <varname>c</varname> является также разрежённой.
+                    В противном случае <varname>c</varname> является плотной.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -66,17 +57,16 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>c=complex(a)</literal> создаёт комплексное число из его реальной части
-            <literal>a</literal> и нуля в качестве мнимой части.
+            <emphasis role="bold">c = complex(u)</emphasis> создаёт комплексное число из
+            его реальной части <varname>u</varname> и нуля в качестве мнимой части.
         </para>
         <para>
-            <literal>c=complex(a,b)</literal> создаёт комплексное число из его реальной части
-            <literal>a</literal> и мнимой части <literal>b</literal>.
+            <emphasis role="bold">c = complex(a, b)</emphasis> создаёт комплексное число из его реальной части
+            <varname>a</varname> и мнимой части <varname>b</varname>.
         </para>
         <para>
-            Эта функция является заменой для таких выражений как <literal>a+%i*b</literal>,
-            особенно в случаях, когда комплексная арифметика пересекается с особыми числами с
-            плавающей запятой, такими как <literal>%inf</literal> или <literal>%nan</literal>.
+            Эта функция эквивалентна <literal>a + imult(b)</literal>, и должным
+            образом управляет специальными Inf и NaN вещественной и мнимой частями.
         </para>
     </refsection>
     <refsection>
@@ -89,25 +79,25 @@ complex(1,2)
 complex([1 2],[3 4])
  ]]></programlisting>
         <para>
-            Если определено только <literal>a</literal>, то мнимая часть устанавливается равной нулю.
+            Если определено только <varname>a</varname>, то мнимая часть устанавливается равной нулю.
         </para>
         <programlisting role="example"><![CDATA[
 complex([1 2 3])
  ]]></programlisting>
         <para>
-            Если <literal>a</literal> является скаляром, а <literal>b</literal>
-            является матрицей, то результат <literal>c</literal> имеет тот же размер, что и
-            <literal>b</literal>.
-            Аналогично, если <literal>a</literal> является матрицей, а <literal>b</literal> является
-            скаляром, то результат <literal>c</literal> имеет тот же размер, что и
-            <literal>a</literal>.
+            Если <varname>a</varname> является скаляром, а <varname>b</varname>
+            является матрицей, то результат <varname>c</varname> имеет тот же размер, что и
+            <varname>b</varname>.
+            Аналогично, если <varname>a</varname> является матрицей, а <varname>b</varname> является
+            скаляром, то результат <varname>c</varname> имеет тот же размер, что и
+            <varname>a</varname>.
         </para>
         <programlisting role="example"><![CDATA[
 c = complex([1 2 3], 4)
 c = complex(1, [2 3 4])
  ]]></programlisting>
         <para>
-            Если <literal>a</literal> и <literal>b</literal> являются матрицами разных размеров,
+            Если <varname>a</varname> и <varname>b</varname> являются матрицами разных размеров,
             то сформируется ошибка, как в следующем примере.
         </para>
         <screen><![CDATA[
@@ -118,27 +108,41 @@ at line      33 of function complex called by :
 complex(ones(2,3),ones(4,5))
  ]]></screen>
         <para>
-            Целью функции <literal>complex</literal> является управление числами с плавающей запятой,
-            такими как нечисловые значения (<literal>Nan</literal>) или бесконечность
-            (<literal>Inf</literal>).
-            На следующем примере мы покажем, что создание комплексного числа, у которого
-            реальная  и мнимая части являются комплексными, не простое дело, если мы используем
-            комплексную арифметику. Это из-за того, что произведение <literal>%i</literal> на
-            <literal>%inf</literal> вычисляется как <literal>(0+%i) * (%inf+%i*0)</literal>.
-            Это даёт промежуточное выражение <literal>0*%inf</literal>, которое равно <literal>%nan</literal>.
+            При специальных вещественной или/и мнимой частях:
         </para>
+        <programlisting role="example"><![CDATA[
+r = [0   0    0 %inf %inf %inf %nan %nan %nan].';
+i = [0 %inf %nan  0  %inf %nan   0  %inf %nan].';
+[r, i]
+
+// Затем сравним complex(r, i) и r + i*%i :
+[complex(r,i), r+i*%i]
+ ]]></programlisting>
         <screen><![CDATA[
--->%inf+%i*%inf
+--> [r, i]
  ans  =
-    Nan + Inf
- ]]></screen>
-        <para>
-            Решением этой проблемы является использование функции <literal>complex</literal>.
-        </para>
-        <screen><![CDATA[
--->complex(%inf,%inf)
+   0.    0.
+   0.    Inf
+   0.    Nan
+   Inf   0.
+   Inf   Inf
+   Inf   Nan
+   Nan   0.
+   Nan   Inf
+   Nan   Nan
+
+// Затем сравним complex(r, i) и r + i*%i :
+--> [complex(r,i), r+i*%i]
  ans  =
-    Inf + Inf
+   0.  + 0.i    0.  + 0.i
+   0.  + Infi   Nan + Infi
+   0.  + Nani   Nan + Nani
+   Inf + 0.i    Inf + 0.i
+   Inf + Infi   Nan + Infi
+   Inf + Nani   Nan + Nani
+   Nan + 0.i    Nan + 0.i
+   Nan + Infi   Nan + Infi
+   Nan + Nani   Nan + Nani
  ]]></screen>
     </refsection>
     <refsection role="see also">
@@ -151,5 +155,16 @@ complex(ones(2,3),ones(4,5))
                 <link linkend="imult">imult</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Расширение до разрежённых массивов.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

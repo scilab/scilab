@@ -20,6 +20,14 @@
             "enquanto...")
         </refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>
+            while expr ,instructions,..., end
+            while expr do instructions,..., end
+            while expr then instructions,..., end
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Descrição</title>
         <para>

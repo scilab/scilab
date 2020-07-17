@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="pspect" xml:lang="ru">
+    <refnamediv>
+        <refname>pspect</refname>
+        <refpurpose>
+            двусторонняя кросс-спектральная оценка между 2 дискретными во времени сигналами, исполmзуя
+            метод усреднения периодограммы Уэлча.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            sm = pspect(sec_step, sec_leng, wtype, x)
+            sm = pspect(sec_step, sec_leng, wtype, x, y)
+            sm = pspect(sec_step, sec_leng, wtype, nx)
+            sm = pspect(sec_step, sec_leng, wtype, nx, ny)
+            [sm, cwp] = pspect(.., wpar)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>вектор, отсчёты во временной области первого сигнала.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        вектор, отсчёты во временной области второго сигнала. Если
+                        <varname>y</varname> пропущен, то он предполагается равным
+                        <varname>x</varname> (автокорреляция). Если он имеется в наличии, то он
+                        должен иметь то же количество элементов, что и <varname>x</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nx</term>
+                <listitem>
+                    <para>
+                        скаляр: количество отсчётов в сигнале <varname>x</varname>.
+                        В этом случае сегменты сигнала <varname>x</varname> загружены
+                        пользовательской функцией с именем <literal>getx</literal> (см. ниже).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ny</term>
+                <listitem>
+                    <para>
+                        скаляр: количество отсчётов в сигнале <varname>y</varname>.
+                        В этом случае сегменты сигнала <varname>y</varname> загружены
+                        пользовательской функцией с именем <literal>gety</literal> (см. ниже).
+                        Если указан, то <literal>ny</literal> должен быть равен
+                        <literal>nx</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sec_step</term>
+                <listitem>
+                    <para>
+                        смещение каждого окна данных. Перекрытие <literal>D</literal>
+                        определяется как <literal>sec_leng -sec_step</literal>. Если
+                        <literal>sec_step==sec_leng/2</literal>, то перекрытие составляет
+                        50%.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sec_leng</term>
+                <listitem>
+                    <para>Количество точек в окне.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wtype</term>
+                <listitem>
+                    <para>Тип окна</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>'re'</literal>: прямоугольное
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'tr'</literal>: треугольное
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'hm'</literal>: Хэмминга
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'hn'</literal>: Хана
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'kr'</literal>: Кайзера, в этом случае должен
+                                быть указан аргумент <literal>wpar</literal>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'ch'</literal>: Чебышева, в этом случае должен
+                                быть указан аргумент <literal>wpar</literal>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wpar</term>
+                <listitem>
+                    <para>
+                        необязательный параметр для окон Кайзера и Чебышева:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                'kr': <literal>wpar</literal> должен быть строго положительным числом
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                'ch': <literal>wpar</literal> должен быть двухэлементным вектором
+                                <literal> [main_lobe_width, side_lobe_height]</literal> где
+                                <literal>0&lt;main_lobe_width&lt;.5</literal> и
+                                <literal>side_lobe_height&gt;0</literal>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sm</term>
+                <listitem>
+                    <para>
+                        Двусторонняя оценка спектральной мощности в интервале
+                        <literal>[0,1]</literal> нормированных частот. Это вектор-строка
+                        с <literal>sec_len</literal> элементов. Массив является вещественным
+                        в случае автокорреляции и комплексным в случае кросскорреляции.
+                    </para>
+                    <para>
+                        Соответствующий массив нормированных частот
+                        <literal>linspace(0,1,sec_len)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cwp</term>
+                <listitem>
+                    <para>
+                        неопределённый параметр окна Чебышева в случае Чебышевской
+                        оконной обработки, либо пустая матрица.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Вычисляет кросс-спектральную оценку двух сигналов <varname>x</varname>
+            и <varname>y</varname> если указаны оба, и автоспектральную оценку
+            для <varname>x</varname> в противном случае. Спектральная оценка,
+            получена с помощью модифицированного метода периодограммы.
+        </para>
+        <para>
+            Кросс-спектр двух сигналов <varname>x</varname> и  <varname>y</varname>
+            определяется как
+            <latex style="display"
+                alt="S_xy(ω) = (∑{n=0…N-1} x(n) exp(-iωn)) . (∑{n=0…N-1} y'(n) exp(iωn)) / N">
+                S_{xy} (\omega) = {1 \over N}
+                \left(\sum_{n=0}^{N-1} x(n)\,e^{-i \omega n}\right)
+                \left( \sum_{n=0}^{N-1} \bar{y}(n)\,e^{i \omega n} \right)
+            </latex>
+        </para>
+        <para>
+            Модифицированный метод периодограммы спектральной оценки повторно оценивает
+            периодограмму взвешеных подсекций данных, содержащихся в <varname>x</varname>
+            и <varname>y</varname>. Эти периодограммы затем вместе усредняются и нормируются
+            соответствующей константой для получения окончательной спектральной оценки. Это
+            процесс усреднения, который уменьшает дисперсию в оценке.
+        </para>
+        <para>
+            Для пакетной обработки данные <varname>x</varname> и <varname>y</varname>
+            могут быть прочитаны сегмент за сегментом с помощью функций
+            <literal>getx</literal> и <literal>gety</literal>, определённых пользователем.
+            Эти функции имеют следующий синтаксис:
+        </para>
+        <para>
+            <literal>xk = getx(ns,offset)</literal> и
+            <literal>yk = gety(ns,offset)</literal> где <varname>ns</varname> - это
+            размер сегмента, и <varname>offset</varname> - это индекс первого элемента
+            сегмента в полном сигнале.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Сcылка</title>
+        <para>Oppenheim, A.V., and R.W. Schafer. Discrete-Time Signal Processing,
+            Upper Saddle River, NJ: Prentice-Hall, 1999
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+rand('normal');rand('seed',0);
+x = rand(1:1024-33+1);
+
+// делаем фильтр нижних частот с помощью eqfir
+nf = 33; bedge = [0 .1;.125 .5]; des = [1 0]; wate = [1 1];
+h =eqfir(nf, bedge, des, wate);
+
+// фильтруем белые данные для получения цветных данных
+h1 = [h 0*ones(1:max(size(x))-1)];
+x1 = [x 0*ones(1:max(size(h))-1)];
+hf = fft(h1,-1);
+xf = fft(x1,-1);
+y = real(fft(hf.*xf,1));
+
+// строим АЧХ фильтра
+h2 = [h 0*ones(1:968)];
+hf2 = fft(h2,-1);
+hf2 = real(hf2.*conj(hf2));
+hsize = max(size(hf2));
+fr = (1:hsize) / hsize;
+plot(fr, log(hf2));
+
+// пример pspect
+sm = pspect(100,200,'tr',y);
+smsize = max(size(sm));
+fr = (1:smsize) / smsize;
+plot(fr, log(sm),'r');
+rand('unif');
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cspect">cspect</link>
+            </member>
+            <member>
+                <link linkend="pspect">pspect</link>
+            </member>
+            <member>
+                <link linkend="mese">mese</link>
+            </member>
+            <member>
+                <link linkend="window">window</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

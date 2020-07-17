@@ -248,6 +248,7 @@ public :
     */
 
 private :
+    static int m_iUserMode;
     static int m_iPromptMode;
     static bool m_printInput;
     static bool m_printOutput;
@@ -255,6 +256,9 @@ private :
     static bool m_printInteractive;
 
 public :
+    static void setUserMode(int _iPromptMode);
+    static int getUserMode(void);
+
     static void setPromptMode(int _iPromptMode);
     static int getPromptMode(void);
 
@@ -530,7 +534,7 @@ public :
     static void resetRecursionLevel();
     static bool increaseRecursion();
     static void decreaseRecursion();
-private: 
+private:
     static bool webMode;
 public:
     static bool getWebMode();

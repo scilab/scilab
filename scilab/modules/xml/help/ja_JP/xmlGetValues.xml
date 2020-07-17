@@ -19,7 +19,7 @@
           xmlns:scilab="http://www.scilab.org" xml:id="xmlGetValues" xml:lang="ja">
     <refnamediv>
         <refname>xmlGetValues</refname>
-        <refpurpose>設定値を取得</refpurpose>
+        <refpurpose>XMLファイルで選択されたタグ属性の値を解析して取得する</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>

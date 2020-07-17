@@ -69,18 +69,17 @@
             computedとexpectedが等しい場合,そのまま実行されます.
         </para>
         <para>
-            入力引数の型が共に1 (すなわち実数行列)の場合,
-            nan以外の値が等しいことが確認されます (matching Nan values are considered equal).
+            For complex numbers: まず実部を確認し,それが等しい場合に虚部を確認します.
         </para>
         <para>
-            For complex numbers: まず実部を確認し,それが等しい場合に虚部を確認します.
+            Matching Nan values are always considered equal.
         </para>
         <para>
             <literal>1/%z</literal> and <literal>2/(2*%z)</literal> are not equal: For the time
             being, Scilab does not normalize equivalent rationals.
         </para>
         <para>
-            In two lists, matching void elements are considered equal.
+             In containers, matching <literal>void</literal> elements are considered equal.
         </para>
         <para>
             比較がcomputedがexpectedに等しくないことを示す場合,
@@ -176,6 +175,10 @@ assert_checkequal: Assertion failed: expected= lib@SCI\modules\core\macros\  whi
 ]]></screen>
     </refsection>
     <refsection>
+        <title>参考文献</title>
+        <para>"Automated Software Testing for Matlab", Steven Eddins, 2009</para>
+    </refsection>
+    <refsection>
         <title>履歴</title>
         <revhistory>
             <revision>
@@ -206,10 +209,12 @@ assert_checkequal: Assertion failed: expected= lib@SCI\modules\core\macros\  whi
                    </itemizedlist>
                 </revdescription>
             </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Matching NaN or void elements in simple or nested containers are now considered equal.
+                </revdescription>
+            </revision>
         </revhistory>
-    </refsection>
-    <refsection>
-        <title>参考文献</title>
-        <para>"Automated Software Testing for Matlab", Steven Eddins, 2009</para>
     </refsection>
 </refentry>

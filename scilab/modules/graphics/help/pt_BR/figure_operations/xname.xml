@@ -16,7 +16,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xname" xml:lang="pt">
     <refnamediv>
         <refname>xname</refname>
-        <refpurpose>muda o nome da janela de gráficos corrente</refpurpose>
+        <refpurpose>muda o nome da janela de gráficos corrente
+            <emphasis role="bold">(obsolete)</emphasis>)
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
@@ -35,9 +37,24 @@
     </refsection>
     <refsection>
         <title>Descrição</title>
+        <warning>
+            <literal>xname()</literal> is obsolete. It will be removed in Scilab 6.2.x.
+            Please use <literal>gcf().figure_name = "New name"</literal> instead.
+        </warning>
         <para>
             <literal>xname</literal> muda o nome da janela de gráficos
             corrente.
         </para>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    xname() declared obsolete. Replaced with gcf().figure_name="New name".
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

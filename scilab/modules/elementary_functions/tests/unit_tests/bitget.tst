@@ -1,16 +1,16 @@
-// =============================================================================
+// ===================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 // Copyright (C) 2017 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
-// =============================================================================
+// ===================================================================
 
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 
 // Test 1
-// =============================================================================
+// ===================================================================
 // Test 1.1
 A = floor(2^52 * rand(20,20));
 for i=1:size(A,"*");
@@ -32,7 +32,7 @@ for i = [1 2 4 8 11 12 14 18]               // Loop on int types
 end
 
 // Test 2
-// =============================================================================
+// ===================================================================
 A0 = bin2dec(["0001" "0010";"0011" "0100"]);
 B =         [    1      0 ;    1      0 ];
 C =         [   0      1  ;   1      0  ];
@@ -43,7 +43,7 @@ for i = [0 1 2 4 8 11 12 14 18]
 end
 
 // Test 3: about bitmax
-// =============================================================================
+// ===================================================================
 k = [0 1 2 4 8 11 12 14 18];
 bitmax = [1024 7 15 31 63 8 16 32 64];
 for i = 1:length(k)
@@ -54,7 +54,7 @@ for i = 1:length(k)
 end
 
 // Tests about input / output types
-// =============================================================================
+// ===================================================================
 it = [0 1 2 4 8 11 12 14 18];
 for i = it
     n = abs(iconvert([1 10 100 271 1000 3467 34567], i));
@@ -65,7 +65,7 @@ for i = it
 end
 
 // Tests about input / output sizes
-// =============================================================================
+// ===================================================================
 b = [1 3 4 6 7];
 n = sum(2^(b-1));
 
@@ -111,7 +111,7 @@ ref = [
 assert_checkequal(bitget(x, [5 8 12 39]), ref);
 
 // Bits extraction from decimal numbers > 2^52
-// =============================================================================
+// ===================================================================
 assert_checkequal(execstr("bitget(123 , 54);","errcatch"), 0);
 assert_checkequal(execstr("bitget(123 , 1000);","errcatch"), 0);
 
@@ -135,3 +135,51 @@ va = sum(2 .^(bg(s).*(i(s)-1)));
 assert_checkequal(va, v);
 
 
+// Big int64 and uint64 integers > 2^53
+// ===================================================================
+// uint64
+// ------
+// x scalar, all bits
+for i = 1:5
+    bref = find(grand(1, 64, "uin", 0, 1))';
+    x = bitset(uint64(0), bref);
+    b = bitget(x, 1:64);
+    assert_checkequal(find(b)', bref);
+    assert_checkequal(inttype(b), inttype(x));
+end
+// x column, bits 1:64
+n = 20;
+bref = grand(n, 64, "uin", 0, 1);
+bin = bref .* (ones(n, 1) * (1:64));
+x = [];
+for i = 1:n
+    x = [ x ; bitset(uint64(0), find(bin(i,:))) ];
+end
+assert_checkequal(bitget(x, 1:64), uint64(bref));
+// Element-wise extraction
+for i = 1:64
+    assert_checkequal(bitget(x, i*ones(n,1)), uint64(bref(:,i)));
+end
+
+// int64
+// -----
+for i = 1:5
+    bref = find(grand(1, 63, "uin", 0, 1))';
+    x = bitset(int64(0), bref);
+    b = bitget(x, 1:63);
+    assert_checkequal(find(b)', bref);
+    assert_checkequal(inttype(b), inttype(x));
+end
+// x column, bits 1:64
+n = 20;
+bref = grand(n,63, "uin", 0, 1);
+bin = bref .* (ones(n,1)*(1:63));
+x = [];
+for i = 1:n
+    x = [x ; bitset(int64(0), find(bin(i,:)))];
+end
+assert_checkequal(bitget(x,1:63), int64(bref));
+// Element-wise extraction
+for i = 1:63
+    assert_checkequal(bitget(x,i*ones(n,1)), int64(bref(:,i)));
+end

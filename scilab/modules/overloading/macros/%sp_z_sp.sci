@@ -1,7 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
 //
-// Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2020 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,21 +9,8 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r = %sp_z_sp(a,b)
-    //  a.\.b with a and b sparse
+function r = %sp_z_sp(a, b)
+    //  a .\. b with a and b sparse
 
-    [ija,va,mna] = spget(a)
-    [ijb,vb,mnb] = spget(b)
-    if size(ija,1)<>prod(mna) | or(va==0) then
-        msg = _("%s: Division by 0...\n")
-        error(msprintf(msg, "%sp_z_sp"))
-    end
-    ia = ija(:,1);
-    ja = ija(:,2)
-    ib = ijb(:,1);
-    jb = ijb(:,2)
-
-    ij = [((ia-ones(ia))*mnb(1)).*.ones(ib)+ones(ia).*.ib,..
-          ((ja-ones(ja))*mnb(2)).*.ones(jb)+ones(ia).*.jb]
-    r = sparse(ij, va.\.vb, mna.*mnb)
+    r = %s_z_s(a, b)
 endfunction

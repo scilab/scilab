@@ -23,13 +23,14 @@
         <synopsis>
             select variable
             case value1 then
-            instructions 1
+                instructions 1
             case value2 then
-            instructions 2
-            ...
+                instructions 2
+                ...
             case valuen then
-            instructions n
-            [else instructions]
+                instructions n
+           [else
+                instructions]
             end
         </synopsis>
     </refsynopsisdiv>

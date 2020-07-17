@@ -63,6 +63,12 @@ static types::Function::ReturnValue isdef(types::typed_list& in, int _iRetCount,
         return types::Function::Error;
     }
 
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
+    {
+        out.push_back(types::Double::Empty());
+        return types::Function::OK;
+    }
+
     if (!in[0]->isString())
     {
         Scierror(999, _("%s: Wrong type for argument #%d: Matrix of strings expected.\n"), fname, 1);
@@ -130,17 +136,19 @@ types::Function::ReturnValue sci_exists(types::typed_list &in, int _iRetCount, t
 
     if (retVal == types::Function::OK)
     {
-        types::Bool* pBOut = out[0]->getAs<types::Bool>();
-        types::Double* pDblOut = new types::Double(pBOut->getDims(), pBOut->getDimsArray());
-        for (int i = 0; i < pBOut->getSize(); i++)
+        if (out[0]->isDouble() == false)
         {
-            pDblOut->set(i, (double)pBOut->get(i));
+            types::Bool* pBOut = out[0]->getAs<types::Bool>();
+            types::Double* pDblOut = new types::Double(pBOut->getDims(), pBOut->getDimsArray());
+            for (int i = 0; i < pBOut->getSize(); i++)
+            {
+                pDblOut->set(i, (double)pBOut->get(i));
+            }
+            pBOut->killMe();
+            out.pop_back();
+
+            out.push_back(pDblOut);
         }
-
-        pBOut->killMe();
-        out.pop_back();
-        out.push_back(pDblOut);
     }
-
     return retVal;
 }

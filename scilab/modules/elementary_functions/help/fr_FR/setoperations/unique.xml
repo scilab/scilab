@@ -25,10 +25,10 @@
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>
-            [N, km, kn, nb] = unique(M)
-            [N, km, kn, nb] = unique(M, orient)
-            [N, km, kn, nb] = unique(.., "keepOrder")
-            [N, km, kn, nb] = unique(.., "uniqueNan")
+            [U, km, ku, nb] = unique(M)
+            [U, km, ku, nb] = unique(M, orient)
+            [U, km, ku, nb] = unique(.., "keepOrder")
+            [U, km, ku, nb] = unique(.., "uniqueNan")
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -38,7 +38,8 @@
                 <term>M</term>
                 <listitem>
                     <para>
-                        vecteur, matrice, ou hypermatrice de nombres ou de textes.
+                        vecteur, matrice, ou hypermatrice de booléens, de nombres, ou de textes.
+                        Les matrices numériques ou booléennes creuses sont acceptées.
                     </para>
                 </listitem>
             </varlistentry>
@@ -52,25 +53,27 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>N</term>
+                <term>U</term>
                 <listitem>
-                    <para>
-                      <itemizedlist>
-                        <listitem>
-                            <para>
-                                Sans <varname>orient</varname>: vecteur d'éléments de
-                                <varname>M</varname> triés par ordre croissant.
-                                Si <varname>M</varname> est un vecteur ligne, <varname>N</varname>
-                                aussi. Dans tous les autres cas, <varname>N</varname> est une
-                                matrice ou en colonne.
-                            </para>
-                        </listitem>
-                        <listitem>
-                          Avec <varname>orient</varname>: Matrice de lignes ou de colonnes extraites
-                          de <varname>M</varname>, triées par ordre lexicographique croissant.
-                        </listitem>
-                      </itemizedlist>
-                    </para>
+                    <itemizedlist>
+                    <listitem>
+                        <para>
+                            Sans <varname>orient</varname>: vecteur d'éléments de
+                            <varname>M</varname> triés par ordre croissant.
+                            Si <varname>M</varname> est un vecteur ligne, <varname>U</varname>
+                            aussi. Dans tous les autres cas, <varname>U</varname> est un
+                            vecteur colonne.
+                        </para>
+                    </listitem>
+                    <listitem>
+                      Avec <varname>orient</varname>: Matrice de lignes ou de colonnes extraites
+                      de <varname>M</varname>, triées par ordre lexicographique croissant.
+                    </listitem>
+                </itemizedlist>
+                <para/>
+                <para>
+                    <varname>U</varname> est toujours creuse si en entrée <varname>M</varname> l'est.
+                </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -78,8 +81,8 @@
                 <listitem>
                     <para>
                       Indices des éléments, lignes ou colonnes extraits, tels que
-                      <literal>N(i) = M(km(i))</literal> ou <literal>N(i,:) = M(km(i),:)</literal>
-                      ou <literal>N(:,i) = M(:,km(i))</literal>.
+                      <literal>U = M(km)</literal> ou <literal>U = M(km,:)</literal>
+                      ou <literal>U = M(:,km)</literal>.
                     </para>
                     <para>
                         <varname>km</varname> est un vecteur ligne si <varname>M</varname>
@@ -89,13 +92,26 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>kn</term>
+                <term>ku</term>
                 <listitem>
-                    Not yet implemented.
-                    Vector of indices of first encountered occurrences, such that
-                    <literal>M(i) = N(kn(i))</literal> or <literal>M(i,:) = N(kn(i),:)</literal>
-                    or <literal>M(:,i) = N(:,kn(i))</literal>.
+                    Vecteur, matrice ou hypermatrice d'indices dans U, tel que, selon
+                    l'option <varname>orient</varname>
+                    <itemizedlist>
+                        <listitem>
+                            "*": <varname>ku</varname> est de taille size(M), avec <literal>U(ku) = M</literal>
+                        </listitem>
+                        <listitem>
+                            "r": <varname>ku</varname> est de taille [size(M,1), 1], avec <literal>U(ku,:) = M</literal>
+                        </listitem>
+                        <listitem>
+                            "c": <varname>ku</varname> est de taille [1, size(M,2)], avec <literal>U(:,ku) = M</literal>
+                        </listitem>
+                    </itemizedlist>
                     <para/>
+                    <warning>
+                        <varname>ku</varname> est dense, y compris lorsque <varname>M</varname> est
+                        creuse et que le mode simple "*" est utilisé.
+                    </warning>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -104,7 +120,7 @@
                     <para>
                       Vecteur d'entiers > 0, au format de <varname>km</varname> :
                       nombres d'exemplaires dans <varname>M</varname> de chaque entité
-                      (élément, ligne, colonne) retournée dans <varname>N</varname>.
+                      (élément, ligne, colonne) retournée dans <varname>U</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -140,6 +156,16 @@
             <literal>%nan&lt;>%nan</literal> est vrai, à moins d'utiliser
             <literal>"uniqueNan"</literal>. L'indicateur
             <literal>"uniqueNan"</literal> est insensible aux minuscules/majuscules.
+        </para>
+        <para>
+            Pour un tableau de booléens, <literal>unique(…)</literal> sera utile principalement
+            avec les options "r" ou "c".
+        </para>
+        <para>
+            <note>
+                Les nombres complexes sont triés par modules croissants, puis par phases croissantes
+                sur [-π, π].
+            </note>
         </para>
     </refsection>
     <refsection role="examples">
@@ -187,13 +213,18 @@ c = [1+i, 1-i, -i, i, -i, 1+i]
     <screen><![CDATA[
 --> c = [1+i, 1-i, -i, i, -i, 1+i]
  c  =
-   1. + i     1. - i  -i    i   -i    1. + i
+   1. + i    1. - i    0. - i    0. + i    0. - i    1. + i
 
 --> [u, k] = unique(c)
  u  =
-  -i    i    1. - i   1. + i
-
+   0. - i    0. + i    1. - i    1. + i
  k  =
+   3.   4.   2.   1.
+
+--> [uc, kc] = unique(c, "c")
+ uc  =
+   0. - i    0. + i    1. - i    1. + i
+ kc  =
    3.   4.   2.   1.
 ]]></screen>
 
@@ -207,6 +238,7 @@ u = unique(t)'
 [u, kt] = unique(t(1,:), "keepOrder")        // ordre initial conservé
 [uc, ktc, kuc, nb] = unique(t, "c")
 [uc, ktc, kuc, nb] = unique(t, "c", "keepOrder")  // ordre initial des colonnes conservé
+[and(t(:,ktc)==uc), and(uc(:,kuc)==t) ]
  ]]></programlisting>
     <screen><![CDATA[
 --> t = ["BA" "BB" "AB" "BA" "AB" "BA" "AB" "AB" "BA" "AA" "AB" "BA" "BA" "BA" "AA"
@@ -258,6 +290,10 @@ u = unique(t)'
 
  nb  =
    2.   1.   1.   3.   2.   1.   3.   1.   1.
+
+--> [and(t(:,ktc)==uc), and(uc(:,kuc)==t) ]
+ ans  =
+  T  T
 ]]></screen>
         <para/>
         <para>Avec des valeurs Nan (et Inf). Option "uniqueNan" :</para>
@@ -344,12 +380,21 @@ unique(M, "c")
                 <revdescription>
                     <itemizedlist>
                         <listitem>
+                            Extension aux booléens.
+                        </listitem>
+                        <listitem>
                             Options "keepOrder" et "uniqueNan" ajoutées.
                         </listitem>
                         <listitem>
                             4ème résultat <literal>nb</literal> ajouté.
                         </listitem>
                     </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    3ème résultat ku implémenté. Les matrices creuses 2D sont désormais acceptées.
                 </revdescription>
             </revision>
         </revhistory>

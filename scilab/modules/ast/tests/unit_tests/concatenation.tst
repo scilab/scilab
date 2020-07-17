@@ -30,8 +30,8 @@ checkCallOverload("[list(1) list(2)]");
 // Double
 assert_checkequal([ldouble ldouble], [1 2 3 1 2 3]);
 assert_checkequal([ldouble lbool], [ldouble double(lbool)]);
-checkCallOverload("[ldouble lint]");
-checkCallOverload("[ldouble lint16]");
+assert_checkequal([ldouble lint],  [ldouble double(lint)]);
+assert_checkequal([ldouble lint16],  [ldouble double(lint16)]);
 assert_checkequal([ldouble lpoly], [(ldouble + 0*%s) lpoly]);
 assert_checkequal([ldouble lsparse], [sparse(ldouble) lsparse]);
 checkCallOverload("[ldouble lspb]");
@@ -40,8 +40,8 @@ checkCallOverload("[ldouble lsta]");
 
 assert_checkequal([ldouble ; ldouble], matrix([1 1 2 2 3 3], 2, 3));
 assert_checkequal([ldouble ; lbool], [ldouble ; double(lbool)]);
-checkCallOverload("[ldouble ; lint]");
-checkCallOverload("[ldouble ; lint16]");
+assert_checkequal([ldouble ; lint],  [ldouble ; double(lint)]);
+assert_checkequal([ldouble ; lint16],[ldouble ; double(lint16)]);
 assert_checkequal([ldouble ; lpoly], [(ldouble + 0*%s) ; lpoly]);
 assert_checkequal([ldouble ; lsparse], [sparse(ldouble) ; lsparse]);
 checkCallOverload("[ldouble ; lspb]");
@@ -70,7 +70,7 @@ checkCallOverload("[lbool ; lstring]");
 checkCallOverload("[lbool ; lsta]");
 
 // int
-checkCallOverload("[lint ldouble]");
+assert_checkequal([lint ldouble], [double(lint) ldouble]);
 assert_checkequal([lint lbool], int32([1 2 3 1 0 1]));
 assert_checkequal([lint lint], int32([1 2 3 1 2 3]));
 checkCallOverload("[lint lint16]");
@@ -80,7 +80,7 @@ checkCallOverload("[lint lspb]");
 checkCallOverload("[lint lstring]");
 checkCallOverload("[lint lsta]");
 
-checkCallOverload("[lint ; ldouble]");
+assert_checkequal([lint ; ldouble], [double(lint) ; ldouble]);
 assert_checkequal([lint ; lbool], int32([1 2 3;1 0 1]));
 assert_checkequal([lint ; lint], int32(matrix([1 1 2 2 3 3], 2, 3)));
 checkCallOverload("[lint ; lint16]");

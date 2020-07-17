@@ -5,7 +5,7 @@
           xml:lang="ru" xml:id="backslash">
     <refnamediv>
         <refname>обратный слэш (\)</refname>
-        <refpurpose>(\) левое матричное деление.</refpurpose>
+        <refpurpose>(\) левое матричное деление: точное решение или решение по методу наименьших квадратов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
@@ -19,7 +19,8 @@
         </para>
         <para>
             Если <literal>A</literal> - квадратная и невырожденная, то  <code>X=A\B</code>
-            (уникально определённая) эквивалентно <code>X=inv(A)*B</code> в точном арифметическом смысле, однако вычисления гораздо точнее и дешевле в арифметике с плавающей запятой.
+            (уникально определённая) эквивалентно <code>X=inv(A)*B</code> в точном арифметическом смысле,
+            однако вычисления гораздо точнее и дешевле в арифметике с плавающей запятой.
             Следовательно, чтобы вычислить решение линейной системы уравнений <code>A*X=B</code>,
             следует использовать оператор "обратный слэш", а функцию  <function>inv</function> не следует использовать.
         </para>
@@ -56,7 +57,8 @@
         </para>
         <para>
             <literal>A\.B</literal> является оператором без предопределённого значения. Он может использоваться
-            для определения нового оператора (см. <link linkend="overloading">перегрузку</link>) с тем же самым приоритетом что и <literal>*</literal> или <literal>/</literal>.
+            для определения нового оператора (см. <link linkend="overloading">перегрузку</link>) с тем же самым приоритетом
+            что и <literal>*</literal> или <literal>/</literal>.
         </para>
     </refsection>
     <refsection>
@@ -123,6 +125,9 @@ mprintf('\nвремя, необходимое для решения систем
                 <link linkend="slash">slash</link>
             </member>
             <member>
+                <link linkend="lsq">lsq</link>
+            </member>
+            <member>
                 <link linkend="inv">inv</link>
             </member>
             <member>
@@ -135,10 +140,13 @@ mprintf('\nвремя, необходимое для решения систем
                 <link linkend="umfpack">umfpack</link>
             </member>
             <member>
+                <link linkend="datafit">datafit</link>
+            </member>
+            <member>
                 <link linkend="krondivide">kron .\.</link>
             </member>
             <member>
-                <link linkend="overloading">overloading</link>
+                <link linkend="overloading">перегрузка</link>
             </member>
         </simplelist>
     </refsection>

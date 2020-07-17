@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,30 +14,45 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="mputstr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="mputstr">
     <refnamediv>
         <refname>mputstr</refname>
-        <refpurpose>записывает символьную строку в файл</refpurpose>
+        <refpurpose>запись отдельного текста в открытый файл</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>mputstr(str [, fd]);</synopsis>
+        <synopsis>
+            mputstr(str)
+            mputstr(str, fid)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>fd</term>
+                <term>fid</term>
                 <listitem>
                     <para>
-                        скаляр: дескриптор файла, возвращённый функцией <function>mopen</function>. Для последнего открытого файла ставится <literal>-1</literal>. Значение по умолчанию <literal>-1</literal>.
+                        целое число: идентификатор файла, возвращённый
+                        <literal>mopen(…)</literal>. <literal>-1</literal>
+                        (по умолчанию) стоит для последнего открытого файла.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>str</term>
                 <listitem>
-                    <para>символьная строка.</para>
+                    <para>
+                        Отдельный текст для записи в файл. Принимаются мультиязыковые
+                        символы UTF-8. <varname>str</varname> может включать в
+                        себя специальные символы форматирования, такие как ascii(9)
+                        (табулятор), ascii(10) (новая строка) and ascii(13)
+                        (возврат каретки). Такие последовательности, как "\t",
+                        "\n" и "\r" не имеют специального значения и записываются
+                        как есть.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,69 +60,115 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>mputstr</function> позволяет записать символьную строку <varname>str</varname> в двоичный файл.
+            <literal>mputstr(…)</literal> записывает символьную строку
+            <varname>str</varname> в двоичный или текстовый файл. <varname>str</varname>
+            буферизуется: фактически она записывается в файл только при его
+            закрытии.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
+myFile = tempname();
+fid = mopen(myFile, "wt");
 
-this_file = pathconvert(TMPDIR+"/mputstr.txt", %F);
+mputstr("Scilab", fid);
+mgetl(myFile) // => []. "Scilab" буферизован
+mputstr(" and Xcos", fid);
+mgetl(myFile) // => still []. " and Xcos" добавляется в буфер
 
-fd = mopen(this_file, "wt");
-mputstr("Scilab", fd);
-mclose(fd);
+// Только один текст может быть послан за раз:
+mputstr(["Science" ; "Innovation"], fid);     // => error
 
-mgetl(this_file) // Scilab
+mclose(fid);
+mgetl(myFile) // => "Scilab and Xcos"
+mdelete(myFile);
+     ]]></programlisting>
+        <para/>
+        <screen><![CDATA[
+--> mputstr("Scilab", fid);
+--> mgetl(myFile) // => []. "Scilab"  буферизован
+ ans  =
+    []
 
+--> mputstr(" and Xcos", fid);
+--> mgetl(myFile) // => still []. " and Xcos" добавляется в буфер
+ ans  =
+    []
+
+--> // Только один текст может быть послан за раз:
+--> mputstr(["Science" ; "Innovation"], fid);    // => error
+mputstr: Argument #1: Scalar (1 element) expected.
+
+--> mclose(fid);
+--> mgetl(myFile)
+ ans  =
+  "Scilab and Xcos"
+]]></screen>
+        <para/>
+        <para>
+            Использование UTF-8 и специальные символы форматирования:
+        </para>
+        <programlisting role="example"><![CDATA[
+[tab, nl] = (ascii(9), ascii(10));
+myFile = tempname();
+fid = mopen(myFile, "wt");
+
+mputstr("Επιστήμη", fid);
+mputstr(ascii(10), fid);      // перевод строки
+mputstr("Τεχνολογία" + nl, fid);
+mputstr(tab, fid);           // табуляция в начале строки
+mputstr("innovation", fid);
+mputstr(nl + "Science" + nl + tab + "technology", fid);
+mclose(fid);
+mgetl(myFile)
+
+mdelete(myFile);
  ]]></programlisting>
+    <screen><![CDATA[
+--> mputstr("Επιστήμη", fid);
+--> mputstr(ascii(10), fid);      // перевод строки
+--> mputstr("Τεχνολογία" + nl, fid);
+--> mputstr(tab, fid);           // табуляция в начале строки
+--> mputstr("innovation", fid);
+--> mputstr(nl + "Science" + nl + tab + "technology", fid);
+--> mclose(fid);
+--> mgetl(myFile)
+ ans  =
+  "Επιστήμη"
+  "Τεχνολογία"
+  "        innovation"
+  "Science"    
+  "        technology"
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="mclose">mclose</link>
-            </member>
-            <member>
-                <link linkend="meof">meof</link>
-            </member>
-            <member>
-                <link linkend="mfprintf">mfprintf</link>
-            </member>
-            <member>
-                <link linkend="fprintfMat">fprintfMat</link>
-            </member>
-            <member>
-                <link linkend="mfscanf">mfscanf</link>
-            </member>
-            <member>
-                <link linkend="fscanfMat">fscanfMat</link>
-            </member>
-            <member>
-                <link linkend="mget">mget</link>
-            </member>
-            <member>
                 <link linkend="mgetstr">mgetstr</link>
             </member>
             <member>
-                <link linkend="mopen">mopen</link>
+                <link linkend="mputl">mputl</link>
             </member>
             <member>
-                <link linkend="mprintf">mprintf</link>
+                <link linkend="mgetl">mgetl</link>
             </member>
             <member>
                 <link linkend="mput">mput</link>
             </member>
             <member>
-                <link linkend="mseek">mseek</link>
+                <link linkend="mfprintf">mfprintf</link>
             </member>
             <member>
-                <link linkend="mtell">mtell</link>
+                <link linkend="save">save</link>
             </member>
             <member>
-                <link linkend="mdelete">mdelete</link>
+                <link linkend="write">write</link>
+            </member>
+            <member>
+                <link linkend="csvWrite">csvWrite</link>
             </member>
         </simplelist>
     </refsection>
 </refentry>
-

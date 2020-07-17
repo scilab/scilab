@@ -249,9 +249,8 @@ public class CallScilabBridge {
      * @param status true to set the menu enabled
      */
     public static void setMenuEnabled(int parentUID, String menuName, boolean status) {
-        SwingViewObject view = SwingView.getFromId(parentUID);
-        if (view != null && view instanceof SwingScilabDockablePanel) { /** Parent must exist */
-            SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) view;
+        SwingScilabPanel parentTab = (SwingScilabPanel) SwingView.getFromId(parentUID);
+        if (parentTab != null) { /** Parent must exist */
             parentTab.getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
         }
     }
@@ -264,9 +263,8 @@ public class CallScilabBridge {
      * @param status true to set the menu enabled
      */
     public static void setSubMenuEnabled(int parentUID, String parentMenuName, int menuItemPosition, boolean status) {
-        SwingViewObject view = SwingView.getFromId(parentUID);
-        if (view != null && view instanceof SwingScilabDockablePanel) { /** Parent must exist */
-            SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) view;
+        SwingScilabPanel parentTab = (SwingScilabPanel) SwingView.getFromId(parentUID);
+        if (parentTab != null) { /** Parent must exist */
             parentTab.getMenuBar().getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
         }
     }
@@ -283,9 +281,8 @@ public class CallScilabBridge {
      * @param menuName the name of the menu
      */
     public static void removeMenu(int parentUID, String menuName) {
-        SwingViewObject view = SwingView.getFromId(parentUID);
-        if (view != null && view instanceof SwingScilabDockablePanel) { /** Parent must exist */
-            SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) view;
+        SwingScilabPanel parentTab = (SwingScilabPanel) SwingView.getFromId(parentUID);
+        if (parentTab != null) { /** Parent must exist */
             parentTab.getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
         }
     }

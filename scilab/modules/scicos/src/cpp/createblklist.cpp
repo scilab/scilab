@@ -369,13 +369,24 @@ types::InternalType* createblklist(const scicos_block* const Blocks, const int f
     m->append(oztyp);
 
     /* 11 - ozptr */
-    types::List* ozptr = new types::List();
-    for (int k = 0; k < Blocks->noz; k++)
+    types::List* ozptr;
+
+    // special case, some values are embeded into a Scilab list ; unwrap them
+    if (Blocks->noz == 1 && Blocks->oztyp[0] == SCSUNKNOW_N)
     {
-        const int rows = Blocks->ozsz[k];               /* retrieve number of rows */
-        const int cols = Blocks->ozsz[Blocks->noz + k]; /* retrieve number of cols */
-        const int type = Blocks->oztyp[k];              /* retrieve type */
-        ozptr->append(vartosci(Blocks->ozptr[k], rows, cols, type));
+        ozptr = (types::List*) vartosci(Blocks->ozptr[0], Blocks->ozsz[0], Blocks->ozsz[1], Blocks->oztyp[0]);
+    }
+    else
+    {
+        ozptr = new types::List();
+        for (int k = 0; k < Blocks->noz; k++)
+        {
+            const int rows = Blocks->ozsz[k];               /* retrieve number of rows */
+            const int cols = Blocks->ozsz[Blocks->noz + k]; /* retrieve number of cols */
+            const int type = Blocks->oztyp[k];              /* retrieve type */
+
+            ozptr->append(vartosci(Blocks->ozptr[k], rows, cols, type));
+        }
     }
 
     m->append(ozptr);
@@ -504,13 +515,24 @@ types::InternalType* createblklist(const scicos_block* const Blocks, const int f
     m->append(opartyp);
 
     /* 31 - opar */
-    types::List* opar = new types::List();
-    for (int k = 0; k < Blocks->nopar; k++)
+    types::List* opar;
+
+    // special case, some values are embeded into a Scilab list ; unwrap them
+    if (Blocks->nopar == 1 && Blocks->opartyp[0] == SCSUNKNOW_N)
     {
-        const int rows = Blocks->oparsz[k];                 /* retrieve number of rows */
-        const int cols = Blocks->oparsz[Blocks->nopar + k]; /* retrieve number of cols */
-        const int type = Blocks->opartyp[k];                /* retrieve type */
-        opar->append(vartosci(Blocks->oparptr[k], rows, cols, type));
+        opar = (types::List*) vartosci(Blocks->oparptr[0], Blocks->oparsz[0], Blocks->oparsz[1], Blocks->opartyp[0]);
+    }
+    else
+    {
+        opar = new types::List();
+        for (int k = 0; k < Blocks->noz; k++)
+        {
+            const int rows = Blocks->oparsz[k];               /* retrieve number of rows */
+            const int cols = Blocks->oparsz[Blocks->noz + k]; /* retrieve number of cols */
+            const int type = Blocks->opartyp[k];              /* retrieve type */
+
+            opar->append(vartosci(Blocks->oparptr[k], rows, cols, type));
+        }
     }
 
     m->append(opar);
@@ -650,14 +672,23 @@ types::InternalType* refreshblklist(types::InternalType* pIT, const scicos_block
     if (m->get(10)->isList())
     {
         types::List* ozptr = m->get(10)->getAs<types::List>();
-        for (int k = 0; k < Blocks->noz; k++)
+
+        // special case, some values are embeded into a Scilab list ; wrap them
+        if (Blocks->noz == 1 && Blocks->oztyp[0] == SCSUNKNOW_N)
         {
-            const int rows = Blocks->ozsz[k];               /* retrieve number of rows */
-            const int cols = Blocks->ozsz[Blocks->noz + k]; /* retrieve number of cols */
-            const int type = Blocks->oztyp[k];              /* retrieve type */
-            ozptr->set(k, vartosci(ozptr->get(k), Blocks->ozptr[k], rows, cols, type));
+            m->set(10, ozptr);
         }
-        m->set(10, ozptr);
+        else
+        {
+            for (int k = 0; k < Blocks->noz; k++)
+            {
+                const int rows = Blocks->ozsz[k];               /* retrieve number of rows */
+                const int cols = Blocks->ozsz[Blocks->noz + k]; /* retrieve number of cols */
+                const int type = Blocks->oztyp[k];              /* retrieve type */
+                ozptr->set(k, vartosci(ozptr->get(k), Blocks->ozptr[k], rows, cols, type));
+            }
+            m->set(10, ozptr);
+        }
     }
 
     /* 13 - x */

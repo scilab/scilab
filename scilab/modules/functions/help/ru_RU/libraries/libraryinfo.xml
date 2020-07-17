@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - Scilab Consortium
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="libraryinfo">
+    <refnamediv>
+        <refname>libraryinfo</refname>
+        <refpurpose>
+            получает путь и устанавливает главные функции загруженной библиотеки
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            macros = libraryinfo(libraryname)
+            [macros, libpath] = libraryinfo(libraryname)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>libraryname</term>
+                <listitem>
+                    <para>строка: имя загруженной библиотеки.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>macros</term>
+                <listitem>
+                    <para>
+                        столбец строк: имена главных функций, принадлежащих библиотеке.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>libpath</term>
+                <listitem>
+                    <para>строка: путь до файла в библиотеке.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Получает имена функций (написанных на языке Scilab), принадлежаних указанной
+            библиотеке, и путь до директории, где хранятся их <literal>*.sci</literal>-файлы и
+            файлы библиотеки. Вспомогательные функции, которые могут следовать за главными
+            функциями в <literal>*.sci</literal>-файлах, являются приватными и не возвращаются.
+            <warning>
+                Только загруженные библиотеки могут быть адресованы с помощью <literal>libraryinfo()</literal>.
+            </warning>
+        </para>
+        <refsect3>
+            <title>Получение некоторой информации о библиотеки из её дескриптора</title>
+            <para>
+                <literal>libraryinfo()</literal> работает по литеральному имени библиотеки.
+                В некоторых случаях в наличии может быть только их дескриптор, определённый при
+                загрузке библиотеки. Например, <literal>libraryinfo("iolib")</literal> работает,
+                а <literal>libraryinfo(iolib)</literal> - нет. Как же использовать дескриптор для 
+                получения какой-либо информации? Продолжим с примером <literal>iolib</literal>:
+                <itemizedlist>
+                    <listitem>
+                        <emphasis role="bold">Получение пути</emphasis>:
+                        <literal>libpath = string(iolib)(1)</literal>
+                    </listitem>
+                    <listitem>
+                        <emphasis role="bold">Получение вектор-столбца составляющих функций</emphasis>:
+                        <literal>functions = string(iolib)(2:$)</literal>
+                    </listitem>
+                    <listitem>
+                        <emphasis role="bold">Получение литерального имени библиотеки</emphasis>:
+                        <literal>libraryname = xmlGetValues("//scilablib", "name", libpath)</literal>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>Незагруженная библиотека: получение информации по своему пути</title>
+            <para>
+                Если рассматриваемая библиотека не загружена, то ни
+                <literal>libraryinfo()</literal>, ни <literal>string()</literal> не будут
+                работать.
+            </para>
+            <para>
+                При условии, что известен путь <varname>libpath</varname>, можно
+                <itemizedlist>
+                    <listitem>
+                        <emphasis role="bold">получить его литеральное имя</emphasis>:
+                        <literal>xmlGetValues("//scilablib", "name", libpath+"/lib")</literal>
+                    </listitem>
+                    <listitem>
+                        <emphasis role="bold">получить вектор-столбец составляющих
+                        функций</emphasis>:
+                        <literal>functions = xmlGetValues("//scilablib/macro", "name", libpath+"/lib")</literal>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </refsect3>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <para>
+            C <literal>libraryinfo()</literal> по литеральному имени библиотеки:
+        </para>
+        <programlisting role="example"><![CDATA[
+[f, p] = libraryinfo("iolib")
+     ]]></programlisting>
+    <screen><![CDATA[
+--> [f, p] = libraryinfo("iolib")
+ p  =
+ SCI\modules\io\macros\
+
+ f  =
+!input      !
+!unix_g     !
+!unix_w     !
+!%_sodload  !
+!unix_x     !
+!unix_s     !
+]]></screen>
+        <para/>
+        <para>
+            По дескриптору библиотеки:
+        </para>
+        <programlisting role="example"><![CDATA[
+// Просто для отображения:
+iolib
+
+// Перехватить информацию в переменных:
+p = string(iolib)(1)
+f = string(iolib)(2:$)
+libname = xmlGetValues("//scilablib", "name", p+"/lib")
+     ]]></programlisting>
+    <screen><![CDATA[
+--> // Просто для отображения:
+--> iolib
+
+ iolib  =
+Functions files location : SCI\modules\io\macros\.
+input  unix_g  unix_w  %_sodload  unix_x  unix_s
+
+--> // Перехватить информацию в переменных:
+--> p = string(iolib)(1)
+ p  =
+ SCI\modules\io\macros\
+
+--> f = string(iolib)(2:$)
+ f  =
+!input      !
+!unix_g     !
+!unix_w     !
+!%_sodload  !
+!unix_x     !
+!unix_s     !
+
+--> libname = xmlGetValues("//scilablib", "name", p+"/lib")
+ libname  =
+ iolib
+]]></screen>
+    <para/>
+        <para>
+            Для незагруженной библиотеки, по её пути:
+        </para>
+        <programlisting role="example"><![CDATA[
+path = fullpath("SCI/modules/scicos_blocks/macros/Hydraulics");
+libname = xmlGetValues("//scilablib", "name", path+"/lib")
+functions = xmlGetValues("//scilablib/macro", "name", path+"/lib")
+Hydraulicslib  // незагруженная (Xcos не должен быть запущен)
+     ]]></programlisting>
+    <screen><![CDATA[
+--> libname = xmlGetValues("//scilablib", "name", path+"/lib")
+ libname  =
+ Hydraulicslib
+
+--> functions = xmlGetValues("//scilablib/macro", "name", path+"/lib")
+ functions  =
+!Bache          !
+!Flowmeter      !
+!PerteDP        !
+!PuitsP         !
+!SourceP        !
+!VanneReglante  !
+
+--> Hydraulicslib
+Undefined variable: Hydraulicslib
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="string">string</link>
+            </member>
+            <member>
+                <link linkend="load">load</link>
+            </member>
+            <member>
+                <link linkend="librarieslist">librarieslist</link>
+            </member>
+            <member>
+                <link linkend="whereis">whereis</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

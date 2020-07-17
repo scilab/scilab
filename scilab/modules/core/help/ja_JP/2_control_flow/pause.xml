@@ -4,6 +4,12 @@
         <refname>pause</refname>
         <refpurpose>中断モード, キーボード入力を待つ</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>
+            pause
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>説明</title>
         <para>

@@ -284,7 +284,7 @@
             <emphasis role="bold">Choosing the normal or logarithmic plotting mode:</emphasis>
         </para>
         <programlisting role="example"><![CDATA[
-set(gda(), "grid_style",[7 7], "grid", [1 1]*color("grey70"));
+gda().grid = [1 1]*color("grey70");
 title(gda(), "fontsize", 3, "color", "lightseagreen", "fontname", "helvetica bold");
 
 x = linspace(1e-1,100,1000);
@@ -294,18 +294,15 @@ G = exp(-((x-xm)/dx).^2/2)*30;
 
 scf(1); clf
 subplot(2,2,1), plot(x, G),       title("plot(x, y)")
-subplot(2,2,2), plot("ln", x, G), title("semilog-x : plot(""ln"", x, y)")
-gca().sub_ticks(1) = 8;
-subplot(2,2,3), plot("nl", x, G), title("semilog-y : plot(""nl"", x, y)")
-gca().sub_ticks(2) = 8;
-subplot(2,2,4), plot("ll", x, G), title("loglog : plot(""ll"", x, y)")
-gca().sub_ticks = [8 8];
+subplot(2,2,2), plot("ln", x, G), title("semilog-x : plot(""ln"", x, y)"); gca().sub_ticks(1) = 8;
+subplot(2,2,3), plot("nl", x, G), title("semilog-y : plot(""nl"", x, y)"); gca().sub_ticks(2) = 8;
+subplot(2,2,4), plot("ll", x, G), title("loglog : plot(""ll"", x, y)");    gca().sub_ticks = [8 8];
 
 sda();
  ]]></programlisting>
         <scilab:image>
+            gda().grid = [1 1]*color("grey70");
             title(gda(), "", "fontsize", 3, "color", "lightseagreen", "fontname", "helvetica bold");
-            set(gda(), "grid_style",[7 7], "grid", [1 1]*color("grey70"));
 
             x = linspace(1e-1,100,1000);
             xm = 35;
@@ -359,7 +356,7 @@ xlabel("Specified abscissae")
             Y: 1 column = 1 curve:
         </para>
         <programlisting role="example"><![CDATA[
-clf()
+clf
 x = [0:0.1:2*%pi]';
 plot(x, [sin(x) sin(2*x) sin(3*x)])
  ]]></programlisting>

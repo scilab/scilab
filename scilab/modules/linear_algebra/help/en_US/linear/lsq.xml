@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="lsq">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="lsq">
     <refnamediv>
         <refname>lsq</refname>
-        <refpurpose>linear least square problems.  </refpurpose>
+        <refpurpose>linear least square solution of A*X=B with minimal norm(X)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>X=lsq(A,B [,tol])</synopsis>
+        <synopsis>
+            X = lsq(A, B)
+            X = lsq(A, B, tol)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -43,7 +49,7 @@
                     <para>positive scalar,  used to determine the effective rank of A
                         (defined as the order of the largest leading triangular
                         submatrix R11 in the QR factorization with pivoting of A,
-                        whose estimated condition number &lt;= 1/tol. The tol default value is
+                        whose estimated condition number &lt;= 1/tol). The tol default value is
                         set to <literal>sqrt(%eps)</literal>.
                     </para>
                 </listitem>
@@ -61,7 +67,7 @@
         <para>
             <literal>X=lsq(A,B)</literal> computes the minimum norm least square solution of
             the equation <literal>A*X=B</literal>, while <literal>X=A \ B</literal> compute a least square
-            solution with at at most <literal>rank(A)</literal>  nonzero components per column.
+            solution with at most <literal>rank(A)</literal> nonzero components per column.
         </para>
     </refsection>
     <refsection>

@@ -5,7 +5,7 @@
           xmlns:scilab="http://www.scilab.org" xml:id="backslash" xml:lang="pt">
     <refnamediv>
         <refname>backslash</refname>
-        <refpurpose>(\) divisão matricial direita-esquerda</refpurpose>
+        <refpurpose>(\) divisão matricial direita-esquerda: exact or least square solution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
@@ -79,6 +79,9 @@ mprintf('\ntime needed to solve the system with the backslash operator: %.3f\n',
                 <link linkend="slash">slash</link>
             </member>
             <member>
+                <link linkend="lsq">lsq</link>
+            </member>
+            <member>
                 <link linkend="inv">inv</link>
             </member>
             <member>
@@ -89,6 +92,9 @@ mprintf('\ntime needed to solve the system with the backslash operator: %.3f\n',
             </member>
             <member>
                 <link linkend="umfpack">umfpack</link>
+            </member>
+            <member>
+                <link linkend="datafit">datafit</link>
             </member>
             <member>
                 <link linkend="krondivide">kron .\.</link>

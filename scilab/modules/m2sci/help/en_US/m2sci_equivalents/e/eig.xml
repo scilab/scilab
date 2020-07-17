@@ -91,7 +91,8 @@ d = spec(inv(B)*A)
                     <para>
                         If matrix <varname>B</varname> is nonsingular, the generalized
                         eigenvalues can be computed as the eigenvalues of the matrix
-                        <latex>B^{-1}A</latex> i.e. <code>d=spec(B^-1*A)</code>.
+                        <emphasis>B<superscript>-1</superscript>A</emphasis>
+                        i.e. <literal>d=spec(B^-1*A)</literal>.
                     </para>
                 </listitem>
                 <listitem>

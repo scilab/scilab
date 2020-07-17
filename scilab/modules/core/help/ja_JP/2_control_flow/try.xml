@@ -24,10 +24,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>try
-            statements
+        <synopsis>
+            try
+                statements
             catch
-            statements
+                statements
             end
         </synopsis>
     </refsynopsisdiv>

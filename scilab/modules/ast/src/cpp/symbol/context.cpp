@@ -89,8 +89,8 @@ void Context::scope_begin()
 
 void Context::clearAll()
 {
-    libraries.clearAll();
     variables.clearAll();
+    libraries.clearAll();
 }
 
 void Context::scope_end()
@@ -217,13 +217,16 @@ types::InternalType* Context::get(const Symbol& _key, int _iLevel)
     types::InternalType* pIT = NULL;
     if (_iLevel == m_iLevel || _iLevel == SCOPE_ALL)
     {
-        //look for in current VarList
-        VarList::iterator it = varStack.top()->find(_key);
-        if (it != varStack.top()->end())
+        if (!varStack.empty())
         {
-            if (it->second->empty() == false)
+            //look for in current VarList
+            VarList::iterator it = varStack.top()->find(_key);
+            if (it != varStack.top()->end())
             {
-                pIT = it->second->get();
+                if (it->second->empty() == false)
+                {
+                    pIT = it->second->get();
+                }
             }
         }
     }

@@ -20,6 +20,8 @@ extern "C"
 {
     #include "getScilabPreference.h"
     #include "freeArrayOfString.h"
+    #include "getos.h"
+    #include "version.h"
 }
 
 SciCurl* SciCurl::me = nullptr;
@@ -175,4 +177,20 @@ int SciCurl::setProxy(CURL* curl)
     FREE(proxyUserPwd);
     freeArrayOfString(values, N);
     return 0;
+}
+
+void SciCurl::setCommonHeaders(CURL* curl)
+{
+    char* OperatingSystem = getOSFullName();
+    char* Release = getOSRelease();
+
+    // Scilab version
+    std::string pcUserAgent = "Scilab/" + std::to_string(SCI_VERSION_MAJOR)+"."+ std::to_string(SCI_VERSION_MINOR)+"."+ std::to_string(SCI_VERSION_MAINTENANCE);
+    // OS name
+    pcUserAgent += " (" + std::string(OperatingSystem) + " " + std::string(Release) + ")";
+    // set user agent header
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, pcUserAgent.data());
+
+    FREE(OperatingSystem);
+    FREE(Release);
 }

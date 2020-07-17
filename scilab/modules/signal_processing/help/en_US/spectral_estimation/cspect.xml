@@ -12,8 +12,11 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            [sm [,cwp]]=cspect(nlags,npoints,wtype,x [,y] [,wpar])
-            [sm [,cwp]]=cspect(nlags,npoints,wtype,nx [,ny] [,wpar])
+            sm = cspect(nlags, npoints, wtype, x)
+            sm = cspect(nlags, npoints, wtype, x, y)
+            sm = cspect(nlags, npoints, wtype, nx)
+            sm = cspect(nlags, npoints, wtype, nx, ny)
+            [sm, cwp] = cspect(.., wpar)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -42,8 +45,7 @@
                     <para>
                         a scalar : the number of points in the <literal>x</literal>
                         signal. In this case the segments of the x signal are loaded by a
-                        user defined function named <literal>getx</literal> (see
-                        below).
+                        user defined function named <literal>getx</literal> (see below).
                     </para>
                 </listitem>
             </varlistentry>
@@ -98,13 +100,13 @@
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'kr'</literal>: Kaiser,in this case the wpar
+                                <literal>'kr'</literal>: Kaiser, in this case the <literal>wpar</literal>
                                 argument must be given
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'ch'</literal>: Chebyshev, in this case the wpar
+                                <literal>'ch'</literal>: Chebyshev, in this case the <literal>wpar</literal>
                                 argument must be given
                             </para>
                         </listitem>
@@ -115,23 +117,18 @@
                 <term>wpar</term>
                 <listitem>
                     <para>
-                        optional parameters for <literal>Kaiser and Chebyshev
-                            windows:
-                        </literal>
+                        optional parameters for Kaiser and Chebyshev windows:
                     </para>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                'kr': <literal>wpar must be a strictly positive
-                                    number
-                                </literal>
+                                'kr': <literal>wpar</literal> must be a strictly positive number
                             </para>
                         </listitem>
                         <listitem>
                             <para>
                                 'ch': <literal>wpar</literal> must be a 2 element vector
-                                <literal> [main_lobe_width,side_lobe_height]with
-                                </literal>
+                                <literal> [main_lobe_width,side_lobe_height]</literal> with
                                 <literal>0&lt;main_lobe_width&lt;.5</literal>, and
                                 <literal>side_lobe_height&gt;0</literal>
                             </para>
@@ -144,7 +141,7 @@
                 <listitem>
                     <para>The power spectral estimate in the interval
                         <literal>[0,1]</literal> of the normalized frequencies. It
-                        is a row array of size <literal>npoints</literal>. The array
+                        is a row array of size <varname>npoints</varname>. The array
                         is real in case of auto-correlation and complex in case of
                         cross-correlation.
                     </para>
@@ -163,141 +160,37 @@
     <refsection>
         <title>Description</title>
         <para>Computes the cross-spectrum estimate of two signals
-            <literal>x</literal> and <literal>y</literal> if both are given and the
-            auto-spectral estimate of <literal>x</literal> otherwise. Spectral
+            <varname>x</varname> and <varname>y</varname> if both are given and the
+            auto-spectral estimate of <varname>x</varname> otherwise. Spectral
             estimate obtained using the correlation method.
         </para>
-        <para>The cross spectrum of two signal x and y is defined to be</para>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata>
-                        <mml:math>
-                            <mml:semantics>
-                                <mml:mrow>
-                                    <mml:msub>
-                                        <mml:mi>S</mml:mi>
-                                        <mml:mi mml:fontstyle="italic">xy</mml:mi>
-                                    </mml:msub>
-                                    <mml:mrow>
-                                        <mml:mrow>
-                                            <mml:mo mml:stretchy="false">(</mml:mo>
-                                            <mml:mo mml:stretchy="false">ω</mml:mo>
-                                            <mml:mo mml:stretchy="false">)</mml:mo>
-                                        </mml:mrow>
-                                        <mml:mo mml:stretchy="false">=</mml:mo>
-                                        <mml:mfrac>
-                                            <mml:mn>1</mml:mn>
-                                            <mml:mi>N</mml:mi>
-                                        </mml:mfrac>
-                                    </mml:mrow>
-                                    <mml:mrow>
-                                        <mml:mo mml:stretchy="false">(</mml:mo>
-                                        <mml:mrow>
-                                            <mml:mrow>
-                                                <mml:munderover>
-                                                    <mml:mo mml:stretchy="false">∑</mml:mo>
-                                                    <mml:mrow>
-                                                        <mml:mi>n</mml:mi>
-                                                        <mml:mo mml:stretchy="false">=</mml:mo>
-                                                        <mml:mn>0</mml:mn>
-                                                    </mml:mrow>
-                                                    <mml:mrow>
-                                                        <mml:mi>N</mml:mi>
-                                                        <mml:mo mml:stretchy="false">−</mml:mo>
-                                                        <mml:mn>1</mml:mn>
-                                                    </mml:mrow>
-                                                </mml:munderover>
-                                                <mml:mi>x</mml:mi>
-                                            </mml:mrow>
-                                            <mml:mrow>
-                                                <mml:mo mml:stretchy="false">(</mml:mo>
-                                                <mml:mi>n</mml:mi>
-                                                <mml:mo mml:stretchy="false">)</mml:mo>
-                                            </mml:mrow>
-                                            <mml:msup>
-                                                <mml:mi>e</mml:mi>
-                                                <mml:mrow>
-                                                    <mml:mrow>
-                                                        <mml:mo mml:stretchy="false">−</mml:mo>
-                                                        <mml:mi>i</mml:mi>
-                                                    </mml:mrow>
-                                                    <mml:mo mml:stretchy="false">ω</mml:mo>
-                                                    <mml:mi>n</mml:mi>
-                                                </mml:mrow>
-                                            </mml:msup>
-                                        </mml:mrow>
-                                        <mml:mo mml:stretchy="false">)</mml:mo>
-                                    </mml:mrow>
-                                    <mml:mrow>
-                                        <mml:mo mml:stretchy="false">(</mml:mo>
-                                        <mml:mrow>
-                                            <mml:mrow>
-                                                <mml:munderover>
-                                                    <mml:mo mml:stretchy="false">∑</mml:mo>
-                                                    <mml:mrow>
-                                                        <mml:mi>n</mml:mi>
-                                                        <mml:mo mml:stretchy="false">=</mml:mo>
-                                                        <mml:mn>0</mml:mn>
-                                                    </mml:mrow>
-                                                    <mml:mrow>
-                                                        <mml:mi>N</mml:mi>
-                                                        <mml:mo mml:stretchy="false">−</mml:mo>
-                                                        <mml:mn>1</mml:mn>
-                                                    </mml:mrow>
-                                                </mml:munderover>
-                                                <mml:mover mml:accent="true">
-                                                    <mml:mi>y</mml:mi>
-                                                    <mml:mo mml:stretchy="false">ˉ</mml:mo>
-                                                </mml:mover>
-                                            </mml:mrow>
-                                            <mml:mrow>
-                                                <mml:mo mml:stretchy="false">(</mml:mo>
-                                                <mml:mi>n</mml:mi>
-                                                <mml:mo mml:stretchy="false">)</mml:mo>
-                                            </mml:mrow>
-                                            <mml:msup>
-                                                <mml:mi>e</mml:mi>
-                                                <mml:mrow>
-                                                    <mml:mi>i</mml:mi>
-                                                    <mml:mo mml:stretchy="false">ω</mml:mo>
-                                                    <mml:mi>n</mml:mi>
-                                                </mml:mrow>
-                                            </mml:msup>
-                                        </mml:mrow>
-                                        <mml:mo mml:stretchy="false">)</mml:mo>
-                                    </mml:mrow>
-                                </mml:mrow>
-                                <mml:annotation mml:encoding="StarMath 5.0"> S_{xy}(%omega)={1}
-                                    over {N} (sum from{n=0} to{N-1} x(n)e^{-i %omega n}) ( sum
-                                    from{n=0} to{N-1} bar y(n)e^{i %omega n})
-                                </mml:annotation>
-                            </mml:semantics>
-                        </mml:math>
-                    </imagedata>
-                </imageobject>
-            </inlinemediaobject>
+            The cross-spectrum of two signal <varname>x</varname> and <varname>y</varname> is defined to be
+            <latex style="display" alt="S_xy(ω) = (∑{n=0…N-1} x(n) exp(-iωn)) . (∑{n=0…N-1} y'(n) exp(iωn)) / N">
+                S_{xy} (\omega) = {1 \over N}
+                \left(\sum_{n=0}^{N-1} x(n)\,e^{-i \omega n}\right)
+                \left( \sum_{n=0}^{N-1} \bar{y}(n)\,e^{i \omega n} \right)
+            </latex>
         </para>
         <para>The correlation method calculates the spectral estimate as the
             Fourier transform of a modified estimate of the auto/cross correlation
             function. This auto/cross correlation modified estimate consist of
             repeatedly calculating estimates of the autocorrelation function from
-            overlapping sub-segments if the data, and then averaging these estimates
+            overlapping sub-segments of the data, and then averaging these estimates
             to obtain the result.
         </para>
         <para>The number of points of the window is
             <literal>2*nlags-1.</literal>
         </para>
         <para>
-            For batch processing, the<literal> x</literal> and
-            <literal>y</literal> data may be read segment by segment using the
-            <literal>getx </literal>and <literal>gety</literal> user defined
-            functions. These functions have the following syntax:
+            For batch processing, the <varname>x</varname> and <varname>y</varname> data may be read
+            segment by segment using the  <literal>getx</literal> and <literal>gety</literal> user
+            defined functions. These functions have the following syntax:
         </para>
         <para>
             <literal>xk=getx(ns,offset)</literal> and
-            <literal>yk=gety(ns,offset)</literal> where <literal>ns</literal> is the
-            segment size and <literal>offset</literal> is the index of the first
+            <literal>yk=gety(ns,offset)</literal> where <varname>ns</varname> is the
+            segment size and <varname>offset</varname> is the index of the first
             element of the segment in the full signal.
         </para>
     </refsection>
@@ -314,18 +207,26 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-rand('normal');rand('seed',0);
-x=rand(1:1024-33+1);
-//make low-pass filter with eqfir
-nf=33;bedge=[0 .1;.125 .5];des=[1 0];wate=[1 1];
-h=eqfir(nf,bedge,des,wate);
-//filter white data to obtain colored data
-h1=[h 0*ones(1:max(size(x))-1)];
-x1=[x 0*ones(1:max(size(h))-1)];
-hf=fft(h1,-1);   xf=fft(x1,-1);yf=hf.*xf;y=real(fft(yf,1));
-sm=cspect(100,200,'tr',y);
-smsize=max(size(sm));fr=(1:smsize)/smsize;
-plot(fr,log(sm))
+rand('normal');
+rand('seed',0);
+x = rand(1:1024-33+1);
+
+// make low-pass filter with eqfir
+[nf, bedge, des, wate] = (33, [0 .1;.125 .5], [1 0], [1 1]);
+h = eqfir(nf, bedge, des, wate);
+
+// filter white data to obtain colored data
+h1 = [h 0*ones(1:max(size(x))-1)];
+x1 = [x 0*ones(1:max(size(h))-1)];
+hf = fft(h1,-1);
+xf = fft(x1,-1);
+yf = hf .* xf;
+y = real(fft(yf,1));
+sm = cspect(100, 200, 'tr', y);
+smsize = max(size(sm));
+fr = (1:smsize)/smsize;
+
+plot(fr, log(sm), 'r')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

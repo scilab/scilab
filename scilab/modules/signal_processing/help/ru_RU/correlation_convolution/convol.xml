@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="convol" xml:lang="ru">
+    <refnamediv>
+        <refname>convol</refname>
+        <refpurpose>Свёртка</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            y = convol(h, x)
+            [y,e1] = convol(h, x, e0)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>вектор, первая входная последовательность ("короткая");</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>вектор, вторая входная последовательность ("длинная");</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>e0</term>
+                <listitem>
+                    <para>
+                        вектор, старый остаток для добавления перекрытия (не
+                        используется в первом вызове);
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>вектор, свёртка; </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>e1</term>
+                <listitem>
+                    <para>
+                        новый остаток для добавления перекрытия (не используется
+                        в последнем вызове).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Вычисляет свёртку <literal>y= h*x</literal> двух дискретных
+            последовательностей с помощю БПФ (fft). Свёртка определяется следующим
+            образом:
+            <latex alt="y_k = sum_j( h_j * x_{k+1-j} )" style="display">
+                y_k \,= \sum_j h_j \; x_{k+1-j}
+            </latex>
+        </para>
+        <para>Может быть использован метод добавления перекрытия.</para>
+        <para>ИСПОЛЬЗОВАНИЕ МЕТОДА ДОБАВЛЕНИЯ ПЕРЕКРЫТИЯ: Для
+            <literal>x = [x1, x2,..., xNm1, xN]</literal> Первый вызов:
+            <literal>[y1, e1] = convol(h, x1);</literal> Последующие вызовы:
+            <literal>[yk, ek] = convol(h, xk, ekm1)</literal>; Последний вызов:
+            <literal>[yN] = convol(h, xN, eNm1);</literal> Наконец
+            <literal>y = [y1, y2,..., yNm1, yN]</literal>.
+        </para>
+        <para>
+            Алгоритм, основанный на определении свёртки, реализован для произведения
+            полиномов: <literal>y = convol(h, x)</literal> эквивалентен
+            <literal>y = coeff(poly(h,'z','c') * poly(x,'z','c'))</literal>, но
+            гораздо более эффективен, если <literal>x</literal> является "длинным"
+            массивом.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+x = 1:3;
+h1 = [1,0,0,0,0];
+h2 = [0,1,0,0,0];
+h3 = [0,0,1,0,0];
+x1 = convol(h1, x)
+x2 = convol(h2, x)
+x3 = convol(h3, x)
+convol(h1+h2+h3, x)
+p1 = poly(x,'x','coeff')
+p2 = poly(h1+h2+h3, 'x', 'coeff')
+p1 * p2
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="corr">corr</link>
+            </member>
+            <member>
+                <link linkend="fft">fft</link>
+            </member>
+            <member>
+                <link linkend="pspect">pspect</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

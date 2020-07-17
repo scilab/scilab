@@ -19,6 +19,6 @@
 #include <string.h>
 #include "dynlib_string.h"
 
-STRING_IMPEXP int os_wtoi(const wchar_t* pwcsStr);
+STRING_IMPEXP int os_wtoi(const wchar_t* pwcsStr, std::size_t* pos);
 
 #endif /* !__OS_WTOI_H__ */

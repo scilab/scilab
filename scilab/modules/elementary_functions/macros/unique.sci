@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018, 2019 - Samuel GOUGEON
+// Copyright (C) 2018 - 2020 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +11,7 @@
 // along with this program.
 
 function [x, ki, ko, nb] = unique(x, varargin)
-    // extract unique components of a vector
+    // extract unique components of a vector, matrix, or hypermatrix
     // varargin : orient=1|2|"r"|"c", "uniqueNan", "keepOrder"
     //
     // History:
@@ -19,6 +19,11 @@ function [x, ki, ko, nb] = unique(x, varargin)
     //   - add uniqueNan option: http://bugzilla.scilab.org/15522
     //   - add keepOrder option: http://bugzilla.scilab.org/15795
     //   - add nb output option: http://bugzilla.scilab.org/8418
+    //
+    // * 2020 - S. Gougeon :
+    //   - Complex numbers are now completely sorted, by magnitude, + by phase
+    //   - add ku output indices: http://bugzilla.scilab.org/16337
+    //   - Sparse 2D matrices accepted: http://bugzilla.scilab.org/15842
 
     keepOrder = %f
     uniqueNan = %f
@@ -27,6 +32,7 @@ function [x, ki, ko, nb] = unique(x, varargin)
     ki = []
     ko = []
     nb = []
+    sx = size(x)
 
     // CHECKING INPUT ARGUMENTS
     // ------------------------
@@ -34,6 +40,9 @@ function [x, ki, ko, nb] = unique(x, varargin)
     i = 2;  // index of the current input argument
     if size(in)>0 then
         a = in(1)
+        if type(a)==0
+            a = "*"
+        end
         if typeof(a)=="string"
             a = convstr(a)
         end
@@ -57,6 +66,11 @@ function [x, ki, ko, nb] = unique(x, varargin)
         in(1) = null()
         i = 3
     end
+    if or(orient==["r" "c"]) & ndims(x)>2 then
+        msg = _("%s: Argument #%d: ''%s'' not allowed for an hypermatrix.\n")
+        error(msprintf(msg, "unique", 2, orient))
+    end
+
     while size(in)>0 & i<5 then
         a = in(1)
         if typeof(a)=="string"
@@ -79,140 +93,111 @@ function [x, ki, ko, nb] = unique(x, varargin)
     sz = size(x);
     if size(x, orient)==1 then
         ki = 1
+        ko = 1
+        nb = 1
         return
     end
     if uniqueNan
         [x, newInf] = uniqueProcessNan(x, [], "removeNan")
     end
-    getK = argn(1)>1 | keepOrder
+    getK = argn(1) > 1 | keepOrder
 
 
     // [] trivial case
     // ---------------
     if isempty(x) then
-        return  // ki, nb are already []. x is [] or sparse([])
+        return  // ki, ko, nb are already []. x is [] or sparse([])
     end
 
-    // PROCESSING complex numbers
-    // --------------------------
-    if or(type(x)==[1 5]) then
-        if ~isreal(x)
-            if isreal(x,0)
-                x = real(x);
-            else
-                if orient=="*"
-                    x = [real(x(:)) imag(x(:))]
-                    if ~getK
-                        x = unique(x,"r")
-                    else
-                        [x, ki, ko, nb] = unique(x,"r")
-                    end
-                    x = complex(x(:,1),x(:,2));
-                    if sz(1)==1 // => put results in row
-                        x = x.'
-                        if getK
-                            ki = ki'
-                            nb = nb'
-                        end
-                    end
-                elseif orient=="r" | orient==1
-                    x = [real(x) imag(x)]
-                    if ~getK
-                        x = unique(x,"r")
-                    else
-                        [x, ki, ko, nb] = unique(x,"r")
-                    end
-                    x = complex(x(:,1:sz(2)), x(:,sz(2)+1:$));
-                elseif orient=="c" | orient==2
-                    x = [real(x) ; imag(x)]
-                    if ~getK
-                        x = unique(x,"c")
-                    else
-                        [x, ki, ko, nb] = unique(x,"c")
-                    end
-                    x = complex(x(1:sz(1),:), x(sz(1)+1:$,:));
-                end
-                if uniqueNan
-                    x = uniqueProcessNan(x, newInf, "restoreNan")
-                end
-                if keepOrder
-                    [ki, kk] = gsort(ki,"g","i")
-                    select orient
-                    case "*"
-                        x = x(kk)
-                    case "r"
-                        x = x(kk,:)
-                    case "c"
-                        x = x(:,kk)
-                    end
-                    nb = nb(kk)
-                end
-                return
-            end
-        end
-    end
-
-    // PROCESSING text and other numerical types
-    // -----------------------------------------
+    // PROCESSING
+    // ----------
+    areComplex = or(type(x)==[1 5]) && ~isreal(x, 0)
     if orient=="*" then
         if getK then
-            [x,ki] = gsort(x,"g","i");
-            keq = x(2:$) == x(1:$-1);
-            if argn(1)>2
-                nb = [0 find(~keq) size(x,"*")]
-                nb = nb(2:$) - nb(1:$-1)
+            // ki (begin)
+            if areComplex
+                [x,ki] = gsort(x,"g",["i" "i"], list(abs, atan));
+            else
+                [x,ki] = gsort(x,"g","i");
             end
+            keq = x(2:$) == x(1:$-1);
+            if argn(1) > 2
+                // ko (begin)
+                ko(ki) = cumsum(~[%F ; keq(:)])
+                if ko <> [] then
+                    ko = matrix(ko, sx)
+                end
+                // nb
+                if argn(1) > 3
+                    nb = [0 find(~keq) size(x,"*")]
+                    nb = nb(2:$) - nb(1:$-1)
+                end
+            end
+            // ki (end)
             keq = find(keq);
-            if keq<>[] then keq = keq+1;end
+            if keq <> [] then keq = keq + 1; end
             x(keq) = [];
             ki(keq) = [];
-            if size(x,1)>1 | ndims(x)>2
-                x = x(:)
-                ki = ki(:)
-                nb = nb(:)
-            end
         else
-            x = gsort(x,"g","d");
+            if areComplex
+                x = gsort(x,"g",["d" "d"], list(abs, atan));
+            else
+                x = gsort(x,"g","d");
+            end
             x = x($:-1:1);
             x( find(x(2:$) == x(1:$-1)) ) = [];
         end
-    elseif  orient==1|orient=="r" then
+        if sx(1) > 1 | length(sx) > 2
+            x = x(:)
+            ki = ki(:)
+            nb = nb(:)
+        end
+
+    else // orient used
+        if  orient==2 | orient=="c" then
+            x = x.'
+        end
         if getK then
-            [x,ki] = gsort(x,"lr","i");
+            if areComplex
+                [x,ki] = gsort(x,"lr",["i" "i"], list(abs, atan));
+            else
+                [x,ki] = gsort(x,"lr","i");
+            end
             keq = and(x(2:$,:) == x(1:$-1,:),"c")
             if argn(1)>2
-                nb = [0 find(~keq) size(x,1)]
-                nb = nb(2:$) - nb(1:$-1)
-                nb = nb(:)
+                ko(ki) = cumsum(~[%F ; keq(:)])
+                // nb
+                if argn(1) > 3
+                    nb = [0 find(~keq) size(x,1)]
+                    nb = nb(2:$) - nb(1:$-1)
+                    nb = nb(:)
+                end
             end
             keq = find(keq)
-            if keq<>[] then keq = keq+1;end
+            if keq <> [] then keq = keq + 1;end
             x(keq,:) = [];
             ki(keq,:) = [];
         else
-            x = gsort(x,"lr","i");
-            x( find(and(x(2:$,:) == x(1:$-1,:),"c")),:) = [];
-        end
-    elseif  orient==2|orient=="c" then
-        if getK then
-            [x,ki] = gsort(x,"lc","i");
-            keq = and(x(:,2:$) == x(:,1:$-1),"r")
-            if argn(1)>2
-                nb = [0 find(~keq) size(x,2)]
-                nb = nb(2:$) - nb(1:$-1)
+            if areComplex
+                x = gsort(x,"lr",["i" "i"], list(abs, atan));
+            else
+                x = gsort(x,"lr","i");
             end
-            keq = find(keq)
-            if keq<>[] then keq = keq+1;end
-            x(:,keq) = [];
-            ki(:,keq) = [];
-        else
-            x = gsort(x,"lc","i");
-            x(:, find(and(x(:,2:$) == x(:,1:$-1),"r")) ) = [];
+            x(find(and(x(2:$,:) == x(1:$-1,:),"c")),:) = [];
+        end
+        if  orient==2 | orient=="c" then
+            x = x.'
+            ki = matrix(ki, 1, -1)
+            ko = ko'
+            nb = nb'
         end
     end
+    ko = full(ko)
+
     if uniqueNan
         x = uniqueProcessNan(x, newInf, "restoreNan")
     end
+
     if keepOrder
         [ki, kk] = gsort(ki,"g","i")
         select orient
@@ -225,9 +210,12 @@ function [x, ki, ko, nb] = unique(x, varargin)
         end
         if argn(1)>2
             nb = nb(kk)
+            [?, kk2] = gsort(kk,"g","i")
+            ko = kk2(ko)
         end
     end
 endfunction
+
 // -------------------------------------------------------------------
 
 // To consider Nan mutually equal, we replace all of them with a "regular" substitute.
@@ -238,7 +226,7 @@ endfunction
 
 function [x, newInf] = uniqueProcessNan(x, newInf, way)
 
-    if way=="removeNan" & or(isnan(x)) then 
+    if way=="removeNan" & or(isnan(x)) then
         // Replacing Nan
         // -------------
         if isreal(x)
@@ -263,7 +251,7 @@ function [x, newInf] = uniqueProcessNan(x, newInf, way)
             end
             r(r<>r) = %inf
             i(i<>i) = %inf
-            x = complex(r,i);
+            x = r + imult(i);
         end
 
     // Restoring  NaN
@@ -283,7 +271,7 @@ function [x, newInf] = uniqueProcessNan(x, newInf, way)
                 r(r==newInf) = %inf
                 i(i==newInf) = %inf
             end
-            x = complex(r, i)
+            x = r + imult(i)
         end
     end
 endfunction

@@ -1001,16 +1001,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xname">xname</link>
-                </term>
-                <listitem>
-                    <para>
-                        Изменение имени текущего графического окна
-                    </para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

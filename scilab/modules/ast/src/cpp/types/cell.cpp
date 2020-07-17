@@ -367,8 +367,7 @@ bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
                     else
                     {
                         //types non derived from ArrayOf.
-                        int iSize = static_cast<int>(log10(static_cast<double>(pIT->getAs<GenericType>()->getRows())) + 1);
-                        piSizeLen[j] = std::max(piSizeLen[j], iSize);
+                        piSizeLen[j] = std::max(piSizeLen[j], 1);
                     }
                 }
                 else

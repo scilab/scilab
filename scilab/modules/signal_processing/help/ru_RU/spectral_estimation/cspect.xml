@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="cspect" xml:lang="ru">
+    <refnamediv>
+        <refname>cspect</refname>
+        <refpurpose>
+            двусторонняя кросс-спектральная оценка между 2 дискретными во времени сигналами, используя метод корреляции.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            sm = cspect(nlags, npoints, wtype, x)
+            sm = cspect(nlags, npoints, wtype, x, y)
+            sm = cspect(nlags, npoints, wtype, nx)
+            sm = cspect(nlags, npoints, wtype, nx, ny)
+            [sm, cwp] = cspect(.., wpar)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>вектор, данные первого сигнала.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        вектор, данные второго сигнала сигнала. Если
+                        <varname>y</varname> пропущен, то он предполагается равным
+                        <varname>x</varname> (автокорреляция). Если он имеется в наличии, то он
+                        должен иметь то же количество элементов, что и <varname>x</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nx</term>
+                <listitem>
+                    <para>
+                        скаляр: количество точек в сигнале <varname>x</varname>.
+                        В этом случае сегменты сигнала <varname>x</varname> загружены
+                        пользовательской функцией с именем <literal>getx</literal> (см. ниже).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ny</term>
+                <listitem>
+                    <para>
+                        скаляр: количество точек в сигнале <varname>y</varname>.
+                        В этом случае сегменты сигнала <varname>y</varname> загружены
+                        пользовательской функцией с именем <literal>gety</literal> (см. ниже).
+                        Если указан, то <literal>ny</literal> должен быть равен
+                        <literal>nx</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nlags</term>
+                <listitem>
+                    <para>количество сдвигов корреляции (положительное целое число)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>npoints</term>
+                <listitem>
+                    <para>количество точек преобразования (положительное целое число)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wtype</term>
+                <listitem>
+                    <para>Тип окна</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>'re'</literal>: прямоугольное
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'tr'</literal>: треугольное
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'hm'</literal>: Хэмминга
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'hn'</literal>: Хана
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'kr'</literal>: Кайзера, в этом случае должен
+                                быть указан аргумент <literal>wpar</literal>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'ch'</literal>: Чебышева, в этом случае должен
+                                быть указан аргумент <literal>wpar</literal>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wpar</term>
+                <listitem>
+                    <para>
+                        необязательный параметр для окон Кайзера и Чебышева:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                'kr': <literal>wpar</literal> должен быть строго положительным числом
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                'ch': <literal>wpar</literal> должен быть двухэлементным вектором
+                                <literal> [main_lobe_width, side_lobe_height]</literal> где
+                                <literal>0&lt;main_lobe_width&lt;.5</literal> и
+                                <literal>side_lobe_height&gt;0</literal>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sm</term>
+                <listitem>
+                    <para>
+                        Спектральная оценка мощности в интервале <literal>[0,1]</literal>
+                        нормированных частот. Это вектор-строка размером
+                        <varname>npoints</varname>. Массив является вещественным в случае
+                        автокорреляции и комплексным - в случае кросс-корреляции.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cwp</term>
+                <listitem>
+                    <para>
+                        неопределённый параметр окна Чебышева в случае Чебышевской
+                        оконной обработки, либо пустая матрица.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Вычисляет кросс-спектральную оценку двух сигналов <varname>x</varname>
+            и <varname>y</varname> если указаны оба, и автоспектральную оценку
+            для <varname>x</varname> в противном случае. Спектральная оценка,
+            получена с помощью метода корреляции.
+        </para>
+        <para>
+            Кросс-спектр двух сигналов <varname>x</varname> и  <varname>y</varname>
+            определяется как
+            <latex style="display"
+                alt="S_xy(ω) = (∑{n=0…N-1} x(n) exp(-iωn)) . (∑{n=0…N-1} y'(n) exp(iωn)) / N">
+                S_{xy} (\omega) = {1 \over N}
+                \left(\sum_{n=0}^{N-1} x(n)\,e^{-i \omega n}\right)
+                \left( \sum_{n=0}^{N-1} \bar{y}(n)\,e^{i \omega n} \right)
+            </latex>
+        </para>
+        <para>
+            Метод корреляции вычисляет спектральную оценку как преобразование Фурье
+            модифицированной оценки функции авто/кросс-корреляции. Эта модифицированная
+            оценка авто/кросс-корреляции состоит из повторно вычисляемых оценок функции
+            автокорреляции из перекрытия под-сегментов данных, а затем усредняет
+            эти оценки для получения результатов.
+        </para>
+        <para>
+            Количество точек окна равно <literal>2*nlags-1</literal>.
+        </para>
+        <para>
+            Для пакетной обработки данные <varname>x</varname> и <varname>y</varname>
+            могут быть прочитаны сегмент за сегментом с помощью функций
+            <literal>getx</literal> и <literal>gety</literal>, определённых пользователем.
+            Эти функции имеют следующий синтаксис:
+        </para>
+        <para>
+            <literal>xk = getx(ns,offset)</literal> и
+            <literal>yk = gety(ns,offset)</literal> где <varname>ns</varname> - это
+            размер сегмента, и <varname>offset</varname> - это индекс первого элемента
+            сегмента в полном сигнале.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Предупреждение</title>
+        <para>
+            Для версии Scilab до 5.0.2 возвращаемое значение было модулем текущего значения.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Сcылка</title>
+        <para>Oppenheim, A.V., and R.W. Schafer. Discrete-Time Signal Processing,
+            Upper Saddle River, NJ: Prentice-Hall, 1999
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+rand('normal');
+rand('seed',0);
+x = rand(1:1024-33+1);
+
+// делаем фильтр нижних частот с помощью eqfir
+[nf, bedge, des, wate] = (33, [0 .1;.125 .5], [1 0], [1 1]);
+h = eqfir(nf, bedge, des, wate);
+
+// фильтруем белые данные для получения цветных данных
+h1 = [h 0*ones(1:max(size(x))-1)];
+x1 = [x 0*ones(1:max(size(h))-1)];
+hf = fft(h1,-1);
+xf = fft(x1,-1);
+yf = hf .* xf;
+y = real(fft(yf,1));
+sm = cspect(100, 200, 'tr', y);
+smsize = max(size(sm));
+fr = (1:smsize)/smsize;
+
+plot(fr, log(sm))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pspect">pspect</link>
+            </member>
+            <member>
+                <link linkend="mese">mese</link>
+            </member>
+            <member>
+                <link linkend="corr">corr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

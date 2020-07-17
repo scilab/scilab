@@ -29,9 +29,9 @@
         <title>Синтаксис</title>
         <synopsis>
             try
-            statements
+                statements
             catch
-            statements
+                statements
             end
         </synopsis>
     </refsynopsisdiv>

@@ -1794,6 +1794,8 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
         double *p1R     = _pL->get(i)->get();
         double *p2R     = _pR->get(i)->get();
+        double *p1I     = _pL->get(i)->getImg();
+        double *p2I     = _pR->get(i)->getImg();
         double *pOutR   = pOutCoef->get();
         int iMin        = std::min(pRank1[i], pRank2[i]);
         int iMax        = std::max(pRank1[i], pRank2[i]);
@@ -1804,15 +1806,18 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         }
 
         double *pTemp   = NULL;
+        double *pTempI  = NULL;
         int iCoef       = 1;
         if (pRank1[i] > pRank2[i])
         {
             pTemp       = p1R;
+            pTempI      = p1I;
             iCoef       = 1;
         }
         else
         {
             pTemp       = p2R;
+            pTempI      = p2I;
             iCoef       = -1;
         }
 
@@ -1823,8 +1828,6 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
         if (isOutComplex)
         {
-            double *p1I     = _pL->get(i)->getImg();
-            double *p2I     = _pR->get(i)->getImg();
             double *pOutI   = pOutCoef->getImg();
 
             for (int j = 0 ; j < iMin + 1 ; j++)
@@ -1832,9 +1835,12 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
                 pOutI[j]    = (p1I == NULL ? 0 : p1I[j]) - (p2I == NULL ? 0 : p2I[j]);
             }
 
-            for (int j = iMin + 1 ; j < iMax + 1 ; j++)
+            if (pTempI != NULL)
             {
-                pOutI[j]  = pTemp[j] * iCoef;
+                for (int j = iMin + 1 ; j < iMax + 1 ; j++)
+                {
+                    pOutI[j]  = pTempI[j] * iCoef;
+                }                
             }
         }
     }

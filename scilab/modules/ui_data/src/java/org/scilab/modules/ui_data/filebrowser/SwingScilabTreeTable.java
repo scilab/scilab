@@ -31,7 +31,6 @@ import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.regex.Pattern;
-
 import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
@@ -43,13 +42,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.SwingWorker;
 import javax.swing.tree.TreePath;
-
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.ui_data.filebrowser.actions.ChangeCWDAction;
@@ -66,15 +64,18 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
 
 /**
  * The tree table model abstract implementation
+ *
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
+@SuppressWarnings(value = {"serial"})
 public class SwingScilabTreeTable extends JTable {
 
     private static final Insets INSETS = new Insets(0, 2, 0, 0);
-    private static final DateFormat DATEFORMAT = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM);
+    private static final DateFormat DATEFORMAT =
+        DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM);
 
-    private static final Border BORDER = new AbstractBorder() {
+    private static final Border BORDER =
+    new AbstractBorder() {
         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             g.setColor(Color.LIGHT_GRAY);
             g.drawLine(x, y, x, y + height);
@@ -91,20 +92,21 @@ public class SwingScilabTreeTable extends JTable {
 
     private SwingWorker dirRefresher;
     private ScilabFileBrowserModel model;
-    private boolean resetScrollBar = true;
 
     private Method isLocationInExpandControl;
 
     protected ScilabTreeTableCellRenderer tree;
     protected ScilabFileSelectorComboBox combobox;
     protected ScilabFileBrowserHistory history;
-    
+
     /**
      * Default Constructor
+     *
      * @param treeTableModel the tree table model
      * @param combobox the combox used to set the path
      */
-    public SwingScilabTreeTable(ScilabTreeTableModel treeTableModel, ScilabFileSelectorComboBox combobox) {
+    public SwingScilabTreeTable(
+        ScilabTreeTableModel treeTableModel, ScilabFileSelectorComboBox combobox) {
         super();
         this.combobox = combobox;
         combobox.setTreeTable(this);
@@ -114,13 +116,18 @@ public class SwingScilabTreeTable extends JTable {
 
         // Install the tree editor renderer and editor.
         setDefaultRenderer(ScilabTreeTableModel.class, tree);
-        setDefaultRenderer(Date.class, new DefaultTableCellRenderer() {
+        setDefaultRenderer(
+            Date.class,
+        new DefaultTableCellRenderer() {
             {
                 setHorizontalTextPosition(DefaultTableCellRenderer.LEFT);
             }
 
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focus, int row, int col) {
-                JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, selected, focus, row, col);
+            public Component getTableCellRendererComponent(
+                JTable table, Object value, boolean selected, boolean focus, int row, int col) {
+                JLabel label =
+                    (JLabel)
+                    super.getTableCellRendererComponent(table, value, selected, focus, row, col);
                 label.setText(DATEFORMAT.format((Date) value));
                 if (col == 1) {
                     label.setBorder(BORDER);
@@ -128,13 +135,17 @@ public class SwingScilabTreeTable extends JTable {
                 return label;
             }
         });
-        setDefaultRenderer(ScilabFileBrowserModel.FileSize.class, new DefaultTableCellRenderer() {
+        setDefaultRenderer(
+            ScilabFileBrowserModel.FileSize.class,
+        new DefaultTableCellRenderer() {
             {
                 setHorizontalTextPosition(DefaultTableCellRenderer.LEFT);
             }
 
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focus, int row, int col) {
-                Component c = super.getTableCellRendererComponent(table, value, selected, focus, row, col);
+            public Component getTableCellRendererComponent(
+                JTable table, Object value, boolean selected, boolean focus, int row, int col) {
+                Component c =
+                    super.getTableCellRendererComponent(table, value, selected, focus, row, col);
                 if (col == 1) {
                     JLabel jl = (JLabel) c;
                     jl.setBorder(BORDER);
@@ -142,13 +153,17 @@ public class SwingScilabTreeTable extends JTable {
                 return c;
             }
         });
-        setDefaultRenderer(String.class, new DefaultTableCellRenderer() {
+        setDefaultRenderer(
+            String.class,
+        new DefaultTableCellRenderer() {
             {
                 setHorizontalTextPosition(DefaultTableCellRenderer.LEFT);
             }
 
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focus, int row, int col) {
-                Component c = super.getTableCellRendererComponent(table, value, selected, focus, row, col);
+            public Component getTableCellRendererComponent(
+                JTable table, Object value, boolean selected, boolean focus, int row, int col) {
+                Component c =
+                    super.getTableCellRendererComponent(table, value, selected, focus, row, col);
                 if (col == 1) {
                     JLabel jl = (JLabel) c;
                     jl.setBorder(BORDER);
@@ -164,33 +179,53 @@ public class SwingScilabTreeTable extends JTable {
         setAutoResizeMode(AUTO_RESIZE_NEXT_COLUMN);
 
         try {
-            isLocationInExpandControl = BasicTreeUI.class.getDeclaredMethod("isLocationInExpandControl", new Class[] {TreePath.class, int.class, int.class});
+            isLocationInExpandControl =
+                BasicTreeUI.class.getDeclaredMethod(
+                    "isLocationInExpandControl", new Class[] {TreePath.class, int.class, int.class});
             isLocationInExpandControl.setAccessible(true);
-        } catch (NoSuchMethodException e) { }
+        } catch (NoSuchMethodException e) {
+        }
 
-        addMouseListener(new MouseAdapter() {
+        addMouseListener(
+        new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 Point p = e.getPoint();
                 int col = columnAtPoint(p);
-                if (getColumnClass(col) == ScilabTreeTableModel.class && SwingUtilities.isLeftMouseButton(e)) {
+                if (getColumnClass(col) == ScilabTreeTableModel.class
+                        && SwingUtilities.isLeftMouseButton(e)) {
                     MouseEvent me = e;
                     if (isLocationInExpandControl != null) {
                         try {
                             int row = rowAtPoint(p);
                             TreePath path = tree.getPathForRow(row);
-                            boolean isOnExpander = ((Boolean) isLocationInExpandControl.invoke(tree.getUI(), path, e.getX(), e.getY())).booleanValue();
+                            boolean isOnExpander =
+                                ((Boolean)
+                                 isLocationInExpandControl.invoke(
+                                     tree.getUI(), path, e.getX(), e.getY()))
+                                .booleanValue();
                             Rectangle r = tree.getRowBounds(row);
                             if (!isOnExpander && !r.contains(p)) {
-                                me = new MouseEvent((Component) e.getSource(), e.getID(), e.getWhen(), e.getModifiers(), r.x, r.y, e.getClickCount(), e.isPopupTrigger());
+                                me =
+                                    new MouseEvent(
+                                    (Component) e.getSource(),
+                                    e.getID(),
+                                    e.getWhen(),
+                                    e.getModifiers(),
+                                    r.x,
+                                    r.y,
+                                    e.getClickCount(),
+                                    e.isPopupTrigger());
                             }
-                        } catch (Exception ex) { }
+                        } catch (Exception ex) {
+                        }
                     }
                     tree.dispatchEvent(me);
                 }
             }
         });
 
-        addKeyListener(new KeyAdapter() {
+        addKeyListener(
+        new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
                 if (Character.isLetter(c)) {
@@ -206,7 +241,8 @@ public class SwingScilabTreeTable extends JTable {
                         start = modulo(rows[0] + step, count);
                     }
                     for (int i = start; i != start - step; i = modulo(i + step, count)) {
-                        char first = ((FileNode) tree.getPathForRow(i).getLastPathComponent()).toString().charAt(0);
+                        char first =
+                            ((FileNode) tree.getPathForRow(i).getLastPathComponent()).toString().charAt(0);
                         first = Character.toLowerCase(first);
                         if (first == c) {
                             scrollRectToVisible(tree.getRowBounds(i));
@@ -218,34 +254,28 @@ public class SwingScilabTreeTable extends JTable {
             }
         });
 
-
         initActions();
         setComponentPopupMenu(createPopup());
     }
 
-    /**
-     * @return the Next button used in history
-     */
+    /** @return the Next button used in history */
     public JButton getNextButton() {
         return history.getNextButton();
     }
 
-    /**
-     * @return the Previous button used in history
-     */
+    /** @return the Previous button used in history */
     public JButton getPreviousButton() {
         return history.getPreviousButton();
     }
 
-    /**
-     * @return the combobox used to set the path
-     */
+    /** @return the combobox used to set the path */
     public ScilabFileSelectorComboBox getComboBox() {
         return combobox;
     }
 
     /**
      * Get the selected rows as file path
+     *
      * @return the paths
      */
     public String[] getSelectedPaths() {
@@ -262,6 +292,7 @@ public class SwingScilabTreeTable extends JTable {
 
     /**
      * Get the selected rows as file
+     *
      * @return the paths
      */
     public File[] getSelectedFiles() {
@@ -276,22 +307,19 @@ public class SwingScilabTreeTable extends JTable {
         return files;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public int getRowHeight(int row) {
         return getRowHeight();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public boolean isOpaque() {
         return false;
     }
 
     /**
      * Set the base directory
+     *
      * @param baseDir the base directory
      */
     public void setBaseDir(String baseDir) {
@@ -300,6 +328,7 @@ public class SwingScilabTreeTable extends JTable {
 
     /**
      * Set the base directory
+     *
      * @param baseDir the base directory
      * @param addInHistory if true the dir is add in the history
      */
@@ -317,14 +346,13 @@ public class SwingScilabTreeTable extends JTable {
         }
         combobox.setBaseDir(baseDir);
         if (model != null) {
+            boolean sameDir = baseDir.equals(model.getBaseDir());
             File f = new File(baseDir);
-            if (cancelled || (f.exists() && f.isDirectory() && f.canRead())) {
-                boolean sameDir = baseDir.equals(model.getBaseDir());
+            if (cancelled || (!sameDir && f.exists() && f.isDirectory() && f.canRead())) {
                 tree.setModel(null);
-                if (!sameDir && addInHistory) {
+                if (addInHistory) {
                     history.addPathInHistory(baseDir);
                 }
-                resetScrollBar = !sameDir;
                 model.setBaseDir(baseDir, this);
             }
         }
@@ -332,6 +360,7 @@ public class SwingScilabTreeTable extends JTable {
 
     /**
      * Set the file filter to use in table
+     *
      * @param pat the pattern to use
      */
     public void setFilter(Pattern pat) {
@@ -342,19 +371,16 @@ public class SwingScilabTreeTable extends JTable {
         reload(model);
     }
 
-    /**
-     * Reload the table
-     */
+    /** Reload the table */
     public void reload(ScilabFileBrowserModel model) {
         tree.setModel(model);
         tree.setRowHeight(getRowHeight());
         tree.setLargeModel(true);
         TreePath path = new TreePath(model.getRoot());
         tree.collapsePath(path);
-        if (resetScrollBar) {
-            ((JScrollPane) SwingUtilities.getAncestorOfClass(JScrollPane.class, this)).getVerticalScrollBar().setValue(0);
-        }
-        resetScrollBar = true;
+        ((JScrollPane) SwingUtilities.getAncestorOfClass(JScrollPane.class, this))
+        .getVerticalScrollBar()
+        .setValue(0);
         tree.expandPath(path);
         if (getRowCount() >= 1) {
             repaint(tree.getRowBounds(0));
@@ -362,11 +388,12 @@ public class SwingScilabTreeTable extends JTable {
         editingRow = 0;
     }
 
-    /* Workaround for BasicTableUI anomaly. Make sure the UI never tries to
-     * paint the editor. The UI currently uses different techniques to
-     * paint the renderers and editors and overriding setBounds() below
-     * is not the right thing to do for an editor. Returning -1 for the
-     * editing row in this case, ensures the editor is never painted.
+    /*
+     * Workaround for BasicTableUI anomaly. Make sure the UI never tries to paint
+     * the editor. The UI currently uses different techniques to paint the renderers
+     * and editors and overriding setBounds() below is not the right thing to do for
+     * an editor. Returning -1 for the editing row in this case, ensures the editor
+     * is never painted.
      */
     public int getEditingRow() {
         if (getColumnClass(editingColumn) == ScilabTreeTableModel.class) {
@@ -376,9 +403,7 @@ public class SwingScilabTreeTable extends JTable {
         }
     }
 
-    /**
-     * Init the actions
-     */
+    /** Init the actions */
     private void initActions() {
         final ActionMap actions = getActionMap();
         actions.put("scinotes", new OpenFileInSciNotesAction(this));
@@ -395,7 +420,9 @@ public class SwingScilabTreeTable extends JTable {
             actions.put("open", new OpenFileWithDefaultAppAction(this));
         }
         actions.put("validate", new ValidateAction(this));
-        actions.put("validateorexpand", new CommonCallBack(null) {
+        actions.put(
+            "validateorexpand",
+        new CommonCallBack(null) {
             public void callBack() {
                 int[] rows = getSelectedRows();
                 if (rows != null && rows.length != 0) {
@@ -420,9 +447,7 @@ public class SwingScilabTreeTable extends JTable {
         map.put(KeyStroke.getKeyStroke("ENTER"), "validateorexpand");
     }
 
-    /**
-     * Create the popup menu
-     */
+    /** Create the popup menu */
     private JPopupMenu createPopup() {
         ActionMap actions = getActionMap();
         JPopupMenu popup = new JPopupMenu();
@@ -467,7 +492,6 @@ public class SwingScilabTreeTable extends JTable {
         return popup;
     }
 
-
     public synchronized void setDirRefresher(SwingWorker refresher, ScilabFileBrowserModel model) {
         dirRefresher = refresher;
         this.model = model;
@@ -475,6 +499,7 @@ public class SwingScilabTreeTable extends JTable {
 
     /**
      * A modulo for negative numbers
+     *
      * @param n an int
      * @param p another int
      * @return n modulo p
@@ -485,5 +510,4 @@ public class SwingScilabTreeTable extends JTable {
         }
         return p - (-n % p);
     }
-
 }

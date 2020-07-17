@@ -1911,7 +1911,7 @@ GenericType* Sparse::remove(typed_list* _pArgs)
     }
     else
     {
-        pOut = new Sparse(piNewDims[0], piNewDims[0], isComplex());
+        pOut = new Sparse(piNewDims[0], piNewDims[1], isComplex());
     }
 
     delete[] piNewDims;
@@ -2040,19 +2040,42 @@ GenericType* Sparse::extract(typed_list* _pArgs)
     {
         if (piMaxDim[0] <= getSize())
         {
-            int iNewRows = 0;
-            int iNewCols = 0;
+            int iNewRows = 1;
+            int iNewCols = 1;
+            types::GenericType* pGT = (*_pArgs)[0]->getAs<GenericType>();
 
-            if (getRows() == 1 && getCols() != 1 && (*_pArgs)[0]->isColon() == false)
+            if ((*_pArgs)[0]->isColon())
             {
-                //special case for row vector
-                iNewRows = 1;
+                iNewRows = piCountDim[0];
+            }
+            else if ( (!isScalar() && isVector()) && ((*_pArgs)[0]->isImplicitList() || pGT->isVector()) )
+            {
+                if (getRows() == 1)
+                {
+                    iNewCols = piCountDim[0];
+                }
+                else
+                {
+                    iNewRows = piCountDim[0];
+                }
+            }
+            else if ((*_pArgs)[0]->isImplicitList())
+            {
                 iNewCols = piCountDim[0];
             }
             else
             {
-                iNewRows = piCountDim[0];
-                iNewCols = 1;
+                int *i_piDims = pGT->getDimsArray();
+                int i_iDims = pGT->getDims();
+                if (i_iDims > 2)
+                {
+                    iNewRows = piCountDim[0];
+                }
+                else
+                {
+                    iNewRows = i_piDims[0];
+                    iNewCols = i_piDims[1];
+                }
             }
 
             double* pIdx = pArg[0]->getAs<Double>()->get();
@@ -3858,7 +3881,7 @@ GenericType* SparseBool::remove(typed_list* _pArgs)
     }
     else
     {
-        pOut = new SparseBool(piNewDims[0], piNewDims[0]);
+        pOut = new SparseBool(piNewDims[0], piNewDims[1]);
     }
 
     delete[] piNewDims;
@@ -4092,19 +4115,41 @@ GenericType* SparseBool::extract(typed_list* _pArgs)
         // Check that we stay inside the input size.
         if (piMaxDim[0] <= getSize())
         {
-            int iNewRows = 0;
-            int iNewCols = 0;
+            int iNewRows = 1;
+            int iNewCols = 1;
 
-            if (getRows() == 1 && getCols() != 1 && (*_pArgs)[0]->isColon() == false)
+            if ((*_pArgs)[0]->isColon())
             {
-                //special case for row vector
-                iNewRows = 1;
+                iNewRows = piCountDim[0];
+            }
+            else if ( (!isScalar() && isVector()) && ((*_pArgs)[0]->isImplicitList() || (*_pArgs)[0]->getAs<GenericType>()->isVector()) )
+            {
+                if (getRows() == 1)
+                {
+                    iNewCols = piCountDim[0];
+                }
+                else
+                {
+                    iNewRows = piCountDim[0];
+                }
+            }
+            else if ((*_pArgs)[0]->isImplicitList())
+            {
                 iNewCols = piCountDim[0];
             }
             else
             {
-                iNewRows = piCountDim[0];
-                iNewCols = 1;
+                int *i_piDims = (*_pArgs)[0]->getAs<GenericType>()->getDimsArray();
+                int i_iDims = (*_pArgs)[0]->getAs<GenericType>()->getDims();
+                if (i_iDims > 2)
+                {
+                    iNewRows = piCountDim[0];
+                }
+                else
+                {
+                    iNewRows = i_piDims[0];
+                    iNewCols = i_piDims[1];
+                }
             }
 
             pOut = new SparseBool(iNewRows, iNewCols);
@@ -4596,3 +4641,4 @@ void neg(const int r, const int c, const T * const in, Eigen::SparseMatrix<bool,
     out->finalize();
 }
 }
+

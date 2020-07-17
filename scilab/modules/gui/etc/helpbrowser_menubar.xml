@@ -22,6 +22,39 @@ and is replaced by the good key (control for Unix/Windows OS and meta for Mac) -
         </submenu>
     </menu>
 
+    <menu label="&amp;Language">
+        <submenu label="en">
+            <callback instruction='helpbrowser_menus_cb(&quot;changeLang&quot;, &quot;en_US&quot;)' type="0"/>
+        </submenu>
+        <submenu label="fr">
+            <callback instruction='helpbrowser_menus_cb(&quot;changeLang&quot;, &quot;fr_FR&quot;)' type="0"/>
+        </submenu>
+        <submenu label="ja">
+            <callback instruction='helpbrowser_menus_cb(&quot;changeLang&quot;, &quot;ja_JP&quot;)' type="0"/>
+        </submenu>
+        <submenu label="pt">
+            <callback instruction='helpbrowser_menus_cb(&quot;changeLang&quot;, &quot;pt_BR&quot;)' type="0"/>
+        </submenu>
+        <submenu label="ru">
+            <callback instruction='helpbrowser_menus_cb(&quot;changeLang&quot;, &quot;ru_RU&quot;)' type="0"/>
+        </submenu>
+    </menu>
+
+    <menu label="&amp;Online">
+        <submenu label="See this page online">
+        <callback instruction='helpbrowser_menus_cb(&quot;online&quot;)' type="0"/>
+        </submenu>
+    </menu>
+
+    <menu label="&amp;Issues">
+        <submenu label="List ALL issues declared for this item (online)">
+            <callback instruction='helpbrowser_menus_cb(&quot;bugs&quot;)' type="0"/>
+        </submenu>
+        <submenu label="List only UNRESOLVED issues declared for this item (online)">
+            <callback instruction='helpbrowser_menus_cb(&quot;bugs&quot;, &quot;unresolved&quot;)' type="0"/>
+        </submenu>
+    </menu>
+
     <menu label="&amp;?">
         <submenu label="&amp;About Scilab..." accelerator="shift F1">
             <callback instruction='about()' type="0"/>

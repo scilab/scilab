@@ -1,5 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2020 - ESI Group - Clement DAVID
  *  Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
@@ -22,13 +23,33 @@ extern "C"
 #include "os_wtoi.h"
 }
 
-int os_wtoi(const wchar_t *_pwcsSource)
+// similar API to std::stoi but does not throw
+// Adapted from http://tinodidriksen.com/uploads/code/cpp/speed-string-to-int.cpp
+int os_wtoi(const wchar_t* str, std::size_t* pos)
 {
-    std::wstring wstr(_pwcsSource);
-    std::wistringstream wstrm(wstr);
-    int num = 0;
-    wstrm >> num;
-    return num;
+    const wchar_t* p = str;
+    int x = 0;
+    bool neg = false;
+    if (*p == '-')
+    {
+        neg = true;
+        ++p;
+    }
+    while (*p >= '0' && *p <= '9')
+    {
+        x = (x * 10) + (*p - '0');
+        ++p;
+    }
+    if (neg)
+    {
+        x = -x;
+    }
+
+    if (pos)
+    {
+        *pos = p - str;
+    }
+    return x;
 }
 
 

@@ -122,7 +122,7 @@ function atomsDownload(url_in,file_out,md5sum)
             timeout_arg = " --connect-timeout ";
         else
             // wget
-            timeout_arg = " --timeout=";
+            timeout_arg = " --no-timestamping --no-page-requisites --no-recursive --timeout=";
         end
 
         timeout = strtod(atomsGetConfig("downloadTimeout"));

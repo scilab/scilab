@@ -2,7 +2,7 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *  Copyright (C) 2012 - 2016 - Scilab Enterprises
- *  Copyright (C) 2017, 2018 - Samuel GOUGEON
+ *  Copyright (C) 2017 - 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -93,6 +93,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     std::unordered_map<std::wstring, std::wstring> map;
 
     // Scilab 6.1.0 => 6.1.x
+    map.emplace(L"xname", L"gcf().figure_name");
 
     // Scilab 6.0.x => 6.1.0
     map.emplace(L"%sn", L"ellipj");

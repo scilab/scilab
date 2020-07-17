@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2020 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -12,56 +13,182 @@
  * along with this program.
  *
  */
-
 package org.scilab.modules.ui_data.filebrowser;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.StandardWatchEventKinds;
+import java.nio.file.WatchEvent;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
+import java.nio.file.Watchable;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
-
+import java.util.stream.Collectors;
 import javax.swing.SwingWorker;
-
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
 /**
  * The tree table model abstract implementation
+ *
  * @author Calixte DENIZET
  */
-public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel implements ScilabTreeTableModel {
+public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel
+    implements ScilabTreeTableModel {
 
-    private static final String[] names = {UiDataMessages.NAME_COLUMN,
-                                           UiDataMessages.SIZE_COLUMN,
-                                           UiDataMessages.TYPE_COLUMN,
-                                           UiDataMessages.LASTMODIF_COLUMN
-                                          };
+    private static final String[] names = {
+        UiDataMessages.NAME_COLUMN, UiDataMessages.SIZE_COLUMN,
+        UiDataMessages.TYPE_COLUMN, UiDataMessages.LASTMODIF_COLUMN
+    };
 
-    private static final Class[] types = {ScilabTreeTableModel.class,
-                                          FileSize.class,
-                                          String.class,
-                                          Date.class
-                                         };
+    private static final Class[] types = {
+        ScilabTreeTableModel.class, FileSize.class, String.class, Date.class
+    };
 
     private static final FileSize MINUSONE = new FileSize(-1);
 
+    /** Will trigger a model update on file creation/deletion */
+    private final class DirWatcher extends SwingWorker<Void, Object[]> {
+
+        public DirWatcher(FileNode root) {
+            watchDirectories(new Object[] {root});
+        }
+
+        @Override
+        protected Void doInBackground() throws Exception {
+            for (; ; ) {
+                WatchKey key = watcher.take();
+                List<FileNode> treePath = new ArrayList<>();
+                FileNode fn = null;
+
+                // identify the associated file and publish for update on EDT
+                Watchable wa = key.watchable();
+                if (wa instanceof Path) {
+                    Path p = (Path) wa;
+                    Path r = ((FileNode) root).file.toPath().relativize(p);
+
+                    // reconstruct a TreePath
+                    treePath.add((FileNode) root);
+                    Iterator<Path> it = r.iterator();
+                    while (it.hasNext()) {
+                        Path name = it.next();
+                        FileNode[] children = (FileNode[]) treePath.get(treePath.size() - 1).getChildren();
+                        for (FileNode node : children) {
+                            if (node.name.equals(name.toString())) {
+                                treePath.add(node);
+                                break;
+                            }
+                        }
+                    }
+
+                    // in case of directory deletion, only reset the hierarchy up to an
+                    // existing directory
+                    treePath = treePath.stream().filter(n -> n.file.exists()).collect(Collectors.toList());
+                    if (treePath.isEmpty()) {
+                        // if the root is remove then cancel the watcher
+                        watcher.close();
+                        watcher = null;
+                        return null;
+                    }
+
+                    // retrieve the corresponding FileNode
+                    fn = treePath.get(treePath.size() - 1);
+
+                    // reset the children of the FileNode
+                    fn.resetChildren();
+                    Object[] children = fn.getChildren();
+
+                    // on directory creation, add them to the watch list
+                    watchDirectories(children);
+                }
+
+                // trigger a refresh on the EDT for the full treepath
+                publish(new Object[] {key, treePath.toArray()});
+            }
+        }
+
+        @Override
+        protected void process(List<Object[]> chunks) {
+            for (Object[] o : chunks) {
+                WatchKey key = (WatchKey) o[0];
+                Object[] path = (Object[]) o[1];
+
+                List<WatchEvent<?>> events = key.pollEvents();
+                if (events.isEmpty()) {
+                    continue;
+                }
+
+                // reinstall a watch on the directory
+                key.reset();
+
+                // reload part of the model
+                ScilabFileBrowserModel.this.fireTreeStructureChanged(this, path, null, null);
+            }
+        }
+
+        /**
+         * append directories to be watched
+         *
+         * @param children file list
+         */
+        public void watchDirectories(Object[] children) {
+            for (Object o : children) {
+                if (!(o instanceof FileNode)) {
+                    continue;
+                }
+                FileNode fn = (FileNode) o;
+                if (fn.isFile) {
+                    continue;
+                }
+                Path p = fn.file.toPath();
+                try {
+                    p.register(
+                        watcher, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    Logger.getLogger(SwingScilabTreeTable.class.getName()).log(Level.SEVERE, null, ex);
+                    cancel(false);
+                }
+            }
+        }
+    }
+
     private int order = 1;
     private String baseDir = "";
+    WatchService watcher;
+    private DirWatcher dirWatcher;
 
-    /**
-     * Default constructor
-     */
+    /** Default constructor */
     public ScilabFileBrowserModel() {
         super();
+
+        try {
+            // Setup watchers
+            watcher = FileSystems.getDefault().newWatchService();
+        } catch (IOException ex) {
+            Logger.getLogger(SwingScilabTreeTable.class.getName()).log(Level.SEVERE, null, ex);
+            watcher = null;
+        }
     }
 
     /**
      * Set the base directory
+     *
      * @param baseDir the base directory
      * @param stt the associated treetable component
      */
     public void setBaseDir(final String baseDir, final SwingScilabTreeTable stt) {
         this.baseDir = baseDir;
-        SwingWorker worker = new SwingWorker<Void, Void>() {
+        SwingWorker worker =
+        new SwingWorker<Void, Void>() {
             protected Void doInBackground() throws Exception {
                 File f = new File(baseDir);
                 setRoot(new FileNode(f, -1));
@@ -89,19 +216,35 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel impleme
     public void setRoot(Object root) {
         super.setRoot(root);
 
-        // Force the root to load its children in the SwingWorker thread rather than in EDT
-        ((FileNode) root).getChildrenCount();
+        // watch for changes
+        if (watcher != null) {
+            if (dirWatcher != null) {
+                dirWatcher.cancel(true);
+            }
+            dirWatcher = new DirWatcher((FileNode) root);
+            dirWatcher.execute();
+        }
+
+        // Force the root to load its children in the SwingWorker thread rather than in
+        // EDT
+        watchDirectories(((FileNode) root).getChildren());
     }
 
-    /**
-     * @return the base directory of this model
-     */
+    Object[] watchDirectories(Object[] objects) {
+        if (watcher != null && dirWatcher != null && objects != null) {
+            dirWatcher.watchDirectories(objects);
+        }
+        return objects;
+    }
+
+    /** @return the base directory of this model */
     public String getBaseDir() {
         return baseDir;
     }
 
     /**
      * Set the filter pattern
+     *
      * @pat the pattern
      */
     public void setFilter(Pattern pat) {
@@ -123,7 +266,12 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel impleme
      */
     protected Object[] getChildren(Object node) {
         FileNode fileNode = (FileNode) node;
-        return fileNode.getChildren();
+        FileNode[] raw = fileNode.getRawChildren();
+        if (raw == null) {
+            return watchDirectories(fileNode.getChildren());
+        } else {
+            return fileNode.getChildren();
+        }
     }
 
     /**
@@ -131,7 +279,12 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel impleme
      * @return the number of children of this node
      */
     public int getChildCount(Object node) {
-        int count = ((FileNode) node).getChildrenCount();
+        Object[] children = getChildren(node);
+        int count = 0;
+        if (children != null) {
+            count = children.length;
+        }
+
         if (parent == null || node != getRoot()) {
             return count;
         }
@@ -170,31 +323,24 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel impleme
         return node != getRoot() && ((FileNode) node).isLeaf();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public int getColumnCount() {
-        // TODO : remove the comment and let the choice to the user to remove or not the columns
-        return 1;//names.length;
+        // TODO : remove the comment and let the choice to the user to remove or not the
+        // columns
+        return 1; // names.length;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public String getColumnName(int column) {
         return names[column];
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public Class getColumnClass(int column) {
         return types[column];
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public Object getValueAt(Object node, int column) {
         File file = getFile(node);
         try {
@@ -217,41 +363,32 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel impleme
                 case 3:
                     return new Date(file.lastModified());
             }
-        } catch (SecurityException se) { }
+        } catch (SecurityException se) {
+        }
 
         return null;
     }
 
-    /**
-     * Inner class to represent the parent node of a file node
-     */
+    /** Inner class to represent the parent node of a file node */
     public static class ParentNode extends FileNode {
 
-        /**
-         * {@inheritDoc}
-         */
+        /** {@inheritDoc} */
         public ParentNode(File f) {
             super(f, -1);
         }
 
-        /**
-         * {@inheritDoc}
-         */
+        /** {@inheritDoc} */
         public boolean isLeaf() {
             return true;
         }
 
-        /**
-         * {@inheritDoc}
-         */
+        /** {@inheritDoc} */
         public String toString() {
             return "..";
         }
     }
 
-    /**
-     * Inner class to represent the size of file
-     */
+    /** Inner class to represent the size of file */
     public static class FileSize {
 
         int size;

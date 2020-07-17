@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,38 +13,107 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="squeeze">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="squeeze">
     <refnamediv>
         <refname>squeeze</refname>
-        <refpurpose>squeeze</refpurpose>
+        <refpurpose>supprime les dimensions singletons d'un tableau N-dimensionnel</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>hypOut = squeeze(hypIn)</synopsis>
+        <synopsis>r = squeeze(hypIn)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>hypIn</term>
                 <listitem>
-                    <para>hypermatrice ou matrice réelle.</para>
+                    <para>
+                        Tableau N-dimensionnel de type natif quelconque (booléen, numérique, texte, ..,
+                        cellules, structures).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>hypOut</term>
+                <term>r</term>
                 <listitem>
-                    <para>hypermatrcex ou matrice réelle.</para>
+                    <para>scalaire, vecteur, matrice ou tableau N-dimensionnel du même type.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para> Elimine les dimensions de type "singleton" d'une hypermatrice,
-            c'est-à -dire toutes les dimensions de taille 1.
-            Les matrices sont quant à  elles inchangées.
+        <para>
+            Elimine les dimensions singletons (= de taille 1) d'une hypermatrice ou d'un
+            tableau N-dimensionnel. Les matrices sont inchangées.
         </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+// Pour une matrice 2D => aucun changement
+u = squeeze(ones(1,4))
+size(u)
+
+// auto-simplification des dimensions singletons les plus hautes :
+v = ones(2,3,1,1);
+size(v)
+
+// Pour un tableau d'entrée réellement N-dimensionnel :
+w = squeeze(ones(1,3,1,4))
+size(w)
+
+// Pour un tableau 4D de cellules :
+c = cat(4, {%t}, {%pi}, {"abc"});
+size(c)
+x = squeeze(c)
+size(x)
+    ]]></programlisting>
+    <screen><![CDATA[
+--> u = squeeze(ones(1,4))
+ u  =
+   1.   1.   1.   1.
+
+--> size(u)
+ ans  =
+   1.   4.
+
+--> // auto-simplification des dimensions singletons les plus hautes :
+--> v = ones(2,3,1,1);
+--> size(v)
+ ans  =
+   2.   3.
+
+-->  Pour un tableau d'entrée réellement N-dimensionnel :
+--> w = squeeze(ones(1,3,1,4))
+ w  =
+   1.   1.   1.   1.
+   1.   1.   1.   1.
+   1.   1.   1.   1.
+
+--> size(w)
+ ans  =
+   3.   4.
+
+--> // Pour un tableau 4D de cellules :
+--> c = cat(4, {%t}, {%pi}, {"abc"});
+--> size(c)
+ ans  =
+   1.   1.   1.   3.
+
+--> x = squeeze(c)
+ x  =
+  [1x1 boolean ]
+  [1x1 constant]
+  [1x1 string  ]
+
+--> size(x)
+ ans  =
+   3.   1.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

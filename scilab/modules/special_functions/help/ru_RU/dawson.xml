@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+		  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+		  xmlns:scilab="http://www.scilab.org" xml:id="dawson" xml:lang="ru">
+    <refnamediv>
+        <refname>dawson</refname>
+        <refpurpose>Вычислить функцию Доусона (масштабированная мнимая часть ошибки).</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>y = dawson(z)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    вектор или матрица вещественных или комплексных чисел
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    вектор или матрица вещественных или комплексных чисел (того же размера, что и <varname>x</varname>).
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>dawson</literal> вычисляет масштабированную мнимую часть функции ошибки определённую как
+        </para>
+        <para>
+            <latex alt="Dawson(z)=exp(-z^2).erfi(z).√π /2">
+                \mathrm{Dawson}(z) = \frac{\sqrt{\pi}}{2} e^{-z^2} \mathrm{erfi}(z)
+            </latex>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+i = %i;
+x = [0, 0.01, 1, 100, i, 2*i, 4*i, 8*i,  1-i, 1+i, 2+i, 1e-4+2e-4*i].';
+[x, dawson(x), dawson(-x)]
+ ]]></programlisting>
+    <screen><![CDATA[
+--> [x, dawson(x), dawson(-x)]
+ ans  =
+   0.     + 0.i       0.        + 0.i          0.        + 0.i
+   0.01   + 0.i       0.0099993 + 0.i         -0.0099993 + 0.i
+   1.     + 0.i       0.5380795 + 0.i         -0.5380795 + 0.i
+   100.   + 0.i       0.0050003 + 0.i         -0.0050003 + 0.i
+   0.     + i         0.        + 2.0300785i   0.        - 2.0300785i
+   0.     + 2.i       0.        + 48.160012i   0.        - 48.160012i
+   0.     + 4.i       0.        + 7875110.3i   0.        - 7875110.3i
+   0.     + 8.i       0.        + 5.526D+27i   0.        - 5.526D+27i
+   1.     - i         0.9903731 + 0.6388731i  -0.9903731 - 0.6388731i
+   1.     + i         0.9903731 - 0.6388731i  -0.9903731 + 0.6388731i
+   2.     + i         0.1635394 - 0.1531246i  -0.1635394 + 0.1531246i
+   0.0001 + 0.0002i   0.0001    + 0.0002i     -0.0001    - 0.0002i
+]]></screen>
+        <para/>
+        <programlisting role="example"><![CDATA[
+clf
+subplot(1,2,1)
+x = logspace(-20,20,100);
+y = dawson(x);         // мнимая часть равна нулю
+plot("ll", x, y)
+xlabel x fontsize 3
+title dawson(x) fontsize 3.5
+xgrid(color("grey60"))
+
+subplot(1,2,2)
+x = logspace(-7,1,100);
+y = imag(dawson(x*%i)); // вещественная часть равна нулю
+plot("ll", x, y)
+xlabel x fontsize 3
+title imag(dawson(x.i)) fontsize 3.5
+xgrid(color("grey60"))
+     ]]></programlisting>
+        <scilab:image>
+            clf
+            subplot(1,2,1)
+            x = logspace(-20,20,100);
+            y = dawson(x);         // the imaginary part is zero
+            plot("ll", x, y)
+            xlabel x fontsize 3
+            title dawson(x) fontsize 3.5
+            xgrid(color("grey60"))
+
+            subplot(1,2,2)
+            x = logspace(-7,1,100);
+            y = imag(dawson(x*%i)); // the real part is zero
+            plot("ll", x, y)
+            xlabel x fontsize 3
+            title imag(dawson(x.i)) fontsize 3.5
+            xgrid(color("grey60"))
+
+            gcf().axes_size = [700 380];
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>Алгоритмы</title>
+        <para>
+            Эта функция основана на библиотеке <ulink url="http://ab-initio.mit.edu/Faddeeva">пакета Фаддеевой</ulink> library.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="erf">erf</link>
+            </member>
+            <member>
+                <link linkend="erfc">erfc</link>
+            </member>
+            <member>
+                <link linkend="calerf">calerf</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Введена функция Доусона</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

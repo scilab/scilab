@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-
  * Copyright (C) ENPC - Jean-Philippe Chancelier
-
- *
-
-
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,274 +11,244 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-
  *
-
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="champ">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="champ">
     <refnamediv>
-
         <refname>champ</refname>
-
         <refpurpose>2次元ベクトルフィールドのプロット</refpurpose>
-
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
         <synopsis>
-
-            champ(x,y,fx,fy,[arfact,rect,strf])
-
-            champ(x,y,fx,fy,&lt;opt_args&gt;)
-
+            champ()  // example
+            champ(x, y, fx, fy)
+            champ(x, y, fx, fy, arfact)
+            champ(x, y, fx, fy, arfact, rect)
+            champ(x, y, fx, fy, arfact, rect, strf)
+            champ(x, y, fx, fy, &lt;opt_args&gt;)
         </synopsis>
-
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
                 <term>x,y</term>
-
                 <listitem>
-
-                    <para>グリッドを定義するベクトル.</para>
-
+                    <para>
+                        vectors of decimal numbers, which define the grid of nodes
+                        = coordinates of arrows starting points.
+                    </para>
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>fx</term>
-
                 <listitem>
-
                     <para>ベクトルフィールドのx要素を記述する行列.
-
                         <literal>fx(i,j)</literal> は点<literal>(x(i),y(j))</literal>における
-
                         ベクトルフィールドのx要素です.
-
                     </para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>fy</term>
-
                 <listitem>
-
                     <para>ベクトルフィールドのy要素を記述する行列.
-
                         <literal>fy(i,j)</literal> は点<literal>(x(i),y(j))</literal>における
-
                         ベクトルフィールドのy要素です.
-
                     </para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>&lt;opt_args&gt;</term>
-
                 <listitem>
-
                     <para>一連の命令
-
                         <literal>key1=value1,key2=value2</literal>,... を表します.
-
                         ただし, <literal>key1</literal>,
-
                         <literal>key2,...</literal> には以下のどれかを指定可能です: arfact, rect,
-
                         strf (以下参照).
-
                     </para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>arfact</term>
-
                 <listitem>
-
                     <para>
-
                         実数型のオプションの引数で,
-
                         プロット時の矢じりの表示用のスケールファクタを指定します.
-
                         (デフォルト値は 1.0).
-
                     </para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>rect</term>
-
                 <listitem>
-
                     <para>使用するグラフィックフレームの境界を指定する
-
                         ベクトル<literal>rect=[xmin,ymin,xmax,ymax]</literal>.
-
                     </para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>strf</term>
-
                 <listitem>
-
                     <para>
-
                         長さ3の文字列 "xyz" で,<literal>plot2d</literal>の
-
                         <literal>strf</literal>パラメータと意味は同じです.
-
                         最初の文字xは<literal>champ</literal>では意味がありません.
-
                     </para>
-
                 </listitem>
-
             </varlistentry>
-
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
         <para>
-
-            <literal>champ</literal> は2次元ベクトルフィールドを描画します.
-
-            矢印の長さはフィールドのインテンシティに比例します.
-
+            <literal>champ(…)</literal> plots a field of 2D vectors with arrows.
         </para>
-
-        <para>フィールドのインテンシティに依存した色を有する色付の矢印を
-
-            使用したい場合,<literal>gce().colored = "on"</literal>を使用してください.
-
-        </para>
-
         <para>
-
+            By default, all arrows have the same color, and their length is
+            proportional to the local intensity of the field (norm of vectors).
+            In addition, all lengths are normalized according to the longest arrow.
+        </para>
+        <para>
+            When setting <literal>gce().colored = "on"</literal>,
+            each arrow becomes as long as possible in its cell, and is colored
+            according to the local intensity of the field.
+        </para>
+        <para>
+            After calling <literal>champ(…)</literal>, <literal>gce()</literal>
+            returns the handle of the field of arrows, of type <literal>Champ</literal>,
+            whose <link linkend="champ_properties">properties</link> can be post-processed.
+        </para>
+        <para>
             コマンド <literal>champ()</literal> を入力するとデモが表示されます.
-
         </para>
-
-        <para>
-
-            <code>champ</code>の使用前に <link linkend="meshgrid">meshgrid</link>関数を
-
-            使用する場合は調整が必要なことに注意してください.
-
-            詳細については最後の例を参照ください.
-
-        </para>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
+        <programlisting role="example"><![CDATA[
+x = -4:6;
+X = ndgrid(x);
+[fx, fy] =  (rand(X)-0.5, rand(X)-0.5);
 
-        <programlisting role="example"><![CDATA[
-// rect をプロット境界として使用
-champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
- ]]></programlisting>
+clf
+gcf().color_map = jetcolormap(50);
+
+// Field's intensity = arrows length
+subplot(2,2,1)
+champ(x, x, fx, fy)
+
+// With bigger arrow heads
+subplot(2,2,2)
+champ(x, x, fx, fy, arfact=1.7)
+title("arfact=1.7", "fontsize",3)
+
+// Field's intensity = arrows color
+xsetech([0 0.5 0.55 0.5])
+champ(x, x, fx, fy, arfact=1.7)
+gce().colored = "on";
+title("arfact=1.7, .colored=""on""", "fontsize",3)
+colorbar
+
+// Field's intensity = color, + imposed boundaries
+subplot(2,2,4)
+champ(x, x, fx, fy, rect=[-5,-6,9,7],strf="011")
+gce().colored = "on";
+title("rect=[-5,-6,9,6], strf=""011"", .colored=""on""", "fontsize",3)
+
+gcf().axes_size = [740 680];
+    ]]></programlisting>
         <scilab:image>
-            champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2);
+            x = -4:6;
+            X = ndgrid(x);
+            [fx, fy] =  (rand(X)-0.5, rand(X)-0.5);
+
+            clf
+            gcf().color_map = jetcolormap(50);
+
+            // Field's intensity = arrows length
+            subplot(2,2,1)
+            champ(x, x, fx, fy)
+
+            // With bigger arrow heads
+            subplot(2,2,2)
+            champ(x, x, fx, fy, arfact=1.7)
+            title("arfact=1.7", "fontsize",3)
+
+            // Field's intensity = arrows color
+            xsetech([0 0.5 0.55 0.5])
+            champ(x, x, fx, fy, arfact=1.7)
+            gce().colored = "on";
+            title("arfact=1.7, .colored=""on""", "fontsize",3)
+            L = sqrt(fx.^2 + fy.^2);
+            colorbar(min(L), max(L));
+
+            // Field's intensity = color, + imposed boundaries
+            subplot(2,2,4)
+            champ(x, x, fx, fy, rect=[-5,-6,9,7],strf="011")
+            gce().colored = "on";
+            title("rect=[-5,-6,9,6], strf=""011"", .colored=""on""", "fontsize",3)
+
+            gcf().axes_size = [740 680];
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// 境界を取得するために (x,y) を使用
-clf()
-champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
- ]]></programlisting>
-        <scilab:image>
-            champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-// fx および fy を得るために meshgrid を使用
-clf()
-x = linspace(-1,1,30);
-y = linspace(-1,1,30);
-[X,Y] = meshgrid(x,y);
-fy = 2.*Y;
-fx = 2.*X;
-champ(x,y,fx',fy'); //転置した fx および fyを使用
+x = -1.2:0.11:0.7;
+y = -1:0.11:0.5;
+[X, Y] = ndgrid(x, y);
+[fx, fy] = (2*X, 2*Y);
+
+clf
+xsetech([0 0 0.45 1])
+champ(x, y, fx, fy)
+title(".colored = ""off"" (default)", "fontsize",3)
+xsetech([0.45 0 0.55 1])
+champ(x, y, fx, fy)
+title(".colored = ""on""", "fontsize",3)
+gce().colored = "on";
+
+gcf().color_map = jetcolormap(100);
+colorbar
 ]]></programlisting>
         <scilab:image>
-            x = linspace(-1,1,30);
-            y = linspace(-1,1,30);
-            [X,Y] = meshgrid(x,y);
-            fy = 2.*Y;
-            fx = 2.*X;
-            champ(x,y,fx',fy');
+            x = -1.2:0.11:0.7;
+            y = -1:0.11:0.5;
+            [X, Y] = ndgrid(x, y);
+            [fx, fy] = (2*X, 2*Y);
+
+            clf
+            xsetech([0 0 0.45 1])
+            champ(x, y, fx, fy)
+            title(".colored = ""off"" (default)", "fontsize",3)
+            xsetech([0.45 0 0.55 1])
+            champ(x, y, fx, fy)
+            title(".colored = ""on""", "fontsize",3)
+            gce().colored = "on";
+
+            gcf().color_map = jetcolormap(100);
+            L = sqrt(fx.^2 + fy.^2);
+            colorbar(min(L), max(L));
+
+            gcf().axes_size = [720 340];
         </scilab:image>
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
-                <link linkend="champ1">champ1</link>
-
+                <link linkend="champ_properties">champ_properties</link>
             </member>
-
             <member>
-
                 <link linkend="fchamp">fchamp</link>
-
             </member>
-
             <member>
                 <link linkend="xarrows">xarrows</link>
             </member>
             <member>
                 <link linkend="polyline_properties">Arrowed polyline</link>
             </member>
-
         </simplelist>
-
     </refsection>
-
 </refentry>
-

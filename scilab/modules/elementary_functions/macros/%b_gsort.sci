@@ -11,6 +11,7 @@
 
 function varargout = %b_gsort(varargin)
     // Boolean hypermatrices are completely processed in %hm_gsort
+    // Sparse boolean matrices are sent to %spb_gsort
 
     b = iconvert(varargin(1), 1);
     if argn(1)==1 then

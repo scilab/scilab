@@ -1,7 +1,7 @@
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2019 - Samuel GOUGEON
+// Copyright (C) 2019 - 2020 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,42 +10,39 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [flag,errmsg] = assert_checkequal ( computed , expected )
+function [flag, errmsg] = assert_checkequal(computed, expected)
     //  Check that computed and expected are equal.
-    [lhs,rhs]=argn()
+    [lhs,rhs] = argn()
     if ( rhs <> 2 ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong number of input arguments: %d expected.\n") , "assert_checkequal" , 2 )
-        error(errmsg)
+        errmsg = gettext("%s: Wrong number of input arguments: %d expected.\n")
+        error(msprintf(errmsg, "assert_checkequal", 2))
     end
 
     // Check types of variables
     if ( typeof(computed) <> typeof(expected) ) then
-        errmsg = sprintf ( gettext ( "%s: Incompatible input arguments #%d and #%d: Same types expected.\n" ) , "assert_checkequal" , 1 , 2 )
-        error(errmsg)
-   end
+        errmsg = gettext("%s: Incompatible input arguments #%d and #%d: Same types expected.\n")
+        error(msprintf(errmsg, "assert_checkequal", 1, 2))
+    end
 
     //
     // Check sizes of variables
-    if ( or(type(computed)==[16 17]) ) then
+    if type(computed)==15 then
         ncom = length(computed)
+        nexp = length(expected)
+    elseif or(typeof(computed)==["ce" "st"])
+        ncom = size(computed)
+        nexp = size(expected)
     else
         try
             ncom = size(computed)
+            nexp = size(expected)
         catch   // non-sizeable objects: 1:$, iolib, sin, sind, etc
             ncom = -2
-        end
-    end
-    if ( or(type(expected)==[16 17]) ) then
-        nexp = length(expected)
-    else
-        try
-            nexp = size(expected)
-        catch
             nexp = -2
         end
     end
     if ( or(ncom <> nexp) ) then
-        errmsg = sprintf ( gettext ( "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n") , "assert_checkequal" , 1 , 2 )
+        errmsg = msprintf(gettext ( "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"), "assert_checkequal", 1 , 2)
         error(errmsg)
     end
 
@@ -54,11 +51,11 @@ function [flag,errmsg] = assert_checkequal ( computed , expected )
         cisreal = isreal(computed)
         eisreal = isreal(expected)
         if ( cisreal & ~eisreal ) then
-            errmsg = sprintf ( gettext ( "%s: Computed is real, but expected is complex.") , "assert_checkequal" )
+            errmsg = msprintf(gettext("%s: Computed is real, but expected is complex."), "assert_checkequal")
             error(errmsg)
         end
         if ( ~cisreal & eisreal ) then
-            errmsg = sprintf ( gettext ( "%s: Computed is complex, but expected is real.") , "assert_checkequal" )
+            errmsg = msprintf(gettext("%s: Computed is complex, but expected is real."), "assert_checkequal")
             error(errmsg)
         end
         if cisreal & eisreal then
@@ -69,7 +66,7 @@ function [flag,errmsg] = assert_checkequal ( computed , expected )
                 [flag ,k] = comparedoubles ( imag(computed) , imag(expected) )
             end
         end
-        // k is the index of the first discrepancy (or [] is none)
+        // k is the index of the first discrepancy (or [] if none)
 
     elseif or(typeof(computed)==["implicitlist" "fptr" "function"])
                                     // http://bugzilla.scilab.org/16104 C) D) E)
@@ -109,32 +106,11 @@ function [flag,errmsg] = assert_checkequal ( computed , expected )
         end
         return
 
-    elseif type(computed)==15   // Simple lists
-        b = computed==expected
-        flag = and(b)
-        if ~flag
-            // computed<>expected can't be simply used due to // http://bugzilla.scilab.org/15293
-            flag = %t
-            for i = find(~b)
-                tc = type(computed(i))
-                te = type(expected(i))
-                if tc==0 & te==0
-                    continue
-                elseif tc<>0 & te<>0 & isnan(computed(i)) & isnan(expected(i))
-                    continue
-                else
-                    flag = %f
-                    k = i
-                    if tc==0
-                        computed(k) = "(void)"
-                    end
-                    if te==0
-                        expected(k) = "(void)"
-                    end
-                    break
-                end
-            end
-        end
+    elseif or(type(computed)==[15 16 17 ])
+        [flag, k] = compareContainers(computed , expected)
+
+    elseif type(computed) == 0
+        flag = %t
 
     else
         b = and(computed == expected)
@@ -150,28 +126,48 @@ function [flag,errmsg] = assert_checkequal ( computed , expected )
     else
         // Sets the message according to the type and size of the pair:
         if or(typeof(expected) == ["sparse", "boolean sparse"])
-            e = full(expected(k))
-            c = full(computed(k))
-        elseif isdef("k","l")
-            e = expected(k)
-            c = computed(k)
+            estr = string(full(expected(k)))
         else
-            try
-            e = expected(1)
-            c = computed(1)
-            catch
-            e = expected
-            c = computed
+            s = "expected(1)"
+            if isdef("k","l") & k <> []
+                s = "expected(k)"
+            end
+            err = execstr("e = "+s+"; t = type("+s+")", "errcatch")
+            if err <> 0
+                e = expected
+                t = type(e)
+            end
+            if t==0
+                estr = "(void)"
+            elseif t==9
+                estr = msprintf("%s(uid:%d)", e.type, e.uid)
+            else
+                estr = string(e)
             end
         end
-        if type(computed)==9
-            estr = msprintf("%s(uid:%d)", e.type, e.uid)
-            cstr = msprintf("%s(uid:%d)", c.type, c.uid)
+        //
+        if or(typeof(computed) == ["sparse", "boolean sparse"])
+            cstr = full(computed(k))
         else
-            estr = string(e)
-            cstr = string(c)
+            s = "computed(1)"
+            if isdef("k","l") & k <> []
+                s = "computed(k)"
+            end
+            err = execstr("c = "+s+"; t = type("+s+")", "errcatch")
+            if err <> 0
+                c = computed
+                t = type(c)
+            end
+            if t==0
+                cstr = "(void)"
+            elseif t==9
+                cstr = msprintf("%s(uid:%d)", c.type, c.uid)
+            else
+                cstr = string(c)
+            end
         end
-        if isdef("k","l") & length(computed)>1
+        //
+        if isdef("k","l") & k <> [] & length(computed)>1
             estr = msprintf(_("expected(%d)= "),k) + estr
             cstr = msprintf(_("computed(%d)= "),k) + cstr
         else
@@ -202,4 +198,96 @@ function [flag, k] = comparedoubles ( computed , expected )
     expected(isnan(expected)) = joker;
     k = find(expected<>computed,1);
     flag = k==[];
+endfunction
+// ---------------------------------------------------------------------------
+function [areEqual, k] = compareContainers(computed , expected)
+    // http://bugzilla.scilab.org/15293
+    // http://bugzilla.scilab.org/16274
+    tc = typeof(computed)
+    te = typeof(expected)
+    k = []
+    areEqual = tc == te
+    if ~areEqual
+        return
+    end
+    if or(type(computed)==[1 5])
+        if and(computed == expected)
+            return
+        end
+        if isreal(computed) <> isreal(expected)
+            areEqual = %f
+            return
+        end
+        [areEqual, k] = comparedoubles(real(computed), real(expected))
+        if areEqual
+            [areEqual, k] = comparedoubles(imag(computed), imag(expected))
+        end
+
+    elseif or(type(computed)==[16 17]) then
+        if and(computed == expected)
+            return
+        end
+        if or(size(computed) <> size(expected)) then
+            areEqual = %f
+            return
+        end
+        fc = fieldnames(computed)
+        areEqual = and(fc == fieldnames(expected))
+        if ~areEqual
+            return
+        end
+        if fc <> []
+            for f = fc'
+                [areEqual, k] = compareContainers(computed(f) , expected(f))
+                if ~areEqual
+                    break
+                end
+            end
+        elseif tc=="ce"
+            [areEqual, k] = compareContainers(computed{:} , expected{:})
+            if ~areEqual
+                break
+            end
+        end
+
+    elseif type(computed)==14   // Libraries
+        areEqual = and(string(computed)==string(expected))
+
+    elseif tc=="list"
+        if and(computed == expected)
+            return
+        end
+        if length(computed) <> length(expected)
+            areEqual = %f
+            return
+        end
+        dfc = definedfields(computed)
+        dfe = definedfields(expected)
+        if or(dfc <> dfe)
+            if length(dfc)==length(dfe)
+                k = find(dfc <> dfe, 1)
+            else
+                tmp = union(setdiff(dfc, dfe), setdiff(dfe, dfc))
+                k = tmp(find(tmp,1))
+            end
+            areEqual = %f
+            return
+        end
+        for k = dfc
+            areEqual = compareContainers(computed(k) , expected(k))
+            if ~areEqual
+                break
+            end
+        end
+
+    elseif (tc=="void" & te=="void")
+        return
+
+    elseif type(computed) <> 0
+        b = and(computed == expected)
+        areEqual = b || isequal(computed, expected)
+        if ~areEqual & ~b
+            k = find(computed <> expected, 1);
+        end
+    end
 endfunction

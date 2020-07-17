@@ -24,10 +24,10 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            [N, km, kn, nb] = unique(M)
-            [N, km, kn, nb] = unique(M, orient)
-            [N, km, kn, nb] = unique(.., "keepOrder")
-            [N, km, kn, nb] = unique(.., "uniqueNan")
+            [U, km, ku, nb] = unique(M)
+            [U, km, ku, nb] = unique(M, orient)
+            [U, km, ku, nb] = unique(.., "keepOrder")
+            [U, km, ku, nb] = unique(.., "uniqueNan")
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -36,7 +36,10 @@
             <varlistentry>
                 <term>M</term>
                 <listitem>
-                    <para>数値または文字列のベクトルまたは行列</para>
+                    <para>
+                        vector, matrix, or hypermatrix of booleans, numbers, or strings.
+                        Numeric or boolean sparses are accepted.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -48,58 +51,69 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>N</term>
+                <term>U</term>
                 <listitem>
-                    <para>
-                      <itemizedlist>
+                    <itemizedlist>
                         <listitem>
                             <para>
                               If <varname>orient</varname> is not used: Vector of extracted
                               <varname>M</varname> components sorted in ascending order.
-                              If <varname>M</varname> is a row vector, <varname>N</varname> is also
+                              If <varname>M</varname> is a row vector, <varname>U</varname> is also
                               a row vector. In all other <varname>M</varname> cases,
-                              <varname>N</varname> is a matrix or a column vector.
+                              <varname>U</varname> is a column vector.
                             </para>
                         </listitem>
                         <listitem>
                           If <varname>orient</varname> is used: Matrix of extracted
                           <varname>M</varname> rows or columns, sorted in lexicographic ascending order.
                         </listitem>
-                      </itemizedlist>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>k</term>
-                <listitem>
-                    <para>
-                      Vector of indices of first encountered occurences, such that
-                      <literal>N(i) = M(k(i))</literal> or <literal>N(i,:) = M(k(i),:)</literal>
-                      or <literal>N(:,i) = M(:,k(i))</literal>.
-                    </para>
-                    <para>
-                        <varname>k</varname> is a row if <varname>M</varname> is a row or if
-                        <literal>orient="c"</literal> is used. Otherwise it's a column.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>kn</term>
-                <listitem>
-                    Not yet implemented.
-                    Vector of indices of first encountered occurrences, such that
-                    <literal>M(i) = N(kn(i))</literal> or <literal>M(i,:) = N(kn(i),:)</literal>
-                    or <literal>M(:,i) = N(:,kn(i))</literal>.
+                    </itemizedlist>
                     <para/>
+                    If <varname>M</varname> is sparse, then <varname>U</varname> is always sparse.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>km</term>
+                <listitem>
+                    Vector of indices of first encountered occurrences, such that
+                    <literal>U = M(km)</literal> or <literal>U = M(km,:)</literal>
+                    or <literal>U = M(:,km)</literal>.
+                    <para/>
+                    <varname>km</varname> is a row if <varname>M</varname> is a row or if
+                    <literal>orient="c"</literal> is used. Otherwise it's a column.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ku</term>
+                <listitem>
+                    Array of indices in U, such that, according to the <varname>orient</varname> option
+                    <itemizedlist>
+                        <listitem>
+                            "*": <varname>ku</varname> is of size size(M), and <literal>U(ku) = M</literal>
+                        </listitem>
+                        <listitem>
+                            "r": <varname>ku</varname> is of size [size(M,1), 1], and <literal>U(ku,:) = M</literal>
+                        </listitem>
+                        <listitem>
+                            "c": <varname>ku</varname> is of size [1, size(M,2)], and <literal>U(:,ku) = M</literal>
+                        </listitem>
+                    </itemizedlist>
+                    <para/>
+                    <warning>
+                        <varname>ku</varname> is dense, even when <varname>M</varname> is sparse and the
+                        overall "*" mode is used.
+                    </warning>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>nb</term>
                 <listitem>
                     <para>
-                      Vector of integers > 0, with the same <varname>k</varname> shape:
+                      Vector of integers > 0, with the same <varname>km</varname> shape:
                       Numbers of occurences in <varname>M</varname> of respective unduplicated
-                      entities (components, rows, columns) returned in <varname>N</varname>.
+                      entities (components, rows, columns) returned in <varname>U</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -135,6 +149,15 @@
             from any other Nan, including itself: <literal>%nan&lt;>%nan</literal> is true, unless
             <literal>"uniqueNan"</literal> is used. Specifying
             <literal>"uniqueNan"</literal> is case-insensitive.
+        </para>
+        <para>
+            For booleans, <literal>unique(…)</literal> is useful mainly with the "r" or "c" options.
+        </para>
+        <para>
+            <note>
+                Complex numbers are sorted first by increasing magnitudes, then by increasing
+                phases on [-π,π].
+            </note>
         </para>
     </refsection>
     <refsection role="examples">
@@ -182,13 +205,18 @@ c = [1+i, 1-i, -i, i, -i, 1+i]
     <screen><![CDATA[
 --> c = [1+i, 1-i, -i, i, -i, 1+i]
  c  =
-   1. + i     1. - i  -i    i   -i    1. + i
+   1. + i    1. - i    0. - i    0. + i    0. - i    1. + i
 
 --> [u, k] = unique(c)
  u  =
-  -i    i    1. - i   1. + i
-
+   0. - i    0. + i    1. - i    1. + i
  k  =
+   3.   4.   2.   1.
+
+--> [uc, kc] = unique(c, "c")
+ uc  =
+   0. - i    0. + i    1. - i    1. + i
+ kc  =
    3.   4.   2.   1.
 ]]></screen>
 
@@ -199,9 +227,10 @@ t = ["BA" "BB" "AB" "BA" "AB" "BA" "AB" "AB" "BA" "AA" "AB" "BA" "BA" "BA" "AA"
     ]
 u = unique(t)'
 [u, kt, nb] = unique(t(1,:))
-[u, kt] = unique(t(1,:), "keepOrder")  // Keeping the original order of row#1 elements
+[u, kt] = unique(t(1,:), "keepOrder")      // In original order of row#1 elements
 [uc, ktc, kuc, nb] = unique(t, "c")
-[uc, ktc, kuc, nb] = unique(t, "c", "keepOrder")  // Keeping the original order of columns
+[uc, ktc, kuc, nb] = unique(t, "c", "keepOrder")  // In original order of columns
+[and(t(:,ktc)==uc), and(uc(:,kuc)==t) ]
  ]]></programlisting>
     <screen><![CDATA[
 --> t = ["BA" "BB" "AB" "BA" "AB" "BA" "AB" "AB" "BA" "AA" "AB" "BA" "BA" "BA" "AA"
@@ -253,6 +282,10 @@ u = unique(t)'
 
  nb  =
    2.   1.   1.   3.   2.   1.   3.   1.   1.
+
+--> [and(t(:,ktc)==uc), and(uc(:,kuc)==t) ]
+ ans  =
+  T  T
 ]]></screen>
         <para/>
         <para>With Nan (and Inf) values. "uniqueNan" option:</para>
@@ -339,12 +372,21 @@ unique(M, "c")
                 <revdescription>
                     <itemizedlist>
                         <listitem>
+                            Extension to booleans.
+                        </listitem>
+                        <listitem>
                             "keepOrder" and "uniqueNan" options introduced.
                         </listitem>
                         <listitem>
                             Fourth output argument <literal>nb</literal> introduced.
                         </listitem>
                     </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    ku 3rd output implemented. Sparse 2D matrices are now accepted.
                 </revdescription>
             </revision>
         </revhistory>

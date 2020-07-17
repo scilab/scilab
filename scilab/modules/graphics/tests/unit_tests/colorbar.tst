@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2018 - 2019 - Samuel GOUGEON
+// Copyright (C) 2018 - 2020 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -197,6 +197,20 @@ plotSample();
 colorbar(,,[$/2 $]);  // values from 0 to 1
 
 
-// CHECKING gce()
-// ==============
+// 5) champ().colored
+//    ===============
+x = -4:6;
+X = ndgrid(x);
+[fx, fy] =  (rand(X)-0.5, rand(X)-0.5);
+clf
+gcf().color_map = jetcolormap(50);
+champ(x, x, fx, fy)
+gce().colored = "on";
+colorbar  // http://bugzilla.scilab.org/16445 :
+          //   umin >= 0 & umax <= sqrt(0.5)=0.71 should have been guessed
+          //   without error (min and max lengths of vectors)
+
+
+// 6) CHECKING gce()
+//    ==============
 twinkle(gce())  // The colorbar of the last test must twinkle

@@ -942,14 +942,6 @@
                     <para>グラフィックウインドウのリストを返す</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xname">xname</link>
-                </term>
-                <listitem>
-                    <para>カレントのグラフィックウインドウの名前を変更</para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

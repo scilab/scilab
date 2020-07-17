@@ -5,7 +5,7 @@
           xml:lang="fr" xml:id="backslash">
     <refnamediv>
         <refname>backslash</refname>
-        <refpurpose>(\) division matricielle à gauche</refpurpose>
+        <refpurpose>(\) division matricielle à gauche : solution exacte ou selon moindres carrés</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -67,6 +67,9 @@ mprintf('\ntemps nécessaire à la résolution du système avec l''opérateur ba
                 <link linkend="slash">slash</link>
             </member>
             <member>
+                <link linkend="lsq">lsq</link>
+            </member>
+            <member>
                 <link linkend="inv">inv</link>
             </member>
             <member>
@@ -77,6 +80,9 @@ mprintf('\ntemps nécessaire à la résolution du système avec l''opérateur ba
             </member>
             <member>
                 <link linkend="umfpack">umfpack</link>
+            </member>
+            <member>
+                <link linkend="datafit">datafit</link>
             </member>
             <member>
                 <link linkend="krondivide">kron .\.</link>

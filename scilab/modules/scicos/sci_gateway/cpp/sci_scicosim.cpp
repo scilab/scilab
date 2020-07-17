@@ -1535,8 +1535,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         // Set vectors of 'oz'
         for (int j = 0; j < noz; ++j)
         {
-            int subtype = il_state_oz->get(j)->getType();
-
+            types::InternalType::ScilabType subtype = il_state_oz->get(j)->getType();
             switch (subtype) // Store type and address
             {
                 case types::InternalType::ScilabDouble :
@@ -1613,7 +1612,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                 default :
                 {
                     oztyp[j] = SCSUNKNOW_N;
-                    oz[j] = il_sim_opar->get(j);
+                    oz[j] = il_state_oz->get(j);
                     ozsz[j] = 0; // rows
                     ozsz[j + nopar] = 0; // cols
                     break;

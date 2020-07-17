@@ -22,8 +22,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento </title>
-        <synopsis>return
-            [x1,..,xn]=return(a1,..,an)
+        <synopsis>
+            return
+            [x1,..,xn] = return(a1,..,an)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

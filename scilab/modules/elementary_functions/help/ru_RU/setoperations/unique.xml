@@ -24,10 +24,10 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            [N, km, kn, nb] = unique(M)
-            [N, km, kn, nb] = unique(M, orient)
-            [N, km, kn, nb] = unique(.., "keepOrder")
-            [N, km, kn, nb] = unique(.., "uniqueNan")
+            [U, km, ku, nb] = unique(M)
+            [U, km, ku, nb] = unique(M, orient)
+            [U, km, ku, nb] = unique(.., "keepOrder")
+            [U, km, ku, nb] = unique(.., "uniqueNan")
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -36,7 +36,10 @@
             <varlistentry>
                 <term>M</term>
                 <listitem>
-                    <para>вектор или матрица чисел или строк</para>
+                    <para>
+                        вектор, матрица или гиперматрица логических значений, чисел или текстов.
+                        Принимаются числовые или логические разрежённые матрицы.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -48,7 +51,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>N</term>
+                <term>U</term>
                 <listitem>
                     <para>
                       <itemizedlist>
@@ -56,9 +59,9 @@
                             <para>
                               Если <varname>orient</varname> не используется: вектор извлечённых
                               <varname>M</varname> компонентов, сортированных в полядке возрастания.
-                              Если <varname>M</varname> является вектором-строкой, то <varname>N</varname>
+                              Если <varname>M</varname> является вектором-строкой, то <varname>U</varname>
                               так же является вектором-строкой. В случаях всех иных <varname>M</varname>
-                              <varname>N</varname> является матрицей или вектором-столбцом.
+                              <varname>U</varname> является вектором-столбцом.
                             </para>
                         </listitem>
                         <listitem>
@@ -68,31 +71,47 @@
                         </listitem>
                       </itemizedlist>
                     </para>
+                    <para>
+                        Если <varname>M</varname> является разрежённой, то <varname>U</varname> всегда разрежённая.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>k</term>
+                <term>km</term>
                 <listitem>
                     <para>
                       Вектор индексов первых встреченных значений, таких что
-                      <literal>N(i) = M(k(i))</literal> или <literal>N(i,:) = M(k(i),:)</literal>
-                      или <literal>N(:,i) = M(:,k(i))</literal>.
+                      <literal>U = M(km)</literal> или <literal>U = M(km,:)</literal>
+                      или <literal>U = M(:,km)</literal>.
                     </para>
                     <para>
-                        <varname>k</varname> является строкой, если <varname>M</varname> является
-                        строкой или если используется <literal>orient="c"</literal>. В проитвном случае
+                        <varname>km</varname> является строкой, если <varname>M</varname> является
+                        строкой или если используется <literal>orient="c"</literal>. В противном случае
                         это столбец.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>kn</term>
+                <term>ku</term>
                 <listitem>
-                    Not yet implemented.
-                    Vector of indices of first encountered occurrences, such that
-                    <literal>M(i) = N(kn(i))</literal> or <literal>M(i,:) = N(kn(i),:)</literal>
-                    or <literal>M(:,i) = N(:,kn(i))</literal>.
+                    Массив индексов в <varname>U</varname>, таких что в соответствии с опцией
+                    <varname>orient</varname>
+                    <itemizedlist>
+                        <listitem>
+                          "*": <varname>ku</varname> имеет размер <literal>size(M)</literal>, и <literal>U(ku) = M</literal>
+                        </listitem>
+                        <listitem>
+                            "r": <varname>ku</varname> имеет размер <literal>[size(M,1), 1]</literal>, и <literal>U(ku,:) = M</literal>
+                        </listitem>
+                        <listitem>
+                            "c": <varname>ku</varname> имеет размер <literal>[1, size(M,2)]</literal>, и <literal>U(:,ku) = M</literal>
+                        </listitem>
+                    </itemizedlist>
                     <para/>
+                    <warning>
+                        <varname>ku</varname> является плотной, даже когда <varname>M</varname>
+                        является разрежённой и используется всеобщий режим "*".
+                    </warning>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -101,7 +120,7 @@
                     <para>
                       Вектор целых чисел > 0 той же формы, что и <varname>k</varname>:
                       количество случаев <varname>M</varname> соответствующих непродублированных элементов
-                      (компоентов, строк, столбцов) возвращаемых в <varname>N</varname>.
+                      (компонентов, строк, столбцов) возвращаемых в <varname>U</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -131,6 +150,15 @@
             По умолчанию любой Nan отличается от другого Nan включая себя самого: <literal>%nan&lt;>%nan</literal>
             равен истине, пока не будет использоваться <literal>"uniqueNan"</literal>. Определение
             <literal>"uniqueNan"</literal> нечувствительно к регистру.
+        </para>
+        <para>
+            Для логических значений, <literal>unique(…)</literal> полезна главным образом с опциями
+            <literal>"r"</literal> or <literal>"c"</literal>.
+        </para>
+        <para>
+            <note>
+                Комплексные числа сортируются сначала по амплитудам, а затем по фазам в [-π,π].
+            </note>
         </para>
     </refsection>
     <refsection role="examples">
@@ -178,13 +206,18 @@ c = [1+i, 1-i, -i, i, -i, 1+i]
     <screen><![CDATA[
 --> c = [1+i, 1-i, -i, i, -i, 1+i]
  c  =
-   1. + i     1. - i  -i    i   -i    1. + i
+   1. + i    1. - i    0. - i    0. + i    0. - i    1. + i
 
 --> [u, k] = unique(c)
  u  =
-  -i    i    1. - i   1. + i
-
+   0. - i    0. + i    1. - i    1. + i
  k  =
+   3.   4.   2.   1.
+
+--> [uc, kc] = unique(c, "c")
+ uc  =
+   0. - i    0. + i    1. - i    1. + i
+ kc  =
    3.   4.   2.   1.
 ]]></screen>
 
@@ -198,6 +231,7 @@ u = unique(t)'
 [u, kt] = unique(t(1,:), "keepOrder")  // сохранение исходного порядка элементов строки №1
 [uc, ktc, kuc, nb] = unique(t, "c")
 [uc, ktc, kuc, nb] = unique(t, "c", "keepOrder")  // сохранение исходного порядка столбцов
+[and(t(:,ktc)==uc), and(uc(:,kuc)==t) ]
  ]]></programlisting>
     <screen><![CDATA[
 --> t = ["BA" "BB" "AB" "BA" "AB" "BA" "AB" "AB" "BA" "AA" "AB" "BA" "BA" "BA" "AA"
@@ -249,6 +283,10 @@ u = unique(t)'
 
  nb  =
    2.   1.   1.   3.   2.   1.   3.   1.   1.
+
+--> [and(t(:,ktc)==uc), and(uc(:,kuc)==t) ]
+ ans  =
+  T  T
 ]]></screen>
         <para/>
         <para>Со значениями Nan (и Inf). Опция "uniqueNan":</para>
@@ -335,12 +373,22 @@ unique(M, "c")
                 <revdescription>
                     <itemizedlist>
                         <listitem>
+                            Расширено до логических значений.
+                        </listitem>
+                        <listitem>
                             Введены опции "keepOrder" и "uniqueNan".
                         </listitem>
                         <listitem>
                             Введён четвертый выходной аргумент <literal>nb</literal>.
                         </listitem>
                     </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                  Реализован третий выходной аргумент <literal>ku</literal>.
+                  Теперь принимаются двумерные разрежённые матрицы.
                 </revdescription>
             </revision>
         </revhistory>

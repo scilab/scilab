@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2016 - 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="brackets">
+    <refnamediv>
+        <refname>brackets [,;]</refname>
+        <refpurpose>
+            Конкатенация. Получатели присвоения. Результаты функции.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            Mh = [m11 m12 m13.. m1N] or [m11, m12, m13,.., m1N]
+            Mv = [m11 ; m21 ; m31..; mN1]
+            M  = [m11, m12,...; m21, m22,...;...]
+            [r1, r2,...] = func(...)
+            [r1, r2,.., rN] = (e1, e2, .., eN)
+            [r1, r2,.., rk] = (e1, e2, .., ek,.., eN)
+            [r1, r2,.., rN] = mylist(:)
+            [r1, r2,.., rN] = S.field([i1 i2.. iN])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>m11, m12,...  </term>
+                <listitem>
+                    <para>
+                        Множество объектов, предназначенных для конкатенации (и слияния: прежние 
+                        отдельные контейнеры будут удалены). Следующие подмножества типов 
+                        объектов могут смешиваться в процессе, но взаимно исключающие:
+                    <itemizedlist>
+                        <listitem>
+                            Матрицы логических, вещественные, комплексные значения, полиномы, 
+                            дробно-рациональные значения: тип данных результата конкатенации это 
+                            устанавливается правилами, определёнными ниже (см. правила <link linkend="brackets_Types_conversions">
+                            <emphasis role="italic">преобразований типов</emphasis>
+                            </link>).
+                        </listitem>
+                        <listitem>
+                            Матрицы кодированных целых чисел любого типа
+                            <link linkend="inttype">inttype</link>.
+                            <warning>
+                                Кодированные целые числа различных типов не могут 
+                                конкатенироваться друг с другом.
+                            </warning>
+                        </listitem>
+                        <listitem>
+                            Cell-массивы.
+                        </listitem>
+                        <listitem>
+                            Массивы структур с одинаковыми полями. Поля могут быть в разном 
+                            порядке от одного массива к другому.
+                        </listitem>
+                        <listitem>
+                            Типизированные списки типа <link linkend="syslin">syslin</link>.
+                        </listitem>
+                    </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>M, Mh, Mv</term>
+                <listitem>
+                    <para>
+                        Матрицы с типом всех <varname>m##</varname>
+                        (если они все имеют одинаковый тип данных),
+                        cell-массивы (если <literal>mi</literal> являются такими),
+                        массивы структур (если <literal>mi</literal> являются такими).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>e1, e2,..  </term>
+                <listitem>
+                    <para>
+                        Входные объекты (литералы, как, например,
+                        <literal>-1.23</literal> или <literal>"abcd"</literal>,
+                        переменные или выражения, как, например <literal>a+%pi</literal>
+                        и т.д.).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mylist</term>
+                <listitem>
+                    <para>Простой список.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S.field</term>
+                <listitem>
+                    <para>
+                        Массив структур с полем с именем <literal>field</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i1, i2,..  </term>
+                <listitem>
+                    <para>
+                        Индексы компонентов, выбранных из <varname>S</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r1, r2,...  </term>
+                <listitem>
+                    <para>Выходные переменные.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Описание</title>
+        <variablelist>
+            <varlistentry>
+                <term>[] с правой стороны: конкатенаторы</term>
+                <listitem>
+                    <para>[..] объединяют их содержимое простых и совместимых типов
+                        в единородный вектор, матрицу или гиперматрицу.
+                    </para>
+                    <note>
+                        Конкатенация по горизонтали или вертикали является двоичным итерируемым 
+                        оператором. Он исполняется пошагово слева направо и сверху вниз. Таким 
+                        образом, <literal>[1 3 5 7]</literal> исполняется как <literal>[[[1 3] 5] 7]</literal>.
+                    </note>
+                    <para>
+                        Внутри квадратных скобок,
+                        <itemizedlist>
+                            <listitem>
+                                промежутки (пробелы или табуляторы) или запятые используются в 
+                                качестве разделителей столбцов.
+                                <note>
+                                    Использование запятых вместо пробелов безопаснее. Например, 
+                                    <literal>[2 1 +%i]</literal> означает <literal>[2, 1, %i]</literal>,
+                                    в то время как <literal>[2 1 + %i]</literal> означает 
+                                    <literal>[2, 1+%i]</literal>.
+                                </note>
+                            </listitem>
+                            <listitem>
+                                точки с запятой или возврат каретки используются в качестве 
+                                разделителей строк. Множество строк не требует точек продолжения 
+                                <literal>..</literal>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <refsect3 id="brackets_Types_conversions">
+                        <title>Типы преобразований</title>
+                        <para>
+                            В некоторых пределах квадратные скобки могут применяться для 
+                            множества данных, имеющих разные, но совместимых типов. В этом случае 
+                            некоторые данные конвертируются в доминирующий тип, допустимый для 
+                            этого множества. Главные правила преобразования следующие:
+                            <orderedlist>
+                                <listitem>
+                                    логическое значение &lt; кодированные целые &lt; десятичное число &lt; комплексное число
+                                </listitem>
+                                <listitem>десятичное число &lt; полином &lt; дробно-рациональное значение
+                                    <warning>
+                                        логические значения и полиномы не совместимы.
+                                        <itemizedlist>
+                                            <listitem>
+                                                <literal>[%t 2. %z]</literal> допустимо:
+                                                <literal>[%t 2.]</literal> сначала конвертируется 
+                                                в <literal>[1. 2.]</literal>, а затем принимается
+                                                <literal>[[1. 2.] %z]</literal>.
+                                            </listitem>
+                                            <listitem>
+                                                <literal>[%z %t 2.]</literal> отклоняется и даёт 
+                                                ошибку. Действительно,<literal>[%z %t]</literal>
+                                                не может конвертироваться первым.
+                                            </listitem>
+                                        </itemizedlist>
+                                    </warning>
+                                </listitem>
+                                <listitem>
+                                    Любое кодированное целое может конкатенироваться с 
+                                    логическими значениями, десятичными числами или другими 
+                                    целыми того же типа inttype. Таким образом, выражения
+                                    <literal>[int8(2), uint8(7)]</literal>,
+                                    <literal>[int8(2), int16(7)]</literal>,
+                                    <literal>[int8(2), 7+0*%z]</literal>,
+                                    <literal>[int8(2), sparse(7)]</literal>, или
+                                    <literal>[int8(2), sparse(%t)]</literal>
+                                    приведут к ошибке.
+                                </listitem>
+                                <listitem>
+                                    Результат становится комплексно-кодированным поскольку 
+                                    комплексно-кодированный компонент -- значение, полином или 
+                                    дробно-рациональное значение -- встречается в списке (даже с 
+                                    нулевой мнимой частью)
+                                    <para/>
+                                    Аналогично, результат становится разрежённо-кодированным, 
+                                    поскольку разрежённо-кодированный компонент встречается и 
+                                    обрабатывается.
+                                </listitem>
+                                <listitem>
+                                    Можно конкатенировать полиномы или/и дробно-рациональные выражения, имеющие разные имена переменных. Затем, первый полином или дробно-рациональное выражение, встреченное в списке, устанавливает имя переменной для результата конкатенации:
+                                    <literal>[%z, 1+%s, 1-%i*%s]
+                                        // => [z, 1+z, 1-iz]
+                                    </literal>.
+                                </listitem>
+                                <listitem>
+                                    Текстовые компоненты могут конкатенироваться (в массив, ограниченный квадратными скобками) только с другим текстовыми компонентами или с пустой матрицей <literal>[]</literal>.
+                                </listitem>
+                            </orderedlist>
+                        </para>
+                    </refsect3>
+                    <refsect3 id="brackets_overloading">
+                        <title>Перегрузка</title>
+                        <para>
+                            <itemizedlist>
+                                <listitem>[,]: конкатенация по горизонтали:
+                                    Этот оператор является двоичными и автоматически итерируется 
+                                    слева направо. Его код перегрузки <literal>"c"</literal>.
+                                </listitem>
+                                <listitem>[;]: конкатенация по вертикали:
+                                    Этот оператор является двоичными и автоматически итерируется 
+                                    сверху вниз. Его код перегрузки <literal>"f"</literal>.
+                                </listitem>
+                            </itemizedlist>
+                        </para>
+                    </refsect3>
+                    <para/>
+                    <refsect3>
+                        <title>Расширения</title>
+                        <para>
+                          <itemizedlist>
+                            <listitem>
+                              Для конкатенации простых списков, пожалуйста, используйте <link linkend="lstcat">lstcat</link>.
+                            </listitem>
+                            <listitem>
+                              Для составления векторов или матриц поверх некоторой размерности > 
+                                    2 для построения N-мерного массива, пожалуйста, используйте 
+                                    <link linkend="cat">cat</link>.
+                            </listitem>
+                          </itemizedlist>
+                        </para>
+                    </refsect3>
+                </listitem>
+                <para/>
+            </varlistentry>
+            <varlistentry>
+                <term>[] на левой стороне от присвоения <literal>"="</literal></term>
+                <listitem>
+                    <para>
+                        В этом случае квадратные скобки не являются конкатенаторами. Они 
+                        используются в качестве левого и правого разделителя последовательностей 
+                        переменных, используемых в качестве получателей.
+                    </para>
+                    <para>
+                        <itemizedlist>
+                            <listitem>
+                                Получатели должны быть переменными.
+                                Литеральные выражения не допускаются.
+                            </listitem>
+                            <listitem>Переменные следует разделять запятыми.
+                            </listitem>
+                            <listitem>
+                                В распределённом присвоении необходимо, чтобы получателей на 
+                                левой стороне было по крайней мере столько же, сколько выходных 
+                                источников, не более. Если получателей слева меньше, чем 
+                                источников справа, то источники несобираемых данных игнорируется. 
+                                Примеры:
+                                <simplelist>
+                                    <member><literal>[a,b]=(%pi,"Hi", %z)</literal>
+                                        приемлемо, но <literal>%z</literal> игнорируется.
+                                    </member>
+                                    <member><literal>[a,b,c]=(%pi,"Hi")</literal>
+                                        даст ошибку, поскольку <literal>c</literal>
+                                        ожидает некоторой пищи.
+                                    </member>
+                                </simplelist>
+                            </listitem>
+                            <listitem>
+                                <literal>[a,b,a] = (%pi, %z, "Allo")</literal> выполняет
+                                присвоения слева направо, таким образом, что в конце
+                                концов будет <literal>a = "Allo"</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="examples">
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+// Конкатенация по горизонтали
+a = [ %pi 4 -1 ]
+b1 = grand(3,4,"uin",0,10)
+b2 = grand(3,2,"uin",0,10)
+b = [b1 b2]  // они должны иметь одинаковое количество строк
+
+// Конкатенация по вертикали
+a = [-2 ; 10 ; 7]
+
+b1 = grand(2,4,"uin",0,10)
+b2 = grand(3,4,"uin",0,10)
+b = [b1 ; b2] // они должны иметь одинаковое количество столбцов
+
+// Смешанная конкатенация по горизонтали и вертикали
+a = [ 3 7 ; 6, 5 ]
+b = [ 1:3 ; 7:3:13]
+c = [ a b ; a b]
+
+d = [ 3 5
+      1 4
+    ]
+e = [ d d d
+      d d d
+    ]
+// Конкатенация данных разных типов:
+['this is' ; 'a column' ; 'of texts']
+
+s = poly(0,'s');[1/s,2/s]
+[tf2ss(1/s),tf2ss(2/s)]
+
+[%t %f %f %T %F]
+     ]]></programlisting>
+        <para>
+            Разнородные конкатенации с автоматическими преобразованиями типов:
+        </para>
+        <programlisting role="example"><![CDATA[
+[%T int8(-5)]
+[%T %pi %f 2]
+[%pi, 2+%i, %F]
+[%pi int16(-1000.84) 1.23]
+v = [%pi+0*%i, %F, %z, (1-%z)^2 ]; typeof(v), isreal(v)
+v = [10 1/%z], typeof(v)
+
+// Особый случай: int16 и uint8 вместе, поскольку исходное
+//   преобразование в вещественное значение распространяется слева направо
+[%pi int16(-1000.84) uint8(87)]
+     ]]></programlisting>
+        <para>
+            Несовместимые разнородные преобразования, приводящие к ОШИБКАМ:
+        </para>
+        <programlisting role="example"><![CDATA[
+[%F %z]
+[int8(%pi), uint8(%e)]
+[int8(%pi), int16(%e)]
+[int8(-70), sparse(18)]
+[int8(-70), sparse([%T %F])]
+     ]]></programlisting>
+        <para>
+            Конкатенация cell-массивов:
+        </para>
+        <programlisting role="example"><![CDATA[
+c1 = {%pi %t};
+c2 = {%z "abc"};
+c = [[{%i} c1] ; [c2, {1/%z^2}]]  // запятая обязательна, чтобы не считать, что c2{1/%z^2}
+]]></programlisting>
+
+        <para>
+            <emphasis role="bold">Распределённые присвоения:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+// Выход функции. Чаще всего, выходные результаты последовательны:
+M = rand(3,3);
+[u, s] = schur(M) // ожидаем и используем как результаты u, так и s
+u = schur(M)      // ожидаем и храним только первый результат u
+
+// Прямой список на правой стороне
+[a, b, c] = (%pi, %t, "test")
+[a, b] = (%e, %f, "Hello")
+[a, b, a] = (%pi, %t, "test"); a
+
+// Явный список на правой стороне
+L = list(%z, %i, %t, %pi, "Text");
+[a, b, c] = L(:)
+
+// Структура на правой стороне
+s(2,3).r = %pi; s(2,1).r = %i; s(2,2) = %e;
+s(2,:).r
+s.r([2 4 6])
+[a, b, c] = s.r([2 4 6])
+
+// Запрещённые / отклоняемые выражения на левой стороне (приводит к ошибке)
+[m, n, m+n] = myfun(a,b)   // Символьные выражения, такие, как "m+n" запрещены
+[p, 4.5, q] = myfun(a,b)   // Литеральные значения на левой стороне или такие выражения, как "4.5" запрещены
+[r, s+3 ] = myfun(a,b)   // Выражения, смешивающие литералы и символьные значения, такие, как "s+3" не могут быть приёмниками на левой стороне
+]]></programlisting>
+        <screen><![CDATA[--> [a, b, c] = (%pi, %t, "test")
+ a  =
+   3.1415927
+
+ b  =
+  T
+
+ c  =
+ test
+
+--> [a, b] = (%e, %f, "Hello")
+ a  =
+   2.7182818
+
+ b  =
+  F
+
+--> [a, b, a] = (%pi, %t, "test"); a
+ a  =
+ test
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cat">cat</link>
+            </member>
+            <member>
+                <link linkend="lstcat">lstcat</link>
+            </member>
+            <member>
+                <link linkend="comma">запятая</link>
+            </member>
+            <member>
+                <link linkend="semicolon">точка с запятой</link>
+            </member>
+            <member>
+                <link linkend="parentheses">фигурные скобки</link>
+            </member>
+            <member>
+                <link linkend="empty">empty</link>
+            </member>
+            <member>
+                <link linkend="overloading">перегрузка</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    Квадратные скобки <literal>[..]</literal> и фигурные скобки
+                    <literal>{..}</literal> теперь не эквивалентны.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Логические знаения и кодированные целые числа теперь могут 
+                            конкатенироваться друг с другом, как в [%t, int8(-5)].
+                        </listitem>
+                        <listitem>
+                            [a, b, ..] = (A, B,..) теперь выполняет присвоение слева направо.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Конкатенации между кодированными целыми и десятичными числами теперь 
+                    поддерживаются.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

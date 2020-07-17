@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,34 +13,49 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="setfield">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="setfield">
     <refnamediv>
         <refname>setfield</refname>
-        <refpurpose>list フィールドの挿入</refpurpose>
+        <refpurpose>mlist, tlist, またはlistの要素の値を変更する</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>setfield(i,x,l)</synopsis>
+        <synopsis>uL = setfield(a, v, L)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>L</term>
                 <listitem>
-                    <para>任意の型の行列</para>
+                    <literal>list</literal>, <literal>tlist</literal>,
+                    または<literal>mlist</literal>リスト：コンポーネントを変更する必要があるリスト.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>l</term>
+                <term>a</term>
                 <listitem>
-                    <para>list, tlist または mlist 変数</para>
+                    変更するコンポーネントのアドレス. 文字列として指定されたフィールド名,
+                    または正の整数として指定されたインデックスのいずれかになります.
+                    詳細については, <link linkend="insertion">insertion</link>をご覧ください.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>i</term>
+                <term>v</term>
                 <listitem>
-                    <para>フィールド添え字, 詳細は insertion 参照.</para>
+                    任意のScilabオブジェクト：割り当てる値
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>uL</term>
+                <listitem>
+                    更新されたリスト
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -48,18 +63,83 @@
     <refsection>
         <title>説明</title>
         <para>
-            この関数は,フィールド展開を行う<literal>l(i)=x</literal>構文と等価ですが,
-            唯一の差異は,<literal>mlist</literal>オブジェクトにも適用可能なことです.
+            <literal>L=setfield(a,v,L)</literal> addresses and changes the
+            i<superscript>th</superscript> element of a list, in a unified way
+            over lists, tlists and mlists.
+        </para>
+        <para>
+            For simple lists and for tlists, <literal>L=setfield(a,v,L)</literal>
+            is equivalent to <literal>L(a)=v</literal>, that is simpler and should be preferred.
+            The same stands for any mlist if the address <varname>a</varname> is a
+            field's name.
+        </para>
+        <para>
+            However, for any mlist L, if <literal>i</literal> is an index, the insertion
+            <literal>L(i)=v</literal> is not predefined, in order to let the user define
+            an overload implementing a matrix-oriented insertion, if required.
+            Yet <literal>setfield(i,v,L)</literal> is always defined, with the same meaning as
+            for other list and tlist types.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
+        <para>
+            For a tlist, <literal>setfield(3, v, T)</literal> is equivalent to
+            <literal>T(3)=v</literal> :
+        </para>
         <programlisting role="example"><![CDATA[
-l=list(1,'qwerw',%s)
-l(1)='Changed'
-l(0)='Added'
-l(6)=['one more';'added']
+T = tlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
+// The insertion is predefined:
+T(3) = [%t %t %f];
+T(3)
+
+T = setfield(3, [%f %t %f], T);
+T(3)
  ]]></programlisting>
+    <screen><![CDATA[
+--> T = tlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
+--> // The insertion is predefined:
+--> T(3) = [%t %t %f];
+--> T(3)
+ ans  =
+  T T F
+
+--> T = setfield(3, [%f %t %f], T);
+--> T(3)
+ ans  =
+  F T F
+]]></screen>
+        <para>
+            For a mlist, there is no predefined indexed insertion routine, to let
+             the user define a matrix-oriented insertion overload if required.
+        </para>
+        <programlisting role="example"><![CDATA[
+M = mlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
+M.b = [%t %t %t];
+M.b                 // OK, while ...
+M(3) = [%f %t %f];  // => error
+
+// But a raw direct insertion with setfield() is always possible:
+M = setfield(3, [%t %f %t], M);
+getfield(3, M)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> M = mlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
+--> M.b = [%t %t %t];
+--> M.b                 // OK, while ...
+ ans  =
+  T T T
+
+--> M(3) = [%f %t %f];  // => error
+Function not defined for given argument type(s),
+  check arguments or define function %b_i_V for overloading.
+
+--> // But a raw direct insertion with setfield() is always possible:
+--> M = setfield(3, [%t %f %t], M);
+--> getfield(3, M)
+ ans  =
+  T F T
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -67,6 +147,27 @@ l(6)=['one more';'added']
             <member>
                 <link linkend="insertion">insertion</link>
             </member>
+            <member>
+                <link linkend="getfield">getfield</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            The updated list is now returned, instead of being changed "in place".
+                        </listitem>
+                        <listitem>
+                            setfield() can no longer be used for cells arrays.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

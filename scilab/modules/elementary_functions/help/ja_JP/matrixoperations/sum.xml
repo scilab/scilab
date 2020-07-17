@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -14,351 +13,184 @@
  * along with this program.
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sum" xml:lang="ja">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="sum" xml:lang="ja">
     <refnamediv>
-
         <refname>sum</refname>
-
         <refpurpose>配列要素の合計</refpurpose>
-
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
-        <synopsis>y=sum(x)
-
-            y=sum(x,orientation)
-
-            y=sum(x,outtype)
-
-            y=sum(x,orientation,outtype)
-
+        <synopsis>
+            y = sum(x)
+            y = sum(x, outtype)
+            y = sum(x, orientation)
+            y = sum(x, orientation, outtype)
         </synopsis>
-
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
                 <term>x</term>
-
                 <listitem>
-
                     <para>
-
-                        実数, 複素数, 論理値, 多項式または有理数の
-
-                        配列
-
+                      ブール(full or sparse), エンコードされた整数,
+                      実数または複素数(full or sparse),多項式, または有理数の配列.
                     </para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>orientation</term>
-
                 <listitem>
-
                     <para>
-
                         以下のどちらかを指定します
-
                     </para>
-
                     <itemizedlist>
-
                         <listitem>
-
                             <para>
-
                                 文字列で,指定可能な値は
-
                                 <literal>"*"</literal>, <literal>"r"</literal>,
-
                                 <literal>"c"</literal> または  <literal>"m"</literal>
-
                             </para>
-
                         </listitem>
-
                         <listitem>
-
                             <para>正の整数値</para>
-
                         </listitem>
-
                     </itemizedlist>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>outtype</term>
-
                 <listitem>
-
                     <para>
-
                         文字列で,指定可能な値は
-
                         <literal>"native"</literal> または
-
                         <literal>"double"</literal>.
-
                     </para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>y</term>
-
                 <listitem>
-
                     <para>スカラーまたは配列</para>
-
                 </listitem>
-
             </varlistentry>
-
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
         <para>
-
             配列<literal>x</literal>の場合,
-
             <literal>y=sum(x)</literal> は
-
             <literal>x</literal>の全要素の合計を
-
             スカラー<literal>y</literal>に返します.
-
         </para>
-
         <para>
-
             <literal>y=sum(x,orientation)</literal> は,
-
             <literal>orientation</literal>で指定した次元方向の
-
             <literal>x</literal>の合計を
-
             <literal>y</literal>に返します.
-
         </para>
-
         <itemizedlist>
-
             <listitem>
-
                 <para>
-
                     <literal>orientation</literal> が 1 または "r" の場合:
-
                 </para>
-
                 <para>
-
                     <latex><![CDATA[{ y(\mathbf{1},j) = \sum_{\mathbf{i}} x(\mathbf{i},j)}]]></latex>
-
                 </para>
-
                 <para>または </para>
-
                 <para>
-
                     <latex><![CDATA[ y(\mathbf{1},j,k,\ldots) = \sum_{\mathbf{i}} x(\mathbf{i},j,k,\ldots)]]></latex>
-
                 </para>
-
             </listitem>
-
             <listitem>
-
                 <para>
-
                     <literal>orientation</literal> が 2 または "c" の場合:
-
                 </para>
-
                 <para>
-
                     <latex><![CDATA[ y(i,\mathbf{1}) = \sum_{\mathbf{j}} x(i,\mathbf{j})]]></latex>
-
                 </para>
-
                 <para>または </para>
-
                 <para>
-
                     <latex><![CDATA[ y(i,\mathbf{1},k,\ldots) = \sum_{j} x(i,\mathbf{j},k,\ldots)]]></latex>
-
                 </para>
-
             </listitem>
-
             <listitem>
-
                 <para>
-
                     <literal>orientation</literal> がnの場合:
-
                 </para>
-
                 <para>
-
                     <latex><![CDATA[ y(i_1,\ldots,i_{n-1},\mathbf{1},i_{n+1},\ldots) = \sum_{\mathbf{i_n}} x(i_1,\ldots,i_{n-1},\mathbf{i_n},i_{n+1},\ldots)]]></latex>
-
                 </para>
-
             </listitem>
-
             <listitem>
-
                 <para>
-
                     <literal>y=sum(x,"*")</literal> は <literal>y=sum(x)</literal> と等価です.
-
                 </para>
-
             </listitem>
-
             <listitem>
-
                 <para>
-
                     <literal>y=sum(x,"m")</literal> は
-
                     <literal>y=sum(x,orientation)</literal> と等価です.
-
                     ただし,<literal>orientation</literal> は,
-
                     <literal>x</literal>の1より大きい最初の次元の添字です.
-
                 </para>
-
             </listitem>
-
         </itemizedlist>
-
         <para/>
-
         <para>
-
             <literal>outtype</literal>引数は合算の動作を指定します:
-
         </para>
-
         <itemizedlist>
-
             <listitem>
-
                 <para>
-
                     float, 多項式, 有理数の配列の場合,
-
                     評価は常に浮動小数点計算で行われます.
-
                     <literal>"double"</literal> または
-
                     <literal>"native"</literal> オプションは等価です.
-
                 </para>
-
             </listitem>
-
             <listitem>
-
                 <para>整数の配列の場合,</para>
-
                 <para>
-
                     <literal>outtype="native"</literal> の場合,
-
                     評価は整数比較(モジュロ 2^b, ただし b は使用されるビット数)
-
                     により行われます,
-
                 </para>
-
                 <para>
-
                     <literal>outtype="double"</literal> の場合,
-
                     評価は浮動小数点計算で行われます.
-
                 </para>
-
                 <para>
-
                     デフォルト値は <literal>outtype="native"</literal>です.
-
                 </para>
-
             </listitem>
-
             <listitem>
-
                 <para>論理値の配列の場合,</para>
-
                 <para>
-
                     <literal>outtype="native"</literal>の場合,
-
                     評価は論理値計算(+ は | で置換)により行われます,
-
                 </para>
-
                 <para>
-
                     <literal>outtype="double"</literal>の場合,
-
                     評価は浮動小数点計算で行われます
-
                     (%t は値1, %f は値0で置換されます).
-
                 </para>
-
                 <para>
-
                     デフォルト値は<literal>outtype="double"</literal>です.
-
                 </para>
-
             </listitem>
-
         </itemizedlist>
         <note>
             This function applies with identical rules to <link linkend="sparse">sparse matrices</link>
         </note>
-
     </refsection>
     <refsection>
-
         <title>例</title>
-
         <programlisting role="example"><![CDATA[
 A=[1,2;3,4];
 sum(A)
@@ -378,30 +210,19 @@ B=[%t %t %f %f];
 sum(B) //evaluation in float
 sum(B,"native") //similar to or(B)
  ]]></programlisting>
-
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
+                <link linkend="plus">plus</link>
+            </member>
+            <member>
                 <link linkend="cumsum">cumsum</link>
-
             </member>
-
             <member>
-
                 <link linkend="prod">prod</link>
-
             </member>
-
         </simplelist>
-
     </refsection>
-
 </refentry>
-

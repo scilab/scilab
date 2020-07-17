@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - INRIA - Serge Steer
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,10 +13,13 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="repmat" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="repmat" xml:lang="ru">
     <refnamediv>
         <refname>repmat</refname>
-        <refpurpose>Дублирование массива и его мозаичное размещение</refpurpose>
+        <refpurpose>дублирование массива и его мозаичное размещение</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
@@ -26,41 +29,39 @@
             B = repmat(A, m, n,...)
         </synopsis>
     </refsynopsisdiv>
-    <refsection role="parameters">
+    <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>двумерный массив.</para>
+                    массив любого встроенного типа (логический, числовой, текстовый, ...,
+                    cell-массив, структура), любого количества размерностей и любых размеров.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>m, n, ...</term>
                 <listitem>
-                    <para>
-                        целые числа, количество блоков <literal>A</literal> для каждой
-                        размерности <literal>B</literal>.
-                    </para>
+                    целые числа, количество блоков <varname>A</varname> для каждой
+                    размерности <varname>B</varname>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>siz</term>
                 <listitem>
-                    <para>
-                        вектор целых чисел, каждый элемент указывает количество блоков
-                        <literal>A</literal> для соответствующей размерности
-                        <literal>B</literal>.
-                    </para>
+                    вектор числа репликаций: <literal>siz=[m,n,..]</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>B</term>
                 <listitem>
-                    <para>
-                        результирующая форма массива, полученная мозаичным размещением двумерного
-                        массива <literal>A</literal>.
-                    </para>
+                    массив или ND-мерный массив, полученный мозаичным размещением, размерами
+                    <literal>[m*size(A,1), n*size(A,2), ..]</literal> или
+                    <literal>[siz(1)*size(A,1), siz(2)*size(A,2), ..]</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -68,53 +69,112 @@
     <refsection role="description">
         <title>Описание</title>
         <para>
-            <literal>repmat(A,m,n)</literal> или по-другому
-            <literal>repmat(A,[m,n])</literal> возвращает большую матрицу размером <literal>m</literal> на <literal>n</literal>, состоящую из мозаично размещённых
-            копий <literal>A</literal>. Размер результирующей матрицы равен <literal>[size(A,1)*M,
-                size(A,2)*N]
-            </literal>
-            .
+            <emphasis role="bold">repmat(A, m)</emphasis> реплицирует и мозаично размещает
+            <varname>m</varname> × <varname>m</varname> копий <varname>A</varname>.
         </para>
         <para>
-            <literal>repmat(A,m)</literal> создаёт мозаичное размещение размером
-            <literal>m</literal> на <literal>m</literal>.
+            <emphasis role="bold">repmat(A, m, n)</emphasis> или
+            <emphasis role="bold">repmat(A, [m, n])</emphasis> реплицирует и мозаично размещает
+            <varname>m</varname> × <varname>n</varname> копий <varname>A</varname>.
         </para>
         <para>
-            <literal>repmat(A,[m n p ...])</literal> мозаично размещает массив
-            <literal>A</literal> так, чтобы получился многомерный массив, построенный из копий
-            <literal>A</literal>. Размер результата равен <literal>[size(A,1)*M, size(A,2)*N,
-                size(A,3)*P, ...]
-            </literal>
-            .
+            <emphasis role="bold">repmat(A, m, n, p, ..)</emphasis> является обобщением
+            <emphasis role="bold">repmat(A, m, n)</emphasis>.
         </para>
         <para>
-            На данный момент поддерживаются только массивы вещественных, целочисленных,
-            логических, строковых, полиномиальных и рациональных значений, а также разрежённые
-            матрицы. Это определение функции может быть расширено с помощью механизма перегрузки.
+            <literal>repmat(…)</literal> расширяет <literal>ones(m,n,..) .*. A</literal>
+            до нечисловых входных <varname>A</varname>.
+        </para>
+        <para>
+             Определение <literal>repmat(…)</literal> может быть расширено с помощью механизма перегрузки.
         </para>
     </refsection>
     <refsection role="examples">
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-    repmat(1:3,2,2)
-    repmat(int8([1 0 1;0 1 0]),2,3,2)
-    repmat("Scilab",3,2)
-    t="Scilab";t(ones(3,2))
-    repmat([1/%s;2/(%s+1)],1,3)
+repmat([-1 3 7], 2, 4)
 
- ]]></programlisting>
+repmat(int8([1 -2 3; 0 -1  1]), 2, 4, 2)
+
+b = cat(3, [%f %t %t], [%t %t %f])
+repmat(b, [2 3])
+
+t = "Scilab"; t(ones(2,4))
+repmat(["Scilab" "Xcos"], 2, 3)
+
+repmat([1/%s ; 2/(%s+1)], 1, 3)
+    ]]></programlisting>
+    <screen><![CDATA[
+--> repmat([-1 3 7], 2, 4)
+ ans  =
+  -1.   3.   7.  -1.   3.   7.  -1.   3.   7.  -1.   3.   7.
+  -1.   3.   7.  -1.   3.   7.  -1.   3.   7.  -1.   3.   7.
+
+
+--> repmat(int8([1 -2 3; 0 -1  1]), 2, 4, 2)
+ ans  =
+(:,:,1)
+  1 -2  3  1 -2  3  1 -2  3  1 -2  3
+  0 -1  1  0 -1  1  0 -1  1  0 -1  1
+  1 -2  3  1 -2  3  1 -2  3  1 -2  3
+  0 -1  1  0 -1  1  0 -1  1  0 -1  1
+(:,:,2)
+  1 -2  3  1 -2  3  1 -2  3  1 -2  3
+  0 -1  1  0 -1  1  0 -1  1  0 -1  1
+  1 -2  3  1 -2  3  1 -2  3  1 -2  3
+  0 -1  1  0 -1  1  0 -1  1  0 -1  1
+
+
+--> b = cat(3, [%f %t %t], [%t %t %f])
+ b  =
+(:,:,1)
+  F T T
+(:,:,2)
+  T T F
+
+--> repmat(b, [2 3])
+ ans  =
+(:,:,1)
+  F T T F T T F T T
+  F T T F T T F T T
+ (:,:,2)
+  T T F T T F T T F
+  T T F T T F T T F
+
+
+--> t = "Scilab"; t(ones(2,4))
+ ans  =
+  "Scilab"  "Scilab"  "Scilab"  "Scilab"
+  "Scilab"  "Scilab"  "Scilab"  "Scilab"
+
+--> repmat(["Scilab" "Xcos"], 2, 3)
+ ans  =
+  "Scilab"  "Xcos"  "Scilab"  "Xcos"  "Scilab"  "Xcos"
+  "Scilab"  "Xcos"  "Scilab"  "Xcos"  "Scilab"  "Xcos"
+
+
+--> repmat([1/%s ; 2/(%s+1)], 1, 3)
+ ans  =
+    1     1     1
+    -     -     -
+    s     s     s
+
+    2     2     2
+   ----  ----  ----
+   1 +s  1 +s  1 +s
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="matrix">matrix</link>
+                <link linkend="kron">kron</link>
             </member>
             <member>
-                <link linkend="extraction">extraction</link>
+                <link linkend="ndgrid">ndgrid</link>
             </member>
             <member>
-                <link linkend="size">size</link>
+                <link linkend="insertion">вставка</link>
             </member>
         </simplelist>
     </refsection>

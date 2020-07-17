@@ -15,24 +15,24 @@
  *
  */
 
-#include <stdio.h>
+#include "scilab_sprintf.hxx"
+#include "double.hxx"
+#include "string.hxx"
+#include "types.hxx"
 #include <cmath>
 #include <list>
 #include <numeric>
-#include "types.hxx"
-#include "double.hxx"
-#include "string.hxx"
-#include "scilab_sprintf.hxx"
+#include <stdio.h>
+#include <string>
 
 extern "C"
 {
 #include "Scierror.h"
-#include "sci_malloc.h"
-#include "localization.h"
 #include "charEncoding.h"
+#include "localization.h"
 #include "os_string.h"
 #include "os_wtoi.h"
-#include "os_string.h"
+#include "sci_malloc.h"
 }
 
 static wchar_t* replaceAndCountLines(const wchar_t* _pwstInput, int* _piLines, int* _piNewLine);
@@ -46,7 +46,7 @@ static void print_nan_or_inf(wchar_t* pwstTemp, double dblVal, const wchar_t* to
 #define InfString L"Inf"
 #define NegInfString L"-Inf"
 
-wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput, types::typed_list &in, int* _piOutputRows, int* _piNewLine)
+wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput, types::typed_list& in, int* _piOutputRows, int* _piNewLine)
 {
     wchar_t** pwstOutput = nullptr;
     int rhs = static_cast<int>(in.size());
@@ -61,7 +61,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
     }
 
     //compute couple (index in input and col number ).
-    std::list<std::pair<int, int> > inPos;
+    std::list<std::pair<int, int>> inPos;
     for (int i = first; i < in.size(); ++i)
     {
         types::GenericType* gt = in[i]->getAs<types::GenericType>();
@@ -72,7 +72,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
         }
     }
 
-    std::list<std::pair<int, int> >::iterator itPos = inPos.begin();
+    std::list<std::pair<int, int>>::iterator itPos = inPos.begin();
 
     //\n \n\r \r \t to string
     //find number of lines
@@ -132,10 +132,13 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
         if (end > 0)
         {
             wchar_t* pwstDollar = wcsstr(pwstStart + (token.size() == 0 ? 0 : 1), L"$");
-            if (pwstDollar != nullptr && (pwstDollar - pwstFirstOutput) < end)
+            // there should be at least one char after the $ sign
+            if (pwstDollar != nullptr && (pwstDollar - pwstFirstOutput + 1) < end)
             {
-                int index = os_wtoi(pwstStart + 1);
-                if (index > 0)
+                std::size_t remaining;
+                int index = os_wtoi(pwstStart + 1, &remaining);
+                // decode a positive integer number until the $ sign
+                if (index > 0 && pwstStart + 1 + remaining == pwstDollar)
                 {
                     argumentPos.push_back(index - 1);
                     start = pwstDollar - pwstFirstOutput;
@@ -154,19 +157,18 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
         wchar_t* pwstPercent = wcsstr(tok->pwstToken, L"%");
         if (pwstPercent != nullptr && percentpercent == false)
         {
-            int offset = 1;
+            size_t offset = 0;
             //looking for flags
-            if (*(pwstPercent + 1) == L'-' ||
-                    *(pwstPercent + 1) == L'+' ||
+            if (*(pwstPercent + 1) == L'+' ||
                     *(pwstPercent + 1) == L' ' ||
                     *(pwstPercent + 1) == L'#' ||
                     *(pwstPercent + 1) == L'0')
             {
-                offset = 2;
+                offset++;
             }
 
             //looking for width
-            if (*(pwstPercent + offset) == L'*')
+            if (*(pwstPercent + offset + 1) == L'*')
             {
                 if (itPos == inPos.end())
                 {
@@ -184,7 +186,6 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     return nullptr;
                 }
 
-
                 types::Double* dbl = in[p]->getAs<types::Double>();
                 tok->width = static_cast<int>(dbl->get()[0]);
                 tok->widthStar = true;
@@ -194,30 +195,24 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
             else
             {
                 //number
-                if (iswdigit(*(pwstPercent + offset)))
-                {
-                    tok->width = os_wtoi(pwstPercent + 1);
-                    while (iswdigit(*(pwstPercent + offset)))
-                    {
-                        pwstPercent++;
-                    }
-                }
+                size_t previousOffset = offset;
+                wchar_t* pwstWidth = pwstPercent + offset + 1;
+                tok->width = os_wtoi(pwstWidth, &offset);
+                offset = previousOffset + offset;
             }
 
-            pwstPercent += (offset - 1);
+            pwstPercent += offset;
 
             //looking for precision
             if (*(pwstPercent + 1) == L'.')
             {
                 pwstPercent++;
+                offset = 0;
+                tok->prec = os_wtoi(pwstPercent + 1, &offset);
 
-                if (iswdigit(*(pwstPercent + 1)))
+                if (offset > 0)
                 {
-                    tok->prec = os_wtoi(pwstPercent + 1);
-                    while (iswdigit(*(pwstPercent + 1)))
-                    {
-                        pwstPercent++;
-                    }
+                    pwstPercent += offset;
                 }
                 else if (*(pwstPercent + 1) == L'*')
                 {
@@ -463,7 +458,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
     for (int j = 0; j < iLoop; ++j)
     {
         wchar_t* tmpToken = NULL;
-        for (auto it = token.begin(); it != token.end();/*no inc*/)
+        for (auto it = token.begin(); it != token.end(); /*no inc*/)
         {
             TokenDef* tok = *it;
             wchar_t* token = tmpToken ? tmpToken : tok->pwstToken;
@@ -727,7 +722,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
         pwstOutput[outputIter++] = os_wcsdup(L"");
     }
 
-    for (auto & tok : token)
+    for (auto& tok : token)
     {
         delete[] tok->pwstToken;
         delete tok;
@@ -878,7 +873,7 @@ static void replace_ld_lld(TokenDef* token)
 static void print_nan_or_inf(wchar_t* pwstTemp, double dblVal, const wchar_t* token, int pos, int width)
 {
     int sizeTotal = (int)wcslen(token);
-    wchar_t* pwstToken = new wchar_t[sizeTotal + 2] { 0 };
+    wchar_t* pwstToken = new wchar_t[sizeTotal + 2] {0};
 
     if (width)
     {
@@ -903,5 +898,4 @@ static void print_nan_or_inf(wchar_t* pwstTemp, double dblVal, const wchar_t* to
     }
 
     delete[] pwstToken;
-
 }

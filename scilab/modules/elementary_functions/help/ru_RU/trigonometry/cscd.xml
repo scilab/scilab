@@ -43,9 +43,10 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Элементы  <varname>y</varname> являются косекансом <latex>1/\sin(x)</latex> соответствующих
+            Элементы  <varname>y</varname> являются косекансом <literal>1/sin(x)</literal>
+            соответствующих
             элементов <varname>x</varname>, заданных в градусах. Результаты вещественные и на интервале
-            <latex>]-\infty -1] \cup [1 \infty[</latex>. Для элементов, равных <literal>n*180</literal>, где
+            <literal>]-∞,-1] ∪ [1,∞[</literal>. Для элементов, равных <literal>n*180</literal>, где
             <literal>n</literal> - целое число, результат равен бесконечности (или ошибка, в зависимости от
             режима <link linkend="ieee">ieee</link>). Для элементов, равных
             <literal>n*90</literal>, где <literal>n</literal> - целое нечётное число, результат равен строго

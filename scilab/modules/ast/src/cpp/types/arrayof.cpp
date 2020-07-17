@@ -1123,9 +1123,8 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             return NULL;
         }
 
-        bool isRowVector = m_iRows == 1;
-        isRowVector = isRowVector && !isForceColVector;
-        int dims[2] = {isRowVector ? 1 : size, isRowVector ? size : 1};
+        bool isColVector = isForceColVector || (isVector() && m_iCols == 1);
+        int dims[2] = {isColVector ? size : 1, isColVector ? 1 : size};
         pOut = createEmpty(2, dims, isComplex());
         double idx = start;
 

@@ -117,7 +117,7 @@
         <para>
             Les séquences d'appel :
         </para>
-        <screen>
+        <programlisting role="no-scilab-exec"><![CDATA[
             Y = grand(m, n, "bet", A, B)
             Y = grand(m, n, "bin", N, p)
             Y = grand(m, n, "nbn", N, p)
@@ -134,7 +134,7 @@
             Y = grand(m, n, "unf", Low, High)
             Y = grand(m, n, "uin", Low, High)
             Y = grand(m, n, "lgi")
-        </screen>
+     ]]></programlisting>
         <para>
             produisent une matrice de taille <literal>m</literal>-par-<literal>n</literal> de nombres aléatoires.
 
@@ -162,12 +162,12 @@
         <para>
             Les séquences d'appel :
         </para>
-        <screen>
+        <programlisting role="no-scilab-exec"><![CDATA[
             Y = grand(n, "mn", Mean, Cov)
             Y = grand(n, "markov", P, x0)
             Y = grand(n, "mul", nb, P)
             Y = grand(n, "prm", vect)
-        </screen>
+     ]]></programlisting>
         <para>
             produisent une matrice de taille <literal>m</literal>-par-<literal>n</literal>
             avec des entrées aléatoires.
@@ -175,7 +175,7 @@
         <para>
             Les séquences d'appel :
         </para>
-        <screen>
+        <programlisting role="no-scilab-exec"><![CDATA[
             S = grand("getgen")
             grand("setgen", gen)
 
@@ -192,7 +192,7 @@
             grand("setall", s1, s2, s3, s4)
 
             grand("advnst", K)
-        </screen>
+     ]]></programlisting>
         <para>
             configurent ou interrogent les générateurs aléatoires.
         </para>
@@ -947,6 +947,12 @@ grand("setsd", n)
             </member>
             <member>
                 <link linkend="ssrand">ssrand</link>
+            </member>
+            <member>
+                <link linkend="randpencil">randpencil</link>
+            </member>
+            <member>
+                <link linkend="genmarkov">genmarkov</link>
             </member>
         </simplelist>
     </refsection>

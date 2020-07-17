@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2009 - Allan CORNET
 // Copyrifht (C) 2012 - Scilab Enterprises - Adeline CARNIS
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - 2020 - Samuel GOUGEON : complete rewritting
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,162 +11,200 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [A, k] = %sp_gsort(A, optsort, directionsort)
-    rhs = argn(2);
-    lhs = argn(1);
-    // arguments by default in gsort
-    select rhs
-    case 1
-        optsort = "g";
-        directionsort = "d";
-    case 2
-        // optsort can be: 'r', 'c', 'g', 'lr', 'lc'
-        pos_opts = find(optsort == ["r", "c", "g", "lr", "lc"]);
-        if pos_opts == [] then
-            error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"), "gsort", 2, "r", "c", "g", "lr", "lc"));
-        end
-        directionsort = "d";
+function [A, k] = %sp_gsort(A, sortype, sortdir, criteria)
+    lhs = argn(1)
+    k = 0
+
+    // ===================
+    // CHECKING PARAMETERS
+    // ===================
+    if ~isdef("sortype", "l") then
+        sortype = "g"
     else
-        // optsort can be: 'r', 'c', 'g', 'lr', 'lc'
-        pos_opts = find(optsort == ["r", "c", "g", "lr", "lc"]);
-        // directionsort can be: 'd' or 'i'
-        pos_direction = find(directionsort == ["d", "i"]);
-        if pos_opts == [] then
-            error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"), "gsort", 2, "r", "c", "g", "lr", "lc"));
+        sortype = convstr(sortype(1))
+        if ~or(sortype == ["g", "r", "c", "lr", "lc"]) then
+            msg = _("%s: Argument #%d: Must be in the set {%s}.\n")
+            error(msprintf(msg, "gsort", 2, """g"",""r"",""c"",""lr"",""lc"""))
         end
-        if pos_direction == [] then
-            error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"), "gsort", 3, "d", "i"));
+    end
+    if ~isdef("sortdir", "l")
+        sortdir = "d"
+    else
+        sortdir = convstr(sortdir)
+        if and(sortdir <> "d" & sortdir <> "i") then
+            msg = _("%s: Argument #%d: Must be in the set {%s}.\n")
+            error(msprintf(msg, "gsort", 3, """i"",""d"""))
+        end
+        if ~isdef("criteria","l")
+            sortdir = sortdir(1)
         end
     end
 
-    [ij, v, mn] = spget(A);
-    if mn(1) <> 1 & mn(2) <> 1 then
-        error(msprintf(_("%s: Wrong size for input argument #%d: sparse vectors expected.\n"), "gsort", 1));
+    // ==========
+    // PROCESSING
+    // ==========
+    if sortype=="c"
+        A = A.'
     end
+    // Gets non zero values by increasing linearized indices:
+    [ij, v, mn] = spget(A.');
+    ij = ij(:,[2 1]);
+    mn = mn([2 1]);
 
-    if mn(1) == 1 then
-        // if A is a row vector and optsort = 'r', the result is the
-        // first input argument
-        if strcmp(optsort, "r") == 0 |strcmp(optsort, "lr") == 0 | v == [] then
-            A = A;
-            if lhs == 2 then
-                if strcmp(optsort, "lr") == 0 | ij == [] then
-                    k = 1;
-                else
-                    k = ij(:,1);
-                    k = k';
-                end
+    s = prod(mn)
+
+    // ------------------------
+    // "g" general sorting mode
+    // ------------------------
+    if sortype=="g" then
+        v($+1) = 0        // To get the position of all sorted implicit zeros
+        ij($+1,:) = [mn(1)+1 1]  // (the value does not matter)
+
+        // Sorting non zero values:
+        if lhs == 1 then
+            if ~isdef("criteria", "l")
+                v = gsort(v, "g", sortdir)
+            else
+                v = gsort(v, "g", sortdir, criteria)
             end
         else
-            dif = mn(2) - length(v);
-            if lhs == 1 then
-                v = gsort(v', optsort, directionsort);
+            if ~isdef("criteria", "l")
+                [v, ks] = gsort(v, "g", sortdir)
             else
-                [v, k] = gsort(v', optsort, directionsort);
-                k=ij(k,2)';
+                [v, ks] = gsort(v, "g", sortdir, criteria)
             end
-
-            //Obtain the indices corresponding to positive values of v
-            // and negative value of v
-            // If A is complex, the elements are sorted by magnitude
-            if isreal(A) then
-                last = find(v<0);
-                first = find(v>0);
-            else
-                s = abs(v);
-                last = find(s<0);
-                first = find(s>0);
-            end
-
-            // Sort the indices
-            if last == [] & first <> [] then
-                if strcmp(directionsort, "i")== 0 then
-                    ij(:,2) = first(:) + dif;
-                else
-                    ij(:,2) = first(:);
-                end
-            elseif first == [] & last <> [] then
-                if strcmp(directionsort, "i")== 0 then
-                    ij(:,1) = last(:);
-                else
-                    ij(:,1) = last(:) + dif;
-                end
-            else
-                if strcmp(directionsort, "i")== 0 then
-                    ij(:,2) = [last(:); first(:) + dif];
-                else
-                    ij(:,2) = [first(:); last(:) + dif];
-                end
-            end
-            A = sparse(ij,v,mn);
         end
+
+        kz = find(v==0)  // Here is the position of zeros
+        v(kz) = []       // Cleaning
+        K = [ 1:kz-1  s-length(v)+kz:s]  // We build K
+        Ain = A
+        A = sparse(ind2sub(mn,K), v, mn) // We build the sorted sparse
+        // Building the dense matrix of initial indices of sorted elements
+        // A new "sparse_k" option could be implemented later to return a sparse k
+        if lhs==2
+            ks(kz) = []
+            k = zeros(A);
+            k(K) = sub2ind(mn, ij(ks,:));
+            k(k==0) = find(Ain(:)==0)
+            k = matrix(k, size(A))
+        end
+        return
     end
 
-    if mn(2) == 1 then
-        // if A is a column vector and optsort = 'c', the result is the
-        // first input argument
-        if strcmp(optsort, "c") == 0 | strcmp(optsort, "lc") == 0 | v == [] then
-            A = A;
-            if lhs == 2 then
-                if strcmp(optsort, "lc") == 0 | ij == [] then
-                    k = 1;
+    // -------------------------------------
+    // Sorting inside rows or inside columns
+    // -------------------------------------
+    if or(sortype==["r" "c"]) then   // "r" sorts rows of each column
+        a = 2;                       // "c" sorts columns of each row
+        uc = unique(ij(:,a))
+        V = []
+        K = []
+        Kin = (1:mn(1))'*ones(1,mn(2))
+        for n = uc'
+            vec = A(:, n)
+            if lhs==1
+                if ~isdef("criteria", "l")
+                    v = gsort(vec, "g", sortdir)
                 else
-                    k = ij(:,2);
-                    k = k;
+                    v = gsort(vec, "g", sortdir, criteria)
+                end
+            else
+                if ~isdef("criteria", "l")
+                    [v, k] = gsort(vec, "g", sortdir)
+                else
+                    [v, k] = gsort(vec, "g", sortdir, criteria)
                 end
             end
+            [tmp, v] = spget(v);
+            tmp(:, a) = n
+            K = [K ; tmp]
+            V = [V ; v]
+            if lhs>1
+                Kin(:,n) = k(:)
+            end
+        end
+        A = sparse(K, V, mn);
+        if lhs>1
+            k = matrix(Kin, mn);
+        end
+        if sortype=="c"
+            A = A.'
+            k = k.'
+        end
+        return
+    end
+
+    // ---------------------
+    // Lexicographic sorting
+    // ---------------------
+    msg = _("%s: Argument #%d: Complex sparse not yet supported in ""%s"" mode.\n")
+
+    // Vector = special simple case
+    // ----------------------------
+    if isvector(A) then
+        isRow = isrow(A)
+        if (isRow & sortype=="lr") | (iscolumn(A) & sortype=="lc")
+            k = 1
         else
-
-            dif = mn(1) - length(v);
-            if lhs == 1 then
-                v = gsort(v, optsort, directionsort);
-            else
-                [v, k] = gsort(v, optsort, directionsort);
-                k=ij(k,1);
-            end
-
-            //Obtain the indices corresponding to positive values of v
-            // and negative value of v
-            // If A is complex, the elements are sorted by magnitude
-            if isreal(A) then
-                last = find(v<0);
-                first = find(v>0);
-            else
-                s = abs(v);
-                last = find(s<0);
-                first = find(s>0);
-            end
-
-            // sort the indices in terms of directionsort = 'i' or 'd'
-            // if directionsort='i' and v>0, the elements are sorted in the
-            // increasing order, ie [0,..,v] and, conversely, in the decreasing
-            // order the elements are sorted : [v,..,0]
-            // if v<0, the elements are sorted in the increasing order,
-            // ie [v,..,0] and, conversely, in the decreasing order the
-            // elements are sorted : [0,..,v]
-            // And else, if v contains positive and neqative values, the
-            // elements are sorted in the increasing order,ie [v_neg,0,v_pos],
-            // and conversely for the decreasing order.
-            if last == [] & first <> [] then
-                if strcmp(directionsort, "i") == 0 then
-                    ij(:,1) = first(:) + dif;
+            if lhs==1
+                if ~isdef("criteria", "l")
+                    A = gsort(A(:), "g", sortdir)
                 else
-                    ij(:,1) = first(:);
-                end
-            elseif first == [] & last <> [] then
-                if strcmp(directionsort, "i") == 0 then
-                    ij(:,1) = last(:);
-                else
-                    ij(:,1) = last(:) + dif;
+                    A = gsort(A(:), "g", sortdir, criteria)
                 end
             else
-                if strcmp(directionsort, "i") == 0 then
-                    ij(:,1) = [last(:); first(:) + dif];
+                if ~isdef("criteria", "l")
+                    [A, k] = gsort(A(:), "g", sortdir)
                 else
-                    ij(:,1) = [first(:); last(:) + dif];
+                    [A, k] = gsort(A(:), "g", sortdir, criteria)
                 end
             end
-            A = sparse(ij, v, mn);
+            if isRow
+                A = matrix(A, 1, -1)
+                k = matrix(k, 1, -1)
+            end
         end
+        return
     end
+
+    // "lr" case
+    // ---------
+    if sortype=="lc" then
+        A = A.'
+    end
+    if ~isdef("criteria", "l")
+        [A, k] = %sp_gsort_lr(A, sortdir);
+    else
+        [A, k] = %sp_gsort_lr(A, sortdir, criteria);
+    end
+    if sortype == "lc" then
+        A = A.'
+        k = matrix(k, 1, -1)
+    end
+endfunction
+
+// ===================================================================
+
+function [S, K] = %sp_gsort_lr(S, order, criteria)
+    [nr,nc] = size(S)
+    K = (1:nr)'
+    crit = isdef("criteria","l")
+
+    // List of column according to which sorting must be done
+    J = 1:nc
+        // We ignore columns that are uniform. Sorting them is useless
+    Std = sum(S.^2,"r")/nr - (sum(S,"r")/nr).^2
+    J(Std==0) = []
+
+    // Processing (bulky. A more clever algo required (but hard))
+    for j = J($:-1:1)
+        if crit
+            [?, k] = gsort(S(K, j), "g", order, criteria)
+        else
+            [?, k] = gsort(S(K, j), "g", order)
+        end
+        K = K(k,1)
+    end
+    S = S(K,:)
 endfunction

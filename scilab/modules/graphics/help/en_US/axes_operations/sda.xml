@@ -13,32 +13,27 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="sda">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="sda">
     <refnamediv>
         <refname>sda</refname>
-        <refpurpose>Set default axes. </refpurpose>
+        <refpurpose>reSets the Default Axes to its factory values</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>sda()
-            a = gda(); set(a,"default_values",1)
+        <synopsis>
+            sda()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>a</term>
-                <listitem>
-                    <para>handle, the handle of the default axes.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
         <title>Description</title>
         <para>
-            This routine resets the axes' model to default values.
+            This routine resets the properties of the axes's model to their factory values.
+        </para>
+        <para>
+            <literal>sda()</literal> is equivalent to <literal>set(gda(),"default_values",1)</literal>.
         </para>
     </refsection>
     <refsection>

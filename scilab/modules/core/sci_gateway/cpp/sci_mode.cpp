@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_mode(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() == 0)
     {
-        out.push_back(new types::Double(ConfigVariable::getPromptMode()));
+        out.push_back(new types::Double(ConfigVariable::getUserMode()));
     }
     else
     {
@@ -72,7 +72,7 @@ types::Function::ReturnValue sci_mode(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        ConfigVariable::setPromptMode(iScilabMode);
+        ConfigVariable::setUserMode(iScilabMode);
 
         if (ConfigVariable::isPrintInteractive())
         {

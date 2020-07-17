@@ -599,7 +599,7 @@ struct EXTERN_AST SparseBool : GenericType
 
     bool isTrue()
     {
-        if (static_cast<int>(nbTrue()) == m_iSize)
+        if (m_iSize > 0 && static_cast<int>(nbTrue()) == m_iSize)
         {
             return true;
         }

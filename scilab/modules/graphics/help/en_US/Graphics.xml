@@ -949,14 +949,6 @@
                     <para>Return the list of graphics windows</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xname">xname</link>
-                </term>
-                <listitem>
-                    <para>Change the name of the current graphics window</para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

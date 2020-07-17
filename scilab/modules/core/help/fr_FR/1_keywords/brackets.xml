@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2016, 2018 - Samuel GOUGEON
+ * Copyright (C) 2016 - 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -172,10 +172,7 @@
                             les suivantes :
                             <orderedlist>
                                 <listitem>
-                                    booléen &lt; entier encodé.
-                                </listitem>
-                                <listitem>
-                                    booléen &lt; nombre décimal &lt; nombre complexe
+                                    booléen &lt; entier encodé &lt; nombre décimal &lt; nombre complexe
                                 </listitem>
                                 <listitem>décimal &lt; polynôme &lt; fraction rationelle
                                     <warning>
@@ -197,6 +194,18 @@
                                     </warning>
                                 </listitem>
                                 <listitem>
+                                    Tout entier encodé peut être concaténé uniquement avec des
+                                    booléens, des nombres réels ou complexes, ou d'autres entiers
+                                    du même type entier
+                                    (<link linkend="inttype">inttype</link>). Ainsi, les expressions
+                                    <literal>[int8(2) uint8(7)]</literal>,
+                                    <literal>[int8(2) int16(7)]</literal>,
+                                    <literal>[int8(2), 7+0*%z]</literal>,
+                                    <literal>[int8(2), sparse(7)]</literal>, ou
+                                    <literal>[int8(2), sparse(%t)]</literal>
+                                    produiront toutes une erreur.
+                                </listitem>
+                                <listitem>
                                     Le résultat est encodé en valeurs complexes (avec parties
                                     imaginaires éventuellement nulles) dés qu'un élément
                                     -- valeur, polynôme, ou fraction rationnelle -- à valeur
@@ -207,21 +216,8 @@
                                     </para>
                                 </listitem>
                                 <listitem>
-                                    Des polynômes ou des fractions rationnelles de différentes
-                                    variables peuvent être concaténés entre eux. Le premier polynôme
-                                    ou fraction rationnelle listé donne alors le nom de sa variable
-                                    au résultat de la concaténation :
-                                    <literal>[%z, 1+%s, 1-%i*%s]
-                                        // => [z, 1+z, 1-iz]
-                                    </literal>.
-                                </listitem>
-                                <listitem>
-                                    Tout entier encodé peut être concaténé uniquement avec des
-                                    booléens ou d'autres entiers du même type entier
-                                    (<link linkend="inttype">inttype</link>). Ainsi, les expressions
-                                    <literal>[int8(2) uint8(7)]</literal>,
-                                    <literal>[int8(2) int16(7)]</literal>,
-                                    <literal>[int8(2) 1.]</literal> produiront toutes une erreur.
+                                    Des polynômes et/ou des fractions rationnelles à concaténer doivent
+                                    avoir la même variable symbolique.
                                 </listitem>
                                 <listitem>
                                     Les éléments de texte (type "string") peuvent être concaténés
@@ -346,21 +342,36 @@ s = poly(0,'s');[1/s,2/s]
 [tf2ss(1/s),tf2ss(2/s)]
 
 [%t %f %f %T %F]
-
-// Concaténation d'objets de types compatibles différents, avec transtypages automatiques
+     ]]></programlisting>
+        <para>
+            Concaténation d'objets de types distincts compatibles, avec
+            transtypages automatiques
+        </para>
+        <programlisting role="example"><![CDATA[
 [%T int8(-5)]
 [%T %pi %f 2]
 [%pi, 2+%i, %F]
+[%pi int16(-1000.84) 1.23]
 v = [%pi+0*%i, %F, %z, (1-%z)^2 ]; typeof(v), isreal(v)
 v = [10 1/%z], typeof(v)
 
-// Concaténations hétérogènes d'objets de types incompatibles => ERREURS
+// Cas particulier : int16 et uint8 ensemble, finalement concaténés
+//   par conversion décimale se propageant de gauche à droite :
+[%pi int16(-1000.84) uint8(87)]
+     ]]></programlisting>
+        <para>
+            Concaténations hétérogènes d'objets de types incompatibles => ERREURS
+        </para>
+        <programlisting role="example"><![CDATA[
 [%F %z]
-[int8(%pi) uint8(%e)]
-[int8(%pi) int16(%e)]
-[int8(%pi) %e]
-
-// Concaténation de tableaux de cellules :
+[%s %z]
+[int8(-70), sparse(18)]
+[int8(-70), sparse([%T %F])]
+     ]]></programlisting>
+        <para>
+            Concaténation de tableaux de cellules :
+        </para>
+        <programlisting role="example"><![CDATA[
 c1 = {%pi %t};
 c2 = {%z "abc"};
 c = [[{%i} c1] ; [c2, {1/%z^2}]]  // virgule obligatoire sinon c2{1/%z^2} => erreur
@@ -456,7 +467,7 @@ s.r([2 4 6])
                 </revdescription>
             </revision>
             <revision>
-                <revnumber>6.1</revnumber>
+                <revnumber>6.1.0</revnumber>
                 <revdescription>
                     <itemizedlist>
                         <listitem>
@@ -466,6 +477,21 @@ s.r([2 4 6])
                         <listitem>
                             [a, b, ..] = (A, B,..) réalise désormais les affectations de la gauche
                             vers la droite.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Concaténer des entiers encodés avec des réels ou complexes
+                            est désormais possible.
+                        </listitem>
+                        <listitem>
+                            Des polynômes et/ou fractions rationnelles à concaténer doivent avoir la
+                            même variable symbolique.
                         </listitem>
                     </itemizedlist>
                 </revdescription>

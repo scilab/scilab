@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="find">
+    <refnamediv>
+        <refname>find</refname>
+        <refpurpose>даёт индексы элементов с ненулевым значением или значением %T</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            ii = find(x)
+            [i1,i2,..] = find(x)
+            .. = find(x, nmax)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        Вектор, матрица или гиперматрица логических значений или чисел.
+                        Все ненулевые числа считаются значениями %T. Принимаются разрежённые 
+                        матрицы.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nmax</term>
+                <listitem>
+                    <para>
+                        целое число, указывающее максимальное количество индексов для возврата.
+                        Значение по умолчанию равно <literal>-1</literal>, которое стоит для 
+                        "все". Эта опция может использоваться для эффективности, чтобы исключить 
+                        поиск всех индексов.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ii</term>
+                <listitem>
+                    <para>
+                        вектор-строка линеаризованных индексов с ненулевым значением, или 
+                        значением <literal>%T</literal> или пустая матрица <literal>[]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i1, i2, ..</term>
+                <listitem>
+                    <para>
+                        векторы-строки индексов направления или пустая матрица 
+                        <literal>[]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Если <varname>x</varname> является матрицей логических значений, то
+        </para>
+        <para>
+            <literal>ii=find(x)</literal> возвращает вектор индексов <literal>i</literal>,
+            для которых <literal>x(i)</literal> соответствует "истине". Если не найден ни один 
+            элемент со значением "истина", то возвращается пустая матрица.
+        </para>
+        <para>
+            <literal>[i1,i2,..]=find(x)</literal> возвращает векторы индексов 
+            <literal>i1</literal> (для строк) и <literal>i2</literal> (для столбцов), 
+            <literal>..</literal> такие, что <literal>x(i1(n),i2(n),..)</literal>
+            соответствует "истине". Если не найден ни один элемент со значением 
+            "истина", то возвращаются пустые матрицы в  <literal>i1</literal>,
+            <literal>i2</literal>, ...
+        </para>
+        <para>
+            Если <varname>x</varname> - это стандартная матрица или гиперматрица,
+            то <literal>find(x)</literal> интерпретируется как 
+            <literal>find(x&lt;&gt;0)</literal>
+        </para>
+        <para>
+            <literal>find([])</literal> возвращает <literal>[]</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <para>
+            С входными логическими значениями:
+        </para>
+        <programlisting role="example"><![CDATA[
+A = [%F %T %T %F ; %T %F %F %T]
+find(A)
+find(A,2)
+      ]]></programlisting>
+    <screen><![CDATA[
+--> A = [%F %T %T %F ; %T %F %F %T]
+ A  =
+  F T T F
+  T F F T
+
+--> find(A)
+ ans  =
+   2.   3.   5.   8.
+
+--> find(A,2)
+ ans  =
+   2.   3.
+]]></screen>
+    <para>
+        С входными числами:
+    </para>
+        <programlisting role="example"><![CDATA[
+B = [0 -1 0 3 ; 0 -1 -0.4 0]
+find(B)
+[i, j] = find(B);
+[i' j']
+      ]]></programlisting>
+    <screen><![CDATA[
+--> B = [0 -1 0 3 ; 0 -1 -0.4 0]
+ B  =
+   0.  -1.   0.    3.
+   0.  -1.  -0.4   0.
+
+--> find(B)
+ ans  =
+   3.   4.   6.   7.
+
+--> [i, j] = find(B);
+--> [i' j']
+ ans  =
+   1.   2.
+   2.   2.
+   2.   3.
+   1.   4.
+]]></screen>
+    <para>
+        С входными гиперматрицами чисел:
+    </para>
+        <programlisting role="example"><![CDATA[
+E = grand(2,5,2,"uin",1,6)
+find(E < 4)
+      ]]></programlisting>
+    <screen><![CDATA[
+--> E = grand(2,5,2,"uin",1,6)
+ E  =
+(:,:,1)
+   1.   6.   5.   5.   4.
+   6.   5.   3.   4.   4.
+(:,:,2)
+   2.   4.   3.   6.   5.
+   5.   6.   6.   6.   4.
+
+--> find(E < 4)
+ ans  =
+   1.   6.   11.   15.
+]]></screen>
+    <para>
+         С входной числовой или логической разрежённой матрицей:
+    </para>
+        <programlisting role="example"><![CDATA[
+C = [0  3  7  0  9  0
+     0  4  0  0  5  0
+     6  0  1  0  3  8
+    ];
+C = sparse(C);
+find(C)
+find(C, 4)
+
+// С входной логической разрежённой матрицей
+D = C > 4
+full(D)
+find(D)
+      ]]></programlisting>
+    <screen><![CDATA[
+--> C = sparse(C);
+--> find(C)
+ ans  =
+    3.    4.    5.    7.    9.    13.    14.    15.    18.
+
+-->find(C, 4)
+ ans  =
+    3.    4.    5.    7.
+
+--> // With input boolean sparse
+--> D = C > 4
+ D  =
+(  3,  6) sparse boolean matrix
+(  1,  3)   T
+(  1,  5)   T
+(  2,  5)   T
+(  3,  1)   T
+(  3,  6)   T
+
+--> full(D)
+ ans  =
+  F F T F T F
+  F F F F T F
+  T F F F F T
+
+-->find(D)
+ ans  =
+    3.    7.    13.    14.    18.
+]]></screen>
+    <para>
+        С результатом логического поэлементного условия на текстах:
+    </para>
+        <programlisting role="example"><![CDATA[
+beers = ["Desperados", "Leffe", "Kronenbourg", "Heineken"];
+find(beers == "Leffe")
+find(beers == "1664")
+      ]]></programlisting>
+    <screen><![CDATA[
+--> find(beers == "Leffe")
+ ans  =
+   2.
+
+--> find(beers == "1664")
+ ans  =
+    []
+]]></screen>
+    <para>
+        Адресация выбранных элементов:
+    </para>
+        <programlisting role="example"><![CDATA[
+// a) Через их линеаризованные индексы:
+H = [ 0  -2  -8  4  -5  -1
+     -2   2  -9  5   0   1
+    ];
+L = H;
+L(find(L < 0)) = -10
+
+// b) Непосредственно через массив их логического статуса:
+L = H;
+L(L < 0) = -10
+      ]]></programlisting>
+    <screen><![CDATA[
+--> // a) Through their linearized indices:
+--> H = [ 0  -2  -8  4  -5  -1
+  >      -2   2  -9  5   0   1
+  >     ];
+--> L = H;
+--> L(find(L < 0)) = -10
+ L  =
+   0.   -10.  -10.   4.  -10.  -10.
+  -10.   2.   -10.   5.   0.    1.
+
+--> // b) Directly through the array of their boolean status:
+--> L = H;
+--> L(L < 0) = -10
+ L  =
+   0.   -10.  -10.   4.  -10.  -10.
+  -10.   2.   -10.   5.   0.    1.
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="vectorfind">vectorfind</link>
+            </member>
+            <member>
+                <link linkend="grep">grep</link>
+            </member>
+            <member>
+                <link linkend="findobj">findobj</link>
+            </member>
+            <member>
+                <link linkend="boolean">boolean</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

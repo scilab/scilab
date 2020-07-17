@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="champ">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="champ">
     <refnamediv>
         <refname>champ</refname>
-        <refpurpose>двумерный график векторного поля</refpurpose>
+        <refpurpose>строит стрелками поле двумерных векторов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            champ(x, y, fx, fy, [arfact, rect, strf])
+            champ()  // example
+            champ(x, y, fx, fy)
+            champ(x, y, fx, fy, arfact)
+            champ(x, y, fx, fy, arfact, rect)
+            champ(x, y, fx, fy, arfact, rect, strf)
             champ(x, y, fx, fy, &lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
@@ -32,7 +39,8 @@
                 <term>x, y</term>
                 <listitem>
                     <para>
-                        два вектора, которые определяют сетку графика.
+                        векторы десятичных чисел, которые определяют сетку узлов = координат начальных
+                        точек стрелок.
                     </para>
                 </listitem>
             </varlistentry>
@@ -105,33 +113,131 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <function>champ</function> рисует двумерное векторное поле. Длина
-            стрелок пропорциональна интенсивности поля.
+            <literal>champ(…)</literal> строит поле двумерных веторов с помощью стрелок.
         </para>
         <para>
-            Если вы желаете раскрасить стрелки в зависимости от интенсивности
-            поля, то используйте <literal>gce().colored = "on"</literal>.
+            По умолчанию все стрелки одного цвета, а их длина пропорционально локальной интенсивности
+            поля (норма векторов). Кроме того, все длины нормированы в соответствии с самой длинной стрелкой.
         </para>
         <para>
-            Введите команду <code>champ()</code> для просмотра демонстрации.
+            Когда установлено <literal>gce().colored = "on"</literal>,
+            каждая стрелка становится настолько длинной, насколько это возможно в её ячейке, и её
+            цвет соответствует локальной интенсивности поля.
+        </para>
+        <para>
+            После вызова <literal>champ(…)</literal>, <literal>gce()</literal>
+            возвращает дескриптор поля стрелок типа <literal>Champ</literal>,
+            чьи <link linkend="champ_properties">свойства</link> могут быть далее обработаны.
+        </para>
+        <para>
+            Введите команду <literal>champ()</literal>, чтобу увидеть пример.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-// использование rect в качестве границ графика
-champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
- ]]></programlisting>
+x = -4:6;
+X = ndgrid(x);
+[fx, fy] =  (rand(X)-0.5, rand(X)-0.5);
+
+clf
+gcf().color_map = jetcolormap(50);
+
+// Интенсивность поля = длине стрелок
+subplot(2,2,1)
+champ(x, x, fx, fy)
+
+// С более крупной стрелкой
+subplot(2,2,2)
+champ(x, x, fx, fy, arfact=1.7)
+title("arfact=1.7", "fontsize",3)
+
+// Интенсивность поля = цвету стрелок
+xsetech([0 0.5 0.55 0.5])
+champ(x, x, fx, fy, arfact=1.7)
+gce().colored = "on";
+title("arfact=1.7, .colored=""on""", "fontsize",3)
+colorbar
+
+// Интенсивность поля = цвету, + расширенные пределы
+subplot(2,2,4)
+champ(x, x, fx, fy, rect=[-5,-6,9,7],strf="011")
+gce().colored = "on";
+title("rect=[-5,-6,9,6], strf=""011"", .colored=""on""", "fontsize",3)
+
+gcf().axes_size = [740 680];
+    ]]></programlisting>
         <scilab:image>
-            champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2);
+            x = -4:6;
+            X = ndgrid(x);
+            [fx, fy] =  (rand(X)-0.5, rand(X)-0.5);
+
+            clf
+            gcf().color_map = jetcolormap(50);
+
+            // Field's intensity = arrows length
+            subplot(2,2,1)
+            champ(x, x, fx, fy)
+
+            // With bigger arrow heads
+            subplot(2,2,2)
+            champ(x, x, fx, fy, arfact=1.7)
+            title("arfact=1.7", "fontsize",3)
+
+            // Field's intensity = arrows color
+            xsetech([0 0.5 0.55 0.5])
+            champ(x, x, fx, fy, arfact=1.7)
+            gce().colored = "on";
+            title("arfact=1.7, .colored=""on""", "fontsize",3)
+            L = sqrt(fx.^2 + fy.^2);
+            colorbar(min(L), max(L));
+
+            // Field's intensity = color, + imposed boundaries
+            subplot(2,2,4)
+            champ(x, x, fx, fy, rect=[-5,-6,9,7],strf="011")
+            gce().colored = "on";
+            title("rect=[-5,-6,9,6], strf=""011"", .colored=""on""", "fontsize",3)
+
+            gcf().axes_size = [740 680];
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// использование (x,y) для получения границ
-clf()
-champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
- ]]></programlisting>
+x = -1.2:0.11:0.7;
+y = -1:0.11:0.5;
+[X, Y] = ndgrid(x, y);
+[fx, fy] = (2*X, 2*Y);
+
+clf
+xsetech([0 0 0.45 1])
+champ(x, y, fx, fy)
+title(".colored = ""off"" (по умолчанию)", "fontsize",3)
+xsetech([0.45 0 0.55 1])
+champ(x, y, fx, fy)
+title(".colored = ""on""", "fontsize",3)
+gce().colored = "on";
+
+gcf().color_map = jetcolormap(100);
+colorbar
+]]></programlisting>
         <scilab:image>
-            champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
+            x = -1.2:0.11:0.7;
+            y = -1:0.11:0.5;
+            [X, Y] = ndgrid(x, y);
+            [fx, fy] = (2*X, 2*Y);
+
+            clf
+            xsetech([0 0 0.45 1])
+            champ(x, y, fx, fy)
+            title(".colored = ""off"" (default)", "fontsize",3)
+            xsetech([0.45 0 0.55 1])
+            champ(x, y, fx, fy)
+            title(".colored = ""on""", "fontsize",3)
+            gce().colored = "on";
+
+            gcf().color_map = jetcolormap(100);
+            L = sqrt(fx.^2 + fy.^2);
+            colorbar(min(L), max(L));
+
+            gcf().axes_size = [720 340];
         </scilab:image>
     </refsection>
     <refsection role="see also">

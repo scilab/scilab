@@ -129,6 +129,6 @@ function B = repmat(A,varargin)
     if typeof(A) == "rational" then
         B = rlist(repmat(A.num,sizes), repmat(A.den,sizes), A.dt)
     else
-        execstr("B=%" + typeof(A) + "_repmat(A, sizes)")
+        execstr("B = %" + typeof(A, "overload") + "_repmat(A, sizes)")
     end
 endfunction

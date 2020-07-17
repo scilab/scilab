@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,38 +13,49 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="setfield">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="setfield">
     <refnamediv>
         <refname>setfield</refname>
-        <refpurpose>внесение поля списка</refpurpose>
+        <refpurpose>изменение значения элемента списка типа mlist, tlist или list</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>setfield(i, x, l)</synopsis>
+        <synopsis>uL = setfield(a, v, L)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>L</term>
                 <listitem>
-                    <para>матрица всевозможного типа.</para>
+                    список типа <literal>list</literal>, <literal>tlist</literal> или
+                    <literal>mlist</literal>: список, в котором требуется изменить элемент.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>l</term>
+                <term>a</term>
                 <listitem>
-                    <para>
-                        переменная типа <literal>list</literal>, <literal>tlist</literal> или <literal>mlist</literal>.
-                    </para>
+                    адрес элемента, который нужно изменить. Это может быть или его имя
+                    поля, указанного в виде строки, либо его индекс, указанный в виде
+                    положительного целого числа. См. подробности в <link linkend="insertion">вставке</link>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>i</term>
+                <term>v</term>
                 <listitem>
-                    <para>
-                        индекс поля, см. справку по <link linkend="insertion">вставке</link>.
-                    </para>
+                    любой объект Scilab: значение для присвоения.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>uL</term>
+                <listitem>
+                    Обновлённый список.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -52,18 +63,87 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Эта функция является эквивалентом синтаксиса <code>l(i)=x</code>
-            для вставки поля с той лишь разницей, что она также применима к объектам <literal>mlist</literal>.
+            <literal>L=setfield(a,v,L)</literal> адресует и изменяет
+            i<superscript>й</superscript> элемент списка унифицированным образом
+            среди списков типа list, tlist и mlist.
+        </para>
+        <para>
+            Для простых списков (list) и для типизированных списков (tlist),
+            <literal>L=setfield(a,v,L)</literal> эквивалентно <literal>L(a)=v</literal>,
+            то есть проще и должно быть предпочтительнее. Аналогично для любого
+            матричноориентированного списка (mlist), если адрес <varname>a</varname>
+            является именем поля.
+        </para>
+        <para>
+            Тем не менее, для любого матричноориентированного списка
+            <varname>L</varname>, если <literal>i</literal> является индексом, то
+            вставка <literal>L(i)=v</literal> не предопределена, для того, чтобы
+            позволить пользователю определить перегрузку, реализующую
+            матричноориентированную вставку, если требуется. Вот
+            <literal>setfield(i,v,L)</literal> всегда определена, с тем же смыслом,
+            что и для других списков типа list и tlist.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
+        <para>
+            Для списка типа tlist, <literal>setfield(3, v, T)</literal> эквивалентно
+            <literal>T(3)=v</literal> :
+        </para>
         <programlisting role="example"><![CDATA[
-l=list(1,'qwerw',%s)
-l(1)='Изменён'
-l(0)='Добавлен'
-l(6)=['ещё один';'добавлен']
+T = tlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
+// Вставка предопределена:
+T(3) = [%t %t %f];
+T(3)
+
+T = setfield(3, [%f %t %f], T);
+T(3)
  ]]></programlisting>
+    <screen><![CDATA[
+--> T = tlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
+--> // Вставка предопределена:
+--> T(3) = [%t %t %f];
+--> T(3)
+ ans  =
+  T T F
+
+--> T = setfield(3, [%f %t %f], T);
+--> T(3)
+ ans  =
+  F T F
+]]></screen>
+        <para>
+            Для списка типа mlist, нет процедуры предопределённой индексированной
+            вставки, чтобы позволить пользователю определить перегрузку
+            матричноориентированной вставки, если потребуется.
+        </para>
+        <programlisting role="example"><![CDATA[
+M = mlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
+M.b = [%t %t %t];
+M.b                 // OK, пока ...
+M(3) = [%f %t %f];  // => error
+
+// Но необработанная прямая вставка с setfield() всегда возможна:
+M = setfield(3, [%t %f %t], M);
+getfield(3, M)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> M = mlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
+--> M.b = [%t %t %t];
+--> M.b                 // OK, пока ...
+ ans  =
+  T T T
+
+--> M(3) = [%f %t %f];  // => error
+Function not defined for given argument type(s),
+  check arguments or define function %b_i_V for overloading.
+
+--> // Но необработанная прямая вставка с setfield() всегда возможна:
+--> M = setfield(3, [%t %f %t], M);
+--> getfield(3, M)
+ ans  =
+  T F T
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
@@ -71,7 +151,28 @@ l(6)=['ещё один';'добавлен']
             <member>
                 <link linkend="insertion">вставка</link>
             </member>
+            <member>
+                <link linkend="getfield">getfield</link>
+            </member>
         </simplelist>
     </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Теперь возвращается обновлённый список вместо изменения
+                            "на месте".
+                        </listitem>
+                        <listitem>
+                            setfield() больше не может использоваться для cell-массивов.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
-

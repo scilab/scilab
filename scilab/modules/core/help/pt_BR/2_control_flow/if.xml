@@ -25,12 +25,12 @@
         <title>Seqüência de Chamamento</title>
         <synopsis>
             if expressão1 then
-                sentenças
+                sentenças
             elseif expressãoi then
-                sentenças
-                ....
+                sentenças
+                ....
             else
-                sentenças
+                sentenças
             end
         </synopsis>
     </refsynopsisdiv>

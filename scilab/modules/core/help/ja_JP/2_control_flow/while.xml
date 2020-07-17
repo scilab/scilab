@@ -18,20 +18,18 @@
         <refname>while</refname>
         <refpurpose>while キーワード</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>
+            while expr ,instructions,..., end
+            while expr do instructions,..., end
+            while expr then instructions,..., end
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>説明</title>
         <para>
-            <literal>while</literal> 構文.
-            <literal>"end"</literal>で終わる必要があります.
-        </para>
-        <para>
-            <literal>while expr ,instructions,...[,else instructions], end</literal>
-        </para>
-        <para>
-            <literal>while expr do instructions,...[,else instructions], end</literal>
-        </para>
-        <para>
-            <literal>while expr then instructions,...[,else instructions], end</literal>
+            <literal>while</literal> 構文. <literal>"end"</literal>で終わる必要があります.
         </para>
         <para>注意:</para>
         <itemizedlist>

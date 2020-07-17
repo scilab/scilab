@@ -2,7 +2,7 @@
 // Copyright (C) Bruno Pincon
 // Copyright (C) Serge Steer (adaptation to new graphic system)
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2017 - 2019 - Samuel GOUGEON
+// Copyright (C) 2017 - 2020 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -50,12 +50,12 @@ function colorbar(umin, umax, colminmax, fmt)
     f = gcf();
     nColorsCM = size(f.color_map,1);
     for h = gca().children'
-        if or(h.type==["Matplot" "Fec" "Fac3d" "Plot3d" "Grayplot"])
+        if or(h.type==["Matplot" "Fec" "Fac3d" "Plot3d" "Grayplot" "Champ"])
             Type = h.type
             break
         end
         for g = h.children'
-            if or(g.type==["Matplot" "Fec" "Fac3d" "Plot3d" "Grayplot"])
+            if or(g.type==["Matplot" "Fec" "Fac3d" "Plot3d" "Grayplot" "Champ"])
                 Type = g.type
                 h = g
                 break
@@ -152,8 +152,12 @@ function colorbar(umin, umax, colminmax, fmt)
         if h.data_mapping=="direct"
             Type = "Matplot"
         end
+
     elseif Type=="Matplot"
         u = h.data
+
+    elseif Type=="Champ"
+        u = sqrt(h.data.fx .^2 + h.data.fy .^2)
     else
         u = []
     end
@@ -165,7 +169,7 @@ function colorbar(umin, umax, colminmax, fmt)
     if ~isdef("umin","l") | type(umin)==0 | umin==[] then
         if u~=[]
             if colminmax~=[] & (length(colminmax)>1 | colminmax~=-1)
-                if Type=="Matplot" | ..
+                if Type=="Matplot" | Type=="Champ" | ..
                    Type=="Fac3d" & or(h.color_flag==[2 3 4]) & h.cdata_mapping == "direct"
                     umin = colminmax(1)
                 else
@@ -205,7 +209,7 @@ function colorbar(umin, umax, colminmax, fmt)
     if ~isdef("umax","l") | type(umax)==0 | umax==[] then
         if u~=[]
             if colminmax~=[] & colminmax~=-1
-                if Type=="Matplot" | ..
+                if Type=="Matplot" | Type=="Champ" | ..
                    Type=="Fac3d" & or(h.color_flag==[2 3 4]) & h.cdata_mapping == "direct"
                     umax = colminmax(2)
                 else
@@ -299,6 +303,7 @@ function colorbar(umin, umax, colminmax, fmt)
     Matplot((colminmax(2):-1:colminmax(1))')
     a_cb.y_location = "right";
     a_cb.tight_limits = "on";
+
     if Type~="Matplot" then
         du = (umax-umin)
         gce().rect = [0.5 umin 1.5 umax];
