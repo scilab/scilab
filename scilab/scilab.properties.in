@@ -1,5 +1,5 @@
 ; Definition ANT flags for Scilab
 
 build.debug=@JAVAC_DEBUG@
-library.vendor="Scilab Enterprises"
+library.vendor="ESI Group"
 

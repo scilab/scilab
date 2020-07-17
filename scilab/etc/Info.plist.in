@@ -16,7 +16,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>org.scilab.modules.jvm.Scilab</string>
 	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
+	<string>6.2</string>
 	<key>CFBundleName</key>
 	<string>Scilab</string>
 </dict>

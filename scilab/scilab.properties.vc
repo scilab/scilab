@@ -1,6 +1,6 @@
 ; Definition ANT flags for Scilab
 
 build.debug=off
-library.vendor="Scilab Enterprises"
+library.vendor="ESI Group"
 
 

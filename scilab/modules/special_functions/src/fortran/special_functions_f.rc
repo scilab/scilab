@@ -47,8 +47,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 6,1,1,0
- PRODUCTVERSION 6,1,1,0
+ FILEVERSION 6,2,0,0
+ PRODUCTVERSION 6,2,0,0
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -64,12 +64,12 @@ BEGIN
         BLOCK "040c04b0"
         BEGIN
             VALUE "FileDescription", "elementary_functions_f module"
-            VALUE "FileVersion", "6, 1, 1, 0"
+            VALUE "FileVersion", "6, 2, 0, 0"
             VALUE "InternalName", "elementary_functions_f module"
             VALUE "LegalCopyright", "Copyright (C) 2020"
             VALUE "OriginalFilename", "elementary_functions_f.dll"
             VALUE "ProductName", "elementary_functions_f module"
-            VALUE "ProductVersion", "6, 1, 1, 0"
+            VALUE "ProductVersion", "6, 2, 0, 0"
         END
     END
     BLOCK "VarFileInfo"

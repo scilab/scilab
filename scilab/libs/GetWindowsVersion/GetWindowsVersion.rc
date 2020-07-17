@@ -48,8 +48,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 6,1,1,0
- PRODUCTVERSION 6,1,1,0
+ FILEVERSION 6,2,0,0
+ PRODUCTVERSION 6,2,0,0
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -64,13 +64,13 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "FileDescription", "GetWindowsVersion library for Scilab 6.x"
-            VALUE "FileVersion", "6, 1, 1, 0"
-            VALUE "InternalName", "GetWindowsVersion library for Scilab 6.x"
+            VALUE "FileDescription", "GetWindowsVersion library for Scilab 6.2"
+            VALUE "FileVersion", "6, 2, 0, 0"
+            VALUE "InternalName", "GetWindowsVersion library for Scilab 6.2"
             VALUE "LegalCopyright", "Copyright (C) 2020"
             VALUE "OriginalFilename", "GetWindowsVersion.dll"
-            VALUE "ProductName", "GetWindowsVersion library for Scilab 6.x"
-            VALUE "ProductVersion", "6, 1, 1, 0"
+            VALUE "ProductName", "GetWindowsVersion library for Scilab 6.2"
+            VALUE "ProductVersion", "6, 2, 2, 0"
         END
     END
     BLOCK "VarFileInfo"
