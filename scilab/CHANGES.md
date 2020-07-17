@@ -279,6 +279,7 @@ Bug Fixes
 * [#8378](https://bugzilla.scilab.org/8378): Datatip `ContextMenu => Delete last datatip` was useless.
 * [#9909](https://bugzilla.scilab.org/9909): In the help browser, add a way to open the online version of the current page.
 * [#10476](https://bugzilla.scilab.org/10476): From `browsevar`, displaying the content of lists, structures, cells, or other custom tlists or mlists was not possible.
+* [#12418](https://bugzilla.scilab.org/12418): Using bvode() with "continuation", i.e. `ipar(9) > 1` led to an error.
 * [#12516](https://bugzilla.scilab.org/12516): From `browsevar`, clicking on any graphical handle did not edit its figure with `ged`.
 * [#12532](https://bugzilla.scilab.org/12532): From `browsevar`, clicking on any function did not edit it with `edit`. The content of libraries could not be displayed either.
 * [#12719](https://bugzilla.scilab.org/12719): `A(%s)` gave the same result as `A($)`.

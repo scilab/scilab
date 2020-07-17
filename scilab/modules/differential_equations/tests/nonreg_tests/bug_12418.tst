@@ -14,8 +14,7 @@
 //
 // <-- Short Description -->
 // Continuation is incorrectly supported in bvode
-//
-// <-- NOT FIXED -->
+
 
 
 y= 1.9d0;
