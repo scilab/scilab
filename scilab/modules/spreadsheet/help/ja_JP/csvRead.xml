@@ -100,29 +100,36 @@
             <varlistentry>
                 <term>rexgepcomments</term>
                 <listitem>
-                    <para>文字列: 一致する行を削除するための正規表現.
-                        (デフォルト:
-                        [])
+                    <para>
+                        a string specifying a regular expression (default:  []). Lines of the file
+                        matching the expression are considered as comments.
+                    </para>
+                    <para>
+                        The same character is expected as delimiter at the beginning and at the
+                        end of the string. If it is needed in the expression's body, it must be
+                        escaped with "\" (Here is a
+                       <ulink url="https://www.php.net/manual/ja/reference.pcre.pattern.syntax.php">
+                       good online page</ulink> explaining the syntax of regular expressions).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>range</term>
                 <listitem>
-                    <para>1行4列の浮動小数点の整数行列で,
-                        読み込む列および行の範囲です
-                        (デフォルトの範囲は [] で,全ての行と列を意味します).
-                        <literal>[R1 C1 R2 C2]</literal>の形式で範囲を
-                        指定してください.
-                        ただし,(R1,C1)は読み込むデータの左上隅,
-                        (R2,C2)は右下隅です.
-                    </para>
                     <para>
-                        <note>
-                            ファイルが正しく整形されていることに注意してください.
-                            この範囲はパースされた要素についてメモリ上で実行されます.
-                        </note>
+                        <literal>[firstRow firstColumn lastRow lastColumn]</literal> row vector
+                        of floating point integers, with lastRow ≤ 2e9 and lastColumn ≤ 2e9:
+                        the range of rows and columns selecting
+                        the block of data to be returned. Default [], meaning all data.
+                        The block is selected on <emphasis>actual data</emphasis>, after removing
+                        the header and/or commented rows (when requested).
                     </para>
+                    <note>
+                        To select all rows or/and columns starting from [firstRow, firstCol],
+                        while the total numbers of rows or columns are unknown,
+                        lastRow=2e9 or/and lastColumn=2e9 can be specified (the actual limit is
+                        2<superscript>31</superscript>).
+                    </note>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -136,13 +143,17 @@
             <varlistentry>
                 <term>M</term>
                 <listitem>
-                    <para>m行n列の文字列またはdouble行列.</para>
+                    <para>m行n列の文字列またはdouble行列. Complex numbers are supported.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>comments</term>
                 <listitem>
-                    <para>正規表現にマッチしたm行n列の文字列行列.</para>
+                  <para>
+                      a column vector of strings: Lines of text matching
+                      <varname>regexpcomments</varname>.
+                  </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -210,6 +221,7 @@ M = csvRead(filename,",",".","double",substitute)
 isnan(M(2,1)) // Expected=%t
 isnan(M(4,1)) // Expected=%t
         ]]></programlisting>
+        <para/>
         <para>
             以下のスクリプトは,
             <literal>csvRead</literal>関数のより実用的な使用例を示します.
@@ -247,33 +259,46 @@ mclose(fd);
 // セパレータを指定してファイルを読み込む
 csvRead ( filename , sep )
         ]]></programlisting>
+        <para/>
         <para>
             以下のスクリプトは
-            <literal>csvRead</literal> 関数のregexp引数により
-            行を削除する例を示します.
+            <literal>csvRead</literal> 関数のregexp引数により 行を削除する例を示します.
         </para>
         <programlisting role="example"><![CDATA[
 CSV = ["// tata"; ..
-"1,0,0,0,0"; ..
+"1,0,0,0"; ..
 "// titi"; ..
-"0,1,0,0,0"; ..
-"// toto"; ..
-"0,0,1,0,0"; ..
-"// tutu"];
+"0,1,0,0"; ..
+" //  toto"; ..
+"0,0,1,0"; ..
+" tutu // tata"];
 filename = fullfile(TMPDIR , 'foo.csv');
 mputl(CSV, filename);
-// @ で始まる行を削除
-[M, comments] = csvRead(filename, [], [], [], [], '/\/\//')
+
+// Ignore all lines including "//" and return them as comments:
+[M, comments] = csvRead(filename, [], [], [], [], '!//!')
         ]]></programlisting>
-    </refsection>
-    <refsection>
+           <screen><![CDATA[
+--> [M, comments] = csvRead(filename, [], [], [], [], '!//!')
+ M  =
+   1.   0.   0.   0.
+   0.   1.   0.   0.
+   0.   0.   1.   0.
+
+ comments  =
+  "// tata"
+  "// titi"
+  " //  toto"
+  " tutu // tata"
+]]></screen>
+        <para/>
         <para>空のフィールドはcsvReadで管理されます</para>
         <programlisting role="example"><![CDATA[
 csvWrite(['1','','3';'','','6'], TMPDIR + "/example.csv")
 csvRead(TMPDIR + "/example.csv", [], [], "string")
 csvRead(TMPDIR + "/example.csv", [], [], "double")
         ]]></programlisting>
-    </refsection>
+        <para/>
     <programlisting role="example"><![CDATA[
 // 文字列の行列を定義
 Astr = [
@@ -308,7 +333,7 @@ mclose(fd);
 // セパレータを指定してファイルを読み込む
 csvRead ( filename , sep )
     ]]></programlisting>
-    <refsection>
+        <para/>
         <para>
             以下のスクリプトでは, ファイル "filename" は
             5000行単位のブロックで読みこまれます.
@@ -316,49 +341,57 @@ csvRead ( filename , sep )
             満たない時, すなわち, ファイルの終端に達した時,
             このアルゴリズムは中断します.
         </para>
-        <programlisting role="example"><![CDATA[blocksize = 5000;
+        <programlisting role="example"><![CDATA[
+blocksize = 5000;
 C1 = 1;
 C2 = 3;
 iblock = 1
-while (%t)
-R1 = (iblock-1) * blocksize + 1;
-R2 = blocksize + R1-1;
-irange = [R1 C1 R2 C2];
-mprintf("Block #%d, rows #%d to #%d\n",iblock,R1,R2);
-tic();
-M=csvRead(filename , [] , [] , [] , [] , [] , irange );
-t = toc();
-nrows = size(M,"r");
-ncols = size(M,"c");
-if ( nrows &gt; 0 ) then
-p = t/(nrows*ncols)*1.e6;
-mprintf("  Actual #rows=%d\n",nrows);
-mprintf("  T=%.3f (s)\n",t);
-mprintf("  T=%.1f (ms/cell)\n",p);
-end
-if ( nrows &lt; blocksize ) then
-mprintf("... End of the file.\n");
-break
-end
-iblock = iblock + 1;
+while %t
+    R1 = (iblock-1) * blocksize + 1;
+    R2 = blocksize + R1-1;
+    irange = [R1 C1 R2 C2];
+    mprintf("\nBlock #%d, rows #%d to #%d\n",iblock,R1,R2);
+    tic();
+    M=csvRead(filename , [] , [] , [] , [] , [] , irange );
+    t = toc();
+    nrows = size(M,"r");
+    ncols = size(M,"c");
+    if ( nrows > 0 ) then
+        p = t/(nrows*ncols)*1.e6;
+        mprintf("  Actual #rows=%d\n",nrows);
+        mprintf("  T=%.3f (s)\n",t);
+        mprintf("  T=%.1f (ms/cell)\n",p);
+    end
+    if ( nrows &lt; blocksize ) then
+        mprintf("... End of the file.\n");
+        break
+    end
+    iblock = iblock + 1;
 end
         ]]></programlisting>
         <para>出力は以下のようになります :</para>
-        <programlisting role="no-scilab-exec"><![CDATA[Block #1, rows #1 to #5000
+        <screen><![CDATA[
+Block #1, rows #1 to #5000
 Actual #rows=5000
-T=3.135 (s)
-T=209.0 (ms/cell)
+T = 3.135 (s)
+T = 209.0 (ms/cell)
+
 Block #2, rows #5001 to #10000
 Actual #rows=5000
-T=3.139 (s)
-T=209.3 (ms/cell)
+T = 3.139 (s)
+T = 209.3 (ms/cell)
+
 Block #3, rows #10001 to #15000
 Actual #rows=5000
-T=3.151 (s)
-T=210.1 (ms/cell)
+T = 3.151 (s)
+T = 210.1 (ms/cell)
+
 etc....
-        ]]></programlisting>
-        範囲を有する例
+]]></screen>
+        <para/>
+        <para>
+            範囲を有する例
+        </para>
         <programlisting role="example"><![CDATA[
 CSV = ["1,0,0,0,0"; ..
 "0,1,0,0,0"; ..
@@ -373,7 +406,10 @@ mputl(CSV, filename);
 // csvファイルの一部を展開
 csvRead(filename, [], [], "double", [], [], [5 3 7 6])
     ]]></programlisting>
+        <para/>
+        <para>
         ヘッダを有する例
+        </para>
         <programlisting role="example"><![CDATA[
 comments = [
 "// Copyright (C) INRIA"];
@@ -394,6 +430,18 @@ header = 2;
             </member>
             <member>
                 <link linkend="csvDefault">csvDefault</link>
+            </member>
+            <member>
+                <link linkend="mgetl">mgetl</link>
+            </member>
+            <member>
+                <link linkend="read">read</link>
+            </member>
+            <member>
+                <link linkend="fscanfMat">fscanfMat</link>
+            </member>
+            <member>
+                <ulink url="https://www.php.net/manual/ja/reference.pcre.pattern.syntax.php">Regular expressions: Syntax</ulink>
             </member>
         </simplelist>
     </refsection>

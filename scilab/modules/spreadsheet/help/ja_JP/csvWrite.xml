@@ -29,7 +29,7 @@
             csvWrite(M, filename, separator)
             csvWrite(M, filename, separator, decimal)
             csvWrite(M, filename, separator, decimal, precision)
-            csvWrite(M, filename, separator, decimal, precision, comments)
+            csvWrite(M, filename, separator, decimal, precision, header)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -70,7 +70,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>comments</term>
+                <term>header</term>
                 <listitem>
                     <para>m行1列の文字列の行列,
                         ファイルの先頭に保存されるコメント.
@@ -143,10 +143,10 @@ csvWrite(M, filename,[],[],"%.8e");
 mgetl(filename)
 //
 // コメントを指定
-comments = [
+header = [
 "// Copyright (C) INRIA"
 ];
-csvWrite(M, filename,[],[],[],comments);
+csvWrite(M, filename, [], [], [], header);
 mgetl(filename)
         ]]></programlisting>
         <para>以下の例は
@@ -160,8 +160,8 @@ mgetl(filename)
 1 %inf -%inf %nan 0
 ];
 // ファイルに書き込む
-filename=fullfile(TMPDIR,"foo.csv");
-csvWrite ( A , filename );
+filename = fullfile(TMPDIR,"foo.csv");
+csvWrite(A, filename);
 edit(filename)
     ]]></programlisting>
     </refsection>

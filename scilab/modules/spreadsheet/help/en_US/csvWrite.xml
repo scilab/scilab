@@ -29,7 +29,7 @@
             csvWrite(M, filename, separator)
             csvWrite(M, filename, separator, decimal)
             csvWrite(M, filename, separator, decimal, precision)
-            csvWrite(M, filename, separator, decimal, precision, comments)
+            csvWrite(M, filename, separator, decimal, precision, header)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -38,43 +38,41 @@
             <varlistentry>
                 <term>filename</term>
                 <listitem>
-                    <para>a 1-by-1 matrix of strings, the file path.</para>
+                    <para>a string: the file path.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>M</term>
                 <listitem>
-                    <para>a m-by-n matrix of strings or double (complex
-                        supported).
+                    <para>a m-by-n matrix of strings or double (complex supported).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>separator</term>
                 <listitem>
-                    <para>a 1-by-1 matrix of strings, the column separator mark.</para>
+                    <para>a string: the column separator mark.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>decimal</term>
                 <listitem>
-                    <para>a 1-by-1 matrix of strings, the decimal mark. The available
-                        values are "." or ",".
+                    <para>a string: the decimal mark, either "." or ",".
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>precision</term>
                 <listitem>
-                    <para>a 1-by-1 matrix of strings, the C format.</para>
+                    <para>a string: the C format.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>comments</term>
+                <term>header</term>
                 <listitem>
-                    <para>a m-by-1 matrix of strings, the comments stored at the
-                        beginning of the file. This option may be used, for example, to put
-                        a licence header in a data file.
+                    <para>
+                        a vector of text: the header written as a column of text
+                        at the beginning of the file, before actual data.
                     </para>
                 </listitem>
             </varlistentry>
@@ -137,11 +135,11 @@ mgetl(filename)
 csvWrite(M, filename,[],[],"%.8e");
 mgetl(filename)
 //
-// Configure the comments
-comments = [
+// Configure the header
+header = [
 "// Copyright (C) INRIA"
 ];
-csvWrite(M, filename,[],[],[],comments);
+csvWrite(M, filename, [], [],[], header);
 mgetl(filename)
         ]]></programlisting>
         <para>The following examples are more advanced uses of the
@@ -156,8 +154,8 @@ mgetl(filename)
 ];
 
 // Write into a file
-filename=fullfile(TMPDIR,"foo.csv");
-csvWrite ( A , filename );
+filename = fullfile(TMPDIR,"foo.csv");
+csvWrite(A, filename);
 edit(filename)
     ]]></programlisting>
     </refsection>

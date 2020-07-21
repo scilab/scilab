@@ -41,29 +41,31 @@
             <varlistentry>
                 <term>filename</term>
                 <listitem>
-                    <para>a 1-by-1 matrix of strings, the file path.</para>
+                    <para>a single string: the file path.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>separator</term>
                 <listitem>
-                    <para>a 1-by-1 matrix of strings, the field separator used.</para>
+                    <para>a single string: the field separator used.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>decimal</term>
                 <listitem>
-                    <para>a 1-by-1 matrix of strings, the decimal used.</para>
+                    <para>a character: the decimal symbol used in numbers (dot or comma).</para>
                     <para>
-                        If <literal>decimal</literal> is different of <literal>[]</literal> and <literal>conversion</literal> is set to <literal>string</literal>, the decimal conversion will be done.
+                        If <literal>decimal</literal> is different of <literal>[]</literal> and
+                        <literal>conversion</literal> is set to <literal>string</literal>,
+                        the decimal conversion will be done.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>conversion</term>
                 <listitem>
-                    <para>a 1-by-1 matrix of strings, the type of the output
-                        <literal>M</literal>. Available values are "string" or "double" (by default).
+                    <para>"string" or "double" (by default): Specifies the type of the output
+                        <varname>M</varname>.
                     </para>
                     <para>
                         Note that <link linkend="read_csv">read_csv</link> has "string" as default.
@@ -85,44 +87,61 @@
             <varlistentry>
                 <term>regexpcomments</term>
                 <listitem>
-                    <para>a string: a regexp to remove lines which match. (default:
-                        [])
+                    <para>
+                        a string specifying a regular expression (default:  []). Lines of the file
+                        matching the expression are considered as comments.
+                    </para>
+                    <para>
+                        The same character is expected as delimiter at the beginning and at the
+                        end of the string. If it is needed in the expression's body, it must be
+                        escaped with "\" (Here is a
+                       <ulink url="https://www.php.net/manual/en/reference.pcre.pattern.syntax.php">
+                       good online page</ulink> explaining the syntax of regular expressions).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>range</term>
                 <listitem>
-                    <para>a 1-by-4 matrix of floating point integers, the range of rows
-                        and columns which must be read (default range=[], meaning that all
-                        the rows and columns). Specify range using the format <literal>[Row1 Column1 Row2 Column2]
-                        </literal>
-                        where (R1,C1) is the upper left corner of the
-                        data to be read and (R2,C2) is the lower right corner.
-                    </para>
                     <para>
-                        <note>Note that the file has to be correctly formatted. The range will be done in the memory on the parsed elements.</note>
+                        <literal>[firstRow firstColumn lastRow lastColumn]</literal> row vector
+                        of floating point integers, with lastRow ≤ 2e9 and lastColumn ≤ 2e9:
+                        the range of rows and columns selecting
+                        the block of data to be returned. Default [], meaning all data.
+                        The block is selected on <emphasis>actual data</emphasis>, after removing
+                        the header and/or commented rows (when requested).
                     </para>
+                    <note>
+                        To select all rows or/and columns starting from [firstRow, firstCol],
+                        while the total numbers of rows or columns are unknown,
+                        lastRow=2e9 or/and lastColumn=2e9 can be specified (the actual limit is
+                        2<superscript>31</superscript>).
+                    </note>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>header</term>
                 <listitem>
-                    <para>a 1-by-1 matrix of floating point integers, the number of lines to be ignored
-                        at the beginning of the file.
+                    <para>a floating point integer: the number of lines to be skipped
+                        at the beginning of the file, before reading actual data.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>M</term>
                 <listitem>
-                    <para>a m-by-n matrix of strings or double.</para>
+                    <para>
+                         a m-by-n matrix of strings or numbers. Complex numbers are supported.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>comments</term>
                 <listitem>
-                    <para>a m-by-n matrix of strings matched by regexp.</para>
+                  <para>
+                      a column vector of strings: Lines of text matching
+                      <varname>regexpcomments</varname>.
+                  </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -231,32 +250,45 @@ mclose(fd);
 // Read the file and customize the separator
 csvRead ( filename , sep )
         ]]></programlisting>
+        <para/>
         <para>The following script shows how to remove lines with regexp argument
             of the <literal>csvRead</literal> function.
         </para>
         <programlisting role="example"><![CDATA[
 CSV = ["// tata"; ..
-"1,0,0,0,0"; ..
+"1,0,0,0"; ..
 "// titi"; ..
-"0,1,0,0,0"; ..
-"// toto"; ..
-"0,0,1,0,0"; ..
-"// tutu"];
+"0,1,0,0"; ..
+" //  toto"; ..
+"0,0,1,0"; ..
+" tutu // tata"];
 filename = fullfile(TMPDIR , 'foo.csv');
 mputl(CSV, filename);
 
-// remove lines with // @ beginning
-[M, comments] = csvRead(filename, [], [], [], [], '/\/\//')
+// Ignore all lines including "//" and return them as comments:
+[M, comments] = csvRead(filename, [], [], [], [], '!//!')
         ]]></programlisting>
-    </refsection>
-    <refsection>
+           <screen><![CDATA[
+--> [M, comments] = csvRead(filename, [], [], [], [], '!//!')
+ M  =
+   1.   0.   0.   0.
+   0.   1.   0.   0.
+   0.   0.   1.   0.
+
+ comments  =
+  "// tata"
+  "// titi"
+  " //  toto"
+  " tutu // tata"
+]]></screen>
+        <para/>
         <para>Empty field are managed by csvRead</para>
         <programlisting role="example"><![CDATA[
 csvWrite(['1','','3';'','','6'], TMPDIR + "/example.csv")
 csvRead(TMPDIR + "/example.csv", [], [], "string")
 csvRead(TMPDIR + "/example.csv", [], [], "double")
         ]]></programlisting>
-    </refsection>
+        <para/>
     <programlisting role="example"><![CDATA[
 // Define a matrix of strings
 Astr = [
@@ -274,7 +306,7 @@ filename = fullfile(TMPDIR , 'foo.csv');
 sep = ",";
 fd = mopen(filename,'wt');
 for i = 1 : size(Astr,"r")
-        mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
+    mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
 end
 mclose(fd);
 // To see the file: edit(filename)
@@ -287,62 +319,70 @@ filename = fullfile(TMPDIR , 'foo.csv');
 sep = ";";
 fd = mopen(filename,'wt');
 for i = 1 : size(Astr,"r")
-        mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
+    mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
 end
 mclose(fd);
 //
 // Read the file and customize the separator
 csvRead ( filename , sep )
     ]]></programlisting>
-    <refsection>
+        <para/>
         <para>In the following script, the file "filename" is read by blocks of
             5000 rows. The algorithm stops when the number of rows actually read from
             the file differ from 5000, i.e. when the end of the file has been
             reached.
         </para>
-        <programlisting role="example"><![CDATA[blocksize = 5000;
+        <programlisting role="example"><![CDATA[
+blocksize = 5000;
 C1 = 1;
 C2 = 3;
 iblock = 1
-while (%t)
-R1 = (iblock-1) * blocksize + 1;
-R2 = blocksize + R1-1;
-irange = [R1 C1 R2 C2];
-mprintf("Block #%d, rows #%d to #%d\n",iblock,R1,R2);
-tic();
-M=csvRead(filename , [] , [] , [] , [] , [] , irange );
-t = toc();
-nrows = size(M,"r");
-ncols = size(M,"c");
-if ( nrows &gt; 0 ) then
-p = t/(nrows*ncols)*1.e6;
-mprintf("  Actual #rows=%d\n",nrows);
-mprintf("  T=%.3f (s)\n",t);
-mprintf("  T=%.1f (ms/cell)\n",p);
-end
-if ( nrows &lt; blocksize ) then
-mprintf("... End of the file.\n");
-break
-end
-iblock = iblock + 1;
+while %t
+    R1 = (iblock-1) * blocksize + 1;
+    R2 = blocksize + R1-1;
+    irange = [R1 C1 R2 C2];
+    mprintf("\nBlock #%d, rows #%d to #%d\n",iblock,R1,R2);
+    tic();
+    M=csvRead(filename , [] , [] , [] , [] , [] , irange );
+    t = toc();
+    nrows = size(M,"r");
+    ncols = size(M,"c");
+    if ( nrows > 0 ) then
+        p = t/(nrows*ncols)*1.e6;
+        mprintf("  Actual #rows=%d\n",nrows);
+        mprintf("  T=%.3f (s)\n",t);
+        mprintf("  T=%.1f (ms/cell)\n",p);
+    end
+    if ( nrows &lt; blocksize ) then
+        mprintf("... End of the file.\n");
+        break
+    end
+    iblock = iblock + 1;
 end
         ]]></programlisting>
         <para>This produces:</para>
-        <programlisting role="no-scilab-exec"><![CDATA[Block #1, rows #1 to #5000
+        <screen><![CDATA[
+Block #1, rows #1 to #5000
 Actual #rows=5000
-T=3.135 (s)
-T=209.0 (ms/cell)
+T = 3.135 (s)
+T = 209.0 (ms/cell)
+
 Block #2, rows #5001 to #10000
 Actual #rows=5000
-T=3.139 (s)
-T=209.3 (ms/cell)
+T = 3.139 (s)
+T = 209.3 (ms/cell)
+
 Block #3, rows #10001 to #15000
 Actual #rows=5000
-T=3.151 (s)
-T=210.1 (ms/cell)
+T = 3.151 (s)
+T = 210.1 (ms/cell)
+
 etc....
-        ]]></programlisting>
-        Example with range
+]]></screen>
+        <para/>
+        <para>
+            Example with range
+        </para>
         <programlisting role="example"><![CDATA[
 CSV = ["1,0,0,0,0"; ..
 "0,1,0,0,0"; ..
@@ -357,7 +397,10 @@ mputl(CSV, filename);
 // Extract a subset of the csv file
 csvRead(filename, [], [], "double", [], [], [5 3 7 6])
     ]]></programlisting>
-        Example with header
+        <para/>
+        <para>
+            Example with header
+        </para>
         <programlisting role="example"><![CDATA[
 comments = [
 "// Copyright (C) INRIA"];
@@ -380,6 +423,18 @@ header = 2;
             <member>
                 <link linkend="csvDefault">csvDefault</link>
             </member>
+            <member>
+                <link linkend="mgetl">mgetl</link>
+            </member>
+            <member>
+                <link linkend="read">read</link>
+            </member>
+            <member>
+                <link linkend="fscanfMat">fscanfMat</link>
+            </member>
+            <member>
+                <ulink url="https://www.php.net/manual/en/reference.pcre.pattern.syntax.php">Regular expressions: Syntax</ulink>
+            </member>
         </simplelist>
     </refsection>
     <refsection>
@@ -388,19 +443,24 @@ header = 2;
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>
-                    Function introduced. Based on the 'csv_readwrite' module. The only difference in the behavior compared to <link linkend="read_csv">read_csv</link> is that csvRead will try to convert value to double by default when read_csv will return value as string.
+                    Function introduced. Based on the 'csv_readwrite' module.
+                    The only difference in the behavior compared to
+                    <link linkend="read_csv">read_csv</link> is that csvRead will try to
+                    convert value to double by default when read_csv will return value as string.
                 </revremark>
             </revision>
             <revision>
                 <revnumber>5.4.1</revnumber>
                 <revremark>
-                    If <literal>decimal</literal> is different of <literal>[]</literal> and <literal>conversion</literal> is set to <literal>string</literal>, the decimal conversion will be done.
+                    If <literal>decimal</literal> is different of <literal>[]</literal>
+                    and <literal>conversion</literal> is set to <literal>string</literal>,
+                    the decimal conversion will be done.
                 </revremark>
             </revision>
             <revision>
                 <revnumber>5.5</revnumber>
                 <revremark>
-                    Addition of the "header" input argument, to ignore headers.
+                    "header" input argument added.
                 </revremark>
             </revision>
         </revhistory>

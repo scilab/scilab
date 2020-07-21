@@ -286,6 +286,7 @@ Bug Fixes
 * [#12889](https://bugzilla.scilab.org/12889): In the help browser, add a menu allowing to select the language of help pages, regardless of the language of the session.
 * [#13593](https://bugzilla.scilab.org/13593): `csvRead()` did not take the `range` into account when `header` is provided. `[]` could not be used as default `range`.
 * [#13762](https://bugzilla.scilab.org/13762): In the `fft` page, the formula for the inverse FFT missed the 1/n normalization factor.
+* [#13417](https://bugzilla.scilab.org/13417): `csvRead` page did not document the way to use the `range` up to the last row/column.
 * [#14435](https://bugzilla.scilab.org/14435): Errors were not well handled in overloaded functions.
 * [#14488](https://bugzilla.scilab.org/14488): The `frameflag=9` and `strf=".9."` values of these `plot2d` options were no longer accepted. Their documentation was ambiguous.
 * [#14718](https://bugzilla.scilab.org/14718): `user` is removed for a while but was still documented.
