@@ -77,7 +77,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
         }
     }
 
-    if (Rhs == 7)
+    if (Rhs >= 7)
     {
         int m7 = 0, n7 = 0;
 
@@ -87,30 +87,32 @@ int sci_csvRead(char *fname, void* pvApiCtx)
             freeVar(&filename, &separator, &decimal, &conversion, &iRange, &toreplace, 0, &regexp);
             return 0;
         }
+        if (m7 > 0 && n7 > 0)
+        {
+            if ((m7 * n7 != SIZE_RANGE_SUPPORTED) )
+            {
+                freeVar(&filename, &separator, &decimal, &conversion, &iRange, &toreplace, 0, &regexp);
+                Scierror(999, _("%s: Wrong size for input argument #%d: Four entries expected.\n"), fname, 7);
+                return 0;
+            }
 
-        if ((m7 * n7 != SIZE_RANGE_SUPPORTED) )
-        {
-            freeVar(&filename, &separator, &decimal, &conversion, &iRange, &toreplace, 0, &regexp);
-            Scierror(999, _("%s: Wrong size for input argument #%d: Four entries expected.\n"), fname, 7);
-            return 0;
-        }
+            if ((m7 != 1) && (n7 != 1))
+            {
+                freeVar(&filename, &separator, &decimal, &conversion, &iRange, &toreplace, 0, &regexp);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A column or row vector expected.\n"), fname, 7);
+                return 0;
+            }
 
-        if ((m7 != 1) && (n7 != 1))
-        {
-            freeVar(&filename, &separator, &decimal, &conversion, &iRange, &toreplace, 0, &regexp);
-            Scierror(999, _("%s: Wrong size for input argument #%d: A column or row vector expected.\n"), fname, 7);
-            return 0;
-        }
-
-        if (isValidRange(iRange, m7 * n7))
-        {
-            haveRange = 1;
-        }
-        else
-        {
-            freeVar(&filename, &separator, &decimal, &conversion, &iRange, &toreplace, 0, &regexp);
-            Scierror(999, _("%s: Wrong value for input argument #%d: Inconsistent range.\n"), fname, 7);
-            return 0;
+            if (isValidRange(iRange, m7 * n7))
+            {
+                haveRange = 1;
+            }
+            else
+            {
+                freeVar(&filename, &separator, &decimal, &conversion, &iRange, &toreplace, 0, &regexp);
+                Scierror(999, _("%s: Wrong value for input argument #%d: Inconsistent range.\n"), fname, 7);
+                return 0;
+            }
         }
     }
 
