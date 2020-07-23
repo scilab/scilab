@@ -6,15 +6,16 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 12059 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=12059
+// http://bugzilla.scilab.org/12059
 //
 // <-- Short Description -->
 // Index returned by gsort of sparse are wrong.
 //
-indref=[2 6 5 3 4 1 8];
+indref=[2 6 5 3 4 1 8 7];
 [res ind]=gsort(sparse([2 9 6 4 7 8 0 2]));
-assert_checkequal(ind,indref);
+assert_checkequal(ind, indref);

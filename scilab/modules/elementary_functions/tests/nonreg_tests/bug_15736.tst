@@ -16,4 +16,6 @@
 // <-- Short Description -->
 // unique failed with complex numbers.
 
-assert_checkequal(unique([1 %i]),[%i 1]);
+assert_checkequal(unique([%i 1]),[1 %i]);
+
+// Much more tests in unique.tst
