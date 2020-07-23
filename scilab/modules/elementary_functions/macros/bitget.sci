@@ -97,6 +97,7 @@ function z = bitget(x, pos)
             mask = 2 .^ iconvert(pos-1, inttype(x));
             z = iconvert(1 * ((x & mask) > 0),inttype(x));
         else
+            pos = double(pos)
             tmp = x ./ (2 .^ pos);
             z = bool2s((tmp - fix(tmp)) >= 0.5);
             below_eps = pos <= (log2(x)-52);
