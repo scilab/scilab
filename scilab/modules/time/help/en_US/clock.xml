@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,48 +13,123 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="clock">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="clock">
     <refnamediv>
         <refname>clock</refname>
-        <refpurpose>Return current time as date vector</refpurpose>
+        <refpurpose>
+            Return the current Gregorian datetime and international time zone of the computer's clock
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>c = clock()</synopsis>
+        <synopsis>[datetime, timezone, Dst] = clock()</synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>datetime</term>
+                <listitem>
+                    [year, month, day, hour, minute, second] vector.
+                    The first five elements are integers. The <literal>second</literal> element
+                    is accurate up to the millisecond.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>timezone</term>
+                <listitem>
+                    A scalar multiple of 0.25 in [-12, 12]. Most of geographical areas have an
+                    integer time zone. A few are on a half-an-hour or even a quarter time zone.
+                    <varname>timezone</varname> &lt; 0 for Brasil, and > 0 for France, Russia,
+                    and Japan, etc.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Dst</term>
+                <listitem>
+                    0 or 1: Daylight saving time. 1 if the time area of the computer is registered
+                    to apply a Daylight saving time offset, and currently applies it ; 0 otherwise.
+                    <para/>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
         <title>Description</title>
-        <para>c = clock() returns a 6-element date vector containing the current date and time in decimal form:</para>
-        <para>c = [year month day hour minute seconds]</para>
-        <para>the first five elements are integers. The seconds element is accurate to several digits beyond the decimal point.</para>
+        <para>
+            <emphasis role="bold">clock()</emphasis> returns the current state of the clock
+            of the computer. This clock is registered for a given time zone and area, and
+            provides the local legal time.
+        </para>
+        <warning>
+            The time zone of the computer can also be retrieved through the computer's OS.
+            However, when a Daylight saving time offset applies, the returned
+            time zone may include it.
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-clock()
- ]]></programlisting>
+[datetime, tz, Dst] = clock()
+     ]]></programlisting>
+        <screen><![CDATA[
+--> [datetime, tz, Dst] = clock()
+ datetime  =
+   2020.   7.   23.   21.   26.   36.979
+
+ tz  =
+   1.
+
+ Dst  =
+   1.
+]]></screen>
+        <para>
+            More information, on Windows:
+        </para>
+        <programlisting role="example"><![CDATA[
+powershell("Get-Timezone")(3:8)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> powershell("Get-Timezone")(3:8)
+ ans  =
+  "Id                         : Romance Standard Time"
+  "DisplayName                : (UTC+01:00) Bruxelles, Copenhague, Madrid, Paris"
+  "StandardName               : Paris, Madrid"
+  "DaylightName               : Paris, Madrid (heure d'été)"
+  "BaseUtcOffset              : 01:00:00"
+  "SupportsDaylightSavingTime : True"
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="datenum">datenum</link>
+                <link linkend="getdate">getdate</link>
             </member>
             <member>
                 <link linkend="datevec">datevec</link>
             </member>
             <member>
-                <link linkend="timer">timer</link>
+                <link linkend="datenum">datenum</link>
             </member>
             <member>
-                <link linkend="etime">etime</link>
-            </member>
-            <member>
-                <link linkend="tic">tic</link>
-            </member>
-            <member>
-                <link linkend="toc">toc</link>
+                <link linkend="calendar">calendar</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Time zone and Daylight saving time outputs added.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
