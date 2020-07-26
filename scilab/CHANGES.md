@@ -200,9 +200,15 @@ Feature changes and additions
 Help pages:
 -----------
 
+<<<<<<< HEAD
 * overhauled / rewritten: `bitget`, `edit`, `factorial`, `fft`, `vectorfind`, `datafit`
 * fixed / improved:  `bench_run` `M_SWITCH`, `comet`, `comet3d`, `plot2d`
 * Rewritten: `weekday`
+=======
+* overhauled / rewritten: `bitget`, `edit`, `factorial`, `vectorfind`, `datafit`
+* fixed / improved:  `bench_run` `M_SWITCH`, `comet`, `comet3d`
+* Rewritten: `getdate`, `weekday`
+>>>>>>> f051a8e8452... * Bugs 15163 16496 fixed [doc]: getdate() page rewritten
 * Translations added:
   - (ru): `weekday`
 
@@ -288,6 +294,7 @@ Bug Fixes
 * [#14488](https://bugzilla.scilab.org/14488): The `frameflag=9` and `strf=".9."` values of these `plot2d` options were no longer accepted. Their documentation was ambiguous.
 * [#14718](https://bugzilla.scilab.org/14718): `user` is removed for a while but was still documented.
 * [#14873](https://bugzilla.scilab.org/14873): `setfield` page: The output and the 6.0 history were documented only on the en_US version. The input was wrongly restricted to matrices, while any Scilab object is acceptable. The specific role of `setfield` for mlists was not really described nor illustrated. The example did not include any call to setfield.
+* [#15163](https://bugzilla.scilab.org/15163): `getdate` page: The time referential was obscure: a) UTC for Unix Time Convention vs Coordinated Universal Time. b) unclear influence of the time zone.
 * [#15280](https://bugzilla.scilab.org/15280): `gsort` was unable to sort any hypermatrix along dimensions > "r"|"c".
 * [#15839](https://bugzilla.scilab.org/15839): `gsort`: the only sparse possible input were real or complex vectors, and only with the `g` method.
 * [#15842](https://bugzilla.scilab.org/15842): `unique` could not process 2D sparse matrices.
@@ -320,10 +327,10 @@ Bug Fixes
 * [#16465](https://bugzilla.scilab.org/16465): Scinotes OpenRecent menu was not updated when it should.
 * [#16473](https://bugzilla.scilab.org/16473): Deleting rows in a sparse squared the matrix with padding zeros (Scilab 6 regression).
 * [#16474](https://bugzilla.scilab.org/16474): `imult(%z)` crashed Scilab.
+* [#16496](https://bugzilla.scilab.org/16496): The `getdate` page should be rewritten: a) `getdate("s")` does NOT take leap seconds into account. b) `D=getdate(X)` is vectorized, accepts fractional seconds and returns them in [0,1) in D(10) instead of milliseconds. Moreover, the time referential of the result was unclear (time zone, daylight saving offset).
 * [#16517](https://bugzilla.scilab.org/16517): `getdate("s")` truncated the actual time to integer seconds. `getdate(u)(10)` returned fractional seconds instead of milliseconds as `getdate()`.
 * [#16522](https://bugzilla.scilab.org/16522): `bitget(x,pos)` and `bitset(x,pos)` results could be wrong when `pos` is an encoded integer.
 * [#16525](https://bugzilla.scilab.org/16525): `soundsec(t,freq)` has the trivial equivalence `0 : 1/freq : t*(1-%eps)` and should be removed.
-
 
 
 ### Bugs fixed in 6.1.0:
