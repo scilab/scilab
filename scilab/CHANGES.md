@@ -319,8 +319,10 @@ Bug Fixes
 * [#16465](https://bugzilla.scilab.org/16465): Scinotes OpenRecent menu was not updated when it should.
 * [#16473](https://bugzilla.scilab.org/16473): Deleting rows in a sparse squared the matrix with padding zeros (Scilab 6 regression).
 * [#16474](https://bugzilla.scilab.org/16474): `imult(%z)` crashed Scilab.
+* [#16517](https://bugzilla.scilab.org/16517): `getdate("s")` truncated the actual time to integer seconds. `getdate(u)(10)` returned fractional seconds instead of milliseconds as `getdate()`.
 * [#16522](https://bugzilla.scilab.org/16522): `bitget(x,pos)` and `bitset(x,pos)` results could be wrong when `pos` is an encoded integer.
 * [#16525](https://bugzilla.scilab.org/16525): `soundsec(t,freq)` has the trivial equivalence `0 : 1/freq : t*(1-%eps)` and should be removed.
+
 
 
 ### Bugs fixed in 6.1.0:

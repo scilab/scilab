@@ -103,17 +103,29 @@ double *getCurrentDateAsDoubleVector(int *iErr)
 double getCurrentDateAsUnixTimeConvention(void)
 {
     double dValue = 0.;
+    double milliseconds = 0.;
 #ifdef _MSC_VER
     /* manages date  up through 23:59:59, December 31, 3000 */
     /* previous version was limited to  19:14:07 January 18, 2038, UTC. */
     struct __timeb64 tstruct;
     _ftime64(&tstruct);
     dValue = (double)tstruct.time;
+
+    milliseconds = (double)(tstruct.millitm);
 #else
     time_t t;
     time(&t);
     dValue = (double)t;
+
+    struct timeval timebuffer;
+    gettimeofday(&timebuffer, NULL);
+    milliseconds = (double)(timebuffer.tv_usec / 1000);  /* micro to ms */
 #endif
+    if (milliseconds < 0)
+    {
+        milliseconds = 0.;
+    }
+    dValue = dValue + milliseconds / 1000;
 
     if (dValue < 0.)
     {
@@ -137,7 +149,7 @@ double * getConvertedDateAsDoubleVector(double dDate, int *iErr)
         time_t instantT = (time_t)dDate;
         tstruct = localtime(&instantT);
 #endif
-        milliseconds = dDate - (double)instantT;
+        milliseconds = (dDate - (double)instantT) * 1000;
         if (milliseconds > 0)
         {
             if (milliseconds > 999)
