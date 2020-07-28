@@ -78,13 +78,13 @@
         <para>
             If <literal>flag1='SRT'</literal> (default value), returns the "full" augmented plant
         </para>
-        <programlisting role=""><![CDATA[
-    [ I | -G]   -->'S'
-    [ 0 |  I]   -->'R'
-P = [ 0 |  G]   -->'T'
+        <screen><![CDATA[
+    [ I | -G]   ⇒ 'S'
+    [ 0 |  I]   ⇒ 'R'
+P = [ 0 |  G]   ⇒ 'T'
     [-------]
     [ I | -G]
- ]]></programlisting>
+]]></screen>
         <para>
             <literal> 'S' </literal>, <literal> 'R' </literal>, <literal> 'T' </literal> refer to the first three (block) rows
             of <literal>P</literal> respectively.
@@ -100,13 +100,13 @@ P = [ 0 |  G]   -->'T'
         <para>
             The augmented plant associated with input sensitivity functions, namely
         </para>
-        <programlisting role=""><![CDATA[
-    [ I | -I]   -->'S'  (input sensitivity)
-    [ G | -G]   -->'R'  (G*input sensitivity)
-P = [ 0 |  I]   -->'T'  (K*G*input sensitivity)
+        <screen><![CDATA[
+    [ I | -I]   ⇒ 'S'  (input sensitivity)
+    [ G | -G]   ⇒ 'R'  (K*input sensitivity)
+P = [ 0 |  I]   ⇒ 'T'  (K*G*input sensitivity)
     [-------]
     [ G | -G]
-    ]]></programlisting>
+]]></screen>
         <para>
             is obtained by the command <literal>[P,r]=augment(G,flag,'i')</literal>. For
             state-space <literal>G</literal>, this <literal>P</literal>
@@ -133,21 +133,25 @@ P = [ 0 |  I]   -->'T'  (K*G*input sensitivity)
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-G=ssrand(2,3,2); //Plant
-K=ssrand(3,2,2); //Compensator
-[P,r]=augment(G,'T');
-T=lft(P,r,K);   //Complementary sensitivity function
-Ktf=ss2tf(K);Gtf=ss2tf(G);
-Ttf=ss2tf(T);T11=Ttf(1,1);
-Oloop=Gtf*Ktf;
-Tn=Oloop*inv(eye(Oloop)+Oloop);
-clean(T11-Tn(1,1));
+G = ssrand(2,3,2); // Plant
+K = ssrand(3,2,2); // Compensator
+[P,r] = augment(G,'T');
+T = lft(P,r,K);    // Complementary sensitivity function
+Ktf = ss2tf(K);
+Gtf = ss2tf(G);
+Ttf = ss2tf(T);
+T11 = Ttf(1,1);
+Oloop = Gtf * Ktf;
+Tn = Oloop * inv(eye(Oloop)+Oloop);
+clean(T11 - Tn(1,1));
+
 //
-[Pi,r]=augment(G,'T','i');
-T1=lft(Pi,r,K);T1tf=ss2tf(T1); //Input Complementary sensitivity function
-Oloop=Ktf*Gtf;
-T1n=Oloop*inv(eye(Oloop)+Oloop);
-clean(T1tf(1,1)-T1n(1,1))
+[Pi,r] = augment(G,'T','i');
+T1 = lft(Pi,r,K);
+T1tf = ss2tf(T1);  // Input Complementary sensitivity function
+Oloop = Ktf * Gtf;
+T1n = Oloop * inv(eye(Oloop)+Oloop);
+clean(T1tf(1,1) - T1n(1,1))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

@@ -22,7 +22,9 @@
  * See the file ./license.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcos">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcos">
     <refnamediv>
         <refname>xcos</refname>
         <refpurpose>Block diagram editor and GUI for the hybrid simulator</refpurpose>
@@ -40,13 +42,15 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">filename : </emphasis> a character string containing the path of the diagram file
-                    (.cos, .cosf or .zcos extension). If no input argument is used, an empty diagram is opened (default name Untitled).
+                    <emphasis role="bold">filename : </emphasis> a character string containing
+                    the path of the diagram file (.xcos or .zcos extension). If no input
+                    argument is used, an empty diagram is opened (default name Untitled).
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">scs_m_list : </emphasis>a <emphasis>Xcos</emphasis> diagram structure after edition.
+                    <emphasis role="bold">scs_m_list :</emphasis> a <emphasis>Xcos</emphasis>
+                    diagram structure after edition.
                 </para>
             </listitem>
         </itemizedlist>
@@ -177,11 +181,11 @@ scs_m.objs($+1) = BIGSOM_f("define");
 xcos(scs_m);
  ]]></programlisting>
     </refsection>
-    <refsection id="SeeAlso_xcos">
-        <title role="see also">See also</title>
+    <refsection id="SeeAlso_xcos" role="see also">
+        <title>See also</title>
         <itemizedlist>
             <listitem>
-                <link linkend="scicosim">scicosim</link>
+                <link linkend="scicosim">xcossim</link>
             </listitem>
             <listitem>
                 <link linkend="scicos_simulate">scicos_simulate</link>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="grid_layout_options_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="grid_layout_options_properties">
     <refnamediv>
         <refname>grid配置オプションプロパティ</refname>
         <refpurpose>grid配置オプションプロパティの説明.</refpurpose>
@@ -19,18 +21,13 @@
                 <term>size</term>
                 <listitem>
                     <para>
-                        <literal>[width, heigth]</literal> 1行2列double行列,
-                        デフォルトは [0,0]
-                    </para>
-                    <para>
-                        要素におけるグリッドの
-                        <literal>width</literal> および <literal>heigth</literal>
-                        (ピクセルではない).
+                        1×2 vector [nRows, nCols]: The numbers of rows and columns of cells
+                        (not of pixels) of the grid. [0,0] by default.
                     </para>
                     <para>
                         グリッドの行または列上の要素数を規定しない
-                        <literal>width</literal> または <literal>heigth</literal>
-                        のどちらかにの値を 0　にする.
+                        nRows または nCols
+                        のどちらかにの値を -1　にする.
                     </para>
                 </listitem>
             </varlistentry>

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
  *
@@ -19,249 +18,129 @@
  *
  * See the file ./license.txt
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="xcos">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="xcos">
     <refnamediv>
-
         <refname>xcos</refname>
-
         <refpurpose>ハイブリッドシミュレータ用のブロック図エディタおよびGUI</refpurpose>
-
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
         <synopsis>
-
             xcos()
-
             xcos(filename)
-
             xcos(scs_m_list)
-
         </synopsis>
-
     </refsynopsisdiv>
-
     <refsection id="Parameters_xcos">
-
         <title>引数</title>
-
         <itemizedlist>
-
             <listitem>
-
                 <para>
-
                     <emphasis role="bold">filename : </emphasis>
-
-                    ダイアログファイル (拡張子: .cos, .cosf または .zcos)のパスを有する文字列.
-
+                    ダイアログファイル (拡張子: .xcos または .zcos)のパスを有する文字列.
                     入力引数が使用されない場合,
-
                     空のダイアグラムがオープンされます
-
                     (デフォルト名: Untitled).
-
                 </para>
-
             </listitem>
-
             <listitem>
-
                 <para>
-
                     <emphasis role="bold">scs_m_list : </emphasis>
-
                     編集後の<emphasis>Xcos</emphasis>ダイアグラム構造体.
-
                 </para>
-
             </listitem>
-
         </itemizedlist>
-
     </refsection>
-
     <refsection id="Description_xcos">
-
         <title>説明</title>
-
         <para>
-
             <emphasis>Xcos</emphasis>はハイブリッド動的システムのモデル構築用の
-
             ビジュアルエディタです.
-
             モデルは, <emphasis>Xcos</emphasis> のGUIにより,
-
             結合, 読み込み, 保存, コンパイル, シミュレートできます.
-
             <emphasis>Xcos</emphasis>は様々なブロックダイアグラムコンパイラおよびハイブリッドシミュレータ
-
             <link linkend="scicosim">scicosim</link>へのインターフェイスとして動作します.
-
         </para>
-
         <para>
-
             <emphasis>Xcos</emphasis>環境には以下の要素があります:
-
         </para>
-
         <itemizedlist>
-
             <listitem>
-
                 <para>
-
                     <emphasis role="bold">エディタ</emphasis>
-
                 </para>
-
                 <para>
-
                     エディタにより,パレットで定義されたブロックから動的システムを表す
-
                     フローチャートを設計することが可能となります.
-
                     ユーザは標準ブロックをカスタマイズして, 新しいブロックを定義できます.
-
                 </para>
-
                 <para/>
-
             </listitem>
-
             <listitem>
-
                 <para>
-
                     <emphasis role="bold">パレットブラウザ</emphasis>
-
                 </para>
-
                 <para>
-
                     パレットブラウザは, 全ての Xcos 標準ブロックを
-
                     カテゴリ(信号処理, 電気, 水力, 微分, 積分, 等)によりグループ化して一覧を示します.
-
                     以下の図を参照ください.
-
                 </para>
-
                 <para/>
-
             </listitem>
-
             <listitem>
-
                 <para>
-
                     <emphasis role="bold">コンパイラ/シミュレータ</emphasis>
-
                 </para>
-
                 <para>
-
                     Xcos 環境により,
-
                     離散, 連続, シンボル方程式(Modelica)により定義された,等, および
-
                     上記の機能を組み合わせた混合システムの
-
                     複雑なシステムのモデル構築からシミュレーションまでが可能になります.
-
                     シミュレーションの結果のデータはリアルタイムでグラフィック表示でき,
-
                     Scilabでポスト処理に使用することができます.
-
                 </para>
-
             </listitem>
-
         </itemizedlist>
-
         <para/>
-
         <para>
-
             ツールバーアイコンでxcosを起動するには,
-
             <inlinemediaobject>
-
                 <imageobject>
-
                     <imagedata fileref="../../../gui/images/icons/32x32/apps/utilities-system-monitor.png"/>
-
                 </imageobject>
-
             </inlinemediaobject>
-
             Scilabメインウインドウの<emphasis>アプリケーション</emphasis>の
-
             <emphasis>Xcos</emphasis>メニュー要素,または,
-
             空の<emphasis>Xcos</emphasis>ウインドウをオープンする以下の例のようにします.
-
         </para>
-
         <para/>
-
         <programlisting role="example">
-
             xcos
-
         </programlisting>
-
         <para/>
-
         <mediaobject>
-
             <imageobject>
-
                 <imagedata fileref="../gui/xcos/en_US/xcos_gui.png"/>
-
             </imageobject>
-
         </mediaobject>
-
         <para>
-
             既存のダイアグラムをオープンするには,この例のように
-
             有効なファイル名を指定する必要があります:
-
         </para>
-
         <para/>
-
         <programlisting role="example"><![CDATA[xcos("SCI/modules/xcos/demos/bounce.zcos")]]></programlisting>
-
         <para>
-
             この例では,<emphasis>Xcos</emphasis>ウインドウがオープンされ,
-
             <emphasis>bounce.zcos</emphasis>デモのダイアグラムが表示されます.
-
         </para>
-
         <para/>
-
         <para>
-
             あるダイアグラム構造体が <emphasis>Scilab</emphasis>ワークスペースに存在する場合,
-
             この例のようにオープンすることができます:
-
         </para>
-
         <para/>
-
         <programlisting role="example"><![CDATA[
 loadXcosLibs();
 
@@ -272,83 +151,44 @@ scs_m.objs(1) = SUMMATION("define");
 scs_m.objs(1).graphics.sz = [30 50];
 
 xcos(scs_m);]]></programlisting>
-
         <para>
-
             ただし,<emphasis>scs_m</emphasis> は<emphasis>bounce.zcos</emphasis>のダイアグラム構造体です.
-
         </para>
-
         <para>
-
             <emphasis>Xcos</emphasis> エディタと同時に開いた
-
             パレットブラウザで提供されるブロックを結合することにより
-
             モデルを構築します.
-
             このウインドウは以下のような外観になります.
-
         </para>
-
         <para/>
-
         <mediaobject>
-
             <imageobject>
-
                 <imagedata fileref="../gui/xcos/en_US/xcos_palette_gui.png"/>
-
             </imageobject>
-
         </mediaobject>
-
         <para/>
-
         <para>
-
             ウインドウの左の部分にある <emphasis>パレット</emphasis> タイトルを
-
             クリックすることにより表示されるパレットをカスタマイズすることができます.
-
             パレットウインドウは,パレットを個別に選択/非選択できる選択リストを表示します.
-
             前の画面に戻るには, パレットのタイトルをクリックします.
-
         </para>
-
         <para/>
-
         <mediaobject>
-
             <imageobject>
-
                 <imagedata fileref="../gui/xcos/en_US/xcos_palette_select_gui.png"/>
-
             </imageobject>
-
         </mediaobject>
-
         <para>
-
             Xcos はModelicaに基づくモデル用,およびユーザ定義のブロックおよびコード生成用に
-
             Cコンパイラを必要とします.
-
         </para>
-
         <para>
-
             サポートされるコンパイラをインストールすることが推奨されます.
-
         </para>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
-
         <programlisting role="example"><![CDATA[
 xcos();
 xcos(SCI+"/modules/xcos/demos/Discrete-KalmanFilter.zcos");
@@ -356,42 +196,22 @@ scs_m = scicos_diagram();
 scs_m.objs($+1) = BIGSOM_f("define");
 xcos(scs_m);
  ]]></programlisting>
-
     </refsection>
-
-    <refsection id="SeeAlso_xcos">
-
-        <title role="see also">参照</title>
-
+    <refsection id="SeeAlso_xcos" role="see also">
+        <title>参照</title>
         <itemizedlist>
-
             <listitem>
-
-                <link linkend="scicosim">scicosim</link>
-
+                <link linkend="scicosim">xcossim</link>
             </listitem>
-
             <listitem>
-
                 <link linkend="scicos_simulate">scicos_simulate</link>
-
             </listitem>
-
             <listitem>
-
                 <link linkend="xcos_menu_entries">Menu entries</link>
-
             </listitem>
-
             <listitem>
-
                 <link linkend="supported_compilers">Supported compilers</link>
-
             </listitem>
-
         </itemizedlist>
-
     </refsection>
-
 </refentry>
-

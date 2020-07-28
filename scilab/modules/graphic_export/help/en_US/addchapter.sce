@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Graphics : exporting and printing",SCI+"/modules/graphic_export/help/en_US",%T);
+add_help_chapter("Graphics export",SCI+"/modules/graphic_export/help/en_US",%T);
 

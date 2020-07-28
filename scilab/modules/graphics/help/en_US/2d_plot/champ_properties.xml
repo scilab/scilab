@@ -13,7 +13,9 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="champ_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="champ_properties">
     <refnamediv>
         <refname>champ properties</refname>
         <refpurpose>description of the 2D vector
@@ -45,7 +47,7 @@
                         This field defines a <literal>tlist</literal> data structure of type
                         <literal>"champdata"</literal> composed of a row and column indices of each
                         element : the x and y grid coordinates are contained respectively in
-                        <literal>data.x </literal>and <literal>data.y</literal>. The complementary fields
+                        <literal>data.x </literal> and <literal>data.y</literal>. The complementary fields
                         named <literal>data.fx</literal> and <literal>data.fy</literal> are matrices which
                         describe respectively the <literal>x</literal> and <literal>y</literal> component
                         of the vector field at point <literal>(x(i),y(j))</literal>.
@@ -65,7 +67,7 @@
                 <listitem>
                     <para>
                         The <literal>line_style</literal> property value should be an integer in
-                        [1 8]. 1 stands for solid, the other value stands for a selection of
+                        [1 10]. 1 stands for solid, the other value stands for a selection of
                         dashes (see <link linkend="axes_properties">getlinestyle</link>).
                     </para>
                 </listitem>
@@ -94,16 +96,19 @@
                 <term>arrow_size: </term>
                 <listitem>
                     <para>
-                        This property is a double specifying the size of the arrow. The value can be positive or negative:
+                        This property is a double specifying the size of the arrow.
+                        The value can be positive or negative:
                         <itemizedlist>
                             <listitem>
                                 <para>
-                                    <literal>arrow_size &lt; 0</literal>: the arrow_size is proportional to the average norm of the vectors.
+                                    <literal>arrow_size &lt; 0</literal>: the arrows size
+                                    is proportional to the average norm of the vectors.
                                 </para>
                             </listitem>
                             <listitem>
                                 <para>
-                                    <literal>arrow_size &gt; 0</literal>: the arrow_size is proportional to the windows dimensions.
+                                    <literal>arrow_size &gt; 0</literal>: the arrows size
+                                    is proportional to the windows dimensions.
                                 </para>
                             </listitem>
                         </itemizedlist>
@@ -165,17 +170,14 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-a=get("current_axes");//get the handle of the newly created axes
-a.data_bounds=[-10,-10;10,10];
-champ(-5:5,-5:5,rand(11,11),rand(11,11))
+a = get("current_axes");   // get the handle of the newly created axes
+a.data_bounds = [-10,-10 ; 10,10];
+champ(-5:5, -5:5, rand(11,11), rand(11,11))
 
-c=a.children
-
-c.colored="on";
-c.thickness=2;
-c.arrow_size=-1;
-c.data // display the tlist of type "scichampdata"
-a.data_bounds=[-5,-5;5,5];
+c = a.children
+set(c, "colored","on", "thickness",2, "arrow_size",-1);
+c.data    // display the tlist of type "champdata"
+a.data_bounds = [-5,-5 ; 5,5];
  ]]></programlisting>
         <scilab:image><![CDATA[
         a=get("current_axes");

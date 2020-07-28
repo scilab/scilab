@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mprintf" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="mprintf" xml:lang="ja">
     <refnamediv>
         <refname>mprintf</refname>
         <refpurpose>
@@ -42,7 +45,8 @@
                     <para>
                         残りのオペランドを書く際のフォーマットを定義するScilab文字列.
                         formatオペランドは,C言語のprintfのformatオペランドと
-                        構文にできるだけ近くなるよう作成されています.
+                        構文にできるだけ近くなるよう作成されています, as described in the
+                        <link linkend="printf_conversion">printf_conversion</link> page.
                     </para>
                 </listitem>
             </varlistentry>
