@@ -246,7 +246,7 @@ c             stockage si c'est la plus petite valeur
   190 gl2=gl2+(scale(i)*gb(i))**2
       if (gl2.ge.gl1) go to 220
   200 isfv=3
-      f=fb
+      f(1)=fb
       do 210 i=1,n
       x(i)=xb(i)
   210 g(i)=gb(i)
