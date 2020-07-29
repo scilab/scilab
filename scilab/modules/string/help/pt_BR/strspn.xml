@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,36 +13,31 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strspn" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="strspn" xml:lang="pt">
     <refnamediv>
         <refname>strspn</refname>
-        <refpurpose>retorna a extensão do conjunto de caracteres no
-            string
+        <refpurpose>
+            comprimentos do início dos textos, desde que os caracteres estejam entre os permitidos
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>res = strspn(str1,str2)</synopsis>
+        <synopsis>headsLengths = strspn(Texts, allowedChars)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
-                <term>str1</term>
+                <term>Texts, allowedChars, headsLengths</term>
                 <listitem>
-                    <para>string ou matriz de strings</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>str2</term>
-                <listitem>
-                    <para>string ou matriz de strings</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>res</term>
-                <listitem>
-                    <para>matriz</para>
+                    <para>
+                        Matrices of texts, of identical dimensions.
+                        <varname>allowedChars</varname> can be a scalar string.
+                        It is then used for all <varname>Texts</varname> components.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -50,27 +45,91 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            <literal>res = strspn(str1,str2)</literal> retorna o comprimento da
-            porção inicial de str1 que consiste apenas de caracteres que fazem parte
-            de str2.
-        </para>
-        <para>str2 deve ter as mesmas dimensões que str2, ou str1 pode ser um
-            string.
+            <literal>headsLengths = strspn(Texts,allowedChars)</literal> retorna o comprimento da
+            porção inicial de <varname>Texts</varname> que consiste apenas de caracteres que
+            fazem parte de <varname>allowedChars</varname>.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-i = strspn("129o","1234567890");
-mprintf ("O comprimento do numero inicial e %d.\n",i);
-i = strspn(["129o","130o"],["1234567890","130o"])
+allowed = "0":"9"
+strspn("129th or the 130th", allowed)
+
+t = ["characters" "matrix" ; "text" "strings"]
+allowed = "a":"s"
+strspn(t, allowed)
+
+allowed = ["a":"j", "a":"u" ; "d":"u", "g":"v"]
+strspn(t, allowed)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> allowed = "0":"9"
+ allowed  =
+  "0123456789"
+
+--> strspn("129th or the 130th", allowed)
+ ans  =
+   3.
+
+
+--> t = ["characters" "matrix" ; "text" "strings"]
+ t  =
+  "characters"  "matrix"
+  "text"        "strings"
+
+--> allowed = "a":"s"
+ allowed  =
+  "abcdefghijklmnopqrs"
+--> strspn(t, allowed)
+ ans  =
+   6.   2.
+   0.   1.
+
+--> allowed = ["a":"j", "a":"u" ; "d":"u", "g":"v"]
+ allowed  =
+  "abcdefghij"          "abcdefghijklmnopqrstu"
+  "defghijklmnopqrstu"  "ghijklmnopqrstuv"
+
+--> strspn(t, allowed)
+ ans  =
+   3.   5.
+   2.   7.
+]]></screen>
+        <para>
+            With UTF-8 extended characters:
+        </para>
+        <programlisting role="example"><![CDATA[
+t = "Να αμφιβάλλετε τα πάντα ή να μην αμφιβάλλετε τίποτα: " + ..
+    "δύο ίσοι τρόποι αποφυγής σκέψης.";
+t = matrix(strsplit(t," "), 2,-1)
+allowed = "Ναβγδεϵζηθικλμνξοπρστυφϕχψωϐϑϰϱςϖ";
+strspn(t, allowed)
  ]]></programlisting>
+        <screen><![CDATA[
+--> t = matrix(strsplit(t," "), 2,-1)
+ t  =
+  "Να"           "τα"     "ή"   "μην"          "τίποτα:"  "ίσοι"    "αποφυγής"
+  "αμφιβάλλετε"  "πάντα"  "να"  "αμφιβάλλετε"  "δύο"      "τρόποι"  "σκέψης."
+
+--> allowed = "Ναβγδεϵζηθικλμνξοπρστυφϕχψωϐϑϰϱςϖ";
+--> strspn(t, allowed)
+ ans  =
+   2.   2.   0.   3.   1.   0.   6.
+   5.   1.   2.   5.   1.   2.   2.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
                 <link linkend="strcspn">strcspn</link>
+            </member>
+            <member>
+                <link linkend="strncpy">strncpy</link>
+            </member>
+            <member>
+                <link linkend="part">part</link>
             </member>
         </simplelist>
     </refsection>

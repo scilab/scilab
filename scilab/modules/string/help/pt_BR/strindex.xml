@@ -13,15 +13,19 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strindex" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="strindex" xml:lang="pt">
     <refnamediv>
         <refname>strindex</refname>
         <refpurpose>procura posição de um string em outro</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>ind=strindex(haystack,needle,[flag])
-            [ind,which]=strindex(haystack,needle,[flag])
+        <synopsis>
+            [ind, which] = strindex(haystack, needle)
+            [ind, which] = strindex(haystack, needle, "regexp")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -56,9 +60,11 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>"regexp" | "r" flag</term>
                 <listitem>
-                    <para>string ("r" para expressão regular)</para>
+                    <para>Em seguida, os elementos <varname>needle</varname> são usados como
+                      expressões regulares.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>

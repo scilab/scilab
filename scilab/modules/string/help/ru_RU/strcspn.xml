@@ -13,14 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strcspn" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="strcspn" xml:lang="ru">
     <refnamediv>
         <refname>strcspn</refname>
-        <refpurpose>получение интервала до символа в строке</refpurpose>
+        <refpurpose>
+            длины текстов от начала до тех пор, пока не встретится запрещённый символ
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>res = strcspn(string_one, string_two)</synopsis>
+        <synopsis>
+            res = strcspn(string_one, string_two)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>

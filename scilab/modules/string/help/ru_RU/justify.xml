@@ -13,19 +13,18 @@
  * along with this program.
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:svg="http://www.w3.org/2000/svg"
-    xmlns:mml="http://www.w3.org/1998/Math/MathML"
-    xmlns:db="http://docbook.org/ns/docbook"
-        xml:lang="ru" xml:id="justify">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook" xml:lang="ru" xml:id="justify">
     <refnamediv>
         <refname>justify</refname>
-        <refpurpose>выравнивание массива символов</refpurpose>
+        <refpurpose>
+            Выравнивает текст в столбцах по левому краю, центру или правому краю.
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>Tj = justify(T, opt)</synopsis>
+        <synopsis>Tj = justify(T, position)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -45,31 +44,16 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>opt</term>
+                <term>position</term>
                 <listitem>
                     <para>
-                        символьная опция с возможными значениями:
+                      Возможные значения :
+                      <table cellspacing="0" cellpadding="0">
+                        <tr><td><term>'l' или 'left'</term></td><td>: для выравнивания по левому краю</td></tr>
+                        <tr><td><term>'c' или 'center'</term></td><td>: для выравнивания по центру</td></tr>
+                        <tr><td><term>'r' или 'right'</term></td><td>: для выравнивания по правому краю</td></tr>
+                      </table>
                     </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>'r' или 'right'</term>
-                            <listitem>
-                                <para>для выравнивания по правому краю;</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>'l' или 'left'</term>
-                            <listitem>
-                                <para>для выравнивания по левому краю;</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>'c' или 'center'</term>
-                            <listitem>
-                                <para>для выравнивания по центру.</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -77,7 +61,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>justify</function> выравнивает столбцы матрицы строк в соответствии с заданной опцией <varname>opt</varname>.
+            Функция <function>justify</function> выравнивает столбцы матрицы строк в соответствии
+            с заданной значением <varname>position</varname>.
         </para>
     </refsection>
     <refsection>

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,109 +13,122 @@
  * along with this program.
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="isascii">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"  xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="isascii">
     <refnamediv>
-
         <refname>isascii</refname>
-
         <refpurpose>文字が7ビットUS-ASCII文字であるかどうかを確認する</refpurpose>
-
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
         <synopsis>res = isascii(str)</synopsis>
-
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
                 <term>str</term>
-
                 <listitem>
-
                     <para>文字列または整数の配列.</para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>res</term>
-
                 <listitem>
-
                     <para>論理値行列.</para>
-
                 </listitem>
-
             </varlistentry>
-
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
         <para>
-
             <code>res = isascii(str)</code>は,
-
             <varname>str</varname>のエントリが
-
             0および8進数表現で0177の間の7ビットUS-ASCII文字コード
-
             (または<varname>str</varname>のエントリが7ビットUS-ASCII文字列)
-
             の場合に<constant>%t</constant> (TRUE),
-
             それ以外の場合に <constant>%f</constant> (FALSE).
-
         </para>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
-
         <programlisting role="example"><![CDATA[
-letters = [115.    99.    105.    108.    97.    98.]
-isascii(letters)
-ascii(letters)
-isascii('scilab')
- ]]></programlisting>
+isascii("Señor")
 
+nt = ascii("Señor")
+isascii(nt)
+
+t = "We know that γ² = 1/(1-β²)";
+isascii(t)
+part(t, find(~isascii(t)))
+     ]]></programlisting>
+        <screen><![CDATA[
+--> isascii("Señor")
+ ans  =
+  T T F T T
+
+--> nt = ascii("Señor")
+ nt  =
+   83.   101.   195.   177.   111.   114.
+
+--> isascii(nt)
+ ans  =
+  T T F F T T
+
+
+--> t = "We know that γ² = 1/(1-β²)";
+--> isascii(t)
+ ans  =
+  T T T T T T T T T T T T T F F T T T T T T T T F F T
+
+--> part(t, find(~isascii(t)))
+ ans  =
+  "γ²β²"
+]]></screen>
+        <para>
+            Tabs, New lines, etc are special but anyway US-ascii characters.
+            Non-breakable spaces char(160) are not US-ascii:
+        </para>
+        <programlisting role="example"><![CDATA[
+t = "a" + char(160) + "b" + ascii(9) + " EOL:" + ascii(10) + "Next"
+isascii(t)
+ascii(t)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> t = "a" + char(160) + "b" + ascii(9) + " EOL:" + ascii(10) + "Next"
+ t  =
+  "a b	 EOL:
+Next"
+
+--> isascii(t)
+ ans  =
+  T F T T T T T T T T T T T T
+
+--> ascii(t)
+ ans  =
+   97.  194.  160.  98.  9.  32.  69.  79.  76.  58.  10.  78.  101.  120.  116.
+]]></screen>
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
-                <link linkend="isalphanum">isalphanum</link>
-
+                <link linkend="ascii">ascii</link>
             </member>
-
+            <member>
+                <link linkend="isalphanum">isalphanum</link>
+            </member>
+            <member>
+                <link linkend="isdigit">isdigit</link>
+            </member>
+            <member>
+                <link linkend="isletter">isletter</link>
+            </member>
+            <member>
+                <link linkend="isnum">isnum</link>
+            </member>
         </simplelist>
-
     </refsection>
-
 </refentry>
-

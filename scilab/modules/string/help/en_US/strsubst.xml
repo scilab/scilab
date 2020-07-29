@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strsubst" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="strsubst" xml:lang="en">
     <refnamediv>
         <refname>strsubst</refname>
         <refpurpose>
@@ -24,7 +27,7 @@
         <title>Syntax</title>
         <synopsis>
             string_out = strsubst(string_in, searchStr, replaceStr)
-            string_out = strsubst(string_in, searchStr, replaceStr, [flag])
+            string_out = strsubst(string_in, searchStr, replaceStr, "regexp")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -67,10 +70,10 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>"regexp" | "r" flag</term>
                 <listitem>
                     <para>
-                        a character (<literal>"r"</literal> for regular expression).
+                        Then <varname>searchStr</varname> is used as a regular expression.
                     </para>
                 </listitem>
             </varlistentry>

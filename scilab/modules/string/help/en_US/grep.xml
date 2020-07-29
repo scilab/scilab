@@ -13,17 +13,19 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="grep" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="grep" xml:lang="en">
     <refnamediv>
         <refname>grep</refname>
         <refpurpose>find matches of a string in a vector of strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>row = grep(haystack, needle )
+        <synopsis>
             [row, which] = grep(haystack, needle )
-            row = grep(haystack, needle, [flag])
-            [row, which] = grep(haystack, needle, [flag])
+            [row, which] = grep(haystack, needle, "regexp" )
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -63,10 +65,11 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>"regexp" | "r" flag</term>
                 <listitem>
                     <para>
-                        a character (<literal>"r"</literal> for regular expression).
+                        single character: Then <varname>needle</varname> elements are used as
+                        <emphasis role="bold">r</emphasis>egular expressions.
                     </para>
                 </listitem>
             </varlistentry>
@@ -93,7 +96,8 @@
         </para>
     </refsection>
     <refsection>
-        <title>Example #1</title>
+        <title>Examples</title>
+        <para><emphasis role="bold">Example #1</emphasis></para>
         <para>
             In the following example, we search one or two strings in a text,
             which is stored in the <varname>txt</varname> variable.
@@ -108,9 +112,9 @@ grep(txt,['strings' 'Strings'])
 
 [r,w]=grep(txt,['strings' 'Strings'])
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>Example #2</title>
+        <para/>
+
+        <para><emphasis role="bold">Example #2</emphasis></para>
         <para>In the following example, we perform regexp searches.</para>
         <programlisting role="example"><![CDATA[
 str = ["hat";"cat";"hhat";"chat";"hcat";"ccchat";"at";"dog"]
@@ -128,6 +132,12 @@ grep(str,'/cat|dog/','r')
             </member>
             <member>
                 <link linkend="regexp">regexp</link>
+            </member>
+            <member>
+                <link linkend="find">find</link>
+            </member>
+            <member>
+                <link linkend="vectorfind">vectorfind</link>
             </member>
         </simplelist>
     </refsection>

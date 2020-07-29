@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strcmp" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="strcmp" xml:lang="ru">
     <refnamediv>
         <refname>strcmp</refname>
         <refpurpose>сравнение символьных строк</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>res = strcmp(string_one, string_two, ['i'])</synopsis>
+        <synopsis>
+            res = strcmp(string_one, string_two)
+            res = strcmp(string_one, string_two, "i")
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -66,7 +72,9 @@
             интегральное значение, указывающее отношение между строками.
         </para>
         <para>
-            Значение больше нуля указывает, что первый символ, который не соответствует, имеет большее значение в <varname>string_one</varname>, чем в <varname>string_two</varname>, а значение меньше нуля указывает обратное.
+            Значение больше нуля указывает, что первый символ, который не соответствует, имеет большее
+            значение в <varname>string_one</varname>, чем в <varname>string_two</varname>, а значение
+            меньше нуля указывает обратное.
         </para>
         <para>
             Значение равное нулю указывает на то, что

@@ -13,15 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strcat" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="strcat" xml:lang="pt">
     <refnamediv>
         <refname>strcat</refname>
         <refpurpose>concatena strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>txt=strcat(vector_of_strings [,string_added])
-            txt=strcat(vector_of_strings [,string_added, ["flag"]])
+        <synopsis>
+            txt = strcat(strings)
+            txt = strcat(strings, string_added)
+            txt = strcat(strings, string_added, "r")
+            txt = strcat(strings, string_added, "c")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -48,10 +54,12 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"flag"</term>
+                <term>"r" | "c" flag</term>
                 <listitem>
-                    <para>string ( "r" para retornar uma matriz linha, "c" para
-                        retornar uma matriz coluna)
+                    <para>
+                        <literal>"r"</literal> cola todas as linhas de cada coluna, no
+                         array <varname> strings </varname>.
+                         <literal>"c"</literal> cola todas as colunas em cada linha.
                     </para>
                 </listitem>
             </varlistentry>
@@ -106,6 +114,12 @@ strcat(m, "", "c")
             </member>
             <member>
                 <link linkend="strings">strings</link>
+            </member>
+            <member>
+                <link linkend="strsplit">strsplit</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets []</link>
             </member>
         </simplelist>
     </refsection>

@@ -13,14 +13,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="justify" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="justify" xml:lang="pt">
     <refnamediv>
         <refname>justify</refname>
-        <refpurpose>justifica um array de caracteres</refpurpose>
+        <refpurpose>Alinha o texto nas colunas à esquerda, centro ou direita</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>Tj=justify(T,opt)</synopsis>
+        <synopsis>Tj = justify(T, position)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -38,29 +41,15 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>opt</term>
+                <term>position</term>
                 <listitem>
-                    <para>opção com possíveis valores</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>'r'</term>
-                            <listitem>
-                                <para>ou 'right' para justificação direita</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>'l'</term>
-                            <listitem>
-                                <para>ou 'left' para justificação esquerda</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>'c'</term>
-                            <listitem>
-                                <para>ou 'center' justificação centrada</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <para>Possíveis valores :
+                        <table cellspacing="0" cellpadding="0">
+                          <tr><td><term>'l' ou 'left'</term></td><td>: justificação esquerda</td></tr>
+                          <tr><td><term>'c' ou 'center'</term></td><td>: justificação centrada</td></tr>
+                          <tr><td><term>'r' ou 'right'</term></td><td>: justificação direita</td></tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -69,7 +58,7 @@
         <title>Descrição</title>
         <para>
             <literal>justify</literal> justifica a coluna de uma matriz de
-            strings de acordo com a opção dada.
+            strings de acordo com o <varname>position</varname>.
         </para>
     </refsection>
     <refsection>

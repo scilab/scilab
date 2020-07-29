@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -14,31 +13,21 @@
  * along with this program.
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="grep" xml:lang="ja">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="grep" xml:lang="ja">
     <refnamediv>
-
         <refname>grep</refname>
-
         <refpurpose>文字列のベクトルの中で指定した文字列に一致するかどうかを調べる</refpurpose>
-
     </refnamediv>
 
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
-        <synopsis>row=grep(haystack,needle )
-
-            [row,which]=grep(haystack,needle )
-
-            row=grep(haystack,needle ,[flag])
-
-            [row,which]=grep(haystack,needle ,[flag])
-
+        <synopsis>
+            [row, which] = grep(haystack, needle )
+            [row, which] = grep(haystack, needle, "regexp" )
         </synopsis>
-
     </refsynopsisdiv>
 
     <refsection>
@@ -113,14 +102,13 @@
 
             <varlistentry>
 
-                <term>flag</term>
+                <term>"regexp" | "r" flag</term>
 
                 <listitem>
-
                     <para>
-                        文字 (正規表現の場合は<literal>"r"</literal>)
+                        single character: Then <varname>needle</varname> elements are used as
+                        <emphasis role="bold">r</emphasis>egular expressions.
                     </para>
-
                 </listitem>
 
             </varlistentry>
@@ -182,17 +170,12 @@
     </refsection>
 
     <refsection>
-
-        <title>例 #1</title>
-
+        <title>例</title>
+        <para><emphasis role="bold">例 #1</emphasis></para>
         <para>
-
             以下の例では,<varname>txt</varname>変数に保存されている
-
             テキスト中で,1つまたは2つの文字列を探します.
-
         </para>
-
         <programlisting role="example"><![CDATA[
 txt=['find matches of a string in a vector of strings'
      'search position of a character string in another string'
@@ -200,45 +183,36 @@ txt=['find matches of a string in a vector of strings'
 grep(txt,'strings')
 grep(txt,['strings' 'Strings'])
 [r,w]=grep(txt,['strings' 'Strings'])
- ]]></programlisting>
+     ]]></programlisting>
+        <para/>
 
-    </refsection>
-
-    <refsection>
-
-        <title>例 #2</title>
-
+        <para><emphasis role="bold">例 #2</emphasis></para>
         <para>以下の例では, 正規表現検索を行ないます.</para>
-
         <programlisting role="example"><![CDATA[
 str = ["hat";"cat";"hhat";"chat";"hcat";"ccchat";"at";"dog"]
 grep(str,'/[hc]+at/','r')
 grep(str,'/[hc]?at/','r')
 grep(str,'/cat|dog/','r')
- ]]></programlisting>
+     ]]></programlisting>
 
     </refsection>
 
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
                 <link linkend="strindex">strindex</link>
-
             </member>
-
             <member>
-
                 <link linkend="regexp">regexp</link>
-
             </member>
-
+            <member>
+                <link linkend="find">find</link>
+            </member>
+            <member>
+                <link linkend="vectorfind">vectorfind</link>
+            </member>
         </simplelist>
-
     </refsection>
 
 </refentry>

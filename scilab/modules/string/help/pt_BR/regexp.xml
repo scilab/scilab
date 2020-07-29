@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="regexp" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="regexp" xml:lang="pt">
     <refnamediv>
         <refname>regexp</refname>
         <refpurpose>acha um string que corresponde ao string de expressão
@@ -22,10 +25,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>[start]=regexp(input,pattern,[flag])
-            [start,end,match]=regexp(input,pattern,[flag])
-            [start,end]=regexp(input,pattern,[flag])
-            [start,end,match]=regexp(input,pattern,[flag])
+        <synopsis>
+            [start, final, match, foundString] = regexp(input, pattern)
+            [start, final, match, foundString] = regexp(input, pattern, "once")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -68,9 +70,9 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>[flag]</term>
+                <term>"once | "o" flag</term>
                 <listitem>
-                    <para>'o' para correspondência com padrão uma vez</para>
+                    <para>'o' para correspondência com padrão apenas uma vez</para>
                 </listitem>
             </varlistentry>
         </variablelist>
