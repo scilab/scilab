@@ -316,6 +316,7 @@ Bug Fixes
 * [#3188](https://bugzilla.scilab.org/3188): `part()` was slower than in Scilab 4.1.2.
 * [#7117](https://bugzilla.scilab.org/7117): `findobj()` could not search within given object.
 * [#8059](https://bugzilla.scilab.org/8059): A local `.wgetrc` config file could make troubles in `atomsDownload`.
+* [#8100](https://bugzilla.scilab.org/8100): `cumsum()` on sparse documented.
 * [#8378](https://bugzilla.scilab.org/8378): Datatip `ContextMenu => Delete last datatip` was useless.
 * [#9221](https://bugzilla.scilab.org/9221): There was no way in Scilab to easily access to sets of unicode symbols like greek letters, etc.
 * [#9909](https://bugzilla.scilab.org/9909): In the help browser, add a way to open the online version of the current page.
@@ -339,7 +340,9 @@ Bug Fixes
 * [#13985](https://bugzilla.scilab.org/13985): The display of lists was very loose and poor.
 * [#14033](https://bugzilla.scilab.org/14033): `x_matrix` could not edit matrices of booleans, encoded integers or text. Matrices of real or complex numbers were poorly displayed.
 * [#14098](https://bugzilla.scilab.org/14098): The `genlib` and `library` help pages were outdated with respect to Scilab 6.
+* [#14297](https://bugzilla.scilab.org/14297): Documentation of `cumsum()` improved.
 * [#14435](https://bugzilla.scilab.org/14435): Errors were not well handled in overloaded functions.
+* [#14477](https://bugzilla.scilab.org/14477): `mtlb_sparse()` removed from the documentation.
 * [#14488](https://bugzilla.scilab.org/14488): The `frameflag=9` and `strf=".9."` values of these `plot2d` options were no longer accepted. Their documentation was ambiguous.
 * [#14718](https://bugzilla.scilab.org/14718): `user` is removed for a while but was still documented.
 * [#14873](https://bugzilla.scilab.org/14873): `setfield` page: The output and the 6.0 history were documented only on the en_US version. The input was wrongly restricted to matrices, while any Scilab object is acceptable. The specific role of `setfield` for mlists was not really described nor illustrated. The example did not include any call to setfield.
@@ -411,6 +414,7 @@ Bug Fixes
 * [#16559](https://bugzilla.scilab.org/16553): `isempty(A)` was true for sparse matrix of dimension 2^16 or larger.
 * [#16565](https://bugzilla.scilab.org/16565): `edit(user_defined_function)` corrupted the original code.
 * [#16567](https://bugzilla.scilab.org/16567): `mfile2sci` did not support Matlab block-comments %{ ..%}.
+* [#16568](https://bugzilla.scilab.org/16568): The operator `**` was undocumented.
 * [#16571](https://bugzilla.scilab.org/16571): `mfile2sci` had several issues when converting the NOT ~ operator: 1) `~(1-1)` was converted into `~1-1` instead of `~(1-1)`  2) ~ applied to an integer expression yielded an error from `convert2double`  3) `~i` was converted into `~%i` instead of `~abs(%i)`.
 * [#16573](https://bugzilla.scilab.org/16573): `mfile2sci`: Some `axis` conversions were wrong or not reliable.
 * [#16586](https://bugzilla.scilab.org/16586): `mfile2sci`: The `prettyprintoutput` flag badly managed appended comments.

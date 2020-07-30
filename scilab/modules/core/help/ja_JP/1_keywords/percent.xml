@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="percent">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="percent">
     <refnamediv>
         <refname>percent</refname>
         <refpurpose>(%) 特殊文字</refpurpose>
@@ -16,24 +19,23 @@
         <para>
             加えて, <literal>%</literal>で始まる名前を有する関数は特殊な関数です :
             これらはプリミティブおよび演算子オーバーローディングで
-            使用されます(<literal>overloading</literal>参照).
+            使用されます.
         </para>
         <para>
-            例えば,関数 <literal>%rmr</literal> は乗算(<literal>m</literal>)
+            例えば,関数 <literal>%r_m_r</literal> は乗算(<literal>m</literal>)
             処理<literal>x*y</literal>を有理行列(<literal>r</literal>)
             <literal>x</literal> および <literal>y</literal> に関して実行します.
-            コード記法は,
-            <link linkend="overloading">オーバーローディング</link>の
+            コード記法は, <link linkend="overloading">オーバーローディング</link>の
             ヘルプページに記載されています.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-x1=tlist('x',1,2);
-x2=tlist('x',2,3);
-deff('x=%xmx(x1,x2)','x=list(''x'',x1(2)*x2(2),x2(3)*x2(3))');
-x1*x2
+x1 = tlist('x',1,2);
+x2 = tlist('x',2,3);
+deff('x = %x_m_x(x1,x2)','x = list(''x'', x1(2)*x2(2), x2(3)*x2(3))');
+x1 * x2
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -41,6 +43,15 @@ x1*x2
         <simplelist type="inline">
             <member>
                 <link linkend="overloading">overloading</link>
+            </member>
+            <member>
+                <link linkend="names">names</link>
+            </member>
+            <member>
+                <link linkend="symbols">symbols</link>
+            </member>
+            <member>
+                <link linkend="printf_conversion">printf_conversion</link>
             </member>
         </simplelist>
     </refsection>

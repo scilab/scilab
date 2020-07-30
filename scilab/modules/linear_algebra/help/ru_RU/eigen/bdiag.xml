@@ -15,83 +15,77 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
-          xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="bdiag">
+          xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="bdiag">
     <refnamediv>
         <refname>bdiag</refname>
-        <refpurpose>bloc-diagonalisation, vecteurs propres généralisés  </refpurpose>
+        <refpurpose>блоковая диагонализация, обобщённые собственные векторы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
+        <title>Синтаксис</title>
         <synopsis>
             [Ab, X, bs] = bdiag(A)
             [Ab, X, bs] = bdiag(A, rmax)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>A  </term>
+                <term>A</term>
                 <listitem>
-                    <para>matrice carrée réelle ou complexe
-                    </para>
+                    <para>вещественная или комплексная квадратная матрица</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>rmax  </term>
+                <term>rmax</term>
                 <listitem>
-                    <para>nombre réel
-                    </para>
+                    <para>вещественное число</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Ab  </term>
+                <term>Ab</term>
                 <listitem>
-                    <para>matrice carrée réelle ou complexe
-                    </para>
+                    <para>вещественная или комплексная квадратная матрица</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>X  </term>
+                <term>X</term>
                 <listitem>
-                    <para>matrice régulière, réelle ou complexe
-                    </para>
+                    <para>вещественная или комплексная невырожденная матрица</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>bs  </term>
+                <term>bs</term>
                 <listitem>
-                    <para>vecteur d'entiers
-                    </para>
+                    <para>вектор целых чисел</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            <emphasis role="bold">[Ab, X, bs] = bdiag(A, rmax)</emphasis> calcule la forme
-            bloc-diagonale de <literal>A</literal>.  bs précise la structure des
-            blocs (tailles respectives des blocs).  <varname>X</varname> est la
-            matrice de changement de base, c'est à dire que <literal>Ab = inv(X)*A*X</literal>
-            est bloc-diagonale.
+            <emphasis role="bold">[Ab, X, bs] = bdiag(A, rmax)</emphasis> выполняет
+            блоковую диагонализацию матрицы <varname>A</varname>.  <varname>bs</varname>
+            даёт структуру блоков (соответствующие размеры блоков).
+            <varname>X</varname> - это изменение базиса, то есть <literal>Ab = inv(X)*A*X</literal>
+            является блоковой диагональю.
         </para>
         <para>
-            <varname>rmax</varname> contrôle le conditionnement de <varname>X</varname>.
-            La valeur par défaut est la norme l1 de <varname>A</varname>.
+            <varname>rmax</varname> управляет обусловленностью <varname>X</varname>.
+            Значение по умолчанию - это L1-норма матрицы <varname>A</varname>.
         </para>
         <para>
-            Pour obtenir une forme diagonale (si celle-ci existe) choisissez
-            une valeur élevée de <varname>rmax</varname> (<literal>rmax=1/%eps</literal>
-            par exemple).  Pour une matrice réelle quelconque, les blocs sont
-            de taille (1x1) ou (2x2) et <varname>X</varname> est la matrice des
-            vecteurs propres.
+            Чтобы получить диагональную форму (если она существует), выберите большое
+            значение для<varname>rmax</varname> (например <literal>rmax=1/%eps</literal>).
+            В общем случае (для вещественной случайной <varname>A</varname>), блоки
+            равны (1x1) и (2x2), а <varname>X</varname> является матрицей собственных векторов.
         </para>
     </refsection>
     <refsection>
-        <title>Exemples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-// Cas réel: blocs 1x1 et 2x2
+// случай вещественных чисел: блоки 1x1 и 2x2
 a = rand(5,5);
 [ab, x, bs] = bdiag(a);ab
  ]]></programlisting>
@@ -105,12 +99,12 @@ a = rand(5,5);
    0.          0.          0.          0.         0.5341598
 ]]></screen>
         <programlisting role="example"><![CDATA[
-// Cas complexe : blocs complexes 1x1
+// случай комплексных чисел: комплексные блоки 1x1
 [ab, x, bs] = bdiag(a+%i*0); ab
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Voir aussi</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="schur">schur</link>

@@ -172,8 +172,12 @@
                 <literal>~</literal>
             </para>
             <para>
-                <literal>`</literal> tem o mesmo significado que &lt;
+                <literal>`</literal> tem o mesmo significado que <literal>&lt;</literal>.
             </para>
+            <para>
+                <literal>`</literal> tem o mesmo significado que <literal>&lt;</literal>.
+            </para>
+            <para><literal>**</literal> é equivalente a <literal>^</literal>.</para>
             <para>É altamente recomendável que não se use esses recursos, pois eles
                 serão removidos futuramente
             </para>

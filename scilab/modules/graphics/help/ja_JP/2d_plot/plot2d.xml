@@ -128,12 +128,13 @@
                     <varname>frameflag</varname> and <varname>axesflag</varname>.
                     By default, <literal>strf= "081"</literal>. "a", "b" and "c" are:
                     <para/>
-                    <table>
-                        <tr><th>a :</th>
+                    <table cellpadding="0">
+                        <tr valign="top">
+                            <th>a :</th>
                             <td>凡例の表示を制御します.
-                                <table>
-                                    <tr><th>x=0 :</th><td>凡例なし.</td></tr>
-                                    <tr><th>x=1 :</th>
+                                <table cellpadding="0">
+                                    <tr><th>a=0 :</th><td>凡例なし.</td></tr>
+                                    <tr><th>a=1 :</th>
                                         <td>凡例が表示されます.凡例は,
                                             オプションの引数 <varname>leg</varname>で指定されます.
                                         </td>
@@ -141,14 +142,16 @@
                                 </table>
                             </td>
                         </tr>
-                        <tr><th>b :</th>
+                        <tr valign="top">
+                            <th>b :</th>
                             <td>
                                 <varname>frameflag</varname> integer code in [0,9],
                                 controlling the computation the actual coordinate ranges,
                                 as described below.
                             </td>
                         </tr>
-                        <tr><th>c :</th>
+                        <tr valign="top">
+                            <th>c :</th>
                             <td>
                                 <varname>axesflag</varname> integer code in [0:5 9],
                                 controlling the display and position of X and Y axes,
@@ -241,7 +244,7 @@
                         be an integer ranging from 0 to 8.
                     </para>
                     <para>
-                <table border="1" cellpadding="1" cellspacing="0">
+                <table border="1" cellpadding="2">
                     <tr><th>frameflag</th><th>axes bounds</th>      <th>other actions</th></tr>
                     <tr align="center">
                         <th>0</th>        <td>unchanged</td>        <td></td></tr>
@@ -288,7 +291,7 @@
                         <literal>gca().x_location</literal>, and <literal>gca().y_location</literal>,
                         properties (see <link linkend="axes_properties">axes_properties</link>).
                     </para>
-        <table border="1" cellpadding="1">
+        <table border="1" cellpadding="2">
             <tr><th>axesFlag</th><th>.box</th><th>.axes_visible</th><th>axes position</th><th>comments</th></tr>
             <tr align="center">
                 <th>0</th><td>"off"</td><td>["off" "off"]</td><td></td>     <td>Naked plot</td></tr>

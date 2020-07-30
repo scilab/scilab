@@ -14,8 +14,10 @@
  * along with this program.
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cumsum" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="cumsum" xml:lang="ja">
 
     <refnamediv>
         <refname>cumsum</refname>
@@ -25,10 +27,10 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            y=cumsum(x)
-            y=cumsum(x,orientation)
-            y=cumsum(x,outtype)
-            y=cumsum(x,orientation,outtype)
+            y = cumsum(x)
+            y = cumsum(x, outtype)
+            y = cumsum(x, orientation)
+            y = cumsum(x, orientation, outtype)
         </synopsis>
     </refsynopsisdiv>
 
@@ -39,7 +41,8 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        実数,複素数,論理値,多項式または有理数の配列
+                        実数,複素数,論理値,多項式または有理数の配列.
+                        Hypermatrices or sparse boolean or numerical matrices are supported as well.
                     </para>
                 </listitem>
             </varlistentry>
@@ -58,7 +61,12 @@
                             </para>
                         </listitem>
                         <listitem>
-                            <para>正の整数値</para>
+                            <para>
+                              a positive integer 1 ≤ orientation ≤ ndims(x): the index of the
+                              dimension along which the cumulative sum must be computed.
+                              1 and "r", and 2 and "c", are equivalent.
+                              正の整数値
+                            </para>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -68,15 +76,14 @@
                 <listitem>
                     <para>
                         文字列で,指定可能な値は
-                        <literal>"native"</literal> または
-                        <literal>"double"</literal>.
+                        <literal>"native"</literal> または  <literal>"double"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>スカラーまたは配列</para>
+                    <para>Array of size equal to that of <varname>x</varname>.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -85,17 +92,17 @@
     <refsection role="description">
         <title>説明</title>
         <para>
-            <term>x</term>は配列の場合,<literal>y=cumsum(x)</literal> は,
+            <term>x</term>は配列の場合,<emphasis role="bold">y = cumsum(x)</emphasis> は,
             <term>x</term>の全要素の累積和を
             スカラー<term>y</term>に返します:
         </para>
         <para>
-            <literal>y=cumsum(x,orientation)</literal> は
+            <emphasis role="bold">y = cumsum(x, orientation)</emphasis> は
             <term>orientation</term>により指定された次元方向の
             <term>x</term> の累積和を<term>y</term>に返します:
         </para>
         <para>
-            <latex><![CDATA[ y(i) = \sum_{k=1}^i x(k)]]></latex>
+            <latex alt="y(i) = ∑u=1→i x(u)"><![CDATA[ y(i) = \sum_{u=1}^i x(u)]]></latex>
         </para>
         <itemizedlist>
             <listitem>
@@ -103,11 +110,14 @@
                     <term>orientation</term> が 1 または "r" の場合:
                 </para>
                 <para>
-                    <latex><![CDATA[ y(\mathbf{l},j) = \sum_{\mathbf{i}=1}^l x(\mathbf{i},j)]]></latex>
+                    <latex alt="y(i,j) = ∑u=1→i x(u,j)"><![CDATA[
+                        y(\mathbf{i},j) = \sum_{u=1}^{\mathbf{i}} x(\mathbf{u},j)   ]]>
+                    </latex>, または
                 </para>
-                <para>または </para>
                 <para>
-                    <latex><![CDATA[ y(\mathbf{l},j,k,\ldots) = \sum_{\mathbf{i}=1}^l x(\mathbf{i},j,k,\ldots)]]></latex>
+                    <latex alt="y(i,j,k,…) = ∑u=1→i x(u,j,k,…)"><![CDATA[
+                        y(\mathbf{i},j,k,\ldots) = \sum_{u=1}^{\mathbf{i}} x(\mathbf{u},j,k,\ldots)  ]]>
+                    </latex>
                 </para>
             </listitem>
             <listitem>
@@ -115,11 +125,14 @@
                     <term>orientation</term> が 2 または "c" の場合:
                 </para>
                 <para>
-                    <latex><![CDATA[ y(i,\mathbf{l}) = \sum_{\mathbf{j}=1}^l x(i,{\mathbf{j})]]></latex>
+                    <latex alt="y(i,j) = ∑u=1→j x(i,u)"><![CDATA[
+                        y(i,\mathbf{j}) = \sum_{u=1}^{\mathbf{j}} x(i,{\mathbf{u})  ]]>
+                    </latex>, または
                 </para>
-                <para> または </para>
                 <para>
-                    <latex><![CDATA[ y(i,\mathbf{l},k,\ldots) = \sum_{\mathbf{j}=1}^l x(i,\mathbf{j},k,\ldots)]]></latex>
+                    <latex alt="y(i,j,k,…) = ∑u=1→j x(i,u,k,…)"><![CDATA[
+                        y(i,\mathbf{j},k,\ldots) = \sum_{u=1}^{\mathbf{j}} x(i,\mathbf{u},k,\ldots) ]]>
+                    </latex>
                 </para>
             </listitem>
             <listitem>
@@ -127,19 +140,22 @@
                     <term>orientation</term> が n の場合:
                 </para>
                 <para>
-                    <latex><![CDATA[ y(i_1,\ldots,i_{n-1},\mathbf{l},i_{n+1},\ldots) = \sum_{\mathbf{i_n}=1}^l x(i_1,\ldots,i_{n-1},\mathbf{i_n},i_{n+1},\ldots)]]></latex>
+                    <latex alt="y(i₁,…,iₙ₋₁, iₙ,iₙ₊₁,…) = ∑u=1…iₙ  x(i₁,…,iₙ₋₁, u,iₙ₊₁,…)"><![CDATA[
+                        y(i_1,\ldots,i_{n-1},\mathbf{i_{n}},i_{n+1},\ldots) =
+                        \sum_{u=1}^{\mathbf{i_n}} x(i_1,\ldots,i_{n-1},\mathbf{u},i_{n+1},\ldots) ]]>
+                    </latex>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <literal>y=cumsum(x,"*")</literal> は
-                    <literal>y=cumsum(x)</literal>と等価です.
+                    <emphasis role="bold">y = cumsum(x, "*")</emphasis> は
+                    <literal>y = cumsum(x)</literal>と等価です.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <literal>y=cumsum(x,"m")</literal> は
-                    <literal>y=cumsum(x,orientation)</literal> と等価です.
+                    <emphasis role="bold">y = cumsum(x, "m")</emphasis> は
+                    <literal>y = cumsum(x, orientation)</literal> と等価です.
                     ただし, <literal>orientation</literal> は
                     <term>x</term>の1より大きい最初の次元の添字です.
                     このオプションはMatlabとの互換性のために使用されます.
@@ -188,28 +204,29 @@
                 </para>
             </listitem>
         </itemizedlist>
-        <note>
-            This function applies with identical rules to <link linkend="sparse">sparse matrices</link>
-        </note>
+        <warning>
+            When the input <varname>x</varname> is sparse, please keep in mind that the density
+            of the result <varname>y</varname> will be almost always close to 100%.
+        </warning>
     </refsection>
 
     <refsection role="examples">
         <title>例</title>
         <programlisting role="example"><![CDATA[
-A=[1,2;3,4];
+A = [1,2;3,4];
 cumsum(A)
 cumsum(A,1)
-I=uint8([2 95 103;254 9 0])
-cumsum(I) //native evaluation
+I = uint8([2 95 103 ; 254 9 0])
+cumsum(I)   // native evaluation
 cumsum(I,"double")
 cumsum(I,2,"double")
-s=poly(0,"s");
-P=[s,%i+s;s^2,1];
+s = poly(0,"s");
+P = [s, %i+s ; s^2, 1];
 cumsum(P),
 cumsum(P,2)
-B=[%t %t %f %f];
-cumsum(B) //evaluation in float
-cumsum(B,"native") //similar to or(B)
+B = [%t %t %f %f];
+cumsum(B)          // evaluation in float
+cumsum(B,"native") // similar to or(B)
  ]]></programlisting>
     </refsection>
 

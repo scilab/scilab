@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xsave">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="xsave">
     <refnamediv>
         <refname>xsave</refname>
         <refpurpose>save graphics into a
@@ -22,7 +25,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>xsave(filename,[win_num])</synopsis>
+        <synopsis>
+            xsave(filename)
+            xsave(filename, win_num)
+            xsave(filename, win_handle)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -30,15 +37,23 @@
             <varlistentry>
                 <term>file_name</term>
                 <listitem>
-                    <para>string, name of the file.</para>
+                    string, name of the file.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>win_num</term>
                 <listitem>
-                    <para>integer, the graphics window number. If not given, the current
-                        graphics window is used.
-                    </para>
+                    integer: the graphics window number. If not given, the current
+                        graphics window is considered.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>win_handle</term>
+                <listitem>
+                    handle of the figure to save. By default, gcf() is used.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -47,29 +62,28 @@
         <title>Description</title>
         <para>
             <literal>xsave</literal> saves the graphics contained in the graphics window
-            <literal>win_num</literal> in the binary file <literal>file_name</literal>. and can be
+            <literal>win_num</literal> in the binary file <literal>file_name</literal>, and can be
             reloaded with <literal>xload</literal>.
         </para>
-        <para>
-            Since  Scilab 5.0, all <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also saved.
-        </para>
-        <para>
-            For graphics <literal>xsave(file_name,win_num)</literal> use preferably
-            <literal>save(file_name,scf(win_num))</literal>.
-        </para>
+        <note>
+            <literal>xsave(file_name, win_num)</literal> and
+            <literal>xsave(file_name, win_handle)</literal> are just shortcuts respectively for
+            <literal>h=findobj("figure_id", win_num); save(file_name, "h")</literal> and
+            <literal>save(file_name, "win_handle")</literal>, that can be used directly.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-t=0:0.01:10;
-subplot(211),plot2d(t,sin(t))
-subplot(212),plot2d(t,sin(3*t))
+t = 0:0.01:10;
+subplot(211), plot2d(t,sin(t))
+subplot(212), plot2d(t,sin(3*t))
 xsave(TMPDIR + "/foo.scg", gcf())
 clf()
 xload(TMPDIR + "/foo.scg")
 
-a=gca();
-curve=a.children.children; //handle on the curve
+a = gca();
+curve = a.children.children; // handle on the curve
 save(TMPDIR + "/foo.scg", "curve")
 delete(curve)
 load(TMPDIR + "/foo.scg")
@@ -88,5 +102,18 @@ load(TMPDIR + "/foo.scg")
                 <link linkend="load">load</link>
             </member>
         </simplelist>
+    </refsection>
+
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.0</revnumber>
+                <revdescription>
+                    All <link linkend="uimenu">uimenu</link> and <link linkend="uicontrol">uicontrol</link>
+                    elements of the figure are now saved as well.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

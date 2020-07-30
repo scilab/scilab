@@ -291,8 +291,8 @@ gettext(["item#1" ;
                         <literal>gettext(domain, message)</literal>
                         or <literal>gettext(domain, "The message content")</literal>.
                         In this case, <literal>addlocalizationdomain(domain, path)</literal> must
-                        be run before in order to make <varname>domain</varname> pointing to
-                        the storage directory.
+                        be run before, in order to indicate to Scilab the directory where
+                        the translated messages of the given <varname>domain</varname> are stored.
                     </para>
                 </listitem>
             </orderedlist>

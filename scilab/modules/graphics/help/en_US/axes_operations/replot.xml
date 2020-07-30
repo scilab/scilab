@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="replot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="replot">
     <refnamediv>
         <refname>replot</refname>
         <refpurpose>reframes with new boundaries the current or a given set of axes
@@ -120,10 +123,14 @@
             objects sizes into account. This ensures not clipping any object
             that would be beyond the targeted side of the axes.
         </para>
-        <para>When the <literal>tight_limits</literal> option is provided,
+        <para>
+            When the <literal>tight_limits</literal> option is provided,
             its value is assigned to the <literal>.tight_limits</literal>
             attribute of each considered axes, in an axis-wise way.
         </para>
+        <important>
+            gca() always refers to the same axes before and after calling replot(..).
+        </important>
     </refsection>
     <refsection role="examples">
         <title>Examples</title>

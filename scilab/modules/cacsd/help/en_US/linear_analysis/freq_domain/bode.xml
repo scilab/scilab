@@ -188,7 +188,7 @@ clf(); bode([h1; h2], 0.01, 100, ['h1'; 'h2']);
 s = %s;
 G = (10*(s+3))/(s*(s+2)*(s^2+s+2)); // A rational matrix
 sys = syslin('c', G); // A continuous-time linear system in transfer matrix representation.
-f_min = .0001; f_max = 16; // Frequencies in Hz
+f_min = .0001; f_max = 15; // Frequencies in Hz
 
 clf(); bode(sys, f_min, f_max, "rad"); // Converts Hz to rad/s
  ]]></programlisting>
@@ -197,7 +197,7 @@ clf(); bode(sys, f_min, f_max, "rad"); // Converts Hz to rad/s
                 s = %s;
                 G = (10*(s+3))/(s*(s+2)*(s^2+s+2)); // A rational matrix
                 sys = syslin('c', G); // A continuous-time linear system in transfer matrix representation.
-                f_min = .0001; f_max = 16; // Frequencies in Hz
+                f_min = .0001; f_max = 15; // Frequencies in Hz
                 clf(); bode(sys, f_min, f_max, "rad"); // Converts Hz to rad/s
             </scilab:image>
         </para>

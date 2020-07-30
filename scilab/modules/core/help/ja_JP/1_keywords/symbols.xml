@@ -173,6 +173,7 @@
             <para>
                 <literal>`</literal> は &lt; と同じ意味です
             </para>
+            <para><literal>**</literal> is equivalent to <literal>^</literal>.</para>
             <para> これらは将来削除される予定ですので,これらの機能を使用しないことを
                 強く推奨します.
             </para>
