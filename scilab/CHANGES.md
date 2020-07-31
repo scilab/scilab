@@ -323,6 +323,7 @@ Bug Fixes
 * [#16473](https://bugzilla.scilab.org/16473): Deleting rows in a sparse squared the matrix with padding zeros (Scilab 6 regression).
 * [#16474](https://bugzilla.scilab.org/16474): `imult(%z)` crashed Scilab.
 * [#16496](https://bugzilla.scilab.org/16496): The `getdate` page should be rewritten: a) `getdate("s")` does NOT take leap seconds into account. b) `D=getdate(X)` is vectorized, accepts fractional seconds and returns them in [0,1) in D(10) instead of milliseconds. Moreover, the time referential of the result was unclear (time zone, daylight saving offset).
+* [#16512](https://bugzilla.scilab.org/16512): 1 ./ uint8(0) crashes Scilab (idem with int8, uint16, int16, uint32, int32, uint64, int64).
 * [#16517](https://bugzilla.scilab.org/16517): `getdate("s")` truncated the actual time to integer seconds. `getdate(u)(10)` returned fractional seconds instead of milliseconds as `getdate()`.
 * [#16522](https://bugzilla.scilab.org/16522): `bitget(x,pos)` and `bitset(x,pos)` results could be wrong when `pos` is an encoded integer.
 * [#16525](https://bugzilla.scilab.org/16525): `soundsec(t,freq)` has the trivial equivalence `0 : 1/freq : t*(1-%eps)` and should be removed.
