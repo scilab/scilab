@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 12779 -->
 //
@@ -15,7 +16,7 @@
 // <-- Short Description -->
 // Function "savewave" has a miscoding in the internal function "write_wavedat"
 //
-t=soundsec(0.5);
+t = 0 : 1/22050 : 0.5*(1-%eps);
 s=sin(2*%pi*440*t)+sin(2*%pi*220*t)/2+sin(2*%pi*880*t)/2;
 t(11026)=0.500001;
 nc=size(t,2);

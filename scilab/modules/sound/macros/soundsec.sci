@@ -13,6 +13,7 @@
 // along with this program.
 
 function [t]=soundsec (n,rate)
+    warnobsolete("0 : 1/freq : t*(1-%eps)", "6.2")
     // Return [0,n) seconds of t parameter at frequency = rate (sample/sec)
     // Always excludes the last sample if it arrives exactly at n seconds
     [lhs,rhs]=argn(0);

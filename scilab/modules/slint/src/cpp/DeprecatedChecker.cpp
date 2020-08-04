@@ -93,6 +93,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     std::unordered_map<std::wstring, std::wstring> map;
 
     // Scilab 6.1.0 => 6.1.x
+    map.emplace(L"soundsec", L"0 : 1/freq : t*(1-%eps)");
     map.emplace(L"xname", L"gcf().figure_name");
 
     // Scilab 6.0.x => 6.1.0

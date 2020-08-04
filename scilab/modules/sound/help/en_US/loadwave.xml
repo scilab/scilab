@@ -13,7 +13,10 @@
  * along with this program.
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="loadwave" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="loadwave" xml:lang="en">
     <refnamediv>
         <refname>loadwave</refname>
         <refpurpose>load a sound wav file into scilab</refpurpose>
@@ -62,8 +65,8 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// At first we create 0.5 seconds of sound parameters.
-t=soundsec(0.5);
+// At first we create a time vector of 0.5 seconds sampled at 22050 Hz:
+t = 0 : 1/22050 : 0.5*(1-%eps);
 
 // Then we generate the sound: a two channels sound.
 s=[sin(2*%pi*440*t);sin(2*%pi*350*t)];

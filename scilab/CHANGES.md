@@ -246,6 +246,7 @@ Obsolete functions or features
 * `scatter3` is obsolete. Please use `scatter3d` instead.
 * `saveafterncommands` is canceled. It will be removed from Scilab 6.1.x
 * `xname` is obsolete. It will be removed from Scilab 6.2.x. Please use `gcf().figure_name` instead.
+* `soundsec` is obsolete. It will be removed from Scilab 6.2.x. Please use `0 : 1/freq : t*(1-%eps)` instead.
 
 Removed Functions
 -----------------
@@ -319,6 +320,7 @@ Bug Fixes
 * [#16473](https://bugzilla.scilab.org/16473): Deleting rows in a sparse squared the matrix with padding zeros (Scilab 6 regression).
 * [#16474](https://bugzilla.scilab.org/16474): `imult(%z)` crashed Scilab.
 * [#16522](https://bugzilla.scilab.org/16522): `bitget(x,pos)` and `bitset(x,pos)` results could be wrong when `pos` is an encoded integer.
+* [#16525](https://bugzilla.scilab.org/16525): `soundsec(t,freq)` has the trivial equivalence `0 : 1/freq : t*(1-%eps)` and should be removed.
 
 
 ### Bugs fixed in 6.1.0:
