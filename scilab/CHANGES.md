@@ -227,6 +227,11 @@ Feature changes and additions on 6.1.1
 * `polyint` is introduced to compute polynomial antiderivatives.
 * Listbox uicontrol callback is now triggered by item click in single selection mode. For example, it allows successive execution of a demo in the demonstrations gui.
 * `det` is now actually extended to sparse matrices.
+* `deff` is upgraded:
+   - The created function may be returned  as output argument.
+   - Providing the function headline and body concatenated in a single input text vector is possible.
+   - For a simple function, a single string input definition can be provided.
+   - For assignable calls to `deff`, the `@` symbol can be used as function pseudo-name.
 
 
 Help pages:
@@ -398,6 +403,7 @@ Bug Fixes
 * [#16458](https://bugzilla.scilab.org/16458): `mean()` did not handle sparse numerical matrices.
 * [#16465](https://bugzilla.scilab.org/16465): Scinotes OpenRecent menu was not updated when it should.
 * [#16473](https://bugzilla.scilab.org/16473): Deleting rows in a sparse squared the matrix with padding zeros (Scilab 6 regression).
+<<<<<<< HEAD
 * [#16474](https://bugzilla.scilab.org/16474): `imult(%z)` crashed Scilab.
 * [#16476](https://bugzilla.scilab.org/16476): `issquare` was not overloaded.
 * [#16488](https://bugzilla.scilab.org/16488): Concatenations mixing boolean and double with at least one operand being sparse were not supported.
@@ -447,6 +453,10 @@ Bug Fixes
 
 =======
 >>>>>>> afb92ac5368 (* Bug 16614 fixed: replot() could fail out of gcf())
+=======
+* [#16529](https://bugzilla.scilab.org/16529): `deff` could not return the created function as output argument, preventing to cretae and use anonymous functions. The function's headline and body had to be provided separately. For Simple functions, a one-string input (possibly console-oriented) definition was not supported.
+
+>>>>>>> 75a0ccd0638 (* Bug 16529 fixed: deff() upgraded: output arg added, one-string def, etc)
 
 ### Bugs fixed in 6.1.0:
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.

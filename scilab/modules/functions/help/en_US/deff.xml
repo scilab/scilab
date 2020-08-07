@@ -2,9 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * Copyright (C) 2018 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,31 +19,122 @@
           xml:lang="en" xml:id="deff">
     <refnamediv>
         <refname>deff</refname>
-        <refpurpose>in-line definition of a function in Scilab language</refpurpose>
+        <refpurpose>in-line definition of a (anonymous) function in Scilab language</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>deff('[s1, s2, ...] = newfunction(e1, e2, ...)',text)</synopsis>
+        <synopsis>
+            deff(funcHeadline, funcBody)
+            deff(definition)
+            deff("[r1, r2, ...] = myFunc(in1, in2, ...)", funcBody)
+            deff "r = myFunc(x,y) r = x^2 - y"
+            deff "r = myFunc(x,y) x^2 - y"
+            deff("r = @(x,y) x^2 - y")      // as anonymous container's element
+
+            myFunc = deff(funcHeadline, funcBody)
+            myFunc = deff(definition)
+            myFunc = deff("[r1, r2, ...] = fakeName(in1, in2, ...)", funcBody)
+            myFunc = deff("r = fakeName(x,y) r = x^2 - y")
+            myFunc = deff("r = fakeName(x,y) x^2 - y")
+            myFunc = deff("r = @(x,y) x^2 - y")
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>e1, e2, ...</term>
+                <term>x, y, in1, in2, ...</term>
                 <listitem>
-                    <para>input variables.</para>
+                    input arguments of the defined function. This one can have any number
+                    of input arguments, from 0 to any N.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>s1, s2, ...</term>
+                <term>r, r1, r2, ...</term>
                 <listitem>
-                    <para>output variables.</para>
+                    Output results of the defined function. This one can have any number
+                    of output results, from 0 to any M. If any, all output arguments
+                    must be explicit = written on the left-hand-side of the function name.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>text</term>
+                <term>funcHeadline</term>
                 <listitem>
-                    <para>a matrix of character strings.</para>
+                    Single string: Function's headline = its first line giving the local
+                    function's name and the lists of its right-hand-side input arguments
+                    and left-hand-side output arguments. Examples:
+                    <itemizedlist>
+                        <listitem>
+                            <literal>"myFunction(x,y)"</literal> : no output
+                        </listitem>
+                        <listitem>
+                            <literal>"r = myFunction(x,y)"</literal> : single output
+                        </listitem>
+                        <listitem>
+                            <literal>"[a,b] = myFunction(x,y)"</literal> : two outputs. Etc..
+                        </listitem>
+                    </itemizedlist>
+                    Please note that a) the <literal>function</literal> keyword
+                    must not be provided. b) If any, writting output arguments in the
+                    left-hand-side part of the headline is mandatory.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>funcBody</term>
+                <listitem>
+                    a vector of texts = Scilab instructions of the function's body, in the order
+                    they must be executed. These instructions must define and assign the value
+                    of all output arguments. No trailing "endfunction" keyword is expected.
+                    <para/>
+                    This vector is expected when deff(…) is called with two input arguments.
+                    <para/>
+                    <warning>
+                        Single or double quotes included in instructions must be doubled to be
+                        protected.
+                    </warning>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>definition</term>
+                <listitem>
+                    Single text or vector of texts, including both the function's headline and body.
+                    <itemizedlist>
+                        <listitem>
+                            If it's a vector, it is equivalent to
+                            <literal>definition = [funcHeadline ; funcBody]</literal>.
+                        </listitem>
+                        <listitem>
+                            Otherwise, the one-string definition is equivalent to
+                            <literal>funcHeadline + " " + strcat(funcBody,"; ")</literal>.
+                        </listitem>
+                    </itemizedlist>
+                    Please see the Description and Examples sections.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>myFunc</term>
+                <listitem>
+                    Public name and identifier of the defined function, as implicitly
+                    returned in the current environment, or explicitly assigned to the
+                    deff(…)'s output variable.
+                    <para/>
+                    <note>
+                        When deff(…) is called without explicit output argument but
+                        as an element of a container or as input argument of another function,
+                        it is implicitly assigned to this element or argument,
+                        which is anonymous. It is then an
+                        <emphasis role="bold">anonymous function</emphasis>. Example:
+                        <para/>
+                        <literal>L = list(3, deff("r=noName(x) x.^2+1"), "Hello");</literal>.
+                        The result of deff(…) is assigned to L(2). Then,
+                        <literal>L(2)(3.5) // ➜ 13.25</literal>.
+                    </note>
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -52,25 +142,102 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>deff</function> can be used to define functions from sequences of instructions
-            written in text strings. The resulting function object has the same properties
-            of any other function defined in a text file and loaded with <function>exec</function>.
+            deff(…) can be used to define a <emphasis>single</emphasis> function from Scilab
+            instructions provided through a matrix of text, instead of through any external
+            text file of instructions written in a <literal>function … endfunction</literal>
+            block to be executed.
         </para>
-        <warning>
-            Quotes included in instructions given in strings must be doubled to be protected.
-        </warning>
+        <para>
+            A source file of Scilab code can include the definition of several public functions.
+            This is not possible with deff(…): Only one public function can be defined.
+            However, as with a file, the body of the defined function can include one
+            or several <literal>function … endfunction</literal> blocks defining
+            some nested private functions.
+        </para>
+        <para>
+            Whatever is the deff(…) syntax used to provide the source code (see below), if this one
+            includes a syntax error, deff(…) will yield a compilation error and stop.
+        </para>
+        <refsect3>
+            <title>Providing the source code</title>
+            <para>
+                <emphasis role="bold">deff(funcHeadline, funcBody)</emphasis> (2 inputs) and
+                <emphasis role="bold">deff([funcHeadline ; funcBody])</emphasis>
+                (single concatenated input) are equivalent.
+            </para>
+            <para>
+                When <varname>funcBody</varname> is made of only one (short) string, it may be glued
+                to and passed with the <varname>funcHeadline</varname>, as a one-line function
+                definition. Examples:
+                <table cellpadding="0" cellspacing="0">
+                    <tr><td><literal>deff("[a,b] = myFunction(x,y) a = x.^2; b = x-y;")</literal></td>
+                    </tr>
+                    <tr><td>
+                            <literal>deff("r = myFunction(x,y) r = (x-y).^2")</literal>.
+                            This can even be simplified into
+                        </td>
+                    </tr>
+                    <tr><td>
+                            <literal>deff("r = myFunction(x,y) (x-y).^2")</literal>
+                        </td>
+                    </tr>
+                    <tr><td><literal>deff("myFunction(x,y) disp(x.^2 - b)")</literal></td>
+                    </tr>
+                </table>
+            </para>
+            <para>
+                When the result of deff(…) is assigned to or inserted into any anonymous element
+                of a container, then it comes that the pseudo-name <varname>fakeName</varname>
+                defined in the <varname>funcHeadline</varname>
+                has no role at all, and could in no way be used to call the function.
+                This name can then be replaced with the "@" character in the <varname>funcHeadline</varname>,
+                to highlight that the defined function becomes <emphasis>anonymous</emphasis>.
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>Identifier of the defined function</title>
+            <para>
+                The identifier is the actual word (name) to use to call the defined function.
+                The 3 following cases are illustrated in examples.
+            </para>
+            <para>
+                When the defined function is not expected as a assignable result, its identifier
+                is returned directly in the calling environment. Its public name is then the name
+                used in the headline of the provided source code.
+            </para>
+            <para>
+                Otherwise, when deff(…) is called with an explicit output argument, the name
+                of this one becomes the only actual public function's identifier. As a consequence,
+                the function name used in the source code can't be used to call it. It becomes
+                a pseudo-name. For this reason, the "@" symbol (standing for "anonymous") can then
+                be used in the function code's headline, instead of any valid function's name.
+                Of course, nothing prevents to use an output name identical to any valid
+                function name defined in the headline. But it's not mandatory.
+            </para>
+            <para>
+                The last case is using deff(…) as an element of a container, for instance
+                when defining or inserting into a list, or as input argument of another function.
+                Then deff(…) works in an assignable way. It returns the identifier of the defined
+                function and assigns it to the considered list element or input argument.
+                These ones are nameless, since the <literal>deff(…)</literal> call is an expression.
+                The defined function then becomes really <emphasis>anonymous</emphasis>.
+            </para>
+        </refsect3>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[
-deff('x = myplus(y,z)', 'x = y+z')
-myplus(1,%i)
+        <refsect3>
+            <title>Unassigned functions</title>
+            <para/>
+            <programlisting role="example"><![CDATA[
+                deff('x = myplus(y,z)', 'x = y+z')
+                myplus(1,%i)
 
-deff('[y, z] = mymacro(x)', ['y = 3*x+1'; 'z = a*x + x.^2'])
-a = 3;
-[u, v] = mymacro(2)
- ]]></programlisting>
-    <screen><![CDATA[
+                deff('[y, z] = mymacro(x)', ['y = 3*x+1'; 'z = a*x + x.^2'])
+                a = 3;
+                [u, v] = mymacro(2)
+         ]]></programlisting>
+            <screen><![CDATA[
 --> deff('x = myplus(y,z)', 'x = y+z')
 --> myplus(1,%i)
  ans  =
@@ -85,6 +252,154 @@ a = 3;
  u  =
    7.
 ]]></screen>
+            <para>
+                With some single input and output:
+            </para>
+            <programlisting role="example"><![CDATA[
+                clear myFunc
+                source = ["r = myFunc(x,y)" ; "r = x.*(x-y)"]
+                deff(source)
+                myFunc(3, -2)
+         ]]></programlisting>
+            <screen><![CDATA[
+--> source = ["r = myFunc(x,y)" ; "r = x.*(x-y)"]
+ source  =
+  "r = myFunc(x,y)"
+  "r = x.*(x-y)"
+
+--> deff(source)
+--> myFunc(3, -2)
+ ans  =
+   15.
+]]></screen>
+            <para>
+                Same example with a one-line definition, that then allows a console-oriented
+                syntax (without optional deff parentheses, but with still mandatory delimiting quotes):
+            </para>
+            <programlisting role="example"><![CDATA[
+                clear myFunc
+                deff "r = myFunc(x,y) r = x.*(x-y)"
+                myFunc(1:3, -2)
+         ]]></programlisting>
+            <screen><![CDATA[
+--> deff "r = myFunc(x,y) r = x.*(x-y)"
+--> myFunc(1:3, -2)
+ ans  =
+   3.   8.   15.
+]]></screen>
+            <para>
+                For a one-line direct definition with a single output, we can even omit the "r = " duplicate in the body:
+            </para>
+            <programlisting role="example"><![CDATA[
+                clear myFunc
+                deff "r = myFunc(x,y) x.*(x-y)"
+                myFunc(1:3, -2)
+         ]]></programlisting>
+            <screen><![CDATA[
+--> deff "r = myFunc(x,y) x.*(x-y)"
+--> myFunc(1:3, -2)
+ ans  =
+   3.   8.   15.
+]]></screen>
+            <para>
+                Function with no assignable output: Note also the usage of doubled quotes to protect
+                them in the definition string:
+            </para>
+            <programlisting role="example"><![CDATA[
+                clear myFunc
+                deff("myFunc(x, y) messagebox(prettyprint(x.*(x-y), ""html"",""""))")
+                myFunc([1 2 ; 3 4], -2)
+         ]]></programlisting>
+        </refsect3>
+        <refsect3>
+            <title>Defined function assigned to a recipient</title>
+            <para>
+                Let's keep similar examples as above:
+            </para>
+            <programlisting role="example"><![CDATA[
+                clear myFunc actualName
+                actualName = deff("r = myFunc(x,y) x.*(x-y)")
+                isdef(["myFunc" "actualName"])
+                actualName(1:3, -2)
+                myFunc(1:3, -2)
+         ]]></programlisting>
+            <screen><![CDATA[
+--> actualName = deff("r = myFunc(x,y) x.*(x-y)")
+ actualName  =
+[r]=actualName(x,y)
+
+--> isdef(["myFunc" "actualName"])
+ ans  =
+  F T
+
+--> actualName(1:3, -2)
+ ans  =
+   3.   8.   15.
+
+--> myFunc(1:3, -2)
+Undefined variable: myFunc
+]]></screen>
+            <para>
+                Since the "internal" function name is fake, we can use "@" instead
+                (the "@" character is not allowed in actual function names):
+            </para>
+            <programlisting role="example"><![CDATA[
+                clear actualName
+                actualName = deff("r = @(x,y) x.*(x-y)");
+                actualName(1:3, -2)
+         ]]></programlisting>
+            <screen><![CDATA[
+--> actualName = deff("r = @(x,y) x.*(x-y)");
+--> actualName(1:3, -2)
+ ans  =
+   3.   8.   15.
+]]></screen>
+            <para>
+                Now, let's directly assign the created function to a nameless recipient.
+                Although the function becomes anonymous, we can still call it:
+            </para>
+            <programlisting role="example"><![CDATA[
+                L = list("abc", deff("r = @(x,y) x.*(x-y)"), %z);
+                L(2)(1.1:4, -2.1)
+                // We can extract and set a name to the anonymous function:
+                Abc = L(2)
+                Abc(1.1:4, -2.1)
+         ]]></programlisting>
+            <screen><![CDATA[
+--> L = list("abc", deff("r = @(x,y) x.*(x-y)"), %z);
+--> L(2)(1.1:4, -2.1)
+ ans  =
+   3.52   8.82   16.12
+
+--> Abc = L(2)
+ Abc  =
+[r]=Abc(x,y)
+
+--> Abc(1.1:4, -2.1)
+ ans  =
+   3.52   8.82   16.12
+]]></screen>
+            <para>
+                Finally, let's use deff() to directly define and pass a function
+                as an input argument of another function:
+            </para>
+            <programlisting role="example"><![CDATA[
+                function r = test(txt, x, theFunc)
+                    r = x + theFunc(txt)
+                endfunction
+
+                test(rand(2,3), 0.7, deff("r = @(M) sum(size(M).^2)"))
+         ]]></programlisting>
+            <screen><![CDATA[
+--> test(rand(2,3), 0.7, deff("r = @(M) sum(size(M).^2)"))
+ ans  =
+   13.7
+]]></screen>
+        <para>
+            In this example, the passed function is anonymous in the calling environment,
+            but is assigned and gets its "theFunct" name from inside the called function.
+        </para>
+        </refsect3>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -124,6 +439,25 @@ a = 3;
                      </listitem>
                      <listitem>
                         The defined <varname>newfunction</varname> is now of type 13 (instead of 11).
+                     </listitem>
+                  </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                   <itemizedlist>
+                     <listitem>
+                        Output optional argument added. Anonymous functions can be defined.
+                     </listitem>
+                     <listitem>
+                        Single input argument supported, concatenating the function headline and body.
+                     </listitem>
+                     <listitem>
+                        Single string syntax supported, like <literal>deff "r = myFun(x,y) x.^2-y"</literal>
+                     </listitem>
+                     <listitem>
+                        "@" function's pseudo-name supported.
                      </listitem>
                   </itemizedlist>
                 </revdescription>
