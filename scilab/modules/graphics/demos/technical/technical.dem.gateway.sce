@@ -16,6 +16,7 @@ subdemolist = [
 "Black-Nichols"      , "black.dem.sce"
 "s-grid"             , "sgrid.dem.sce"
 "z-grid"             , "zgrid.dem.sce"
+"mapsound"           , "../../../sound/demos/mapsound.dem.sce"
 ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);

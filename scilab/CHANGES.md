@@ -201,7 +201,6 @@ Feature changes and additions on 6.1.1
   - It can now sort any sparse 2D matrix, in all `g, r, c, lr, lc` methods, including sparse booleans and in multi-level mode. It was formerly limited to sparse real or complex vectors and only to the `g` mode.
   - Any hypermatrix can be sorted along a dimension > 2.
 * `unique` is enabled for any 2D sparse arrays, in simple, 'c' and 'r' modes.
-<<<<<<< HEAD
 * `%chars` constant added, to easily access to some selected sets of unicode symbols.
 * Lists are displayed in a more compact and comprehensive way.
 * `interp1` is upgraded:
@@ -215,9 +214,9 @@ Feature changes and additions on 6.1.1
   - bitnum can actually be an array. It is now optional as well for input decimal integers.
 * The `Arnoldi` module is now internal.
 * `sgolay` and the companion `sgolayfilter` and `sgolaydiff` functions have been added to implement Savitsky-Golay filters.
-=======
 * `clock` now returns the milliseconds, the time zone, and the daylight saving time.
->>>>>>> 6436aedaa9e (* Bug 16504 fixed: clock() upgraded (time zone, daylight ST))
+* `mapsound` upgraded to have a colormap argument
+
 
 Help pages:
 -----------
@@ -304,6 +303,7 @@ Bug Fixes
 * [#9909](https://bugzilla.scilab.org/9909): In the help browser, add a way to open the online version of the current page.
 * [#10046](https://bugzilla.scilab.org/10046): By default, the `MAXMIN` block did not propose 2 input ports to work in an element-wise way (unlike MIN_f and MAX_f), which is its most original working mode.
 * [#10476](https://bugzilla.scilab.org/10476): From `browsevar`, displaying the content of lists, structures, cells, or other custom tlists or mlists was not possible.
+* [#10490](https://bugzilla.scilab.org/10490): The `mapsound` page was poor with a single interesting example.
 * [#11677](https://bugzilla.scilab.org/11677): The original Arnoldi functions were obsolete.
 * [#12418](https://bugzilla.scilab.org/12418): Using bvode() with "continuation", i.e. `ipar(9) > 1` led to an error.
 * [#12516](https://bugzilla.scilab.org/12516): From `browsevar`, clicking on any graphical handle did not edit its figure with `ged`.
@@ -373,6 +373,7 @@ Bug Fixes
 * [#16517](https://bugzilla.scilab.org/16517): `getdate("s")` truncated the actual time to integer seconds. `getdate(u)(10)` returned fractional seconds instead of milliseconds as `getdate()`.
 * [#16522](https://bugzilla.scilab.org/16522): `bitget(x,pos)` and `bitset(x,pos)` results could be wrong when `pos` is an encoded integer.
 * [#16525](https://bugzilla.scilab.org/16525): `soundsec(t,freq)` has the trivial equivalence `0 : 1/freq : t*(1-%eps)` and should be removed.
+* [#16530](https://bugzilla.scilab.org/16530): `mapsound` needed to be reforged.
 * [#16549](https://bugzilla.scilab.org/16549): simple script crashed Scilab in GUI mode.
 * [#16551](https://bugzilla.scilab.org/16551): `num2cell` returned {} for any input array of empty strings.
 * [#16553](https://bugzilla.scilab.org/16553): `unique(["" ""])` returned `["" ""]`.
@@ -385,6 +386,7 @@ Bug Fixes
 * [#16629](https://bugzilla.scilab.org/16629): `interp1`'s documentation did not tell the spline edges conditions ; extrapolation modes were poorly explained. ; the description of the result's size was completely wrong ; x as an option was not documented. A wrong extrapolation value could silently return a wrong result. There was some dead code like `if varargin(5)==%nan`. A bugged error message yielded its own error. When x is implicit, the argument index in error messages could be wrong. `periodic` and `edgevalue` extrapolation modes were not available. `linear` extrapolation was not available for splines. When `xp` is an hypermatrix with `size(xp,1)==1`, the size of the result was irregular/wrong.
 * [#16644](https://bugzilla.scilab.org/16644): `input("message:")` yielded a wrong error message about `mprintf` in case of non-interpretable input.
 * [#16654](https://bugzilla.scilab.org/16654): `interp` was leaking memory.
+
 
 
 ### Bugs fixed in 6.1.0:
