@@ -111,7 +111,7 @@ function nbAdd = atomsRepositoryAdd(url,section)
 
         // Check if we have the write access
         if (section=="allusers") & ~ATOMSALLUSERSWRITEACCESS then
-            error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRepositoryAdd",2,pathconvert(SCI+"/.atoms")));
+            error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"), "atomsRepositoryAdd", pathconvert(SCI+"/.atoms")));
         end
 
     end
