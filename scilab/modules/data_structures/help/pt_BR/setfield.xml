@@ -41,7 +41,7 @@
                 <listitem>
                     Endereço do componente a ser alterado. Pode ser o nome do campo
                     especificado como uma sequência, ou o índice especificado como
-                    um número inteiro positivo. Veja <link linkend="inserção">inserção</link>
+                    um número inteiro positivo. Veja <link linkend="insertion">insertion</link>
                     para mais detalhes.
                     <para/>
                 </listitem>
@@ -98,7 +98,7 @@ T(3)
 T = setfield(3, [%f %t %f], T);
 T(3)
  ]]></programlisting>
-    <screen><![CDATA[
+        <screen><![CDATA[
 --> T = tlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
 --> // The insertion is predefined:
 --> T(3) = [%t %t %f];
@@ -113,7 +113,7 @@ T(3)
 ]]></screen>
         <para>
             For a mlist, there is no predefined indexed insertion routine, to let
-             the user define a matrix-oriented insertion overload if required.
+            the user define a matrix-oriented insertion overload if required.
         </para>
         <programlisting role="example"><![CDATA[
 M = mlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
@@ -125,7 +125,7 @@ M(3) = [%f %t %f];  // => error
 M = setfield(3, [%t %f %t], M);
 getfield(3, M)
  ]]></programlisting>
-    <screen><![CDATA[
+        <screen><![CDATA[
 --> M = mlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
 --> M.b = [%t %t %t];
 --> M.b                 // OK, while ...
