@@ -200,15 +200,9 @@ Feature changes and additions
 Help pages:
 -----------
 
-<<<<<<< HEAD
 * overhauled / rewritten: `bitget`, `edit`, `factorial`, `fft`, `vectorfind`, `datafit`
 * fixed / improved:  `bench_run` `M_SWITCH`, `comet`, `comet3d`, `plot2d`
-* Rewritten: `weekday`
-=======
-* overhauled / rewritten: `bitget`, `edit`, `factorial`, `vectorfind`, `datafit`
-* fixed / improved:  `bench_run` `M_SWITCH`, `comet`, `comet3d`
 * Rewritten: `getdate`, `weekday`
->>>>>>> f051a8e8452... * Bugs 15163 16496 fixed [doc]: getdate() page rewritten
 * Translations added:
   - (ru): `weekday`
 
