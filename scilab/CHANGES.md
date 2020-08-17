@@ -228,8 +228,8 @@ Help pages:
   - (ru): `weekday`
 
 
-User Interface improvements:
-----------------------------
+User Interface improvements
+---------------------------
 
 * The `ans` variable is editable as any other variable in Editvar.
 * Commands history is saved before executing a command to have the correct history on a crash.
@@ -242,6 +242,8 @@ User Interface improvements:
   - The menu "Issues" allows to display bugzilla entries related to the feature of the current page
   - ATOMS chapters are automatically loaded in the browser.
   - The page left at exit is restored at next startup.
+* `x_matrix` can now edit matrices of booleans, integers, or text. Matrices of real or complex numbers are better displayed.
+
 
 Xcos
 ----
@@ -322,6 +324,7 @@ Bug Fixes
 * [#13593](https://bugzilla.scilab.org/13593): `csvRead()` did not take the `range` into account when `header` is provided. `[]` could not be used as default `range`.
 * [#13762](https://bugzilla.scilab.org/13762): In the `fft` page, the formula for the inverse FFT missed the 1/n normalization factor.
 * [#13985](https://bugzilla.scilab.org/13985): The display of lists was very loose and poor.
+* [#14033](https://bugzilla.scilab.org/14033): `x_matrix` could not edit matrices of booleans, encoded integers or text. Matrices of real or complex numbers were poorly displayed.
 * [#14435](https://bugzilla.scilab.org/14435): Errors were not well handled in overloaded functions.
 * [#14488](https://bugzilla.scilab.org/14488): The `frameflag=9` and `strf=".9."` values of these `plot2d` options were no longer accepted. Their documentation was ambiguous.
 * [#14718](https://bugzilla.scilab.org/14718): `user` is removed for a while but was still documented.

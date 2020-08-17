@@ -1,26 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="x_matrix">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="x_matrix">
     <refnamediv>
         <refname>x_matrix</refname>
-        <refpurpose>Xwindow editing of matrix</refpurpose>
+        <refpurpose>Edits a matrix and waits for validation (modal)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[result]=x_matrix(label,matrix-init)</synopsis>
+        <synopsis>
+            matrixOut = x_matrix(Header, matrixIn)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>label</term>
+                <term>Header</term>
                 <listitem>
-                    <para>character string (name of matrix)</para>
+                    column vector of text: Text displayed before the matrix.
+                    Extended UTF-8 characters are supported.
+                    Any element starting with "&lt;body>" can use HTML.4 tags
+                    afterward.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>matrix-init</term>
+                <term>matrixIn</term>
                 <listitem>
-                    <para>real matrix</para>
+                    Initial vector or matrix of booleans, encoded integers, real or complex numbers,
+                    or text.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>matrixOut</term>
+                <listitem>
+                    Modified matrix, of the same type than <varname>matrixIn</varname>,
+                    if <emphasis role="bold">"OK"</emphasis> is pressed.
+                    Or <literal>[]</literal> if <emphasis role="bold">"Cancel"</emphasis>
+                    is pressed.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -28,14 +61,104 @@
     <refsection>
         <title>Description</title>
         <para>
-            For reading or editing a matrix .
+            Edits a matrix in a modal way: Scilab is paused while the matrix is displayed and
+            the user can modify it. One of both buttons "OK" or "Cancel" must be clicked
+            to validate or cancel modifications. Either the modified matrix or []
+            is returned accordingly. Then Scilab resumes the execution of next instructions.
+        </para>
+        <para>
+            The pop-up is sized according to the displayed matrix. It can be resized interactively.
+            If it becomes narrower than the matrix or the header,
+            long header lines are wrapped, and some scroll bars appear.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-m=evstr(x_matrix('enter a  3x3 matrix ',rand(3,3)))
- ]]></programlisting>
+i = int8(grand(3,4,"uin",-150,150))
+
+// With booleans
+b = i > 0
+m = x_matrix("<html><body>Matrix of <b>booleans", b)
+
+// With encoded integers
+m = x_matrix("<html><body>Matrix of <b>int8 integers", i)
+
+// With real numbers
+c = grand(5,4,"uin",-15,15) + grand(5,4,"uin",0,9)/10;
+c([14 8 16]) = [%nan %inf -%inf]
+m = x_matrix("<html><body>Matrix of <b>decimal numbers", c)
+
+// With complex numbers
+c = grand(5,3,"uin",-15,15) + grand(5,3,"uin",-15,15)*%i;
+c(2,2) = 3-1.24e-31*%i;
+c(4,3) = complex(0,%nan)
+m = x_matrix("<body>Matrix of <b>complex numbers", c)
+
+// With texts
+t = ["ab" "I don''t" "αβδεϵζ"
+     "j"  """Yes"""  "àéêèïôûù"]
+m = x_matrix("<body>Matrix of <b>text", t)
+      ]]></programlisting>
+        <para/>
+        <table>
+            <tr>
+                <td valign="top">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../images/x_matrix_booleans.png" />
+                        </imageobject>
+                    </inlinemediaobject>
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../images/x_matrix_integers.png" />
+                        </imageobject>
+                    </inlinemediaobject>
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../images/x_matrix_text.png" />
+                        </imageobject>
+                    </inlinemediaobject>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../images/x_matrix_reals.png" />
+                        </imageobject>
+                    </inlinemediaobject>
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../images/x_matrix_complex.png" />
+                        </imageobject>
+                    </inlinemediaobject>
+                </td>
+            </tr>
+        </table>
+        <para/>
+        <para>
+            With a multiple-line and styled header:
+        </para>
+        <programlisting role="example"><![CDATA[
+//
+online = "https://help.scilab.org/docs/current/en_US/x_matrix.html";
+header = ["<body><h3>Head line"
+          "<body><b>Presentation:</b>"
+          "The pop-up can be resized. Some scroll bars may appear."
+          "<body>This <font color=''red''><b>word</b></font> is bold and red. " + ..
+          "<body>x_matrix <a href=''" + online + "''>online page</a>."
+          ]
+b = grand(4,14,"uin",-2,1) < 0
+m = x_matrix(header, b)
+     ]]></programlisting>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../images/x_matrix_header_scrollbars.png" />
+                </imageobject>
+            </inlinemediaobject>
+        </para>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -46,6 +169,30 @@ m=evstr(x_matrix('enter a  3x3 matrix ',rand(3,3)))
             <member>
                 <link linkend="x_dialog">x_dialog</link>
             </member>
+            <member>
+                <link linkend="editvar">editvar</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol table</link>
+            </member>
+            <member>
+                <link linkend="messagebox">messagebox</link>
+            </member>
+            <member>
+                <link linkend="prettyprint">prettyprint</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Booleans, encoded integers, and text are supported.
+                    The display of real and complex matrices is improved.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
