@@ -16,3 +16,4 @@
 // The display of one column hypermatrix is wrong
 
 matrix(1:8, [1,1,2,2,2])
+cat(4,4,5)

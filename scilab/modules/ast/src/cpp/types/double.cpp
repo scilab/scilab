@@ -392,11 +392,11 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             ostr << std::endl;
         }
     }
-    else if (isVector() && getCols() == 1 && isComplex() == false)
+    else if (isVector() && getRows() != 1 && isComplex() == false)
     {
-        // real column vector
+        // real column vector (or hypermatrix yielding such a vector after being squeezed)
 
-        // compute the number of ligne to print in function of max line
+        // compute the number of lines to print in function of max lines
         int iLinesToPrint = getRows() - m_iRows1PrintState;
         if ((iMaxLines == 0 && iLinesToPrint >= MAX_LINES) || (iMaxLines != 0 && iLinesToPrint >= iMaxLines))
         {
