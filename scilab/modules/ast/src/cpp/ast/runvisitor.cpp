@@ -475,7 +475,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     }
     else
     {
-        pValue->killMe();
+        clearResult();
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n").c_str());
         CoverageInstance::stopChrono((void*)&e);
