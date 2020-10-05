@@ -329,6 +329,7 @@ Bug Fixes
 * [#3188](https://bugzilla.scilab.org/3188): `part()` was slower than in Scilab 4.1.2.
 * [#4648](https://bugzilla.scilab.org/4648): Scilab missed more secure hashing functions (md5 is now broken)
 * [#5511](https://bugzilla.scilab.org/5511): printf_conversion page was poorly presented and had many issues: The described types of accepted value and printed result were often switched; nothing was told about the processing of complex numbers; special escaped sequences \n \r \t \\ were not described; possible numbering of placeholders was not described; in the pt_BR version, the itemized lists were wrongly unnested and characters typing placeholders (d,u,o,x,f,e,g..) were missing.
+* [#7202](https://bugzilla.scilab.org/7202): It was not possible to send string parameters via the opar structure of an xcos block to a block of type 4.
 * [#8059](https://bugzilla.scilab.org/8059): A local `.wgetrc` config file could make troubles in `atomsDownload`.
 * [#8100](https://bugzilla.scilab.org/8100): `cumsum()` on sparse documented.
 * [#8378](https://bugzilla.scilab.org/8378): Datatip `ContextMenu => Delete last datatip` was useless.
@@ -437,7 +438,7 @@ Bug Fixes
 * [#16571](https://bugzilla.scilab.org/16571): `mfile2sci` had several issues when converting the NOT ~ operator: 1) `~(1-1)` was converted into `~1-1` instead of `~(1-1)`  2) ~ applied to an integer expression yielded an error from `convert2double`  3) `~i` was converted into `~%i` instead of `~abs(%i)`.
 * [#16573](https://bugzilla.scilab.org/16573): `mfile2sci`: Some `axis` conversions were wrong or not reliable.
 * [#16586](https://bugzilla.scilab.org/16586): `mfile2sci`: The `prettyprintoutput` flag badly managed appended comments.
-* [#16596](https://bugzilla.scilab.org/16596): Concatenating encoded integers with sparse numeric data was not possible. 
+* [#16596](https://bugzilla.scilab.org/16596): Concatenating encoded integers with sparse numeric data was not possible.
 * [#16608](https://bugzilla.scilab.org/16608): `union` did not support input boolean, sparse boolean, nor sparse numerical matrices. The result of `union(complexA, complexB)` was wrongly conjugate.
 * [#16609](https://bugzilla.scilab.org/16609): `bitcmp` needed to be upgraded for Scilab 6.
 * [#16612](https://bugzilla.scilab.org/16612): Unlike the `.*.` operator, `kron()` was not defined for sparse numeric matrices.
