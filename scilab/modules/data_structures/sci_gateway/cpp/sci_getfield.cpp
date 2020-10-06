@@ -262,7 +262,7 @@ static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, 
         // Extract the properties
         types::typed_list one (1, new types::Double(1));
         types::InternalType* properties = pUT->extract(&one);
-        if (!properties->isString())
+        if (!properties || !properties->isString())
         {
             Scierror(999, _("%s: Could not read the argument #%d properties.\n"), "getfield", 2);
             one[0]->killMe();
