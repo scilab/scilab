@@ -60,5 +60,7 @@ types::Function::ReturnValue sci_ludel(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
+    delete[] fmatindex;
+
     return types::Function::OK;
 }

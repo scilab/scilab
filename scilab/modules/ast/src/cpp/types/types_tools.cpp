@@ -817,11 +817,6 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     wchar_t szError[bsiz];
                     os_swprintf(szError, bsiz, _W("variable size exceeded : less than %d expected.\n").c_str(), INT_MAX);
 
-                    if(_pRef)
-                    {
-                        _pRef->killMe(); // clean temporary clone if needed
-                    }
-
                     throw ast::InternalError(szError);
                 }
 
@@ -847,21 +842,14 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             delete[] _piCountDim;
             cleanIndexesArguments(_pArgsIn, _pArgsOut);
 
-            if(_pRef)
-            {
-                _pRef->killMe(); // clean temporary clone if needed
-            }
-
             throw ast::InternalError(szError);
         }
 
         _pArgsOut->push_back(pCurrentArg);
     }
 
-
     //return 0 to force extract to create an empty matrix
-    if (_pRef &&
-            (_pRef->isDouble() && _pRef->getAs<Double>()->isEmpty()))
+    if (_pRef && (_pRef->isDouble() && _pRef->getAs<Double>()->isEmpty()))
     {
         return 0;
     }
