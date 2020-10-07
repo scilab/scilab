@@ -115,13 +115,26 @@ bool MList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
     this->IncreaseRef();
     in.push_back(this);
 
+    std::wstring wstrFuncName = L"%" + getShortTypeStr() + L"_e";
+
     try
     {
-        ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, _iRetCount, out);
+        ret = Overload::call(wstrFuncName, in, _iRetCount, out);
     }
-    catch (ast::InternalError & /*se*/)
+    catch (const ast::InternalError& ie)
     {
-        ret = Overload::call(L"%l_e", in, _iRetCount, out);
+        // last error is not empty when the error have been
+        // setted by the overload itself.
+        if (ConfigVariable::getLastErrorFunction().empty())
+        {
+            wstrFuncName = L"%l_e";
+            ret = Overload::call(wstrFuncName, in, _iRetCount, out);
+        }
+        else
+        {
+            // throw the exception in case where the overload have not been defined.
+            throw ie;
+        }
     }
 
     // Remove this from "in" for keep "in" unchanged.
@@ -131,6 +144,16 @@ bool MList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
     if (ret == Callable::Error)
     {
         throw ast::InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
+    }
+
+    // An extraction have to return something
+    if(out.empty())
+    {
+        wchar_t wcstrError[512];
+        char* strFuncName = wide_string_to_UTF8(wstrFuncName.c_str());
+        os_swprintf(wcstrError, 512, _W("%s: Extraction must have at least one output.\n").c_str(), strFuncName);
+        FREE(strFuncName);
+        throw ast::InternalError(wcstrError, 999, e.getLocation());
     }
 
     return true;

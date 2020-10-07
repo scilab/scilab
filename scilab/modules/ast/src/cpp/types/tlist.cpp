@@ -184,29 +184,33 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
     in.push_back(this);
 
     std::wstring stType = getShortTypeStr();
+    std::wstring wstrFuncName = L"%" + getShortTypeStr() + L"_e";
+
     try
     {
-        ret = Overload::call(L"%" + stType + L"_e", in, _iRetCount, out);
-    }
-    catch (const ast::InternalError &ie)
-    {
-        try
+        ret = Overload::call(wstrFuncName, in, _iRetCount, out, false, false);
+        if(ret == types::Callable::OK_NoResult)
         {
-            //to compatibility with scilab 5 code.
-            //tlist/mlist name are truncated to 8 first character
-            if (stType.size() > 8)
-            {
-                std::wcout << (L"%" + stType.substr(0, 8) + L"_e") << std::endl;
-                ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, _iRetCount, out);
-            }
-            else
-            {
-                throw ie;
-            }
+            // overload not defined, try with the short name.
+            // to compatibility with scilab 5 code.
+            // tlist/mlist name are truncated to 8 first character
+            wstrFuncName = L"%" + stType.substr(0, 8) + L"_e";
+            ret = Overload::call(wstrFuncName, in, _iRetCount, out, false, true, e.getLocation());
         }
-        catch (ast::InternalError & /*se*/)
+    }
+    catch (const ast::InternalError& ie)
+    {
+        // last error is not empty when the error have been
+        // setted by the overload itself.
+        if (ConfigVariable::getLastErrorFunction().empty())
         {
-            ret = Overload::call(L"%l_e", in, _iRetCount, out);
+            wstrFuncName = L"%l_e";
+            ret = Overload::call(wstrFuncName, in, _iRetCount, out);
+        }
+        else
+        {
+            // throw the exception in case where the overload have not been defined.
+            throw ie;
         }
     }
 
@@ -217,6 +221,16 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
     if (ret == Callable::Error)
     {
         throw ast::InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
+    }
+
+    // An extraction have to return something
+    if(out.empty())
+    {
+        wchar_t wcstrError[512];
+        char* strFuncName = wide_string_to_UTF8(wstrFuncName.c_str());
+        os_swprintf(wcstrError, 512, _W("%s: Extraction must have at least one output.\n").c_str(), strFuncName);
+        FREE(strFuncName);
+        throw ast::InternalError(wcstrError, 999, e.getLocation());
     }
 
     return true;

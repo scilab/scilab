@@ -97,27 +97,25 @@ types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFu
                 return types::Function::ReturnValue::OK_NoResult;
             }
 
-            wchar_t pstError1[512];
+            char pstError1[512];
             char pstError2[512];
             char *pstFuncName = wide_string_to_UTF8(_stOverloadingFunctionName.c_str());
-            wchar_t* pwstError = NULL;
             if (_isOperator)
             {
                 os_sprintf(pstError2, _("check or define function %s for overloading.\n"), pstFuncName);
-                wchar_t *tmp = to_wide_string(pstError2);
-                os_swprintf(pstError1, 4096, L"%s%ls", _("Undefined operation for the given operands.\n"), tmp);
-                FREE(tmp);
+                os_sprintf(pstError1, "%s%s", _("Undefined operation for the given operands.\n"), pstError2);
             }
             else
             {
                 os_sprintf(pstError2, _("  check arguments or define function %s for overloading.\n"), pstFuncName);
-                wchar_t *tmp = to_wide_string(pstError2);
-                os_swprintf(pstError1, 4096, L"%s%ls", _("Function not defined for given argument type(s).\n"), tmp);
-                FREE(tmp);
+                os_sprintf(pstError1, "%s%s", _("Function not defined for given argument type(s),\n"), pstError2);
             }
-
             FREE(pstFuncName);
-            ast::InternalError ie(pstError1, 999, _location);
+
+            wchar_t* pwstError = to_wide_string(pstError1);
+            ast::InternalError ie(pwstError, 999, _location);
+            FREE(pwstError);
+
             ie.SetErrorType(ast::TYPE_EXCEPTION);
             throw ie;
         }
