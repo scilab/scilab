@@ -320,8 +320,14 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
         throw ia;
     }
-    catch (const InternalError& ie)
+    catch (InternalError& ie)
     {
+        // set location if the function which thrown this execption was not able to do it
+        if(ie.GetErrorLocation().first_line == -1)
+        {
+            ie.SetErrorLocation(e.getLocation());
+        }
+
         setExpectedSize(iSaveExpectedSize);
         if (pIT != getResult())
         {

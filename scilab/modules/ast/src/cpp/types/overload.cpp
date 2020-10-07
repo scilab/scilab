@@ -142,7 +142,9 @@ types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFu
     }
     catch (const ast::InternalError& ie)
     {
-        ConfigVariable::fillWhereError(ie.GetErrorLocation().first_line);
+        // fill where error with 0 as error line because
+        // an overload is always called from a gateway (native function)
+        ConfigVariable::fillWhereError(0);
         if (pCall)
         {
             if (ConfigVariable::getLastErrorFunction() == L"")
