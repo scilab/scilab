@@ -839,10 +839,15 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
 
             delete[] _piMaxDim;
-            delete[] _piCountDim;
+            if (_piCountDim)
+            {
+                delete[] _piCountDim;
+            }
             cleanIndexesArguments(_pArgsIn, _pArgsOut);
 
-            throw ast::InternalError(szError);
+            // Location(-1,-1,-1,-1): it means the locations are unknown at the throw time,
+            // this can be use to set the locations in the first catch which know them.
+            throw ast::InternalError(szError, 999, Location(-1,-1,-1,-1));
         }
 
         _pArgsOut->push_back(pCurrentArg);

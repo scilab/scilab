@@ -651,7 +651,7 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
     {
         try
         {
-            ret = Overload::call(function_name, in, 1, out);
+            ret = Overload::call(function_name, in, 1, out, false, true, e.getLocation());
         }
         catch (const ast::InternalError& error)
         {

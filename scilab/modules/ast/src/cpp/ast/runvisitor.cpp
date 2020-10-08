@@ -429,7 +429,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
         try
         {
-            Ret = Overload::call(L"%" + stType + L"_e", in, 1, out, true);
+            Ret = Overload::call(L"%" + stType + L"_e", in, 1, out, true, true, e.getLocation());
         }
         catch (const InternalError& ie)
         {
@@ -439,7 +439,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
                 //tlist/mlist name are truncated to 8 first character
                 if (stType.size() > 8)
                 {
-                    Ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out, true);
+                    Ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out, true, true, e.getLocation());
                 }
                 else
                 {
@@ -452,7 +452,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
                 // TList or Mlist
                 if (pValue->isList())
                 {
-                    Ret = Overload::call(L"%l_e", in, 1, out, true);
+                    Ret = Overload::call(L"%l_e", in, 1, out, true, true, e.getLocation());
                 }
                 else
                 {
@@ -1316,7 +1316,7 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
         pValue->IncreaseRef();
         in.push_back(pValue);
 
-        types::Callable::ReturnValue Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_5", in, 1, out, true);
+        types::Callable::ReturnValue Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_5", in, 1, out, true, true, e.getLocation());
 
         if (Ret != types::Callable::OK)
         {
@@ -1382,11 +1382,11 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
         types::Callable::ReturnValue Ret;
         if (bConjug)
         {
-            Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_t", in, 1, out, true);
+            Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_t", in, 1, out, true, true, e.getLocation());
         }
         else
         {
-            Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_0", in, 1, out, true);
+            Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_0", in, 1, out, true, true, e.getLocation());
         }
 
         if (Ret != types::Callable::OK)
@@ -1651,7 +1651,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             in.push_back(pStep);
             pEnd->IncreaseRef();
             in.push_back(pEnd);
-            Ret = Overload::call(L"%" + pStart->getShortTypeStr() + L"_b_" + pStep->getShortTypeStr(), in, 1, out, true);
+            Ret = Overload::call(L"%" + pStart->getShortTypeStr() + L"_b_" + pStep->getShortTypeStr(), in, 1, out, true, true, e.getLocation());
         }
         else
         {
@@ -1660,7 +1660,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             pStep->killMe();
             pEnd->IncreaseRef();
             in.push_back(pEnd);
-            Ret = Overload::call(L"%" + pStart->getShortTypeStr() + L"_b_" + pEnd->getShortTypeStr(), in, 1, out, true);
+            Ret = Overload::call(L"%" + pStart->getShortTypeStr() + L"_b_" + pEnd->getShortTypeStr(), in, 1, out, true, true, e.getLocation());
         }
     }
     catch (const InternalError& error)
