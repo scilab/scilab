@@ -330,6 +330,7 @@ Bug Fixes
 * [#16522](https://bugzilla.scilab.org/16522): `bitget(x,pos)` and `bitset(x,pos)` results could be wrong when `pos` is an encoded integer.
 * [#16525](https://bugzilla.scilab.org/16525): `soundsec(t,freq)` has the trivial equivalence `0 : 1/freq : t*(1-%eps)` and should be removed.
 * [#16549](https://bugzilla.scilab.org/16549): simple script crashed Scilab in GUI mode.
+* [#16551](https://bugzilla.scilab.org/16551): `num2cell` returned {} for any input array of empty strings.
 
 
 ### Bugs fixed in 6.1.0:

@@ -10,43 +10,39 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function  y=num2cell(x,dimens)
+function  y = num2cell(x, dimens)
     //
-    // NUM2CELL function converts an array of double or string or boolean into a cell array
-    // if there is just one input argument x, then it returns a cell which has the same size and the same components than x.
-    // if there are two input arguments x and dimens, y is obtained after reduction to 1 of the x dimensions sizes contained in the vector dimens.
-    // The dimensions sizes of components of y (i.e y{i}) are equal to the dimensions sizes of x whose the numbers are in dimens vector
-    // if size(x)=[2 3 4 5 6] and dimens=[2 4] -> size(y)=[2 1 4 1 6] , the sizes of the second (=dimens(1)) and the fourth (=dimens(2)) dimensions of x are reduced to 1 to obtain y. And size(y(i))=[1,3,1,5,1], the sizes of the second (=dimens(1)) and the fourth (=dimens(2)) dimensions of y(i) are equal to the sizes of the second and the fourth dimensions of x (i.e 3 and 5), the others dimensions are equal to 1
-    //
-    // Output
-    // -y : a cell
-    // Input
-    // -x : a numeric array
-    // -dimens : a scalar or a vector of positive integers. It contains the numbers of dimensions of x to reduce
-    // F.B
+    // x : regular array to be converted into a cells one.
+    // dimens : vector of integers > 0: indices of dimensions along
+    //          which the cells array must be concatenated.
+    // y : cells vector or array
 
-    // case : x is empty, returns an empty cell
-    if isempty(x) then
-        y=cell()
-        return
-    end
-    xsize=size(x)
+    rhs = argn(2)
     // check the number of input arguments
-    if argn(2)<1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"num2cell",1));
-    elseif argn(2)==1 then
-        for i=1:size(x,"*")
-            y{i}=x(i)
-        end
-        y=matrix(y,xsize)
-        return
-        // check the second input argument is a scalar (or a vector) of positive integers
-    else
-        if type(dimens)<>1 | or(dimens<=0) | or(dimens-floor(dimens)<>0) | ndims(dimens)>2 then
-            error(msprintf(gettext("%s: Wrong argument #%d: Positive integer expected.\n"),"num2cell",2));
-        end
-        dimens=matrix(dimens,1,-1)
+    if rhs < 1 | rhs > 2 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "num2cell", 1, 2))
     end
+    // case : x is empty, returns an empty cell
+    xsize = size(x)
+    if prod(xsize)==0 then
+        y = cell()
+        return
+    end
+
+    if argn(2)==1 then
+        for i = 1:size(x,"*")
+            y{i} = x(i)
+        end
+        y = matrix(y, xsize)
+        return
+    end
+
+    // check the second input argument is a scalar (or a vector) of
+    // positive integers
+    if type(dimens)<>1 | or(dimens<=0) | or(dimens-floor(dimens)<>0)  then
+        error(msprintf(gettext("%s: Wrong argument #%d: Positive integer expected.\n"),"num2cell",2));
+    end
+    dimens = matrix(dimens,1,-1)
 
 
     // xdimens : vector which contains the sizes of x dimensions which are in the vectordimens
