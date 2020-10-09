@@ -8,7 +8,7 @@
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 // <-- NO CHECK REF -->
-// <-- NOT FIXED -->  6.0.0 -> 6.0.2
+// <-- NOT FIXED -->  6.0.0 -> 6.1.0
 //
 // <-- Non-regression test for bug 1662 -->
 //
