@@ -293,6 +293,7 @@ Bug Fixes
 * [#15280](https://bugzilla.scilab.org/15280): `gsort` was unable to sort any hypermatrix along dimensions > "r"|"c".
 * [#15839](https://bugzilla.scilab.org/15839): `gsort`: the only sparse possible input were real or complex vectors, and only with the `g` method.
 * [#15842](https://bugzilla.scilab.org/15842): `unique` could not process 2D sparse matrices.
+* [#15954](https://bugzilla.scilab.org/15954): `mfile2sci` abusively added a 6 lines `mode(0); ieee(1)` header to every converted file.
 * [#16069](https://bugzilla.scilab.org/16069): [].figure_name crashes Scilab.
 * [#16106](https://bugzilla.scilab.org/16106): Xcos sciblk4 user-defined blocks did not handle opar and odstate/oz correctly.
 * [#16122](https://bugzilla.scilab.org/16122): concat polynomials with <> var did not raise an error.

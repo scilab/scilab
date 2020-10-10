@@ -51,12 +51,6 @@ mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["";
-"// Display mode";
-"mode(0);";
-"";
-"// Display warning for floating point exception";
-"ieee(1);";
-"";
 "a = 10;";
 "if a==1 then";
 "  J = [1;2;3];  G = [4;5;6];";

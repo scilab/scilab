@@ -45,12 +45,6 @@ SCIFILECONTENTSREF=[
         "// Output variables initialisation (not found in input variables)"
         "y=[];"
         ""
-        "// Display mode"
-        "mode(0);"
-        ""
-        "// Display warning for floating point exception"
-        "ieee(1);"
-        ""
         "select x // comment1"
         " // comment2";
         "  case mtlb_logic(x,"">"",0) then"

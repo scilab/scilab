@@ -35,20 +35,14 @@ mfile = TMPDIR+"/bug_16215.m";
 mputl(m, mfile);
 mfile2sci(mfile, TMPDIR);
 ref = [
-""
-"// Display mode"
-"mode(0);"
-""
-"// Display warning for floating point exception"
-"ieee(1);"
-""
-"a = rand(3,5);"
-"a(1,:) = 6"
-"b = a(:,3)"
-"c = a(:)"
-"d(1,:) = 2"
-"e = 1:4"
-"f = 1:-2:10"
-"g = a(3:$)"
-]
+    ""
+    "a = rand(3,5);"
+    "a(1,:) = 6"
+    "b = a(:,3)"
+    "c = a(:)"
+    "d(1,:) = 2"
+    "e = 1:4"
+    "f = 1:-2:10"
+    "g = a(3:$)"
+    ];
 assert_checkequal(mgetl(TMPDIR+"/bug_16215.sci"), ref);

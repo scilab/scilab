@@ -49,12 +49,6 @@ SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["function [] = bug924()";
 "";
-"// Display mode";
-"mode(0);";
-"";
-"// Display warning for floating point exception";
-"ieee(1);";
-"";
 "a = ""milou"";";
 "a = ""milou""";
 "a = ""milou""";

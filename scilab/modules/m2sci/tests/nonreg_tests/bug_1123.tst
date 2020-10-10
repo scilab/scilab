@@ -29,15 +29,10 @@ mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
-SCIFILECONTENTSREF=["";
-"// Display mode";
-"mode(0);";
-"";
-"// Display warning for floating point exception";
-"ieee(1);";
-"";
-"if %t then";
-"  t = 1;"
-"end;"];
+SCIFILECONTENTSREF=[
+    ""
+    "if %t then"
+    "  t = 1;"
+    "end;"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

@@ -30,15 +30,10 @@ mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR,,%T);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
-SCIFILECONTENTSREF=["";
-"// Display mode";
-"mode(0);";
-"";
-"// Display warning for floating point exception";
-"ieee(1);";
-"";
-"structure.field = 2;";
-"";
-"data = round(structure.field);"]
+SCIFILECONTENTSREF=[
+    ""
+    "structure.field = 2;"
+    ""
+    "data = round(structure.field);"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

@@ -48,15 +48,10 @@ fd=mopen(SCIFILE,"r");
 SCIFILECONTENTS=mgetl(fd,-1);
 mclose(fd);
 
-SCIFILECONTENTSREF=["";
-"// Display mode";
-"mode(0);";
-"";
-"// Display warning for floating point exception";
-"ieee(1);";
-"";
-"R = rand(1,1,""normal"");";
-];
+SCIFILECONTENTSREF=[
+    ""
+    "R = rand(1,1,""normal"");"
+    ];
 
 correct=%T;
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

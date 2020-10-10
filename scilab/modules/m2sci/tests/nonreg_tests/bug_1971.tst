@@ -34,16 +34,11 @@ fd=mopen(SCIFILE,"r");
 SCIFILECONTENTS=mgetl(fd,-1);
 mclose(fd);
 
-SCIFILECONTENTSREF=["";
-"// Display mode";
-"mode(0);";
-"";
-"// Display warning for floating point exception";
-"ieee(1);";
-"";
-"// L.1: No simple equivalent, so mtlb_fprintf() is called.";
-"mtlb_fprintf(""qsdfsdcvwqghcv"")";
-];
+SCIFILECONTENTSREF=[
+    ""
+    "// L.1: No simple equivalent, so mtlb_fprintf() is called."
+    "mtlb_fprintf(""qsdfsdcvwqghcv"")"
+    ];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end
 

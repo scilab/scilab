@@ -23,10 +23,6 @@
 //
 //    is converted to Scilab code :
 //    function [] = test(A,B)
-//
-//    // Display warning for floating point exception
-//    ieee(1)
-//
 //    A = mtlb_i(A,1,mtlb_e(B,3));
 //    endfunction
 //
@@ -43,12 +39,6 @@ mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["function [] = bug925(A,B)";
-		"";
-		"// Display mode";
-		"mode(0);";
-		"";
-		"// Display warning for floating point exception";
-		"ieee(1);";
 		"";
 		"A = mtlb_i(A,4,mtlb_e(B,3));";
 		"endfunction"];

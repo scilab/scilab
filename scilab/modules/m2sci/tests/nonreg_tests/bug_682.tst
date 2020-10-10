@@ -28,12 +28,6 @@ mfile2sci(MFILE,TMPDIR,,%T);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=[""
-        "// Display mode"
-        "mode(0);"
-        ""
-        "// Display warning for floating point exception"
-        "ieee(1);"
-        ""
         "b = 1;"
         "if b==0 | mtlb_logic(b(2),"">"",0) then"
         "  a = 1;"

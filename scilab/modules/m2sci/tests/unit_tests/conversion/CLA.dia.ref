@@ -32,12 +32,6 @@ TESTING M2SCI: creating varslist file...
   Translation may be wrong (see the //!! comments).
   ****** End of mfile2sci() session ******
 
-// Display mode
-mode(0);
-
-// Display warning for floating point exception
-ieee(1);
-
 // Test file for function cla
 // Copyright INRIA
 // Matlab version: 6.5.1.199709 (R13) Service Pack 1

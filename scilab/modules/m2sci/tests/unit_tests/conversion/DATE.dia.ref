@@ -30,12 +30,6 @@ TESTING M2SCI: creating varslist file...
   Macro to tree conversion: Done
   ****** End of mfile2sci() session ******
 
-// Display mode
-mode(0);
-
-// Display warning for floating point exception
-ieee(1);
-
 // Test file for function date()
 // Copyright INRIA
 // Matlab version: 6.5.1.199709 (R13) Service Pack 1

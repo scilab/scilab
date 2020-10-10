@@ -58,42 +58,37 @@ fd=mopen(SCIFILE,"r");
 SCIFILECONTENTS=mgetl(fd,-1);
 mclose(fd);
 
-SCIFILECONTENTSREF=["";
-"// Display mode";
-"mode(0);";
-"";
-"// Display warning for floating point exception";
-"ieee(1);";
-"";
-"m = 3;a = 5;b = 2;c = 3;d = 6";
-"";
-"if a==0 & b==2 then";
-"  m = 2";
-"end;";
-"";
-"%v02 = %f;if a==0 then %v02 = b==2;end;";
-"if %v02 then";
-"  m = 2";
-"end;";
-"";
-"%v02 = %f;if a==0 then %v02 = b==2;end;%v12 = %f;if %v02 then %v12 = c==3;end;";
-"if %v12 & d==4 then";
-"  m = 2";
-"end;";
-"";
-"if a==0 | b==2 then";
-"  m = 2";
-"end;";
-"";
-"%v02 = %t;if ~a==0 then %v02 = b==2;end;";
-"if %v02 then";
-"  m = 2";
-"end;";
-"";
-"%v02 = %t;if ~a==0 then %v02 = b==2;end;%v12 = %t;if ~%v02 then %v12 = c==3;end;";
-"if %v12 | d==4 then";
-"  m = 2";
-"end;";
-];
+SCIFILECONTENTSREF=[
+    ""
+    "m = 3;a = 5;b = 2;c = 3;d = 6"
+    ""
+    "if a==0 & b==2 then"
+    "  m = 2"
+    "end;"
+    ""
+    "%v02 = %f;if a==0 then %v02 = b==2;end;"
+    "if %v02 then"
+    "  m = 2"
+    "end;"
+    ""
+    "%v02 = %f;if a==0 then %v02 = b==2;end;%v12 = %f;if %v02 then %v12 = c==3;end;"
+    "if %v12 & d==4 then"
+    "  m = 2"
+    "end;"
+    ""
+    "if a==0 | b==2 then"
+    "  m = 2"
+    "end;"
+    ""
+    "%v02 = %t;if ~a==0 then %v02 = b==2;end;"
+    "if %v02 then"
+    "  m = 2"
+    "end;"
+    ""
+    "%v02 = %t;if ~a==0 then %v02 = b==2;end;%v12 = %t;if ~%v02 then %v12 = c==3;end;"
+    "if %v12 | d==4 then"
+    "  m = 2"
+    "end;"
+    ];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

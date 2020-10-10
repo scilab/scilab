@@ -30,12 +30,6 @@ mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["";
-		"// Display mode";
-		"mode(0);";
-		"";
-		"// Display warning for floating point exception";
-		"ieee(1);";
-		"";
 		"x = zeros(3,2);";
 		"y = zeros(3,1);";
 		"x = [1,0;0,0;0,0];";

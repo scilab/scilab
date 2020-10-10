@@ -26,9 +26,6 @@
 //
 //    function [] = ct2()
 //
-//    // Display warning for floating point exception
-//    ieee(1)
-//
 //    for i = 1:5,
 //      disp("i  =",i);
 //    end
