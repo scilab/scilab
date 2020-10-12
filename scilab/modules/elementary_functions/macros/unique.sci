@@ -105,7 +105,7 @@ function [x, ki, ko, nb] = unique(x, varargin)
 
     // [] trivial case
     // ---------------
-    if isempty(x) then
+    if size(x,"*")==0 then
         return  // ki, ko, nb are already []. x is [] or sparse([])
     end
 
@@ -273,5 +273,6 @@ function [x, newInf] = uniqueProcessNan(x, newInf, way)
             end
             x = r + imult(i)
         end
+
     end
 endfunction
