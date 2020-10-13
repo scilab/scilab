@@ -19,13 +19,13 @@
           xmlns:scilab="http://www.scilab.org" xml:id="strtod" xml:lang="fr">
     <refnamediv>
         <refname>strtod</refname>
-        <refpurpose>convertit chaque nombre décimal littéral (texte) en sa valeur numérique</refpurpose>
+        <refpurpose>convertit chaque nombre décimal littéral (chaine de caractères) en sa valeur numérique</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntaxe</title>
         <synopsis>
-            [d, tails] = strtod(str)
-            [d, tails] = strtod(str, decimalseparator)
+            d =  strtod(str [,decimalseparator])
+            [d, tails] = strtod(str [,decimalseparator])
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -35,7 +35,7 @@
                 <term>str</term>
                 <listitem>
                     <para>
-                        texte unique, ou vecteur ou matrice de textes.
+                        chaine de caractères, ou vecteur ou matrice de chaines de caractères.
                     </para>
                 </listitem>
             </varlistentry>
@@ -59,7 +59,7 @@
                 <term>tails</term>
                 <listitem>
                     <para>
-                        matrice texte de taille identique à celle de
+                        matrice de chaines de caractères identique à celle de
                         <varname>str</varname> : <literal>tails(i)</literal> est
                         la fin (éventuelle) de <literal>str(i)</literal> non prise
                         en compte pour établir <literal>d(i)</literal>, ou "" par

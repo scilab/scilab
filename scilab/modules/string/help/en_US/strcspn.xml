@@ -20,7 +20,7 @@
     <refnamediv>
         <refname>strcspn</refname>
         <refpurpose>
-            lengths from the beginning of texts until a character among those prohibited
+            lengths from the beginning of strings until a character among those prohibited
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

@@ -20,23 +20,23 @@
     <refnamediv>
         <refname>strspn</refname>
         <refpurpose>
-            lengths of the beginning of texts as long as characters are among those allowed
+            lengths of the beginning of strings as long as characters are among those allowed
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>headsLengths = strspn(Texts, allowedChars)</synopsis>
+        <synopsis>headsLengths = strspn(Strings, allowedChars)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>Texts, allowedChars, headsLengths</term>
+                <term>Strings, allowedChars, headsLengths</term>
                 <listitem>
                     <para>
-                        Matrices of texts, of identical dimensions.
+                        Matrices of strings, of identical dimensions.
                         <varname>allowedChars</varname> can be a scalar string.
-                        It is then used for all <varname>Texts</varname> components.
+                        It is then used for all <varname>Strings</varname> components.
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,8 +45,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>headsLengths = strspn(Texts, allowedChars)</literal> returns the length of the initial
-            portion of <varname>Texts</varname> which consists only of characters that are part of
+            <literal>headsLengths = strspn(Strings, allowedChars)</literal> returns the length of the initial
+            portion of <varname>Strings</varname> which consists only of characters that are part of
             <varname>allowedChars</varname>.
         </para>
     </refsection>
