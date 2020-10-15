@@ -13,38 +13,43 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-          covStart(paths
-          covStart(lib)
-          covStart([path ; lib])
           covStart(macro)
-          covStart("all")
+          covStart([dirs names])
+          covStart(lib), covStart("all")
+          counters = covStart(...)
        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>paths</term>
+                <term>macro</term>
                 <listitem>
-                    <para>string paths to identify macros</para>
+                    <para>a specific function (as a string name or a function value).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dirs</term>
+                <listitem>
+                    <para>a column vector of strings. Directory paths to identify macros. All <literal>.sci</literal> file stored in these directories and loaded within Scilab are instrumented.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>names</term>
+                <listitem>
+                    <para>a column vector of strings. Per directory name to display on the HTML output.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>lib</term>
                 <listitem>
-                    <para>a library or a string which is a library name</para>
+                    <para>a library or a string which is a Scilab library name for instrumenting a Scilab-provided library. Can be <literal>"all"</literal> to instrument all the currently loaded Scilab-provided libraries.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>macro</term>
+                <term>counters</term>
                 <listitem>
-                    <para>a specific function (as a string name or a function value)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"all"</term>
-                <listitem>
-                    <para>special argument to instrument all the loaded macros</para>
+                    <para>Count of all the instrumentation points.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -52,10 +57,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            Instruments the passed arguments to store runtime informations on execution. These informations can be latter exported by calling <literal>covWrite</literal>. To remove any instrumentation data <literal>covStop</literal> can be used.
+            Instruments the passed arguments to store runtime informations on execution. These informations can be latter exported by calling <literal>covWrite</literal> or <literal>profileGetInfo</literal>. To remove any instrumentation data <literal>covStop</literal> can be used.
         </para>
         <para>
-            You can either select a set of function or all the available one on a specific call. The <literal>"all"</literal> analysis is useful to have a global overview and later specific informations can be produced for one or a set of identified functions.
+            You can either select a single function, user-defined libraries (as macros directories) or Scilab-provided libraries. The <literal>"all"</literal> analysis is useful to have a global overview and later specific informations can be produced for one or a set of identified functions.
+        </para>
+        <para>
+            Each time the function is called, it clears the previous instrumented counters. The associated <literal>profileEnable</literal> and <literal>profileDisable</literal> functions could be used to fine-tune your selection without clearing everything.
         </para>
     </refsection>
     <refsection>
@@ -66,6 +74,36 @@ for i=1:1e5; isempty(i); end           // run
 covWrite("html", "TMPDIR/coverage")    // write runtime information to a directory
 covStop();                             // remove any instrumentation
     ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// load the libraries before instrumeting them
+loadXcosLibs();
+loadScicos();
+
+// Pass [dirs names] to list the libraries and associate names
+covStart(["SCI\modules\xcos\macros"                 "xcos" ; ..
+          "SCI\modules\scicos\macros\scicos_auto"   "scicos_auto" ; ..
+          "SCI\modules\scicos\macros\scicos_scicos" "scicos_scicos" ; ..
+          "SCI\modules\scicos\macros\scicos_utils"  "scicos_utils"]);
+
+// run the bench
+importXcosDiagram("modules\xcos\demos\Cont.Disc-Observer.zcos");
+scicos_simulate(scs_m, list(), "nw");
+
+// write the output
+covWrite("html", "TMPDIR/coverage2");
+covStop();
+    ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// instrument the Scilab "elementary_functions" library
+covStart("elementary_functions")
+
+// run
+ones(100,200) .\. ones(1000,2000)
+
+// write the output as HTML
+covWrite("html", "TMPDIR/coverage3")
+covStop();
+    ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -75,6 +113,15 @@ covStop();                             // remove any instrumentation
             </member>
             <member>
                 <link linkend="covWrite">covWrite</link>
+            </member>
+            <member>
+                <link linkend="profileGetInfo">profileGetInfo</link>
+            </member>
+            <member>
+                <link linkend="profileEnable">profileEnable</link>
+            </member>
+            <member>
+                <link linkend="profileDisable">profileDisable</link>
             </member>
         </simplelist>
     </refsection>

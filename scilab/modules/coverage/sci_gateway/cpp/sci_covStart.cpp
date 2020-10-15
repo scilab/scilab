@@ -39,13 +39,13 @@ types::Function::ReturnValue sci_covStart(types::typed_list &in, int _iRetCount,
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "covStart" , 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "covStart", 1);
         return types::Function::Error;
     }
 
     if (!in[0]->isMacro() && !in[0]->isMacroFile() && (!in[0]->isString() || (in[0]->getAs<types::String>()->getCols() != 2 && in[0]->getAs<types::String>()->getCols() != 1)))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A two-columns string matrix expected.\n"), "covStart" , 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A two-columns string matrix expected.\n"), "covStart", 1);
         return types::Function::Error;
     }
 
@@ -54,7 +54,7 @@ types::Function::ReturnValue sci_covStart(types::typed_list &in, int _iRetCount,
         types::String * strs = in[0]->getAs<types::String>();
         const unsigned int rows = strs->getRows();
 
-        if (strs->getSize() == 2)
+        if (strs->getCols() == 2)
         {
             std::vector<std::pair<std::wstring, std::wstring>> paths_mods;
             paths_mods.reserve(rows);
@@ -90,6 +90,9 @@ types::Function::ReturnValue sci_covStart(types::typed_list &in, int _iRetCount,
             coverage::CoverModule::createInstance()->instrumentSingleMacro(L"", L"", static_cast<types::MacroFile *>(in[0])->getMacro(), false);
         }
     }
+
+    coverage::CoverModule* const instance = coverage::CoverModule::getInstance();
+    out.emplace_back(new types::Double(instance->getCounters().size()));
 
     return types::Function::OK;
 }
