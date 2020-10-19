@@ -158,18 +158,14 @@ function ilib_gen_Make_unix(names,   ..
         end
     end
 
-    if ldflags <> "" | cflags <> "" | fflags <> "" | cc <> "" | fileinfo(usercommandpath+"/Makefile.orig") == [] | fileinfo(usercommandpath+"/libtool") == [] then
-        // Makefile.orig doesn't exists or may be invalid regarding the flags
-        // run the ./configure with the flags
-
-        if ( ilib_verbose() == 2 ) then
-            mprintf(gettext("   %s: Need to run the compiler detection (configure).\n"),"ilib_gen_Make");
-        end
-
-        mdelete(linkBuildDir+"/Makefile.orig");
-        generateConfigure(linkBuildDir, ldflags, cflags, fflags, cc)
-    else
-        // Reuse existing Makefile.orig because compilation flags are all empty
+    stringToHash = libname + ldflags + cflags + fflags + cc;
+    hash = getmd5(stringToHash,"string");
+    md5file = fullfile(usercommandpath,libname+".md5");
+    if stringToHash == libname || (isfile(md5file) && ...
+        mgetl(md5file) == hash && ...
+        isfile(usercommandpath+"/Makefile.orig") && ...
+        isfile(usercommandpath+"/libtool"))
+        // Reuse existing Makefile.orig because compilation flags are all empty or unchanged since last call
         [status,msg]=copyfile(usercommandpath+"/Makefile.orig",linkBuildDir);
 
         if ( ilib_verbose() == 2 ) then
@@ -189,6 +185,18 @@ function ilib_gen_Make_unix(names,   ..
         // (just try "touch configure Makefile; make" on any autoconf project)
         sleep(1000);
         unix_g("touch Makefile");
+    else
+        // Makefile.orig doesn't exists or may be invalid regarding the flags
+        // run the ./configure with the flags
+
+        mputl(hash,md5file)
+
+        if ( ilib_verbose() == 2 ) then
+            mprintf(gettext("   %s: Need to run the compiler detection (configure).\n"),"ilib_gen_Make");
+        end
+
+        mdelete(linkBuildDir+"/Makefile.orig");
+        generateConfigure(linkBuildDir, ldflags, cflags, fflags, cc)
     end
 
     // Alter the Makefile in order to compile the right files
