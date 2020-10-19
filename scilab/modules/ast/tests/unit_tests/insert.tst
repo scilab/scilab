@@ -12,6 +12,7 @@
 //
 //
 
+// <-- NO CHECK REF -->
 // <-- CLI SHELL MODE -->
 
 oldFuncProt = funcprot(0);
@@ -529,3 +530,21 @@ assert_checkerror("a()=1;", errmsg);
 assert_checkerror("a{}=1;", errmsg);
 a=1;
 assert_checkerror("a()=1;", errmsg);
+
+// insertion on element with ref > 1
+origin = list(list([]));
+origin(1)(1).test = 1;
+twin = origin;
+twin(1)(1).test = 5;
+assert_checkequal(origin(1)(1).test, 1);
+assert_checkequal(twin(1)(1).test, 5);
+
+twin = origin(1);
+twin(1).test = 5;
+assert_checkequal(origin(1)(1).test, 1);
+assert_checkequal(twin(1).test, 5);
+
+twin=origin(1)(1);
+twin.test = 5;
+assert_checkequal(origin(1)(1).test, 1);
+assert_checkequal(twin.test, 5);
