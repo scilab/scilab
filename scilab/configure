@@ -1762,8 +1762,8 @@ Optional Features:
                           Enable unitary tests and checks at compilation time
   --enable-build-swig=path
                           Regenerate Java => C and Scilab => C wrappers
-                          produces by Swig
-  --enable-build-giws     Regenerate C/C++ => Java wrappers produces by Giws
+                          produced by Swig
+  --enable-build-giws     Regenerate C/C++ => Java wrappers produced by Giws
   --enable-build-parser   Regenerate code for the parser (Lex & YACC)
   --disable-nls           do not use Native Language Support
   --disable-build-localization
