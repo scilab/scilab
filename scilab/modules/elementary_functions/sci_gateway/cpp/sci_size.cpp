@@ -135,7 +135,14 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
                         }
                         break;
                     case 0 : //"*"
-                        pdbl[0] = in[0]->getAs<types::GenericType>()->getSize();
+                        if (in[0]->isSparse())
+                        {
+                            pdbl[0] = (double)piDims[0]*(double)piDims[1];
+                        }
+                        else
+                        {
+                            pdbl[0] = in[0]->getAs<types::GenericType>()->getSize();
+                        }
                         break;
                     default : //"r"
                         if (iMode > iDims)

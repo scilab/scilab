@@ -2004,10 +2004,67 @@ GenericType* Sparse::extract(typed_list* _pArgs)
 {
     Sparse* pOut = NULL;
     int iDims = (int)_pArgs->size();
+    bool bAllColonIndex = true;
     typed_list pArg;
 
     int* piMaxDim = new int[iDims];
     int* piCountDim = new int[iDims];
+
+    for (int i=0; i<iDims; i++)
+    {
+        bAllColonIndex &= (*_pArgs)[i]->isColon();
+    }
+
+    if (bAllColonIndex)
+    {
+        if (iDims > 1) // a(:,...,:)
+        {
+            return this;
+        }
+        else // a(:)
+        {
+            if (isVector())
+            {
+                if (getCols() == 1)
+                {
+                    return this;
+                }
+                else
+                {
+                    this->transpose((types::InternalType *&)pOut);
+                    return pOut;
+                }
+            }
+            pOut = new types::Sparse(getRows()*getCols(), 1, isComplex());
+            if (isComplex())
+            {
+                CplxSparse_t *sp = pOut->matrixCplx;
+                sp->reserve(nonZeros());
+                int k=0;
+                for (size_t i=0; i<getRows(); ++i)
+                {
+                    for (Sparse::CplxSparse_t::InnerIterator it(*matrixCplx, i); it; ++it)
+                    {
+                        sp->insert(it.col()*getRows() + i, 0) = it.value();
+                    }
+                }
+            }
+            else
+            {
+                RealSparse_t *sp = pOut->matrixReal;
+                sp->reserve(nonZeros());
+                int k=0;
+                for (size_t i=0; i<getRows(); ++i)
+                {
+                    for (Sparse::RealSparse_t::InnerIterator it(*matrixReal, i); it; ++it)
+                    {
+                        sp->insert(it.col()*getRows() + i, 0) = it.value();
+                    }
+                }
+            }
+        }
+        return pOut;
+    }
 
     //evaluate each argument and replace by appropriate value and compute the count of combinations
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
