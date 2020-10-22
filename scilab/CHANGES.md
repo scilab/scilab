@@ -410,8 +410,10 @@ Bug Fixes
 * [#16551](https://bugzilla.scilab.org/16551): `num2cell` returned {} for any input array of empty strings.
 * [#16552](https://bugzilla.scilab.org/16552): `mfile2sci`: conversion of `ispc` and `isunix` still used `MSDOS` removed far ago. Conversion of `ismac` was missing. Conversion of `exist` missed using `mtlb_exist`. Conversion of `dos` yielded some "operation +" warnings. Unit tests for the conversion of `cd`, `dir` and `ferror` overwrote some Scilab reserved keywords. Conversion of `return` yielded `mtlb(resume)`.
 * [#16553](https://bugzilla.scilab.org/16553): `unique(["" ""])` returned `["" ""]`.
+<<<<<<< HEAD
 * [#16557](https://bugzilla.scilab.org/16557): `macr2tree` + `tree2code` translated `e={2}` into `"e=1"` and `e={2,"ab"}` into `"e=[2,"ab"]"`.
 * [#16559](https://bugzilla.scilab.org/16553): `isempty(A)` was true for sparse matrix of dimension 2^16 or larger.
+* [#16561](https://bugzilla.scilab.org/16561): `histplot(-10:0.2:10, 2)` yielded a warning from `histc` and an error.
 * [#16565](https://bugzilla.scilab.org/16565): `edit(user_defined_function)` corrupted the original code.
 * [#16567](https://bugzilla.scilab.org/16567): `mfile2sci` did not support Matlab block-comments %{ ..%}.
 * [#16568](https://bugzilla.scilab.org/16568): The operator `**` was undocumented.
@@ -438,6 +440,8 @@ Bug Fixes
 * [#16639](https://bugzilla.scilab.org/16639): `atomsInstall` and `atomsRemove` did not update the Toolboxes menu.
 * [#16644](https://bugzilla.scilab.org/16644): `input("message:")` yielded a wrong error message about `mprintf` in case of non-interpretable input.
 * [#16654](https://bugzilla.scilab.org/16654): `interp` was leaking memory.
+=======
+>>>>>>> 85449b28051 (* Bug 16561 fixed: histplot(-10:0.2:10, 6) warning & error removed)
 
 
 ### Bugs fixed in 6.1.0:

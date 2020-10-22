@@ -96,6 +96,7 @@ function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,ax
     else
         tmp = "counts"
     end
+    from_histplot = %t  // helps detecting/supporting former syntaxes in histc()
     [y, tmp, tmp, ind] = histc(data, n, tmp);
 
     if length(n) == 1 then  // The number of classes is provided
