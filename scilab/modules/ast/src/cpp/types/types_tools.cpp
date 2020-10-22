@@ -574,7 +574,17 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 else
                 {
                     //evalute polynom with "MaxDim"
-                    int iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
+                    int iMaxDim = 0;
+                    if(_pRef->isImplicitList())
+                    {
+                        ImplicitList* pIL = _pRef->getAs<ImplicitList>();
+                        iMaxDim = pIL->compute() ? pIL->getSize() : 3;
+                    }
+                    else
+                    {
+                        iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
+                    }
+
 #if defined(_SCILAB_DEBUGREF_)
                     Double* pdbl = new Double(iMaxDim);
 #else
@@ -687,9 +697,15 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             Polynom* pMP = pIT->getAs<types::Polynom>();
             int iMaxDim = 0;
             //if pRef == NULL, use 0 insteadof, to allow a($+1) on new variable
-            if (_pRef)
+            if (_pRef && _pRef->isGenericType())
             {
                 iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
+            }
+            else if(_pRef && _pRef->isImplicitList())
+            {
+                ImplicitList* pIL = _pRef->getAs<ImplicitList>();
+                // pIL is not computable, iMaxDim = 3 is the implicit list end.
+                iMaxDim = pIL->compute() ? pIL->getSize() : 3;
             }
 
 #ifdef _SCILAB_DEBUGREF_

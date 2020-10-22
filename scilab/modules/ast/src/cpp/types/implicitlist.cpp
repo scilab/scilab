@@ -467,14 +467,9 @@ InternalType* ImplicitList::getInitalType()
 }
 
 //extract single value in a InternalType
-void ImplicitList::extractValue(int _iOccur, InternalType* pIT)
+bool ImplicitList::extractValue(int _iOccur, InternalType* pIT)
 {
-    if (pIT == nullptr)
-    {
-        return;
-    }
-
-    if (compute())
+    if (pIT && compute() && m_iSize >= _iOccur)
     {
         switch (m_eOutType)
         {
@@ -506,7 +501,10 @@ void ImplicitList::extractValue(int _iOccur, InternalType* pIT)
                 extractValueAsDouble(_iOccur, pIT->getAs<Double>());
                 break;
         }
+        return true;
     }
+
+    return false;
 }
 
 //extract matrix in a Internaltype
@@ -652,7 +650,6 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     int iDims = (int)_pArgs->size();
     typed_list pArg;
     InternalType* pOut = NULL;
-    int index = 0;
 
     int* piMaxDim = new int[iDims];
     int* piCountDim = new int[iDims];
@@ -663,59 +660,126 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     {
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
+        delete[] piMaxDim;
+        delete[] piCountDim;
         return createEmptyDouble();
     }
 
-    if (iDims == 1 && iSeqCount == 1)
+    // computable
+    if(compute())
     {
-        if (piMaxDim[0] > 0 && piMaxDim[0] <= 3)
+        if(iSeqCount == 1 && iDims == 1) // (0:9)(5)
         {
-            //standard case a(1)
-            Double* pDbl = pArg[0]->getAs<Double>();
-            index = (int)pDbl->get()[0] - 1;
+            int index = (int)pArg[0]->getAs<Double>()->get()[0] - 1;
+            if(index < m_iSize)
+            {
+                pOut = getInitalType();
+                if(extractValue(index, pOut) == false)
+                {
+                    pOut->killMe();
+                    pOut = NULL;
+                }
+            }
         }
         else
         {
-            index = 0;
+            // for more complex argument, expand the implicit list
+            // to perform the extraction on a more common type.
+            InternalType* pIT = extractFullMatrix();
+            pOut = pIT->getAs<GenericType>()->extract(_pArgs);
+            pIT->killMe();
         }
     }
-    else
+    else if((piMaxDim[0] > 0 && piMaxDim[0] <= 3) && iSeqCount != -1)
     {
-        int* piDims = new int[iDims];
-        int* pIndex = new int[iDims];
-        for (int i = 0 ; i < iDims ; i++)
+        // check dims indexes other than the first one
+        // (1:$)(2,1) works but not (1:$)(1,2)
+        bool bOk = true;
+        for(int i = 1; i < iDims; i++)
         {
-            piDims[i] = 1;
+            if(pArg[i]->getAs<Double>()->get(0) != 1)
+            {
+                bOk = false;
+                break;
+            }
         }
 
-        for (int i = 0 ; i < iSeqCount ; i++)
+        if(bOk)
         {
-            for (int j = 0 ; j < iDims ; j++)
+            std::vector<int> indexes;
+            indexes.reserve(iSeqCount);
+            bool isOutPoly = false;
+            double* pDbl = pArg[0]->getAs<Double>()->get();
+            for (int i = 0 ; i < iSeqCount ; i++)
             {
-                Double* pDbl = pArg[j]->getAs<Double>();
-                pIndex[j] = (int)pDbl->get()[i] - 1;
+                indexes.push_back((int)pDbl[i] - 1);
             }
 
-            index = getIndexWithDims(pIndex, piDims, iDims);
-        }
-        delete[] pIndex;
-        delete[] piDims;
-    }
+            std::vector<InternalType*> vect;
+            for (int i = 0 ; i < iSeqCount ; i++)
+            {
+                switch (indexes[i])
+                {
+                    case 0 : // start
+                        vect.push_back(getStart());
+                        // pPoly->set(i, start);
+                        break;
+                    case 1 : // step
+                        vect.push_back(getStep());
+                        break;
+                    case 2 : // end
+                        vect.push_back(getEnd());
+                        break;
+                    default :
+                        vect.clear();
+                        break;
+                }
+            }
 
-    switch (index)
-    {
-        case 0 :
-            pOut = getStart();
-            break;
-        case 1 :
-            pOut = getStep();
-            break;
-        case 2 :
-            pOut = getEnd();
-            break;
-        default :
-            pOut = NULL;
-            break;
+            Polynom* pPoly = nullptr;
+            for(auto elem : vect)
+            {
+                if(elem->isPoly())
+                {
+                    // (0:$)(:) vs (0:$)(1:$)
+                    int iRows = (*_pArgs)[0]->isColon() ? iSeqCount : 1;
+                    int iCols = (*_pArgs)[0]->isColon() ? 1 : iSeqCount;
+                    pPoly = new Polynom(L"$", iRows, iCols);
+                    break;
+                }
+            }
+
+            if(pPoly)
+            {
+                for (int i = 0 ; i < iSeqCount ; i++)
+                {
+                    if(vect[i]->isPoly())
+                    {
+                        pPoly->set(i, vect[i]->getAs<Polynom>()->get(0));
+                    }
+                    else
+                    {
+                        double* coef = nullptr;
+                        SinglePoly* singlePoly = new SinglePoly(&coef, 0);
+                        coef[0] = vect[i]->getAs<Double>()->get(0);
+                        pPoly->set(i, singlePoly);
+                        singlePoly->killMe();
+                    }
+                }
+
+                pOut = pPoly;
+            }
+            else if(vect.empty() == false)
+            {
+                Double* pDbl = new Double(1, iSeqCount);
+                for (int i = 0 ; i < iSeqCount ; i++)
+                {
+                    pDbl->set(i, vect[i]->getAs<Double>()->get(0));
+                }
+
+                pOut = pDbl;
+            }
+        }
     }
 
     //free pArg content

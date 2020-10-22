@@ -1413,6 +1413,10 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 
                 //free pArg content
                 cleanIndexesArguments(_pArgs, &pArg);
+                if(pOut)
+                {
+                    pOut->killMe();
+                }
                 return NULL;
             }
         }

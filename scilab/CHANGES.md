@@ -300,6 +300,7 @@ Bug Fixes
 * [#16069](https://bugzilla.scilab.org/16069): [].figure_name crashes Scilab.
 * [#16106](https://bugzilla.scilab.org/16106): Xcos sciblk4 user-defined blocks did not handle opar and odstate/oz correctly.
 * [#16122](https://bugzilla.scilab.org/16122): concat polynomials with <> var did not raise an error.
+* [#16141](https://bugzilla.scilab.org/16141): recursive extraction `(m:n)($)` crashed Scilab
 * [#16151](https://bugzilla.scilab.org/16151): `isequal(1:$, 2:$)` returned `%T`.
 * [#16193](https://bugzilla.scilab.org/16193): `covStart()` clear previous coverage information. `profileEnable()` could be use to append a macro later on.
 * [#16196](https://bugzilla.scilab.org/16196): `covStart()` help page was incomplete about the API usage.
@@ -316,6 +317,7 @@ Bug Fixes
 * [#16370](https://bugzilla.scilab.org/16370): `msprintf()` did not handle LaTeX dollars anymore.
 * [#16374](https://bugzilla.scilab.org/16374): Any plot with datatips saved in Scilab 5.5 could not be loaded in Scilab 6.
 * [#16391](https://bugzilla.scilab.org/16391): `csvRead()` was crashing with CSV files containing empty lines.
+* [#16396](https://bugzilla.scilab.org/16396): recursive extraction `(m:n)(:)` crashed Scilab
 * [#16397](https://bugzilla.scilab.org/16397): display of long (real) column vectors was slow (regression).
 * [#16399](https://bugzilla.scilab.org/16399): `mtlb_zeros([])` was crashing Scilab.
 * [#16401](https://bugzilla.scilab.org/16401): global `external_object_java` class was crashing Scilab.
