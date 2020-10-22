@@ -363,6 +363,7 @@ Bug Fixes
 * [#16193](https://bugzilla.scilab.org/16193): `covStart()` clear previous coverage information. `profileEnable()` could be use to append a macro later on.
 * [#16196](https://bugzilla.scilab.org/16196): `covStart()` help page was incomplete about the API usage.
 * [#16274](https://bugzilla.scilab.org/16274): assert_checkequal() did not considered equal matching Nan or void elements in (nested) containers.
+* [#16288](https://bugzilla.scilab.org/16288): An error message from `wavread` was wrong.
 * [#16297](https://bugzilla.scilab.org/16297): After function test(), e={}, endfunction; macr2tree(test)  crashes Scilab.
 * [#16337](https://bugzilla.scilab.org/16337): The 3rd output of `[U,km,ku] = unique(..)` was not implemented.
 * [#16340](https://bugzilla.scilab.org/16340): `setdiff("","")` produced `""` instead of `[]`. The `"c"` and `"r"` options yielded an error for string inputs. Input arguments were poorly checked.
@@ -410,7 +411,6 @@ Bug Fixes
 * [#16551](https://bugzilla.scilab.org/16551): `num2cell` returned {} for any input array of empty strings.
 * [#16552](https://bugzilla.scilab.org/16552): `mfile2sci`: conversion of `ispc` and `isunix` still used `MSDOS` removed far ago. Conversion of `ismac` was missing. Conversion of `exist` missed using `mtlb_exist`. Conversion of `dos` yielded some "operation +" warnings. Unit tests for the conversion of `cd`, `dir` and `ferror` overwrote some Scilab reserved keywords. Conversion of `return` yielded `mtlb(resume)`.
 * [#16553](https://bugzilla.scilab.org/16553): `unique(["" ""])` returned `["" ""]`.
-<<<<<<< HEAD
 * [#16557](https://bugzilla.scilab.org/16557): `macr2tree` + `tree2code` translated `e={2}` into `"e=1"` and `e={2,"ab"}` into `"e=[2,"ab"]"`.
 * [#16559](https://bugzilla.scilab.org/16553): `isempty(A)` was true for sparse matrix of dimension 2^16 or larger.
 * [#16561](https://bugzilla.scilab.org/16561): `histplot(-10:0.2:10, 2)` yielded a warning from `histc` and an error.
@@ -440,8 +440,6 @@ Bug Fixes
 * [#16639](https://bugzilla.scilab.org/16639): `atomsInstall` and `atomsRemove` did not update the Toolboxes menu.
 * [#16644](https://bugzilla.scilab.org/16644): `input("message:")` yielded a wrong error message about `mprintf` in case of non-interpretable input.
 * [#16654](https://bugzilla.scilab.org/16654): `interp` was leaking memory.
-=======
->>>>>>> 85449b28051 (* Bug 16561 fixed: histplot(-10:0.2:10, 6) warning & error removed)
 
 
 ### Bugs fixed in 6.1.0:

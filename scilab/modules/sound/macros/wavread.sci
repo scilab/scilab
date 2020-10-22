@@ -318,7 +318,7 @@ function Data = read_dat_pcm(fid, total_bytes , nChannels, nBitsPerSample, ext, 
         end
     else
         mclose(fid)
-        msg2 = gettext("Cannot read .wav file  with more than 16 bits per sample.")
+        msg2 = gettext("Cannot read .wav file  with more than 32 bits per sample.")
         error(msprintf(gettext("%s: An error occurred: %s\n"), "read_dat_pcm", msg2));
     end//  select BytesPerSample
 
