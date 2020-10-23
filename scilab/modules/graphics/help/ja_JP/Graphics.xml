@@ -82,20 +82,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="fplot2d">fplot2d</link>
-                </term>
-                <listitem>
-                    <para>関数で定義された曲線をプロット</para>
-                    <para>
-                        <emphasis role="bold">例:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>fplot2d();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="champ">champ</link>
                 </term>
                 <listitem>

@@ -24,6 +24,7 @@ function []=fplot2d(xr,f,style,strf,leg,rect,nax,void)
         return
     end
 
+    warnobsolete("plot()", "6.2.x")
     if type(xr)=="10" then // logflag passed first
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A vector expected.\n"), "fplot2d", 1));
     elseif rhs < 2 then

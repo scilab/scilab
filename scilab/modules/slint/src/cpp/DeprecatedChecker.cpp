@@ -93,6 +93,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     std::unordered_map<std::wstring, std::wstring> map;
 
     // Scilab 6.1.0 => 6.1.x
+    map.emplace(L"fplot2d", L"plot");
     map.emplace(L"xdel", L"close");
     map.emplace(L"xname", L"gcf().figure_name");
 

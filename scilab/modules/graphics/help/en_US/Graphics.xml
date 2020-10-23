@@ -82,20 +82,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="fplot2d">fplot2d</link>
-                </term>
-                <listitem>
-                    <para>Plot a curve defined by a function</para>
-                    <para>
-                        <emphasis role="bold">Example:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>fplot2d();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="champ">champ</link>
                 </term>
                 <listitem>

@@ -115,9 +115,6 @@ clf;paramfplot2d(twosoliton,x,0:0.05:3);
             <member>
                 <link linkend="feval">feval</link>
             </member>
-            <member>
-                <link linkend="fplot2d">fplot2d</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>

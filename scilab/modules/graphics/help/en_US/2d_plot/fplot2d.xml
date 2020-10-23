@@ -13,16 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="fplot2d">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="fplot2d">
     <refnamediv>
         <refname>fplot2d</refname>
-        <refpurpose>2D plot of a curve defined by a
-            function
+        <refpurpose>
+            2D plot of a curve defined by a function
+            <emphasis role="bold">(obsolete)</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>fplot2d(xr,f,[style,strf,leg,rect,nax])
+        <synopsis>
+            fplot2d(xr,f,[style,strf,leg,rect,nax])
             fplot2d(xr,f,&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
@@ -64,6 +68,10 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            fplot2d() is obsolete and will be removed from Scilab 6.2.x.
+            Please use plot(xr,f,..) instead.
+        </warning>
         <para>
             <literal>fplot2d</literal> plots a curve defined by the external function
             <literal>f</literal>. The curve is approximated by a piecewise linear
@@ -75,29 +83,21 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>fplot2d();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-deff("[y]=f(x)","y=sin(x)+cos(x)")
-x=[0:0.1:10]*%pi/10;
+deff("y = f(x)", "y = sin(x)+cos(x)")
+x = [0:0.1:10]*%pi/10;
 fplot2d(x,f)
- ]]></programlisting>
+     ]]></programlisting>
         <scilab:image>
             deff("[y]=f(x)","y=sin(x)+cos(x)")
             x=[0:0.1:10]*%pi/10;
             fplot2d(x,f)
         </scilab:image>
-
         <programlisting role="example"><![CDATA[
-clf();
-deff("[y]=f(x)","y=sin(x)+cos(x)")
-x=[0:0.1:10]*%pi/10;
-fplot2d(x,f)
+clf
 fplot2d(1:10,'parab')
- ]]></programlisting>
+     ]]></programlisting>
         <scilab:image>
             deff("[y]=f(x)","y=sin(x)+cos(x)")
             x=[0:0.1:10]*%pi/10;
@@ -117,5 +117,17 @@ fplot2d(1:10,'parab')
                 <link linkend="paramfplot2d">paramfplot2d</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    fplot2d() is declared obsolete, to be removed from 6.2.x.
+                    plot(x,f) replaces it.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

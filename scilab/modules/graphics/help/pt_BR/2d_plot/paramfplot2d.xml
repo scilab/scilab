@@ -95,9 +95,6 @@ paramfplot2d(f,x,theta);
             <member>
                 <link linkend="feval">feval</link>
             </member>
-            <member>
-                <link linkend="fplot2d">fplot2d</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>

@@ -302,6 +302,7 @@ Obsolete functions or features
 * `saveafterncommands` is canceled. It will be removed from Scilab 6.1.x
 * `xname` is obsolete. It will be removed from Scilab 6.2.x. Please use `gcf().figure_name` instead.
 * `soundsec` is obsolete. It will be removed from Scilab 6.2.x. Please use `0 : 1/freq : t*(1-%eps)` instead.
+* `fplot2d` is obsolete. It will be removed from Scilab 6.2.x. Please use `plot(x, f)` instead.
 
 Removed Functions
 -----------------
@@ -433,6 +434,7 @@ Bug Fixes
 * [#16525](https://bugzilla.scilab.org/16525): `soundsec(t,freq)` has the trivial equivalence `0 : 1/freq : t*(1-%eps)` and should be removed.
 * [#16529](https://bugzilla.scilab.org/16529): `deff` could not return the created function as output argument, preventing to create and use anonymous functions. The function's headline and body had to be provided separately. For Simple functions, a one-string input (possibly console-oriented) definition was not supported.
 * [#16530](https://bugzilla.scilab.org/16530): `mapsound` needed to be reforged.
+* [#16539](https://bugzilla.scilab.org/16539): `fplot2d` is weaker than `plot` and useless. It should be removed.
 * [#16540](https://bugzilla.scilab.org/16540): Uicontrol spinner did not "snaptoticks"
 * [#16549](https://bugzilla.scilab.org/16549): Simple script crashed Scilab in GUI mode.
 * [#16551](https://bugzilla.scilab.org/16551): `num2cell` returned {} for any input array of empty strings.
