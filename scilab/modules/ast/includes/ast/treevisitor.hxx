@@ -62,6 +62,7 @@ public:
     virtual void visit(const NotExp &e);
     virtual void visit(const TransposeExp &e);
     virtual void visit(const FunctionDec &e);
+    virtual void visit(const CellExp &e);
 
     inline types::List* getList()
     {
@@ -73,6 +74,7 @@ public:
     static types::List* createOperation();
     static types::List* createAssign();
     static types::InternalType* getVerbose(const Exp& e);
+    static types::List* matrixOrCellExp(const exps_t& lines, TreeVisitor& me, const std::wstring& what);
 
     types::InternalType* getEOL();
 private:
