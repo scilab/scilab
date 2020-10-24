@@ -31,14 +31,14 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 num2str
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-string - msprintf
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+string, msprintf
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>

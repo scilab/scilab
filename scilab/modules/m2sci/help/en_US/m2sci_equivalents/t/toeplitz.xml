@@ -31,14 +31,14 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 toeplitz
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 toeplitz
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
@@ -46,15 +46,20 @@ toeplitz
     <refsection>
         <title>Particular cases</title>
         <para>
-            <emphasis role="bold">toeplitz</emphasis> can be used with empty matrices in Scilab but not in Matlab.
+            <emphasis role="bold">toeplitz</emphasis> can be used with empty matrices
+            in Scilab, but not in Matlab.
         </para>
         <variablelist>
             <varlistentry>
                 <term>T=toeplitz(c)</term>
                 <listitem>
                     <para>
-                        If <emphasis role="bold">c</emphasis> is complex, use <emphasis role="bold">mtlb_toeplitz</emphasis> in Scilab to have the same result than Matlab.
-                        Else if <emphasis role="bold">c</emphasis> is not a scalar or a vector, use <emphasis role="bold">mtlb_toeplitz</emphasis> in Scilab to have the same result than Matlab.
+                        If <emphasis role="bold">c</emphasis> is complex, use
+                        <emphasis role="bold">mtlb_toeplitz</emphasis> in Scilab to have
+                        the same result than Matlab.
+                        Else if <emphasis role="bold">c</emphasis> is not a scalar or a vector,
+                        use <emphasis role="bold">mtlb_toeplitz</emphasis> in Scilab to have the
+                        same result than Matlab.
                     </para>
                 </listitem>
             </varlistentry>
@@ -62,7 +67,11 @@ toeplitz
                 <term>T=toeplitz(c,r)</term>
                 <listitem>
                     <para>
-                        If <emphasis role="bold">c</emphasis> and <emphasis role="bold">r</emphasis> are not scalars or vectors or if <emphasis role="bold">c(1,1)&lt;&gt;r(1,1)</emphasis>, use: <emphasis role="bold">mtlb_toeplitz</emphasis> in Scilab to have the same result than Matlab.
+                        If <emphasis role="bold">c</emphasis> and <emphasis role="bold">r</emphasis>
+                        are not scalars or vectors or if
+                        <emphasis role="bold">c(1,1)&lt;&gt;r(1,1)</emphasis>, use:
+                        <emphasis role="bold">mtlb_toeplitz</emphasis> in Scilab to have the same
+                        result than Matlab.
                     </para>
                 </listitem>
             </varlistentry>

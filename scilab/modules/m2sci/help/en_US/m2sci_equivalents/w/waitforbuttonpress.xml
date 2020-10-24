@@ -13,7 +13,9 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_waitforbuttonpress">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="m2sci_waitforbuttonpress">
     <refnamediv>
         <refname>waitforbuttonpress (Matlab function)</refname>
         <refpurpose>Wait for key or mouse button press</refpurpose>
@@ -31,22 +33,16 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-waitforbuttonpress
+                    <programlisting role="no-scilab-exec"><![CDATA[
+r = waitforbuttonpress
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-No equivalent
+                    <programlisting role="no-scilab-exec"><![CDATA[
+ev = xclick(); r = (or(ev==(0:2)) | ev>31)*1;
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            There is no equivalent function for Matlab <emphasis role="bold">w=waitforbuttonpress</emphasis> in Scilab however it can be replaced by: <emphasis role="bold">[%v0,%v1,%v2,%v3,%v4] = xclick();w = bool2s(%v0&gt;64);</emphasis>
-        </para>
     </refsection>
 </refentry>

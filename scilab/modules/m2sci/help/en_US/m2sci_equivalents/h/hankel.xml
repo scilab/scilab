@@ -32,10 +32,10 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example">hankel</programlisting>
+                    <programlisting role="no-scilab-exec">hankel</programlisting>
                 </td>
                 <td>
-                    <programlisting role="example">hank</programlisting>
+                    <programlisting role="no-scilab-exec">hank</programlisting>
                 </td>
             </tr>
         </informaltable>
@@ -62,12 +62,12 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example">H1 = hankel(C1)
+                    <programlisting role="no-scilab-exec">H1 = hankel(C1)
                         H2 = hankel(C2, R2)
                     </programlisting>
                 </td>
                 <td>
-                    <programlisting role="example">function H = hankel(C, R)
+                    <programlisting role="no-scilab-exec">function H = hankel(C, R)
                         [lhs, rhs] = argn(0);
                         if rhs == 1 then
                         N = size(C, "*");

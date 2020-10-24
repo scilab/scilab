@@ -34,13 +34,16 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 exist
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-exists, isfile, isdir, getscilabkeywords
+                    <programlisting role="no-scilab-exec"><![CDATA[
+isdef
+isfile
+isdir
+getscilabkeywords
 ]]></programlisting>
                 </td>
             </tr>

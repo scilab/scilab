@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 202à - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,7 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_type">
     <refnamediv>
         <refname>type (Matlab function)</refname>
-        <refpurpose>List file </refpurpose>
+        <refpurpose>Display contents of file</refpurpose>
     </refnamediv>
     <refsection>
         <title>Matlab/Scilab equivalent</title>
@@ -31,25 +31,27 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-type
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+type filename
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-No equivalent
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+printf("%s", mgetl(filename)) // or alternatively:
+write(6, mgetl(filename))
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Scilab <emphasis role="bold">mtlb_type</emphasis> is a partial emulation of Matlab <emphasis role="bold">type</emphasis> function.
-        </para>
-        <para>
-            Scilab <emphasis role="bold">type</emphasis> function does not match with Matlab <emphasis role="bold">type</emphasis> !
-        </para>
+        <warning>
+            <para>
+                Scilab <emphasis role="bold">mtlb_type</emphasis> is a partial emulation of Matlab
+                <emphasis role="bold">type</emphasis> function.
+            </para>
+            <para>
+                Scilab <emphasis role="bold">type</emphasis> function does not match with Matlab
+                <emphasis role="bold">type</emphasis> !
+            </para>
+        </warning>
     </refsection>
 </refentry>

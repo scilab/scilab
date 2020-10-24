@@ -36,7 +36,7 @@ blkdiag
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 blockdiag
 ]]></programlisting>
                 </td>

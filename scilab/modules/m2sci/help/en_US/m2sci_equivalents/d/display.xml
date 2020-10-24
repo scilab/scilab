@@ -16,7 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_display">
     <refnamediv>
         <refname>display (Matlab function)</refname>
-        <refpurpose>Overloaded method to display an object</refpurpose>
+        <refpurpose>Display the content of an object and some its metadata</refpurpose>
     </refnamediv>
     <refsection>
         <title>Matlab/Scilab equivalent</title>
@@ -31,13 +31,13 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 display
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-display
+                    <programlisting role="no-scilab-exec"><![CDATA[
+// No equivalent
 ]]></programlisting>
                 </td>
             </tr>

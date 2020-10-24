@@ -31,13 +31,14 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 eval
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-evstr - execstr
+                    <programlisting role="no-scilab-exec"><![CDATA[
+evstr
+execstr
 ]]></programlisting>
                 </td>
             </tr>
@@ -80,7 +81,7 @@ evstr - execstr
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 eval('1+1')
 eval('x=1+1')
 eval('[d1,d2]=size(1)')
@@ -89,7 +90,7 @@ eval('1+1','1+2')
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 evstr("1+1")
 x = evstr("1+1")
 execstr("[d1,d2]=size(1)")

@@ -13,7 +13,9 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_save">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="m2sci_save">
     <refnamediv>
         <refname>save (Matlab function)</refname>
         <refpurpose>Save workspace variables from disk</refpurpose>
@@ -31,22 +33,31 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 save
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 mtlb_save
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
+        <warning>
+            <para>
+                Scilab <emphasis role="bold">mtlb_save</emphasis> does not handle options
+                <emphasis role="bold">-v4</emphasis> <emphasis role="bold">-mat</emphasis> and
+                <emphasis role="bold">-append</emphasis> yet.
+            </para>
+        </warning>
     </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Scilab <emphasis role="bold">mtlb_save</emphasis> does not handle options <emphasis role="bold">-v4</emphasis> <emphasis role="bold">-mat</emphasis> and <emphasis role="bold">-append</emphasis> yet.
-        </para>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="savematfile">savematfile</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

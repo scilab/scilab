@@ -31,13 +31,15 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 doc
+doc item
 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
 help
+help item
 ]]></programlisting>
                 </td>
             </tr>

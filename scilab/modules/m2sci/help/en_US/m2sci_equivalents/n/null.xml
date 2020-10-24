@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2014 - Scilab Enterprises - A. Khorshidi
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2014 - Scilab Enterprises - A. Khorshidi
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,30 +31,23 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-null
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+null(a)
+null(a, 'r')
+% No equivalent
+% No equivalent
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-kernel
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+kernel(a)
+// No equivalent
+kernel(a, tolerance)
+kernel(a, tolerance, "qr")
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <variablelist>
-            <varlistentry>
-                <term>null(A,'r')</term>
-                <listitem>
-                    <para>
-                        There is no Scilab equivalent for <emphasis role="bold">"r"</emphasis> option.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -69,18 +62,18 @@ kernel
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-a=[1 3 2; 2 -3 -5];
+                    <programlisting role="no-scilab-exec"><![CDATA[
+a = [1 3 2; 2 -3 -5];
 null(a)
 size(null(a),2)
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-a=[1 3 2; 2 -3 -5];
+a = [1 3 2; 2 -3 -5];
 kernel(a)
 size(kernel(a),2) // Nullity of a
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>

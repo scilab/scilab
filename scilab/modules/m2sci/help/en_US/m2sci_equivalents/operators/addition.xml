@@ -31,12 +31,12 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 +
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 +
 ]]></programlisting>
                 </td>
@@ -50,15 +50,10 @@
                 <term>Character strings addition:</term>
                 <listitem>
                     <para>
-                        In Scilab, string addition is the same as string concatenation, what is done in Matlab by <emphasis role="bold">strcat</emphasis> function. In Matlab, string addition is the equivalent of the addition of corresponding ASCII codes.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>Empty matrix and addition:</term>
-                <listitem>
-                    <para>
-                        In Matlab, addition can only be made if the operands have the same size unless one is a scalar. For exemple, empty matrices can only be added to another empty matrix or a scalar.
+                        In Scilab, string addition is the same as string concatenation,
+                        what is done in Matlab by <emphasis role="bold">strcat</emphasis> function.
+                        In Matlab, string addition is the equivalent of the addition of
+                        corresponding ASCII codes.
                     </para>
                 </listitem>
             </varlistentry>
@@ -66,7 +61,8 @@
                 <term>Unary plus:</term>
                 <listitem>
                     <para>
-                        In Matlab, unary plus exists, but in Scilab it is automatically deleted when compiling so we can consider that Scilab unary plus does not exist.
+                        In Matlab, unary plus exists. In Scilab it is automatically deleted when
+                        compiling ; so we can consider that Scilab unary plus does not exist.
                     </para>
                 </listitem>
             </varlistentry>
@@ -85,7 +81,7 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 str = 'str1'+'str2'
 str = [230,232,228,99]
 str = strcat('str1','str2')
@@ -95,7 +91,7 @@ A = []
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 str = 'str1'+'str2'
 str = 'str1str2'
 str = strcat(['str1','str2'])

@@ -31,14 +31,14 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 logical(A)
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-No equivalent
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+// No equivalent
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
@@ -46,8 +46,10 @@ No equivalent
     <refsection>
         <title>Particular cases</title>
         <para>
-            If <emphasis role="bold">A</emphasis> is not an empty matrix, Scilab equivalent for <emphasis role="bold">logical(A)</emphasis>
-            is A not equal to <emphasis role="bold">0</emphasis> else Scilab equivalent is <emphasis role="bold">[]</emphasis>.
+            If <emphasis role="bold">A</emphasis> is not an empty matrix, Scilab equivalent
+            for <emphasis role="bold">logical(A)</emphasis>
+            is A not equal to <emphasis role="bold">0</emphasis> else Scilab equivalent is
+            <emphasis role="bold">[]</emphasis>.
         </para>
     </refsection>
 </refentry>

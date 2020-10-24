@@ -31,14 +31,14 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 findstr
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 No equivalent
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
@@ -46,7 +46,14 @@ No equivalent
     <refsection>
         <title>Particular cases</title>
         <para>
-            There is no equivalent for <emphasis role="bold">findstr</emphasis> in Scilab, but an emulation function has been written: <emphasis role="bold">mtlb_findstr</emphasis>. Scilab <emphasis role="bold">strindex</emphasis> function is very similar to <emphasis role="bold">findstr</emphasis> but do not consider the size of the strings passed as parameters. <emphasis role="bold">strindex</emphasis> can replace <emphasis role="bold">findstr</emphasis> only if <emphasis role="bold">findstr</emphasis> can be replaced by <emphasis role="bold">strfind</emphasis> in Matlab.
+            There is no equivalent for <emphasis role="bold">findstr</emphasis> in Scilab,
+            but an emulation function has been written: <emphasis role="bold">mtlb_findstr</emphasis>.
+            Scilab <emphasis role="bold">strindex</emphasis> function is very similar to
+            <emphasis role="bold">findstr</emphasis> but do not consider the size of the strings
+            passed as parameters.
+            <emphasis role="bold">strindex</emphasis> can replace
+            <emphasis role="bold">findstr</emphasis> only if <emphasis role="bold">findstr</emphasis>
+            can be replaced by <emphasis role="bold">strfind</emphasis> in Matlab.
         </para>
     </refsection>
 </refentry>

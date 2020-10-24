@@ -13,7 +13,9 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_power">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="m2sci_power">
     <refnamediv>
         <refname>^ (Matlab operator)</refname>
         <refpurpose>Exponent</refpurpose>
@@ -31,31 +33,23 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 ^
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 ^
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            <note>
-                Note that Matlab seems to have a bug for <emphasis role="bold">X^(Y)</emphasis> when <emphasis role="bold">X</emphasis> is a character and that in Scilab operations such as <emphasis role="bold">X^(Y)</emphasis> with <emphasis role="bold">X</emphasis> a scalar and <emphasis role="bold">Y</emphasis> a matrix is equivalent to <emphasis role="bold">X.^(Y)</emphasis> (Will change in next Scilab versions...).
-            </note>
-        </para>
-        <para>
-            <warning>
-                Exponentiation is right-associative in Scilab contrarily to MatlabÂ® and Octave.
-                For example 2^3^4 is equal to 2^(3^4) in Scilab but is equal to (2^3)^4 in MatlabÂ®
+        <warning>
+            <para>
+                Exponentiation is right-associative in Scilab, ontrarily to Matlab® and Octave.
+                For example, 2^3^4 is equal to 2^(3^4) in Scilab, but is equal to (2^3)^4 in Matlab®
                 and Octave.
-            </warning>
-        </para>
+            </para>
+        </warning>
     </refsection>
 </refentry>

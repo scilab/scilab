@@ -31,12 +31,12 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 besselk
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 besselk
 ]]></programlisting>
                 </td>
@@ -62,16 +62,16 @@ besselk
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 y = besselk(alpha,x)
 y = besselk(alpha,x,1)
 [y,ierr] = besselk(alpha,...)
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 y = besselk(alpha,x)
-y = besselk(alpha,x,ice),ice = 1 or ice = 2
+y = besselk(alpha,x,ice)  //ice = 1 or ice = 2
 ]]></programlisting>
                 </td>
             </tr>

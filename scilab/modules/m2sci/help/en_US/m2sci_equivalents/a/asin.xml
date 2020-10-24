@@ -31,14 +31,14 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 asin
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 asin
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
@@ -60,16 +60,14 @@ asin
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-y = asin(2)
-y = 1.5708 - 1.3170i
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+y = asin(2)  %  =>  1.5708 - 1.3170i
+                 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-y = asin(2)
-y = 1.5708 + 1.3170i
-]]></programlisting>
+y = asin(2)  // => 1.5708 + 1.3170i
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>

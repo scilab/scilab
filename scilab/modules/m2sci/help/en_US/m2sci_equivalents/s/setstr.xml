@@ -13,7 +13,9 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_setstr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="m2sci_setstr">
     <refnamediv>
         <refname>setstr (Matlab function)</refname>
         <refpurpose>Set string flag</refpurpose>
@@ -31,29 +33,23 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-setstr
+                    <programlisting role="no-scilab-exec"><![CDATA[
+setstr  % Not recommanded. use char() instead
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 ascii
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <variablelist>
-            <varlistentry>
-                <term>S = setstr(A) with A a character string:</term>
-                <listitem>
-                    <para>
-                        In this case, Scilab <emphasis role="bold">ascii</emphasis> function convert string to ascii code matrix, but <emphasis role="bold">setstr</emphasis> keeps string format.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
+        <warning>
+            <para>
+                S = setstr(A) with A a character string: In this case, Scilab
+                <emphasis role="bold">ascii</emphasis> function convert string to ascii code matrix,
+                but <emphasis role="bold">setstr</emphasis> keeps string format.
+            </para>
+        </warning>
     </refsection>
 </refentry>

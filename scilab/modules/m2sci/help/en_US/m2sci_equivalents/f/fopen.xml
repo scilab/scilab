@@ -31,12 +31,12 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 fopen
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 mopen
 ]]></programlisting>
                 </td>
@@ -50,7 +50,9 @@ mopen
                 <term>Access permission:</term>
                 <listitem>
                     <para>
-                        Matlab offers two permissions options not supported by Scilab: <emphasis role="bold">W</emphasis> and <emphasis role="bold">A</emphasis> (for tape drives)
+                        Matlab offers two permissions options not supported by Scilab:
+                        <emphasis role="bold">W</emphasis> and <emphasis role="bold">A</emphasis>
+                        (for tape drives)
                     </para>
                 </listitem>
             </varlistentry>
@@ -58,7 +60,12 @@ mopen
                 <term>Input values:</term>
                 <listitem>
                     <para>
-                        In Matlab, <emphasis role="bold">fopen('all')</emphasis> lists all opened files, in Scilab, this type of call for <emphasis role="bold">fopen</emphasis> does not exist. You can also use <emphasis role="bold">fopen</emphasis> in Matlab to get information on a file identifier (<emphasis role="bold">fopen(fid)</emphasis>), this case is not implemented in Scilab.
+                        In Matlab, <emphasis role="bold">fopen('all')</emphasis> lists all opened
+                        files, in Scilab, this type of call for <emphasis role="bold">fopen</emphasis>
+                        does not exist. You can also use <emphasis role="bold">fopen</emphasis>
+                        in Matlab to get information on a file identifier
+                        (<emphasis role="bold">fopen(fid)</emphasis>), this case is not implemented
+                        in Scilab.
                     </para>
                 </listitem>
             </varlistentry>
@@ -72,7 +79,11 @@ mopen
             </varlistentry>
         </variablelist>
         <para>
-            Matlab <emphasis role="bold">fopen</emphasis> can return an error message but not Scilab <emphasis role="bold">mopen</emphasis>, moreover, returned file identifier is <emphasis role="bold">-1</emphasis> in case of error in Matlab but does not exist in this case in Scilab, so an emulation function has been written <emphasis role="bold">mtlb_fopen</emphasis>.
+            Matlab <emphasis role="bold">fopen</emphasis> can return an error message but not Scilab
+            <emphasis role="bold">mopen</emphasis>, moreover, returned file identifier is
+            <emphasis role="bold">-1</emphasis> in case of error in Matlab but does not exist in
+            this case in Scilab, so an emulation function has been written
+            <emphasis role="bold">mtlb_fopen</emphasis>.
         </para>
     </refsection>
 </refentry>

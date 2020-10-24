@@ -31,14 +31,14 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 max
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 max
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
@@ -46,11 +46,16 @@ max
     <refsection>
         <title>Particular cases</title>
         <para>
-            Matlab <emphasis role="bold">max</emphasis> function can work with complexes, what Scilab <emphasis role="bold">max</emphasis> can not, so a emulation function called <emphasis role="bold">mtlb_max</emphasis> has been written.
+            Matlab <emphasis role="bold">max</emphasis> function can work with complexes,
+            while Scilab's <emphasis role="bold">max</emphasis> can not. So, an emulation function
+            <emphasis role="bold">mtlb_max</emphasis> has been written.
         </para>
         <para>
             <note>
-                Note that in Scilab, second input parameter can give the dimension to use to find the maximum values or another matrix (maximum of two matrices), in Matlab, dimension parameter is given in a third input parameter (in this case, second parameter must be <emphasis role="bold">[]</emphasis>).
+                Note that in Scilab, second input parameter can give the dimension to use to find
+                the maximum values or another matrix (maximum of two matrices), in Matlab,
+                dimension parameter is given in a third input parameter (in this case,
+                second parameter must be <emphasis role="bold">[]</emphasis>).
             </note>
         </para>
         <variablelist>
@@ -58,7 +63,13 @@ max
                 <term>C=max(A)</term>
                 <listitem>
                     <para>
-                        If <emphasis role="bold">A</emphasis> is a matrix, <emphasis role="bold">max(A)</emphasis> is equivalent to <emphasis role="bold">max(A,[],1)</emphasis> in Matlab whereas in Scilab <emphasis role="bold">max(A)</emphasis> gives the maximum value found in <emphasis role="bold">A</emphasis>. Matlab <emphasis role="bold">max</emphasis> treats the values along the first non-singleton dimension.
+                        If <emphasis role="bold">A</emphasis> is a matrix,
+                        <emphasis role="bold">max(A)</emphasis> is equivalent to
+                        <emphasis role="bold">max(A,[],1)</emphasis> in Matlab whereas in Scilab
+                        <emphasis role="bold">max(A)</emphasis> gives the maximum value found in
+                        <emphasis role="bold">A</emphasis>.
+                        Matlab <emphasis role="bold">max</emphasis> treats the values along the
+                        first non-singleton dimension.
                     </para>
                 </listitem>
             </varlistentry>
@@ -77,7 +88,7 @@ max
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 A = [1,2,3;4,5,6]
 C = max(A)
 C = [4,5,6]
@@ -86,7 +97,7 @@ C = [4,5,6]
 B = [7,8,9;2,3,4]
 C = max(A,B)
 C = [7,8,9;4,5,6]
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
@@ -98,7 +109,7 @@ C = [4,5,6]
 B = [7,8,9;2,3,4]
 C = max(A,B)
 C = [7,8,9;4,5,6]
-]]></programlisting>
+                  ]]></programlisting>
                 </td>
             </tr>
         </informaltable>

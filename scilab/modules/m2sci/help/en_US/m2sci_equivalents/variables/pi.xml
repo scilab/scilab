@@ -31,22 +31,23 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 pi
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
 %pi
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Only Matlab allows to change the value of this variable.
-        </para>
+        <warning>
+            <para>
+                Matlab allows to change the value of this variable. Then <literal>clear pi</literal>
+                resets its value to the default one. With Scilab, <literal>%pi</literal> is a
+                read-only protected constant.
+            </para>
+        </warning>
     </refsection>
 </refentry>

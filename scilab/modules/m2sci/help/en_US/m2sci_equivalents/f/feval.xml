@@ -31,13 +31,14 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 feval
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-evstr - execstr
+                    <programlisting role="no-scilab-exec"><![CDATA[
+evstr
+execstr
 ]]></programlisting>
                 </td>
             </tr>
@@ -77,15 +78,17 @@ evstr - execstr
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-[y1] = feval(@cos,0)
+                    <programlisting role="no-scilab-exec"><![CDATA[
+y1 = feval(@cos, [0 1])   % function input is real
+y1 = feval(@abs, 1+%i)    % function input is not real
 [y1,y2] = feval(@size,1)
 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-y1 = evstr("cos(0)")
-execstr("[y1,y2] = size(1)")
+y1 = feval([0 1], cos)   // function input is real
+y1 = evstr("abs(1+%i)")
+execstr("[y1,y2] = size(1)");
 ]]></programlisting>
                 </td>
             </tr>

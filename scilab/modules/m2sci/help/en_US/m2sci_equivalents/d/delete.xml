@@ -31,13 +31,14 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 delete
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-mdelete - delete
+                    <programlisting role="no-scilab-exec"><![CDATA[
+mdelete   // files
+delete    // graphic objets
 ]]></programlisting>
                 </td>
             </tr>

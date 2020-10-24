@@ -31,12 +31,12 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 fwrite
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 No equivalent
 ]]></programlisting>
                 </td>
@@ -46,7 +46,11 @@ No equivalent
     <refsection>
         <title>Particular cases</title>
         <para>
-            There is no equivalent function for Matlab <emphasis role="bold">fwrite</emphasis> in Scilab but an emulation function has been written: <emphasis role="bold">mtlb_fwrite</emphasis>. This function probably not allows all Matlab <emphasis role="bold">fwrite</emphasis> possibilities (<emphasis role="bold">skip</emphasis> parameter is ignored...).
+            There is no equivalent function for Matlab <emphasis role="bold">fwrite</emphasis>
+            in Scilab but an emulation function has been written:
+            <emphasis role="bold">mtlb_fwrite</emphasis>. This function probably not allows all
+            Matlab <emphasis role="bold">fwrite</emphasis> possibilities
+            (<emphasis role="bold">skip</emphasis> parameter is ignored...).
         </para>
     </refsection>
 </refentry>

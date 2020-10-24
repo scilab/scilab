@@ -13,7 +13,9 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_box">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="m2sci_box">
     <refnamediv>
         <refname>box (Matlab function)</refname>
         <refpurpose>Display axes border</refpurpose>
@@ -31,56 +33,24 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-box
-]]></programlisting>
-                </td>
-                <td>
-                    <programlisting role="example"><![CDATA[
-No equivalent
-]]></programlisting>
-                </td>
-            </tr>
-        </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            There is no Scilab equivalent function for Matlab box but it can be easily replaced by Scilab equivalent instructions.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <informaltable border="1" width="100%">
-            <tr>
-                <td align="center">
-                    <emphasis role="bold">Matlab</emphasis>
-                </td>
-                <td align="center">
-                    <emphasis role="bold">Scilab</emphasis>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 box on
 box off
 box
 box(h,'on')
 box(h,'off')
 box(h)
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-a = gca();
-a.box = "on";
-a.box = "off";
-if a.box=="on" then a.box="off";else a.box="on";end;
-h.box = "on";
-h.box = "off";
-if h.box=="on" then h.box="off";else h.box="on";end;
-]]></programlisting>
+gca().box = "on"
+gca().box = "off"
+if gca().box=="on" then gca().box="off"; else gca().box="on"; end;
+h.box = "on"
+h.box = "off"
+if h.box=="on" then h.box="off"; else h.box="on"; end;
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>

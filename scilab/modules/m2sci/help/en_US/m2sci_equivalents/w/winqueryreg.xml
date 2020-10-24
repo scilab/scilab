@@ -31,22 +31,22 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-winqueryreg
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+valnames = winqueryreg('name', rootkey, subkey)
+value = winqueryreg(rootkey, subkey, valname)
+value = winqueryreg(rootkey, subkey)
+% No equivalent
+                  ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-winqueryreg
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+valnames = winqueryreg('name', rootkey, subkey)
+value = winqueryreg('rootkey', subkey, valname)
+value = winqueryreg('rootkey', subkey)
+value = winqueryreg('key', rootkey, subkey)
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Scilab function returns a matrix of strings or a int32 value but Matlab function returns a Cell of strings or a int32 value.
-        </para>
     </refsection>
 </refentry>

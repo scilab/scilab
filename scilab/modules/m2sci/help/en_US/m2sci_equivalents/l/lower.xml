@@ -31,14 +31,15 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 lower(str)
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-convstr(str,"l")
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+convstr(str)
+convstr(str, "l")
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
@@ -46,7 +47,10 @@ convstr(str,"l")
     <refsection>
         <title>Particular cases</title>
         <para>
-            If <emphasis role="bold">A</emphasis> is not a character string matrix, Scilab equivalent for <emphasis role="bold">B=lower(A)</emphasis> is <emphasis role="bold">B=A</emphasis>, else equivalent is <emphasis role="bold">B=convstr(A)</emphasis>.
+            If <emphasis role="bold">A</emphasis> is not a character string matrix,
+            Scilab equivalent for <emphasis role="bold">B=lower(A)</emphasis> is
+            <emphasis role="bold">B=A</emphasis>, else equivalent is
+            <emphasis role="bold">B=convstr(A)</emphasis>.
         </para>
     </refsection>
 </refentry>
