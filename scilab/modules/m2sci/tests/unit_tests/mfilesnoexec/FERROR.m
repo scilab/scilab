@@ -4,8 +4,8 @@
 % V.C.
 
 fid=1
-message = ferror(fid)
-message = ferror(fid,'clear')
-[message,errnum] = ferror(fid)
-[message,errnum] = ferror(fid,'clear')
+Message = ferror(fid)
+Message = ferror(fid,'clear')
+[Message, errnum] = ferror(fid)
+[Message, errnum] = ferror(fid,'clear')
 

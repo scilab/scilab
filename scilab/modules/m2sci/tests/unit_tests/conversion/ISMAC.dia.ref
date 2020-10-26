@@ -1,17 +1,17 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+// Copyright (C) 2020 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 // <-- LONG TIME EXECUTION -->
-// Unitary test for conversion of Matlab function: ISPC
+// Unitary test for conversion of Matlab function: ISMAC
 exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversionNoExe.sci", -1);
-mprintf("%s\n", m2sciTestConversionNoExe("ISPC"));
+mprintf("%s\n", m2sciTestConversionNoExe("ISMAC"));
   ****** Beginning of mfile2sci() session ******
-  File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/ISPC.m
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/ISMAC.m
   Result file path: TMPDIR/
   Recursive mode: OFF
   Only double values used in M-file: NO
@@ -23,17 +23,15 @@ mprintf("%s\n", m2sciTestConversionNoExe("ISPC"));
   Syntax modification: Done
   Macro to tree conversion...
   Conversion of M-tree...
-  L.6: Unknown variable ispc is a M-file.
-  L.7: Unknown variable ispc is a M-file.
+  L.6: Unknown variable ismac is a M-file.
+  L.7: Unknown variable ismac is a M-file.
   Conversion of M-tree: Done
 TESTING M2SCI: creating varslist file...
   Macro to tree conversion: Done
   ****** End of mfile2sci() session ******
-
-// Test file for function ispc()
+// Test file for function ismac()
 // Copyright INRIA
 // Matlab version: 7.0.0.19901 (R14)
 // V.C.
-
-getos()=="Windows"
-tf = getos()=="Windows"
+getos()=="Darwin"
+tf = getos()=="Darwin"

@@ -38,5 +38,5 @@ TESTING M2SCI: creating varslist file...
 // Matlab version: 6.5.0.180913a (R13)
 // V.C.
 
-exist("item")
-exist("item","kind")
+mtlb_exist("item")
+mtlb_exist("item","kind")

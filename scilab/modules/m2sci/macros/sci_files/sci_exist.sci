@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_exist(tree)
+function tree = sci_exist(tree)
     // M2SCI function
     // Conversion function for Matlab exist()
     // Input: tree = Matlab funcall tree
@@ -21,9 +21,9 @@ function [tree]=sci_exist(tree)
 
     set_infos(gettext("mtlb_exist() is just a partial emulation of Matlab exist() function."),2)
 
-    scitree.name="mtlb_exist"
+    tree.name = "mtlb_exist"
 
-    tree.lhs(1).dims=list(1,1)
-    tree.lhs(1).type=Type(Double,Real)
+    tree.lhs(1).dims = list(1,1)
+    tree.lhs(1).type = Type(Double,Real)
 
 endfunction

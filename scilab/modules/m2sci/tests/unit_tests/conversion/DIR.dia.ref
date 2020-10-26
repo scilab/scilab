@@ -41,12 +41,12 @@ TESTING M2SCI: creating varslist file...
 // Matlab version: 6.5.0.180913a (R13)
 // V.C.
 
-dirname = "~";
+dirName = "~";
 dir
 dir("dirname")
-dir(dirname)
+dir(dirName)
 dir("dirname")
 dir("dirname")
 files = mtlb_dir()
-files1 = mtlb_dir(dirname)
+files1 = mtlb_dir(dirName)
 files2 = mtlb_dir("dirname")

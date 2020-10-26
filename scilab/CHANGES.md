@@ -387,6 +387,7 @@ Bug Fixes
 * [#16530](https://bugzilla.scilab.org/16530): `mapsound` needed to be reforged.
 * [#16549](https://bugzilla.scilab.org/16549): simple script crashed Scilab in GUI mode.
 * [#16551](https://bugzilla.scilab.org/16551): `num2cell` returned {} for any input array of empty strings.
+* [#16552](https://bugzilla.scilab.org/16552): `mfile2sci`: conversion of `ispc` and `isunix` still used `MSDOS` removed far ago. Conversion of `ismac` was missing. Conversion of `exist` missed using `mtlb_exist`. Conversion of `dos` yielded some "operation +" warnings. Unit tests for the conversion of `cd`, `dir` and `ferror` overwrote some Scilab reserved keywords. Conversion of `return` yielded `mtlb(resume)`.
 * [#16553](https://bugzilla.scilab.org/16553): `unique(["" ""])` returned `["" ""]`.
 * [#16557](https://bugzilla.scilab.org/16557): `macr2tree` + `tree2code` translated `e={2}` into `"e=1"` and `e={2,"ab"}` into `"e=[2,"ab"]"`.
 * [#16559](https://bugzilla.scilab.org/16553): `isempty(A)` was true for sparse matrix of dimension 2^16 or larger.

@@ -7,15 +7,17 @@
 //
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
-//
-// <-- Non-regression test for bug 16181 -->
+// <-- LONG TIME EXECUTION -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/16181
 //
+// <-- Short Description -->
+// Unit tests for replacing the "end" index
+
 if ~isdef("m2scikernellib") then
     load("SCI/modules/m2sci/macros/kernel/lib")
 end
 
-txt = mgetl("SCI/modules/m2sci/tests/nonreg_tests/bug_16181.m");
+txt = mgetl("SCI/modules/m2sci/tests/unit_tests/conversion/END_index_syntax.m");
 printf("%s\n", replace_end_dollar(txt));

@@ -3,8 +3,8 @@
 % Matlab version: 6.5.0.180913a (R13)
 % V.C.
 
-dirname='~'
-cd(dirname)
+dirName = '~'
+cd(dirName)
 cd ~
 cd ..
 cd dirname

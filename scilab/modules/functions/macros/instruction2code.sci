@@ -183,6 +183,7 @@ function  C=instruction2code(I, bprettyprintformat)
         C=cat_code(C,"end")
         C($)=C($)+";"
         return
+
     end
 
     // ------------------------------------
@@ -241,7 +242,7 @@ function  C=instruction2code(I, bprettyprintformat)
             for lhsind=1:size(I.lhs)
                 lhsnames=[lhsnames,expression2code(I.lhs(lhsind))]
             end
-            if strcat(lhsnames,",")<>"" then
+            if lhsnames<>[] & strcat(lhsnames,",")<>"" then
                 C="["+strcat(lhsnames,",")+"] = "+rhs2code(I.expression)
             else
                 C=rhs2code(I.expression)
