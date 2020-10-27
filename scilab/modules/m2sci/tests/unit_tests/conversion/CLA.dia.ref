@@ -25,19 +25,14 @@ mprintf("%s\n", m2sciTestConversionNoExe("CLA"));
   Conversion of M-tree...
   L.6: Unknown variable cla is a M-file.
   !! L.6: All children will be deleted, no HandleVisibility property in Scilab graphics.
-  L.7: Unknown variable cla is a M-file.
   Conversion of M-tree: Done
 TESTING M2SCI: creating varslist file...
   Macro to tree conversion: Done
   Translation may be wrong (see the //!! comments).
   ****** End of mfile2sci() session ******
-
 // Test file for function cla
 // Copyright INRIA
 // Matlab version: 6.5.1.199709 (R13) Service Pack 1
 // V.C.
-
-%v0 = gca();
-delete(%v0.children)
-%v0 = gca();
-delete(%v0.children)
+delete(gca().children)
+delete(gca().children)

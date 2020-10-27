@@ -10,9 +10,10 @@ box OFF
 box
 
 %m2scideclare h|1 1|handle
+%m2scideclare g|1 1|handle
 box(h,'on')
 box(h,'off')
 box(h,'ON')
 box(h,'OFF')
 box(h)
-
+box([h g], 'on')

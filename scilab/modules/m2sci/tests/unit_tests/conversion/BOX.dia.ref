@@ -24,34 +24,23 @@ mprintf("%s\n", m2sciTestConversionNoExe("BOX"));
   Macro to tree conversion...
   Conversion of M-tree...
   L.10: Unknown variable box is a M-file.
-  L.13: Unknown variable box is a M-file.
-  L.14: Unknown variable box is a M-file.
-  L.15: Unknown variable box is a M-file.
-  L.16: Unknown variable box is a M-file.
-  L.17: Unknown variable box is a M-file.
   Conversion of M-tree: Done
 TESTING M2SCI: creating varslist file...
   Macro to tree conversion: Done
   ****** End of mfile2sci() session ******
-
 // Test file for function box()
 // Copyright INRIA
 // Matlab version: 6.5.1.199709 (R13) Service Pack 1
 // V.C.
-
-%v0 = gca();
-%v0.box = "on";
-%v0 = gca();
-%v0.box = "off";
-%v0 = gca();
-%v0.box = "on";
-%v0 = gca();
-%v0.box = "off";
+gca().box = "on";
+gca().box = "off";
+gca().box = "on";
+gca().box = "off";
 mtlb_box
-
-
 h.box = "on";
 h.box = "off";
 h.box = "on";
 h.box = "off";
 mtlb_box(h)
+%v0 = [h,g];
+%v0.box = "on";
