@@ -1,0 +1,56 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2020 - Samuel GOUGEON
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: COMMENTS
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversionNoExe.sci", -1);
+mprintf("%s\n", m2sciTestConversionNoExe("COMMENTS_syntax"));
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/COMMENTS_syntax.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formatted code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  L.14: No simple equivalent, so mtlb_fprintf() is called.
+  L.15: No simple equivalent, so mtlb_fprintf() is called.
+  L.16: No simple equivalent, so mtlb_fprintf() is called.
+  L.17: No simple equivalent, so mtlb_fprintf() is called.
+  L.18: No simple equivalent, so mtlb_fprintf() is called.
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+// Test file for COMMENTS
+///*
+//   Matlab block-comment
+//   Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+//   Copyright (c) 2020 - Samuel GOUGEON
+//
+// fprintf('%d %s\n', 2, 'percents in strings');  // A difficult case
+//*/
+a = 1;  // Appended comment
+// Percent symbol % in a comment
+A = a;
+B = 2*a  // Case 3: Symbol % in a comment
+mtlb_fprintf("%d\n",2);  // Case 4
+mtlb_fprintf("%d\n",2);  // Case 4 with % in comment
+mtlb_fprintf("%s\n","percents % in strings");  // Case 5
+mtlb_fprintf("%d %s\n",2,"percents in strings");  // Case 6
+mtlb_fprintf("%d %s\n",2,"percents in strings");  // Case 6 with % in comment
+select a
+  case 1 then
+    // Anything to do
+    disp("OK")
+end;

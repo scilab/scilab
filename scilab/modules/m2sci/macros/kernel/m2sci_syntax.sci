@@ -11,7 +11,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [helppart,txt,batch]=m2sci_syntax(txt)
+function [helppart,txt,batch] = m2sci_syntax(txt)
     // Make minor changes on M-file data syntax to have it readable by Scilab
     // Input arguments:
     //  - txt: the contents of an M-file
@@ -26,11 +26,32 @@ function [helppart,txt,batch]=m2sci_syntax(txt)
     //  - replace_brackets
     //  - replace_end_dollar
 
+    // Pre-process block-comments:
+    // --------------------------
+    // Converts block-comments tags
+    k = grep(txt, "/^\%\{\s*$/", "r"); if k <> [] then, txt(k) = "/*", end
+    k = grep(txt, "/^\%\}\s*$/", "r"); if k <> [] then, txt(k) = "*/", end
+    // Comments the block-comments
+    // (otherwise their content is cleared by the compiler)
+    ks = find(txt=="/*")
+    ke = find(txt=="*/")
+    for k = matrix(ks,1,-1)
+        i = find(ke>k,1)
+        if i==[]
+            j = size(txt,1)
+        else
+            j = ke(i)
+            ke(i) = []
+        end
+        txt(k:j) = ["///*" ; "// " + txt(k+1:j-1) ; "//*/"]
+    end
+    //
+
     sciparam();
-    quote="''"
-    dquote=""""
-    ctm="."+"."+"." // Continuation mark
-    batch=%t
+    quote = "''"
+    dquote = """"
+    ctm = "." + "." + "." // Continuation mark
+    batch = %t
 
     k=0
     first_ncl=[]
@@ -396,7 +417,9 @@ function [helppart,txt,batch]=m2sci_syntax(txt)
         return
     end
 
+    // ===================
     // Syntax modification
+    // ===================
 
     // Complex variable
     txt=i_notation(txt)

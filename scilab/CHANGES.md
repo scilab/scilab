@@ -391,7 +391,9 @@ Bug Fixes
 * [#16553](https://bugzilla.scilab.org/16553): `unique(["" ""])` returned `["" ""]`.
 * [#16557](https://bugzilla.scilab.org/16557): `macr2tree` + `tree2code` translated `e={2}` into `"e=1"` and `e={2,"ab"}` into `"e=[2,"ab"]"`.
 * [#16559](https://bugzilla.scilab.org/16553): `isempty(A)` was true for sparse matrix of dimension 2^16 or larger.
+* [#16567](https://bugzilla.scilab.org/16567): `mfile2sci` did not support Matlab block-comments %{ ..%}.
 * [#16571](https://bugzilla.scilab.org/16571): `mfile2sci` had several issues when converting the NOT ~ operator: 1) `~(1-1)` was converted into `~1-1` instead of `~(1-1)`  2) ~ applied to an integer expression yielded an error from `convert2double`  3) `~i` was converted into `~%i` instead of `~abs(%i)`.
+* [#16586](https://bugzilla.scilab.org/16586): `mfile2sci`: The `prettyprintoutput` flag badly managed appended comments.
 * [#16596](https://bugzilla.scilab.org/16596): Concatenating encoded integers with sparse numeric data was not possible. 
 * [#16609](https://bugzilla.scilab.org/16609): `bitcmp` needed to be upgraded for Scilab 6.
 * [#16622](https://bugzilla.scilab.org/16622): `inv` could no longer be overloaded for hypermatrices of decimal or complex numbers.
