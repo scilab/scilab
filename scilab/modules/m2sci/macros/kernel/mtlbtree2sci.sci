@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [scitree,crp]=mtlbtree2sci(mtlbtree,prettyprintoutput)
+function [scitree, crp] = mtlbtree2sci(mtlbtree,prettyprintoutput)
     // Conversion of a Matlab function tree to Scilab (and code generation)
     // Input arguments:
     //  - mtlbtree: tree (returned by macr2tree) representing Matlab function compiled code

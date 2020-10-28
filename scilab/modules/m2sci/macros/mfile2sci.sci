@@ -154,6 +154,7 @@ function res = mfile2sci(fil, results_path, Recmode, only_double, verbose_mode, 
     tmptxt=txt
 
     // Make minor changes on syntax
+    // ----------------------------
     m2sci_info(gettext("Syntax modification..."),-1);
     ierr=execstr("load(''"+pathconvert(TMPDIR)+fnam+ ".tree'',''txt'',''helppart'',''batch'')","errcatch","n")
     if ierr<>0 | exists("txt")==0 | exists("batch")==0 & ..
@@ -390,8 +391,11 @@ function res = mfile2sci(fil, results_path, Recmode, only_double, verbose_mode, 
 
 endfunction
 
+// ---------------------------------------------------------------------------
+
 function funcname = getMacroNameFromPrototype(proto)
-    // Private utility function
+    // PRIVATE UTILITY FUNCTION called only by mfile2sci()
+    //
     // Extraction of the macro's name
     tmp = tokens(proto,["(" "=" ")"]);
     if size(tmp,1)>1
@@ -406,4 +410,256 @@ function funcname = getMacroNameFromPrototype(proto)
     // proto = "a = fun4 ()";
     // proto = "fun5";
     // proto = "a = fun6"; // from bug_2341 use case
+endfunction
+
+// ---------------------------------------------------------------------------
+
+function instr = transformtree(instr)
+    // PRIVATE UTILITY FUNCTION called only by mfile2sci()
+    //
+    // Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE
+    //
+    //TRANSFORMTREE function
+    //This function research and transform the equal instructions(if the lhs are a multi_operation and expression is a funcall)
+    //of the matlab tree to a sup_equal instructions
+    //sup_equal is a tlist : tlist([sup_equal,sup_instr,nb_op],sup_instr,nb_op)
+    //i.e : the equal instruction [a(1),b(2:3)]=f() is replaced by
+    //sup_equal, whith sup_intr list is composed to :
+    //[%v1,%v2]=f()
+    //a(1)=%v1
+    //b(2:3)=%v2
+    //and nb_op is: the number of insert operation (in this case 2)
+    //Input
+    //instr : instruction of matlab tree before tranformation
+    //Output
+    //instr : instruction of matlab tree after transformation
+
+    Unknown=-1;
+    // Browse all the instrucions of the matlab tree:
+    if typeof(instr)=="ifthenelse" then
+        for i=1:size(instr.then)
+            instr.then(i)=transformtree((instr.then(i)))
+        end
+        for i=1:size(instr.elseifs)
+            for k=1:size(instr.elseifs(i).then)
+                instr.elseifs(i).then(k)=transformtree((instr.elseifs(i).then(k)))
+            end
+        end
+        for i=1:size(instr.else)
+        instr.else(i)=transformtree((instr.else(i)))
+        end
+    elseif typeof(instr)=="selectcase" then
+        for i=1:size(instr.cases)
+            for j=1:size(instr.cases(i).then)
+                instr.cases(i).then(j)=transformtree((instr.cases(i).then(j)))
+            end
+        end
+        for i=1:size(instr.else)
+        instr.else(i)=transformtree(instr.else(i))
+        end
+    elseif typeof(instr)=="while" then
+        for i=1:size(instr.statements)
+            instr.statements(i)=transformtree(instr.statements(i))
+        end
+    elseif typeof(instr)=="for" then
+        for i=1:size(instr.statements)
+            instr.statements(i)=transformtree(instr.statements(i))
+        end
+        //instruction is an equal instruction
+    elseif typeof(instr)=="equal" then
+        if typeof(instr.expression)=="funcall" then //expression is a funcall
+            nb_opr=0;
+            for ind=1:size(instr.lhs)
+                if typeof(instr.lhs(ind))=="operation" then
+                    nb_opr=nb_opr+1
+                end
+            end
+            if nb_opr>1 then //more than one lhs insert operation
+                sup_instr=list("");
+                lhstemp=list();
+                for j=1:size(instr.lhs)
+                    if typeof(instr.lhs(j))=="operation" then
+                        x=gettempvar();
+                        sup_instr($+1)=Equal(list(instr.lhs(j)),x);
+                        lhstemp(j)=x;
+                    else
+                        lhstemp(j)=instr.lhs(j)
+                    end
+                end
+                sup_instr(1)=Equal(lhstemp,instr.expression)
+                //creation of the sup_equal
+                instr=tlist(["sup_equal","sup_instr","nb_opr"],sup_instr,nb_opr)
+            end
+        end
+    end
+endfunction
+
+// ---------------------------------------------------------------------------
+
+function bval = multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prettyprintoutput)
+    // PRIVATE UTILITY FUNCTION called only by mfile2sci()
+    //
+    // This function converts M-Files containing more than one function
+    // Inputs are the same as mfile2sci()
+    // Outputs :
+    // - bval: boolean value, %t if file contains more than on function, %f else
+
+    sciparam();
+
+    // File name
+    k=strindex(fil,".")
+    if k<>[]
+        ke=k($)-1
+        base_name=part(fil,1:ke)
+    else
+        ke=length(fil)
+        base_name=fil
+    end
+    // File path
+    k=strindex(fil,"/")
+    if k==[] then
+        file_path="./"
+    else
+        file_path=part(fil,1:k($))
+        base_name=part(base_name,k($)+1:ke)
+    end
+
+    txt=mgetl(fil);
+
+    kf=grep(txt,["function[","function "])
+
+    if isempty(kf) then
+        // Batch file
+        bval=%f
+    elseif size(kf,"*")==1 then
+        // Only one function defined
+        bval=%f
+    else
+        funcdecl=[]
+        for kk=kf
+            ind=strindex(txt(kk),["function[";"function "])
+            if isacomment(txt(kk))==0 & ~isinstring(txt(kk),ind) & part(stripblanks(txt(kk),%T),1:8)=="function"  then // function prototype
+                funcdecl=[funcdecl kk]
+            end
+        end
+
+        if isempty(funcdecl) then
+            // "function" only exists in comments and strings
+            bval=%f
+            return
+        elseif size(funcdecl,"*")==1 then
+            bval=%f
+            return
+        end
+
+        // Verify if the directory exists
+        dirnam = ls(pathconvert(TMPDIR)+base_name);
+
+        sep = filesep();
+
+        if or(dirnam<>"") then
+            rmdir(pathconvert(TMPDIR)+base_name,"s")
+        end
+        mkdir(pathconvert(TMPDIR),base_name)
+        write(%io(2),msprintf(gettext(" -- File %s contains more than one function -- "),fil));
+
+        bval= %t
+
+        // First split file into as many files as function declared
+        funcdecl=[funcdecl size(txt,"*")+1]
+
+        tmpfiles=[]
+        for k=1:size(funcdecl,"*")-1
+            functxt=txt(funcdecl(k):funcdecl(k+1)-1)
+            str=  strindex(txt(funcdecl(k)),"(")
+            if str==[] then
+                funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:length(txt(funcdecl(k)))))
+            else
+                funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:str(1)-1))
+            end
+
+            keq=strindex(funcname,"=")
+            if ~isempty(keq) then
+                funcname=stripblanks(part(funcname,keq+1:length(funcname)))
+            end
+            tmpfiles=[tmpfiles;funcname]
+            mputl(functxt,pathconvert(TMPDIR)+base_name+sep+tmpfiles($)+".m");
+        end
+
+        write(%io(2),msprintf(gettext(" -- Each function converted separately: %s -- "),strcat(tmpfiles," ")));
+        write(%io(2),msprintf(gettext(" -- Temporary files put in: %s -- "),pathconvert(TMPDIR)));
+
+        // Conversion of each file
+
+        for k=1:size(tmpfiles,"*")
+            txt=mgetl(pathconvert(TMPDIR)+base_name+sep+tmpfiles(k)+".m")
+            //mfile2sci(pathconvert(TMPDIR)+tmpfiles(k)+".m",res_path,Recmode,only_double,verbose_mode,prettyprintoutput)
+        end
+
+        translatepaths(pathconvert(TMPDIR)+base_name,pathconvert(TMPDIR)+base_name)
+
+        txt=[]
+        if isfile(pathconvert(TMPDIR)+base_name+sep+"log") then
+            txt=mgetl(pathconvert(TMPDIR)+base_name+sep+"log")
+        end
+        mputl(txt,res_path+"log");
+        if isfile(pathconvert(TMPDIR)+base_name+sep+"resumelog") then
+            txt=mgetl(pathconvert(TMPDIR)+base_name+sep+"resumelog")
+        end
+        mputl(txt,res_path+"resumelog");
+
+        // Catenation of all .sci files to have only one output file
+        txt=[]
+        for k=1:size(tmpfiles,"*")
+            txt=[txt ;"";mgetl(pathconvert(TMPDIR)+base_name+sep+tmpfiles(k)+".sci")]
+        end
+
+        // Delete useless .sci files
+        //for k=1:size(tmpfiles,"*")
+        //mdelete(res_path+tmpfiles(k)+".sci")
+        //end
+
+        mputl(txt,res_path+base_name+".sci");
+
+        // Catenation of all .log files to have only one output file
+        //if exists("logfile")==0 then
+        //txt=[]
+        //for k=1:size(tmpfiles,"*")
+        //txt=[txt ; mgetl(pathconvert(TMPDIR)+base_name+sep+"m2sci_"+tmpfiles(k)+".log")]
+        //end
+
+        // Delete useless .log files
+        //for k=1:size(tmpfiles,"*")
+        //mdelete(pathconvert(TMPDIR)+base_name+sep+"m2sci_"+tmpfiles(k)+".log")
+        //end
+
+        //mputl(txt,res_path+"m2sci_"+base_name+".log");
+        //end
+
+        // Catenation of all resume.log files to have only one output file
+        //if exists("resume_logfile")==0 then
+        //txt=[]
+        //for k=1:size(tmpfiles,"*")
+        //txt=[txt ; mgetl(res_path+"m2sci_"+tmpfiles(k)+"_resume.log")]
+        //end
+
+        // Delete useless _resume.log files
+        //for k=1:size(tmpfiles,"*")
+        //mdelete(res_path+"m2sci_"+tmpfiles(k)+"_resume.log")
+        //end
+
+        //mputl(txt,res_path+"m2sci_"+base_name+"_resume.log");
+        //end
+
+        // Delete useless .m files
+        //for k=1:size(tmpfiles,"*")
+        //mdelete(pathconvert(TMPDIR)+tmpfiles(k)+".m")
+        //end
+
+        rmdir(pathconvert(TMPDIR)+base_name,"s")
+        for k=1:size(tmpfiles,"*")
+            mdelete(pathconvert(TMPDIR)+tmpfiles(k)+".tree")
+        end
+    end
+
 endfunction

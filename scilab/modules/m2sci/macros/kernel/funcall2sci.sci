@@ -10,8 +10,9 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [sci_equiv]=funcall2sci(mtlb_expr)
-    // M2SCI function
+function sci_equiv = funcall2sci(mtlb_expr)
+    // INTERNAL function called only by expression2sci()
+    //
     // Convert a function call in an instruction or in an expression from Matlab to Scilab
     // Input:
     // - mtlb_instr: Matlab instr or expression to convert
@@ -98,4 +99,122 @@ function [sci_equiv]=funcall2sci(mtlb_expr)
         sci_equiv.lhsnb=size(sci_equiv.lhs)
     end
 
+endfunction
+
+// ---------------------------------------------------------------------------
+
+function tree = default_trad(tree)
+    // M2SCI private function called only within funcall2sci()
+    // Create a default translation function
+
+    global("mtlbref_fun") //contains the matlab reference functions which not yet converted
+    global("mtlbtool_fun")//contains the matlab  toolboxes functions
+    global("not_mtlb_fun") // contains the not matlab functions
+
+    if ~exists("mtlbref_fun") then
+        mtlb_fun=[]
+    end
+    if ~exists("mtlbtool_fun") then
+        mtlbtool_fun=[]
+    end
+    if ~exists("not_mtlb_fun") then
+        not_mtlb_fun=[]
+    end
+
+    name=tree.name
+
+    ispriminame=%f;
+    //true if the name function is the name of scilab function primitive
+    if funptr(tree.name)<>0 then
+        name1="%"+tree.name
+        tree.name=name1
+        ispriminame=%t;
+    end
+    //ismtlbfun is true if the function is in a matlab toolbox, mtlbpath is the path where is the function
+    [mtlbpath,ismtlbtoolfun]=mtlbtoolfun(name)
+    //Matlab reference functions
+    if or(name==not_yet_converted()) then
+        set_infos(msprintf(gettext("Matlab function %s not yet converted, original calling sequence used."),name),2)
+        if ~or(name==mtlbref_fun(:,1)) then
+            mtlbref_fun($+1,1)=name
+            if ispriminame then
+                mtlbref_fun($,2)=msprintf(gettext("(Warning name conflict: function name changed from %s to %s)."),name,name1);
+            else
+                mtlbref_fun($,2)=""
+            end
+        end
+        //Matlab toolboxes functions
+    elseif ismtlbtoolfun then
+        set_infos(msprintf(gettext("Matlab toolbox(es) function %s not converted, original calling sequence used"),name),2)
+        if ~or(name==mtlbtool_fun(:,1)) then
+            mtlbtool_fun($+1,1)=name
+            if ispriminame then
+                mtlbtool_fun($,2)=msprintf(gettext("Matlab toolbox(es) function %s not converted, original calling sequence used."),name,name1,mtlbpath)
+            else
+                mtlbtool_fun($,2)=msprintf(gettext("(Find this function in matlab/%s)."),mtlbpath)
+            end
+        end
+    elseif isdefinedvar(Variable(tree.name,Infer())) then
+        operands=list()
+        operands(1)=Variable(tree.name,Infer())
+        for krhs = 1:size(tree.rhs)
+            operands($+1)=tree.rhs(krhs)
+        end
+        tree=Operation("ext",operands,tree.lhs)
+        tree=operation2sci(tree)
+
+        //Not matlbb function
+    else
+        set_infos(msprintf(gettext("Unknown function %s not converted, original calling sequence used."),name),2)
+        if ~or(name==not_mtlb_fun(:,1)) then
+            not_mtlb_fun($+1,1)=name
+            if ispriminame then
+                not_mtlb_fun($,2)=msprintf(gettext("(Warning name conflict: function name changed from %s to %s)."),name,name1);
+            else
+                not_mtlb_fun($,2)=""
+            end
+        end
+    end
+    if ispriminame then
+        set_infos(msprintf(gettext("(Warning name conflict: function name changed from %s to %s)."),name,name1),0)
+    end
+    [tree]=sci_generic(tree)
+endfunction
+
+// ---------------------------------------------------------------------------
+
+function path = mfile_path(nam)
+    fil = nam+".m";
+    nf = length(fil)
+    path = [];
+    for k=1:size(mfiles,"*")
+        pk=mfiles(k);
+        kk=strindex(pk,["/" "\"]);
+        if kk==[]
+            kk = 0
+        end
+        if fil==part(pk,kk($)+1:length(pk)) then
+            path=pk;
+            break
+        end
+    end
+endfunction
+
+// ---------------------------------------------------------------------------
+
+function tree = sci_generic(tree)
+    // M2SCI function
+    // Generic conversion function for unknown Matlab functions
+    // Input: tree = Matlab funcall tree
+    // Output: tree = Scilab equivalent for tree
+
+    if typeof(tree)=="operation"
+        tree.out(1).dims=list(-1,-1)
+        tree.out(1).type=Type(-1,-1)
+    else
+        for i=1:size(tree.lhs)
+            tree.lhs(i).dims=list(-1,-1)
+            tree.lhs(i).type=Type(-1,-1)
+        end
+    end
 endfunction

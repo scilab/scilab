@@ -11,7 +11,9 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function []=sci_m2scideclare(def)
+function sci_m2scideclare(def)
+    // INTERNAL function called only by expression2sci()
+    //
     // This function translate calls to m2scideclare
     // which can be used by the user to influence translation
     // by adding a comment which begins by m2scideclare

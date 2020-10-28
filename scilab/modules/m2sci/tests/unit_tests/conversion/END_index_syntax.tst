@@ -12,12 +12,8 @@
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/16181
 //
-// <-- Short Description -->
-// Unit tests for replacing the "end" index
-
-if ~isdef("m2scikernellib") then
-    load("SCI/modules/m2sci/macros/kernel/lib")
-end
+// Getting replace_end_dollar() as public:
+exec("SCI/modules/m2sci/macros/kernel/m2sci_syntax.sci",-1);
 
 txt = mgetl("SCI/modules/m2sci/tests/unit_tests/conversion/END_index_syntax.m");
 printf("%s\n", replace_end_dollar(txt));

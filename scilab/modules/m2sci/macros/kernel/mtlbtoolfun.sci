@@ -10,7 +10,9 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function  [mtlbpath,ismtlb]=mtlbtoolfun(namefun)
+function  [mtlbpath, ismtlb] = mtlbtoolfun(namefun)
+    // INTERNAL function called only by default_trad() (PRIVATE called only by funcall2sci(),
+    //                          only called by expression2sci())
     //This function return true if the function namefun is in a matlab toolbox and determinates the access path
     //Input:
     //namefun : the name of the function
