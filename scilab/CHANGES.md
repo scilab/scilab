@@ -216,7 +216,7 @@ Feature changes and additions on 6.1.1
 * `sgolay` and the companion `sgolayfilter` and `sgolaydiff` functions have been added to implement Savitsky-Golay filters.
 * `clock` now returns the milliseconds, the time zone, and the daylight saving time.
 * `mapsound` upgraded to have a colormap argument
-
+* `mprintf`, `msprintf` and `mfprintf` can now print input booleans, as `0`|`1` or as `T`|`F`.
 
 Help pages:
 -----------
@@ -317,6 +317,7 @@ Bug Fixes
 * [#12532](https://bugzilla.scilab.org/12532): From `browsevar`, clicking on any function did not edit it with `edit`. The content of libraries could not be displayed either.
 * [#12719](https://bugzilla.scilab.org/12719): `A(%s)` gave the same result as `A($)`.
 * [#12889](https://bugzilla.scilab.org/12889): In the help browser, add a menu allowing to select the language of help pages, regardless of the language of the session.
+* [#13303](https://bugzilla.scilab.org/13303): `mprintf`, `msprintf` and `mfprintf` could not print input booleans.
 * [#13417](https://bugzilla.scilab.org/13417): `csvRead` page did not document the way to use the `range` up to the last row/column.
 * [#13593](https://bugzilla.scilab.org/13593): `csvRead()` did not take the `range` into account when `header` is provided. `[]` could not be used as default `range`.
 * [#13762](https://bugzilla.scilab.org/13762): In the `fft` page, the formula for the inverse FFT missed the 1/n normalization factor.
