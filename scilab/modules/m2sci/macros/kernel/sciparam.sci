@@ -42,17 +42,19 @@ function sciparam()
     ">="      , "log" ;
     "<>"      , "log" ;
     ":"       , "imp" ;
-    "rc"      , "rc"  ;
+    "rc"      , "rc"  ; // [ ; ]
     "ins"     , "i"   ;
     "ext"     , "e"   ;
     quote     , "t"   ;
-    "cc"      , "cc"  ;
+    "cc"      , "cc"  ; // [ , ]
     "|"       , "g"   ;
     "&"       , "h"   ;
     "~"       , "5"   ;
     ".^"      , "j"   ;
     "."+quote , "0"   ;
-    "cceol"      , "cc"  ] // Column Concatenation with EOL between Rows
+    "ccc"     , "ccc" ; // { , }
+    "crc"     , "crc" ; // { ; }
+    "cceol"   , "cc"  ] // Column Concatenation with EOL between Rows
 
     [logics,ops,quote]=resume(logics,ops,quote)
 

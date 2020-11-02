@@ -10,10 +10,11 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function operation=%type_i_operatio(field,inslist,operation)
-
-    if field=="type" then
-        operation.out(1).type=inslist
+function op = %s_i_operation(field, cste, op)
+    if field=="vtype" then
+        op.type.vtype = cste
+    elseif field=="property" then
+        op.type.property = cste
     else
         error(gettext("Not yet implemented."))
     end

@@ -10,22 +10,21 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function val=%operatio_e(field,m2scitlist)
-    // File generated from %PROTO_e.g: PLEASE DO NOT EDIT !
+function val = %operation_e(field, m2scitlist)
 
     val=[]
     if field=="infer" then
-        val=m2scitlist.out(1).infer
+        val = m2scitlist.out(1).infer
     elseif field=="dims" then
-        val=m2scitlist.out(1).infer.dims
+        val = m2scitlist.out(1).infer.dims
     elseif field=="type" then
-        val=m2scitlist.out(1).infer.type
+        val = m2scitlist.out(1).infer.type
     elseif field=="vtype" then
-        val=m2scitlist.out(1).infer.type.vtype
+        val = m2scitlist.out(1).infer.type.vtype
     elseif field=="property" then
-        val=m2scitlist.out(1).infer.type.property
+        val = m2scitlist.out(1).infer.type.property
     elseif field=="contents" then
-        val=m2scitlist.out(1).infer.contents
+        val = m2scitlist.out(1).infer.contents
     else
         error(msprintf(gettext("Extraction of %s from ''%s'' tlist is not yet implemented."),string(field),typeof(m2scitlist)))
     end

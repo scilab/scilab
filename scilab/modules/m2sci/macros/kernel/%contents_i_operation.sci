@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ???? - INRIA - Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -10,11 +10,10 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function op=%s_i_operatio(field,cste,op)
-    if field=="vtype" then
-        op.type.vtype=cste
-    elseif field=="property" then
-        op.type.property=cste
+function operation = %contents_i_operation(field, contlist, operation)
+
+    if field=="contents" then
+        operation.out(1).infer.contents = contlist
     else
         error(gettext("Not yet implemented."))
     end

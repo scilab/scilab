@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-    *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
-    *
-    -->
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+* Copyright (C) 2020 - Samuel GOUGEON
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
@@ -45,98 +45,73 @@
           <itemizedlist>
             <listitem>
               <para>
-                nom_de_variable : nom de la variable déclarée. Ce nom peut être
-                un champ de Struct (e.g. <literal>x(1,2).nom</literal>)
+                <emphasis role="bold">nom_de_variable</emphasis> : nom de la variable déclarée.
+                Ce nom peut être un champ de Struct (e.g. <literal>x(1,2).nom</literal>)
                 ou décrire le contenu d'une Cell en utilisant la syntaxe
-                <literal>x(1,2).entries</literal>. NOTEZ que pour les Cells et les
-                Structs <literal>*</literal> peut être utilisé comme index.
+                <literal>x(1,2).entries</literal>.
+                <note>
+                    NOTEZ que pour les Cells et les
+                    Structs <literal>*</literal> peut être utilisé comme index.
+                </note>
               </para>
             </listitem>
             <listitem>
               <para>
-                dimensions : dimensions de la variable déclarée séparées par des espaces,
-                si une dimension est inconnue, remplacez la par <literal>?</literal>. NOTEZ que
-                les dimensions des chaînes de caractère doivent être identiques aux dimensions
-                Matlab e.g. <literal>1 6</literal> pour la chaîne de caractères 'chaine'.
+                <emphasis role="bold">dimensions</emphasis> : dimensions de la variable déclarée
+                séparées par des espaces,
+                si une dimension est inconnue, remplacez la par <literal>?</literal>.
+                <warning>
+                    NOTEZ que les dimensions des chaînes de caractères doivent être identiques
+                    aux dimensions Matlab e.g. <literal>1 6</literal> pour le mot 'chaine'.
+                </warning>
               </para>
             </listitem>
-            <listitem>
-              <para>
-                type_de_données: le type de donnée de la variable qui peut être :
-              </para>
-              <informaltable border="1">
+            <listitem>.
+                <informaltable border="0">
                 <tr>
-                  <td>Type de donnée m2scideclare</td>
-                  <td>Type Scilab "équivalent"</td>
+                <td valign="top">
+                    <para>
+                        <emphasis role="bold">type_de_données</emphasis>:
+                        le type de donnée de la variable qui peut être :
+                    </para>
+                    <informaltable border="1">
+                        <tr>
+                          <th>Type de donnée m2scideclare</th>
+                          <th>Type Scilab "équivalent"</th>
+                        </tr>
+                        <tr><td>Double</td>  <td>1</td>         </tr>
+                        <tr><td>Boolean</td> <td>4</td>         </tr>
+                        <tr><td>Sparse</td>  <td>5</td>         </tr>
+                        <tr><td>Int</td>     <td>8</td>         </tr>
+                        <tr><td>Handle</td>  <td>9</td>         </tr>
+                        <tr><td>String</td>  <td>10</td>        </tr>
+                        <tr><td>Struct</td>  <td>16</td>        </tr>
+                        <tr><td>Cell</td>    <td>17</td>        </tr>
+                        <tr><td>Function</td><td>13 (macro)</td></tr>
+                        <tr><td>Builtin</td> <td>130</td>       </tr>
+                        <tr><td>Void</td>    <td>0 (undefined)</td></tr>
+                        <tr><td>?</td>       <td>Type inconnu</td></tr>
+                    </informaltable>
+                </td>
+                <td valign="top">
+                    <para>
+                        <emphasis role="bold">propriété</emphasis> :
+                        propriété de la variable qui peut être :
+                    </para>
+                    <informaltable border="1">
+                        <tr><th>Propriété m2scideclare</th> <th>"Equivalent" Scilab</th></tr>
+                        <tr><td>Real</td>                   <td>Donnée réelle</td>      </tr>
+                        <tr><td>Complex</td>                <td>Donnée complexe</td>    </tr>
+                        <tr><td>?</td>                      <td>Property inconnue</td>  </tr>
+                    </informaltable>
+                    <para>
+                        Ce champ est ignoré pour les types de données suivants :
+                        <literal>Cell</literal>, <literal>Struct</literal>,
+                        <literal>String</literal> et <literal>Boolean</literal>.
+                    </para>
+                </td>
                 </tr>
-                <tr>
-                  <td>Double</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Boolean</td>
-                  <td>4</td>
-                </tr>
-                <tr>
-                  <td>Sparse</td>
-                  <td>5</td>
-                </tr>
-                <tr>
-                  <td>Int</td>
-                  <td>8</td>
-                </tr>
-                <tr>
-                  <td>Handle</td>
-                  <td>9</td>
-                </tr>
-                <tr>
-                  <td>String</td>
-                  <td>10</td>
-                </tr>
-                <tr>
-                  <td>Struct</td>
-                  <td>Struct Matlab (16)</td>
-                </tr>
-                <tr>
-                  <td>Cell</td>
-                  <td>Cell Matlab (17)</td>
-                </tr>
-                <tr>
-                  <td>Void</td>
-                  <td>Sans type (0)</td>
-                </tr>
-                <tr>
-                  <td>?</td>
-                  <td>Type inconnu</td>
-                </tr>
-              </informaltable>
-            </listitem>
-            <listitem>
-              <para>
-                propriété : propriété de la variable qui peut être :
-              </para>
-              <informaltable border="1">
-                <tr>
-                  <td>Propriété m2scideclare</td>
-                  <td>"Equivalent" Scilab</td>
-                </tr>
-                <tr>
-                  <td>Real</td>
-                  <td>Donnée réelle</td>
-                </tr>
-                <tr>
-                  <td>Complex</td>
-                  <td>Donnée complexe</td>
-                </tr>
-                <tr>
-                  <td>?</td>
-                  <td>Property inconnue</td>
-                </tr>
-              </informaltable>
-              <para>
-                Ce champ est ignoré pour les types de données suivants : <literal>Cell</literal>,
-                <literal>Struct</literal>, <literal>String</literal> et <literal>Boolean</literal>.
-              </para>
+                </informaltable>
             </listitem>
           </itemizedlist>
         <para>
@@ -144,7 +119,9 @@
             les données inférées, en cas de conflit, les données inférées sont conservées et
             un warning est affiché. Si vous êtes sûrs de vos informations, rapportez ce bug.
         </para>
-        <para>Voici quelques exemples :</para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
            <itemizedlist>
               <listitem>
                 <literal>%m2scideclare var1|2 3|Double|Real</literal>
@@ -198,5 +175,13 @@
                 </para>
               </listitem>
           </itemizedlist>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="Type">Type</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

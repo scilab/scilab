@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-    *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
-    *
-    -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="Variable">
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+* Copyright (C) 2020 - Samuel GOUGEON
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="Variable">
     <refnamediv>
         <refname>Variable</refname>
-        <refpurpose>Create a tree representing a variable</refpurpose>
+        <refpurpose>
+            Generates the Scilab internal code representing a variable (without its content)
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>var=Variable(name,infer)</synopsis>
+        <synopsis>var = Variable(name, infer)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -51,6 +56,39 @@
             This function create a <literal>tlist</literal> representing a variable when using M2SCI.
             All input parameters values are verified to be compatible with "M2SCI tlists".
         </para>
+        <note>
+            <emphasis role="bold">Colon</emphasis> is a predefined Variable containing the
+            pseudo-code representing a colon. It can be used as is as a "ALL" index, for instance
+            in insertion or extraction operations.
+        </note>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            Let's defined the pseudo-code representing a variable <literal>a</literal> aimed
+            to be a 3x5 matrix of strings:
+        </para>
+        <para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+            s.a_code = Variable("a", Infer(list(1,1),Type(String,Unknown)))
+     ]]></programlisting>
+        <screen><![CDATA[
+--> s.a_code = Variable("a", Infer(list(3,5),Type(String,Unknown)))
+ s  =
+  a_code: [variable] tlist with fields:
+      name = "a"
+      infer: [infer] tlist with fields:
+          dims: list:
+              (1) = 3
+              (2) = 5
+          type: [type] tlist with fields:
+              vtype = 10
+              property = -1
+          contents: [contents] tlist with fields:
+              index:  empty list()
+              data:  empty list()
+]]></screen>
+        </para>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -77,5 +115,16 @@
                 <link linkend="Equal">Equal</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Predefined variable <literal>Colon</literal> added.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

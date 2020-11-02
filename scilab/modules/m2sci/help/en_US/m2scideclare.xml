@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-    *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
-    *
-    -->
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+* Copyright (C) 2020 - Samuel GOUGEON
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
@@ -24,11 +24,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            The main difficulty for M2SCI (<literal>mfile2sci</literal>) is to find what variables are: dimensions, type...
+            The main difficulty for M2SCI (<literal>mfile2sci</literal>) is to find what variables
+            are: dimensions, type...
         </para>
         <para>
-            To help this tool, just add comments beginning with <literal>%m2scideclare</literal> in the M-file to convert,
-            (<literal>%m2sciassume</literal> was used in previous Scilab versions and is now obsolete).
+            To help this tool, just add comments beginning with <literal>%m2scideclare</literal> in
+            the M-file to convert, (<literal>%m2sciassume</literal> was used in previous Scilab
+            versions and is now obsolete).
         </para>
         <para>
             The syntax of this command is:
@@ -42,96 +44,71 @@
           <itemizedlist>
             <listitem>
               <para>
-                variable_name: name of the variable declared. It can be a Struct field (e.g. <literal>x(1,2).name</literal>)
+                <emphasis role="bold">variable_name</emphasis>: name of the variable declared.
+                It can be a Struct field (e.g. <literal>x(1,2).name</literal>)
                 or describe the contents of a Cell using syntax
-                <literal>x(1,2).entries</literal>. NOTE that for Cells and Structs,
-                <literal>*</literal> can be used as an index (see examples below).
+                <literal>x(1,2).entries</literal>.
+                <note>
+                    NOTE that for Cells and Structs,
+                    <literal>*</literal> can be used as an index (see examples below).
+                </note>
               </para>
             </listitem>
             <listitem>
               <para>
-                dimensions: dimensions of the variable declared separated by blanks, if a dimension is unknown,
-                replace it by <literal>?</literal>. NOTE that String dimensions must be similar to Matlab ones
-                e.g. <literal>1 6</literal> for character string 'string'.
+                <emphasis role="bold">dimensions</emphasis>: dimensions of the variable declared
+                separated by blanks, if a dimension is unknown, replace it by <literal>?</literal>.
+                <warning>
+                    NOTE that String dimensions must be similar to Matlab ones
+                    e.g. <literal>1 6</literal> for character string 'string'.
+                </warning>
               </para>
             </listitem>
-            <listitem>
-              <para>
-                data_type: data type of the variable which can be:
-              </para>
-              <informaltable border="1">
+            <listitem>.
+                <informaltable border="0">
                 <tr>
-                  <td>m2scideclare data type</td>
-                  <td>Scilab "equivalent" type</td>
+                    <td valign="top">
+                      <para>
+                        <emphasis role="bold">data_type</emphasis>:
+                        data type of the variable which can be:
+                      </para>
+                      <informaltable border="1">
+                        <tr>
+                          <th>m2scideclare data type</th>
+                          <th>Scilab "equivalent" type</th>
+                        </tr>
+                        <tr><td>Double</td>  <td>1</td>         </tr>
+                        <tr><td>Boolean</td> <td>4</td>         </tr>
+                        <tr><td>Sparse</td>  <td>5</td>         </tr>
+                        <tr><td>Int</td>     <td>8</td>         </tr>
+                        <tr><td>Handle</td>  <td>9</td>         </tr>
+                        <tr><td>String</td>  <td>10</td>        </tr>
+                        <tr><td>Struct</td>  <td>16</td>        </tr>
+                        <tr><td>Cell</td>    <td>17</td>        </tr>
+                        <tr><td>Function</td><td>13 (macro)</td></tr>
+                        <tr><td>Builtin</td> <td>130</td>       </tr>
+                        <tr><td>Void</td>    <td>0 (undefined)</td></tr>
+                        <tr><td>?</td>       <td>Unknown type</td></tr>
+                      </informaltable>
+                    </td>
+                    <td valign="top">
+                      <para>
+                        <emphasis role="bold">property</emphasis>:
+                        property of the variable, which can be:
+                      </para>
+                      <informaltable border="1">
+                        <tr><th>m2scideclare property</th>  <th>Scilab "equivalent"</th></tr>
+                        <tr><td>Real</td>                   <td>Real data</td>          </tr>
+                        <tr><td>Complex</td>                <td>Complex data</td>       </tr>
+                        <tr><td>?</td>                      <td>Unknown property</td>   </tr>
+                      </informaltable>
+                      <para>
+                        This field is ignored for following datatypes: <literal>Cell</literal>,
+                        <literal>Struct</literal>, <literal>String</literal> and <literal>Boolean</literal>.
+                      </para>
+                    </td>
                 </tr>
-                <tr>
-                  <td>Double</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Boolean</td>
-                  <td>4</td>
-                </tr>
-                <tr>
-                  <td>Sparse</td>
-                  <td>5</td>
-                </tr>
-                <tr>
-                  <td>Int</td>
-                  <td>8</td>
-                </tr>
-                <tr>
-                  <td>Handle</td>
-                  <td>9</td>
-                </tr>
-                <tr>
-                  <td>String</td>
-                  <td>10</td>
-                </tr>
-                <tr>
-                  <td>Struct</td>
-                  <td>Matlab struct (16)</td>
-                </tr>
-                <tr>
-                  <td>Cell</td>
-                  <td>Matlab cell (17)</td>
-                </tr>
-                <tr>
-                  <td>Void</td>
-                  <td>No type (0)</td>
-                </tr>
-                <tr>
-                  <td>?</td>
-                  <td>Unknown type</td>
-                </tr>
-              </informaltable>
-            </listitem>
-            <listitem>
-              <para>
-                property: property of the variable which can be:
-              </para>
-              <informaltable border="1">
-                <tr>
-                  <td>m2scideclare property</td>
-                  <td>Scilab "equivalent"</td>
-                </tr>
-                <tr>
-                  <td>Real</td>
-                  <td>Real data</td>
-                </tr>
-                <tr>
-                  <td>Complex</td>
-                  <td>Complex data</td>
-                </tr>
-                <tr>
-                  <td>?</td>
-                  <td>Unknown property</td>
-                </tr>
-              </informaltable>
-              <para>
-                This field is ignored for following datatypes: <literal>Cell</literal>,
-                <literal>Struct</literal>, <literal>String</literal> and <literal>Boolean</literal>.
-              </para>
+                </informaltable>
             </listitem>
           </itemizedlist>
         <para>
@@ -139,7 +116,9 @@
             in case of conflict, infered data are kept and a warning message is displayed.
             If you are sure about your data, report a bug.
         </para>
-        <para>Some examples are given below:</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
           <itemizedlist>
             <listitem>
               <literal>%m2scideclare var1|2 3|Double|Real</literal>
@@ -188,5 +167,13 @@
               </para>
             </listitem>
           </itemizedlist>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="Type">Type</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

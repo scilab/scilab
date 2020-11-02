@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-    *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
-    *
-    -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="Operation">
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+* Copyright (C) 2020 - Samuel GOUGEON
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="Operation">
     <refnamediv>
         <refname>Operation</refname>
-        <refpurpose>Créé un arbre représentant une opération</refpurpose>
+        <refpurpose>Génère le code interne Scilab représentant une opération</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>op=Operation(operator,operands,out)</synopsis>
+        <synopsis>op = Operation(operator, operands, out)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -28,25 +30,41 @@
             <varlistentry>
                 <term>operator</term>
                 <listitem>
-                    <para>symbole de l'opérateur (chaîne de caractères)</para>
+                    <para>
+                        code de l'opérateur. Les codes admis sont :
+                        <literal>"''", ".''", "~", ":",
+                        "+", "-", "*", ".*", ".*.", ".^", "/", "./", "\",
+                        "==", "&lt;>", "&lt;", "&lt;=", ">", ">=", "|", "||", "&amp;", "&amp;&amp;",
+                        "cc"</literal> (Concatenation des Colonnes [,]), <literal>"rc"</literal>
+                        (Concanétation des lignes [;]),
+                        <literal>"ccc"</literal> (Cells horizontal concatenation {,}),
+                        <literal>"crc"</literal> (Cells vertical concatenation {;}),
+                        <literal>"ins"</literal> (insertion), <literal>"ext"</literal> (extraction).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>operands</term>
                 <listitem>
-                    <para>liste des opérandes (liste de "tlists M2SCI")</para>
+                    liste des opérandes, chacun étant représenté par une tlist
+                    M2SCI de type "cste" (ex: 1.23), "variable" (ex: A),
+                    "funcall" (ex: gcf()), ou "operation" (ex: (1+3)).
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>out</term>
                 <listitem>
-                    <para>liste des paramètres de sortie (liste de "tlists M2SCI")</para>
+                    <para>
+                        liste des paramètres de sortie de l'opération (le plus souvent
+                        unique), chacun étant représenté par une tlist M2SCI.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>op</term>
                 <listitem>
-                    <para>une tlist de type "operation"</para>
+                    <para>une tlist M2SCI de type "operation"</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -54,8 +72,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            Cette fonction créé une <literal>tlist</literal> représentant les données d'inférence quand
-            on utilise M2SCI. Tous les paramètres d'entrée sont vérifiés pour être compatible avec
+            Cette fonction créé une <literal>tlist</literal> représentant une opération quand
+            on utilise M2SCI. Les arguments d'entrée sont vérifiés pour être compatibles avec
             les "tlists M2SCI".
         </para>
     </refsection>

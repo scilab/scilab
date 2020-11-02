@@ -44,21 +44,25 @@ function [scitree,trad,txt,crp]=m2sci(mtlbtree,nam,Recmode,prettyprintoutput)
     sciparam()
 
     // Scilab variable types
-    Double=1;
-    Boolean=4; // Boolean type can also be 6
-    Sparse=5;
-    Int=8;
-    Handle=9;
-    String=10;
-    Cell=17;
-    Struct=16;
-    Void=0;
-    Unknown=-1; // Unknown type or dimension
-    SupToOne=-2; // Dimension >1
-    NotNull=-3; // Dimension >0
-    Complex=1 //"Complex"
-    Real=0 //"Real"
-    Units=["pixels","centimeters","points","inches","normalized"]
+    Double   = 1;
+    Boolean  = 4; // Boolean type can also be 6
+    Sparse   = 5;
+    Int      = 8;
+    Handle   = 9;
+    String   = 10;
+    Cell     = 17;
+    Struct   = 16;
+    Function = 13;
+    Builtin  = 130;
+    Void     = 0;
+    Unknown  =-1; // Unknown type or dimension
+    SupToOne =-2; // Dimension >1
+    NotNull  =-3; // Dimension >0
+    Complex = 1 //"Complex"
+    Real    = 0 //"Real"
+    Units = ["pixels","centimeters","points","inches","normalized"]
+
+    Colon = Variable(":", Infer(list(Unknown,1),Type(Double,Real)))
 
     global %graphics
     %graphics=struct()

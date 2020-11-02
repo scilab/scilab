@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-    *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
-    *
-    -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="Equal">
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+* Copyright (C) 2020 - Samuel GOUGEON
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+         xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+         xml:lang="en" xml:id="Equal">
     <refnamediv>
         <refname>Equal</refname>
-        <refpurpose>Create a tree representing an instruction</refpurpose>
+        <refpurpose>
+            Generates the Scilab internal code representing an instruction "LHS = RHS"
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>eq=Equal(lhslist,expression)</synopsis>
+        <synopsis>eq = Equal(lhslist, RHS)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,19 +32,22 @@
             <varlistentry>
                 <term>lhslist</term>
                 <listitem>
-                    <para>list of lhs parameters (list of "M2SCI tlists")</para>
+                    <para>list of Left Hand Side parameters (list of "M2SCI tlists")</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>expression</term>
+                <term>RHS</term>
                 <listitem>
-                    <para>right member of equal (an "M2SCI tlist")</para>
+                    <para>
+                        a tlist built with "M2SCI" functions, representing the
+                        Right Hand Side member of the instruction.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>eq</term>
                 <listitem>
-                    <para>an "equal" tlist</para>
+                    <para>tlist of type "equal"</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -51,6 +58,109 @@
             This function create a <literal>tlist</literal> representing an instruction when using M2SCI.
             All input parameters values are verified to be compatible with "M2SCI tlists".
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            Let's define the pseudo-code representing the simple statement
+            <literal>A = "off"</literal>:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+LHS = Variable("A", Infer(list(1,1),Type(String,Unknown)));
+Equal(list(LHS), Cste("off"))
+     ]]></programlisting>
+        <para>
+            Let's define the pseudo-code representing the statement
+            <literal>A(2,:) = "off"</literal> :
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+// A
+LHS = Variable("A", Infer(list(Unknown,Unknown),Type(String,Unknown)));
+// A(2,:)
+LHS = Operation("ins", list(LHS,Cste(2),Colon), list()) // Insertion
+// A(2,:) = "off"
+Equal(list(LHS), Cste("off"))
+     ]]></programlisting>
+        <para>
+            Let's define the pseudo-code representing the expression
+            <literal>handles(:).axes_reverse(:,2) = "off"</literal>, where
+            <literal>handles</literal> is a 1x3 row of graphical (axes) handles:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+h = Variable("handles", Infer(list(1,3),Type(Handle,Unknown)));
+
+// Building the Left-Hand-Side part of the assignment (Equal):
+// handles(:)
+LHS = Operation("ins", list(h,Colon), list());                 // Insertion
+
+// handles(:).axes_reverse :
+LHS = Operation("ins", list(LHS,Cste("axes_reverse")), list()) // Insertion
+
+// handles(:).axes_reverse(:,2) :
+LHS = Operation("ins", list(LHS,Colon,Cste(2)), list());       // Insertion
+
+// .. and finally the full statement:
+s.statement = Equal(list(LHS), Cste("off"))
+     ]]></programlisting>
+        <screen><![CDATA[
+---> s.statement = Equal(list(LHS), Cste("off"))
+ s  =
+  statement: [equal] tlist with fields:
+      lhs: list:
+          (1) : [operation] tlist with fields:
+              operator = "ins"
+              operands: list:
+                  (1) : [operation] tlist with fields:
+                      operator = "ins"
+                      operands: list:
+                          (1) : [operation] tlist with fields:
+                              operator = "ins"
+                              operands: list with 2 elements.
+                              out:  empty list()
+                          (2) : [cste] tlist with fields:
+                              value = "axes_reverse"
+                              infer: [infer] tlist with fields:
+                                  [dims, type, contents]
+                      out:  empty list()
+                  (2) : [variable] tlist with fields:
+                      name = ":"
+                      infer: [infer] tlist with fields:
+                          dims: list:
+                              (1) = -1
+                              (2) = 1
+                          type: [type] tlist with fields:
+                              vtype = 1
+                              property = 0
+                          contents: [contents] tlist with fields:
+                              index:  empty list()
+                              data:  empty list()
+                  (3) : [cste] tlist with fields:
+                      value = 2
+                      infer: [infer] tlist with fields:
+                          dims: list:
+                              (1) = 1
+                              (2) = 1
+                          type: [type] tlist with fields:
+                              vtype = 1
+                              property = 0
+                          contents: [contents] tlist with fields:
+                              index:  empty list()
+                              data:  empty list()
+              out:  empty list()
+      expression: [cste] tlist with fields:
+          value = "off"
+          infer: [infer] tlist with fields:
+              dims: list:
+                  (1) = 1
+                  (2) = 3
+              type: [type] tlist with fields:
+                  vtype = 10
+                  property = 0
+              contents: [contents] tlist with fields:
+                  index:  empty list()
+                  data:  empty list()
+      endsymbol = ";"
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

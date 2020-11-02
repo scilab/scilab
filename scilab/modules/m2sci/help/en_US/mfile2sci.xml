@@ -37,6 +37,10 @@
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
+        <para>
+            To use the default value of some input arguments, just skip their value as in
+            <literal>mfile2sci(M_file_path, result_path, , , 0)</literal>.
+        </para>
         <variablelist>
             <varlistentry>
                 <term>M_file_path</term>
