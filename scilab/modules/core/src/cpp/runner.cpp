@@ -73,6 +73,7 @@ int StaticRunner::launch()
     std::unique_ptr<Runner> runMe(getRunner());
 
     debugger::DebuggerManager* manager = debugger::DebuggerManager::getInstance();
+    manager->resetAborted();
 
     ConfigVariable::resetExecutionBreak();
 
