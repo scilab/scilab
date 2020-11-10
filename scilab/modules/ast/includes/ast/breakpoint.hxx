@@ -35,6 +35,7 @@ struct Breakpoint
                     _iFileLine(0),
                     _iFirstColumn(0),
                     _condition(""),
+                    _conditionError(""),
                     _conditionExp(NULL),
                     _enable(true) {}
     ~Breakpoint()
@@ -100,6 +101,16 @@ struct Breakpoint
         return _pFileName.empty() == false && _iFileLine >= 0;
     }
 
+    bool hasCondition() const
+    {
+        return _condition.empty() == false;
+    }
+
+    bool hasConditionError() const
+    {
+        return _conditionError.empty() == false;
+    }
+
     void setEnable()
     {
         _enable = true;
@@ -113,14 +124,26 @@ struct Breakpoint
         return _enable;
     }
 
+    const std::string& getConditionError(void)
+    {
+        return _conditionError;
+    }
+
+    void setConditionError(const std::string& error)
+    {
+        _conditionError = error;
+    }
+
     char* setCondition(const std::string& condition)
     {
+        _condition = condition;
         char* error = parseCommand(condition.data(), (void**)(&_conditionExp));
         if(error)
         {
+            _conditionError = error;
             return error;
         }
-        _condition = condition;
+        _conditionExp->mute();
         return nullptr;
     }
 
@@ -141,6 +164,7 @@ private:
     std::string _pFileName;
     int _iFileLine;
     std::string _condition;
+    std::string _conditionError;
     ast::Exp* _conditionExp;
     bool _enable;
 };

@@ -179,28 +179,40 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                                 pCtx->scope_begin();
                                 bp->getConditionExp()->accept(execCond);
                                 types::InternalType* pIT = pCtx->getCurrentLevel(symbol::Symbol(L"ans"));
-                                if (pIT == NULL ||
-                                        pIT->isBool() == false ||
-                                        ((types::Bool*)pIT)->isScalar() == false ||
-                                        ((types::Bool*)pIT)->get(0) == 0)
+                                if (pIT == NULL)
                                 {
+                                    // no result ie: assignation
+                                    char pcError[256];
+                                    sprintf(pcError, _("Wrong breakpoint condition: A result expected.\n"));
+                                    bp->setConditionError(pcError);
+                                }
+                                else if(pIT->isTrue() == false)
+                                {
+                                    // bool scalar false
                                     pCtx->scope_end();
-                                    //not a boolean, not scalar or false
                                     stopExecution = false;
                                     continue;
                                 }
 
-                                pCtx->scope_end();
-                                //ok condition is valid and true
+                                // condition is invalid or true
                             }
-                            catch (ast::ScilabException &/*e*/)
+                            catch (ast::ScilabException& e)
                             {
-                                pCtx->scope_end();
-                                stopExecution = false;
                                 //not work !
                                 //invalid breakpoint
-                                continue;
+                                if(ConfigVariable::isError())
+                                {
+                                    bp->setConditionError(scilab::UTF8::toUTF8(ConfigVariable::getLastErrorMessage()));
+                                    ConfigVariable::clearLastError();
+                                    ConfigVariable::resetError();
+                                }
+                                else
+                                {
+                                    bp->setConditionError(scilab::UTF8::toUTF8(e.GetErrorMessage()));
+                                }
                             }
+
+                            pCtx->scope_end();
                         }
 
                         //we have a breakpoint !
