@@ -10,6 +10,6 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r=%s_f_b(s,b)
-    r=[s;bool2s(b)]
+function r=%b_f_s(b,s)
+    r = [bool2s(b) ; s]
 endfunction

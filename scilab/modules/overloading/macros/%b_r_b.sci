@@ -10,8 +10,6 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r=%b_x_s(a,b)
-    A=zeros(a)
-    A(a)=1
-    r=A.*b
+function r = %b_r_b(a, b)
+    r = bool2s(a) / bool2s(b)
 endfunction

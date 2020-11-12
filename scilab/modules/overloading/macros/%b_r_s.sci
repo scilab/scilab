@@ -10,6 +10,6 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r=%b_c_s(b,s)
-    r=[bool2s(b),s]
+function r=%b_r_s(a,b)
+    r = bool2s(a) / b
 endfunction

@@ -10,6 +10,6 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r=%b_x_b(a,b)
-    r=bool2s(a).*bool2s(b)
+function r=%s_p_b(a,b)
+    r = a ^ bool2s(b)
 endfunction

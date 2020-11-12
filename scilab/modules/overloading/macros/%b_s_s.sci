@@ -10,7 +10,6 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r=%b_p_s(a,b)
-    // Copyright INRIA
-    r=bool2s(a)^b
+function r=%b_s_s(a,b)
+    r = bool2s(a) - b
 endfunction
