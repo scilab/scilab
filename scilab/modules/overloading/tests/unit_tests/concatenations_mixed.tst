@@ -40,6 +40,19 @@ for it = [1 2 4 8 11 12 14 18]  // Loop on integer types
     end
 end
 
+// -----------------------------------
+// Sparse numeric and encoded integers
+// -----------------------------------
+D = list(2, [3 7], [3 ; 7], [1 2 3 ; 4 5 6]);
+for it = [1 2 4 8 11 12 14 18]  // Loop on integer types
+    for d = D
+        assert_checkequal([sparse(d), iconvert(d,it)], sparse([d d]));
+        assert_checkequal([iconvert(d,it), sparse(d)], sparse([d d]));
+        assert_checkequal([sparse(d) ; iconvert(d,it)], sparse([d ; d]));
+        assert_checkequal([iconvert(d,it) ; sparse(d)], sparse([d ; d]));
+    end
+end
+
 // -------------------------------------------------
 // A boolean and a double, at least one being sparse
 // -------------------------------------------------
