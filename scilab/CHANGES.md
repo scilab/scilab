@@ -440,7 +440,8 @@ Bug Fixes
 * [#16571](https://bugzilla.scilab.org/16571): `mfile2sci` had several issues when converting the NOT ~ operator: 1) `~(1-1)` was converted into `~1-1` instead of `~(1-1)`  2) ~ applied to an integer expression yielded an error from `convert2double`  3) `~i` was converted into `~%i` instead of `~abs(%i)`.
 * [#16573](https://bugzilla.scilab.org/16573): `mfile2sci`: Some `axis` conversions were wrong or not reliable.
 * [#16586](https://bugzilla.scilab.org/16586): `mfile2sci`: The `prettyprintoutput` flag badly managed appended comments.
-* [#16596](https://bugzilla.scilab.org/16596): Concatenating encoded integers with sparse numeric data was not possible.
+* [#16592](https://bugzilla.scilab.org/16592): %i|[], []|%i, %i&[], and []&%i were wrong. %t|%i, %t&%i, and %i&%t were not defined.
+* [#16596](https://bugzilla.scilab.org/16596): Concatenating encoded integers with sparse numeric data was not possible. 
 * [#16608](https://bugzilla.scilab.org/16608): `union` did not support input boolean, sparse boolean, nor sparse numerical matrices. The result of `union(complexA, complexB)` was wrongly conjugate.
 * [#16609](https://bugzilla.scilab.org/16609): `bitcmp` needed to be upgraded for Scilab 6.
 * [#16612](https://bugzilla.scilab.org/16612): Unlike the `.*.` operator, `kron()` was not defined for sparse numeric matrices.

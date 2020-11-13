@@ -1,7 +1,4 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-// Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
 // Copyright (C) 2020 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -11,11 +8,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function res = %s_h_s(s1,s2)
-    // Logical operand on complex numbers
-    if s1==[] | s2==[] then
-        res = []
-    else
-        res = (s1<>0) & (s2<>0);
-    end
+function res = %s_h_b(s1, b2)
+    // complex & boolean
+    res = (s1<>0) & b2;
 endfunction
