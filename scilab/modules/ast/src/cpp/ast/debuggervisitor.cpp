@@ -477,6 +477,11 @@ bool getMacroSourceFile(std::string* filename)
         return false;
     }
 
+    if(lWhereAmI.back().m_file_name == nullptr)
+    {
+        return false;
+    }
+
     std::string file = scilab::UTF8::toUTF8(*lWhereAmI.back().m_file_name);
     if (file.rfind(".bin") != std::string::npos)
     {
