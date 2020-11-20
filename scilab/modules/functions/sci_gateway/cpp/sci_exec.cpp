@@ -233,7 +233,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
         ThreadManagement::UnlockParser();
 
-        ConfigVariable::setExecutedFileID(iID);
+        ConfigVariable::setExecutedFile(wstFile);
     }
     else if (in[0]->isMacro() || in[0]->isMacroFile())
     {
@@ -341,7 +341,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         {
             closeFile(file, iID, wstFile, pExp);
             ConfigVariable::setPromptMode(oldVal);
-            ConfigVariable::setExecutedFileID(0);
+            ConfigVariable::setExecutedFile(L"");
             throw ie;
         }
 

@@ -485,10 +485,10 @@ public:
 
     // executed file with exec
 private:
-    static int m_iFileID;
+    static std::wstring m_strFile;
 public:
-    static void setExecutedFileID(int _iFileID);
-    static int getExecutedFileID();
+    static void setExecutedFile(const std::wstring& _strFile);
+    static const std::wstring& getExecutedFile();
 
     // string read from console by scilabRead
 private:
