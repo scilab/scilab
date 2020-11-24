@@ -19,7 +19,19 @@
 /*--------------------------------------------------------------------------*/
 int putCommandInScilabQueue(char *command)
 {
-    return StoreCommand(command);
+    if(isEnableDebug())
+    {
+        if(isDebugInterrupted())
+        {
+            return 1;
+        }
+
+        return debuggerManagerExecute(command);
+    }
+    else
+    {
+        return StoreCommand(command);
+    }
 }
 /*--------------------------------------------------------------------------*/
 /*
