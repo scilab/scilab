@@ -28,6 +28,7 @@ For a high-level description of the main new features of this release, please co
 
 In summary, the main new features are:
 * Webtools utilities added for HTTP protocol, JSON data usage
+   - http_get can be used as an alternative download method for ATOMS
 * Profiled values are available as Scilab values
 * Values have a cleaner display:
    - they are displayed in order on assignment
