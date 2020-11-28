@@ -2,9 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * ...
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,10 +13,15 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="pathsep">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="pathsep">
     <refnamediv>
         <refname>pathsep</refname>
-        <refpurpose>returns path separator for current platform</refpurpose>
+        <refpurpose>
+            provides the path separator used in the PATH environment variable of the current OS.
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -29,21 +33,47 @@
             <varlistentry>
                 <term>s</term>
                 <listitem>
-                    <para>a string</para>
+                    a character: <literal>";"</literal> on Windows,
+                    or <literal>":"</literal> on Linux.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
-        <para>
-            <function>pathsep</function> returns path separator (<literal>':'</literal> on GNU/Linux or <literal>';'</literal> on Windows ).
-        </para>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 pathsep()
-]]></programlisting>
+getenv PATH
+tokens(getenv("PATH"), pathsep())
+     ]]></programlisting>
+        <screen><![CDATA[
+--> pathsep()
+ ans  =
+  ";"
+
+--> getenv PATH
+  "C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\OpenSSH\; ..."
+
+--> tokens(getenv("PATH"), pathsep())
+ ans  =
+  "C:\Windows\system32"
+  "C:\Windows"
+  "C:\Windows\System32\Wbem"
+  "C:\Windows\System32\OpenSSH\"
+  "C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common"
+  "C:\Program Files\NVIDIA Corporation\NVIDIA NGX"
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="filesep">filesep</link>
+            </member>
+            <member>
+                <link linkend="getenv">getenv</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>
