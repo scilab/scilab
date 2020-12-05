@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="pause" xml:lang="pt">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="pause" xml:lang="pt">
     <refnamediv>
         <refname>pause</refname>
-        <refpurpose>modo de pausa, invoca teclado</refpurpose>
+        <refpurpose>
+            pausa temporariamente a execução atual e permite instruções no console.
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
@@ -13,33 +32,63 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            Alterna para o modo <literal>pause</literal> ; inserido no código de
-            uma função, <literal>pause</literal> interrompe a execução da mesma:
+            Alterna para o modo <function>pause</function> ; inserido no código de
+            uma função, <function>pause</function> interrompe a execução da mesma:
             recebe-se um símbolo de prompt para indicar o nível de
-            <literal>pause</literal> (exemplo: <literal>-1-&gt;</literal>). O usuário
+            <function>pause</function> (exemplo: <literal>-1-&gt;</literal>). O usuário
             está agora num novo espaço de trabalho em que todas as variáveis de nível
-            infeiror (em particular todas as variáveis da função) estão disponíveis.
-            Para retornar ao espaço de trabalho de chamamento, entre
-            <literal>"return"</literal>
+            infeiror (em particular todas as variáveis da função) estão disponíveis
+            e podem ser alteradas propositalmente.
         </para>
         <para>
-            Neste modo, <literal>[...]=return(...) </literal> retorna as
-            variáveis dos argumentos <literal>(...)</literal> ao espaço de trabalho de
-            chamamento com nomes na saída<literal> [...]</literal>. Em caso contrário,
-            as variáveis de nível infeiror são protegidas e não podem ser
-            modificadas.
+            Para retomar e continuar a execução, entre <literal>resume</literal>.
         </para>
         <para>
-            <literal>pause</literal> é extremamente útil para propósitos de
-            depuramento.
+            Este modo pode ser cancelado pelo comando <literal>abort</literal>.
         </para>
-        <para>Este modo pode ser cancelado pelo comando
-            <literal>"abort"</literal>.
-        </para>
+        <note>
+            <function>pause</function> é extremamente útil para propósitos de depuramento.
+        </note>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+function c = foo(b)
+    a = 42 + b
+    disp("Thanks to the pause, you can investigate if ''a'' has the right value");
+    disp("Values of local variables can be changed too if required.");
+    pause
+    c = a + 2
+endfunction
+
+a = 3;
+foo(2)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> a = 3;
+--> foo(2)
+  "Thanks to the pause, you can investigate if 'a' has the right value"
+  "Values of local variables can be changed too if required."
+
+Type 'resume' or 'abort' to return to standard level prompt.
+
+-1-> a
+ a  =
+   44.
+
+-1-> a = 0;
+
+-1-> resume
+ ans  =
+   2.
+]]></screen>
     </refsection>
     <refsection>
         <title> Ver Também </title>
         <simplelist type="inline">
+            <member>
+                <link linkend="debug">debug</link>
+            </member>
             <member>
                 <link linkend="halt">halt</link>
             </member>
@@ -50,17 +99,26 @@
                 <link linkend="abort">abort</link>
             </member>
             <member>
-                <link linkend="quit">quit</link>
-            </member>
-            <member>
                 <link linkend="whereami">whereami</link>
-            </member>
-            <member>
-                <link linkend="where">where</link>
             </member>
             <member>
                 <link linkend="sleep">sleep</link>
             </member>
+            <member>
+                <link linkend="quit">quit</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    The new values of local variables changed during a pause are now taken
+                    into account when resuming the execution with <literal>resume</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

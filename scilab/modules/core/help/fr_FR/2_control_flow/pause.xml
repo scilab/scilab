@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="pause">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="pause">
     <refnamediv>
         <refname>pause</refname>
-        <refpurpose>mode de pause, attente clavier  </refpurpose>
+        <refpurpose>
+            suspend temporairement l'exécution en cours, et autorise les commandes en console
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntaxe</title>
@@ -13,26 +32,65 @@
     <refsection>
         <title>Description</title>
         <para>
-            Passage en mode de <literal>pause</literal>;
-            inséré dans le code d'une fonction, <literal>pause</literal> fait une pause dans l'exécution
-            de la fonction : un symbole d'invite de commande est affiché à l'utilisateur indiquant le "niveau" de la <literal>pause</literal> (e.g. <literal>-1-&gt;</literal>). L'utilisateur se trouve dans un environnement dans lequel toutes les variables du niveau correspondant sont accessibles (en particulier les variables locales de la fonction).
-            Pour reprendre l'exécution taper <literal>"return"</literal>.
+            Passage en mode de <function>pause</function>.
+            Inséré dans le code d'une fonction, <function>pause</function> interrompt momentanément
+            l'exécution de la fonction et donne la main à l'utilisateur dans la console Scilab.
+            Une invite de commande spécifique <literal>-#-></literal> est affichée, où # est
+            la profondeur d'exécution à laquelle la pause se trouve (e.g. <literal>-1-&gt;</literal>).
+            L'utilisateur se trouve dans un environnement dans lequel toutes les variables du niveau
+            correspondant sont accessibles (en particulier les variables locales de la fonction)
+            et peuvent si besoin être modifiées.
         </para>
         <para>
-            Dans ce mode, <literal>[...]=return(...) </literal>
-            renvoie les variables de l'argument <literal>(...)</literal> dans l'environnement appelant
-            sous les noms précisés dans <literal> [...]</literal>. Sinon, les variables de l'environnement interrompu sont protégées et non modifiables.
+            Pour reprendre et poursuivre l'exécution, taper <literal>resume</literal>.
         </para>
         <para>
-            L'instruction <literal>pause</literal> est très utile en phase de mise au point ou de débogage.
+            Pour sortir du mode pause et mettre fin à l'exécution, taper <literal>abort</literal>.
         </para>
-        <para>
-            Il est possible de sortir du mode de pause en mettant fin à l'exécution en tapant <literal>"abort"</literal>.
-        </para>
+        <note>
+            L'instruction <function>pause</function> est très utile en phase de mise au point ou
+            de débogage.
+        </note>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+function c = foo(b)
+    a = 42 + b
+    disp("En mode pause, la valeur courante de ''a'' peut être vérifiée.");
+    disp("La valeur des variables internes locales peuvent si besoin être modifiées.");
+    pause
+    c = a + 2
+endfunction
+
+a = 3;
+foo(2)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> a = 3;
+--> foo(2)
+  "En mode pause, la valeur courante de 'a' peut être vérifiée."
+  "La valeur des variables internes locales peuvent si besoin être modifiées."
+
+Type 'resume' or 'abort' to return to standard level prompt.
+
+-1-> a
+ a  =
+   44.
+
+-1-> a = 0;
+
+-1-> resume
+ ans  =
+   2.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="debug">debug</link>
+            </member>
             <member>
                 <link linkend="halt">halt</link>
             </member>
@@ -43,17 +101,27 @@
                 <link linkend="abort">abort</link>
             </member>
             <member>
-                <link linkend="quit">quit</link>
-            </member>
-            <member>
                 <link linkend="whereami">whereami</link>
-            </member>
-            <member>
-                <link linkend="where">where</link>
             </member>
             <member>
                 <link linkend="sleep">sleep</link>
             </member>
+            <member>
+                <link linkend="quit">quit</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    Les nouvelles valeurs des variables locales modifiées durant une pause sont
+                    désormais prises en compte lorsque l'exécution du code restant est relancée
+                    avec <literal>resume</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
