@@ -2,9 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2018 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -39,10 +38,12 @@
             <varlistentry>
                 <term>a, b</term>
                 <listitem>
-                    vecteurs, matrices ou hypermatrices d'entiers encodés, de nombres réels ou
-                    complexes, ou de texte. <varname>a</varname> et <varname>b</varname> doivent
-                    être du même type de données, mais ont des tailles indépendantes.
+                    vecteurs, matrices ou hypermatrices de booléens, d'entiers encodés, de nombres
+                    réels ou complexes, ou de texte. <varname>a</varname> et <varname>b</varname>
+                    doivent être du même type de données, mais ont des tailles indépendantes.
                     Pour les données texte, les caractères UTF sont admis.
+                    Les matrices creuses booléennes ou numériques sont acceptées :
+                    <varname>a</varname> ou <varname>b</varname> ou les deux peuvent être creuses.
                     <para/>
                 </listitem>
             </varlistentry>
@@ -77,19 +78,23 @@
                             </listitem>
                         </itemizedlist>
                     </para>
+                    <para>
+                        <varname>M</varname> est creuse dés que <varname>a</varname> ou
+                        <varname>b</varname> est creuse et aucune n'est vide.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ka</term>
                 <listitem>
-                    Vecteur ligne d'indices dans <varname>a</varname>.
+                    Vecteur ligne dense d'indices dans <varname>a</varname>.
                     <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>kb</term>
                 <listitem>
-                    Vecteur lignes d'indices dans <varname>b</varname>.
+                    Vecteur ligne dense d'indices dans <varname>b</varname>.
                     <para/>
                 </listitem>
             </varlistentry>
@@ -260,6 +265,47 @@ M, ka, kb
  kb  =
    2.   3.   4.
 ]]></screen>
+    <para/>
+    <para>
+        Pour des booléens, <literal>intersect()</literal> est utile essentiellement avec l'option
+        "r" ou "c". Voici un exemple avec une matrice booléenne creuse :
+    </para>
+    <programlisting role="example"><![CDATA[
+[F, T] = (%f, %t);
+A = [F F T F T F ; T F F T T T ; T T F T F F]
+B = [F T F T F F ; T F F F T F ; F T F F T F]
+[M,ka,kb] = intersect(A, sparse(B), "c");
+issparse(M), full(M), ka, kb
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = [F F T F T F ; T F F T T T ; T T F T F F]
+ A  =
+  F F T F T F
+  T F F T T T
+  T T F T F F
+
+--> B = [F T F T F F ; T F F F T F ; F T F F T F]
+ B  =
+  F T F T F F
+  T F F F T F
+  F T F F T F
+
+--> [M,ka,kb] = intersect(A, sparse(B), "c");
+--> issparse(M), full(M), ka, kb
+ ans  =
+  T
+
+ ans  =
+  F F T
+  T T F
+  F T F
+
+ ka  =
+   6.   1.   3.
+
+ kb  =
+   1.   5.   4.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
@@ -284,7 +330,13 @@ M, ka, kb
             <revision>
                 <revnumber>6.1.0</revnumber>
                 <revdescription>
-                    Les nombres complexes sont désormais acceptés.
+                    Nombres complexes désormais acceptés.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Matrices creuses numériques ou booléennes désormais acceptées.
                 </revdescription>
             </revision>
         </revhistory>

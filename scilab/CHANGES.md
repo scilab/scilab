@@ -218,6 +218,7 @@ Feature changes and additions on 6.1.1
 * `mapsound` upgraded to have a colormap argument
 * `mprintf`, `msprintf` and `mfprintf` can now print input booleans, as `0`|`1` or as `T`|`F`.
 * `setdiff` now supports input booleans and sparse matrices (boolean or numeric).
+* `intersect` is extended to any sparse boolean or numeric arrays, in all simple, 'c' or 'r' modes.
 
 Help pages:
 -----------
@@ -336,6 +337,7 @@ Bug Fixes
 * [#15226](https://bugzilla.scilab.org/15226): The `get` page needed to be overhauled: `get(0)`, `get(0,prop)`, `get(tag)`, `get(tag,prop)` and other features were not documented.
 * [#15280](https://bugzilla.scilab.org/15280): `gsort` was unable to sort any hypermatrix along dimensions > "r"|"c".
 * [#15839](https://bugzilla.scilab.org/15839): `gsort`: the only sparse possible input were real or complex vectors, and only with the `g` method.
+* [#15841](https://bugzilla.scilab.org/15841): `intersect` did not support neither sparse boolean nor sparse numeric inputs.
 * [#15842](https://bugzilla.scilab.org/15842): `unique` could not process 2D sparse matrices.
 * [#15868](https://bugzilla.scilab.org/15868): `setdiff(s,s2)` yielded an error when `s` or/and `s2` is sparse encoded.
 * [#15954](https://bugzilla.scilab.org/15954): `mfile2sci` abusively added a 6 lines `mode(0); ieee(1)` header to every converted file.
