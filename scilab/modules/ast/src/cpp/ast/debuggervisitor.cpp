@@ -69,7 +69,8 @@ void DebuggerVisitor::visit(const SeqExp  &e)
 
         //debugger check !
         int iBreakPoint = -1;
-        if (ConfigVariable::getEnableDebug())
+        if (ConfigVariable::getEnableDebug() &&
+            manager->isInterrupted() == false) // avoid stopping execution if an execution is already paused
         {
             bool stopExecution = false;
             if (manager->isStepIn())
@@ -224,8 +225,9 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                 }
             }
 
-            if(stopExecution)
+            if(stopExecution || manager->isPauseRequested())
             {
+                manager->resetPauseRequest();
                 manager->stop(exp, iBreakPoint);
                 if (manager->isAborted())
                 {

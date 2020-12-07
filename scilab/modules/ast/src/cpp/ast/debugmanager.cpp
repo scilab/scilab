@@ -442,6 +442,24 @@ void DebuggerManager::resume() //resume execution
     }
 }
 
+void DebuggerManager::requestPause() //ask for pause
+{
+    // pause on execution only if a command is running
+    if(interrupted == false) {
+        request_pause = true;
+    }
+}
+
+bool DebuggerManager::isPauseRequested() //pause execution
+{
+    return request_pause;
+}
+
+void DebuggerManager::resetPauseRequest() //pause execution
+{
+    request_pause = false;
+}
+
 void DebuggerManager::abort() //abort execution
 {
     //inform debuggers

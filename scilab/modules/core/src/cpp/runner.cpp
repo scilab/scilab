@@ -228,6 +228,12 @@ bool StaticRunner::isRunnerAvailable(void)
     return m_RunMe.load() != nullptr;
 }
 
+// return true if a command is running or paused.
+bool StaticRunner::isRunning(void)
+{
+    return m_CurrentRunner.load() != nullptr;
+}
+
 bool StaticRunner::isInterruptibleCommand()
 {
     return m_CurrentRunner.load()->isInterruptible();

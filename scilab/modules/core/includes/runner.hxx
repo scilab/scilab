@@ -83,6 +83,7 @@ public:
     static void setRunner(Runner* _RunMe);
     static Runner* getRunner(void);
     static bool isRunnerAvailable(void);
+    static bool isRunning(void);
     static bool isInterruptibleCommand(void);
     static command_origin_t getCommandOrigin();
     static void execAndWait(ast::Exp* _theProgram, ast::RunVisitor *_visitor,

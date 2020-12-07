@@ -67,6 +67,7 @@ private:
 
     ast::Exp* pExp;
     bool interrupted;
+    bool request_pause;
     int currentBreakPoint;
     DebugAction action;
     int level;
@@ -276,6 +277,9 @@ public:
     void show(int bp); //print the breakpoint bp or all breakpoints (bp = -1)
     void resume(); //resume execution
     void abort(); //abort execution
+    void requestPause(); //pause execution
+    bool isPauseRequested(); //get pause request status
+    void resetPauseRequest(); //reset pause request status
 };
 
 }
