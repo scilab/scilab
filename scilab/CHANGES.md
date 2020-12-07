@@ -219,6 +219,7 @@ Feature changes and additions on 6.1.1
 * `mprintf`, `msprintf` and `mfprintf` can now print input booleans, as `0`|`1` or as `T`|`F`.
 * `setdiff` now supports input booleans and sparse matrices (boolean or numeric).
 * `intersect` is extended to any sparse boolean or numeric arrays, in all simple, 'c' or 'r' modes.
+* `union` now support boolean, sparse boolean, and sparse numerical matrices.
 
 Help pages:
 -----------
@@ -403,6 +404,7 @@ Bug Fixes
 * [#16571](https://bugzilla.scilab.org/16571): `mfile2sci` had several issues when converting the NOT ~ operator: 1) `~(1-1)` was converted into `~1-1` instead of `~(1-1)`  2) ~ applied to an integer expression yielded an error from `convert2double`  3) `~i` was converted into `~%i` instead of `~abs(%i)`.
 * [#16586](https://bugzilla.scilab.org/16586): `mfile2sci`: The `prettyprintoutput` flag badly managed appended comments.
 * [#16596](https://bugzilla.scilab.org/16596): Concatenating encoded integers with sparse numeric data was not possible. 
+* [#16608](https://bugzilla.scilab.org/16608): `union` did not support input boolean, sparse boolean, nor sparse numerical matrices. The result of `union(complexA, complexB)` was wrongly conjugate.
 * [#16609](https://bugzilla.scilab.org/16609): `bitcmp` needed to be upgraded for Scilab 6.
 * [#16622](https://bugzilla.scilab.org/16622): `inv` could no longer be overloaded for hypermatrices of decimal or complex numbers.
 * [#16623](https://bugzilla.scilab.org/16623): `rand(2,2,2)^2` yielded a wrong result instead of trying to call the `%s_p_s` overload for input hypermatrices.

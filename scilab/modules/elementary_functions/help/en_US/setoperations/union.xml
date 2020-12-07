@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,55 +13,72 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="union" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="union" xml:lang="en">
     <refnamediv>
         <refname>union</refname>
-        <refpurpose>extract union components of a vector</refpurpose>
+        <refpurpose>
+            Set of all elements, rows, or columns of two arrays, without duplicates
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            [v [,ka, kb] ] = union(a,b)
-            [v [,ka, kb] ] = union(a,b,orient)
+            [v, ka, kb] = union(a, b)
+            [v, ka, kb] = union(a, b, orient)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>a</term>
+                <term>a, b</term>
                 <listitem>
-                    <para>vector or matrix of numbers or strings</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>b</term>
-                <listitem>
-                    <para>vector of real numbers or strings</para>
+                    arrays of booleans, numbers, or text. Sparse boolean or numerical matrices
+                    are accepted. The types of <varname>a</varname>
+                    and of <varname>b</varname> can be distinct but compatible for concatenation.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orient</term>
                 <listitem>
-                    <para>flag with possible values : 1 or "r", 2 or "c".</para>
+                    orientation of the processing:
+                    <itemizedlist>
+                        <listitem>
+                            1 or "r": the union is performed over the rows.
+                        </listitem>
+                        <listitem>
+                            2 or "c": the union is performed over the columns.
+                        </listitem>
+                    </itemizedlist>
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>row vector or matrix of numbers or strings</para>
+                    row vector, or matrix. <varname>v</varname>'s data type
+                    is the type of <literal>[a(:) ; b(:)]</literal>'s result.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ka</term>
                 <listitem>
-                    <para>row vector of integers</para>
+                    row vector of integers: Indices in <varname>a</varname> of <varname>v</varname>
+                    elements/rows/columns coming from <varname>a</varname>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>kb</term>
                 <listitem>
-                    <para>row vector of integers</para>
+                    row vector of integers: Indices in <varname>b</varname> of <varname>v</varname>
+                    remaining elements/rows/columns coming from <varname>b</varname>.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -70,7 +87,7 @@
         <title>Description</title>
         <para>
             <literal>union(a,b)</literal> returns a sorted row vector which
-            retains the unique entries of <literal>[a(:);b(:)]</literal>.
+            retains the unique entries of <literal>[a(:) ; b(:)]</literal>.
         </para>
         <para>
             <literal>union(a,b,"r")</literal> or
@@ -97,24 +114,112 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-A=round(5*rand(10,1));
-B=round(5*rand(7,1));
+A = [6  7  6 ; 5  8  3 ];
+B = [1  7  1  0  6 ];
 
-union(A,B)
-[N,ka,kb]=union(A,B)
+union(A, B)
+[u, ka, kb] = union(A, B)
+     ]]></programlisting>
+     <screen><![CDATA[
+--> union(A, B)
+ ans  =
+   0.   1.   3.   5.   6.   7.   8.
 
-union('a'+string(A),'b'+string(B))
- ]]></programlisting>
+--> [u, ka, kb] = union(A, B)
+ u  =
+   0.   1.   3.   5.   6.   7.   8.
+ ka  =
+   6.   2.   1.   3.   4.
+ kb  =
+   4.   1.
+]]></screen>
+        <para/>
+        <programlisting role="example"><![CDATA[
+A = ["a" "b" "a" "c" "c" "b"
+     "b" "c" "a" "b" "c" "c" ];
+B = ["b" "a" "c" "c" "b" "a"
+     "a" "c" "b" "b" "b" "b" ];
+
+[U, ka, kb] = union(A, B, "c")
+     ]]></programlisting>
+     <screen><![CDATA[
+--> [U, ka, kb] = union(A, B, "c")
+ U  =
+  "a"  "a"  "a"  "b"  "b"  "b"  "c"  "c"
+  "a"  "b"  "c"  "a"  "b"  "c"  "b"  "c"
+
+ ka  =
+   3.   1.   2.   4.   5.
+
+ kb  =
+   2.   1.   5.
+]]></screen>
+        <para/>
+        <programlisting role="example"><![CDATA[
+[F, T] = (%f, %t);
+A = sparse([T T F T F T ; F F F F T T ; T F F F F T ]); full(A)
+B = sparse([F F T T F F ; T T T T T T ; T F T T T F ]); full(B)
+
+[U, ka, kb] = union(A, B, "c");
+issparse(U)
+full(U), ka, kb
+     ]]></programlisting>
+     <screen><![CDATA[
+--> A = sparse([T T F T F T ; F F F F T T ; T F F F F T ]); full(A)
+ ans  =
+  T T F T F T
+  F F F F T T
+  T F F F F T
+
+--> B = sparse([F F T T F F ; T T T T T T ; T F T T T F ]); full(B)
+ ans  =
+  F F T T F F
+  T T T T T T
+  T F T T T F
+
+--> [U, ka, kb] = union(A, B, "c");
+--> issparse(U)
+ ans  =
+  T
+
+--> full(U), ka, kb
+ ans  =
+  F F F T T T
+  F T T F F T
+  F F T F T T
+
+ ka  =
+   3.   5.   2.   1.   6.
+ kb  =
+   1.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="unique">unique</link>
+                <link linkend="brackets">brackets</link>
             </member>
             <member>
-                <link linkend="gsort">gsort</link>
+                <link linkend="unique">unique</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Extension to boolean matrices.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Extension to sparse boolean, sparse real, and sparse complex matrices.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
