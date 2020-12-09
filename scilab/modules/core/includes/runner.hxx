@@ -101,6 +101,7 @@ extern "C"
 {
     void StaticRunner_launch(void);
     int StaticRunner_isRunnerAvailable(void);
+    int StaticRunner_isRunning(void);
     int StaticRunner_isInterruptibleCommand(void);
     command_origin_t StaticRunner_getCommandOrigin(void);
     void StaticRunner_setCommandOrigin(command_origin_t _origin);

@@ -291,6 +291,11 @@ void StaticRunner_launch(void)
     StaticRunner::launch();
 }
 
+int StaticRunner_isRunning(void)
+{
+    return StaticRunner::isRunning() ? 1 : 0;
+}
+
 int StaticRunner_isRunnerAvailable(void)
 {
     return StaticRunner::isRunnerAvailable() ? 1 : 0;
