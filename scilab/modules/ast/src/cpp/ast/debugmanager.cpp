@@ -468,6 +468,9 @@ void DebuggerManager::abort() //abort execution
     // this state is check by the debuggerVisitor to do abort in the main thread
     setAborted();
 
+    // reset requested pause in case we abort before beeing in pause
+    resetPauseRequest();
+
     // abort in a pause
     if(isInterrupted())
     {
