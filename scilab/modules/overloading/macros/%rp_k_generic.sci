@@ -55,6 +55,9 @@ function res = %rp_k_generic(a,b)
         rib = (ones(a).*.ib);     // replicated indices in b
         //
         res = rlist(anum(ria)(:) .* bnum(rib)(:), aden(ria)(:) .* bden(rib)(:), dt);
+        if simp_mode()
+            res = simp(res)
+        end
     end
 
     // Final formatting

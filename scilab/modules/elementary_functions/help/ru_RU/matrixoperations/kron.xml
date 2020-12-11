@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2014, 2019 - Samuel GOUGEON
+ * Copyright (C) 2014, 2019, 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -37,11 +37,11 @@
                     <para>
                         Массивы размером <literal>(a1, a2, ..)</literal> и <literal>(b1, b2, ..)</literal>
                         с любым числом размерности. Если <varname>A</varname> или <varname>B</varname>
-                        являются разрежёнными, то другоо массив не может быть гиперматрицей.
+                        являются разрежёнными, то другой массив не может быть гиперматрицей.
                     </para>
                     <para>
-                        Поддерживаемые кодируемые целые и типы: integer, real, complex, polynomial, rational,
-                        sparse.
+                        Поддерживаемые кодируемые целые и типы: boolean, integer, real, complex,
+                        polynomial, rational, sparse boolean, sparse real, sparse complex.
                     </para>
                 </listitem>
             </varlistentry>
@@ -61,8 +61,8 @@
         <title>Описание</title>
         <para>
             <literal>kron(A,B)</literal> или <literal>A.*.B</literal> возвращает результат
-            Кронекеровского тензорного произведения двух матриц или гиперматрицам <literal>A</literal> и
-            <literal>B</literal>. Матрица результата имеет следующую блочную форму:
+            Кронекеровского тензорного произведения двух матриц или гиперматриц <varname>A</varname> и
+            <varname>B</varname>. Матрица результата имеет следующую блочную форму:
             <latex style="display" alt="
           [ A(1,1).B  ..  A(1,n).B ] \n
 A .✶. B = |   ⋮        ⋮     ⋮      | \n
@@ -75,8 +75,8 @@ A .✶. B = |   ⋮        ⋮     ⋮      | \n
             </latex>
         </para>
         <para>
-            Если матрица <literal>A</literal> имеет размер <literal>m x n</literal>, а матрица
-            <literal>B</literal> имеет размер <literal>p x q x r</literal>, то результат
+            Если матрица <varname>A</varname> имеет размер <literal>m x n</literal>, а матрица
+            <varname>B</varname> имеет размер <literal>p x q x r</literal>, то результат
             <literal>A .*. B</literal> является матрицей размером <literal>(m*p) x (n*q) x (1xr)</literal>.
         </para>
     </refsection>
@@ -205,7 +205,13 @@ a.*.b
             <revision>
                 <revnumber>5.5.1</revnumber>
                 <revdescription>
-                    <para>Расширение до гиперматриц</para>
+                    Расширение до гиперматриц.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Расширение до логических и разрежённых логических массивов.
                 </revdescription>
             </revision>
         </revhistory>

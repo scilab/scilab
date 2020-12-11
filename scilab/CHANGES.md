@@ -201,6 +201,7 @@ Feature changes and additions on 6.1.1
   - It can now sort any sparse 2D matrix, in all `g, r, c, lr, lc` methods, including sparse booleans and in multi-level mode. It was formerly limited to sparse real or complex vectors and only to the `g` mode.
   - Any hypermatrix can be sorted along a dimension > 2.
 * `unique` is enabled for any 2D sparse arrays, in simple, 'c' and 'r' modes.
+<<<<<<< HEAD
 * `%chars` constant added, to easily access to some selected sets of unicode symbols.
 * Lists are displayed in a more compact and comprehensive way.
 * `interp1` is upgraded:
@@ -220,6 +221,9 @@ Feature changes and additions on 6.1.1
 * `setdiff` now supports input booleans and sparse matrices (boolean or numeric).
 * `intersect` is extended to any sparse boolean or numeric arrays, in all simple, 'c' or 'r' modes.
 * `union` now support boolean, sparse boolean, and sparse numerical matrices.
+=======
+* `kron` and `.*.` are extended to boolean arrays.
+>>>>>>> 0e05946c3d7 (* Bug 16613 fixed: .*. and kron extended to booleans)
 
 Help pages:
 -----------
@@ -407,6 +411,7 @@ Bug Fixes
 * [#16608](https://bugzilla.scilab.org/16608): `union` did not support input boolean, sparse boolean, nor sparse numerical matrices. The result of `union(complexA, complexB)` was wrongly conjugate.
 * [#16609](https://bugzilla.scilab.org/16609): `bitcmp` needed to be upgraded for Scilab 6.
 * [#16612](https://bugzilla.scilab.org/16612): Unlike the `.*.` operator, `kron()` was not defined for sparse numeric matrices.
+* [#16613](https://bugzilla.scilab.org/16613): Neither `.*.` nor `kron()` worked with boolean or sparse boolean matrices.
 * [#16622](https://bugzilla.scilab.org/16622): `inv` could no longer be overloaded for hypermatrices of decimal or complex numbers.
 * [#16623](https://bugzilla.scilab.org/16623): `rand(2,2,2)^2` yielded a wrong result instead of trying to call the `%s_p_s` overload for input hypermatrices.
 * [#16629](https://bugzilla.scilab.org/16629): `interp1`'s documentation did not tell the spline edges conditions ; extrapolation modes were poorly explained. ; the description of the result's size was completely wrong ; x as an option was not documented. A wrong extrapolation value could silently return a wrong result. There was some dead code like `if varargin(5)==%nan`. A bugged error message yielded its own error. When x is implicit, the argument index in error messages could be wrong. `periodic` and `edgevalue` extrapolation modes were not available. `linear` extrapolation was not available for splines. When `xp` is an hypermatrix with `size(xp,1)==1`, the size of the result was irregular/wrong.

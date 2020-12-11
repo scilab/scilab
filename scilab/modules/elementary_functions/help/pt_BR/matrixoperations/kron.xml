@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2014, 2019 - Samuel GOUGEON
+ * Copyright (C) 2014, 2019, 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -40,8 +40,8 @@
                         can't be an hypermatrix.
                     </para>
                     <para>
-                        Supported encodings and types: integer, real, complex, polynomial, rational,
-                        sparse.
+                        Supported encodings and types: boolean, integer, real, complex, polynomial,
+                        rational, sparse boolean, sparse real, sparse complex.
                     </para>
                 </listitem>
             </varlistentry>
@@ -208,7 +208,13 @@ a.*.b
             <revision>
                 <revnumber>5.5.1</revnumber>
                 <revdescription>
-                    <para>Extensão ao hypermatrizes</para>
+                    Extensão ao hypermatrizes.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Extension to boolean and sparse boolean arrays.
                 </revdescription>
             </revision>
         </revhistory>
