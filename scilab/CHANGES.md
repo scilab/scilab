@@ -361,6 +361,7 @@ Bug Fixes
 * [#14435](https://bugzilla.scilab.org/14435): Errors were not well handled in overloaded functions.
 * [#14477](https://bugzilla.scilab.org/14477): `mtlb_sparse()` removed from the documentation.
 * [#14488](https://bugzilla.scilab.org/14488): The `frameflag=9` and `strf=".9."` values of these `plot2d` options were no longer accepted. Their documentation was ambiguous.
+* [#14567](https://bugzilla.scilab.org/14567): In Scinotes, the `TODO` keyword was no longer highlighted.
 * [#14718](https://bugzilla.scilab.org/14718): `user` is removed for a while but was still documented.
 * [#14873](https://bugzilla.scilab.org/14873): `setfield` page: The output and the 6.0 history were documented only on the en_US version. The input was wrongly restricted to matrices, while any Scilab object is acceptable. The specific role of `setfield` for mlists was not really described nor illustrated. The example did not include any call to setfield.
 * [#15012](https://bugzilla.scilab.org/15012): `covStart(["isempty" ; "isscalar"])` crashed Scilab.

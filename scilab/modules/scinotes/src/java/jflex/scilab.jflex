@@ -42,27 +42,27 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
     private MatchingBlockScanner matchBlock;
 
     static {
-	// For SciNotes colors in preferences
-	commands.add("cos");
-	macros.add("sind");
+        // For SciNotes colors in preferences
+        commands.add("cos");
+        macros.add("sind");
     }
 
     public ScilabLexer(ScilabDocument doc) {
-	this(doc, new MatchingBlockScanner(doc), true);
+        this(doc, new MatchingBlockScanner(doc), true);
     }
 
     public ScilabLexer(ScilabDocument doc, boolean update) {
-	this(doc, new MatchingBlockScanner(doc), update);
+        this(doc, new MatchingBlockScanner(doc), update);
     }
 
     public ScilabLexer(ScilabDocument doc, MatchingBlockScanner matchBlock, boolean update) {
         this.doc = doc;
         this.elem = doc.getDefaultRootElement();
         this.infile = doc.getFunctionsInDoc();
-	this.matchBlock = matchBlock;
-	if (update) {
-		update();
-	}
+        this.matchBlock = matchBlock;
+        if (update) {
+                update();
+        }
     }
 
     public static void update() {
@@ -82,7 +82,7 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
            if (macs != null) {
                macros.addAll(Arrays.asList(macs));
            }
-	}
+        }
     }
 
     public void setRange(int p0, int p1) {
@@ -93,12 +93,12 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
         yyreset(new ScilabDocumentReader(doc, p0, p1));
         int currentLine = elem.getElementIndex(start);
         if (currentLine != 0) {
-	   ScilabDocument.ScilabLeafElement e = (ScilabDocument.ScilabLeafElement) elem.getElement(currentLine - 1);
-	   if (e.isBrokenString()) {
+           ScilabDocument.ScilabLeafElement e = (ScilabDocument.ScilabLeafElement) elem.getElement(currentLine - 1);
+           if (e.isBrokenString()) {
               yybegin(QSTRING);
-	   } else if (e.isBlockComment()) {
-	      yybegin(BLOCKCOMMENT);
-	   }
+           } else if (e.isBlockComment()) {
+              yybegin(BLOCKCOMMENT);
+           }
         }
     }
 
@@ -113,23 +113,23 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
            ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBrokenString(breakstring);
            breakstring = false;
         } else if (lastPos == end) {
-	   ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBlockComment(yystate() == BLOCKCOMMENT);
+           ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBlockComment(yystate() == BLOCKCOMMENT);
         }
-	return ret;
+        return ret;
     }
 
     public boolean isLineFinishedByBlockComment(int start, int end) {
         this.start = start;
-	this.end = end;
-	try {		
+        this.end = end;
+        try {           
            yyreset(new ScilabDocumentReader(doc, start, end));
-	   int tok = 0;
-	   while (tok != ScilabLexerConstants.EOF) {
-	      tok = yylex();
-	   }
+           int tok = 0;
+           while (tok != ScilabLexerConstants.EOF) {
+              tok = yylex();
+           }
         } catch (Exception e) { }
-	
-	return yystate() == BLOCKCOMMENT;
+        
+        return yystate() == BLOCKCOMMENT;
     }
 
     public int getKeyword(int pos, boolean strict) {
@@ -164,46 +164,46 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
      }
 
      public static ScilabTokens getScilabTokens(String str) {
-     	 ScilabDocument doc = new ScilabDocument(false);
-	 try {
-	     doc.insertString(0, str, null);
+         ScilabDocument doc = new ScilabDocument(false);
+         try {
+             doc.insertString(0, str, null);
          } catch (BadLocationException e) { }
-	 return getScilabTokens(doc);
+         return getScilabTokens(doc);
      }
 
      public static ScilabTokens getScilabTokens(ScilabDocument doc) {
-     	 ScilabLexer lexer = new ScilabLexer(doc);
-	 lexer.yyreset(new ScilabDocumentReader(doc, 0, doc.getLength()));
-	 ScilabTokens tokens = new ScilabTokens();
-	 int tok = -1;
-	 try {
-	    while (tok != ScilabLexerConstants.EOF) {
+         ScilabLexer lexer = new ScilabLexer(doc);
+         lexer.yyreset(new ScilabDocumentReader(doc, 0, doc.getLength()));
+         ScilabTokens tokens = new ScilabTokens();
+         int tok = -1;
+         try {
+            while (tok != ScilabLexerConstants.EOF) {
                tok = lexer.yylex();
                tokens.add(tok, lexer.yychar() + lexer.yylength());
             }
          } catch (IOException e) { }
  
-	 return tokens;
+         return tokens;
      }
 
      public static class ScilabTokens {
         private List<Integer> tokenType = new ArrayList<Integer>();
         private List<Integer> tokenPos = new ArrayList<Integer>();
 
-	ScilabTokens() { }
+        ScilabTokens() { }
 
-	void add(final int type, final int pos) {
-	   tokenType.add(type);
-	   tokenPos.add(pos);
-	}
+        void add(final int type, final int pos) {
+           tokenType.add(type);
+           tokenPos.add(pos);
+        }
 
-	public final List<Integer> getTokenType() {
-	   return tokenType;
-	}
+        public final List<Integer> getTokenType() {
+           return tokenType;
+        }
 
-	public final List<Integer> getTokenPos() {
-	   return tokenPos;
-	}
+        public final List<Integer> getTokenPos() {
+           return tokenPos;
+        }
      }
 %}
 
@@ -238,6 +238,9 @@ end = "end"
 controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "continue" | "exit"
 
 authors = "Michael Baudin" | "Michael BAUDIN" | "Paul Bignier" | "Paul BIGNIER" | "Adeline CARNIS" | "Adeline CARNIS" | "Yann Collette" | "Yann COLLETTE" | "Allan Cornet" | "Allan CORNET" | "Vincent Couvert" | "Vincent COUVERT" | "Clement David" | "Clement DAVID" | "Calixte Denizet" | "Calixte DENIZET" | "Cedric Delamarre" | "Cedric DELAMARRE" | "Antoine Elias" | "Antoine ELIAS" | "Simon Gareste" | "Simon GARESTE" | "Claude Gomez" | "Claude GOMEZ" | "Samuel Gougeon" | "Samuel GOUGEON" | "Bernard Hugueney" | "Bernard HUGUENEY" | "Bruno Jofret" | "Bruno JOFRET" | "Manuel Juliachs" | "Manuel JULIACHS" | "Sylvestre Koumar" | "Sylvestre KOUMAR" | "Pierre Lando" | "Pierre LANDO" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Vincent Lejeune" | "Vincent LEJEUNE" | "Vincent Liard" | "Vincent LIARD" | "Zhour Madini-Zouine" | "Zhour MADINI-ZOUINE" | "Pierre Marechal" | "Pierre MARECHAL" | "Stephane Mottelet" | "Stephane MOTTELET" | "Jerome Picard" | "Jerome PICARD" | "Allan Simon" | "Allan SIMON" | "Serge Steer" | "Serge STEER" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "ENPC" | "ESI Group"
+
+
+todo = ("TODO" | "todo" | "Todo")[ \t:]+[^\n]*
 
 break = ".."(".")*
 breakinstring = {break}[ \t]*{comment}?
@@ -296,7 +299,7 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.OSKEYWORD;
                                  }
 
-  {end}       			 {
+  {end}                          {
                                    transposable = false;
                                    if (matchBlock != null) {
                                       MatchingBlockScanner.MatchingPositions pos = matchBlock.getMatchingBlock(start + yychar() + yylength(), false);
@@ -526,6 +529,10 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.AUTHORS;
                                  }
 
+  {todo}                         {
+                                   return ScilabLexerConstants.TODO;
+                                 }
+
   {url}                          {
                                    return ScilabLexerConstants.URL;
                                  }
@@ -546,10 +553,10 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.TAB_COMMENT;
                                  }
 
-  {endcomment}			 {
-				   yybegin(YYINITIAL);
-				   return ScilabLexerConstants.COMMENT;
-  				 }
+  {endcomment}                   {
+                                   yybegin(YYINITIAL);
+                                   return ScilabLexerConstants.COMMENT;
+                                 }
 
   .                              |
   {eol}                          {
@@ -560,6 +567,10 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 <COMMENT> {
   {authors}                      {
                                    return ScilabLexerConstants.AUTHORS;
+                                 }
+
+  {todo}                         {
+                                   return ScilabLexerConstants.TODO;
                                  }
 
   {url}                          {
