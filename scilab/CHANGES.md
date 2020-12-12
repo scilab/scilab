@@ -90,8 +90,8 @@ Packaging & Supported Operating Systems
 [5]: http://java.com/en/download/help/sysreq.xml
 [6]: https://en.wikipedia.org/wiki/SSE2
 
-Feature changes and additions
------------------------------
+Feature changes and additions on 6.1.0
+--------------------------------------
 
 * `airy` has been added: Evaluation of Airy functions of the first and second kind, and their first derivative, possibly scaled.
 * HTTP get, post, put, upload, patch, delete functions added
@@ -193,7 +193,10 @@ Feature changes and additions
 * `atomsGetInstalledPath` is no longer sensitive to the case or completeness of the modules names. Providing the modules versions is now optional.
 * `function` replaces `mc` as the new overloading code for functions in Scilab language.
 
-6.1.1
+
+Feature changes and additions on 6.1.1
+--------------------------------------
+
 * `gsort` is upgraded:
   - It can now sort any sparse 2D matrix, in all `g, r, c, lr, lc` methods, including sparse booleans and in multi-level mode. It was formerly limited to sparse real or complex vectors and only to the `g` mode.
   - Any hypermatrix can be sorted along a dimension > 2.
@@ -204,6 +207,12 @@ Feature changes and additions
   - complex numbers `y` now supported: the real and imaginary parts are interpolated separately.
   - extrapolation option extended: `edgevalue` mode added for all interpolations; `periodic` mode added for linear and spline interpolations. `linear` mode added for the spline interpolations.
 * `xlfont` did not support the documented 4th argument.
+* `bitcmp` is upgraded:
+  - Entended to 64-bit integers.
+  - Extended to all signed integers.
+  - Decimal positive integers > 2^52 up to 2^1024 = number_properties("huge") can now be processed, with bitnum up to 1024 instead of 52.
+  - bitnum can actually be an array. It is now optional as well for input decimal integers.
+
 
 Help pages:
 -----------
@@ -359,6 +368,7 @@ Bug Fixes
 * [#16557](https://bugzilla.scilab.org/16557): `macr2tree` + `tree2code` translated `e={2}` into `"e=1"` and `e={2,"ab"}` into `"e=[2,"ab"]"`.
 * [#16559](https://bugzilla.scilab.org/16553): `isempty(A)` was true for sparse matrix of dimension 2^16 or larger.
 * [#16596](https://bugzilla.scilab.org/16596): Concatenating encoded integers with sparse numeric data was not possible. 
+* [#16609](https://bugzilla.scilab.org/16609): `bitcmp` needed to be upgraded for Scilab 6.
 * [#16622](https://bugzilla.scilab.org/16622): `inv` could no longer be overloaded for hypermatrices of decimal or complex numbers.
 * [#16623](https://bugzilla.scilab.org/16623): `rand(2,2,2)^2` yielded a wrong result instead of trying to call the `%s_p_s` overload for input hypermatrices.
 * [#16629](https://bugzilla.scilab.org/16629): `interp1`'s documentation did not tell the spline edges conditions ; extrapolation modes were poorly explained. ; the description of the result's size was completely wrong ; x as an option was not documented. A wrong extrapolation value could silently return a wrong result. There was some dead code like `if varargin(5)==%nan`. A bugged error message yielded its own error. When x is implicit, the argument index in error messages could be wrong. `periodic` and `edgevalue` extrapolation modes were not available. `linear` extrapolation was not available for splines. When `xp` is an hypermatrix with `size(xp,1)==1`, the size of the result was irregular/wrong.
