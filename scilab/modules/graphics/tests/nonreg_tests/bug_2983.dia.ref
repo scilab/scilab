@@ -24,8 +24,7 @@ plot3d(x,x,z)
 a = gca();
 a.children(1).hiddencolor
  ans  =
- 
-    4.  
+   4.
 a.children(1).hiddencolor = 5;
 // check that no hidden facets appears.
 // Might be updated when image processing will be integrated in Scilab.

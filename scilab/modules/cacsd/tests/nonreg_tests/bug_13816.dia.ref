@@ -7,8 +7,7 @@
 // <-- TEST WITH GRAPHIC -->
 s=poly(0,"s")
  s  = 
-    
-   s
+  s
 num=10*s+20;
 den=s^3+14*s^2+35*s-50;
 h=syslin("c",num/den);

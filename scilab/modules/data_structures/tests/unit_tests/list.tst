@@ -1,11 +1,12 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2014-2014 - Scilab Enterprises - Bruno JOFRET
+// Copyright (C) 2014 - Scilab Enterprises - Bruno JOFRET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
-
+// <-- NO CHECK REF -->
+//
 // test de creation des listes avec des elements null()
 
 l = list(,);

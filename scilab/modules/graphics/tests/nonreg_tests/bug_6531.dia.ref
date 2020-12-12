@@ -18,8 +18,7 @@ p=e.children(1);
 c=captions(p,'foo');
 c.background //-->-2 ok
  ans  =
- 
-  - 2.  
+  -2.
 p.foreground=color(200,128,33);
 // The caption's background color should remain equal to -2
 if (c.background <> -2) then bugmes();quit;end

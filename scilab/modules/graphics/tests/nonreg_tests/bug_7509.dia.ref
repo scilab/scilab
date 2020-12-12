@@ -14,7 +14,7 @@
 //
 t=linspace(0,%pi,20);
 drawlater()
-clf();plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-5,2 3]);  
+clf();plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-5,2 3]);
 ax=gca();
 C=ax.children.children;
 hl=legend(['cos(t)';'cos(2*t)';'cos(3*t)']);

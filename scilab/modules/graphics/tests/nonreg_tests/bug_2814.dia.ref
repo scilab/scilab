@@ -19,7 +19,7 @@ drawlater;
 clf();
 ax=gca();
 ax.data_bounds=[-180,-50;180,90];
-ax.box='on'; 
+ax.box='on';
 ax.axes_visible=["on","on"];
 ax.tight_limits="on";
 a=5*ones(51,50);

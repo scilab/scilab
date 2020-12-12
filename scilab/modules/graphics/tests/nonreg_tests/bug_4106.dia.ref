@@ -11,8 +11,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=4106
 //
 // <-- Short Description -->
-// bar and barh overrides drawlater/drawnow mode.
-//
+// bar and barh override drawlater/drawnow mode.
+// 
 x = 1:10;
 curFig = gcf();
 // drawlater

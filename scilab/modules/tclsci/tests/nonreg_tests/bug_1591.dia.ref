@@ -22,15 +22,13 @@ if and(size(TCL_GetVar("ta")) == [2 2]) == %F then bugmes();quit;end
 TCL_EvalStr("set ta(deux,deux) four");
 if and(size(TCL_GetVar("ta")) == [4 1]) == %F then bugmes();quit;end
 a = [1 2 3;4 5 6; 7 8 9]
- a  =
- 
-    1.    2.    3.  
-    4.    5.    6.  
-    7.    8.    9.  
+ a  = 
+   1.   2.   3.
+   4.   5.   6.
+   7.   8.   9.
 TCL_SetVar("tcl_a", a)
  ans  =
- 
-  T  
+  T
 // a is a 3x3 matrix
 if and(size(TCL_GetVar("tcl_a")) == [3 3]) == %F then bugmes();quit;end
 // adding a new value change a into a 50x10 matrix

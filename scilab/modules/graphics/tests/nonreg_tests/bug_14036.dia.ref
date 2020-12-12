@@ -16,7 +16,7 @@ l = light();
 l.userdata = "Source 1";
 l.tag = "LS1";
 l
-l  = 
+ l  = 
 Handle of type "Light" with properties:
 =======================================
 parent: Axes

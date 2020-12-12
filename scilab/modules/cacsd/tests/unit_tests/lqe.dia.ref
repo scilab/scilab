@@ -29,7 +29,7 @@ H = [0.14,0.42;
      0.5,0.86];
 //The noises covariance matrices 
 Q_e=eye(ne,ne);
-R_v=diag(1:ny); 
+R_v=diag(1:ny);
 S_ev=zeros(ne,ny);
 S_ev(1,1)=0.8;
 // |.                  |.

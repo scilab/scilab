@@ -1,0 +1,123 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2020 - Samuel GOUGEON
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+//
+// <-- Short Description -->
+// Display of lists unitary tests
+%l_p(list())
+  empty list()
+%l_p(list(1,2,3))
+  (1) = 1
+  (2) = 2
+  (3) = 3
+%l_p(list(list(1,list()),2))
+  (1) : list:
+      (1) = 1
+      (2) : empty list()
+  (2) = 2
+[p, q] = (poly(rand(5,1),"z"), poly(rand(6,1),"z"));
+%l_p(list(rlist(q,p), 1.23))
+  (1) : [1x1 rational] of z
+  (2) = 1.23
+%l_p(list(1,1:$))
+  (1) = 1
+  (2) = 1:$
+%l_p(list(list(1:$)))
+  (1) : list:
+      (1) = 1:$
+%l_p(list(list(1,$),list()))
+  (1) : list:
+      (1) = 1
+      (2) = $
+  (2) : empty list()
+//
+films = struct("Title", "A.I. Artificial Intelligence",..
+               "Year", 2001, ..
+               "Director", "Steven Spielberg", ..
+               "Duration", 140);
+L = list([%t %f %f]',                ..
+         $:-1:3,                    ..
+         int8([1 2 3 ; 4 5 6]),     ..
+         [-%inf, -1, 0, %i, 7.1, 3.3e20, %inf, %nan], ..
+         sparse([0 1 2; 3 0 4]),    ..
+         ["This" "is" "some" "text"], ..
+         ,              ..
+         sin,           ..
+         logspace,      ..
+         iolib,         ..
+         {%pi, "abcd" ;
+          list(,)(1),(%i-%s)^3},    ..
+          {},           ..
+          list(["Hello" "Allo" "Hé"], uint64(12345678)^(1:3), ,grand(2,4,"uin",0,10)), ..
+          list(), ..
+         films);
+%l_p(L)
+  (1) : [3x1 boolean]
+  (2) = $:-1:3
+  (3) : [2x3 int8]
+  (4) = [-%inf,-1,0,%i,7.1,3.300D+20,%inf,%nan]
+  (5) : [2x3 sparse]
+  (6) = ["This","is","some","text"]
+  (7) = (void)
+  (8) : fptr
+  (9) : logspace(d1,d2,n) => [y] (42 lines)
+  (10) : iolib library with 5 functions @ SCI\modules\io\macros\
+  (11) : [2x2 cell]
+  (12) = {}
+  (13) : list:
+      (1) = ["Hello","Allo","Hé"]
+      (2) = uint64([12345678,1.524D+14,9.223D+18])
+      (3) = (void)
+      (4) : [2x4 constant]
+  (14) : empty list()
+  (15) : struct with fields:
+      Title = "A.I. Artificial Intelligence"
+      Year = 2001
+      Director = "Steven Spielberg"
+      Duration = 140
+// Tlist overloaded display
+TL = tlist("x",1,2)
+ TL  = 
+       TL(1)
+  "x"
+       TL(2)
+   1.
+       TL(3)
+   2.
+deff("%x_p(x)","disp(''Mydisplay'',x(2),x(3))")
+TL
+ TL  = 
+  "Mydisplay"
+   1.
+   2.
+list(TL)
+ ans  =
+  (1) : [x] tlist without field.
+list(list(TL))
+ ans  =
+  (1) : list:
+      (1) : [x] tlist without field.
+TL = tlist("x",1:$,2)
+ TL  = 
+  "Mydisplay"
+ 1:1:$
+   2.
+list(TL)
+ ans  =
+  (1) : [x] tlist without field.
+list(list(TL))
+ ans  =
+  (1) : list:
+      (1) : [x] tlist without field.
+TL(2) = TL
+ TL  = 
+  "Mydisplay"
+  "Mydisplay"
+ 1:1:$
+   2.
+   2.

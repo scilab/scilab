@@ -19,6 +19,7 @@ Building macros...
 -- Creation of [fooboxlib] (Macros) --
 genlib: Processing file: baz.sci
 genlib: Processing file: foo.sci
+tbx_build_localization: The module 'foobox' has no entry to be localized.
 Building help...
 Building the master document:
 	TMPDIR\foobox\help\en_US
@@ -30,11 +31,12 @@ exec(mytb_dir + "/loader.sce");
 Start foobox
 	Load macros
 	Load help
+clear oldlines oldmode;
 b = foo("testing it works", 42);
- testing it works
+  "testing it works"
    42.
 baz("World");
- Hello World!
+  "Hello World!"
 assert_checktrue(b);
 // testing default compilation
 mytb_dir = TMPDIR + "/testbox";
@@ -86,6 +88,9 @@ Building gateway...
    Generate a cleaner file
 Generating loader_gateway.sce...
 Generating cleaner_gateway.sce...
+Generating localization
+-- Building for "en_US" --
+-- Building for "fr_FR" --
 Building help...
 Building the master document:
 	TMPDIR\testbox\help\en_US
@@ -101,5 +106,6 @@ Start testbox
 	Load gateways
 	Load Java libraries
 	Load help
+clear oldlines oldmode;
 b = csum6(2, 40);
 assert_checkequal(b, 42);

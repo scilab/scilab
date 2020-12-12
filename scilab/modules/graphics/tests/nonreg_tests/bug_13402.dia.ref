@@ -11,7 +11,7 @@
 // http://bugzilla.scilab.org/13402
 //
 // <-- Short Description -->
-// Bounding boxes of xarcs were not correct   
+// Bounding boxes of xarcs were not correct
 xarc(0, 0, 2, 1, 64 * 0, 64 * 360);
 a = gca();
 assert_checkequal(a.data_bounds, [0 -1 ; 2 0]);

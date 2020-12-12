@@ -19,7 +19,7 @@ b=mlist(['foo','hello'],myfun);
 c=mlist(['foo','hello'],list('xxxx','yyyyy','zzzzz'));
 [x,y,z]=b.hello()
  x  = 
-     ()
+  empty list()
  y  = 
    2.
  z  = 
@@ -27,7 +27,7 @@ c=mlist(['foo','hello'],list('xxxx','yyyyy','zzzzz'));
 if x<>list()|y<>2|z<>3 then bugmes();quit;end
 [x,y,z]=a.hello()
  x  = 
-     ()
+  empty list()
  y  = 
    2.
  z  = 

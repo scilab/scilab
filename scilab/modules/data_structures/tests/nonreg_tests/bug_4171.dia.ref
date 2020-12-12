@@ -35,12 +35,12 @@ tl2 = tlist("X", tl1, tl1)
 l1 = list(stru);
 l2 = list(l1, l1)
  l2  = 
-       l2(1)
-              l2(1)(1)
-  field = "value"
-       l2(2)
-              l2(2)(1)
-  field = "value"
+  (1) : list:
+      (1) : struct with fields:
+          field = "value"
+  (2) : list:
+      (1) : struct with fields:
+          field = "value"
 // Bug 11484 (duplicate)
 // ---------
 x = struct('a',4,'b',3);
@@ -50,14 +50,14 @@ list_c = list();
 list_c(0) = list(x,y);
 list_c(0) = list(z)
  list_c  = 
-       list_c(1)
-              list_c(1)(1)
-  a = 7
-  b = 2
-       list_c(2)
-              list_c(2)(1)
-  a = 4
-  b = 3
-              list_c(2)(2)
-  a = 5
-  b = 6
+  (1) : list:
+      (1) : struct with fields:
+          a = 7
+          b = 2
+  (2) : list:
+      (1) : struct with fields:
+          a = 4
+          b = 3
+      (2) : struct with fields:
+          a = 5
+          b = 6

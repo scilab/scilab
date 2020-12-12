@@ -12,7 +12,7 @@
 //
 // <-- Short Description -->
 // If parametric 3d curve values are out of given ebox of 3d axes, this curve values are netherveless plotted.
-//
+// 
 xv = 1:10;
 yv = rand(1, length(xv))*20-10;
 param3d1(xv, yv, ...

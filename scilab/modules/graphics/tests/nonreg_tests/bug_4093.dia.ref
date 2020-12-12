@@ -12,9 +12,9 @@
 //
 // <-- Short Description -->
 // plot2d overrides Y axis location set in default axes.
-//
+// 
 x = [0:0.1:2*%pi]';
-da = gda(); // get the handle of the model axes
+da = gda(); // get the handle of the model axes 
 da.x_location = "origin";
 da.y_location = "origin";
 plot2d(x-2,sin(x))

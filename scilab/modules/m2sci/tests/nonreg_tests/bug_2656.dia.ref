@@ -40,10 +40,10 @@ mfile2sci(MFILE,TMPDIR);
   ****** End of mfile2sci() session ******
 SCIFILECONTENTS=mgetl(SCIFILE);
 SCIFILECONTENTSREF=[
-    ""
-    "a = 1;"
-    "while a==1"
-    "  a = 2;"
-    "end;"
-    "a = 3"];
+        ""
+        "a = 1;"
+        "while a==1"
+        "  a = 2;"
+        "end;"
+        "a = 3"];
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

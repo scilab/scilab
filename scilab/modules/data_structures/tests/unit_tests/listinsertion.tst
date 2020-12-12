@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // test des insertions dans les listes
 a=1;b=3;c=2;d=[1 2 3];e=[3 4 5];f=[10;20];g=[44 55];

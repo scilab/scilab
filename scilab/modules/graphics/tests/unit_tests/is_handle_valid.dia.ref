@@ -14,8 +14,7 @@ plot([0:10; 0:10; 0:10], [0:10; 0:0.5:5; 0:2:20]);
 // check polylines validity
 axes = gca();
 polylines = axes.children(1).children
- polylines  =
- 
+ polylines  = 
 11 by 1 matrix of handles:
 ==========================
 Polyline 
@@ -35,17 +34,16 @@ assert_checkequal(test, [%t; %t; %t; %t; %t; %t; %t; %t; %t; %t; %t]);
 delete(polylines(3:7));
 // print validity
 test = is_handle_valid(polylines)
- test  =
- 
-  T  
-  T  
-  F  
-  F  
-  F  
-  F  
-  F  
-  T  
-  T  
-  T  
-  T  
+ test  = 
+  T
+  T
+  F
+  F
+  F
+  F
+  F
+  T
+  T
+  T
+  T
 assert_checkequal(test, [%t; %t; %f; %f; %f; %f; %f; %t; %t; %t; %t]);

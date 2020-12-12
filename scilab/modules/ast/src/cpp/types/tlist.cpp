@@ -340,32 +340,18 @@ bool TList::toString(std::wostringstream& ostr)
 
     IncreaseRef();
     in.push_back(this);
-
-    try
-    {
-        if (Overload::generateNameAndCall(L"p", in, 1, out) == Function::Error)
-        {
+    switch (Overload::generateNameAndCall(L"p", in, 1, out, false, false)) {
+        case Function::OK_NoResult:
+            // unresolved function, fallback to a basic display
+            break;
+        case Function::Error:
             ConfigVariable::setError();
-        }
-
-        ostr.str(L"");
-        DecreaseRef();
-        return true;
-    }
-    catch (ast::InternalError& e)
-    {
-        if (e.GetErrorType() == ast::TYPE_ERROR)
-        {
+            // fallthrough
+        case Function::OK:
+            ostr.str(L"");
             DecreaseRef();
-            throw e;
-        }
-
-        // avoid error message about undefined overload %type_p
-        ConfigVariable::resetError();
-        // reset where error filled by generateNameAndCall
-        ConfigVariable::resetWhereError();
-    }
-
+            return true;
+    };
     DecreaseRef();
 
     // special case for lss

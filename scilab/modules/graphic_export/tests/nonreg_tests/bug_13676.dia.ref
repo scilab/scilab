@@ -28,5 +28,4 @@ jremove ImageIO URL url bi
 // Check if the image is not fully white
 assert_checkfalse(and(data == (uint32(2^32 - 1))))
  ans  =
- 
-  T  
+  T

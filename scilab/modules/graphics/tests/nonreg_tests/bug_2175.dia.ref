@@ -12,7 +12,7 @@
 //
 // <-- Short Description -->
 // "contour2d" prints level numbers partially outside the rect.
-//
+// 
 bounds = [1,1,10,10];
 contour2d(1:10,1:10,rand(10,10),5,rect=bounds);
 // check that texts created by contour2d are inside the box

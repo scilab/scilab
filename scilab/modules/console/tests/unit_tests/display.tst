@@ -114,27 +114,6 @@ dn = [d n];
 
 lines(oldlines);
 
-// display of list
-list()
-list(1,2,3)
-list(list(1,list()),2)
-list(rlist(q,p),1.23)
-// overloading of display
-1:$
-list(1,1:$)
-list(list(1:$))
-list(list(1,$),list())
-// Tlist overloaded display
-TL=tlist("x",1,2)
-deff("%x_p(x)","disp(''Mydisplay'',x(2),x(3))")
-TL
-list(TL)
-list(list(TL))
-TL=tlist("x",1:$,2)
-list(TL)
-list(list(TL))
-TL(2)=TL
-
 // boolean
 %t
 %f

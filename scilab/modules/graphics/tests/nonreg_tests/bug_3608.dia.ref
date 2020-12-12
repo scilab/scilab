@@ -12,7 +12,7 @@
 //
 // <-- Short Description -->
 // Scilab freezes when executing a combination of "eventhandler", "xchange" and "plot".
-//
+// 
 function follow(win,x,y,ibut)
   [xx,yy]=xchange(x,y,"i2f");
 endfunction

@@ -197,6 +197,7 @@ Feature changes and additions
   - Any hypermatrix can be sorted along a dimension > 2.
 * `unique` is enabled for any 2D sparse arrays, in simple, 'c' and 'r' modes.
 * %chars constant added, to easily access to some selected sets of unicode symbols.
+* Lists are displayed in a more compact and comprehensive way.
 
 Help pages:
 -----------
@@ -287,9 +288,10 @@ Bug Fixes
 * [#12532](https://bugzilla.scilab.org/12532): From `browsevar`, clicking on any function did not edit it with `edit`. The content of libraries could not be displayed either.
 * [#12719](https://bugzilla.scilab.org/12719): `A(%s)` gave the same result as `A($)`.
 * [#12889](https://bugzilla.scilab.org/12889): In the help browser, add a menu allowing to select the language of help pages, regardless of the language of the session.
+* [#13417](https://bugzilla.scilab.org/13417): `csvRead` page did not document the way to use the `range` up to the last row/column.
 * [#13593](https://bugzilla.scilab.org/13593): `csvRead()` did not take the `range` into account when `header` is provided. `[]` could not be used as default `range`.
 * [#13762](https://bugzilla.scilab.org/13762): In the `fft` page, the formula for the inverse FFT missed the 1/n normalization factor.
-* [#13417](https://bugzilla.scilab.org/13417): `csvRead` page did not document the way to use the `range` up to the last row/column.
+* [#13985](https://bugzilla.scilab.org/13985): The display of lists was very loose and poor.
 * [#14435](https://bugzilla.scilab.org/14435): Errors were not well handled in overloaded functions.
 * [#14488](https://bugzilla.scilab.org/14488): The `frameflag=9` and `strf=".9."` values of these `plot2d` options were no longer accepted. Their documentation was ambiguous.
 * [#14718](https://bugzilla.scilab.org/14718): `user` is removed for a while but was still documented.

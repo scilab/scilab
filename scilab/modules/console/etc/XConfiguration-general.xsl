@@ -70,7 +70,7 @@
                 <NumericalSpinner gridx="3" gridy="5"
                           weightx="0"
                           min-value="0"
-                          max-value="10"
+                          max-value="30"
                           increment="1"
                           length="2"
                           listener="ActionListener"

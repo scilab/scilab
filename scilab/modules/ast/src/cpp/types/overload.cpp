@@ -63,7 +63,7 @@ types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _
     }
 
     // if overload doesn't existe try with short name
-    std::wstring stFunc2 = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator, errorOnUndefined);
+    std::wstring stFunc2 = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator, true);
     if (symbol::Context::getInstance()->get(symbol::Symbol(stFunc)))
     {
         types::Function::ReturnValue ret = call(stFunc, in, _iRetCount, out, _isOperator, errorOnUndefined, _Location);

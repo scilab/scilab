@@ -11,7 +11,7 @@
 // http://bugzilla.scilab.org/5844
 //
 // <-- Short Description -->
-// grayplot had not logflag option
+// grayplot had not a logflag option
 x=1:10;
 y=1:10;
 m=rand(10,10);

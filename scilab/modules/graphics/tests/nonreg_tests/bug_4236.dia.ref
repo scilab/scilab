@@ -12,7 +12,7 @@
 //
 // <-- Short Description -->
 // move called with an already deleted handle crashes Scilab.
-//
+// 
 xpoly(1,1);
 point = gce();
 delete(point); // the handle is no longer valid
