@@ -414,6 +414,7 @@ Bug Fixes
 * [#16552](https://bugzilla.scilab.org/16552): `mfile2sci`: conversion of `ispc` and `isunix` still used `MSDOS` removed far ago. Conversion of `ismac` was missing. Conversion of `exist` missed using `mtlb_exist`. Conversion of `dos` yielded some "operation +" warnings. Unit tests for the conversion of `cd`, `dir` and `ferror` overwrote some Scilab reserved keywords. Conversion of `return` yielded `mtlb(resume)`.
 * [#16553](https://bugzilla.scilab.org/16553): `unique(["" ""])` returned `["" ""]`.
 * [#16557](https://bugzilla.scilab.org/16557): `macr2tree` + `tree2code` translated `e={2}` into `"e=1"` and `e={2,"ab"}` into `"e=[2,"ab"]"`.
+<<<<<<< HEAD
 * [#16559](https://bugzilla.scilab.org/16553): `isempty(A)` was true for sparse matrix of dimension 2^16 or larger.
 * [#16561](https://bugzilla.scilab.org/16561): `histplot(-10:0.2:10, 2)` yielded a warning from `histc` and an error.
 * [#16565](https://bugzilla.scilab.org/16565): `edit(user_defined_function)` corrupted the original code.
@@ -427,6 +428,7 @@ Bug Fixes
 * [#16609](https://bugzilla.scilab.org/16609): `bitcmp` needed to be upgraded for Scilab 6.
 * [#16612](https://bugzilla.scilab.org/16612): Unlike the `.*.` operator, `kron()` was not defined for sparse numeric matrices.
 * [#16613](https://bugzilla.scilab.org/16613): Neither `.*.` nor `kron()` worked with boolean or sparse boolean matrices.
+* [#16614](https://bugzilla.scilab.org/16614): Out of gcf(), a figure with some xstring content could be not properly reframed to contents.
 * [#16617](https://bugzilla.scilab.org/16617): `gamma` did not support incomplete gamma integrals.
 * [#16618](https://bugzilla.scilab.org/16618): `close` could not close the help browser, xcos, nor the variable editor or browser.
 * [#16620](https://bugzilla.scilab.org/16620): `derivat` had no reciprocal `polyint` polynomial integration function.
@@ -443,6 +445,8 @@ Bug Fixes
 * [#16644](https://bugzilla.scilab.org/16644): `input("message:")` yielded a wrong error message about `mprintf` in case of non-interpretable input.
 * [#16654](https://bugzilla.scilab.org/16654): `interp` was leaking memory.
 
+=======
+>>>>>>> afb92ac5368 (* Bug 16614 fixed: replot() could fail out of gcf())
 
 ### Bugs fixed in 6.1.0:
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
@@ -533,6 +537,7 @@ Bug Fixes
 * [#15359](https://bugzilla.scilab.org/15359): `twinkle` was not able to blink several independent objects.
 * [#15360](https://bugzilla.scilab.org/15360): `numer` and `denom` were poor and duplicates of the `.num` and `.den` fields of rationals. They are removed.
 * [#15368](https://bugzilla.scilab.org/15368): `freson` silently returned frequencies not corresponding to a maximum, or returned [] instead of some still computable maxima frequencies.
+* [#15374](https://bugzilla.scilab.org/15374):  Trivial infinite loop could not be interrupted.
 * [#15392](https://bugzilla.scilab.org/15392): `comet` and `comet3d` did not allow specifying colors with colors names.
 * [#15393](https://bugzilla.scilab.org/15393): In a new figure, `nicholschart` plotted nothing. The default frame color was a flashy cyan. The position of gain labels could be puzzling. It was not possible to specify colors by their names. Postprocessing the frames and the set of labels was not easy.
 * [#15421](https://bugzilla.scilab.org/15421): A new smarter default grid_style was required since smart lines styles #7-10 are available.
@@ -556,9 +561,6 @@ Bug Fixes
 * [#15701](https://bugzilla.scilab.org/15701): `A\B` was not faster when `A` is square and triangular.
 * [#15715](https://bugzilla.scilab.org/15715): `%nan` indices crashed Scilab.
 * [#15734](https://bugzilla.scilab.org/15734): `intersect` did not support complex numbers.
-
-* [#15734](https://bugzilla.scilab.org/15734):  Trivial infinite loop could not be interrupted.
-
 * [#15737](https://bugzilla.scilab.org/15737): `setdiff` was wrong with complex numbers.
 * [#15742](https://bugzilla.scilab.org/15742): The `compatibility_functions` module should be merged in the `m2sci` one.
 * [#15744](https://bugzilla.scilab.org/15744): `sylm(a,b)` yielded an error when degree(a)==0 or degree(b)==0.
