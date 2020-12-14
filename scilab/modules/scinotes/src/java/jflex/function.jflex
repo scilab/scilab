@@ -9,7 +9,6 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 
 @javax.annotation.Generated("JFlex")
-@SuppressWarnings("fallthrough")
 %%
 
 %public
@@ -35,6 +34,10 @@ import javax.swing.text.Element;
         returnValues = new ArrayList();
         argsValues = new ArrayList();
 	this.matchBlock = new MatchingBlockScanner(doc);
+    }
+
+    public int yychar() {
+        return (int) yychar;
     }
 
     public String getFunctionName() {
@@ -136,7 +139,7 @@ end = "end"
 			         }
 
   {end}				 {
-  				   MatchingBlockScanner.MatchingPositions pos = matchBlock.getMatchingBlock(start + yychar + yylength(), false);
+  				   MatchingBlockScanner.MatchingPositions pos = matchBlock.getMatchingBlock(start + yychar() + yylength(), false);
 				   if (pos != null) {
 				      try {
 				      	 String match = doc.getText(pos.secondB, pos.secondE - pos.secondB);

@@ -13,7 +13,6 @@ import javax.swing.text.Element;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 
 @javax.annotation.Generated("JFlex")
-@SuppressWarnings("fallthrough")
 
 %%
 
@@ -104,12 +103,12 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
     }
 
     public int yychar() {
-        return yychar;
+        return (int) yychar;
     }
 
     public int scan() throws IOException {
         int ret = yylex();
-	int lastPos = start + yychar + yylength();
+        int lastPos = start + yychar() + yylength();
         if (lastPos == end - 1) {
            ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBrokenString(breakstring);
            breakstring = false;
@@ -155,7 +154,7 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
            while (startL < pos && (s != startL || yystate() == BREAKSTRING)) {
                s = startL;
                tok = yylex();
-               startL = start + yychar + yylength();
+               startL = start + yychar() + yylength();
            }
 
            return tok;
@@ -180,9 +179,9 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 	 try {
 	    while (tok != ScilabLexerConstants.EOF) {
                tok = lexer.yylex();
-    	       tokens.add(tok, lexer.yychar + lexer.yylength());
-	    }
-	 } catch (IOException e) { }
+               tokens.add(tok, lexer.yychar() + lexer.yylength());
+            }
+         } catch (IOException e) { }
  
 	 return tokens;
      }
@@ -238,7 +237,7 @@ end = "end"
 
 controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "continue" | "exit"
 
-authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Yann Collette" | "Yann COLLETTE" | "Allan Cornet" | "Allan CORNET" | "Allan Simon" | "Allan SIMON" | "Antoine Elias" | "Antoine ELIAS" | "Bernard Hugueney" | "Bernard HUGUENEY" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Jerome Picard" | "Jerome PICARD" | "Manuel Juliachs" | "Manuel JULIACHS" | "Michael Baudin" | "Michael BAUDIN" | "Pierre Lando" | "Pierre LANDO" | "Pierre Marechal" | "Pierre MARECHAL" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Vincent Liard" | "Vincent LIARD" | "Zhour Madini-Zouine" | "Zhour MADINI-ZOUINE" | "Vincent Lejeune" | "Vincent LEJEUNE" | "Sylvestre Koumar" | "Sylvestre KOUMAR" | "Simon Gareste" | "Simon GARESTE" | "Cedric Delamarre" | "Cedric DELAMARRE" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "ENPC"
+authors = "Michael Baudin" | "Michael BAUDIN" | "Paul Bignier" | "Paul BIGNIER" | "Adeline CARNIS" | "Adeline CARNIS" | "Yann Collette" | "Yann COLLETTE" | "Allan Cornet" | "Allan CORNET" | "Vincent Couvert" | "Vincent COUVERT" | "Clement David" | "Clement DAVID" | "Calixte Denizet" | "Calixte DENIZET" | "Cedric Delamarre" | "Cedric DELAMARRE" | "Antoine Elias" | "Antoine ELIAS" | "Simon Gareste" | "Simon GARESTE" | "Claude Gomez" | "Claude GOMEZ" | "Samuel Gougeon" | "Samuel GOUGEON" | "Bernard Hugueney" | "Bernard HUGUENEY" | "Bruno Jofret" | "Bruno JOFRET" | "Manuel Juliachs" | "Manuel JULIACHS" | "Sylvestre Koumar" | "Sylvestre KOUMAR" | "Pierre Lando" | "Pierre LANDO" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Vincent Lejeune" | "Vincent LEJEUNE" | "Vincent Liard" | "Vincent LIARD" | "Zhour Madini-Zouine" | "Zhour MADINI-ZOUINE" | "Pierre Marechal" | "Pierre MARECHAL" | "Stephane Mottelet" | "Stephane MOTTELET" | "Jerome Picard" | "Jerome PICARD" | "Allan Simon" | "Allan SIMON" | "Serge Steer" | "Serge STEER" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "ENPC" | "ESI Group"
 
 break = ".."(".")*
 breakinstring = {break}[ \t]*{comment}?
@@ -299,17 +298,17 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 
   {end}       			 {
                                    transposable = false;
-				   if (matchBlock != null) {
-				      MatchingBlockScanner.MatchingPositions pos = matchBlock.getMatchingBlock(start + yychar + yylength(), false);
-				      if (pos != null) {
-				         try {
-				      	     String match = doc.getText(pos.secondB, pos.secondE - pos.secondB);
-				      	     if (match.equals("function")) {
-					        return ScilabLexerConstants.FKEYWORD;
-					     }
-				      	 } catch (BadLocationException e) { }
-				      }
-				   }
+                                   if (matchBlock != null) {
+                                      MatchingBlockScanner.MatchingPositions pos = matchBlock.getMatchingBlock(start + yychar() + yylength(), false);
+                                      if (pos != null) {
+                                         try {
+                                             String match = doc.getText(pos.secondB, pos.secondE - pos.secondB);
+                                             if (match.equals("function")) {
+                                                return ScilabLexerConstants.FKEYWORD;
+                                             }
+                                         } catch (BadLocationException e) { }
+                                      }
+                                   }
                                    return ScilabLexerConstants.OSKEYWORD;
                                  }
 
@@ -346,7 +345,7 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                        yybegin(COMMANDS);
                                        return ScilabLexerConstants.MACROINFILE;
                                    } else {
-                                       List<String>[] arr = doc.getInOutArgs(start + yychar);
+                                       List<String>[] arr = doc.getInOutArgs(start + yychar());
                                        if (arr != null && (arr[0].contains(str) || arr[1].contains(str))) {
                                            return ScilabLexerConstants.INPUTOUTPUTARGS;
                                        } else if (variables.contains(str)) {
