@@ -115,7 +115,7 @@ function varargout = nchoosek(n, k, logFormat)
     if lhs==2 | isdef("logFormat","l") then
         varargout(1) = logb
     end
-    if lhs==1 & ~isdef("logFormat","l") | lhs==2 then
+    if lhs<=1 & ~isdef("logFormat","l") | lhs==2 then
         varargout($+1) = b
     end
 endfunction
