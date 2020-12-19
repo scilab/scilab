@@ -27,6 +27,7 @@ For a high-level description of the main new features of this release, please co
 [4]: modules/helptools/data/pages/homepage-en_US.html
 
 In summary, the main new features are:
+* The default Java Heap has been increased to 512MB
 * Webtools utilities added for HTTP protocol, JSON data usage
    - http_get can be used as an alternative download method for ATOMS
 * Profiled values are available as Scilab values

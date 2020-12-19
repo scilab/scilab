@@ -24,7 +24,7 @@
             <language code="ja_JP" desc="_(Japanese)"/>
             <language code="uk_UA" desc="_(Ukrainian)"/>
         </languages>
-        <java-heap-memory heap-size="256"/>
+        <java-heap-memory heap-size="512"/>
         <startup title="_(Start-up directory)" use="current" default="" previous=""/>
     </body>
     <confirmation-dialogs title="_(Confirmation dialogs)">
