@@ -7,6 +7,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 // <-- ENGLISH IMPOSED -->
 
 // Run with test_run('statistics','cdfgam',['no_check_error_output']);
@@ -82,17 +83,13 @@ table = [
 9.99999999999999982D-201 5.000000000000000000D-01 1.000000000000000000D+00 5.641895835477511468D+99 1.12837916709551300D-100 1.000000000000000000D+00
 ];
 
-// For the inversion of Shape, require only 8 digits, as
-// a consequence of bug #7569: http://bugzilla.scilab.org/show_bug.cgi?id=7569
-//
 // Some tests do not pass:
-// http://bugzilla.scilab.org/show_bug.cgi?id=8031
-// http://bugzilla.scilab.org/show_bug.cgi?id=8030
+// http://bugzilla.scilab.org/8030
 //
 // Prints the number of accurate digits.
 
 precision = 1.e-12;
-precinverse = 1.e-8;
+precinverse = 1.e-14;
 
 ntests = size(table,"r");
 for i = 1 : ntests
@@ -125,7 +122,7 @@ for i = 1 : ntests
 end
 
 // IEEE support
-// See http://bugzilla.scilab.org/show_bug.cgi?id=7296
+// See http://bugzilla.scilab.org/7296
 Shape = 0;
 Rate = 1;
 
