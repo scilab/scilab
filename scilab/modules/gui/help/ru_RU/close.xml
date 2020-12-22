@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
           xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="close">
     <refnamediv>
         <refname>close</refname>
         <refpurpose>
-            закрывает графические окна, панели прогресса и панели состояния
+            Закрывает графические окна, панели прогресса или состояния, браузер справки, xcos,
+            браузер переменных или редактор.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -13,6 +27,11 @@
         <synopsis>
             close
             close(H)
+            close help
+            close xcos
+            close xcos!
+            close editvar
+            close browsevar
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -25,20 +44,37 @@
                         вектор дескрипторов графических окон или идентификаторов,
                         либо дескрипторов панели прогресса и панели состояния.
                     </para>
-                    <para>
-                        По умолчанию рассматривается текущее графическое окно.
-                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection role="description">
         <title>Описание</title>
-        <para>
-            Графические окна, основанные на технологии Tk (такие, как по-прежнему
-            используемое imshow() во внешнем модуле SIVP), могут быть закрыты
-            также по указанию их номера, который является их дескриптором.
-        </para>
+            <para>
+                <emphasis role="bold">close</emphasis> закрывает текущее графическое окно (если есть).
+            </para>
+            <para>
+                <emphasis role="bold">close(H)</emphasis> закрывает графические окна,панели состояния
+                или прогресса, чьи индикаторы или индексы находятся в <varname>H</varname>.
+            </para>
+            <para>
+                <emphasis role="bold">close help</emphasis> закрывает браузер справки.
+            </para>
+            <para>
+                <emphasis role="bold">close browsevar</emphasis> закрывает браузер переменных.
+            </para>
+            <para>
+                <emphasis role="bold">close editvar</emphasis> закрывает редактор переменных
+                (он не должен быть встроенным).
+            </para>
+            <para>
+                <emphasis role="bold">close xcos</emphasis> закрывает все открытые окна xcos.
+                Если какие-то диаграммы имеют несохранённые изменения, то у пользователя запросят подтверждение.
+            </para>
+            <para>
+                <emphasis role="bold">close xcos!</emphasis> принудительное закрытие всех открытых
+                окон xcos без запроса какого-либо подтверждения.
+            </para>
     </refsection>
     <refsection role="examples">
         <title>Примеры</title>
@@ -73,6 +109,30 @@ gcf().figure_position(1) = 700;
 sleep(5000);         // смотрим на них!
 close([25 200 111])  // конец!
  ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
+// Вы читаете этот пример в браузере справки. Теперь до свидания:
+close help
+     ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
+xcos
+sleep(5000)
+close xcos
+     ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
+browsevar
+sleep(5000)
+close browsevar
+     ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
+a = rand(3,5);
+editvar a
+sleep(5000)
+close editvar
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
@@ -81,13 +141,13 @@ close([25 200 111])  // конец!
                 <link linkend="delete">delete</link>
             </member>
             <member>
-                <link linkend="figure">figure</link>
+                <link linkend="exit">exit</link>
             </member>
             <member>
-                <link linkend="scf">scf</link>
+                <link linkend="mclose">mclose</link>
             </member>
             <member>
-                <link linkend="gcf">gcf</link>
+                <link linkend="h5close">h5close</link>
             </member>
         </simplelist>
     </refsection>
@@ -97,7 +157,16 @@ close([25 200 111])  // конец!
             <revision>
                 <revnumber>6.1.1</revnumber>
                 <revdescription>
-                    Теперь принимаются идентификаторы нескольких окон.
+                    <itemizedlist>
+                        <listitem>
+                            Теперь принимаются идентификаторы нескольких окон.
+                        </listitem>
+                        <listitem>
+                            Расширение до <literal>close help</literal>, <literal>close xcos</literal>,
+                            <literal>close xcos!</literal>, <literal>close browsevar</literal>
+                            и <literal>close editvar</literal>
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>
