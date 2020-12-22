@@ -50,9 +50,9 @@ Compilation
 -----------
 
 * GNU autotools have been updated to :
-   - automake 1.15
-   - autoconf 2.69
-   - libtool 2.4.6 (patched for macOS)
+   - automake (GNU automake) 1.16.1
+   - autoconf (GNU Autoconf) 2.69
+   - libtool (GNU libtool) 2.4.6 (patched for macOS)
 
 * Linux and macOS builds require a C++17 compiler. Toolboxes might also want to use this standard by specifying `-std=c++17` as a `CFLAGS`
 

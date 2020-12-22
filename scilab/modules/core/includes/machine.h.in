@@ -58,11 +58,11 @@
 /* Define to 1 if you have the `bzero' function. */
 #undef HAVE_BZERO
 
-/* Define to 1 if you have the MacOS X function CFLocaleCopyCurrent in the
+/* Define to 1 if you have the Mac OS X function CFLocaleCopyCurrent in the
    CoreFoundation framework. */
 #undef HAVE_CFLOCALECOPYCURRENT
 
-/* Define to 1 if you have the MacOS X function CFPreferencesCopyAppValue in
+/* Define to 1 if you have the Mac OS X function CFPreferencesCopyAppValue in
    the CoreFoundation framework. */
 #undef HAVE_CFPREFERENCESCOPYAPPVALUE
 
@@ -78,8 +78,8 @@
 /* Define to 1 if you have the <curses.h> header file. */
 #undef HAVE_CURSES_H
 
-/* define if the compiler supports basic C++11 syntax */
-#undef HAVE_CXX11
+/* define if the compiler supports basic C++17 syntax */
+#undef HAVE_CXX17
 
 /* Define if the GNU dcgettext() function is already present or preinstalled.
    */
@@ -149,7 +149,7 @@
 /* HAVE_GLIBC_BACKTRACE */
 #undef HAVE_GLIBC_BACKTRACE
 
-/* Define if you have the iconv() function. */
+/* Define if you have the iconv() function and it works. */
 #undef HAVE_ICONV
 
 /* Define to 1 if you have the <inttypes.h> header file. */
@@ -229,6 +229,9 @@
 
 /* Define to 1 if you have the `munmap' function. */
 #undef HAVE_MUNMAP
+
+/* Define to 1 if you have the `nanosleep' function. */
+#undef HAVE_NANOSLEEP
 
 /* Define to 1 if you have the <ncurses.h> header file. */
 #undef HAVE_NCURSES_H
