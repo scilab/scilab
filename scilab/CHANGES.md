@@ -223,6 +223,7 @@ Feature changes and additions on 6.1.1
 * `kron` and `.*.` are extended to boolean arrays.
 * `gamma` is extended to incomplete gamma integrals.
 * `close` is extended to close the help browser, xcos, or the variables browser or editor GUIs.
+* `polyint` is introduced to compute polynomial antiderivatives.
 
 
 Help pages:
@@ -416,6 +417,7 @@ Bug Fixes
 * [#16613](https://bugzilla.scilab.org/16613): Neither `.*.` nor `kron()` worked with boolean or sparse boolean matrices.
 * [#16617](https://bugzilla.scilab.org/16617): `gamma` did not support incomplete gamma integrals.
 * [#16618](https://bugzilla.scilab.org/16618): `close` could not close the help browser, xcos, nor the variable editor or browser.
+* [#16620](https://bugzilla.scilab.org/16620): `derivat` had no reciprocal `polyint` polynomial integration function.
 * [#16622](https://bugzilla.scilab.org/16622): `inv` could no longer be overloaded for hypermatrices of decimal or complex numbers.
 * [#16623](https://bugzilla.scilab.org/16623): `rand(2,2,2)^2` yielded a wrong result instead of trying to call the `%s_p_s` overload for input hypermatrices.
 * [#16629](https://bugzilla.scilab.org/16629): `interp1`'s documentation did not tell the spline edges conditions ; extrapolation modes were poorly explained. ; the description of the result's size was completely wrong ; x as an option was not documented. A wrong extrapolation value could silently return a wrong result. There was some dead code like `if varargin(5)==%nan`. A bugged error message yielded its own error. When x is implicit, the argument index in error messages could be wrong. `periodic` and `edgevalue` extrapolation modes were not available. `linear` extrapolation was not available for splines. When `xp` is an hypermatrix with `size(xp,1)==1`, the size of the result was irregular/wrong.
