@@ -322,6 +322,7 @@ Bug Fixes
 * [#10490](https://bugzilla.scilab.org/10490): The `mapsound` page was poor with a single interesting example.
 * [#11600](https://bugzilla.scilab.org/11600): `rand()` was parsing its inputs incorrectly.
 * [#11677](https://bugzilla.scilab.org/11677): The original Arnoldi functions were obsolete.
+* [#11888](https://bugzilla.scilab.org/11888): The `struct` page did not document how to build an array of structures.
 * [#12418](https://bugzilla.scilab.org/12418): Using bvode() with "continuation", i.e. `ipar(9) > 1` led to an error.
 * [#12516](https://bugzilla.scilab.org/12516): From `browsevar`, clicking on any graphical handle did not edit its figure with `ged`.
 * [#12532](https://bugzilla.scilab.org/12532): From `browsevar`, clicking on any function did not edit it with `edit`. The content of libraries could not be displayed either.

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006-2008 - INRIA
- *
+ * Copyright (C) 2006 - 2008 - INRIA
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,14 +13,18 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="struct">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="struct">
     <refnamediv>
         <refname>struct</refname>
-        <refpurpose>создаёт структуру</refpurpose>
+        <refpurpose>строит структуру или массив структур</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>st = struct(field1, value1, field2, value2, ...)</synopsis>
+        <synopsis>
+            st = struct(field1, value1, field2, value2, ...)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -28,52 +32,256 @@
             <varlistentry>
                 <term>field1, field2, ...</term>
                 <listitem>
-                    <para>строки, представляющие имена полей.</para>
+                    строки: имена полей структуры с учётом регистра. Разрешены
+                    расширенные не-ascii UTF-символы.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>value1, value2, ...</term>
                 <listitem>
-                    <para>
-                        все типы данных (<literal>double</literal>, <literal>char</literal>, <literal>int</literal>, ...), представляющие значения полей.
-                    </para>
+                    данные, присвоенные соответствующим полям. Поддерживаются все
+                    типы данных. Если несколько значений являются нескалярными
+                    cell-массивами, то они должны быть одинакового размера. Для
+                    любого cell-скаляра cell-контейнер удаляется и его содержимое
+                    рассматривается и присваивается полю как единое целое. Обработка
+                    cell-массивов описана ниже.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>st</term>
+                <listitem>
+                    скалярная структура или массив структур, если хотя бы одно
+                    значение является нескалярным cell-массивом.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Описание</title>
-        <para>
-            Эта функция возвращает структуру с именами полей
-            <varname>fields1</varname>, <varname>field2</varname>, ..., и значениями полей, соответственно, <varname>value1</varname>, <varname>value2</varname>, ...
-        </para>
+        <refsect3>
+            <title>Скалярная структура</title>
+            <para>
+                <emphasis role="bold">Если ни одно из значений <literal>value1</literal>,
+                <literal>value2</literal>, ..., <literal>valueN</literal> не
+                является нескалярным cell-массивом</emphasis>, то
+                <literal>st = struct(field1, value1, field2, value2, ...)</literal> строит
+                скалярную структуру <varname>st</varname> (размером 1×1) с полями
+                и значениями <literal>st.field1=value1</literal>, 
+                <literal>st.field2=value2</literal>, ..., <literal>st.fieldN=valueN</literal>.
+            </para>
+            <para>
+                Значение любого поля такой скалярной структуры может быть скаляром
+                или массивом. Размеры значений разных полей могут быть разными.
+                Например:
+                <literal>st = struct("u",[2 3], "v",[%t %f ; %f %t], "w","Hello")</literal> 
+                совершенно допустимо и устанавливает <literal>st.u=[2 3]</literal>,
+                <literal>st.v=[%t %f ; %f %t]</literal> и <literal>st.w="Hello"</literal>.
+            </para>
+            <para>
+                Можно присвоить скалярные или нескалярные cell-массивы полю
+                скалярной структуры, встраивая её в скалярный cell-массив. Например:
+                <literal>st = struct("num",1:3, "c",{{sin}})</literal> установит
+                <literal>st.num=1:3</literal> и <literal>st.c={sin}</literal> ;
+                в то время, как
+                <literal>st = struct("text","Hello", "test",{{1, sin ; %t %z}})</literal> 
+                установит
+                <literal>st.text="Hello"</literal> и <literal>st.test={1,sin;%t,%z}</literal>.
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>Массив структур</title>
+            <para>
+                struct(..) позволяет строить любой массив структур -- вектор,
+                матрицу или ND-массив. Все элементы массива имеют одинаковый набор
+                полей <varname>field1</varname>, <varname>field2</varname>, ..., 
+                <varname>fieldN</varname>.
+            </para>
+            <para>
+                Действительно, <emphasis role="bold">если хотя бы одно из указанных
+                значений является нескалярным cell-массивом</emphasis> <literal>C</literal>,
+                то <literal>st=struct(..,field,C,..)</literal> строит массив структур
+                с <literal>size(st)==size(C)</literal> и устанавливает
+                <literal>st(i).field=C{i}</literal> для любого индекса <literal>i</literal>.
+            </para>
+            <para>
+                В этом случае любые скалярные величины, определённые для других определённых
+                полей, копируются и устанавливаются для всех элементов <varname>st</varname>.
+            </para>
+            <para>
+                Пример №1: <literal>st=struct("u", {-1,%f,%z})</literal> определяет
+                вектор-строку 1×3 структур с единственным полем "u" со значениями
+                <literal>st(1).u=-1</literal>, <literal>st(2).u=%f</literal> и
+                <literal>st(3).u=%z</literal>.
+            </para>
+            <para>
+                Пример №2: <literal>st=struct("u", {-1 ; %f}, "t", "Hi")</literal> 
+                определяет вектор-столбец 2×1 структур с двумя полями "u" и "t"
+                со значениями  <literal>st(1,1).u=-1</literal>,
+                <literal>st(1,1).t="Hi"</literal>, <literal>st(2,1).u=%f</literal>,
+                <literal>st(2,1).t="Hi"</literal>.
+            </para>
+        </refsect3>
+        <note>
+            <literal>type(st)</literal> возвращает <literal>17</literal>,
+            а <literal>typeof(st)</literal> возвращает <literal>"st"</literal>.
+        </note>
     </refsection>
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-//создадим структуру данных
-date_st=struct('day',25,'month' ,'DEC','year',2006)
+// Создать скалярную структуру Dates
+Dates = struct('day',25, 'month','DEC', 'year',2006)
+Dates.month = 'AUG'         // изменить месяц
+Dates.year  = 1973;         // изменить год
+Dates.weekday = "Saturday"  // добавить новое поле
 
-//изменим месяц
-date_st.month='AUG';
+// Создать второй элемент, чтобы сделать Dates вектором дат:
+Dates(1,2).year = 2020
+Dates(2) // Заметьте, что значение поля по умолчанию равно []
 
-//изменим год
-date_st.year=1973;
+// Построение элемента полной структуры Dates(2) для всех полей.
+// Одинаковые поля можно декларировать в любом порядке:
+Dates(2) = struct('year',2000, 'day',29, 'weekday',"Tuesday", 'month', "FEB")
+Dates(2)
+Dates(2,3) = struct('weekday',"Sunday", 'day',7, 'month',"FEB", 'year',2021)
+Dates(2,3)
+size(Dates)
+length(Dates)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> Dates = struct('day',25, 'month','DEC', 'year',2006)
+ Dates  =
+  day = 25
+  month = "DEC"
+  year = 2006
 
-//изменим день
-date_st.day=19;
+--> Dates.month = 'AUG'         // change the month
+ Dates  =
+  day = 25
+  month = "AUG"
+  year = 2006
 
-//добавим новое поле
-date_st.semaine=32
- ]]></programlisting>
+--> Dates.year  = 1973;         // change the year
+--> Dates.weekday = "Saturday"  // Add a new field
+ Dates  =
+  day = 25
+  month = "AUG"
+  year = 1973
+  weekday = "Saturday"
+
+--> // Create a 2nd element, to make Dates a vector of dates:
+--> Dates(1,2).year = 2020
+ Dates  =
+  1x2 struct with fields:
+  ["day", "month", "year", "weekday"]
+
+--> Dates(2) // Note that the default fields value is []
+ ans  =
+  day = []
+  month = []
+  year = 2020
+  weekday = []
+
+--> // Building the full Dates(2) structure element for all fields.
+--> // The same fields can be declared in any other order:
+--> Dates(2) = struct('year',2000, 'day',29, 'weekday',"Tuesday", 'month', "FEB")
+ Dates  =
+  1x2 struct with fields:
+  ["day", "month", "year", "weekday"]
+
+--> Dates(2)
+ ans  =
+  day = 29
+  month = "FEB"
+  year = 2000
+  weekday = "Tuesday"
+
+--> Dates(2,3) = struct('weekday',"Sunday", 'day',7, 'month',"FEB", 'year',2021)
+ Dates  =
+  2x3 struct with fields:
+  ["day", "month", "year", "weekday"]
+
+--> Dates(2,3)
+ ans  =
+  day = 7
+  month = "FEB"
+  year = 2021
+  weekday = "Sunday"
+
+--> size(Dates)
+ ans  =
+   2.   3.
+
+--> length(Dates)
+ ans  =
+   6.
+]]></screen>
+        <para>
+            <emphasis role="bold">Массив структур, построенный с нуля:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+Dates = struct("day",{10 3 ; 25 17}, "month",{"SEP" "JUN" ; "APR" "NOV"}, "year",2020)
+Dates(2,1)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> Dates = struct("day",{10 3 ; 25 17}, "month",{"SEP" "JUN" ; "APR" "NOV"}, "year",2020)
+ Dates  =
+  2x2 struct with fields:
+  ["day", "month", "year"]
+
+--> Dates(2,1)
+ ans  =
+  day = 25
+  month = "APR"
+  year = 2020
+]]></screen>
+        <para>
+            <emphasis role="bold">Структура с cell-массивами в качестве значения
+            полей:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+test = struct("number", %pi, "bool",[%f %f], "myCell",{{2 "-5";(1-%z)^3,%t}})
+test.myCell
+test.myCell{2,1}
+     ]]></programlisting>
+        <screen><![CDATA[
+--> test = struct("number", %pi, "bool",[%f %f], "myCell",{{2 "-5";(1-%z)^3,%t}})
+ test  =
+  number = 3.1415927
+  bool = [%f,%f]
+  myCell: [2x2 cell]
+
+--> test.myCell
+ ans  =
+  [1x1 constant  ]  [1x1 string ]
+  [1x1 polynomial]  [1x1 boolean]
+
+--> test.myCell{2,1}
+ ans  =
+  1 -3z +3z² -z³
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="cell">cell</link>
+                <link linkend="fieldnames">fieldnames</link>
+            </member>
+            <member>
+                <link linkend="tree_show">tree_show</link>
+            </member>
+            <member>
+                <link linkend="makecell">makecell</link>
+            </member>
+            <member>
+                <link linkend="mlist">mlist</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
             </member>
         </simplelist>
     </refsection>
 </refentry>
-

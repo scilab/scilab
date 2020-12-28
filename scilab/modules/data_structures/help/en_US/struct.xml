@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006-2008 - INRIA
- *
+ * Copyright (C) 2006 - 2008 - INRIA
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,14 +13,18 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="struct">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="struct">
     <refnamediv>
         <refname>struct</refname>
-        <refpurpose>create a struct</refpurpose>
+        <refpurpose>Builds a structure or an array of structures</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>st = struct(field1, value1, field2, value2, ...)</synopsis>
+        <synopsis>
+            st = struct(field1, value1, field2, value2, ...)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,76 +32,251 @@
             <varlistentry>
                 <term>field1, field2, ...</term>
                 <listitem>
-                    <para>strings representing the fields names.</para>
+                    strings: Case-sensitive names of the fields of the structure.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>value1, value2, ...</term>
                 <listitem>
                     <para>
-                        all data type (<literal>double</literal>, <literal>char</literal>, <literal>int</literal>, ...), representing the fields values.
+                        Data assigned to the respective fields. All data types are supported.  
                     </para>
+                    <para/>
+                    <para>
+                        If several values are non-scalar cells arrays, then they must have the same size.
+                        For any scalar cell, the cell's container is stripped off, and its content
+                        is considered and assigned to the field as a whole. The processing of non-scalar
+                        cells is described here-below.
+                    </para>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>st</term>
+                <listitem>
+                    Scalar structure, or array of structures if at least one value is a non-scalar
+                    cells array.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>
-            This function returns a struct with the fields names
-            <varname>field1</varname>, <varname>field2</varname>, ..., and the fields values
-            corresponding <varname>value1</varname>, <varname>value2</varname>, ...
-        </para>
-        <para>
-            Note that <literal>type(st)</literal> returns <literal>17</literal>, and <literal>typeof(st)</literal> returns <literal>st</literal>.
-        </para>
+        <refsect3>
+            <title>Scalar structure</title>
+            <para>
+                <emphasis role="bold">If none of values <literal>value1</literal>,
+                <literal>value2</literal>, ..., <literal>valueN</literal> is a non-scalar
+                cells array</emphasis>,
+                <literal>st = struct(field1, value1, field2, value2, ...)</literal> builds
+                a scalar structure <varname>st</varname> (of size 1×1) with fields and values
+                <literal>st.field1=value1</literal>, <literal>st.field2=value2</literal>, ...,
+                <literal>st.fieldN=valueN</literal>.
+            </para>
+            <para>
+                The value of any field of such a scalar structure can be a scalar or an array.
+                The sizes of values of distinct fields can be distinct. Example:
+                <literal>st = struct("u",[2 3], "v",[%t %f ; %f %t], "w","Hello")</literal> is
+                perfectly allowed and sets <literal>st.u=[2 3]</literal>,
+                <literal>st.v=[%t %f ; %f %t]</literal>, and <literal>st.w="Hello"</literal>
+            </para>
+            <para>
+                It is possible to assign a scalar or non-scalar cells array to the field of a
+                scalar structure by embedding it in a scalar cell. Examples:
+                <literal>st = struct("num",1:3, "c",{{sin}})</literal> will set
+                <literal>st.num=1:3</literal> and <literal>st.c={sin}</literal> ; while
+                <literal>st = struct("text","Hello", "test",{{1, sin ; %t %z}})</literal> will set
+                <literal>st.text="Hello"</literal> and <literal>st.test={1,sin;%t,%z}</literal>.
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>Array of structures</title>
+            <para>
+                struct(..) allows to build any array -- vector, matrix or ND-array -- of structures.
+                All elements of the array have then the same set of fields <varname>field1</varname>,
+                <varname>field2</varname>, .., <varname>fieldN</varname>.
+            </para>
+            <para>
+                Indeed, <emphasis role="bold">when at least one of the given values is a non-scalar
+                cells array</emphasis>
+                <literal>C</literal>, <literal>st=struct(..,field,C,..)</literal> builds an array
+                of structures with <literal>size(st)==size(C)</literal>, and sets
+                <literal>st(i).field=C{i}</literal> for any index i.
+            </para>
+            <para>
+                In this case, any scalar values defined for some other specified fields are
+                replicated and set for all <varname>st</varname> elements.
+            </para>
+            <para>
+                Example #1: <literal>st=struct("u", {-1,%f,%z})</literal> defines a 1×3 row vector
+                of structures with a single field "u" with values <literal>st(1).u=-1</literal>,
+                <literal>st(2).u=%f</literal>, and <literal>st(3).u=%z</literal>.
+            </para>
+            <para>
+                Example #2: <literal>st=struct("u", {-1 ; %f}, "t", "Hi")</literal> defines a 2×1
+                column vector of structures with two fields "u" and "t" with values
+                <literal>st(1,1).u=-1</literal>, <literal>st(1,1).t="Hi"</literal>,
+                <literal>st(2,1).u=%f</literal>, <literal>st(2,1).t="Hi"</literal>.
+            </para>
+        </refsect3>
+        <note>
+            <literal>type(st)</literal> returns <literal>17</literal>,
+            and <literal>typeof(st)</literal> returns <literal>"st"</literal>.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-//create a struct date
-date_st=struct('day',25,'month' ,'DEC','year',2006)
-//change the month
-date_st.month='AUG';
-//change the year
-date_st.year=1973;
-//change the day
-date_st.day=19;
-//add a new field
-date_st.semaine=32
+// Create a scalar Dates structure
+Dates = struct('day',25, 'month','DEC', 'year',2006)
+Dates.month = 'AUG'         // change the month
+Dates.year  = 1973;         // change the year
+Dates.weekday = "Saturday"  // Add a new field
 
-//create a structure test
-test=struct('list1',list('testlist',1,2), 'matrix1', [1 2 3; 4 5 6], 'boolean1', %t);
-//add a polynom
-s=poly(0,'s')
-test.pol1=s;
-//add a state-space
-A=[0,1;0,0]; B=[1;1];C=[1,1];
-test.ss1=syslin('c',A,B,C);
-//Show the list
-test.list1
-getfield(3,test)
-//Show the type
-type(test)
- ]]></programlisting>
+// Create a 2nd element, to make Dates a vector of dates:
+Dates(1,2).year = 2020
+Dates(2) // Note that the default fields value is []
+
+// Building the full Dates(2) structure element for all fields.
+// The same fields can be declared in any other order:
+Dates(2) = struct('year',2000, 'day',29, 'weekday',"Tuesday", 'month', "FEB")
+Dates(2)
+Dates(2,3) = struct('weekday',"Sunday", 'day',7, 'month',"FEB", 'year',2021)
+Dates(2,3)
+size(Dates)
+length(Dates)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> Dates = struct('day',25, 'month','DEC', 'year',2006)
+ Dates  =
+  day = 25
+  month = "DEC"
+  year = 2006
+
+--> Dates.month = 'AUG'         // change the month
+ Dates  =
+  day = 25
+  month = "AUG"
+  year = 2006
+
+--> Dates.year  = 1973;         // change the year
+--> Dates.weekday = "Saturday"  // Add a new field
+ Dates  =
+  day = 25
+  month = "AUG"
+  year = 1973
+  weekday = "Saturday"
+
+--> // Create a 2nd element, to make Dates a vector of dates:
+--> Dates(1,2).year = 2020
+ Dates  =
+  1x2 struct with fields:
+  ["day", "month", "year", "weekday"]
+
+--> Dates(2) // Note that the default fields value is []
+ ans  =
+  day = []
+  month = []
+  year = 2020
+  weekday = []
+
+--> // Building the full Dates(2) structure element for all fields.
+--> // The same fields can be declared in any other order:
+--> Dates(2) = struct('year',2000, 'day',29, 'weekday',"Tuesday", 'month', "FEB")
+ Dates  =
+  1x2 struct with fields:
+  ["day", "month", "year", "weekday"]
+
+--> Dates(2)
+ ans  =
+  day = 29
+  month = "FEB"
+  year = 2000
+  weekday = "Tuesday"
+
+--> Dates(2,3) = struct('weekday',"Sunday", 'day',7, 'month',"FEB", 'year',2021)
+ Dates  =
+  2x3 struct with fields:
+  ["day", "month", "year", "weekday"]
+
+--> Dates(2,3)
+ ans  =
+  day = 7
+  month = "FEB"
+  year = 2021
+  weekday = "Sunday"
+
+--> size(Dates)
+ ans  =
+   2.   3.
+
+--> length(Dates)
+ ans  =
+   6.
+]]></screen>
+        <para>
+            <emphasis role="bold">Array of structures built from scratch:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+Dates = struct("day",{10 3 ; 25 17}, "month",{"SEP" "JUN" ; "APR" "NOV"}, "year",2020)
+Dates(2,1)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> Dates = struct("day",{10 3 ; 25 17}, "month",{"SEP" "JUN" ; "APR" "NOV"}, "year",2020)
+ Dates  =
+  2x2 struct with fields:
+  ["day", "month", "year"]
+
+--> Dates(2,1)
+ ans  =
+  day = 25
+  month = "APR"
+  year = 2020
+]]></screen>
+        <para>
+            <emphasis role="bold">Structure with cells as a field's value:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+test = struct("number", %pi, "bool",[%f %f], "myCell",{{2 "-5";(1-%z)^3,%t}})
+test.myCell
+test.myCell{2,1}
+     ]]></programlisting>
+        <screen><![CDATA[
+--> test = struct("number", %pi, "bool",[%f %f], "myCell",{{2 "-5";(1-%z)^3,%t}})
+ test  =
+  number = 3.1415927
+  bool = [%f,%f]
+  myCell: [2x2 cell]
+
+--> test.myCell
+ ans  =
+  [1x1 constant  ]  [1x1 string ]
+  [1x1 polynomial]  [1x1 boolean]
+
+--> test.myCell{2,1}
+ ans  =
+  1 -3z +3z² -z³
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="cell">cell</link>
+                <link linkend="fieldnames">fieldnames</link>
+            </member>
+            <member>
+                <link linkend="tree_show">tree_show</link>
+            </member>
+            <member>
+                <link linkend="makecell">makecell</link>
             </member>
             <member>
                 <link linkend="mlist">mlist</link>
             </member>
             <member>
                 <link linkend="tlist">tlist</link>
-            </member>
-            <member>
-                <link linkend="getfield">getfield</link>
-            </member>
-            <member>
-                <link linkend="setfield">setfield</link>
             </member>
         </simplelist>
     </refsection>
