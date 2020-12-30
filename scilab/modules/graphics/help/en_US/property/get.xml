@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) Digiteo - 2009 - Jean-Baptiste Silvy
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,19 +14,31 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="get">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="get">
     <refnamediv>
         <refname>get</refname>
-        <refpurpose>Retrieve a property value from a graphics
-            entity or an User Interface object.
+        <refpurpose>
+            Gets the handle of a graphical or User Interface object, or the property's value of objects.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>h=get(prop)
-            val=get(h,prop)
-            val=get(handlePath,prop)
-            val=h.prop
+        <synopsis>
+            h = get(0)      // console
+            h  = get(tag)
+            h  = get(tagsPath)
+            h  = get(key)
+            fids = get("figures_id")
+
+            val = H.prop
+            val = H(prop)
+            val = get(0, prop)
+            val = get(H, prop)
+            val = get(tag, prop)
+            val = get(tagsPath, prop)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -35,155 +47,416 @@
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>handle, the handle of the entity to retrieve a property.
-                        <literal>h</literal> can be a vector of handles, in which case get returns
-                        the property value for all objects contained in h. <literal>h</literal> can also be <emphasis>0</emphasis> to get the root object properties. Calling <literal>get(0)</literal> will return a "Console" handle with configuration <link linkend="console_properties">properties</link>.
+                    <para>
+                        Scalar handle of the first found targeted graphical or user Interface object.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>handlePath</term>
+                <term>H</term>
                 <listitem>
                     <para>
-                        A character string containing a path pointing to the graphic entity. This path is made of the graphic entity <literal>"Tag"</literal> property and the <literal>"Tag"</literal> property of its parents in the graphics hierarchy under the format <literal>"figuretag/entitytag"</literal> (when the entity is the child of a figure).
+                        Handle or vector of handles of the targeted graphical or user Interface
+                        objects.
+                        When <literal>H</literal> is a vector of handles, addressed
+                        entities may be of different graphical types, but all of them must have the
+                        given property, otherwise an error is yielded.
                     </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fids</term>
+                <listitem>
                     <para>
-                        Deeper hierarchy levels can also be used such as <literal>"figuretag/entity1tag/entity2tag/entitntag/entitytag"</literal>. Wildcards can also be used for multi-paths search. The first entity matching the path will be used.
+                        vector of indices of all opened figures.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>0 (zero)</term>
+                <listitem>
+                    <para>
+                        Special id addressing the console and
+                        <link linkend="console_properties">its properties</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tag</term>
+                <listitem>
+                    <para>
+                        case-sensitive tag's value of the targeted object. Values equal
+                        to a documented <varname>key</varname> have a special meaning
+                        and must not be used as tag (please see below).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tagsPath</term>
+                <listitem>
+                    <para>
+                        A single case-sensitive character string containing a path pointing to
+                        the graphic entity.
+                        This path is made of the <literal>"Tag"</literal> values of the targeted
+                        entity and of its ascendants in the graphical hierarchy, under the format
+                        <literal>"targetTag"</literal> or
+                        <literal>"figuretag/targetTag"</literal> or
+                        <literal>"figuretag/entity1tag/entity2tag/entitntag/targetTag"</literal>.
+                        Wildcards "*" can also be used for multi-paths search.
+                        The first entity matching the path will be used.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>prop</term>
                 <listitem>
-                    <para>character string name of the property.</para>
+                    <para>
+                        text: case-insensitive name of the single property whose value must be
+                        retrieved. To get the list of all existing properties, see
+                        <link linkend="graphics_entities">graphics_entities</link> or
+                        <link linkend="uicontrol">uicontrol</link> for User Interface objects.
+                        An error is yielded if the property does not exist for the targeted object.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>key</term>
+                <listitem>
+                    <para>
+                        A keyword among the following ones:
+                        <table>
+                            <tr>
+                                <td valign="top">
+                                    <emphasis role="bold">"current_entity"</emphasis> or
+                                    <emphasis role="bold">"hdl"</emphasis>:
+                                </td>
+                                <td>
+                                    returns the handle on the lastly created (and still existent) entity.
+                                    <literal>get("current_entity")</literal> is equivalent to
+                                    <link linkend="gce">gce</link>().
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <emphasis role="bold">"current_figure"</emphasis>:
+                                </td>
+                                <td>
+                                    returns the handle on the current graphic figure.
+                                    <literal>get("current_figure")</literal> is equivalent to
+                                    <link linkend="gcf">gcf</link>().
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <emphasis role="bold">"current_axes"</emphasis>:
+                                </td>
+                                <td>
+                                    returns a handle on the current axes entity.
+                                    <literal>get("current_axes")</literal> is equivalent to
+                                    <link linkend="gca">gca</link>().
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <emphasis role="bold">"default_figure"</emphasis>:
+                                </td>
+                                <td>
+                                    returns a handle on the default figure entity.
+                                    <literal>get("default_figure")</literal> is equivalent to
+                                    <link linkend="gdf">gdf</link>().
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <emphasis role="bold">"default_axes"</emphasis>:
+                                </td>
+                                <td>
+                                    returns a handle on the default axes entity.
+                                    <literal>get("default_axes")</literal> is equivalent to
+                                    <link linkend="gda">gda</link>().
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <emphasis role="bold">"figures_id"</emphasis>:
+                                </td>
+                                <td>
+                                    returns a row vector containing ids of all opened graphic figures.
+                                    <literal>get("figures_id")</literal> is equivalent to
+                                    <link linkend="winsid">winsid</link>().
+                                </td>
+                            </tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>val</term>
                 <listitem>
-                    <para>value of the property.</para>
+                    <para>
+                        Corresponding value of the targeted property.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>This routine can be used to retrieve the value of a specified property from a
-            graphics entity or a GUI object. In this case it is equivalent to use the dot operator on a handle.
-            For example, <literal>get(h,"background")</literal> is equivalent to <literal>h.background</literal>.
-        </para>
-        <para>Property names are character strings. To get the list of all existing properties
-            see <link linkend="graphics_entities">graphics_entities</link> or <link linkend="uicontrol">uicontrol</link>
-            for User Interface objects.
+        <para>
+            get(..) allows two types of actions:
+            <itemizedlist>
+                <listitem>
+                    retrieving the handle or index of a targeted object, according to its tag,
+                    to a tagspath leading to it, or to some key for special targets.
+                </listitem>
+                <listitem>
+                    retrieving the value of a given property for a given object.
+                </listitem>
+            </itemizedlist>
+            These actions apply to
+                <itemizedlist>
+                    <listitem>
+                        the Scilab console
+                    </listitem>
+                    <listitem>
+                        any opened graphical figures and all their contents
+                    </listitem>
+                    <listitem>
+                        any existing interactive components, including uicontrol objects, menus,
+                        waitbars and progressionbars.
+                    </listitem>
+                </itemizedlist>
         </para>
         <para>
-            <literal>get</literal> function can be also called with only a property as argument. In this case,
-            the property must be one of the following (called with other properties names, <literal>get</literal> will return <literal>[]</literal>):
+            <note>
+                Objects with properties <literal>.visible="off"</literal> or/and
+                <literal>.handle_visible="off"</literal>, or/and rendered off-screen out of the
+                <code>driver("REC")</code>, are still always reachable.
+            </note>
         </para>
-        <variablelist>
-            <varlistentry>
-                <term>current_entity or hdl</term>
-                <listitem>
-                    <para>returns a handle on the lastly created (and still
-                        existent) entity.
-                        <literal>get('current_entity')</literal> and <literal>get('hdl')</literal> are equivalent to <link linkend="gce">gce</link>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>current_figure</term>
-                <listitem>
-                    <para>returns a handle on the current graphic figure.
-                        <literal>get('current_figure')</literal> is equivalent to <link linkend="gcf">gcf</link>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>current_axes</term>
-                <listitem>
-                    <para>returns a handle on the current axes entity.
-                        <literal>get('current_axes')</literal> is equivalent to <link linkend="gca">gca</link>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>default_figure</term>
-                <listitem>
-                    <para>returns a handle on the default figure entity.
-                        <literal>get('default_figure')</literal> is equivalent to <link linkend="gdf">gdf</link>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>default_axes</term>
-                <listitem>
-                    <para>returns a handle on the default axes entity.
-                        <literal>get('default_axes')</literal> is equivalent to <link linkend="gda">gda</link>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>figures_id</term>
-                <listitem>
-                    <para>returns a row vector containing ids of all opened graphic figures.
-                        <literal>get('figures_id')</literal> is equivalent to <link linkend="winsid">winsid</link>.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
+        <refsect3>
+            <title>Getting the handle of an object</title>
+            <para>
+                [] is returned anyway if no matching object is found.
+            </para>
+            <para>
+                <emphasis role="bold">h = get(0)</emphasis> returns the handle of Scilab's console.
+            </para>
+            <para>
+                <emphasis role="bold">h  = get(tag)</emphasis> returns the handle of the first
+                object found with .tag==<varname>tag</varname>.
+            </para>
+            <para>
+                <emphasis role="bold">h  = get(tagsPath)</emphasis> returns the handle of the first
+                object found with a tag's path matching <varname>tagspath</varname>.
+            </para>
+            <para>
+                <emphasis role="bold">h  = get(key)</emphasis> returns the special object
+                according to the <varname>key</varname> string, as documented in the
+                <emphasis>Arguments</emphasis> section.
+            </para>
+            <para>
+                <emphasis role="bold">fids = get("figures_id")</emphasis> returns the vector
+                of indices of all existing graphical figures.
+                This is equivalent to <literal>winsid()</literal>
+            </para>
+        </refsect3>
+
+
+        <refsect3>
+            <title>Value of a property</title>
+            <para>
+                <emphasis role="bold">val = get(0, prop)</emphasis> returns the value of the given
+                Root or Console property.
+            </para>
+            <para>
+                <emphasis role="bold">val = get(H, prop)</emphasis> or
+                <emphasis role="bold">val = H(prop)</emphasis> or even more simply
+                <emphasis role="bold">val = H.prop</emphasis> returns the value of the
+                <varname>prop</varname> property for the object whose handle is <varname>H</varname>.
+            </para>
+            <para>
+                If <varname>H</varname> is a vector of handles, and if the expected value of the
+                property
+                <itemizedlist>
+                    <listitem>
+                        is scalar: then <varname>val</varname> returns a column of the values for
+                        all objects in <varname>H</varname>. Example:
+                <screen>
+--> plot2d(), get([gcf() gca() gce()], "visible")
+ ans  =
+  "on"
+  "on"
+  "on"
+</screen>
+                        <para/>
+                    </listitem>
+                    <listitem>
+                        is NOT scalar: then <varname>val</varname> returns the vertical concatenation
+                        of the values returned for all objects in <varname>H</varname>.
+                        Example:
+                <screen>
+--> clf, plot
+--> get(gcf().children(1), "data_bounds")
+ ans  =
+   1.  -1.
+   2.   1.
+--> get(gcf().children, "data_bounds")
+ ans  =
+   1.         -1.
+   2.          1.
+   0.         -1.
+   6.2831853   1.
+</screen>
+                    </listitem>
+                </itemizedlist>
+                <note>
+                    The <literal>H.prop</literal> syntax is the most compact and powerful, and should
+                    be preferred. Noticeably, when it is meaningful, it can be chained in a
+                    straightforward way as in <literal>H.prop1.prop2.prop</literal>, without
+                    intermediate handles or/and explicitly nested calls to get(). Example:
+                    <literal>Axes.children.children.foreground</literal> is equivalent to
+                    <literal>get(get(get(get(topAxes, "children"),"children"),"children"),"foreground")</literal>.
+
+                </note>
+            </para>
+            <para>
+                <emphasis role="bold">val = get(tag, prop)</emphasis> returns the value of the
+                property <varname>prop</varname> for the first object found whose
+                .tag==<varname>tag</varname>.
+            </para>
+            <para>
+                <emphasis role="bold">val = get(tagsPath, prop)</emphasis> returns the value of
+                the property <varname>prop</varname> for the first object found whose location
+                in the graphical hierarchy and whose .tag match <varname>tagsPath</varname>.
+            </para>
+        </refsect3>
     </refsection>
     <refsection>
         <title>Examples</title>
         <para>
             <programlisting role="example"><![CDATA[
-// for graphics entities
- clf()
+close(winsid())
+scf();
+scf(2);
+plot2d
+f1 = gcf();                  // or f1 = get("current_figure");
+f1.axes_size                 // or get(f1, "axes_size")
 
-// simple graphics objects
-subplot(121);
-x=[-.2:0.1:2*%pi]';
-plot2d(x-2,x.^2);
-subplot(122);
-xrect(.2,.7,.5,.2);
-xrect(.3,.8,.3,.2);
-xfarc(.25,.55,.1,.15,0,64*360);
-xfarc(.55,.55,.1,.15,0,64*360);
-xstring(0.2,.9,"Example <<A CAR>>");
+f2 = scf(7);
+plot
+h = gce()                   // or h = get("current_entity")
+h.children(1:4).foreground  // Colors of 4 first curves
 
-h=get("current_entity") //get the newly object created
-h.font_size=3;
+axes = gcf().children       // or get(gcf(), "children");
+bottomAxes = gca();         // or bottomAxes = get("current_axes");
+topAxes = axes($);
+topAxes.children.children.line_style
+// instead of get(get(get(get(topAxes, "children"),"children"),"children"),"line_style")
 
-f=get("current_figure") //get the current figure
-f.figure_size
-f.figure_size=[700 500];
-f.children
-f.children(2).type
-f.children(2).children
-f.children(2).children.children.thickness=4;
-
-a=get("current_axes") //get the current axes
-a.children.type
-a.children.foreground //get the foreground color of a set of graphics objects
-a.children.foreground=9;
+[f1 f2].figure_id           // of get([f1 f2], "figure_id")
+[f1 f2].anti_aliasing       // of get([f1 f2], "anti_aliasing")
 
 // for  User Interface objects
-h=uicontrol('string', 'Button'); // Opens a window with a  button.
-p=get(h,'position'); // get the geometric aspect of the button
-disp('Button width: ' + string(p(3))); // print the width of the button
-close(); // close figure
-]]></programlisting>
+h = uicontrol('string', 'Button'); // Opens a window with a  button.
+p = h.position             // or p = get(h,'position');
+
+close(get("figures_id")); // close all figures
+        ]]></programlisting>
+            <screen>
+--> f1 = gcf();                  // or f1 = get("current_figure");
+--> f1.axes_size                 // or get(f1, "axes_size")
+ ans  =
+   610.   460.
+--> f2 = scf(7);
+--> plot
+--> h = gce()                   // or h = get("current_entity")
+ h  =
+Handle of type "Compound" with properties:
+==========================================
+parent: Axes
+children: matrix 41x1
+visible = "on"
+user_data = []
+tag = ""
+
+--> h.children(1:4).foreground  // Colors of 4 first curves
+ ans  =
+   36.
+   35.
+   34.
+   5.
+
+--> axes = gcf().children       // or get(gcf(), "children");
+ axes  =
+2 by 1 matrix of handles:
+=========================
+Axes
+Axes
+
+--> bottomAxes = gca();         // or bottomAxes = get("current_axes");
+--> topAxes = axes($);
+--> topAxes.children.children.line_style
+ ans  =
+   2.
+   1.
+   4.
+
+--> [f1 f2].figure_id           // of get([f1 f2], "figure_id")
+ ans  =
+   2.
+   7.
+
+--> [f1 f2].anti_aliasing       // of get([f1 f2], "anti_aliasing")
+ ans  =
+  "off"
+  "off"
+
+--> // for  User Interface objects
+--> h = uicontrol('string', 'Button'); // Opens a window with a  button.
+--> p = h.position             // or p = get(h,'position');
+ p  =
+   20.   40.   40.   20.
+</screen>
         </para>
         <para>
+            <emphasis role="bold">Console special handle</emphasis>:
             <programlisting role="example"><![CDATA[
-// Using path
+get(0)
+get(0, "screensize_px")
+        ]]></programlisting>
+            <screen>
+--> get(0)
+ ans  =
+Handle of type "Console" with properties:
+=========================================
+Children: "uimenu"
+ShowHiddenHandles = "off"
+ShowHiddenProperties = "off"
+UseDeprecatedSkin = "off"
+user_data = []
+tag = ""
+
+--> get(0, "screensize_px")
+ ans  =
+   1.   1.   1920.   1080.
+</screen>
+        </para>
+        <para>
+            <emphasis role="bold">Using tags and tagsPaths</emphasis>:
+            <programlisting role="example"><![CDATA[
 f = figure("dockable", "off", "menubar", "none", "toolbar", "none", "infobar_visible", "off", "tag", "mainfig");
 frameHandle = uicontrol("parent", f, "style", "frame", "position", [200 200 190 100], "tag", "myframe");
 btnHandle = uicontrol("parent", frameHandle, "position", [20 20 150 30], "string", "button", "tag", "example");
 
+get("myframe") == frameHandle
+
 set("mainfig/myframe/example", "string", "complete path");
 get("mainfig/myframe/example", "string")
+
 set("mainfig/*/example", "string", "wildcard path");
 get("mainfig/*/example", "string")
+
 set("myframe/example", "string", "partial path");
 get("myframe/example", "string")
  ]]></programlisting>
@@ -193,7 +466,13 @@ get("myframe/example", "string")
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="uicontrol">uicontrol</link>
+                <link linkend="findobj">findobj</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="console_properties">console_properties</link>
             </member>
             <member>
                 <link linkend="root_properties">root_properties</link>
@@ -202,8 +481,38 @@ get("myframe/example", "string")
                 <link linkend="graphics_entities">graphics_entities</link>
             </member>
             <member>
-                <link linkend="set">set</link>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+            <member>
+                <link linkend="gcf">gcf</link>
+            </member>
+            <member>
+                <link linkend="gdf">gdf</link>
+            </member>
+            <member>
+                <link linkend="gca">gca</link>
+            </member>
+            <member>
+                <link linkend="gda">gda</link>
+            </member>
+            <member>
+                <link linkend="gce">gce</link>
+            </member>
+            <member>
+                <link linkend="winsid">winsid</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    The syntaxes h=get(tag), h=get(tagsPath), val=get(tagsPath,prop), and
+                    val=get(tagsPath, prop) are introduced.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

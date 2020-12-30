@@ -314,6 +314,7 @@ Bug Fixes
 * [#14873](https://bugzilla.scilab.org/14873): `setfield` page: The output and the 6.0 history were documented only on the en_US version. The input was wrongly restricted to matrices, while any Scilab object is acceptable. The specific role of `setfield` for mlists was not really described nor illustrated. The example did not include any call to setfield.
 * [#15012](https://bugzilla.scilab.org/15012): `covStart(["isempty" ; "isscalar"])` crashed Scilab.
 * [#15163](https://bugzilla.scilab.org/15163): `getdate` page: The time referential was obscure: a) UTC for Unix Time Convention vs Coordinated Universal Time. b) unclear influence of the time zone.
+* [#15226](https://bugzilla.scilab.org/15226): The `get` page needed to be overhauled: `get(0)`, `get(0,prop)`, `get(tag)`, `get(tag,prop)` and other features were not documented.
 * [#15280](https://bugzilla.scilab.org/15280): `gsort` was unable to sort any hypermatrix along dimensions > "r"|"c".
 * [#15839](https://bugzilla.scilab.org/15839): `gsort`: the only sparse possible input were real or complex vectors, and only with the `g` method.
 * [#15842](https://bugzilla.scilab.org/15842): `unique` could not process 2D sparse matrices.
