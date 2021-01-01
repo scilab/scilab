@@ -37,7 +37,7 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
     double* pData       = NULL;
     int ret             = 0;
 
-    if (in.size() != 1)
+    if (in.size() < 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "inv", 1);
         return types::Function::Error;
@@ -51,9 +51,15 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
 
     pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>(); // input data will be modified
 
-    if (pDbl->getRows() != pDbl->getCols())
+    if (pDbl->getDims() > 2)
     {
-        Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "inv", 1);
+        std::wstring wstFuncName = L"%s_inv";
+        return Overload::call(wstFuncName, in, _iRetCount, out);
+    }
+
+    if (in.size() > 1)
+    {
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "inv", 1);
         return types::Function::Error;
     }
 
@@ -61,6 +67,12 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
     {
         out.push_back(types::Double::Empty());
         return types::Function::OK;
+    }
+
+    if (pDbl->getRows() != pDbl->getCols())
+    {
+        Scierror(20, _("%s: Argument %d: Square matrix expected. Please use pinv() otherwise.\n"), "inv", 1);
+        return types::Function::Error;
     }
 
     if (pDbl->isComplex())
