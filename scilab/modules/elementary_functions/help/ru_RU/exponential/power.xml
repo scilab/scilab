@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="power">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="power">
     <refnamediv>
         <refname>возведение в степень</refname>
         <refpurpose>операция возведения в степень (^, .^)</refpurpose>
@@ -7,88 +23,189 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            t=A^b
-            t=A**b
-            t=A.^b
+            t = A ^ b
+            t = A ** b
+            t = A .^ b
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>A,t</term>
+                <term>A, t</term>
                 <listitem>
-                    <para>
-                        скаляр или вектор/матрица числовых, полиномиальных или рациональных значений
-                    </para>
+                    скаляр, вектор или матрица кодированных целых чисел, десятичных или
+                    комплексных чисел, полиномов или дробно-рациональных выражений.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>b</term>
                 <listitem>
-                    <para>скаляр, вектор или матрица.</para>
+                    скаляр, вектор или матрица кодированных целых чисел, десятичных или
+                    комплексных чисел.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
+        <para>
+            Если операндом являются кодированные целые числа, то другие числа могут
+            быть только кодированными целыми числами или вещественными числами.
+        </para>
+        <para>
+            Если <varname>A</varname> является полиномами или дробно-рациональными
+            выражениями, то <varname>b</varname> может быть только одиночным десятичным
+            (положительным или отрицательным) числом.
+        </para>
     </refsection>
     <refsection>
         <title>Описание</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    Если <literal>A</literal> -- квадратная матрица, а <literal>b</literal> -- скаляр, то <literal>A^b</literal>
-                    является матрицей <literal>A</literal> в степени <literal>b</literal>.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    Если <literal>A</literal> -- матрица, а <literal>b</literal> -- скаляр, то матрица
-                    <literal>A.^b</literal> формируется элементами матрицы <literal>A</literal>
-                    в степени <literal>b</literal> (поэлементное возведение в степень).
-                    Если <literal>A</literal> -- вектор, а <literal>b</literal> -- скаляр, то
-                    <literal>A^b</literal> и <literal>A.^b</literal> выполняют одну и ту же операцию
-                    (т. е. поэлементное возведение в степень).
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    Если <literal>A</literal> -- скаляр, а <literal>b</literal> -- матрица (или вектор), то
-                    <literal>A^b</literal> и <literal>A.^b</literal> являются матрицами (или векторами), сформированными
-                    элементами <literal> a^(b(i,j))</literal>.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    Если <literal>A</literal> и <literal>b</literal> -- векторы (матрицы) одного размера, то
-                    <literal>A.^b</literal> равно  <literal>A(i)^b(i)</literal> (векторы) или <literal>A(i,j)^b(i,j)</literal> (матрицы).
-                </para>
-            </listitem>
-        </itemizedlist>
-        <para>
-            Примечания:
-        </para>
-        <para>
-            -
-            Для квадратных матриц <literal>A^p</literal> вычисляется через последовательное
-            перемножение матриц, если  <literal>p</literal> является положительным числом, а иначе --
-            через диагонализацию.
-        </para>
-        <para>
-            -
-            операторы <literal>**</literal> и <literal>^</literal> являются синонимами.
-        </para>
+        <refsect3>
+            <title>.^ поэлементное возведение в степень</title>
+            <para>
+                Если <varname>A</varname> или <varname>b</varname> скаляр,
+                то он сначала реплицируется до размера другого с помощью
+                <literal>A*ones(b)</literal> или <literal>b*ones(A)</literal>.
+                В противном случае <varname>A</varname> и <varname>b</varname>
+                должны быть одинакового размера.
+            </para>
+            <para>
+                Затем для каждого элемента с индексом <literal>i</literal>
+                вычисляется <literal>t(i) = A(i)^b(i)</literal>.
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>^ матричное возведение в степень</title>
+            <para>
+                Оператор <literal>^</literal> эквивалентен поэлементному возведению
+                в степень <literal>.^</literal> в следующих случаях:
+                <itemizedlist>
+                    <listitem>
+                        <varname>A</varname> скаляр, а <varname>b</varname> вектор;
+                    </listitem>
+                    <listitem>
+                        <varname>A</varname> вектор, а <varname>b</varname> скаляр.
+                    </listitem>
+                </itemizedlist>
+                В противном случае <varname>A</varname> либо <varname>b</varname>
+                должен быть скаляром, а другой должен быть квадратной матрицей:
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            если <varname>A</varname> скаляр, а <varname>b</varname>
+                            квадратная матрица, то <literal>A^b</literal> является
+                            матрицей <literal>expm(log(A) * b)</literal>;
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            если <varname>A</varname> квадратная матрица, а <varname>b</varname>
+                            скаляр, то <literal>A^b</literal> является матрицей
+                            <varname>A</varname> в степени <varname>b</varname>.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>Примечания</title>
+            <orderedlist>
+                <listitem>
+                    <para>
+                        Для квадратных матриц <varname>A</varname>, <literal>A^p</literal>
+                        вычисляется через последовательное перемножение матриц, если
+                        <literal>p</literal> является положительным числом, а иначе -
+                        через диагонализацию (см. примечания №2 и №3 ниже).
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Если <varname>A</varname> квадратная и эрмитова матрица, а
+                        <literal>p</literal> нецелый скаляр, то <literal>A^p</literal>
+                        вычисляется как:
+                    </para>
+                    <para>
+                        <code>A^p = u*diag(diag(s).^p)*u'</code> (для вещественной
+                        матрицы <varname>A</varname> во внимание принимается только
+                        вещественная часть ответа).
+                    </para>
+                    <para>
+                        <literal>u</literal> и <literal>s</literal> определяются как
+                        <code>[u,s] = schur(A)</code> .
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Если <varname>A</varname> не является эрмитовой матрицей,
+                        а <literal>p</literal> является нецелым скаляром, то
+                        <literal>A^p</literal> вычисляется как:
+                    </para>
+                    <para>
+                        <code>A^p = v*diag(diag(d).^p)*inv(v)</code> (для вещественной
+                        матрицы <varname>A</varname> во внимание принимается только
+                        вещественная часть ответа).
+                    </para>
+                    <para>
+                        <literal>d</literal> и <literal>v</literal> определяются
+                        как <code>[d,v] = bdiag(A+0*%i)</code>.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Если <varname>A</varname> и <literal>p</literal> вещественные
+                        или комплексные числа, то <literal>A^p</literal> является
+                        <emphasis>главным значением</emphasis>, определяемым как
+                    </para>
+                    <para>
+                        <code>A^p = exp(p*log(A))</code>
+                    </para>
+                    <para>
+                        (или <code>A^p = exp(p*(log(abs(A))+ %i*atan(imag(A)/real(A))))</code> ).
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Если <varname>A</varname> является квадратной матрице, а
+                        <literal>p</literal> вещественным или комплексным числом, то
+                        <literal>A.^p</literal> является <emphasis>главным значением</emphasis>
+                        вычисленным как:
+                    </para>
+                    <para>
+                        <code>A.^p = exp(p*log(A))</code> (то же самое, что и в случае 4 выше).
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        операторы <literal>**</literal> и <literal>^</literal> являются
+                        синонимами.
+                    </para>
+                </listitem>
+            </orderedlist>
+            <para>
+                <warning>
+                    Возведение в степень в Scilab является оператором с ассоциативностью
+                    справа, в отличие от Matlab® и Octave.
+                    Например <literal>2^3^4</literal> в Scilab равно <literal>2^(3^4)</literal>,
+                    а в Matlab® и Octave равно <literal>(2^3)^4</literal>.
+                </warning>
+            </para>
+        </refsect3>
     </refsection>
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-A=[1 2;3 4];
-A^2.5,
-A.^2.5
-(1:10)^2
-(1:10).^2
+A = [1 2 ; 3 4];
+A ^ 2.5,
+A .^ 2.5
+(1:10) ^ 2
+(1:10) .^ 2
 
-s=poly(0,'s')
-s^(1:10)
+A ^ %i
+A .^ %i
+exp(%i*log(A))
+
+s = poly(0,'s')
+s ^ (1:10)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -98,8 +215,27 @@ s^(1:10)
                 <link linkend="exp">exp</link>
             </member>
             <member>
+                <link linkend="expm">expm</link>
+            </member>
+            <member>
                 <link linkend="hat">крышечка</link>
             </member>
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    С десятичным или комплексным числами <literal>scalar ^ squareMat</literal>
+                    теперь даёт <literal>expm(log(scalar)*squareMat)</literal> вместо
+                    <literal>scalar .^ squareMat</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
