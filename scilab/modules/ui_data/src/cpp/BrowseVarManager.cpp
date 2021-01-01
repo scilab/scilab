@@ -329,47 +329,48 @@ static std::set<string> createScilabDefaultVariablesSet()
 {
     string arr[] =
     {
-        "home",
-        "PWD",
-        "%tk",
-        "%pvm",
-        "MSDOS",
+        "$",
         "%F",
         "%T",
-        "%f",
-        "%t",
+        "%_atoms_cache",
+        "%chars", // Unicode characters
         "%e",
-        "%pi",
+        "%eps",
+        "%f",
+        "%fftw",
+        "%gui",
+        "%helps",
+        "%helps_modules",
+        "%i",
+        "%inf",
+        "%io",
         "%modalWarning",
         "%nan",
-        "%inf",
-        "SCI",
-        "WSCI",
-        "SCIHOME",
-        "TMPDIR",
-        "%gui",
-        "%fftw",
-        "%helps",
-        "%eps",
-        "%io",
-        "%i",
-        "demolist",
-        "%z",
+        "%pi",
+        "%pvm",
         "%s",
-        "$",
+        "%t",
+        "%tk",
         "%toolboxes",
         "%toolboxes_dir",
+        "%z",
+        "MSDOS",
+        "PWD",
+        "SCI",
+        "SCIHOME",
         "TICTOC",
-        "%helps_modules",
-        "%_atoms_cache",
+        "TMPDIR",
+        "WSCI",
+        "demolist",
+        "enull",  // Constant for external object
         "evoid", // Constant for external object
-        "jvoid", // Constant for external object Java (jims)
+        "home",
         "jnull", // Constant for external object Java (jims)
-        "enull"  // Constant for external object
+        "jvoid" // Constant for external object Java (jims)
     };
     int i = 0;
 
-#define NBELEMENT 37
+#define NBELEMENT (sizeof(arr)/sizeof(*(arr)))
     std::set<string> ScilabDefaultVariables;
 
     for (i = 0; i < NBELEMENT; i++)

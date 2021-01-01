@@ -196,6 +196,7 @@ Feature changes and additions
   - It can now sort any sparse 2D matrix, in all `g, r, c, lr, lc` methods, including sparse booleans and in multi-level mode. It was formerly limited to sparse real or complex vectors and only to the `g` mode.
   - Any hypermatrix can be sorted along a dimension > 2.
 * `unique` is enabled for any 2D sparse arrays, in simple, 'c' and 'r' modes.
+* %chars constant added, to easily access to some selected sets of unicode symbols.
 
 Help pages:
 -----------
@@ -278,6 +279,7 @@ Bug Fixes
 * [#7117](https://bugzilla.scilab.org/7117): `findobj()` could not search within given object.
 * [#8059](https://bugzilla.scilab.org/8059): A local `.wgetrc` config file could make troubles in `atomsDownload`.
 * [#8378](https://bugzilla.scilab.org/8378): Datatip `ContextMenu => Delete last datatip` was useless.
+* [#9221](https://bugzilla.scilab.org/9221): There was no way in Scilab to easily access to sets of unicode symbols like greek letters, etc.
 * [#9909](https://bugzilla.scilab.org/9909): In the help browser, add a way to open the online version of the current page.
 * [#10476](https://bugzilla.scilab.org/10476): From `browsevar`, displaying the content of lists, structures, cells, or other custom tlists or mlists was not possible.
 * [#12418](https://bugzilla.scilab.org/12418): Using bvode() with "continuation", i.e. `ipar(9) > 1` led to an error.
