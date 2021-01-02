@@ -73,7 +73,9 @@ function f = fullfile(varargin)
             end
         end
     end
-
     f = pathconvert(f, %f, %f);
-
+    trailingSep = part(varargin($),$)=="/" | part(varargin($),$)=="\"
+    if f <> [] & or(trailingSep) then
+        f(trailingSep) = f(trailingSep) + filesep()
+    end
 endfunction

@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // =============================================================================
 // Tests fullfile
@@ -48,4 +49,12 @@ end
 r = fullfile("/home/","\scilab","macros","\util", ["fullfile.sci"; "toto.sci"]);
 assert_checkequal(r, REF);
 
-// =============================================================================
+// Final filesep:  http://bugzilla.scilab.org/16624
+// -------------
+assert_checkequal(part(fullfile(TMPDIR, "mylib"),$-1:$), "ib");
+assert_checkequal(part(fullfile(TMPDIR, "mylib/"),$-1:$), "b"+filesep());
+assert_checkequal(part(fullfile(TMPDIR, "mylib\"),$-1:$), "b"+filesep());
+r = fullfile(TMPDIR, ["mylib" "mylib/" "mylib\"]);
+assert_checkequal(part(r,$-1:$), ["ib" ["b" "b"]+filesep()]);
+r = fullfile(TMPDIR, ["mylib" "mylib/" "mylib\"]');
+assert_checkequal(part(r,$-1:$), ["ib" ["b" "b"]+filesep()]');
