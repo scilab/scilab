@@ -336,6 +336,7 @@ Bug Fixes
 * [#13855](https://bugzilla.scilab.org/13855): The documentation of `pause` was not up-to-date and could be improved.
 * [#13985](https://bugzilla.scilab.org/13985): The display of lists was very loose and poor.
 * [#14033](https://bugzilla.scilab.org/14033): `x_matrix` could not edit matrices of booleans, encoded integers or text. Matrices of real or complex numbers were poorly displayed.
+* [#14098](https://bugzilla.scilab.org/14098): The `genlib` and `library` help pages were outdated with respect to Scilab 6.
 * [#14435](https://bugzilla.scilab.org/14435): Errors were not well handled in overloaded functions.
 * [#14488](https://bugzilla.scilab.org/14488): The `frameflag=9` and `strf=".9."` values of these `plot2d` options were no longer accepted. Their documentation was ambiguous.
 * [#14718](https://bugzilla.scilab.org/14718): `user` is removed for a while but was still documented.
