@@ -137,7 +137,8 @@ function [retval, K] = unwrap(a, varargin)
     else
         // Local radius of curvature: calculation
         Rc = ((1+d(:,2:$).^2).^1.5) ./ abs(d(:,2:$)-d(:,1:$-1))
-        K = find(Rc < mean(Rc)/30) // criterium to detect cusp points
+        // criterium to detect cusp points:
+        K = find(Rc < min(mean(Rc)/30, min(Rc)/(5e3*%eps))) 
         [nR,nC] = size(Rc)
 
         // trimming edges (due to duplication of 1st & last columns):
