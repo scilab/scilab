@@ -1,10 +1,13 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
+// Copyright (C) 2021 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
+// <-- NO CHECK REF -->
 // <-- CLI SHELL MODE -->
+
 s = %s;
 
 empty = [];
@@ -1108,4 +1111,29 @@ assert_checkequal(res == (1-%s)/-%s, %t);
 assert_checkequal(res == (1-%s)/1, %f);
 assert_checkequal(res == 1/-%s, %f);
 
-
+// Equality with a type==0 object (void or listdelete)
+// ---------------------------------------------------
+L = list(,2);
+assert_checktrue(L(1) == L(1));
+assert_checktrue(null() == null());
+assert_checkfalse(L(1) == null());
+assert_checkfalse(null() == L(1));
+//
+lss = syslin('c',[0,1;0,0],[1;1],[1,1]);
+ptr = lufact(sparse(rand(5,5)));
+x = 1:10; h5File = TMPDIR + filesep()+"x.sod"; save(h5File,"x"); h5 = h5open(h5File);
+program = macr2tree(%0_o_0);
+xml = xmlReadStr("<root><a rib=""bar""><b>Hello</b></a></root>");
+L2 = list(1, [], %z, %f, sparse(5), sparse(%t), int8(2), "abc", sin, ..
+    sind, list(3), list(), {1,%t}, {}, struct("a",3), 1/%z, 1:$, lss, ..
+    ptr, h5, program, xml);
+for object = L2
+    assert_checkfalse(object == L(1));
+    assert_checkfalse(object == null());
+    assert_checkfalse(L(1) == object);
+    assert_checkfalse(null() == object);
+end
+h5close(h5);
+ludel(ptr);
+xmlDelete(xml);
+mdelete(h5File);
