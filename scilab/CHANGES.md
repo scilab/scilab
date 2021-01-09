@@ -38,7 +38,7 @@ In summary, the main new features are:
    - numbers (IEEE 754 double) are not rounded
    - polynomials and rationals display is more compact
    - In structures, nested lists or structures are now displayed recursively compactly and more explicitly.
-* importgui function has been added to easily interface csvRead
+* `uiSpreadsheet` function has been added to easily interface csvRead
 * function calls with zero output arguments can be detected with `argn`
    - atoms functions can either display or output values
 
@@ -450,6 +450,7 @@ Bug Fixes
 * [#16623](https://bugzilla.scilab.org/16623): `rand(2,2,2)^2` yielded a wrong result instead of trying to call the `%s_p_s` overload for input hypermatrices.
 * [#16624](https://bugzilla.scilab.org/16624): `fullfile` badly handled any forced final file separator when building a directory's path.
 * [#16626](https://bugzilla.scilab.org/16626): == and <> between libraries were no longer defined.
+* [#16627](https://bugzilla.scilab.org/16627): `importgui` function's name was not explicit enough. `importgui` is renamed `uiSpreadsheet`. `importgui` internals were public.
 * [#16629](https://bugzilla.scilab.org/16629): `interp1`'s documentation did not tell the spline edges conditions ; extrapolation modes were poorly explained. ; the description of the result's size was completely wrong ; x as an option was not documented. A wrong extrapolation value could silently return a wrong result. There was some dead code like `if varargin(5)==%nan`. A bugged error message yielded its own error. When x is implicit, the argument index in error messages could be wrong. `periodic` and `edgevalue` extrapolation modes were not available. `linear` extrapolation was not available for splines. When `xp` is an hypermatrix with `size(xp,1)==1`, the size of the result was irregular/wrong.
 * [#16631](https://bugzilla.scilab.org/16631): read-only handle properties were reported as unknown when trying to set them.
 * [#16632](https://bugzilla.scilab.org/16632): Scilab did not start with unsupported locale on macOS.
