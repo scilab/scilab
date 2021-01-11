@@ -548,3 +548,8 @@ twin=origin(1)(1);
 twin.test = 5;
 assert_checkequal(origin(1)(1).test, 1);
 assert_checkequal(twin.test, 5);
+
+// insert in sparse with invalid index
+a=spzeros(3,3);
+errMsg = msprintf(_("Invalid index.\n"));
+assert_checkerror("a(0) = 1", errMsg);
