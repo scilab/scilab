@@ -137,8 +137,13 @@ BOOL setlanguage(const wchar_t *lang)
                 if (pstRet == NULL)
                 {
                     fprintf(stderr,
-                            "Warning: Localization issue. Failed to change the LC_CTYPE locale category. Does not support the locale '%ls' %ls %s.\nDid you install the system locales?\n",
-                            lang, ret, setlocale(LC_CTYPE, NULL));
+                            "Warning: Localization issue. Failed to change the LC_CTYPE locale category. Does not support the locale '%s' %ls %s.\nDid you install the system locales?\n",
+                            pstLang, ret, setlocale(LC_CTYPE, NULL));
+                            newlang = (char*)MALLOC(12);
+#ifdef __APPLE__
+                    sprintf(newlang, "%s.UTF-8", wide_string_to_UTF8(SCILABDEFAULTLANGUAGE));
+                    pstRet = setlocale(LC_CTYPE, newlang);
+#endif
                 }
 
                 //for gettext
