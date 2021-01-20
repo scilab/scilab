@@ -3,8 +3,8 @@
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Stéphane MOTTELET
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,6 +19,8 @@ package org.scilab.modules.scinotes.actions;
 
 import javax.swing.JButton;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+
 
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -29,6 +31,10 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.console.SciPromptView;
+import org.scilab.modules.console.AdvCLIManagement;
 
 /**
  * ExecuteFileIntoScilabAction Class
@@ -68,12 +74,23 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
         filePath = filePath.replaceAll("'", "''");
         if (filePath.compareTo("") != 0) {
             String cmdToExec = "exec('" + filePath + "', -1)";
-            try {
+            if (ScilabConsole.isExistingConsole())
+            {
                 ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmdToExec, true, false);
-            } catch (NoClassDefFoundError e) {
-                /* This happens when SciNotes is launch as standalone (ie without
-                 * Scilab) */
-                ScilabModalDialog.show(editor, SciNotesMessages.COULD_NOT_FIND_CONSOLE);
+            } else {
+                /* This happens when SciNotes is launched as standalone (ie without
+                    * Scilab) or Scilab launched in -nw mode */
+                new Thread(() -> {
+                    try {
+                        System.out.println(cmdToExec);
+                        ScilabInterpreterManagement.synchronousScilabExec(cmdToExec);
+                        System.out.println();
+                        System.out.print(AdvCLIManagement.GetCurrentPrompt());
+                    }
+                    catch (ScilabInterpreterManagement.InterpreterException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }).start();
             }
         }
     }
@@ -86,7 +103,7 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
         if (((ScilabDocument) getEditor().getTextPane().getDocument()).isContentModified()) {
             if (saveBefore || ScilabModalDialog.show(getEditor(), SciNotesMessages.EXECUTE_WARNING, SciNotesMessages.EXECUTE_FILE_INTO_SCILAB,
                     IconType.WARNING_ICON, ButtonType.CANCEL_OR_SAVE_AND_EXECUTE) == AnswerOption.SAVE_EXECUTE_OPTION) {
-                if (editor.save(getEditor().getTabPane().getSelectedIndex(), true)) {
+                 if (editor.save(getEditor().getTabPane().getSelectedIndex(), true)) {
                     this.executeFile(editor, editor.getTextPane().getName());
                 }
             }

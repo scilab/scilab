@@ -247,6 +247,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\jni\AdvCLIManagement_wrap.c" />
     <ClCompile Include="..\cpp\prompt.cpp" />
     <ClCompile Include="..\cpp\scilabRead.cpp" />
     <ClCompile Include="..\jni\CallScilabBridge.cpp" />
