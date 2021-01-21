@@ -300,7 +300,7 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
 
             return 0;
         }
-        else if (_pDouble1->getRows() == _pDouble1->getCols())
+        else if (_pDouble1->getRows() == _pDouble1->getCols() && _pDouble1->getDims() == 2)
         {
             //power of a square matrix by a scalar exponent.
             int iRet = 0;
