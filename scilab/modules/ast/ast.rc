@@ -66,7 +66,7 @@ BEGIN
             VALUE "FileDescription", "ast module"
             VALUE "FileVersion", "6, 1, 1, 0"
             VALUE "InternalName", "ast module"
-            VALUE "LegalCopyright", "Copyright (C) 2020"
+            VALUE "LegalCopyright", "Copyright (C) 2021"
             VALUE "OriginalFilename", "ast.dll"
             VALUE "ProductName", "ast module"
             VALUE "ProductVersion", "6, 1, 1, 0"

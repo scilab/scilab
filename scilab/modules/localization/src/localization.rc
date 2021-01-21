@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "localization module"
             VALUE "FileVersion", "6, 0, 1, 0"
             VALUE "InternalName", "localization module"
-            VALUE "LegalCopyright", "Copyright (C) 2020"
+            VALUE "LegalCopyright", "Copyright (C) 2021"
             VALUE "OriginalFilename", "scilocalization.dll"
             VALUE "ProductName", "localization module"
             VALUE "ProductVersion", "6, 0, 1, 0"

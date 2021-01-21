@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "interpolation module"
             VALUE "FileVersion", "6, 1, 1, 0"
             VALUE "InternalName", "interpolation module"
-            VALUE "LegalCopyright", "Copyright (C) 2020"
+            VALUE "LegalCopyright", "Copyright (C) 2021"
             VALUE "OriginalFilename", "interpolation.dll"
             VALUE "ProductName", "intepolation module"
             VALUE "ProductVersion", "6, 1, 1, 0"

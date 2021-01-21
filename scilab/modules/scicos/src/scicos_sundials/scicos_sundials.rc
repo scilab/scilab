@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "scicos_sundials module"
             VALUE "FileVersion", "6, 1, 1, 0"
             VALUE "InternalName", "scicos_sundials module"
-            VALUE "LegalCopyright", "Copyright (C) 2020"
+            VALUE "LegalCopyright", "Copyright (C) 2021"
             VALUE "OriginalFilename", "scicos_sundials.dll"
             VALUE "ProductName", "scicos_sundials module"
             VALUE "ProductVersion", "6, 1, 1, 0"

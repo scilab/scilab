@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "mpi module"
             VALUE "FileVersion", "6, 1, 1, 0"
             VALUE "InternalName", "mpi module"
-            VALUE "LegalCopyright", "Copyright (C) 2020"
+            VALUE "LegalCopyright", "Copyright (C) 2021"
             VALUE "OriginalFilename", "mpi.dll"
             VALUE "ProductName", " mpi module"
             VALUE "ProductVersion", "6, 1, 1, 0"
