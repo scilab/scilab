@@ -224,6 +224,7 @@ Feature changes and additions on 6.1.1
 * `gamma` is extended to incomplete gamma integrals.
 * `close` is extended to close the help browser, xcos, or the variables browser or editor GUIs.
 * `polyint` is introduced to compute polynomial antiderivatives.
+* Listbox uicontrol callback is now triggered by item click in single selection mode. For example, it allows successive execution of a demo in the demonstrations gui.
 
 
 Help pages:
