@@ -212,7 +212,7 @@ Feature changes and additions on 6.1.1
   - Extended to all signed integers.
   - Decimal positive integers > 2^52 up to 2^1024 = number_properties("huge") can now be processed, with bitnum up to 1024 instead of 52.
   - bitnum can actually be an array. It is now optional as well for input decimal integers.
-
+* The `Arnoldi` module is now internal.
 
 Help pages:
 -----------
@@ -298,6 +298,7 @@ Bug Fixes
 * [#9221](https://bugzilla.scilab.org/9221): There was no way in Scilab to easily access to sets of unicode symbols like greek letters, etc.
 * [#9909](https://bugzilla.scilab.org/9909): In the help browser, add a way to open the online version of the current page.
 * [#10476](https://bugzilla.scilab.org/10476): From `browsevar`, displaying the content of lists, structures, cells, or other custom tlists or mlists was not possible.
+* [#11677](https://bugzilla.scilab.org/11677): The original Arnoldi functions were obsolete.
 * [#12418](https://bugzilla.scilab.org/12418): Using bvode() with "continuation", i.e. `ipar(9) > 1` led to an error.
 * [#12516](https://bugzilla.scilab.org/12516): From `browsevar`, clicking on any graphical handle did not edit its figure with `ged`.
 * [#12532](https://bugzilla.scilab.org/12532): From `browsevar`, clicking on any function did not edit it with `edit`. The content of libraries could not be displayed either.

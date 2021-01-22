@@ -427,7 +427,7 @@ d = eigs(fn, 10, [], k, 4, opts)
         <title>実非対称問題の例</title>
         <programlisting role="example">
             <![CDATA[
-	clear opts
+    clear opts
     A            = diag(10*ones(10,1));
     A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(9,1));
     A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6*ones(9,1));
@@ -473,7 +473,7 @@ d = eigs(fn, 10, [], k, 4, opts)
         <title>複素問題の例</title>
         <programlisting role="example">
             <![CDATA[
-	clear opts
+    clear opts
     A            = diag(10*ones(10,1) + %i * ones(10,1));
     A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(9,1));
     A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6*ones(9,1));
@@ -530,7 +530,12 @@ d = eigs(fn, 10, [], k, 4, opts)
                 <revnumber>5.4.0</revnumber>
                 <revremark>
                     関数が導入されました.
-                    dnaupd, dneupd, dsaupd, dseupd, znaupd および zneupdは廃止されました.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revremark>
+                    dnaupd, dneupd, dsaupd, dseupd, znaupd and zneupd become internal.
                 </revremark>
             </revision>
         </revhistory>

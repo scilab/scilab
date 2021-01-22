@@ -530,7 +530,13 @@ d = eigs(fn, 10, [], k, 4, opts)
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>Function introduced. Deprecates dnaupd, dneupd, dsaupd, dseupd, znaupd and zneupd.</revremark>
+                <revremark>Function introduced.</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revremark>
+                    dnaupd, dneupd, dsaupd, dseupd, znaupd and zneupd become internal.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

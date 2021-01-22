@@ -507,12 +507,14 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
                 end
             else
                 [ido, resid, v, iparam, ipntr, workd, workl, info] = dnaupd(ido, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info);
+                // [arnoldi] https://help.scilab.org/docs/6.1.0/en_US/dnaupd.html
                 if(info < 0)
                     error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "DNAUPD", info));
                 end
             end
         else
             [ido, resid, v, iparam, ipntr, workd, workl, rwork, info] = znaupd(ido, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, rwork, info);
+            // [arnoldi] https://help.scilab.org/docs/6.1.0/en_US/znaupd.html
             if(info < 0)
                 error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "ZNAUPD", info));
             end
@@ -584,6 +586,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
     if(Areal & Breal)
         if(Asym)
             [d, z, resid, v, iparam, iptnr, workd, workl, info_eupd] = dseupd(rvec, howmny, _select, d, z, sigma, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_eupd);
+            // [arnoldi] https://help.scilab.org/docs/6.1.0/en_US/dseupd.html
             if(info_eupd <> 0)
                 error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "DSEUPD", info_eupd));
             else
@@ -601,6 +604,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
                 computevec = 1;
             end
             [dr, di, z, resid, v, iparam, ipntr, workd, workl, info_eupd] = dneupd(computevec, howmny, _select, dr, di, z, sigmar, sigmai, workev, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_eupd);
+            // [arnoldi] https://help.scilab.org/docs/6.1.0/en_US/dneupd.html
             if(info_eupd <> 0)
                 error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "DNEUPD", info_eupd));
             else
@@ -637,6 +641,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
         end
     else
         [d, z, resid, iparam, ipntr, workd, workl, rwork, info_eupd] = zneupd(rvec, howmny, _select, d, z, sigma, workev, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, rwork, info_eupd);
+        // [arnoldi] https://help.scilab.org/docs/6.1.0/en_US/zneupd.html
         if(info_eupd <> 0)
             error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "ZNEUPD", info_eupd));
         else
