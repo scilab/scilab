@@ -201,6 +201,7 @@ Feature changes and additions on 6.1.1
   - It can now sort any sparse 2D matrix, in all `g, r, c, lr, lc` methods, including sparse booleans and in multi-level mode. It was formerly limited to sparse real or complex vectors and only to the `g` mode.
   - Any hypermatrix can be sorted along a dimension > 2.
 * `unique` is enabled for any 2D sparse arrays, in simple, 'c' and 'r' modes.
+<<<<<<< HEAD
 * `%chars` constant added, to easily access to some selected sets of unicode symbols.
 * Lists are displayed in a more compact and comprehensive way.
 * `interp1` is upgraded:
@@ -226,6 +227,10 @@ Feature changes and additions on 6.1.1
 * `polyint` is introduced to compute polynomial antiderivatives.
 * Listbox uicontrol callback is now triggered by item click in single selection mode. For example, it allows successive execution of a demo in the demonstrations gui.
 
+=======
+* %chars constant added, to easily access to some selected sets of unicode symbols.
+* `det` is now actually extended to sparse matrices.
+>>>>>>> 608020c6bbd (* Bug 16636 fixed: det(sparse) now actually implemented)
 
 Help pages:
 -----------
@@ -428,6 +433,7 @@ Bug Fixes
 * [#16629](https://bugzilla.scilab.org/16629): `interp1`'s documentation did not tell the spline edges conditions ; extrapolation modes were poorly explained. ; the description of the result's size was completely wrong ; x as an option was not documented. A wrong extrapolation value could silently return a wrong result. There was some dead code like `if varargin(5)==%nan`. A bugged error message yielded its own error. When x is implicit, the argument index in error messages could be wrong. `periodic` and `edgevalue` extrapolation modes were not available. `linear` extrapolation was not available for splines. When `xp` is an hypermatrix with `size(xp,1)==1`, the size of the result was irregular/wrong.
 * [#16631](https://bugzilla.scilab.org/16631): read-only handle properties were reported as unknown when trying to set them.
 * [#16632](https://bugzilla.scilab.org/16632): Scilab did not start with unsupported locale on macOS.
+* [#16636](https://bugzilla.scilab.org/16636): `det(sparse)` most often yielded `Nan`. `[e,m]=det(sparse)` was not actually implemented.
 * [#16644](https://bugzilla.scilab.org/16644): `input("message:")` yielded a wrong error message about `mprintf` in case of non-interpretable input.
 * [#16654](https://bugzilla.scilab.org/16654): `interp` was leaking memory.
 

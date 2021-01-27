@@ -16,103 +16,104 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-          xml:lang="fr" xml:id="det">
+          xml:lang="ru" xml:id="det">
     <refnamediv>
-        <refname>det </refname>
-        <refpurpose>déterminant  </refpurpose>
+        <refname>det</refname>
+        <refpurpose>определитель квадратной матрицы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
+        <title>Синтаксис</title>
         <synopsis>
             d = det(X)
             [e,m] = det(X)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    matrice carrée de nombres ou polynômes ou fractions rationnelles (à coefficients)
-                    réels ou complexes. Matrices creuses acceptées.
+                    квадратная матрица вещественных или комплексных чисел, полиномов или
+                    дробно-рациональных выражений. Принимаются разрежённо-кодированные
+                    матрицы.
                     <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>d</term>
                 <listitem>
-                    Scalaire du type de <varname>X</varname> : le déterminant de la matrice
-                    <varname>X</varname>. Si <varname>X</varname> est creuse,
-                    <varname>d</varname> est toujours dense.
+                    Скаляр типа <varname>X</varname>: определитель <varname>X</varname>.
+                    Если <varname>X</varname> является разрежённо-кодированной, то
+                    <varname>d</varname> является плотной.
                     <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>m</term>
                 <listitem>
-                    nombre réel ou complexe : mantisse du déterminant en base 10, telle que
-                    <literal>abs(m) ∈ [1,10)</literal>. Argument non supporté lorsque <varname>X</varname>
-                    est polynômiale ou en fractions rationnelles.
+                    вещественное или комплексное число: определитель мантиссы по основанию 10
+                    <literal>abs(m) ∈ [1,10)</literal>. Не поддерживается для полиномиального
+                    или дробно-рационального <varname>X</varname>.
                     <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>e</term>
                 <listitem>
-                    entier : la puissance de 10 du déterminant, telle que
+                    целое: определитель экспоненты по основанию 10, такой, что
                     <literal>d = m * 10<superscript>e</superscript></literal>.
-                    Argument non supporté lorsque <varname>X</varname> est polynômiale ou
-                    en fractions rationnelles.
+                    Не поддерживается для полиномиального или дробно-рационального
+                    <varname>X</varname>.
                     <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            <emphasis role="bold">d = det(X)</emphasis> calcule et donne le déterminant de la matrice
+            <emphasis role="bold">d = det(X)</emphasis> выдаёт определитель матрицы
             <varname>X</varname>.
         </para>
         <para>
-            Pour une matrice de polynômes ou de fractions rationelles, <literal>d=det(X)</literal>
-            utilise <literal>determ(..)</literal> dont l'algorithme est basé sur la transformée de
-            Fourier.
-            <literal>d=detr(X)</literal> peut être utilisée de manière alternative, utilisant
-            l'algorithme de Leverrier. Les deux méthodes produisent des résultats équivalents.
-            Pour une matrice de fractions rationnelles, neutraliser la simplification avec
-            <code>simp_mode(%f)</code> peut être requis pour obtenir deux résultats identiques.
+            Для полиномиальной или дробно-рациональной матрицы <literal>d=det(X)</literal>
+            использует <literal>determ(..)</literal>, чей алгоритм основан на БПФ.
+            Альтернативно может использоваться <literal>d=detr(X)</literal>, основанный
+            на алгоритме Леверье. Оба метода выдают одинаковые результаты. Для
+            дробно-рациональных матриц может потребоваться отключение <code>simp_mode(%f)</code>
+            для получения идентичных результатов.
         </para>
         <para>
-            <emphasis role="bold">[e, m] = det(X)</emphasis> peut être utilisé uniquement pour des
-            matrices de nombres. Cette syntaxe permet de remédier aux débordements numériques vers 0
-            ou vers l'infini, lorsque <literal>abs(d)</literal> est plus petit que
-            <literal>number_properties("tiny")</literal> ≈ 2.23 10<superscript>-308</superscript> ou
-            plus grand que <literal>number_properties("huge")</literal> ≈ 1.80 10<superscript>308</superscript>.
+            <emphasis role="bold">[e, m] = det(X)</emphasis> может использоваться только
+            для матрицы чисел. Этот синтаксис позволяет преодолеть переполнение снизу
+            или сверху, когда <literal>abs(d)</literal> меньше, чем
+            <literal>number_properties("tiny")</literal> ≈ 2,23 10<superscript>-308</superscript>
+            либо больше, чем
+            <literal>number_properties("huge")</literal> ≈ 1,80 10<superscript>308</superscript>.
         </para>
         <para>
-            Pour les matrices numériques denses, <literal>det(..)</literal> est basée sur les routines LAPACK
-            DGETRF pour les matrices réelles et  ZGETRF pour les matrices de nombres complexes.
+            Для плотных матриц <literal>det(..)</literal> основан на процедуре из Lapack
+            DGETRF для вещественных матриц и ZGETRF для комплексных.
         </para>
         <para>
-            Pour les matrices numériques creuses, le déterminant est calculé d'après la factorisation
-            LU  de <varname>X</varname>, réalisée à l'aide de la bibliothèque UMFPACK.
+            Для разрежённых матриц определитель получается из LU-разложения, благодаря
+            библиотеке umfpack.
         </para>
     </refsection>
     <refsection>
-        <title>Exemples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 A = rand(3,3)*5;
 det(A)
 [e, m] = det(A)
 
-// Matrice de nombres complexes :
+// Матрица комплексных чисел:
 // A = grand(3,3,"uin",0,10) + grand(3,3,"uin",0,10)*%i
 A = [3+%i, 9+%i*3, 9+%i ; 8+%i*8, 4+%i*3, 7+%i*7 ; 4, 6+%i*2, 6+%i*9]
 det(A)
 [e, m] = det(A)
-abs(m)  // dans [1, 10)
+abs(m)  // in [1, 10)
      ]]></programlisting>
         <screen><![CDATA[
 --> A = rand(3,3)*5;
@@ -126,8 +127,8 @@ abs(m)  // dans [1, 10)
  m  =
   -1.0805163
 
---> // Matrice de nombres complexes :
---> A = [3+%i,9+%i*3,9+%i;8+%i*8,4+%i*3,7+%i*7;4,6+%i*2,6+%i*9]
+--> // Matrix of complex numbers:
+--> A = [3+%i, 9+%i*3, 9+%i ; 8+%i*8, 4+%i*3, 7+%i*7 ; 4, 6+%i*2, 6+%i*9]
  A  =
    3. + i     9. + 3.i   9. + i
    8. + 8.i   4. + 3.i   7. + 7.i
@@ -143,22 +144,22 @@ abs(m)  // dans [1, 10)
  m  =
    7.45 - 2.25i
 
---> abs(m)  // dans [1, 10)
+--> abs(m)  // in [1, 10)
  ans  =
    7.7823518
 ]]></screen>
         <para/>
         <para>
-            Déterminants très grands ou très petits : gestion des débordements numériques :
+            Очень большой или маленький определители: обработка переполнения снизу и сверху:
         </para>
         <programlisting role="example"><![CDATA[
-// Très grand déterminant :
+// Очень большой определитель:
 n = 1000;
 A = rand(n, n);
 det(A)
 [e, m] = det(A)
 
-// Très petit déterminant (d'une matrice encodée creuse) :
+// Очень маленький определитель (разрежённой кодированной матрицы):
 A = (triu(sprand(n,n,1)) + diag(rand(1,n)))/1.5;
 det(A)
 prod(diag(A))
@@ -168,7 +169,7 @@ det(A)
 [e, m] = det(A)
      ]]></programlisting>
         <screen><![CDATA[
---> // Très grand déterminant :
+--> // Very big determinant:
 --> A = rand(n, n);
 --> det(A)
  ans  =
@@ -180,7 +181,7 @@ det(A)
  m  =
   -3.1198687
 
---> // Très petit déterminant (d'une matrice encodée creuse) :
+--> // Very small determinant (of a sparse-encoded matrix):
 --> n = 1000;
 --> A = (triu(sprand(n,n,1)) + diag(rand(1,n)))/1.5;
 --> det(A)
@@ -210,14 +211,14 @@ det(A)
 ]]></screen>
         <para/>
         <para>
-            Déterminant de matrices polynômiales :
+            Определитель полиномиальной матрицы:
         </para>
         <programlisting role="example"><![CDATA[
 s = %s;
 det([s, 1+s ; 2-s, s^2])
 
 w = ssrand(2,2,4);
-roots(det(systmat(w))),trzeros(w)   //zeros of linear system
+roots(det(systmat(w))),trzeros(w)   //нули линейной системы
      ]]></programlisting>
         <screen><![CDATA[
 --> det([s, 1+s ; 2-s, s^2])
@@ -236,7 +237,7 @@ roots(det(systmat(w))),trzeros(w)   //zeros of linear system
 ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>Voir aussi</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="detr">detr</link>
@@ -249,24 +250,13 @@ roots(det(systmat(w))),trzeros(w)   //zeros of linear system
             </member>
         </simplelist>
     </refsection>
-    <refsection>
-        <title>Fonctions Utilisées</title>
-        <para>
-            Le calcul du determinant est basé sur les routines Lapack :
-            DGETRF pour les matrices réelles et  ZGETRF pour le cas complexe.
-        </para>
-        <para>
-            Concernant le cas des matrices creuses, le calcul du déterminant est effectué
-            à partir de la décomposition LU de la librairie umfpack.
-        </para>
-    </refsection>
     <refsection role="history">
-        <title>Historique</title>
+        <title>История</title>
         <revhistory>
             <revision>
                 <revnumber>6.1.1</revnumber>
                 <revdescription>
-                    [e,m]=det(X) syntax extended to sparse matrices.
+                    Синтаксис [e,m]=det(X) расширен до разрежённых матриц.
                 </revdescription>
             </revision>
         </revhistory>
