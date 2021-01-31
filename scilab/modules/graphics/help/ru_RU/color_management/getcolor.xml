@@ -16,13 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-          xml:lang="en" xml:id="getcolor">
+          xml:lang="ru" xml:id="getcolor">
     <refnamediv>
         <refname>getcolor</refname>
-        <refpurpose>opens a dialog to show colors of the current or default colormap</refpurpose>
+        <refpurpose>
+            открывает диалог для показа цветов текущей цветовой карты или цветовой
+            карты по умолчанию
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Синтаксис</title>
         <synopsis>
             c = getcolor()
             c = getcolor(title)
@@ -30,47 +33,52 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>title</term>
                 <listitem>
-                    <para>string, dialog title.</para>
+                    <para>строка, название диалога.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>cini</term>
                 <listitem>
-                    <para>initial selected color index. Default value is 1.</para>
+                    <para>
+                        индекс исходного выбранного цвета. Значению по умолчанию 1.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>c</term>
                 <listitem>
-                    <para>index of the selected color, or [] if the selection is canceled.</para>
+                    <para>
+                        индекс выбранного цвета или <literal>[]</literal>, если
+                        выбор отменён.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            <literal>getcolor</literal> opens a window displaying the palette of the current
-            colormap, or of the default one if no graphical figure exists.
-            The user can click on a color to show its index and its RGB values
-            in the bottom bar.
-            <literal>getcolor</literal> returns the index of the selected color, or [] if the "Cancel"
-            button has been clicked or the window has been closed.
+            <literal>getcolor</literal> открывает окно, отображающее палитру текущей
+            цветовой карты, либо цветовой карты по умолчанию, если не существует
+            графического окна. Пользователь может щёлкнуть по цвету чтобы показать
+            его индекс и его RGB-значения на панели снизу.
+            <literal>getcolor</literal> возвращает индекс выбранного цвета, либо
+            <literal>[]</literal>, если выбор нажата кнопка "Отмена", либо окно
+            было закрыто.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 c = getcolor();
 
-c = getcolor("Title foo", color("red")); // preselects the red
+c = getcolor("Title foo", color("red")); // предварительно выбран красный
 
-c = getcolor("Please choose a color");
+c = getcolor("Пожалуйста, выберите цвет");
      ]]></programlisting>
         <para/>
         <inlinemediaobject>
@@ -87,7 +95,7 @@ c = getcolor("Please choose a color");
     </refsection>
 
     <refsection role="see also">
-        <title>See also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="uigetcolor">uigetcolor</link>
