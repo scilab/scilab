@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-
  * Copyright (C) INRIA
-
- *
-
-
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,240 +11,192 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-
  *
-
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="colormap">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="colormap">
     <refnamediv>
-
         <refname>colormap</refname>
-
         <refpurpose>カラーマップを定義</refpurpose>
-
     </refnamediv>
-
     <refsection>
-
         <title>説明</title>
-
         <para>
-
             カラーマップ <literal>cmap</literal> はm x 3行列で定義されます.
-
             m は色の数です.
-
             色番号 i は, それぞれ赤, 緑, 青の彩度(範囲は0から1)を表す
-
             <literal>cmap(i,1)</literal>, <literal>cmap(i,2)</literal>,
-
             <literal>cmap(i,3)</literal> の組で指定されます.
-
         </para>
-
         <para>
-
             最初,カラーマップには32種類の色が定義されています.
-
             特定の図のカラーマップを <literal>set(f,"color_map",cmap)</literal>
-
             により変更することが可能です.
-
             ただし,  <literal>f</literal>は図のハンドルです.
-
         </para>
-
         <para>
-
             カラーマップの各色は,多くのプロット関数で色を指定するために使用する
-
             際に使用されるIDを有しています.
-
             このIDを参照するには,関数<link linkend="getcolor">getcolor</link>
-
             を使用してください.
-
         </para>
-
         <para>
-
-            関数 <link linkend="hotcolormap">hotcolormap</link>, <link linkend="jetcolormap">jetcolormap</link> および
-
-            <link linkend="graycolormap">graycolormap</link> は,
-
-            連続的に変化する色を有するカラーマップを提供します.
-
+            A set of functions from <link linkend="autumncolormap">autumncolormap(n)</link>
+            to <link linkend="wintercolormap">wintercolormap(n)</link> provide swatches that can be
+            set to colormaps. They are illustrated here-below.
         </para>
-
         <para>
-
-            デフォルトのカラーマップを<literal>cmap=get(sdf(),"color_map")</literal>
-
-            により取得できます.
-
+            The colormap of the current figure can be retrieved with <literal>cmap = gcf().color_map</literal>.
         </para>
-
+        <para>
+            The current default colormap can be retrieved with <literal>cmap = gdf().color_map</literal>.
+        </para>
+        <para>
+            The factory default colormap can be retrieved with <literal>cmap = sdf().color_map</literal>.
+        </para>
     </refsection>
-
     <refsection>
+        <title>Sample</title>
+        <scilab:image localized="true">
+            cm = ["autumn" "bone" "cool" "copper" "gray" "hot" "hsv" "jet" "ocean" ..
+                  "parula" "pink" "rainbow" "spring" "summer" "white" "winter"];
 
-        <title>例</title>
+            ncm = size(cm,"*");
+            indices = [];
+            cmap = [];
+            for i = 0:ncm-1
+                indices = [indices ; (1:100)+i*100];
+                execstr("cols = "+cm(i+1)+"colormap(100);");
+                cmap = [cmap ; cols];
+            end
+            f = gcf();
+            clf
+            f.color_map = cmap;
+            Matplot(indices)
 
-        <programlisting role="example"><![CDATA[
+            xgrid([color("grey50") -1]);
+            gca().grid_position = "foreground";
 
-n=64;
+            title(_("Available swatches: #colormap(100)"), "fontsize", 4);
+            xlabel(_("Colors indices in [1,100]"), "fontsize", 3);
+            gca().y_ticks = tlist(["ticks" "locations" "labels"],16:-1:1,cm);
+            set(gca(), "font_size", 2, "sub_ticks",[4 0], "margins", [0.12 0.05 0.08 0.08]);
 
-r=linspace(0,1,n)';
-
-g=linspace(1,0,n)';
-
-b=ones(r);
-
-cmap=[r g b];
-
-f=gcf(); f.color_map=cmap;
-
-plot3d1()
-
-f.color_map=get(sdf(),"color_map");
-
- ]]></programlisting>
-
-        <scilab:image>
-
-            n=64;
-
-            r=linspace(0,1,n)';
-
-            g=linspace(1,0,n)';
-
-            b=ones(r);
-
-            cmap=[r g b];
-
-            f=gcf(); f.color_map=cmap;
-
-            plot3d1()
-
-            f.color_map=get(sdf(),"color_map");
-
+            gcf().axes_size = [650 650];
         </scilab:image>
-
     </refsection>
-
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+n = 64;
+r = linspace(0,1,n)';
+g = linspace(1,0,n)';
+b = ones(r);
+cmap = [r g b];
+f = gcf(); f.color_map = cmap;
+plot3d1()
+f.color_map = gdf().color_map; // restores to the default colormap
+     ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
+gdf().color_map
+     ]]></programlisting>
+        <screen><![CDATA[
+--> gdf().color_map
+ ans  =
+   0.          0.          0.
+   0.          0.          1.
+   0.          1.          0.
+   0.          1.          1.
+   1.          0.          0.
+   1.          0.          1.
+   1.          1.          0.
+   1.          1.          1.
+   0.          0.          0.5647059
+   0.          0.          0.6901961
+   0.          0.          0.8156863
+   0.5294118   0.8078431   1.
+   0.          0.5647059   0.
+   0.          0.6901961   0.
+   0.          0.8156863   0.
+   0.          0.5647059   0.5647059
+   0.          0.6901961   0.6901961
+   0.          0.8156863   0.8156863
+   0.5647059   0.          0.
+   0.6901961   0.          0.
+   0.8156863   0.          0.
+   0.5647059   0.          0.5647059
+   0.6901961   0.          0.6901961
+   0.8156863   0.          0.8156863
+   0.5019608   0.1882353   0.
+   0.627451    0.2509804   0.
+   0.7529412   0.3764706   0.
+   1.          0.5019608   0.5019608
+   1.          0.627451    0.627451
+   1.          0.7529412   0.7529412
+   1.          0.8784314   0.8784314
+   1.          0.8431373   0.
+]]></screen>
+    </refsection>
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
                 <link linkend="autumncolormap">autumncolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="bonecolormap">bonecolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="coolcolormap">coolcolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="coppercolormap">coppercolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="graycolormap">graycolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="hotcolormap">hotcolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="hsvcolormap">hsvcolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="jetcolormap">jetcolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="oceancolormap">oceancolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="pinkcolormap">pinkcolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="rainbowcolormap">rainbowcolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="springcolormap">springcolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="summercolormap">summercolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="whitecolormap">whitecolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="wintercolormap">wintercolormap</link>
-
             </member>
-
             <member>
-
                 <link linkend="color">color</link>
-
             </member>
-
             <member>
-
                 <link linkend="getcolor">getcolor</link>
-
             </member>
-
+            <member>
+                <link linkend="colordef">colordef</link>
+            </member>
         </simplelist>
-
     </refsection>
-
 </refentry>
-

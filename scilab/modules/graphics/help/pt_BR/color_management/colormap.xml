@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="colormap" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="colormap" xml:lang="pt">
     <refnamediv>
         <refname>colormap</refname>
         <refpurpose>mapa de cores</refpurpose>
@@ -29,7 +32,7 @@
         </para>
         <para>De início, 32 cores são definidas no mapa de cores. Você pode
             modificar o mapa de cores de uma figura através da opção
-            <literal>set(f,"color_map",cmap)</literal> onde <literal>f</literal> é o
+            <literal>f.color_map=cmap</literal> onde <literal>f</literal> é o
             manipulador da figura.
         </para>
         <para>Cada cor no mapa de cores possui um identificador que você deve
@@ -37,25 +40,102 @@
             visualizar os identificadores, use a função <link linkend="getcolor">getcolor</link>.
         </para>
         <para>
-            As funções <link linkend="hotcolormap">hotcolormap</link>, <link linkend="jetcolormap">jetcolormap</link> e <link linkend="graycolormap">graycolormap</link> fornecem mapas de cores com
-            variação contínua de cores.
+            A set of functions from <link linkend="autumncolormap">autumncolormap(n)</link>
+            to <link linkend="wintercolormap">wintercolormap(n)</link> provide swatches that can be
+            set to colormaps. They are illustrated here-below.
         </para>
-        <para>Você pode obter o mapa de cores padrão através de
-            <literal>cmap=get(sdf(),"color_map")</literal>.
+        <para>
+            The colormap of the current figure can be retrieved with <literal>cmap = gcf().color_map</literal>.
         </para>
+        <para>
+            The current default colormap can be retrieved with <literal>cmap = gdf().color_map</literal>.
+        </para>
+        <para>
+            The factory default colormap can be retrieved with <literal>cmap = sdf().color_map</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Sample</title>
+        <scilab:image localized="true">
+            cm = ["autumn" "bone" "cool" "copper" "gray" "hot" "hsv" "jet" "ocean" ..
+                  "parula" "pink" "rainbow" "spring" "summer" "white" "winter"];
+
+            ncm = size(cm,"*");
+            indices = [];
+            cmap = [];
+            for i = 0:ncm-1
+                indices = [indices ; (1:100)+i*100];
+                execstr("cols = "+cm(i+1)+"colormap(100);");
+                cmap = [cmap ; cols];
+            end
+            f = gcf();
+            clf
+            f.color_map = cmap;
+            Matplot(indices)
+
+            xgrid([color("grey50") -1]);
+            gca().grid_position = "foreground";
+
+            title(_("Available swatches: #colormap(100)"), "fontsize", 4);
+            xlabel(_("Colors indices in [1,100]"), "fontsize", 3);
+            gca().y_ticks = tlist(["ticks" "locations" "labels"],16:-1:1,cm);
+            set(gca(), "font_size", 2, "sub_ticks",[4 0], "margins", [0.12 0.05 0.08 0.08]);
+
+            gcf().axes_size = [650 650];
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-n=64;
-r=linspace(0,1,n)';
-g=linspace(1,0,n)';
-b=ones(r);
-cmap=[r g b];
+n = 64;
+r = linspace(0,1,n)';
+g = linspace(1,0,n)';
+b = ones(r);
+cmap = [r g b];
 f=gcf(); f.color_map=cmap;
 plot3d1()
-f.color_map=get(sdf(),"color_map");
- ]]></programlisting>
+f.color_map = gdf().color_map; // restore to the default colormap
+     ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
+gdf().color_map
+     ]]></programlisting>
+        <screen><![CDATA[
+--> gdf().color_map
+ ans  =
+   0.          0.          0.
+   0.          0.          1.
+   0.          1.          0.
+   0.          1.          1.
+   1.          0.          0.
+   1.          0.          1.
+   1.          1.          0.
+   1.          1.          1.
+   0.          0.          0.5647059
+   0.          0.          0.6901961
+   0.          0.          0.8156863
+   0.5294118   0.8078431   1.
+   0.          0.5647059   0.
+   0.          0.6901961   0.
+   0.          0.8156863   0.
+   0.          0.5647059   0.5647059
+   0.          0.6901961   0.6901961
+   0.          0.8156863   0.8156863
+   0.5647059   0.          0.
+   0.6901961   0.          0.
+   0.8156863   0.          0.
+   0.5647059   0.          0.5647059
+   0.6901961   0.          0.6901961
+   0.8156863   0.          0.8156863
+   0.5019608   0.1882353   0.
+   0.627451    0.2509804   0.
+   0.7529412   0.3764706   0.
+   1.          0.5019608   0.5019608
+   1.          0.627451    0.627451
+   1.          0.7529412   0.7529412
+   1.          0.8784314   0.8784314
+   1.          0.8431373   0.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
@@ -110,6 +190,9 @@ f.color_map=get(sdf(),"color_map");
             </member>
             <member>
                 <link linkend="getcolor">getcolor</link>
+            </member>
+            <member>
+                <link linkend="colordef">colordef</link>
             </member>
         </simplelist>
     </refsection>
