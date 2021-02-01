@@ -158,7 +158,8 @@ function ilib_gen_Make_unix(names,   ..
         end
     end
 
-    stringToHash = libname + ldflags + cflags + fflags + cc;
+    stringToHash =  strcat([libname,ldflags,cflags,fflags,cc])
+
     hash = getmd5(stringToHash,"string");
     md5file = fullfile(usercommandpath,libname+".md5");
     if stringToHash == libname || (isfile(md5file) && ...
