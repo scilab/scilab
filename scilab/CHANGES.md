@@ -431,6 +431,7 @@ Bug Fixes
 * [#16632](https://bugzilla.scilab.org/16632): Scilab did not start with unsupported locale on macOS.
 * [#16636](https://bugzilla.scilab.org/16636): `det(sparse)` most often yielded `Nan`. `[e,m]=det(sparse)` was not actually implemented.
 * [#16638](https://bugzilla.scilab.org/16638): `getcolor` shew a bunch of issues.
+* [#16639](https://bugzilla.scilab.org/16639): `atomsInstall` and `atomsRemove` did not update the Toolboxes menu.
 * [#16644](https://bugzilla.scilab.org/16644): `input("message:")` yielded a wrong error message about `mprintf` in case of non-interpretable input.
 * [#16654](https://bugzilla.scilab.org/16654): `interp` was leaking memory.
 
