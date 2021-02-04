@@ -203,6 +203,7 @@ Feature changes and additions
 * `interp1` is upgraded:
   - complex numbers `y` now supported: the real and imaginary parts are interpolated separately.
   - extrapolation option extended: `edgevalue` mode added for all interpolations; `periodic` mode added for linear and spline interpolations. `linear` mode added for the spline interpolations.
+* `xlfont` did not support the documented 4th argument.
 
 Help pages:
 -----------
