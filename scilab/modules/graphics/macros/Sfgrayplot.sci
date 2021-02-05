@@ -63,8 +63,6 @@ function Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colout)
     if ~isdef("zminmax","l") then
         zminmax = [min(z), max(z)]
     end
-    dz = (zminmax(2) - zminmax(1))/nbc/2
-    zminmax = zminmax + [dz -dz]
 
     // parsing the optional args
     opt_arg_list = ["strf", "rect","nax","zminmax", "colminmax", "mesh", "colout"];
