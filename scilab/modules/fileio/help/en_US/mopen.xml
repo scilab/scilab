@@ -17,25 +17,25 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mopen" xml:lang="en">
     <refnamediv>
         <refname>mopen</refname>
-        <refpurpose>opens a file in Scilab</refpurpose>
+        <refpurpose>opens files in Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[fd, err] = mopen(file [, mode, swap ])</synopsis>
+        <synopsis>[fd, err] = mopen(files [, mode, swap ])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>file</term>
+                <term>files</term>
                 <listitem>
-                    <para>a character string containing the path of the file to open.</para>
+                    <para>a matrix of strings containing the paths of the files to open.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>mode</term>
                 <listitem>
-                    <para>a character string specifying the access mode requested for the file.</para>
+                    <para>a string specifying the access mode requested for the files.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -52,7 +52,7 @@
             <varlistentry>
                 <term>err</term>
                 <listitem>
-                    <para>a scalar. Error indicator.</para>
+                    <para>a matrix of integers. Error indicators.</para>
                     <informaltable border="1">
                         <tr>
                             <td>error value:</td>
@@ -89,7 +89,7 @@
                 <term>fd</term>
                 <listitem>
                     <para>
-                        a scalar: a file descriptor (it's a positive integer).
+                        a matrix of file descriptors (they are positive integers).
                     </para>
                 </listitem>
             </varlistentry>
@@ -98,9 +98,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>mopen</function> may be used to open a <varname>file</varname> in a way
+            <function>mopen</function> may be used to open <varname>files</varname> in a way
             compatible with the C <function>fopen</function> procedure. Without
-            <varname>swap</varname> argument the <varname>file</varname> is supposed to be coded in "little endian IEEE
+            <varname>swap</varname> argument the <varname>files</varname> are supposed to be coded in "little endian IEEE
             format" and data are swapped if necessary to match the IEEE format of
             the processor.
         </para>

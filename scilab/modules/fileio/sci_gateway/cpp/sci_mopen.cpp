@@ -56,15 +56,6 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        types::String* pS1 = in[0]->getAs<types::String>();
-        if (pS1->getSize() != 1)
-        {
-            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "mopen", 1);
-            return types::Function::Error;
-        }
-
-        pstFilename = expandPathVariableW(pS1->get(0));
-
         if (in.size() >= 2)
         {
             //mode
@@ -125,55 +116,61 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    wchar_t* pwstTemp = get_full_pathW(pstFilename);
-    iErr = mopen(pwstTemp, pstMode, iSwap, &iID);
-    if (iErr != MOPEN_NO_ERROR)
+    types::String* pS1 = in[0]->getAs<types::String>();
+    types::Double* pD = new types::Double(pS1->getRows(),pS1->getCols());
+    types::Double* pD2 = new types::Double(pS1->getRows(),pS1->getCols());
+
+    for (int i=0; i<pS1->getSize(); i++)
     {
-        //mange file open errors
-        if (_iRetCount <= 1)
+        pstFilename = expandPathVariableW(pS1->get(i));
+        wchar_t* pwstTemp = get_full_pathW(pstFilename);
+        iErr = mopen(pwstTemp, pstMode, iSwap, &iID);
+        
+        if (iErr != MOPEN_NO_ERROR)
         {
-            switch (iErr)
+            //mange file open errors
+            if (_iRetCount <= 1)
             {
-                case MOPEN_CAN_NOT_OPEN_FILE:
+                switch (iErr)
                 {
-                    char* pst = wide_string_to_UTF8(pstFilename);
-                    Scierror(999, _("%s: Cannot open file %s.\n"), "mopen", pst);
-                    FREE(pst);
-                    FREE(pstFilename);
-                    FREE(pwstTemp);
-                    pstFilename = NULL;
-                    return types::Function::Error;
+                    case MOPEN_CAN_NOT_OPEN_FILE:
+                    {
+                        char* pst = wide_string_to_UTF8(pstFilename);
+                        Scierror(999, _("%s: Cannot open file %s.\n"), "mopen", pst);
+                        FREE(pst);
+                    }
+                    case MOPEN_INVALID_FILENAME:
+                    {
+                        Scierror(999, _("%s: invalid filename.\n"), "mopen");
+                    }
+                    case MOPEN_INVALID_STATUS:
+                    {
+                        Scierror(999, _("%s: invalid status.\n"), "mopen");
+                    }
                 }
-                case MOPEN_INVALID_FILENAME:
-                {
-                    Scierror(999, _("%s: invalid filename.\n"), "mopen");
-                    FREE(pstFilename);
-                    FREE(pwstTemp);
-                    pstFilename = NULL;
-                    return types::Function::Error;
-                }
-                case MOPEN_INVALID_STATUS:
-                {
-                    Scierror(999, _("%s: invalid status.\n"), "mopen");
-                    FREE(pstFilename);
-                    FREE(pwstTemp);
-                    pstFilename = NULL;
-                    return types::Function::Error;
-                }
+                FREE(pstFilename);
+                FREE(pwstTemp);
+                pD->killMe();
+                pD2->killMe();
+                return types::Function::Error;
             }
         }
+
+        FREE(pwstTemp);
+        FREE(pstFilename);        
+        pD->set(i,static_cast<double>(iID));
+        pD2->set(i,static_cast<double>(iErr));        
     }
 
-    FREE(pwstTemp);
-    FREE(pstFilename);
-
-    types::Double* pD = new types::Double(static_cast<double>(iID));
     out.push_back(pD);
 
     if (_iRetCount == 2)
     {
-        types::Double* pD2 = new types::Double(iErr);
         out.push_back(pD2);
+    }
+    else
+    {
+        pD2->killMe();        
     }
     return types::Function::OK;
 }
