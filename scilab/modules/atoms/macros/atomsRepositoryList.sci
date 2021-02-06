@@ -14,7 +14,7 @@
 
 // get the list of repositories
 
-function repositories = atomsRepositoryList(section)
+function varargout = atomsRepositoryList(section)
 
     // Load Atoms Internals lib if it's not already loaded
     // =========================================================================
@@ -116,6 +116,14 @@ function repositories = atomsRepositoryList(section)
             end
         end
 
+    end
+
+    // Set the result
+    // =========================================================================
+    if argn(1) > 0 then
+        varargout = list(repositories)
+    else
+        mprintf("%s\n", strcat(justify(repositories,"l"), "   ", "c"))
     end
 
 endfunction

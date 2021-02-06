@@ -39,6 +39,7 @@ In summary, the main new features are:
    - In structures, nested lists or structures are now displayed recursively compactly and more explicitly.
 * importgui function has been added to easily interface csvRead
 * function calls with zero output arguments can be detected with `argn`
+   - atoms functions can either display or output values
 
 
 Installation
@@ -197,7 +198,7 @@ Feature changes and additions
   - It can now sort any sparse 2D matrix, in all `g, r, c, lr, lc` methods, including sparse booleans and in multi-level mode. It was formerly limited to sparse real or complex vectors and only to the `g` mode.
   - Any hypermatrix can be sorted along a dimension > 2.
 * `unique` is enabled for any 2D sparse arrays, in simple, 'c' and 'r' modes.
-* %chars constant added, to easily access to some selected sets of unicode symbols.
+* `%chars` constant added, to easily access to some selected sets of unicode symbols.
 * Lists are displayed in a more compact and comprehensive way.
 
 Help pages:
