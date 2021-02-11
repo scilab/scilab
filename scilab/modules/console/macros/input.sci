@@ -65,7 +65,7 @@ function [x] = input(msg, flag)
             if ierr == 0 then
                 break;
             end
-            mprintf(lasterror());
+            mprintf("%s\n",lasterror());
             mprintf("\n");
         end
     end
