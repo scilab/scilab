@@ -159,7 +159,10 @@ public:
     void errorInScript(const std::wstring funcname, const ast::Exp* pExp);
 
     //breakpoints functions
-    void addBreakPoint(Breakpoint* bp);
+    bool addBreakPoint(Breakpoint* bp);
+    bool updateBreakPoint(Breakpoint* bp);
+    bool removeBreakPoint(Breakpoint* bp);
+    Breakpoints::iterator findBreakPoint(Breakpoint* bp);
     void removeBreakPoint(int _iBreakPoint);
     void setAllBreakPoints(Breakpoints& _bps);
     void removeAllBreakPoints();

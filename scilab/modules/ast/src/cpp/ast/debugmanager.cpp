@@ -172,27 +172,6 @@ void DebuggerManager::sendUpdate() const
     }
 }
 
-void DebuggerManager::addBreakPoint(Breakpoint* bp)
-{
-    //check if breakpoint does not exist
-    for (const auto b : breakpoints)
-    {
-        bool isMacro = b->getFunctioName() == bp->getFunctioName() &&
-                       b->getMacroLine() != bp->getMacroLine();
-        bool isFile  = b->getFileName() == bp->getFileName() &&
-                       b->getFileLine() != bp->getFileLine();
-        bool equalCondition = b->getCondition() != bp->getCondition();
-        if ((isMacro || isFile) && equalCondition)
-        {
-            //same breakpoint, cancel add
-            return;
-        }
-    }
-
-    breakpoints.push_back(bp);
-    sendUpdate();
-}
-
 void DebuggerManager::setAllBreakPoints(Breakpoints& _bps)
 {
     // remove existing breakpoints
@@ -205,6 +184,64 @@ void DebuggerManager::setAllBreakPoints(Breakpoints& _bps)
     // set new breakpoints
     breakpoints.swap(_bps);
     sendUpdate();
+}
+
+Breakpoints::iterator DebuggerManager::findBreakPoint(Breakpoint* bp)
+{
+    Breakpoints::iterator found = std::find_if(breakpoints.begin(), breakpoints.end(),
+    [&](Breakpoint* b) {
+        bool isMacro = b->getFunctioName() != "" &&
+                       b->getFunctioName() == bp->getFunctioName() &&
+                       b->getMacroLine() == bp->getMacroLine();
+
+        bool isFile  = b->getFileName() != "" &&
+                       b->getFileName() == bp->getFileName() &&
+                       b->getFileLine() == bp->getFileLine();
+
+        return (isMacro || isFile);
+    });
+
+    return found;
+}
+
+bool DebuggerManager::addBreakPoint(Breakpoint* bp)
+{
+    //check if breakpoint does not exist
+    Breakpoints::iterator iter = findBreakPoint(bp);
+    if(iter == breakpoints.end())
+    {
+        breakpoints.push_back(bp);
+        sendUpdate();
+        return true;
+    }
+
+    return false;
+}
+
+bool DebuggerManager::updateBreakPoint(Breakpoint* bp)
+{
+    Breakpoints::iterator iter = findBreakPoint(bp);
+    if(iter != breakpoints.end())
+    {
+        std::swap(*iter, bp);
+        delete bp;
+        return true;
+    }
+
+    return false;
+}
+
+bool DebuggerManager::removeBreakPoint(Breakpoint* bp)
+{
+    Breakpoints::iterator iter = findBreakPoint(bp);
+    if(iter != breakpoints.end())
+    {
+        delete *iter;
+        breakpoints.erase(iter);
+        return true;
+    }
+
+    return false;
 }
 
 void DebuggerManager::removeBreakPoint(int _iBreakPoint)
