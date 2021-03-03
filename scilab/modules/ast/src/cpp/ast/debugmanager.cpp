@@ -381,7 +381,7 @@ void DebuggerManager::generateCallStack()
         row.functionName = tmp;
         FREE(tmp);
         row.functionLine = it_line->m_line - 1;
-        if(callstackAddFile(&row, *it_name->m_file_name))
+        if(it_name->m_file_name && callstackAddFile(&row, *it_name->m_file_name))
         {
             row.fileLine = it_line->m_line;
             row.functionLine = -1;
