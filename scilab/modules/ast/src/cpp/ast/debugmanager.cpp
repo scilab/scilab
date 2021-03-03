@@ -516,8 +516,10 @@ void DebuggerManager::abort() //abort execution
             ConfigVariable::DecreasePauseLevel();
         }
 
-        // reset lasterror
+        // reset lasterror information
         ConfigVariable::clearLastError();
+        // reset error flag
+        ConfigVariable::resetError();
         // reset callstack
         clearCallStack();
 
