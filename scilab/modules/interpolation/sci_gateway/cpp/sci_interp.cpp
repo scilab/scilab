@@ -190,15 +190,27 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
     {
         out.push_back(pDblYp1);
     }
+    else
+    {
+        pDblYp1->killMe();
+    }
 
     if (_iRetCount > 2)
     {
         out.push_back(pDblYp2);
     }
+    else
+    {
+        pDblYp2->killMe();
+    }
 
     if (_iRetCount > 3)
     {
         out.push_back(pDblYp3);
+    }
+    else
+    {
+        pDblYp3->killMe();
     }
 
     return types::Function::OK;

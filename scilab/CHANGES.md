@@ -357,6 +357,7 @@ Bug Fixes
 * [#16622](https://bugzilla.scilab.org/16622): `inv` could no longer be overloaded for hypermatrices of decimal or complex numbers.
 * [#16623](https://bugzilla.scilab.org/16623): `rand(2,2,2)^2` yielded a wrong result instead of trying to call the `%s_p_s` overload for input hypermatrices.
 * [#16644](https://bugzilla.scilab.org/16644): `input("message:")` yielded a wrong error message about `mprintf` in case of non-interpretable input.
+* [#16654](https://bugzilla.scilab.org/16654): `interp` was leaking memory.
 
 
 ### Bugs fixed in 6.1.0:
