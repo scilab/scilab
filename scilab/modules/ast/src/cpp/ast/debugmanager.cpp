@@ -542,8 +542,18 @@ void DebuggerManager::internal_stop()
     // release the debugger thread
     ThreadManagement::SendDebuggerExecDoneSignal();
     // wait inside pause
-    pause();
-    //clean current seqexp
+    try
+    {
+        pause();
+    }
+    catch (const ast::InternalAbort& ia)
+    {
+        // can append when aborting an execution
+        // which is running inside a pause
+        interrupted = false;
+        throw ia;
+    }
+
     interrupted = false;
 }
 
