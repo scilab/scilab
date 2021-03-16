@@ -15,7 +15,7 @@
 
 package org.scilab.modules.xcos.io.scicos;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 
 import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.Scilab;
-import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
 
@@ -117,34 +117,31 @@ public class ScilabDirectHandler implements Handler {
      */
 
     @Override
-    public synchronized Map<String, String> readContext() {
+    public synchronized Map<String, ScilabType> readContext() {
         LOG.entering("ScilabDirectHandler", "readContext");
-        final ScilabMList list;
-        final Map<String, String> result = new LinkedHashMap<String, String>();
+        final Map<String, ScilabType> result = new HashMap<String, ScilabType>();
 
-        final ScilabType data;
+        final ScilabType keys;
+        final ScilabType values;
         try {
-            data = Scilab.getInCurrentScilabSession(CONTEXT);
+            keys = Scilab.getInCurrentScilabSession(CONTEXT + "_names");
+            values = Scilab.getInCurrentScilabSession(CONTEXT + "_values");
         } catch (JavasciException e) {
             throw new RuntimeException(e);
         }
-        if (data instanceof ScilabMList) {
-            list = (ScilabMList) data;
+        final ScilabString k;
+        final ScilabList v;
+        if (keys instanceof ScilabString && values instanceof ScilabList) {
+            k = (ScilabString) keys;
+            v = (ScilabList) values;
             LOG.finer("data available");
         } else {
-            list = new ScilabMList();
             LOG.finer("data unavailable");
+            return result;
         }
 
-        // We are starting at 2 because a struct is composed of
-        // - the fields names (ScilabString)
-        // - the dimension
-        // - variables values...
-        for (int index = 2; index < list.size(); index++) {
-            String key = ((ScilabString) list.get(0)).getData()[0][index];
-            String value = list.get(index).toString();
-
-            result.put(key, value);
+        for (int i = 0; i < Math.min(k.getWidth(), v.size()); i++) {
+            result.put(k.getData()[0][i], v.get(i));
         }
 
         LOG.exiting("ScilabDirectHandler", "readContext");

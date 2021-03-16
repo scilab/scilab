@@ -29,6 +29,7 @@ import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -41,6 +42,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
@@ -160,6 +162,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
         public CustomizeFrame(XcosDiagram diagram) {
             setTitle(XcosMessages.MASK_TITLE);
             setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+            ImageIcon scilabIcon = new ImageIcon(FindIconHelper.findIcon("scilab"));
+            setIconImage(scilabIcon.getImage());
             controler = new CustomizeFrameControler(diagram);
             initComponents();
         }
@@ -686,7 +690,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                     switch (e.getType()) {
                         case TableModelEvent.INSERT:
                             String key = (String) customModel.getValueAt(row, 0);
-                            String value = context.get(key);
+                            String value = context.get(key).toString();
                             valuesModel.addRow(new Object[] { key, value });
                             break;
 
@@ -717,7 +721,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                 }
             };
 
-            private final Map<String, String> context;
+            private final Map<String, ScilabType> context;
             private Iterator<String> keyIterator;
 
             /**
