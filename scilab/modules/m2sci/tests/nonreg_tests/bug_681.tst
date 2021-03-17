@@ -31,14 +31,7 @@ fd=mopen(SCIFILE,"r");
 SCIFILECONTENTS=mgetl(fd,-1);
 mclose(fd);
 
-SCIFILECONTENTSREF=["";
-"// Display mode";
-"mode(0);";
-"";
-"// Display warning for floating point exception";
-"ieee(1);";
-"";
-"error(""This is an error message"")"];
+SCIFILECONTENTSREF=[""; "error(""This is an error message"")"];
 
 correct=%T;
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

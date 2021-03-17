@@ -342,19 +342,19 @@ Nrand = 100;
 vmax = 4;
 for itype = [1 2 4 8 11 12 14 18]
     a = iconvert(matrix(grand(1,"prm",(1:N*P)'),N,P), itype);
-    
+
     //-----Global sort --------------------------------
     [a1,ind] = gsort(a,"g");
     assert_checkequal(a1, iconvert(matrix(N * P:-1:1,N,P), itype));
     assert_checkequal(a1, matrix(a(ind),N,P));
-    
+
     for i = 1:Nrand
         b = iconvert(10 * rand(N,P,"u"), itype);
         [b1,ind] = gsort(b,"g");
         assert_checkequal(b1, matrix(b(ind),N,P));
         assert_checktrue(or(b1(1:$-1) - b1(2:$) >= 0));
     end
-    
+
     //increasing values
     [a1,ind] = gsort(a,"g","i");
     assert_checkequal(a1, iconvert(matrix(1:N*P,N,P), itype));
@@ -366,7 +366,7 @@ for itype = [1 2 4 8 11 12 14 18]
         assert_checkequal(b1, matrix(b(ind),N,P));
         assert_checktrue(or(b1(1:$-1) - b1(2:$) <= 0));
     end
-    
+
     //----sort each column of a ('r' means that the row indice is used for sorting)
     [a1,ind] = gsort(a,"r");
     nc = size(a,"c");
@@ -375,13 +375,13 @@ for itype = [1 2 4 8 11 12 14 18]
         test = [test, matrix(a(ind(:,i),i),N,1)];
     end
     assert_checkequal(a1, test);
-    
+
     test = [];
     for i =1:nc
         test = [test, gsort(a(:,i),"g")];
     end
     assert_checkequal(a1, test);
-    
+
     if itype < 10
         for i = 1:Nrand
             b = iconvert(10*rand(N,P,"u"), itype);
@@ -424,7 +424,7 @@ for itype = [1 2 4 8 11 12 14 18]
         test = [test; gsort(a(i,:),"g")];
     end
     assert_checkequal(a1, test);
-    
+
     if itype < 10
         for i = 1:Nrand
             b = iconvert(10 * rand(N,P,"u"), itype);
@@ -451,7 +451,7 @@ for itype = [1 2 4 8 11 12 14 18]
         test = [test; gsort(a(i,:),"g","i")];
     end
     assert_checkequal(a1, test);
-    
+
     //----sort the rows of a in lexicographic order
     //    i.e a(k,:) < a(l,:) if there's a number j
     //    such that a(k,j) < a(l,j) or a(k,p)=a(l,p) for p in [1,j-1];
@@ -464,12 +464,12 @@ for itype = [1 2 4 8 11 12 14 18]
     // a random permutation
     [ax,perm] = gsort(rand(1,N1,"u"));
     a = iconvert(alr(perm,:), itype);
-    
+
     [a1,ind] = gsort(a,"lr");
-    
+
     assert_checkequal(a1, iconvert(alr, itype));
     assert_checkequal(a1, matrix(a(ind,:),N1,P1));
-    
+
     [a2,ind2] = gsort(a*[100;10;1],"g");
     assert_checkequal(ind2, ind);
     ///////////////////////
@@ -480,15 +480,15 @@ for itype = [1 2 4 8 11 12 14 18]
         v = double(b1)*((vmax+1)^[P-1:-1:0])';
         assert_checktrue(or(v(2:$) - v(1:$-1) <= 0));
     end
-    
+
     // increasing
     [a1,ind] = gsort(a,"lr","i");
     assert_checkequal(a1, iconvert(alr(N1:-1:1,:), itype));
     assert_checkequal(a1, matrix(a(ind,:),N1,P1));
-    
+
     [a2,ind2] = gsort(a*[100;10;1],"g","i");
     assert_checkequal(ind2, ind);
-    
+
     for i = 1:Nrand
         b = int(vmax * rand(N,P,"u"));
         [b1,ind] = gsort(b,"lr","i");
@@ -496,21 +496,21 @@ for itype = [1 2 4 8 11 12 14 18]
         v = double(b1)*((vmax+1)^[P-1:-1:0])';
         assert_checktrue(or(v(2:$) - v(1:$-1) >= 0));
     end
-    
+
     //----sort the columns of a in lexicographic order
     N1 = 3; P1 = 4;
     alr = alr';
     // a random permutation
     [ax,perm] = gsort(rand(1,P1,"u"));
     a = iconvert(alr(:,perm), itype);
-    
+
     [a1,ind] = gsort(a,"lc");
     assert_checkequal(a1, iconvert(alr, itype));
     assert_checkequal(a1, matrix(a(:,ind),N1,P1));
-    
+
     [a2,ind2] = gsort([100,10,1]*a,"g");
     assert_checkequal(ind2, ind);
-    
+
     for i = 1:Nrand
         b = int(vmax*rand(N1,P1,"u"));
         [b1,ind] = gsort(b,"lc");
@@ -523,10 +523,10 @@ for itype = [1 2 4 8 11 12 14 18]
     [a1,ind] = gsort(a,"lc","i");
     assert_checkequal(a1, iconvert(alr(:,P1:-1:1), itype));
     assert_checkequal(a1, matrix(a(:,ind),N1,P1));
-    
+
     [a2,ind2] = gsort([100,10,1] * a,"g","i");
     assert_checkequal(ind2, ind);
-    
+
     for i = 1:Nrand
         b = int(vmax*rand(N,P,"u"));
         [b1,ind] = gsort(b,"lc","i");
@@ -534,7 +534,7 @@ for itype = [1 2 4 8 11 12 14 18]
         v = ((vmax+1)^[N-1:-1:0])*b1;
         assert_checktrue(or(v(2:$) - v(1:$-1) >= 0));
     end
-    
+
     a = iconvert([1,1,1,1,2,2,3,3,2,2,3,3,4,4,4,4,4,4,4,4,5,5,5,6,6,6,7,7,7,7,..
     8,8,8,8,9,9,9,9,9,9,9,7,9,10,10,10,10,11,11,11,12,13,13,13,13,14,14,12,12,..
     14,14,14,14,14,14,15,15,15,15,16,17,18;
@@ -549,7 +549,7 @@ for itype = [1 2 4 8 11 12 14 18]
     assert_checktrue(or(t(:,1) >= 0));      // int8: <= 0
     assert_checktrue(or(t(find(t(:,1)==0),2) >= 0));
     assert_checkequal(a(ind,:), b);
-    
+
     for k = 1:30
         p = grand(1,"prm",(1:size(a,1))');
         [b,ind] = gsort(a(p,:),"lr","i");
@@ -558,13 +558,13 @@ for itype = [1 2 4 8 11 12 14 18]
         assert_checktrue(or(t(find(t(:,1)==0),2) >= 0));
         assert_checkequal(a(p(ind),:), b);
     end
-    
+
     [b,ind] = gsort(a,"lr","d");
     t = b(1:$-1,:) - b(2:$,:);
     assert_checktrue(or(t(:,1) >= 0));      // int8: <= 0
     assert_checktrue(or(t(find(t(:,1)==0),2) >= 0));
     assert_checkequal(a(ind,:), b);
-    
+
     for k = 1:30
         p = grand(1,"prm",(1:size(a,1))');
         [b,ind] = gsort(a(p,:),"lr","d");
@@ -573,7 +573,7 @@ for itype = [1 2 4 8 11 12 14 18]
         assert_checktrue(or(t(find(t(:,1)==0),2) >= 0));
         assert_checkequal(a(p(ind),:), b);
     end
-    
+
     a = b;
     a([10 60],:) = a([60 10],:);
     [b,ind] = gsort(a,"lr","i");
@@ -581,7 +581,7 @@ for itype = [1 2 4 8 11 12 14 18]
     assert_checktrue(or(t(:,1) >= 0));      // int8: <= 0
     assert_checktrue(or(t(find(t(:,1)==0),2) >= 0));
     assert_checkequal(a(ind,:), b);
-    
+
     [b,ind] = gsort(a,"lr","d");
     t = b(1:$-1,:) - b(2:$,:);
     assert_checktrue(or(t(:,1) >= 0));      // int8: <= 0
@@ -686,65 +686,3 @@ assert_checkequal(gsort(a), []);
 assert_checkequal(s, []);
 assert_checkequal(k, []);
 
-//================================ hypermatrix ================================
-
-A = rand(6, 4, 2, 8);
-for o = ["d" "i"]
-    // 'g'
-    [hs hind]   = gsort(A, 'g', o);
-    [s ind]     = gsort(A(:), 'g', o);
-
-    assert_checkequal(hs(:), s);
-    assert_checkequal(hind(:), ind);
-
-    hs = gsort(A, 'g', o);
-    assert_checkequal(hs(:), s);
-
-    // 'c' 'r' 'lc' 'lr'
-    [hsc hindc]   = gsort(A, "c", o);
-    [hsr hindr]   = gsort(A, "r", o);
-    [hslc hindlc] = gsort(A, "lc", o);
-    [hslr hindlr] = gsort(A, "lr", o);
-
-    a       = matrix(A, 6, 4, 16); // 2 * 8 = 16
-    z = zeros(a);
-    [sc, indc, sr, indr, slc, slr] = (z, z, z, z, z, z);
-    indlc   = zeros(1, 4, 16);
-    indlr   = zeros(6, 1, 16);
-
-    for i = 1:16
-        [sc(:,:,i) indc(:,:,i)]   = gsort(a(:,:,i),"c", o);
-        [sr(:,:,i) indr(:,:,i)]   = gsort(a(:,:,i),"r", o);
-        [slc(:,:,i) indlc(:,:,i)] = gsort(a(:,:,i),"lc", o);
-        [slr(:,:,i) indlr(:,:,i)] = gsort(a(:,:,i),"lr", o);
-    end
-
-    sc      = matrix(sc, 6, 4, 2, 8);
-    indc    = matrix(indc, 6, 4, 2, 8);
-    sr      = matrix(sr, 6, 4, 2, 8);
-    indr    = matrix(indr, 6, 4, 2, 8);
-    slc     = matrix(slc, 6, 4, 2, 8);
-    indlc   = matrix(indlc, 1, 4, 2, 8);
-    slr     = matrix(slr, 6, 4, 2, 8);
-    indlr   = matrix(indlr, 6, 1, 2, 8);
-
-    assert_checkequal(hsc, sc);
-    assert_checkequal(hindc, indc);
-    assert_checkequal(hsr, sr);
-    assert_checkequal(hindr, indr);
-    assert_checkequal(hslc, slc);
-    assert_checkequal(hindlc, indlc);
-    assert_checkequal(hslr, slr);
-    assert_checkequal(hindlr, indlr);
-
-    // whitout indices
-    hsc  = gsort(A, "c", o);
-    hsr  = gsort(A, "r", o);
-    hslc = gsort(A, "lc", o);
-    hslr = gsort(A, "lr", o);
-
-    assert_checkequal(hsc, sc);
-    assert_checkequal(hsr, sr);
-    assert_checkequal(hslc, slc);
-    assert_checkequal(hslr, slr);
-end

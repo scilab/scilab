@@ -102,9 +102,6 @@ delete("all"); //delete all the graphics objects of the figure
                 <link linkend="graphics_entities">graphics_entities</link>
             </member>
             <member>
-                <link linkend="xdel">xdel</link>
-            </member>
-            <member>
                 <link linkend="close">close</link>
             </member>
         </simplelist>

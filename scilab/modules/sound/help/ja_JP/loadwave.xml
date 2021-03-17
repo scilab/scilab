@@ -66,7 +66,8 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[
 // まず0.5秒分のサウンドパラメータを作成.
-t=soundsec(0.5);
+t = 0 : 1/22050 : 0.5*(1-%eps);
+
 // 次にサウンドを生成: 2チャンネルのサウンド.
 s=[sin(2*%pi*440*t);sin(2*%pi*350*t)];
 savewave(TMPDIR+'/foo.wav',s);

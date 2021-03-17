@@ -11,7 +11,7 @@
 // <-- Non-regression test for bug 1636 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=1636
+// http://bugzilla.scilab.org/1636
 //
 // <-- Short Description -->
 //    When processing an m-file with multiple continuation lines in the
@@ -36,18 +36,13 @@ mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR,%f,%t);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
-SCIFILECONTENTSREF=["function [A] = bug1636(x,y,z,t,u,v,w,z)";
-"";
-"// Output variables initialisation (not found in input variables)"
-"A=[];";
-"";
-"// Display mode";
-"mode(0);"
-"";
-"// Display warning for floating point exception";
-"ieee(1);";
-"";
-"a = mtlb_a(mtlb_a(mtlb_a(mtlb_a(mtlb_a(mtlb_a(mtlb_a(x,y),z),t),u),v),w),z);"
-"endfunction"];
+SCIFILECONTENTSREF=[
+    "function [A] = bug1636(x,y,z,t,u,v,w,z)"
+    ""
+    "// Output variables initialisation (not found in input variables)"
+    "A=[];"
+    ""
+    "a = mtlb_a(mtlb_a(mtlb_a(mtlb_a(mtlb_a(mtlb_a(mtlb_a(x,y),z),t),u),v),w),z);"
+    "endfunction"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

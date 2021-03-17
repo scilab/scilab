@@ -111,37 +111,32 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
     else if (in[0]->isPoly())
     {
         types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
-        types::Polynom* pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray());
+        types::Polynom* pPolyOut = pPolyIn->clone();
         pPolyOut->setComplex(true);
 
-        double* dataImg  = NULL;
-        double* dataReal = NULL;
-
-        for (int i = 0; i < pPolyIn->getSize(); i++)
+        for (int i = 0; i < pPolyOut->getSize(); i++)
         {
-            int rank = pPolyIn->get(i)->getRank();
-            types::SinglePoly* pSP = new types::SinglePoly(&dataReal, &dataImg, rank);
-
+            types::SinglePoly* pSP = pPolyOut->get(i);
+            double* dataReal = pSP->get();
+            double* dataImg = pSP->getImg();
+            int rank = pSP->getRank();
             if (pPolyIn->isComplex())
             {
                 for (int j = 0; j < rank + 1; j++)
                 {
-                    dataReal[j] = pPolyIn->get(i)->getImg()[j] * -1;
-                    dataImg[j]  = pPolyIn->get(i)->get()[j];
+                    double dblBuf = dataReal[j];
+                    dataReal[j] = -dataImg[j];
+                    dataImg[j] = dblBuf;
                 }
             }
             else
             {
                 for (int j = 0; j < rank + 1; j++)
                 {
+                    dataImg[j] = dataReal[j];
                     dataReal[j] = 0;
-                    dataImg[j]  = pPolyIn->get(i)->get()[j];
                 }
             }
-
-            pPolyOut->set(i, pSP);
-            delete pSP;
-            pSP = NULL;
         }
 
         out.push_back(pPolyOut);

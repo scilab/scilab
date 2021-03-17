@@ -16,11 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xdel" xml:lang="pt">
     <refnamediv>
         <refname>xdel</refname>
-        <refpurpose>deleta uma janela de gráficos</refpurpose>
+        <refpurpose>deleta uma janela de gráficos <emphasis role="bold">(obsolete)</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>xdel([win-nums])</synopsis>
+        <synopsis>
+            xdel()
+            xdel(win_nums)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -35,10 +38,48 @@
     </refsection>
     <refsection>
         <title>Descrição</title>
+        <warning>
+            xdel(…) is obsolete and will be removed from Scilab 6.2. Please use close(…) instead.
+        </warning>
         <para>
             <literal>xdel</literal> deleta a janela de gráficos
             <literal>win-nums</literal> ou a janela de gráficos corrente, se não for
             fornecido nenhum argumento.
         </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+plot2d();
+scf();
+plot3d();
+xdel(0); // delete the first graphic
+xdel(); // delete the current figure
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="close">close</link>
+            </member>
+            <member>
+                <link linkend="delete">delete</link>
+            </member>
+            <member>
+                <link linkend="winsid">winsid</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    xdel() declared obsolete. close() replaces it.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

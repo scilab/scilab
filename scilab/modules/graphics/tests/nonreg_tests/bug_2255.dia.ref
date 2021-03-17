@@ -11,8 +11,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2255
 //
 // <-- Short Description -->
-// plot command fails to verify that x and y data have the same length in certain cases.
-//
+// plot function fails to verify that x and y data have the same length in certain cases.
+// 
 err = execstr('plot(ones(1,2048),ones(1,1024))','errcatch','n');
 // should produce an error message
 if (err == 0) then bugmes();quit;end

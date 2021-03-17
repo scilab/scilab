@@ -13,11 +13,11 @@ A_ref2 = int8(zeros(24,1));
 A_ref3 = int8(ones(15,1));
 A_ref4 = int8(zeros(26,1));
 try scicos_simulate(scs_m, "nw"); catch disp(lasterror()); end
-  "messagebox: No continuous-time state. Thresholds are ignored; this "        
-  "messagebox: may be OK if you don't generate external events with them."     
-  "messagebox: If you want to reactivate the thresholds, then you need"        
-  "messagebox: "                                                               
-  "messagebox: to include a block with continuous-time state in your diagram." 
+  "messagebox: No continuous-time state. Thresholds are ignored; this "
+  "messagebox: may be OK if you don't generate external events with them."
+  "messagebox: If you want to reactivate the thresholds, then you need"
+  "messagebox: "                                                       
+  "messagebox: to include a block with continuous-time state in your diagram."
   "messagebox:    You can for example include DUMMY CLSS block (linear palette)."
 assert_checkequal(A.values(1:7),   A_ref1);
 assert_checkequal(A.values(8:31),  A_ref2);

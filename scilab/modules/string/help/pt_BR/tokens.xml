@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,36 +13,47 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tokens" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="tokens" xml:lang="pt">
     <refnamediv>
         <refname>tokens</refname>
-        <refpurpose>retorna as fichas (tokens) de um string</refpurpose>
+        <refpurpose>
+            Divide um texto usando separadores e fornece seus pedaços
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>T=tokens(str [,delimiter])</synopsis>
+        <synopsis>
+            Chunks = tokens(text)
+            Chunks = tokens(text, separators)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
-                <term>str</term>
+                <term>text</term>
                 <listitem>
-                    <para>string, o local de procura dos tokens</para>
+                    Um único texto a ser dividido. Pode incluir caracteres internacionais UTF-8
+                    estendidos.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>delimiter</term>
+                <term>separators</term>
                 <listitem>
-                    <para>(opcional) um caractere ou um vetor de caracteres. Os
-                        delimitadores de fichas.
-                    </para>
+                    Vetor de caracteres. Valor padrão = <literal>[" ",ascii(9)]</literal>,
+                    ascii(9) sendo a tabulação horizontal.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>T</term>
+                <term>Chunks</term>
                 <listitem>
-                    <para>vetor coluna de fichas encontradas</para>
+                    Vetor da coluna: partes do texto dividido.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -50,25 +61,62 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            <literal>T=tokens(str [,delimiter]) </literal> procura pelos tokens
-            inclusos no string <literal>str</literal>. O padrão de
-            <literal>delimiter</literal> é [" ",&lt;Tab&gt;] onde &lt;Tab&gt; é
-            <literal>ascii(9)</literal>.
+            <literal>tokens(…)</literal> pesquisa no texto os separadores fornecidos,
+            e divide em pedaços. Os pedaços são sem separadores.
+            Separadores consecutivos são mesclados.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-tokens('Isto é um string')
+tokens("The given   text")
 
-tokens('SCI/demos/scicos','/')
+tokens("SCI/demos/scicos", "/")'
 
-tokens('y=a+b*2',['=','+','*'])
+tokens("Επιστήμη και καινοτομία", ["α"," "])'
+
+nbsp = ascii(160); // non-breakable space
+t = "the" + nbsp + "given   text"
+tokens(t)
  ]]></programlisting>
+    <screen><![CDATA[
+--> tokens('The given   text')
+ ans  =
+  "The"
+  "given"
+  "text"
+
+
+--> tokens('SCI/demos/scicos', '/')'
+ ans  =
+  "SCI"  "demos"  "scicos"
+
+
+--> tokens("Επιστήμη και καινοτομία", ["α"," "])'
+ ans  =
+  "Επιστήμη"  "κ"  "ι"  "κ"  "ινοτομί"
+
+
+--> nbsp = ascii(160); // non-breakable space
+--> t = "the" + nbsp + "given   text"
+ t  =
+  "the given   text"
+
+--> tokens(t)
+ ans  =
+  "the given"
+  "text"
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="strsplit">strsplit</link>
+            </member>
+            <member>
+                <link linkend="regexp">regexp</link>
+            </member>
             <member>
                 <link linkend="strindex">strindex</link>
             </member>

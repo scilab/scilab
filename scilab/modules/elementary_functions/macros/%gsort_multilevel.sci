@@ -178,15 +178,18 @@ function v = %gsort_eval(a, fun)
         params = fun
         params(1) = null()
         fun = fun(1)
-        if typeof(fun)=="fptr" & fun==atan & type(a)==1 & ~isreal(a)
+        if typeof(fun)=="fptr" & fun==atan & type(a)==1
             v = fun(imag(a), real(a)) + params(1)
         else
             v = fun(a, params(:))
         end
-    elseif typeof(fun)=="fptr" & fun==atan & type(a)==1 & ~isreal(a)
+
+    elseif typeof(fun)=="fptr" & fun==atan & type(a)==1
         v = atan(imag(a), real(a))
+
     elseif typeof(fun)=="implicitlist" & (1:1:$)==fun
         v = a
+
     else
         v = fun(a)
     end

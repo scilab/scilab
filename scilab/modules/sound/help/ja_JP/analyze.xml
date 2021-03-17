@@ -43,7 +43,8 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[
 // まず0.5秒分のサウンドパラメータを作成.
-t=soundsec(0.5);
+t = 0 : 1/22050 : 0.5*(1-%eps);
+
 // 次にサウンドを生成.
 s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
 [nr,nc]=size(t);
@@ -51,7 +52,7 @@ s(nc/2:nc)=sin(330*t(nc/2:nc));
 analyze(s);
  ]]></programlisting>
         <scilab:image>
-            t=soundsec(0.5);
+            t = 0 : 1/22050 : 0.5*(1-%eps);
             s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
             [nr,nc]=size(t);
             s(nc/2:nc)=sin(330*t(nc/2:nc));

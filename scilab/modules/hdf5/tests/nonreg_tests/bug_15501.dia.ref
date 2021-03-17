@@ -21,4 +21,4 @@ load(path);
 listvarinfile(path);
 Name                     Type           Size            Bytes
 -------------------------------------------------------------
-c                        cell           1 by 3          68        
+c                        cell           1 by 3          62        

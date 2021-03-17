@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="champ_properties" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="champ_properties" xml:lang="pt">
     <refnamediv>
         <refname>champ_properties</refname>
         <refpurpose>Descrição das propriedades da entidade campo vetorial
@@ -45,7 +48,7 @@
                         <literal>tlist</literal> de tipo <literal>"champdata"</literal>
                         composto de uma linha e índices de colunas de cada elemento: as
                         coordenadas do grid x e y contidas respectivamente em
-                        <literal>data.x </literal>e <literal>data.y</literal>. Os campos
+                        <literal>data.x </literal> e <literal>data.y</literal>. Os campos
                         complementares chamados <literal>data.fx</literal> e
                         <literal>data.fy</literal> são matrizes que descrevem
                         respectivamente os componentes <literal>x</literal> e
@@ -67,8 +70,9 @@
                 <listitem>
                     <para>
                         o valor da propriedade <literal>line_style</literal> deve ser
-                        um valor inteiro no intervalo [0 9]. 0 significa linha sólida e os
-                        outros valores significam estilos de tracejados. Esta propriedade
+                        um valor inteiro no intervalo [1 10]. 1 significa linha sólida e os
+                        outros valores significam estilos de tracejados (veja
+                        <link linkend="axes_properties">getlinestyle</link>). Esta propriedade
                         aplica-se a todas as linhas usadas para desenhar o campo vetorial.
                     </para>
                 </listitem>
@@ -89,6 +93,29 @@
                         se o valor desta propriedade for <literal>"on"</literal>, os
                         vetores são coloridos utilizando-se uma cor porporcional à
                         intensidade do campo.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>arrow_size: </term>
+                <listitem>
+                    <para>
+                        This property is a double specifying the size of the arrow.
+                        The value can be positive or negative:
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <literal>arrow_size &lt; 0</literal>: the arrows size
+                                    is proportional to the average norm of the vectors.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>arrow_size &gt; 0</literal>: the arrows size
+                                    is proportional to the windows dimensions.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
@@ -191,5 +218,17 @@ a.data_bounds=[-5,-5;5,5];
                 <link linkend="graphics_entities">graphics_entities</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                  line_style value 0 is obsolete, use 1 instead (both are equivalent
+                  for SOLID). Using 0 produces an error since Scilab 5.4.1.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -15,5 +15,5 @@
 //
 a = list()
  a  = 
-     ()
+  empty list()
 assert_checkequal(isempty(a), %T);

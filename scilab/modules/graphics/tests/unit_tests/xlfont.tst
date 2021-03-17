@@ -5,15 +5,17 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
+
 
 xlfont('reset')
 initialfonts = xlfont();
-if size(initialfonts,'*') <> 11 then pause,end
+assert_checkequal(size(initialfonts,'*'), 11);
 
 availablefonts = xlfont('AVAILABLE_FONTS');
-if size(availablefonts,'*') < 11 then pause,end
+assert_checktrue(size(availablefonts,'*') >= 11);
+
 
 for i=1:11:1
   xlfont(availablefonts(i),i);
@@ -30,7 +32,7 @@ end
 xlfont('reset');
 
 afterresetfonts = xlfont();
-if ~and(initialfonts == afterresetfonts) then pause,end
+assert_checkequal(initialfonts, afterresetfonts);
 
 cd(TMPDIR);
 
@@ -52,9 +54,23 @@ for i = 1 : size(tab_ref,'*')
   fonttemp = pathtemp + filesep() + fontname;
   copyfile(fontfull, fonttemp);
   ierr = execstr('r = xlfont(fonttemp);','errcatch');
-  if ierr <> 0 then pause, end
-  if ~isdef('r') then pause, end
+  assert_checkequal(ierr, 0);
+  assert_checktrue(isdef('r'));
   clear r;
 end
+
+xlfont('reset')
+
+xlfont("Verdana", size(xlfont(), "*"), %f, %f);
+assert_checkequal(xlfont()($), "Verdana");
+
+xlfont("Verdana", size(xlfont(), "*"), %f, %t);
+assert_checkequal(xlfont()($), "Verdana Italic");
+
+xlfont("Verdana", size(xlfont(), "*"), %t, %f);
+assert_checkequal(xlfont()($), "Verdana Bold");
+
+xlfont("Verdana", size(xlfont(), "*"), %t, %t);
+assert_checkequal(xlfont()($), "Verdana Bold Italic");
 
 xlfont('reset')

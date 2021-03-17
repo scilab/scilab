@@ -18,6 +18,7 @@
 #include "list.hxx"
 #include "int.hxx"
 #include "localization.hxx"
+#include "overload.hxx"
 #include "scilabWrite.hxx"
 #include "exp.hxx"
 #include "types_tools.hxx"
@@ -506,6 +507,27 @@ Struct* Struct::removeField(const std::wstring& _sKey)
 
 bool Struct::toString(std::wostringstream& ostr)
 {
+    //call overload %type_p if exists
+    types::typed_list in;
+    types::typed_list out;
+
+    IncreaseRef();
+    in.push_back(this);
+    switch (Overload::generateNameAndCall(L"p", in, 1, out, false, false)) {
+        case Function::OK_NoResult:
+            // unresolved function, fallback to a basic display
+            break;
+        case Function::Error:
+            ConfigVariable::setError();
+            // fallthrough
+        case Function::OK:
+            ostr.str(L"");
+            DecreaseRef();
+            return true;
+    };
+    DecreaseRef();
+
+    // otherwise, display basic information
     if (getSize() == 0)
     {
         ostr << L"0x0 struct array with no field.";

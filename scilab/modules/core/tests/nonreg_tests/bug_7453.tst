@@ -19,9 +19,8 @@
 //
 //
 
-id = funptr("user");
-if id == 0 then pause, end
-if clearfun("user") <> %t then pause, end
-newfun("user", id);
-if user(3) <> 3 then pause, end
-
+id = funptr("sin");
+assert_checktrue(id <> 0);
+assert_checktrue(clearfun("sin"));
+newfun("sin", id);
+assert_checktrue(sin(0) == 0);

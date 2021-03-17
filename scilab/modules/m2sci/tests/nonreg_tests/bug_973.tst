@@ -39,12 +39,6 @@ mclose(fd);
 
 SCIFILECONTENTSREF=[
     ""
-    "// Display mode"
-    "mode(0);"
-    ""
-    "// Display warning for floating point exception"
-    "ieee(1);"
-    ""
     ""
     "// comment"
     "var1 = mtlb_strrep(var,"" "","","")"

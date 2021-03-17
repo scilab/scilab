@@ -872,72 +872,21 @@ Sparse* Sparse::resize(int _iNewRows, int _iNewCols)
         return this;
     }
 
+    if (((double)_iNewRows) * ((double)_iNewCols) > INT_MAX)
+    {
+        return NULL;
+    }
+
     Sparse* res = NULL;
     try
     {
         if (matrixReal)
         {
-            //item count
-            size_t iNonZeros = nonZeros();
-            RealSparse_t *newReal = new RealSparse_t(_iNewRows, _iNewCols);
-            newReal->reserve((int)iNonZeros);
-
-
-            //coords
-            int* pRows = new int[iNonZeros * 2];
-            outputRowCol(pRows);
-            int* pCols = pRows + iNonZeros;
-
-            //values
-            double* pNonZeroR = new double[iNonZeros];
-            double* pNonZeroI = new double[iNonZeros];
-            outputValues(pNonZeroR, pNonZeroI);
-
-            std::vector<RealTriplet_t> tripletList;
-            for (size_t i = 0; i < iNonZeros; i++)
-            {
-                tripletList.emplace_back((int)pRows[i] - 1, (int)pCols[i] - 1, pNonZeroR[i]);
-            }
-
-            newReal->setFromTriplets(tripletList.begin(), tripletList.end(), DupFunctor<double>());
-
-            delete matrixReal;
-            matrixReal = newReal;
-            delete[] pRows;
-            delete[] pNonZeroR;
-            delete[] pNonZeroI;
+            matrixReal->conservativeResize(_iNewRows, _iNewCols);
         }
         else
         {
-            //item count
-            size_t iNonZeros = nonZeros();
-            CplxSparse_t *newCplx = new CplxSparse_t(_iNewRows, _iNewCols);
-            newCplx->reserve((int)iNonZeros);
-
-            //coords
-            int* pRows = new int[iNonZeros * 2];
-            outputRowCol(pRows);
-            int* pCols = pRows + iNonZeros;
-
-            //values
-            double* pNonZeroR = new double[iNonZeros];
-            double* pNonZeroI = new double[iNonZeros];
-            outputValues(pNonZeroR, pNonZeroI);
-
-            std::vector<CplxTriplet_t> tripletList;
-            for (size_t i = 0; i < iNonZeros; i++)
-            {
-                tripletList.emplace_back((int)pRows[i] - 1, (int)pCols[i] - 1, std::complex<double>(pNonZeroR[i], pNonZeroI[i]));
-            }
-
-            newCplx->setFromTriplets(tripletList.begin(), tripletList.end(), DupFunctor<std::complex<double>>());
-
-
-            delete matrixCplx;
-            matrixCplx = newCplx;
-            delete[] pRows;
-            delete[] pNonZeroR;
-            delete[] pNonZeroI;
+            matrixCplx->conservativeResize(_iNewRows, _iNewCols);
         }
 
         m_iRows = _iNewRows;
@@ -1158,8 +1107,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
 
     typed_list pArg;
 
-    int piMaxDim[2];
-    int piCountDim[2];
+    int* piMaxDim = new int[2];
+    int* piCountDim = new int[2];
 
     //on case of resize
     int iNewRows = 0;
@@ -1170,6 +1119,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        delete[] piMaxDim;
+        delete[] piCountDim;
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         return this;
@@ -1202,6 +1153,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
         }
         else if ((size_t)getRows() * (size_t)getCols() < (size_t)piMaxDim[0])
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
             //out of range
@@ -1217,6 +1170,9 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
             iNewCols = std::max(getCols(), piMaxDim[1]);
         }
     }
+
+    delete[] piMaxDim;
+    delete[] piCountDim;
 
     //check number of insertion
     if (pSource->isScalar() == false && pSource->getSize() != iSeqCount)
@@ -1553,7 +1509,7 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
                 {
                     int iRow = static_cast<int>(i % iRowSize);
                     int iCol = static_cast<int>(i / iRowSize);
-                    tripletList.emplace_back(static_cast<int>(pI[iRow]) - 1, static_cast<int>(pJ[iCol]) - 1, *src);
+                    tripletList.emplace_back(static_cast<int>(pI[iRow] - 1) , static_cast<int>(pJ[iCol] - 1) , *src);
                     src += inc;
                 }
 
@@ -1859,6 +1815,13 @@ GenericType* Sparse::remove(typed_list* _pArgs)
     }
     delete[] pbKeep;
 
+    if (iNewDimSize == 0)
+    {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
+        return new Sparse(0, 0);
+    }
+
     int* piNewDims = new int[iDims];
     for (int i = 0; i < iDims; i++)
     {
@@ -1884,14 +1847,6 @@ GenericType* Sparse::remove(typed_list* _pArgs)
         {
             break;
         }
-    }
-
-    if (iNewDimSize == 0)
-    {
-        delete[] piNewDims;
-        //free pArg content
-        cleanIndexesArguments(_pArgs, &pArg);
-        return new Sparse(0, 0);
     }
 
     if (iDims == 1)
@@ -2005,10 +1960,67 @@ GenericType* Sparse::extract(typed_list* _pArgs)
 {
     Sparse* pOut = NULL;
     int iDims = (int)_pArgs->size();
+    bool bAllColonIndex = true;
     typed_list pArg;
 
     int* piMaxDim = new int[iDims];
     int* piCountDim = new int[iDims];
+
+    for (int i=0; i<iDims; i++)
+    {
+        bAllColonIndex &= (*_pArgs)[i]->isColon();
+    }
+
+    if (bAllColonIndex)
+    {
+        if (iDims > 1) // a(:,...,:)
+        {
+            return this;
+        }
+        else // a(:)
+        {
+            if (isVector())
+            {
+                if (getCols() == 1)
+                {
+                    return this;
+                }
+                else
+                {
+                    this->transpose((types::InternalType *&)pOut);
+                    return pOut;
+                }
+            }
+            pOut = new types::Sparse(getRows()*getCols(), 1, isComplex());
+            if (isComplex())
+            {
+                CplxSparse_t *sp = pOut->matrixCplx;
+                sp->reserve(nonZeros());
+                int k=0;
+                for (size_t i=0; i<getRows(); ++i)
+                {
+                    for (Sparse::CplxSparse_t::InnerIterator it(*matrixCplx, i); it; ++it)
+                    {
+                        sp->insert(it.col()*getRows() + i, 0) = it.value();
+                    }
+                }
+            }
+            else
+            {
+                RealSparse_t *sp = pOut->matrixReal;
+                sp->reserve(nonZeros());
+                int k=0;
+                for (size_t i=0; i<getRows(); ++i)
+                {
+                    for (Sparse::RealSparse_t::InnerIterator it(*matrixReal, i); it; ++it)
+                    {
+                        sp->insert(it.col()*getRows() + i, 0) = it.value();
+                    }
+                }
+            }
+        }
+        return pOut;
+    }
 
     //evaluate each argument and replace by appropriate value and compute the count of combinations
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
@@ -3120,8 +3132,7 @@ Sparse* Sparse::reshape(int _iNewRows, int _iNewCols)
 
             //values
             double* pNonZeroR = new double[iNonZeros];
-            double* pNonZeroI = new double[iNonZeros];
-            outputValues(pNonZeroR, pNonZeroI);
+            outputValues(pNonZeroR, NULL);
 
             std::vector<RealTriplet_t> tripletList;
             for (size_t i = 0; i < iNonZeros; i++)
@@ -3136,7 +3147,6 @@ Sparse* Sparse::reshape(int _iNewRows, int _iNewCols)
             matrixReal = newReal;
             delete[] pRows;
             delete[] pNonZeroR;
-            delete[] pNonZeroI;
         }
         else
         {
@@ -3380,32 +3390,15 @@ SparseBool* SparseBool::resize(int _iNewRows, int _iNewCols)
         return this;
     }
 
+    if (((double)_iNewRows) * ((double)_iNewCols) > INT_MAX)
+    {
+        return NULL;
+    }
+
     SparseBool* res = NULL;
     try
     {
-        //item count
-        size_t iNonZeros = nbTrue();
-
-        BoolSparse_t *newBool = new BoolSparse_t(_iNewRows, _iNewCols);
-        newBool->reserve((int)iNonZeros);
-
-        //coords
-        int* pRows = new int[iNonZeros * 2];
-        outputRowCol(pRows);
-        int* pCols = pRows + iNonZeros;
-
-        std::vector<BoolTriplet_t> tripletList;
-
-        for (size_t i = 0; i < iNonZeros; i++)
-        {
-            tripletList.emplace_back((int)pRows[i] - 1, (int)pCols[i] - 1, true);
-        }
-
-        newBool->setFromTriplets(tripletList.begin(), tripletList.end(), DupFunctor<bool>());
-
-        delete matrixBool;
-        matrixBool = newBool;
-        delete[] pRows;
+        matrixBool->conservativeResize(_iNewRows, _iNewCols);
 
         m_iRows = _iNewRows;
         m_iCols = _iNewCols;
@@ -3434,8 +3427,8 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
 
     typed_list pArg;
 
-    int piMaxDim[2];
-    int piCountDim[2];
+    int* piMaxDim = new int[2];
+    int* piCountDim = new int[2];
 
     //on case of resize
     int iNewRows = 0;
@@ -3445,6 +3438,8 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        delete[] piMaxDim;
+        delete[] piCountDim;
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         return this;
@@ -3477,6 +3472,8 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
         }
         else if (getRows() * getCols() < piMaxDim[0])
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
             //out of range
@@ -3492,6 +3489,9 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
             iNewCols = std::max(getCols(), piMaxDim[1]);
         }
     }
+
+    delete[] piMaxDim;
+    delete[] piCountDim;
 
     //check number of insertion
     if (_pSource->isScalar() == false && _pSource->getSize() != iSeqCount)
@@ -3827,6 +3827,13 @@ GenericType* SparseBool::remove(typed_list* _pArgs)
     }
     delete[] pbKeep;
 
+    if (iNewDimSize == 0)
+    {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
+        return new SparseBool(0, 0);
+    }
+
     int* piNewDims = new int[iDims];
     for (int i = 0; i < iDims; i++)
     {
@@ -3856,27 +3863,17 @@ GenericType* SparseBool::remove(typed_list* _pArgs)
 
     if (iDims == 1)
     {
-        if (iNewDimSize == 0)
+        //two cases, depends of original matrix/vector
+        if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] != 1)
         {
-            //free pArg content
-            cleanIndexesArguments(_pArgs, &pArg);
-            delete[] piNewDims;
-            return new SparseBool(0, 0);
+            //special case for row vector
+            pOut = new SparseBool(1, iNewDimSize);
+            //in this case we have to care of 2nd dimension
+            //iNotEntire = 1;
         }
         else
         {
-            //two cases, depends of original matrix/vector
-            if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] != 1)
-            {
-                //special case for row vector
-                pOut = new SparseBool(1, iNewDimSize);
-                //in this case we have to care of 2nd dimension
-                //iNotEntire = 1;
-            }
-            else
-            {
-                pOut = new SparseBool(iNewDimSize, 1);
-            }
+            pOut = new SparseBool(iNewDimSize, 1);
         }
     }
     else

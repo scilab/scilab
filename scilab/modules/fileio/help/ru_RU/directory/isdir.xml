@@ -83,8 +83,9 @@ isdir SCI/etc/scilab.start
             <revision>
                 <revnumber>6.0.2</revnumber>
                 <revdescription>
-                  isdir("w:") and isdir("w:\") and isdir("w:/") now return %F when the drive W:
-                  does not exist.
+                    <literal>isdir("w:")</literal> и <literal>isdir("w:\")</literal> и
+                    <literal>isdir("w:/")</literal> теперь возвращает <constant>%f</constant>,
+                    когда отсутствует диск <literal>W:</literal>.
                 </revdescription>
             </revision>
         </revhistory>

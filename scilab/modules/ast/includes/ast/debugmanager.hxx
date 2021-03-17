@@ -67,6 +67,7 @@ private:
 
     ast::Exp* pExp;
     bool interrupted;
+    bool request_pause;
     int currentBreakPoint;
     DebugAction action;
     int level;
@@ -158,7 +159,10 @@ public:
     void errorInScript(const std::wstring funcname, const ast::Exp* pExp);
 
     //breakpoints functions
-    void addBreakPoint(Breakpoint* bp);
+    bool addBreakPoint(Breakpoint* bp);
+    bool updateBreakPoint(Breakpoint* bp);
+    bool removeBreakPoint(Breakpoint* bp);
+    Breakpoints::iterator findBreakPoint(Breakpoint* bp);
     void removeBreakPoint(int _iBreakPoint);
     void setAllBreakPoints(Breakpoints& _bps);
     void removeAllBreakPoints();
@@ -276,6 +280,9 @@ public:
     void show(int bp); //print the breakpoint bp or all breakpoints (bp = -1)
     void resume(); //resume execution
     void abort(); //abort execution
+    void requestPause(); //pause execution
+    bool isPauseRequested(); //get pause request status
+    void resetPauseRequest(); //reset pause request status
 };
 
 }

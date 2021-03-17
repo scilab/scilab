@@ -58,7 +58,9 @@ function y = bitset(x, pos, v)
             error(msprintf(msg, fname, 2, posmax))
         end
     end
-    // Check consistency between x and pos sizes
+    pos = double(pos)
+
+   // Check consistency between x and pos sizes
     sx = size(x)
     ndx = ndims(x)
     sp = size(pos)

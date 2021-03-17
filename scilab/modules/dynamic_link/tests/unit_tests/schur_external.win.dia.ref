@@ -23,18 +23,12 @@ mputl(C,TMPDIR+'/schur_test/mytest.c');
 //build and link
 lp=ilib_for_link('mytest','mytest.c',[],'c');
    Generate a loader file
-
    Generate a Makefile
-
    Running the Makefile
-
    Compilation of mytest.c
-
    Building shared library (be patient)
-
    Generate a cleaner file
-
-link(lp,'mytest','c'); 
+link(lp,'mytest','c');
 Shared archive loaded.
 Link done.
 //run it

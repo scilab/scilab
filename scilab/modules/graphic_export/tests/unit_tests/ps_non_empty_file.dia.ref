@@ -14,7 +14,7 @@ plot3d;
 fig = gcf();
 figIndex =fig.figure_id;
 // vectorial export
-// check that file size is greater than 10M
+// check that file size is greater than 100K
 // increase minimum size
 minimumSize = 100000;
 xs2ps(figIndex, TMPDIR+"/textExport.ps")

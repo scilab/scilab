@@ -14,9 +14,6 @@
 //
 // <-- Short Description -->
 //fix issue of crashing in arm when displaying 0
-
 a = 0
  a  = 
-
    0.
-

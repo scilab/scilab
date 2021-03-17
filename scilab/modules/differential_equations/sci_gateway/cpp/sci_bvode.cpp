@@ -22,6 +22,9 @@
 #include "callable.hxx"
 #include "differentialequationfunctions.hxx"
 
+#include <memory>
+#include <vector>
+
 extern "C"
 {
 #include "sci_malloc.h"
@@ -29,6 +32,13 @@ extern "C"
 #include "Scierror.h"
 #include "scifunctions.h"
 #include "sciprint.h"
+}
+/*--------------------------------------------------------------------------*/
+
+namespace {
+    // rwork / fspace is declared as a Fortran COMMON to call bvode with the same iguess/ipar(9) space 
+    static std::shared_ptr< std::vector<double> > rwork;
+    static std::shared_ptr< std::vector<int> > iwork;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -547,8 +557,12 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     }
 
     // *** Perform operation. ***
-    double* rwork   = (double*)MALLOC(ipar[4] * sizeof(double));
-    int* iwork      = (int*)MALLOC(ipar[5] * sizeof(int));
+
+    // COMMON rwork and iwork (fspace and ispace)
+    if (!rwork || rwork->size() != ipar[4])
+        rwork = std::make_shared< std::vector<double> >(ipar[4]);
+    if (!iwork || iwork->size() != ipar[5])
+        iwork = std::make_shared< std::vector<int> >(ipar[5]);
     int* ltol       = (int*)MALLOC(pDblLtol->getSize() * sizeof(int));
 
     for (int i = 0; i < pDblLtol->getSize(); i++)
@@ -556,9 +570,15 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
         ltol[i] = (int)pDblLtol->get(i);
     }
 
+    // for ipar(9) = 2 or 3 set ipar(3) = ispace(1) ( = the size of the previous mesh ).
+    if (ipar[8] == 2 || ipar[8] == 3)
+    {
+        ipar[2] = iwork->data()[0];
+    }
+
     try
     {
-        C2F(colnew)(&ncomp, M, &aleft, &aright, pDblZeta->get(), ipar, ltol, pDblTol->get(), pDblFixpnt->get(), iwork, rwork, &iflag, bvode_fsub, bvode_dfsub, bvode_gsub, bvode_dgsub, bvode_guess);
+        C2F(colnew)(&ncomp, M, &aleft, &aright, pDblZeta->get(), ipar, ltol, pDblTol->get(), pDblFixpnt->get(), iwork->data(), rwork->data(), &iflag, bvode_fsub, bvode_dfsub, bvode_gsub, bvode_dgsub, bvode_guess);
     }
     catch (ast::InternalError &ie)
     {
@@ -568,8 +588,6 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
 
     if (bCatch)
     {
-        FREE(iwork);
-        FREE(rwork);
         FREE(M);
         FREE(ltol);
         DifferentialEquation::removeDifferentialEquationFunctions();
@@ -599,8 +617,6 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
             Scierror(999, _("%s: There is an input data error.\n"), "bvode");
         }
 
-        FREE(iwork);
-        FREE(rwork);
         FREE(M);
         FREE(ltol);
         DifferentialEquation::removeDifferentialEquationFunctions();
@@ -613,13 +629,11 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     for (int i = 0; i < pDblXpts->getSize(); i++)
     {
         double val = pDblXpts->get(i);
-        C2F(appsln)(&val, &res[i * sumM], rwork, iwork);
+        C2F(appsln)(&val, &res[i * sumM], rwork->data(), iwork->data());
     }
 
     pDblRes->set(res);
 
-    FREE(iwork);
-    FREE(rwork);
     FREE(M);
     FREE(ltol);
     FREE(res);

@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=7998
 //
 // <-- Short Description -->
-//%h_get failed with heterogen handle matrix
+//%h_get failed on heterogeneous handle matrix
 cols = [1 2 3 4 5];
 lgd = [];
 for k = 1 : 5

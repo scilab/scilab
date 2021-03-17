@@ -16,5 +16,4 @@
 jallowClassReloading(%t);
 jallowClassReloading()
  ans  =
- 
-  T  
+  T

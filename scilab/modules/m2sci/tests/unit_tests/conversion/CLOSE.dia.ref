@@ -63,31 +63,25 @@ TESTING M2SCI: creating varslist file...
   Translation may be wrong (see the //!! comments).
   ****** End of mfile2sci() session ******
 
-// Display mode
-mode(0);
-
-// Display warning for floating point exception
-ieee(1);
 
 // Test file for function close()
 // Copyright INRIA
 // Matlab version: 6.5.1.199709 (R13) Service Pack 1
 // V.C.
 
-
 close
 
 close(h)
 
 mtlb_close("name")
-xdel(winsid())
-xdel(winsid())
+close(winsid())
+close(winsid())
 
 status = close()
 status = close(h)
 status = mtlb_close(name)
-status = xdel(winsid())
-status = xdel(winsid())
+status = close(winsid())
+status = close(winsid())
 
 
 delete(gcf())
@@ -95,11 +89,11 @@ delete(gcf())
 delete(h1)
 
 mtlb_close("name")
-xdel(winsid())
-xdel(winsid())
+close(winsid())
+close(winsid())
 
 status = delete(gcf())
 status = delete(h1)
 status = mtlb_close(name)
-status = xdel(winsid())
-status = xdel(winsid())
+status = close(winsid())
+status = close(winsid())

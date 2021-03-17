@@ -172,27 +172,6 @@ void DebuggerManager::sendUpdate() const
     }
 }
 
-void DebuggerManager::addBreakPoint(Breakpoint* bp)
-{
-    //check if breakpoint does not exist
-    for (const auto b : breakpoints)
-    {
-        bool isMacro = b->getFunctioName() == bp->getFunctioName() &&
-                       b->getMacroLine() != bp->getMacroLine();
-        bool isFile  = b->getFileName() == bp->getFileName() &&
-                       b->getFileLine() != bp->getFileLine();
-        bool equalCondition = b->getCondition() != bp->getCondition();
-        if ((isMacro || isFile) && equalCondition)
-        {
-            //same breakpoint, cancel add
-            return;
-        }
-    }
-
-    breakpoints.push_back(bp);
-    sendUpdate();
-}
-
 void DebuggerManager::setAllBreakPoints(Breakpoints& _bps)
 {
     // remove existing breakpoints
@@ -205,6 +184,64 @@ void DebuggerManager::setAllBreakPoints(Breakpoints& _bps)
     // set new breakpoints
     breakpoints.swap(_bps);
     sendUpdate();
+}
+
+Breakpoints::iterator DebuggerManager::findBreakPoint(Breakpoint* bp)
+{
+    Breakpoints::iterator found = std::find_if(breakpoints.begin(), breakpoints.end(),
+    [&](Breakpoint* b) {
+        bool isMacro = b->getFunctioName() != "" &&
+                       b->getFunctioName() == bp->getFunctioName() &&
+                       b->getMacroLine() == bp->getMacroLine();
+
+        bool isFile  = b->getFileName() != "" &&
+                       b->getFileName() == bp->getFileName() &&
+                       b->getFileLine() == bp->getFileLine();
+
+        return (isMacro || isFile);
+    });
+
+    return found;
+}
+
+bool DebuggerManager::addBreakPoint(Breakpoint* bp)
+{
+    //check if breakpoint does not exist
+    Breakpoints::iterator iter = findBreakPoint(bp);
+    if(iter == breakpoints.end())
+    {
+        breakpoints.push_back(bp);
+        sendUpdate();
+        return true;
+    }
+
+    return false;
+}
+
+bool DebuggerManager::updateBreakPoint(Breakpoint* bp)
+{
+    Breakpoints::iterator iter = findBreakPoint(bp);
+    if(iter != breakpoints.end())
+    {
+        std::swap(*iter, bp);
+        delete bp;
+        return true;
+    }
+
+    return false;
+}
+
+bool DebuggerManager::removeBreakPoint(Breakpoint* bp)
+{
+    Breakpoints::iterator iter = findBreakPoint(bp);
+    if(iter != breakpoints.end())
+    {
+        delete *iter;
+        breakpoints.erase(iter);
+        return true;
+    }
+
+    return false;
 }
 
 void DebuggerManager::removeBreakPoint(int _iBreakPoint)
@@ -344,7 +381,7 @@ void DebuggerManager::generateCallStack()
         row.functionName = tmp;
         FREE(tmp);
         row.functionLine = it_line->m_line - 1;
-        if(callstackAddFile(&row, *it_name->m_file_name))
+        if(it_name->m_file_name && callstackAddFile(&row, *it_name->m_file_name))
         {
             row.fileLine = it_line->m_line;
             row.functionLine = -1;
@@ -442,6 +479,24 @@ void DebuggerManager::resume() //resume execution
     }
 }
 
+void DebuggerManager::requestPause() //ask for pause
+{
+    // pause on execution only if a command is running
+    if(interrupted == false) {
+        request_pause = true;
+    }
+}
+
+bool DebuggerManager::isPauseRequested() //pause execution
+{
+    return request_pause;
+}
+
+void DebuggerManager::resetPauseRequest() //pause execution
+{
+    request_pause = false;
+}
+
 void DebuggerManager::abort() //abort execution
 {
     //inform debuggers
@@ -449,6 +504,9 @@ void DebuggerManager::abort() //abort execution
 
     // this state is check by the debuggerVisitor to do abort in the main thread
     setAborted();
+
+    // reset requested pause in case we abort before beeing in pause
+    resetPauseRequest();
 
     // abort in a pause
     if(isInterrupted())
@@ -458,8 +516,10 @@ void DebuggerManager::abort() //abort execution
             ConfigVariable::DecreasePauseLevel();
         }
 
-        // reset lasterror
+        // reset lasterror information
         ConfigVariable::clearLastError();
+        // reset error flag
+        ConfigVariable::resetError();
         // reset callstack
         clearCallStack();
 
@@ -482,8 +542,18 @@ void DebuggerManager::internal_stop()
     // release the debugger thread
     ThreadManagement::SendDebuggerExecDoneSignal();
     // wait inside pause
-    pause();
-    //clean current seqexp
+    try
+    {
+        pause();
+    }
+    catch (const ast::InternalAbort& ia)
+    {
+        // can append when aborting an execution
+        // which is running inside a pause
+        interrupted = false;
+        throw ia;
+    }
+
     interrupted = false;
 }
 

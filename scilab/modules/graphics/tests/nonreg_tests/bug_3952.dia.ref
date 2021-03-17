@@ -12,7 +12,7 @@
 //
 // <-- Short Description -->
 // legend only works when the number of strings equals the number of polylines
-//
+// 
 x = 1:10;
 plot(x,x);
 p1 = gce();

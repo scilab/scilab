@@ -28,12 +28,6 @@ TESTING M2SCI: creating varslist file...
   Macro to tree conversion: Done
   ****** End of mfile2sci() session ******
 
-// Display mode
-mode(0);
-
-// Display warning for floating point exception
-ieee(1);
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Vincent COUVERT
 // 

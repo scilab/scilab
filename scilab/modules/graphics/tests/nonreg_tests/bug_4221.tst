@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 4221 -->
 //
@@ -23,6 +24,6 @@ f=gcf();
 f.color_map= hotcolormap(128);
 clf();
 graypolarplot(theta,rho,z);
-xdel(winsid());
+close(winsid());
 
 // It's just a 256x360 matrix, it should not complain about memory

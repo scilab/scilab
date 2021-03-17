@@ -2,7 +2,7 @@
 
 function builder_gw_cpp()
 
-    includes_src_c = ilib_include_flag(get_absolute_file_path("builder_gateway_cpp.sce") + "../../src/c");
+    includes_src_c = ilib_include_flag(get_absolute_file_path() + "../../src/c");
 
     //adapt to compiler capabilities
     l = ilib_language();

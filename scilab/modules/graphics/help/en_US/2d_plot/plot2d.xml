@@ -4,8 +4,8 @@
  * Copyright (C) INRIA
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Yann Collette
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,114 +26,261 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            plot2d([logflag,][x,],y[,style[,strf[,leg[,rect[,nax]]]]])
-            plot2d([logflag,][x,],y,&lt;opt_args&gt;)
+            plot2d()   // example
+            plot2d(y)
+            plot2d(x, y)
+            plot2d(logflag, x, y)
+            plot2d(.., y, style)
+            plot2d(.., y, style, strf)
+            plot2d(.., y, style, strf, leg)
+            plot2d(.., y, style, strf, leg, rect)
+            plot2d(.., y, style, strf, leg, rect, nax)
+            plot2d(.., y, key1=value1, key2=value2, ..)
         </synopsis>
     </refsynopsisdiv>
-    <refsection role="parameters">
+    <refsection role="arguments">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>a real matrix or vector. If omitted, it is assumed to be the
-                        vector <literal>1:n</literal> where <literal>n</literal> is the
-                        number of curve points given by the <literal>y</literal>
-                        parameter.
-                    </para>
+                    a real matrix or vector of abscissae. If omitted, abscissae are assumed to
+                    be  <literal>1:n</literal> for all curves, where <literal>n</literal> is the
+                    number of points in curves, as given by <varname>y</varname>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>a real matrix or vector.</para>
+                    real matrix or vector: Ordinates
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>&lt;opt_args&gt;</term>
+                <term>key1=value1, key2=value2, ...</term>
                 <listitem>
-                    <para>This represents a sequence of statements
-                        <literal>key1=value1,key2=value2</literal>,... where
-                        <literal>key1</literal>, <literal>key2,...</literal> can be one of
-                        the following:
+                    <para>
+                        The following options <varname>logflag</varname>, <varname>style</varname>,
+                        <varname>strf</varname>, <varname>leg</varname>, <varname>rect</varname>,
+                        <varname>nax</varname>, <varname>frameflag</varname>, and
+                        <varname>axesflag</varname> described below can either be listed in the
+                        right order as listed in the synopses, or provided in any order after
+                        <varname>y</varname> as named arguments, for instance like in
+                        <literal>plot(y, frameflag=3, leg="Curve 1@Curve 2")</literal>.
                     </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>logflag</term>
-                            <listitem>
-                                <para>sets the scale (linear or logarithmic) along the axes.
-                                    The associated value should be a string with possible
-                                    values: <literal>"nn"</literal>, <literal>"nl"</literal> ,
-                                    <literal>"ln"</literal> and <literal>"ll"</literal> .
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>style</term>
-                            <listitem>
-                                <para>sets the style for each curve. The associated value
-                                    should be a real vector with integer (positive or negative)
-                                    values.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>strf</term>
-                            <listitem>
-                                <para>controls the display of captions.</para>
-                                <para>
-                                    <literal>strf</literal> is a string of length 3
-                                    <literal>"xyz"</literal> (by default <literal>strf=
-                                        "081"
-                                    </literal>
-                                    )
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>leg</term>
-                            <listitem>
-                                <para>sets the curves captions. The associated value should be
-                                    a character string.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>rect</term>
-                            <listitem>
-                                <para>sets the minimal bounds requested for the plot. The
-                                    associated value should be a real vector with four entries:
-                                    <literal>[xmin,ymin,xmax,ymax]</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>nax</term>
-                            <listitem>
-                                <para>sets the axes labels and tics definition. The associated
-                                    value should be a real vector with four integer entries
-                                    <literal>[nx,Nx,ny,Ny].</literal>
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag</term>
-                            <listitem>
-                                <para>controls the computation of the actual coordinate ranges
-                                    from the minimal requested values. The associated value should
-                                    be an integer ranging from 0 to 8.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>axesflag</term>
-                            <listitem>
-                                <para>specifies how the axes are drawn. The associated value
-                                    should be an integer ranging from 0 to 5 or 9 (default value).
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>logflag</term>
+                <listitem>
+                    <para>
+                        Sets the linear or logarithmic scale for both X and Y axes.
+                        Possible values are <literal>"nn"</literal>, <literal>"nl"</literal> ,
+                        <literal>"ln"</literal> or <literal>"ll"</literal>.
+                        <literal>"n"</literal> stands for
+                        <emphasis role="bold">n</emphasis>ormal scale ;
+                        <literal>"l"</literal> stands for
+                        <emphasis role="bold">l</emphasis>ogarithmic.
+                        The first letter set the X axis. The second one sets the Y axis.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>style</term>
+                <listitem>
+                    <para>
+                        Sets the respective line or mark styles of the curves.
+                        It is a vector of decimal integers with one element per curve:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            if <literal>style(i)</literal> is strictly positive, the
+                            curve is drawn as plain line and <literal>style(i)</literal>
+                            defines the index of the color used to draw the curve
+                            (see <link linkend="getcolor">getcolor</link>).
+                        </listitem>
+                        <listitem>
+                            if <literal>style(i)</literal> is negative or zero, the
+                            given curve points are drawn using marks. Then
+                            <literal>abs(style(i))</literal> is the mark's id.
+                            <para/>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        Note that all curves properties -- like also their color,
+                        thickness, marks colors, etc -- can be set through their handles
+                        (see <link linkend="polyline_properties">polyline_properties</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>strf</term>
+                <listitem>
+                    3-character-long string <literal>"abc"</literal> specifying all
+                    together if legends must be displayed, and the values of
+                    <varname>frameflag</varname> and <varname>axesflag</varname>.
+                    By default, <literal>strf= "081"</literal>. "a", "b" and "c" are:
+                    <para/>
+                    <table>
+                        <tr><th>a :</th>
+                            <td>controls the display of captions:
+                                <table>
+                                    <tr><th>x=0 :</th><td>no caption.</td></tr>
+                                    <tr><th>x=1 :</th>
+                                        <td>captions given by the optional argument
+                                            <varname>leg</varname> are displayed.</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr><th>b :</th>
+                            <td>
+                                <varname>frameflag</varname> integer code in [0,9],
+                                controlling the computation the actual coordinate ranges,
+                                as described below.
+                            </td>
+                        </tr>
+                        <tr><th>c :</th>
+                            <td>
+                                <varname>axesflag</varname> integer code in [0:5 9],
+                                controlling the display and position of X and Y axes,
+                                as described below.
+                            </td>
+                        </tr>
+                    </table>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>leg</term>
+                <listitem>
+                    <para>
+                        Single string <literal>"leg1@leg2@...."</literal> setting
+                        the legends leg1, leg2, etc for the respective curves #1, #2,
+                        etc. The default is <literal> " "</literal>. The block
+                        of legends is drawn on the bottom, below the x-axis.
+                    </para>
+                    <para>
+                        After plotting, the handle of the block of legends can be
+                        retrieved with <literal>gca().children(2)</literal>.
+                        <link linkend="captions">captions</link>,
+                        <link linkend="legend">legend</link> or
+                        <link linkend="legends">legends</link> can also be used
+                        instead of <varname>leg</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rect</term>
+                <listitem>
+                    <para>
+                        Vector of decimal numbers <literal>[xmin, ymin, xmax, ymax]</literal>
+                        setting the minimal bounds requested for the plot.
+                        <literal>[xmin, xmax]</literal> is the X-axis range, and
+                        <literal>[ymin, ymax]</literal> is the Y-axis one.
+                    </para>
+                    <para>
+                        This argument works with the  <varname>frameflag</varname>
+                        option to specify how the actual axes boundaries are computed.
+                        If the <varname>frameflag</varname> option is not given,
+                        it is supposed to be <literal>frameflag=7</literal>.
+                    </para>
+                    <para>
+                        The axes boundaries can also be customized through the
+                        <literal>gca().data_bounds</literal> property of the axes
+                        (see <link linkend="axes_properties">axes_properties</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nax</term>
+                <listitem>
+                    <para>
+                        Vector of decimal integers <literal>[nx,Nx,ny,Ny]</literal>
+                        specifying the numbers Nx and Ny of major ticks, and the
+                        numbers nx and ny of minor ticks between 2 majors, for both
+                        respective axes. To use autoticking on an axis, set Nx=-1 or Ny=-1.
+                    </para>
+                    <para>
+                        If the <varname>axesflag</varname> option is not specified,
+                        using <varname>nax</varname> sets and uses
+                        <literal>axesflag=9</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frameflag</term>
+                <listitem>
+                    <para>controls the computation of the actual coordinate ranges
+                        from the minimal requested values. The associated value should
+                        be an integer ranging from 0 to 8.
+                    </para>
+                    <para>
+                <table border="1" cellpadding="1" cellspacing="0">
+                    <tr><th>frameflag</th><th>axes bounds</th>      <th>other actions</th></tr>
+                    <tr align="center">
+                        <th>0</th>        <td>unchanged</td>        <td></td></tr>
+                    <tr align="center">
+                        <th>1</th>        <td>from rect</td>        <td></td></tr>
+                    <tr align="center">
+                        <th>2</th>        <td>from input x,y</td>   <td></td></tr>
+                    <tr align="center">
+                        <th>3</th>        <td>from rect</td>        <td>isometric axes</td></tr>
+                    <tr align="center">
+                        <th>4</th>        <td>from input x,y</td>   <td>isometric axes</td></tr>
+                    <tr align="center">
+                        <th>5</th>        <td>from rect</td>        <td>pretty axes</td></tr>
+                    <tr align="center">
+                        <th>6</th>        <td>from input x,y</td>   <td>pretty axes</td></tr>
+                    <tr align="center">
+                        <th>7</th>        <td>from rect</td>        <td>all replot with new scales</td></tr>
+                    <tr align="center">
+                        <th>8</th>        <td>from input x,y</td>   <td>all replot with new scales</td></tr>
+                    <tr align="center">
+                        <th>9</th>        <td>from input x,y</td>   <td>Pretty axes. All replot with new scales</td></tr>
+                </table>
+                    </para>
+                    <para>
+                        The setting of axes boundaries can also be customized through
+                        the <literal>gca().data_bounds</literal>,
+                        <literal>gca().tight_limits</literal>,
+                        <literal>gca().data_bounds</literal>, and
+                        <literal>gca().isoview</literal> properties
+                        (see <link linkend="axes_properties">axes_properties</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>axesflag</term>
+                <listitem>
+                    <para>
+                        integer code in [0:5 9], controlling the display and position of
+                        X and Y axes.
+                    </para>
+                    <para>
+                        The axes aspect can also be customized directly through the
+                        <literal>gca().box</literal>, <literal>gca().axes_visible</literal>,
+                        <literal>gca().x_location</literal>, and <literal>gca().y_location</literal>,
+                        properties (see <link linkend="axes_properties">axes_properties</link>).
+                    </para>
+        <table border="1" cellpadding="1">
+            <tr><th>axesFlag</th><th>.box</th><th>.axes_visible</th><th>axes position</th><th>comments</th></tr>
+            <tr align="center">
+                <th>0</th><td>"off"</td><td>["off" "off"]</td><td></td>     <td>Naked plot</td></tr>
+            <tr align="center">
+                <th>1</th><td>"on"</td> <td>["on" "on"]</td>  <td></td>     <td></td></tr>
+            <tr align="center">
+                <th>2</th><td>"on"</td> <td>["off" "off"]</td><td></td>     <td>Naked box</td></tr>
+            <tr align="center">
+                <th>3</th><td>"off"</td><td>["on" "on"]</td>  <td>y_location="right"</td><td></td></tr>
+            <tr align="center">
+                <th>4</th><td>"off"</td><td>["on" "on"]</td>  <td>crossed @ middle</td><td></td></tr>
+            <tr align="center">
+                <th>5</th><td>"on"</td> <td>["on" "on"]</td>  <td>crossed @ middle</td><td></td></tr>
+            <tr align="center">
+                <th>9</th><td>"off"</td><td>["on" "on"]</td>  <td></td>     <td>(default setting)</td></tr>
+        </table>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -141,505 +288,57 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            <literal>plot2d</literal> plots a set of 2D curves. If you are
-            familiar with Matlab <literal>plot</literal> syntax, you should use <link linkend="plot">plot</link>.
+            <literal>plot2d</literal> plots a set of 2D curves. Piecewise linear interpolation
+            is done between the given curve points.
+        </para>
+        <para>
+            Any point with <literal>y(i)=Nan</literal> is masked: no mark and no segment to its
+            neighboors are displayed.
+        </para>
+        <para>
+            For any point with <literal>y(i)=±Inf</literal>, a vertical segment starting
+            from each of its both neighboors is drawn in the ± direction, up to the current ceil
+            or down to the current floor of the axes.
+        </para>
+        <para>
+            By default, successive calls to plot2d() overplots new curves over existing ones.
+            Autoclearing for each new plot can be set using <literal>gca().auto_clear="on"</literal>.
+            Please see <link linkend="axes_properties">axes properties</link>.
+            <literal><link linkend="clf">clf</link></literal> can also be used to manually clear
+            the whole figure.
+        </para>
+        <para>
+            If you are familiar with Matlab <literal>plot</literal> syntax, you should use
+            <link linkend="plot">plot</link> instead.
         </para>
         <para>
             If <literal>x</literal> and <literal>y</literal> are vectors,
-            plot2d(x,y,&lt;opt_args&gt;) plots vector <literal>y</literal> versus
+            plot2d(x,y,…) plots vector <literal>y</literal> versus
             vector <literal>x</literal>. <literal>x</literal> and <literal>y</literal>
             vectors should have the same number of entries.
         </para>
         <para>
             If <literal>x</literal> is a vector and <literal>y</literal> a
-            matrix plot2d(x,y,&lt;opt_args&gt;) plots each columns of
+            matrix plot2d(x,y,…) plots each columns of
             <literal>y</literal> versus vector <literal>x</literal>. The
             number of rows of <literal>y</literal> must be equal to the number of
             <literal>x</literal> entries.
         </para>
         <para>
             If <literal>x</literal> and <literal>y</literal> are matrices,
-            plot2d(x,y,&lt;opt_args&gt;) plots each columns of <literal>y</literal>
+            plot2d(x,y,…) plots each columns of <literal>y</literal>
             versus corresponding column of <literal>x</literal>.
             <literal>x</literal> and <literal>y</literal> must then have the same sizes.
         </para>
         <para>
-            If <literal>y</literal> is a vector, plot2d(y,&lt;opt_args&gt;)
+            If <literal>y</literal> is a vector, plot2d(y,…)
             plots vector <literal>y</literal> versus vector
             <literal>1:size(y,'*')</literal>.
         </para>
         <para>
-            If <literal>y</literal> is a matrix, plot2d(y,&lt;opt_args&gt;)
+            If <literal>y</literal> is a matrix, plot2d(y,…)
             plots each columns of <literal>y</literal> versus vector
             <literal>1:size(y,1)</literal>.
-        </para>
-        <para>
-            The <literal>&lt;opt_args&gt;</literal> arguments should be used to
-            customize the plot
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>logflag</term>
-                <listitem>
-                    <para>This option may be used to set the scale (linear or
-                        logarithmic) along the axes. The associated value should be a
-                        string with possible values: <literal>"nn"</literal>,
-                        <literal>"nl"</literal> , <literal>"ln"</literal> and
-                        <literal>"ll"</literal>. <literal>"l"</literal> stands for
-                        logarithmic scale and graduations and <literal>"n"</literal> for
-                        normal scale.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>style</term>
-                <listitem>
-                    <para>This option may be used to specify how the curves are drawn.
-                        If this option is specified, the associated value should be a vector
-                        with as many entries as curves.
-                    </para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                if <literal>style(i)</literal> is strictly positive, the
-                                curve is drawn as plain line and <literal>style(i)</literal>
-                                defines the index of the color used to draw the curve (see <link linkend="getcolor">getcolor</link>). Note that the line style
-                                and the thickness can be set through the polyline entity
-                                properties (see <link linkend="polyline_properties">polyline_properties</link>).
-                            </para>
-                            <para>Piecewise linear interpolation is done between the given
-                                curve points.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                if <literal>style(i)</literal> is negative or zero, the
-                                given curve points are drawn using marks,
-                                <literal>abs(style(i))</literal> defines the mark with id used.
-                                Note that the marks color and marks sizes can be set through
-                                the polyline entity properties (see <link linkend="polyline_properties">polyline_properties</link>).
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>strf</term>
-                <listitem>
-                    <para>
-                        is a string of length 3 <literal>"xyz"</literal> (by default
-                        <literal>strf= "081"</literal>)
-                    </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>x</term>
-                            <listitem>
-                                <para>controls the display of captions.</para>
-                                <variablelist>
-                                    <varlistentry>
-                                        <term>x=0</term>
-                                        <listitem>
-                                            <para>no caption.</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>x=1</term>
-                                        <listitem>
-                                            <para>captions are displayed. They are given by the
-                                                optional argument <literal>leg</literal>.
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                </variablelist>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>y</term>
-                            <listitem>
-                                <para>controls the computation of the actual coordinate ranges
-                                    from the minimal requested values. Actual ranges can be larger
-                                    than minimal requirements.
-                                </para>
-                                <variablelist>
-                                    <varlistentry>
-                                        <term>y=0</term>
-                                        <listitem>
-                                            <para>no computation, the plot use the previous (or
-                                                default) scale
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=1</term>
-                                        <listitem>
-                                            <para>from the rect arg</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=2</term>
-                                        <listitem>
-                                            <para>from the min/max of the x, y data</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=3</term>
-                                        <listitem>
-                                            <para>built for an isometric scale from the rect
-                                                arg
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=4</term>
-                                        <listitem>
-                                            <para>built for an isometric plot from the min/max of
-                                                the x, y data
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=5</term>
-                                        <listitem>
-                                            <para>enlarged for pretty axes from the rect arg</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=6</term>
-                                        <listitem>
-                                            <para>enlarged for pretty axes from the min/max of the
-                                                x, y data
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=7</term>
-                                        <listitem>
-                                            <para>like y=1 but the previous plot(s) are redrawn to
-                                                use the new scale
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=8</term>
-                                        <listitem>
-                                            <para>like y=2 but the previous plot(s) are redrawn to
-                                                use the new scale
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                </variablelist>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>z</term>
-                            <listitem>
-                                <para>controls the display of information on the frame around
-                                    the plot. If axes are requested, the number of tics can be
-                                    specified by the <literal>nax</literal> optional
-                                    argument.
-                                </para>
-                                <variablelist>
-                                    <varlistentry>
-                                        <term>z=0</term>
-                                        <listitem>
-                                            <para>nothing is drawn around the plot.</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>z=1</term>
-                                        <listitem>
-                                            <para>axes are drawn, the y=axis is displayed on the
-                                                left.
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>z=2</term>
-                                        <listitem>
-                                            <para>the plot is surrounded by a box without
-                                                tics.
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>z=3</term>
-                                        <listitem>
-                                            <para>axes are drawn, the y=axis is displayed on the
-                                                right.
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>z=4</term>
-                                        <listitem>
-                                            <para>axes are drawn centred in the middle of the frame
-                                                box.
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>z=5</term>
-                                        <listitem>
-                                            <para>axes are drawn so as to cross at point
-                                                <literal>(0,0)</literal>. If point
-                                                <literal>(0,0)</literal> does not lie inside the frame,
-                                                axes will not appear on the graph.
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                </variablelist>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>leg</term>
-                <listitem>
-                    <para>This option may be used to sets the curve captions. It must be
-                        a string with the form <literal>"leg1@leg2@...."</literal> where
-                        <literal>leg1</literal> , <literal>leg2</literal> , etc. are
-                        respectively the captions of the first curve, of the second curve,
-                        etc. The default is <literal> " "</literal>.
-                    </para>
-                    <para>The curve captions are drawn on below the x-axis. This option
-                        is not flexible enough, use the <link linkend="captions">captions</link> or <link linkend="legend">legend</link> functions preferably.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>rect</term>
-                <listitem>
-                    <para>This option may be used to set the minimal bounds requested
-                        for the plot. If this option is specified, the associated value
-                        should be a real vector with four entries:
-                    </para>
-                    <para>
-                        <literal>[xmin,ymin,xmax,ymax]</literal>.
-                        <literal>xmin</literal> and <literal>xmax</literal> defines the
-                        bounds on the abscissae while <literal>ymin</literal> and
-                        <literal>ymax</literal> defines the bounds on the ordinates.
-                    </para>
-                    <para>This argument may be used together with the
-                        <literal>frameflag</literal> option to specify how the axes
-                        boundaries are derived from the given <literal>rect</literal>
-                        argument. If the <literal>frameflag</literal> option is not given,
-                        it is supposed to be <literal>frameflag=7</literal>.
-                    </para>
-                    <para>The axes boundaries can also be customized through the axes
-                        entity properties (see <link linkend="axes_properties">axes_properties</link>).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>nax</term>
-                <listitem>
-                    <para>This option may be used to specify the axes labels and tics
-                        definition. The associated value should be a real vector with four integer entries
-                        <literal>[nx,Nx,ny,Ny]</literal>.
-                    </para>
-                    <para>
-                        <literal>Nx</literal> gives the number of main tics to be used
-                        on the x-axis (to use autoticks set it to -1), <literal>nx</literal> gives the number of
-                        subtics to be drawn between two main x-axis tics.
-                    </para>
-                    <para>
-                        <literal>Ny</literal> and <literal>ny</literal> give similar
-                        information for the y-axis.
-                    </para>
-                    <para>
-                        If <literal>axesflag</literal> option is not set
-                        <literal>nax</literal> option supposes that
-                        <literal>axesflag</literal> option has been set to 9.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>frameflag</term>
-                <listitem>
-                    <para>This option may be used to control the computation of the
-                        actual coordinate ranges from the minimal requested values. Actual
-                        ranges can be larger than minimal requirements.
-                    </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>frameflag=0</term>
-                            <listitem>
-                                <para>no computation, the plot use the previous (or default)
-                                    scale.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=1</term>
-                            <listitem>
-                                <para>The actual range is the range given by the
-                                    <literal>rect</literal> option.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=2</term>
-                            <listitem>
-                                <para>The actual range is computed from the min/max of the
-                                    <literal>x</literal> and <literal>y</literal> data.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=3</term>
-                            <listitem>
-                                <para>The actual range is the range given by the
-                                    <literal>rect</literal> option and enlarged to get an
-                                    isometric scale.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=4</term>
-                            <listitem>
-                                <para>The actual range is computed from the min/max of the
-                                    <literal>x</literal> and <literal>y</literal> data and
-                                    enlarged to get an isometric scale.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=5</term>
-                            <listitem>
-                                <para>The actual range is the range given by the
-                                    <literal>rect</literal> option and enlarged to get pretty axes
-                                    labels.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=6</term>
-                            <listitem>
-                                <para>The actual range is computed from the min/max of the
-                                    <literal>x</literal> and <literal>y</literal> data and
-                                    enlarged to get pretty axes labels.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=7</term>
-                            <listitem>
-                                <para>
-                                    like <literal>frameflag=1</literal> but the previous
-                                    plot(s) are redrawn to use the new scale. Used to add the
-                                    current graph to a previous one.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=8</term>
-                            <listitem>
-                                <para>
-                                    like<literal>frameflag=2</literal> but the previous
-                                    plot(s) are redrawn to use the new scale. Used to add the
-                                    current graph to a previous one.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=9</term>
-                            <listitem>
-                                <para>
-                                    like<literal>frameflag=8</literal> but the range is
-                                    enlarged to get pretty axes labels. This is the default
-                                    value.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                    <para>The axes boundaries can also be customized through the axes
-                        entity properties (see <link linkend="axes_properties">axes_properties</link>)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>axesflag</term>
-                <listitem>
-                    <para>This option may be used to specify how the axes are drawn. The
-                        associated value should be an integer ranging from 0 to 5 :
-                    </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>axesflag=0</term>
-                            <listitem>
-                                <para>nothing is drawn around the plot (axes_visible=["off"
-                                    "off"];box="off").
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>axesflag=1</term>
-                            <listitem>
-                                <para>axes are drawn, the y-axis is displayed on the left
-                                    (axes_visible=["on" "on"];box="on",y_location="left").
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>axesflag=2</term>
-                            <listitem>
-                                <para>the plot is surrounded by a box without tics
-                                    (axes_visible=["off" "off"];box="on").
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>axesflag=3</term>
-                            <listitem>
-                                <para>axes are drawn, the y-axis is displayed on the
-                                    right (axes_visible=["on"
-                                    "on"];box="off",y_location="right").
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>axesflag=4</term>
-                            <listitem>
-                                <para>axes are drawn centered in the middle of the frame, the box
-                                    being not drawn (axes_visible=["on" "on"];box="off",x_location="middle",
-                                    y_location="middle").
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>axesflag=5</term>
-                            <listitem>
-                                <para>axes are drawn centered in the middle of the frame similarly to
-                                    <literal>axesflag=4</literal>, the difference being that the box is drawn
-                                    (axes_visible=["on" "on"];box="on",x_location="middle",y_location="middle").
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>axesflag=9</term>
-                            <listitem>
-                                <para>axes are drawn, the y-axis is displayed on the left
-                                    (axes_visible=["on" "on"];box="off",y_location="left"). This
-                                    is the default value.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                    <para>The axes aspect can also be customized through the axes
-                        entity properties (see <link linkend="axes_properties">axes_properties</link>).
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection role="description">
-        <title>More information</title>
-        <para>By default, successive plots are superposed. To clear the previous plot, use
-            <literal>
-                <link linkend="clf">clf()</link>
-            </literal>
-            .
         </para>
         <para>
             Enter the command <literal>plot2d()</literal> to see a demo.
@@ -820,6 +519,9 @@ isoview off
                 <link linkend="plot">plot</link>
             </member>
             <member>
+                <link linkend="polyline_properties">.polyline_style</link>
+            </member>
+            <member>
                 <link linkend="plot2d2">plot2d2</link>
             </member>
             <member>
@@ -829,13 +531,19 @@ isoview off
                 <link linkend="plot2d4">plot2d4</link>
             </member>
             <member>
+                <link linkend="polarplot">polarplot</link>
+            </member>
+            <member>
+                <link linkend="gca">gca</link>
+            <member>
+            </member>
+                <link linkend="close">close</link>
+            </member>
+            <member>
+                <link linkend="axes_properties">axes_properties</link>
+            </member>
+            <member>
                 <link linkend="clf">clf</link>
-            </member>
-            <member>
-                <link linkend="xdel">xdel</link>
-            </member>
-            <member>
-                <link linkend="delete">delete</link>
             </member>
         </simplelist>
     </refsection>

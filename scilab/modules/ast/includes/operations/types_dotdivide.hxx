@@ -16,6 +16,8 @@
 #ifndef __TYPES_DOTDIVIDE_HXX__
 #define __TYPES_DOTDIVIDE_HXX__
 
+#include <limits>
+
 #include "generic_operations.hxx"
 #include "configvariable.hxx"
 #include "double.hxx"
@@ -94,13 +96,35 @@ template<> types::InternalType* dotdiv_M_M<types::Polynom, types::Double, types:
 template<> types::InternalType* dotdiv_M_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
 
 //x1 ./ x1
+template<typename T, typename U> inline static void dotdiv(T l, U r, double* o)
+{
+    if (r == 0)
+    {
+        ConfigVariable::setDivideByZero(true);
+    }
+    *o = (double)l / (double)r;
+}
+
 template<typename T, typename U, typename O> inline static void dotdiv(T l, U r, O* o)
 {
     if ((O)r == 0)
     {
         ConfigVariable::setDivideByZero(true);
+        double tmp = (double)l / (double)r;
+        if (std::isnan(tmp))
+        {
+            *o = 0;
+        }
+        else if (std::isinf(tmp))
+        {
+            tmp < 0 ? *o = std::numeric_limits<O>::min() : *o = std::numeric_limits<O>::max();
+        }
+        // no else because division by zero result to nan or inf
     }
-    *o = (O)l / (O)r;
+    else
+    {
+        *o = (O)l / (O)r;
+    }
 }
 
 //x1 ./ x1c

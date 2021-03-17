@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 11860 -->
 //
@@ -32,7 +33,7 @@ filepath= TMPDIR + '/bug_11860_mono.wav';
 Fs_ref = 44100;
 nbits_ref = 24;
 recordLength=1;
-t= soundsec(recordLength,Fs_ref);
+t= 0 : 1/Fs_ref : recordLength*(1-%eps);
 // Signal
 frequency = 1000;
 y_ref = 0.5*sin(2*%pi* frequency *t);

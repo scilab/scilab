@@ -7,7 +7,13 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            h =  findobj(propertyName, propertyValue)
+            h = findobj()
+            h = findobj(propertyName, propertyValue)
+            h = findobj(propertyName, propertyValue, operator, propertyName, propertyValue, ...)
+            h = findobj("-property", propertyName, ...)
+            h = findobj(searchHandles, ...)
+            h = findobj(..., '-depth', d, ...)
+            h = findobj(..., '-flat', ...)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -22,13 +28,31 @@
             <varlistentry>
                 <term>propertyValue</term>
                 <listitem>
-                    <para>string character specify the value the tested property should be equal to (case sensitive).</para>
+                    <para>character string specify the value the tested property should be equal to (case sensitive).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>operator</term>
+                <listitem>
+                    <para>character string belonging to the set {"-and", "-or", "-not"}.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>searchHandles</term>
+                <listitem>
+                    <para>Vector of graphic handles where the search is restricted to.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>positive integer, the depth of the search.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>handle of the found object.</para>
+                    <para>handles of the found objects.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -36,17 +60,28 @@
     <refsection>
         <title>Description</title>
         <para>
-            This routine is currently used to find objects knowing their 'tag'
-            property.  It returns handle of the first found object which property
-            <emphasis role="italic">propertyName</emphasis> is equal to <emphasis role="italic">propertyValue</emphasis>. If such an object does not exist, the
+            Without arguments <literal>findobj</literal> returns handles of all graphic objects and their descendants. If such an object does not exist, the
             function returns an empty matrix.
+        </para>
+        <para>
+            <literal>findobj(propertyName, propertyValue, ...)</literal> returns the handles of objects having the property <literal>propertyName</literal> set to <literal>propertyValue</literal>. 
+            If successive property/vaue pairs are given the handles of objects verifing all conditions are returned, i.e. there is an implicit <literal>"-and"</literal> operator between pairs. 
+            Another operator can be explicitely given with <literal>findobj(propertyName, propertyValue, operator, propertyName, propertyValue, ...)</literal>.
+        </para>
+        <para>The priority of evaluations in a composite condition using operators can be controlled by using a cell argument, e.g. <literal>findobj({propertyName, propertyValue, ...}, operator, ...)</literal>
+        </para>
+        <para>
+            <literal>findobj("-property", propertyName, ...)</literal> returns the handles of objects having the property <literal>propertyName</literal>. Other conditions can be added.
+        </para>
+        <para>
+            By default the search is done within all figures and <literal>findobj(searchHandles, ...)</literal> restricts the search to the given handles. The depth of the search is by default infinite and can be restricted by <literal>findobj(searchHandles, '-depth', d, ...)</literal>. A value of 0 restricts the search to objects given in <literal>searchHandles</literal> and does not search within descendants, this is equivalent to the <literal>"flat"</literal> optional string.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // Create a figure
-h=figure();
+h=scf();
 // Put a text in the figure
 uicontrol(h, "style","text", ...
              "string","This is a figure", ...
@@ -56,8 +91,26 @@ uicontrol(h, "style","text", ...
 // Find the object which "tag" value is "Alabel"
 lab=findobj("tag","Alabel");
 disp("The text of the label is """+lab.string+"""");
-// Close the figure
-close();
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Create a figure
+h=scf();
+// plot something
+plot()
+xlabel abscissae
+ylabel ordinate
+title "a plot"
+legend "c1" "c2" "c3"
+
+// Find the objects having a "font_size" property
+h1 = findobj("-property","font_size")
+// Change the font size of all text objects
+h1.font_size = 3
+
+// Find the objects having a "thickness" property
+h2 = findobj("-property","thickness")
+// Change the thickness of such objects
+h2.thickness = 2
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

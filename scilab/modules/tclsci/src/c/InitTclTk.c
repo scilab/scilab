@@ -38,7 +38,12 @@
 #include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/
 BOOL TK_Started = FALSE;
+/* The tclLoop thread Id, declared in TCL_Command.c
+in order to wait it ends when closing Scilab */
+extern __threadId TclThread;
 
+extern __threadSignal InterpReady;
+extern __threadSignalLock InterpReadyLock;
 /*--------------------------------------------------------------------------*/
 static char *GetSciPath(void);
 static void releaseTclInterpOnError(void)

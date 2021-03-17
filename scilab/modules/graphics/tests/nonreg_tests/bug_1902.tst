@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 1902 -->
 //
@@ -54,4 +55,4 @@ if (  norm( box11 - box12 ) >= 0.1 ..
     | norm( box31 - box32 ) >= 0.1 ..
     | norm( box41 - box42 ) >= 0.1 ..
 | norm( box51 - box52 ) >= 0.1 )  then pause,end
-xdel(winsid());
+close(winsid());

@@ -62,7 +62,8 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[
 // まず0.5秒分のサウンドパラメータを作成.
-t=soundsec(0.5);
+t = 0 : 1/22050 : 0.5*(1-%eps);
+
 // 次にサウンドを生成.
 s=sin(2*%pi*440*t)+sin(2*%pi*220*t)/2+sin(2*%pi*880*t)/2;
 [nr,nc]=size(t);

@@ -152,11 +152,11 @@ AC_ARG_WITH(gui,
     AS_HELP_STRING([--without-gui],[Disable the Scilab Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
 
 AC_ARG_ENABLE(build-swig,
-    AS_HELP_STRING([--enable-build-swig=path],[Regenerate Java => C and Scilab => C wrappers produces by Swig]))
+    AS_HELP_STRING([--enable-build-swig=path],[Regenerate Java => C and Scilab => C wrappers produced by Swig]))
 
 
 AC_ARG_ENABLE(build-giws,
-    AS_HELP_STRING([--enable-build-giws],[Regenerate C/C++ => Java wrappers produces by Giws]))
+    AS_HELP_STRING([--enable-build-giws],[Regenerate C/C++ => Java wrappers produced by Giws]))
 
 AC_ARG_ENABLE(build-parser,
     AS_HELP_STRING([--enable-build-parser],[Regenerate code for the parser (Lex & YACC)]))

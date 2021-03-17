@@ -53,7 +53,7 @@ a.box="off";
 a.x_location="middle";
 a.parent.background=4;
 delete(gca()) // deletando os eixos correntes
-xdel(0) //deletando uma janela de gráficos
+close(0) //deletando uma janela de gráficos
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

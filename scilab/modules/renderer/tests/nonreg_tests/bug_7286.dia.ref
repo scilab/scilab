@@ -20,6 +20,5 @@ scf(2);
 plot(x,y2,"r.");// %nan & mark_mode "on"
 cd TMPDIR
  ans  =
- 
- TMPDIR   
+  "TMPDIR"
 xs2svg(2,"kaboom.eps");

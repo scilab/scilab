@@ -13,7 +13,7 @@
 //
 // <-- Short Description -->
 // If the extension is not provided, some functions adds the extension, some others don't
-// 
+//
 plot3d();
 filename=TMPDIR+"/nonreg_test_bug4944";
 f=gcf();

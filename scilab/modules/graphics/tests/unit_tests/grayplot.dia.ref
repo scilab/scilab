@@ -14,45 +14,34 @@ grayplot(x,y,z);
 e = gce();
 assert_checkequal(e.type, "Grayplot")
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.parent.type, "Axes")
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.children, [])
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.visible, "on")
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.data.x, x')
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.data.y, y')
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.data.z, z)
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.data_mapping, "scaled")
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.clip_state, "clipgrf")
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.clip_box, [])
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.user_data, [])
  ans  =
- 
-  T  
+  T

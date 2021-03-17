@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcos" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="xcos" xml:lang="fr_FR">
     <refnamediv>
         <refname>xcos</refname>
         <refpurpose>
@@ -33,14 +36,14 @@
             <listitem>
                 <para>
                     <emphasis role="bold">filename :</emphasis> une chaîne de caractères contenant
-                    le chemin du fichier de schéma (extension .cos, .cosf or .zcos). Si aucun argument
+                    le chemin du fichier de schéma (extension .xcos ou .zcos). Si aucun argument
                     n'est fourni, un schéma vide est ouvert (nom par défaut <emphasis>Sans titre</emphasis>).
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">scs_m_list :</emphasis> une structure de schéma <emphasis>Xcos</emphasis>
-                    après édition.
+                    <emphasis role="bold">scs_m_list :</emphasis> une structure de schéma
+                    <emphasis>Xcos</emphasis> après édition.
                 </para>
             </listitem>
         </itemizedlist>
@@ -62,7 +65,8 @@
                     <emphasis role="bold">Editeur</emphasis>
                 </para>
                 <para>
-                    L'éditeur permet le dessin d'un schéma-bloc représentant un système dynamique fait de blocs définis dans des palettes.
+                    L'éditeur permet le dessin d'un schéma-bloc représentant un système dynamique
+                    fait de blocs définis dans des palettes.
                     Les utilisateurs peut personnaliser les blocs et en définir de nouveaux.
                 </para>
                 <para/>
@@ -72,8 +76,9 @@
                     <emphasis role="bold">Navigateur de palette</emphasis>
                 </para>
                 <para>
-                    Le navigateur de palette liste tous les blocs standards de <emphasis>Xcos</emphasis> groupés par catégories
-                    (traitement du signal, électricité, hydraulique, dérivées, intégrale, etc.). Voir la figure ci-dessous
+                    Le navigateur de palette liste tous les blocs standards de <emphasis>Xcos</emphasis>
+                    groupés par catégories (traitement du signal, électricité, hydraulique, dérivées,
+                    intégrale, etc.). Voir la figure ci-dessous
                 </para>
                 <para/>
             </listitem>
@@ -164,7 +169,7 @@ xcos(scs_m);]]></programlisting>
         <title>Voir Aussi</title>
         <itemizedlist>
             <listitem>
-                <link linkend="scicosim">scicosim</link>
+                <link linkend="scicosim">xcossim</link>
             </listitem>
             <listitem>
                 <link linkend="scicos_simulate">scicos_simulate</link>

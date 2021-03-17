@@ -76,7 +76,9 @@ c
    30 if(t.lt.tmax) go to 40
       t=tmax
       logic=1
-   40 if(iprint.ge.4) call n1fc1o(io,36,i1,i2,i3,i4,i5,fpn,d2,tmin,tmax)
+      d3(1) = tmin
+      d4(1) = tmax
+   40 if(iprint.ge.4) call n1fc1o(io,36,i1,i2,i3,i4,i5,fpn,d2,d3,d4)
       do 50 i=1,n
    50 x(i)=xn(i)+t*d(i)
 c
@@ -129,7 +131,8 @@ c         test de descente (premiere inegalite pour un pas serieux)
   230 gd(i)=g(i)
       indicd=indic
       logic=0
-      if(iprint.ge.4) call n1fc1o(io,40,i1,i2,i3,i4,i5,t,ffn,fp,d4)
+      d3(1) = fp
+      if(iprint.ge.4) call n1fc1o(io,40,i1,i2,i3,i4,i5,t,ffn,d3,d4)
       if(tg.ne.0.) go to 500
 c                tests pour un pas nul (si tg=0)
       if(fpd.lt.tesd) go to 500
@@ -141,7 +144,8 @@ c                tests pour un pas nul (si tg=0)
       go to 999
 c
 c                    descente
-  300 if(iprint.ge.4) call n1fc1o(io,41,i1,i2,i3,i4,i5,t,ffn,fp,d4)
+      d3(1) = fp
+  300 if(iprint.ge.4) call n1fc1o(io,41,i1,i2,i3,i4,i5,t,ffn,d3,d4)
 c
 c         test de derivee (deuxieme inegalite pour un pas serieux)
       if(fp.lt.tesd) go to 320

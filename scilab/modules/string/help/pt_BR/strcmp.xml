@@ -23,7 +23,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>res = strcmp(string_one,string_two,[,'i'])</synopsis>
+        <synopsis>
+            res = strcmp(string_one, string_two)
+            res = strcmp(string_one, string_two, "i")
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>

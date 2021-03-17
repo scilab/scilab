@@ -187,7 +187,7 @@ end
 // Ménage : on supprime les 16 fenêtres
 b = messagebox(_("Presser OK pour fermer les fenêtres"),"Clore la démonstration", "question", "modal");
 w = winsid();
-xdel(w($-15:$));
+close(w($-15:$));
     ]]></programlisting>
         <para>
             <inlinemediaobject>

@@ -13,7 +13,9 @@
  * along with this program.
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:id="strcat" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xml:id="strcat" xml:lang="ru">
     <refnamediv>
         <refname>strcat</refname>
         <refpurpose>связывает символьные строки</refpurpose>
@@ -21,8 +23,10 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            txt = strcat(strings [,string_added])
-            txt = strcat(strings [,string_added, ["flag"]])
+            txt = strcat(strings)
+            txt = strcat(strings, string_added)
+            txt = strcat(strings, string_added, "r")
+            txt = strcat(strings, string_added, "c")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -49,7 +53,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"flag"</term>
+                <term>флаг "r" | "c"</term>
                 <listitem>
                     <para>
                         символьное значение (<literal>"r"</literal> для связки строк в матрице <varname>strings</varname>,
@@ -116,6 +120,12 @@ strcat(m, "_and_", "c")
             </member>
             <member>
                 <link linkend="strings">strings</link>
+            </member>
+            <member>
+                <link linkend="strsplit">strsplit</link>
+            </member>
+            <member>
+                <link linkend="brackets">квадратные скобки []</link>
             </member>
         </simplelist>
     </refsection>

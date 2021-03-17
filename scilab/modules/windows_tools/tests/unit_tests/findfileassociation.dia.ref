@@ -9,6 +9,7 @@
 if getos() == 'Windows' then
   r = findfileassociation('.sce');
   if r == [] then bugmes();quit;end
+  
   r = findfileassociation('.sci');
   if r == [] then bugmes();quit;end
 end

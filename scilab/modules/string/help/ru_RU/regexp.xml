@@ -13,12 +13,10 @@
  * along with this program.
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook"
-xmlns:xlink="http://www.w3.org/1999/xlink"
-xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
-xmlns:mml="http://www.w3.org/1998/Math/MathML"
-xmlns:db="http://docbook.org/ns/docbook"
-xml:id="regexp" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xml:id="regexp" xml:lang="ru">
     <refnamediv>
         <refname>regexp</refname>
         <refpurpose>
@@ -28,10 +26,8 @@ xml:id="regexp" xml:lang="ru">
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            [start] = regexp(input, pattern, [flag])
-            [start, end] = regexp(input, pattern, [flag])
-            [start, end, match] = regexp(input, pattern, [flag])
-            [start, end, match, foundString] = regexp(input, pattern, [flag])
+            [start, final, match, foundString] = regexp(input, pattern)
+            [start, final, match, foundString] = regexp(input, pattern, "once")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -90,10 +86,10 @@ xml:id="regexp" xml:lang="ru">
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>[flag]</term>
+                <term>флаг "once | "o"</term>
                 <listitem>
                     <para>
-                        <literal>'o'</literal> для одного соответствия шаблону.
+                        <literal>'o'</literal> только для одного совпадения с образцом.
                     </para>
                 </listitem>
             </varlistentry>

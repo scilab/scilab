@@ -14,13 +14,11 @@
 
 // Return a 4xn string matrix :
 //
-// !toolbox2          0.1  user     /home/pmarecha/.Scilab/scilab-branch-atoms/atoms/contrib/toolbox2/0.1  A  !
-// !                                                                                                          !
-// !toolbox2          0.2  user     /home/pmarecha/.Scilab/scilab-branch-atoms/atoms/contrib/toolbox2/0.2  A  !
-// !                                                                                                          !
-// !toolbox_skeleton  1.3  alluser  /home/pmarecha/work/atoms/scilab/contrib/toolbox_skeleton/1.3          I  !
+// !toolbox2          0.1  user     SCIHOME/atoms/contrib/toolbox2/0.1  A  !
+// !toolbox2          0.2  user     SCIHOME/atoms/contrib/toolbox2/0.2  A  !
+// !toolbox_skeleton  1.3  alluser  SCI/contrib/toolbox_skeleton/1.3    I  !
 
-function packages = atomsGetLoaded()
+function varargout = atomsGetLoaded()
 
     // Load Atoms Internals lib if it's not already loaded
     // =========================================================================
@@ -34,6 +32,14 @@ function packages = atomsGetLoaded()
         packages = [];
     else
         packages = atomsGetInstalledDetails(loaded);
+    end
+
+    // Set the result
+    // =========================================================================
+    if argn(1) > 0 then
+        varargout = list(packages)
+    else
+        mprintf("%s\n", strcat(justify(packages,"l"), "  ", "c"))
     end
 
 endfunction

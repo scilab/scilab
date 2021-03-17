@@ -651,7 +651,7 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
     {
         try
         {
-            ret = Overload::call(function_name, in, 1, out);
+            ret = Overload::call(function_name, in, 1, out, false, true, e.getLocation());
         }
         catch (const ast::InternalError& error)
         {
@@ -930,7 +930,6 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             workFields.pop_front();
 
             types::InternalType* pITCurrent = pEH->getCurrent();
-
             if (pEH->isCellExp() && pITCurrent->isCell() == false)
             {
                 std::wostringstream os;
@@ -938,18 +937,18 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 throw ast::InternalError(os.str(), 999, _pExp->getLocation());
             }
 
+            // In the case where pITCurrent is in several scilab variables or containers,
+            // we have to clone it to keep the originals one unchanged.
+            if (pITCurrent->getRef() > 1)
+            {
+                pITCurrent = pITCurrent->clone();
+                pEH->setCurrent(pITCurrent);
+                pEH->setReinsertion();
+            }
+
             if (pITCurrent->isStruct())
             {
                 types::Struct* pStruct = pITCurrent->getAs<types::Struct>();
-                // In case where pStruct is in several scilab variable,
-                // we have to clone it for keep the other variables unchanged.
-                if (pStruct->getRef() > 1)
-                {
-                    pStruct = pStruct->clone();
-                    pEH->setCurrent(pStruct);
-                    pEH->setReinsertion();
-                }
-
                 std::wstring pwcsFieldname = (*iterFields)->getExpAsString();
 
                 if (pEH->needResize())

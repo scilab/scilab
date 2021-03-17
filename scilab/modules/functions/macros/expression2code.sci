@@ -35,6 +35,13 @@ function C=expression2code(e)
         // ---------
     case "operation" then
         operator=e.operator
+        bracket = ["[", "]"];
+        // if Cell Exp {}
+        if or(operator == ["ccc", "crc"]) then
+            operator = part(operator, 2:$);
+            bracket = ["{", "}"];
+        end
+
         operands=[]
         nb_op=size(e.operands)
         if and(operator<>["cc","cceol"]) then
@@ -62,7 +69,7 @@ function C=expression2code(e)
                     end
                 end
             end
-            C="["+strcat(operands,",")+"]"
+            C=bracket(1)+strcat(operands,",")+bracket(2);
             // Multi-line column concatenation
         elseif operator=="cceol" then
             for i=1:nb_op
@@ -77,7 +84,7 @@ function C=expression2code(e)
                 end
 
                 if i==1 then
-                    C="["
+                    C=bracket(1)
                     if size(opi,"*")>1 then
                         C = [C+opi(1);opi(2:$)]
                     else
@@ -91,12 +98,12 @@ function C=expression2code(e)
                     else
                         C = [C(1:$-1);C($)+opi]
                     end
-                    C($)=C($)+"]"
+                    C($)=C($)+bracket(2)
                 end
             end
             // Column concatenation
         elseif operator=="cc" then
-            C="["
+            C=bracket(1)
             for i=1:nb_op
                 opi=expression2code(e.operands(i))
                 // Delete [ and ] if there are...
@@ -127,7 +134,7 @@ function C=expression2code(e)
                     end
                 end
             end
-            C($)=C($)+"]"
+            C($)=C($)+bracket(2)
             // Extraction
         elseif operator=="ext" then
             if size(e.operands)==1 then

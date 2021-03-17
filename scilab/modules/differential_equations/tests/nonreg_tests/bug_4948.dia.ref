@@ -21,7 +21,7 @@ clear;
 funcprot(0);
 v0 = 0;// INITIAL CONDITIONS OF THE DIFFERENTIAL EQUATION
 u0 = 0;// INITIAL CONDITIONS OF THE DIFFERENTIAL EQUATION
-y0 = [v0;  u0]; 
+y0 = [v0;  u0];
 F = 1;  // system's parameters
 m = 1;  // system's parameters
 c = 0.5;  // system's parameters

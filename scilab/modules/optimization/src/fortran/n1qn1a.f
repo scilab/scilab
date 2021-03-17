@@ -22,7 +22,7 @@ c
 *     just for output (the computing code is normally not modified).
 
       implicit double precision (a-h,o-z)
-      dimension x(n),g(n),scale(n),h(*),d(n),w(n),
+      dimension x(n),f(1),g(n),scale(n),h(*),d(n),w(n),
      1 xa(n),ga(n),xb(n),gb(n),izs(*),dzs(*)
       character bufstr*(4096)
       real rzs(*)
@@ -122,7 +122,7 @@ c                verification que la diagonale est positive
    90 k=k+np-i
 c                quelques initialisations
   100 dff=0.0d+0
-  110 fa=f
+  110 fa=f(1)
       isfv=1
       do 120 i=1,n
       xa(i)=x(i)
@@ -208,7 +208,8 @@ c              calcul de fonction-gradient
       indic=4
       call simul (indic,n,xb,fb,gb,izs,rzs,dzs)
 c     next line added by Serge to avoid Inf and Nan's (04/2007)
-      if (vfinite(1,fb).ne.1.and.vfinite(n,gb).ne.1) indic=-1
+      f(1) = fb
+      if (vfinite(1,f).ne.1.and.vfinite(n,gb).ne.1) indic=-1
 c              test sur indic
       if (indic.gt.0) goto 185
       if (indic.lt.0) goto 183
@@ -236,8 +237,8 @@ c              test sur indic
       goto 240
 c             stockage si c'est la plus petite valeur
   185 isfv=min(2,isfv)
-      if (fb.gt.f) go to 220
-      if (fb.lt.f) go to 200
+      if (fb.gt.f(1)) go to 220
+      if (fb.lt.f(1)) go to 200
       gl1=0.0d+0
       gl2=0.0d+0
       do 190 i=1,n
@@ -245,7 +246,7 @@ c             stockage si c'est la plus petite valeur
   190 gl2=gl2+(scale(i)*gb(i))**2
       if (gl2.ge.gl1) go to 220
   200 isfv=3
-      f=fb
+      f(1)=fb
       do 210 i=1,n
       x(i)=xb(i)
   210 g(i)=gb(i)

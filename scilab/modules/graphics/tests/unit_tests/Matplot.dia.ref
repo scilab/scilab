@@ -13,32 +13,25 @@ Matplot([1 2 3;4 5 6])
 e = gce();
 assert_checkequal(e.parent.type, "Axes")
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.children, [])
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.visible, "on")
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.data, [1, 2, 3 ; 4, 5, 6])
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.clip_state, "clipgrf")
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.clip_box, [])
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.user_data, [])
  ans  =
- 
-  T  
+  T
 // used to crash Scilab
 clf();
 Matplot(1:32);

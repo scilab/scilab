@@ -24,8 +24,8 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            d =  strtod(str [,decimalseparator])
-            [d, tails] = strtod(str [,decimalseparator])
+            [d, tails] = strtod(str)
+            [d, tails] = strtod(str, decimalseparator)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">

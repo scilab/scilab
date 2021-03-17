@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,19 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="mean">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="mean">
     <refnamediv>
         <refname>mean</refname>
-        <refpurpose>mean (row mean, column mean) of vector/matrix
-            entries
+        <refpurpose>mean of all values, or means along a given dimension
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>y=mean(x)
-            y=mean(x,'r')
-            y=mean(x,'c')
-            y=mean(x,'m')
+        <synopsis>
+            y = mean(x)
+            y = mean(x, orientation)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -34,13 +35,27 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real vector or matrix</para>
+                    Vector, matrix, or hypermatrix of real or complex numbers.
+                    Sparse matrices accepted.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orientation</term>
+                <listitem>
+                    direction = index of the dimension along which the mean is computed.
+                    "r" is equivalent to 1. "c" is equivalent to 2. "m" is equivalent
+                    to <literal>find(size(x)>1,1)</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>scalar or vector</para>
+                    dense scalar if <varname>orientation</varname> is not used or if
+                    <varname>x</varname> is a scalar. Otherwise, array such that
+                    <literal>size(y,orientation)</literal> is 1 (sparse-encoded if
+                    <varname>x</varname> is so).
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -48,25 +63,35 @@
     <refsection>
         <title>Description</title>
         <para>
-            For a vector or a matrix <literal>x</literal>, <literal>y=mean(x)</literal> returns
-            in the scalar <literal>y</literal> the mean of all the entries of
-            <literal>x</literal>.
+            <emphasis role="bold">y = mean(x)</emphasis> returns the mean of all
+            entries. If at least one entry is NaN, NaN is returned.
+            This scalar result is always dense-encoded.
         </para>
         <para>
-            <literal>y=mean(x,'r')</literal> (or, equivalently, <literal>y=mean(x,1)</literal>)
-            is the rowwise mean. It returns a row vector: <literal>y(j)=
-                mean(x(:,j))
-            </literal>
+            <emphasis role="bold">y = mean(x,1)</emphasis> or <literal>y=mean(x,"r")</literal>
+            computes the means accross rows. <varname>y</varname> is a row if
+            <varname>x</varname> is a matrix.
         </para>
         <para>
-            <literal>y=mean(x,'c')</literal> (or, equivalently, <literal>y=mean(x,2)</literal>)
-            is the columnwise mean. It returns a column vector: <literal>y(i)=
-                mean(x(i,:))
-            </literal>
+            <emphasis role="bold">y = mean(x,2)</emphasis> or <literal>y=mean(x,"c")</literal>
+            computes the means accross columns. <varname>y</varname> is a column if
+            <varname>x</varname> is a matrix.
         </para>
         <para>
-            <literal>y=mean(x,'m')</literal> is the mean along the first non singleton
-            dimension of x (for compatibility with Matlab).
+            <emphasis role="bold">y = mean(x, n)</emphasis> with <literal>3 ≤ n ≤ ndims(x)</literal>
+            computes the means along the n<superscript>th</superscript> dimension of <varname>x</varname>.
+        </para>
+        <para>
+            <emphasis role="bold">y = mean(x,'m')</emphasis> is the mean along the
+            first non singleton dimension of x (for compatibility with Matlab).
+        </para>
+        <para>
+            <warning>
+             <literal>mean([])</literal> and <literal>mean(sparse([]))</literal> return NaN.
+             For any <varname>orientation</varname> not "m",
+             <literal>mean([], orientation)</literal> returns <literal>[]</literal>, and
+             <literal>mean(sparse([]), orientation)</literal> returns <literal>sparse([])</literal>.
+            </warning>
         </para>
         <note>
             <literal>mean()</literal> can be overloaded.
@@ -74,15 +99,101 @@
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+            With a matrix:
+        </para>
         <programlisting role="example"><![CDATA[
-A=[1,2,10;7,7.1,7.01];
+A = [0,1,1,0,1;1,0,0,1,1;0,0,1,0,0;0,0,1,0,0]
 mean(A)
-mean(A,'r')
-mean(A,'c')
-A=matrix(1:12,[1,1,2,3,2]);
+mean(A, 'r')
+mean(A, 'c')
+     ]]></programlisting>
+        <screen><![CDATA[
+--> A = [0,1,1,0,1;1,0,0,1,1;0,0,1,0,0;0,0,1,0,0]
+ A  =
+   0.   1.   1.   0.   1.
+   1.   0.   0.   1.   1.
+   0.   0.   1.   0.   0.
+   0.   0.   1.   0.   0.
+
+--> mean(A)
+ ans  =
+   0.4
+
+--> mean(A, 'r')
+ ans  =
+   0.25   0.25   0.75   0.25   0.5
+
+--> mean(A, 'c')
+ ans  =
+   0.6
+   0.6
+   0.2
+   0.2
+]]></screen>
+        <para>
+            With an hypermatrix:
+        </para>
+        <programlisting role="example"><![CDATA[
+A = [1,0,0,1,0,0,1,1,1,1,1,1,0,1,0,1,1,0,1,1,1,1,1,0,1,0,1,0,1,1,1,0,1,0,0,1,0,1,1,0];
+A = matrix(A, [4,5,2])
+mean(A)
+mean(A, 'r')
+mean(A, 'c')
+mean(A, 3)
+
+A = matrix(1:12, [1,1,2,3,2]);
 // in this case mean(A,'m') is equivalent to mean(A,3), the first non singleton dimension of A
-y=mean(A,'m')
- ]]></programlisting>
+mean(A, 'm')
+     ]]></programlisting>
+        <screen><![CDATA[
+--> A = matrix(A, [4,5,2])
+ A  =
+(:,:,1)
+   1.   0.   1.   0.   1.
+   0.   0.   1.   1.   0.
+   0.   1.   1.   0.   1.
+   1.   1.   1.   1.   1.
+
+(:,:,2)
+   1.   1.   1.   1.   0.
+   1.   0.   1.   0.   1.
+   1.   1.   1.   0.   1.
+   0.   0.   0.   1.   0.
+
+--> mean(A)
+ ans  =
+   0.625
+
+--> mean(A, 'r')
+ ans  =
+(:,:,1)
+   0.5   0.5   1.   0.5   0.75
+
+(:,:,2)
+   0.75   0.5   0.75   0.5   0.5
+
+--> mean(A, 'c')
+ ans  =
+(:,:,1)
+   0.6
+   0.4
+   0.6
+   1.
+
+(:,:,2)
+   0.8
+   0.6
+   0.8
+   0.2
+
+--> mean(A, 3)
+ ans  =
+   1.    0.5   1.    0.5   0.5
+   0.5   0.    1.    0.5   0.5
+   0.5   1.    1.    0.    1.
+   0.5   0.5   0.5   1.    0.5
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -105,6 +216,12 @@ y=mean(A,'m')
                 <revnumber>6.0.1</revnumber>
                 <revdescription>
                     mean() is now overloadable.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Extension to sparse matrices.
                 </revdescription>
             </revision>
         </revhistory>

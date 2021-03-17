@@ -246,6 +246,11 @@ int isDebugInterrupted()
     return debugger::DebuggerManager::getInstance()->isInterrupted() ? 1 : 0;
 }
 
+int debuggerManagerExecute(const char* command)
+{
+    return debugger::DebuggerManager::getInstance()->execute(command) ? 1 : 0;
+}
+
 int isExecutionBreak()
 {
     return ConfigVariable::isExecutionBreak() ? 1 : 0;

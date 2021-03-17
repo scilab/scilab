@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strindex" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="strindex" xml:lang="ru">
     <refnamediv>
         <refname>strindex</refname>
         <refpurpose>
@@ -23,8 +26,8 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            ind = strindex(haystack, needle, [flag])
-            [ind, which] = strindex(haystack, needle, [flag])
+            [ind, which] = strindex(haystack, needle)
+            [ind, which] = strindex(haystack, needle, "regexp")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -61,11 +64,10 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>флаг "regexp" | "r"</term>
                 <listitem>
                     <para>
-                        строка (<literal>"r"</literal> для регулярного
-                        выражения).
+                        Тогда элементы <varname>needle</varname> используются как регулярные выражения.
                     </para>
                 </listitem>
             </varlistentry>

@@ -76,6 +76,9 @@ if getos() <> "Windows" then
 end
 setenv("VERSION", getversion());
 
+// Add %chars constant ================================================
+%chars = percentchars()
+
 // ATOMS ===============================================================
 if with_module("atoms") then
   atomsSystemInit();

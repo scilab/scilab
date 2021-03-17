@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 2045 -->
 //
@@ -31,7 +32,7 @@ if ( size(entity.data) <> [0,0] ) then pause,end
 plot3d ;
 entity.data = rand(100,2) ;
 entity.data = [] ;
-xdel(winsid()) ;
+close(winsid()) ;
 
 // check if nothing is broken
 xpolys(rand(12,12), rand(12,12) ) ;

@@ -72,7 +72,7 @@ BEGIN
             VALUE "FileDescription", "arnoldi module"
             VALUE "FileVersion", "6, 2, 0, 0"
             VALUE "InternalName", "arnoldi"
-            VALUE "LegalCopyright", "Copyright (C) 2020"
+            VALUE "LegalCopyright", "Copyright (C) 2021"
             VALUE "OriginalFilename", "arnoldi.dll"
             VALUE "ProductName", "arnoldi module"
             VALUE "ProductVersion", "6, 2, 0, 0"

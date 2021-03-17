@@ -52,7 +52,7 @@ for i=1:5:100
           xsetech([0,0.5,1,0.5]),
           plot2d3('enn',1,t3(origen+v(1):origen+v(2))',2);
           xclick();
-          xdel();
+          close();
     end  
     clf();
 end;

@@ -60,7 +60,7 @@ C cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
      &          xga(*), y(*), w1(*), w2(*)
       dimension q(*), al(memax), aps(memax), anc(memax), poids(memax)
       real rzs(*)
-      dimension i5(1), d3(1), d4(1)
+      dimension i5(1), d2(1), d3(1), d4(1)
 C
 C         initialisations
 C
@@ -152,7 +152,9 @@ C         calcul de la precision
         if (j .gt. 0) z = z + xga(k)*poids(j)
  270  continue
       epsm = dmin1(eps,z)
-      if(iprint.ge.2) call n1fc1o(io,8,iter,nsim,i3,i4,i5,fn,epsm,s2,d4)
+      d2(1) = epsm
+      d3(1) = s2
+      if(iprint.ge.2) call n1fc1o(io,8,iter,nsim,i3,i4,i5,fn,d2,d3,d4)
       if (epsm .gt. eps0) goto 280
       mode = 1
       if (iprint .gt. 0) call n1fc1o(io,9,i1,i2,i3,i4,i5,d1,d2,d3,d4)
@@ -169,7 +171,10 @@ C                 suite des iterations
 C                    impressions
 C
  300  if (iprint .gt. 3) call n1fc1o(io,10,i1,i2,i3,i4,i5,d1,d2,d3,d4)
-      if (iprint.gt.2) call n1fc1o(io,11,iter,nsim,nv,i4,i5,fn,eps,s2,u)
+      d2(1) = eps
+      d3(1) = s2
+      d4(1) = u
+      if (iprint.gt.2) call n1fc1o(io,11,iter,nsim,nv,i4,i5,fn,d2,d3,d4)
       if(iprint.ge.6) call n1fc1o(io,12,ntot,i2,i3,i4,i5,d1,d2,d3,poids)
 C                test de non-pivotage
       if (logic .ne. 3) goto 350
@@ -231,7 +236,9 @@ C              1ere iteration, ajustement de ap, diam et eta
       ajust = ro / roa
       if (logic .ne. 3) diam2 = diam2 * ajust * ajust
       if (logic .ne. 3) eta2 = eta2 / (ajust*ajust)
-      if(iprint.ge.2) call n1fc1o(io,18,i1,i2,i3,i4,i5,diam2,eta2,ap,d4)
+      d2(1) = eta2
+      d3(1) = ap
+      if(iprint.ge.2) call n1fc1o(io,18,i1,i2,i3,i4,i5,diam2,d2,d3,d4)
  390  mm = memax - 1
       if (logic .eq. 2) mm = memax - 2
       if (ntot .le. mm) goto 400
@@ -245,7 +252,9 @@ C
       if (iprint .ge. 2)
      &  call n1fc1o(io,19,iter,nsim,ntot,i4,i5,fn,d2,d3,d4)
 C
- 400  if(iprint.ge.5) call n1fc1o(io,20,logic,i2,i3,i4,i5,ro,tps,tnc,d4)
+      d2(1) = tps
+      d3(1) = tnc
+ 400  if(iprint.ge.5) call n1fc1o(io,20,logic,i2,i3,i4,i5,ro,d2,d3,d4)
       if (logic .eq. 3) goto 500
 C
 C                 iteration de descente

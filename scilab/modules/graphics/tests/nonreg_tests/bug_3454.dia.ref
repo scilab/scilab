@@ -12,7 +12,7 @@
 //
 // <-- Short Description -->
 // figure.axes_size and figure.figure_size might not be updated immediately.
-// 
+//
 // Test 1 : axes_size, auto_resize = "on"
 // ===========================
 // Create a default figure

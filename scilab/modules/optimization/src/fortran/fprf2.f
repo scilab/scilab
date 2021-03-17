@@ -354,7 +354,8 @@ C
       w12s = 0.d0
       l = jc(k0)
       if (l .ne. 1) nc = nc - 1
-      if (iprint.gt.6) call n1fc1o(io,32,k0,l,i3,i4,i5,y(k0),ps1,ps2,d4)
+      d3(1) = ps2
+      if (iprint.gt.6) call n1fc1o(io,32,k0,l,i3,i4,i5,y(k0),ps1,d3,d4)
       if (k0 .gt. nv) goto 400
       k1 = k0 - 1
       do 620 k = k0,nv
@@ -398,6 +399,7 @@ C
  940  continue
       u = u1
       if (iprint .le. 5) return
-      call n1fc1o(io,34,nc,nv,i3,i4,jc,s2,sp,u1,d4)
+      d3(1) = u1
+      call n1fc1o(io,34,nc,nv,i3,i4,jc,s2,sp,d3,d4)
       return
       end

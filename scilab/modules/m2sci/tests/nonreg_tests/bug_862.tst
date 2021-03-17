@@ -42,12 +42,6 @@ SCIFILECONTENTS=mgetl(fd,-1);
 mclose(fd);
 
 SCIFILECONTENTSREF=["";
-"// Display mode";
-"mode(0);";
-"";
-"// Display warning for floating point exception";
-"ieee(1);";
-"";
 "a(1,1) = 0;"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

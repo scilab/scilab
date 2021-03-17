@@ -408,7 +408,7 @@ int sci_plot2d(char* fname, void *pvApiCtx)
     }
 
     // Check strf [0-1][0-8][0-5]
-    if (!isDefStrf(strf) && (strlen(strf) != 3 || strf[0] < '0' || strf[0] > '1' || strf[1] < '0' || strf[1] > '8' || strf[2] < '0' || strf[2] > '5'))
+    if (!isDefStrf(strf) && (strlen(strf) != 3 || strf[0] < '0' || strf[0] > '1' || strf[1] < '0' || strf[1] > '9' || strf[2] < '0' || strf[2] > '5'))
     {
         Scierror(999, _("%s: Wrong value for strf option: %s.\n"), fname, strf);
         if (freeStrf)
@@ -448,7 +448,7 @@ int sci_plot2d(char* fname, void *pvApiCtx)
         }
         if (frame != &frame_def)
         {
-            if (*frame >= 0 && *frame <= 8)
+            if (*frame >= 0 && *frame <= 9)
             {
                 strfl[1] = (char)(*frame + 48);
             }

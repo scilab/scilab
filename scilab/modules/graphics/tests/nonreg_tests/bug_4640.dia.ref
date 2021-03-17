@@ -22,4 +22,4 @@ v0 = a.x_ticks.labels;
 drawaxis(x=a.x_ticks.locations,y=0.5,dir="u",tics="v",val=v0);
 e=gce();
 v1="$"+v0+"$";
-e.tics_labels=v1'; 
+e.tics_labels=v1';

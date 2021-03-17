@@ -935,10 +935,10 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xdel">xdel</link>
+                    <link linkend="close">close</link>
                 </term>
                 <listitem>
-                    <para>Delete a graphics window</para>
+                    <para>Close some graphic windows</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

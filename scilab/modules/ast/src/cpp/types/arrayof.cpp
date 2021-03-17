@@ -21,6 +21,7 @@
 #include "type_traits.hxx"
 #include "exp.hxx"
 #include "types_tools.hxx"
+#include "scilabexception.hxx"
 
 extern "C"
 {
@@ -590,7 +591,18 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
         pOut = createEmpty((int)dims.size(), dims.data(), bComplex);
         ArrayOf* pArrayOut = pOut->getAs<ArrayOf>();
         pArrayOut->fillDefaultValues();
-        ArrayOf* pOut2 = pArrayOut->insert(_pArgs, this);
+        ArrayOf* pOut2 = NULL;
+
+        try
+        {
+            pOut2 = pArrayOut->insert(_pArgs, this);
+        }
+        catch (const ast::InternalError& error)
+        {
+            pOut->killMe();
+            throw error;
+        }
+
         if (pOut != pOut2)
         {
             delete pOut;
@@ -1094,8 +1106,6 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             pOut->setComplex(false);
         }
 
-        
-
         return pOut;
     }
 
@@ -1403,6 +1413,10 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 
                 //free pArg content
                 cleanIndexesArguments(_pArgs, &pArg);
+                if(pOut)
+                {
+                    pOut->killMe();
+                }
                 return NULL;
             }
         }
@@ -1448,7 +1462,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 
         piIndex[0]++;
     }
-    
+
     pOut->setComplex(bIsComplex);
 
     //free pArg content

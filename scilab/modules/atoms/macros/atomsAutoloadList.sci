@@ -12,7 +12,7 @@
 
 // get the list of repositories
 
-function modules = atomsAutoloadList(section)
+function varargout = atomsAutoloadList(section)
 
     // Load Atoms Internals lib if it's not already loaded
     // =========================================================================
@@ -67,7 +67,6 @@ function modules = atomsAutoloadList(section)
 
     // Loop on sections
     // =========================================================================
-
     for i=1:size(sections,"*")
 
         autoloaded = atomsAutoloadLoad(sections(i));
@@ -76,6 +75,14 @@ function modules = atomsAutoloadList(section)
             modules = [ modules ; autoloaded emptystr(size(autoloaded(:,1),"*"),1) + sections(i) ];
         end
 
+    end
+
+    // Set the result
+    // =========================================================================
+    if argn(1) > 0 then
+        varargout = list(modules)
+    else
+        mprintf("%s\n", strcat(justify(modules,"l"), "  ", "c"))
     end
 
 endfunction

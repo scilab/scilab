@@ -71,17 +71,23 @@ types::Function::ReturnValue sci_spzeros(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        if (pDblRows->get(0) != (double) ((unsigned int) pDblRows->get(0)))
+        double dblRows = pDblRows->get(0);
+        double dblCols = pDblCols->get(0);
+        if (dblRows != (double) ((unsigned int) dblRows))
         {
-
             Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "spzeros", 1);
             return types::Function::Error;
         }
 
-        if (pDblCols->get(0) != (double) ((unsigned int) pDblCols->get(0)))
+        if (dblCols != (double) ((unsigned int) dblCols))
         {
-
             Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "spzeros", 2);
+            return types::Function::Error;
+        }
+
+        if (dblRows * dblCols > INT_MAX)
+        {
+            Scierror(999, _("%s: Wrong value for input arguments: The maximum total size expected is %d.\n"), "spzeros", INT_MAX);
             return types::Function::Error;
         }
 
@@ -91,7 +97,7 @@ types::Function::ReturnValue sci_spzeros(types::typed_list &in, int _iRetCount, 
         }
         else
         {
-            pSpOut = new types::Sparse((int)pDblRows->get(0), (int)pDblCols->get(0), false);            
+            pSpOut = new types::Sparse((int)pDblRows->get(0), (int)pDblCols->get(0), false);
         }
 
     }

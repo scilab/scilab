@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="close">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="close">
     <refnamediv>
         <refname>close</refname>
         <refpurpose>closes graphic figures, progressionbars or waitbars</refpurpose>
@@ -17,8 +19,8 @@
             <varlistentry>
                 <term>H</term>
                 <listitem>
-                    <para>Handle or vector of handles of graphic figures or progression bar
-                        or wait bar. These different types of handles can be mixed in <varname>H</varname>.
+                    <para>Vector of graphic figures handles or ids, or of handles of progression bar
+                        or wait bar.
                     </para>
                     <para>
                         By default, the current graphic figure is considered.
@@ -56,14 +58,20 @@ close(h);  // close figure 1
 wid1=progressionbar("Message");
 // close it
 close(wid1);
+
+// Create and close several figures in a once:
+scf(111); plot
+scf(25); plot2d
+gcf().figure_position(1) = 500;
+scf(200); param3d
+gcf().figure_position(1) = 700;
+sleep(5000);         // Watch at them!
+close([25 200 111])  // Finished!
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="xdel">xdel</link>
-            </member>
             <member>
                 <link linkend="delete">delete</link>
             </member>
@@ -77,5 +85,16 @@ close(wid1);
                 <link linkend="gcf">gcf</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Vector of several figures ids now accepted.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

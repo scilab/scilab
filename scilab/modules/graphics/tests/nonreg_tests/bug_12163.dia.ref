@@ -17,6 +17,6 @@
 clf()
 plot();
 rect=[3 -2 7 10];
-zoom_rect(rect); 
+zoom_rect(rect);
 assert_checktrue(execstr("unzoom(gcf())","errcatch")==0);
 delete();

@@ -15,7 +15,9 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="justify">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="justify">
 
     <refnamediv>
 
@@ -29,7 +31,7 @@
 
         <title>呼び出し手順</title>
 
-        <synopsis>Tj = justify(T, opt)</synopsis>
+        <synopsis>Tj = justify(T, position)</synopsis>
 
     </refsynopsisdiv>
 
@@ -65,52 +67,17 @@
 
             <varlistentry>
 
-                <term>opt</term>
+                <term>position</term>
 
                 <listitem>
 
-                    <para>文字オプション,以下の値を指定できます:</para>
-
-                    <variablelist>
-
-                        <varlistentry>
-
-                            <term>'r'または'right'</term>
-
-                            <listitem>
-
-                                <para>右揃え</para>
-
-                            </listitem>
-
-                        </varlistentry>
-
-                        <varlistentry>
-
-                            <term>'l'または'left'  </term>
-
-                            <listitem>
-
-                                <para>左揃え</para>
-
-                            </listitem>
-
-                        </varlistentry>
-
-                        <varlistentry>
-
-                            <term>'c'または'center'  </term>
-
-                            <listitem>
-
-                                <para>中央揃え</para>
-
-                            </listitem>
-
-                        </varlistentry>
-
-                    </variablelist>
-
+                    <para>以下の値を指定できます:
+                        <table cellspacing="0" cellpadding="0">
+                          <tr><td><term>'l'または'left'</term></td><td>: 左揃え</td></tr>
+                          <tr><td><term>'c'または'center'</term></td><td>: 中央揃え</td></tr>
+                          <tr><td><term>'r'または'right'</term></td><td>: 右揃え</td></tr>
+                        </table>
+                    </para>
                 </listitem>
 
             </varlistentry>
@@ -127,7 +94,7 @@
 
             <function>justify</function>関数は,
 
-            指定したオプション<varname>opt</varname>に基づき
+            指定したオプション<varname>position</varname>に基づき
 
             文字列の行列の列を整列します.
 

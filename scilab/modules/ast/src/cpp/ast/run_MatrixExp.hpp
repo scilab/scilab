@@ -113,7 +113,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                         {
                             try
                             {
-                                poRow = callOverloadMatrixExp(L"c", poRow, pIT);
+                                poRow = callOverloadMatrixExp(L"c", poRow, pIT, e.getLocation());
                             }
                             catch (const InternalError& error)
                             {
@@ -140,7 +140,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     {
                         try
                         {
-                            poRow = callOverloadMatrixExp(L"c", poRow, pIT);
+                            poRow = callOverloadMatrixExp(L"c", poRow, pIT, e.getLocation());
                         }
                         catch (const InternalError& error)
                         {
@@ -192,7 +192,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     try
                     {
-                        poRow = callOverloadMatrixExp(L"c", poRow, pGT);
+                        poRow = callOverloadMatrixExp(L"c", poRow, pGT, e.getLocation());
                     }
                     catch (const InternalError& error)
                     {
@@ -215,7 +215,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 types::GenericType* pGTResult = poRow->getAs<types::GenericType>();
 
                 //check dimension
-                if (pGT->getDims() != 2 || pGT->getRows() != pGTResult->getRows())
+                if (pGT->getDims() != 2 || ( (pGT->getRows() != pGTResult->getRows()) && pGT->getRows() != 0 && pGTResult->getRows() != 0) )
                 {
                     poRow->killMe();
                     if (poRow != pGT)
@@ -274,7 +274,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     delete[] piRank;
                 }
 
-                types::InternalType *pNewSize = AddElementToVariable(NULL, poRow, pGTResult->getRows(), pGTResult->getCols() + pGT->getCols());
+                types::InternalType *pNewSize = AddElementToVariable(NULL, poRow, std::max(pGTResult->getRows(),pGT->getRows()), pGTResult->getCols() + pGT->getCols());
                 types::InternalType* p = AddElementToVariable(pNewSize, pGT, 0, pGTResult->getCols());
                 if (p != pNewSize)
                 {
@@ -285,7 +285,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     try
                     {
-                        poRow = callOverloadMatrixExp(L"c", pGTResult, pGT);
+                        poRow = callOverloadMatrixExp(L"c", pGTResult, pGT, e.getLocation());
                     }
                     catch (const InternalError& error)
                     {
@@ -326,7 +326,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             {
                 try
                 {
-                    poResult = callOverloadMatrixExp(L"f", poResult, poRow);
+                    poResult = callOverloadMatrixExp(L"f", poResult, poRow, e.getLocation());
                 }
                 catch (const InternalError& error)
                 {
@@ -344,7 +344,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             {
                 try
                 {
-                    poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
+                    poResult = callOverloadMatrixExp(L"f", pGTResult, pGT, e.getLocation());
                 }
                 catch (const InternalError& error)
                 {
@@ -363,7 +363,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             }
 
             //check dimension
-            if (pGT->getCols() != pGTResult->getCols())
+            if ((pGT->getCols() != pGTResult->getCols()) && pGT->getCols() != 0 &&  pGTResult->getCols() != 0)
             {
                 poRow->killMe();
                 if (poResult)
@@ -390,7 +390,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 pGTResult = poResult->getAs<types::GenericType>();
             }
 
-            types::InternalType* pNewSize = AddElementToVariable(NULL, poResult, pGTResult->getRows() + pGT->getRows(), pGT->getCols());
+            types::InternalType* pNewSize = AddElementToVariable(NULL, poResult, pGTResult->getRows() + pGT->getRows(), std::max(pGT->getCols(),pGTResult->getCols()));
             types::InternalType* p = AddElementToVariable(pNewSize, pGT, pGTResult->getRows(), 0);
             if (p != pNewSize)
             {
@@ -402,7 +402,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             {
                 try
                 {
-                    poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
+                    poResult = callOverloadMatrixExp(L"f", pGTResult, pGT, e.getLocation());
                 }
                 catch (const InternalError& error)
                 {
@@ -442,7 +442,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 }
 
 template<class T>
-types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(const std::wstring& strType, types::InternalType* _paramL, types::InternalType* _paramR)
+types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(const std::wstring& strType, types::InternalType* _paramL, types::InternalType* _paramR, const Location& _location)
 {
     types::typed_list in;
     types::typed_list out;
@@ -458,11 +458,11 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(const std::wstring& s
     {
         if (_paramR->isGenericType() && _paramR->getAs<types::GenericType>()->getDims() > 2)
         {
-            Ret = Overload::call(L"%hm_" + strType + L"_hm", in, 1, out, true);
+            Ret = Overload::call(L"%hm_" + strType + L"_hm", in, 1, out, true, true, _location);
         }
         else
         {
-            Ret = Overload::call(L"%" + _paramL->getAs<types::List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<types::List>()->getShortTypeStr(), in, 1, out, true);
+            Ret = Overload::call(L"%" + _paramL->getAs<types::List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<types::List>()->getShortTypeStr(), in, 1, out, true, true, _location);
         }
     }
     catch (const InternalError& error)

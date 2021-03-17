@@ -4,8 +4,8 @@
  * Copyright (C) INRIA
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Yann Collette
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,8 +26,16 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            plot2d([logflag,][x,],y[,style[,strf[,leg[,rect[,nax]]]]])
-            plot2d([logflag,][x,],y,&lt;opt_args&gt;)
+            plot2d()   // example
+            plot2d(y)
+            plot2d(x, y)
+            plot2d(logflag, x, y)
+            plot2d(.., y, style)
+            plot2d(.., y, style, strf)
+            plot2d(.., y, style, strf, leg)
+            plot2d(.., y, style, strf, leg, rect)
+            plot2d(.., y, style, strf, leg, rect, nax)
+            plot2d(.., y, key1=value1, key2=value2, ..)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -50,158 +58,41 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>&lt;opt_args&gt;</term>
+                <term>key1=value1, key2=value2, ...</term>
                 <listitem>
                     <para>
-                        一連の命令 <literal>key1=value1,key2=value2</literal>,...
-                        を表します.
-                        ただし, <literal>key1</literal>, <literal>key2,...</literal>
-                        には以下のどれかを指定できます:
+                        The following options <varname>logflag</varname>, <varname>style</varname>,
+                        <varname>strf</varname>, <varname>leg</varname>, <varname>rect</varname>,
+                        <varname>nax</varname>, <varname>frameflag</varname>, and
+                        <varname>axesflag</varname> described below can either be listed in the
+                        right order as listed in the synopses, or provided in any order after
+                        <varname>y</varname> as named arguments, for instance like in
+                        <literal>plot(y, frameflag=3, leg="Curve 1@Curve 2")</literal>.
                     </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>logflag</term>
-                            <listitem>
-                                <para>
-                                    軸スケール (線形または対数)を設定します.
-                                    値は文字列で, 以下の値のどれかを指定します:
-                                    <literal>"nn"</literal>, <literal>"nl"</literal> ,
-                                    <literal>"ln"</literal> および <literal>"ll"</literal> .
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>style</term>
-                            に
-                            <listitem>
-                                <para>各曲線のスタイルを設定します.
-                                    値は整数値(正または負)を有する実数ベクトルを指定します.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>strf</term>
-                            <listitem>
-                                <para>凡例の表示を制御します.</para>
-                                <para>
-                                    <literal>strf</literal> は長さ3の文字列
-                                    <literal>"xyz"</literal>です.
-                                    (デフォルトでは,<literal>strf="081"</literal>)
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>leg</term>
-                            <listitem>
-                                <para>曲線の凡例を設定します.
-                                    値には文字列を指定します.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>rect</term>
-                            <listitem>
-                                <para>
-                                    プロットに使用する最小限の領域を設定します.
-                                    値には以下の4個のエントリを有する実数ベクトルを指定します:
-                                    <literal>[xmin,ymin,xmax,ymax]</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>nax</term>
-                            <listitem>
-                                <para>軸ラベルと目盛の定義を設定します.
-                                    値には4個の整数エントリ<literal>[nx,Nx,ny,Ny]</literal>を有する
-                                    実数ベクトルを指定します.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag</term>
-                            <listitem>
-                                <para>指定された最小限の領域に基づく実際の座標系の範囲の
-                                    計算を制御します.
-                                    値には, 0 から 8までの範囲の整数を指定します.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>axesflag</term>
-                            <listitem>
-                                <para>軸の描画方法を指定します. 値には,
-                                    0 から 5までの範囲の整数を指定します.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
                 </listitem>
             </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection role="description">
-        <title>説明</title>
-        <para>
-            <literal>plot2d</literal> は一連の2次元曲線をプロットします.
-            Matlabの<literal>plot</literal>構文に慣れている場合には,
-            <link linkend="plot">plot</link>を使用するべきです.
-        </para>
-        <para>
-            <literal>x</literal> および <literal>y</literal> がベクトルの場合,
-            plot2d(x,y,&lt;opt_args&gt;) はベクトル <literal>y</literal> を
-            ベクトル <literal>x</literal>に対してプロットします.
-            ベクトル<literal>x</literal> および <literal>y</literal>は
-            同じ数のエントリを有する必要があります.
-        </para>
-        <para>
-            <literal>x</literal> がベクトルで <literal>y</literal> が行列の場合,
-            plot2d(x,y,&lt;opt_args&gt;) は<literal>y</literal>の各列を
-            ベクトル<literal>x</literal>に対してプロットします.
-            この場合,<literal>y</literal>の列の数は<literal>x</literal>
-            のエントリの数に等しい必要があります.
-        </para>
-        <para>
-            <literal>x</literal> および <literal>y</literal> が行列の場合,
-            plot2d(x,y,&lt;opt_args&gt;) は<literal>y</literal>の各列を
-            対応する<literal>x</literal>の列に対してプロットします.
-            この場合,<literal>x</literal> と<literal>y</literal>の
-            大きさは同じである必要があります.
-        </para>
-        <para>
-            <literal>y</literal> がベクトルの場合, plot2d(y,&lt;opt_args&gt;)
-            はベクトル <literal>y</literal> をベクトル
-            <literal>1:size(y,'*')</literal>に対してプロットします.
-        </para>
-        <para>
-            <literal>y</literal> が行列の場合, plot2d(y,&lt;opt_args&gt;)
-            は<literal>y</literal>の各列をベクトル
-            <literal>1:size(y,1)</literal>に対してプロットします.
-        </para>
-        <para>
-            プロットをカスタマイズするために引数<literal>&lt;opt_args&gt;</literal> を
-            使用することができます.
-        </para>
-        <variablelist>
             <varlistentry>
                 <term>logflag</term>
                 <listitem>
-                    <para>このオプションは,
-                        軸スケール (線形または対数)を設定守るために使用できます.
-                        値は文字列で, 以下の値のどれかを指定します:
-                        <literal>"nn"</literal>,
-                        <literal>"nl"</literal> , <literal>"ln"</literal> および
-                        <literal>"ll"</literal>. <literal>"l"</literal> は
-                        対数軸/目盛, <literal>"n"</literal>は通常の軸を意味します.
+                    <para>
+                        Sets the linear or logarithmic scale for both X and Y axes.
+                        Possible values are <literal>"nn"</literal>, <literal>"nl"</literal> ,
+                        <literal>"ln"</literal> or <literal>"ll"</literal>.
+                        <literal>"n"</literal> stands for
+                        <emphasis role="bold">n</emphasis>ormal scale ;
+                        <literal>"l"</literal> stands for
+                        <emphasis role="bold">l</emphasis>ogarithmic.
+                        The first letter set the X axis. The second one sets the Y axis.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>style</term>
+                に
                 <listitem>
-                    <para>
-                        このオプションは,曲線の描画方法を指定する際に使用できます.
-                        このオプションを指定する場合,
-                        値には曲線と同じ数のエントリを有するベクトルを指定します.
+                    <para>各曲線のスタイルを設定します.
+                        値は整数値(正または負)を有する実数ベクトルを指定します.
+                         値には曲線と同じ数のエントリを有するベクトルを指定します.
                     </para>
                     <itemizedlist>
                         <listitem>
@@ -214,7 +105,6 @@
                                 (<link linkend="polyline_properties">polyline_properties</link>参照)
                                 により設定することができることに注意してください.
                             </para>
-                            <para>指定した曲線の点の間は区分線形補間が行われます.</para>
                         </listitem>
                         <listitem>
                             <para>
@@ -227,169 +117,46 @@
                             </para>
                         </listitem>
                     </itemizedlist>
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>strf</term>
                 <listitem>
-                    <para>
-                        長さ <literal>"xyz"</literal> (デフォルトで
-                        <literal>strf= "081"</literal>)の文字列.
-                    </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>x</term>
-                            <listitem>
-                                <para>凡例の表示を制御します.</para>
-                                <variablelist>
-                                    <varlistentry>
-                                        <term>x=0</term>
-                                        <listitem>
-                                            <para>凡例なし.</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>x=1</term>
-                                        <listitem>
-                                            <para>凡例が表示されます.凡例は,
-                                                オプションの引数 <literal>leg</literal>で指定されます.
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                </variablelist>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>y</term>
-                            <listitem>
-                                <para>指定した最小限の範囲に基づく実際の座標系の範囲の計算を
-                                    制御します. 実際の範囲は指定した最小限の範囲よりも大きくすることができます.
-                                </para>
-                                <variablelist>
-                                    <varlistentry>
-                                        <term>y=0</term>
-                                        <listitem>
-                                            <para>
-                                                計算せずに,以前のスケール(またはデフォルト)を
-                                                プロットに使用します
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=1</term>
-                                        <listitem>
-                                            <para>rect引数による</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=2</term>
-                                        <listitem>
-                                            <para>x, y データの最小値/最大値による</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=3</term>
-                                        <listitem>
-                                            <para>rect引数に基づき等軸スケールで構築</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=4</term>
-                                        <listitem>
-                                            <para>
-                                                x, y データの最小値/最大値に基づき等軸スケールで構築
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=5</term>
-                                        <listitem>
-                                            <para>rect引数に基づき見栄え良く軸を拡大</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=6</term>
-                                        <listitem>
-                                            <para>
-                                                x, y データの最小値/最大値に基づき見栄え良く軸を拡大
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=7</term>
-                                        <listitem>
-                                            <para>y=1に似ていますが,
-                                                前のプロットが新しいスケールを用いて再描画されます
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>y=8</term>
-                                        <listitem>
-                                            <para>y=2に似ていますが,
-                                                前のプロットが新しいスケールを用いて再描画されます
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                </variablelist>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>z</term>
-                            <listitem>
-                                <para>
-                                    プロットの周囲のフレームへの情報の表示を制御します.
-                                    軸が指定された場合,目盛の数をオプションの引数
-                                    <literal>nax</literal>により指定できます.
-                                </para>
-                                <variablelist>
-                                    <varlistentry>
-                                        <term>z=0</term>
-                                        <listitem>
-                                            <para>プロットの周囲に何も描画されません.</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>z=1</term>
-                                        <listitem>
-                                            <para>軸が描画され, y軸が左に表示されます.</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>z=2</term>
-                                        <listitem>
-                                            <para>プロットが目盛のない箱で囲まれます.</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>z=3</term>
-                                        <listitem>
-                                            <para>軸が描画され, y軸が右に表示されます.</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>z=4</term>
-                                        <listitem>
-                                            <para>
-                                                フレームボックスの中心に軸が描画されます.
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>z=5</term>
-                                        <listitem>
-                                            <para>
-                                                点<literal>(0,0)</literal>で交差するように
-                                                軸が描画されます.
-                                                点<literal>(0,0)</literal>がフレーム内にない場合,
-                                                グラフ上に軸は表示されません.
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                </variablelist>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    3-character-long string <literal>"abc"</literal> specifying all
+                    together if legends must be displayed, and the values of
+                    <varname>frameflag</varname> and <varname>axesflag</varname>.
+                    By default, <literal>strf= "081"</literal>. "a", "b" and "c" are:
+                    <para/>
+                    <table>
+                        <tr><th>a :</th>
+                            <td>凡例の表示を制御します.
+                                <table>
+                                    <tr><th>x=0 :</th><td>凡例なし.</td></tr>
+                                    <tr><th>x=1 :</th>
+                                        <td>凡例が表示されます.凡例は,
+                                            オプションの引数 <varname>leg</varname>で指定されます.
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr><th>b :</th>
+                            <td>
+                                <varname>frameflag</varname> integer code in [0,9],
+                                controlling the computation the actual coordinate ranges,
+                                as described below.
+                            </td>
+                        </tr>
+                        <tr><th>c :</th>
+                            <td>
+                                <varname>axesflag</varname> integer code in [0:5 9],
+                                controlling the display and position of X and Y axes,
+                                as described below.
+                            </td>
+                        </tr>
+                    </table>
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -400,12 +167,17 @@
                         必要があります.
                         ただし, <literal>leg1</literal> , <literal>leg2</literal> , ...
                         はそれぞれ最初の曲線,2番目の曲線,...　の凡例です.
+                        曲線の凡例はx軸の下に描画されます.
                         デフォルトは
                         <literal> " "</literal>です.
                     </para>
-                    <para>曲線の凡例はx軸の下に描画されます.
-                        このオプションは柔軟ではないため,なるべく,
-                        <link linkend="captions">captions</link> または <link linkend="legend">legend</link> 関数を使用してください.
+                    <para>
+                        After plotting, the handle of the block of legends can be
+                        retrieved with <literal>gca().children(2)</literal>.
+                        <link linkend="captions">captions</link>,
+                        <link linkend="legend">legend</link> or
+                        <link linkend="legends">legends</link> can also be used
+                        instead of <varname>leg</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -464,193 +236,141 @@
             <varlistentry>
                 <term>frameflag</term>
                 <listitem>
-                    <para>このオプションは指定された最小限の範囲に基づく実際の
-                        座標系範囲の計算を制御するために使用できます.
-                        実際の範囲は指定された最小限の範囲よりも大きくすることができます.
+                    <para>controls the computation of the actual coordinate ranges
+                        from the minimal requested values. The associated value should
+                        be an integer ranging from 0 to 8.
                     </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>frameflag=0</term>
-                            <listitem>
-                                <para>計算せずに,以前のスケール(またはデフォルト)を
-                                    プロットに使用します.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=1</term>
-                            <listitem>
-                                <para>実際の範囲は
-                                    <literal>rect</literal> オプションにより指定された範囲となります.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=2</term>
-                            <listitem>
-                                <para>実際の範囲は
-                                    <literal>x</literal> および<literal>y</literal> データの最小値/最大値から
-                                    計算されます.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=3</term>
-                            <listitem>
-                                <para>
-                                    実際の範囲は<literal>rect</literal>オプションにより指定された範囲となり,
-                                    等軸スケールにするために拡大されます.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=4</term>
-                            <listitem>
-                                <para>実際の範囲は
-                                    <literal>x</literal> および<literal>y</literal> データの最小値/最大値から
-                                    計算され,等軸スケールにするために拡大されます.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=5</term>
-                            <listitem>
-                                <para>
-                                    実際の範囲は<literal>rect</literal>オプションにより指定された範囲となり,
-                                    軸ラベルの見栄えを良くするために拡大されます.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=6</term>
-                            <listitem>
-                                <para>実際の範囲は
-                                    <literal>x</literal> および<literal>y</literal> データの最小値/最大値から
-                                    計算され,軸ラベルの見栄えを良くするために拡大されます.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=7</term>
-                            <listitem>
-                                <para>
-                                    <literal>frameflag=1</literal>と似ていますが,
-                                    前のプロットが新しいスケールを用いて再描画されます.
-                                    カレントのグラフに前のプロットを追加するために使用されます.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=8</term>
-                            <listitem>
-                                <para>
-                                    <literal>frameflag=2</literal>と似ていますが,
-                                    前のプロットが新しいスケールを用いて再描画されます.
-                                    カレントのグラフに前のプロットを追加するために使用されます.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>frameflag=9</term>
-                            <listitem>
-                                <para>
-                                    <literal>frameflag=8</literal> と似ていますが,
-                                    範囲は軸ラベルの見栄えを良くするために拡大されます.
-                                    これはデフォルト値です.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                    <para>軸の境界も軸エンティティプロパティによりカスタマイズできます
-                        (s<link linkend="axes_properties">axes_properties</link>参照).
+                    <para>
+                <table border="1" cellpadding="1" cellspacing="0">
+                    <tr><th>frameflag</th><th>axes bounds</th>      <th>other actions</th></tr>
+                    <tr align="center">
+                        <th>0</th>        <td>unchanged</td>        <td></td></tr>
+                    <tr align="center">
+                        <th>1</th>        <td>from rect</td>        <td></td></tr>
+                    <tr align="center">
+                        <th>2</th>        <td>from input x,y</td>   <td></td></tr>
+                    <tr align="center">
+                        <th>3</th>        <td>from rect</td>        <td>isometric axes</td></tr>
+                    <tr align="center">
+                        <th>4</th>        <td>from input x,y</td>   <td>isometric axes</td></tr>
+                    <tr align="center">
+                        <th>5</th>        <td>from rect</td>        <td>pretty axes</td></tr>
+                    <tr align="center">
+                        <th>6</th>        <td>from input x,y</td>   <td>pretty axes</td></tr>
+                    <tr align="center">
+                        <th>7</th>        <td>from rect</td>        <td>all replot with new scales</td></tr>
+                    <tr align="center">
+                        <th>8</th>        <td>from input x,y</td>   <td>all replot with new scales</td></tr>
+                    <tr align="center">
+                        <th>9</th>        <td>from input x,y</td>   <td>Pretty axes. All replot with new scales</td></tr>
+                </table>
+                    </para>
+                    <para>
+                        The setting of axes boundaries can also be customized through
+                        the <literal>gca().data_bounds</literal>,
+                        <literal>gca().tight_limits</literal>,
+                        <literal>gca().data_bounds</literal>, and
+                        <literal>gca().isoview</literal> properties
+                        (see <link linkend="axes_properties">axes_properties</link>).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>axesflag</term>
                 <listitem>
-                    <para>軸の描画方法を指定するためにこのオプションを指定することができます.
-                        値には 0 から 5の範囲の整数を指定します :
+                    <para>
+                        integer code in [0:5 9], controlling the display and position of
+                        X and Y axes.
                     </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>axesflag=0</term>
-                            <listitem>
-                                <para>プロットの周囲に何も描画されません (axes_visible=["off"
-                                    "off"];box="off").
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>axesflag=1</term>
-                            <listitem>
-                                <para>軸が描画され, y軸が左に表示されます
-                                    (axes_visible=["on" "on"];box="on",y_location="left").
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>axesflag=2</term>
-                            <listitem>
-                                <para>プロットは目盛のない箱で囲われます
-                                    (axes_visible=["off" "off"];box="on").
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>axesflag=3</term>
-                            <listitem>
-                                <para>軸が描画され, y軸が右に表示されます
-                                    (axes_visible=["on"
-                                    "on"];box="off",y_location="right").
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>axesflag=4</term>
-                            <listitem>
-                                <para>軸がフレームの中心に描画され,箱は描画されません
-                                    (axes_visible=["on" "on"];box="off",x_location="middle",
-                                    y_location="middle").
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>axesflag=5</term>
-                            <listitem>
-                                <para>
-                                    <literal>axesflag=4</literal>に似た軸がフレームの中心に描画されます.
-                                    違いは箱が描画されることです
-                                    (axes_visible=["on" "on"];box="on",x_location="middle",y_location="middle").
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>axesflag=9</term>
-                            <listitem>
-                                <para>軸が描画され, y軸が左に表示されます
-                                    (axes_visible=["on" "on"];box="off",y_location="left").
-                                    これがデフォルト値です
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                    <para>軸の特性も軸エンティティプロパティによりカスタマイズできます
-                        (<link linkend="axes_properties">axes_properties</link>参照).
+                    <para>
+                        The axes aspect can also be customized directly through the
+                        <literal>gca().box</literal>, <literal>gca().axes_visible</literal>,
+                        <literal>gca().x_location</literal>, and <literal>gca().y_location</literal>,
+                        properties (see <link linkend="axes_properties">axes_properties</link>).
                     </para>
+        <table border="1" cellpadding="1">
+            <tr><th>axesFlag</th><th>.box</th><th>.axes_visible</th><th>axes position</th><th>comments</th></tr>
+            <tr align="center">
+                <th>0</th><td>"off"</td><td>["off" "off"]</td><td></td>     <td>Naked plot</td></tr>
+            <tr align="center">
+                <th>1</th><td>"on"</td> <td>["on" "on"]</td>  <td></td>     <td></td></tr>
+            <tr align="center">
+                <th>2</th><td>"on"</td> <td>["off" "off"]</td><td></td>     <td>Naked box</td></tr>
+            <tr align="center">
+                <th>3</th><td>"off"</td><td>["on" "on"]</td>  <td>y_location="right"</td><td></td></tr>
+            <tr align="center">
+                <th>4</th><td>"off"</td><td>["on" "on"]</td>  <td>crossed @ middle</td><td></td></tr>
+            <tr align="center">
+                <th>5</th><td>"on"</td> <td>["on" "on"]</td>  <td>crossed @ middle</td><td></td></tr>
+            <tr align="center">
+                <th>9</th><td>"off"</td><td>["on" "on"]</td>  <td></td>     <td>(default setting)</td></tr>
+        </table>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection role="description">
-        <title>その他の情報</title>
-        <para>デフォルトで, 連続プロットは重ね書きされます. 前のプロットを
-            消去するには,
-            <literal>
-                <link linkend="clf">clf()</link>
-            </literal>
-            を使用してください.
+        <title>説明</title>
+        <para>
+            <literal>plot2d</literal> は一連の2次元曲線をプロットします.
+            指定した曲線の点の間は区分線形補間が行われます.
         </para>
+        <para>
+            Any point with <literal>y(i)=Nan</literal> is masked: no mark and no segment to its
+            neighboors are displayed.
+        </para>
+        <para>
+            For any point with <literal>y(i)=±Inf</literal>, a vertical segment starting
+            from each of its both neighboors is drawn in the ± direction, up to the current ceil
+            or down to the current floor of the axes.
+        </para>
+        <para>
+            By default, successive calls to plot2d() overplots new curves over existing ones.
+            Autoclearing for each new plot can be set using <literal>gca().auto_clear="on"</literal>.
+            Please see <link linkend="axes_properties">axes properties</link>.
+            <literal><link linkend="clf">clf</link></literal> can also be used to manually clear
+            the whole figure.
+        </para>
+        <para>
+            Matlabの<literal>plot</literal>構文に慣れている場合には,
+            <link linkend="plot">plot</link>を使用するべきです.
+        </para>
+        <para>
+            <literal>x</literal> および <literal>y</literal> がベクトルの場合,
+            plot2d(x,y,&lt;opt_args&gt;) はベクトル <literal>y</literal> を
+            ベクトル <literal>x</literal>に対してプロットします.
+            ベクトル<literal>x</literal> および <literal>y</literal>は
+            同じ数のエントリを有する必要があります.
+        </para>
+        <para>
+            <literal>x</literal> がベクトルで <literal>y</literal> が行列の場合,
+            plot2d(x,y,&lt;opt_args&gt;) は<literal>y</literal>の各列を
+            ベクトル<literal>x</literal>に対してプロットします.
+            この場合,<literal>y</literal>の列の数は<literal>x</literal>
+            のエントリの数に等しい必要があります.
+        </para>
+        <para>
+            <literal>x</literal> および <literal>y</literal> が行列の場合,
+            plot2d(x,y,&lt;opt_args&gt;) は<literal>y</literal>の各列を
+            対応する<literal>x</literal>の列に対してプロットします.
+            この場合,<literal>x</literal> と<literal>y</literal>の
+            大きさは同じである必要があります.
+        </para>
+        <para>
+            <literal>y</literal> がベクトルの場合, plot2d(y,&lt;opt_args&gt;)
+            はベクトル <literal>y</literal> をベクトル
+            <literal>1:size(y,'*')</literal>に対してプロットします.
+        </para>
+        <para>
+            <literal>y</literal> が行列の場合, plot2d(y,&lt;opt_args&gt;)
+            は<literal>y</literal>の各列をベクトル
+            <literal>1:size(y,1)</literal>に対してプロットします.
+        </para>
+        <para>
+            プロットをカスタマイズするために引数<literal>&lt;opt_args&gt;</literal> を
+            使用することができます.
+        </para>
+
         <para>
             デモを参照するにはコマンド <literal>plot2d()</literal> を使用してください.
         </para>
@@ -822,6 +542,9 @@ isoview off
                 <link linkend="plot">plot</link>
             </member>
             <member>
+                <link linkend="polyline_properties">.polyline_style</link>
+            </member>
+            <member>
                 <link linkend="plot2d2">plot2d2</link>
             </member>
             <member>
@@ -831,13 +554,19 @@ isoview off
                 <link linkend="plot2d4">plot2d4</link>
             </member>
             <member>
+                <link linkend="polarplot">polarplot</link>
+            </member>
+            <member>
+                <link linkend="gca">gca</link>
+            <member>
+            </member>
+                <link linkend="close">close</link>
+            </member>
+            <member>
+                <link linkend="axes_properties">axes_properties</link>
+            </member>
+            <member>
                 <link linkend="clf">clf</link>
-            </member>
-            <member>
-                <link linkend="xdel">xdel</link>
-            </member>
-            <member>
-                <link linkend="delete">delete</link>
             </member>
         </simplelist>
     </refsection>

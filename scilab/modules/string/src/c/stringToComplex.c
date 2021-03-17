@@ -19,7 +19,7 @@
 #include "stringToDouble.h"
 #include "strsubst.h"
 #include "numericconstants_interface.h"
- /* ========================================================================== */
+/* ========================================================================== */
 #include <ctype.h>
 #include <math.h>
 #include <stdio.h>
@@ -453,15 +453,6 @@ static int ParseNumberW(const wchar_t* tx)
     int lookahead = 0;
     int len = 0;
 
-    if (tx[len] == L'0')
-    {
-        return lookahead;
-    }
-    if (tx[len] < 0)
-    {
-        return lookahead;
-    }
-
     if ((tx[len] == L'+') || (tx[len] == L'-'))
     {
         len++;
@@ -623,11 +614,11 @@ static stringToComplexError ParseComplexValue(const char* tx, BOOL bConvertByNAN
                     }
                 }
 
-            if (strcmp(inum_string, "+") == 0)
-            {
-                FREE(inum_string);
-                inum_string = os_strdup("+1");
-            }
+                if (strcmp(inum_string, "+") == 0)
+                {
+                    FREE(inum_string);
+                    inum_string = os_strdup("+1");
+                }
 
                 if (strcmp(inum_string, "-") == 0)
                 {
@@ -699,8 +690,8 @@ static stringToComplexError ParseComplexValue(const char* tx, BOOL bConvertByNAN
                     ierr = STRINGTOCOMPLEX_ERROR;
                 }
             }
-        } 
-        
+        }
+
 
         FREE(rnum_string);
         FREE(inum_string);
@@ -948,33 +939,15 @@ static stringToComplexError ParseComplexValueWInPlace(wchar_t* tx, BOOL bConvert
     *real = stringToDoubleWInPlace(tx, FALSE, &ierrDouble);
     *imag = 0;
 
-    /* test on strlen(tx) > 1 to remove case 'e' */
-    if ((int)wcslen(tx) < 2)
+    if (ierrDouble == STRINGTODOUBLE_NO_ERROR)
     {
-        if (ierrDouble == STRINGTODOUBLE_NO_ERROR)
-        {
-            ierr = (stringToComplexError)ierrDouble;
-        }
-        else
-        {
-            if (bConvertByNAN)
-            {
-                ierrDouble = STRINGTODOUBLE_NOT_A_NUMBER;
-                *real = returnNAN();
-                *imag = 0;
-            }
-            else
-            {
-                *real = 0;
-                *imag = 0;
-                ierr = (stringToComplexError)ierrDouble;
-            }
-        }
+        ierr = (stringToComplexError)ierrDouble;
     }
     else if (ierrDouble != STRINGTODOUBLE_NO_ERROR)
     {
         // convert %i to i
-        for (wchar_t *it = tx, *jt = tx; *it != L'\0'; it++, jt++)
+        wchar_t* jt = tx;
+        for (wchar_t* it = tx; *it != L'\0'; it++, jt++)
         {
             if (it[0] == L'%' && it[1] == L'i')
             {
@@ -982,6 +955,7 @@ static stringToComplexError ParseComplexValueWInPlace(wchar_t* tx, BOOL bConvert
             }
             *jt = *it;
         }
+        *jt = '\0';
 
         lnum = ParseNumberW(tx);
         if (lnum <= 1)
@@ -1018,19 +992,38 @@ static stringToComplexError ParseComplexValueWInPlace(wchar_t* tx, BOOL bConvert
                 (inum_string[wcslen(inum_string) - 1] == L'j')) // The imaginary part looks like "a*%i"
         {
             inum_string[wcslen(inum_string) - 1] = L'\0';
-            if (inum_string[wcslen(inum_string) - 1] == L'*')
-            {
-                inum_string[wcslen(inum_string) - 1] = L'\0';
-            }
-
-            // *inum_string will be set to '\0' on leftstringInPlace, store the sign
-            // somewhere before!
             gainImagI = 1.;
-            if (*inum_string == L'-')
+            if (*inum_string == L'\0' && (wcslen(tx) == 0 || tx[wcslen(tx) - 1] == L'-'))
             {
-                gainImagI = -1.;
+                inum_string = L"+1";
+                if (tx[wcslen(tx) - 1] == L'-')
+                {
+                    gainImagI = -1.;
+                }
             }
-            inum_string++;
+            else if (inum_string[wcslen(inum_string) - 1] == L'+')
+            {
+                inum_string = L"+1";
+            }
+            else if (inum_string[wcslen(inum_string) - 1] == L'-')
+            {
+                inum_string = L"-1";
+            }
+            else
+            {
+                if (inum_string[wcslen(inum_string) - 1] == L'*')
+                {
+                    inum_string[wcslen(inum_string) - 1] = L'\0';
+                }
+
+                // *inum_string will be set to '\0' on leftstringInPlace, store the sign
+                // somewhere before!
+                if (*inum_string == L'-')
+                {
+                    gainImagI = -1.;
+                }
+                inum_string++;
+            }
         }
         else if (inum_string[1] == L'i' || inum_string[1] == L'j') // The imaginary part looks like "%i*a". For instance if string() has been used
         {
@@ -1062,7 +1055,16 @@ static stringToComplexError ParseComplexValueWInPlace(wchar_t* tx, BOOL bConvert
         {
             gainImagI = 0.;
         }
-        rnum_string = leftstringWInPlace(tx, lnum);
+
+        if (wcslen(tx) == 0 || (tx[0] == L'-' && wcslen(tx) == 1))
+        {
+            rnum_string = L"0";
+        }
+        else
+        {
+            rnum_string = leftstringWInPlace(tx, lnum);
+        }
+
 
         if (gainImagI != 0. && *rnum_string != L'\0' && *inum_string == L'\0')
         {

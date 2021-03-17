@@ -13,7 +13,9 @@
  * along with this program.
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:id="strcat" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xml:id="strcat" xml:lang="en">
     <refnamediv>
         <refname>strcat</refname>
         <refpurpose>concatenates character strings</refpurpose>
@@ -21,8 +23,10 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            txt = strcat(strings [,string_added])
-            txt = strcat(strings [,string_added, ["flag"]])
+            txt = strcat(strings)
+            txt = strcat(strings, string_added)
+            txt = strcat(strings, string_added, "r")
+            txt = strcat(strings, string_added, "c")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -31,7 +35,7 @@
             <varlistentry>
                 <term>strings</term>
                 <listitem>
-                    <para>a vector or matrix of strings.</para>
+                    <para>vector, matrix, or hypermatrix of strings.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -50,13 +54,14 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"flag"</term>
+                <term>"r" | "c" flag</term>
                 <listitem>
                     <para>
-                        a character (<literal>"r"</literal> for concatenation of
-                        rows in the matrix <varname>strings</varname>,
-                        <literal>"c"</literal> for concatenations of columns in the
-                        matrix <varname>strings</varname>).
+                        <literal>"r"</literal> glues together all <emphasis role="bold">r</emphasis>ows
+                        of each column,  in the array <varname>strings</varname>.
+                        If <varname>strings</varname> is a matrix, <varname>txt</varname> is a
+                        <emphasis role="bold">r</emphasis>ow of longer strings.
+                        <literal>"c"</literal> glues all columns of each row.
                     </para>
                 </listitem>
             </varlistentry>
@@ -123,6 +128,12 @@ strcat(m, "_and_", "c")
             </member>
             <member>
                 <link linkend="strings">strings</link>
+            </member>
+            <member>
+                <link linkend="strsplit">strsplit</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets []</link>
             </member>
         </simplelist>
     </refsection>

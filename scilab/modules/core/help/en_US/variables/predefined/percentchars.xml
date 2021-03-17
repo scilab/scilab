@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+         xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="percentchars">
+    <refnamediv>
+        <refname>%chars</refname>
+        <refpurpose>Selected sets of Unicode characters</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>%chars</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <emphasis role="bold">%chars</emphasis> is a Scilab constant made
+            of a structure gathering various sets of Unicode characters.
+        </para>
+        <para>
+            %chars aims to easily access to greek letters, most frequent mathematical
+            symbols, arrows, etc. After displaying %chars in the console or displaying this page in
+            the help browser, copy/pasting selected characters wherever they are needed becomes
+            trivial and very handy.
+        </para>
+        <para>
+            In many simple situations -- when setting legends in graphics, writing some
+            help pages or some other documentation, etc, using ready-to-read special characters
+            instead of not-rendered raw LaTeX technical expressions is enough and helpful.
+        </para>
+        <important>
+            Character sets provided by %chars must not be considered as fixed and definitive.
+            The number of sets, their names, hierarchy, and order can vary in the future,
+            as well as the order of characters in the sets. In addition, a given character
+            may belong to several sets.
+        </important>
+        <note>
+            The full display of all %chars contents in the console may require tuning the
+            <emphasis>General:Environment/Containers display depth</emphasis> parameter
+            in the Preferences.
+        </note>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+%chars
+     ]]></programlisting>
+        <screen><![CDATA[
+--> %chars
+ %chars  =
+  greek: struct with fields:
+      lower = "αβδεϵζηθικλμνξοπρστυφϕχψωάϐέήϑίϊϰόϱςύϋΰϖώ"
+      upper = "ΑΒΓΔΕΖΗΘϴΙΪΚΛΜΝΞΟΠΡΣΤΥΫΦΧΨΩ KΩ℧"
+  subsupscript = "₀₁₂₃₄₅₆₇₈₉₊₋₌₍ₐₕₖₗₘₙₒₚₛₜₓ₎ ⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽ªⁱⁿº⁾"
+  maths: struct with fields:
+      frac = "½ ⅓ ¼ ⅕ ⅙ ⅛ ⅔ ⅖ ¾ ⅗ ⅜ ⅘ ⅚ ⅝ ⅞"
+      sets = "ℂⅅℍℕℙℚℝℤ∉∈∊∍∋∌∅∖⋂∩⋃∪⊂⊆⊄⊅⊇⊃⋐⋑⋒⋓"
+      operators = "−±∓∔÷×∏∐∑√∛∜⋅⋆⊕⊖⊝⊗⊘⊙⊚⊛⊜⊞⊟⊠⊡"
+      comparisons = "⋘≪≤≲≳≥≫⋙≠≃≄≅≈∽∝≍≐≔≕≝"
+      integdiff = "∂∇∆∫∬∭∮∯∰∱⨑∲"
+      geometry = "°′″∟⊾∠∡∢⊥∥∦∺∻≎⊿⋕"
+      logical = "∀∃∄∧∨⋀⋁⊼⊽⊻∁∴∵∎≍"
+      misc = "⋮⋰⋯⋱ ′ ″ ∞ ‰ ‱"
+  physics = "Å ℃ ℉ ħ"
+  arrows: struct with fields:
+      base = "←↖↑↗→↘↓↙↔↕↵↱↴☇⇐⇑⇒⇓⇔↺↻⊣⊥⊢⊤"
+      thick = "⬅⬆➞⬇➚➙➘➔➜➡➥➦➧➨➼➽"
+  symbols = "…⋈⋔⋄♢◊♤♧♡♦♠♣♥©®℗Ⓢ™℡♀♂⌘✠♻☎«»◬⨺⨹⨻¶"
+  stars = "⋆★☆✫✯✰✭✡⊛⍟✪❂✻✼✹✸✶"
+  currencies = "¤ $ ¢ € £ ¥ 円 元 ₪ ฿ ¢ ₫ ₣"
+  lang: struct with fields:
+      latin: struct with fields:
+          voydiac = "áàâãäāăåéêèëēěėíîïóòôõöőōúùûŭũūůüűýŷÿ"
+          condiac = "ćĉčçċďđǵĜ ğġĥħĵķĺļłńňņŕřŗśŝšşťţŵźžż"
+          special = "æ Æ œ Œ ℬ ъ Ъ Þ þ ⅆ ℇ ℈ ℰ ƒ ⨍ ℊ ℱ ℏ ℎ ℋ ℌ ℐ ℑ ℳ № ℘ ℛ ℜ"
+      LATIN: struct with fields:
+          voydiac = "ÁÀÂÃÄĀĂÅÉÊÈËĒĚĖÍÎÏÓÒÔÕÖŐŌÚÙÛŬŨŪŮÜŰÝŶŸ"
+          condiac = "ĆĈČĊÇĎĐ ĝĢĞĠĤĦĴĶĹĻŁŃŇŅŔŘŖŚŜŠŞŤŢŴŹŽŻ"
+      russian = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+      RUSSIAN = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+      japanese: struct with fields:
+          hiragana: struct with fields:
+              a = "あかさたなはまやらわ がざだばぱ"
+              e = "えけせてねへめ れゑ げぜでべぺ"
+              i = "いきしちにひみ りゐ ぎじぢびぴ"
+              o = "おこそとのほもよろをんごぞどぽ"
+              u = "うくすつぬふむゆる  ぐずづぶぷ"
+      arabic: struct with fields:
+          alone1 = "ش س ز ر ذ د خ ح ج ث ت ب ا ء"
+          alone2 = "ي و ه ن م ل ك ق ف غ ع ظ ط ض ص"
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title></title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xlfont">xlfont</link>
+            </member>
+            <member>
+                <link linkend="math_rendering_features_in_graphic">LaTeX in Scilab</link>
+            </member>
+            <member>
+                <link linkend="console">console</link>
+            </member>
+            <member>
+                <link linkend="ascii">ascii</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    %chars introduced.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

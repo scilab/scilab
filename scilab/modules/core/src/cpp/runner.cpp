@@ -73,6 +73,7 @@ int StaticRunner::launch()
     std::unique_ptr<Runner> runMe(getRunner());
 
     debugger::DebuggerManager* manager = debugger::DebuggerManager::getInstance();
+    manager->resetAborted();
 
     ConfigVariable::resetExecutionBreak();
 
@@ -227,6 +228,12 @@ bool StaticRunner::isRunnerAvailable(void)
     return m_RunMe.load() != nullptr;
 }
 
+// return true if a command is running or paused.
+bool StaticRunner::isRunning(void)
+{
+    return m_CurrentRunner.load() != nullptr;
+}
+
 bool StaticRunner::isInterruptibleCommand()
 {
     return m_CurrentRunner.load()->isInterruptible();
@@ -282,6 +289,11 @@ bool StaticRunner::exec(ast::Exp* _theProgram, ast::RunVisitor *_visitor)
 void StaticRunner_launch(void)
 {
     StaticRunner::launch();
+}
+
+int StaticRunner_isRunning(void)
+{
+    return StaticRunner::isRunning() ? 1 : 0;
 }
 
 int StaticRunner_isRunnerAvailable(void)

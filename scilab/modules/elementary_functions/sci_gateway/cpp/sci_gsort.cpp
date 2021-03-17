@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Samuel GOUGEON
+ * Copyright (C) 2018 - 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -59,33 +59,67 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
+    types::GenericType* pGTIn = in[0]->getAs<types::GenericType>();
+
     // Get the sorting method, always as argin#2 for all generic types
     // ----------------------
+    char* msg = _("%s: Argument #%d: Must be in the set {%s} or integer in range [%d, %d].\n");
+    std::string argSetError = "'g','r','c','lc','lr'";
     std::wstring wstrProcess = L"g";
+    int iOrientation = 0;
+    int ndims = static_cast<int>(pGTIn->getDims());
+
     if (in.size() >= 2)
     {
-        if (in[1]->isString() == false)
+        if (in[1]->isDouble())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "gsort", 2);
+            types::Double* pDbl = in[1]->getAs<types::Double>();
+
+            if (pDbl->isScalar() == false)
+            {
+                Scierror(999, _("%s: Argument #%d: Scalar (1 element) expected.\n"), "gsort", 2);
+                return types::Function::Error;
+            }
+
+            iOrientation = static_cast<int>(pDbl->get(0));
+
+            if (iOrientation <= 0 || iOrientation > ndims)
+            {
+                Scierror(999, msg, "gsort", 2, argSetError.data(), 1, ndims);
+                return types::Function::Error;
+            }
+            if ( iOrientation == 1 )
+            {
+                wstrProcess = L"r";
+            }
+            else if ( iOrientation == 2 )
+            {
+                wstrProcess = L"c";
+            }
+            // else: hypermat: overload called later
+        }
+        else if (in[1]->isString() == false)
+        {
+            Scierror(999, msg, "gsort", 2, argSetError.data(), 1, ndims);
             return types::Function::Error;
         }
-
-        wstrProcess = in[1]->getAs<types::String>()->get(0);
-
-        if ( wstrProcess != L"c"  &&
-                wstrProcess != L"r"  &&
-                wstrProcess != L"g"  &&
-                wstrProcess != L"lc" &&
-                wstrProcess != L"lr")
+        else
         {
-            Scierror(999, _("%s: Argument #%d: Must be in the set {%s}.\n"), "gsort", 2, "'g','r','c','lc','lr'");
-            return types::Function::Error;
+            wstrProcess = in[1]->getAs<types::String>()->get(0);
+
+            if ( wstrProcess != L"c"  &&
+                 wstrProcess != L"r"  &&
+                 wstrProcess != L"g"  &&
+                 wstrProcess != L"lc" &&
+                 wstrProcess != L"lr")
+            {
+                Scierror(999, msg, "gsort", 2, argSetError.data(), 1, ndims);
+                return types::Function::Error;
+            }
         }
     }
 
-    types::GenericType* pGTIn = in[0]->getAs<types::GenericType>();
-	
-    if (pGTIn->getDims() > 2)
+    if (ndims > 2)
     {
         // hypermatrix
         return Overload::call(L"%hm_gsort", in, _iRetCount, out);

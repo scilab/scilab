@@ -114,11 +114,6 @@ function [scitree,trad,txt,crp]=m2sci(mtlbtree,nam,Recmode,prettyprintoutput)
         dcl=["";gettext("// Number of arguments in function call");"[%nargout,%nargin] = argn(0)"]
     end
 
-    // Set display mode equivalent to Matlab echo off
-    dcl=[dcl;"";gettext("// Display mode");"mode(0);"]
-    // Set flotting point exception mode
-    dcl=[dcl;"";gettext("// Display warning for floating point exception");"ieee(1);"]
-
     // Initial value of lhs arguments
     // If they are not initialized by input value, they are initialized with []
     ini=[]

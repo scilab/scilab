@@ -168,6 +168,10 @@ void MeshFecDataDecomposer::fillTextureCoordinates(int id, float* buffer, int bu
     }
     else
     {
+        /* fix min and max value to respect position of strips https://bugzilla.scilab.org/show_bug.cgi?id=16407 */
+        double a = maxValue-minValue;
+        minValue += a/2.0/(double)colorsNumber;
+        maxValue -= a/2.0/(double)colorsNumber;
         for (int i = 0; i < numVertices; i++)
         {
             buffer[bufferOffset++] = (float)(t + scale * (values[i] - minValue) / (maxValue - minValue));

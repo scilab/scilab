@@ -181,10 +181,8 @@ str_l=list();str_l(1)=1;str_l(1)
    1.
 l=list(1,2,3);l(3)=null()
  l  = 
-       l(1)
-   1.
-       l(2)
-   2.
+  (1) = 1
+  (2) = 2
 function []=foo()
     [noeuds,triang]=resume(1,2)
 endfunction
@@ -212,8 +210,7 @@ deff("t1=foo()","t1(2)= 1");foo()
    1.
 deff("t1=foo()","t1=list();t1(1)= 44;");foo()
  ans  =
-       ans(1)
-   44.
+  (1) = 44
 deff("[a,b,x]=foo()","[a(1),b(1,2),x]=(3,4,5);");[a,b,x]=foo()
  a  = 
    3.
@@ -224,7 +221,7 @@ deff("[a,b,x]=foo()","[a(1),b(1,2),x]=(3,4,5);");[a,b,x]=foo()
 function [a,b,x]=foo(),u=5;[a(1),b(1,2),x]=(3,4,u),a(2)=44,endfunction
 [a,b,x]=foo()
  a  = 
-   3. 
+   3.
    44.
  b  = 
    0.   4.
@@ -252,8 +249,6 @@ foo()
 function l=foo(),l=list(1,2,3);l(3)=null();endfunction
 foo()
  ans  =
-       ans(1)
-   1.
-       ans(2)
-   2.
+  (1) = 1
+  (2) = 2
 funcprot(1);

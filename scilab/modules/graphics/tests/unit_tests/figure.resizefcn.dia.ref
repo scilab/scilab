@@ -7,7 +7,7 @@
 // <-- TEST WITH GRAPHIC -->
 // Create a default figure
 function resizeMe()
-  disp("resize");
+    disp("resize");
 endfunction
 f = scf();
 assert_checkequal(f.resizefcn, "");

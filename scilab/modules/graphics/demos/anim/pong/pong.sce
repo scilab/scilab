@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2019 - Stéphane Mottelet
+// Copyright (C) 2020 Stéphane Mottelet
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // For more information, see the COPYING file which you should have received
@@ -30,7 +30,7 @@ function pong()
     //ball
     xrect(0.5, 0.5, wph, wph)
     hb = gce()
-    VMAX = 1e-3;
+    VMAX = 5e-3;
     vb = [VMAX VMAX];
 
     k=2;
@@ -38,13 +38,18 @@ function pong()
 
     messagebox(msprintf("Click OK to release ball %d",3-k),"","","OK","modal")
 
+    dt = 1/120;
+    realtimeinit(dt);
+    realtime(0);
+    kt=0;
+    tic();
     while %t
         M = MouseInfo.getPointerInfo();
         X=double(M.getLocation().x)-gcf().figure_position(1);
 
         MOUSE_X = xchange(X,0,"i2f")
         if is_handle_valid(f)
-            paddle_x = hp.data(1) + 1e-1*(MOUSE_X-wpx/2-hp.data(1));
+            paddle_x = hp.data(1) + 30*dt*(MOUSE_X-wpx/2-hp.data(1));
             paddle_x = min(max(0,paddle_x),1-wpx);
             ball = hb.data(1:2) + vb;
         else
@@ -66,9 +71,12 @@ function pong()
                     break
                 end
                 hb.data(1:2) = [.5,.5];
-                VMAX=1e-3;
+                VMAX=5e-3;
                 vb=[VMAX VMAX];
                 messagebox(msprintf("Click OK to release ball %d",3-k),"","","OK","modal")
+                realtimeinit(dt);
+                realtime(0);
+                kt=0;
             elseif ball(1) + wph >  paddle_x && ball(1) < paddle_x+wpx
                 d = (ball(1)+wph/2) - (paddle_x+wpx/2);
                 vb= VMAX*[max(-1,min(1,d/(wpx/2-wph/2))),1];
@@ -76,9 +84,10 @@ function pong()
         end
         if is_handle_valid(f)
             hp.data(1) = paddle_x;
-            hb.data(1:2) = hb.data(1:2) + vb;
+            hb.data(1:2) = hb.data(1:2) + 100*dt*vb;
         end
-        sleep(1)
+        kt=kt+1;
+        realtime(kt)
     end
     messagebox("GAME OVER !","","","OK","modal")
 end

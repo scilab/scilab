@@ -574,7 +574,17 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 else
                 {
                     //evalute polynom with "MaxDim"
-                    int iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
+                    int iMaxDim = 0;
+                    if(_pRef->isImplicitList())
+                    {
+                        ImplicitList* pIL = _pRef->getAs<ImplicitList>();
+                        iMaxDim = pIL->compute() ? pIL->getSize() : 3;
+                    }
+                    else
+                    {
+                        iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
+                    }
+
 #if defined(_SCILAB_DEBUGREF_)
                     Double* pdbl = new Double(iMaxDim);
 #else
@@ -681,15 +691,21 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             {
             }
         }
-        else if (pIT->isPoly())
+        else if (pIT->isPoly() && pIT->getAs<types::Polynom>()->getVariableName() == L"$")
         {
             //$
             Polynom* pMP = pIT->getAs<types::Polynom>();
             int iMaxDim = 0;
             //if pRef == NULL, use 0 insteadof, to allow a($+1) on new variable
-            if (_pRef)
+            if (_pRef && _pRef->isGenericType())
             {
                 iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
+            }
+            else if(_pRef && _pRef->isImplicitList())
+            {
+                ImplicitList* pIL = _pRef->getAs<ImplicitList>();
+                // pIL is not computable, iMaxDim = 3 is the implicit list end.
+                iMaxDim = pIL->compute() ? pIL->getSize() : 3;
             }
 
 #ifdef _SCILAB_DEBUGREF_
@@ -817,11 +833,6 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     wchar_t szError[bsiz];
                     os_swprintf(szError, bsiz, _W("variable size exceeded : less than %d expected.\n").c_str(), INT_MAX);
 
-                    if(_pRef)
-                    {
-                        _pRef->killMe(); // clean temporary clone if needed
-                    }
-
                     throw ast::InternalError(szError);
                 }
 
@@ -844,24 +855,22 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
 
             delete[] _piMaxDim;
-            delete[] _piCountDim;
+            if (_piCountDim)
+            {
+                delete[] _piCountDim;
+            }
             cleanIndexesArguments(_pArgsIn, _pArgsOut);
 
-            if(_pRef)
-            {
-                _pRef->killMe(); // clean temporary clone if needed
-            }
-
-            throw ast::InternalError(szError);
+            // Location(-1,-1,-1,-1): it means the locations are unknown at the throw time,
+            // this can be use to set the locations in the first catch which know them.
+            throw ast::InternalError(szError, 999, Location(-1,-1,-1,-1));
         }
 
         _pArgsOut->push_back(pCurrentArg);
     }
 
-
     //return 0 to force extract to create an empty matrix
-    if (_pRef &&
-            (_pRef->isDouble() && _pRef->getAs<Double>()->isEmpty()))
+    if (_pRef && (_pRef->isDouble() && _pRef->getAs<Double>()->isEmpty()))
     {
         return 0;
     }
@@ -943,7 +952,7 @@ int getIndexWithDims(int* _piIndexes, const int* _piDims, int _iDims)
 
 types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
 {
-    if (pIT->hasToString() == false || pIT->isStruct())
+    if (pIT->hasToString() == false)
     {
         types::Function::ReturnValue ret = types::Function::Error;
         //call overload %type_p

@@ -38,9 +38,7 @@ mputl(["<?xml version=""1.0"" encoding=""UTF-8""?>"
        "</refentry>"], tmpfile);
 cd(tmpdir);
 jar = xmltojar('.', 'foo', 'en_US');
-
 Building the master document:
 	TMPDIR\testxml\en_US
-
 Building the manual file [javaHelp] in TMPDIR\testxml\en_US.
 if ~isfile(jar) then bugmes();quit;end

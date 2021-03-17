@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1997   - INRIA
+ * Copyright (C) 2012 - Serge Steer - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="fft">
+    <refnamediv>
+        <refname>fft</refname>
+        <refpurpose>
+            прямое или обратное Быстрое Преобразование Фурье вектора, матрицы или гиперматрицы
+        </refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="ifft">
+        <refname>ifft</refname>
+        <refpurpose>обратное быстрое преобразование Фурье</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            X = fft(A)
+            X = fft(A, sign)
+            X = fft(A, sign, directions)
+            X = fft(A, sign, dims, incr)
+            X = fft(.., symmetry)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>A, X</term>
+                <listitem>
+                    векторы, матрицы или многомерные массивы вещественных или
+                    комплексных чисел одинаковых размеров.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sign</term>
+                <listitem>
+                    -1 или 1 : знак множителя <literal>±2iπ</literal> в экспоненциальном
+                    члене формулы преобразования, устанавливающий прямое или обратное
+                    преобразование. По умолчанию значение равно <literal>-1</literal>,
+                    соответствующее прямому преобразованию.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>directions</term>
+                <listitem>
+                    вектор, содержащий индексы размерности <varname>A</varname>
+                    (в <literal>[1, ndims(A)]</literal>) вдоль которой необходимо
+                    вычислить БПФ (многомерный). По умолчанию направления
+                    <varname>directions</varname> соответствуют
+                    <literal>1:ndims(A)</literal>: "кумулятивный" БПФ вычисляется
+                    для всех направлений. См. раздел "Описание".
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>symmetry</term>
+                <listitem>
+                    необязательная символьная строка, помогающая функции
+                    <literal>fft()</literal> выбрать наилучший алгоритм:
+                    <itemizedlist>
+                        <listitem>
+                            <emphasis role="bold">"symmetric"</emphasis>: заставляет
+                            рассматривать <varname>A</varname> или все её "слои" как
+                            симметрично сопряжённую. Это полезно, когда точная симметрия
+                            <varname>A</varname> или её "слоёв" возможно чередуется только
+                            из-за ошибок округления.
+                            <para/>
+                            Многомерный массив <varname>B</varname> размерами
+                            <literal>[s1,s2,..,sN]</literal> сопряжённо симметричный
+                            для БПФ, если и только если
+                            <literal>B==conj(B([1 s1:-1:2],[1 s2:-1:2],...,[1 sN:-1:2]))</literal>.
+                            В этом случае результат <varname>X</varname> является
+                            вещественным и может использоваться эффективный специфический
+                            алгоритм для его вычисления.
+                            <para/>
+                        </listitem>
+                        <listitem>
+                            <emphasis role="bold">"nonsymmetric"</emphasis>: Тогда
+                            <literal>fft()</literal> не обращает внимание ни на
+                            какую симметрию.
+                            <para/>
+                        </listitem>
+                        <listitem>
+                            не указано: тогда выполняется автоматическое определение симметрии.
+                            <para/>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+                <para/>
+            </varlistentry>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    вектор положительных целых чисел. Старый синтаксис.
+                    Каждый элемент должен быть делителем <literal>length(A)</literal>.
+                    Произведение элементов должно быть строго меньше
+                    <literal>length(A)</literal>. См. подробности в разделе "Описание".
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>incr</term>
+                <listitem>
+                    вектор положительных строго возрастающих целых чисел, такой же
+                    длины, что и <varname>dims</varname>. Старый синтаксис.
+                    Каждый элемент должен быть делителем <literal>length(A)</literal>.
+                    См. подробности в разделе "Описание".
+                    <para/>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта функция вычисляет прямое или обратное одно-, дву- или многомерное
+            дискретное преобразование Фурье массива или многомерного массива чисел
+            вдоль одного или нескольких направлений внутри этого массива.
+        </para>
+        <para/>
+        <refsect3>
+            <title>Краткий синтаксис</title>
+            <para>
+                <emphasis role="bold">Прямое преобразование</emphasis>:
+            </para>
+            <para>
+                <literal>X = fft(A [,symmetry])</literal> или
+                <literal>X = fft(A, -1 [,symmetry])</literal> выполняет прямое
+                преобразование.
+                <variablelist>
+                    <varlistentry>
+                        <term>одномерное</term>
+                        <listitem>
+                            <varname>a=A</varname> является вектором: вычисляется
+                            одномерное прямое БПФ, так что:
+                            <para/>
+                            <latex alt="x(k)=∑_m=1…n a(m).exp(-2iπ.(k-1)(m-1)/n)">
+                                x(k) = \sum_{m=1}^n
+                                {a(m) \exp\left(-2 i\pi\frac{(m-1)}{n} (k-1)\right)}
+                            </latex>
+                            <para/>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>многомерное</term>
+                        <listitem>
+                            <varname>A</varname> является матрицей или многомерным
+                            массивом: выполняется многомерное прямое БПФ.
+                            <para/>
+                        </listitem>
+                    </varlistentry>
+                </variablelist>
+            </para>
+            <para>
+                <emphasis role="bold">Обратное нормированное преобразование</emphasis>:
+            </para>
+            <para>
+                <literal>X = fft(A,+1)</literal> или <literal>X = ifft(A)</literal>
+                выполняет обратное нормированное преобразование, такое, что
+                <literal>A==ifft(fft(A))</literal>.
+                <variablelist>
+                    <varlistentry>
+                        <term>одномерное</term>
+                        <listitem>
+                            <literal>a=A</literal> является вектором:
+                            <literal>X = fft(a, +1)</literal> или <literal>X = ifft(a)</literal>
+                            выполняют одномерное обратное БПФ, вычисляемое как:
+                            <para/>
+                            <latex alt="x(k)=(1/n).∑_m=1…n a(m).exp(+2iπ.(k-1)(m-1)/n)">
+                                $x(k) = \frac{1}{n}\sum_{m=1}^n
+                                {a(m) \exp\left(+2 i\pi\frac{(m-1)}{n} (k-1)\right)}$
+                            </latex>
+                            <para/>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>многомерное</term>
+                        <listitem>
+                            <varname>A</varname> является матрицей или многомерным массивом:
+                            выполняется многомерное обратное БПФ.
+                            <para/>
+                        </listitem>
+                    </varlistentry>
+                </variablelist>
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>Длинный синтаксис: многомерное прямое БПФ</title>
+            <para>
+                <emphasis role="bold">X = fft(A, sign, directions [, symmetry])</emphasis>
+                выполняет эффективно все прямые или обратные БПФ по всем "слоям"
+                <varname>A</varname> вдоль выбранных направлений <varname>directions</varname>.
+            </para>
+            <para>
+                Например, если <varname>A</varname> является трёхмерным массивом, то
+                <literal>X = fft(A,-1,2)</literal> эквивалентно:
+                <programlisting role="no-scilab-exec"><![CDATA[
+for i1 = 1:size(A,1)
+    for i3 = 1:size(A,3)
+        X(i1,:,i3) = fft(A(i1,:,i3), -1);
+    end
+end
+             ]]></programlisting>
+            </para>
+            <para>
+                и <literal>X = fft(A,-1,[1 3])</literal> эквивалентно:
+                <programlisting role="no-scilab-exec"><![CDATA[
+for i2 = 1:size(A,2)
+    X(:,i2,:) = fft(A(:,i2,:), -1);
+end
+             ]]></programlisting>
+            </para>
+            <para>
+                <emphasis role="bold">X = fft(A, sign, dims, incr [, symmetry])</emphasis>
+                является старым синтаксисом, который также позволяет выполнять все
+                прямые или обратные БПФ слоёв <varname>A</varname> вдоль выбранных
+                направлений <varname>directions</varname>. С этим синтаксисом
+                <varname>A</varname> рассматривается как сериализованная в вектор, и
+                её фактические размеры игнорируются. Слои выбираются указанием
+                размеров <varname>A</varname> и инкрементов сериализованного индекса,
+                относящегося к размерам.
+            </para>
+            <para>
+                Например, если <varname>A</varname> является массивом с
+                <literal>n1*n2*n3</literal> элементов,
+                <literal>X = fft(A,-1, n1, 1)</literal> эквивалентно
+                <literal>X = fft(matrix(A,[n1,n2,n3]), -1, 1)</literal> ;
+                а <literal>X = fft(A,-1, [n1 n3], [1 n1*n2])</literal>
+                эквивалентно
+                <literal>X = fft(matrix(A,[n1,n2,n3]), -1, [1,3])</literal>.
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>Оптимизация fft</title>
+            <para>
+                <emphasis role="bold">Примечание</emphasis>:
+                Функция <literal>fft()</literal> автоматически сохраняет свои последние
+                внутренние параметры в памяти для повторного их использования во
+                второй раз. Это значительно улучшает время вычисления, когда
+                выполняются последовательные вызовы (с одинаковыми параметрами).
+            </para>
+            <para>
+                Можно пойти дальше в оптимизации <literal>fft()</literal>, используя
+                функции
+                <link linkend="get_fftw_wisdom">get_fftw_wisdom</link> и
+                <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>.
+            </para>
+            <para>
+                <emphasis role="bold">Алгоритмы</emphasis>:
+                <literal>fft()</literal> использует библиотеку
+                <ulink url="http://www.fftw.org/">fftw3</ulink>.
+            </para>
+            <para>
+                <emphasis role="bold">Библиография</emphasis>:
+                Matteo Frigo and Steven G. Johnson, "FFTW Documentation"
+                <ulink url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
+            </para>
+        </refsect3>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <para>Одномерное БПФ (вектора):</para>
+        <programlisting role="example"><![CDATA[
+// Частотные составляющие сигнала
+//-------------------------------
+// построение зашумлённого сигнала оцифрованного с частотой 1000 Гц, содержащего чистые
+// гармоники на 50 и 70 Гц
+sample_rate = 1000;
+t = 0:1/sample_rate:0.6;
+N = size(t,'*'); //количество отсчётов
+s = sin(2*%pi*50*t) + sin(2*%pi*70*t+%pi/4) + grand(1,N,'nor',0,1);
+
+y=fft(s);
+
+// s является вещественным и результат БПФ является сопряжённо симметричным и мы
+// оставляем только первые N/2 точек
+f = sample_rate*(0:(N/2))/N; //вектор связанных частот
+n = size(f,'*')
+clf()
+plot(f, abs(y(1:n)))
+     ]]></programlisting>
+        <para>2D FFT (of a matrix):</para>
+        <programlisting role="example"><![CDATA[
+A = zeros(256,256);
+A(5:24,13:17) = 1;
+X = fftshift(fft(A));
+set(gcf(), "color_map",jetcolormap(128));
+clf; grayplot(0:255, 0:255, abs(X)')
+     ]]></programlisting>
+        <para>N-мерный БПФ (многомерного массива):</para>
+        <programlisting role="example"><![CDATA[
+// простой случай, 3 одномерных БПФ во времени
+N = 2048;
+t = linspace(0,10,2048);
+A = [2*sin(2*%pi*3*t) + sin(2*%pi*3.5*t)
+     10*sin(2*%pi*8*t)
+     sin(2*%pi*0.5*t) + 4*sin(2*%pi*0.8*t)];
+X = fft(A,-1,2);
+
+fs = 1/(t(2)-t(1));
+f = fs*(0:(N/2))/N; // вектор связанных частот
+clf; plot(f(1:100)',abs(X(:,1:100))')
+legend(["3 и 3,5 Гц","8 Гц","0,5 и 0,8 Гц"],"in_upper_left")
+
+// 45 трёхмерных БПФ во времени
+Dims = [5 4 9 5 6];
+A = matrix(rand(1, prod(Dims)), Dims);
+
+y = fft(A,-1,[2 4 5]);
+
+// эквивалентный (но менее эффективный) код
+y1 = zeros(A);
+for i1 = 1:Dims(1)
+    for i3 = 1:Dims(3)
+        ind = list(i1,:,i3,:,:);
+        y1(ind(:)) = fft(A(ind(:)),-1);
+  end
+end
+     ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Использование явной формулы одномерного дискретного преобразования Фурье
+// ------------------------------------------------------------------------
+function xf = DFT(x, Sign);
+    n = size(x,'*');
+    // вычисление матрицы Фурье размером n на n
+    am = exp(Sign * 2*%pi*%i * (0:n-1)'*(0:n-1)/n);
+    xf = am * matrix(x,n,1);  // ДПФ
+    xf = matrix(xf,size(x));  // изменение размерности
+    if Sign == 1 then
+        xf = xf/n;
+    end
+endfunction
+
+// Сравнение с алгоритмом БПФ
+a = rand(1,1000);
+norm(DFT(a,1) - fft(a,1))
+norm(DFT(a,-1) - fft(a,-1))
+
+tic(); DFT(a,-1); toc()
+tic(); fft(a,-1); toc()
+     ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="corr">corr</link>
+            </member>
+            <member>
+                <link linkend="fftw_flags">fftw_flags</link>
+            </member>
+            <member>
+                <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+            </member>
+            <member>
+                <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
+            </member>
+            <member>
+                <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

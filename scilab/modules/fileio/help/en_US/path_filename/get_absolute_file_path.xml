@@ -4,6 +4,7 @@
  * Copyright (C) XXXX-2008 - INRIA
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Stephane MOTTELET
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,7 +23,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>pathname = get_absolute_file_path(filename)</synopsis>
+        <synopsis>[filepath, filename] = get_absolute_file_path()</synopsis>
+        <synopsis>filepath = get_absolute_file_path(filename)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -30,13 +32,13 @@
             <varlistentry>
                 <term>filename</term>
                 <listitem>
-                    <para>a character string: filename.</para>
+                    <para>a character string: name of the file.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>pathname</term>
+                <term>filepath</term>
                 <listitem>
-                    <para>a character string: an absolute pathname.</para>
+                    <para>a character string: an absolute path.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -44,34 +46,35 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>get_absolute_file_path</function> gives an absolute pathname
-            of a file already opened in Scilab.
-        </para>
-        <para>
-            <function>get_absolute_file_path</function> searches in Scilab's
-            internal list of files currently opened <varname>filename</varname>
+            <function>get_absolute_file_path(filename)</function> searches in Scilab's
+            internal list of currently opened files the file with name <varname>filename</varname>
             and returns its path <varname>pathname</varname>.
         </para>
-        <para>If file is not opened, it will return an error.</para>
+       <para>If file is not opened, it will return an error.</para>
+      <para>Without input arguments and called from a script, <function>get_absolute_file_path()</function>
+        returns the absolute path of the script and optionally its name. When called without input arguments
+        from the command line <function>get_absolute_file_path()</function> returns an error.
+      </para>
         <para>
             <warning>
                 In previous version (Scilab 5.0.x) current directory was
                 returned if file was not found.
             </warning>
         </para>
-        <para>This function can be used to find from where (path) is executed a
-            Scilab script.
-        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// exec this script
-
-a=mopen(TMPDIR+'test.sce','wt');
-disp(get_absolute_file_path('test.sce'));
-mclose(a);
+mputl(['[filepath,filename]=get_absolute_file_path()'
+       'disp(filepath,filename)'],TMPDIR+'/script.sce');
+exec(TMPDIR+'/script.sce',-1)
  ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+fd = mopen(TMPDIR+'/foo.txt','wt');
+filepath = get_absolute_file_path("foo.txt")
+mclose(fd)
+filepath = get_absolute_file_path("foo.txt")
+]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

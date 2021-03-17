@@ -13,16 +13,19 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="augment">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="augment">
     <refnamediv>
         <refname>augment</refname>
         <refpurpose>拡張プラント</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[P,r]=augment(G)
-            [P,r]=augment(G,flag1)
-            [P,r]=augment(G,flag1,flag2)
+        <synopsis>
+            [P, r] = augment(G)
+            [P, r] = augment(G, flag1)
+            [P, r] = augment(G, flag1, flag2)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -75,13 +78,13 @@
         <para>
             <literal>flag1='SRT'</literal> (デフォルト値)の場合,以下の"完全な" 拡張プラントを返します:
         </para>
-        <programlisting role=""><![CDATA[
-    [ I | -G]   -->'S'
-    [ 0 |  I]   -->'R'
-P = [ 0 |  G]   -->'T'
+        <screen><![CDATA[
+    [ I | -G]   ⇒ 'S'
+    [ 0 |  I]   ⇒ 'R'
+P = [ 0 |  G]   ⇒ 'T'
     [-------]
-    [ I | -G
- ]]></programlisting>
+    [ I | -G]
+]]></screen>
         <para>
             <literal> 'S' </literal>, <literal> 'R' </literal>, <literal> 'T' </literal>
             は,それぞれ,<literal>P</literal>の最初の3つの(ブロック)行を指します.
@@ -99,13 +102,13 @@ P = [ 0 |  G]   -->'T'
             入力感度関数に関連した拡張プラント,つまり,
             The augmented plant associated with input sensitivity functions, namely
         </para>
-        <programlisting role=""><![CDATA[
-    [ I | -I]   -->'S'  (input sensitivity)
-    [ G | -G]   -->'R'  (G*input sensitivity)
-P = [ 0 |  I]   -->'T'  (K*G*input sensitivity)
+        <screen><![CDATA[
+    [ I | -I]   ⇒ 'S'  (input sensitivity)
+    [ G | -G]   ⇒ 'R'  (K*input sensitivity)
+P = [ 0 |  I]   ⇒ 'T'  (K*G*input sensitivity)
     [-------]
     [ G | -G]
-    ]]></programlisting>
+]]></screen>
         <para>
             は,コマンド<literal>[P,r]=augment(G,flag,'i')</literal>により得られます.
             状態空間を<literal>G</literal>とすると,
@@ -134,21 +137,25 @@ P = [ 0 |  I]   -->'T'  (K*G*input sensitivity)
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-G=ssrand(2,3,2); //プラント
-K=ssrand(3,2,2); //補償器
-[P,r]=augment(G,'T');
-T=lft(P,r,K);   //相補感度関数
-Ktf=ss2tf(K);Gtf=ss2tf(G);
-Ttf=ss2tf(T);T11=Ttf(1,1);
-Oloop=Gtf*Ktf;
-Tn=Oloop*inv(eye(Oloop)+Oloop);
-clean(T11-Tn(1,1));
+G = ssrand(2,3,2); // プラント
+K = ssrand(3,2,2); // 補償器
+[P,r] = augment(G,'T');
+T = lft(P,r,K);    // 相補感度関数
+Ktf = ss2tf(K);
+Gtf = ss2tf(G);
+Ttf = ss2tf(T);
+T11 = Ttf(1,1);
+Oloop = Gtf * Ktf;
+Tn = Oloop * inv(eye(Oloop)+Oloop);
+clean(T11 - Tn(1,1));
+
 //
-[Pi,r]=augment(G,'T','i');
-T1=lft(Pi,r,K);T1tf=ss2tf(T1); //入力相補感度関数
-Oloop=Ktf*Gtf;
-T1n=Oloop*inv(eye(Oloop)+Oloop);
-clean(T1tf(1,1)-T1n(1,1))
+[Pi,r] = augment(G,'T','i');
+T1 = lft(Pi,r,K);
+T1tf = ss2tf(T1);  // 入力相補感度関数
+Oloop = Ktf * Gtf;
+T1n = Oloop * inv(eye(Oloop)+Oloop);
+clean(T1tf(1,1) - T1n(1,1))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

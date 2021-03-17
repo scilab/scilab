@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "randlib module"
             VALUE "FileVersion", "6, 2, 0, 0"
             VALUE "InternalName", "randlib module"
-            VALUE "LegalCopyright", "Copyright (C) 2020"
+            VALUE "LegalCopyright", "Copyright (C) 2021"
             VALUE "OriginalFilename", "randlib.dll"
             VALUE "ProductName", "randlib module"
             VALUE "ProductVersion", "6, 2, 0, 0"

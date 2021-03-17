@@ -13,19 +13,16 @@
  * along with this program.
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:svg="http://www.w3.org/2000/svg"
-    xmlns:mml="http://www.w3.org/1998/Math/MathML"
-    xmlns:db="http://docbook.org/ns/docbook"
-        xml:lang="en" xml:id="justify">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xml:lang="en" xml:id="justify">
     <refnamediv>
         <refname>justify</refname>
-        <refpurpose>justify character array</refpurpose>
+        <refpurpose>aligns texts in columns to the left, center, or right</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>Tj = justify(T, opt)</synopsis>
+        <synopsis>Tj = justify(T, position)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -45,31 +42,16 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>opt</term>
+                <term>position</term>
                 <listitem>
                     <para>
-                        a character option with possible values:
+                        Possible values:
+                        <table cellspacing="0" cellpadding="0">
+                          <tr><td><term>'l' or 'left'</term></td><td>: left justification</td></tr>
+                          <tr><td><term>'c' or 'center'</term></td><td>: centering</td></tr>
+                          <tr><td><term>'r' or 'right'</term></td><td>: right justification</td></tr>
+                        </table>
                     </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>'r' or 'right'</term>
-                            <listitem>
-                                <para>for right justification;</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>'l' or 'left'</term>
-                            <listitem>
-                                <para>for left justification;</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>'c' or 'center'</term>
-                            <listitem>
-                                <para>for centering justification.</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -78,7 +60,7 @@
         <title>Description</title>
         <para>
             The <function>justify</function> function justifies the column of a
-            matrix of string according to the given option <varname>opt</varname>.
+            matrix of string according to the given <varname>position</varname>.
         </para>
     </refsection>
     <refsection>

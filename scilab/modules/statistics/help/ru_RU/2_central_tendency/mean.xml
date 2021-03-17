@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="mean">
+    <refnamediv>
+        <refname>mean</refname>
+        <refpurpose>
+            матожидание всех значений или матожидания по заданной размерности
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            y = mean(x)
+            y = mean(x, orientation)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    вектор, матрица или гиперматрица вещественных или комплексных чисел.
+                    Допускаются разрежённые матрицы.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orientation</term>
+                <listitem>
+                    направление соответствует индексу размерности по которой
+                    вычисляется матожидание. <literal>"r"</literal> эквивалентен 1.
+                    <literal>"c"</literal> эквивалентно 2. <literal>"m"</literal>
+                    эквивалентно <literal>find(size(x)>1,1)</literal>.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    плотный скаляр, если <varname>orientation</varname> не используется
+                    либо если <varname>x</varname> скаляр. В противном случае
+                    массив, такой, что <literal>size(y,orientation)</literal>
+                    равен 1 (разрежённо-кодированный, если <varname>x</varname>
+                    является таким).
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <emphasis role="bold">y = mean(x)</emphasis> возвращает матожидание
+            всех элементов. Если хотя бы один элемент равен NaN, то возвращается
+            NaN. Этот скалярный результат всегда плотно кодирован.
+        </para>
+        <para>
+            <emphasis role="bold">y = mean(x,1)</emphasis> или <literal>y=mean(x,"r")</literal>
+            вычисляет матожидания по строкам. <varname>y</varname> является строкой,
+            если <varname>x</varname> является матрицей.
+        </para>
+        <para>
+            <emphasis role="bold">y = mean(x,2)</emphasis> или <literal>y=mean(x,"c")</literal>
+            вычисляет матожидания по столбцам. <varname>y</varname> является столбцом,
+            если <varname>x</varname> является матрицей.
+        </para>
+        <para>
+            <emphasis role="bold">y = mean(x, n)</emphasis> при
+            <literal>3 ≤ n ≤ ndims(x)</literal> вычисляет матожидания по
+            n<superscript>й</superscript> размерности <varname>x</varname>.
+        </para>
+        <para>
+            <emphasis role="bold">y = mean(x,'m')</emphasis> является матожидание
+            по первой неединичной размерности <varname>x</varname> (для совместимости
+            с Matlab).
+        </para>
+        <para>
+            <warning>
+             <literal>mean([])</literal> и <literal>mean(sparse([]))</literal>
+             возвращают NaN. Для любого <varname>orientation</varname> не
+             <literal>"m"</literal>, <literal>mean([], orientation)</literal>
+             возвращает <literal>[]</literal>, а
+             <literal>mean(sparse([]), orientation)</literal> возвращает
+             <literal>sparse([])</literal>.
+            </warning>
+        </para>
+        <note>
+            <literal>mean()</literal> может быть перегружена.
+        </note>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <para>
+            С матрицей:
+        </para>
+        <programlisting role="example"><![CDATA[
+A = [0,1,1,0,1;1,0,0,1,1;0,0,1,0,0;0,0,1,0,0]
+mean(A)
+mean(A, 'r')
+mean(A, 'c')
+     ]]></programlisting>
+        <screen><![CDATA[
+--> A = [0,1,1,0,1;1,0,0,1,1;0,0,1,0,0;0,0,1,0,0]
+ A  =
+   0.   1.   1.   0.   1.
+   1.   0.   0.   1.   1.
+   0.   0.   1.   0.   0.
+   0.   0.   1.   0.   0.
+
+--> mean(A)
+ ans  =
+   0.4
+
+--> mean(A, 'r')
+ ans  =
+   0.25   0.25   0.75   0.25   0.5
+
+--> mean(A, 'c')
+ ans  =
+   0.6
+   0.6
+   0.2
+   0.2
+]]></screen>
+        <para>
+            С гиперматрицей:
+        </para>
+        <programlisting role="example"><![CDATA[
+A = [1,0,0,1,0,0,1,1,1,1,1,1,0,1,0,1,1,0,1,1,1,1,1,0,1,0,1,0,1,1,1,0,1,0,0,1,0,1,1,0];
+A = matrix(A, [4,5,2])
+mean(A)
+mean(A, 'r')
+mean(A, 'c')
+mean(A, 3)
+
+A = matrix(1:12, [1,1,2,3,2]);
+// в этом случае mean(A,'m') эквивалентно mean(A,3), первая неединичная размерность A
+mean(A, 'm')
+     ]]></programlisting>
+        <screen><![CDATA[
+--> A = matrix(A, [4,5,2])
+ A  =
+(:,:,1)
+   1.   0.   1.   0.   1.
+   0.   0.   1.   1.   0.
+   0.   1.   1.   0.   1.
+   1.   1.   1.   1.   1.
+
+(:,:,2)
+   1.   1.   1.   1.   0.
+   1.   0.   1.   0.   1.
+   1.   1.   1.   0.   1.
+   0.   0.   0.   1.   0.
+
+--> mean(A)
+ ans  =
+   0.625
+
+--> mean(A, 'r')
+ ans  =
+(:,:,1)
+   0.5   0.5   1.   0.5   0.75
+
+(:,:,2)
+   0.75   0.5   0.75   0.5   0.5
+
+--> mean(A, 'c')
+ ans  =
+(:,:,1)
+   0.6
+   0.4
+   0.6
+   1.
+
+(:,:,2)
+   0.8
+   0.6
+   0.8
+   0.2
+
+--> mean(A, 3)
+ ans  =
+   1.    0.5   1.    0.5   0.5
+   0.5   0.    1.    0.5   0.5
+   0.5   1.    1.    0.    1.
+   0.5   0.5   0.5   1.    0.5
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sum">sum</link>
+            </member>
+            <member>
+                <link linkend="median">median</link>
+            </member>
+            <member>
+                <link linkend="stdev">stdev</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    mean() теперь может быть перегружена.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Расширение до разрежённых матриц.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

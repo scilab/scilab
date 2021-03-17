@@ -169,7 +169,8 @@ C
 C
         call feq(neq,t,q,w(lqdot))
         dnorm0 = dnrm2(nq,w(lqdot),1)
-        if (info .gt. 1) call outl2(31,nq,nbout,q,dnorm0,t,tout)
+        xx(1) = dnorm0
+        if (info .gt. 1) call outl2(31,nq,nbout,q,xx,t,tout)
 C
 C     -- test pour degre1 -----------
         if (nall1.gt.0 .and. nq.eq.1 .and. nbout.gt.0) return

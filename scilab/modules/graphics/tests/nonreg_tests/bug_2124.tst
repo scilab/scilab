@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 2124 -->
 //
@@ -21,5 +22,5 @@ fig = gcf();
 xs2gif(fig.figure_id,TMPDIR+'/foo.gif') ;
 
 // open the exported fig and check that there is no warnings.
-xdel(winsid());
+close(winsid());
 

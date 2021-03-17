@@ -26,12 +26,9 @@ disp(a)
 This is my type.
 l=list(2, a, "test")
  l  = 
-       l(1)
-   2.
-       l(2)
-This is my type.
-       l(3)
-  "test"
+  (1) = 2
+  (2) : NewType
+  (3) = "test"
 // overload call
 b = newtype(%f);
 function %nt_p(h)
@@ -44,9 +41,6 @@ disp(b)
   "%nt_p: This is my type."
 l=list(2, b, "test")
  l  = 
-       l(1)
-   2.
-       l(2)
-  "%nt_p: This is my type."
-       l(3)
-  "test"
+  (1) = 2
+  (2) : NewType
+  (3) = "test"

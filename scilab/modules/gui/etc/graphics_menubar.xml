@@ -54,7 +54,7 @@
                 if (findobj("figure_id",[SCILAB_FIGURE_ID]).event_handler_enable == "on" );
                     execstr(findobj("figure_id",[SCILAB_FIGURE_ID]).event_handler +"([SCILAB_FIGURE_ID], -1, -1, -1000)", "errcatch", "m");
                 end;
-                xdel([SCILAB_FIGURE_ID]);'
+                close([SCILAB_FIGURE_ID]);'
                 type="0"/>
         </submenu>
     </menu>

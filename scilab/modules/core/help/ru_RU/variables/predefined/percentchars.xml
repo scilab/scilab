@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+         xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="percentchars">
+    <refnamediv>
+        <refname>%chars</refname>
+        <refpurpose>Избранные наборы символов Unicode</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>%chars</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <emphasis role="bold">%chars</emphasis> является константой Scilab,
+            сделанной из структуры, сбором различных наборов символов Unicode.
+        </para>
+        <para>
+            <literal>%chars</literal> предназначена для лёгкого доступа к греческим
+            буквам, наиболее часто встречающимся математическим символам, стрелкам
+            и т.д. После отображения <literal>%chars</literal> в консоли или отображая
+            эту страницу в браузере справки, копирование/вставка выбранных символов
+            становится тривиальной и очень удобной, где бы то ни было.
+        </para>
+        <para>
+            Во многих простых ситуациях - при вставке легенды в графики, написании
+            некоторых страниц справки или иной документации и т.д., довольно удобно
+            и приятно использование готовых к чтению специальных символов вместо
+            несгенерированных сырых технических LaTeX-выражений.
+        </para>
+        <important>
+            Наборы символов, предоставляемые <literal>%chars</literal> не должны
+            рассматриваться, как фиксированные и определённые. Число наборов, их
+            имена, иерархия и порядок могут изменяться со временем, так же как и
+            порядок символов в наборах. К тому же указанные символы могут принадлежать
+            к нескольким наборам.
+        </important>
+        <note>
+            Полное отображение всего содержимого <literal>%chars</literal> в командном
+            окне может потребовать изменения параметра <emphasis>Общее:глубина
+            отображения Среды/Контейнеров</emphasis> в Настройках.
+        </note>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+%chars
+     ]]></programlisting>
+        <screen><![CDATA[
+--> %chars
+ %chars  =
+  greek: struct with fields:
+      lower = "αβδεϵζηθικλμνξοπρστυφϕχψωάϐέήϑίϊϰόϱςύϋΰϖώ"
+      upper = "ΑΒΓΔΕΖΗΘϴΙΪΚΛΜΝΞΟΠΡΣΤΥΫΦΧΨΩ KΩ℧"
+  subsupscript = "₀₁₂₃₄₅₆₇₈₉₊₋₌₍ₐₕₖₗₘₙₒₚₛₜₓ₎ ⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽ªⁱⁿº⁾"
+  maths: struct with fields:
+      frac = "½ ⅓ ¼ ⅕ ⅙ ⅛ ⅔ ⅖ ¾ ⅗ ⅜ ⅘ ⅚ ⅝ ⅞"
+      sets = "ℂⅅℍℕℙℚℝℤ∉∈∊∍∋∌∅∖⋂∩⋃∪⊂⊆⊄⊅⊇⊃⋐⋑⋒⋓"
+      operators = "−±∓∔÷×∏∐∑√∛∜⋅⋆⊕⊖⊝⊗⊘⊙⊚⊛⊜⊞⊟⊠⊡"
+      comparisons = "⋘≪≤≲≳≥≫⋙≠≃≄≅≈∽∝≍≐≔≕≝"
+      integdiff = "∂∇∆∫∬∭∮∯∰∱⨑∲"
+      geometry = "°′″∟⊾∠∡∢⊥∥∦∺∻≎⊿⋕"
+      logical = "∀∃∄∧∨⋀⋁⊼⊽⊻∁∴∵∎≍"
+      misc = "⋮⋰⋯⋱ ′ ″ ∞ ‰ ‱"
+  physics = "Å ℃ ℉ ħ"
+  arrows: struct with fields:
+      base = "←↖↑↗→↘↓↙↔↕↵↱↴☇⇐⇑⇒⇓⇔↺↻⊣⊥⊢⊤"
+      thick = "⬅⬆➞⬇➚➙➘➔➜➡➥➦➧➨➼➽"
+  symbols = "…⋈⋔⋄♢◊♤♧♡♦♠♣♥©®℗Ⓢ™℡♀♂⌘✠♻☎«»◬⨺⨹⨻¶"
+  stars = "⋆★☆✫✯✰✭✡⊛⍟✪❂✻✼✹✸✶"
+  currencies = "¤ $ ¢ € £ ¥ 円 元 ₪ ฿ ¢ ₫ ₣"
+  lang: struct with fields:
+      latin: struct with fields:
+          voydiac = "áàâãäāăåéêèëēěėíîïóòôõöőōúùûŭũūůüűýŷÿ"
+          condiac = "ćĉčçċďđǵĜ ğġĥħĵķĺļłńňņŕřŗśŝšşťţŵźžż"
+          special = "æ Æ œ Œ ℬ ъ Ъ Þ þ ⅆ ℇ ℈ ℰ ƒ ⨍ ℊ ℱ ℏ ℎ ℋ ℌ ℐ ℑ ℳ № ℘ ℛ ℜ"
+      LATIN: struct with fields:
+          voydiac = "ÁÀÂÃÄĀĂÅÉÊÈËĒĚĖÍÎÏÓÒÔÕÖŐŌÚÙÛŬŨŪŮÜŰÝŶŸ"
+          condiac = "ĆĈČĊÇĎĐ ĝĢĞĠĤĦĴĶĹĻŁŃŇŅŔŘŖŚŜŠŞŤŢŴŹŽŻ"
+      russian = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+      RUSSIAN = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+      japanese: struct with fields:
+          hiragana: struct with fields:
+              a = "あかさたなはまやらわ がざだばぱ"
+              e = "えけせてねへめ れゑ げぜでべぺ"
+              i = "いきしちにひみ りゐ ぎじぢびぴ"
+              o = "おこそとのほもよろをんごぞどぽ"
+              u = "うくすつぬふむゆる  ぐずづぶぷ"
+      arabic: struct with fields:
+          alone1 = "ش س ز ر ذ د خ ح ج ث ت ب ا ء"
+          alone2 = "ي و ه ن م ل ك ق ف غ ع ظ ط ض ص"
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title></title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xlfont">xlfont</link>
+            </member>
+            <member>
+                <link linkend="math_rendering_features_in_graphic">LaTeX в Scilab</link>
+            </member>
+            <member>
+                <link linkend="console">командное окно</link>
+            </member>
+            <member>
+                <link linkend="ascii">ascii-символы</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Введены <literal>%chars</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

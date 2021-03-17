@@ -7,6 +7,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // first test : swap two brothers
 a1 = gca() ;
@@ -31,7 +32,7 @@ if ( a2.children(1).type <> "Rectangle" ) then pause,end
 assert_checkerror("swap_handles(e, a1)", msprintf(_("%s: Handles do not have the same parent type neither the same type.\n"), "swap_handles"));
 
 // third test : swap two objects from different figure
-xdel( winsid() ) ;
+close( winsid() ) ;
 plot3d ;
 a1 = gca() ;
 e1 = gce() ;
@@ -46,7 +47,7 @@ if ( e1.parent <> a2 ) then pause,end
 if ( e2.parent <> a1 ) then pause,end
 
 // fourth test : swap two handles from two different figures
-xdel( winsid() ) ;
+close( winsid() ) ;
 plot3d ;
 f1 = gcf() ;
 a1 = gca() ;
@@ -61,4 +62,4 @@ swap_handles( a1, a2 ) ;
 if ( a1.parent <> f2 ) then pause,end
 if ( a2.parent <> f1 ) then pause,end
 
-xdel( winsid() ) ;
+close( winsid() ) ;

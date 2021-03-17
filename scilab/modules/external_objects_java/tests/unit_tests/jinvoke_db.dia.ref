@@ -11,8 +11,7 @@ c = jcompile("TestDirectBuffer",["import java.nio.DoubleBuffer;";
 "for (int i = 0; i < x.capacity(); i++) x.put(i, x.get(i) + 1);";
 "}";
 "}"])
- c  =
- 
+ c  = 
 class TestDirectBuffer
 a = 1:10000;
 b = a + 1; // only used to compare with the following...

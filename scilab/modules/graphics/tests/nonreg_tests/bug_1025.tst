@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 1025 -->
 //
@@ -19,4 +20,4 @@ scf(1000);
 scf(0);
 A = winsid();
 if or(A <> [1000,0]) then pause,end
-xdel(winsid());
+close(winsid());

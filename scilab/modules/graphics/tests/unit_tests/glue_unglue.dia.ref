@@ -12,48 +12,38 @@ xrect(-1,1,2,2);
 xarc(-0.5,0.5,2,2,0,360*64);
 assert_checkequal(a.children(1).type, "Arc")
  ans  =
- 
-  T  
+  T
 assert_checkequal(a.children(2).type, "Rectangle")
  ans  =
- 
-  T  
+  T
 e = gce();
 assert_checkequal(e.type, "Arc")
  ans  =
- 
-  T  
+  T
 arc_child=a.children(1);
 rect_child=a.children(2);
 glue([arc_child, rect_child]);
 assert_checkequal(a.children(1).type, "Compound")
  ans  =
- 
-  T  
+  T
 e = gce();
 assert_checkequal(e.type, "Compound")
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.children(1).type, "Rectangle")
  ans  =
- 
-  T  
+  T
 assert_checkequal(e.children(2).type, "Arc")
  ans  =
- 
-  T  
+  T
 unglue(e);
 assert_checkequal(a.children(1).type, "Rectangle")
  ans  =
- 
-  T  
+  T
 assert_checkequal(a.children(2).type, "Arc")
  ans  =
- 
-  T  
+  T
 e = gce();
 assert_checkequal(e.type, "Axes")
  ans  =
- 
-  T  
+  T

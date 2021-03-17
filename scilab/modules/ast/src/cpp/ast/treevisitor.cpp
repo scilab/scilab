@@ -17,6 +17,7 @@
 #include "printvisitor.hxx"
 #include "execvisitor.hxx"
 #include "token.hxx"
+#include "cell.hxx"
 
 extern "C"
 {
@@ -154,49 +155,28 @@ void TreeVisitor::visit(const MatrixExp &e)
         return;
     }
 
-    types::List* sub = createOperation();
-    types::List* ope = new types::List();
+    l = matrixOrCellExp(lines, *this, L"cc");
+}
 
-    int idx = 0;
-    for (auto it : lines)
+void TreeVisitor::visit(const CellExp &e)
+{
+    exps_t lines = e.getLines();
+
+    if (lines.size() == 0)
     {
-        it->accept(*this);
-
-        if (idx >= 2)
-        {
-            sub->append(ope);
-            ope->killMe();
-            sub->append(new types::String(L"cc"));
-
-            //create a new operation
-            //put previous stage in lhs and
-            //result in rhs
-            types::List* subcolcatOperation = createOperation();
-            types::List* subcolcatOperands = new types::List();
-            subcolcatOperands->append(sub);
-            sub->killMe();
-            //add EOL
-            //subcolcatOperands->append(getEOL());
-            types::InternalType* tmp = getList();
-            subcolcatOperands->append(tmp);
-            tmp->killMe();
-
-            ope = subcolcatOperands;
-            sub = subcolcatOperation;
-        }
-        else
-        {
-            types::InternalType* tmp = getList();
-            ope->append(tmp);
-            tmp->killMe();
-        }
-
-        ++idx;
+        l = createConst(new types::Cell());
+        return;
     }
-    sub->append(ope);
-    ope->killMe();
-    sub->append(new types::String(L"cc"));
-    l = sub;
+
+    if (lines.size() == 1)
+    {
+        lines.front()->accept(*this);
+        types::List* pL = getList();
+        pL->get(pL->getSize() - 1)->getAs<types::String>()->set(0, L"crc");
+        return;
+    }
+
+    l = matrixOrCellExp(lines, *this, L"ccc");
 }
 
 void TreeVisitor::visit(const MatrixLineExp &e)
@@ -1101,5 +1081,52 @@ types::InternalType* TreeVisitor::getVerbose(const Exp& e)
     {
         return new types::String(L";");
     }
+}
+
+types::List* TreeVisitor::matrixOrCellExp(const exps_t& lines, TreeVisitor& me, const std::wstring& what)
+{
+    types::List* sub = createOperation();
+    types::List* ope = new types::List();
+
+    int idx = 0;
+    for (auto it : lines)
+    {
+        it->accept(me);
+
+        if (idx >= 2)
+        {
+            sub->append(ope);
+            ope->killMe();
+            sub->append(new types::String(what.data()));
+
+            //create a new operation
+            //put previous stage in lhs and
+            //result in rhs
+            types::List* subcolcatOperation = createOperation();
+            types::List* subcolcatOperands = new types::List();
+            subcolcatOperands->append(sub);
+            sub->killMe();
+            //add EOL
+            //subcolcatOperands->append(getEOL());
+            types::InternalType* tmp = me.getList();
+            subcolcatOperands->append(tmp);
+            tmp->killMe();
+
+            ope = subcolcatOperands;
+            sub = subcolcatOperation;
+        }
+        else
+        {
+            types::InternalType* tmp = me.getList();
+            ope->append(tmp);
+            tmp->killMe();
+        }
+
+        ++idx;
+    }
+    sub->append(ope);
+    ope->killMe();
+    sub->append(new types::String(what.data()));
+    return sub;
 }
 }

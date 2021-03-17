@@ -72,6 +72,7 @@ function atomsDownload(url_in,file_out,md5sum)
 
     CURL     = %F;
     WGET     = %F;
+    HTTP_GET = %F;
     HTTPDOWNLOAD = %F;
 
     // Maybe the detection has already been done
@@ -80,6 +81,8 @@ function atomsDownload(url_in,file_out,md5sum)
         WGET = %T;
     elseif atomsGetConfig("downloadTool") == "curl" then
         CURL = %T;
+    elseif atomsGetConfig("downloadTool") == "http_get" then
+        HTTP_GET = %T;
     elseif atomsGetConfig("downloadTool") == "httpdownload" & getos() == "Windows" then
         HTTPDOWNLOAD = %T;
     else
@@ -199,22 +202,55 @@ function atomsDownload(url_in,file_out,md5sum)
             // Save the parameter to always download with httpdownload
             if stat == 0 then
                 atomsSetConfig("downloadTool","httpdownload");
-            else
-                select stat,
-                case -1 then mprintf(gettext("%s: Error: the response status from the URL %s is invalid.\n"), "atomsDownload", url_in),
-                case -2 then mprintf(gettext("%s: Error while opening an Internet connection.\n"), "atomsDownload"),
-                case -3 then mprintf(gettext("%s: Error while opening the URL %s.\n"), "atomsDownload", url_in),
-                case -4 then mprintf(gettext("%s: Error while creating the file %s on disk.\n"), "atomsDownload", file_out),
-                case -5 then mprintf(gettext("%s: Error while retrieving the size of file at URL %s.\n"), "atomsDownload", url_in),
-                case -6 then mprintf(gettext("%s: Error while reading the file from the URL %s.\n"), "atomsDownload", url_in),
-                case -7 then mprintf(gettext("%s: Error while writing the file %s on disk.\n"), "atomsDownload", file_out),
-                case -8 then mprintf(gettext("%s: Error while downloading the file from the URL %s.\n"), "atomsDownload", url_in),
-                case -9 then mprintf(gettext("%s: Error: out of memory.\n"), "atomsDownload"),
+            end
+        end
+
+        if (HTTP_GET | stat<>0) then
+            try
+                [res,http_status] = http_get(url_in,file_out);
+                select http_status
+                case 200 then
+                    stat = 0;
+                else
+                    stat = -1;
                 end
+            catch
+                error_message = lasterror();
+                select error_message($);
+                case _("Couldn''t resolve host name") then
+                    stat = -2;
+                case msprintf(_("%s: Wrong value for input argument #%d: The given path does not exist.\n"),"http_get",2) then
+                    stat = -7;
+                end
+            end
+
+            // Save the parameter to always download with http_get
+            if stat == 0 then
+                atomsSetConfig("downloadTool","http_get");
             end
         end
 
         if stat <> 0 then
+            select stat,
+            case -1 then
+                mprintf(gettext("%s: Error: the response status from the URL %s is invalid.\n"), "atomsDownload", url_in),
+            case -2 then
+                mprintf(gettext("%s: Error while opening an Internet connection.\n"), "atomsDownload"),
+            case -3 then
+                mprintf(gettext("%s: Error while opening the URL %s.\n"), "atomsDownload", url_in),
+            case -4 then
+                mprintf(gettext("%s: Error while creating the file %s on disk.\n"), "atomsDownload", file_out),
+            case -5 then
+                mprintf(gettext("%s: Error while retrieving the size of file at URL %s.\n"), "atomsDownload", url_in),
+            case -6 then
+                mprintf(gettext("%s: Error while reading the file from the URL %s.\n"), "atomsDownload", url_in),
+            case -7 then
+                mprintf(gettext("%s: Error while writing the file %s on disk.\n"), "atomsDownload", file_out),
+            case -8 then
+                mprintf(gettext("%s: Error while downloading the file from the URL %s.\n"), "atomsDownload", url_in),
+            case -9 then
+                mprintf(gettext("%s: Error: out of memory.\n"), "atomsDownload"),
+            end
             mprintf(gettext("%s: The following file hasn''t been downloaded:\n"), "atomsDownload");
             mprintf(gettext("\t - URL      : ''%s''\n"), url_in);
             mprintf(gettext("\t - Local location : ''%s''\n"), file_out);

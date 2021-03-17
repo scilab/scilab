@@ -15,6 +15,7 @@ fig = gcf();
 figIndex =fig.figure_id;
 // check that file size is greater than 10K
 minimumSize = 10000;
+// bitmap export
 // gif format
 xs2gif(figIndex, TMPDIR+"/textExport.gif")
 fileSize = fileinfo(TMPDIR+"/textExport.gif");

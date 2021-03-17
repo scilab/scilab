@@ -13,17 +13,19 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="grep" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="grep" xml:lang="ru">
     <refnamediv>
         <refname>grep</refname>
         <refpurpose>поиск соответствий строки в векторе строк</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>row = grep(haystack, needle )
+        <synopsis>
             [row, which] = grep(haystack, needle )
-            row = grep(haystack, needle, [flag])
-            [row, which] = grep(haystack, needle, [flag])
+            [row, which] = grep(haystack, needle, "regexp" )
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -64,10 +66,11 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>флаг "regexp" | "r"</term>
                 <listitem>
                     <para>
-                        символ (<literal>"r"</literal> для регулярного выражения).
+                        одиночный символ: тогда элементы <varname>needle</varname> используются как
+                        регулярные выражения.
                     </para>
                 </listitem>
             </varlistentry>
@@ -90,11 +93,13 @@
             регулярного выражения. В этом случае <function>grep</function>
             использует <varname>needle</varname> в качестве регулярного
             выражения и сравнивает его с <varname>haystack</varname> в
-            соответствии с правилами регулярного выражения. См. подробности по регулярным выражениям в функции <link linkend="regexp">regexp</link>.
+            соответствии с правилами регулярного выражения. См. подробности по регулярным выражениям
+            в функции <link linkend="regexp">regexp</link>.
         </para>
     </refsection>
     <refsection>
-        <title>Пример №1</title>
+        <title>Примеры</title>
+        <para><emphasis role="bold">Пример № 1</emphasis></para>
         <para>
             В следующем примере мы ищем одну или две строки в тексте, который
             хранится в переменной <varname>txt</varname>.
@@ -106,10 +111,10 @@ txt=['поиск соответствий строк в векторе стро�
 grep(txt,'строк')
 grep(txt,['строк' 'Строк'])
 [r,w]=grep(txt,['строк' 'Строк'])
- ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>Пример №2</title>
+     ]]></programlisting>
+        <para/>
+
+        <para><emphasis role="bold">Пример № 2</emphasis></para>
         <para>
             В следующем примере выполняется поиск с помощью регулярных выражений.
         </para>
@@ -128,6 +133,12 @@ grep(str,'/cat|dog/','r')
             </member>
             <member>
                 <link linkend="regexp">regexp</link>
+            </member>
+            <member>
+                <link linkend="find">find</link>
+            </member>
+            <member>
+                <link linkend="vectorfind">vectorfind</link>
             </member>
         </simplelist>
     </refsection>

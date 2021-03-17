@@ -102,9 +102,16 @@ public:
     }
 
 public:
-    /** \brief Return if an expression should be displayed or not. */
+    /** \brief Set recursively if an expression should be displayed or not. */
     inline void mute(void)
     {
+        for (auto& e : _exps)
+        {
+            if(e)
+            {
+                e->mute();
+            }
+        }
         _verbose = false;
     }
 

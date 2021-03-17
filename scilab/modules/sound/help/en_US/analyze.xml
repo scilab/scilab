@@ -13,7 +13,9 @@
  * along with this program.
     *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="analyze">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="analyze">
     <refnamediv>
         <refname>analyze</refname>
         <refpurpose>frequency plot of a sound signal</refpurpose>
@@ -40,8 +42,8 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// At first we create 0.5 seconds of sound parameters.
-t=soundsec(0.5);
+// At first we create a time vector of 0.5 seconds sampled at 22050 Hz:
+t = 0 : 1/22050 : 0.5*(1-%eps);
 
 // Then we generate the sound.
 s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
@@ -50,7 +52,7 @@ s(nc/2:nc)=sin(330*t(nc/2:nc));
 analyze(s);
  ]]></programlisting>
         <scilab:image>
-            t=soundsec(0.5);
+            t = 0 : 1/22050 : 0.5*(1-%eps);
             s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
             [nr,nc]=size(t);
             s(nc/2:nc)=sin(330*t(nc/2:nc));

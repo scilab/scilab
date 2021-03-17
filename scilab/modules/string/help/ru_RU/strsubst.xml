@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strsubst" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="strsubst" xml:lang="ru">
     <refnamediv>
         <refname>strsubst</refname>
         <refpurpose>
@@ -24,7 +27,7 @@
         <title>Синтаксис</title>
         <synopsis>
             string_out = strsubst(string_in, searchStr, replaceStr)
-            string_out = strsubst(string_in, searchStr, replaceStr, [flag])
+            string_out = strsubst(string_in, searchStr, replaceStr, "regexp")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -60,16 +63,16 @@
                 <term>string_out</term>
                 <listitem>
                     <para>
-                        матрица символьных строк. Результат замены строки <varname>searchStr</varname> строкой
-                        <varname>replaceStr</varname> в <varname>string_in</varname>.
+                        матрица символьных строк. Результат замены строки <varname>searchStr</varname>
+                        строкой <varname>replaceStr</varname> в <varname>string_in</varname>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>флаг "regexp" | "r"</term>
                 <listitem>
                     <para>
-                        символ (<literal>"r"</literal> для регулярного выражения).
+                        Затем <varname>searchStr</varname> используется как регулярное выражение.
                     </para>
                 </listitem>
             </varlistentry>
@@ -85,7 +88,7 @@
         <para>
             Когда используется четвёртый параметр <literal>"r"</literal>, то
             строка <varname>searchStr</varname> должна быть регулярным
-            выражением. Тогда <function>strsubst</function> будет будет
+            выражением. Тогда <function>strsubst</function> будет
             сопоставлять её с <varname>string_in</varname> и заменять в
             соответствии с правилами регулярных выражений.
         </para>

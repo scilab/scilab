@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "nofftw module"
             VALUE "FileVersion", "6, 2, 0, 0"
             VALUE "InternalName", "nofftw module"
-            VALUE "LegalCopyright", "Copyright (C) 2020"
+            VALUE "LegalCopyright", "Copyright (C) 2021"
             VALUE "OriginalFilename", "nofftw.dll"
             VALUE "ProductName", " nofftw"
             VALUE "ProductVersion", "6, 2, 0, 0"

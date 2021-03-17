@@ -70,12 +70,6 @@ mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["";
-        "// Display mode";
-        "mode(0);";
-        "";
-        "// Display warning for floating point exception";
-        "ieee(1);";
-        "";
         "// i and j do not exist as variables -> Imaginary unit";
         "a = 1+2*%i";
         "b = 1+2*%i";

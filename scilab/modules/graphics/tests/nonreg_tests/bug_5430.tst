@@ -16,14 +16,14 @@
 // clf() could erase the ATOMS GUI or the m2sci ones
 
 // ============ ATOMS GUI ===========
-xdel(winsid());
+close(winsid());
 atomsGui();
 clf
 // CHECK:
 // * the ATOMS GUI must not be erased
 // * a new empty figure must have been created
 
-xdel(winsid());
+close(winsid());
 plot()
 atomsGui();
 clf
@@ -31,7 +31,7 @@ clf
 // * despite it is the latest one, the ATOMS GUI must not be erased
 // * the plot() figure must have been cleared
 
-xdel(winsid());
+close(winsid());
 plot()
 scf(); plot2d()
 atomsGui();
@@ -42,14 +42,14 @@ clf
 
 // ============ m2sci GUI ===========
 
-xdel(winsid());
+close(winsid());
 m2sci_gui();
 clf
 // CHECK:
 // * the m2sci GUI must not be erased
 // * a new empty figure must have been created
 
-xdel(winsid());
+close(winsid());
 plot()
 m2sci_gui();
 clf
@@ -57,7 +57,7 @@ clf
 // * despite it is the latest one, the m2sci GUI must not be erased
 // * the plot() figure must have been cleared
 
-xdel(winsid());
+close(winsid());
 plot()
 scf(); plot2d()
 m2sci_gui();

@@ -3,6 +3,7 @@
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Stéphane Mottelet
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -218,42 +219,31 @@ public class SciOutputView extends JEditorPane implements OutputView, ViewFactor
      */
     private void displayLineBuffer(String buff, String style) {
         int sDocLength = getDocument().getLength();
+        boolean bEndsWithCR  = false;
 
-        if (buff.equals("\r")) {
-            /* If \r sent by mprintf then display nothing but prepare next display */
-            /* Insertion will be done just after last NEW_LINE */
-            try {
-                String outputTxt = getDocument().getText(0, sDocLength);
-                insertPosition = outputTxt.lastIndexOf(StringConstants.NEW_LINE) + 1;
-            } catch (BadLocationException e) {
-                e.printStackTrace();
-            }
-            return;
-        } else if (buff.contains("\r")) {
-            /* If \r is part of the buff then perform CR on to the buff */
-            int n = buff.lastIndexOf("\r");
-            buff = buff.substring(n + 1) + buff.substring(buff.length() - n - 1, n) + "\r";
+        // replace all CR+LF occurences by a LF
+        buff = buff.replaceAll("\r\n","\n");
+        bEndsWithCR  = buff.endsWith("\r");
 
-        } else {
-            /* Change position for insertion if a previous \r still influence display */
-            if ((insertPosition != 0) && (insertPosition < sDocLength)) {
-                sDocLength = insertPosition;
-                try {
-                    /* Remove chars to be replaced */
-                    if (!buff.equals("\n")) {
-                        if ((insertPosition + buff.length() == getDocument().getLength())) {
-                            getDocument().remove(insertPosition, buff.length());
-                        } else {
-                            getDocument().remove(insertPosition, getDocument().getLength() - insertPosition);
-                        }
-                    }
-                } catch (BadLocationException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                /* Reinit insertPosition: 0 is equivalent to insertPosition value ignored */
-                insertPosition = 0;
-            }
+        // special case of leading \r but nothing printed yet
+        if (buff.startsWith("\r") & lastEOL == false) {
+          try {
+              String outputTxt = getDocument().getText(0,  getDocument().getLength());
+              insertPosition = outputTxt.lastIndexOf(StringConstants.NEW_LINE) + 1;
+          } catch (BadLocationException e) {
+              e.printStackTrace();
+          }
+        }
+
+        // successively apply carriage returns to the buffer by splitting it with '\r' as a separator
+        // the case buff == "\r" is considered at the end of the method
+        if (buff.contains("\r") & buff.length() > 1) {
+          String tokens[] = buff.split("\r");
+          buff = tokens[0];
+          for (int i=1; i<tokens.length;i++)
+          {
+            buff = tokens[i] + (buff.length() >= tokens[i].length() ? buff.substring(tokens[i].length()) : "");
+          }
         }
 
         boolean slastEOL = lastEOL;
@@ -265,6 +255,26 @@ public class SciOutputView extends JEditorPane implements OutputView, ViewFactor
 
         if (slastEOL) {
             str = "\n" + str;
+        }
+
+        /* Change position for insertion if a previous \r still influence display */
+        if ((insertPosition != 0) && (insertPosition < sDocLength)) {
+            sDocLength = insertPosition;
+            try {
+                /* Remove chars to be replaced */
+                if (!str.equals("\n")) {
+                    if ((insertPosition + str.length() <= getDocument().getLength())) {
+                        getDocument().remove(insertPosition, str.length());
+                    } else {
+                        getDocument().remove(insertPosition, getDocument().getLength() - insertPosition);
+                    }
+                }
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            }
+        } else {
+            /* Reinit insertPosition: 0 is equivalent to insertPosition value ignored */
+            insertPosition = 0;
         }
 
         try {
@@ -293,6 +303,15 @@ public class SciOutputView extends JEditorPane implements OutputView, ViewFactor
             } catch (BadLocationException e) {
                 e.printStackTrace();
             }
+        }
+
+        if (bEndsWithCR) {
+          try {
+              String outputTxt = getDocument().getText(0,  getDocument().getLength());
+              insertPosition = outputTxt.lastIndexOf(StringConstants.NEW_LINE) + 1;
+          } catch (BadLocationException e) {
+              e.printStackTrace();
+          }
         }
     }
 

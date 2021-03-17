@@ -35,18 +35,13 @@ fd=mopen(SCIFILE,"r");
 SCIFILECONTENTS=mgetl(fd,-1);
 mclose(fd);
 
-SCIFILECONTENTSREF=["";
-"// Display mode";
-"mode(0);";
-"";
-"// Display warning for floating point exception";
-"ieee(1);";
-"";
-"// ! L.1: mtlb(rep) can be replaced by rep() or rep whether rep is an M-file or not.";
-"loadmatfile(mtlb(rep)+""alpha"");";
-"// ! L.2: mtlb(rep) can be replaced by rep() or rep whether rep is an M-file or not.";
-"loadmatfile(mtlb(rep)+""beta"");";
-"mu = beta*alpha;";
-]
+SCIFILECONTENTSREF=[
+    ""
+    "// ! L.1: mtlb(rep) can be replaced by rep() or rep whether rep is an M-file or not."
+    "loadmatfile(mtlb(rep)+""alpha"");"
+    "// ! L.2: mtlb(rep) can be replaced by rep() or rep whether rep is an M-file or not."
+    "loadmatfile(mtlb(rep)+""beta"");"
+    "mu = beta*alpha;"
+    ];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

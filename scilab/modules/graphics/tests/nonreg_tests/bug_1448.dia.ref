@@ -14,7 +14,7 @@
 //    Bug detected in 3.1.1 under Windows XP.
 //    Bug relative to function rotate
 //
-//    A positive angle corresponds to a clockwise rotation, then in the
+//    A positive angle corresponds to a clockwise rotation, then in the 
 //    negative mathematical way.
 //
 //    Jacques-Deric

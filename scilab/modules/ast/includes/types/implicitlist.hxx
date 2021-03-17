@@ -69,6 +69,9 @@ public :
         return IdImplicitList;
     }
 
+    bool  operator==(const InternalType& it) override;
+    bool  operator!=(const InternalType& it) override;
+
     bool isImplicitList() override
     {
         return true;
@@ -121,7 +124,7 @@ public :
     }
 
     //extract single value in a InternalType
-    void extractValue(int _iOccur, InternalType*); //Single value
+    bool extractValue(int _iOccur, InternalType*); //Single value
     void extractValueAsDouble(int _iOccur, Double*);
     template<typename T>
     void extractValueAsInteger(int _iOccur, T* val);

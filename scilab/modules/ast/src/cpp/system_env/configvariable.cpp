@@ -1475,15 +1475,15 @@ std::string& ConfigVariable::getMexFunctionName()
 ** \}
 */
 // executed file with exec
-int ConfigVariable::m_iFileID = 0;
-void ConfigVariable::setExecutedFileID(int _iFileID)
+std::wstring ConfigVariable::m_strFile = L"";
+void ConfigVariable::setExecutedFile(const std::wstring& _strFile)
 {
-    m_iFileID = _iFileID;
+    m_strFile = _strFile;
 }
 
-int ConfigVariable::getExecutedFileID()
+const std::wstring& ConfigVariable::getExecutedFile()
 {
-    return m_iFileID;
+    return m_strFile;
 }
 
 /*

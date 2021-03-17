@@ -11,7 +11,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=1873
 //
 // <-- Short Description -->
-// grid space between dash dash line elements is filled with white
+// grid space between dash dash line elements is filled with white 
 // background color.
 xv = 1:10; yv=xv; s = rand(length(xv), length(yv));
 min_z = min(s); max_z = max(s);

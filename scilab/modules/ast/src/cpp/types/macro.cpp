@@ -27,6 +27,7 @@
 #include "scilabWrite.hxx"
 #include "configvariable.hxx"
 #include "serializervisitor.hxx"
+#include "filemanager.hxx"
 
 extern "C"
 {
@@ -331,21 +332,26 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
+    std::wstring iExecFile = ConfigVariable::getExecutedFile();
     std::unique_ptr<ast::ConstVisitor> exec (ConfigVariable::getDefaultVisitor());
     try
     {
+        ConfigVariable::setExecutedFile(m_stPath);
         ConfigVariable::setPromptMode(-1);
         m_body->accept(*exec);
         //restore previous prompt mode
         ConfigVariable::setPromptMode(oldVal);
+        ConfigVariable::setExecutedFile(iExecFile);
     }
     catch (const ast::InternalError& ie)
     {
+        ConfigVariable::setExecutedFile(iExecFile);
         cleanCall(pContext, oldVal);
         throw ie;
     }
     catch (const ast::InternalAbort& ia)
     {
+        ConfigVariable::setExecutedFile(iExecFile);
         cleanCall(pContext, oldVal);
         throw ia;
     }

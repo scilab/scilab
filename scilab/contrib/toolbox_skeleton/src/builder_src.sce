@@ -2,7 +2,7 @@
 
 function builder_src()
     langage_src = ["fortran" "c" "java"];
-    path_src = get_absolute_file_path("builder_src.sce");
+    path_src = get_absolute_file_path();
     tbx_builder_src_lang(langage_src, path_src);
 endfunction
 

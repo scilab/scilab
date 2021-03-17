@@ -53,7 +53,7 @@ a.box="off";
 a.x_location="middle";
 a.parent.background=4;
 delete(gca()) // delete the current axes
-xdel(0) //delete a graphics window
+close(0) //delete a graphics window
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

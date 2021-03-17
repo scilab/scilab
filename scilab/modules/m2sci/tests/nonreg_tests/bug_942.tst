@@ -43,12 +43,6 @@ SCIFILECONTENTSREF=[
         "// Output variables initialisation (not found in input variables)";
         "a=[];";
         "";
-        "// Display mode";
-        "mode(0);";
-        "";
-        "// Display warning for floating point exception";
-        "ieee(1);";
-        "";
         "// help line";
         "// help line";
         "a = x;";

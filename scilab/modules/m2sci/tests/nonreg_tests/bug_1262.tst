@@ -9,7 +9,7 @@
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 // <-- NO CHECK REF -->
-// <-- NOT FIXED -->   6.0.0 -> 6.0.2
+// <-- NOT FIXED -->   6.0.0 -> 6.1.0
 //
 // <-- Non-regression test for bug 1262 -->
 //
@@ -60,12 +60,6 @@ SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF = [
     ""
-    "// Display mode"
-    "mode(0);"
-    ""
-    "// Display warning for floating point exception"
-    "ieee(1);"
-    ""
     "A = rand(3,3);"
     ""
     "for ii = 1:3 for jj = 1:3 disp(A(ii,jj));end;end;"
@@ -84,6 +78,6 @@ SCIFILECONTENTSREF = [
     ""
     "C = [A,A,[1;2;3]];"
     ""
-    "B = -(A-A)"]
+    "B = -(A-A)"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

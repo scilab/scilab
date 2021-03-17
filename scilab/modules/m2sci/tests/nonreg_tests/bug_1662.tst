@@ -8,7 +8,7 @@
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 // <-- NO CHECK REF -->
-// <-- NOT FIXED -->  6.0.0 -> 6.0.2
+// <-- NOT FIXED -->  6.0.0 -> 6.1.0
 //
 // <-- Non-regression test for bug 1662 -->
 //
@@ -44,12 +44,6 @@ SCIFILECONTENTSREF=[
         ""
         "// Output variables initialisation (not found in input variables)"
         "y=[];"
-        ""
-        "// Display mode"
-        "mode(0);"
-        ""
-        "// Display warning for floating point exception"
-        "ieee(1);"
         ""
         "select x // comment1"
         " // comment2";

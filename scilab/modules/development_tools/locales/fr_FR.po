@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-18 13:33+0000\n"
+"PO-Revision-Date: 2020-07-18 13:33+0000\n"
 "Last-Translator: CARNIS Adeline <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -111,16 +111,15 @@ msgstr "calculé = "
 #, c-format
 msgid "%s: Assertion failed: %s  while %s (mean diff = %s)"
 msgstr ""
-"%s : Échec de l'assertion : attendu = %s, cependant calculé = %s (différence "
-"moyenne = %s)"
+"%s : Échec de l'assertion : %s, alors que %s (différence moyenne = %s)"
 
 #, c-format
 msgid "%s: Assertion failed: %s  while %s"
-msgstr "%s : Échec de l'assertion : attendu = %s, cependant calculé = %s"
+msgstr "%s : Échec de l'assertion : %s, alors que %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : Au moins %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : Au moins %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
@@ -154,16 +153,15 @@ msgid ""
 "%s: Assertion failed: expected error message = %s while computed error "
 "message = %s."
 msgstr ""
-"%s : Échec de l'assertion : message d'erreur attendu = %s, cependant message "
-"d'erreur calculé = %s."
+"%s : Échec de l'assertion : message d'erreur attendu = %s, alors que message "
+"d'erreur obtenu = %s."
 
 #, c-format
 msgid ""
 "%s: Assertion failed: expected error number = %d while computed error number "
 "= %d."
 msgstr ""
-"%s : Échec de l'assertion : numéro attendu d'erreur = %d, cependant numéro "
-"d'erreur calculé = %d."
+"%s : Échec de l'assertion : numéro d'erreur attendu = %d, mais obtenu = %d."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean matrix expected.\n"

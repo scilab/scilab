@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="grep" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="grep" xml:lang="pt">
     <refnamediv>
         <refname>grep</refname>
         <refpurpose>acha correspondências de um string em um vetor de
@@ -22,10 +25,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>row=grep(haystack,needle )
-            [row,which]=grep(haystack,needle )
-            row=grep(haystack,needle ,[flag])
-            [row,which]=grep(haystack,needle ,[flag])
+        <synopsis>
+            [row, which] = grep(haystack, needle )
+            [row, which] = grep(haystack, needle, "regexp" )
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -64,9 +66,12 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>"regexp" | "r" flag</term>
                 <listitem>
-                    <para>caractere ("r" para expressão regular)</para>
+                    <para>
+                        caractere único: Em seguida, os elementos <varname>needle</varname> são
+                        usados como expressões <emphasis role="bold">r</emphasis>egulares.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -107,6 +112,15 @@ grep(str,'/cat|dog/','r')
         <simplelist type="inline">
             <member>
                 <link linkend="strindex">strindex</link>
+            </member>
+            <member>
+                <link linkend="regexp">regexp</link>
+            </member>
+            <member>
+                <link linkend="find">find</link>
+            </member>
+            <member>
+                <link linkend="vectorfind">vectorfind</link>
             </member>
         </simplelist>
     </refsection>

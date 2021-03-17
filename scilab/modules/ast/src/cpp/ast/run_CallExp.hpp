@@ -225,7 +225,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             if (pIT->isInvokable() == false)
             {
                 // call overload
-                ret = Overload::call(L"%" + pIT->getShortTypeStr() + L"_e", in, iRetCount, out, true);
+                ret = Overload::call(L"%" + pIT->getShortTypeStr() + L"_e", in, iRetCount, out, true, true, e.getLocation());
             }
             else
             {
@@ -233,7 +233,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 if (ret == false && pIT->isUserType())
                 {
                     // call overload
-                    ret = Overload::call(L"%" + pIT->getShortTypeStr() + L"_e", in, iRetCount, out, true);
+                    ret = Overload::call(L"%" + pIT->getShortTypeStr() + L"_e", in, iRetCount, out, true, true, e.getLocation());
                 }
             }
 
@@ -305,7 +305,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             pListArg->killMe();
         }
     }
-    catch (InternalAbort & ia)
+    catch (const InternalAbort & ia)
     {
         setExpectedSize(iSaveExpectedSize);
         if (pIT != getResult())
@@ -320,8 +320,14 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
         throw ia;
     }
-    catch (const InternalError& ie)
+    catch (InternalError& ie)
     {
+        // set location if the function which thrown this execption was not able to do it
+        if(ie.GetErrorLocation().first_line == -1)
+        {
+            ie.SetErrorLocation(e.getLocation());
+        }
+
         setExpectedSize(iSaveExpectedSize);
         if (pIT != getResult())
         {

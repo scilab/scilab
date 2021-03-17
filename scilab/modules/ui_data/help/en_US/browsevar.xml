@@ -110,9 +110,77 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-a=rand(10,10);
-b="my string";
+a = rand(10,10);
+b = "my string";
+myCell = makecell([2 4],%t, int(-67),rand(2,3),1-%i,(1-%z)^3,1/(1-%z), "abcd", {"are", 45});
+myList = list("Hello", grand(2,4,"uin",-100,100), [%t %f %f ]', (1-%z).^[1 2]);
+myStru = struct("num",{3.1415, -1, %i}, "pol", {%z (1-%z) 2+%z^3}, "txt",{"Hi" "Hello" "Hola"});
+function r = myTest(a,b), c = 2; r = a*c - b; endfunction
+statLib = statisticslib;
+plot2d()
+curves = gce();
+
 browsevar();
  ]]></programlisting>
+    <para>Then click on some variables in the browser, to edit or display them.</para>
+    <table>
+        <tr>
+            <td valign="top" align="center">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/cell_view.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <para/>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/library_view.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </td>
+            <td valign="top">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/list_view.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <para/>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/structure_view.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </td>
+        </tr>
+    </table>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="editvar">editvar</link>
+            </member>
+            <member>
+                <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="whos">whos</link>
+            </member>
+            <member>
+                <link linkend="ged">ged</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revremark>
+                    Clicking on a variable of type graphic, function, library, list, structure,
+                    cell, syslin, or any custom tlist or mlist now displays it.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

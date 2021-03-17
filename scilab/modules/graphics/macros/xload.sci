@@ -44,7 +44,7 @@ function xload(fil,num)
         uid = h.uid
         xloadFigure(fil)
         if gcf().uid~=uid   // load() has opened a new figure
-            xdel(h.figure_id)
+            close(h)
             gcf().figure_id = num
         end
         return

@@ -27,6 +27,7 @@
 #include "getPropertyAssignedValue.h"
 #include "FigureList.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "HandleManagement.h"
 
 #include "deleteGraphicObject.h"
@@ -35,6 +36,9 @@
 /*--------------------------------------------------------------------------*/
 int sci_xdel(char *fname, void *pvApiCtx)
 {
+    sciprint(_("%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"), _("Warning"), "xdel(…)", "6.2");
+    sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "close(…)");
+
     SciErr sciErr;
 
     int* piAddrl1 = NULL;

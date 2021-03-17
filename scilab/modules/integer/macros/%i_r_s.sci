@@ -12,7 +12,8 @@
 
 
 function r=%i_r_s(a,b)
-
+    // int / double
     if b==[] then r=[],end
-    r=a/iconvert(b,inttype(a))
+    r = double(a) / b
+    r = iconvert(r, inttype(a))
 endfunction

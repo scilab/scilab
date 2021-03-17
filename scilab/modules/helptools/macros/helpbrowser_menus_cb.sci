@@ -25,7 +25,6 @@ function helpbrowser_menus_cb(action, param)
         if currentLang == param then
             return
         else
-            hb.close()
             global %helps
             helpbrowser(%helps(:,1), id, param, %f);
         end

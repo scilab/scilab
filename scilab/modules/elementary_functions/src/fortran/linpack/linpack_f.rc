@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "linpack_f module"
             VALUE "FileVersion", "6, 2, 0, 0"
             VALUE "InternalName", "linpack_f module"
-            VALUE "LegalCopyright", "Copyright (C) 2020"
+            VALUE "LegalCopyright", "Copyright (C) 2021"
             VALUE "OriginalFilename", "linpack_f.dll"
             VALUE "ProductName", "linpack_f module"
             VALUE "ProductVersion", "6, 2, 0, 0"

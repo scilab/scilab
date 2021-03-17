@@ -20,7 +20,7 @@ Matplot()
 f = gcf();
 save(TMPDIR+"/Matplot.sod","f")
 d0 = gca().children.data;
-xdel()
+close()
 load(TMPDIR+"/Matplot.sod")
 d1 = gca().children.data;
 

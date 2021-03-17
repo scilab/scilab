@@ -152,6 +152,12 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
                 Scierror(999, _("%s: Wrong values for input argument #%d: Positive integers expected.\n"), "sparse", 3);
                 return types::Function::Error;
             }
+
+            if (pDdims->get(0) * pDdims->get(1) > INT_MAX)
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d: The maximum total size expected is %d.\n"), "sparse", 3, INT_MAX);
+                return types::Function::Error;
+            }
         }
 
         bool alloc = false;
@@ -168,7 +174,7 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
             Scierror(999, _("%s: Invalid index.\n"), "sparse");
             return types::Function::Error;
         }
-        
+
         if (pDdims == nullptr)
         {
             pDdims = new types::Double(1, 2, false);
@@ -180,7 +186,7 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
             }
             alloc = true;
         }
-        else if ( (size > 0) && ((pDdims->get(0) < *std::max_element(pdbli, pdbli + size)) 
+        else if ( (size > 0) && ((pDdims->get(0) < *std::max_element(pdbli, pdbli + size))
                   || (pDdims->get(1) < *std::max_element(pdblj, pdblj + size))) )
         {
             Scierror(999, _("%s: Invalid index.\n"),"sparse");

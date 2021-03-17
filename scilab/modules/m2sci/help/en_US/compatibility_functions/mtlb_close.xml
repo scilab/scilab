@@ -32,7 +32,7 @@
             <listitem>
                 <para>
                     When current figure is a graphic one: Scilab equivalent for Matlab <literal>close</literal>
-                    is <literal>xdel</literal> or <literal>delete</literal>
+                    is <literal>close</literal> or <literal>delete</literal>
                 </para>
             </listitem>
             <listitem>
@@ -71,9 +71,6 @@
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="xdel">xdel</link>
-            </member>
             <member>
                 <link linkend="delete">delete</link>
             </member>

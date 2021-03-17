@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="close">
+    <refnamediv>
+        <refname>close</refname>
+        <refpurpose>
+            закрывает графические окна, панели прогресса и панели состояния
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            close
+            close(H)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>
+                        вектор дескрипторов графических окон или идентификаторов,
+                        либо дескрипторов панели прогресса и панели состояния.
+                    </para>
+                    <para>
+                        По умолчанию рассматривается текущее графическое окно.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Описание</title>
+        <para>
+            Графические окна, основанные на технологии Tk (такие, как по-прежнему
+            используемое imshow() во внешнем модуле SIVP), могут быть закрыты
+            также по указанию их номера, который является их дескриптором.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+// создаём окно номер 1.
+h = scf();
+// разместим чёткий текст в окне 1
+uicontrol( h, 'style','text', ...
+              'string','scilab is great', ...
+              'position',[50 70 100 100], ...
+              'fontsize',15);
+// создаём окно номер 2
+scf();
+// разместим текст в окне 2
+uicontrol( 'style','text', ...
+           'string','Really great', 'position',[50 70 100 100], 'fontsize',15);
+
+close();   // закрываем текущее графическое окно (т.е. номер 2)
+close(h);  // закрываем окно 1
+
+// создаём панель прогресса
+wid1=progressionbar("Message");
+// закроем его
+close(wid1);
+
+// Создаём и закрываем несколько окон за раз:
+scf(111); plot
+scf(25); plot2d
+gcf().figure_position(1) = 500;
+scf(200); param3d
+gcf().figure_position(1) = 700;
+sleep(5000);         // смотрим на них!
+close([25 200 111])  // конец!
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="delete">delete</link>
+            </member>
+            <member>
+                <link linkend="figure">figure</link>
+            </member>
+            <member>
+                <link linkend="scf">scf</link>
+            </member>
+            <member>
+                <link linkend="gcf">gcf</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Теперь принимаются идентификаторы нескольких окон.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

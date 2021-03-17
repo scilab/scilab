@@ -426,39 +426,34 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         in.push_back(pValue);
         types::Callable::ReturnValue Ret = types::Callable::Error;
         std::wstring stType = pValue->getShortTypeStr();
+        std::wstring wstrFuncName = L"%" + stType + L"_e";
 
         try
         {
-            Ret = Overload::call(L"%" + stType + L"_e", in, 1, out, true);
+            Ret = Overload::call(wstrFuncName.c_str(), in, 1, out, false, false, e.getLocation());
+            if(Ret == types::Callable::OK_NoResult)
+            {
+                // overload not defined, try with the short name.
+                // to compatibility with scilab 5 code.
+                // tlist/mlist name are truncated to 8 first character
+                wstrFuncName = L"%" + stType.substr(0, 8) + L"_e";
+                Ret = Overload::call(wstrFuncName.c_str(), in, 1, out, false, true, e.getLocation());
+            }
         }
         catch (const InternalError& ie)
         {
-            try
+            // TList or Mlist
+            // last error is not empty when the error have been setted by the overload itself.
+            if (pValue->isList() && ConfigVariable::getLastErrorFunction().empty())
             {
-                //to compatibility with scilab 5 code.
-                //tlist/mlist name are truncated to 8 first character
-                if (stType.size() > 8)
-                {
-                    Ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out, true);
-                }
-                else
-                {
-                    CoverageInstance::stopChrono((void*)&e);
-                    throw ie;
-                }
+                wstrFuncName = L"%l_e";
+                Ret = Overload::call(wstrFuncName.c_str(), in, 1, out, false, true, e.getLocation());
             }
-            catch (const InternalError& ie)
+            else
             {
-                // TList or Mlist
-                if (pValue->isList())
-                {
-                    Ret = Overload::call(L"%l_e", in, 1, out, true);
-                }
-                else
-                {
-                    CoverageInstance::stopChrono((void*)&e);
-                    throw ie;
-                }
+                CoverageInstance::stopChrono((void*)&e);
+                // throw the exception in case where the overload have not been defined.
+                throw ie;
             }
         }
 
@@ -470,12 +465,27 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
             throw InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
         }
 
+        // An extraction have to return something
+        if(out.empty())
+        {
+            setResult(NULL);
+            cleanInOut(in, out);
+            CoverageInstance::stopChrono((void*)&e);
+
+            wchar_t wcstrError[512];
+            char* strFuncName = wide_string_to_UTF8(wstrFuncName.c_str());
+            os_swprintf(wcstrError, 512, _W("%s: Extraction must have at least one output.\n").c_str(), strFuncName);
+            FREE(strFuncName);
+
+            throw InternalError(wcstrError, 999, e.getLocation());
+        }
+
         setResult(out);
         cleanIn(in, out);
     }
     else
     {
-        pValue->killMe();
+        clearResult();
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n").c_str());
         CoverageInstance::stopChrono((void*)&e);
@@ -1316,7 +1326,7 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
         pValue->IncreaseRef();
         in.push_back(pValue);
 
-        types::Callable::ReturnValue Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_5", in, 1, out, true);
+        types::Callable::ReturnValue Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_5", in, 1, out, true, true, e.getLocation());
 
         if (Ret != types::Callable::OK)
         {
@@ -1382,11 +1392,11 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
         types::Callable::ReturnValue Ret;
         if (bConjug)
         {
-            Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_t", in, 1, out, true);
+            Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_t", in, 1, out, true, true, e.getLocation());
         }
         else
         {
-            Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_0", in, 1, out, true);
+            Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_0", in, 1, out, true, true, e.getLocation());
         }
 
         if (Ret != types::Callable::OK)
@@ -1651,7 +1661,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             in.push_back(pStep);
             pEnd->IncreaseRef();
             in.push_back(pEnd);
-            Ret = Overload::call(L"%" + pStart->getShortTypeStr() + L"_b_" + pStep->getShortTypeStr(), in, 1, out, true);
+            Ret = Overload::call(L"%" + pStart->getShortTypeStr() + L"_b_" + pStep->getShortTypeStr(), in, 1, out, true, true, e.getLocation());
         }
         else
         {
@@ -1660,7 +1670,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             pStep->killMe();
             pEnd->IncreaseRef();
             in.push_back(pEnd);
-            Ret = Overload::call(L"%" + pStart->getShortTypeStr() + L"_b_" + pEnd->getShortTypeStr(), in, 1, out, true);
+            Ret = Overload::call(L"%" + pStart->getShortTypeStr() + L"_b_" + pEnd->getShortTypeStr(), in, 1, out, true, true, e.getLocation());
         }
     }
     catch (const InternalError& error)

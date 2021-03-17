@@ -81,7 +81,7 @@ write(0,'Scilab stderr (Fortran)');
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revdescription>
-                   <literal>%io</literal> is now protected (read-only).
+                   <literal>%io</literal> теперь защищена (только для чтения).
                 </revdescription>
             </revision>
         </revhistory>

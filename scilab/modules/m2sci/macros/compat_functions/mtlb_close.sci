@@ -33,7 +33,7 @@ function [status]=mtlb_close(h)
             close(h)
         elseif type(h)==10 then
             if h=="all" then
-                xdel(winsid())
+                close(winsid())
             else // close(name)
                 cf_save=gcf()
 
@@ -52,7 +52,7 @@ function [status]=mtlb_close(h)
         end
     else // close('all','hidden')
         warning(msprintf(gettext("%s: All windows deleted.\n"),"mtlb_close"));
-        xdel(winsid())
+        close(winsid())
     end
 endfunction
 

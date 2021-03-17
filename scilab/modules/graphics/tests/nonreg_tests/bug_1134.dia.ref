@@ -11,8 +11,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=1134
 //
 // <-- Short Description -->
-// strf="120" in grayplot disables graphics title
-// strf= "122" doesn't create a box without tics
+// strf="120" in grayplot disables graphics title 
+// strf= "122" doesn't create a box without tics 
 grayTitle = ["My grayplot"; "with strf=120"];
 x = 1:10;
 m = rand(10,10);

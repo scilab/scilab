@@ -1,9 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
- *
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Stéphane MOTTELET
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,6 +18,8 @@
 #include "function.hxx"
 #include "string.hxx"
 #include "filemanager.hxx"
+#include "configvariable.hxx"
+#include <filesystem>
 
 extern "C"
 {
@@ -38,10 +39,48 @@ types::Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, i
     wchar_t* wcsTemp = NULL;
     wchar_t* wcsPath = NULL;
 
-    if (in.size() != 1)
+    if (in.size() > 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "get_absolute_file_path", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): at most %d expected.\n"), "get_absolute_file_path", 1);
         return types::Function::Error;
+    }
+
+    if (in.size() == 0)
+    {
+        if (_iRetCount > 2)
+        {
+            Scierror(77, _("%s: Wrong number of output argument(s): at most %d expected.\n"), "get_absolute_file_path", 2);
+            return types::Function::Error;
+        }
+
+        const std::vector<ConfigVariable::WhereEntry>& where = ConfigVariable::getWhere();
+
+        for (auto it = where.rbegin(); it != where.rend(); ++it)
+        {
+            if (it->m_file_name != NULL && it->m_file_name->length() > 0)
+            {
+                std::filesystem::path p = std::filesystem::path(it->m_file_name->c_str());
+                std::filesystem::path filepath = p.parent_path() / "";
+                out.push_back(new types::String(filepath.c_str()));
+                if (_iRetCount == 2)
+                {
+                    out.push_back(new types::String(p.filename().c_str()));
+                }
+                // taking only the more recently pushed filename allows
+                // to cope with nested script execution.
+                break;
+            }
+        }
+
+        if (out.size() > 0)
+        {
+            return types::Function::OK;
+        }
+        else
+        {
+            Scierror(999, _("%s: Without arguments, this function must be called from a script.\n"), "get_absolute_file_path");
+            return types::Function::Error;
+        }
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)

@@ -11,8 +11,7 @@ a = gca();
 e = gce();
 assert_checkequal(e, a)
  ans  =
- 
-  T  
+  T
 plot(1:10);
 e = gce();
 assert_checkequal(e.type, "Compound");

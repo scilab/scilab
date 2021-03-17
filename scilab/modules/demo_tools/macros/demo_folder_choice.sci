@@ -24,7 +24,7 @@ function []=demo_folder_choice(path,ch)
                 return
             else
                 set("figure_style","old");
-                xdel();
+                close();
                 clf();
                 demoexc(num);
             end
@@ -53,7 +53,7 @@ function []=demo_folder_choice(path,ch)
                     lines(oldln(1))
                     return
                 else
-                    xdel(0);
+                    close(0);
                     clf();
                     demoex(num);
                 end

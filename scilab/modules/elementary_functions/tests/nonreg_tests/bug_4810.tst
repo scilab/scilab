@@ -9,7 +9,7 @@
 // <-- Non-regression test for bug 4810 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=4810
+// http://bugzilla.scilab.org/4810
 //
 // <-- Short Description -->
 // gsort does not manage sparse vector as sort
@@ -17,9 +17,4 @@
 sp = sparse([1,2,4,5,3,10]);
 ref = sparse([10,5,4,3,2,1]);
 A = gsort(sp);
-if and(ref == A) <> %t then pause,end
-
-sp = sparse([1,2;4,5;3,10]);
-ierr = execstr("A = gsort(sp);","errcatch");
-if ierr <> 10000 then pause,end
-
+assert_checkequal(A, ref);

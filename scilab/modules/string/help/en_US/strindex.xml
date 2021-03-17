@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strindex" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="strindex" xml:lang="en">
     <refnamediv>
         <refname>strindex</refname>
         <refpurpose>
@@ -23,8 +26,8 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            ind = strindex(haystack, needle, [flag])
-            [ind, which] = strindex(haystack, needle, [flag])
+            [ind, which] = strindex(haystack, needle)
+            [ind, which] = strindex(haystack, needle, "regexp")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -61,10 +64,10 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>"regexp" | "r" flag</term>
                 <listitem>
                     <para>
-                        a string (<literal>"r"</literal> for regular expression).
+                        Then <varname>needle</varname> elements are used as regular expressions.
                     </para>
                 </listitem>
             </varlistentry>

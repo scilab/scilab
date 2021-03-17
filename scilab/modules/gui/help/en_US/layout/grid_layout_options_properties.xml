@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="grid_layout_options_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="grid_layout_options_properties">
     <refnamediv>
         <refname>Grid Layout Options Properties</refname>
         <refpurpose>Description of the grid layout options set of properties.</refpurpose>
@@ -19,13 +21,12 @@
                 <term>size</term>
                 <listitem>
                     <para>
-                        <literal>[width, height]</literal> a 1-by-2 matrix of double, [0,0] by default
+                        1×2 vector [nRows, nCols]: The numbers of rows and columns of cells
+                        (not of pixels) of the grid. [0,0] by default.
                     </para>
                     <para>
-                        The <literal>width</literal> and <literal>height</literal> of the grid in number of elements (not pixels).
-                    </para>
-                    <para>
-                        A value of 0 for either <literal>width</literal> or <literal>height</literal> defines an indefinite number of elements on the rows or columns of the grid.
+                        A value of -1 for either nRows or nCols defines an indefinite number
+                        of elements in the columns or rows.
                     </para>
                 </listitem>
             </varlistentry>
@@ -135,7 +136,7 @@
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
-                    Function <function>createBorder</function> introduced.
+                    Function createLayoutOptions() introduced.
                 </revremark>
             </revision>
         </revhistory>

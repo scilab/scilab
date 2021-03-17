@@ -161,7 +161,7 @@
                 <tr>
                     <td>downloadTool</td>
                     <td>Set tool used to download</td>
-                    <td>"curl", "wget" or "httpdownload" (Windows only)</td>
+                    <td>"curl", "wget", "http_get" or "httpdownload" (Windows only)</td>
                 </tr>
                 <tr>
                     <td>downloadTimeout</td>

@@ -231,7 +231,7 @@ int csvTextScanInPlace(wchar_t** text, int nbLines, const wchar_t* separator,
             if (pDblRealValues != NULL)
             {
                 doublecomplex v = stringToComplexWInPlace(start, end, decimal,
-                                                          TRUE, &ierr);
+                                  TRUE, &ierr);
                 if (ierr == STRINGTOCOMPLEX_NO_ERROR)
                 {
                     // the imag part of a complex number is allocated on demand
@@ -491,7 +491,7 @@ static void moveEmptyLinesToEnd(wchar_t** lines, int* nonEmptyLines)
 {
     if (lines)
     {
-        // move the blank lines at the end
+        // move the blank lines at the end and free them
         int last = *nonEmptyLines - 1;
         for (int i = last; i >= 0; i--)
         {
@@ -499,7 +499,7 @@ static void moveEmptyLinesToEnd(wchar_t** lines, int* nonEmptyLines)
             {
                 // swap
                 wchar_t* str = lines[i];
-                memmove(&lines[i], &lines[i+1], (last - i + 1) * sizeof(wchar_t*));
+                memmove(&lines[i], &lines[i + 1], (last - i) * sizeof(wchar_t*));
                 lines[last] = str;
                 last--;
             }
@@ -513,7 +513,7 @@ static int hasOnlyBlankCharacters(wchar_t** line)
 {
     const wchar_t* iter = *line;
 
-    // EMPTY_STR is a tagged, non-allocated value for the empty string. It is 
+    // EMPTY_STR is a tagged, non-allocated value for the empty string. It is
     // used to flag a blank string.
     if (*line == EMPTY_STR)
     {

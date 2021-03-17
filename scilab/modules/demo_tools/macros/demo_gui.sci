@@ -55,7 +55,7 @@ function demo_gui()
     File2 = TMPDIR + "/demo_gui_dockable.xml";
     if r=="checked" then
         if ~isfile(File2) then
-            r = copyfile(File, File2);
+            mputl(mgetl(File), File2); // copyfile() sometimes keeps the no-writable status
             doc = xmlRead(File2);
             xmlSetValues("/scilabgui/figure", ..
                          ["dockable" "on"

@@ -30,6 +30,7 @@ extern "C"
 #include "configvariable_interface.h"
 }
 
+#include "scilabexception.hxx"
 #include "localization.hxx"
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -232,7 +233,17 @@ public :
             // A types:: content in more than one Scilab variable
             // must be cloned before being modified.
             T* pClone = _pIT->clone()->template getAs<T>();
-            T* pIT = (pClone->*f)(a...);
+            T* pIT = NULL;
+            try
+            {
+                pIT = (pClone->*f)(a...);
+            }
+            catch (const ast::InternalError& ie)
+            {
+                pClone->killMe();
+                throw ie;
+            }
+
             if (pIT == NULL)
             {
                 pClone->killMe();

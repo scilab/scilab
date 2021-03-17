@@ -46,7 +46,7 @@ function reinit_for_test()
 
     //reinitialize some Scilab state to be able to reproduce the same tests
     sdf();sda()
-    xdel(winsid())
+    close(winsid())
     grand("setgen","clcg4");grand("setall",11111111,22222222,33333333,44444444);
     grand("setgen","kiss");grand("setsd",362436069,521288629,123456789,380116160);
     grand("setgen","clcg2");grand("setsd",1234567890,123456789);
@@ -84,7 +84,7 @@ function r=xdel_run(w,opt)
             load(%U,"%wins_ref");
             if %CMP(%wins_, %wins_ref) then r=%t,return,end
         end
-        xdel(w)
+        close(w)
     else
         if get("figure_style")=="old" then return,end
         ids_ = cur
@@ -93,7 +93,7 @@ function r=xdel_run(w,opt)
         %wins_=ghdl2tree(gcf());
         load(%U,"%wins_ref");
         if %CMP(%wins_,%wins_ref) then r=%t,return,end
-        xdel()
+        close()
     end
     if or(winsid()==cur) then scf(cur),end
 

@@ -43,10 +43,10 @@ void UpdateConsoleColors(void)
     Coord.Y = 0;
 
     FillConsoleOutputAttribute(hConsole,
-        BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED | BACKGROUND_INTENSITY,
-        csbiInfoSave.dwSize.X * csbiInfoSave.dwSize.Y,
-        Coord,
-        &cWritten);
+                               BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED | BACKGROUND_INTENSITY,
+                               csbiInfoSave.dwSize.X * csbiInfoSave.dwSize.Y,
+                               Coord,
+                               &cWritten);
 
     SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED | BACKGROUND_INTENSITY);
 
@@ -67,10 +67,10 @@ void RestoreConsoleColors(void)
     Coord.Y = 0;
 
     FillConsoleOutputAttribute(hConsole,
-        csbiInfoSave.wAttributes,
-        csbiInfoSave.dwSize.X * csbiInfoSave.dwSize.Y,
-        Coord,
-        &cWritten);
+                               csbiInfoSave.wAttributes,
+                               csbiInfoSave.dwSize.X * csbiInfoSave.dwSize.Y,
+                               Coord,
+                               &cWritten);
     SetConsoleTextAttribute(hConsole, csbiInfoSave.wAttributes);
 }
 /*--------------------------------------------------------------------------*/
@@ -153,7 +153,7 @@ void CreateScilabConsole(int ShowBanner)
         printf(line);
         strcpy(line, "                     ESI Group\n");
         printf(line);
-        strcpy(line, "         Copyright (c) 2017-2020 (ESI Group)\n");
+        strcpy(line, "         Copyright (c) 2017-2021 (ESI Group)\n");
         printf(line);
         strcpy(line, "         Copyright (c) 2011-2017 (Scilab Enterprises)\n");
         printf(line);

@@ -1152,6 +1152,8 @@ public class SciNotes extends SwingScilabDockablePanel {
 
         setTitle(textPaneAt.getTitle());
         ConfigSciNotesManager.saveToOpenFiles(fileToSave, this, textPaneAt);
+        ConfigSciNotesManager.saveToRecentOpenedFiles(fileToSave);
+        RecentFileAction.updateRecentOpenedFilesMenu(this);
 
         return true;
     }
@@ -2673,3 +2675,4 @@ public class SciNotes extends SwingScilabDockablePanel {
         public void actionOn(ScilabDocument doc) throws IOException;
     }
 }
+

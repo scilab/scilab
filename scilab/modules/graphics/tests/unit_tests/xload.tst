@@ -27,7 +27,7 @@ xsave(graypolar)
 
 // 1) Loading a whole figure in a new window
 // -----------------------------------------
-xdel(winsid())
+close(winsid())
 plot2d()            // #0
 xload(graypolar, 10)
 // ----- CHECK -----
@@ -38,7 +38,7 @@ xload(graypolar, 10)
 
 // 2) Loading a figure into the gcf() existing one (merging, since Scilab 6.0)
 // ---------------------------------------------------------------------------
-xdel(winsid())
+close(winsid())
 scf();  // #0
 subplot(1,2,1)
 plot2d()
@@ -52,7 +52,7 @@ xload(graypolar) // in gcf()
 
 // 3) Same as 2) with the explicit number of an existing figure
 // ------------------------------------------------------------
-xdel(winsid())
+close(winsid())
 subplot(1,2,1) // #0
 plot2d()
 scf(7);
@@ -66,7 +66,7 @@ xload(graypolar, 0) // NOT in gcf()
 
 // 4) Loading a figure into an empty scf()
 // ---------------------------------------
-xdel(winsid())
+close(winsid())
 scf();  // preopened empty #0
 // Please dock the figure #0 anywhere you want
 xload(graypolar)
@@ -83,7 +83,7 @@ assert_checkequal(length(gcf().children), 1); // the default axes must have been
 // ------------------------------------------------------------------------
 // Preparing the file
 legended = path+"/legended.dat";
-xdel(winsid())
+close(winsid())
 h = scf();
 x=-1:0.01:1; y=sin(2*%pi*x); z=cos(2*%pi*x);
 subplot(1,2,2)
@@ -92,7 +92,7 @@ legends(['Sin','Cos'],1:2,"ur")
 save(legended, "h")
 
 //  5.a) in a new scf() figure
-xdel(winsid())
+close(winsid())
 scf();  // Here you may dock the figure
 xload(legended)
 // ----- CHECK -----
@@ -101,7 +101,7 @@ xload(legended)
 //   on the top right
 
 //  5.b) in an existing non empty figure
-xdel(winsid())
+close(winsid())
 subplot(1,2,1)
 plot2d()
 xload(legended)
@@ -123,7 +123,7 @@ save(graypolar, "a"); // now we save ONLY the AXES
 
 // 6) in a new figure to be created
 // --------------------------------
-xdel(winsid())
+close(winsid())
 plot2d();
 xload(graypolar,10)
 assert_checkequal(gcf().figure_id, 10);
@@ -133,7 +133,7 @@ assert_checkequal(gcf().figure_id, 10);
 
 // 7) after scf(), in gcf()
 // ------------------------
-xdel(winsid())
+close(winsid())
 plot2d();
 scf();
 xload(graypolar)
@@ -144,7 +144,7 @@ assert_checkequal(gcf().figure_id, 1);
 
 // 8) in the current non-empty figure
 // ----------------------------------
-xdel(winsid())
+close(winsid())
 subplot(1,2,1), plot2d();
 xload(graypolar)
 // ----- CHECK -----
@@ -154,7 +154,7 @@ xload(graypolar)
 
 // 9) in a NOT-current non-empty figure
 // ------------------------------------
-xdel(winsid())
+close(winsid())
 subplot(1,2,1), plot2d();
 scf();
 xload(graypolar, 0)

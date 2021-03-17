@@ -46,7 +46,13 @@
                 <link linkend="close">close</link>
             </member>
             <member>
-                <link linkend="xdel">xdel</link>
+                <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="file">file()</link>
+            </member>
+            <member>
+                <link linkend="dispfiles">dispfiles</link>
             </member>
         </simplelist>
     </refsection>

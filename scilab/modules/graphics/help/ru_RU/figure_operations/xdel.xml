@@ -16,11 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="xdel">
     <refnamediv>
         <refname>xdel</refname>
-        <refpurpose>удаление графического окна</refpurpose>
+        <refpurpose>удаление графического окна <emphasis role="bold">(устарела)</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>xdel([win_nums])</synopsis>
+        <synopsis>
+            xdel()
+            xdel(win_nums)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -35,6 +38,10 @@
     </refsection>
     <refsection>
         <title>Описание</title>
+        <warning>
+          <literal>xdel(…)</literal> устарела и будет удалена из Scilab 6.2. Пожалуйста, используйте
+          вместо неё <literal>close(…)</literal>.
+        </warning>
         <para>
             Функция <function>xdel</function> удаляет те графические окна, чьи
             номера включены в вектор <varname>win_nums</varname>, либо текущее
@@ -64,5 +71,16 @@ xdel(); // удалить текущее окно
                 <link linkend="winsid">winsid</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    xdel() объявлена устаревшей. Её заменяет close().
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -157,7 +157,7 @@ gca().axes_bounds = [0.5 0 0.5 1];  // puts the grayplot as subplot(1,2,2)
 gcf().axes_size = [700 350];
 save(graypolar, "f");   // records the actual colormap, as a figure's property
 
-xdel(winsid())
+close(winsid())
 xload(graypolar, 7) // The first restored element is a figure in a clean window
                     // => It imposes its colormap & axes_size.. to the figure
 xload(plotAxes)

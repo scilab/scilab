@@ -16,6 +16,7 @@
 // ================== Test 1 ==================
 cd('\');
 if getos() == 'Windows' 
+  
 	if ~or(getdrives() == pwd()) then bugmes();quit;end
 else
 	if pwd() <> '/' then bugmes();quit;end

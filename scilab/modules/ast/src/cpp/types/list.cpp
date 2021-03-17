@@ -14,7 +14,9 @@
 */
 
 #include <sstream>
+#include "configvariable.hxx"
 #include "double.hxx"
+#include "overload.hxx"
 #include "list.hxx"
 #include "void.hxx"
 #include "listinsert.hxx"
@@ -23,6 +25,7 @@
 #include "scilabWrite.hxx"
 #include "types_tools.hxx"
 #include "function.hxx"
+#include "scilabWrite.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -150,6 +153,27 @@ List *List::clone()
 */
 bool List::toString(std::wostringstream& ostr)
 {
+    //call overload %type_p if exists
+    types::typed_list in;
+    types::typed_list out;
+
+    IncreaseRef();
+    in.push_back(this);
+    switch (Overload::generateNameAndCall(L"p", in, 1, out, false, false)) {
+        case Function::OK_NoResult:
+            // unresolved function, fallback to a basic display
+            break;
+        case Function::Error:
+            ConfigVariable::setError();
+            // fallthrough
+        case Function::OK:
+            ostr.str(L"");
+            DecreaseRef();
+            return true;
+    };
+    DecreaseRef();
+
+    // otherwise, display basic information
     if (getSize() == 0)
     {
         ostr.str(L"");

@@ -244,14 +244,6 @@ public class DatatipManagerMode {
             }
         });
 
-        JMenuItem deleteLast = new JMenuItem(Messages.gettext("Delete the last datatip"));
-        deleteLast.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                deleteLast(new Integer[] {e.getX(), e.getY()});
-            }
-        });
-        deleteLast.setEnabled(hasLast(new Integer[] {e.getX(), e.getY()}));
-
         JMenuItem editDisplayFunction = new JMenuItem(Messages.gettext("Edit curve datatip display function"));
         editDisplayFunction.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -279,7 +271,6 @@ public class DatatipManagerMode {
         menu.add(deleteAll);
         menu.add(deleteAllOnCurve);
         menu.add(deleteNearest);
-        menu.add(deleteLast);
         menu.addSeparator();
         menu.add(editDisplayFunction);
         menu.addSeparator();
@@ -383,20 +374,6 @@ public class DatatipManagerMode {
                 dialog.setVisible(true);
 
                 text.requestFocus();
-            }
-        }
-    }
-
-    /**
-     * Delete last datatip
-     * @param pos the mouse position
-     */
-    private void deleteLast(Integer[] pos) {
-        Integer axes = AxesHandler.clickedAxes(getFigure(), pos);
-        if (axes != null) {
-            Integer datatip = getLastTip(axes);
-            if (datatip != null) {
-                DatatipDelete.deleteDatatip(datatip);
             }
         }
     }

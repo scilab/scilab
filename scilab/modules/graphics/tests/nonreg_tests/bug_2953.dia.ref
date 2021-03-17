@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK ERROR OUTPUT -->
 // <-- Non-regression test for bug 2953 -->
 //
 // <-- Bugzilla URL -->
@@ -12,7 +13,7 @@
 //
 // <-- Short Description -->
 // we lost axes with plot3d and box = 2
-t=[0:0.1:2*%pi]'; z=sin(t)*cos(t'); 
+t=[0:0.1:2*%pi]'; z=sin(t)*cos(t');
 f=gcf();f.color_map=hsvcolormap(64);
 plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
 // with box = 2 we should have only the back thriedron drawn 

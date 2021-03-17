@@ -52,7 +52,8 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
         double* pdblIn  = pIn->get();
         double* pdblOut = pD->get();
 
-        for (int i = 0 ; i < pIn->getSize() ; i++)
+        int iSize = pIn->getSize();
+        for (int i = 0 ; i < iSize ; i++)
         {
             pdblOut[i] = static_cast<double>(pdblIn[i] != 0);
         }
@@ -66,7 +67,8 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
         int* piIn = pIn->get();
         double* pdblOut = pD->get();
 
-        for (int i = 0 ; i < pIn->getSize() ; i++)
+        int iSize = pIn->getSize();
+        for (int i = 0 ; i < iSize ; i++)
         {
             pdblOut[i] = static_cast<double>(piIn[i]);
         }

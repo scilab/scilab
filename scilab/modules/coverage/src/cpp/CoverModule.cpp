@@ -20,6 +20,8 @@
 #include <libxml/xmlreader.h>
 #include <libxml/xpath.h>
 
+#include <algorithm>
+
 #include "CovHTMLCodePrinter.hxx"
 #include "CoverModule.hxx"
 #include "allexp.hxx"
@@ -45,6 +47,18 @@ extern "C"
 #else
 #define DEFAULT_FILESPEC L"*"
 #endif
+
+namespace
+{
+std::wstring expandPathVariable(const std::wstring& p )
+{
+
+    wchar_t* localPath = expandPathVariableW((wchar_t*)p.c_str());
+    std::wstring l(localPath);
+    FREE(localPath);
+    return l;
+}
+}
 
 namespace coverage
 {
@@ -85,13 +99,53 @@ CoverModule::~CoverModule()
 
 const std::vector<std::pair<std::wstring, std::wstring>> CoverModule::getModule(const std::vector<std::wstring>& moduleNames)
 {
+    if (moduleNames.size() == 0)
+    {
+        // nothing to do, return empty
+        return {};
+    }
+
+    if (std::all_of(moduleNames.begin(), moduleNames.end(),
+                    [](const std::wstring & p)
+{
+    return isdirW(expandPathVariable(p).c_str()) == TRUE;
+    }))
+    {
+        // all the provided modulesNames are directories, name them and remove "\macros"
+        std::vector<std::pair<std::wstring, std::wstring>> paths;
+
+        // remove any potential "\macros" suffix
+        for (const auto& name : moduleNames)
+        {
+            const std::wstring remove(std::wstring(DIR_SEPARATORW) + std::wstring(L"macros"));
+            std::wstring localName;
+            size_t n = name.rfind(remove);
+            if (n > 0)
+            {
+                localName = name.substr(0, n) + name.substr(n + remove.length());
+            }
+            else
+            {
+                localName = name;
+            }
+            n = localName.rfind(DIR_SEPARATORW);
+            if (n > 0)
+            {
+                localName = localName.substr(n + 1, localName.length() - n);
+            }
+
+            paths.emplace_back(expandPathVariable(name), std::move(localName));
+        }
+        return paths;
+    }
+
+    // Look for the names as Scilab-related libraries
     const std::wstring _path = std::wstring(L"SCI") + DIR_SEPARATORW + L"modules" + DIR_SEPARATORW;
-    wchar_t* __path = expandPathVariableW((wchar_t*)_path.c_str());
-    const std::wstring path(__path);
-    FREE(__path);
+    const std::wstring path(expandPathVariable(_path));
 
     if (moduleNames.size() == 1 && moduleNames.back() == L"all")
     {
+        // "all" keyword, parse all the Scilab library files
         int size = -1;
         wchar_t** files = findfilesW(path.c_str(), DEFAULT_FILESPEC, &size, FALSE);
         if (size > 0 && files)
@@ -113,6 +167,7 @@ const std::vector<std::pair<std::wstring, std::wstring>> CoverModule::getModule(
     }
     else
     {
+        // a list of Scilab libraries
         std::vector<std::pair<std::wstring, std::wstring>> paths;
         for (const auto& name : moduleNames)
         {
@@ -126,14 +181,15 @@ void CoverModule::getMacros(const std::vector<std::pair<std::wstring, std::wstri
 {
     for (const auto& p : paths_mods)
     {
-        std::wstring _path = p.first + DIR_SEPARATORW + L"macros";
-        getMacrosFromDir(_path, p.second);
+        getMacrosFromDir(p.first, p.second);
     }
 }
 
 void CoverModule::getMacrosFromDir(const std::wstring& path, const std::wstring& module)
 {
-    std::wstring _path = path + DIR_SEPARATORW + L"lib";
+    const std::wstring resolvedPath(expandPathVariable(path));
+
+    std::wstring _path = resolvedPath + DIR_SEPARATORW + L"lib";
     getMacros(_path, module);
 
     int size = -1;
@@ -157,9 +213,7 @@ void CoverModule::getMacrosFromDir(const std::wstring& path, const std::wstring&
 void CoverModule::getMacros(const std::wstring& path, const std::wstring& module)
 {
     std::unordered_set<std::wstring> _macros;
-    wchar_t* pwstPathLib = expandPathVariableW((wchar_t*)path.c_str());
-    std::wstring libPath(pwstPathLib);
-    FREE(pwstPathLib);
+    std::wstring libPath(expandPathVariable(path));
 
     char* libFile = wide_string_to_UTF8(libPath.c_str());
 
@@ -312,7 +366,9 @@ std::vector<Counter>::const_iterator CoverModule::lower_bound(const std::vector<
     for (auto it = first; it < last; it++)
     {
         if (it->getMacro() == value)
+        {
             return it;
+        }
     }
 
     return last;
@@ -324,7 +380,9 @@ std::vector<Counter>::const_iterator CoverModule::upper_bound(const std::vector<
     for (auto it = lower_bound(first, last, value); it < last; it++)
     {
         if (it->getMacro() != value)
+        {
             return it;
+        }
     }
 
     return last;

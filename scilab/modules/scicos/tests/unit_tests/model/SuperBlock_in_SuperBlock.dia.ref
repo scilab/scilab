@@ -377,7 +377,6 @@ Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 11 , LINK ) : 1
 Xcos trace:   objectUnreferenced( 11 , LINK ) : 0
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 0
 in = []
 in2 = []
 intyp = 1
@@ -400,6 +399,7 @@ nzcross = 0
 nmode = 0
 equations = list()
 uid = ""
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 0
 Super2.model.rpar
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 2
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 3

@@ -4,7 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
+// <-- NO CHECK REF -->
 // <-- Non-regression test for bug 461 -->
 //
 // <-- Bugzilla URL -->
@@ -45,6 +46,6 @@ s1=s1';
 s2=s2';
 s3=s3';
 result=execstr("plot2d(xx,[s0 s1 s2 s3])","errcatch","n");
-xdel();
+close();
 
 if result<>0 then pause,end
