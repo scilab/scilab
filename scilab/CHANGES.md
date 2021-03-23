@@ -313,6 +313,7 @@ Bug Fixes
 * [#10465](https://bugzilla.scilab.org/10465): At Scilab exit, the help browser is not saved nor restored.
 * [#10476](https://bugzilla.scilab.org/10476): From `browsevar`, displaying the content of lists, structures, cells, or other custom tlists or mlists was not possible.
 * [#10490](https://bugzilla.scilab.org/10490): The `mapsound` page was poor with a single interesting example.
+* [#11600](https://bugzilla.scilab.org/11600): `rand()` was parsing its inputs incorrectly.
 * [#11677](https://bugzilla.scilab.org/11677): The original Arnoldi functions were obsolete.
 * [#12418](https://bugzilla.scilab.org/12418): Using bvode() with "continuation", i.e. `ipar(9) > 1` led to an error.
 * [#12516](https://bugzilla.scilab.org/12516): From `browsevar`, clicking on any graphical handle did not edit its figure with `ged`.

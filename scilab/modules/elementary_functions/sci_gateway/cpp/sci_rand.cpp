@@ -27,13 +27,13 @@ extern "C"
 #include "basic_functions.h"
 }
 
-const wchar_t g_pwstConfigInfo[] = {L"info"};
-const wchar_t g_pwstConfigSeed[] = {L"seed"};
+const wchar_t g_pwstConfigInfo[] = L"info";
+const wchar_t g_pwstConfigSeed[] = L"seed";
 
-const wchar_t g_pwstTypeUniform[] = {L"uniform"};
-const wchar_t g_pwstTypeNormal[] = {L"normal"};
+const wchar_t g_pwstTypeUniform[] = L"uniform";
+const wchar_t g_pwstTypeNormal[] = L"normal";
 
-int setRandType(wchar_t _wcType);
+int setRandType(const wchar_t* _wcType);
 double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit);
 
 /*
@@ -69,7 +69,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
 
         wchar_t* pwstKey = pS->get(0);
 
-        if (pwstKey[0] == g_pwstConfigInfo[0])
+        if (!wcscmp(pwstKey,g_pwstConfigInfo))
         {
             //info
             if (iSizeIn > 1)
@@ -87,7 +87,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
                 out.push_back(new types::String(g_pwstTypeNormal));
             }
         }
-        else if (pwstKey[0] == g_pwstConfigSeed[0])
+        else if (!wcscmp(pwstKey,g_pwstConfigSeed))
         {
             //seed
             if (iSizeIn == 1)
@@ -114,7 +114,19 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         }
         else
         {
-            siRandType = setRandType(pwstKey[0]);
+            int iRandSave = siRandType;
+            if (iSizeIn > 1)
+            {
+                Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "rand", 1);
+                return types::Function::Error;
+            }
+            siRandType = setRandType(pwstKey);
+            if (siRandType < 0) 
+            {
+                siRandType = iRandSave;                
+                Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "rand", 1,"info","seed","uniform","normal");
+                return types::Function::Error;
+            }
         }
     }
     else
@@ -131,8 +143,14 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             }
 
             //set randomize law
-            iRandSave = siRandType;
-            siRandType = setRandType(pS->get(0)[0]);
+            siRandType = setRandType(pS->get(0));
+            if (siRandType < 0) 
+            {
+                siRandType = iRandSave;                
+                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "rand", iSizeIn,"uniform","normal");
+                return types::Function::Error;
+            }
+            
             iSizeIn--;
         }
 
@@ -237,12 +255,17 @@ double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit)
     return dblVal;
 }
 
-int setRandType(wchar_t _wcType)
+int setRandType(const wchar_t* _wcType)
 {
-    if (_wcType == L'g' || _wcType == L'n')
+    if (!wcscmp(_wcType,g_pwstTypeUniform))
+    {
+        return 0;
+    }
+    else if (!wcscmp(_wcType,g_pwstTypeNormal))
     {
         return 1;
     }
-    return 0;
+    return -1;
 }
 /*--------------------------------------------------------------------------*/
+
