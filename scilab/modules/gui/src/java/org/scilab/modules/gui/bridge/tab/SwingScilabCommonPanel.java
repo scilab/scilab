@@ -130,9 +130,15 @@ public class SwingScilabCommonPanel {
                 }
 
                 /* Update callback */
-                String closingCommand = "if (findobj(\"figure_id\", " + figureId + ") <> []) then" + "  if (get(findobj(\"figure_id\", " + figureId + "), 'event_handler_enable') == 'on') then"
-                                        + "    execstr(get(findobj(\"figure_id\", " + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');" + "  end;" + "  delete(findobj(\"figure_id\", "
-                                        + figureId + "));" + "end;";
+                String closingCommand =   "%closing_fig = findobj('figure_id', " + figureId + ", '-flat');"
+                                        + "if (%closing_fig <> []) then"
+                                        + "    if (get(%closing_fig, 'event_handler_enable') == 'on') then"
+                                        + "        execstr(get(%closing_fig, 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');"
+                                        + "    end;"
+                                        + "    delete(%closing_fig);"
+                                        + "end;"
+                                        + "clear('%closing_fig');";
+
                 component.setCallback(null);
                 component.setCallback(ScilabCloseCallBack.create(component.getId(), closingCommand));
                 /* Update menus callback */
@@ -196,7 +202,7 @@ public class SwingScilabCommonPanel {
                     int state = component.getParentWindow().getExtendedState();
                     if((state & SwingScilabWindow.ICONIFIED) == SwingScilabWindow.ICONIFIED) {
                         component.getParentWindow().setExtendedState(state - SwingScilabWindow.ICONIFIED);
-                    } 
+                    }
                 }
                 break;
             case __GO_INFOBAR_VISIBLE__: {
