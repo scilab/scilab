@@ -381,6 +381,13 @@ void DebuggerVisitor::visit(const SeqExp  &e)
         }
         catch (const InternalError& ie)
         {
+            // dont manage an error with the debugger
+            // in cases of try catch and errcatch
+            if(ConfigVariable::isSilentError())
+            {
+                throw ie;
+            }
+
             ConfigVariable::fillWhereError(ie.GetErrorLocation().first_line);
 
             const std::vector<ConfigVariable::WhereEntry>& lWhereAmI = ConfigVariable::getWhere();
