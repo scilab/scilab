@@ -363,7 +363,7 @@ void DebuggerManager::generateCallStack()
         row.functionLine = getExp()->getLocation().first_line - it_name->call->getFirstLine();
     }
 
-    if(callstackAddFile(&row, *it_name->m_file_name))
+    if(it_name->m_file_name && callstackAddFile(&row, *it_name->m_file_name))
     {
         row.fileLine = getExp()->getLocation().first_line;
     }
