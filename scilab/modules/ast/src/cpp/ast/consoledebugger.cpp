@@ -70,7 +70,7 @@ void ConsoleDebugger::onExecutionReleased()
 void ConsoleDebugger::onPrint(const std::string& variable)
 {
     // sciprint("ConsoleDebugger::onPrint.\n");
-    StoreDebuggerCommand(std::string("disp("+variable+")").data());
+    StoreDebuggerCommand(std::string("disp("+variable+")").data(), 1);
 }
 
 void ConsoleDebugger::onShow(int bp)
