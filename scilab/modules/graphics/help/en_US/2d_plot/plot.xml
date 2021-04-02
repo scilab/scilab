@@ -14,15 +14,15 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-          xmlns:scilab="http://www.scilab.org" xml:id="plot" xml:lang="pt">
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="plot">
     <refnamediv>
         <refname>plot</refname>
-        <refpurpose>Esboço 2d</refpurpose>
+        <refpurpose>2D plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>Syntax</title>
         <synopsis>
             plot     // demo
             plot(y)
@@ -39,23 +39,23 @@
             plot(axes_handle,...)
         </synopsis>
     </refsynopsisdiv>
-    <refsection role="parameters">
-        <title>Parâmetros</title>
+    <refsection>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>uma matriz ou vetor de reais. Se omitido, é assumido como
-                        sendo o vetor <literal>1:n</literal> onde <literal>n</literal> é o
-                        número de pontos de curva dado pelo parâmetro
-                        <literal>y</literal>.
+                    <para>
+                        vector or matrix of real numbers or integers. If omitted, it is assumed
+                        to be the vector <literal>1:n</literal> where <literal>n</literal> is the
+                        number of curve points given by the <literal>y</literal> parameter.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    um vetor ou matriz de reais.
+                    vector or matrix of real numbers or of integers.
                     <para/>
                 </listitem>
             </varlistentry>
@@ -63,10 +63,9 @@
                 <term>func</term>
                 <listitem>
                     <para>
-                        função definida como um macro ou uma primitiva, como em
-                        <literal>plot(x, sin)</literal>.
+                        handle of a function, as in <literal>plot(x, sin)</literal>.
                         If the function to plot needs some parameters as input arguments, the
-                        function and its parameters can be specified through a list, as in
+                        function and its parameters can be specified through a list as in
                         <literal>plot(x, list(delip,-0.4))</literal>
                     </para>
                 </listitem>
@@ -110,25 +109,24 @@
             <varlistentry>
                 <term>LineSpec</term>
                 <listitem>
-                    <para>este argumento opcional deve ser usado como um atalho para
-                        especificar um modo de desenhar uma linha. Podemos ter um
-                        <literal>LineSpec</literal> por<literal> y</literal> ou
-                        <literal>{x,y}</literal> previamente entrados. As opções
-                        <literal>LineSpec</literal> lidam com os especificadores LineStyle,
-                        Marker e Color (ver <link linkend="LineSpec">LineSpec</link>). Estes
-                        especificadores determinam o estilo de linha, de marcas e a cor das
-                        linhas esboçadas.
+                    <para>This optional argument must be a string that will be used as a
+                        shortcut to specify a way of drawing a line. We can have one
+                        <literal>LineSpec</literal> per <literal>y</literal> or <literal>{x,y}</literal>
+                        previously entered. <literal>LineSpec</literal> options deals with
+                        LineStyle, Marker and Color specifiers (see <link linkend="LineSpec">LineSpec</link>).
+                        Those specifiers determine the line style, mark style and color of
+                        the plotted lines.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>GlobalProperty</term>
                 <listitem>
-                    <para>este argumento opcional representa uma seqüência de pares de
-                        declarações <literal>{PropertyName,PropertyValue}</literal> tque
-                        define propriedades globais de objetos a serem aplicadas a todas as
-                        curvas criadas pelo esboço. Para uma visualização completa de das
-                        propriedades disponíveis veja <link linkend="GlobalProperty">GlobalProperty</link>.
+                    <para>This optional argument represents a sequence of couple
+                        statements <literal>{PropertyName,PropertyValue}</literal> that defines
+                        global objects' properties applied to all the curves created by this
+                        plot. For a complete view of the available properties (see
+                        <link linkend="GlobalProperty">GlobalProperty</link>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -154,152 +152,147 @@
             <varlistentry>
                 <term>axes_handle</term>
                 <listitem>
-                    <para>este argumento opcional força o esboço a aparecer dentro dos
-                        eixos selecionados fornecidos por <literal>axes_handle</literal> ao
-                        invés dos eixos correntes (ver <link linkend="gca">gca</link>).
+                    <para>This optional argument forces the plot to appear inside the
+                        selected axes given by <literal>axes_handle</literal> rather than the
+                        current axes (see <link linkend="gca">gca</link>).
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection role="description">
-        <title>Descrição</title>
+    <refsection>
+        <title>Description</title>
         <para>
-            <literal>plot</literal> esboça um conjunto de curvas 2d.
-            <literal>plot</literal> foi reconstruído para lidar melhor com a sintaxe
-            do Matlab. Para melhorar a compatibilidade gráfica com o Matlab, utilize
-            <literal>plot</literal> (ao invés de <link linkend="plot2d">plot2d</link>).
+            <literal>plot</literal> plots a set of 2D curves. <literal>plot</literal> has been
+            rebuild to better handle Matlab syntax. To improve graphical
+            compatibility, Matlab users should use <literal>plot</literal> (rather than
+            <link linkend="plot2d">plot2d</link>).
         </para>
-        <para>Especificação de entrada de dados:</para>
-        <para>Neste parágrafo, para sermos mais claros, não mencionaremos os
-            argumentos opcionais <literal>LineSpec</literal> ou
-            <literal>GlobalProperty</literal> já que eles não interferem na entrada de
-            dados (exceto pelas propriedades <literal>"Xdata"</literal>,
-            <literal>"Ydata"</literal> e <literal>"Zdata"</literal>,
-            ver <link linkend="GlobalProperty">GlobalProperty</link>). É assumido que todos
-            estes argumentos podem estar presentes também.
-        </para>
-        <para>
-            Se <literal>y</literal> é um vetor, plot(y) esboça um vetor
-            <literal>y</literal> versus o vetor
-            <literal>1:size(y,'*')</literal>.
+        <para>Data entry specification :</para>
+        <para>In this paragraph and to be more clear, we won't mention
+            <literal>LineSpec</literal> nor <literal>GlobalProperty</literal> optional arguments
+            as they do not interfere with entry data (except for <literal>"Xdata"</literal>,
+            <literal>"Ydata"</literal> and <literal>"Zdata"</literal> property, see
+            <link linkend="GlobalProperty">GlobalProperty</link>). It is assumed that all those optional
+            arguments could be present too.
         </para>
         <para>
-            Se <literal>y</literal> é uma matriz, plot(y) esboça cada coluna de
-            <literal>y</literal> versus o vetor <literal>1:size(y,1)</literal>.
+            If <literal>y</literal> is a vector, plot(y) plots vector <literal>y</literal>
+            versus vector <literal>1:size(y,'*')</literal>.
         </para>
         <para>
-            Se <literal>x</literal> e <literal>y</literal> são vetores,
-            plot(x,y) esboça o vetor <literal>y</literal> versus o vetor
-            <literal>x</literal>. Os vetores <literal>x</literal> e
-            <literal>y</literal> devem ter o mesmo número de entradas.
+            If <literal>y</literal> is a matrix, plot(y) plots each columns of
+            <literal>y</literal> versus vector <literal>1:size(y,1)</literal>.
         </para>
         <para>
-            Se <literal>x</literal> é um vetor e <literal>y</literal> uma matriz
-            plot(x,y) esboça cada coluna de <literal>y</literal> versus o vetor
-            <literal>x</literal>. Neste caso, o número de colunas de
-            <literal>y</literal> deve ser igual ao número de entradas de
-            <literal>x</literal>.
+            If <literal>x</literal> and <literal>y</literal> are vectors, plot(x,y) plots
+            vector <literal>y</literal> versus vector <literal>x</literal>. <literal>x</literal> and
+            <literal>y</literal> vectors should have the same number of entries.
         </para>
         <para>
-            Se <literal>x</literal> e <literal>y</literal> são matrizes,
-            plot(x,y) esboça cada coluna de <literal>y</literal> versus a coluna
-            correspondente de <literal>x</literal>. Neste caso, os tamanhos
-            <literal>x</literal> e <literal>y</literal> devem ser os mesmos.
+            If <literal>x</literal> is a vector and <literal>y</literal> a matrix plot(x,y)
+            plots each columns of <literal>y</literal> versus vector <literal>x</literal>. In this
+            case the number of columns of <literal>y</literal> should be equal to the number
+            of <literal>x</literal> entries.
         </para>
         <para>
-            Finalmente, se apenas <literal>x</literal> ou <literal>y</literal> é
-            uma matriz, o vetor é esboçado versus cada linha ou cada coluna da matriz.
-            A escolha é feita dependendo se a dimensão de linha ou coluna do vetor
-            coincide com a dimensão de linha ou coluna da matriz. No caso de uma
-            matriz quadrada (apenas <literal>x</literal> ou penas
-            <literal>y</literal>), a prioridade é dada a colunas ao invés de linhas
-            (ver exemplos abaixo).
+            If <literal>x</literal> and <literal>y</literal> are matrices, plot(x,y) plots each
+            columns of <literal>y</literal> versus corresponding column of <literal>x</literal>.
+            In this case the <literal>x</literal> and <literal>y</literal> sizes should be the
+            same.
         </para>
         <para>
-            <literal>y</literal> também pode ser uma função definida como um
-            macro ou uma primitiva. Neste caso, os dados <literal>x</literal> devem
-            ser fornecidos (como um vetor ou uma matriz) e a computação correspondente
-            de <literal>y(x)</literal> é feita implicitamente.
+            Finally, if only <literal>x</literal> or <literal>y</literal> is a matrix, the
+            vector is plotted versus the rows or columns of the matrix. The choice is
+            made depending on whether the vector's row or column dimension matches the
+            matrix row or column dimension. In case of a square matrix (on
+            <literal>x</literal> or <literal>y</literal> only), priority is given to columns
+            rather than lines (see examples below).
         </para>
         <para>
-            Os argumentos <literal>LineSpec</literal> e
-            <literal>GlobalProperty</literal> devem ser utilizados para customizar o
-            esboço. Aqui está uma lista completa das opções disponíveis.
+            <warning>
+                When it is necessary and possible, <literal>plot</literal> transposes
+                <literal>x</literal> and <literal>y</literal>,
+                to get compatible dimensions; a warning is then issued. For instance,
+                when <literal>x</literal> has as many rows as <literal>y</literal> has columns.
+                If <literal>y</literal> is square, it is never transposed.
+            </warning>
+        </para>
+        <para>
+            <literal>y</literal> can also be a function defined as a macro or a
+            primitive. In this case, <literal>x</literal> data must be given (as a vector or
+            matrix) and the corresponding computation <literal>y(x)</literal> is done
+            implicitly.
+        </para>
+        <para>
+            The <literal>LineSpec</literal> and <literal>GlobalProperty</literal> arguments
+            should be used to customize the plot. Here is a complete list of the
+            available options.
         </para>
         <variablelist>
             <varlistentry>
                 <term>LineSpec</term>
                 <listitem>
-                    <para>esta opção pode ser utilizada para se especificar, de um modo
-                        curto e fácil, como as curvas são desenhadas. Deve sempre ser um
-                        string contendo referências aos especificadores LineStyle, Marker e
-                        Color.
+                    <para>This option may be used to specify, in a short and easy manner,
+                        how the curves are drawn. It must always be a string containing
+                        references to LineStyle, Marker and Color specifiers.
                     </para>
-                    <para>Essas referências devem ser ajustadas denro do string (a ordem
-                        não é importante) de modo a não ter ambigüidades. Por exemplo, para
-                        especificar uma linha vermelha de traço longo com marcas de rombos,
-                        pode-se escrever : <literal>'r--d'</literal> ou
-                        <literal>'--dire'</literal> ou <literal>'--reddiam'</literal> ou
-                        outra sentença sem ambigüidade... ou de modo completo
-                        <literal>'diamondred--'</literal> (ver <link linkend="LineSpec">LineSpec</link>).
+                    <para>These references must be set inside the string (order is not
+                        important) in an unambiguous way. For example, to specify a red
+                        long-dashed line with the diamond mark enabled, you can write :
+                        <literal>'r--d'</literal> or <literal>'--dire'</literal> or
+                        <literal>'--reddiam'</literal> or another unambiguous statement... or to be
+                        totally complete <literal>'diamondred--'</literal> (see
+                        <link linkend="LineSpec">LineSpec</link>).
                     </para>
-                    <para>Note que os estilos de linha e marcas (e tamanhos) e as cores,
-                        podem ser (re*)ajustados através das propriedades da entidade
-                        poligonal (ver <link linkend="polyline_properties">polyline_properties</link>).
+                    <para>Note that the line style and color, marks color (and sizes) can
+                        also be (re-)set through the polyline entity properties (see
+                        <link linkend="polyline_properties">polyline_properties</link>).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>GlobalProperty</term>
                 <listitem>
-                    <para>esta opção pode ser utilizada para especificar como as linhas
-                        serão desenhadas com mais opções que via
-                        <literal>LineSpec</literal>. Deve sempre ser um par de declarações
-                        constituidos de um string definindo <literal>PropertyName</literal>,
-                        (nome da propriedade) e seu valor associado
-                        <literal>PropertyValue</literal> (que pode ser um string, um inteiro
-                        ou qualquer outra coisa... dependendo do tipo de
-                        <literal>PropertyName</literal>). Utilizando-se
-                        <literal>GlobalProperty</literal>, pode-se ajustar várias
-                        propriedades : todas as propriedades disponíveis via LineSpec e
-                        mais: a cor da marca (plano de fundo e primeiro plano), a
-                        visibilidade, o recorte e a espessura das curvas.
-                        (ver <link linkend="GlobalProperty">GlobalProperty</link>)
+                    <para>This option may be used to specify how all the curves are
+                        plotted using more option than via <literal>LineSpec</literal>. It must
+                        always be a couple statement constituted of a string defining the
+                        <literal>PropertyName</literal>, and its associated value
+                        <literal>PropertyValue</literal> (which can be a string or an integer or...
+                        as well depending on the type of the <literal>PropertyName</literal>). Using
+                        <literal>GlobalProperty</literal>, you can set multiple properties : every
+                        properties available via LineSpec and more : the marker color
+                        (foreground and background), the visibility, clipping and thickness of
+                        the curves. (see <link linkend="GlobalProperty">GlobalProperty</link>)
                     </para>
-                    <para>
-                        Note que todas as propriedades podem ser (re-)ajustadas
-                        através das propriedades de entidades poligonais
-                        (ver <link linkend="polyline_properties">polyline_properties</link>).
+                    <para>Note that all these properties can be (re-)set through the
+                        polyline entity properties (see <link linkend="polyline_properties">polyline_properties</link>).
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection role="description">
-        <title>Observações </title>
-        <para>Por padrão, esboços sucessivos são superpostos. Para limpar o esboço
-            anterior, use <literal>clf()</literal>. Para habilitar o modo
-            <literal>auto_clear</literal> (limpeza automática) como modo padrão, edite
-            seus eixos fazendo o seguinte:
+    <refsection>
+        <title>Remarks</title>
+        <para>By default, successive plots are superposed. To clear the previous
+            plot, use <literal>clf()</literal>. To enable <literal>auto_clear</literal> mode as
+            the default mode, edit your default axes doing:
         </para>
         <para>da=gda();</para>
         <para>da.auto_clear = 'on'</para>
         <para>
-            Para uma melhor exibição, a função <literal>plot</literal> pode
-            modificar a propriedade <literal>box</literal> de seu Axes (eixos) raíze.
-            Isto acontece quando uma entidade Axes é criada por uma chamada a
-            <literal>plot</literal> ou é vazia antes da chamada. Se um dos eixos é
-            centrado na origem, box é desabilitado. Em caso contrário, box é
-            habilitado.
+            For a better display <literal>plot</literal> function may modify the <literal>box</literal> property of
+            its parent Axes. This happens when the parent Axes were created by the call to <literal>plot</literal> or were empty
+            before the call. If one of the axis is centered at origin,
+            the box is disabled.
+            Otherwise, the box is enabled.
         </para>
-        <para>Para mais informações sobre a propriedade box e sobre o
-            posicionamento dos eixos, veja <link linkend="axes_properties">axes_properties</link>
+        <para>
+            For more information about box property and axis positioning see <link linkend="axes_properties">axes_properties</link>
         </para>
-        <para>Uma tabela de cores padrão é utilizada para colorir as curvas
-            esboçadas quando você não especifica as cores. Ao desenhar linhas
-            múltiplas, o comando plot automaticamente atribui as cores abaixo de modo
-            cíclico. Aqui estão as cores utilizadas:
+        <para>A default color table is used to color plotted curves if you do not
+            specify a color. When drawing multiple lines, the plot command
+            automatically cycles through this table. Here are the used colors:
         </para>
         <informaltable border="1">
             <tr>
@@ -317,12 +310,11 @@
         </informaltable>
         <para/>
         <para>
-            Entre com o comando <literal>plot</literal> para visualizar uma
-            demonstração.
+            Enter the command <literal>plot</literal> to see a demo.
         </para>
     </refsection>
-    <refsection role="examples">
-        <title>Exemplos</title>
+    <refsection>
+        <title>Examples</title>
         <para>
             <emphasis role="bold">Choosing the normal or logarithmic plotting mode:</emphasis>
         </para>
@@ -393,6 +385,7 @@ xlabel("Specified abscissae")
 
             gcf().axes_size = [700 350];
         </scilab:image>
+        <para/>
         <para>
             <emphasis role="bold">Multiple curves with shared abscissae:</emphasis>
             Y: 1 column = 1 curve:
@@ -408,6 +401,7 @@ plot(x, [sin(x) sin(2*x) sin(3*x)])
 
             gcf().axes_size = [700 350];
         </scilab:image>
+        <para/>
         <para>
             <emphasis role="bold">
                 Specifying a macro or a builtin instead of explicit ordinates:
@@ -544,6 +538,7 @@ gcf().children.children([1 3]).font_size=3;  // legends
         <para>
             <emphasis role="bold">Setting curves simple styles when calling plot():</emphasis>
         </para>
+        <para>
         <programlisting role="example"><![CDATA[
 clf
 t = -%pi:%pi/20:2*%pi;
@@ -566,6 +561,8 @@ plot(t,sin,'ro', t,cos,'g+-', t,gauss,':b')
             gcf().axes_size = [800 400];
         ]]>
         </scilab:image>
+        </para>
+        <para/>
         <para>
         Vertical segments between two curves, with automatic colors, and using Global properties
         for markers styles. Targeting a defined axes.
@@ -674,6 +671,7 @@ for i=1:6, gcf().children(i).data_bounds([1 3]) = 0.5; end
 
             gcf().axes_size = [800 450];
         </scilab:image>
+        <para/>
         <para>
             <emphasis role="bold">Special cases of a matrix X and a vector Y:</emphasis>
         </para>
@@ -710,20 +708,21 @@ for i = 1:4, gcf().children(i).data_bounds([1 3]) = 0.5; end
             for i = 1:4, gcf().children(i).data_bounds([1 3]) = 0.5; end
         </scilab:image>
         <para/>
+        <para/>
         <para>
             <emphasis role="bold">Post-tuning Axes and curves:</emphasis>
         </para>
         <programlisting role="example"><![CDATA[
 x=[0:0.1:2*%pi]';
-plot(x-4,sin(x),x+2,cos(x))
+plot(x-4,sin(x), x+2,cos(x))
 
 // axis centered at (0,0)
 a=gca(); // Handle on axes entity
 a.x_location = "origin";
-a.y_location = "right";
-isoview on
+a.y_location = "origin";
 
 // Some operations on entities created by plot ...
+isoview on
 a.children // list the children of the axes : here it is an Compound child composed of 2 entities
 poly1= a.children.children(2); //store polyline handle into poly1
 poly1.foreground = 4;  // another way to change the style...
@@ -747,7 +746,7 @@ isoview off
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot2d">plot2d</link>
@@ -783,7 +782,7 @@ isoview off
                 <link linkend="LineSpec">LineSpec</link>
             </member>
             <member>
-                <link linkend="color_list">Cores nomeadas</link>
+                <link linkend="color_list">Named colors</link>
             </member>
             <member>
                 <link linkend="GlobalProperty">GlobalProperty</link>
@@ -791,7 +790,7 @@ isoview off
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>Histórico</title>
+        <title>History</title>
         <revhistory>
             <revision>
                 <revnumber>6.0.1</revnumber>
