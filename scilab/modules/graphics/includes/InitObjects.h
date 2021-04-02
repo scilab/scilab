@@ -38,7 +38,7 @@ GRAPHICS_IMPEXP int C2F(graphicsmodels) (void);
 
 GRAPHICS_IMPEXP int sciInitGraphicMode (int iObjUID);
 
-GRAPHICS_IMPEXP int initLabel(int iParentObjUID) ; /* INITOBJECT */
+GRAPHICS_IMPEXP int initLabel(int iParentObjUID, int associatedProperty) ; /* INITOBJECT */
 
 GRAPHICS_IMPEXP void InitFigureModel(int iFiguremdlUID); /* INITOBJECT */
 

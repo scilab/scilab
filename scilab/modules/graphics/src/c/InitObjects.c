@@ -564,16 +564,16 @@ int InitAxesModel()
     setGraphicObjectProperty(iAxesmdlUID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
 
     /* Creates the Axes model's labels and sets the model as their parent */
-    iLabelUID = initLabel(iAxesmdlUID);
+    iLabelUID = initLabel(iAxesmdlUID, __GO_TITLE__);
     setGraphicObjectProperty(iAxesmdlUID, __GO_TITLE__, &iLabelUID, jni_int, 1);
 
-    iLabelUID = initLabel(iAxesmdlUID);
+    iLabelUID = initLabel(iAxesmdlUID, __GO_X_AXIS_LABEL__);
     setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_LABEL__, &iLabelUID, jni_int, 1);
 
-    iLabelUID = initLabel(iAxesmdlUID);
+    iLabelUID = initLabel(iAxesmdlUID, __GO_Y_AXIS_LABEL__);
     setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_LABEL__, &iLabelUID, jni_int, 1);
 
-    iLabelUID = initLabel(iAxesmdlUID);
+    iLabelUID = initLabel(iAxesmdlUID, __GO_Z_AXIS_LABEL__);
     setGraphicObjectProperty(iAxesmdlUID, __GO_Z_AXIS_LABEL__, &iLabelUID, jni_int, 1);
 
     return 0;
@@ -701,11 +701,12 @@ default:
 
 /*---------------------------------------------------------------------------------*/
 /* allocate and set a new label to default values */
-int initLabel(int iParentObjUID)
+int initLabel(int iParentObjUID, int associatedProperty)
 {
     int iNewLabel = 0;
     int iHidden = 1;
     int autoPosition = 1;
+    double fontSize = 1.0;
 
     iNewLabel = createGraphicObject(__GO_LABEL__);
 
@@ -719,6 +720,21 @@ int initLabel(int iParentObjUID)
 
     cloneGraphicContext(iParentObjUID, iNewLabel);
     cloneFontContext(iParentObjUID, iNewLabel);
+
+    /* Set a specific font size for important labels */
+    switch (associatedProperty)
+    {
+        case __GO_TITLE__:
+            fontSize = 3.0;
+            setGraphicObjectProperty(iNewLabel, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
+            break;
+        case __GO_X_AXIS_LABEL__: // fallthrough
+        case __GO_Y_AXIS_LABEL__: // fallthrough
+        case __GO_Z_AXIS_LABEL__: // fallthrough
+            fontSize = 2.0;
+            setGraphicObjectProperty(iNewLabel, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
+            break;
+    }
 
     return iNewLabel;
 }

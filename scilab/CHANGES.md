@@ -199,6 +199,7 @@ Feature changes and additions on 6.1.0
 Feature changes and additions on 6.1.1
 --------------------------------------
 
+* Axes labels and title default font size had been increased for better default rendering.
 * `gsort` is upgraded:
   - It can now sort any sparse 2D matrix, in all `g, r, c, lr, lc` methods, including sparse booleans and in multi-level mode. It was formerly limited to sparse real or complex vectors and only to the `g` mode.
   - Any hypermatrix can be sorted along a dimension > 2.

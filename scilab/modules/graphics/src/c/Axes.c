@@ -72,16 +72,16 @@ static void reinitSubWin(int iSubWinUID)
 
     initSubWinBounds(iSubWinUID);
 
-    iLabelUID = initLabel(iSubWinUID);
+    iLabelUID = initLabel(iSubWinUID, __GO_TITLE__);
     setGraphicObjectProperty(iSubWinUID, __GO_TITLE__, &iLabelUID, jni_int, 1);
 
-    iLabelUID = initLabel(iSubWinUID);
+    iLabelUID = initLabel(iSubWinUID, __GO_X_AXIS_LABEL__);
     setGraphicObjectProperty(iSubWinUID, __GO_X_AXIS_LABEL__, &iLabelUID, jni_int, 1);
 
-    iLabelUID = initLabel(iSubWinUID);
+    iLabelUID = initLabel(iSubWinUID, __GO_Y_AXIS_LABEL__);
     setGraphicObjectProperty(iSubWinUID, __GO_Y_AXIS_LABEL__, &iLabelUID, jni_int, 1);
 
-    iLabelUID = initLabel(iSubWinUID);
+    iLabelUID = initLabel(iSubWinUID, __GO_Z_AXIS_LABEL__);
     setGraphicObjectProperty(iSubWinUID, __GO_Z_AXIS_LABEL__, &iLabelUID, jni_int, 1);
 
     /* bottom */
