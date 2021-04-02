@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2020 - Samuel GOUGEON
+// Copyright (C) 2020 - 2021 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -53,8 +53,27 @@ function help(varargin)
     if part(key,1)=="$" & (exists(key)==0 | length(key)==1) then
         key = "symbols";
     end
+    // Possible key redirection to Scilab's closest equivalent
+    key = helpRedirectExternal2Scilab(key)
+
     // Calling the browser
     helpbrowser(%helps(:,1), key, lang, %f);
     // If the key is not a xml:id, then full-text search is done (See Java code)
 
+endfunction
+
+// ============================================================================
+
+function sciterm = helpRedirectExternal2Scilab(exterm)
+    sciterm = exterm
+    filename = SCIHOME + filesep() + "XConfiguration.xml"
+    res = xmlGetValues("//general/documentation/body/help", "redirectMatlab2Scilab", filename);
+    if res=="checked" then
+        filename = SCI + "/modules/helptools/data/external2scilab_equiv.csv"
+        tmp = csvRead(filename,";",[],"string",[]);
+        k = find(tmp(:,1)==exterm)
+        if k <> []
+            sciterm = tmp(k(1),2)
+        end
+    end
 endfunction

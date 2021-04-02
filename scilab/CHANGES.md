@@ -264,6 +264,7 @@ User Interface improvements
   - The menu "Issues" allows to display bugzilla entries related to the feature of the current page
   - ATOMS chapters are automatically loaded in the browser.
   - The page left at exit is restored at next startup.
+  - On Preferences option, querring some Matlab term can now redirect and display the documentation of the Scilab equivalent feature.
 * `x_matrix` can now edit matrices of booleans, integers, or text. Matrices of real or complex numbers are better displayed.
 
 
@@ -411,7 +412,6 @@ Bug Fixes
 * [#16458](https://bugzilla.scilab.org/16458): `mean()` did not handle sparse numerical matrices.
 * [#16465](https://bugzilla.scilab.org/16465): Scinotes OpenRecent menu was not updated when it should.
 * [#16473](https://bugzilla.scilab.org/16473): Deleting rows in a sparse squared the matrix with padding zeros (Scilab 6 regression).
-<<<<<<< HEAD
 * [#16474](https://bugzilla.scilab.org/16474): `imult(%z)` crashed Scilab.
 * [#16476](https://bugzilla.scilab.org/16476): `issquare` was not overloaded.
 * [#16488](https://bugzilla.scilab.org/16488): Concatenations mixing boolean and double with at least one operand being sparse were not supported.
@@ -422,13 +422,13 @@ Bug Fixes
 * [#16517](https://bugzilla.scilab.org/16517): `getdate("s")` truncated the actual time to integer seconds. `getdate(u)(10)` returned fractional seconds instead of milliseconds as `getdate()`.
 * [#16522](https://bugzilla.scilab.org/16522): `bitget(x,pos)` and `bitset(x,pos)` results could be wrong when `pos` is an encoded integer.
 * [#16525](https://bugzilla.scilab.org/16525): `soundsec(t,freq)` has the trivial equivalence `0 : 1/freq : t*(1-%eps)` and should be removed.
+* [#16529](https://bugzilla.scilab.org/16529): `deff` could not return the created function as output argument, preventing to cretae and use anonymous functions. The function's headline and body had to be provided separately. For Simple functions, a one-string input (possibly console-oriented) definition was not supported.
 * [#16530](https://bugzilla.scilab.org/16530): `mapsound` needed to be reforged.
 * [#16549](https://bugzilla.scilab.org/16549): simple script crashed Scilab in GUI mode.
 * [#16551](https://bugzilla.scilab.org/16551): `num2cell` returned {} for any input array of empty strings.
 * [#16552](https://bugzilla.scilab.org/16552): `mfile2sci`: conversion of `ispc` and `isunix` still used `MSDOS` removed far ago. Conversion of `ismac` was missing. Conversion of `exist` missed using `mtlb_exist`. Conversion of `dos` yielded some "operation +" warnings. Unit tests for the conversion of `cd`, `dir` and `ferror` overwrote some Scilab reserved keywords. Conversion of `return` yielded `mtlb(resume)`.
 * [#16553](https://bugzilla.scilab.org/16553): `unique(["" ""])` returned `["" ""]`.
 * [#16557](https://bugzilla.scilab.org/16557): `macr2tree` + `tree2code` translated `e={2}` into `"e=1"` and `e={2,"ab"}` into `"e=[2,"ab"]"`.
-<<<<<<< HEAD
 * [#16559](https://bugzilla.scilab.org/16553): `isempty(A)` was true for sparse matrix of dimension 2^16 or larger.
 * [#16561](https://bugzilla.scilab.org/16561): `histplot(-10:0.2:10, 2)` yielded a warning from `histc` and an error.
 * [#16565](https://bugzilla.scilab.org/16565): `edit(user_defined_function)` corrupted the original code.
@@ -458,13 +458,8 @@ Bug Fixes
 * [#16639](https://bugzilla.scilab.org/16639): `atomsInstall` and `atomsRemove` did not update the Toolboxes menu.
 * [#16644](https://bugzilla.scilab.org/16644): `input("message:")` yielded a wrong error message about `mprintf` in case of non-interpretable input.
 * [#16654](https://bugzilla.scilab.org/16654): `interp` was leaking memory.
+* [#16665](https://bugzilla.scilab.org/16665): `help echo` could not redirect to `help mode` when preferred, for new users coming from Octave.
 
-=======
->>>>>>> afb92ac5368 (* Bug 16614 fixed: replot() could fail out of gcf())
-=======
-* [#16529](https://bugzilla.scilab.org/16529): `deff` could not return the created function as output argument, preventing to cretae and use anonymous functions. The function's headline and body had to be provided separately. For Simple functions, a one-string input (possibly console-oriented) definition was not supported.
-
->>>>>>> 75a0ccd0638 (* Bug 16529 fixed: deff() upgraded: output arg added, one-string def, etc)
 
 ### Bugs fixed in 6.1.0:
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
