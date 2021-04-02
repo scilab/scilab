@@ -233,6 +233,8 @@ Feature changes and additions on 6.1.1
    - Providing the function headline and body concatenated in a single input text vector is possible.
    - For a simple function, a single string input definition can be provided.
    - For assignable calls to `deff`, the `@` symbol can be used as function pseudo-name.
+* `mopen` and `mclose` now handle multiple files and file descriptors.
+* `hash` function with SHA-1,SHA-2 and SHA-3 Secure Hash Algorithms has been added.
 
 
 Help pages:
@@ -321,6 +323,7 @@ Bug Fixes
 
 ### Bugs fixed in 6.1.1:
 * [#3188](https://bugzilla.scilab.org/3188): `part()` was slower than in Scilab 4.1.2.
+* [#4648](https://bugzilla.scilab.org/4648): Scilab missed more secure hashing functions (md5 is now broken)
 * [#7117](https://bugzilla.scilab.org/7117): `findobj()` could not search within given object.
 * [#8059](https://bugzilla.scilab.org/8059): A local `.wgetrc` config file could make troubles in `atomsDownload`.
 * [#8100](https://bugzilla.scilab.org/8100): `cumsum()` on sparse documented.
@@ -331,6 +334,7 @@ Bug Fixes
 * [#10465](https://bugzilla.scilab.org/10465): At Scilab exit, the help browser is not saved nor restored.
 * [#10476](https://bugzilla.scilab.org/10476): From `browsevar`, displaying the content of lists, structures, cells, or other custom tlists or mlists was not possible.
 * [#10490](https://bugzilla.scilab.org/10490): The `mapsound` page was poor with a single interesting example.
+* [#10964](https://bugzilla.scilab.org/10964): Scinotes coud not execute the current file in NW mode.
 * [#11600](https://bugzilla.scilab.org/11600): `rand()` was parsing its inputs incorrectly.
 * [#11677](https://bugzilla.scilab.org/11677): The original Arnoldi functions were obsolete.
 * [#11888](https://bugzilla.scilab.org/11888): The `struct` page did not document how to build an array of structures.
