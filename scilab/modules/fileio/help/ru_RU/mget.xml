@@ -124,7 +124,7 @@
                         </tr>
                         <tr valign="top">
                             <td align="right">l</td>
-                            <td>: восьми байтные блоки проверяются как целые числа
+                            <td>: восьмибайтные блоки проверяются как целые числа
                                 типа <literal>int64</literal>;
                             </td>
                         </tr>
@@ -233,9 +233,6 @@
             числа преобразуются в тип целого числа <function>inttype</function>
             в соответствии с выбранным форматом <varname>binFormat</varname>, а
             затем возвращаются.
-            is used, parsed numbers are
-            converted into the <function>inttype</function> corresponding to
-            the chosen <varname>binFormat</varname> and then returned.
         </para>
         <para>
             Когда используется функция <function>mget()</function>, двоичные числа
@@ -331,7 +328,7 @@ end
         <title>История</title>
         <revhistory>
             <revision>
-                <revnumber>6.1.0</revnumber>
+                <revnumber>6.1.1</revnumber>
                 <revdescription>
                 внедрена mgeti(,"ul*"|"l*") для чтения чисел типа uint64 или int64 больше 2<superscript>52</superscript>.
                 </revdescription>

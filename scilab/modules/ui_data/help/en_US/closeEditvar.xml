@@ -30,7 +30,7 @@
         <warning>
             <para>
                 <literal>closeEditvar()</literal> will be removed in Scilab 6.1.x Please use
-                <literal>editvar("close")</literal> instead.
+                <literal>close editvar</literal> instead.
             </para>
         </warning>
         <para>

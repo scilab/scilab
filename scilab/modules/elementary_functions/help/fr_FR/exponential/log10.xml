@@ -15,9 +15,12 @@
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>x, y</term>
                 <listitem>
-                    <para>vecteur ou matrice (réelle ou complexe)</para>
+                    <para>
+                        tableaux de nombres réels ou complexes, de dimensionnalité quelconque,
+                        de mêmes tailles.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -27,6 +30,8 @@
         <para>
             <literal>log10(x)</literal> calcule le logarithme en base 10 élément
             par élément : <literal>y(i,j)=log10(x(i,j))</literal>.
+        </para>
+        <para><literal>log10(…)</literal> peut être étendue aux types non supportés, par surcharge.
         </para>
     </refsection>
     <refsection>

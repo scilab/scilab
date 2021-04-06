@@ -13,14 +13,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="log10" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="log10" xml:lang="pt">
     <refnamediv>
         <refname>log10</refname>
         <refpurpose>logaritmo na base 10</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>y=log10(x)</synopsis>
+        <synopsis>y = log10(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -28,7 +31,10 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>vetor ou matriz </para>
+                    <para>
+                        arrays of real or complex numbers, of any number of dimensions
+                        and of any identical sizes.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,6 +45,7 @@
             Logartimo decimal. Se <literal>x</literal> é um vetor
             <literal>log10(x)=[log10(x1),...,log10(xn)]</literal>.
         </para>
+        <para><literal>log10(…)</literal> can be overloaded for unsupported input types.</para>
     </refsection>
     <refsection>
         <title>Exemplos</title>

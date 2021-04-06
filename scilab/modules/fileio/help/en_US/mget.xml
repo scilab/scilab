@@ -330,7 +330,7 @@ end
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>6.1.0</revnumber>
+                <revnumber>6.1.1</revnumber>
                 <revdescription>mgeti(,"ul*"|"l*") is implemented
                  to read uint64 or int64 integers > 2<superscript>52</superscript>.
                 </revdescription>

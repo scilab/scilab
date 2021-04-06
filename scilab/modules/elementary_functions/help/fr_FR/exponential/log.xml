@@ -9,15 +9,18 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>y=log(x)</synopsis>
+        <synopsis>y = log(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>x, y</term>
                 <listitem>
-                    <para>vecteur ou matrice (réelle ou complexe)</para>
+                    <para>
+                        tableaux de nombres réels ou complexes, de dimensionnalité quelconque,
+                        de mêmes tailles.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -29,6 +32,7 @@
             : <literal>y(i,j)=log(x(i,j))</literal>. Pour le logarithme matriciel voir
             la fonction <literal>logm</literal>.
         </para>
+        <para><literal>log(…)</literal> peut être étendue aux types non supportés, par surcharge.</para>
     </refsection>
     <refsection>
         <title>Exemples</title>

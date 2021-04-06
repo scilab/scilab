@@ -10,100 +10,123 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            debug()
+            debug
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Описание</title>
         <para>
-            Используйте для отладки Scilab-сценариев.
-            После вызова <code>debug()</code> вы войдёте в режим отладки.
-            Этот режим позволяет вам управлять <literal>точками останова</literal>,
-            запускать исполнение с остановкой на ошибке, исполнять сценарий пошагово, ...
-            В режиме отладки приглашением командной строки является <literal>debug> </literal>.
+            <literal>debug</literal> входит в режим отладки для функций, написанных на языке Scilab.
+             Приглашение становится <literal> отладка> </literal>.
         </para>
-        <term>Команды: </term>
-        <variablelist>
-            <varlistentry>
+        <para>
+             Этот режим позволяет вам управлять <literal> точками останова </literal>,
+             запускать выполнение с остановкой при ошибке, выполнять функцию шаг за шагом, ...
+        </para>
+        <refsect3>
+            <title>Команды in debug mode</title>
+            <para>
                 <term>h: </term>
-                <para>Показать справку в командном окне</para>
-            </varlistentry>
-            <varlistentry>
+                Показать справку в командном окне.
+            </para>
+            <para>
                 <term>help: </term>
-                <para>
                   Показать справку в справочном браузере, если это возможно. В противном
-                  случае отобразить справку в командном окне</para>
-            </varlistentry>
-            <varlistentry>
+                  случае отобразить справку в командном окне
+            </para>
+            <para>
                 <term>(q)uit: </term>
-                <para>Покинуть режим отладки и вернуться в нормальный режим Scilab'а.</para>
-            </varlistentry>
-            <varlistentry>
+                Покинуть режим отладки и вернуться в нормальный режим Scilab'а.
+            </para>
+            <para>
                 <term>(w)here или bt: </term>
-                <para>Отобразить стек вызовов.</para>
-            </varlistentry>
-            <varlistentry>
+                Отобразить стек вызовов.
+            </para>
+            <para>
                 <term>(e)xec или (r)un: </term>
-                <para>Выполнить команду.</para>
-            </varlistentry>
-            <varlistentry>
+                Выполнить команду.
+            </para>
+            <para>
                 <term>(d)isp var, или (p)rint var: </term>
-                <para>
-                    Отобразить переменную <literal>var</literal>.
-                </para>
-            </varlistentry>
-            <varlistentry>
+                Отобразить переменную <literal>var</literal>.
+            </para>
+            <para>
                 <term>(c)ontinue: </term>
-                <para>Продолжить исполнение.</para>
-            </varlistentry>
-            <varlistentry>
+                Продолжить исполнение.
+            </para>
+            <para>
                 <term>(a)bort: </term>
-                <para>Прервать исполнение.</para>
-            </varlistentry>
-            <varlistentry>
+                Прервать исполнение.
+            </para>
+            <para>
                 <term>step(n)ext или next: </term>
-                <para>Продолжить исполнение до следующего выражения.</para>
-            </varlistentry>
-            <varlistentry>
+                Продолжить исполнение до следующего выражения.
+            </para>
+            <para>
                 <term>step(i)n или in: </term>
-                <para>Продолжить исполнение до следующего выражения в подфункции.</para>
-            </varlistentry>
-            <varlistentry>
+                Продолжить исполнение до следующего выражения в подфункции.
+            </para>
+            <para>
                 <term>step(o)ut или out: </term>
-                <para>Продолжить исполнение до следующего выражения в предыдущей функции.</para>
-            </varlistentry>
-            <varlistentry>
+                Продолжить исполнение до следующего выражения в предыдущей функции.
+            </para>
+            <para>
                 <term>(b)reakpoint или break: </term>
-                <synopsis>breakpoint function [line [condition]]</synopsis>
-                <para>
-                    Добавить точку останова в функцию на строке <literal>line</literal>
-                </para>
-                <para>
-                    Если условие определено, то точка останова срабатывает только если условие равно
-                    <constant>%t</constant>
-                </para>
-            </varlistentry>
-            <varlistentry>
+                <literal>breakpoint function [line [condition]]</literal> :
+                Добавить точку останова в функцию на строке <literal>line</literal>.
+                Если условие определено, то точка останова срабатывает только если условие равно
+                <constant>%t</constant>.
+            </para>
+            <para>
                 <term>(del)ete [n]: </term>
-                <para>Удалить все точки останова.</para>
-                <para>Если <varname>n</varname> определена, то удаляется точка останова №<varname>n</varname></para>
-            </varlistentry>
-            <varlistentry>
+                Удалить все точки останова.
+                Если <varname>n</varname> определена, то удаляется точка останова №<varname>n</varname>.
+            </para>
+            <para>
                 <term>enable [n]: </term>
-                <para>Включить все точки останова.</para>
-                <para>Если <varname>n</varname> определена, то включается точка останова №<varname>n</varname></para>
-            </varlistentry>
-            <varlistentry>
+                Включить все точки останова. Если <varname>n</varname> определена,
+                то включается точка останова №<varname>n</varname>.
+            </para>
+            <para>
                 <term>disable [n]: </term>
-                <para>Отключить все точки останова.</para>
-                <para>Если <varname>n</varname> определена, то отключается точка останова №<varname>n</varname></para>
-            </varlistentry>
-            <varlistentry>
+                Отключить все точки останова. Если <varname>n</varname> определена,
+                то отключается точка останова №<varname>n</varname>.
+            </para>
+            <para>
                 <term>(s)how [n]: </term>
-                <para>Показать информацию обо всех точках останова.</para>
-                <para>Если <varname>n</varname> определена, то показывается точка останова №<varname>n</varname></para>
-            </varlistentry>
-        </variablelist>
+                Показать информацию обо всех точках останова. Если <varname>n</varname> определена,
+                то показывается точка останова №<varname>n</varname>.
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>How to debug a script</title>
+            <para>
+                Debugging a series of Scilab instructions out of any function requires first to
+                embed them in a dummy function. Example: We want to debug the following instructions
+                <programlisting role="no-scilab-exe">
+                a = 1;
+                b = linspace(a, 3, 10);
+                c = exp(a + %i + c);
+                </programlisting>
+            </para>
+            <para>
+                Then we must first rewrite them as
+            </para>
+            <para>
+                <programlisting role="no-scilab-exe">
+                function script()
+                    a = 1;
+                    b = linspace(a, 3, 10);
+                    c = exp(a + %i + c);
+                endfunction
+                </programlisting>
+            </para>
+            <para>
+                and execute this code (in normal Scilab mode) in order to define script() in Scilab.
+                Then breakpoints can be defined and handled within the script() function as for
+                any other function.
+            </para>
+        </refsect3>
     </refsection>
     <refsection>
         <title>Примеры</title>

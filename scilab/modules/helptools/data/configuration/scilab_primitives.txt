@@ -539,6 +539,7 @@ h5rm
 h5umount
 h5write
 h5writeattr
+hash
 helpbrowser
 hess
 hinf

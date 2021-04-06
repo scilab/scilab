@@ -153,6 +153,16 @@
                 <td>recalls the Previous command line</td>
             </tr>
             <tr>
+                <td>abc + UP</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>recalls the previous command line starting with "abc". Pressing the
+                    UP or DOWN arrow again browses the history backward or forward for the
+                    previous/next "abc..." command.
+                </td>
+            </tr>
+            <tr>
                 <td>DOWN</td>
                 <td align="center">x</td>
                 <td align="center">x</td>

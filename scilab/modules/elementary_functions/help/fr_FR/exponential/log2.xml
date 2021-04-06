@@ -19,7 +19,7 @@
           xmlns:scilab="http://www.scilab.org" xml:id="log2" xml:lang="fr">
     <refnamediv>
         <refname>log2</refname>
-        <refpurpose>logarithme en base 2</refpurpose>
+        <refpurpose>logarithme en base 2. Exposant et mantisse en base 2 de nombres réels.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -35,14 +35,14 @@
                 <term>x, y</term>
                 <listitem>
                     <para>
-                        tableaux de nombres décimaux ou complexes, tels que <literal>2.^y = x</literal>.
+                        tableaux de nombres réels ou complexes, tels que <literal>2.^y = x</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>u, m, e</term>
                 <listitem>
-                    <para>Tableaux de nombres décimaux tels que <literal>u = m .* 2.^e</literal>,
+                    <para>Tableaux de nombres réels tels que <literal>u = m .* 2.^e</literal>,
                         avec <literal>sign(m)=sign(u)</literal> et <literal>0.5 ≤ abs(m) &lt; 1</literal>.
                     </para>
                 </listitem>

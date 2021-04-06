@@ -89,6 +89,7 @@ H = [1/s, (s+1) ; 1/(s+2), (s+3)/s]; invr(H)
      -1 +s         s
    ----------  ----------
    -2 +3s +s³  -2 +3s +s³
+]]></screen>
     </refsection>
     <refsection>
         <title> Ver Também </title>

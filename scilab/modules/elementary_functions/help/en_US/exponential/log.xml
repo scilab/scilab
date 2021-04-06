@@ -29,9 +29,12 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>x, y</term>
                 <listitem>
-                    <para>constant vector or constant matrix</para>
+                    <para>
+                        arrays of real or complex numbers, of any number of dimensions
+                        and of any identical sizes.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -40,9 +43,10 @@
         <title>Description</title>
         <para>
             <literal>log(x)</literal> is the "element-wise" logarithm
-            <literal>y(i,j)=log(x(i,j))</literal>. For matrix logarithm see
+            <literal>y(i,j)=log(x(i,j))</literal>. For matrix logarithm, see
             <link linkend="logm">logm</link>.
         </para>
+        <para><literal>log(…)</literal> can be overloaded for unsupported input types.</para>
     </refsection>
     <refsection>
         <title>Examples</title>

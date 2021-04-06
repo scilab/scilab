@@ -26,7 +26,6 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            editvar("close")
             editvar(varname)
         </synopsis>
     </refsynopsisdiv>
@@ -77,8 +76,7 @@
             </para>
         </note>
         <para>
-            <literal>editvar("close")</literal> or <literal>editvar close</literal>
-            closes the open variables editor.
+            <literal>close editvar</literal> closes the open variable editor.
         </para>
         <refsect3>
             <title>Editor's features</title>
@@ -236,6 +234,9 @@ editvar("sp");
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="close">close</link>
+            </member>
+            <member>
                 <link linkend="browsevar">browsevar</link>
             </member>
             <member>
@@ -251,16 +252,5 @@ editvar("sp");
                 <link linkend="tree_show">tree_show</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection role="history">
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>6.1.0</revnumber>
-                <revdescription>
-                    editvar("close") added
-                </revdescription>
-            </revision>
-        </revhistory>
     </refsection>
 </refentry>

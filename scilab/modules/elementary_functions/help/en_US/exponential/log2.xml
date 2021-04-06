@@ -20,7 +20,7 @@
     <refnamediv>
         <refname>log2</refname>
         <refpurpose>
-            Base-2 logarithm. Base-2 exponents and mantissae of some decimal numbers
+            Base-2 logarithm. Base-2 exponent and mantissa of some real numbers
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -37,14 +37,14 @@
                 <term>x, y</term>
                 <listitem>
                     <para>
-                        arrays of decimal or complex numbers, such that <literal>2.^y = x</literal>.
+                        arrays of real or complex numbers, such that <literal>2.^y = x</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>u, m, e</term>
                 <listitem>
-                    <para>arrays of decimal numbers such that <literal>u = m .* 2.^e</literal>,
+                    <para>arrays of real numbers such that <literal>u = m .* 2.^e</literal>,
                         with <literal>sign(m)=sign(u)</literal> and <literal>0.5 ≤ abs(m) &lt; 1</literal>.
                     </para>
                 </listitem>

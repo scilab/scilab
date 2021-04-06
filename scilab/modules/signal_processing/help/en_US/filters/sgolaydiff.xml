@@ -8,15 +8,21 @@
  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="sgolaydiff">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="sgolaydiff">
   <refnamediv>
     <refname>sgolaydiff</refname>
     <refpurpose>Numerical derivatives computation using Savitzky-Golay filter.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>D = sgolaydiff(X,order,k,nf [,w])</synopsis>
-    <synopsis>D = sgolaydiff(X,order,C)</synopsis>
+    <title>Syntax</title>
+    <synopsis>
+        D = sgolaydiff(X, order, k, nf)
+        D = sgolaydiff(X, order, k, nf, w)
+        D = sgolaydiff(X, order, C)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -84,14 +90,17 @@
       successive sub-sets of adjacent data points with a low-degree
       polynomial by the method of linear least squares.</para>
     </para>
-  </refsection>
-  <refsection>
-    <title>More information</title>
-    <caution><para>order must be less than k</para></caution>
-    <note><para>The (nf−1)/2 first and last derivative values are
-    estimated by adding to the input signal, in reverse order and vertically symmetrized, copies of the first
-    (nf−1)/2 points at the beginning and copies of the last (nf−1)/2
-    points at the end .</para></note>
+    <caution>
+        <para>order must be less than k</para>
+    </caution>
+    <note>
+        <para>
+            The (nf−1)/2 first and last derivative values are
+            estimated by adding to the input signal, in reverse order and vertically symmetrized,
+            copies of the first (nf−1)/2 points at the beginning and copies of the last (nf−1)/2
+            points at the end .
+        </para>
+    </note>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -104,37 +113,49 @@ x = sin(t)+0.03*rand(t,"normal");
 clf();
 //first order derivative
 subplot(211)
-dx=sgolaydiff(x,1,3,61);
+dx = sgolaydiff(x,1,3,61);
 plot(t(2:$),diff(x)/dt,'g',t,cos(t),'b',t,dx/dt,'r');
 legend(["diff","theoretical","sgolaydiff"]);
 //second order derivative
 subplot(212)
-d2x=sgolaydiff(x,2,3,101);
+d2x = sgolaydiff(x,2,3,101);
 plot(t,-sin(t),'b',t,d2x/(dt^2),'r');
 legend(["theoretical","sgolaydiff"]);
 title("Second order differentiation")
     ]]></programlisting>
     <scilab:image><![CDATA[
-//generate a noisy signal
-dt=0.01;
-t = (0:0.01:4*%pi)';
-x = sin(t)+0.03*rand(t,"normal");
+        //generate a noisy signal
+        dt=0.01;
+        t = (0:0.01:4*%pi)';
+        x = sin(t)+0.03*rand(t,"normal");
 
-clf();
-//first order derivative
-subplot(211)
-dx=sgolaydiff(x,1,3,61);
-plot(t(2:$),diff(x)/dt,'g',t,cos(t),'b',t,dx/dt,'r');
-legend(["diff","theoretical","sgolaydiff"]);
-//second order derivative
-subplot(212)
-d2x=sgolaydiff(x,2,3,101);
-plot(t,-sin(t),'b',t,d2x/(dt^2),'r');
-legend(["theoretical","sgolaydiff"]);
-title("Second order differentiation")
+        clf();
+        //first order derivative
+        subplot(211)
+        dx=sgolaydiff(x,1,3,61);
+        plot(t(2:$),diff(x)/dt,'g',t,cos(t),'b',t,dx/dt,'r');
+        legend(["diff","theoretical","sgolaydiff"]);
+        //second order derivative
+        subplot(212)
+        d2x=sgolaydiff(x,2,3,101);
+        plot(t,-sin(t),'b',t,d2x/(dt^2),'r');
+        legend(["theoretical","sgolaydiff"]);
+        title("Second order differentiation")
     ]]></scilab:image>
   </refsection>
   <refsection>
+     <title>Bibliography</title>
+    <para>
+        Abraham Savitzky et Marcel J. E. Golay, « Smoothing and
+        Differentiation of Data by Simplified Least Squares Procedures »,
+        Analytical Chemistry, vol. 8, no 36,‎ 1964, p. 1627–1639 (DOI
+        10.1021/ac60214a047)</para>
+    <para>
+        <ulink url="http://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter">
+        http://en.wikipedia.org/wiki/Savitzky-Golay_filter</ulink>.
+    </para>
+  </refsection>
+  <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
       <member>
@@ -144,45 +165,20 @@ title("Second order differentiation")
         <link linkend="sgolayfilt">sgolayfilt</link>
       </member>
       <member>
-        <link linkend="diff">diff</link> 
+        <link linkend="diff">diff</link>
       </member>
       <member>
-        <link linkend="numdiff">numdiff</link> 
+        <link linkend="numdiff">numdiff</link>
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
-  <refsection>
-     <title>Bibliography</title>
-    <para>Abraham Savitzky et Marcel J. E. Golay, « Smoothing and
-    Differentiation of Data by Simplified Least Squares Procedures »,
-    Analytical Chemistry, vol. 8, no 36,‎ 1964, p. 1627–1639 (DOI
-    10.1021/ac60214a047)</para>
-
-    <para><ulink
-    url="http://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter">http://en.wikipedia.org/wiki/Savitzky-Golay_filter</ulink>.</para>
-  </refsection>
-
     <refsection>
        <title>History</title>
       <revhistory>
         <revision>
-          <revnumber>0.0</revnumber>
-          <revdescription>Function added</revdescription>
+          <revnumber>6.1.1</revnumber>
+          <revdescription>Function added. Courtesy of Serge Steer, INRIA</revdescription>
         </revision>
       </revhistory>
     </refsection>
-  <refsection>
-     <title>Used Functions</title>
-       <para> This function is based on the 
-         <link linkend="sgolay">sgolay</link> function which computes the   matrix of differentiation
-          filters and on the
-         <link linkend="conv">conv</link> function to compute the smoothed derivative/
-       </para>
-     </refsection>
 </refentry>

@@ -19,7 +19,9 @@
           xmlns:scilab="http://www.scilab.org" xml:id="log2" xml:lang="ru">
     <refnamediv>
         <refname>log2</refname>
-        <refpurpose>логарифм по основанию 2</refpurpose>
+        <refpurpose>
+          логарифм по основанию 2. Экспонента по основанию 2 и мантисса некоторых вещественных чисел.
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>

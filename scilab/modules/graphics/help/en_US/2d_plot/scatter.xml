@@ -288,7 +288,7 @@
                 <listitem>
                     <para>
                         Creates a datatip for all (X,Y) points whose indices are in the vector
-                        <varname>k</varname>.
+                        <varname>k</varname>. 1:$ targets all existing points.
                     </para>
                     <para>
                         The <literal>datatip_display_mode</literal> is set to
@@ -574,7 +574,7 @@ p.mark_background = bg;
                 </revremark>
             </revision>
             <revision>
-                <revnumber>6.1.0</revnumber>
+                <revnumber>6.1.1</revnumber>
                 <revremark>
                     <itemizedlist>
                         <listitem>

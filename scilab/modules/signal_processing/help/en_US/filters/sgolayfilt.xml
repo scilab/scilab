@@ -23,11 +23,12 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Calling Sequence</title>
-
-    <synopsis>xf=sgolayfilt(X,B)</synopsis>
-
-    <synopsis>xf=sgolayfilt(X,k,nf [,w]) </synopsis>
+    <title>Syntax</title>
+    <synopsis>
+        xf = sgolayfilt(X, B)
+        xf = sgolayfilt(X, k, nf)
+        xf = sgolayfilt(X, k, nf, w)
+    </synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -38,8 +39,10 @@
         <term>X</term>
 
         <listitem>
-          <para>a real array. If it is a vector it contains the signal to be
-          filtered else each column of X is filtered.</para>
+          <para>
+            a real array. If it is a vector it contains the signal to be filtered else each
+            column of X is filtered.
+          </para>
         </listitem>
       </varlistentry>
 
@@ -66,7 +69,7 @@
 
         <listitem>
           <para>a positive scalar with integer value: the filter length, must
-          be odd and greater the k+1.</para>
+          be odd and greater than k+1.</para>
         </listitem>
       </varlistentry>
 
@@ -83,21 +86,19 @@
   <refsection>
     <title>Description</title>
 
-    <para>This function applies a sgolay filter which can be specified either
-    by its set of filter coefficients as produced by <link
-    linkend="sgolay">sgolay</link> either by the degree of the polynomial and
-    the filter length.</para>
-   <para>According to the <ulink
-    url="http://www.hpl.hp.com/techreports/2010/HPL-2010-109.pdf">article</ulink> the -3dB cutoff frequency can be approximated by
-   (k+1)/(3.2*nf-4.6).</para>
-  </refsection>
-
-  <refsection>
-    <title>More information</title>
-
-    <warning>
+    <para>
+        This function applies a sgolay filter which can be specified either
+        by its set of filter coefficients as produced by <link
+        linkend="sgolay">sgolay</link> either by the degree of the polynomial and
+        the filter length.
+    </para>
+   <para>
+       According to the <ulink url="http://www.hpl.hp.com/techreports/2010/HPL-2010-109.pdf">article</ulink>
+       the -3dB cutoff frequency can be approximated by (k+1)/(3.2*nf-4.6).
+   </para>
+   <warning>
       <para>Signal size should be greater than the filter length</para>
-    </warning>
+   </warning>
   </refsection>
 
   <refsection>
@@ -108,38 +109,18 @@ dt=0.01;
 t = (0:0.01:4*%pi)';
 x = sin(t)+0.05*rand(t,'normal');
 clf;plot(t,x,'b',t,sgolayfilt(x,3,51),'r');
-e=gce();set(e.children(1),"thickness",2);
+gce().children(1).thickness = 2;
 legend(["Raw","Filtered"]);
     ]]></programlisting>
 
     <scilab:image><![CDATA[
-dt=0.01;
-t = (0:0.01:4*%pi)';
-x = sin(t)+0.05*rand(t,'normal');
-clf;plot(t,x,'b',t,sgolayfilt(x,3,51),'r');
-e=gce();set(e.children(1),"thickness",2);
-legend(["Raw","Filtered"]);
+        dt=0.01;
+        t = (0:0.01:4*%pi)';
+        x = sin(t)+0.05*rand(t,'normal');
+        clf;plot(t,x,'b',t,sgolayfilt(x,3,51),'r');
+        e=gce();set(e.children(1),"thickness",2);
+        legend(["Raw","Filtered"]);
     ]]></scilab:image>
-  </refsection>
-
-  <refsection>
-    <title>See Also</title>
-
-    <simplelist type="inline">
-      <member><link linkend="sgolay">sgolay</link></member>
-
-      <member><link linkend="filter">filter</link></member>
-
-      <member><link linkend="wfir">wfir</link></member>
-    </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Authors</title>
-
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
   </refsection>
 
   <refsection>
@@ -153,28 +134,28 @@ legend(["Raw","Filtered"]);
     <para><ulink
     url="http://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter">http://en.wikipedia.org/wiki/Savitzky-Golay_filter</ulink>.</para>
 
-    <para><ulink
-    url="http://www.hpl.hp.com/techreports/2010/HPL-2010-109.pdf">On
-    the Frequency-Domain Properties of Savitzky-Golay
-    Filters</ulink>.</para>
+    <para><ulink url="http://www.hpl.hp.com/techreports/2010/HPL-2010-109.pdf">On the
+        Frequency-Domain Properties of Savitzky-Golay Filters</ulink>.
+    </para>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member><link linkend="sgolay">sgolay</link></member>
+      <member><link linkend="filter">filter</link></member>
+      <member><link linkend="wfir">wfir</link></member>
+    </simplelist>
   </refsection>
 
   <refsection>
     <title>History</title>
-
     <revhistory>
       <revision>
-        <revnumber>0.0</revnumber>
-
-        <revdescription>Function sgolayfilt added.</revdescription>
+        <revnumber>6.1.1</revnumber>
+        <revdescription>Function sgolayfilt added. Courtesy of Serge Steer, INRIA</revdescription>
       </revision>
     </revhistory>
   </refsection>
 
-  <refsection>
-    <title>Used Functions</title>
-
-    <para><link linkend="filter">filter</link>,<link
-    linkend="sgolay">sgolay</link></para>
-  </refsection>
 </refentry>

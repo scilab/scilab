@@ -584,15 +584,14 @@ Axes.grid = [1 1 1]*color("grey60");
             <revision>
                 <revnumber>6.1.0</revnumber>
                 <revremark>
-                    <itemizedlist>
-                        <listitem>
-                            Function scatter3() set obsolete. scatter3d() is introduced.
-                        </listitem>
-                        <listitem>
-                            Colors can be specified as well with their "#RRGGBB" hexadecimal
-                            standard code or their index in the color map.
-                        </listitem>
-                    </itemizedlist>
+                    Function scatter3() set obsolete. scatter3d() is introduced.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revremark>
+                    Colors can be specified as well with their "#RRGGBB" hexadecimal
+                    standard code or their index in the color map.
                 </revremark>
             </revision>
         </revhistory>

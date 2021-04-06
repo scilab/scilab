@@ -13,22 +13,27 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="log10" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="log10" xml:lang="ru">
     <refnamediv>
         <refname>log10</refname>
         <refpurpose>десятичный логарифм</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>y=log10(x)</synopsis>
+        <synopsis>y = log10(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>x, y</term>
                 <listitem>
-                    <para>vector or matrix</para>
+                    <para>
+                        массивы вещественных или комплексных чисел любых размерностей и любых размеров.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,6 +44,7 @@
             <literal>log10(x)</literal> является поэлементным десятичным логарифмом
             <literal>y(i,j)=log10(x(i,j))</literal>.
         </para>
+        <para><literal>log10(…)</literal> может быть перегружена для неподдерживаемых входных типов.</para>
     </refsection>
     <refsection>
         <title>Примеры</title>

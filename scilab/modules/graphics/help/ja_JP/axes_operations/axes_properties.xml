@@ -1287,6 +1287,13 @@ gcf().axes_size = [420 320];
                 <revnumber>6.1.0</revnumber>
                 <revremark>Default .grid_style is now [7 7] instead of [3 3].</revremark>
             </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revremark>
+                    Default .x|y|z_label.font_size=2, instead of 1.
+                    Default .title.font_size=3, instead of 1.
+                </revremark>
+            </revision>
         </revhistory>
     </refsection>
 </refentry>
