@@ -54,9 +54,15 @@
                 <listitem>
                     <para>
                         строка, распределение случайных чисел (по умолчанию
-                        <literal>key="uniform"</literal>). Доступными значениями являются
-                        <literal>"uniform"</literal> (равновероятный) и <literal>"normal"</literal>
-                        (нормальный).
+                        <literal>key="uniform"</literal>). Доступными значениями являются:
+                        <itemizedlist>
+                        <listitem>
+                        <literal>"uniform"</literal> (равновероятный) или <literal>"u"</literal>
+                        </listitem>
+                        <listitem>
+                        <literal>"normal"</literal> (нормальный) или <literal>"n"</literal>
+                        </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>

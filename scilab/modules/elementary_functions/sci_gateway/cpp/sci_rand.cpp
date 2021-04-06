@@ -261,10 +261,22 @@ int setRandType(const wchar_t* _wcType)
     {
         return 0;
     }
-    else if (!wcscmp(_wcType,g_pwstTypeNormal))
+    if (!wcscmp(_wcType,g_pwstTypeNormal))
     {
         return 1;
     }
+
+    // shortcut version
+    if (_wcType[0] == g_pwstTypeUniform[0] && _wcType[1] == L'\0')
+    {
+        return 0;
+    }
+    if (_wcType[0] == g_pwstTypeNormal[0] && _wcType[1] == L'\0')
+    {
+        return 1;
+    }
+
+    // invalid key
     return -1;
 }
 /*--------------------------------------------------------------------------*/
