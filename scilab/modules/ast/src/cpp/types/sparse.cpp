@@ -1295,7 +1295,7 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
                 if (isComplex())
                 {
                     //scalar complex
-                    std::complex<double> val(pR[0], pI[0]);
+                    std::complex<double> val(pR[0], pI ? pI[0] : 0);
                     for (int i = 0; i < iSeqCount; i++)
                     {
                         set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, val, false);
@@ -1318,7 +1318,7 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
                     //matrix complex
                     for (int i = 0; i < iSeqCount; i++)
                     {
-                        set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, std::complex<double>(pR[i], pI[i]), false);
+                        set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, std::complex<double>(pR[i], pI ? pI[i] : 0), false);
                     }
                 }
                 else
@@ -1963,9 +1963,6 @@ GenericType* Sparse::extract(typed_list* _pArgs)
     bool bAllColonIndex = true;
     typed_list pArg;
 
-    int* piMaxDim = new int[iDims];
-    int* piCountDim = new int[iDims];
-
     for (int i=0; i<iDims; i++)
     {
         bAllColonIndex &= (*_pArgs)[i]->isColon();
@@ -2021,6 +2018,9 @@ GenericType* Sparse::extract(typed_list* _pArgs)
         }
         return pOut;
     }
+
+    int* piMaxDim = new int[iDims];
+    int* piCountDim = new int[iDims];
 
     //evaluate each argument and replace by appropriate value and compute the count of combinations
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
