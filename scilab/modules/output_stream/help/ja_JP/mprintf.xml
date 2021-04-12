@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -47,13 +47,18 @@
                         formatオペランドは,C言語のprintfのformatオペランドと
                         構文にできるだけ近くなるよう作成されています, as described in the
                         <link linkend="printf_conversion">printf_conversion</link> page.
+                        UTF-8 extended characters and numbered placeholders "%n$.." are supported.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>a1,...,an</term>
                 <listitem>
-                    <para>formatパラメータに基づき変換,出力されるデータを定義します.</para>
+                    <para>
+                        formatパラメータに基づき変換,出力されるデータを定義します.
+                        Supported types: all numbers, booleans, strings. Only the real part
+                        of complex numbers is considered (current Scilab limitation).
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -61,30 +66,117 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>mprintf</literal>関数はC言語の<literal>printf</literal>へ
-            のインターフェイスです.
+            <literal>mprintf(format, a1, a2, ..)</literal> replaces placeholders provided inside the
+            <varname>format</varname> string with values of <varname>a1</varname>, <varname>a2</varname>, ..
+            converted according to each respective placeholder directive, and writes the result to
+            the Scilab console.
         </para>
         <para>
-            <literal>mprintf</literal>関数は整形されたオペランドを
-            Scilab標準出力(すなわち,Scilabウインドウ)に書き込みます.
-            argumentオペランドはformatオペランドの制御の下で整形されます.
+            If <varname>a1</varname>, <varname>a2</varname>, .. are arrays with multiple rows,
+            they are processed row by row: the format is used iteratively for every row of the
+            arrays (horizontally "concatenated"), until the bottom
+            of the least tall array is reached. Remaining rows of taller arrays (if any) are ignored.
+            See examples.
+        </para>
+        <para>
+            If the total number of columns of <varname>a1</varname>, <varname>a2</varname>, ..
+            is bigger than the number of placeholders in the <varname>format</varname>,
+            then extra columns are ignored.
+        </para>
+        <para>
+            The <literal>mprintf</literal> function is an extended interface for C-coded
+            <literal>printf</literal>.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-mprintf('At iteration %i, Result is:\nalpha=%f',33,0.535)
- ]]></programlisting>
+I = (1:4)';
+A = [26.93 ; 63.25 ; 40.51 ; 91.84];
+B = [ 3.62 ; 15.04 ; 25.3  ; 48.19];
+C = [ 4.37   28.06
+     48.18   %inf
+     41.48   %nan
+     26.39   77.83];
+Status = ["NOK" "NOK" "NOK" "OK"]';
+Format = "Iteration %d: Results: A= %f   B= %2d%%  Status= %3s   C(1)= %g  C(2)= %e\n";
+mprintf(Format, I, A, B, Status, C);
+     ]]></programlisting>
+        <screen><![CDATA[
+--> mprintf(Format, I, A, B, Status, C);
+Iteration 1: Results: A= 26.930000   B=  3%  Status= NOK   C(1)= 4.37  C(2)= 2.806000e+01
+Iteration 2: Results: A= 63.250000   B= 15%  Status= NOK   C(1)= 48.18  C(2)= Inf
+Iteration 3: Results: A= 40.510000   B= 25%  Status= NOK   C(1)= 41.48  C(2)= Nan
+Iteration 4: Results: A= 91.840000   B= 48%  Status=  OK   C(1)= 26.39  C(2)= 7.783000e+01
+]]></screen>
+        <para/>
+        <para>
+            Supernumerary columns or rows are ignored:
+        </para>
+        <programlisting role="example"><![CDATA[
+A = [%T  %F  %T  %T  %F]';
+B = [ 4.37   28.06
+     48.18   %inf
+     41.48   %nan ];
+mprintf("OK? %s  Value: %4.1f\n", A, B);
+     ]]></programlisting>
+        <screen><![CDATA[
+--> mprintf("OK? %s  Value: %4.1f\n", A, B);
+OK? T  Value:  4.4
+OK? F  Value: 48.2
+OK? T  Value: 41.5
+]]></screen>
+        <para/>
+        <para>
+            Numbered placeholders "%n$.." allow reordering printed data with the format:
+        </para>
+        <programlisting role="example"><![CDATA[
+names = ["Peter", "Martha" "John"]';
+ages  = [32 25 8]';
+mprintf("%2$6s is %1$d-year old.\n", ages, names);
+     ]]></programlisting>
+        <screen><![CDATA[
+--> mprintf("%2$6s is %1$d-year old.\n", ages, names);
+ Peter is 32-year old.
+Martha is 25-year old.
+  John is 8-year old.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="printf_conversion">printf_conversion</link>
+            </member>
+            <member>
                 <link linkend="disp">disp</link>
             </member>
             <member>
-                <link linkend="printf_conversion">printf_conversion</link>
+                <link linkend="write">write</link>
+            </member>
+            <member>
+                <link linkend="percentio">percentio</link>
+            </member>
+            <member>
+                <link linkend="percentchars">percentchars</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Numbered placeholders "%n$.." are supported in the format.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Input data can be boolean.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

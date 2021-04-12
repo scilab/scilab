@@ -328,7 +328,7 @@ Bug Fixes
 ### Bugs fixed in 6.1.1:
 * [#3188](https://bugzilla.scilab.org/3188): `part()` was slower than in Scilab 4.1.2.
 * [#4648](https://bugzilla.scilab.org/4648): Scilab missed more secure hashing functions (md5 is now broken)
-* [#7117](https://bugzilla.scilab.org/7117): `findobj()` could not search within given object.
+* [#5511](https://bugzilla.scilab.org/5511): printf_conversion page was poorly presented and had many issues: The described types of accepted value and printed result were often switched; nothing was told about the processing of complex numbers; special escaped sequences \n \r \t \\ were not described; possible numbering of placeholders was not described; in the pt_BR version, the itemized lists were wrongly unnested and characters typing placeholders (d,u,o,x,f,e,g..) were missing.
 * [#8059](https://bugzilla.scilab.org/8059): A local `.wgetrc` config file could make troubles in `atomsDownload`.
 * [#8100](https://bugzilla.scilab.org/8100): `cumsum()` on sparse documented.
 * [#8378](https://bugzilla.scilab.org/8378): Datatip `ContextMenu => Delete last datatip` was useless.
