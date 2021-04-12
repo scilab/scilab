@@ -92,7 +92,7 @@ types::Function::ReturnValue sci_spzeros(types::typed_list &in, int _iRetCount, 
         }
         if (dblCols != (double) ((unsigned int) dblCols))
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "spzeros", 1);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "spzeros", 2);
             return types::Function::Error;
         }
 

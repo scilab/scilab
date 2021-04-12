@@ -6,10 +6,11 @@
 // ============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 490 -->
 // Please note that it is store under the request feature of Scilab
-// 
+//
 // <-- Bugzilla URL -->
 // http://requestzilla.scilab.org/show_bug.cgi?id=490
 //
@@ -17,7 +18,7 @@
 //    Wrong size detection in sparse matrix
 
 toto = spzeros(2^16, 2^16);
-toto(1, 8) =toto(1, 8)+5;
-toto(1, 8) =toto(1, 8)+5;
-if toto(1, 8) == []; then pause, end
+toto(1, 8) = toto(1, 8)+5;
+toto(1, 8) = toto(1, 8)+5;
+assert_checkequal(toto(1, 8), sparse([1,1], 10));
 
