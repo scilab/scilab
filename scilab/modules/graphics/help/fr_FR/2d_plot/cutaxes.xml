@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2018-2021 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org" xml:id="cutaxes" xml:lang="fr">
+    <refnamediv>
+        <refname>cutaxes</refname>
+        <refpurpose>
+            Trace par intervalles des courbes ou un repère graphique existant, selon un axe
+            fragmenté ou/et multiéchelle
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxes</title>
+        <synopsis>
+            cutaxes(x, y, cutaxis, intervals)
+            cutaxes(axes0, cutaxis, intervals)
+            cutaxes(.., "ticksmode", "alt" | "shift")
+            cutaxes(.., "widths", "isoscaled" | widths)
+            [Axes, curves] = cutaxes(x, y, ..)
+            Axes = cutaxes(axes0, cutaxis, intervals, ..)
+       </synopsis>
+    </refsynopsisdiv>
+
+    <refsection>
+        <title>Sommaire</title>
+        <itemizedlist>
+            <listitem>
+                <link linkend="cutaxes_arguments">Arguments</link>
+            </listitem>
+            <listitem>
+                <link linkend="cutaxes_description">Description</link>
+                    <itemizedlist>
+                        <listitem>
+                            <link linkend="cutaxes_description">Introduction</link>
+                        </listitem>
+                        <listitem>
+                            <link linkend="cutaxes_titles">Titres, légendes, Données étiquetées</link>
+                        </listitem>
+                    </itemizedlist>
+            </listitem>
+            <listitem>
+                <link linkend="cutaxes_examples">Exemples</link>
+                <itemizedlist>
+                    <listitem>
+                        <link linkend="cutaxes_curves">Options "ticksmode" et "widths". Adressage et restylage des courbes</link>
+                    </listitem>
+                    <listitem>
+                        <link linkend="cutaxes_xmultiscale">Intervalle répliqué et inversé</link>
+                    </listitem>
+                    <listitem>
+                        <link linkend="cutaxes_ymultiscale">Axe Y multi-échelle</link>
+                    </listitem>
+                    <listitem>
+                        <link linkend="cutaxes_patch2D">Exemple avec Matplot1()</link>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <link linkend="cutaxes_seealso">Voir aussi</link>
+            </listitem>
+            <listitem>
+                <link linkend="cutaxes_history">Historique</link>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+
+    <refsection role="arguments" id="cutaxes_arguments">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        vecteur ou matrice d'abscisses réelles.
+                        <itemizedlist>
+                            <listitem>
+                                Si <varname>x</varname> et <varname>y</varname> sont des vecteurs,
+                                il faut <literal>length(x)==length(y)</literal>
+                            </listitem>
+                            <listitem>
+                                Si <varname>x</varname> est un vecteur et <varname>y</varname> est
+                                une matrice, les mêmes abscisses sont partagées par toutes les
+                                courbes données en colonnes de <varname>y</varname>, et nous devons
+                                avoir <literal>length(x)==size(y,1)</literal>.
+                            </listitem>
+                            <listitem>
+                                Si <varname>x</varname> et <varname>y</varname> sont des matrices,
+                                elles doivent être de mêmes tailles. <literal>x(:,i)</literal> sont
+                                alors les abscisses respectives de <literal>y(:,i)</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        nombres réels : ordonnées des courbes à tracer. Si <varname>y</varname> est
+                        une matrice, chacune de ses colonnes représente une courbe à part.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>axes0</term>
+                <listitem>
+                    <para>
+                        Repère graphique existant à redessiner par intervalles choisis.
+                        <literal>.isoview="off"</literal> est forcé sur tous les intervalles
+                        représentés.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cutaxis</term>
+                <listitem>
+                    <para>
+                        <literal>"x"</literal> ou <literal>"y"</literal> : indique l'axe fragmenté.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>intervals</term>
+                <listitem>
+                    <para>
+                        Matrice de tailles (N x 2) de nombres réels. Chaque ligne représente les
+                        bornes <literal>[start,end]</literal> d'un intervalle sur lequel toutes les
+                        courbes doivent être tracées. Ces intervalles sont tous situés sur l'axe
+                        désigné par <varname>cutaxis</varname>. Le nombre d'intervalles possibles
+                        n'est pas limité.
+                    </para>
+                    <para>
+                        Sur la figure, les intervalles sont représentés de la gauche vers la droite
+                        dans l'ordre des lignes de <varname>intervals</varname>. Les différentes
+                        portions de l'axe peuvent être ordonnées et présentées à souhait.
+                    </para>
+                    <para>
+                        Si un intervalle est spécifié tel que <literal>start > end</literal>, l'axe
+                        est inversé sur la partie concernée.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"ticksmode"</term>
+                <listitem>
+                    <para>
+                        Par défaut, un espace vide sans graduation ni tracé sépare deux intervalles
+                        consécutifs. Les graduations des différentes parties de l'axe fragmenté sont
+                        "alignées" les unes avec les autres.
+                    </para>
+                    <para>
+                        Le mot optionnel <literal>"ticksmode"</literal> permet d'indiquer d'autres
+                        modes d'alternance des graduations de l'axe fragmenté. Il doit être suivi
+                        d'une des valeurs suivantes :
+                    </para>
+                    <para>
+                        <table>
+                        <tr>
+                            <td><literal>"alt"</literal></td>
+                            <td>
+                                Les intervalles gradués sont dessinés alternativement en bas et en
+                                haut pour <literal>"x"</literal> fragmenté, ou à gauche et à droite
+                                pour <literal>"y"</literal>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><literal>"shift"</literal></td>
+                            <td>
+                                Les intervalles gradués consécutifs sont dessinés légèrement décalés,
+                                de manière alternée.
+                            </td>
+                        </tr>
+                        </table>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"widths"</term>
+                <listitem>
+                    <para>
+                        Par défaut, si N intervalles sont définis, la pleine largeur du tracé est
+                        segmentée en N sections de largeurs égales, quelles que soient les largeurs
+                        effectives <literal>|end - start|</literal> des intervalles de données.
+                        Le mot <literal>"widths"</literal> permet de définir d'autres modes de
+                        répartition de l'espace total fragmenté. Il peut être suivi d'un des
+                        éléments suivants :
+                    </para>
+                    <para>
+                        <table>
+                            <tr>
+                                <td><literal>"-"</literal></td>
+                                <td>
+                                    Les espaces graphiques vides séparant les intervalles sont
+                                    supprimés.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top"><literal>"isoscaled"</literal></td>
+                                <td>
+                                    Dans ce mode, tous les intervalles sont représentés avec
+                                    la même échelle. La largeur graphique est proportionnelle à
+                                    <literal>|end - start|</literal>.
+                                    <para>
+                                        <literal>"-isoscaled"</literal> fera la même chose, en
+                                        supprimant en outre les espaces graphiques entre intervalles
+                                        consécutifs.
+                                    </para>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top"><literal>widths</literal></td>
+                                <td>
+                                    Vecteur de nombres indiquant la largeur relative des différentes
+                                    sections graphiques selon l'axe fragmenté. Le vecteur doit
+                                    avoir autant d'éléments qu'il y a d'intervalles définis.
+                                    <para>
+                                        Seuls les rapports <literal>|widths| / sum(|widths|)</literal>
+                                        sont considérés, de sorte que <literal>[1,2,2]</literal>
+                                        et <literal>[0.5,1,1]</literal> ou
+                                        <literal>[0.2,0.4,0.4]</literal> sont par exemple équivalents.
+                                    </para>
+                                    <para>
+                                        Une valeur négative indique que la séparation graphique
+                                        précédant l'intervalle doit être supprimée. La valeur absolue
+                                        est alors prise pour largeur relative effective.
+                                    </para>
+                                </td>
+                            </tr>
+                        </table>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Axes</term>
+                <listitem>
+                    <para>
+                        vecteur des identifiants des repères graphiques correspondant aux différents
+                        intervalles. Ses éléments permettent de modifier les attributs des repères
+                        définissant l'axe fragmenté, tels que le mode logarithmique, etc. Voir les
+                        exemples illustrés.
+                    </para>
+                    <para>
+                        <literal>Axes($)</literal> adresse le repère graphique définissant l'axe
+                        commun, la grille, et la légende associées. C'est le repère actif au retour
+                        de <literal>cutaxes()</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>curves</term>
+                <listitem>
+                    <para>
+                        liste de vecteurs d'identifiants graphiques des morceaux des courbes tracées.
+                        <itemizedlist>
+                            <listitem>
+                                <literal>curves(i)</literal> est le vecteur des identifiants graphiques
+                                de toutes les sections tracées pour la courbe n° i définie dans
+                                <literal>y(:,i)</literal>.
+                            </listitem>
+                            <listitem>
+                                <literal>curves(i)(j)</literal> adresse la courbe n° i tracée sur
+                                l'intervalle n° j défini par <literal>intervals(j,:)</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        Ces identifiants permettent de modifier les attributs des courbes après leur
+                        tracé. Par exemple, <literal>curves(2).foreground = color("red")</literal>
+                        mettra en rouge tous les intervalles de la courbe n° 2.
+                        <literal>curves(2)(3).line_style = 3</literal> mettra uniquement sa 3ème
+                        section en tirets. Un exemple est fourni et illustré plus loin.
+                    </para>
+                    <note>
+                        Le vecteur des identifiants des courbes n° c1 à c2 > c1 pour l'unique
+                        intervalle n° i est donné par
+                        <literal>Axes(i).children($).children($-c1+1:-1:$-c2+1)</literal>.
+                    </note>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description" id="cutaxes_description">
+        <title>Description</title>
+        <para>
+            <literal>cutaxes()</literal> permet de tracer des courbes selon un axe non régulier,
+            par exemple comportant des intervalles cachés. Les courbes sont ainsi tracées sur les
+            intervalles consécutifs visibles, sans faire apparaitre en vide les intervalles à
+            ignorer.
+        </para>
+        <para>
+            Lorsqu'un repère graphique <varname>axes0</varname> est fourni au lieu de courbes, il
+            est répliqué par intervalle. Tout le contenu du repère est répliqué.
+            Les titres de ses axes X Y et Z et son titre général sont ignoré.
+        </para>
+        <para>
+            Dans les deux cas (courbes ou repère entier), <literal>cutaxes()</literal> dessine
+            dans la zone graphique de gca().
+            Si <varname>axes0</varname> <emphasis role="italic">est</emphasis> le repère graphique
+            courant  <literal>gca()</literal>, <literal>cutaxes()</literal> le supprime à
+            l'issue de la réplication par intervalle. Sinon, <varname>axes0</varname> est conservé
+            dans sa propre zone graphique.
+        </para>
+        <para>
+            Les intervalles représentés sur l'axe discontinu peuvent avoir des échelles différentes,
+            différents modes logarithmique/linéaire, être directs ou inversés.
+        </para>
+        <para>
+            Un axe peut être gradué symétriquement en répétant un intervalle et en inversant sa copie.
+        </para>
+        <note>
+            <literal>cutaxes()</literal> peut être utilisé notamment en conjonction avec les
+            fonctionnalités suivantes :
+            <itemizedlist>
+                <listitem>
+                    <literal>subplot(..)</literal> ou <literal>xsetech(..)</literal> peuvent être
+                    utilisées pour définir la zone de dessin avant d'appeler
+                    <function>cutaxes()</function>.
+                </listitem>
+                <listitem>
+                    Un rectangle à zoomer portant sur plusieurs intervalles peut être défini de
+                    manière interactive.
+                </listitem>
+            </itemizedlist>
+        </note>
+        <refsect3 id="cutaxes_titles">
+            <title>Titres, légendes, et étiquettes de courbes</title>
+            <para>
+                <emphasis role="bold"><varname>axes0</varname> initial répliqué :</emphasis>
+            </para>
+            <para>
+                Dans ce cas, le titre général et les légendes des axes X et Y de
+                <varname>axes0</varname> sont transférés dans le nouveau repère graphique
+                composite. Si <varname>axes0</varname> comporte des étiquettes de données
+                (datatips), celles-ci sont également transférées. Chaque étiquette peut être
+                interactivement bougée mais est astreinte à rester sur son intervalle.
+            </para>
+            <para>
+                <emphasis role="bold">cutaxes(x,y,..) de courbes :</emphasis>
+            </para>
+            <para>
+                <emphasis role="italic">Titre général, titre de l'axe continu</emphasis> :
+                <literal>title()</literal>, <literal>xtitle()</literal>,
+                <literal>xlabel()</literal> lorsque <varname>cutaxis</varname> est <literal>"y"</literal>,
+                ou
+                <literal>ylabel()</literal> lorsque <varname>cutaxis</varname> est <literal>"x"</literal>
+                peuvent être utilisés comme d'habitude après avoir appelé <literal>cutaxes()</literal>.
+            </para>
+            <para>
+                <emphasis role="italic">Titre de l'axe fragmenté</emphasis> : il est fortement
+                recommandé d'utiliser le titre de l'intervalle le plus central, plutôt que le titre
+                du repère graphique général (lequel introduit un décalage parasite). L'identifiant
+                de l'intervalle ciblé sera utilisé en appelant
+                <literal>xlabel()</literal> ou <literal>ylabel()</literal>. Voir les exemples.
+            </para>
+            <para>
+                <emphasis role="italic">Etiquettes de courbes (datatips)</emphasis> : elles peuvent
+                être définies comme d'habitude sur les courbes tracées par
+                <literal>cutaxes()</literal>. Cependant, aucune étiquette ne peut alors être
+                glissée sur la courbe d'un intervalle à l'autre.
+            </para>
+            <para>
+                <emphasis role="bold">Bloc de légendes de courbes multiples</emphasis> : un tel bloc
+                peut être défini dans le repère graphique d'un des intervalles, en ciblant
+                préalablement l'identifiant graphique correspondant :
+                <screen><![CDATA[
+sca(axes(i));
+legend(["Curve 1" "Curve 2"],"in_upper_left");
+]]></screen>
+                La position du bloc dans le repère intervalle se réfère aux bornes de celui-ci.
+                Il n'est pas possible de cibler le repère graphique général <varname>axes($)</varname>
+                pour définir et héberger ce bloc.
+            </para>
+        </refsect3>
+    </refsection>
+    <refsection role="examples" id="cutaxes_examples">
+        <title>Exemples</title>
+        <refsect3 id="cutaxes_curves">
+            <title>Options "ticksmode" et "widths". Identification et modifications des courbes</title>
+            <para/>
+            <programlisting><![CDATA[
+x = [-7.5:0.5:200]';
+y =  exp(x/30).*(1+0.5*sin(x));
+
+clf
+gcf().axes_size = [1000 300];
+
+intervals = [-4 6; 10 30 ; 40 100];
+[a, c] = cutaxes(x, [y y/2], "x", intervals, "ticksmode", "alt", "widths", [1 1.5 3]);
+
+// Adressage des courbes pour modifications
+c(2).foreground = color("red");   // 2nde courbe en rouge
+c1 = c(1);
+c1(3).line_style = 8;             // 3ème partie de la 1ère courbe en tirets courts
+c1(3).thickness = 2;              //    .. et trait plus épais
+
+// Inversion haut-bas de l'axe normal Y
+//a.axes_reverse = ["off" "on"];
+
+// Mise en mode logarithmique de la 3ème partie de l'axe fragmenté X
+a(3).log_flags = "lnn";
+        ]]></programlisting>
+            <scilab:image><![CDATA[
+                x = [-7.5:0.5:200]';
+                y =  exp(x/30).*(1+0.5*sin(x));
+
+                gcf().axes_size = [1000 300];
+                clf
+
+                intervals = [-4 6; 10 30 ; 40 100];
+                [a, c] = cutaxes(x, [y y/2], "x", intervals, "ticksmode", "alt", "widths", [1 1.5 3]);
+
+                // Special curves settings:
+                c(2).foreground = color("red");   // 2nd cuve in red
+                c1 = c(1);
+                c1(3).line_style = 8;             // 3rd section of 1st curve in small dashes
+                c1(3).thickness = 2;              //    .. and thicker
+
+                // Invert the common Y axis
+                //a.axes_reverse = ["off" "on"];
+
+                // Setting X-axis of the third section in log:
+                a(3).log_flags = "lnn";
+         ]]></scilab:image>
+            <para/>
+            </refsect3>
+            <refsect3 id="cutaxes_xmultiscale">
+                <title>Intervalle répliqué et inversé</title>
+            <para>
+                <literal>cutaxes()</literal> permet d'utiliser des intervalles se recouvrant partiellement,
+                se répétant avec ou sans inversion ou changement d'échelle, etc. Cette souplesse peut être
+                mise à profit de diverses façons. Par exemple, pour une abscisse radiale positive, il est
+                possible de graduer en valeurs positives les distances à 0 des deux cotés, autant vers la
+                gauche que vers la droite. Un coté peut être gradué en échelle radiale linéaire, et l'autre
+                en échelle radiale logarithmique mettant en évidence un comportement asympotique :
+            </para>
+            <programlisting><![CDATA[
+x = logspace(-2,2,500)';
+y = sin(10*log(x)).*(x.^0.3);
+
+clf
+gcf().axes_size = [1000 370];
+
+intervals = [5 0 ; 0.01 11 ; 11 max(x)];
+a = cutaxes(x, y, "x", intervals, "widths", -[2 3 2]);
+a(2).log_flags = "lnn";
+a(2).sub_ticks(1) = 8;
+title "Comportement singulier en r=0"
+ylabel Ordonnées
+xlabel(a(2), "Rayon r")
+         ]]></programlisting>
+            <scilab:image><![CDATA[
+                x = logspace(-2,2,500)';
+                y = sin(10*log(x)).*(x.^0.3);
+
+                gcf().axes_size = [1000 370];
+                clf
+
+                intervals = [5 0 ; 0.01 11 ; 11 max(x)];
+                a = cutaxes(x, y, "x", intervals, "widths", -[2 3 2]);
+                a(2).log_flags = "lnn";
+                a(2).sub_ticks(1) = 8;
+                title "Radial singularity on 0"
+                ylabel Ordinates
+                xlabel(a(2), "Radius")
+         ]]></scilab:image>
+        </refsect3>
+
+        <refsect3 id="cutaxes_ymultiscale">
+            <title>Axe Y multiéchelle :</title>
+            <para>
+                <emphasis role="bold">Exemple n° 1, avec légendes des courbes</emphasis>
+            </para>
+            <programlisting><![CDATA[
+x = [-8:0.2:100]';
+y =  exp(x/14).*(1+0.5*sin(x));
+intervals = [0.01 10 ; 10 max(y)];
+
+clf
+gcf().axes_size = [1000 400];
+[a, c] = cutaxes(x, [y y/2], "y", intervals, "widths", -[1 2]);
+c(2).foreground = color("red");
+a(2).log_flags = "nln";
+a(2).sub_ticks(2) = 8;
+xlabel Abscisses
+ylabel(a(2), "Ordonnées")    // a(2) est maintenant le repère graphique actif
+legend(["Courbe 1" "Courbe 2"], "in_upper_left");
+// Grille
+// a($).grid(1) = -1;         // supprime la grille verticale commune
+// a(1:$-1).grid(:,2) = -1;   // supprime les grilles horizontales
+         ]]></programlisting>
+            <scilab:image><![CDATA[
+            x = [-8:0.2:100]';
+            y =  exp(x/14).*(1+0.5*sin(x));
+            intervals = [0.01 10 ; 10 max(y)];
+
+            gcf().axes_size = [1000 350];
+            clf
+            [a, c] = cutaxes(x, [y y/2], "y",intervals, "widths", -[1 2]);
+            c(2).foreground = color("red");
+            a(2).log_flags = "nln";
+            a(2).sub_ticks(2) = 8;
+            xlabel Abscissae
+            ylabel(a(2), "Ordinates")  // a(2) is now the current axes
+            legend(["Curve 1" "Curve 2"], "in_upper_left");
+         ]]></scilab:image>
+            <para>
+                <emphasis role="bold">
+                    Exemple n° 2: faibles rebonds des ailes de sinc<superscript>2</superscript>()
+                </emphasis>
+            </para>
+            <para>
+                Ci-dessous, nous traçons la courbe pour créer son repère graphique initial dans la zone
+                <literal>subplot(1,2,1)</literal>. Nous déplaçons ensuite <literal>gca()</literal> en
+                <literal>subplot(1,2,2)</literal>, avant d'appeler <literal>cutaxes(..)</literal> :
+            </para>
+            <programlisting><![CDATA[
+x = linspace(-15,15,400);
+clf
+subplot(1,2,1)
+gcf().axes_size = [720 360];
+plot2d(x, sinc(x).^2)
+ax0 = gca();
+
+d = datatipCreate(gce().children, [7.7 0.02]);
+xtitle("$\LARGE sinc^2$", "Abscissae [a.u.]", "Amplitude")
+grey = color("grey60");
+set(d, "mark_size",4, "foreground",grey, "font_foreground",grey, "orientation",8);
+
+subplot(1,2,2)
+Axes = cutaxes(ax0, "y",[0 0.1 ; 0.1 1], "widths","-");
+is_handle_valid(ax0)  // %T: le repère graphique initial subsiste
+         ]]></programlisting>
+            <scilab:image><![CDATA[
+            x = linspace(-15,15,400);
+            clf
+            subplot(1,2,1)
+            gcf().axes_size = [720 360];
+            plot2d(x, sinc(x).^2)
+            ax0 = gca();
+            d = datatipCreate(gce().children, [7.7 0.02]);
+            xtitle("$\LARGE sinc^2$", "Abscissae [a.u.]", "Amplitude")
+            grey = color("grey60");
+            set(d, "mark_size",4, "foreground",grey, "font_foreground",grey, "orientation",8);
+            subplot(1,2,2)
+            Axes = cutaxes(ax0, "y",[0 0.1 ; 0.1 1], "widths","-");
+         ]]></scilab:image>
+            <para>
+                Ci-après, <literal>gca()</literal> reste sur la zone où nous traçons la courbe dans
+                son repère graphique initial, avant d'appeler cutaxes().
+                En conséquence, <literal>cutaxes</literal> dessine dans la même zone et supprime
+                le repère graphique initial après sa réplication par intervalles :
+            </para>
+            <programlisting><![CDATA[
+x = linspace(-15,15,400);
+clf
+subplot(1,2,1)
+gcf().axes_size = [720 360];
+plot2d(x, sinc(x).^2)
+ax0 = gca();
+Axes = cutaxes(ax0, "y",[0 0.1 ; 0.1 1], "widths","-");
+is_handle_valid(ax0)  // %F: le repère graphique initial a été supprimé
+         ]]></programlisting>
+            <scilab:image><![CDATA[
+            x = linspace(-15,15,400);
+            clf
+            subplot(1,2,1)
+            gcf().axes_size = [720 360];
+            plot2d(x, sinc(x).^2)
+            ax0 = gca();
+            Axes = cutaxes(ax0, "y", [0 0.1 ; 0.1 1], "widths","-");
+         ]]></scilab:image>
+        </refsect3>
+
+    <refsect3 id="cutaxes_patch2D">
+        <title>Exemple avec Matplot1()</title>
+        <para>
+        <programlisting><![CDATA[
+clf
+gcf().axes_size = [925 455];
+subplot(1,2,1)
+Matplot1();
+xtitle("","","");
+title "Matplot1() sample"
+x0 = gca();
+
+subplot(1,2,2)
+intervals = [-0.03 -0.02; -0.013 -0.007 ; 0 0.01];
+axes = cutaxes(x0, "y",intervals, "ticksmode","alt", "widths","isoscaled");
+     ]]></programlisting>
+        <scilab:image><![CDATA[
+            gcf().axes_size = [925 455];
+            subplot(1,2,1)
+            Matplot1();
+            xtitle("","","");
+            title "Matplot1() sample"
+            x0 = gca();
+
+            subplot(1,2,2)
+            intervals = [-0.03 -0.02; -0.013 -0.007 ; 0 0.01];
+            axes = cutaxes(x0, "y",intervals, "ticksmode","alt", "widths","isoscaled");
+     ]]></scilab:image>
+        </para>
+    </refsect3>
+
+    </refsection>
+    <refsection role="see also" id="cutaxes_seealso">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="plot">plot</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>
+                <link linkend="subplot">subplot</link>
+            </member>
+            <member>
+                <link linkend="xsetech">xsetech</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history" id="cutaxes_history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <para>
+                        Publication initiale dans Scilab, proposée par S. Gougeon. cutaxes()
+                        était auparavant publiée en module externe ATOMS depuis 2018, sous le nom
+                        plotplots().
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

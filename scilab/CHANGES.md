@@ -193,7 +193,6 @@ Feature changes and additions on 6.1.0
 * `circshift` is introduced.
 * `atomsGetInstalledPath` is no longer sensitive to the case or completeness of the names of the modules. Providing the version of the modules is now optional.
 * `function` replaces `mc` as the new overloading code for functions in Scilab language.
-* `mgeti` can now read correctly 64-bit int64 / uint64 integers bigger than 2^52.
 
 
 Feature changes and additions on 6.1.1
@@ -232,7 +231,8 @@ Feature changes and additions on 6.1.1
    - The created function may be returned as an output argument.
    - Providing the function headline and body concatenated in a single input text vector is possible.
    - For a simple function, a single string input definition can be provided.
-   - For assignable calls to `deff`, the `@` symbol can be used as a function pseudo-name.
+   - For assignable calls to `deff`, the `@` symbol can be used as function pseudo-name.
+* `mgeti` can now read correctly 64-bit int64 / uint64 integers bigger than 2^52.
 * `mopen` and `mclose` now handle multiple files and file descriptors.
 * `hash` function with SHA-1, SHA-2 and SHA-3 Secure Hash Algorithms has been added.
 * `loglog`, `semilogx`, `semilogy` Matlab-compatible functions added.
@@ -241,6 +241,7 @@ Feature changes and additions on 6.1.1
 * polynomials can now use a greek letter as variable.
 * `int2d` can now compute direcly a double integral over a rectangle.
 * `int3d` can now compute direcly a triple integral over a cuboid.
+* `cutaxes`function added.
 
 
 Help pages:

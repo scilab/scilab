@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2018-2021 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org" xml:id="cutaxes" xml:lang="en">
+    <refnamediv>
+        <refname>cutaxes</refname>
+        <refpurpose>plots curves or an existing axes along a discontinuous or multiscaled axis</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            cutaxes(x, y, cutaxis, intervals)
+            cutaxes(axes0, cutaxis, intervals)
+            cutaxes(.., "ticksmode", "alt" | "shift")
+            cutaxes(.., "widths", "isoscaled" | widths)
+            [Axes, curves] = cutaxes(x, y, ..)
+            Axes = cutaxes(axes0, cutaxis, intervals, ..)
+       </synopsis>
+    </refsynopsisdiv>
+
+    <refsection>
+        <title>Contents</title>
+        <itemizedlist>
+            <listitem>
+                <link linkend="cutaxes_arguments">Arguments</link>
+            </listitem>
+            <listitem>
+                <link linkend="cutaxes_description">Description</link>
+                    <itemizedlist>
+                        <listitem>
+                            <link linkend="cutaxes_description">Introduction</link>
+                        </listitem>
+                        <listitem>
+                            <link linkend="cutaxes_titles">Titles, legends, datatips</link>
+                        </listitem>
+                    </itemizedlist>
+            </listitem>
+            <listitem>
+                <link linkend="cutaxes_examples">Examples</link>
+                <itemizedlist>
+                    <listitem>
+                        <link linkend="cutaxes_curves">"ticksmode" and "widths" options. Addressing and customizing the curves</link>
+                    </listitem>
+                    <listitem>
+                        <link linkend="cutaxes_xmultiscale">Replicated and inverted interval</link>
+                    </listitem>
+                    <listitem>
+                        <link linkend="cutaxes_ymultiscale">Multi-scaled Y axis</link>
+                    </listitem>
+                    <listitem>
+                        <link linkend="cutaxes_patch2D">Example with Matplot1()</link>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <link linkend="cutaxes_seealso">See also</link>
+            </listitem>
+            <listitem>
+                <link linkend="cutaxes_history">History</link>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection role="arguments" id="cutaxes_arguments">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        vector or matrix of real abscissae of curves to plot.
+                        <itemizedlist>
+                            <listitem>
+                                If <varname>x</varname> and <varname>y</varname> are vectors, we
+                                must have <literal>length(x)==length(y)</literal>
+                            </listitem>
+                            <listitem>
+                                If it is a vector and <varname>y</varname> is a matrix, the same
+                                abscissae are shared for all curves given as <varname>y</varname>
+                                columns, and we must have <literal>length(x)==size(y,1)</literal>.
+                            </listitem>
+                            <listitem>
+                                If both <varname>x</varname> and <varname>y</varname> are matrices,
+                                they must have the same sizes, and <literal>x(:,i)</literal> are
+                                abscissae of <literal>y(:,i)</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        real numbers: ordinates of curves to plot. If <varname>y</varname>
+                        is a matrix, each of its columns represents a separate curve.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>axes0</term>
+                <listitem>
+                    <para>
+                        Input graphical axes to replot in a piecewise way.
+                        <literal>.isoview="off"</literal> is forced for all its piecewise replicates.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cutaxis</term>
+                <listitem>
+                    <para>
+                        <literal>"x"</literal> or <literal>"y"</literal>, specifying the
+                        discontinuous graphical axis.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>intervals</term>
+                <listitem>
+                    <para>(N x 2) matrix of real numbers: Each row provides both
+                    <literal>[start,end]</literal> bounds of an interval over which all given curves
+                    or the input <varname>axes0</varname>
+                    must be plotted. According to the <varname>cutaxis</varname> value, given bounds
+                    are along the X axis or along the Y one. Any number of intervals may be
+                    specified as distinct <varname>intervals</varname> rows.
+                    </para>
+                    <para>
+                        On the figure, intervals are plotted from left to right in the order they
+                        are specified in <varname>intervals</varname>. The user may organize and
+                        present them as wished.
+                    </para>
+                    <para>
+                        When an interval is specified such that <literal>start > end</literal>,
+                        the axis is reversed on the interval.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"ticksmode"</term>
+                <listitem>
+                    <para>By default, ticks and labels of the different parts of the discontinuous
+                    axis are drawn "aligned", without specific attribute to distinguish consecutive
+                    parts. <literal>"ticksmode"</literal> is an optional flag allowing to manage
+                    ticking and labelling of alternate pieces of the cut axis. It must be followed
+                    by one of the following values:
+                    </para>
+                    <para>
+                        <table>
+                        <tr>
+                            <td><literal>"alt"</literal></td>
+                            <td>
+                                Ticks and labels are drawn alternately on the bottom and top sides
+                                for the <literal>"x"</literal> discontinuous axis, or on the left
+                                and right sides for the <literal>"y"</literal> one.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><literal>"shift"</literal></td>
+                            <td>
+                                Ticks and labels are drawn with a small alternative shift for one
+                                interval over two of the discontinuous axis.
+                            </td>
+                        </tr>
+                        </table>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"widths"</term>
+                <listitem>
+                    <para>
+                    By default, if N intervals are defined, the full plot width is split into N
+                    sections of equal widths, whatever are the <literal>|end - start|</literal> data
+                    ranges. This default plotting mode may be changed using the
+                    <literal>"widths"</literal> keyword, followed by one of the following
+                    specifications:
+                    </para>
+                    <para>
+                        <table>
+                            <tr>
+                                <td><literal>"-"</literal></td>
+                                <td>
+                                    As the default mode, except that interspaces separating
+                                    sections are removed.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top"><literal>"isoscaled"</literal></td>
+                                <td>
+                                    This mode plots data with the same scale for all intervals
+                                    along the discontinuous axis. The plotting width is proportional
+                                    to the <literal>|end - start|</literal> range.
+                                    <para>
+                                        <literal>"-isoscaled"</literal> will do the same, except
+                                        that interspaces separating sections are removed.
+                                    </para>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top"><literal>widths</literal></td>
+                                <td>
+                                    <para>
+                                        Vector of numbers giving the relative graphical widths of
+                                        intervals along the discontinuous axis. The vector must have
+                                        as many values as there are defined intervals.
+                                    </para>
+                                    <para>
+                                        To remove the separating space before an interval, set its
+                                        width as negative. Its absolute value will be used for the
+                                        actual width.
+                                    </para>
+                                    <para>
+                                        Only <literal>|widths| / sum(|widths|)</literal> is considered,
+                                        in such a way that <literal>[1,2,2]</literal> and
+                                        <literal>[0.5,1,1]</literal> or
+                                        <literal>[0.2,0.4,0.4]</literal> are for instance equivalent.
+                                    </para>
+                                </td>
+                            </tr>
+                        </table>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Axes</term>
+                <listitem>
+                    <para>
+                        vector of pointers on plotted sub-axes. The components allow to modify
+                        subaxes attributes, like the log mode of the piece of discontinuous axis,
+                        the grids, etc. See examples for illustrations.
+                    </para>
+                    <para>
+                        <literal>Axes($)</literal> points to the common continuous axes.
+                        <literal>cutaxes()</literal> sets it as the current axes before returning.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>curves</term>
+                <listitem>
+                    <para>
+                        list of vectors of pointers on plotted curves (only when they are provided):
+                        <itemizedlist>
+                            <listitem>
+                                <literal>curves(i)</literal> is a vector of graphic pointers on all
+                                sections drawn for the curve #i defined in <literal>y(:,i)</literal>.
+                            </listitem>
+                            <listitem>
+                                <literal>curves(i)(j)</literal> points to the section #j drawn for
+                                the curve #i over <literal>intervals(j,:)</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        These identifiers allow to modify curves attributes after plotting.
+                        For instance, setting in red all pieces of the curve #2 will be done with
+                        <literal>curves(2).foreground = color("red")</literal>. Setting only its
+                        section #3 in dash style is done with
+                        <literal>curves(2)(3).line_style = 3</literal>.
+                        An example is given and illustrated below.
+                    </para>
+                    <note>
+                        The vector of handles of curves #i1 to #i2 > #i1 of the same section #s may be
+                        retrieved with <literal>Axes(s).children($).children($-i1+1:-1:$-i2+1)</literal>.
+                    </note>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description" id="cutaxes_description">
+        <title>Description</title>
+        <para>
+            <literal>cutaxes()</literal> allows to plot some curves along a non-regular axis,
+            like having some hidden intervals. Consecutive visible intervals are drawn without
+            loosing space in-between.
+        </para>
+        <para>
+            When an input axes <varname>axes0</varname> is provided instead of curves, it is
+            replicated as many times as there are intervals, each copy showing the axes contents over
+            an interval. The X, Y, and Z labels as well as the title of <varname>axes0</varname>
+            are ignored.
+        </para>
+        <para>
+            In both cases, <literal>cutaxes()</literal> draws in the gca() plotting area.
+            If <varname>axes0</varname> is <literal>gca()</literal>, <literal>cutaxes()</literal>
+            deletes it before returning. Otherwise, <varname>axes0</varname> is kept in its own
+            graphical area.
+        </para>
+        <para>
+            The intervals of the discontinous axis may have distinct scales, distinct
+            linear or logarithmic modes, distinct direct or reversed modes.
+        </para>
+        <para>
+            A symetrical axis may be plotted by repeating an interval along the discontinuous axis
+            and reverting the clone. See examples.
+        </para>
+        <note><literal>cutaxes()</literal> can be used in conjunction to the following features:
+            <itemizedlist>
+                <listitem>
+                    <literal>subplot(..)</literal> or <literal>xsetech(..)</literal> can be used
+                    to define the plotting area before calling <function>cutaxes()</function>.
+                </listitem>
+                <listitem>
+                    A zoom box spanning over several pieces of the discontinuous axis may be
+                    selected interactively.
+                </listitem>
+            </itemizedlist>
+        </note>
+        <refsect3 id="cutaxes_titles">
+            <title>Titles, legends and datatips</title>
+            <para>
+                <emphasis role="bold">cutaxes() from an initial <varname>axes0</varname>:</emphasis>
+            </para>
+            <para>
+                The general title and the labels of the x and y axis are copied from the initial
+                <varname>axes0</varname>. If any, datatips are also copied. However, a given datatip
+                can't be dragged from an interval of the plot to other ones.
+            </para>
+            <para>
+                <emphasis role="bold">cutaxes(x,y,..) of some given curves, from scratch:</emphasis>
+            </para>
+            <para>
+                <emphasis role="italic">General title, title of the continuous common axis</emphasis>:
+                <literal>title()</literal>, <literal>xtitle()</literal>,
+                <literal>xlabel()</literal> when <varname>cutaxis</varname> is <literal>"y"</literal> or
+                <literal>ylabel()</literal> when <varname>cutaxis</varname> is <literal>"x"</literal>
+                can be used as usual after calling <literal>cutaxes()</literal>.
+            </para>
+            <para>
+                <emphasis role="italic">Title of the discontinuous axis</emphasis>: It is highly
+                recommended to set a title to the axis of the most central plotted section,
+                rather than to the axis of the overall axes (which introduces a parasitic shift).
+                The handle of the targeted section will be used in conjunction to
+                <literal>xlabel()</literal> or <literal>ylabel()</literal>. Please see examples.
+            </para>
+            <para>
+                <emphasis role="italic">Datatips</emphasis>: can be set as usual on curves drawn with
+                <literal>cutaxes()</literal>. However, a given datatip can't be dragged from an
+                interval of the plot to other ones.
+            </para>
+            <para>
+                <emphasis role="bold">Block of curves legends</emphasis>: Such a block can be
+                defined in a given plotting interval, by targeting the related axes:
+                <screen><![CDATA[
+sca(axes(i));
+legend(["Curve 1" "Curve 2"],"in_upper_left");
+]]></screen>
+                The chosen position refers to the bounds of the targeted section.
+                There is no way to refer to the whole axes defining the shared axis.
+            </para>
+        </refsect3>
+        <para/>
+    </refsection>
+    <refsection role="examples" id="cutaxes_examples">
+        <title>Examples</title>
+        <refsect3 id="cutaxes_curves">
+            <title>"ticksmode" and "widths" options. Addressing and customizing the curves</title>
+            <para/>
+            <programlisting><![CDATA[
+x = [-7.5:0.5:200]';
+y =  exp(x/30).*(1+0.5*sin(x));
+
+gcf().axes_size = [1000 300];
+clf
+
+intervals = [-4 6; 10 30 ; 40 100];
+[a, c] = cutaxes(x, [y y/2], "x", intervals, "ticksmode", "alt", "widths", [1 1.5 3]);
+
+// Special curves settings:
+c(2).foreground = color("red");   // 2nd cuve in red
+c1 = c(1);
+c1(3).line_style = 8;             // 3rd section of 1st curve in small dashes
+c1(3).thickness = 2;              //    .. and thicker
+
+// Invert the common Y axis
+//a.axes_reverse = ["off" "on"];
+
+// Setting X-axis of the third section in log:
+a(3).log_flags = "lnn";
+        ]]></programlisting>
+            <scilab:image><![CDATA[
+                x = [-7.5:0.5:200]';
+                y =  exp(x/30).*(1+0.5*sin(x));
+
+                gcf().axes_size = [1000 300];
+                clf
+
+                intervals = [-4 6; 10 30 ; 40 100];
+                [a, c] = cutaxes(x, [y y/2], "x", intervals, "ticksmode", "alt", "widths", [1 1.5 3]);
+
+                // Special curves settings:
+                c(2).foreground = color("red");   // 2nd cuve in red
+                c1 = c(1);
+                c1(3).line_style = 8;             // 3rd section of 1st curve in small dashes
+                c1(3).thickness = 2;              //    .. and thicker
+
+                // Invert the common Y axis
+                //a.axes_reverse = ["off" "on"];
+
+                // Setting X-axis of the third section in log:
+                a(3).log_flags = "lnn";
+         ]]></scilab:image>
+            <para/>
+        </refsect3>
+        <refsect3 id="cutaxes_xmultiscale">
+            <title>Replicated and inverted interval</title>
+            <para>
+                <literal>cutaxes()</literal> allows to specify overlaying intervals, or the same interval
+                several times, or twice the same but in reverse order. This may be useful in various
+                situations. For a positive radial coordinate, it is thus possible to tick a
+                positive distance from the center on both sides. A side can be plotted in radial linear scale,
+                and the other in radial logarithmic scale to show the asymptotical behavior:
+            </para>
+            <programlisting><![CDATA[
+x = logspace(-2,2,500)';
+y = sin(10*log(x)).*(x.^0.3);
+
+gcf().axes_size = [1000 370];
+clf
+
+intervals = [5 0 ; 0.01 11 ; 11 max(x)];
+a = cutaxes(x, y, "x", intervals, "widths", -[2 3 2]);
+a(2).log_flags = "lnn";
+a(2).sub_ticks(1) = 8;
+title "Radial singularity on 0"
+ylabel Ordinates
+xlabel(a(2), "Radius")
+         ]]></programlisting>
+            <scilab:image><![CDATA[
+                x = logspace(-2,2,500)';
+                y = sin(10*log(x)).*(x.^0.3);
+
+                gcf().axes_size = [1000 370];
+                clf
+
+                intervals = [5 0 ; 0.01 11 ; 11 max(x)];
+                a = cutaxes(x, y, "x", intervals, "widths", -[2 3 2]);
+                a(2).log_flags = "lnn";
+                a(2).sub_ticks(1) = 8;
+                title "Radial singularity on 0"
+                ylabel Ordinates
+                xlabel(a(2), "Radius")
+         ]]></scilab:image>
+    </refsect3>
+
+    <refsect3 id="cutaxes_ymultiscale">
+        <title>Multi-scaled Y axis:</title>
+        <para>
+            <emphasis role="bold">Example #1, with curves legends:</emphasis>
+        </para>
+        <programlisting><![CDATA[
+x = [-8:0.2:100]';
+y =  exp(x/14).*(1+0.5*sin(x));
+intervals = [0.01 10 ; 10 max(y)];
+
+gcf().axes_size = [1000 400];
+clf
+[a, c] = cutaxes(x, [y y/2], "y", intervals, "widths", -[1 2]);
+c(2).foreground = color("red");
+a(2).log_flags = "nln";
+a(2).sub_ticks(2) = 8;
+xlabel Abscissae
+ylabel(a(2), "Ordinates") // a(2) is now the current axes
+legend(["Curve 1" "Curve 2"], "in_upper_left");
+// Grids
+// a($).grid(1) = -1;       // removes the vertical shared grid
+// a(1:$-1).grid(:,2)= -1;  // removes the horizontal grids
+     ]]></programlisting>
+        <scilab:image><![CDATA[
+            x = [-8:0.2:100]';
+            y =  exp(x/14).*(1+0.5*sin(x));
+            intervals = [0.01 10 ; 10 max(y)];
+
+            gcf().axes_size = [1000 350];
+            clf
+            [a, c] = cutaxes(x, [y y/2], "y",intervals, "widths", -[1 2]);
+            c(2).foreground = color("red");
+            a(2).log_flags = "nln";
+            a(2).sub_ticks(2) = 8;
+            xlabel Abscissae
+            ylabel(a(2), "Ordinates")  // a(2) is now the current axes
+            legend(["Curve 1" "Curve 2"], "in_upper_left");
+     ]]></scilab:image>
+        <para>
+            <emphasis role="bold">
+                Example #2, from an axes:
+            </emphasis>
+            Low sinc<superscript>2</superscript>() bouncing wings
+        </para>
+        <para>
+            Here below we plot the curve to create its initial axes in <literal>subplot(1,2,1)</literal>.
+            Then we move <literal>gca()</literal> to <literal>subplot(1,2,2)</literal>, and
+            we call <literal>cutaxes(..)</literal> :
+        </para>
+        <programlisting><![CDATA[
+x = linspace(-15,15,400);
+clf
+subplot(1,2,1)
+gcf().axes_size = [720 360];
+plot2d(x, sinc(x).^2)
+ax0 = gca();
+
+d = datatipCreate(gce().children, [7.7 0.02]);
+xtitle("$\LARGE sinc^2$", "Abscissae [a.u.]", "Amplitude")
+grey = color("grey60");
+set(d, "mark_size",4, "foreground",grey, "font_foreground",grey, "orientation",8);
+
+subplot(1,2,2)
+Axes = cutaxes(ax0, "y",[0 0.1 ; 0.1 1], "widths","-");
+is_handle_valid(ax0)  // %T: the initial axes still exists
+     ]]></programlisting>
+        <scilab:image><![CDATA[
+            x = linspace(-15,15,400);
+            clf
+            subplot(1,2,1)
+            gcf().axes_size = [720 360];
+            plot2d(x, sinc(x).^2)
+            ax0 = gca();
+            d = datatipCreate(gce().children, [7.7 0.02]);
+            xtitle("$\LARGE sinc^2$", "Abscissae [a.u.]", "Amplitude")
+            grey = color("grey60");
+            set(d, "mark_size",4, "foreground",grey, "font_foreground",grey, "orientation",8);
+            subplot(1,2,2)
+            Axes = cutaxes(ax0, "y",[0 0.1 ; 0.1 1], "widths","-");
+     ]]></scilab:image>
+        <para>
+            Now, <literal>gca()</literal> is kept where we have initially plotted the curve, and
+            we call cutaxes() to replicate it. As a consequence, <literal>cutaxes</literal>
+            uses the same subplot area, and finally deletes the initial axes after its replication:
+        </para>
+        <programlisting><![CDATA[
+x = linspace(-15,15,400);
+clf
+subplot(1,2,1)
+gcf().axes_size = [720 360];
+plot2d(x, sinc(x).^2)
+ax0 = gca();
+Axes = cutaxes(ax0, "y",[0 0.1 ; 0.1 1], "widths","-");
+is_handle_valid(ax0)  // %F: the initial axes has been deleted
+     ]]></programlisting>
+        <scilab:image><![CDATA[
+            x = linspace(-15,15,400);
+            clf
+            subplot(1,2,1)
+            gcf().axes_size = [720 360];
+            plot2d(x, sinc(x).^2)
+            ax0 = gca();
+            Axes = cutaxes(ax0, "y", [0 0.1 ; 0.1 1], "widths","-");
+     ]]></scilab:image>
+    </refsect3>
+    <refsect3 id="cutaxes_patch2D">
+        <title>Example with Matplot1():</title>
+        <para>
+        <programlisting><![CDATA[
+clf
+gcf().axes_size = [925 455];
+subplot(1,2,1)
+Matplot1();
+xtitle("","","");
+title "Matplot1() sample"
+x0 = gca();
+
+subplot(1,2,2)
+intervals = [-0.03 -0.02; -0.013 -0.007 ; 0 0.01];
+axes = cutaxes(x0, "y",intervals, "ticksmode","alt", "widths","isoscaled");
+     ]]></programlisting>
+        <scilab:image><![CDATA[
+            gcf().axes_size = [925 455];
+            subplot(1,2,1)
+            Matplot1();
+            xtitle("","","");
+            title "Matplot1() sample"
+            x0 = gca();
+
+            subplot(1,2,2)
+            intervals = [-0.03 -0.02; -0.013 -0.007 ; 0 0.01];
+            axes = cutaxes(x0, "y",intervals, "ticksmode","alt", "widths","isoscaled");
+     ]]></scilab:image>
+        </para>
+    </refsect3>
+    </refsection>
+    <refsection role="see also" id="cutaxes_seealso">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="plot">plot</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>
+                <link linkend="subplot">subplot</link>
+            </member>
+            <member>
+                <link linkend="xsetech">xsetech</link>
+            </member>
+        </simplelist>
+        <para/>
+    </refsection>
+    <refsection role="history" id="cutaxes_history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <para>
+                        Initial release in Scilab, proposed by S. Gougeon. cutaxes() was formerly
+                        named plotplots() and available as an ATOMS external module since 2018.
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
