@@ -44,7 +44,7 @@ if withXML == %t then
 else
    disp("XML module disabled");
 end
- ]]></programlisting>
+     ]]></programlisting>
     </refsection>
 
     <refsection role="see also">

@@ -6,21 +6,12 @@
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento</title>
-        <synopsis>getversion()
-
-            [version, opts] = getversion()
-            COMPILER = opts(1)
-            ARCH = opts(2)
-            or(opts == 'modelicac')
-            or(opts == 'tk')
-            RELEASE_MODE = opts($-2)
-            RELEASE_DATE = opts($-1)
-            RELEASE_TIME = opts($)
-
-            version = getversion('scilab')
-            versionstr = getversion('scilab','string_info')
-            version = getversion('overloading')
-            versionstr = getversion('overloading','string_info')
+        <synopsis>
+            [version, options] = getversion()
+            [COMPILER, ARCH, RELEASE_MODE, RELEASE_DATE, RELEASE_TIME] = (options(1), opt(2), options($-2), options($-1), options($))
+            version_numbers = getversion('scilab')
+            version_numbers = getversion('&lt;module&gt;')
+            version = getversion('&lt;module&gt;','string_info')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -29,27 +20,21 @@
             <varlistentry>
                 <term>version</term>
                 <listitem>
-                    <para>um string</para>
+                    <para>um string sobre a versão. Exemplo: "scilab-6.1.0"</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>versioninfo</term>
-                <listitem>
-                    <para>um string sobre a versão</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ver</term>
+                <term>version_numbers</term>
                 <listitem>
                     <para>um vetor de inteiros</para>
-                    <para>ver(1): versão maior</para>
-                    <para>ver(2): versão menor</para>
-                    <para>ver(3): versão de manutençãp</para>
-                    <para>ver(4): timestamp GIT</para>
+                    <para>version_numbers(1): versão maior</para>
+                    <para>version_numbers(2): versão menor</para>
+                    <para>version_numbers(3): versão de manutençãp</para>
+                    <para>version_numbers(4): timestamp GIT</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>opts</term>
+                <term>options</term>
                 <listitem>
                     <para>um vetor de strings:
                         <literal>[compiler, architecture, [tk, modelicac, ] release_mode, release_date, release_time]</literal>
@@ -62,7 +47,7 @@
         <title>Descrição</title>
         <para>
             Retorna em <literal>version</literal> o nome da versão do Scilab e
-            em <literal>opts</literal> build options ("opções de construção") que
+            em <literal>options</literal> build options ("opções de construção") que
             podem ser usadas para determinar se o Scilab foi construído em tk ou
             modelicac.
         </para>
@@ -71,21 +56,13 @@
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 getversion()
+[version, options] = getversion()
+[COMPILER, ARCH, RELEASE_MODE, RELEASE_DATE, RELEASE_TIME] = (options(1), opt(2), options($-2), options($-1), options($))
+or(options == 'modelicac')
+or(options == 'tk')
 
-[version, opts] = getversion()
-COMPILER = opts(1)
-ARCH = opts(2)
-or(opt == 'modelicac')
-or(opt == 'tk')
-RELEASE_MODE = opts($-2)
-RELEASE_DATE = opts($-1)
-RELEASE_TIME = opts($)
-
-version = getversion('scilab')
-versionstr = getversion('scilab','string_info')
-version = getversion('overloading')
-versionstr = getversion('overloading','string_info')
-
+numbers = getversion('scilab')
+version = getversion('scilab','string_info')
  ]]></programlisting>
     </refsection>
     <refsection>

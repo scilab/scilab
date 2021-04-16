@@ -15,21 +15,20 @@
             estiverem presentes) quando o Scilab é chamado, junto com o arquivo
             <literal>scilab.star</literal> no diretório Scilab (SCI).
         </para>
+        <warning>
+            <para>A última linha de um arquivo de inicialização deve ser terminada por
+                uma nova linha a ser levada em conta.
+            </para>
+        </warning>
     </refsection>
     <refsection>
-        <title>Observações</title>
-        <para>A última linha de um arquivo de inicialização deve ser terminada por
-            uma nova linha a ser levada em conta.
-        </para>
-        <para>Definição de SCIHOME : no Windows : C:/Documents e
-            Settings/&lt;User>/Scilab/&lt;Scilab-Version>
-        </para>
-        <para>ou no Vista :
-            C:/&lt;User>/AppData/Roaming/Scilab/&lt;Scilab-Version>
-        </para>
-        <para>No Linux/Unix :
-            /home/&lt;User>/.Scilab/&lt;Scilab-Version>
-        </para>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+ls(SCIHOME)
+if ls(SCIHOME+"/scilab.ini") == [] & ls(SCIHOME+"/.scilab") == []
+   disp("No startup file defined");
+end
+     ]]></programlisting>
     </refsection>
     <refsection>
         <title>Ver Também</title>

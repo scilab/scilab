@@ -15,12 +15,11 @@
             present) when Scilab is invoked, in addition with the file
             <link linkend="SCI">SCI</link>/etc/scilab.start.
         </para>
-    </refsection>
-    <refsection>
-        <title>Remarks</title>
-        <para>Last line of startup file must be terminated by a newline to be
-            taken into account.
-        </para>
+        <warning>
+            <para>The last instruction of a startup file must be followed by a newline to be
+                taken into account.
+            </para>
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -29,7 +28,7 @@ ls(SCIHOME)
 if ls(SCIHOME+"/scilab.ini") == [] & ls(SCIHOME+"/.scilab") == []
    disp("No startup file defined");
 end
- ]]></programlisting>
+     ]]></programlisting>
     </refsection>
 
     <refsection role="see also">

@@ -6,9 +6,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>getdebuginfo()
-            dynamic_info = getdebuginfo();
-            [dynamic_info,static_info] = getdebuginfo();
+        <synopsis>
+            [dynamic_info, static_info] = getdebuginfo()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -17,18 +16,58 @@
             <function>getdebuginfo</function> は, Scilab に関するデバッグ情報を取得します.
         </para>
         <para>
-            <code>dynamic_info = getdebuginfo();</code> はシステムに関する情報を返します.
+            <literal>dynamic_info = getdebuginfo()</literal> はシステムに関する情報を返します.
         </para>
         <para>
-            <code>[dynamic_info,static_info] = getdebuginfo();</code> は,システムおよびScilabに
+            <literal>[dynamic_info, static_info] = getdebuginfo()</literal> は,システムおよびScilabに
             関する情報を返します.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-[a,b]=getdebuginfo()
- ]]></programlisting>
+[a, b] = getdebuginfo()
+     ]]></programlisting>
+        <screen><![CDATA[
+--> [a, b] = getdebuginfo()
+ a  =
+  "Memory in use:      31 %"
+  "Total Physical Memory (Kbytes): 16618008"
+  "Free Physical Memory (Kbytes): 11381360"
+  "Total Paging File (Kbytes): 19108376"
+  "Free Paging File (Kbytes): 10309008"
+  "Total Virtual Memory (Kbytes): 137438953344"
+  "Free Virtual Memory (Kbytes): 137430188892"
+  "Free Extended Memory (Kbytes):       0"
+  "Operating System: Windows 8 x64"
+  "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz"
+  "Number of processors: 12"
+  "Number of Video cards: 2"
+  "Video card #0: Intel(R) UHD Graphics 630"
+  "Video card #1: NVIDIA GeForce GTX 1660 Ti"
+  "Primary Video card driver version: 27.20.100.8681"
+  "Screen size: 1920 x 1080 32 bits"
+  "Number of Monitors: 1"
+  "Path: C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;..."
+  "ComSpec: C:\WINDOWS\system32\cmd.exe"
+  "TMP : C:\Users\me\AppData\Local\Temp"
+  "TEMP: C:\Users\me\AppData\Local\Temp"
+
+ b  =
+  "Version: scilab-6.1.0"
+  "Compilation date: Feb 25 2020"
+  "Compilation time: 11:34:32"
+  "Compiler Architecture: X64"
+  "Compiled with Microsoft compiler (191627035)"
+  "BLAS library optimized version: MKL"
+  "XML version: 2.9.1"
+  "Tcl/Tk: Enable"
+  "TCL version: 8.5.9"
+  "TK version: 8.5.9"
+  "Path separator: ;"
+  "Directory separator: \"
+  "PCRE Version: 8.21"
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

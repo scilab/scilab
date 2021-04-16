@@ -7,14 +7,20 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            str=lasterror( [opt] )
-            [str,n]=lasterror([opt])
-            [str,n,line,func]=lasterror([opt])
+            [str, n, line, func] = lasterror()
+            [str, n, line, func] = lasterror(opt)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
+            <varlistentry>
+                <term>opt</term>
+                <listitem>
+                    <para>логическое значение, если %t, то записанное сообщение очищено. По умолчанию %t.
+                    </para>
+                </listitem>
+            </varlistentry>
             <varlistentry>
                 <term>str</term>
                 <listitem>
@@ -40,13 +46,6 @@
                 <term>func</term>
                 <listitem>
                     <para>строка, имя последней записанной функции.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>opt</term>
-                <listitem>
-                    <para>логическое значение, если %t, то записанное сообщение очищено. По умолчанию %t.
-                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>

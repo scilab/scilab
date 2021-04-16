@@ -6,7 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>exists(name [,where])</synopsis>
+        <synopsis>
+            ve = exists(name)
+            ve = exists(name, where)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -14,7 +17,7 @@
             <varlistentry>
                 <term>name</term>
                 <listitem>
-                    <para>string</para>
+                    <para>matrix of character strings: names of queried variables.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -24,6 +27,16 @@
                         <literal>'l'</literal> (local), <literal>'n'</literal> (nolocal) and
                         <literal>'a'</literal> (all). O valor padrão é
                         <literal>'all'.</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ve</term>
+                <listitem>
+                    <para>
+                        a matrix with the same size as <varname>name</varname> with possible values:
+                        <literal>1</literal> if true,
+                        <literal>0</literal> if false
                     </para>
                 </listitem>
             </varlistentry>

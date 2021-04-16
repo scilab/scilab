@@ -6,9 +6,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>str=lasterror( [opt] )
-            [str,n]=lasterror([opt])
-            [str,n,line,func]=lasterror([opt])
+        <synopsis>
+            [str, n, line, func] = lasterror()
+            [str, n, line, func] = lasterror(opt)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -44,8 +44,7 @@
             <varlistentry>
                 <term>opt</term>
                 <listitem>
-                    <para>booleano, se %t for registrado, a mensagem é limpa. O padrão é
-                        %t
+                    <para>booleano, se %t for registrado, a mensagem é limpa. O padrão é %t
                     </para>
                 </listitem>
             </varlistentry>
@@ -77,7 +76,7 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-ierr=execstr('a=zzzzzzz','errcatch')
+ierr = execstr('a=zzzzzzz','errcatch')
 if ierr>0 then disp(lasterror()),end
  ]]></programlisting>
     </refsection>

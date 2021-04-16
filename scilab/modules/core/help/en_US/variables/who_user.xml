@@ -6,7 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>varList = who_user([bPrint])</synopsis>
+        <synopsis>
+            varList = who_user()
+            varList = who_user(bPrint)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -20,9 +23,6 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-    </refsection>
-    <refsection>
-        <title>Return value</title>
         <variablelist>
             <varlistentry>
                 <term>varList</term>
@@ -43,7 +43,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="code_scilab"><![CDATA[
-clear;
+clear
 who_user()
 who_user(%t)
 who_user(%f)
@@ -52,9 +52,7 @@ b = 2;
 who_user()
 who_user(%t)
 who_user(%f)
-clear;
- ]]>
-        </programlisting>
+      ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

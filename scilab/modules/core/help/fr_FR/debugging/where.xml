@@ -9,7 +9,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[linenum,mac]=where()</synopsis>
+        <synopsis>
+            [linenum, mac] = where()
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>

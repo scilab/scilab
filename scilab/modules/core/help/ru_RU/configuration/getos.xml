@@ -9,8 +9,7 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            OS=getos()
-            [OS,Version]=getos()
+            [OS, Version] = getos()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -22,8 +21,22 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-OS=getos()
-[OS,version] = getos()
+OS = getos()
+[OS, version] = getos()
+     ]]></programlisting>
+        <screen><![CDATA[
+--> OS = getos()
+ OS  =
+  "Windows"
+
+--> [OS, version] = getos()
+ OS  =
+  "Windows"
+
+ version  =
+  "8 x64"
+]]></screen>
+        <programlisting role="example"><![CDATA[
 if (getos() == "Windows") then
    disp("Scilab on Windows");
 end

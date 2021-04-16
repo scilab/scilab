@@ -16,13 +16,12 @@
             ファイル <link linkend="SCI">SCI</link>/etc/scilab.start と同様に,
             Scilabの起動時に自動的に実行されます.
         </para>
-    </refsection>
-    <refsection>
-        <title>注意</title>
-        <para>
-            スタートアップファイルの最終行は, 有効とするために
-            改行で終わる必要があります.
-        </para>
+        <warning>
+            <para>
+                スタートアップファイルの最終行は, 有効とするために
+                改行で終わる必要があります.
+            </para>
+        </warning>
     </refsection>
     <refsection>
         <title>例</title>

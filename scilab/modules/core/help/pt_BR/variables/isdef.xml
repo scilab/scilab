@@ -20,7 +20,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>isdef(name [,where])</synopsis>
+        <synopsis>
+            ve = isdef(name)
+            ve = isdef(name, where)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -28,13 +31,21 @@
             <varlistentry>
                 <term>name</term>
                 <listitem>
-                    <para>um string </para>
+                    <para>matrix of strings: names of queried variables.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>where</term>
                 <listitem>
                     <para>um string opcional com valor padrão 'all' (todos os locais)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ve</term>
+                <listitem>
+                    <para>
+                        a matrix with the same size as <varname>name</varname> with boolean values
                     </para>
                 </listitem>
             </varlistentry>
@@ -91,6 +102,8 @@ go()
         <simplelist type="inline">
             <member>
                 <link linkend="exists">exists</link>
+            </member>
+            <member>
                 <link linkend="isglobal">isglobal</link>
             </member>
             <member>

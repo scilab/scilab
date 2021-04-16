@@ -8,17 +8,50 @@
         <title>Seqüência de Chamamento </title>
         <synopsis>who
             who()
-            names=who('local')
-            [names,mem]=who('local')
-            names=who('global')
-            [names,mem]=who('global')
-            who('sorted')
-            names=who('local','sorted')
-            [names,mem]=who('local','sorted')
-            names=who('global','sorted')
-            [names,mem]=who('global','sorted')
+            [names, mem] = who(mode)
+            [names, mem] = who(mode, sorted)
+            [names, mem] = who(sorted)
         </synopsis>
     </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>mode</term>
+                <listitem>
+                    <para>
+                        <literal>local</literal>/<literal>get</literal>: list visible variables (not only in current function).
+                    </para>
+                    <para>
+                        <literal>scope</literal>/<literal>current</literal>: list variables in the current scope/function.
+                    </para>
+                    <para>
+                        <literal>global</literal>: list global variables.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sorted</term>
+                <listitem>
+                    <para>
+                        Boolean value to specify if output must be sort in alphabetical order.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>names</term>
+                <listitem>
+                    <para>String matrix with variable names.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mem</term>
+                <listitem>
+                    <para>Double matrix with variable used memory in bytes.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>Descrição</title>
         <para>
@@ -39,6 +72,22 @@
         </para>
     </refsection>
     <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a = 1;
+b = 2;
+[name, mem] = who("local");
+position = find(name=="a")
+mem(position) // Size used by a
+position = find(name=="d") // []
+
+function foo(a, b)
+    disp(who("scope", "sorted"))
+endfunction
+foo(1,2);
+     ]]></programlisting>
+    </refsection>
+    <refsection>
         <title> Ver Também </title>
         <simplelist type="inline">
             <member>
@@ -47,6 +96,20 @@
             <member>
                 <link linkend="who_user">who_user</link>
             </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    Add "scope" or "current" mode.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

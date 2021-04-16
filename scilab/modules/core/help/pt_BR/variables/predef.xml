@@ -55,6 +55,16 @@
             /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
         </para>
     </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+a = 1;
+predef("all");
+clear a // fails
+predef("clear")
+clear a // works
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
         <simplelist type="inline">
@@ -63,6 +73,12 @@
             </member>
             <member>
                 <link linkend="save">save</link>
+            </member>
+            <member>
+                <link linkend="ans">ans</link>
+            </member>
+            <member>
+                <link linkend="startup">startup</link>
             </member>
         </simplelist>
     </refsection>

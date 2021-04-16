@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>res=getmodules()</synopsis>
+        <synopsis>res = getmodules()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -14,14 +14,18 @@
             <varlistentry>
                 <term>res</term>
                 <listitem>
-                    <para>uma matriz de strings</para>
+                    <para>uma coluna de strings : nomes de módulos instalados no Scilab.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Retorna a lista de módulos instalados no Scilab.</para>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+modules = getmodules();
+find(modules=="core");
+with_module("core");
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>

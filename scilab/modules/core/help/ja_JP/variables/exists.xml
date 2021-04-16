@@ -6,7 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>ve = exists(name [,where])</synopsis>
+        <synopsis>
+            ve = exists(name)
+            ve = exists(name, where)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>

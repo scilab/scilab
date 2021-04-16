@@ -6,25 +6,23 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>[types [ [,names]]=typename()
+        <synopsis>[indices, onames] = typename()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
-                <term>types</term>
+                <term>indices</term>
                 <listitem>
-                    <para>vetor coluna de inteiros: os códigos dos tipos de cada tipo de
-                        dado definido.
+                    <para>vetor coluna de inteiros: os códigos dos tipos de cada tipo de dado definido.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>names</term>
+                <term>onames</term>
                 <listitem>
-                    <para>vetor coluna de strings: os nomes associados aos códigos de
-                        tipos.
+                    <para>vetor coluna de strings: os overloading nomes associados aos tipos.
                     </para>
                 </listitem>
             </varlistentry>
@@ -32,6 +30,9 @@
     </refsection>
     <refsection>
         <title>Descrição</title>
+        <para>
+            <literal>typename</literal> retorna informações sobre tipos de dados definidos.
+        </para>
         <para>O overloading de funções e operadores faz uso de nomes formais
             associados aos tipos de dados para formar o nome da função de overloading
             (ver overloading). <literal>typename</literal> pode ser usado para
@@ -40,10 +41,33 @@
             <literal>mlist</literal> são definidos de outra forma, ver
             <literal>overloading</literal>).
         </para>
-        <para>
-            <literal>typename</literal>
-            retorna informações sobre tipos de dados definidos.
-        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+[ind, onames] = typename();
+mprintf("Type index: %3d  overloading code: ""%s""\n", ind, onames)
+    ]]></programlisting>
+       <screen><![CDATA[
+--> mprintf("Type index: %3d  overloading code: ""%s""\n", ind, onames)
+Type index:   1  overloading code: "s"
+Type index:   2  overloading code: "p"
+Type index:   4  overloading code: "b"
+Type index:   5  overloading code: "sp"
+Type index:   6  overloading code: "spb"
+Type index:   7  overloading code: "msp"
+Type index:   8  overloading code: "i"
+Type index:   9  overloading code: "h"
+Type index:  10  overloading code: "c"
+Type index:  13  overloading code: "function"
+Type index:  14  overloading code: "f"
+Type index:  15  overloading code: "l"
+Type index:  16  overloading code: "tl"
+Type index:  17  overloading code: "ml"
+Type index: 128  overloading code: "ptr"
+Type index: 129  overloading code: "ip"
+Type index: 130  overloading code: "fptr"
+]]></screen>
     </refsection>
     <refsection>
         <title> Ver Também </title>

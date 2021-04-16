@@ -9,7 +9,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[free, total]=getmemory()</synopsis>
+        <synopsis>[free, total] = getmemory()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>

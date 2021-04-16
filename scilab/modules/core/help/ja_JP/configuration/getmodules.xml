@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>res=getmodules()</synopsis>
+        <synopsis>res = getmodules()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -21,12 +21,13 @@
     </refsection>
     <refsection>
         <title>説明</title>
-        <para>Scilabにインストールされているモジュールの一覧を返します.</para>
+        <para>Scilabにインストールされているモジュールの名前の列を返します.
+        </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-modules=getmodules();
+modules = getmodules();
 find(modules=="core");
 with_module("core");
  ]]></programlisting>

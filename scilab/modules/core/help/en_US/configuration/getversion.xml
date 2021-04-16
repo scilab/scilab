@@ -6,12 +6,12 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>version = getversion()
-            [version, opts] = getversion()
+        <synopsis>
+            [version, options] = getversion()
+            [COMPILER, ARCH, RELEASE_MODE, RELEASE_DATE, RELEASE_TIME] = (options(1), opt(2), options($-2), options($-1), options($))
             version_numbers = getversion('scilab')
-            versioninfo = getversion('scilab', 'string_info')
             version_numbers = getversion('&lt;module&gt;')
-            versioninfo = getversion('&lt;module&gt;','string_info')
+            version = getversion('&lt;module&gt;','string_info')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -20,27 +20,21 @@
             <varlistentry>
                 <term>version</term>
                 <listitem>
-                    <para>a string</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>versioninfo</term>
-                <listitem>
-                    <para>a string about version</para>
+                    <para>a string about version. Example: "scilab-6.1.0"</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>version_numbers</term>
                 <listitem>
                     <para>an integer vector</para>
-                    <para>ver(1) Major version</para>
-                    <para>ver(2) Minor version</para>
-                    <para>ver(3) Maintenance version</para>
-                    <para>ver(4) GIT timestamp</para>
+                    <para>version_numbers(1) Major version</para>
+                    <para>version_numbers(2) Minor version</para>
+                    <para>version_numbers(3) Maintenance version</para>
+                    <para>version_numbers(4) GIT timestamp</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>opts</term>
+                <term>options</term>
                 <listitem>
                     <para>
                         a vector of string: <literal>[compiler, architecture,[tk, modelicac, ] release_mode, release_date, release_time]</literal>
@@ -52,8 +46,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>[version, opts] = getversion()</literal> returns in <literal>version</literal> the Scilab version name and in
-            <literal>opts</literal> build options which can be used to determine if
+            <literal>[version, options] = getversion()</literal> returns in <literal>version</literal> the Scilab version name and in
+            <literal>options</literal> build options which can be used to determine if
             scilab has been build with tk or modelicac and gives release date and time.
         </para>
         <para> [tk, modelicac, atlas,] are optional. </para>
@@ -66,21 +60,13 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 getversion()
+[version, options] = getversion()
+[COMPILER, ARCH, RELEASE_MODE, RELEASE_DATE, RELEASE_TIME] = (options(1), opt(2), options($-2), options($-1), options($))
+or(options == 'modelicac')
+or(options == 'tk')
 
-[version, opts] = getversion()
-COMPILER = opts(1)
-ARCH = opts(2)
-or(opts == 'modelicac')
-or(opts == 'tk')
-RELEASE_MODE = opts($-2)
-RELEASE_DATE = opts($-1)
-RELEASE_TIME = opts($)
-
-version = getversion('scilab')
-versionstr = getversion('scilab','string_info')
-version = getversion('overloading')
-versionstr = getversion('overloading','string_info')
-
+numbers = getversion('scilab')
+version = getversion('scilab','string_info')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

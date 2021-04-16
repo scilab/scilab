@@ -16,19 +16,15 @@
             <varlistentry>
                 <term>res</term>
                 <listitem>
-                    <para>матрица строк</para>
+                    <para>столбец строк: имена модулей, установленных в Scilab</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Описание</title>
-        <para>Возвращает список модулей, установленных в Scilab'е.</para>
-    </refsection>
-    <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-modules=getmodules();
+modules = getmodules();
 find(modules=="core");
 with_module("core");
  ]]></programlisting>

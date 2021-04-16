@@ -20,7 +20,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>ve = isdef(name [,where])</synopsis>
+        <synopsis>
+            ve = isdef(name)
+            ve = isdef(name, where)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>

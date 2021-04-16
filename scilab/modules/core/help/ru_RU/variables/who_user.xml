@@ -6,7 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>who_user()</synopsis>
+        <synopsis>
+            varList = who_user()
+            varList = who_user(bPrint)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -16,6 +19,14 @@
                 <listitem>
                     <para>
                         включает или отключает вывод на экран (по умолчанию: <constant>%t</constant>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>varList</term>
+                <listitem>
+                    <para>
+                        вектор-столбец пользовательских переменных или <literal>[]</literal>, если у пользователя нет переменных.
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,6 +54,20 @@
             возвращает имена пользовательских переменных.
         </para>
     </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="code_scilab"><![CDATA[
+clear
+who_user()
+who_user(%t)
+who_user(%f)
+a = 1;
+b = 2;
+who_user()
+who_user(%t)
+who_user(%f)
+      ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
@@ -60,7 +85,8 @@
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>
-                    <function>who_user</function> can now return user's variable names in a column vector of character strings.
+                    <function>who_user</function> теперь может возвращать имена пользовательских переменных
+                     в векторе-столбце символьных строк.
                 </revremark>
             </revision>
         </revhistory>

@@ -18,6 +18,11 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[
 getshell()
- ]]></programlisting>
+     ]]></programlisting>
+        <screen><![CDATA[
+--> getshell()
+ ans  =
+  "cmd"
+]]></screen>
     </refsection>
 </refentry>

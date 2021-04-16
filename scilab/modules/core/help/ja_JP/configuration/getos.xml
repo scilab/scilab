@@ -7,8 +7,7 @@
     <refsynopsisdiv>
         <title>呼出し手順</title>
         <synopsis>
-            OS=getos()
-            [OS,Version]=getos()
+            [OS, Version] = getos()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -21,8 +20,22 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-OS=getos()
-[OS,version] = getos()
+OS = getos()
+[OS, version] = getos()
+     ]]></programlisting>
+        <screen><![CDATA[
+--> OS = getos()
+ OS  =
+  "Windows"
+
+--> [OS, version] = getos()
+ OS  =
+  "Windows"
+
+ version  =
+  "8 x64"
+]]></screen>
+        <programlisting role="example"><![CDATA[
 if (getos() == "Windows") then
    disp("Scilab on Windows");
 end
@@ -35,7 +48,6 @@ end
 if (getos() == "Darwin") then
    disp("Scilab on MacOs");
 end
-
- ]]></programlisting>
+     ]]></programlisting>
     </refsection>
 </refentry>

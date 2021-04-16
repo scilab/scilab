@@ -6,22 +6,22 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[types [ [,names]]=typename()
+        <synopsis>[indices, onames] = typename()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>types</term>
+                <term>indices</term>
                 <listitem>
                     <para>an integer column vector: the types codes of each defined data types.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>names</term>
+                <term>onames</term>
                 <listitem>
-                    <para>a column vector of strings: the names associated to type codes.</para>
+                    <para>a column vector of strings: overloading codes associated to types.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -29,22 +29,43 @@
     <refsection>
         <title>Description</title>
         <para>
-            The function and operator overloading make use of a formal name
-            associated to data types to form the name of the overloading function
-            (see <link linkend="overloading">overloading</link>). The <function>typename</function> can be used to handle this
-            formal names for hard coded data types (the <literal>tlist</literal> or <literal>mlist</literal>
-            coded data types formal names are defined in another way, see <link linkend="overloading">overloading</link>).
+            <function>typename</function> returns information on defined data types.
         </para>
         <para>
-            <function>typename</function> returns information on defined data types.
+            The function and operator overloading make use of a formal name
+            associated to data types to form the name of the overloading function
+            (see <link linkend="overloading">overloading</link>). The <function>typename</function>
+            can be used to handle this formal names for hard coded data types
+            (the <literal>tlist</literal> or <literal>mlist</literal> coded data types formal
+            names are defined in another way, see <link linkend="overloading">overloading</link>).
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-[typs,nams]=typename();
-disp("First type (double) : " + string(typs(1)) + " / " + nams(1));
-]]></programlisting>
+[ind, onames] = typename();
+mprintf("Type index: %3d  overloading code: ""%s""\n", ind, onames)
+    ]]></programlisting>
+       <screen><![CDATA[
+--> mprintf("Type index: %3d  overloading code: ""%s""\n", ind, onames)
+Type index:   1  overloading code: "s"
+Type index:   2  overloading code: "p"
+Type index:   4  overloading code: "b"
+Type index:   5  overloading code: "sp"
+Type index:   6  overloading code: "spb"
+Type index:   7  overloading code: "msp"
+Type index:   8  overloading code: "i"
+Type index:   9  overloading code: "h"
+Type index:  10  overloading code: "c"
+Type index:  13  overloading code: "function"
+Type index:  14  overloading code: "f"
+Type index:  15  overloading code: "l"
+Type index:  16  overloading code: "tl"
+Type index:  17  overloading code: "ml"
+Type index: 128  overloading code: "ptr"
+Type index: 129  overloading code: "ip"
+Type index: 130  overloading code: "fptr"
+]]></screen>
     </refsection>
 
     <refsection role="see also">

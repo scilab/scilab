@@ -6,12 +6,12 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>version = getversion()
-            [version, opts] = getversion()
+        <synopsis>
+            [version, options] = getversion()
+            [COMPILER, ARCH, RELEASE_MODE, RELEASE_DATE, RELEASE_TIME] = (options(1), opt(2), options($-2), options($-1), options($))
             version_numbers = getversion('scilab')
-            versioninfo = getversion('scilab', 'string_info')
             version_numbers = getversion('&lt;module&gt;')
-            versioninfo = getversion('&lt;module&gt;','string_info')
+            version = getversion('&lt;module&gt;','string_info')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -20,27 +20,21 @@
             <varlistentry>
                 <term>version</term>
                 <listitem>
-                    <para>文字列</para>
+                    <para>バージョンに関する文字列. Example: "scilab-6.1.0"</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>versioninfo</term>
-                <listitem>
-                    <para>バージョンに関する文字列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ver</term>
+                <term>version_numbers</term>
                 <listitem>
                     <para>整数ベクトル</para>
-                    <para>ver(1) メジャーバージョン</para>
-                    <para>ver(2) マイナーバージョン</para>
-                    <para>ver(3) メンテナンスバージョン</para>
-                    <para>ver(4) GIT タイムスタンプ</para>
+                    <para>version_numbers(1) メジャーバージョン</para>
+                    <para>version_numbers(2) マイナーバージョン</para>
+                    <para>version_numbers(3) メンテナンスバージョン</para>
+                    <para>version_numbers(4) GIT タイムスタンプ</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>opts</term>
+                <term>options</term>
                 <listitem>
                     <para>
                         文字列のベクトル:
@@ -53,9 +47,9 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>[version, opts] = getversion()</literal>は
+            <literal>[version, options] = getversion()</literal>は
             Scilab バージョン名を<literal>version</literal>,
-            構築オプションを <literal>opts</literal>に返します.
+            構築オプションを <literal>options</literal>に返します.
             この構築オプションは,
             Scilabが tk または modelica を組み込んで構築されたかどうかを
             定義するために使用され, リリース日や時間も含まれます.
@@ -75,21 +69,13 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[
 getversion()
+[version, options] = getversion()
+[COMPILER, ARCH, RELEASE_MODE, RELEASE_DATE, RELEASE_TIME] = (options(1), opt(2), options($-2), options($-1), options($))
+or(options == 'modelicac')
+or(options == 'tk')
 
-[version, opts] = getversion()
-COMPILER = opts(1)
-ARCH = opts(2)
-or(opts == 'modelicac')
-or(opts == 'tk')
-RELEASE_MODE = opts($-2)
-RELEASE_DATE = opts($-1)
-RELEASE_TIME = opts($)
-
-version = getversion('scilab')
-versionstr = getversion('scilab','string_info')
-version = getversion('overloading')
-versionstr = getversion('overloading','string_info')
-
+numbers = getversion('scilab')
+version = getversion('scilab','string_info')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

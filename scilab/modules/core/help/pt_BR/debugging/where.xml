@@ -11,7 +11,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>[linenum,mac]=where()</synopsis>
+        <synopsis>[linenum, mac] = where()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>

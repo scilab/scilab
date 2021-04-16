@@ -8,23 +8,27 @@
         <title>Séquence d'appel</title>
         <synopsis>who
             who()
-            [names, mem] = who([mode], [sorted])
-        </synopsis>
+            [names, mem] = who(scope)
+            [names, mem] = who(sorted)
+            [names, mem] = who(scope, sorted)
+       </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>mode</term>
+                <term>scope</term>
                 <listitem>
                     <para>
-                        <literal>local</literal>/<literal>get</literal>: liste les variables visibles (pas seulement dans la fonction courrante).
+                        <literal>"local"</literal> ou <literal>"get"</literal>: liste les variables
+                        visibles (pas seulement dans la fonction courrante).
                     </para>
                     <para>
-                        <literal>scope</literal>/<literal>current</literal>: liste les variables dans la fonction courrante.
+                        <literal>"scope"</literal> ou <literal>"current"</literal>: liste les variables
+                        dans la fonction courrante.
                     </para>
                     <para>
-                        <literal>global</literal>: liste les variables globales.
+                        <literal>"global"</literal>: liste les variables globales.
                     </para>
                 </listitem>
             </varlistentry>
@@ -32,7 +36,8 @@
                 <term>sorted</term>
                 <listitem>
                     <para>
-                        Valeur booléenne pour spécifier si la sortie doit être triée par ordre alphabétique.
+                        Valeur booléenne pour spécifier si la sortie doit être triée par ordre
+                        alphabétique.
                     </para>
                 </listitem>
             </varlistentry>
@@ -53,19 +58,16 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-a=1;
-b=2;
-[name, mem]=who("local");
-position=find(name=="a")
+[a, b] = (1, 2);
+[name, mem] = who("local");
+position = find(name=="a")
 mem(position) // Size used by a
-position=find(name=="d") // []
+position = find(name=="d") // []
 
 function foo(a,b)
     disp(who("scope", "sorted"))
 endfunction
-
 foo(1,2);
-
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -76,6 +78,9 @@ foo(1,2);
             </member>
             <member>
                 <link linkend="who_user">who_user</link>
+            </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
             </member>
         </simplelist>
     </refsection>

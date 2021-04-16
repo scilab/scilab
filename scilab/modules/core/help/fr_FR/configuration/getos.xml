@@ -24,8 +24,22 @@
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-OS=getos()
-[OS,version] = getos()
+OS = getos()
+[OS, version] = getos()
+     ]]></programlisting>
+        <screen><![CDATA[
+--> OS = getos()
+ OS  =
+  "Windows"
+
+--> [OS, version] = getos()
+ OS  =
+  "Windows"
+
+ version  =
+  "8 x64"
+]]></screen>
+        <programlisting role="example"><![CDATA[
 if (getos() == "Windows") then disp("Scilab on Windows"); end
 if (getos() == "Linux") then disp("Scilab on Linux"); end
 if (getos() == "SunOS") then disp("Scilab on Solaris"); end

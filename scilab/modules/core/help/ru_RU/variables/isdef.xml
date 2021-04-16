@@ -20,19 +20,14 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>ve = isdef(name [,where])</synopsis>
+        <synopsis>
+            ve = isdef(name)
+            ve = isdef(name, where)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
-            <varlistentry>
-                <term>ve</term>
-                <listitem>
-                    <para>
-                        матрица того же размера, что и <varname>name</varname> с логическими значениями
-                    </para>
-                </listitem>
-            </varlistentry>
             <varlistentry>
                 <term>name</term>
                 <listitem>
@@ -47,6 +42,14 @@
                         <literal>'n'</literal> (для <literal>"nolocal"</literal>) or
                         <literal>'a'</literal> (для <literal>"all"</literal>). Значение по умолчанию
                         <literal>'a'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ve</term>
+                <listitem>
+                    <para>
+                        матрица того же размера, что и <varname>name</varname> с логическими значениями
                     </para>
                 </listitem>
             </varlistentry>
