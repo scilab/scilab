@@ -380,6 +380,7 @@ Bug Fixes
 * [#16193](https://bugzilla.scilab.org/16193): `covStart()` clear previous coverage information. `profileEnable()` could be use to append a macro later on.
 * [#16196](https://bugzilla.scilab.org/16196): `covStart()` help page was incomplete about the API usage.
 * [#16274](https://bugzilla.scilab.org/16274): assert_checkequal() did not considered equal matching Nan or void elements in (nested) containers.
+* [#16284](https://bugzilla.scilab.org/16284): `typename()` still considered removed uncompiled macros (11, "m"), and "mc" overloading code instead of "function".
 * [#16288](https://bugzilla.scilab.org/16288): An error message from `wavread` was wrong.
 * [#16297](https://bugzilla.scilab.org/16297): After function test(), e={}, endfunction; macr2tree(test)  crashes Scilab.
 * [#16305](https://bugzilla.scilab.org/16305): `unwrap()` failed unfolding curves with straight segments.

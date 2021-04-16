@@ -25,15 +25,15 @@ extern "C"
 #include "elem_common.h"
 }
 /*--------------------------------------------------------------------------*/
-#define NB_OF_TYPE 18
+#define NB_OF_TYPE 17
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_typename(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iOne = 1;
     const wchar_t* pstShortTypeName[NB_OF_TYPE] = {L"s", L"p", L"b", L"sp", L"spb", L"msp", L"i", L"h", L"c",
-                                                   L"m", L"mc", L"f", L"l", L"tl", L"ml", L"ptr", L"ip", L"fptr"
+                                                   L"function", L"f", L"l", L"tl", L"ml", L"ptr", L"ip", L"fptr"
                                                   };
-    double pstShortTypeNum[NB_OF_TYPE] = {1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 128, 129, 130};
+    double pstShortTypeNum[NB_OF_TYPE] = {1, 2, 4, 5, 6, 7, 8, 9, 10, 13, 14, 15, 16, 17, 128, 129, 130};
 
     /* Check the number of input argument */
     if (in.size() != 0)
@@ -49,15 +49,15 @@ types::Function::ReturnValue sci_typename(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    if (in.size() == 0)
-    {
-        // get type number
-        types::Double* pDblOut = new types::Double(NB_OF_TYPE, 1);
-        double* pdblOut = pDblOut->get();
-        int iSize = NB_OF_TYPE;
-        C2F(dcopy)(&iSize, pstShortTypeNum, &iOne, pdblOut, &iOne);
-        out.push_back(pDblOut);
+    // get type number
+    types::Double* pDblOut = new types::Double(NB_OF_TYPE, 1);
+    double* pdblOut = pDblOut->get();
+    int iSize = NB_OF_TYPE;
+    C2F(dcopy)(&iSize, pstShortTypeNum, &iOne, pdblOut, &iOne);
+    out.push_back(pDblOut);
 
+    if (_iRetCount > 1)
+    {
         // get type name
         types::String* pStrOut = new types::String(NB_OF_TYPE, 1);
         for (int i = 0; i < NB_OF_TYPE; i++)
