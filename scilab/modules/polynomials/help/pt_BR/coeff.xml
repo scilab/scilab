@@ -20,7 +20,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>[C]=coeff(Mp [,v])</synopsis>
+        <synopsis>
+            C = coeff(Mp)
+            C = coeff(Mp, degrees)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -32,7 +35,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>v</term>
+                <term>degrees</term>
                 <listitem>
                     <para>vetor (linha ou coluna) de inteiros dos graus selecionados
                     </para>
@@ -58,10 +61,25 @@
             </literal>
         </para>
         <para>
-            <literal>C=coeff(Mp,v)</literal> retorna a matriz de coeficientes
-            com graus em <literal>v</literal> . (<literal>v</literal> é um vetor linha
+            <literal>C=coeff(Mp,degrees)</literal> retorna a matriz de coeficientes
+            com graus em <literal>degrees</literal> . (<literal>v</literal> é um vetor linha
             ou coluna).
         </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+s = poly(0,'s');
+w = s*rand(10,10);
+determ(w)
+coeff(w,1)
+
+r = poly([0 -1+%i -1-%i],'s',"roots");
+coeff(r)
+
+r = poly([-1-%i -1+2*%i 0],'s',"roots");
+coeff(r)
+     ]]></programlisting>
     </refsection>
     <refsection>
         <title> Ver Também </title>

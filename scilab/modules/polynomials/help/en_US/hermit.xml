@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[Ar,U]=hermit(A)</synopsis>
+        <synopsis>[Ar, U] = hermit(A)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -63,11 +63,25 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');
-p=[s, s*(s+1)^2, 2*s^2+s^3];
-[Ar,U]=hermit(p'*p);
-clean(p'*p*U), det(U)
- ]]></programlisting>
+s = %s;
+p = [s, s*(s+1)^2, 2*s^2+s^3];
+[Ar,U] = hermit(p'*p);
+clean(p'*p*U)
+det(U)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> clean(p'*p*U)
+ ans  =
+  0  0  s²         
+
+  0  0  s² +2s³ +s⁴
+
+  0  0  2s³ +s⁴    
+
+--> det(U)
+ ans  =
+  1
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>[Y,rk,ac]=colcompr(A);</synopsis>
+        <synopsis>[Y, rk, ac] = colcompr(A)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -66,11 +66,32 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');
-p=[s;s*(s+1)^2;2*s^2+s^3];
-[Y,rk,ac]=colcompr(p*p');
-p*p'*Y
- ]]></programlisting>
+s = %s;
+p = [s ; s*(s+1)^2 ; 2*s^2+s^3]
+[Y, rk, ac] = colcompr(p*p');
+Y
+clean(ac)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> p = [s ; s*(s+1)^2 ; 2*s^2+s^3]
+ p  = 
+  s         
+  s +2s² +s³
+  2s² +s³   
+
+--> [Y, rk, ac] = colcompr(p*p');
+--> Y
+ Y  = 
+  1 +2s +s²  2s +s²  1
+  -1         0       0
+  0          -1      0
+
+--> clean(ac)
+ ans  =
+  0  0  s²         
+  0  0  s² +2s³ +s⁴
+  0  0  2s³ +s⁴
+     ]]></screen>
     </refsection>
     <refsection>
         <title> Ver Também </title>

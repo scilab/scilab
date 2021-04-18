@@ -71,8 +71,8 @@
                         каждого из дифференциальных уравнений: <literal>m(i)</literal> указывает порядок
                         <literal>i</literal>-го дифференциального уравнения. Далее, <literal>M</literal>
                         будет представлять сумму элементов  <literal>m</literal>. <!--Порядок
-	    <literal>i</literal>-го дифференциального уравнения <literal>m(i)</literal> не
-	      может быть больше 4.-->
+        <literal>i</literal>-го дифференциального уравнения <literal>m(i)</literal> не
+          может быть больше 4.-->
                     </para>
                 </listitem>
             </varlistentry>
@@ -632,22 +632,22 @@
                     <itemizedlist>
                         <listitem>
                             <para>В Fortran последовательность вызова должна быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine fsub(x,zu,f)
 double precision zu(*), f(*),x
- ]]></programlisting>
+]]></screen>
                         </listitem>
                         <listitem>
                             <para>В C прототип функции должен быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void fsub(double *x, double *zu, double *f)
- ]]></programlisting>
+]]></screen>
                         </listitem>
                         <listitem>
                             <para>А в Scilab'е:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
-function f=fsub(x,zu,parameters)
- ]]></programlisting>
+                            <screen><![CDATA[
+function f = fsub(x,zu,parameters)
+]]></screen>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -741,22 +741,22 @@ function f=fsub(x,zu,parameters)
                     <itemizedlist>
                         <listitem>
                             <para>В Fortran вызывающая последовательность должна быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine dfsub(x,zu,df)
 double precision zu(*), df(*),x
- ]]></programlisting>
+]]></screen>
                         </listitem>
                         <listitem>
                             <para>В C прототип функции должен быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void dfsub(double *x, double *zu, double *df)
- ]]></programlisting>
+]]></screen>
                         </listitem>
                         <listitem>
                             <para>И в Scilab'е:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
-function df=dfsub(x,zu,parameters)
- ]]></programlisting>
+                            <screen><![CDATA[
+function df = dfsub(x,zu,parameters)
+]]></screen>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -842,23 +842,23 @@ function df=dfsub(x,zu,parameters)
                     <itemizedlist>
                         <listitem>
                             <para>В Fortran вызывающая последовательность должна быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine gsub(i,zu,g)
 double precision zu(*), g(*)
 integer i
- ]]></programlisting>
+]]></screen>
                         </listitem>
                         <listitem>
                             <para>В C прототип функции должен быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void gsub(int *i, double *zu, double *g)
- ]]></programlisting>
+]]></screen>
                         </listitem>
                         <listitem>
                             <para>А в Scilab'е:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
-function g=gsub(i,zu,parameters)
- ]]></programlisting>
+                            <screen><![CDATA[
+function g = gsub(i,zu,parameters)
+]]></screen>
                             <para>
                                 Заметьте, что в отличие от <literal>f</literal> в <literal>fsub</literal>, здесь только одно значение за вызов возвращается в <literal>g</literal>.
                             </para>
@@ -954,22 +954,22 @@ function g=gsub(i,zu,parameters)
                     <itemizedlist>
                         <listitem>
                             <para>В Fortran вызывающая последовательность должна быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine dgsub(i,zu,dg)
 double precision zu(*), dg(*)
- ]]></programlisting>
+]]></screen>
                         </listitem>
                         <listitem>
                             <para>В C прототип функции должен быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void dgsub(int *i, double *zu, double *dg)
- ]]></programlisting>
+]]></screen>
                         </listitem>
                         <listitem>
                             <para>А в Scilab'е: </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
-function dg=dgsub(i,zu,parameters)
- ]]></programlisting>
+                            <screen><![CDATA[
+function dg = dgsub(i,zu,parameters)
+]]></screen>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -989,22 +989,22 @@ function dg=dgsub(i,zu,parameters)
                     <itemizedlist>
                         <listitem>
                             <para>В Fortran вызывающая последовательность должна быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine guess(x,zu,dmval)
 double precision x,z(*), dmval(*)
- ]]></programlisting>
+]]></screen>
                         </listitem>
                         <listitem>
                             <para>В C прототип функции должне быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void fsub(double *x, double *zu, double *dmval)
- ]]></programlisting>
+]]></screen>
                         </listitem>
                         <listitem>
                             <para>А в Scilab'е: </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
-function [dmval,zu]=fsub(x,parameters)
- ]]></programlisting>
+                            <screen><![CDATA[
+function [dmval,zu] = fsub(x,parameters)
+]]></screen>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -1750,101 +1750,101 @@ function [dmval,zu]=fsub(x,parameters)
                     </imageobject>
                 </mediaobject>
                 <programlisting role="example"><![CDATA[
-N=1;// только одно дифференциальное уравнение
-m=4;//дифференциальное уравнение четвёртого порядка
-M=sum(m);
+N = 1; // только одно дифференциальное уравнение
+m = 4; // дифференциальное уравнение четвёртого порядка
+M = sum(m);
 
-x_low=1;
-x_up=2; // пределы x
-zeta=[x_low,x_low,x_up,x_up]; // два ограничения (на значение u и его вторую производную) на каждой границе.
+x_low = 1;
+x_up = 2; // пределы x
+zeta = [x_low,x_low,x_up,x_up]; // два ограничения (на значение u и его вторую производную) на каждой границе.
 
-//Внешние функции
-//Эти функции вызываются программой решения с zu=[u(x);u'(x);u''(x);u'''(x)]
+// Внешние функции
+// Эти функции вызываются программой решения с zu=[u(x);u'(x);u''(x);u'''(x)]
 
 // - Функция, которая вычисляет правую сторону дифференциального уравнения
-function f=fsub(x,zu)
-    f=(1-6*x^2*zu(4)-6*x*zu(3))/x^3
+function f = fsub(x,zu)
+    f = (1 - 6*x^2*zu(4) - 6*x*zu(3)) / x^3
 endfunction
 
 // - Функция, которая вычисляет производную fsub по zu
-function df=dfsub(x,zu)
-    df=[0,0,-6/x^2,-6/x]
+function df = dfsub(x,zu)
+    df = [0,0,-6/x^2,-6/x]
 endfunction
 
 // - Функция, которая вычисляет i-тое ограничение для заданной i
-function g=gsub(i,zu),
+function g = gsub(i,zu),
   select i
-  case 1 then  //x=zeta(1)=1
-    g=zu(1) //u(1)=0
-  case 2 then //x=zeta(2)=1
-    g=zu(3) //u''(1)=0
-  case 3 then //x=zeta(3)=2
-    g=zu(1) //u(2)=0
-  case 4 then  //x=zeta(4)=2
-    g=zu(3) //u''(2)=0
+  case 1 then  // x = zeta(1) = 1
+    g = zu(1)  // u(1)=0
+  case 2 then  // x = zeta(2) = 1
+    g = zu(3)  // u''(1) = 0
+  case 3 then  // x = zeta(3) = 2
+    g = zu(1)  // u(2) = 0
+  case 4 then  // x = zeta(4) = 2
+    g = zu(3)  // u''(2) = 0
   end
 endfunction
 
 // - Функция, которая вычисляет производную gsub по z
-function dg=dgsub(i,z)
+function dg = dgsub(i,z)
   select i
-  case 1 then  //x=zeta(1)=1
-    dg=[1,0,0,0]
-  case 2 then //x=zeta(2)=1
-    dg=[0,0,1,0]
-  case 3 then //x=zeta(3)=2
-     dg=[1,0,0,0]
-  case 4 then  //x=zeta(4)=2
-    dg=[0,0,1,0]
+  case 1 then   // x = zeta(1) = 1
+    dg = [1,0,0,0]
+  case 2 then   // x = zeta(2) = 1
+    dg = [0,0,1,0]
+  case 3 then   // x = zeta(3) = 2
+    dg = [1,0,0,0]
+  case 4 then   // x = zeta(4) = 2
+    dg = [0,0,1,0]
   end
 endfunction
 
 // - Функция, которая вычисляет начальное предположение, здесь не используемое
-function [zu,mpar]=guess(x)
-    zu=0;
-    mpar=0;
+function [zu,mpar] = guess(x)
+    zu = 0;
+    mpar = 0;
 endfunction
 
- //определим функцию, которая вычисляет точное значение u для заданного x (в целях проверки)
-function zu=trusol(x)
-  zu=0*ones(4,1)
+ // определим функцию, которая вычисляет точное значение u для заданного x (в целях проверки)
+function zu = trusol(x)
+  zu = 0*ones(4,1)
   zu(1) =  0.25*(10*log(2)-3)*(1-x) + 0.5 *( 1/x   + (3+x)*log(x) - x)
   zu(2) = -0.25*(10*log(2)-3)       + 0.5 *(-1/x^2 + (3+x)/x      + log(x) - 1)
   zu(3) = 0.5*( 2/x^3 + 1/x   - 3/x^2)
   zu(4) = 0.5*(-6/x^4 - 1/x/x + 6/x^3)
 endfunction
 
-fixpnt=[ ];//Все граничные условия находятся в x_low и x_up
+fixpnt = []; // Все граничные условия находятся в x_low и x_up
 
 //    nonlin  collpnt n ntol ndimf  ndimi iprint iread iguess rstart nfxpnt
-ipar=[0       0       1 2    2000   200   1      0     0      0      0     ]
+ipar = [0       0     1  2   2000    200    1      0     0      0      0   ]
 
-ltol=[1,3];//установка контроля допуска на zu(1) и zu(3)
-tol=[1.e-11,1.e-11];//установка значений допуска для контроля допуска
-xpoints=x_low:0.01:x_up;
+ltol = [1,3]; // установка контроля допуска на zu(1) и zu(3)
+tol = [1.e-11,1.e-11]; // установка значений допуска для контроля допуска
+xpoints = x_low:0.01:x_up;
 
-zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
-        fsub,dfsub,gsub,dgsub,guess)
+zu = bvode(xpoints, N, m, x_low,x_up, zeta, ipar, ltol,tol, fixpnt,...
+          fsub, dfsub, gsub, dgsub, guess)
 //проверка ограничений
 zu([1,3],[1 $]) // должно быть нулевым
-plot(xpoints,zu(1,:)) // процесс решения u
-zu1=[];
-for x=xpoints
-    zu1=[zu1,trusol(x)];
+plot(xpoints, zu(1,:)) // процесс решения u
+zu1 = [];
+for x = xpoints
+    zu1 = [zu1,trusol(x)];
 end
 norm(zu-zu1)
- ]]></programlisting>
+             ]]></programlisting>
             </listitem>
             <listitem>
                 <para>
                     Та же задача с использованием <literal>bvodeS</literal> и начальным предположением.
                 </para>
                 <programlisting role="no-scilab-exec"><![CDATA[
-function [z,lhS]=zstart(x)
-  z=zeros(5,1);z(5)=1;
-  lhS=[0;1];
+function [z,lhS] = zstart(x)
+  z = zeros(5,1); z(5) = 1;
+  lhS = [0;1];
 endfunction
-zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
+zu = bvode(xpoints, N, m, x_low, x_up, zeta, ltol=ltol, tol=tol, guess=zstart)
   ]]></programlisting>
             </listitem>
             <listitem>
@@ -2074,155 +2074,155 @@ zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
                     для <literal>x=0</literal> и <literal>x=1</literal>
                 </para>
                 <programlisting role="example"><![CDATA[
-N=2;// два дифференциальных уравнения
-m=[2 2];// каждое дифференциальное уравнение второго порядка
-M=sum(m);
+N = 2; // два дифференциальных уравнения
+m = [2 2]; // каждое дифференциальное уравнение второго порядка
+M = sum(m);
 
-x_low=0;x_up=1; // пределы по x
-zeta=[x_low,x_low, x_up x_up]; //два ограничения на каждой границе
+x_low = 0; x_up = 1; // пределы по x
+zeta = [x_low,x_low, x_up x_up]; // два ограничения на каждой границе
 
-//Внешние функции
-//Эти функции вызываются программой решения с zu=[u1(x);u1'(x);u2(x);u2'(x)]
+// Внешние функции
+// Эти функции вызываются программой решения с zu = [u1(x) ; u1'(x) ; u2(x) ; u2'(x)]
 
 // - Функция, которая вычисляет правую сторону дифференциального уравнения
-function f=fsub2(x,zu,eps,dmu,eps4mu,gam,xt),
-   f=[zu(1)/x^2-zu(2)/x+(zu(1)-zu(3)*(1-zu(1)/x)-gam*x*(1-x^2/2))/eps4mu //phi''
-      zu(3)/x^2-zu(4)/x+zu(1)*(1-zu(1)/(2*x))/dmu];//psi''
+function f = fsub2(x,zu,eps,dmu,eps4mu,gam,xt),
+   f = [zu(1)/x^2-zu(2)/x+(zu(1)-zu(3)*(1-zu(1)/x)-gam*x*(1-x^2/2))/eps4mu //phi''
+        zu(3)/x^2-zu(4)/x+zu(1)*(1-zu(1)/(2*x))/dmu];//psi''
 endfunction
 
 // - Функция, которая вычисляет производную от fsub по zu
-function df=dfsub2(x,zu,eps,dmu,eps4mu,gam,xt),
-  df=[1/x^2+(1+zu(3)/x)/eps4mu, -1/x, -(1-zu(1)/x)/eps4mu, 0
-      (1-zu(1)/x)/dmu             0    1/x^2              -1/x];
+function df = dfsub2(x,zu,eps,dmu,eps4mu,gam,xt),
+  df = [1/x^2+(1+zu(3)/x)/eps4mu, -1/x, -(1-zu(1)/x)/eps4mu, 0
+       (1-zu(1)/x)/dmu             0    1/x^2              -1/x];
 endfunction
 
 // - Функция, которая вычисляет i-тое ограничение для заданного i
-function g=gsub2(i,zu),
+function g = gsub2(i,zu),
   select i
-  case 1 then  //x=zeta(1)=0
-    g=zu(1) //u(0)=0
-  case 2 then //x=zeta(2)=0
-    g=-0.3*zu(3) //x*psi'-0.3*psi+0.7x=0
-  case 3 then //x=zeta(3)=1
-    g=zu(1) //u(1)=0
+  case 1 then  // x = zeta(1) = 0
+    g = zu(1)  // u(0) = 0
+  case 2 then  // x = zeta(2) = 0
+    g = -0.3*zu(3) // x*psi'-0.3*psi+0.7x = 0
+  case 3 then  // x = zeta(3) = 1
+    g = zu(1)  // u(1) = 0
   case 4 then  //x=zeta(4)=1
-    g=1*zu(4)-0.3*zu(3)+0.7*1 //x*psi'-0.3*psi+0.7x=0
+    g = 1*zu(4) - 0.3*zu(3) + 0.7*1 // x*psi'-0.3*psi+0.7x = 0
   end
 endfunction
 
 // - Функция, которая вычисляет производную от gsub по z
-function dg=dgsub2(i,z)
+function dg = dgsub2(i,z)
   select i
-  case 1 then  //x=zeta(1)=1
-    dg=[1,0,0,0]
-  case 2 then //x=zeta(2)=1
-    dg=[0,0,-0.3,0]
-  case 3 then //x=zeta(3)=2
-     dg=[1,0,0,0]
-  case 4 then  //x=zeta(4)=2
-    dg=[0,0,-0.3,1]
+  case 1 then   // x = zeta(1) = 1
+    dg = [1,0,0,0]
+  case 2 then   // x = zeta(2) = 1
+    dg = [0,0,-0.3,0]
+  case 3 then   // x = zeta(3) = 2
+     dg = [1,0,0,0]
+  case 4 then   // x = zeta(4) = 2
+    dg = [0,0,-0.3,1]
   end
 endfunction
 
-gam=1.1
-eps=1d-3
-dmu=eps
-eps4mu=eps^4/dmu
-xt=sqrt(2*(gam-1)/gam)
+gam = 1.1
+eps = 1d-3
+dmu = eps
+eps4mu = eps^4/dmu
+xt = sqrt(2*(gam-1)/gam)
 
-fixpnt=[ ];// все граничные условия размещены в x_low и x_up
-collpnt=4;
-nsizef=4+3*M+(5+collpnt*N)*(collpnt*N+M)+(2*M-2)*2*M ;
-nsizei=3 + collpnt*N+M;
-nmax=200;
+fixpnt = []; // все граничные условия размещены в x_low и x_up
+collpnt = 4;
+nsizef = 4 + 3*M + (5+collpnt*N)*(collpnt*N+M)+(2*M-2)*2*M ;
+nsizei = 3 + collpnt*N+M;
+nmax = 200;
 //    nonlin  collpnt n  ntol ndimf        ndimi        iprint iread iguess rstart nfxpnt
-ipar=[1       collpnt 10  4   nmax*nsizef  nmax*nsizei   -1      0     0      0      0     ]
+ipar = [1     collpnt 10  4   nmax*nsizef  nmax*nsizei   -1      0     0      0      0   ];
 
-ltol=1:4;//установка контроля допусков на zu(1), zu(2), zu(3) и zu(4)
-tol=[1.e-5,1.e-5,1.e-5,1.e-5];//установка значений допусков для этих четырёх значений контроля
-xpoints=x_low:0.01:x_up;
+ltol = 1:4; // установка контроля допусков на zu(1), zu(2), zu(3) и zu(4)
+tol = [1.e-5,1.e-5,1.e-5,1.e-5]; // установка значений допусков для этих четырёх значений контроля
+xpoints = x_low:0.01:x_up;
 
 // - Функция, которая вычисляет начальное предположение, здесь не используемое
-function [zu,dmval]=guess2(x,gam),
-   cons=gam*x*(1-x^2/2)
-   dcons=gam*(1-3*x^2/2)
-   d2cons=-3*gam*x
-   dmval=zeros(2,1)
+function [zu, dmval] = guess2(x, gam),
+   cons = gam*x*(1-x^2/2)
+   dcons = gam*(1-3*x^2/2)
+   d2cons = -3*gam*x
+   dmval = zeros(2,1)
    if x>xt then
-     zu=[0 0 -cons -dcons]
-     dmval(2)=-d2cons
+     zu = [0 0 -cons -dcons]
+     dmval(2) = -d2cons
    else
-     zu=[2*x;2;-2*x+cons;-2*dcons]
-     dmval(2)=d2cons
+     zu = [2*x;2;-2*x+cons;-2*dcons]
+     dmval(2) = d2cons
    end
 endfunction
 
-zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
-        fsub2,dfsub2,gsub2,dgsub2,guess2);
-scf(1);clf();plot(xpoints,zu([1 3],:)) // процесс решения phi и psi
+zu = bvode(xpoints, N, m, x_low, x_up, zeta, ipar, ltol, tol, fixpnt,...
+           fsub2, dfsub2, gsub2, dgsub2, guess2);
+scf(1); clf(); plot(xpoints, zu([1 3],:)) // процесс решения phi и psi
 
 //использование начального предположения
-ipar(9)=1;//iguess
+ipar(9) = 1; // iguess
 
-zu2=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
-        fsub2,dfsub2,gsub2,dgsub2,guess2);
-scf(2);clf();plot(xpoints,zu2([1 3],:)) // процесс решения phi и psi
- ]]></programlisting>
+zu2 = bvode(xpoints, N, m, x_low, x_up, zeta, ipar, ltol, tol, fixpnt,...
+            fsub2, dfsub2, gsub2, dgsub2, guess2);
+scf(2); clf(); plot(xpoints, zu2([1 3],:)) // процесс решения phi и psi
+             ]]></programlisting>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Задача нахождения собственных значений</emphasis>
                 </para>
                 <programlisting role="example"><![CDATA[
-// y''(x)=-la*y(x)
+// y''(x) = -la*y(x)
 // BV: y(0)=y'(0); y(1)=0
 // Собственные функции и собственные значения y(x,n)=sin(s(n)*(1-x)), la(n)=s(n)^2,
 // где s(n) - нули f(s,n)=s+atan(s)-(n+1)*pi, n=0,1,2,...
 // Чтобы получить третье граничное условие, мы выбираем y(0)=1
 // (с y(x) также c*y(x) является решением для каждой константы c.)
 // Решим следующую систему ОДУ:
-// y''=-la*y
-// la'=0
+// y'' = -la*y
+// la' = 0
 // BV: y(0)=y'(0), y(0)=1; y(1)=0
-// z=[y(x) ; y'(x) ; la]
+// z = [y(x) ; y'(x) ; la]
 
-function rhs=fsub(x,z)
-  rhs=[-z(3)*z(1);0]
+function rhs = fsub(x,z)
+  rhs = [-z(3)*z(1) ; 0]
 endfunction
 
-function g=gsub(i,z)
-  g=[z(1)-z(2) z(1)-1 z(1)]
-  g=g(i)
+function g = gsub(i,z)
+  g = [z(1)-z(2), z(1)-1, z(1)]
+  g = g(i)
 endfunction
 
 // Следующая начальная функция годится для первых 8 собственных функций.
-function [z,lhs]=ystart(x,z,la0)
-  z=[1;0;la0]
-  lhs=[0;0]
+function [z, lhs] = ystart(x, z, la0)
+  z = [1 ; 0 ; la0]
+  lhs = [0 ; 0]
 endfunction
 
-a=0;b=1;
-m=[2;1];
-n=2;
-zeta=[a a b];
-N=101;
-x=linspace(a,b,N)';
+a = 0; b = 1;
+m = [2;1];
+n = 2;
+zeta = [a a b];
+N = 101;
+x = linspace(a,b,N)';
 
-//Имеем s(n)-(n+1/2)*pi -> 0 для n, стремящемся к бесконечности.
-la0=evstr(x_dialog('n-ное собственное значение: n= ?','10'));
-la0=(%pi/2+la0*%pi)^2;
+// Имеем s(n)-(n+1/2)*pi -> 0 для n, стремящемся к бесконечности.
+la0 = evstr(x_dialog('n-ное собственное значение: n= ?','10'));
+la0 = (%pi/2+la0*%pi)^2;
 
-z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0));
+z = bvodeS(x, m, n, a, b, fsub, gsub, zeta, ystart=list(ystart,la0));
 // Тот же вызов без вывода на экран
-z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=1);
+z = bvodeS(x, m, n, a, b, fsub, gsub, zeta, ystart=list(ystart,la0), iprint=1);
 // Тот же вызов с подробным выводом на экран
-z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=-1);
+z = bvodeS(x, m, n, a, b, fsub, gsub, zeta, ystart=list(ystart,la0), iprint=-1);
 
 clf()
-plot(x,[z(1,:)' z(2,:)'])
+plot(x, [z(1,:)' z(2,:)'])
 xtitle(['Начальное значение =  '+string(la0);'Собственное значение = '+string(z(3,1))],'x',' ')
 legend(['y(x)';'y''(x)']);
- ]]></programlisting>
+             ]]></programlisting>
                 <scilab:image localized="true">
                     function rhs=fsub(x,z)
                     rhs=[-z(3)*z(1);0]
@@ -2267,67 +2267,64 @@ legend(['y(x)';'y''(x)']);
 // предварительной информации о решениях y(x) для построения функции ystart.
 // z=[y(x);y'(x)]
 
-a=0;
-b=1;
-m=2;
-n=1;
-zeta=[a b];
-N=101;
-tol=1e-8*[1 1];
-x=linspace(a,b,N);
+[a, b, m, n] = (0, 1, 2, 1);
+zeta = [a b];
+N = 101;
+tol = 1e-8*[1 1];
+x = linspace(a,b,N);
 
-function rhs=fsub(x,z),rhs=-exp(z(1));endfunction
+function rhs = fsub(x,z), rhs=-exp(z(1)); endfunction
 
-function g=gsub(i,z)
-  g=[z(1) z(1)]
-  g=g(i)
+function g = gsub(i,z)
+  g = [z(1) z(1)]
+  g = g(i)
 endfunction
 
-function [z,lhs]=ystart(x,z,M)
-  //z=[4*x*(1-x)*M ; 4*(1-2*x)*M]
-  z=[M;0]
-  //lhs=[-exp(4*x*(1-x)*M)]
-  lhs=0
+function [z, lhs] = ystart(x, z, M)
+  //z = [4*x*(1-x)*M ; 4*(1-2*x)*M]
+  z = [M;0]
+  //lhs = [-exp(4*x*(1-x)*M)]
+  lhs = 0
 endfunction
 
-for M=[1 4]
+for M = [1 4]
    if M==1
-      z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+      z = bvodeS(x, m, n, a, b, fsub, gsub, zeta, ystart=list(ystart,M), tol=tol);
    else
-      z1=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+      z1 = bvodeS(x, m, n, a, b, fsub, gsub, zeta, ystart=list(ystart,M), tol=tol);
    end
 end
 
 // Интегрирование ОДУ даёт, например, два решения yex и yex1.
 
-function y=f(c)
-    y=c.*(1-tanh(sqrt(c)/4).^2)-2;
+function y = f(c)
+    y = c.*(1-tanh(sqrt(c)/4).^2) - 2;
 endfunction
-c=fsolve(2,f);
+c = fsolve(2,f);
 
-function y=yex(x,c)
-  y=log(c/2*(1-tanh(sqrt(c)*(1/4-x/2)).^2))
+function y = yex(x,c)
+  y = log(c/2*(1-tanh(sqrt(c)*(1/4-x/2)).^2))
 endfunction
 
-function y=f1(c1)
-    y=2*c1^2+tanh(1/4/c1)^2-1;
+function y = f1(c1)
+    y = 2*c1^2+tanh(1/4/c1)^2 - 1;
 endfunction
-c1=fsolve(0.1,f1);
+c1 = fsolve(0.1, f1);
 
-function y=yex1(x,c1)
-  y=log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
+function y = yex1(x, c1)
+  y = log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
 endfunction
 
 disp('norm(yex(x)-z(1,:))= ', norm(z(1,:)-yex(x)))
 disp('norm(yex1(x)-z1(1,:))= ', norm(z1(1,:)-yex1(x)))
-clf();
+clf
 subplot(2,1,1)
-plot2d(x,z(1,:),style=[5])
+plot2d(x, z(1,:), style=5)
 xtitle('Два различных решения','x',' ')
 subplot(2,1,2)
-plot2d(x,z1(1,:),style=[5])
+plot2d(x, z1(1,:), style=5)
 xtitle(' ','x',' ')
- ]]></programlisting>
+             ]]></programlisting>
                 <scilab:image localized="true">
                     a=0;
                     b=1;
@@ -2400,32 +2397,31 @@ xtitle(' ','x',' ')
 // BV: y(-1)=2 y(1)=2
 // Дополнительное условие: y(0)=1
 
-a=-1;b=1;c=0;
+[a, b, c] = (-1, 1, 0);
 // Точка дополнительного условия c должна быть включена в массив fixpnt.
-n=1;
-m=[3];
+[m, n] = (3, 1);
 
-function rhs=fsub(x,z)
-  rhs=1
+function rhs = fsub(x,z)
+  rhs = 1
 endfunction
 
-function g=gsub(i,z)
-  g=[z(1)-2 z(1)-1 z(1)-2]
-  g=g(i)
+function g = gsub(i,z)
+  g = [z(1)-2 z(1)-1 z(1)-2]
+  g = g(i)
 endfunction
 
-N=10;
-zeta=[a c b];
-x=linspace(a,b,N);
+N = 10;
+zeta = [a c b];
+x = linspace(a,b,N);
 
-z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,fixpnt=c);
+z = bvodeS(x, m, n, a, b, fsub, gsub, zeta, fixpnt=c);
 
-function y=yex(x)
-    y=x.^3/6+x.^2-x./6+1
+function y = yex(x)
+    y = x.^3/6 + x.^2 - x./6 + 1
 endfunction
 
 disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
- ]]></programlisting>
+             ]]></programlisting>
             </listitem>
             <listitem>
                 <para>
@@ -2435,7 +2431,6 @@ disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
                     </emphasis>
                 </para>
                 <programlisting role="example"><![CDATA[
-
 // Квантовое уравнение Неймана с 2 "собственными значениями" c_1 и c_2
 // (c_1=v-c_2-c_3, где v - параметр, используемый в продолжении)
 //
@@ -2453,11 +2448,8 @@ disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
 // y, z_3=1, z_4=1/(2*y-1)
 // См.: http://arxiv.org/pdf/hep-th/0407005
 
-
-
-
-y= 1.9d0;
-eigens=zeros(3,40); // Для хранения результатов
+y = 1.9d0;
+eigens = zeros(3,40); // Для хранения результатов
 
 // Общая настройка bvode
 
@@ -2478,8 +2470,8 @@ ipar(3) = 4;
 ipar(8) = 0;
 
 // Размер fspace, ispace, см. colnew.f для изменения размера
-ipar(5) =  30000;
-ipar(6) =  2000;
+ipar(5) = 30000;
+ipar(6) = 2000;
 
 // Средний вывод данных
 ipar(7) = 0;
@@ -2502,12 +2494,11 @@ tol = [1d-5, 1d-5, 1d-5, 1d-5];
 
 // Определение дифференциальных уравнений
 
-function [f]=fsub(x,z)
+function f = fsub(x, z)
     f = [ -.5*(1/x+1/(x-1)+1/(x-y))*z(2) +...
-     z(1) * ((v-z(3)-z(4))/x + z(3)/(x-1) + z(4)/(x-y)),...
-    0,0];
+         z(1) * ((v-z(3)-z(4))/x + z(3)/(x-1) + z(4)/(x-y)), 0, 0];
 endfunction
-function [df] = dfsub(x,z)
+function df = dfsub(x, z)
     df = [(v-z(3)-z(4))/x + z(3)/(x-1) + z(4)/(x-y),...
     -.5*(1/x+1/(x-1)+1/(x-y)),z(1)/(x*(x-1)),z(1)*y/(x*(x-y));...
     0,0,0,0;0,0,0,0];
@@ -2515,7 +2506,7 @@ endfunction
 
 // Граничные условия
 
-function [g]=gsub(i,z)
+function g = gsub(i, z)
     select i
     case 1, g = z(2) - 2*z(1)*(v-z(3)-z(4))
     case 2, g = z(2) - 2*z(1)*z(3)
@@ -2523,7 +2514,7 @@ function [g]=gsub(i,z)
     case 4, g = z(2) - 2*z(1)*z(4)
     end
 endfunction
-function [dg]=dgsub(i,z)
+function dg = dgsub(i, z)
         select i
         case 1, dg = [-2*(v-z(3)-z(4)),1.,2*z(1),2*z(1)]
         case 2, dg = [-2*z(3),1.,-2*z(1),0]
@@ -2551,23 +2542,22 @@ res = [linspace(0,.99,100) linspace(1,y,101)];
 // так что dmval=0. Заметьте, что вектор z имеет mstar = 4 элементов,
 // в то время как dmval имеет ncomp = 3 элемента.
 
-function [z,dmval]=guess(x)
-     z=[2*x-1, 2., 1., 1/(2*y-1)]
-     dmval=[0,0,0]
+function [z, dmval] = guess(x)
+     z = [2*x-1, 2., 1., 1/(2*y-1)]
+     dmval = [0,0,0]
 endfunction
 
 // Первое выполнение имеет ipar(9)=1 и использует предположение
 // Последующие выполнения имеют ipar(9)=3 и используют продолжение.
 // Это выполняется в плотно закрытом цикле, чтобы не нарушить стек
 
-for i=1:40
-v=valv(i);
-sol=bvode(res,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...
- fsub,dfsub,gsub,dgsub,guess);
-eigens(:,i)=[v;sol(3,101);sol(4,101)];  // c_2 и c_3 являются константами!
-ipar(9)=3;
+for i = 1:40
+    v = valv(i);
+    sol = bvode(res, ncomp, m, aleft, aright, zeta, ipar, ltol, tol, fixpnt,...
+                fsub, dfsub, gsub, dgsub, guess);
+    eigens(:,i) = [v;sol(3,101);sol(4,101)];  // c_2 и c_3 являются константами!
+    ipar(9) = 3;
 end
-
 
 // Чтобы увидеть изменение собственных значений с v, disp(eigens)
 // Обратите внимание на то, что они изменяются гладко.
@@ -2578,27 +2568,9 @@ end
 // Это явно отличается от случая при малом v.
 // Процедура продолжения позволяет исследовать эти экспоненциальные
 // поведения без перехода в другие собственные состояния.
-
- ]]></programlisting>
+             ]]></programlisting>
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="link">link</link>
-            </member>
-            <member>
-                <link linkend="external">external</link>
-            </member>
-            <member>
-                <link linkend="ode">ode</link>
-            </member>
-            <member>
-                <link linkend="dassl">dassl</link>
-            </member>
-        </simplelist>
     </refsection>
     <refsection>
         <title>Используемые функции</title>
@@ -2647,5 +2619,22 @@ end
                 </para>
             </listitem>
         </orderedlist>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="link">link</link>
+            </member>
+            <member>
+                <link linkend="external">external</link>
+            </member>
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="dassl">dassl</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

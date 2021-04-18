@@ -20,8 +20,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>[N1,D1]=simp(N,D)
-            H1=simp(H)
+        <synopsis>
+            [N1,D1] = simp(N,D)
+            H1 = simp(H)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -48,10 +49,7 @@
         <title>Descrição</title>
         <para>
             <literal>[n1,d1]=simp(n,d)</literal> calcula dois polinômios
-            <literal>n1</literal> e <literal>d1</literal> tais que <literal>n1/d1 =
-                n/d
-            </literal>
-            .
+            <literal>n1</literal> e <literal>d1</literal> tais que <literal>n1/d1 = n/d</literal>.
         </para>
         <para>
             Se <literal>N</literal> e <literal>D</literal> são matrizes de
@@ -61,38 +59,50 @@
             <literal>H1=simp(H)</literal> também é válido (cada entrada de
             <literal>H</literal> é simplificada em <literal>H1</literal>).
         </para>
-        <para>Cuidado:</para>
         <para>
-            -Nenhum limiar é dado i.e. <literal>simp</literal> não pode forçar
-            uma simplificação.
-        </para>
-        <para>-Para sistemas lineares dinâmicos que incluem integrador(es), a
-            simplificação modifica o ganho estático. (<literal>H(0)</literal> para
-            sistemas contínuos <literal>H(1)</literal> para sistemas discretos)
-        </para>
-        <para>
-            -Para dados complexos, <literal>simp</literal> retorna sua(s)
-            entrada(s).
-        </para>
-        <para>-Uma simplificação racional é chamada após aproximadamente cada
-            operação sobre razões de polinômios. É possível alternar o modo de
-            simplificação entre "on" e "off" (ligado e desligado) utilizando a função
-            <literal>simp_mode</literal>.
+            <warning>
+                <itemizedlist>
+                    <listitem>
+                        Nenhum limiar é dado, i.e. <literal>simp</literal> não pode forçar
+                        uma simplificação.
+                    </listitem>
+                    <listitem>
+                        Para sistemas lineares dinâmicos que incluem integrador(es), a
+                        simplificação modifica o ganho estático. (<literal>H(0)</literal> para
+                        sistemas contínuos <literal>H(1)</literal> para sistemas discretos)
+                    </listitem>
+                    <listitem>
+                        Para dados complexos, <literal>simp</literal> retorna sua(s) entrada(s).
+                    </listitem>
+                    <listitem>
+                        Uma simplificação racional é chamada após aproximadamente cada
+                        operação sobre razões de polinômios. É possível alternar o modo de
+                        simplificação entre "on" e "off" (ligado e desligado) utilizando a função
+                        <literal>simp_mode</literal>.
+                    </listitem>
+                </itemizedlist>
+            </warning>
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');
-[n,d]=simp((s+1)*(s+2),(s+1)*(s-2))
+s = poly(0,'s');
+[n,d] = simp((s+1)*(s+2),(s+1)*(s-2))
 
-simp_mode(%F);hns=s/s
-simp_mode(%T);hns=s/s
+simp_mode(%F); hns = s/s
+simp_mode(%T); hns = s/s
  ]]></programlisting>
     </refsection>
     <refsection>
         <title> Ver Também </title>
         <simplelist type="inline">
+            <member>
+                <link linkend="simp_mode">simp_mode</link>
+            </member>
+            <member>
+                <link linkend="clean">clean</link>
+            </member>
             <member>
                 <link linkend="roots">roots</link>
             </member>
@@ -101,12 +111,6 @@ simp_mode(%T);hns=s/s
             </member>
             <member>
                 <link linkend="poly">poly</link>
-            </member>
-            <member>
-                <link linkend="clean">clean</link>
-            </member>
-            <member>
-                <link linkend="simp_mode">simp_mode</link>
             </member>
         </simplelist>
     </refsection>

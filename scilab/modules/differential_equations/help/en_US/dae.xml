@@ -123,15 +123,15 @@
                                 <para>This form of external is used to pass parameters to the
                                     function. It must be as follows:
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[
+                                <screen><![CDATA[
 list(res,p1,p2,...)
- ]]></programlisting>
+]]></screen>
                                 <para>where the syntax of the function
                                     <literal>res</literal> is now
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[
+                                <screen><![CDATA[
 r=res(t,y,ydot,p1,p2,...)
- ]]></programlisting>
+]]></screen>
                                 <para>
                                     <literal>res</literal> still returns the residual value
                                     as a function of <literal>(t,x,xdot,x1,x2,...)</literal>, and
@@ -251,15 +251,15 @@ r=res(t,y,ydot,p1,p2,...)
                                 <para>This form of external is used to pass parameters to the
                                     function. It must be as follows:
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[
+                                <screen><![CDATA[
 list(jac,p1,p2,...)
- ]]></programlisting>
+]]></screen>
                                 <para>where the syntax of the function
                                     <literal>jac</literal> is now
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[
-r=jac(t,x,xdot,p1,p2,...)
- ]]></programlisting>
+                                <screen><![CDATA[
+r = jac(t,x,xdot,p1,p2,...)
+]]></screen>
                                 <para>
                                     <literal>jac</literal> still returns
                                     <literal>dg/dx+cj*dg/dxdot</literal> as a function of
@@ -338,15 +338,15 @@ r=jac(t,x,xdot,p1,p2,...)
                                     This form of <link linkend="external">external</link> is used to pass parameters to the
                                     function. It must be as follows:
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[
+                                <screen><![CDATA[
 list(surface,p1,p2,...)
- ]]></programlisting>
+]]></screen>
                                 <para>where the syntax of the function
                                     <literal>surface</literal> is now
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[
-r=surface(t,x,p1,p2,...)
- ]]></programlisting>
+                                <screen><![CDATA[
+r = surface(t,x,p1,p2,...)
+]]></screen>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -462,10 +462,10 @@ r=surface(t,x,p1,p2,...)
             Option <literal>"root"</literal> calls the <link linkend="dasrt">dasrt</link> routine,
             and <literal>"root2"</literal> calls <link linkend="dasrt">daskr</link>.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 g(t, x, xdot) = 0
 x(t0) = x0 and xdot(t0) = xdot0
- ]]></programlisting>
+]]></screen>
         <para>
             If <literal>xdot0</literal> is not given in the <emphasis>initial</emphasis>
             argument, the <literal>dae</literal> function tries to compute it solving
@@ -512,7 +512,7 @@ y = dae([x0, xd0], 0, t, chemres); // Returns requested observation time points
 %DAEOPTIONS = list([], 1, [], [], [], 0, 0); // Ask  dae mesh points to be returned
 y = dae([x0, xd0], 0, 4d10, chemres); // Without jacobian
 y = dae([x0, xd0], 0, 4d10, chemres, chemjac); // With jacobian
- ]]></programlisting>
+     ]]></programlisting>
         <para>
             Example #2: dasrt ("root")
         </para>
@@ -571,7 +571,7 @@ y01 = yy(2:3, qq); y0d1 = yy(3:4, qq);
 plot(yy(1, 1), yy(2, 1), 'r+')
 xstring(yy(1, 1)+0.1, yy(2, 1), string(nn(1)));
 cd(previous_dir);
- ]]></programlisting>
+     ]]></programlisting>
         <scilab:image localized="false"><![CDATA[
 code = ['#include <math.h>'
       'void res22(double *t, double *y, double *yd, double *res, int *ires, double *rpar, int *ipar)'
@@ -670,7 +670,7 @@ y01 = yy(2:3, qq); y0d1 = yy(3:4, qq);
 plot(yy(1, 1), yy(2, 1), 'r+')
 xstring(yy(1, 1)+0.1, yy(2, 1), string(nn(1)));
 cd(previous_dir);
- ]]></programlisting>
+     ]]></programlisting>
         <scilab:image><![CDATA[
 code = ['#include <math.h>'
       'void res22(double *t, double *y, double *yd, double *res, int *ires, double *rpar, int *ipar)'

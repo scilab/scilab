@@ -23,7 +23,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>[Ns,d]=coffg(Fs)</synopsis>
+        <synopsis>[Ns, d] = coffg(Fs)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>

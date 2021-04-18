@@ -21,7 +21,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[r [,hd]]=dassl(x0,t0,t [,atol,[rtol]],res [,jac] [,info] [,hd])</synopsis>
+        <synopsis>[r [,hd]] = dassl(x0,t0,t [,atol,[rtol]],res [,jac] [,info] [,hd])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -110,15 +110,15 @@
                                 <literal>y</literal>, <literal>ydot</literal> to
                                 the function. It must be as follows:
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 list(res,x1,x2,...)
- ]]></programlisting>
+]]></screen>
                             <para>where the syntax of the function
                                 <literal>res</literal> is now
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
-r=res(t,y,ydot,x1,x2,...)
- ]]></programlisting>
+                            <screen><![CDATA[
+r = res(t,y,ydot,x1,x2,...)
+]]></screen>
                             <para>
                                 <literal>res</literal> still returns
                                 <literal>r=g(t,y,ydot)</literal> as a function of
@@ -131,16 +131,16 @@ r=res(t,y,ydot,x1,x2,...)
                                 linked with Scilab.
                             </para>
                             <para>In C the syntax must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[])
- ]]></programlisting>
+]]></screen>
                             <para>In Fortran it must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)
- ]]></programlisting>
+]]></screen>
                             <para>
                                 The <literal>rpar</literal> and <literal>ipar</literal> arrays must be present but cannot be
                                 used.
@@ -170,15 +170,15 @@ integer ires,ipar(*)
                         <listitem>
                             <para>A list.</para>
                             <para>It must be as follows</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 list(jac,x1,x2,...)
- ]]></programlisting>
+]]></screen>
                             <para>where the syntax of the function
                                 <literal>jac</literal> is now
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
-r=jac(t,y,ydot,cj,x1,x2,...)
- ]]></programlisting>
+                            <screen><![CDATA[
+r = jac(t,y,ydot,cj,x1,x2,...)
+]]></screen>
                             <para>
                                 <literal>jac</literal> still returns
                                 <literal>dg/dy+cj*dg/dydot</literal> as a function of
@@ -191,16 +191,16 @@ r=jac(t,y,ydot,cj,x1,x2,...)
                                 with Scilab.
                             </para>
                             <para>In C the syntax must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void jac(double *t, double y[], double yd[], double pd[],
          double *cj, double rpar[], int ipar[])
- ]]></programlisting>
+]]></screen>
                             <para>In Fortran it must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine jac(t,y,yd,pd,cj,rpar,ipar)
 double precision t, y(*),yd(*),pd(*),cj,rpar(*)
 integer ipar(*)
- ]]></programlisting>
+]]></screen>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -314,57 +314,57 @@ integer ipar(*)
             The <literal>dassl</literal> function integrate the differential algebraic equation and
             returns the evolution of <literal>y</literal> a given time points
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-g(t,y,ydot)=0
-y(t0)=y0  and   ydot(t0)=ydot0
-  ]]></programlisting>
+        <screen><![CDATA[
+g(t,y,ydot) = 0
+y(t0) = y0  and   ydot(t0) = ydot0
+ ]]></screen>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-function [r,ires]=chemres(t,y,yd)
+function [r,ires] = chemres(t,y,yd)
    r=[-0.04*y(1)+1d4*y(2)*y(3)-yd(1)
        0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2)
        y(1)+y(2)+y(3)-1];
    ires=0
 endfunction
 
-function pd=chemjac(x,y,yd,cj)
+function pd = chemjac(x,y,yd,cj)
     pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
          0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
          1       , 1                      , 1       ]
 endfunction
 
-y0=[1;0;0];
-yd0=[-0.04;0.04;0];
-t=[1.d-5:0.02:.4,0.41:.1:4,40,400,4000,40000,4d5,4d6,4d7,4d8,4d9,4d10];
+y0 = [1;0;0];
+yd0 = [-0.04;0.04;0];
+t = [1.d-5:0.02:.4,0.41:.1:4,40,400,4000,40000,4d5,4d6,4d7,4d8,4d9,4d10];
 
-y=dassl([y0,yd0],0,t,chemres);
+y = dassl([y0,yd0],0,t,chemres);
 
-info=list([],0,[],[],[],0,0);
-info(2)=1;
-y1=dassl([y0,yd0],0,4d10,chemres,info);
-y2=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
+info = list([],0,[],[],[],0,0);
+info(2) = 1;
+y1 = dassl([y0,yd0],0,4d10,chemres,info);
+y2 = dassl([y0,yd0],0,4d10,chemres,chemjac,info);
 
 //Using extra argument for parameters
 //-----------------------------------
-function [r,ires]=chemres(t,y,yd ,a,b,c)
+function [r,ires] = chemres(t,y,yd ,a,b,c)
    r=[-a*y(1)+b*y(2)*y(3)-yd(1)
        a*y(1)-b*y(2)*y(3)-c*y(2)*y(2)-yd(2)
        y(1)+y(2)+y(3)-1];
-   ires=0
+   ires = 0
 endfunction
 
-function pd=chemjac(x,y,yd,cj, a,b,c)
+function pd = chemjac(x,y,yd,cj, a,b,c)
     pd=[-a-cj , b*y(3)             , b*y(2);
          a    ,-b*y(3)-2*c*y(2)-cj ,-b*y(2);
          1    , 1                  , 1       ]
 endfunction
 
-y3=dassl([y0,yd0],0,t,list(chemres,0.04,1d4,3d7),list(chemjac,0.04,1d4,3d7));
+y3 = dassl([y0,yd0], 0, t, list(chemres,0.04,1d4,3d7),list(chemjac,0.04,1d4,3d7));
 
-//using C code
-//------------
+// using C code
+// ------------
 // - create the C code
 cd TMPDIR
 rescode=['void chemres(double *t, double y[], double yd[], double r[], int *ires, double rpar[], int ipar[])'
@@ -390,7 +390,7 @@ jaccode=['void chemjac(double *t, double y[], double yd[], double pd[], double *
          '   pd[7] = -1.0e4*y[1];'
          '   pd[8] =  1.0;'
          ' }'];
-mputl([rescode;jaccode],'mycode.c') //create the C file
+mputl([rescode;jaccode], 'mycode.c') //create the C file
 
 // - compile it
 ilib_for_link(['chemres','chemjac'],'mycode.c',[],'c','','loader.sce');//compile
@@ -399,8 +399,8 @@ ilib_for_link(['chemres','chemjac'],'mycode.c',[],'c','','loader.sce');//compile
 exec('loader.sce') //incremental linking
 
 // - call dassl
-y4=dassl([y0,yd0],0,t,'chemres','chemjac');
- ]]></programlisting>
+y4 = dassl([y0,yd0], 0, t, 'chemres', 'chemjac');
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

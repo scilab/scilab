@@ -180,9 +180,9 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // Function written in the Scilab language
-function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
-exact=-2.5432596188;
-I=intg(0,2*%pi,f)
+function y = f(x), y = x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)), endfunction
+exact = -2.5432596188;
+I = intg(0,2*%pi,f)
 abs(exact-I)
 
 // Function with an argument written in the Scilab language

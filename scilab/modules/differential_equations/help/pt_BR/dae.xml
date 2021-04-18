@@ -21,10 +21,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis> y=dae(initial,t0,t,res)
-            [y [,hd]]=dae(initial,t0,t [,rtol, [atol]],res [,jac] [,hd])
-            [y,rd]=dae("root",initial,t0,t,res,ng,surface)
-            [y ,rd [,hd]]=dae("root",initial,t0,t [,rtol, [atol]],res [,jac], ng, surface [,hd])
+        <synopsis> y = dae(initial,t0,t,res)
+            [y [,hd]] = dae(initial,t0,t [,rtol, [atol]],res [,jac] [,hd])
+            [y, rd] = dae("root",initial,t0,t,res,ng,surface)
+            [y, rd [,hd]] = dae("root",initial,t0,t [,rtol, [atol]],res [,jac], ng, surface [,hd])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -112,15 +112,15 @@
                                 <para>Esta forma é utilizada para passar parâmetros à função.
                                     Deve ser como segue:
                                 </para>
-                                <programlisting role=""><![CDATA[
+                                <screen><![CDATA[
 list(res,p1,p2,...)
- ]]></programlisting>
+]]></screen>
                                 <para>Onde a seqüência de chamamento da função
                                     <literal>res</literal> é agora
                                 </para>
-                                <programlisting role=""><![CDATA[
-r=res(t,y,ydot,p1,p2,...)
- ]]></programlisting>
+                                <screen><![CDATA[
+r = res(t,y,ydot,p1,p2,...)
+]]></screen>
                                 <para>
                                     <literal>res</literal> ainda retorna o valor residual
                                     como uma função de <literal>(t,x,xdot,x1,x2,...)</literal>, e
@@ -235,15 +235,15 @@ r=res(t,y,ydot,p1,p2,...)
                                 <para>Esta forma é utilizada para passar parâmetros à função.
                                     Deve ser como segue:
                                 </para>
-                                <programlisting role=""><![CDATA[
+                                <screen><![CDATA[
 list(jac,p1,p2,...)
- ]]></programlisting>
+]]></screen>
                                 <para>Onde a seqüência de chamamento da função
                                     <literal>jac</literal> é agora
                                 </para>
-                                <programlisting role=""><![CDATA[
-r=jac(t,x,xdot,p1,p2,...)
- ]]></programlisting>
+                                <screen><![CDATA[
+r = jac(t,x,xdot,p1,p2,...)
+]]></screen>
                                 <para>
                                     <literal>jac</literal> ainda retorna
                                     <literal>dg/dx+cj*dg/dxdot</literal> como uma função de
@@ -320,15 +320,15 @@ r=jac(t,x,xdot,p1,p2,...)
                                 <para>Esta forma é utilizada para passar parâmetros à função.
                                     Deve ser como segue:
                                 </para>
-                                <programlisting role=""><![CDATA[
+                                <screen><![CDATA[
 list(surface,p1,p2,...)
- ]]></programlisting>
+]]></screen>
                                 <para>Onde a seqüência de chamamento da função
                                     <literal>surface</literal> é agora
                                 </para>
-                                <programlisting role=""><![CDATA[
-r=surface(t,x,p1,p2,...)
- ]]></programlisting>
+                                <screen><![CDATA[
+r = surface(t,x,p1,p2,...)
+]]></screen>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -422,10 +422,10 @@ r=surface(t,x,p1,p2,...)
             funções <link linkend="dassl">dassl</link> e <link linkend="dasrt">dasrt</link> designada para equações diferenciais
             implícitas.
         </para>
-        <programlisting role=""><![CDATA[
-g(t,x,xdot)=0
-x(t0)=x0  e   xdot(t0)=xdot0
- ]]></programlisting>
+        <screen><![CDATA[
+g(t,x,xdot) = 0
+x(t0) = x0  e   xdot(t0) = xdot0
+]]></screen>
         <para>
             Se <literal>xdot0</literal> não for fornecido no argumento<literal>
                 initial
@@ -453,27 +453,27 @@ x(t0)=x0  e   xdot(t0)=xdot0
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 //Exemplo com um código Scilab
-function [r,ires]=chemres(t,y,yd)
+function [r,ires] = chemres(t,y,yd)
   r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
   r(2) =  0.04*y(1) - 1d4*y(2)*y(3) - 3d7*y(2)*y(2) - yd(2);
   r(3) =       y(1) +     y(2)      + y(3)-1;
   ires =  0;
 endfunction
-function pd=chemjac(x,y,yd,cj)
+function pd = chemjac(x,y,yd,cj)
   pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
        0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
        1       , 1                      , 1       ]
 endfunction
 
-x0=[1; 0; 0];
-xd0=[-0.04; 0.04; 0];
-t=[1.d-5:0.02:.4, 0.41:.1:4, 40, 400, 4000, 40000, 4d5, 4d6, 4d7, 4d8, 4d9, 4d10];
+x0 = [1; 0; 0];
+xd0 = [-0.04; 0.04; 0];
+t = [1.d-5:0.02:.4, 0.41:.1:4, 40, 400, 4000, 40000, 4d5, 4d6, 4d7, 4d8, 4d9, 4d10];
 
-y=dae([x0,xd0],0,t,chemres);// retorna os pontos de observação requisitados
+y = dae([x0,xd0],0,t,chemres);// retorna os pontos de observação requisitados
 
-%DAEOPTIONS=list([],1,[],[],[],0,0); // pede que a malha de dae seja retornada
-y=dae([x0,xd0],0,4d10,chemres); // sem jacobiano
-y=dae([x0,xd0],0,4d10,chemres,chemjac); // com jacobiano
+%DAEOPTIONS = list([],1,[],[],[],0,0); // pede que a malha de dae seja retornada
+y = dae([x0,xd0], 0, 4d10, chemres); // sem jacobiano
+y = dae([x0,xd0], 0, 4d10, chemres, chemjac); // com jacobiano
 
 //exemplo com um código C (requer-se um compilador C) --------------------------------------------------
 //-1- criando os códigos C em TMPDIR - equação de Vanderpol, forma implícita
@@ -490,31 +490,31 @@ code=['#include &lt;math.h&gt;'
       ' '
       'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
       '{ groot[0] = y[0];}']
-mputl(code,TMPDIR+'/t22.c')
+mputl(code, TMPDIR+'/t22.c')
 
 //-2- compilando e carregando
 ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',[],TMPDIR+'/t22loader.sce');
 exec(TMPDIR+'/t22loader.sce')
 
 //-3- executando
-rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
-t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
+rtol = [1.d-6;1.d-6]; atol = [1.d-6;1.d-4];
+t0 = 0; y0 = [2;0]; y0d = [0;-2]; t = [20:20:200]; ng = 1;
 
 //simulação simples
-t=0:0.003:300;
-yy=dae([y0,y0d],t0,t,atol,rtol,'res22','jac22');
-clf();plot(yy(1,:),yy(2,:))
+t = 0:0.003:300;
+yy = dae([y0,y0d], t0, t, atol,rtol, 'res22', 'jac22');
+clf(); plot(yy(1,:),yy(2,:))
 
 //achando o primeiro ponto onde yy(1)=0
-[yy,nn,hotd]=dae("root",[y0,y0d],t0,300,atol,rtol,'res22','jac22',ng,'gr22');
+[yy,nn,hotd] = dae("root", [y0,y0d], t0, 300, atol,rtol, 'res22', 'jac22', ng, 'gr22');
 plot(yy(1,1),yy(2,1),'r+')
-xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+xstring(yy(1,1)+0.1,yy(2,1), string(nn(1)))
 
 //recomeço rápido para o próximo ponto
-t01=nn(1);[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
-[yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);
+t01 = nn(1); [pp,qq] = size(yy); y01 = yy(2:3,qq); y0d1 = yy(3:4,qq);
+[yy,nn,hotd] = dae("root", [y01,y0d1], t01, 300, atol,rtol, 'res22', 'jac22', ng, 'gr22', hotd);
 plot(yy(1,1),yy(2,1),'r+')
-xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+xstring(yy(1,1)+0.1,yy(2,1), string(nn(1)))
  ]]></programlisting>
     </refsection>
     <refsection>

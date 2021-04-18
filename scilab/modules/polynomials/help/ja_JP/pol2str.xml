@@ -21,21 +21,23 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>strs = pol2str(p)</synopsis>
+        <synopsis>strP = pol2str(P)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
         <variablelist>
             <varlistentry>
-                <term>p</term>
+                <term>P</term>
                 <listitem>
                     <para>実数または複素係数の多項式の行列またはハイパー行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>strs</term>
+                <term>strP</term>
                 <listitem>
-                    <para>文字列の行列またはハイパー行列</para>
+                    <para>
+                        size(P)に等しいサイズの文字列の配列.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -43,7 +45,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            多項式を文字列に変換します (ユーティリティ関数).
+            <varname>P</varname>の各多項式を文字列に変換します（効用関数）.
         </para>
         <para>
             <note>

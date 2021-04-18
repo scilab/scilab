@@ -119,9 +119,9 @@
             <literal>g</literal> が関数の場合,その構文は以下のようにする
             必要があります:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 z = g(t,y)
- ]]></programlisting>
+]]></screen>
         <para>
             ただし, <literal>t</literal> はスカラー実数 (時間),
             <literal>y</literal> は実数ベクトル (状態量). この関数は,
@@ -154,13 +154,13 @@ z = g(t,y)
         <programlisting role="example"><![CDATA[
 // 微分方程式の積分
 // dy/dt=y , y(0)=1, として y(t)=2 となる最小の時間 t を探します
-deff("[ydot]=f(t,y)","ydot=y")
-deff("[z]=g(t,y)","z=y-2")
-y0=1;
-ng=1;
-[y,rd]=ode("root",y0,0,2,f,ng,g)
-deff("[z]=g(t,y)","z=y-[2;2;33]")
-[y,rd]=ode("root",1,0,2,f,3,g)
+deff("ydot = f(t,y)", "ydot = y")
+deff("z = g(t,y)", "z = y-2")
+y0 = 1;
+ng = 1;
+[y, rd] = ode("root", y0, 0, 2, f, ng, g)
+deff("z = g(t,y)", "z = y-[2;2;33]")
+[y, rd] = ode("root", 1, 0, 2, f, 3, g)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

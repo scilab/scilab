@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="invr">
     <refnamediv>
         <refname>invr</refname>
-        <refpurpose>inversion d'une matrice rationnelle (ou polynomiale)  </refpurpose>
+        <refpurpose>inverse une matrice de polynômes ou de fractions rationelles</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -12,17 +26,15 @@
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>H  </term>
+                <term>H</term>
                 <listitem>
-                    <para>polynôme ou matrice de polynômes
-                    </para>
+                    matrice de polynômes ou de quotients polynomiaux (fractions rationelles).
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>F  </term>
                 <listitem>
-                    <para>polynôme ou matrice de polynômes
-                    </para>
+                    matrice de fractions rationelles
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -30,30 +42,65 @@
     <refsection>
         <title>Description</title>
         <para>
-            Si <literal>H</literal> est une matrice de polynômes ou de fractions rationnelles, <literal>invr</literal>
-            calcule <literal>H^(-1)</literal> avec l'algorithme de Leverrier (voir code de la fonction).
+            <literal>invr</literal> calcule <literal>H<superscript>-1</superscript></literal>
+            selon l'algorithme de Leverrier (voir code de la fonction).
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s')
-H=[s,s*s+2;1-s,1+s]; invr(H)
-[Num,den]=coffg(H);Num/den
-H=[1/s,(s+1);1/(s+2),(s+3)/s];invr(H)
- ]]></programlisting>
+s = %s;
+H = [s, s*s+2 ; 1-s, 1+s], iH = invr(H), H * iH
+
+[Num,den] = coffg(H); Num/den
+H = [1/s, (s+1) ; 1/(s+2), (s+3)/s]; invr(H)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> H = [s, s*s+2 ; 1-s, 1+s], iH = invr(H), H * iH
+ H  =
+  s     2 +s²
+  1 -s  1 +s
+
+ iH  =
+      1 +s       -2 -s²
+   ----------  ----------
+   -2 +3s +s³  -2 +3s +s³
+
+     -1 +s         s
+   ----------  ----------
+   -2 +3s +s³  -2 +3s +s³
+
+ ans  =
+   1  0
+   -  -
+   1  1
+
+   0  1
+   -  -
+   1  1
+
+--> [Num,den] = coffg(H); Num/den
+ ans  =
+      1 +s       -2 -s²
+   ----------  ----------
+   -2 +3s +s³  -2 +3s +s³
+
+     -1 +s         s
+   ----------  ----------
+   -2 +3s +s³  -2 +3s +s³
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
+                <link linkend="inv">inv</link>
+            </member>
+            <member>
                 <link linkend="glever">glever</link>
             </member>
             <member>
                 <link linkend="coffg">coffg</link>
-            </member>
-            <member>
-                <link linkend="inv">inv</link>
             </member>
         </simplelist>
     </refsection>

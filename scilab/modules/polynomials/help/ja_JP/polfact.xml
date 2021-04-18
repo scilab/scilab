@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Serge STEER
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[f]=polfact(p)</synopsis>
+        <synopsis>f = polfact(p)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -28,52 +28,92 @@
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>多項式</para>
+                    <para>実係数の多項式.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>f</term>
                 <listitem>
                     <para>
-                        <literal>p=prod(f)</literal>となるようなベクトル <literal>[f0 f1 ... fn]</literal>
+                        row vector <literal>[f0 f1 ... fn]</literal> of polynomials with real
+                        coefficients, such that <literal>p=prod(f)</literal>.
+                        <literal>f0=f(1)</literal> is a constant polynomial. <literal>f(2:$)</literal>
+                        are polynomials of degree 1 or 2.
                     </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>f0</term>
-                            <listitem>
-                                <para>定数</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>fi</term>
-                            <listitem>
-                                <para>多項式</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <warning>
+                        The coefficients of <varname>f</varname> polynomials are computed with
+                        a relative uncertainty of
+                        <literal>%eps</literal><superscript>1/degree(p)</superscript>.
+                    </warning>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>説明</title>
-        <para>
-            <literal>f=polfact(p)</literal> はpの最小因数,すなわち,
-            <literal>p=prod(f)</literal>となるような<literal>f=[f0 f1 ... fn]</literal>
-            を返します.
-        </para>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+x = poly(0,"x");
+%eps^[1/3 1/7]
+
+p = (1-x)^3
+f = polfact(p)'
+prod(f)
+
+p = (1+x)^7
+f = polfact(p)'
+prod(f)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> %eps^[1/3 1/7]
+ ans  =
+   0.0000061   0.0058047
+
+--> p = (1-x)^3
+ p  =
+  1 -3x +3x² -x³
+
+--> f = polfact(p)'
+ f  =
+  -1
+  1.0000086 -2.0000086x +x²
+  -0.9999914 +x
+
+--> prod(f)
+ ans  =
+  1 -3x +3x² -x³
+
+
+--> p = (1+x)^7
+ p  =
+  1 +7x +21x² +35x³ +35x⁴ +21x⁵ +7x⁶ +x⁷
+
+--> f = polfact(p)'
+ f  =
+  1
+  1.0092002 +x
+  1.0114552 +2.011371x +x²
+  0.9959088 +1.9958255x +x²
+  0.9836859 +1.9836034x +x²
+
+--> prod(f)
+ ans  =
+  1 +7x +21x² +35x³ +35x⁴ +21x⁵ +7x⁶ +x⁷
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="factors">factors</link>
+            </member>
+            <member>
+                <link linkend="roots">roots</link>
+            </member>
+            <member>
                 <link linkend="lcm">lcm</link>
             </member>
             <member>
                 <link linkend="cmndred">cmndred</link>
-            </member>
-            <member>
-                <link linkend="factors">factors</link>
             </member>
         </simplelist>
     </refsection>

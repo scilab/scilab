@@ -25,31 +25,32 @@
     </refsynopsisdiv>
     <refsection>
         <title>Описание</title>
-        <para>If it exists in the dae function calling context the variable
-            <literal>%DAEOPTIONS</literal> the dae function use it to sets
-            options.
+        <para>
+            Если в контексе вызова функции dae есть переменная <literal>%DAEOPTIONS</literal>, то
+            функция dae будет использовать её для установки опций.
         </para>
-        <para>This daeoptions function interactively displays a command which
-            should be executed to set various options of the <link linkend="dae">dae</link> solver.
+        <para>
+            Эта функция <literal>daeoptions</literal> интерактивно отображает команду, которая
+            должна быть исполнена для установки различных опций решателя <link linkend="dae">dae</link>.
         </para>
         <para>
             <caution>
                 Функция <literal>dae</literal> проверяет существует ли данная переменная и, если да, то использует её.
                 Для использования значений по умолчанию вы должны очистить эту переменную. Заметьте, что
                 <literal>daeoptions</literal> не создаёт этой переменной. Чтобы  её создать, вы должны выполнить
-                командную строку распечатанную с помощью <literal>daeoptions</literal>.
+                командную строку, распечатанную с помощью <literal>daeoptions</literal>.
             </caution>
         </para>
         <para>
             Переменная <literal>%DAEOPTIONS</literal> является <link linkend="list">списком</link> со следующими элементами:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 list(tstop,imode,band,maxstep,stepin,nonneg,isest)
- ]]></programlisting>
+]]></screen>
         <para>The default value is:</para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 list([],0,[],[],[],0,0)
- ]]></programlisting>
+]]></screen>
         <para>Значение этих элементов приведено ниже.</para>
         <variablelist>
             <varlistentry>

@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Serge STEER
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,11 +16,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="polfact" xml:lang="pt">
     <refnamediv>
         <refname>polfact</refname>
-        <refpurpose>fatores mínimos</refpurpose>
+        <refpurpose>fatores reais mínimos de um polinômio</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>[f]=polfact(p)</synopsis>
+        <synopsis>f = polfact(p)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -28,53 +28,89 @@
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>polinômio </para>
+                    <para>polinômio com coeficientes reais.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>f</term>
                 <listitem>
                     <para>
-                        vetor <literal>[f0 f1 ... fn]</literal> tal que
-                        <literal>p=prod(f)</literal>
+                        vetor <literal>[f0 f1 ... fn]</literal> de polinômios com coeficientes reais
+                        tal que <literal>p=prod(f)</literal>.
+                        <literal>f0=f(1)</literal> é um polinômio constante.
+                        <literal>f(2:$) </literal> são polinômios de grau 1 ou 2.
                     </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>f0</term>
-                            <listitem>
-                                <para>constante</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>fi</term>
-                            <listitem>
-                                <para>polinômio</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
+
     <refsection>
-        <title>Descrição</title>
-        <para>
-            <literal>f=polfact(p)</literal> retorna os valores mínimos de p,
-            i.e., <literal>f=[f0 f1 ... fn]</literal> tal que
-            <literal>p=prod(f)</literal>
-        </para>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+x = poly(0,"x");
+%eps^[1/3 1/7]
+
+p = (1-x)^3
+f = polfact(p)'
+prod(f)
+
+p = (1+x)^7
+f = polfact(p)'
+prod(f)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> %eps^[1/3 1/7]
+ ans  =
+   0.0000061   0.0058047
+
+--> p = (1-x)^3
+ p  =
+  1 -3x +3x² -x³
+
+--> f = polfact(p)'
+ f  =
+  -1
+  1.0000086 -2.0000086x +x²
+  -0.9999914 +x
+
+--> prod(f)
+ ans  =
+  1 -3x +3x² -x³
+
+
+--> p = (1+x)^7
+ p  =
+  1 +7x +21x² +35x³ +35x⁴ +21x⁵ +7x⁶ +x⁷
+
+--> f = polfact(p)'
+ f  =
+  1
+  1.0092002 +x
+  1.0114552 +2.011371x +x²
+  0.9959088 +1.9958255x +x²
+  0.9836859 +1.9836034x +x²
+
+--> prod(f)
+ ans  =
+  1 +7x +21x² +35x³ +35x⁴ +21x⁵ +7x⁶ +x⁷
+]]></screen>
     </refsection>
+
     <refsection>
         <title> Ver Também </title>
         <simplelist type="inline">
+            <member>
+                <link linkend="factors">factors</link>
+            </member>
+            <member>
+                <link linkend="roots">roots</link>
+            </member>
             <member>
                 <link linkend="lcm">lcm</link>
             </member>
             <member>
                 <link linkend="cmndred">cmndred</link>
-            </member>
-            <member>
-                <link linkend="factors">factors</link>
             </member>
         </simplelist>
     </refsection>

@@ -6,7 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntaxe</title>
-        <synopsis>C = coeff(Mp [,v])</synopsis>
+        <synopsis>
+            C = coeff(Mp)
+            C = coeff(Mp, degrees)
+        </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
         <title>Paramètres</title>
@@ -19,16 +22,16 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>v  </term>
+                <term>degrees</term>
                 <listitem>
-                    <para>vecteur (ligne ou colonne) d'entiers des degrés choisis
+                    <para>vecteur (ligne ou colonne) d'entiers des degrés des coefficients choisis.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>C  </term>
                 <listitem>
-                    <para>grosse matrice de coefficients
+                    <para>grande matrice de coefficients.
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,15 +48,15 @@
             <literal>k = max(degree(Mp))</literal>
         </para>
         <para>
-            <literal>C = coeff(Mp,v)</literal> renvoie la matrice des coefficients des termes dont
-            les degrés sont indiqués dans <literal>v</literal>.
+            <literal>C = coeff(Mp,degrees)</literal> renvoie la matrice des coefficients des termes
+            dont les degrés sont indiqués dans <literal>degrees</literal>.
         </para>
     </refsection>
     <refsection role="examples">
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');
-w=s*rand(10,10);
+s = %s;
+w = s*rand(10,10);
 determ(w)
 coeff(w,1)
 
@@ -62,7 +65,7 @@ coeff(r)
 
 r = poly([-1-%i -1+2*%i 0],'s',"roots");
 coeff(r)
- ]]></programlisting>
+     ]]></programlisting>
     </refsection>
 
     <refsection role="see also">

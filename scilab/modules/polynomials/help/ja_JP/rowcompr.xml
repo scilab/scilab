@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[X,rk,Ac]=rowcompr(A)</synopsis>
+        <synopsis>[X, rk, Ac] = rowcompr(A)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>

@@ -6,7 +6,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis>
+        <synopsis>
+            P = inv_coeff(C)
+            P = inv_coeff(C, d)
+            P = inv_coeff(C, d, varname)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -27,7 +31,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>name</term>
+                <term>varname</term>
                 <listitem>
                     <para>
                         строковое значение, указывающее имя полиномиальной переменной (значение по умолчанию <literal>'x'</literal>).
@@ -47,12 +51,14 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-A=int(10*rand(2,6))
-// Building a degree 1 polynomial matrix
-P=inv_coeff(A,1)
+A = int(10*rand(2,6))
+
+// Построение матрицы полиномов степени 1
+P = inv_coeff(A, 1)
 norm(coeff(P)-A)
-// Using default value for degree
-P1=inv_coeff(A)
+
+// Использование значения по умолчнию для степени
+P1 = inv_coeff(A)
 norm(coeff(P1)-A)
  ]]></programlisting>
     </refsection>

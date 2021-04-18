@@ -238,7 +238,7 @@ link(l, 'cfun', 'c')
 // integration de la fonction
 I = intg(0, 2*%pi, 'cfun')
 abs(exact - I)
- ]]></programlisting>
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

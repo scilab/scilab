@@ -20,15 +20,16 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[N1,D1]=simp(N,D)
-            H1=simp(H)
+        <synopsis>
+            [N1,D1] = simp(N,D)
+            H1 = simp(H)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
         <variablelist>
             <varlistentry>
-                <term>N,D</term>
+                <term>N, D</term>
                 <listitem>
                     <para>実数多項式または実数行列多項式</para>
                 </listitem>
@@ -60,38 +61,48 @@
             <literal>H1</literal>で簡単化されます).
         </para>
         <para>
-            注意:
-        </para>
-        <para>
-            -閾値は指定されません. すなわち,<literal>simp</literal> は強制的に簡単かを
-            行うことはできません.
-        </para>
-        <para>
-            -積分器を含む線形動的システムの場合,簡単化により定常ゲイン
-            (連続系の場合は<literal>H(0)</literal>,離散系の場合は <literal>H(1)</literal>)
-            が変化します.
-        </para>
-        <para>
-            -複素数のデータの場合, <literal>simp</literal> はその入力を返します.
-        </para>
-        <para>
-            -有理数の簡単化は,有理数に関するほぼ毎回の処理の後にコールされます.
-            <literal>simp_mode</literal>関数によりこの簡単化のオン/オフを切り替える
-            ことができます.
+            <warning>
+                <itemizedlist>
+                    <listitem>
+                        閾値は指定されません. すなわち,<literal>simp</literal> は強制的に簡単かを
+                        行うことはできません.
+                    </listitem>
+                    <listitem>
+                        積分器を含む線形動的システムの場合,簡単化により定常ゲイン
+                        (連続系の場合は<literal>H(0)</literal>,離散系の場合は <literal>H(1)</literal>)
+                        が変化します.
+                    </listitem>
+                    <listitem>
+                        複素数のデータの場合, <literal>simp</literal> はその入力を返します.
+                    </listitem>
+                    <listitem>
+                        有理数の簡単化は,有理数に関するほぼ毎回の処理の後にコールされます.
+                        <literal>simp_mode</literal>関数によりこの簡単化のオン/オフを切り替える
+                        ことができます.
+                    </listitem>
+                </itemizedlist>
+            </warning>
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');
-[n,d]=simp((s+1)*(s+2),(s+1)*(s-2))
-simp_mode(%F);hns=s/s
-simp_mode(%T);hns=s/s
+s = poly(0,'s');
+[n,d] = simp((s+1)*(s+2),(s+1)*(s-2))
+
+simp_mode(%F); hns = s/s
+simp_mode(%T); hns = s/s
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="simp_mode">simp_mode</link>
+            </member>
+            <member>
+                <link linkend="clean">clean</link>
+            </member>
             <member>
                 <link linkend="roots">roots</link>
             </member>
@@ -100,12 +111,6 @@ simp_mode(%T);hns=s/s
             </member>
             <member>
                 <link linkend="poly">poly</link>
-            </member>
-            <member>
-                <link linkend="clean">clean</link>
-            </member>
-            <member>
-                <link linkend="simp_mode">simp_mode</link>
             </member>
         </simplelist>
     </refsection>

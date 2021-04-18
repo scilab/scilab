@@ -21,21 +21,21 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>strs = pol2str(p)</synopsis>
+        <synopsis>strP = pol2str(P)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>p</term>
+                <term>P</term>
                 <listitem>
-                    <para>matrix or hypermatrix of polynomials with real or complex coefficients</para>
+                    <para>array of polynomials with real or complex coefficients</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>strs</term>
+                <term>strP</term>
                 <listitem>
-                    <para>matrix or hypermatrix of strings</para>
+                    <para>array of strings, of size equal to size(P).</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -43,7 +43,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            converts polynomial to character string (utility function).
+            converts each polynomial of <varname>P</varname> to character string (utility function).
         </para>
         <para>
             <note>
@@ -84,7 +84,10 @@ pol2str(p)
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revdescription>pol2str() extended to polynomials with complex coefficients and to hypermatrix. Array processing vectorized.</revdescription>
+                <revdescription>
+                    pol2str() extended to polynomials with complex coefficients and to hypermatrix.
+                    Array processing vectorized.
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>

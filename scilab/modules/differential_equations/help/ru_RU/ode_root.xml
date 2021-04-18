@@ -113,9 +113,9 @@
         <para>
             Если <literal>g</literal> является функцией, то её синтаксис должен быть следующим:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-    z = g(t,y)
-    ]]></programlisting>
+        <screen><![CDATA[
+z = g(t,y)
+]]></screen>
         <para>
             где <literal>t</literal> -- вещественный скаляр (время) и <literal>y</literal> -- вещественный вектор (состояние). Она возвращает вектор размером       <literal>ng</literal>, который соответствует <literal>ng</literal> ограничениям. Если <literal>g</literal> -- символьная строка, то она ссылается на имя процедуры Fortran или функции C со следующей последовательностью вызова: <literal>g(n,t,y,ng,gout)</literal>, где <literal>ng</literal> --  количество ограничений, а <literal>gout</literal> -- значение  <literal>g</literal> (на выходе программы). Если <literal>g</literal> является списком, то применяются те же договорённости, что и для <literal>f</literal> (см. справку <link linkend="ode">ode</link>).
         </para>
@@ -130,16 +130,16 @@
     <refsection role="examples">
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-    // Интегрирование дифференциального уравнения
-    // dy/dt=y , y(0)=1, и поиск такого минимального времени t, что y(t)=2
-    deff("[ydot]=f(t,y)","ydot=y")
-    deff("[z]=g(t,y)","z=y-2")
-    y0=1;ng=1;
-    [y,rd]=ode("root",y0,0,2,f,ng,g)
+// Интегрирование дифференциального уравнения
+// dy/dt=y , y(0)=1, и поиск такого минимального времени t, что y(t)=2
+deff("ydot = f(t,y)", "ydot = y")
+deff("z = g(t,y)", "z = y-2")
+y0 = 1;  ng = 1;
+[y, rd] = ode("root", y0, 0, 2, f, ng, g)
 
-    deff("[z]=g(t,y)","z=y-[2;2;33]")
-    [y,rd]=ode("root",1,0,2,f,3,g)
-    ]]></programlisting>
+deff("z = g(t,y)", "z = y-[2;2;33]")
+[y, rd] = ode("root", 1, 0, 2, f, 3, g)
+        ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

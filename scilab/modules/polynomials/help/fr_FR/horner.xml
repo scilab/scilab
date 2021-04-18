@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="horner">
     <refnamediv>
         <refname>horner</refname>
-        <refpurpose>évaluation d'un polynôme ou d'une fraction rationnelle  </refpurpose>
+        <refpurpose>évalue des polynômes ou des fractions rationnelles en des valeurs données</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -12,16 +26,16 @@
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>P  </term>
+                <term>P</term>
                 <listitem>
-                    <para>polynôme ou matrice de polynômes
+                    <para>tableau de polynômes ou de quotients polynomiaux (fractions rationnelles).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>x  </term>
+                <term>x</term>
                 <listitem>
-                    <para>vecteur de nombres , de polynômes ou de fractions rationnelles
+                    <para>tableau de nombres, de polynômes, ou de fractions rationnelles.
                     </para>
                 </listitem>
             </varlistentry>
@@ -48,33 +62,101 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
+        <para>
+            Evaluations d'un polynôme :
+        </para>
         <programlisting role="example"><![CDATA[
-//evaluation d'un polynôme pour un vecteur de nombres
-P=poly(1:3,'x')
-horner(P,[1 2 5])
-horner(P,[1 2 5]+%i)
+P = poly(1:3, 'x', 'coeff')
+s = %s;
+horner(P, [1 2 ; 3 4])       // pour des valeurs réelles
+horner(P, [1 2 ; 3 4]+%i)    // pour des valeurs complexes
+horner(P, [1, s ; s^2, s^3]) // pour d'autres polynômes
+horner(P, [1/s, 1/s^2])      // pour des fractions rationnelles
+     ]]></programlisting>
+        <screen><![CDATA[
+--> P = poly(1:3, 'x', 'coeff')
+ P  =
+  1 +2x +3x²
 
-//evaluation d'un vecteur de fractions rationnelles
-s=poly(0,'s');M=[s,1/s];
-horner(M,1)
-horner(M,%i)
-horner(M,1/s)
+--> s = %s;
+--> horner(P, [1 2 ; 3 4])       // pour des valeurs réelles
+ ans  =
+   6.    17.
+   34.   57.
 
-//evaluation d'un polynôme pour une matrice de nombres
-X= [1 2;3 4]
-p=poly(1:3,'x','c')
-m=horner(p, X)
-1*X.^0+2*X.^1+3*X.^2
- ]]></programlisting>
+--> horner(P, [1 2 ; 3 4]+%i)    // pour des valeurs complexes
+ ans  =
+   3.  + 8.i    14. + 14.i
+   31. + 20.i   54. + 26.i
+
+--> horner(P, [1, s ; s^2, s^3]) // pour d'autres polynômes
+ ans  =
+  6            1 +2s +3s²
+
+  1 +2s² +3s⁴  1 +2s³ +3s⁶
+
+--> horner(P, [1/s, 1/s^2])      // pour des fractions rationnelles
+ ans  =
+   3 +2s +s²  3 +2s² +s⁴
+   ---------  ----------
+      s²          s⁴
+]]></screen>
+        <para/>
+        <para>
+            Evaluation of de fractions rationnelles :
+        </para>
+        <programlisting role="example"><![CDATA[
+[s,z] = (%s, %z);
+M = [1/s, (s-1)/s]
+horner(M, 1)
+horner(M, %i)
+horner(M, 2+s)
+horner(M, (2+z)/z)
+horner(M, [1, 1/z ; 2, (2+z)/z])
+     ]]></programlisting>
+        <screen><![CDATA[
+--> M = [1/s, (s-1)/s]
+ M  =
+   1  -1 +s
+   -  -----
+   s    s
+
+--> horner(M, 1)
+ ans  =
+   1.   0.
+
+--> horner(M, %i)
+ ans  =
+   0. - i     1. + i
+
+--> horner(M, 2+s)
+ ans  =
+    1    1 +s
+   ----  ----
+   2 +s  2 +s
+
+--> horner(M, (2+z)/z)
+ ans  =
+    z     2
+   ----  ----
+   2 +z  2 +z
+
+--> horner(M, [1, 1/z ; 2, (2+z)/z])
+ ans  =
+   1   z    0  1 -z
+   -   -    -  ----
+   1   1    1   1
+
+   1   z    1   2
+   -  ----  -  ----
+   2  2 +z  2  2 +z
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="freq">freq</link>
-            </member>
-            <member>
-                <link linkend="repfreq">repfreq</link>
+                <link linkend="feval">feval</link>
             </member>
             <member>
                 <link linkend="evstr">evstr</link>

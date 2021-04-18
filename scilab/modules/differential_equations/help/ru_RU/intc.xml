@@ -85,7 +85,7 @@ endfunction
 intc(1+%i, 4-%i, f)
 
 [r, err] = intc(1+%i, 4-%i, f, 1d-10, 1d-6)
- ]]></programlisting>
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

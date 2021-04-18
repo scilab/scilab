@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>[y]=intl(a,b,z0,r,f)</synopsis>
+        <synopsis>y = intl(a, b, z0, r, f)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -69,7 +69,7 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-function y=f(z)
+function y = f(z)
   y = z^(3 + %pi * %i)
 endfunction
 

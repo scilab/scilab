@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,7 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="invr">
     <refnamediv>
         <refname>invr</refname>
-        <refpurpose>inversion of (rational) matrix</refpurpose>
+        <refpurpose>inverts a matrix of polynomials or of rationals</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -42,30 +42,65 @@
     <refsection>
         <title>Description</title>
         <para>
-            If <literal>H</literal> is a polynomial or rational function matrix, <literal>invr</literal>
-            computes <literal>H^(-1)</literal> using Leverrier's algorithm (see function code)
+            <literal>invr</literal> computes <literal>H<superscript>-1</superscript></literal>
+            using Leverrier's algorithm (see function's code).
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s')
-H=[s,s*s+2;1-s,1+s]; invr(H)
-[Num,den]=coffg(H);Num/den
-H=[1/s,(s+1);1/(s+2),(s+3)/s];invr(H)
- ]]></programlisting>
+s = %s;
+H = [s, s*s+2 ; 1-s, 1+s], iH = invr(H), H * iH
+
+[Num,den] = coffg(H); Num/den
+H = [1/s, (s+1) ; 1/(s+2), (s+3)/s]; invr(H)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> H = [s, s*s+2 ; 1-s, 1+s], iH = invr(H), H * iH
+ H  =
+  s     2 +s²
+  1 -s  1 +s
+
+ iH  =
+      1 +s       -2 -s²
+   ----------  ----------
+   -2 +3s +s³  -2 +3s +s³
+
+     -1 +s         s
+   ----------  ----------
+   -2 +3s +s³  -2 +3s +s³
+
+ ans  =
+   1  0
+   -  -
+   1  1
+
+   0  1
+   -  -
+   1  1
+
+--> [Num,den] = coffg(H); Num/den
+ ans  =
+      1 +s       -2 -s²
+   ----------  ----------
+   -2 +3s +s³  -2 +3s +s³
+
+     -1 +s         s
+   ----------  ----------
+   -2 +3s +s³  -2 +3s +s³
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="inv">inv</link>
+            </member>
+            <member>
                 <link linkend="glever">glever</link>
             </member>
             <member>
                 <link linkend="coffg">coffg</link>
-            </member>
-            <member>
-                <link linkend="inv">inv</link>
             </member>
         </simplelist>
     </refsection>

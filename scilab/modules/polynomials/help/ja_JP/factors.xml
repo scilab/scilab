@@ -20,9 +20,12 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[lnum,g]=factors(pol [,'flag'])
-            [lnum,lden,g]=factors(rat [,'flag'])
-            rat=factors(rat,'flag')
+        <synopsis>
+            [lnum, gain] = factors(pol)
+            [lnum, gain] = factors(pol, flag)
+            [lnum, lden, gain] = factors(rat)
+            [lnum, lden, gain] = factors(rat, flag)
+            rat = factors(rat, flag)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -31,41 +34,33 @@
             <varlistentry>
                 <term>pol</term>
                 <listitem>
-                    <para>実数多項式</para>
+                    実数多項式<para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rat</term>
                 <listitem>
-                    <para>
-                        実数有理多項式 (<literal>rat=pol1/pol2</literal>)
-                    </para>
+                    実数有理多項式 (<literal>rat=pol1/pol2</literal>).
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>lnum</term>
+                <term>lnum, lden</term>
                 <listitem>
-                    <para>(1 または 2次の)多項式のリスト</para>
+                    (1 または 2次の)多項式のリスト<para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>lden</term>
+                <term>gain</term>
                 <listitem>
-                    <para>(1 または 2次の)多項式のリスト</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>g</term>
-                <listitem>
-                    <para>実数</para>
+                    実数<para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flag</term>
                 <listitem>
-                    <para>
-                        文字列 <literal>'c'</literal>または <literal>'d'</literal>
-                    </para>
+                    文字列 <literal>'c'</literal>または <literal>'d'</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -78,21 +73,21 @@
         </para>
         <para>
             (<literal>flag</literal>が指定されない場合,)
-            pol= g にリスト<literal>lnum</literal>のエントリの積を乗じることになります.
+            pol= gain にリスト<literal>lnum</literal>のエントリの積を乗じることになります.
             <literal>flag='c'</literal>が指定された暴い,
-            <literal>|pol(i omega)|</literal> = <literal>|g*prod(lnum_j(i omega)|</literal>
+            <literal>|pol(i omega)|</literal> = <literal>|gain*prod(lnum_j(i omega)|</literal>
             となります.
             <literal>flag='d'</literal>が指定された場合,
-            <literal>|pol(exp(i omega))|</literal> = <literal>|g*prod(lnum_i(exp(i omega))|</literal>
+            <literal>|pol(exp(i omega))|</literal> = <literal>|gain*prod(lnum_i(exp(i omega))|</literal>
             となります.
             <literal>factors</literal>の引数が 1x1 有理数 <literal>rat=pol1/pol2</literal>の場合,
             分子<literal>pol1</literal> および分母 the denominator <literal>pol2</literal>の因数
             がそれぞれリスト<literal>lnum</literal> および <literal>lden</literal>に返されます.
         </para>
         <para>
-            "gain" は <literal>g</literal>に返されます.
+            "gain" は <literal>gain</literal>に返されます.
             すなわち:
-            rat= g times (lnumのエントリの積) / (ldenのエントリの積).
+            rat= gain times (lnumのエントリの積) / (ldenのエントリの積).
         </para>
         <para>
             <literal>flag</literal> が<literal>'c'</literal> (または<literal>'d'</literal>)の場合,
@@ -115,19 +110,28 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-n=poly([0.2,2,5],'z');
-d=poly([0.1,0.3,7],'z');
-R=syslin('d',n,d);
-R1=factors(R,'d')
+n = poly([0.2,2,5],'z');
+d = poly([0.1,0.3,7],'z');
+R = syslin('d',n,d);
+R1 = factors(R,'d')
 roots(R1('num'))
 roots(R1('den'))
-w=exp(2*%i*%pi*[0:0.1:1]);
-norm(abs(horner(R1,w))-abs(horner(R,w)))
+w = exp(2*%i*%pi*[0:0.1:1]);
+norm(abs(horner(R1,w)) - abs(horner(R,w)))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="polfact">polfact</link>
+            </member>
+            <member>
+                <link linkend="roots">roots</link>
+            </member>
+            <member>
+                <link linkend="pfss">pfss</link>
+            </member>
             <member>
                 <link linkend="simp">simp</link>
             </member>

@@ -45,13 +45,13 @@
         <para>
             The variable <literal>%DAEOPTIONS</literal> is a <link linkend="list">list</link> with the following elements:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 list(tstop,imode,band,maxstep,stepin,nonneg,isest)
- ]]></programlisting>
+]]></screen>
         <para>The default value is:</para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 list([],0,[],[],[],0,0)
- ]]></programlisting>
+]]></screen>
         <para>The meaning of the elements is described below.</para>
         <variablelist>
             <varlistentry>

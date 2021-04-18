@@ -6,7 +6,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis>
+        <synopsis>
+            P = inv_coeff(C)
+            P = inv_coeff(C, d)
+            P = inv_coeff(C, d, varname)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -26,7 +30,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>name</term>
+                <term>varname</term>
                 <listitem>
                     <para>
                         a string giving the polynomial variable name (default value <literal>'x'</literal>).
@@ -46,12 +50,12 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-A=int(10*rand(2,6))
+A = int(10*rand(2,6))
 // Building a degree 1 polynomial matrix
-P=inv_coeff(A,1)
+P = inv_coeff(A,1)
 norm(coeff(P)-A)
 // Using default value for degree
-P1=inv_coeff(A)
+P1 = inv_coeff(A)
 norm(coeff(P1)-A)
  ]]></programlisting>
     </refsection>

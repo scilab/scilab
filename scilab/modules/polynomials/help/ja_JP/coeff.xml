@@ -20,7 +20,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[C]=coeff(Mp [,v])</synopsis>
+        <synopsis>
+            C = coeff(Mp)
+            C = coeff(Mp, degrees)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -58,9 +61,24 @@
         </para>
         <para>
             <literal>C=coeff(Mp,v)</literal> は
-            <literal>v</literal>の次数の行列の係数を返します
-            (<literal>v</literal> は行または列ベクトルです).
+            <literal>degrees</literal>の次数の行列の係数を返します
+            (<literal>degrees</literal> は行または列ベクトルです).
         </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+s = %s;
+w = s*rand(10,10);
+determ(w)
+coeff(w,1)
+
+r = poly([0 -1+%i -1-%i],'s',"roots");
+coeff(r)
+
+r = poly([-1-%i -1+2*%i 0],'s',"roots");
+coeff(r)
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

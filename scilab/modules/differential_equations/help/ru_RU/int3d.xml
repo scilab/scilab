@@ -7,7 +7,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>[result,err]=int3d(X,Y,Z,f [,nf[,params]])</synopsis>
+        <synopsis>
+            [result, err] = int3d(X, Y, Z, f)
+            [result, err] = int3d(X, Y, Z, f, nf)
+            [result, err] = int3d(X, Y, Z, f, nf, params)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -111,18 +115,18 @@
         <para>
             Данная функция вычисляет аппроксимацию данного вектора определённых интегралов
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
           1  2      numfun
- ]]></programlisting>
+]]></screen>
         <para>
             где область интегрирования является набором из  <literal>NUMTET</literal>
             тетраэдров и где
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
  J   J
- ]]></programlisting>
+]]></screen>
         <para>
             Для того, чтобы вычислить аппроксимации <literal>result(k)</literal>, удовлетворяющие
             для каждого элемента  <literal>I</literal> условию точности:
@@ -166,10 +170,10 @@ F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-X=[0;1;0;0];
-Y=[0;0;1;0];
-Z=[0;0;0;1];
-[RESULT,ERROR]=int3d(X,Y,Z,'int3dex')
+X = [0;1;0;0];
+Y = [0;0;1;0];
+Z = [0;0;0;1];
+[RESULT, ERROR] = int3d(X, Y, Z, 'int3dex')
 // вычисляет подынтегральную функцию exp(x*x+y*y+z*z) по
 //тетраэдру (0.,0.,0.),(1.,0.,0.),(0.,1.,0.),(0.,0.,1.)
 
@@ -189,12 +193,12 @@ Z=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;
    -1,-1,    1, 1,   -1,-1,   -1,-1,   -1, 1,   -1, 1;
    -1,-1,    1, 1,    1, 1,    1, 1,    1, 1,    1, 1];
 
-function v=f(xyz,numfun),v=exp(xyz'*xyz),endfunction
-[result,err]=int3d(X,Y,Z,f,1,[0,100000,1.d-5,1.d-7])
+function v = f(xyz,numfun), v = exp(xyz'*xyz), endfunction
+[result, err] = int3d(X, Y, Z, f, 1, [0,100000,1.d-5,1.d-7])
 
-function v=f(xyz,numfun),v=1,endfunction
-[result,err]=int3d(X,Y,Z,f,1,[0,100000,1.d-5,1.d-7])
- ]]></programlisting>
+function v = f(xyz,numfun), v = 1, endfunction
+[result, err] = int3d(X, Y, Z, f, 1, [0,100000,1.d-5,1.d-7])
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

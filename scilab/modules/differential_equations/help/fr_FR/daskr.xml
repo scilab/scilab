@@ -106,15 +106,15 @@
                             <para>Cette forme permet de passer des paramètres autres que t, y, ydot à la fonction.
                                 Elle doit se présenter comme suit :
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 list(res, x1, x2, ...)
- ]]></programlisting>
+]]></screen>
                             <para>où la séquence d'appel de la fonction
                                 <literal>res</literal> est maintenant
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 r = res(t, y, ydot, x1, x2, ...)
- ]]></programlisting>
+]]></screen>
                             <para>
                                 <literal>res</literal> retourne toujours
                                 <literal>r = g(t, y, ydot)</literal> comme fonction de
@@ -130,16 +130,16 @@ r = res(t, y, ydot, x1, x2, ...)
                                 reliée à Scilab.
                             </para>
                             <para>En C, la séquence d'appel doit être :</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[])
- ]]></programlisting>
+]]></screen>
                             <para>En Fortran, elle doit être :</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine res(t, y, yd, r, ires, rpar, ipar)
 double precision t, y(*), yd(*),r(*),rpar(*)
 integer ires, ipar(*)
- ]]></programlisting>
+]]></screen>
                             <para>
                                 Les tableaux <literal>rpar</literal> et <literal>ipar</literal>
                                 doivent être présents mais ne peuvent pas être utilisés.
@@ -168,15 +168,15 @@ integer ires, ipar(*)
                         <listitem>
                             <para>Une liste.</para>
                             <para>Elle doit se présenter comme suit :</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 list(jac, x1, x2, ...)
- ]]></programlisting>
+]]></screen>
                             <para>où la séquence d'appel de la fonction
                                 <literal>jac</literal> est désormais
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
-r=jac(t, y, ydot, cj, x1, x2,...)
- ]]></programlisting>
+                            <screen><![CDATA[
+r = jac(t, y, ydot, cj, x1, x2,...)
+]]></screen>
                             <para>
                                 <literal>jac</literal> retourne toujours
                                 <literal>dg/dy + cj*dg/dydot</literal> comme fonction de
@@ -188,16 +188,16 @@ r=jac(t, y, ydot, cj, x1, x2,...)
                             <para>Elle doit se référer au nom d'une fonction C ou une routine Fortran reliée à Scilab.
                             </para>
                             <para>En C, la séquence d'appel doit être :</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void jac(double *t, double y[], double yd[], double pd[],
          double *cj, double rpar[], int ipar[])
- ]]></programlisting>
+]]></screen>
                             <para>En Fortran, elle doit être :</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine jac(t, y, yd, pd, cj, rpar, ipar)
 double precision t, y(*), yd(*), pd(*), cj, rpar(*)
 integer ipar(*)
- ]]></programlisting>
+]]></screen>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -221,30 +221,30 @@ integer ipar(*)
                         <listitem>
                             <para>Une liste.</para>
                             <para>Elle doit se présenter comme suit :</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 list(surf, x1, x2, ...)
- ]]></programlisting>
+]]></screen>
                             <para>où la séquence d'appel de la fonction
                                 <literal>surf</literal> est maintenant
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 r = surf(t, y, x1, x2, ...)
- ]]></programlisting>
+]]></screen>
                         </listitem>
                         <listitem>
                             <para>Une chaîne de caractères.</para>
                             <para>Elle doit se référer au nom d'une fonction C ou une routine Fortran reliée à Scilab.
                             </para>
                             <para>En C, la séquence d'appel doit être :</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void surf(int *ny, double *t, double y[], int *ng, double gout[])
- ]]></programlisting>
+]]></screen>
                             <para>En Fortran, elle doit être :</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine surf(ny, t, y, ng, gout)
 double precision t, y(*), gout(*)
 integer ny, ng
- ]]></programlisting>
+]]></screen>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -470,15 +470,15 @@ integer ny, ng
                         <listitem>
                             <para>Une liste.</para>
                             <para>Elle doit se présenter comme suit :</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 list(psol, x1, x2, ...)
- ]]></programlisting>
+]]></screen>
                             <para>
                                 où la séquence d'appel de <literal>psol</literal> est
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 psol(wp, iwp, b, x1, x2, ...)
- ]]></programlisting>
+]]></screen>
                             <para>
                                 <literal>psol</literal> retourne toujours la solution dans <literal>r</literal>.
                             </para>
@@ -488,21 +488,21 @@ psol(wp, iwp, b, x1, x2, ...)
                             <para>Elle doit se référer au nom d'une fonction C ou une routine Fortran reliée à Scilab
                             </para>
                             <para>En C, la séquence d'appel doit être :</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void psol (int*neq, double*t, double*y, double*ydot, double*savr,
   double*wk, double*cj, double*wght, double*wp, int*iwp, double*b, double*eplin, int*ier, double*rpar, int*ipar)
- ]]></programlisting>
+]]></screen>
                             où les vecteurs <literal>wp</literal> et <literal>iwp</literal> contiennent le préconditionneur LU-factorisé
                             <literal>P</literal>, <literal>wp</literal> représentant les valeurs et
                             <literal>iwp</literal> les pivots utilisés dans la factorisation.
                             <para>En Fortran, elle doit être :</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine psol (neq, t, y, ydot, savr, wk, cj, wght,
   wp, iwp, b, eplin, ier, rpar, ipar)
 double precision t,y(*), ydot(*), savr(*), wk(*), cj, wght(*), wp(*),
   b(*), eplin, rpar(*)
 integer neq, iwp(*), ier, ipar(*)
- ]]></programlisting>
+]]></screen>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -527,15 +527,15 @@ integer neq, iwp(*), ier, ipar(*)
                         <listitem>
                             <para>Une liste.</para>
                             <para>Elle doit se présenter comme suit :</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 list(pjac, x1, x2, ...)
- ]]></programlisting>
+]]></screen>
                             <para>
                                 où la séquence d'appel de <literal>pjac</literal> est
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 pjac(neq, t, y, ydot, h, cj, rewt, savr, x1, x2,...)
- ]]></programlisting>
+]]></screen>
                             <para>
                                 <literal>pjac</literal> retourne toujours
                                 <literal>dg/dy + cj*dg/dydot</literal> comme fonction de
@@ -547,18 +547,18 @@ pjac(neq, t, y, ydot, h, cj, rewt, savr, x1, x2,...)
                             <para>Elle doit se référer au nom d'une fonction C ou une routine Fortran reliée à Scilab
                             </para>
                             <para>En C, la séquence d'appel doit être :</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void pjac (double*res, int*ires, int*neq, double*t, double*y, double*ydot, double*rewt, double*savr,
 double*wk, double*h, double*cj, double*wp, int*iwp, int*ier, double*rpar, int*ipar)
- ]]></programlisting>
+]]></screen>
                             <para>En Fortran, elle doit être :</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine pjac (res, ires, neq, t, y, ydot, rewt, savr,
   wk, h, cj, wp, iwp, ier, rpar, ipar)
 double precision res(*), t, y(*), ydot(*), rewt(*), savr(*),
   wk(*), h, cj, wp(*), rpar(*)
 integer ires, neq, iwp(*), ier, ipar(*)
- ]]></programlisting>
+]]></screen>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -598,10 +598,10 @@ integer ires, neq, iwp(*), ier, ipar(*)
     <refsection>
         <title>Description</title>
         <para>Solution de l'équation différentielle implicite :</para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 g(t, y, ydot) = 0
 y(t0) = y0  et  ydot(t0) = ydot0
- ]]></programlisting>
+]]></screen>
         <para>Retourne les temps de traversée de surface et le nombre de surfaces traversées
             dans <literal>nn</literal>.
         </para>
@@ -623,7 +623,7 @@ deff('[rts] = gr1(t, y)', 'rts = [((2*log(y)+8)/t-5)*y; log(y)-2.2491]')
 nn
 
 // Retourne nn = [2.4698972 2]
- ]]></programlisting>
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

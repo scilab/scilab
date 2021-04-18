@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>F=sfact(P)</synopsis>
+        <synopsis>F = sfact(P)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>P</term>
                 <listitem>
-                    <para>実数多項式行列</para>
+                    <para>実多項式の正方行列.</para>
                 </listitem>
             </varlistentry>
         </variablelist>

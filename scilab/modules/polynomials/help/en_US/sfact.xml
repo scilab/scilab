@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>F=sfact(P)</synopsis>
+        <synopsis>F = sfact(P)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>P</term>
                 <listitem>
-                    <para>real polynomial matrix</para>
+                    <para>Square matrix of real polynomials.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -49,14 +49,14 @@
             <literal>P = F(z)* F(1/z) *z^n</literal>
         </para>
         <para>
-            For scalar polynomials a specific algorithm is implemented.
+            For a single polynomial, a specific algorithm is implemented.
             Algorithms are adapted from Kucera's book.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// Simple polynomial example
+// Single polynomial example
 p = (%z -1/2) * (2 - %z)
 w = sfact(p);
 w*horner(w, 1/%z).num

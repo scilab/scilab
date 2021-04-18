@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Francois DELBECQUE
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="determ">
     <refnamediv>
         <refname>determ</refname>
-        <refpurpose>déterminant d'une matrice de polynômes  </refpurpose>
+        <refpurpose>déterminant d'une matrice de polynômes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>res=determ(W [,k])</synopsis>
+        <synopsis>
+            res = determ(W)
+            res = determ(W, k)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -14,7 +31,7 @@
             <varlistentry>
                 <term>W  </term>
                 <listitem>
-                    <para>matrice réelle de polynômes
+                    <para>matrice carrée de polynômes à coefficients réels ou complexes
                     </para>
                 </listitem>
             </varlistentry>
@@ -31,8 +48,7 @@
         <title>Description</title>
         <para>
             <literal>res=determ(W [,k])</literal> renvoie le déterminant d'une
-            matrice réelle de polynômes (calculs fait par FFT si la taille de W
-            est supérieure à 2*2).
+            matrice de polynômes.
         </para>
         <para>
             <literal>k</literal> est un entier plus grand que le degré effectif du
@@ -43,19 +59,31 @@
             puissance de 2 plus grande que <literal>n*max(degree(W))</literal>.
         </para>
         <para>
-            Méthode (pour les matrices dont la taille est supérieure à 2*2) : évaluation du déterminant de <literal>W</literal> aux
-            fréquences de Fourier et FFT inverse appliquée aux coefficients du
-            déterminant.
+            Méthode (pour les matrices dont la taille est supérieure à 2*2) : évaluation du
+            déterminant de <literal>W</literal> aux fréquences de Fourier et FFT inverse
+            appliquée aux coefficients du déterminant.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');
-w=s*rand(10,10);
-determ(w)
-det(coeff(w,1))*s^10
- ]]></programlisting>
+s = %s;
+P = [5+3*s, 1-5*s, -4+6*s ; -3+5*s, -3*s, -9 ; 8*s, -6-2*s, 4-6*s]
+determ(P)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> P = [5+3*s, 1-5*s, -4+6*s ; -3+5*s, -3*s, -9 ; 8*s, -6-2*s, 4-6*s]
+ P  =
+  5 +3s   1 -5s   -4 +6s
+
+  -3 +5s  -3s     -9
+
+  8s      -6 -2s  4 -6s
+
+--> determ(P)
+ ans  =
+  -330 -278s +380s² -12s³
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

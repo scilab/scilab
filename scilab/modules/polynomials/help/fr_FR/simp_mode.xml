@@ -40,12 +40,31 @@
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');
-mod=simp_mode()
-simp_mode(%f);hns=s/s
-simp_mode(%t);hns=s/s
+s = %s;
+mod = simp_mode()
+simp_mode(%f); [0/s, s/s, s^2/s, (s*(1-s))^2/(s-s^2), (s-s^2)/(s*(1-s))^2]
+simp_mode(%t); [0/s, s/s, s^2/s, (s*(1-s))^2/(s-s^2), (s-s^2)/(s*(1-s))^2]
 simp_mode(mod);
- ]]></programlisting>
+     ]]></programlisting>
+        <screen><![CDATA[
+--> mod = simp_mode()
+ mod  =
+  T
+
+--> simp_mode(%t); [0/s, s/s, s^2/s, (s*(1-s))^2/(s-s^2), (s-s^2)/(s*(1-s))^2]
+ ans  =
+
+   0  1  s  s -s²    -1
+   -  -  -  -----  ------
+   1  1  1    1    -s +s²
+
+--> simp_mode(%f); [0/s, s/s, s^2/s, (s*(1-s))^2/(s-s^2), (s-s^2)/(s*(1-s))^2]
+ ans  =
+
+   0  s  s²  s² -2s³ +s⁴     s -s²
+   -  -  --  -----------  -----------
+   s  s  s      s -s²     s² -2s³ +s⁴
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

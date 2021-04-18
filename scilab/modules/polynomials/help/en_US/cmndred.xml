@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[n,d]=cmndred(num,den)</synopsis>
+        <synopsis>[n, d] = cmndred(num, den)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

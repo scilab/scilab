@@ -20,15 +20,16 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[N1,D1]=simp(N,D)
-            H1=simp(H)
+        <synopsis>
+            [N1,D1] = simp(N,D)
+            H1 = simp(H)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>N,D</term>
+                <term>N, D</term>
                 <listitem>
                     <para>real polynomials or real matrix polynomials</para>
                 </listitem>
@@ -59,40 +60,47 @@
         </para>
         <para>
             <warning>
-                Caution:
+                <itemizedlist>
+                    <listitem>
+                        no threshold is given, i.e. <literal>simp</literal> cannot forces a
+                        simplification.
+                    </listitem>
+                    <listitem>
+                        For linear dynamic systems which include integrator(s) simplification
+                        changes the static gain. (<literal>H(0)</literal> for continuous systems or
+                        <literal>H(1)</literal> for discrete systems).
+                    </listitem>
+                    <listitem>
+                        For complex data, <literal>simp</literal> returns its input(s).
+                    </listitem>
+                    <listitem>
+                        Rational simplification is called after nearly each operations on
+                        rationals. It is possible to toggle simplification on or off using
+                        <literal>simp_mode</literal> function.
+                    </listitem>
+                </itemizedlist>
             </warning>
-        </para>
-        <para>
-            -no threshold is given i.e. <literal>simp</literal> cannot forces a
-            simplification.
-        </para>
-        <para>
-            -For linear dynamic systems which include integrator(s) simplification
-            changes the static gain. (<literal>H(0)</literal> for continuous systems or <literal>H(1)</literal> for
-            discrete systems)
-        </para>
-        <para>
-            -for complex data, <literal>simp</literal> returns its input(s).
-        </para>
-        <para>
-            -rational simplification is called after nearly each operations on
-            rationals. It is possible to toggle simplification on or off using
-            <literal>simp_mode</literal> function.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');
-[n,d]=simp((s+1)*(s+2),(s+1)*(s-2))
+s = poly(0,'s');
+[n,d] = simp((s+1)*(s+2),(s+1)*(s-2))
 
-simp_mode(%F);hns=s/s
-simp_mode(%T);hns=s/s
+simp_mode(%F); hns = s/s
+simp_mode(%T); hns = s/s
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="simp_mode">simp_mode</link>
+            </member>
+            <member>
+                <link linkend="clean">clean</link>
+            </member>
             <member>
                 <link linkend="roots">roots</link>
             </member>
@@ -101,12 +109,6 @@ simp_mode(%T);hns=s/s
             </member>
             <member>
                 <link linkend="poly">poly</link>
-            </member>
-            <member>
-                <link linkend="clean">clean</link>
-            </member>
-            <member>
-                <link linkend="simp_mode">simp_mode</link>
             </member>
         </simplelist>
     </refsection>
