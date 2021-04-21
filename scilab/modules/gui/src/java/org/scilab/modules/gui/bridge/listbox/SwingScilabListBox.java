@@ -31,8 +31,6 @@ import java.awt.Font;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.io.IOException;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
@@ -142,20 +140,12 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
                 }
 
                 GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, scilabIndices);
-                if (callback != null && getList().getSelectionMode() == ListSelectionModel.MULTIPLE_INTERVAL_SELECTION) {
+                if (callback != null) {
                     callback.actionPerformed(null);
                 }
             }
         };
         getList().addListSelectionListener(listListener);
-
-         getList().addMouseListener(new MouseAdapter() {
-            public void mouseReleased(MouseEvent evt) {
-                if (callback != null && getList().getSelectionMode() == ListSelectionModel.SINGLE_SELECTION) {
-                    callback.actionPerformed(null);
-                }
-            }
-        });
 
         adjustmentListener = new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent arg0) {
