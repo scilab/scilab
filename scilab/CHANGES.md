@@ -463,6 +463,7 @@ Bug Fixes
 * [#16654](https://bugzilla.scilab.org/16654): `interp` was leaking memory.
 * [#16661](https://bugzilla.scilab.org/16661): `x=spzeros(1e10,1e10)` yielded an incorrect error message.
 * [#16665](https://bugzilla.scilab.org/16665): `help echo` could not redirect to `help mode` when preferred, for new users coming from Octave.
+* [#16679](https://bugzilla.scilab.org/16679): `get_function_path("acosh")` yielded an error (regression from Scilab 6.0.0).
 
 
 ### Bugs fixed in 6.1.0:
