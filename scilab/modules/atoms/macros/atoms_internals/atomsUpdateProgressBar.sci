@@ -14,7 +14,7 @@
 //
 
 function atomsUpdateProgressBar(winId, value)
-    if (getscilabmode() <> "NWNI" & winId.type == "Waitbar")
+    if (getscilabmode() <> "NWNI" & winId <> [] & winId.type == "Waitbar")
         waitbar(value, winId);
     end
 endfunction
