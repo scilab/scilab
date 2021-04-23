@@ -1498,7 +1498,7 @@ static void executeDebuggerCommand(std::string _command)
         manager->sendQuit();
         ConfigVariable::setEnableDebug(false);
         ConfigVariable::setDefaultVisitor(new ast::ExecVisitor());
-        StoreConsoleCommand("abort", 1);
+        manager->abort();
         manager->removeDebugger("console");
     }
     else if(cmd.compare("s")     == 0 ||

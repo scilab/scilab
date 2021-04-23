@@ -59,7 +59,9 @@ private:
     DebuggerManager() :
         breakpoints(),
         debuggers(),
-        callstack(), pExp(nullptr), interrupted(false), currentBreakPoint(-1), action(Continue), level(0) {}
+        callstack(),
+        pExp(nullptr), interrupted(false), currentBreakPoint(-1),
+        action(Continue), level(0), request_pause(false) {}
 
     Breakpoints breakpoints;
     CallStack callstack;
