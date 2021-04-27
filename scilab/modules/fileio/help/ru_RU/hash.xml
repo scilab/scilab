@@ -102,7 +102,9 @@ hash('hello world', 'md5')
 hash('hello world', 'sha256')
 hash(['hello';'world'], 'sha3-256')
 
-hash( mopen(SCI+'/modules/core/etc/core.start') ,'sha256')
+fp = mopen(SCI+'/modules/core/etc/core.start')
+hash(fp ,'sha256')
+mclose(fp)
  ]]></programlisting>
     </refsection>
       <refsection>

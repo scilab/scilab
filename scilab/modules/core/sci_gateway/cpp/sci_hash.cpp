@@ -167,9 +167,9 @@ types::Function::ReturnValue sci_hash(types::typed_list &in, int _iRetCount, typ
                     iLen = fread(pStData, 1, sizeof(pStData), fp);
                     digest->add(pStData, iLen);
                 }
-                fclose(fp);
+                //fclose(fp);
                 // after closing, don't forget to remove file from the list of opened files
-                FileManager::deleteFile(iFile);
+                //FileManager::deleteFile(iFile);
             }
         }
 
