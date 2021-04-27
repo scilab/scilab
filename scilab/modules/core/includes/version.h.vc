@@ -20,9 +20,10 @@
 #define SCI_VERSION_MAINTENANCE 1
 #define SCI_VERSION_STRING "scilab-branch-6.1"
 #define SCI_VERSION_WIDE_STRING L"scilab-branch-6.1"
-/* SCI_VERSION_REVISION --> hash key commit */
-#define SCI_VERSION_REVISION 0
-#define SCI_VERSION_TIMESTAMP 0
+
+/* hash key commit and commit date set to the first Scilab commit and will be updated by the Compilation Chain */
+#define SCI_VERSION_REVISION "0cc09d1c9c20db1f7e531e4317d11a4117ce8cf5"
+#define SCI_VERSION_TIMESTAMP 988271013
 
 void disp_scilab_version(void);
 
