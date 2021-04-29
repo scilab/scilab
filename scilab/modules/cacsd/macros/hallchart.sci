@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function hstruct = hallchart(modules,args,colors)
+function varargout = hallchart(modules, args, colors)
 
     // Data bounds
     // -----------
@@ -39,10 +39,12 @@ function hstruct = hallchart(modules,args,colors)
         modules = gsort([dBm dBp],"g","i")
     else
         if type(modules)<>1 | ~isreal(modules) then
-            error(msprintf("%s: Wrong type for imput argument ""%s"": real floating point array expected\n"),"hallchart","modules");
+            msg = _("%s: Argument ''%s'': type real expected.\n")
+            error(msprintf(msg, "hallchart", "modules"));
         end
         modules = matrix(modules,1,-1)
     end
+    modules(modules==0) = 1e-10
 
     // Check/set Phases
     // ----------------
@@ -50,7 +52,8 @@ function hstruct = hallchart(modules,args,colors)
         args = [-90 -60 -40 -30 -25 -20 -15 -12 12 15 20 25 30 40 60 90]; //in degree
     else
         if type(args)<>1|~isreal(args) then
-            error(msprintf("%s: Wrong type for imput argument ""%s"": real floating point array expected\n"),"hallchart","args");
+            msg = _("%s: Argument ''%s'': type real expected.\n")
+            error(msprintf(msg, "hallchart", "args"));
         end
         args = matrix(args,1,-1)
     end
@@ -203,10 +206,17 @@ function hstruct = hallchart(modules,args,colors)
     end
     ax.data_bounds = dataBounds
     fig.immediate_drawing = immediate_drawing
-    hstruct = struct("gainLines" ,gainLines, "gainLabels"  ,gainLabels, ..
-                     "phaseLines",phaseLines, "phaseLabels",phaseLabels)
+
+    // Output
+    if argn(1)>0 then
+        varargout = list(struct(...
+                     "gainLines" ,gainLines, "gainLabels"  ,gainLabels, ..
+                     "phaseLines",phaseLines, "phaseLabels",phaseLabels));
+    end
 endfunction
+
 // ---------------------------------------------------------------------------
+
 function gains = hallGetDefaultModules(xo, yo, n)
     // xo: abscissa of the left/right axes bound
     // yo: ordinates of the furthest bottom|top axes bound
