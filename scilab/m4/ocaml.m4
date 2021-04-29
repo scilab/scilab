@@ -18,17 +18,27 @@ dnl Check if Ocaml is available on the system
 dnl @TODO add the possibility to specific a path
 AC_DEFUN([AC_CHECK_PROG_OCAML],[
 # checking for ocamlc
-	OCAMLC=
-	OCAMLOPT=
-	OCAMLDEP=
+	
 	AC_CHECK_PROG(OCAMLC,ocamlc,ocamlc,no)
 	if test "$OCAMLC" = no; then
 		AC_MSG_ERROR([ocamlc not found. Mandatory to build the Scicos modelica compiler (Use --without-modelica to disable the Modelica compiler).])
 	fi
+	# since ocaml 4.06, unsafe string is no more the default parameter ; enforce it
+        "$OCAMLC" -unsafe-string
+	if test "$?" -ne "0"; then
+		AC_MSG_WARN([ocamlc does not support "-unsafe-string". Needed to build the Scicos modelica compiler (Use --without-modelica to disable the Modelica compiler).])
+	fi
+        OCAMLCFLAGS="$OCAMLCFLAGS -unsafe-string"
 	AC_CHECK_PROG(OCAMLOPT,ocamlopt,ocamlopt,no)
 	if test "$OCAMLOPT" = no; then
 		AC_MSG_ERROR([ocamlopt not found. Mandatory to build the Scicos modelica compiler.])
 	fi
+	# since ocaml 4.06, unsafe string is no more the default parameter ; enforce it
+        "$OCAMLOPT" -unsafe-string
+	if test "$?" -ne "0"; then
+		AC_MSG_WARN([ocamlc does not support "-unsafe-string". Needed to build the Scicos modelica compiler (Use --without-modelica to disable the Modelica compiler).])
+	fi
+        OCAMLOPTFLAGS="$OCAMLOPTFLAGS -unsafe-string"
 	AC_CHECK_PROG(OCAMLDEP,ocamldep,ocamldep,no)
 	if test "$OCAMLDEP" = no; then
 		AC_MSG_ERROR([ocamldep not found. Mandatory to build the Scicos modelica compiler.])
@@ -44,7 +54,9 @@ AC_DEFUN([AC_CHECK_PROG_OCAML],[
 	AC_DEFINE([WITH_OCAML],[],[With OCAML])
 
 	AC_SUBST(OCAMLC)
+	AC_SUBST(OCAMLCFLAGS)
 	AC_SUBST(OCAMLOPT)
+	AC_SUBST(OCAMLOPTFLAGS)
 	AC_SUBST(OCAMLDEP)
 	AC_SUBST(OCAMLYACC)
 	AC_SUBST(OCAMLLEX)

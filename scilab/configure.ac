@@ -2201,7 +2201,9 @@ if test $XCOS_ENABLE = yes; then
    if test "$with_modelica" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
      echo "Ocaml Configuration (for Modelica compiler):"
      echo "  OCAMLC ............. = $OCAMLC"
+     echo "  OCAMLCFLAGS ........ = $OCAMLCFLAGS"
      echo "  OCAMLOPT ........... = $OCAMLOPT"
+     echo "  OCAMLOPTFLAGS ...... = $OCAMLOPTFLAGS"
      echo "  OCAMLDEP ........... = $OCAMLDEP"
    else
      echo "Will not build Modelica compiler"
