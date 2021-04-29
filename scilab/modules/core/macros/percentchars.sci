@@ -12,8 +12,8 @@ function %chars = percentchars()
     // Internal function called by scilab.start
     // http://bugzilla.scilab.org/9221
 
-    %chars.greek.lower       = "αβδεϵζηθικλμνξοπρστυφϕχψωάϐέήϑίϊϰόϱςύϋΰϖώ";
-    %chars.greek.upper       = "ΑΒΓΔΕΖΗΘϴΙΪΚΛΜΝΞΟΠΡΣΤΥΫΦΧΨΩ KΩ℧";
+    %chars.greek.lower       = "αβγδεϵζηθ ι κλμνξοπρστυφϕχψωάϐέήϑίϊϰόϱςύϋΰϖώ";
+    %chars.greek.upper       = "ΑΒΓΔΕ ΖΗΘϴΙΪΚΛΜΝΞΟΠΡΣΤΥΫΦΧΨΩ KΩ℧";
     %chars.subsupscript      = "₀₁₂₃₄₅₆₇₈₉₊₋₌₍ₐₕₖₗₘₙₒₚₛₜₓ₎ ⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽ªⁱⁿº⁾";
     %chars.maths.frac        = "½ ⅓ ¼ ⅕ ⅙ ⅛ ⅔ ⅖ ¾ ⅗ ⅜ ⅘ ⅚ ⅝ ⅞";
     %chars.maths.sets        = "ℂⅅℍℕℙℚℝℤ∉∈∊∍∋∌∅∖⋂∩⋃∪⊂⊆⊄⊅⊇⊃⋐⋑⋒⋓";
@@ -24,11 +24,13 @@ function %chars = percentchars()
     %chars.maths.logical     = "∀∃∄∧∨⋀⋁⊼⊽⊻∁∴∵∎≍";
     %chars.maths.misc        = "⋮⋰⋯⋱ ′ ″ ∞ ‰ ‱";
     %chars.physics           = "Å ℃ ℉ ħ";
+    %chars.music             = "♩ ♪ ♫ ♬ ♭ ♮ ♯";
     %chars.arrows.base       = "←↖↑↗→↘↓↙↔↕↵↱↴☇⇐⇑⇒⇓⇔↺↻⊣⊥⊢⊤";
     %chars.arrows.thick      = "⬅⬆➞⬇➚➙➘➔➜➡➥➦➧➨➼➽";
-    %chars.symbols           = "…⋈⋔⋄♢◊♤♧♡♦♠♣♥©®℗Ⓢ™℡♀♂⌘✠♻☎«»◬⨺⨹⨻¶";
+    %chars.symbols           = "…⋈⋔⋄♢◊♤♧♡♦♠♣♥©®℗Ⓢ™℡♀♂⌘✠♻☎«»◬⨺⨹⨻¶⚐⚑⛿☀⛅☁ ⛔";
     %chars.stars             = "⋆★☆✫✯✰✭✡⊛⍟✪❂✻✼✹✸✶";
     %chars.currencies        = "¤ $ ¢ € £ ¥ 円 元 ₪ ฿ ¢ ₫ ₣";
+    %chars.spaces            = " | | | | | | | | | | |";
 
     %chars.lang.latin = "abcdefghijklmnopqrstuvwxyz";
     %chars.lang.LATIN = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
