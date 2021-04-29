@@ -15,9 +15,6 @@
 /* Define if have exp10 */
 /* #undef HAVE_EXP10 */
 
-/* Define if have getwd */
-#define HAVE_GETWD 1
-
 /* Define if have strerror: used in fileio/misc.c */
 #define HAVE_STRERROR 1
 

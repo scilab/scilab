@@ -143,9 +143,6 @@
 /* Define to 1 if you have the `gettimeofday' function. */
 #undef HAVE_GETTIMEOFDAY
 
-/* Define to 1 if you have the `getwd' function. */
-#undef HAVE_GETWD
-
 /* HAVE_GLIBC_BACKTRACE */
 #undef HAVE_GLIBC_BACKTRACE
 
@@ -564,9 +561,6 @@
 
 /* Define to empty if `const' does not conform to ANSI C. */
 #undef const
-
-/* Don't use getwd but getcwd */
-#undef getwd
 
 /* Define to `__inline__' or `__inline' if that's what the C compiler
    calls it, or to nothing if 'inline' is not supported under any name.  */
