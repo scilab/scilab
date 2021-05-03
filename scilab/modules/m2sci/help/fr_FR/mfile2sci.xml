@@ -198,6 +198,8 @@ mfile2sci()
         <programlisting role="example"><![CDATA[
 // Création d'un fichier .m simple
 rot90m = ["function B = rot90(A,k)"
+    ""
+    "%m2scideclare k|1 1|Double|Real"
     "if ~isa(A, ''double'')"
     "    error(''rot90: Wrong type for input argument #1: Real or complex matrix expected.'');"
     "    return"

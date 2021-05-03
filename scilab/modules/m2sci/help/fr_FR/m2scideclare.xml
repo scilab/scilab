@@ -21,103 +21,137 @@
         <refname>m2scideclare</refname>
         <refpurpose>Donner des indices pour aider M2SCI...</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxe</title>
+        <synopsis>
+            %m2scideclare variable_name|sizes|data_type|property
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>variable_name</term>
+                <listitem>
+                    <para>
+                        nom de la variable déclarée.
+                        Ce nom peut être un champ de Struct (e.g. <literal>x(1,2).nom</literal>)
+                        ou décrire le contenu d'une Cell en utilisant la syntaxe
+                        <literal>x(1,2).entries</literal>.
+                        <note>
+                            NOTEZ que pour les Cells et les
+                            Structs <literal>*</literal> peut être utilisé comme index.
+                        </note>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sizes</term>
+                <listitem>
+                    <para>
+                        Tailles de la variable déclarée, séparées par des espaces.
+                        Si une taille est inconnue, la remplacer par <literal>?</literal>.
+                        <warning>
+                            NOTER qu'une chaînes de caractères Matlab (définies entre apostrophes)
+                            est considérée comme un vecteur de caractères adressables un à un.
+                            En conséquence, la taille de 'string' est <literal>|1 6|</literal>
+                            (non <literal>|1 1|</literal>).
+                        </warning>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>data_type &amp; property</term>
+                <listitem>
+                    <para>
+                        Type et sous-type de la variable. Les valeurs possibles sont présentées
+                        dans la page décrivant <link linkend="Type">Type</link>.
+                    </para>
+                    <note>
+                        Les valeurs de propriétés qui ne sont pas prédéfinies comme constantes
+                        dans m2ci -- telles que 'int8' ou 'Axes' -- doivent être  spécifiées
+                        sans apostrophes ni guillements dans la ligne %m2scideclare.
+                    </note>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>Description</title>
         <para>
-            La principale difficulté de M2SCI (<literal>mfile2sci</literal>) est de trouver
-            ce que sont les variables : dimensions, type...
+            La conversion des expressions du langage Matlab en équivalent Scilab dépend notamment
+            du type et de la taille des objets impliqués.
+            Plus le convertisseur M2SCI (<literal>mfile2sci</literal>) connait ces informations,
+            plus précise et directe sera la conversion.
         </para>
         <para>
-            Pour aider cet outil, il suffit d'ajouter des commentaires commencant par
-            <literal>%m2scideclare</literal> dans le fichier Matlab à convertir,
-            (<literal>%m2sciassume</literal> était utilisée dans les versions précédentes
-            de Scilab mais est maintenant obsolète).
+            Dés lors que les données originelles sont littéralement définies dans le
+            code Matlab à convertir -- comme dans l'instruction <literal>a = [1 3 5]</literal>
+            indiquant directement le vtype==Double, la property=Real, et la taille
+            <literal>|1 3|</literal>, M2SCI sait alors tout
+            ce qu'il faut savoir à propos de <literal>a</literal> pour convertir les expressions
+            ultérieures dans lesquelles <literal>a</literal> intervient.
         </para>
         <para>
-            La syntaxe de cette commande est :
+            Cependant, l'information manque fréquemment. En particulier, en tête des
+            macros, le type et les dimensions des arguments d'entrée ne sont pas donnés (pouvoir
+            s'en abstenir est d'ailleurs un des avantages/soulagements des langages évolués tels
+            que Matlab ou Scilab).
+            Des lignes d'instructions <literal>%m2scideclare</literal> peuvent être alors ajoutées
+            (en commentaire Matlab, donc) pour donner ces informations au convertisseur, avant de
+            lancer celui-ci.
         </para>
         <para>
-            <literal>%m2scideclare nom_de_variable|dimensions|type_de_données|propriété</literal>
-        </para>
-        <para>
-            avec :
-        </para>
-          <itemizedlist>
-            <listitem>
-              <para>
-                <emphasis role="bold">nom_de_variable</emphasis> : nom de la variable déclarée.
-                Ce nom peut être un champ de Struct (e.g. <literal>x(1,2).nom</literal>)
-                ou décrire le contenu d'une Cell en utilisant la syntaxe
-                <literal>x(1,2).entries</literal>.
-                <note>
-                    NOTEZ que pour les Cells et les
-                    Structs <literal>*</literal> peut être utilisé comme index.
-                </note>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <emphasis role="bold">dimensions</emphasis> : dimensions de la variable déclarée
-                séparées par des espaces,
-                si une dimension est inconnue, remplacez la par <literal>?</literal>.
-                <warning>
-                    NOTEZ que les dimensions des chaînes de caractères doivent être identiques
-                    aux dimensions Matlab e.g. <literal>1 6</literal> pour le mot 'chaine'.
-                </warning>
-              </para>
-            </listitem>
-            <listitem>.
-                <informaltable border="0">
-                <tr>
-                <td valign="top">
+            Lors de la conversion, lorsqu'une ligne <literal>%m2scideclare</literal> est rencontrée,
+            le convertisseur examine la liste des symboles déjà connus. Cette liste est établie
+            au cours de la conversion et est continuellement mise à jour, en fonction des symboles
+            déjà rencontrés et convertis, et des lignes  <literal>%m2scideclare</literal> antérieures
+            déjà prises en compte :
+            <itemizedlist>
+                <listitem>
                     <para>
-                        <emphasis role="bold">type_de_données</emphasis>:
-                        le type de donnée de la variable qui peut être :
+                        Si <literal>%m2scideclare</literal> décrit une nouvelle donnée, celle-ci est
+                        ajoutée à la liste des objets partiellement ou totalement connus.
                     </para>
-                    <informaltable border="1">
-                        <tr>
-                          <th>Type de donnée m2scideclare</th>
-                          <th>Type Scilab "équivalent"</th>
-                        </tr>
-                        <tr><td>Double</td>  <td>1</td>         </tr>
-                        <tr><td>Boolean</td> <td>4</td>         </tr>
-                        <tr><td>Sparse</td>  <td>5</td>         </tr>
-                        <tr><td>Int</td>     <td>8</td>         </tr>
-                        <tr><td>Handle</td>  <td>9</td>         </tr>
-                        <tr><td>String</td>  <td>10</td>        </tr>
-                        <tr><td>Struct</td>  <td>16</td>        </tr>
-                        <tr><td>Cell</td>    <td>17</td>        </tr>
-                        <tr><td>Function</td><td>13 (macro)</td></tr>
-                        <tr><td>Builtin</td> <td>130</td>       </tr>
-                        <tr><td>Void</td>    <td>0 (undefined)</td></tr>
-                        <tr><td>?</td>       <td>Type inconnu</td></tr>
-                    </informaltable>
-                </td>
-                <td valign="top">
+                </listitem>
+                <listitem>
                     <para>
-                        <emphasis role="bold">propriété</emphasis> :
-                        propriété de la variable qui peut être :
+                    Si l'objet décrit par <literal>%m2scideclare</literal> est déjà connu,
+                    le convertisseur compare les informations apportées par <literal>%m2scideclare</literal>
+                    avec celles déjà connues.
                     </para>
-                    <informaltable border="1">
-                        <tr><th>Propriété m2scideclare</th> <th>"Equivalent" Scilab</th></tr>
-                        <tr><td>Real</td>                   <td>Donnée réelle</td>      </tr>
-                        <tr><td>Complex</td>                <td>Donnée complexe</td>    </tr>
-                        <tr><td>?</td>                      <td>Property inconnue</td>  </tr>
-                    </informaltable>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                            Si ces informations coincident ou sont compatibles, le convertisseur
+                            éventuellement complète le registre (par exemple si la property était Unknown
+                            et est précisée par <literal>%m2scideclare</literal>), ou ne fait rien.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                            Sinon, une ligne d'alerte est générée par <literal>%m2scideclare</literal>
+                            dans le fichier converti, et les informations données par
+                            <literal>%m2scideclare</literal> sont ignorées.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <note>
+                        Ce fonctionnement peut être mis à profit par les développeurs souhaitant
+                        corriger ou étendre le convertisseur, en utilisant
+                        <literal>%m2scideclare</literal> dans les tests : si le type, le sous-type
+                        ou les dimensions de l'objet considéré ne sont pas ceux attendus et donnés
+                        par <literal>%m2scideclare</literal>, l'alerte générée sera exploitée pour
+                        corriger le convertisseur.
+                    </note>
                     <para>
-                        Ce champ est ignoré pour les types de données suivants :
-                        <literal>Cell</literal>, <literal>Struct</literal>,
-                        <literal>String</literal> et <literal>Boolean</literal>.
+                        Si en tant qu'utilisateur du convertisseur vous rencontrez une telle alerte
+                        <literal>%m2scideclare</literal> qui vous semble incompatible avec ce que
+                        vous connaissez de votre code,
+                        vous pouvez rapporter le cas sur https://bugzilla.scilab.org
                     </para>
-                </td>
-                </tr>
-                </informaltable>
-            </listitem>
-          </itemizedlist>
-        <para>
-            Toutes les informations données par <literal>m2scideclare</literal> sont comparées avec
-            les données inférées, en cas de conflit, les données inférées sont conservées et
-            un warning est affiché. Si vous êtes sûrs de vos informations, rapportez ce bug.
+                </listitem>
+            </itemizedlist>
         </para>
     </refsection>
     <refsection>
@@ -134,7 +168,7 @@
                 <literal>%m2scideclare var2|2 3 10|Double|Complex</literal>
                 <para>
                   var2 est déclarée comme une hypermatrice de Doubles de taille 2x3x10
-                  et contenant des données complexes
+                  et contenant des nombres complexes.
                 </para>
               </listitem>
               <listitem>
@@ -154,9 +188,8 @@
               <listitem>
                 <literal>%m2scideclare var4(1,6).entries|? ?|Int|?</literal>
                 <para>
-                  var4 est déclarée comme un tableau de Cells contenant
-                  un vecteur ligne de booléens à l'indice (1,5)
-                  et des données entières à l'indice (1,6)
+                  var4 est déclarée comme un tableau de Cells contenant un vecteur ligne de
+                  booléens à l'indice (1,5) et des données entières à l'indice (1,6).
                 </para>
               </listitem>
               <listitem>
@@ -183,5 +216,34 @@
                 <link linkend="Type">Type</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>&lt; 5.0</revnumber>
+                <revdescription>
+                    <literal>%m2sciassume</literal> est obsolète et est remplacée par
+                    <literal>m2scideclare</literal>.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <literal>m2scideclare</literal> accepte tous les nouveaux vtypes et valeurs de
+                    sous-types
+                    <literal>Polynomial</literal>,
+                    <literal>Function/Macro</literal>, <literal>Function/Builtin</literal>,
+                    <literal>String/Char</literal>,
+                    <literal>Handle/'Figure'</literal>, <literal>Handle/'Axes'</literal>,
+                    <literal>Int/'int8'</literal>,  <literal>Int/'int16'</literal>,
+                    <literal>Int/'int32'</literal>, <literal>Int/'int64'</literal>,
+                    <literal>Int/'uint8'</literal>, <literal>Int/'uint16'</literal>,
+                    <literal>Int/'uint32'</literal>, <literal>Int/'uint64'</literal>,
+                    <literal>Sparse/Boolean</literal>.
+                    Le vtype <literal>Sparse</literal> devient effectivement utilisable.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

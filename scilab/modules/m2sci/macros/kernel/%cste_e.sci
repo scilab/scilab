@@ -10,20 +10,24 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function val=%cste_e(field,m2scitlist)
-    // File generated from %PROTO_e.g: PLEASE DO NOT EDIT !
+function val = %cste_e(field,m2scitlist)
 
-    val=[]
+    val = []
     if field=="infer" then
-        val=m2scitlist.infer
+        f = find(fieldnames(m2scitlist)=="infer")
+        if f==[]
+            val = Infer()
+        else
+            val = getfield(f+1, m2scitlist)
+        end
     elseif field=="dims" then
-        val=m2scitlist.infer.dims
+        val = m2scitlist.infer.dims
     elseif field=="type" then
-        val=m2scitlist.infer.type
+        val = m2scitlist.infer.type
     elseif field=="vtype" then
-        val=m2scitlist.infer.type.vtype
+        val = m2scitlist.infer.type.vtype
     elseif field=="property" then
-        val=m2scitlist.infer.type.property
+        val = m2scitlist.infer.type.property
     else
         error(msprintf(gettext("Extraction of %s from ''%s'' tlist is not yet implemented."),string(field),typeof(m2scitlist)))
     end

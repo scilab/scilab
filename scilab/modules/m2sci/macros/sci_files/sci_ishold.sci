@@ -10,17 +10,17 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_ishold(tree)
+function tree = sci_ishold(tree)
     // M2SCI function
     // Conversion function for Matlab ishold()
     // Input: tree = Matlab funcall tree
     // Ouput: tree = Scilab equivalent for tree
 
-    gca_funcall=Funcall("gca",1,list(),list())
-    get_funcall=Funcall("get",1,Rhs_tlist(gca_funcall,"auto_clear"),list())
-    tree=Operation("==",list(get_funcall,Cste("off")),tree.lhs)
+    gca_funcall = Funcall("gca",1, list(), list())
+    get_funcall = Funcall("get",1, Rhs_tlist(gca_funcall,"auto_clear"), list())
+    tree = Operation("==", list(get_funcall,Cste("off")), tree.lhs)
 
-    tree.out(1).dims=list(1,1)
-    tree.out(1).type=Type(Boolean,Real)
+    tree.out(1).dims = list(1,1)
+    tree.out(1).type = Type(Boolean,Boolean)
 
 endfunction

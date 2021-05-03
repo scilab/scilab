@@ -24,13 +24,13 @@ function [tree]=sci_strcmpi(tree)
         B = Funcall("convstr",1,Rhs_tlist(B),list())
         tree = Operation("==",list(A,B),tree.lhs)
         tree.out(1).dims=list(1,1)
-        tree.out(1).type=Type(Boolean,Real)
+        tree.out(1).type=Type(Boolean,Boolean)
     elseif A.vtype<>Unknown & B.vtype<>Unknown then
         // At least one argument is not a character string matrix in call of strcmpi() so result is set to 0
         tree = Cste(%F)
     else
         tree.name="mtlb_strcmpi"
         tree.lhs(1).dims=list(1,1)
-        tree.lhs(1).type=Type(Boolean,Real)
+        tree.lhs(1).type=Type(Boolean,Boolean)
     end
 endfunction

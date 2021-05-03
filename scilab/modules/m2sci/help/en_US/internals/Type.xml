@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-    *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
-    *
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+* Copyright (C) 2020 - Samuel GOUGEON
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="Type">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="Type">
     <refnamediv>
         <refname>Type</refname>
         <refpurpose>Create a tree containing type inference data</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>tp=Type(vtype,property)</synopsis>
+        <synopsis>tp = Type(vtype, property)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,13 +31,13 @@
             <varlistentry>
                 <term>vtype</term>
                 <listitem>
-                    <para>data type (see m2scideclare)</para>
+                    <para>data type</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>property</term>
                 <listitem>
-                    <para>property of data (see m2scideclare)</para>
+                    <para>property of data</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -51,10 +54,61 @@
             This function create a <literal>tlist</literal> representing type inference data when using M2SCI.
             All input parameters values are verified to be compatible with "M2SCI tlists". (Unknown=-1 in M2SCI)
         </para>
+        <para>
+            Available <varname>vtype</varname> and <varname>property</varname> values are listed below:
+        </para>
+        <para>
+            <table>
+                <tr>
+                  <th>vtype values</th> <th>Scilab type</th> <th>property values</th>
+                </tr>
+                <tr><td>Double</td>  <td>1</td>     <td>Real, Complex, Unknown</td> </tr>
+                <tr><td>Boolean</td><td>4</td>      <td>Boolean</td>                </tr>
+                <tr><td> </td>      <td>6</td>      <td>Sparse</td>                 </tr>
+                <tr><td> </td>      <td> </td>      <td>Unknown</td>                </tr>
+                <tr><td>Sparse</td>  <td>5</td>     <td>Real, Complex, Unknown</td> </tr>
+                <tr><td>Int</td>     <td>8</td>     <td>'int8', 'int16', 'int32', 'int64', 'uint8',
+                                                        'uint16', 'uint32', 'uint64', Unknown</td>
+                </tr>
+                <tr><td>Handle</td>  <td>9</td>     <td>'Figure', 'Axes', Unknown</td></tr>
+                <tr><td>String</td>  <td>10</td>    <td>String, Char, Unknown</td> </tr>
+                <tr><td>Polynomial</td><td>2</td>  <td>Real, Complex, Unknown</td>  </tr>
+                <tr><td>Function</td><td>13</td>    <td>Macro</td>      </tr>
+                <tr><td> </td>       <td>130</td>   <td>Builtin</td>    </tr>
+                <tr><td> </td>       <td> </td>     <td>Unknown</td>    </tr>
+                <tr><td>Struct</td>  <td>16</td> <td>(unused)</td>      </tr>
+                <tr><td>Cell</td>    <td>17</td> <td>(unused)</td>      </tr>
+                <tr><td>Unknown</td> <td> </td>   <td>Unknown</td>      </tr>
+            </table>
+        </para>
+        <para>
+            <constant>?</constant> is equivalent to the <constant>Unknown</constant> value.
+            <constant>Boolean</constant>,
+            <constant>Int</constant>, <constant>Double</constant>, <constant>Sparse</constant>,
+            <constant>Real</constant>, <constant>Complex</constant>, <constant>Handle</constant>,
+            <constant>String</constant>, <constant>Char</constant>, <constant>Polynomial</constant>,
+            <constant>Function</constant>, <constant>Macro</constant>, <constant>Builtin</constant>,
+            <constant>Struct</constant>, <constant>Cell</constant>, and <constant>Unknown</constant>
+            are predefined m2sci constants.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Examples</title>
+        <programlisting role="no-scilab-exec">
+Type(Double, Complex)
+Type(Sparse, Unknown)
+Type(Int, 'uint32')
+Type(Handle, 'Axes')
+Type(Boolean, Sparse)
+Type(String, Char)
+        </programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="m2scideclare">m2scideclare</link>
+            </member>
             <member>
                 <link linkend="Funcall">Funcall</link>
             </member>
@@ -76,9 +130,53 @@
             <member>
                 <link linkend="Equal">Equal</link>
             </member>
-            <member>
-                <link linkend="m2scideclare">m2scideclare</link>
-            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            The <literal>Function</literal> type is now generic: Its property
+                            can now be <literal>Builtin</literal> or <literal>Macro</literal>,
+                            in addition to <literal>Unknown</literal>.
+                            <literal>Builtin</literal> as a type is removed.
+                        </listitem>
+                        <listitem>
+                            <literal>Polynomial</literal> type added, with property
+                            <literal>Real</literal>, <literal>Complex</literal>, or <literal>Unknown</literal>.
+                        </listitem>
+                        <listitem>
+                            <literal>String</literal> type: New property values:
+                            <literal>String</literal> and <literal>Char</literal>, in addition to
+                            <literal>Unknown</literal>.
+                        </listitem>
+                        <listitem>
+                            <literal>Handle</literal> type: <literal>'Figure'</literal> and
+                            <literal>'Axes'</literal> property values added, in addition to
+                            <literal>Unknown</literal>.
+                        </listitem>
+                        <listitem>
+                            <literal>Int</literal> integer type: <literal>'int8'</literal>,
+                            <literal>'int16'</literal>, <literal>'int32'</literal>,
+                            <literal>'int64'</literal>, <literal>'uint8'</literal>,
+                            <literal>'uint16'</literal>, <literal>'uint32'</literal>,
+                            <literal>'uint64'</literal> property values added.
+                        </listitem>
+                        <listitem>
+                            <literal>Boolean</literal> type: default property is now
+                            <literal>Boolean</literal>, instead of <literal>Real</literal>.
+                            <literal>Sparse</literal> property added.
+                        </listitem>
+                        <listitem>
+                            <literal>Void</literal> type removed (never ever used).
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

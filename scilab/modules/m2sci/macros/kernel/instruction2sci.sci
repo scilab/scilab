@@ -73,7 +73,7 @@ function sci_instr = equal2sci(mtlb_instr)
             lhslist($+1)=Variable(mtlb_instr.lhs(k).name,INFER)
         elseif typeof(mtlb_instr.lhs(k))=="operation" then
             if mtlb_instr.lhs(k).operator<>"ins" then
-                error(msprintf(gettext("lhs cannot be a %s operation."),mtlb_instr.lhs(k).operator))
+                error(msprintf(gettext("Wrong LHS ''%s'' operation: Insertion expected.\n"),mtlb_instr.lhs(k).operator))
             end
 
             [bval,index]=isdefinedvar(mtlb_instr.lhs(k).operands(1))
@@ -189,6 +189,9 @@ function sci_instr = equal2sci(mtlb_instr)
         // Update varslist
         updatevarslist(sci_instr.lhs);
     end
+
+
+
 endfunction
 
 // ---------------------------------------------------------------------------
@@ -292,7 +295,6 @@ function [sci_clause, nblines] = clause2sci(mtlb_clause, nblines, leveltemp)
 
             // Convert expression
             [sci_exprn]=expression2sci(mtlb_clause.elseifs(k).expression)
-
             // Get instructions to insert if there are
             if m2sci_to_insert_b<>list() then
                 to_insert=m2sci_to_insert_b
@@ -331,8 +333,8 @@ function [sci_clause, nblines] = clause2sci(mtlb_clause, nblines, leveltemp)
                 end
             sci_else($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_else_temp,mtlb_clause.else(k).nb_opr)
             else
-            [instr,nblines]=instruction2sci(mtlb_clause.else(k),nblines)
-                sci_else=update_instr_list(sci_else,instr)
+                [instr, nblines] = instruction2sci(mtlb_clause.else(k),nblines)
+                sci_else = update_instr_list(sci_else,instr)
             end
         end
 

@@ -1,7 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ???? - INRIA - Scilab
-//
-// Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2020 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,11 +8,15 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function cste=%type_i_cste(field,inslist,cste)
+function r = is_sparse(A)
+    // M2SCI function
+    // Checks if A is sparse
+    // Input: A = a M2SCI tlist
+    // Output: -1: Unknown    0: not sparse    1: is sparse
 
-    if field=="type" then
-        cste.infer.type=inslist
-    else
-        error(gettext("Not yet implemented."))
+    r = bool2s(A.vtype==Sparse | (A.vtype==Boolean & A.property==Sparse))
+    if ~r & (A.vtype==Unknown | (A.vtype==Boolean & A.property==Unknown))
+        r = -1
     end
 endfunction
+

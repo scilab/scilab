@@ -467,6 +467,7 @@ Bug Fixes
 * [#16665](https://bugzilla.scilab.org/16665): `help echo` could not redirect to `help mode` when preferred, for new users coming from Octave.
 * [#16677](https://bugzilla.scilab.org/16677): In offline mode, `atomsInstall` was flashing many times the console.
 * [#16679](https://bugzilla.scilab.org/16679): `get_function_path("acosh")` yielded an error (regression from Scilab 6.0.0).
+* [#16683](https://bugzilla.scilab.org/16683): The `m2sci` code converter needed a set of fix and improvements.
 
 
 ### Bugs fixed in 6.1.0:

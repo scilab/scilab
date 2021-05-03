@@ -17,10 +17,8 @@ function tree = sci_grid(tree)
     // Ouput: tree = Scilab equivalent for tree
     // Emulation function: mtlb_grid()
 
-    // [1 1]
-    on=Operation("rc",list(Cste(1),Cste(1)),list())
-    // [-1 -1]
-    off=Operation("rc",list(Cste(-1),Cste(-1)),list())
+    on = Cste([1 1])
+    off = Cste([-1 -1])
     if rhs==0 then // grid toggle
         tree.name="mtlb_grid";
     elseif rhs==1 then

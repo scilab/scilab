@@ -17,5 +17,5 @@ function [tree]=sci_filesep(tree)
     // Ouput: tree = Scilab equivalent for tree
 
     tree.lhs(1).dims=list(1,1)
-    tree.lhs(1).type=Type(String,Real)
+    tree.lhs(1).type=Type(String, Char)
 endfunction

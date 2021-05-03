@@ -23,22 +23,22 @@ function [scitree, crp] = mtlbtree2sci(mtlbtree,prettyprintoutput)
     global("m2sci_to_insert_b") // To insert before current instruction
     global("m2sci_to_insert_a") // To insert after current instruction
     global("tmpvarnb") // Index for temporary variables
-    m2sci_to_insert_b=list()
-    m2sci_to_insert_a=list()
-    tmpvarnb=0
+    m2sci_to_insert_b = list()
+    m2sci_to_insert_a = list()
+    tmpvarnb = 0
 
     if typeof(mtlbtree)<>"program" then
         error(gettext("wrong type of input."))
     end
 
     // Init Scilab tree
-    scitree=tlist(["program","name","outputs","inputs","statements"],mtlbtree.name,mtlbtree.outputs,mtlbtree.inputs,list())
+    scitree = tlist(["program","name","outputs","inputs","statements"],mtlbtree.name,mtlbtree.outputs,mtlbtree.inputs,list())
 
-    ninstr=1 // Index of Matlab tree
+    ninstr = 1 // Index of Matlab tree
     if batch then // defined in m2sci.sci
-        nblines=0
+        nblines = 0
     else
-        nblines=1 // Number of converted lines
+        nblines = 1 // Number of converted lines
     end
 
     m2sci_info(gettext("Conversion of M-tree..."),-1);
@@ -49,31 +49,31 @@ function [scitree, crp] = mtlbtree2sci(mtlbtree,prettyprintoutput)
         prettyprintoutput=%F
     end
 
-    crp=""
+    crp = ""
 
     // Function prototype
     lhsstr=[]
     rhsstr=[]
     if scitree.name<>"" then // Not a batch file
-        for k=1:size(scitree.outputs)
+        for k = 1:size(scitree.outputs)
             lhsstr=[lhsstr,expression2code(scitree.outputs(k))]
         end
         if ~isempty(lhsstr) then
-            lhsstr="["+strcat(lhsstr,",")+"]"
+            lhsstr = "["+strcat(lhsstr,",")+"] = "
         else
-            lhsstr = "[]";
+            lhsstr = "";
         end
 
-        for k=1:size(scitree.inputs)
+        for k = 1:size(scitree.inputs)
             rhsstr=[rhsstr,expression2code(scitree.inputs(k))]
         end
         if ~isempty(rhsstr) then
-            rhsstr="("+strcat(rhsstr,",")+")"
+            rhsstr = "("+strcat(rhsstr,",")+")"
         else
             rhsstr = "()";
         end
 
-        crp=lhsstr+" = "+scitree.name+rhsstr;
+        crp = lhsstr + scitree.name + rhsstr;
     end
 
 
@@ -83,37 +83,35 @@ function [scitree, crp] = mtlbtree2sci(mtlbtree,prettyprintoutput)
         // Add converted tree to scitree and also inserted instructions
         if typeof(mtlbtree.statements(ninstr))=="sup_equal"
 
-            sci_stat=list();
-            for i=1:size(mtlbtree.statements(ninstr).sup_instr)
-                [converted_tree,nblines]=instruction2sci(mtlbtree.statements(ninstr).sup_instr(i),nblines);
+            sci_stat = list();
+            for i = 1:size(mtlbtree.statements(ninstr).sup_instr)
+                [converted_tree,nblines] = instruction2sci(mtlbtree.statements(ninstr).sup_instr(i),nblines);
 
-                sci_stat=update_instr_list(sci_stat,converted_tree);
+                sci_stat = update_instr_list(sci_stat,converted_tree);
             end
 
-            scitree.statements($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_stat,mtlbtree.statements(ninstr).nb_opr);
+            scitree.statements($+1) = tlist(["sup_equal","sup_instr","nb_opr"],sci_stat,mtlbtree.statements(ninstr).nb_opr);
         else
-
-            [converted_tree,nblines]=instruction2sci(mtlbtree.statements(ninstr),nblines);
+            [converted_tree,nblines] = instruction2sci(mtlbtree.statements(ninstr),nblines);
 
             // Add converted tree to scitree and also inserted instructions
-
-            scitree.statements=update_instr_list(scitree.statements,converted_tree);
+            scitree.statements = update_instr_list(scitree.statements,converted_tree);
 
             // Generate code corresponding to scitree.statements
         end
-        for k=1:size(scitree.statements)
+        for k = 1:size(scitree.statements)
             if k<size(scitree.statements)
                 crp = cat_code(crp,instruction2code(scitree.statements(k),prettyprintoutput));
                 crp = format_txt(crp,scitree.statements(k),prettyprintoutput,scitree.statements(k+1));
             end
         end
 
-        scitree.statements=list(scitree.statements($));
+        scitree.statements = list(scitree.statements($));
 
         // Disp percentage of conversion done
         msprintf(gettext("%s line %s out of %s..."),margin, string(nblines), string(mtlbtree.nblines));
-        ninstr=ninstr+1;
-        tmpvarnb=0;
+        ninstr = ninstr+1;
+        tmpvarnb = 0;
     end
 
     if scitree.statements(1)<>list("EOL") then
@@ -122,9 +120,9 @@ function [scitree, crp] = mtlbtree2sci(mtlbtree,prettyprintoutput)
     end
 
     if scitree.name<>"" then // Not a batch file
-        crp=cat_code(crp,"");
-        crp=cat_code(crp,"endfunction"); // Replace last return
-        crp=cat_code(crp,"");
+        crp = cat_code(crp,"");
+        crp = cat_code(crp,"endfunction"); // Replace last return
+        crp = cat_code(crp,"");
     end
 
     m2sci_info(gettext("Conversion of M-tree: Done"),-1);
@@ -133,5 +131,4 @@ function [scitree, crp] = mtlbtree2sci(mtlbtree,prettyprintoutput)
     clearglobal("m2sci_to_insert_b")
     clearglobal("m2sci_to_insert_a")
     clearglobal("tmpvarnb")
-
 endfunction

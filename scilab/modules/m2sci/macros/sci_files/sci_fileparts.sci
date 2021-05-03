@@ -18,7 +18,7 @@ function [tree]=sci_fileparts(tree)
 
     for klhs=1:lhs
         tree.lhs(k).dims=list(Unknown,Unknown)
-        tree.lhs(k).type=Type(String,Real)
+        tree.lhs(k).type=Type(String, Char)
     end
 
     // Add trailing / or \ to path

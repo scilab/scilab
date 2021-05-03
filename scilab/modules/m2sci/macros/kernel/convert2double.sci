@@ -16,27 +16,45 @@ function dble = convert2double(A)
 
     lhs = argn(1)
 
-    if A.vtype==Double then
+    if A.vtype==Double then     // might be ["Double" "Sparse"]
         dble = A
         return
     end
 
     if only_double then
         dble = A
-        dble.type = Type(Double,Unknown)
+        if A.vtype==Sparse
+            dble.type = Type(Double,A.property)
+        else
+            dble.type = Type(Double,Unknown)
+        end
     else
         if A.vtype==String then
             LHS = Variable("ans", Infer(A.dims,Type(Double,Real)))
             dble = Funcall("asciimat", 1, Rhs_tlist(A), list(LHS))
+
         elseif A.vtype==Boolean then
-            LHS = Variable("ans",Infer(A.dims,Type(Double,Real)))
-            dble = Funcall("bool2s", 1, Rhs_tlist(A), list(LHS))
+            // LHS = Variable("ans",Infer(A.dims,Type(Double,Real)))
+            // dble = Funcall("bool2s", 1, Rhs_tlist(A), list(LHS))
+            dble = Operation("*", list(A,Cste(1)))
+            if is_sparse(A)>0
+                dble.type = Type(Sparse,Real)
+            else
+                dble.type = Type(Double,Real)
+            end
+
         elseif A.vtype==Int then
             LHS = Variable("ans",Infer(A.dims,Type(Double,Real)))
             dble = Funcall("double", 1, Rhs_tlist(A), list(LHS))
+
+        elseif A.vtype==Sparse then
+            LHS = Variable("ans",Infer(A.dims,Type(Double,Real)))
+            dble = Funcall("full", 1, Rhs_tlist(A), list(LHS))
+
         elseif A.vtype==Unknown then
             LHS = Variable("ans", Infer(A.dims,Type(Double,Unknown)))
             dble = Funcall("mtlb_double", 1, Rhs_tlist(A), list(LHS))
+
         else
             msg = gettext("m2sci.convert2double(): Type %s not yet implemented.")
             error(msprintf(msg, string(A.vtype)))

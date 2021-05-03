@@ -22,7 +22,7 @@ function [tree]=sci_strrep(tree)
     if s1.vtype==String & s2.vtype==String & s3.vtype==String then
         tree.name="strsubst"
         tree.lhs(1).dims=list(Unknown,Unknown)
-        tree.lhs(1).type=Type(String,Real)
+        tree.lhs(1).type=Type(String, Char)
     else
         tree.name="mtlb_strrep"
         tree.lhs(1).dims=list(Unknown,Unknown)

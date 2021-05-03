@@ -9,15 +9,12 @@
 // along with this program.
 
 function tree = sci_ismac(tree)
-    // M2SCI function
-    // Conversion function for Matlab ismac()
-    // Input: tree = Matlab funcall tree
-    // Ouput: tree = Scilab equivalent for tree
+    // M2SCI converter for for Matlab ismac()
 
-    OS = Funcall("getos",1,list(),list())
+    OS = Funcall("getos",1,list())
     tree = Operation("==", list(OS,Cste("Darwin")),tree.lhs)
 
     tree.out(1).dims = list(1,1)
-    tree.out(1).type = Type(Boolean,Real)
+    tree.out(1).type = Type(Boolean,Boolean)
 
 endfunction

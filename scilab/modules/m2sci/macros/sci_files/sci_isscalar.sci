@@ -10,17 +10,17 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_isscalar(tree)
+function tree = sci_isscalar(tree)
     // M2SCI function
     // Conversion function for Matlab isscalar()
     // Input: tree = Matlab funcall tree
     // Ouput: tree = Scilab equivalent for tree
 
-    lgth_funcall=Funcall("length",1,tree.rhs,list())
-    sum_funcall=Funcall("sum",1,Rhs_tlist(lgth_funcall),list())
-    tree=Operation("==",list(sum_funcall,Cste(1)),tree.lhs)
+    lgth_funcall = Funcall("length",1, tree.rhs, list())
+    sum_funcall = Funcall("sum",1, Rhs_tlist(lgth_funcall), list())
+    tree = Operation("==", list(sum_funcall,Cste(1)), tree.lhs)
 
-    tree.out(1).dims=list(1,1)
-    tree.out(1).type=Type(Boolean,Real)
+    tree.out(1).dims = list(1,1)
+    tree.out(1).type = Type(Boolean,Boolean)
 
 endfunction

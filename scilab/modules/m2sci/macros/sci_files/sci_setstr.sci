@@ -31,16 +31,16 @@ function [tree]=sci_setstr(tree)
     elseif X.vtype==Unknown then
         tree.name="mtlb_setstr"
         tree.lhs(1).dims=X.dims
-        tree.lhs(1).type=Type(String,Real)
+        tree.lhs(1).type=Type(String, Char)
     else
         tree.name="ascii"
         if X.dims(1)==1 | is_a_scalar(X) then // Row vector or scalar
             tree.lhs(1).dims=X.dims
-            tree.lhs(1).type=Type(String,Real)
+            tree.lhs(1).type=Type(String, Char)
         else
             tree.name="mtlb_setstr"
             tree.lhs(1).dims=X.dims
-            tree.lhs(1).type=Type(String,Real)
+            tree.lhs(1).type=Type(String, Char)
         end
     end
 endfunction

@@ -10,31 +10,31 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_isfield(tree)
+function [tree] = sci_isfield(tree)
     // M2SCI function
     // Conversion function for Matlab isfield()
     // Input: tree = Matlab funcall tree
     // Ouput: tree = Scilab equivalent for tree
 
-    st=tree.rhs(1)
-    f=tree.rhs(2)
+    st = tree.rhs(1)
+    f = tree.rhs(2)
     if and(st.vtype<>[Struct,Unknown]) then
-        tree=Cste(%F)
+        tree = Cste(%F)
     elseif st.vtype==Unknown then
-        tree.name="mtlb_tree"
-        tree.lhs(1).dims=list(1,1)
-        tree.lhs(1).type=Type(Boolean,Real)
+        tree.name = "mtlb_tree"
+        tree.lhs(1).dims = list(1,1)
+        tree.lhs(1).type = Type(Boolean,Boolean)
     else
-        // allf=getfield(1,st);tf=or(allf(3:$)==f);
-        allf=gettempvar()
+        // allf = getfield(1,st);tf = or(allf(3:$)==f);
+        allf = gettempvar()
         m2sci_insert(Equal(list(allf),Funcall("getfield",1,Rhs_tlist(1,st),list())))
 
-        imp=Operation(":",list(Cste(3),Cste("$")),list())
-        ext=Operation("ext",list(allf,imp),list())
-        eq=Operation("==",list(ext,f),list())
+        imp = Operation(":",list(Cste(3),Cste("$")),list())
+        ext = Operation("ext",list(allf,imp),list())
+        eq = Operation("==",list(ext,f),list())
 
-        tree=Funcall("or",1,Rhs_tlist(eq),tree.lhs)
-        tree.lhs(1).dims=list(1,1)
-        tree.lhs(1).type=Type(Boolean,Real)
+        tree = Funcall("or",1,Rhs_tlist(eq),tree.lhs)
+        tree.lhs(1).dims = list(1,1)
+        tree.lhs(1).type = Type(Boolean,Boolean)
     end
 endfunction

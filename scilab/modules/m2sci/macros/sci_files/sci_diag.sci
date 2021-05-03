@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_diag(tree)
+function tree = sci_diag(tree)
     // M2SCI function
     // Conversion function for Matlab diag()
     // Input: tree = Matlab funcall tree
@@ -22,35 +22,35 @@ function [tree]=sci_diag(tree)
         [A,k] = getrhs(tree)
         // In Scilab k must be a real or complex matrix
         k = convert2double(k)
-        tree.rhs=Rhs_tlist(A,k)
+        tree.rhs = Rhs_tlist(A,k)
 
         // Compute dims to for inference
         if typeof(k)=="cste" then
             if A.dims(1)==1 then // diag of a row vector
-                n=A.dims(2)+k.value
-                m=n
+                n = A.dims(2)+k.value
+                m = n
             elseif A.dims(2)==1 then // diag of a column vector
-                n=A.dims(1)+k.value
-                m=n
+                n = A.dims(1)+k.value
+                m = n
             else
-                m=Unknown;
-                n=Unknown;
+                m = Unknown;
+                n = Unknown;
             end
         else
-            m=Unknown;
-            n=Unknown;
+            m = Unknown;
+            n = Unknown;
         end
-        tree.lhs(1).dims=list(m,n)
+        tree.lhs(1).dims = list(m,n)
 
         if or(A.vtype==[String,Unknown]) then
-            tree.name="mtlb_diag"
-            tree.lhs(1).type=A.type
+            tree.name = "mtlb_diag"
+            tree.lhs(1).type = A.type
         else
             if A.vtype==Boolean then
-                tree.rhs=Rhs_tlist(Funcall("bool2s",1,list(A),list()),k)
-                tree.lhs(1).type=Type(Boolean,Real)
+                tree.rhs = Rhs_tlist(Funcall("bool2s",1,list(A),list()),k)
+               tree.lhs(1).type = Type(Boolean, A.property)
             else
-                tree.lhs(1).type=A.type
+                tree.lhs(1).type = A.type
             end
         end
         // B = diag(A)
@@ -59,33 +59,33 @@ function [tree]=sci_diag(tree)
 
         // Compute dims to for inference
         if A.dims(1)==1 then // diag of a row vector
-            n=A.dims(2)
-            m=n
+            n = A.dims(2)
+            m = n
         elseif A.dims(2)==1 then // diag of a column vector
-            n=A.dims(1)
-            m=n
+            n = A.dims(1)
+            m = n
         elseif not_a_vector(A) then
-            m=min(A.dims);
+            m = min(A.dims);
             if not_empty(A) then
-                n=1
+                n = 1
             else
-                n=Unknown;
+                n = Unknown;
             end
         else
-            m=Unknown;
-            n=Unknown;
+            m = Unknown;
+            n = Unknown;
         end
-        tree.lhs(1).dims=list(m,n)
+        tree.lhs(1).dims = list(m,n)
 
         if or(A.vtype==[String,Unknown]) then
-            tree.name="mtlb_diag"
-            tree.lhs(1).type=A.type
+            tree.name = "mtlb_diag"
+            tree.lhs(1).type = A.type
         else
             if A.vtype==Boolean then
-                tree.rhs=Rhs_tlist(Funcall("bool2s",1,list(A),list()))
-                tree.lhs(1).type=Type(Boolean,Real)
+                tree.rhs = Rhs_tlist(Funcall("bool2s",1,list(A),list()))
+                tree.lhs(1).type = Type(Boolean,A.property)
             else
-                tree.lhs(1).type=A.type
+                tree.lhs(1).type = A.type
             end
         end
     end

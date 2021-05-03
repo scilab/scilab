@@ -10,12 +10,12 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_isdir(tree)
+function tree = sci_isdir(tree)
     // M2SCI function
     // Conversion function for Matlab isdir()
     // Input: tree = Matlab funcall tree
     // Ouput: tree = Scilab equivalent for tree
 
-    tree.lhs(1).dims=list(1,1)
-    tree.lhs(1).type=Type(Boolean,Real)
+    tree.lhs(1).dims = list(1,1)
+    tree.lhs(1).type = Type(Boolean,Boolean)
 endfunction

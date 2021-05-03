@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=%g2sci(tree)
+function tree = %g2sci(tree)
     // M2SCI function
     // Conversion function for Matlab logical OR
     // Input: tree = Matlab operation tree
@@ -21,26 +21,7 @@ function [tree]=%g2sci(tree)
     // - %s_g_b.sci
     // These functions are not used to get the same output value as Matlab one with empty matrices
 
-    // %s_g_s is also defined but no more used (hard coded)
-
     [A,B] = getoperands(tree)
-
-    // Short circuiting OR
-    if (typeof(B)=="variable" & B.name=="%shortcircuit") then
-        if typeof(tree.out(1))=="variable" & tree.out(1).name=="ans" then
-            tmp=gettempvar()
-            tmp.type=Type(Boolean,Real)
-            tree=tmp
-        else
-            tmp=tree.out(1)
-            global("varslist")
-            varslist($+1)=M2scivar(tree.out(1).name,tree.out(1).name,Infer(list(1,1),Type(Boolean,Real)))
-            tree=list()
-        end
-        m2sci_insert(Equal(list(tmp),Cste(%T)))
-        m2sci_insert(tlist(["ifthenelse","expression","then","elseifs","else"],Operation("~",list(A.operands(1)),list()),list(Equal(list(tmp),A.operands(2))),list(),list()))
-        return
-    end
 
     // To have good size for result with String as input
     // And overloading functions are not written for Strings
@@ -50,23 +31,23 @@ function [tree]=%g2sci(tree)
     if B.vtype==Unknown | B.vtype==String then
         B = convert2double(B)
     end
-    tree.operands=list(A,B)
+    tree.operands = list(A,B)
 
-    tree.out(1).type=Type(Boolean,Real)
+    tree.out(1).type = Type(Boolean,Boolean)
     // If A is a scalar
     if is_a_scalar(A) then
-        tree.out(1).dims=B.dims
+        tree.out(1).dims = B.dims
         // If B is a scalar
     elseif is_a_scalar(B) then
-        tree.out(1).dims=A.dims
+        tree.out(1).dims = A.dims
         // If A or B is an empty matrix
     elseif is_empty(A) | is_empty(B) then
-        tree.out(1).dims=A.dims
+        tree.out(1).dims = A.dims
         // A and B are not scalars and not empty matrices -> they have the same size
     elseif not_empty(A) & not_empty(B) then
-        tree.out(1).dims=A.dims
+        tree.out(1).dims = A.dims
     else
-        tree.out(1).dims=allunknown(A.dims)
+        tree.out(1).dims = allunknown(A.dims)
     end
 
 endfunction

@@ -21,6 +21,60 @@
         <refname>m2scideclare</refname>
         <refpurpose>Giving tips to help M2SCI...</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            %m2scideclare variable_name|sizes|data_type|property
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>variable_name</term>
+                <listitem>
+                    <para>
+                        Name of the declared variable.
+                        It can be a Struct field (e.g. <literal>x(1,2).name</literal>)
+                        or describe the contents of a Cell using syntax
+                        <literal>x(1,2).entries</literal>.
+                        <note>
+                            NOTE that for Cells and Structs,
+                            <literal>*</literal> can be used as an index (see examples below).
+                        </note>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sizes</term>
+                <listitem>
+                    <para>
+                        Sizes of the variable declared, separated by blanks. Any unknown size
+                        can be specified with <literal>?</literal>.
+                        <warning>
+                            NOTE that a Matlab character string as defined between single quotes
+                            is considered as a vector of characters. Therefore, for instance the
+                            size of 'string' is  <literal>|1 6|</literal>.
+                        </warning>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>data_type &amp; property</term>
+                <listitem>
+                    <para>
+                        data type and property (sub-type) of the variable. Possible values are
+                        documented in the <link linkend="Type">Type</link> page.
+                    </para>
+                    <note>
+                        Property values that are not defined as a constant in m2ci
+                        -- like 'int8' or 'Axes' -- must be specified without quotes
+                        in the m2scideclare statement.
+                    </note>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>Description</title>
         <para>
@@ -33,87 +87,8 @@
             versions and is now obsolete).
         </para>
         <para>
-            The syntax of this command is:
-        </para>
-        <para>
-            <literal>%m2scideclare variable_name|dimensions|data_type|property</literal>
-        </para>
-        <para>
-            with :
-        </para>
-          <itemizedlist>
-            <listitem>
-              <para>
-                <emphasis role="bold">variable_name</emphasis>: name of the variable declared.
-                It can be a Struct field (e.g. <literal>x(1,2).name</literal>)
-                or describe the contents of a Cell using syntax
-                <literal>x(1,2).entries</literal>.
-                <note>
-                    NOTE that for Cells and Structs,
-                    <literal>*</literal> can be used as an index (see examples below).
-                </note>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <emphasis role="bold">dimensions</emphasis>: dimensions of the variable declared
-                separated by blanks, if a dimension is unknown, replace it by <literal>?</literal>.
-                <warning>
-                    NOTE that String dimensions must be similar to Matlab ones
-                    e.g. <literal>1 6</literal> for character string 'string'.
-                </warning>
-              </para>
-            </listitem>
-            <listitem>.
-                <informaltable border="0">
-                <tr>
-                    <td valign="top">
-                      <para>
-                        <emphasis role="bold">data_type</emphasis>:
-                        data type of the variable which can be:
-                      </para>
-                      <informaltable border="1">
-                        <tr>
-                          <th>m2scideclare data type</th>
-                          <th>Scilab "equivalent" type</th>
-                        </tr>
-                        <tr><td>Double</td>  <td>1</td>         </tr>
-                        <tr><td>Boolean</td> <td>4</td>         </tr>
-                        <tr><td>Sparse</td>  <td>5</td>         </tr>
-                        <tr><td>Int</td>     <td>8</td>         </tr>
-                        <tr><td>Handle</td>  <td>9</td>         </tr>
-                        <tr><td>String</td>  <td>10</td>        </tr>
-                        <tr><td>Struct</td>  <td>16</td>        </tr>
-                        <tr><td>Cell</td>    <td>17</td>        </tr>
-                        <tr><td>Function</td><td>13 (macro)</td></tr>
-                        <tr><td>Builtin</td> <td>130</td>       </tr>
-                        <tr><td>Void</td>    <td>0 (undefined)</td></tr>
-                        <tr><td>?</td>       <td>Unknown type</td></tr>
-                      </informaltable>
-                    </td>
-                    <td valign="top">
-                      <para>
-                        <emphasis role="bold">property</emphasis>:
-                        property of the variable, which can be:
-                      </para>
-                      <informaltable border="1">
-                        <tr><th>m2scideclare property</th>  <th>Scilab "equivalent"</th></tr>
-                        <tr><td>Real</td>                   <td>Real data</td>          </tr>
-                        <tr><td>Complex</td>                <td>Complex data</td>       </tr>
-                        <tr><td>?</td>                      <td>Unknown property</td>   </tr>
-                      </informaltable>
-                      <para>
-                        This field is ignored for following datatypes: <literal>Cell</literal>,
-                        <literal>Struct</literal>, <literal>String</literal> and <literal>Boolean</literal>.
-                      </para>
-                    </td>
-                </tr>
-                </informaltable>
-            </listitem>
-          </itemizedlist>
-        <para>
-            All data given by <literal>m2scideclare</literal> are compared with infered data,
-            in case of conflict, infered data are kept and a warning message is displayed.
+            All data given by <literal>m2scideclare</literal> are compared with infered data.
+            In case of conflict, inferred data are kept and a warning message is displayed.
             If you are sure about your data, report a bug.
         </para>
     </refsection>
@@ -175,5 +150,26 @@
                 <link linkend="Type">Type</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <literal>m2scideclare</literal> supports all new defined vtypes and properties
+                    <literal>Polynomial</literal>,
+                    <literal>Function/Macro</literal>, <literal>Function/Builtin</literal>,
+                    <literal>String/Char</literal>,
+                    <literal>Handle/'Figure'</literal>, <literal>Handle/'Axes'</literal>,
+                    <literal>Int/'int8'</literal>,  <literal>Int/'int16'</literal>,
+                    <literal>Int/'int32'</literal>, <literal>Int/'int64'</literal>,
+                    <literal>Int/'uint8'</literal>, <literal>Int/'uint16'</literal>,
+                    <literal>Int/'uint32'</literal>, <literal>Int/'uint64'</literal>,
+                    <literal>Sparse/Boolean</literal>.
+                    <literal>Sparse</literal> type is now actually supported.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

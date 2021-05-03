@@ -12,6 +12,9 @@
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/16181
 //
+// <-- Short Description -->
+// Unit tests for replacing the "end" index
+
 // Getting replace_end_dollar() as public:
 exec("SCI/modules/m2sci/macros/kernel/m2sci_syntax.sci",-1);
 

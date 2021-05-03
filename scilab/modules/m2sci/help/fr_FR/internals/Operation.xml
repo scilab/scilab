@@ -28,6 +28,16 @@
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
+                <term>op</term>
+                <listitem>
+                    <para>
+                        tlist de type "operation", ayant les champs
+                        <literal>operator</literal>, <literal>operands</literal>,
+                        et <literal>out</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>operator</term>
                 <listitem>
                     <para>
@@ -58,13 +68,8 @@
                     <para>
                         liste des paramètres de sortie de l'opération (le plus souvent
                         unique), chacun étant représenté par une tlist M2SCI.
+                        Valeur par défaut : list().
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>op</term>
-                <listitem>
-                    <para>une tlist M2SCI de type "operation"</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -102,5 +107,16 @@
                 <link linkend="Equal">Equal</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <varname>out</varname> devient facultative. Valeur par défaut : list().
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

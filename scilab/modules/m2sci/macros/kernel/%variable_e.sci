@@ -10,24 +10,29 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function val=%variable_e(field,m2scitlist)
-    // File generated from %PROTO_e.g: PLEASE DO NOT EDIT !
+function val = %variable_e(field,m2scitlist)
+if isdef("DEBUG") & DEBUG then disp("%variable_e"), end
 
     val=[]
-
-    if field=="infer" then
-        val=m2scitlist.infer
-    elseif field=="dims" then
-        val=m2scitlist.infer.dims
-    elseif field=="type" then
-        val=m2scitlist.infer.type
-    elseif field=="vtype" then
-        val=m2scitlist.infer.type.vtype
-    elseif field=="property" then
-        val=m2scitlist.infer.type.property
-    elseif field=="contents" then
-        val=m2scitlist.infer.contents
+    if isfield(m2scitlist, "infer") then
+        infer = m2scitlist.infer
     else
-        error(msprintf(gettext("Extraction of %s from ''%s'' tlist is not yet implemented."),string(field),typeof(m2scitlist)))
+        infer = Infer()
     end
+    if field=="infer" then
+        val = infer
+    elseif field=="dims" then
+        val = infer.dims
+    elseif field=="type" then
+        val = infer.type
+    elseif field=="vtype" then
+        val = infer.type.vtype
+    elseif field=="property" then
+        val = infer.type.property
+    elseif field=="contents" then
+        val = infer.contents
+    else
+        error(msprintf(gettext("Extraction of ''%s'' from ''%s'' tlist is not yet implemented."),string(field),typeof(m2scitlist)))
+    end
+
 endfunction

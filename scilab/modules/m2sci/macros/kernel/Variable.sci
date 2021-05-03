@@ -24,7 +24,8 @@ function var=Variable(name,infer)
     elseif typeof(infer)~="infer" then
         error(msprintf(gettext("infer must be an ''infer'' tlist instead of a: %s."),typeof(infer)))
     end
-
-    var=tlist(["variable","name","infer"],name,infer)
-
+    if infer==list() then
+        infer = Infer()
+    end
+    var = tlist(["variable","name","infer"],name,infer)
 endfunction

@@ -10,16 +10,16 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_isstruct(tree)
+function tree = sci_isstruct(tree)
     // M2SCI function
     // Conversion function for Matlab isstruct()
     // Input: tree = Matlab funcall tree
     // Ouput: tree = Scilab equivalent for tree
 
     A = getrhs(tree)
-    A=Funcall("typeof",1,Rhs_tlist(A),list())
-    tree=Operation("==",list(A,Cste("st")),tree.lhs)
+    A = Funcall("typeof",1, Rhs_tlist(A), list())
+    tree = Operation("==", list(A,Cste("st")), tree.lhs)
 
-    tree.out(1).dims=list(1,1)
-    tree.out(1).type=Type(Boolean,Real)
+    tree.out(1).dims = list(1,1)
+    tree.out(1).type = Type(Boolean,Boolean)
 endfunction

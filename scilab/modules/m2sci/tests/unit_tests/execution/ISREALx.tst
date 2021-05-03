@@ -7,10 +7,9 @@
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
-// <-- LONG TIME EXECUTION -->
 
-// Unitary test for conversion of Matlab function: OPERATORS
+// Unitary test for conversion of Matlab function: ISREAL
 
-exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversionNoExe.sci", -1);
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestExecution.sci", -1);
 
-mprintf("%s\n", m2sciTestConversionNoExe("OPERATORS"));
+if ~m2sciTestExecution("ISREAL") then pause;end

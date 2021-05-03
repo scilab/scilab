@@ -19,6 +19,6 @@ function [tree]=sci_uigetdir(tree)
     tree.name="uigetdir"
 
     tree.lhs(1).dims=list(1,Unknown)
-    tree.lhs(1).type=Type(String,Real)
+    tree.lhs(1).type=Type(String, Char)
 
 endfunction

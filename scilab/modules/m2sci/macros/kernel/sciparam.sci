@@ -20,7 +20,8 @@ function sciparam()
     // Operations code
     // [ operation symbol, operation translation function code ; ...]
     // e.g. : translation function for addition (+) is named %a2sci()...
-    ops = [ "+"       , "a"   ;
+    ops = [
+    "+"       , "a"   ;
     "-"       , "s"   ;
     "*"       , "m"   ;
     ".*"      , "x"   ;
@@ -48,7 +49,9 @@ function sciparam()
     quote     , "t"   ;
     "cc"      , "cc"  ; // [ , ]
     "|"       , "g"   ;
+    "||"      , "g"   ;
     "&"       , "h"   ;
+    "&&"      , "h"   ;
     "~"       , "5"   ;
     ".^"      , "j"   ;
     "."+quote , "0"   ;

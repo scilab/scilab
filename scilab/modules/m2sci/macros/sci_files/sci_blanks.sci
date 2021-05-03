@@ -42,5 +42,5 @@ function [tree]=sci_blanks(tree)
     else
         tree.lhs(1).dims=list(1,Unknown)
     end
-    tree.lhs(1).type=Type(String,Real)
+    tree.lhs(1).type=Type(String, Char)
 endfunction

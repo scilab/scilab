@@ -20,5 +20,5 @@ function tree = sci_ispc(tree)
     tree = Operation("==", list(OS,Cste("Windows")),tree.lhs)
 
     tree.out(1).dims = list(1,1)
-    tree.out(1).type = Type(Boolean,Real)
+    tree.out(1).type = Type(Boolean,Boolean)
 endfunction

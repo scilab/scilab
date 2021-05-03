@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-// 
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -10,92 +10,101 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_MFUN(tree)
-// Prototype for all and any
-// M2SCI function
-// Conversion function for Matlab MFUN()
-// Input: tree = Matlab funcall tree
-// Output: tree = Scilab equivalent for tree
-// Emulation function: mtlb_MFUN()
+function tree = sci_MFUN(tree)
+    // Prototype for all and any
+    // M2SCI function
+    // Conversion function for Matlab MFUN()
+    // Input: tree = Matlab funcall tree
+    // Output: tree = Scilab equivalent for tree
+    // Emulation function: mtlb_MFUN()
 
-tree.name="SFUN"
+    tree.name = "SFUN"
 
-// B = MFUN(A)
-if rhs==1 then
-  A = getrhs(tree)
+    // B = MFUN(A)
+    if rhs==1 then
+        A = getrhs(tree)
 
-  // %c_SFUN and %b_SFUN are not defined
-  A = convert2double(A)
-  
-  if is_complex(A) then
-    A = Funcall("abs",1,Rhs_tlist(A),list(Variable("",A.infer)))
-  elseif ~is_real(A) then
-    newA = Funcall("abs",1,Rhs_tlist(A),list(Variable("",A.infer)))
-    repl_poss(newA,A,A,gettext("is Real."))
-    A=newA
-  end
-  tree.rhs=Rhs_tlist(A)
-  
-  // if A is not a multidimensional array
-  if size(A.dims)==2 then
-    if is_a_vector(A) then
-      tree.lhs(1).dims=list(1,1)
-    elseif not_a_vector(A) then
-      tree.rhs=Rhs_tlist(A,1)
-      tree.lhs(1).dims=list(1,A.dims(2))
+        // %c_SFUN and %b_SFUN are not defined
+        A = convert2double(A)
+
+        if is_complex(A) then
+            A = Funcall("abs",1,Rhs_tlist(A),list(Variable("",A.infer)))
+        elseif ~is_real(A) then
+            newA = Funcall("abs",1,Rhs_tlist(A),list(Variable("",A.infer)))
+            repl_poss(newA,A,A,gettext("is Real."))
+            A = newA
+        end
+        tree.rhs = Rhs_tlist(A)
+
+        // if A is not a multidimensional array
+        if size(A.dims)==2 then
+            if is_a_vector(A) then
+                tree.lhs(1).dims = list(1,1)
+
+            elseif not_a_vector(A) then
+                tree.rhs = Rhs_tlist(A,1)
+                tree.lhs(1).dims = list(1,A.dims(2))
+
+            else
+                tree.name = "mtlb_MFUN"
+                tree.lhs(1).dims = list(Unknown,Unknown)
+            end
+            // if A is a multidimensional array
+        else
+            dim = first_non_singleton(A)
+            if dim<>Unknown then
+                tree.rhs = Rhs_tlist(A,dim)
+                tree.lhs(1).dims = A.dims
+                tree.lhs(1).dims(dim) = 1
+            else
+                newrhs = Funcall("firstnonsingleton", 1, list(A), list())
+                tree.rhs = Rhs_tlist(A,newrhs)
+                tree.lhs(1).dims = allunknown(A.dims)
+            end
+        end
+        if A.vtype==Sparse
+            prop = Sparse
+        elseif A.vtype==Boolean & A.property==Unknown
+            prop = Unknown
+        else
+            prop = Boolean
+        end
+        tree.lhs(1).type = Type(Boolean, prop)
+
+        // B = MFUN(A,dim)
     else
-      tree.name="mtlb_MFUN"
-      tree.lhs(1).dims=list(Unknown,Unknown)
-    end
-  // if A is a multidimensional array
-  else
-    dim = first_non_singleton(A)
-    if dim<>Unknown then
-      tree.rhs=Rhs_tlist(A,dim)
-      tree.lhs(1).dims=A.dims
-      tree.lhs(1).dims(dim)=1
-    else
-      newrhs=Funcall("firstnonsingleton",1,list(A),list())
-      tree.rhs=Rhs_tlist(A,newrhs)
-      tree.lhs(1).dims=allunknown(A.dims)
-    end
-  end
-  tree.lhs(1).type=Type(Boolean,Real)
+        [A,dim] = getrhs(tree)
 
-// B = MFUN(A,dim)
-else
-  [A,dim] = getrhs(tree)
+        // %c_SFUN and %b_SFUN are not defined
+        A = convert2double(A)
 
-  // %c_SFUN and %b_SFUN are not defined
-  A = convert2double(A)
-  
-  if is_complex(A) then
-    A = Funcall("abs",1,Rhs_tlist(A),list(Variable("",A.infer)))
-  elseif ~is_real(A) then
-    newA = Funcall("abs",1,Rhs_tlist(A),list(Variable("",A.infer)))
-    repl_poss(newA,A,A,gettext("is Real."))
-    A=newA
-  end
-  tree.rhs=Rhs_tlist(A,dim)
-  
-  if typeof(dim)=="cste" then
-    if dim.value<=size(A.dims) then
-      tree.lhs(1).dims=A.dims
-      tree.lhs(1).dims(dim.value)=1
-      tree.lhs(1).type=Type(Boolean,Real)
-    else
-      if not_empty(A) then
-	tree=Operation("<>",list(A,Cste(0)),tree.lhs)
-	tree.out(1).dims=A.dims
-	tree.out(1).type=Type(Boolean,Real)
-      else
-	tree.name="mtlb_MFUN"
-	tree.lhs(1).dims=A.dims
-      end
+        if is_complex(A) then
+            A = Funcall("abs", 1, Rhs_tlist(A), list(Variable("",A.infer)))
+        elseif ~is_real(A) then
+            newA = Funcall("abs", 1, Rhs_tlist(A), list(Variable("",A.infer)))
+            repl_poss(newA,A,A,gettext("is Real."))
+            A = newA
+        end
+        tree.rhs = Rhs_tlist(A,dim)
+
+        if typeof(dim)=="cste" then
+            if dim.value<=size(A.dims) then
+                tree.lhs(1).dims = A.dims
+                tree.lhs(1).dims(dim.value) = 1
+                tree.lhs(1).type = Type(Boolean,Boolean)
+            else
+                if not_empty(A) then
+                    tree = Operation("<>", list(A,Cste(0)), tree.lhs)
+                    tree.out(1).dims = A.dims
+                    tree.out(1).type = Type(Boolean,Boolean)
+                else
+                    tree.name = "mtlb_MFUN"
+                    tree.lhs(1).dims = A.dims
+                end
+            end
+        else
+            tree.name = "mtlb_MFUN"
+            tree.lhs(1).dims = allunknown(A.dims)
+        end
     end
-  else
-    tree.name="mtlb_MFUN"
-    tree.lhs(1).dims=allunknown(A.dims)
-  end
-end
 endfunction

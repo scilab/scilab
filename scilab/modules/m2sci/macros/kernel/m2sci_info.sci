@@ -18,8 +18,6 @@ function m2sci_info(txt,verb_mode)
     // verb_mode=-1: information written in logfile and displayed in Scilab window (should not be used by user) (TEST MODE)
     // verb_mode=-2: information written in logfile and displayed in Scilab window (should not be used by user) and varslist displayed in Scilab command window (DEBUG MODE)
 
-
-
     if verb_mode==0 then
         return
     end
@@ -33,7 +31,7 @@ function m2sci_info(txt,verb_mode)
         for k=1:size(txt,"*")
             m2sci_to_insert_b($+1)=Equal(..
             list(Variable("ans",Infer())),..
-            Funcall("%comment",1,list(Cste(" "+txt(k))),list(Variable("",Infer()))))
+            Funcall("%comment",1,list(Cste(txt(k))),list(Variable("",Infer()))))
             m2sci_to_insert_b($+1)=list("EOL");
         end
     end

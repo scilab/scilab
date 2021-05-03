@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_isinf(tree)
+function tree = sci_isinf(tree)
     // M2SCI function
     // Conversion function for Matlab isinf()
     // Input: tree = Matlab funcall tree
@@ -19,8 +19,8 @@ function [tree]=sci_isinf(tree)
     // %c_isinf and %b_isinf are not defined in Scilab
     A = getrhs(tree)
     A = convert2double(A)
-    tree.rhs=Rhs_tlist(A)
+    tree.rhs = Rhs_tlist(A)
 
-    tree.lhs(1).dims=A.dims
-    tree.lhs(1).type=Type(Boolean,Real)
+    tree.lhs(1).dims = A.dims
+    tree.lhs(1).type = Type(Boolean,Unknown)
 endfunction

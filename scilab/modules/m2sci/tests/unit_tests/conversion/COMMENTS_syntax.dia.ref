@@ -40,17 +40,17 @@ TESTING M2SCI: creating varslist file...
 //
 // fprintf('%d %s\n', 2, 'percents in strings');  // A difficult case
 //*/
-a = 1;  // Appended comment
+a = 1;   // Appended comment
 // Percent symbol % in a comment
-A = a;
+A = a; 
 B = 2*a  // Case 3: Symbol % in a comment
-mtlb_fprintf("%d\n",2);  // Case 4
-mtlb_fprintf("%d\n",2);  // Case 4 with % in comment
-mtlb_fprintf("%s\n","percents % in strings");  // Case 5
-mtlb_fprintf("%d %s\n",2,"percents in strings");  // Case 6
-mtlb_fprintf("%d %s\n",2,"percents in strings");  // Case 6 with % in comment
+mtlb_fprintf("%d\n",2);   // Case 4
+mtlb_fprintf("%d\n",2);   // Case 4 with % in comment
+mtlb_fprintf("%s\n","percents % in strings");   // Case 5
+mtlb_fprintf("%d %s\n",2,"percents in strings");   // Case 6
+mtlb_fprintf("%d %s\n",2,"percents in strings");   // Case 6 with % in comment
 select a
   case 1 then
     // Anything to do
     disp("OK")
-end;
+end

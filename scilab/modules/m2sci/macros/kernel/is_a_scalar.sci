@@ -10,28 +10,17 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r=is_a_scalar(A)
+function r = is_a_scalar(A)
     // M2SCI function
     // Checks if all dimensions of A are 1
     // Input: A = a M2SCI tlist
     // Output: r = boolean value (true if A is a scalar)
 
-    n=size(A.dims)
-    r=%T
-    for k=1:n
-        if A.dims(k)<>1 then
-            r=%F
-            //return
+    r = %T
+    for k = 1:size(A.dims)
+        if A.dims(k) <> 1 then
+            r = %F
+            break
         end
     end
-endfunction
-
-
-function a = toto()
-a = %T;
-if 1 then
-a = %F;
-return
-end
-a = %T;
 endfunction

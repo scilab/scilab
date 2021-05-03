@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_isfinite(tree)
+function tree = sci_isfinite(tree)
     // M2SCI function
     // Conversion function for Matlab isfinite()
     // Input: tree = Matlab funcall tree
@@ -18,12 +18,20 @@ function [tree]=sci_isfinite(tree)
 
     // %c_isfinite and %b_isfinite are not defined in Scilab
     A = getrhs(tree)
-    A = convert2double(A)
-    tree.rhs=Rhs_tlist(A)
+    if or(A.vtype==[String Boolean Unknown])
+        A = convert2double(A)
+        tree.rhs = Rhs_tlist(A)
+    end
 
-    tree=Funcall("abs",1,list(A),tree.lhs)
-    tree=Operation("<",list(tree,Cste(%inf)),tree.lhs)
+    tree = Funcall("abs",1, list(A), tree.lhs)
+    tree = Operation("<", list(tree,Cste(%inf)), tree.lhs)
 
-    tree.out(1).dims=A.dims
-    tree.out(1).type=Type(Boolean,Real)
+    if A.vtype==Sparse | A.property==Sparse
+        prop = Sparse
+    else
+        prop = Boolean
+    end
+
+    tree.out(1).dims = A.dims
+    tree.out(1).type = Type(Boolean,prop)
 endfunction

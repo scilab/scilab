@@ -10,16 +10,16 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_isletter(tree)
+function tree = sci_isletter(tree)
     // M2SCI function
     // Conversion function for Matlab isletter()
     // Input: tree = Matlab funcall tree
     // Ouput: tree = Scilab equivalent for tree
     // Emulation function: mtlb_isletter()
 
-    tree.name="mtlb_isletter"
+    tree.name = "mtlb_isletter"
 
-    tree.lhs(1).dims=tree.rhs(1).dims
-    tree.lhs(1).type=Type(Boolean,Real)
+    tree.lhs(1).dims = tree.rhs(1).dims
+    tree.lhs(1).type = Type(Boolean,Boolean)
 
 endfunction

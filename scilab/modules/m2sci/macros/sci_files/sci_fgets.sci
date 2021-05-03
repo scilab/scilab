@@ -25,7 +25,7 @@ function [tree]=sci_fgets(tree)
         else
             tree.lhs(1).dims=list(1,Unknown)
         end
-        tree.lhs(1).type=Type(String,Real)
+        tree.lhs(1).type=Type(String, Char)
     else
         tree.name="mgetl"
         tree.lhs(1).dims=list(1,Unknown)

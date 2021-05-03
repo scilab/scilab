@@ -10,17 +10,17 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_cos(tree)
+function tree = sci_cos(tree)
     // Generic conversion function
     // M2SCI function
     // Conversion function for Matlab cos()
     // Input: tree = Matlab funcall tree
     // Output: tree = Scilab equivalent for tree
 
-    A=getrhs(tree)
-    A=convert2double(A)
-    tree.rhs=Rhs_tlist(A)
+    A = getrhs(tree)
+    A = convert2double(A)
+    tree.rhs = Rhs_tlist(A)
 
-    tree.lhs(1).dims=A.dims
-    tree.lhs(1).type=Type(Double,Real)
+    tree.lhs(1).dims = A.dims
+    tree.lhs(1).type = Type(Double, Real)
 endfunction

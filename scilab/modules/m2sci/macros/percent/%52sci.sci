@@ -12,12 +12,12 @@
 
 function tree = %52sci(tree)
     // M2SCI function
-    // Conversion function for Matlab negation
+    // Conversion function for Matlab negation ~
     // Input: tree = Matlab operation tree
     // Output: tree = Scilab equivalent for tree
 
     A = getoperands(tree)
-    if and(A.vtype<>[Double,Boolean]) then
+    if and(A.vtype<>[Double,Sparse,Boolean]) then
         A = convert2double(A)
         tree.operands = list(A)
     end
@@ -29,7 +29,12 @@ function tree = %52sci(tree)
         tree.operands = list(tree.operands)
     end
 
-    tree.out(1).dims = A.dims
-    tree.out(1).type = Type(Boolean,Real)
+    r = is_sparse(A)
+    if r<0,     prop = Unknown
+    elseif r>0, prop = Boolean
+    else        prop = Sparse
+    end
 
+    tree.out(1).dims = A.dims
+    tree.out(1).type = Type(Boolean, prop)
 endfunction

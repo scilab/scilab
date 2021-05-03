@@ -4,13 +4,23 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
+// <-- NO CHECK REF -->
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
-// <-- LONG TIME EXECUTION -->
-
+//
+// <-- Short Description -->
 // Unitary test for conversion of Matlab function: ISMAC
 
-exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversionNoExe.sci", -1);
 
-mprintf("%s\n", m2sciTestConversionNoExe("ISMAC"));
+Syntaxes = [
+    "ismac"         "getos()==""Darwin"""
+    "tf = ismac"    "tf = getos()==""Darwin"""
+    ];
+
+mfile = TMPDIR + "/_ismac";
+mputl(Syntaxes(:,1), mfile + ".m");
+mfile2sci(mfile + ".m", TMPDIR)
+res = mgetl(mfile + ".sci");
+
+assert_checkequal(res, [""; Syntaxes(:,2)]);

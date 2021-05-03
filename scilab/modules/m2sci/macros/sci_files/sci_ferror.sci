@@ -26,7 +26,7 @@ function [tree]=sci_ferror(tree)
         else
             tree.name="mclearerr"
             tree.lhs(1).dims=list(1,Unknown)
-            tree.lhs(1).type=Type(String,Real)
+            tree.lhs(1).type=Type(String, Char)
         end
         // ferror(fid)
     else

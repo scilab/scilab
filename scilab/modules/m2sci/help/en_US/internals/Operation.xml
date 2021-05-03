@@ -30,6 +30,14 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
+                <term>op</term>
+                <listitem>
+                    Tlist of type "operation", with fields <literal>operator</literal>,
+					<literal>operands</literal>, and <literal>out</literal>.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>operator</term>
                 <listitem>
                     operator symbol (character string). Supported codes are:
@@ -58,13 +66,7 @@
                 <listitem>
                     List of TLists representing the operation result(s) (most often
                     unique). Each result is represented as a M2SCI tlist.
-                    <para/>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>op</term>
-                <listitem>
-                    Tlist of type "operation"
+                    Default value: list().
                     <para/>
                 </listitem>
             </varlistentry>
@@ -102,5 +104,16 @@
                 <link linkend="Equal">Equal</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <varname>out</varname> is now optional: default = list().
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

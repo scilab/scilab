@@ -21,5 +21,5 @@ function tree=sci_dec2bin(tree)
         proddims=k*proddims
     end
     tree.lhs(1).dims=list(proddims,1)
-    tree.lhs(1).type=Type(String,Real)
+    tree.lhs(1).type=Type(String, Char)
 endfunction
