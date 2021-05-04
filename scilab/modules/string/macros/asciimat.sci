@@ -1,9 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Scilab
 // Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
-// Copyright (C) 2017 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2017 - 2021 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,60 +18,66 @@ function y = asciimat(x)
     // Returned value have same size as input value instead of second dims !
     // Fonction created because ascii() Scilab function returns a row vector
 
+    y = []
     if x==[] then
-        y=[]
         return
     end
 
-    dims = size(x);
     if typeof(x) == "string" // convert string to ascii code
-        if size(dims,"*") > 2 // hypermatrix case
-            colref = 0;
-            lastDim = dims($);
-            dims($) = [];
-            l=list();
-            for i=1:size(dims,"*")
-                l(i) = 1:$;
-            end
-            for i=1:lastDim
-                res=asciimat(x(l(:), i));
-                if colref == 0 then
-                    colref=size(res,"c");
-                else
-                    if colref <> size(res,"c")
-                        msg = gettext("%s: Wrong input argument #%d: Inconsistent size.\n")
-                        error(msprintf(msg, "asciimat", 1));
-                        return
-                    end
-                end
-                y(l(:), i) = res;
-            end
-        else // 2D matrix case | ["a" "bc";"de" "f"] => [97 98 99;100 101 102]
-            x=x';
-            a = ascii(x(:));
-            aSize = size(a, "*");
-            dims(2) = 1;
-            p = prod(dims);
-            if modulo(aSize, p)
-                msg = gettext("%s: Wrong input argument #%d: Inconsistent size.\n")
-                error(msprintf(msg, "asciimat", 1));
-            end
-            dims(2) = dims(1);
-            dims(1) = aSize/p;
-            y = matrix(a, dims)';
+        dims = size(x)
+        x = strcat(matrix(permute(x,[2 1 3:length(dims)]), dims(2), -1),"","r")'
+        tmp = ascii(1:127);
+        for c = ["\" "/" "]"]
+            tmp = strsubst(tmp, c, "\"+c);
         end
+        kUTF = grep(x, "/[^" + tmp + "]/", "regexp")
+        if kUTF == [] then
+            L = length(x)
+            m = max(L)
+            if or(length(x)<>m) then
+                // Padding with spaces (like Octave, unlike Matlab)
+                x = part(x(:),1:m)
+            end
+            y = matrix(ascii(x)', [length(x(1)), dims(1), dims(3:$)])
+            y = permute(y, [2 1 3:length(dims)])
+        else
+            ext = []
+            for k = kUTF
+                a = ascii(x(k));
+                ext($+1,1:length(a)) = a;
+            end
+            ext(ext==0) = 32;    // Padding with spaces
+
+            noUTF = x(:)
+            noUTF(kUTF) = ""
+            m = max(size(ext,2), max(length(noUTF)))
+            noUTF = part(noUTF, 1:m)
+            y = matrix(ascii(noUTF),m,-1)'
+            if size(ext,2)<m
+                ext(1,m) = 32 // extends a to m columns
+            end
+            for i = 1:length(kUTF)
+                y(kUTF(i),:) = ext(i,:) ;
+            end
+            y = permute(matrix(y',[m dims(1) dims(3:$)]), [2 1 3:length(dims)])
+        end
+
     else  // convert ascii codes to string
-        x = permute(x,[2 1 3:ndims(x)]);
-        y = ascii(x);
-        Ly = length(y)
-        rlength = Ly / (prod(dims)/dims(2))
-        if dims(1)>1
-            if modulo(Ly, rlength)
-                msg = gettext("%s: Wrong input argument #%d: Inconsistent size.\n")
-                error(msprintf(msg,"asciimat", 1))
-            end
-            y = strsplit(y, rlength:rlength:(Ly-1));
+        dims = size(x)
+        x = permute(x, [2 1 3:ndims(x)]);
+        x = matrix(x,size(x,1),-1);
+        // Tags the EOL:
+        for c = ascii("$€£")
+            x($+1,:) = c;
         end
-        y = matrix(y, [dims(1) dims(3:$)]);
+        //
+        x = matrix(x,1,-1)
+        // Any zero will block ascii(): http://bugzilla.scilab.org/15101
+        x(x==0) = []  // 0 <=> ""
+        x = [x, 65]   // works around http://bugzilla.scilab.org/16686
+        y = strsplit(ascii(x), "$€£");
+        y($) = []     // removes the ending ascii(65)
+        y = matrix(y, [dims(1) 1 dims(3:$)]); // dims#2 not squeezed (Matlab, Octave)
+        y = stripblanks(y,%f,1) // Matlab & Octave trim trailing ascii(32)(not \t)
     end
 endfunction

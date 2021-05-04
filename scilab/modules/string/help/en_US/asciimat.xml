@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
-    *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,37 +11,44 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-    *
-    -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="asciimat">
+ *
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="asciimat">
     <refnamediv>
         <refname>asciimat</refname>
-        <refpurpose>string matrix ASCII conversions</refpurpose>
+        <refpurpose>
+            Converts an array of text into ASCII/UTF8 codes, and reciprocally
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            a = asciimat(txt)
-            txt = asciimat(a)
+            unicodes = asciimat(text)
+            text = asciimat(unicodes)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>txt</term>
+                <term>text</term>
                 <listitem>
-                    <para>
-                        a character string or matrix of strings.
-                    </para>
+                    single text, or vector, matrix or hypermatrix of texts.
+                    Text elements may have various lengths, and may include UTF-8 extended characters.
+                    <para/>
+                    <literal>asciimat(…)</literal> always concatenates the columns of
+                    <varname>text</varname> along rows, as input or output argument.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>a</term>
+                <term>unicodes</term>
                 <listitem>
-                    <para>
-                        a vector or matrix of integer ASCII codes.
-                    </para>
+                    single integer ASCII code, or vector, matrix or hypermatrix of ASCII or unicode
+                    1-byte numbers.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -49,18 +56,311 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function converts Scilab string to ASCII code or a
-            matrix of ASCII code to Scilab string. Output is a matrix
-            having the same number of rows than input, what is not the
-            case with <function>ascii</function>.
+            <literal>asciimat(…)</literal> converts an array of <varname>text</varname>
+            into an array of related 1-byte ascii or UTF-8 <varname>unicodes</varname>,
+            and reciprocally.
         </para>
+        <para>
+            <literal>asciimat(…)</literal> is an Octave/Matlab compatibility function,
+            aiming to provide in the m2sci
+            Matlab-to-Scilab code converter an equivalence for the addition and
+            subtraction between some character strings or with numbers. Thus,
+            <screen><![CDATA[
+>> ['ab' 'c' ; 'd' 'ef'] + 4
+ans =
+   101   102   103
+   104   105   106
+
+>> ['ab';'cd'] + ['ef';'gh']
+ans =
+   198   200
+   202   204
+
+>> ['ab';'cd'] - ['ef';'gh']
+ans =
+  -4  -4
+  -4  -4
+]]></screen>
+        </para>
+        <para>
+           can be performed by the Matlab-to-Scilab converter with
+        </para>
+        <para>
+           <programlisting role="example"><![CDATA[
+asciimat(['ab' 'c' ; 'd' 'ef']) + 4
+asciimat(['ab';'cd']) + asciimat(['ef';'gh'])
+asciimat(['ab';'cd']) - asciimat(['ef';'gh'])
+        ]]></programlisting>
+        </para>
+        <para>
+            <warning>
+                <literal>asciimat(…)</literal> should not be used out of the M2Sci converter.
+            </warning>
+        </para>
+        <refsect3>
+            <title>unicodes = asciimat(text)</title>
+            <para>
+                <emphasis role="bold">For a scalar or row</emphasis> <varname>text</varname>,
+                <literal>asciimat(text)</literal> is equal to <literal>ascii(text)</literal>.
+                All strings are glued together before building the row vector of codes of their
+                characters.
+            </para>
+            <para>
+                <warning>
+                <emphasis role="bold">For any <varname>text</varname> array of any sizes,
+                made only of empty strings ""</emphasis>, <literal>asciimat(text)</literal>
+                returns []. Indeed, <literal>asciimat(…)</literal> considers "" as a void vector
+                of (indexed) characters as in Octave/Matlab, not as a Scilab text object.
+                </warning>
+            </para>
+            <para>
+                <emphasis role="bold">For a 2D matrix</emphasis> <varname>text</varname>,
+                <literal>asciimat(text)</literal> builds a unique column of text by gluing
+                <varname>text</varname> columns along rows.
+            </para>
+            <para>
+                Then, for each row/string of the column, the row vector of ASCII or
+                UTF-8 codes of all its characters is computed.
+            </para>
+            <para>
+                Finally, all resulting row vectors of codes are vertically concatenated to
+                build the <varname>unicodes</varname> matrix. Too short vectors of codes
+                are beforehand padded with the ascii(" ")==32 code.
+            </para>
+            <para>
+                <emphasis role="bold">For an hypermatrix</emphasis> of <varname>text</varname>,
+                the processing is basically the same, as if all <varname>text</varname>
+                rows over all dimensions > 2 were beforehand stacked into a 2D matrix.
+                The resulting 2D <varname>unicodes</varname> matrix is finally reshaped into
+                an hypermatrix..
+            </para>
+            <para>
+                The sizes of <varname>unicodes</varname> and <varname>text</varname> arrays
+                differ only by their number of columns.
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>text = asciimat(unicodes)</title>
+            <para>
+                <emphasis role="bold">For a scalar or a row </emphasis> <varname>unicodes</varname>,
+                <literal>asciimat(unicodes)</literal> is equal to <literal>ascii(unicodes)</literal>.
+                It returns the character string whose characters have the given codes.
+                <warning>
+                    Zeros stand for the code of the empty character "", as the true
+                    ascii(0) character is currently not supported in Scilab 6.
+                </warning>
+            </para>
+            <para>
+                <emphasis role="bold">For a column, matrix or hypermatrix</emphasis>
+                <varname>unicodes</varname>, each <varname>unicodes</varname> row is
+                processed separately and builds a single Scilab character string.
+            </para>
+            <para>
+                All trailing ascii(32) spaces of built character strings are trimmed.
+            </para>
+            <para>
+                Finally, <varname>text</varname> has the size of <varname>unicodes</varname>,
+                except that <literal>size(text,2)==1</literal>.
+            </para>
+        </refsect3>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+asciimat([])
+asciimat("")
+asciimat(0)
+
+r = asciimat("A")
+asciimat(r)
+
+// With an input ROW:
+r = asciimat(["A" "BC"])
+asciimat(r)
+
+r = asciimat(["A" "" "BC"])      // "" in rows are ignored
+asciimat(r)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> asciimat([])
+ ans  =
+    []
+--> asciimat("")
+ ans  =
+    []
+--> asciimat(0)
+ ans  =
+  ""
+
+--> r = asciimat("A")
+ r  =
+   65.
+--> asciimat(r)
+ ans  =
+  "A"
+
+--> // With an input ROW:
+--> r = asciimat(["A" "BC"])
+ r  =
+   65.   66.   67.
+
+--> asciimat(r)
+ ans  =
+  "ABC"
+
+--> r = asciimat(["A" "" "BC"])      // "" in rows are ignored
+ r  =
+   65.   66.   67.
+
+--> asciimat(r)
+ ans  =
+  "ABC"
+]]></screen>
+        <para>
+            With an input column:
+        </para>
+        <programlisting role="example"><![CDATA[
+asciimat(["" ; ""])
+asciimat((97:110)')'
+strsplit("a":"n")'
+
+r = asciimat(["ABC" ; "" ; "D"]) // Padding short rows with 32
+asciimat(r)
+r = asciimat(["AB" ; "αβ"])      // 1-byte UTF-8 coding is used
+asciimat(r)                      // Trailing ascii(32) spaces are trimmed
+     ]]></programlisting>
+        <screen><![CDATA[
+--> asciimat(["" ; ""])
+ ans  =
+    []
+
+--> asciimat((97:110)')'
+ ans  =
+  "a"  "b"  "c"  "d"  "e"  "f"  "g"  "h"  "i"  "j"  "k"  "l"  "m"  "n"
+
+--> strsplit("a":"n")'
+ ans  =
+  "a"  "b"  "c"  "d"  "e"  "f"  "g"  "h"  "i"  "j"  "k"  "l"  "m"  "n"
+
+--> r = asciimat(["ABC" ; "" ; "D"]) // Padding short rows with 32
+ r  =
+   65.   66.   67.
+   32.   32.   32.
+   68.   32.   32.
+
+--> asciimat(r)
+ ans  =
+  "ABC"
+  ""
+  "D"
+
+--> r = asciimat(["AB" ; "αβ"])      // 1-byte UTF-8 coding is used
+ r  =
+   65.    66.    32.    32.
+   206.   177.   206.   178.
+
+--> asciimat(r)                      // Trailing ascii(32) spaces are trimmed
+ ans  =
+  "AB"
+  "αβ"
+]]></screen>
+        <para>
+            With a 2D input matrix:
+        </para>
+        <programlisting role="example"><![CDATA[
+r = asciimat([" AB", " ", "CD " ; "α", "βγ", " "])
+asciimat(r)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> r = asciimat([" AB", " ", "CD " ; "α", "βγ", " "])
+ r  =
+   32.    65.    66.    32.    67.    68.    32.
+   206.   177.   206.   178.   206.   179.   32.
+
+--> asciimat(r)
+ ans  =
+  " AB CD"
+  "αβγ"
+]]></screen>
+        <para>
+            With a 3D input hypermatrix:
+        </para>
+        <programlisting role="example"><![CDATA[
+x = ["a €" "bδ " ; "" "" ;  "" "" ];
+x2 = [" α" "βδc" ; "" "" ; "ε4" ""];
+h = cat(3, x, x2)
+r = asciimat(h)
+asciimat(r)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> h = cat(3, x, x2)
+ h  =
+(:,:,1)
+  "a €"  "bδ "
+  ""     ""
+  ""     ""
+(:,:,2)
+  " α"  "βδc"
+  ""    ""
+  "ε4"  ""
+
+--> r = asciimat(h)
+ r  =
+(:,:,1)
+   97.   32.   226.   130.   172.   98.   206.   180.   32.
+   32.   32.   32.    32.    32.    32.   32.    32.    32.
+   32.   32.   32.    32.    32.    32.   32.    32.    32.
+(:,:,2)
+   32.    206.   177.   206.   178.   206.   180.   99.   32.
+   32.    32.    32.    32.    32.    32.    32.    32.   32.
+   206.   181.   52.    32.    32.    32.    32.    32.   32.
+
+--> asciimat(r)
+ ans  =
+(:,:,1)
+  "a €bδ"
+  ""
+  ""
+(:,:,2)
+  " αβδc"
+  ""
+  "ε4"
+]]></screen>
+    </refsection>
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ascii">ascii</link>
             </member>
+            <member>
+                <link linkend="char">char</link>
+            </member>
         </simplelist>
+    </refsection>
+
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Text components with various lengths or/and including UTF-8 characters
+                            are accepted. Padding with the ascii(" ")==32 code implemented.
+                        </listitem>
+                        <listitem>
+                            asciimat(unicodes) trims all trailing spaces.
+                        </listitem>
+                        <listitem>
+                            For any unicodes hypermatrix, r = asciimat(unicodes) no longer squeezes
+                            size(r,2).
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

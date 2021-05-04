@@ -237,6 +237,7 @@ Feature changes and additions on 6.1.1
 * `hash` function with SHA-1,SHA-2 and SHA-3 Secure Hash Algorithms has been added.
 * `loglog`, `semilogx`, `semilogy` Matlab-compatible functions added.
 * `scatter` and `scatter3d` are reforged. New `scatter` options: `"smallOnTop"` and `"datatips"`.
+* `asciimat` now supports input strings of different lengths or including international UTF8 extended characters.
 
 
 Help pages:
@@ -407,6 +408,7 @@ Bug Fixes
 * [#16406](https://bugzilla.scilab.org/16406): `edit_curv` yielded an error when reading data.
 * [#16407](https://bugzilla.scilab.org/16407): Fec rendering was incorrect
 * [#16408](https://bugzilla.scilab.org/16408): toJSON(var, indent, filename) is the right call sequence. Documentation has been udpated.
+* [#16438](https://bugzilla.scilab.org/16438): `asciimat(text)` did not accept strings of different lengths or including some extended UTF-8 characters.
 * [#16445](https://bugzilla.scilab.org/16445): `colorbar(..)` ignored how to guess `umin` and `umax` for a Champ object (with .colored="on").
 * [#16449](https://bugzilla.scilab.org/16449): Insertion of implicit vector in Cell was crahsing Scilab
 * [#16450](https://bugzilla.scilab.org/16450): Concatenating encoded integers with decimal or complex numbers was not possible.
@@ -471,6 +473,7 @@ Bug Fixes
 * [#16677](https://bugzilla.scilab.org/16677): In offline mode, `atomsInstall` was flashing many times the console.
 * [#16679](https://bugzilla.scilab.org/16679): `get_function_path("acosh")` yielded an error (regression from Scilab 6.0.0).
 * [#16683](https://bugzilla.scilab.org/16683): The `m2sci` code converter needed a set of fix and improvements.
+* [#16685](https://bugzilla.scilab.org/16685): `asciimat("A";"";"B")` yielded a transposed matrix of codes. When processing an hypermatrix of codes, the dim#2 of the result was squeezed (unlike Matlab/Octave's behavior).
 
 
 ### Bugs fixed in 6.1.0:

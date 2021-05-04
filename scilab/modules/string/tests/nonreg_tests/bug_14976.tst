@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2017 - Samuel GOUGEON
+// Copyright (C) 2017-2021 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -18,10 +18,10 @@
 
 assert_checkequal(asciimat(97:122), "abcdefghijklmnopqrstuvwxyz");
 c = (97:122)';
-r = strsplit("a":"z",1:25);
-assert_checkequal(asciimat(c), r);
-assert_checkequal(asciimat(cat(3,c,c)), [r r]);
-assert_checkequal(asciimat(cat(7,c,c)), cat(6, r, r));
+C = strsplit("a":"z",1:25);
+assert_checkequal(asciimat(c), C);
+assert_checkequal(asciimat(cat(3,c,c)), cat(3,C,C));
+assert_checkequal(asciimat(cat(7,c,c)), cat(7,C,C));
 
 // With UTF8 (limited application)
 t = "àâãäéèêëìîïòôöùûü";

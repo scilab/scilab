@@ -64,7 +64,8 @@ assert_checkequal(size(j),[1,5]);
 assert_checkequal(size(b),[1,5]);
 assert_checkequal(size(i),[2,9]);
 // Texts
-t = matrix(asciimat(grand(20,1,"uin",ascii("a"), ascii("z"))), 2, 10);
+t = grand(20,1,"uin",ascii("a"), ascii("z"));
+t = matrix(strsplit(ascii(t)), 2, 10);
 [h,j,b,i] = histc(t, ["e" "i" "o" "u"]);
 assert_checkequal(size(h),[1,3]);
 assert_checkequal(size(j),[1,3]);
@@ -386,7 +387,7 @@ t = [
 [h,j,b,i] = histc(t);
 assert_checkequal(h, [3 3 2 3 1 5 1 7 6 4 2 4 2 4 8 5]);
 assert_checkequal(j, [0 0 0]);
-assert_checkequal(b, asciimat((97:112)')');
+assert_checkequal(b, strsplit("a":"p")');
 iref = [
 3   14  8   9   2   9   6   9   16  12  16  4   6   9   12
 2   13  5   15  15  6   16  15  8   6   8   8   3   11  15
@@ -440,6 +441,7 @@ jref = [37 0 7];
 assert_checkequal(h, href/N);
 assert_checkequal(j, jref/N);
 [h,j,b,i] = histc(t2, [bref ""], "discrete,countsNorm,normWith: empty");
+
 assert_checkequal(h, href/N);
 assert_checkequal(j, jref/N);
 [h,j,b,i] = histc(t2, [bref ""], "discrete,countsNorm,normWith: out");
