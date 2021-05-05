@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="spec" xml:lang="ru">
+    <refnamediv>
+        <refname>spec</refname>
+        <refpurpose>собственные значения и собственные вектора матрицы или пучка</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            evals          = spec(A)
+            [R, diagevals] = spec(A)
+
+            evals               = spec(A, B)
+            [alpha, beta]       = spec(A, B)
+            [alpha, beta, Z]    = spec(A, B)
+            [alpha, beta, Q, Z] = spec(A, B)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>A, B</term>
+                <listitem>
+                    Квадратные матрицы вещественных или комплексных чисел одинаковых размеров.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>evals</term>
+                <listitem>
+                    Вещественный или комплексный вектор: собственные значения.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>diagevals</term>
+                <listitem>
+                    Вещественная или комплексная диагональная матрица: собственные
+                    значения расположены по диагонали.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R</term>
+                <listitem>
+                    Вещественная или комплексная обратимая квадратная матрица:
+                    матрица правых собственных векторов.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alpha, beta</term>
+                <listitem>
+                    Векторы одинаковых размеров: обобщённые собственные значения
+                    пучка матрицы <literal>A - s.B</literal> (где <literal>s</literal> -
+                    это переменная).
+                    <literal>alpha./beta</literal> даёт обычные собственные значения.
+                    <varname>alpha</varname> - это вещественные или комплексные значения.
+                    <varname>beta</varname> - это вещественные значения.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Q</term>
+                <listitem>
+                    Вещественная или комплексная обратимая квадратная матрица:
+                    обобщённые левые собственные векторы пучка.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    Вещественная или комплексная обратимая квадратная матрица:
+                    обобщённые правые собственные векторы пучка.
+                    <para/>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <emphasis role="bold">evals = spec(A)</emphasis> вычисляет собственные
+            значения и возвращает их в векторе <varname>evals</varname>.
+        </para>
+        <para>
+            <emphasis role="bold">[R, diagevals] = spec(A)</emphasis>
+            возвращает собственные значения через диагональную матрицу
+            <varname>diagevals</varname> и правые собственные векторы в <varname>R</varname>.
+            См. также <literal>bdiag(…)</literal>.
+        </para>
+        <para>
+            При использовании синтаксиса <literal>spec(A)</literal> с единственной матрицей, истинность результатов следующая:
+            <informaltable border="1">
+            <tr><th>Матрица</th>
+                <td colspan="2" align="center">Вещественная</td><td colspan="2" align="center">Комплексная</td>
+            </tr>
+            <tr align="center"><td> </td>
+                <td>Симметричная</td><td>Несимметричная</td><td>Эрмитова</td><td>Неэрмитова</td>
+            </tr>
+            <tr><th>Собственные значения</th>
+                <td>вещественные</td>      <td>комплексные</td>  <td>вещественные</td>     <td>комплексные</td>
+            </tr>
+            <tr><th>Собственные векторы</th>
+                <td>вещественные</td>      <td>комплексные</td>  <td>комплексные</td>  <td>комплексные</td>
+            </tr>
+            </informaltable>
+        </para>
+        <para>
+            Комплексная эрмитова матрица равна себе самой комплексно сопряжённой и
+            транспонированной.
+        </para>
+        <refsect3>
+            <title>Пучок матриц A - s.B</title>
+            <para>
+                <emphasis role="bold">evals = spec(A, B)</emphasis>
+                возвращает собственные значения пучка матриц, то есть корни полиномиальной
+                матрицы <literal>s.B - A</literal>.
+            </para>
+            <para>
+                <emphasis role="bold">[alpha, beta] = spec(A, B)</emphasis>
+                возвращает обобщённые собственные значения <varname>alpha</varname> и
+                <varname>beta</varname> пучка матриц <literal>A - s.B</literal>.
+                Они такие, что обычные собственные значения пучка представляются как
+                <literal>alpha./beta</literal>. Тогда матрица
+                <literal>A - alpha./beta × B</literal> является сингулярной.
+                Если <literal>beta(i) = 0</literal>, то i<superscript>тое</superscript>
+                собственное значение равно бесконечности.
+            </para>
+            <para>
+                Для <literal>B = eye(A)</literal>, <literal>alpha./beta</literal> равно
+                <literal>spec(A)</literal>. Обычно представляется как пара
+                (alpha,beta), поскольку есть разумная интерпретация для
+                <literal>beta=0</literal>, даже когда оба равны нулю.
+            </para>
+            <para>
+                <emphasis role="bold">[alpha, beta, Z] = spec(A, B)</emphasis>
+                возвращает дополнительно матрицу <varname>Z</varname> обобщённых правых
+                собственных векторов пучка.
+            </para>
+            <para>
+                <emphasis role="bold">[alpha, beta, Q, Z] = spec(A, B)</emphasis>
+                возвращает дополнительно матрицу <varname>Q</varname> обобщённых левых
+                собственных векторов пучка.
+            </para>
+        </refsect3>
+        <para>
+            <note>
+            Для больших плотных или разрежённых матриц может быть использована функция
+            <link linkend="eigs">eigs()</link>.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Используемые программы</title>
+        <para>Вычисления собственных значений матриц основаны на программах Lapack
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>DSYEV и ZHEEV, когда матрица симметрична или эрмитова.</para>
+            </listitem>
+            <listitem>
+                <para>DGEEV и ZGEEV, когда матрица ни симметрична ни эрмитова.</para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Вычисление собственных значений пучка основаны на программах Lapack DGGEV и ZGGEV.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+// СОБСТВЕННЫЕ ЗНАЧЕНИЯ МАТРИЦЫ
+A = diag([1,2,3]);
+X = rand(3,3);
+A = inv(X)*A*X;
+spec(A)
+
+x = poly(0,'x');
+pol = det(x*eye(3,3)-A)
+roots(pol)
+
+[S,X] = bdiag(A);
+clean(inv(X)*A*X)
+
+// СОБСТВЕННЫЕ ЗНАЧЕНИЯ ПУЧКА
+A = rand(3,3);
+[al, be, R] = spec(A, eye(A));
+al ./ be
+clean(inv(R)*A*R)    // распечатка собственных значений (общая матрица)
+A = A + %i*rand(A);
+E = rand(A);
+roots(det(A-%s*E))   // случай комплексных чисел
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="eigs">eigs</link>
+            </member>
+            <member>
+                <link linkend="bdiag">bdiag</link>
+            </member>
+            <member>
+                <link linkend="schur">schur</link>
+            </member>
+            <member>
+                <link linkend="colcomp">colcomp</link>
+            </member>
+            <member>
+                <link linkend="det">det</link>
+            </member>
+            <member>
+                <link linkend="poly">poly</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

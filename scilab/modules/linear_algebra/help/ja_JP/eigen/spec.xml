@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,512 +13,216 @@
  * along with this program.
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="spec" xml:lang="ja">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="spec" xml:lang="ja">
     <refnamediv>
-
         <refname>spec</refname>
-
         <refpurpose>行列とペンシルの固有値</refpurpose>
-
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
+        <synopsis>
+            evals          = spec(A)
+            [R, diagevals] = spec(A)
 
-        <synopsis>evals=spec(A)
-
-            [R,diagevals]=spec(A)
-
-
-
-            evals=spec(A,B)
-
-            [alpha,beta]=spec(A,B)
-
-            [alpha,beta,Z]=spec(A,B)
-
-            [alpha,beta,Q,Z]=spec(A,B)
-
+            evals               = spec(A, B)
+            [alpha, beta]       = spec(A, B)
+            [alpha, beta, Z]    = spec(A, B)
+            [alpha, beta, Q, Z] = spec(A, B)
         </synopsis>
-
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
-                <term>A</term>
-
+                <term>A, B</term>
                 <listitem>
-
-                    <para>実数または複素正方行列</para>
-
+                    AとBは、同じサイズの実数または複素数の正方行列です.
+                    <para/>
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
-                <term>B</term>
-
-                <listitem>
-
-                    <para>
-
-                        <literal> A</literal>と同じ次元の実数または複素正方行列
-
-                    </para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
                 <term>evals</term>
-
                 <listitem>
-
-                    <para>実数または複素ベクトル, 固有値</para>
-
+                    実数または複素ベクトル, 固有値.
+                    <para/>
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>diagevals</term>
-
                 <listitem>
-
-                    <para>実数または(対角項に固有値を有する)複素対角行列 </para>
-
+                    実数または(対角項に固有値を有する)複素対角行列.
+                    <para/>
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
-                <term>alpha</term>
-
-                <listitem>
-
-                    <para>実数または複素ベクトル, al./be により固有値が得られます</para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
-                <term>beta</term>
-
-                <listitem>
-
-                    <para>実数ベクトル, al./be により固有値が得られます</para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
                 <term>R</term>
-
                 <listitem>
-
-                    <para>可逆な実数または複素正方行列, 行列右固有ベクトル.</para>
-
+                    可逆な実数または複素正方行列, 行列右固有ベクトル.
+                    <para/>
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
-                <term>L</term>
-
+                <term>alpha, beta</term>
                 <listitem>
-
-                    <para>可逆な実数または複素正方行列,　ペンシル左固有ベクトル.</para>
-
+                    同じサイズのベクトル：行列束の一般化された固有値
+                     <literal>A - s.B</literal>（sは変数です）.
+                     alpha./betaは通常の固有値を与えます.
+                     <varname>alpha</varname>は実数値または複素数値です.
+                     <varname>beta</varname>は実数値です.
+                    <para/>
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
-                <term>R</term>
-
+                <term>Q</term>
                 <listitem>
-
-                    <para>可逆な実数または複素正方行列,　ペンシル右固有ベクトル.</para>
-
+                    可逆な実数または複素正方行列 :　ペンシル左固有ベクトル.
+                    <para/>
                 </listitem>
-
             </varlistentry>
-
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    可逆な実数または複素正方行列 :　ペンシル右固有ベクトル.
+                    <para/>
+                </listitem>
+            </varlistentry>
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
-        <variablelist>
-
-            <varlistentry>
-
-                <term>evals=spec(A)</term>
-
-                <listitem>
-
-                    <para>
-
-                        ベクトル<literal>evals</literal> に固有値を返します.
-
-                    </para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
-                <term>[R,diagevals] =spec(A)</term>
-
-                <listitem>
-
-                    <para>
-
-                        対角行列r <literal>evals</literal> に固有値,
-
-                        <literal>R</literal>に固有ベクトルを返します.
-
-                    </para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
-                <term>evals=spec(A,B)</term>
-
-                <listitem>
-
-                    <para>行列ペンシル A - s B のスペクトル,すなわち,
-
-                        多項式行列 s B - Aの根,を返します.
-
-                    </para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
-                <term>[alpha,beta] = spec(A,B)</term>
-
-                <listitem>
-
-                    <para>
-
-                        行列ペンシル<literal>A- s B</literal>のスペクトル,
-
-                        すなわち,多項式行列 <literal>A - s B</literal>の根を返します.
-
-                        一般化固有値 alpha と beta は行列
-
-                        <literal>A - alpha./beta B</literal> が特異行列となる値です.
-
-                        固有値は <literal>al./be</literal> により指定され,
-
-                        <literal>beta(i) = 0</literal>の場合,i番目の固有値は無限大となります.
-
-                        (<literal>B = eye(A)</literal>の場合, <literal>alpha./beta</literal>は
-
-                        <literal>spec(A)</literal>となります).
-
-                        通常,beta=0や両方がゼロの場合に関して都合が良い解釈が存在するため,
-
-                        (alpha,beta)の組み合わせで表されます.
-
-                    </para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
-                <term>[alpha,beta,R] = spec(A,B)</term>
-
-                <listitem>
-
-                    <para>上記に加えてペンシルの一般化右固有ベクトルとなる
-
-                        行列 <literal>R</literal>を返します.
-
-                    </para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
-                <term>[al,be,L,R] = spec(A,B)</term>
-
-                <listitem>
-
-                    <para>
-
-                        上記に加えてペンシルの一般化右および左固有ベクトルである行列
-
-                        <literal>L</literal> および<literal>R</literal>を返します.
-
-                    </para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
-                <term>[al,be,Z] = spec(A,E)</term>
-
-                <listitem>
-
-                    <para>
-
-                        一般化右固有ベクトルである行列 <literal>Z</literal> を返します.
-
-                    </para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
-                <term>[al,be,Q,Z] = spec(A,E)</term>
-
-                <listitem>
-
-                    <para>
-
-                        一般化右および左固有ベクトルである行列 <literal>Q</literal>
-
-                        および <literal>Z</literal>を返します.
-
-                    </para>
-
-                </listitem>
-
-            </varlistentry>
-
-        </variablelist>
-
-        <para>大きな完全 / 疎行列の場合, Arnoldi モジュールを使用することができます.</para>
-
-    </refsection>
-
-    <refsection role="see also">
-
-        <title>参照</title>
-
-        <para>行列の固有値計算は Lapack ルーチンに基づいています</para>
-
-        <itemizedlist>
-
-            <listitem>
-
-                <para>行列が対称でない場合, DGEEV および ZGEEV.</para>
-
-            </listitem>
-
-            <listitem>
-
-                <para>行列が対称の場合, DSYEV および ZHEEV.</para>
-
-            </listitem>
-
-        </itemizedlist>
-
-        <para>複素対象行列は複素共役の非対角項と実数の対角項を有します.</para>
-
-        <para>ペンシル固有値計算は Lapack ルーチン
-
-            DGGEV および ZGGEVに基づいています.
-
-        </para>
-
-    </refsection>
-
-    <refsection>
-
-        <title>実数および複素行列</title>
-
         <para>
-
-            例えば evals や R のような出力変数の型は入力行列 A および B の型と
-
-            同じである必要はないことに注意してください.
-
-            以下のパラグラフでは、行列 A の固有値および固有ベクトルを
-
-            計算する際の出力変数の型を解析します.
-
+            <emphasis role="bold">evals = spec(A)</emphasis>
+            ベクトル<varname>evals</varname> に固有値を返します.
         </para>
-
-        <itemizedlist>
-
-            <listitem>
-
-                <para>実数 A 行列</para>
-
-                <itemizedlist>
-
-                    <listitem>
-
-                        <para>対称</para>
-
-                        <para>固有値と固有ベクトルは実数.</para>
-
-                    </listitem>
-
-                    <listitem>
-
-                        <para>非対称</para>
-
-                        <para>固有値と固有ベクトルは複素数.</para>
-
-                    </listitem>
-
-                </itemizedlist>
-
-            </listitem>
-
-            <listitem>
-
-                <para>複素 A 行列</para>
-
-                <itemizedlist>
-
-                    <listitem>
-
-                        <para>対称</para>
-
-                        <para>固有値は実数だが固有ベクトルは複素数.</para>
-
-                    </listitem>
-
-                    <listitem>
-
-                        <para>非対称</para>
-
-                        <para>固有値,固有ベクトルは複素数.</para>
-
-                    </listitem>
-
-                </itemizedlist>
-
-            </listitem>
-
-        </itemizedlist>
-
+        <para>
+            <emphasis role="bold">[R, diagevals] = spec(A)</emphasis>
+            対角行列r <varname>diagevals</varname> に固有値,
+            <varname>R</varname>に固有ベクトルを返します. See also <literal>bdiag(…)</literal>.
+        </para>
+        <para>
+            When using a <literal>spec(A)</literal> syntax with a single matrix,
+            the realness of results is as it follows:
+            <informaltable border="1">
+            <tr><th>A行列 </th>
+                <td colspan="2" align="center">実数</td><td colspan="2" align="center">複素数</td>
+            </tr>
+            <tr align="center"><td> </td>
+                <td>対称</td><td>非対称</td><td>対称</td><td>非対称</td>
+            </tr>
+            <tr><th>固有値</th>
+                <td>実数</td>      <td>複素数</td>  <td>エルミート</td>     <td>複素数</td>
+            </tr>
+            <tr><th>固有ベクトル</th>
+                <td>実数</td>      <td>複素数</td>  <td>複素数</td>  <td>複素数</td>
+            </tr>
+            </informaltable>
+        </para>
+        <para>.
+	エルミート行列はその共役転置に等しい。
+      </para>
+        <refsect3>
+            <title>Matrix Pencil A - s.B</title>
+            <para>
+                <emphasis role="bold">evals = spec(A, B)</emphasis>
+                行列ペンシル A - s B のスペクトル,すなわち,
+                多項式行列 s B - Aの根,を返します.
+            </para>
+            <para>
+                <emphasis role="bold">[alpha, beta] = spec(A, B)</emphasis>
+                行列ペンシル<literal>A- s B</literal>のスペクトル,
+                すなわち,多項式行列 <literal>A - s B</literal>の根を返します.
+                一般化固有値 alpha と beta は行列
+                <literal>A - alpha./beta × B</literal> が特異行列となる値です.
+                固有値は <literal>alpha./beta</literal> により指定され,
+                <literal>beta(i) = 0</literal>の場合,i番目の固有値は無限大となります.
+            </para>
+            <para>
+                <literal>B = eye(A)</literal>の場合, <literal>alpha./beta</literal>は
+                <literal>spec(A)</literal>となります.
+                通常,beta=0や両方がゼロの場合に関して都合が良い解釈が存在するため,
+                (alpha,beta)の組み合わせで表されます.
+            </para>
+            <para>
+                <emphasis role="bold">[alpha, beta, Z] = spec(A, B)</emphasis>
+                一般化右固有ベクトルである行列 <varname>Z</varname> を返します.
+            </para>
+            <para>
+                <emphasis role="bold">[alpha, beta, Q, Z] = spec(A, B)</emphasis>
+                一般化右および左固有ベクトルである行列 <varname>Q</varname>
+                および <varname>Z</varname>を返します.
+            </para>
+            <para>
+                <note>
+                  大きな密行列または疎行列の場合、<link linkend="eigs">eigs</link>関数を使用できます.
+                </note>
+            </para>
+        </refsect3>
     </refsection>
-
     <refsection>
-
+        <title>参照</title>
+        <para>行列の固有値計算は Lapack ルーチンに基づいています</para>
+        <itemizedlist>
+            <listitem>
+                <para>行列が対称でない場合, DGEEV および ZGEEV.</para>
+            </listitem>
+            <listitem>
+                <para>行列が対称の場合, DSYEV および ZHEEV.</para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            ペンシル固有値計算は Lapack ルーチン DGGEV および ZGGEVに基づいています.
+        </para>
+    </refsection>
+    <refsection>
         <title>例</title>
-
         <programlisting role="example"><![CDATA[
 // MATRIX EIGENVALUES
-A=diag([1,2,3]);
-X=rand(3,3);
-A=inv(X)*A*X;
+A = diag([1,2,3]);
+X = rand(3,3);
+A = inv(X)*A*X;
 spec(A)
 
-x=poly(0,'x');
-pol=det(x*eye(3,3)-A)
+x = poly(0,'x');
+pol = det(x*eye(3,3)-A)
 roots(pol)
 
-[S,X]=bdiag(A);
+[S,X] = bdiag(A);
 clean(inv(X)*A*X)
 
 // PENCIL EIGENVALUES
-A=rand(3,3);
-[al,be,R] = spec(A,eye(A));
-al./be
-clean(inv(R)*A*R)  //displaying the eigenvalues (generic matrix)
-A=A+%i*rand(A);
-E=rand(A);
-roots(det(A-%s*E))   //complex case
+A = rand(3,3);
+[al, be, R] = spec(A, eye(A));
+al ./ be
+clean(inv(R)*A*R)    // displaying the eigenvalues (generic matrix)
+A = A + %i*rand(A);
+E = rand(A);
+roots(det(A-%s*E))   // complex case
  ]]></programlisting>
-
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
-                <link linkend="poly">poly</link>
-
+                <link linkend="eigs">eigs</link>
             </member>
-
             <member>
-
-                <link linkend="det">det</link>
-
-            </member>
-
-            <member>
-
-                <link linkend="schur">schur</link>
-
-            </member>
-
-            <member>
-
                 <link linkend="bdiag">bdiag</link>
-
             </member>
-
             <member>
-
+                <link linkend="schur">schur</link>
+            </member>
+            <member>
                 <link linkend="colcomp">colcomp</link>
-
             </member>
-
             <member>
-
-                <link linkend="dsaupd">dsaupd</link>
-
+                <link linkend="det">det</link>
             </member>
-
             <member>
-
-                <link linkend="dnaupd">dnaupd</link>
-
+                <link linkend="poly">poly</link>
             </member>
-
         </simplelist>
-
     </refsection>
-
 </refentry>
-
