@@ -3,11 +3,12 @@
 // Copyright (C) 2007-2008 - INRIA
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
 // Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
+// Copyright (C) 2021 - Samuel GOUGEON
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-
+// <-- NO CHECK REF -->
 //===============================
 // unit tests strsplit
 //===============================
@@ -127,23 +128,48 @@ assert_checkequal(ref_2, r_2);
 [r_3, r_4] = strsplit("root:x:0:0:root:/root:/bin/bash",":",50);
 assert_checkequal(r_1, r_3);
 assert_checkequal(r_2, r_4);
-//===============================
+
+//=================================
+// Haystack ending with the pattern
+// ================================
 ref_1 = ["abc";""];
 ref_2 = ",";
 [r_1, r_2] = strsplit("abc,",",");
 assert_checkequal(ref_1, r_1);
 assert_checkequal(ref_2, r_2);
-//===============================
+//-------------------------------
 ref_1 = ["abc";""];
 ref_2 = ",";
 [r_1, r_2] = strsplit("abc,",",",1);
 assert_checkequal(ref_1, r_1);
 assert_checkequal(ref_2, r_2);
-//===============================
+//-------------------------------
 [r_1, r_2] = strsplit("abc,",",",1);
 [r_3, r_4] = strsplit("abc,",",",10);
 assert_checkequal(r_1, r_3);
 assert_checkequal(r_2, r_4);
+//-------------------------------
+// http://bugzilla.scilab.org/16686
+r = strsplit("c","c")
+assert_checkequal(r, ["";""]);
+r = strsplit("cd","cd")
+assert_checkequal(r, ["";""]);
+r = strsplit("cd",["ab" "cd"])
+assert_checkequal(r, ["";""]);
+r = strsplit("cc","c")
+assert_checkequal(r, ["";"";""]);
+r = strsplit("abcd","cd");
+assert_checkequal(r, ["ab";""]);
+r = strsplit("abcd","cd",2);
+assert_checkequal(r, ["ab";""]);
+r = strsplit("abcdcd","cd");
+assert_checkequal(r, ["ab";"";""]);
+r = strsplit("abcdcd","cd",1);
+assert_checkequal(r, ["ab";"cd"]);
+r = strsplit("cdcd","cd")
+assert_checkequal(r, ["";"";""]);
+//-------------------------------
+
 //===============================
 ref_1 = ["abc";"def";"ijk";"";"lmo"];
 ref_2 = [",";":";",";":"];

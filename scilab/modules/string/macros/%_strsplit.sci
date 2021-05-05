@@ -98,11 +98,13 @@ function [strs, matched_separators] = %_strsplit(varargin)
             [start_regexp, end_regexp, match_regexp] =  regexp(varargin(1), strsplit_pattern);
             if (start_regexp <> []) then
                 if (end_regexp($) == length(varargin(1))) then
-                    end_regexp($) = end_regexp($) - 1;
+                    end_regexp($) = start_regexp($) - 1;
                 end
-
                 len = length(varargin(1));
-                if len > 1 then
+                if varargin(1)==match_regexp
+                    strs = ["";""];
+                    matched_separators = match_regexp;
+                elseif len > 1 then
                     strs = strsplit(varargin(1), end_regexp);
                     strs = strsubst(strs, strsplit_pattern, "", "r");
                     matched_separators = match_regexp;
@@ -134,7 +136,4 @@ function [strs, matched_separators] = %_strsplit(varargin)
             end
         end
     end
-    //========================================
-
 endfunction
-

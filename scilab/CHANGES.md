@@ -478,6 +478,7 @@ Bug Fixes
 * [#16679](https://bugzilla.scilab.org/16679): `get_function_path("acosh")` yielded an error (regression from Scilab 6.0.0).
 * [#16683](https://bugzilla.scilab.org/16683): The `m2sci` code converter needed a set of fix and improvements.
 * [#16685](https://bugzilla.scilab.org/16685): `asciimat("A";"";"B")` yielded a transposed matrix of codes. When processing an hypermatrix of codes, the dim#2 of the result was squeezed (unlike Matlab/Octave's behavior).
+* [#16686](https://bugzilla.scilab.org/16686): `strsplit('a','a')`, `strsplit('ab','ab')`,  and `strsplit("abcd","cd")` yielded wrong results.
 
 
 ### Bugs fixed in 6.1.0:

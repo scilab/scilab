@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,71 +13,93 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strsplit" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="strsplit" xml:lang="ru">
     <refnamediv>
         <refname>strsplit</refname>
-        <refpurpose>деление строки на вектор строк</refpurpose>
+        <refpurpose>
+            разделение единой строки по заданным позициям или шаблонам
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            v = strsplit(str,ind)
-            [v, matched_separators] = strsplit(str)
-            [v, matched_separators] = strsplit(str, matrix_of_strings, limit)
-            [v, matched_separators] = strsplit(str, regexp_pattern, limit)
+            chunks = strsplit(string)
+            chunks = strsplit(string, indices)
+
+            [chunks, matched_separators] = strsplit(string, separators)
+            [chunks, matched_separators] = strsplit(string, separators, limit)
+            [chunks, matched_separators] = strsplit(string, regexp)
+            [chunks, matched_separators] = strsplit(string, regexp, limit)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>str</term>
+                <term>string</term>
                 <listitem>
-                    <para>символьная строка, которую следует разделить.</para>
+                    единая символьная строка, которую нужно разделить. Поддерживаются
+                    расширенные символы UTF8.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ind</term>
+                <term>indices</term>
                 <listitem>
-                    <para>
-                        вектор индексов в строго возрастающем порядке в интервале <literal>[1 length(str)-1]</literal>.
-                    </para>
+                    вектор индексов в порядке возрастания в интервале
+                    <literal>[1, length(string)-1]</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>v</term>
+                <term>separators</term>
                 <listitem>
-                    <para>
-                        результирующий вектор-столбец строк (размер &gt;<literal>size(ind,'*')+1</literal>).
-                    </para>
+                    матрица строк, искомых в <varname>string</varname> и используемых
+                    в качестве ножниц. Поддерживаются расширенные символы UTF8.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>regexp</term>
+                <listitem>
+                    единая строка, начинающаяся и оканчивающаяся символом "/"
+                    и определяющая шаблон регулярного выражения, чувствительного к регистру,
+                    используемая в качестве разделителя разделения. Опция
+                    <varname>regexp</varname> может не использоваться после завершающего
+                    разделителя "/". Регулярное выражение может включать в себя расширенные
+                    символы UTF8. Символы "/" и "\", используемые в теле <varname>regexp</varname>
+                    должны быть защищены как "\/" и "\\".
+                    Например: <literal>"/k.{2}o/"</literal>.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>chunks</term>
+                <listitem>
+                    столбец строк с <literal>length(indices)+1</literal> элементов,
+                    соответствующим разделённым кусочкам.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>matched_separators</term>
                 <listitem>
-                    <para>
-                        вектор-столбец совпавших разделителей.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>matrix_of_strings</term>
-                <listitem>
-                    <para>
-                        матрица строк, которые ищутся в  <varname>str</varname>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>regexp_pattern</term>
-                <listitem>
-                    <para>шаблон регулярного выражения.</para>
+                    столбец строк размером <literal>size(chunks,1)-1</literal> :
+                    совпавшие разделители или шаблоны выражений.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>limit</term>
                 <listitem>
-                    <para>максимальный предел элементов.</para>
+                    целое число > 0: максимальное число найденных и использованных
+                    разделителей в <varname>string</varname>. Если она включает в себя больше
+                    случаев обнаружений разделителей, то её неразделённый остаток возвращается в
+                    последнем кусочке в <literal>chunks($)</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -85,82 +107,221 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <code>v= strsplit(str, ind)</code> делит строку
-            <varname>str</varname> на вектор строк в местах, указанных с
-            помощью индексов <varname>ind</varname> (после каждого символа,
-            на который указывает индекс в <varname>ind</varname>).
+            <emphasis role="bold">strsplit(string)</emphasis> разделяет <varname>string</varname>
+            на все её отдельные символы.
         </para>
         <para>
-            <code>strsplit(str)</code> возвращает то же, что и
-            <code>strsplit(str,1:length(str)-1).</code>
+            <emphasis role="bold">strsplit(string, indices)</emphasis> разделяет
+            <varname>string</varname> по указанным позициям символам в векторе
+            <varname>indices</varname>. Символы в этих индексах являются началом
+            возвращаемых кусочков <varname>chunks</varname>.
         </para>
         <para>
-            <code>strsplit(str, regexp_pattern, limit)</code> возвращает вектор
-            строк, каждая из которых является подстрокой из
-            <varname>str</varname>, сформированной делением
-            <varname>str</varname> на интервалы, сформированные шаблоном
-            регулярного выражения, чувствительного к регистру.
+            <emphasis role="bold">strsplit(string, separators)</emphasis> разделяет
+            <varname>string</varname> по позициям <emphasis>после</emphasis> любого
+            совпавшего разделителя среди строк <varname>separators</varname>.
+            Найденные и использованные разделители удаляются из остатков кусочков.
+            <literal>strsplit(string, "")</literal> эквивалентно
+            <literal>strsplit(string)</literal>.
         </para>
         <para>
-            Если есть <literal>n</literal> совпадений с шаблоном, то
-            возвращённый массив будет содержать <literal>n+1</literal>
-            элементов.
+            <emphasis role="bold">strsplit(string, regexp)</emphasis> делает то же самое,
+            за исключением того, что <varname>string</varname> проверяется по указанному
+            регулярному выражению, используемому как "унифицированный разделитель", вместо
+            любого "постоянного" разделителя среди ограниченного набора
+            <varname>separators</varname>.
         </para>
         <para>
-            Например, если нет совпадений с шаблоном, то будет возвращён массив
-            только с одним элементом. Конечно это так же будет и в случае,
-            когда <varname>str</varname> пустая.
+            Если <varname>string</varname> начинается с совпавшего разделителя или выражения, то
+            <varname>chunks(1)</varname> является набором из <literal>""</literal>.
         </para>
         <para>
-            Если установлен предел <varname>limit</varname>, то возвращённый
-            массив будет содержать максимальное разрешённое количество
-            элементов с последним элементом, содержащим весь остаток строки.
+            Если <varname>string</varname> оканчивается совпавшим разделителем или
+            выражением, то <literal>""</literal> добавляется в конец последнего элемента
+            <varname>chunks</varname>.
         </para>
         <para>
-            <code>strsplit(str, matrix_of_strings, limit)</code> делит
-            <varname>str</varname> любое количество элементов. Это позволяет
-            пользователям, не знающим регулярные выражения, делить по разным
-            разделителям.
+            Если не найдено ни одного совпавшего разделителя или регулярного выражения в
+            <varname>string</varname>, то она возвращается как есть в <varname>chunks</varname>.
+            Это будет заметно в случае для <literal>string=""</literal>.
         </para>
         <para>
-            Если вызывается <code>strsplit()</code> со вторым выходным
-            аргументом, то возвращается вектор-столбец совпавших разделителей.
+            Без опции <varname>limit</varname> любая строка <varname>string</varname>,
+            включающая <literal>n</literal> разделителей, будет разделена на
+            <literal>n+1</literal> кусочков.
+        </para>
+        <para>
+            <emphasis role="bold">strsplit(string, separators, limit)</emphasis> или
+            <emphasis role="bold">strsplit(string, regexp, limit)</emphasis> будет
+            искать совпадающий разделитель или выражение для максимального количества
+            <varname>limit</varname>. Если затем останутся совпадения в необработанном
+            остатке <varname>string</varname>, то этот остаток будет возвращён как есть в
+            <varname>chunks($)</varname>.
+        </para>
+        <para>
+            <emphasis role="bold">[chunks, matched_separators] = strsplit(string,…)</emphasis>
+            возвращает столбец совпавших разделителей или выражений, в дополнению к
+            <varname>chunks</varname>.
+            Тогда <literal>strcat([chunks' ; [matched_separators' ""]])</literal> должен
+            быть равным <varname>string</varname>.
+        </para>
+        <para>
+            <note>
+            <emphasis>Сравнение strsplit() и tokens()</emphasis>:
+            <table>
+                <tr><th>strsplit()</th>     <th>tokens()</th></tr>
+                <tr>
+                    <td>может работать с индексами</td>
+                    <td>работает только с разделителями</td>
+                </tr>
+                <tr>
+                    <td>работает с регулярными выражениями</td>
+                    <td>не принимает регулярные выражения</td>
+                </tr>
+                <tr>
+                    <td>работает с любым разделителем</td>
+                    <td>ограничен до односимвольного разделителя</td>
+                </tr>
+                <tr>
+                    <td>сохраняет все пустые кусочки</td>
+                    <td>удаляет их</td>
+                </tr>
+                <tr>
+                    <td>может ограничивать число разделений</td>
+                    <td>всегда всё разделяет</td>
+                </tr>
+                <tr>
+                    <td>медленнее</td>
+                    <td>быстрее</td>
+                </tr>
+            </table>
+            </note>
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
+        <para>
+            Разделение по указанным индексам:
+        </para>
         <programlisting role="example"><![CDATA[
-S='strsplit делит строку на вектор строк';
-strsplit(S,[15 21 25])
-ind=strindex(S,' ')
+strsplit("Scilab")'
+strsplit("αβδεϵζηθικλμνξοπρστυφϕχψω", [1 6 11])
+     ]]></programlisting>
+        <screen><![CDATA[
+--> strsplit("Scilab")'
+ ans  =
+  "S"  "c"  "i"  "l"  "a"  "b"
 
-[r_1, r_2] = strsplit("abcd")
+--> strsplit("αβδεϵζηθικλμνξοπρστυφϕχψω", [1 6 11])
+ ans  =
+  "α"
+  "βδεϵζ"
+  "ηθικλ"
+  "μνξοπρστυφϕχψω"
+]]></screen>
+        <para>
+            Разделение по совпавшим разделителям:
+        </para>
+        <programlisting role="example"><![CDATA[
+strsplit("aabcabbcbaaacacaabbcbccaaabcbc", "aa")   // разделение начинается с разделителя => "" в начале кусочка
 
-[r_1, r_2] = strsplit("root:x:0:0:root:/root:/bin/bash",":",5)
+// Последовательные разделители не сжимаются:
+strsplit("abbcccdde", "c")'
 
-[r_1, r_2] = strsplit("abc,def:ijk,:lmo","/:|,/")
+// С несколькими возможными разделителями:
+t = "aabcabbcbaaacacaabbcbccaaabcbc";
+[c, s] = strsplit(t, ["aa" "bb"]);
+c', s'
+strcat([c';[s' ""]]) == t
 
-[r_1, r_2] = strsplit("abc,def:ijk,:lmo",[":";","])
+// Ограничим число разделений до 4, => 4 кусочка + необработанный остаток:
+strsplit("aabcabbcbaaacacaabbcbccaaabcbc", ["aa" "bb"], 4)
 
-strsplit("abcdef2ghijkl3mnopqr6stuvw7xyz","/\d+/")
+// Разделение строки, заканчивающейся разделителем даёт конечный "":
+strsplit("aabcabbcbaaacacaabbcbccaaabcbc", "cbc")'
+     ]]></programlisting>
+        <screen><![CDATA[
+--> strsplit("aabcabbcbaaacacaabbcbccaaabcbc", "aa") // t starts with the separator => heading "" chunk
+ ans  =
+  ""
+  "bcabbcb"
+  "acac"
+  "bbcbcc"
+  "abcbc"
 
-[r_1, r_2] = strsplit("abcdef2ghijkl3mnopqr6stuvw7xyz","/\d+/",2)
- ]]></programlisting>
+--> // Consecutive separators are not squeezed:
+--> strsplit("abbcccdde", "c")'
+ ans  =
+  "abb"  ""  ""  "dde"
+
+
+--> // With several possible separators:
+--> t = "aabcabbcbaaacacaabbcbccaaabcbc";
+--> [c, s] = strsplit(t, ["aa" "bb"]);
+--> c', s'
+ ans  =
+  ""  "bca"  "cb"  "acac"  ""  "cbcc"  "abcbc"
+ ans  =
+  "aa"  "bb"  "aa"  "aa"  "bb"  "aa"
+
+--> strcat([c';[s' ""]]) == t
+ ans  =
+  T
+
+--> // Let's limit the number of split to 4, => 4 chunks + unprocessed tail:
+--> strsplit("aabcabbcbaaacacaabbcbccaaabcbc", ["aa" "bb"], 4)'
+ ans  =
+  ""  "bca"  "cb"  "acac"  "bbcbccaaabcbc"
+
+
+--> // Splitting a string ending with a separator yields a final "":
+--> strsplit("aabcabbcbaaacacaabbcbccaaabcbc", "cbc")'
+ ans  =
+  "aabcabbcbaaacacaabb"  "caaab"  ""
+]]></screen>
+        <para>
+            Использование регулярного выражения в качестве ножниц:
+        </para>
+        <programlisting role="example"><![CDATA[
+[c, s] = strsplit("C:\Windows\System32\OpenSSH\",  "/\\|:/");
+c', s'
+[c, s] = strsplit("abcdef8ghijkl3mnopqr6stuvw7xyz", "/\d+/", 2);
+c', s'
+     ]]></programlisting>
+        <screen><![CDATA[
+--> [c, s] = strsplit("C:\Windows\System32\OpenSSH\",  "/\\|:/");
+--> c', s'
+ ans  =
+  "C"  ""  "Windows"  "System32"  "OpenSSH"  ""
+ ans  =
+  ":"  "\"  "\"  "\"  "\"
+
+
+--> [c, s] = strsplit("abcdef8ghijkl3mnopqr6stuvw7xyz", "/\d+/", 2);
+--> c', s'
+ ans  =
+  "abcdef"  "ghijkl"  "mnopqr6stuvw7xyz"
+ ans  =
+  "8"  "3"
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="part"> part</link>
+                <link linkend="tokens">tokens</link>
             </member>
             <member>
-                <link linkend="strcat"> strcat</link>
+                <link linkend="strindex">strindex</link>
             </member>
             <member>
-                <link linkend="tokens"> tokens</link>
+                <link linkend="part">part</link>
             </member>
             <member>
-                <link linkend="regexp"> regexp</link>
+                <link linkend="regexp">regexp</link>
+            </member>
+            <member>
+                <link linkend="strcat">strcat</link>
             </member>
         </simplelist>
     </refsection>

@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,72 +13,87 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strsplit" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="strsplit" xml:lang="en">
     <refnamediv>
         <refname>strsplit</refname>
-        <refpurpose>split a string into a vector of strings</refpurpose>
+        <refpurpose>split a single string at some given positions or patterns</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            v = strsplit(str,ind)
-            [v, matched_separators] = strsplit(str)
-            [v, matched_separators] = strsplit(str, matrix_of_strings, limit)
-            [v, matched_separators] = strsplit(str, regexp_pattern, limit)
+            chunks = strsplit(string)
+            chunks = strsplit(string, indices)
+
+            [chunks, matched_separators] = strsplit(string, separators)
+            [chunks, matched_separators] = strsplit(string, separators, limit)
+            [chunks, matched_separators] = strsplit(string, regexp)
+            [chunks, matched_separators] = strsplit(string, regexp, limit)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>str</term>
+                <term>string</term>
                 <listitem>
-                    <para>a character string to split.</para>
+                    a single character string to split. UTF8 extended characters supported.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ind</term>
+                <term>indices</term>
                 <listitem>
-                    <para>
-                        a vector of strictly increasing indices in the interval
-                        <literal>[1 length(str)-1]</literal>.
-                    </para>
+                    vector of increasing indices, in the interval
+                    <literal>[1, length(string)-1]</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>v</term>
+                <term>separators</term>
                 <listitem>
-                    <para>
-                        the resulting column vector of string (dimension &gt;<literal>size(ind,'*')+1</literal>).
-                    </para>
+                    matrix of strings searched in the <varname>string</varname> and used as scissors.
+                     UTF8 extended characters are supported.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>regexp</term>
+                <listitem>
+                    single string starting and ending with "/" and specifying a case-sensitive
+                    regular expression pattern used as splitting separator. No regexp option
+                    can be used after the trailing "/" delimiter. The regular expression
+                    may include UTF8 extended characters. The "/" and "\" characters used
+                    in the body of the regexp must be protected as "\/" and "\\".
+                    Example: <literal>"/k.{2}o/"</literal>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>chunks</term>
+                <listitem>
+                    column of strings, with <literal>length(indices)+1</literal>
+                    elements = split chunks.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>matched_separators</term>
                 <listitem>
-                    <para>
-                        a column vector of the matched separators.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>matrix_of_strings</term>
-                <listitem>
-                    <para>
-                        a matrix of strings to search in <varname>str</varname>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>regexp_pattern</term>
-                <listitem>
-                    <para>a regular expression pattern.</para>
+                    column of strings, of size <literal>size(chunks,1)-1</literal> :
+                    matched separators or expression patterns.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>limit</term>
                 <listitem>
-                    <para>maximum of limit elements.</para>
+                    integer > 0: Maximum number of times that separators are searched and used along
+                    the <varname>string</varname>. If this one includes more separators occurrences,
+                    its unsplit tail is returned as last chunk in <literal>chunks($)</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -86,78 +101,219 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>v= strsplit(str, ind)</code> splits the string
-            <varname>str</varname> into a vector of strings at the points given by the
-            indices in <varname>ind</varname> (after each characters pointed to by the
-            index in <varname>ind</varname>).
+            <emphasis role="bold">strsplit(string)</emphasis> splits <varname>string</varname>
+            into all its individual characters.
         </para>
         <para>
-            <code>strsplit(str)</code> returns same thing as
-            <code>strsplit(str,1:length(str)-1).</code>
+            <emphasis role="bold">strsplit(string, indices)</emphasis> splits <varname>string</varname>
+            at the characters positions given in the <varname>indices</varname> vector.
+            Characters at these indices are heads of returned <varname>chunks</varname>.
         </para>
         <para>
-            <code>strsplit(str, regexp_pattern, limit)</code> returns an
-            column vector of strings, each of which is a substring of
-            <varname>str</varname> formed by splitting it on boundaries formed
-            by the case-sensitive regular expression pattern.
+            <emphasis role="bold">strsplit(string, separators)</emphasis> splits <varname>string</varname>
+            at positions <emphasis>after</emphasis> any matching separator among
+            <varname>separators</varname> strings.
+            Detected and used separators are removed from chunks tails.
+            <literal>strsplit(string, "")</literal> is equivalent to
+            <literal>strsplit(string)</literal>.
         </para>
         <para>
-            If there are <literal>n</literal> occurrences of pattern, the
-            returned array will contain <literal>n+1</literal> items.
+            <emphasis role="bold">strsplit(string, regexp)</emphasis> does the same,
+            except that <varname>string</varname> is parsed for the given regular expression
+            used as "generic separator", instead of for any "constant" separator among
+            a limited <varname>separators</varname> set.
         </para>
         <para>
-            For example, if there is no occurrence of pattern, an array with
-            only one element will be returned. Of course, this is also true if <varname>str</varname> is empty.
+            If <varname>string</varname> starts with a matching separator or expression,
+            <varname>chunks(1)</varname> is set to <literal>""</literal>.
         </para>
         <para>
-            If <varname>limit</varname> is set, the returned array will contain
-            a maximum of limit elements with the last element containing the
-            whole rest of string.
+            If <varname>string</varname> ends with a matching separator or expression,
+            <literal>""</literal> is appended as last <varname>chunks</varname>
+            element.
         </para>
         <para>
-            <code>strsplit(str, matrix_of_strings, limit)</code> splits
-            <varname>str</varname> on any of elements. It allows to
-            split on different separators for users without regexp knowledge.
+            If no matching separator or regexp is found in <varname>string</varname>,
+            this one is returned as is in <varname>chunks</varname>.
+            That will be noticeably the case for <literal>string=""</literal>.
         </para>
         <para>
-            If <code>strsplit()</code> is called with a second output
-            argument, the column vector of the matched separators is returned.
+            Without the <varname>limit</varname> option, any <varname>string</varname>
+            including <literal>n</literal> separators will be split into
+            <literal>n+1</literal> chunks.
+        </para>
+        <para>
+            <emphasis role="bold">strsplit(string, separators, limit)</emphasis> or
+            <emphasis role="bold">strsplit(string, regexp, limit)</emphasis> will
+            search for a matching separator or expression for a maximum of
+            <varname>limit</varname> times. If then there are remaining matches in
+            the unprocessed tail of <varname>string</varname>, this tail is returned
+            as is in <varname>chunks($)</varname>.
+        </para>
+        <para>
+            <emphasis role="bold">[chunks, matched_separators] = strsplit(string,…)</emphasis>
+            returns the column of the matched separators or expressions, in addition to
+            <varname>chunks</varname>.
+            Then <literal>strcat([chunks' ; [matched_separators' ""]])</literal> should be
+            equal to <varname>string</varname>.
+        </para>
+        <para>
+            <note>
+            <emphasis>Comparison between strsplit() and tokens()</emphasis>:
+            <table>
+                <tr><th>strsplit()</th>     <th>tokens()</th></tr>
+                <tr>
+                    <td>can work with indices</td>
+                    <td>works only with separators</td>
+                </tr>
+                <tr>
+                    <td>works with regexp</td>
+                    <td>does not accept regexp</td>
+                </tr>
+                <tr>
+                    <td>works with any separator</td>
+                    <td>is restricted to 1-character separators</td>
+                </tr>
+                <tr>
+                    <td>keeps all empty chunks</td>
+                    <td>removes them</td>
+                </tr>
+                <tr>
+                    <td>can limit the number of split</td>
+                    <td>always splits all</td>
+                </tr>
+                <tr>
+                    <td>slower</td>
+                    <td>faster</td>
+                </tr>
+            </table>
+            </note>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+            Split at given indices:
+        </para>
         <programlisting role="example"><![CDATA[
-S='strsplit splits a string into a vector of strings';
-strsplit(S,[15 25 30])
-ind=strindex(S,' ')
+strsplit("Scilab")'
+strsplit("αβδεϵζηθικλμνξοπρστυφϕχψω", [1 6 11])
+     ]]></programlisting>
+        <screen><![CDATA[
+--> strsplit("Scilab")'
+ ans  =
+  "S"  "c"  "i"  "l"  "a"  "b"
 
-[r_1, r_2] = strsplit("abcd")
+--> strsplit("αβδεϵζηθικλμνξοπρστυφϕχψω", [1 6 11])
+ ans  =
+  "α"
+  "βδεϵζ"
+  "ηθικλ"
+  "μνξοπρστυφϕχψω"
+]]></screen>
+        <para>
+            Split at matching separators:
+        </para>
+        <programlisting role="example"><![CDATA[
+strsplit("aabcabbcbaaacacaabbcbccaaabcbc", "aa")   // t starts with the separator => heading "" chunk
 
-[r_1, r_2] = strsplit("root:x:0:0:root:/root:/bin/bash",":",5)
+// Consecutive separators are not squeezed:
+strsplit("abbcccdde", "c")'
 
-[r_1, r_2] = strsplit("abc,def:ijk,:lmo","/:|,/")
+// With several possible separators:
+t = "aabcabbcbaaacacaabbcbccaaabcbc";
+[c, s] = strsplit(t, ["aa" "bb"]);
+c', s'
+strcat([c';[s' ""]]) == t
 
-[r_1, r_2] = strsplit("abc,def:ijk,:lmo",[":";","])
+// Let's limit the number of split to 4, => 4 chunks + unprocessed tail:
+strsplit("aabcabbcbaaacacaabbcbccaaabcbc", ["aa" "bb"], 4)
 
-strsplit("abcdef2ghijkl3mnopqr6stuvw7xyz","/\d+/")
+// Splitting a string ending with a separator yields a final "":
+strsplit("aabcabbcbaaacacaabbcbccaaabcbc", "cbc")'
+     ]]></programlisting>
+        <screen><![CDATA[
+--> strsplit("aabcabbcbaaacacaabbcbccaaabcbc", "aa") // t starts with the separator => heading "" chunk
+ ans  =
+  ""
+  "bcabbcb"
+  "acac"
+  "bbcbcc"
+  "abcbc"
 
-[r_1, r_2] = strsplit("abcdef2ghijkl3mnopqr6stuvw7xyz","/\d+/",2)
- ]]></programlisting>
+--> // Consecutive separators are not squeezed:
+--> strsplit("abbcccdde", "c")'
+ ans  =
+  "abb"  ""  ""  "dde"
+
+
+--> // With several possible separators:
+--> t = "aabcabbcbaaacacaabbcbccaaabcbc";
+--> [c, s] = strsplit(t, ["aa" "bb"]);
+--> c', s'
+ ans  =
+  ""  "bca"  "cb"  "acac"  ""  "cbcc"  "abcbc"
+ ans  =
+  "aa"  "bb"  "aa"  "aa"  "bb"  "aa"
+
+--> strcat([c';[s' ""]]) == t
+ ans  =
+  T
+
+--> // Let's limit the number of split to 4, => 4 chunks + unprocessed tail:
+--> strsplit("aabcabbcbaaacacaabbcbccaaabcbc", ["aa" "bb"], 4)'
+ ans  =
+  ""  "bca"  "cb"  "acac"  "bbcbccaaabcbc"
+
+
+--> // Splitting a string ending with a separator yields a final "":
+--> strsplit("aabcabbcbaaacacaabbcbccaaabcbc", "cbc")'
+ ans  =
+  "aabcabbcbaaacacaabb"  "caaab"  ""
+]]></screen>
+        <para>
+            Use a regular expression as scissors:
+        </para>
+        <programlisting role="example"><![CDATA[
+[c, s] = strsplit("C:\Windows\System32\OpenSSH\",  "/\\|:/");
+c', s'
+[c, s] = strsplit("abcdef8ghijkl3mnopqr6stuvw7xyz", "/\d+/", 2);
+c', s'
+     ]]></programlisting>
+        <screen><![CDATA[
+--> [c, s] = strsplit("C:\Windows\System32\OpenSSH\",  "/\\|:/");
+--> c', s'
+ ans  =
+  "C"  ""  "Windows"  "System32"  "OpenSSH"  ""
+ ans  =
+  ":"  "\"  "\"  "\"  "\"
+
+
+--> [c, s] = strsplit("abcdef8ghijkl3mnopqr6stuvw7xyz", "/\d+/", 2);
+--> c', s'
+ ans  =
+  "abcdef"  "ghijkl"  "mnopqr6stuvw7xyz"
+ ans  =
+  "8"  "3"
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="part"> part</link>
+                <link linkend="tokens">tokens</link>
             </member>
             <member>
-                <link linkend="strcat"> strcat</link>
+                <link linkend="strindex">strindex</link>
             </member>
             <member>
-                <link linkend="tokens"> tokens</link>
+                <link linkend="part">part</link>
             </member>
             <member>
-                <link linkend="regexp"> regexp</link>
+                <link linkend="regexp">regexp</link>
+            </member>
+            <member>
+                <link linkend="strcat">strcat</link>
             </member>
         </simplelist>
     </refsection>
