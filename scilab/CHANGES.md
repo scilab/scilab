@@ -427,6 +427,7 @@ Bug Fixes
 * [#16525](https://bugzilla.scilab.org/16525): `soundsec(t,freq)` has the trivial equivalence `0 : 1/freq : t*(1-%eps)` and should be removed.
 * [#16529](https://bugzilla.scilab.org/16529): `deff` could not return the created function as output argument, preventing to cretae and use anonymous functions. The function's headline and body had to be provided separately. For Simple functions, a one-string input (possibly console-oriented) definition was not supported.
 * [#16530](https://bugzilla.scilab.org/16530): `mapsound` needed to be reforged.
+* [#16540](https://bugzilla.scilab.org/16540): uicontrol spinner did not "snaptoticks"
 * [#16549](https://bugzilla.scilab.org/16549): simple script crashed Scilab in GUI mode.
 * [#16551](https://bugzilla.scilab.org/16551): `num2cell` returned {} for any input array of empty strings.
 * [#16552](https://bugzilla.scilab.org/16552): `mfile2sci`: conversion of `ispc` and `isunix` still used `MSDOS` removed far ago. Conversion of `ismac` was missing. Conversion of `exist` missed using `mtlb_exist`. Conversion of `dos` yielded some "operation +" warnings. Unit tests for the conversion of `cd`, `dir` and `ferror` overwrote some Scilab reserved keywords. Conversion of `return` yielded `mtlb(resume)`.
