@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function d=%sp_diag(a,k)
+function d = %sp_diag(a,k)
     // %sp_diag - implement diag function for sparse matrix, rational matrix ,..
 
     [lhs,rhs]=argn(0)
@@ -19,7 +19,11 @@ function d=%sp_diag(a,k)
     [ij,v,sz]=spget(a)
     m=sz(1);n=sz(2)
     if m>1&n>1 then
-        l=find(ij(:,1)==(ij(:,2)-k))
+        if ij<>[]
+            l = find(ij(:,1)==(ij(:,2)-k))
+        else
+            l = []
+        end
         if k<=0 then
             mn=min(m+k,n)
             i0=-k
