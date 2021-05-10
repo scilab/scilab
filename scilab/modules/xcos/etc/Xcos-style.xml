@@ -886,7 +886,7 @@
         <add as="shape" value="triangle"/>
         <add as="perimeter" value="trianglePerimeter"/>
         <add as="direction" value="east"/>
-        <add as="displayedLabel" value="&lt;TABLE&gt;           &lt;TR&gt;             &lt;TD&gt;+&lt;/TD&gt;             &lt;TD&gt;&lt;/TD&gt;           &lt;/TR&gt;           &lt;TR&gt;             &lt;TD&gt;&lt;/TD&gt;             &lt;TD&gt;OP&lt;/TD&gt;           &lt;/TR&gt;           &lt;TR&gt;             &lt;TD&gt;-&lt;/TD&gt;             &lt;TD&gt;&lt;/TD&gt;           &lt;/TR&gt;         &lt;/TABLE&gt;"/>
+        <add as="displayedLabel" value="&lt;TABLE&gt; &lt;TR&gt;&lt;TD&gt;+&lt;BR&gt;-&lt;/TD&gt;&lt;TD&gt;OP&lt;/TD&gt;&lt;/TR&gt; &lt;/TABLE&gt;"/>
         <add as="spacing" value="0"/>
         <add as="spacingRight" value="5"/>
         <add as="spacingTop" value="7"/>

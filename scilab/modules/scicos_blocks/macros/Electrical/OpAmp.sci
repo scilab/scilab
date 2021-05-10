@@ -71,6 +71,7 @@ function [x,y,typ]=OpAmp(job,arg1,arg2)
         x=standard_define([3 5],model,exprs,gr_i)
         x.graphics.in_implicit=["I";"I"]
         x.graphics.out_implicit=["I"]
+        x.graphics.sz = [2.5 3]
     end
 endfunction
 // OpAmp
