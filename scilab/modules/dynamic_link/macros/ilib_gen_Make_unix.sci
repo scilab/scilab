@@ -269,6 +269,7 @@ function copyMandatoryFiles(commandpath,workingPath)
     mandatoryFiles = ["compilerDetection.sh", ..
     "configure.ac", ..
     "configure", ..
+    "compile", ..
     "Makefile.am", ..
     "Makefile.in", ..
     "config.sub", ..
