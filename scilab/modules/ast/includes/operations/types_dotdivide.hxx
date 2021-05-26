@@ -165,8 +165,8 @@ template<> inline void dotdiv<double, double, double>(double l, size_t size, dou
 //x1c ./ x1
 template<typename T, typename U, typename O> inline static void dotdiv(T l, T lc, size_t size, U r, O* o, O* oc)
 {
-    dotdiv<T, U, O>(l, r, o);
-    dotdiv<T, U, O>(lc, r, oc);
+    dotdiv(l, r, o);
+    dotdiv(lc, r, oc);
     //*o = (O)l / (O)r;
     //*oc = (O)lc / (O)r;
 }
@@ -227,7 +227,7 @@ template<typename T, typename U, typename O> inline static void dotdiv(T* l, siz
     for (size_t i = 0; i < size ; ++i)
     {
         //dotdiv(T l, U r, O* o)
-        dotdiv<T, U, O>(l[i], r[i], &o[i]);
+        dotdiv(l[i], r[i], &o[i]);
         //o[i] = (O)l[i] / (O)r[i];
     }
 }
@@ -238,7 +238,7 @@ template<typename T, typename U, typename O> inline static void dotdiv(T* l, T* 
     for (size_t i = 0; i < size ; ++i)
     {
         //dotdiv(T l, T lc, size_t size, U r, O* o, O* oc)
-        dotdiv<T, U, O>(l[i], lc[i], (size_t)1, r[i], &o[i], &oc[i]);
+        dotdiv(l[i], lc[i], (size_t)1, r[i], &o[i], &oc[i]);
         //o[i] = (O)l[i] / (O)r[i];
         //oc[i] = (O)lc[i] / (O)r[i];
     }
@@ -250,7 +250,7 @@ template<typename T, typename U, typename O> inline static void dotdiv(T* l, siz
     for (size_t i = 0; i < size ; ++i)
     {
         //dotdiv(T l, size_t size, U r, U rc, O* o, O* oc)
-        dotdiv<T, U, O>(l[i], 1, r[i], rc[i], &o[i], &oc[i]);
+        dotdiv(l[i], 1, r[i], rc[i], &o[i], &oc[i]);
         //o[i] = ((O)l[i] * (O)r[i]) / ((O)rc[i] * (O)rc[i] + (O)r[i] * (O)r[i]) ;
         //oc[i] = ((O)l[i] * -(O)rc[i]) / ((O)rc[i] * (O)rc[i] + (O)r[i] * (O)r[i]) ;
     }
@@ -262,7 +262,7 @@ template<typename T, typename U, typename O> inline static void dotdiv(T* l, T* 
     for (size_t i = 0; i < size ; ++i)
     {
         //dotdiv(T l, T lc, size_t size, U r, U rc, O* o, O* oc)
-        dotdiv<T, U, O>(l[i], lc[i], 1, r[i], rc[i], &o[i], &oc[i]);
+        dotdiv(l[i], lc[i], 1, r[i], rc[i], &o[i], &oc[i]);
         //o[i] =  ((O)l[i] * (O)r[i] + (O)lc[i] * (O)rc[i] ) / ((O)rc[i] * (O)rc[i] + (O)r[i] * (O)r[i]) ;
         //oc[i] = ((O)r[i] * (O)lc[i] - (O)rc[i] * (O)l[i] ) / ((O)rc[i] * (O)rc[i] + (O)r[i] * (O)r[i]) ;
     }
@@ -274,7 +274,7 @@ template<typename T, typename U, typename O> inline static void dotdiv(T* l, siz
     for (size_t i = 0; i < size ; ++i)
     {
         //dotdiv(T l, U r, O* o)
-        dotdiv<T, U, O>(l[i], r, &o[i]);
+        dotdiv(l[i], r, &o[i]);
         //o[i] = (O)l[i] / (O)r;
     }
 }
@@ -285,7 +285,7 @@ template<typename T, typename U, typename O> inline static void dotdiv(T l, size
     for (size_t i = 0; i < size ; ++i)
     {
         //dotdiv(T l, U r, O* o)
-        dotdiv<T, U, O>(l, r[i], &o[i]);
+        dotdiv(l, r[i], &o[i]);
         //o[i] = (O)l / (O)r[i];
     }
 }
@@ -298,7 +298,7 @@ template<typename T, typename U, typename O> inline static void dotdiv(T* l, siz
     for (size_t i = 0; i < size ; ++i)
     {
         //dotdiv(T l, size_t size, U r, U rc, O* o, O* oc)
-        dotdiv<T, U, O >(l[i], (size_t)1, r, rc, &o[i], &oc[i]);
+        dotdiv(l[i], (size_t)1, r, rc, &o[i], &oc[i]);
         //o[i] = ((O)l[i] * (O)r) / denum;
         //oc[i] = ((O)l[i] * -(O)rc) / denum;
     }
@@ -310,7 +310,7 @@ template<typename T, typename U, typename O> inline static void dotdiv(T l, size
     for (size_t i = 0; i < size ; ++i)
     {
         //dotdiv(T l, size_t size, U r, U rc, O* o, O* oc)
-        dotdiv<T, U, O>(l, (size_t)1, r[i], rc[i], &o[i], &oc[i]);
+        dotdiv(l, (size_t)1, r[i], rc[i], &o[i], &oc[i]);
         //o[i] = ((O)l * (O)r[i]) / ((O)rc[i] * (O)rc[i] + (O)r[i] * (O)r[i]) ;
         //oc[i] = ((O)l * -(O)rc[i]) / ((O)rc[i] * (O)rc[i] + (O)r[i] * (O)r[i]) ;
     }
@@ -322,7 +322,7 @@ template<typename T, typename U, typename O> inline static void dotdiv(T* l, T* 
     for (size_t i = 0; i < size ; ++i)
     {
         //dotdiv(T l, T lc, size_t size, U r, O* o, O* oc)
-        dotdiv<T, U, O>(l[i], lc[i], (size_t)1, r, &o[i], &oc[i]);
+        dotdiv(l[i], lc[i], (size_t)1, r, &o[i], &oc[i]);
         //o[i] = (O)l[i] / (O)r;
         //oc[i] = (O)lc[i] / (O)r;
     }
@@ -334,7 +334,7 @@ template<typename T, typename U, typename O> inline static void dotdiv(T l, T lc
     for (size_t i = 0; i < size ; ++i)
     {
         //dotdiv(T l, T lc, size_t size, U r, O* o, O* oc)
-        dotdiv<T, U, O>(l, lc, (size_t)1, r[i], &o[i], &oc[i]);
+        dotdiv(l, lc, (size_t)1, r[i], &o[i], &oc[i]);
         //o[i] = (O)l / (O)r[i];
         //oc[i] = (O)lc / (O)r[i];
     }
@@ -348,7 +348,7 @@ template<typename T, typename U, typename O> inline static void dotdiv(T* l, T* 
     for (size_t i = 0; i < size ; ++i)
     {
         //dotdiv(T l, T lc, size_t size, U r, O* o, O* oc)
-        dotdiv<T, U, O>(l[i], lc[i], (size_t)1, r, rc, &o[i], &oc[i]);
+        dotdiv(l[i], lc[i], (size_t)1, r, rc, &o[i], &oc[i]);
         //o[i] = ((O)l[i] * (O)r + (O)lc[i] * (O)rc) / denum;
         //oc[i] = ((O)r * (O)lc[i] - (O)rc * (O)l[i] ) / denum ;
     }
@@ -360,7 +360,7 @@ template<typename T, typename U, typename O> inline static void dotdiv(T l, T lc
     for (size_t i = 0; i < size ; ++i)
     {
         //dotdiv(T l, T lc, size_t size, U r, O* o, O* oc)
-        dotdiv<T, U, O>(l, lc, (size_t)1, r[i], rc[i], &o[i], &oc[i]);
+        dotdiv(l, lc, (size_t)1, r[i], rc[i], &o[i], &oc[i]);
         //o[i] = ((O)l * (O)r[i] + (O)lc * (O)rc[i]) / ((O)rc[i] * (O)rc[i] + (O)r[i] * (O)r[i]);
         //oc[i] = ((O)r[i] * (O)lc - (O)rc[i] * (O)l ) / ((O)rc[i] * (O)rc[i] + (O)r[i] * (O)r[i]) ;
     }
