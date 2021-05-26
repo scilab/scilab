@@ -14,6 +14,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include <stdio.h>
 #include "getversion.h"
 #include "version.h"
 #include "configvariable_interface.h"
@@ -91,7 +92,19 @@ int getScilabVersionTimestamp()
     return (int)SCI_VERSION_TIMESTAMP;
 }
 /*--------------------------------------------------------------------------*/
-int* getModuleVersion(wchar_t* _pwstModule, int *sizeArrayReturned)
+char* getScilabVersionRevision()
+{
+    return os_strdup(SCI_VERSION_REVISION);
+}
+/*--------------------------------------------------------------------------*/
+char* getScilabVersionNumberAsString()
+{
+    char version[16] = {0};
+    sprintf(version, "%d.%d.%d", getScilabVersionMajor(), getScilabVersionMinor(), getScilabVersionMaintenance());
+    return os_strdup(version);
+}
+/*--------------------------------------------------------------------------*/
+int* getModuleVersion(wchar_t* _pwstModule, int* sizeArrayReturned)
 {
     int *returnedArray = NULL;
 
