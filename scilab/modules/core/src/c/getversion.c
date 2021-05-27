@@ -35,6 +35,7 @@
 #define MODELICAC_OPTION_STRING L"modelicac"
 #define X86_STRING L"x86"
 #define X64_STRING L"x64"
+#define ARM64_STRING L"arm64"
 #define ICC_STRING L"ICC"
 #define VC_STRING L"VC++"
 #define GCC_STRING L"GCC"
@@ -312,19 +313,35 @@ wchar_t* getCompilerUsedToBuildScilab(void)
 /*--------------------------------------------------------------------------*/
 wchar_t* getCompilerArchitecture(void)
 {
-#ifdef _MSC_VER
-#ifdef _WIN64
-    return os_wcsdup(X64_STRING);
-#else
-    return os_wcsdup(X86_STRING);
+    wchar_t* arch = NULL;
+// MSVC defined, see https://docs.microsoft.com/cpp/preprocessor/predefined-macros
+#ifdef _M_X64
+    arch =  os_wcsdup(X64_STRING);
 #endif
-#else
-#ifdef _LP64
-    return os_wcsdup(X64_STRING);
-#else
-    return os_wcsdup(X86_STRING);
+#ifdef _M_ARM64
+    arch = os_wcsdup(ARM64_STRING);
 #endif
+#ifdef _M_IX86
+    arch = os_wcsdup(X86_STRING);
 #endif
+
+// See https://blog.kowalczyk.info/article/j/guide-to-predefined-macros-in-c-compilers-gcc-clang-msvc-etc..html
+#ifdef __x86_64__
+    arch = os_wcsdup(X64_STRING);
+#endif
+#ifdef __arm64__
+    arch = os_wcsdup(ARM64_STRING);
+#endif
+#ifdef __aarch64__
+    arch = os_wcsdup(ARM64_STRING);
+#endif
+#ifdef __i386__
+    arch = os_wcsdup(X86_STRING);
+#endif
+    if (arch != NULL)
+        return arch;
+    else
+        return os_wcsdup(UNKNOW_STRING);
 }
 /*--------------------------------------------------------------------------*/
 BOOL with_modelica_compiler(void)
