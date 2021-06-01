@@ -32,6 +32,10 @@ OutputBaseFilename={#ScilabBaseFilename}-nojre
 #endif
 AppName={#ScilabName}
 AppVerName={#ScilabName}
+;always shown welcome page
+DisableWelcomePage=no
+;always shown destination path page
+DisableDirPage=no
 DefaultDirName={code:DefDirRoot}\{#ScilabBaseDirectory}
 DefaultGroupName={#ScilabName}
 SetupIconFile=tools\innosetup\scilab.ico
@@ -49,7 +53,7 @@ WizardSmallImageFile=tools\innosetup\ScilabLogoSmall.bmp
 BackColor=clGray
 BackColor2=clBlack
 BackColorDirection=lefttoright
-AppCopyright=Scilab Enterprises - Copyright © {#CurrentYear}
+AppCopyright=Scilab Enterprises - Copyright Â© {#CurrentYear}
 UninstallDisplayIcon={app}\bin\wscilex.exe
 Compression=lzma/ultra64
 InternalCompressLevel=ultra64
