@@ -419,6 +419,7 @@ images/icons/64x40/mimetypes/application-x-scilab-Sgrayplot.png \
 images/icons/64x40/mimetypes/application-x-scilab-surf.png \
 images/icons/256x256/apps/accessories-text-editor.png \
 images/icons/256x256/apps/puffin.png \
+images/icons/256x256/apps/scilabMacOS.png \
 images/icons/256x256/apps/rrze_table.png \
 images/icons/256x256/apps/system-search.png \
 images/icons/256x256/apps/utilities-system-monitor.png \

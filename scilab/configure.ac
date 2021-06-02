@@ -648,6 +648,9 @@ case "$CC" in
          gfortran-*|gfortran)
              # Extract from gfortran -v the version it has been built for
                MAC_DETECTED_ARCH="`$F77 -v 2>&1|grep "Target:"|sed -e "s/Target: \([[a-z0-9A-Z_]]*\).*/\1/g"`"
+               if test "$MAC_DETECTED_ARCH" == "aarch64"; then
+                   MAC_DETECTED_ARCH=arm64
+               fi
          ;;
          *)
         AC_MSG_WARN([gfortran not used. Could not detect the architecture. Switch to the default case: x86_64])
@@ -886,8 +889,16 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
         case "$host_os" in
              *Darwin* | *darwin*)
                # Mac OS X does not link against the lib but uses -framework
-               JAVA_JNI_LIBS="-framework JavaVM"
-             ;;
+               macosx_version=`sw_vers -productVersion`
+               case $macosx_version in
+                   11.*)
+                   JAVA_JNI_LIBS="-framework JavaNativeFoundation"
+                   ;;
+                   10.*)
+                   JAVA_JNI_LIBS="-framework JavaVM"
+                   ;;
+               esac
+               ;;
              *)
                AC_JAVA_JNI_LIBS
                JAVA_JNI_LIBS=$ac_java_jvm_jni_lib_flags

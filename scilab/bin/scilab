@@ -315,17 +315,46 @@ detect_scilab_path() {
     export SCI
 }
 
+detect_macos_vm() {
+    # java_home -arch flag is broken on macOS Big Sur
+    # we take the first JVM matching version and architecture
+    echo $(/usr/libexec/java_home -v 1.8 -X | xmllint --format  --xpath "(//string[preceding-sibling::key[text()='JVMHomePath']][1][preceding-sibling::string[text()='$ARCH']])[1]/text()" -)
+}
 
 set_macosx_java_vm () {
-    # For Mac OS X, Since path are different from the JVM normal tree,
-    # don't need to detect the CPU
-    JAVA_SHLIB="libjava.jnilib"
+    # For Mac OS X we have to detect the CPU
+    if test -z "$DEVENV"; then
+        # this method supposes no fat binary
+        export ARCH=$(echo $(lipo -archs "$SCI/../../bin/$SCILABBIN"))
+    else
+        export ARCH=$(echo $(lipo -archs "$SCI/.libs/scilab-bin"))
+    fi
     if test -z "$JAVA_HOME"; then
-      JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.8+)
+        JAVA_HOME=$(detect_macos_vm)
+        if test -z "$JAVA_HOME"; then
+            open -W jre/Scilab\ JRE\ Install.app
+            JAVA_HOME=$(detect_macos_vm)
+            if test -z "$JAVA_HOME"; then
+                exit 1
+            fi
+        fi
+    fi
+    # Add JNI capability, typically needed for Oracle JDK
+    PLIST=$JAVA_HOME/../Info.plist
+    if [[ $(plutil -extract JavaVM json -o - $PLIST) == *"JVMCapabilities"* && $(plutil -extract JavaVM.JVMCapabilities json -o - $PLIST) != *"JNI"* ]]; then
+        PROMPT="A Java Runtime Edition has been found at $JAVA_HOME and needs to be allowed to run Scilab (once for all)"
+        osascript -e "do shell script \"plutil -insert JavaVM.JVMCapabilities.0 -string JNI $PLIST\" with prompt \"$PROMPT \" with administrator privileges"
+        if test $? -eq 1; then
+            exit 1
+        fi
     fi
     JAVA_JVM_VERSION=$JAVA_HOME
     export JAVA_JVM_VERSION
-    DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
+    DYLD_LIBRARY_PATH=$JAVA_HOME/lib/server:$JAVA_HOME/jre/lib/server:$DYLD_LIBRARY_PATH
+    # All working JRE/JDK under BigSur/arm64 need this to find libjava.dylib
+    if test $ARCH == arm64; then
+        DYLD_LIBRARY_PATH=$JAVA_HOME/lib/:$JAVA_HOME/jre/lib/:$DYLD_LIBRARY_PATH
+    fi
 
 }
 
@@ -333,7 +362,6 @@ set_embedded_java_vm () {
 
        # Scilab binary => no Java detection since we are using the embeded JRE
         # Here, we are handling 3 cases: GNU/Linux 32bit, GNU/Linux 64bit,
-        # Mac OS X
         case $OS in
             "Linux")
                 case $MODEL in
@@ -349,14 +377,6 @@ set_embedded_java_vm () {
                         echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us on http://bugzilla.scilab.org"
                         ;;
                 esac
-                ;;
-            *darwin* | *Darwin*) # MacOS X
-                # JRE is now embedded in Mac OS X binary version
-                #set_macosx_java_vm
-                JAVA_HOME=$SCIBINARYBASE/thirdparty/java/Contents/Home/
-                JAVA_JVM_VERSION=$JAVA_HOME
-                export JAVA_JVM_VERSION
-                DYLD_LIBRARY_PATH="$JAVA_HOME/lib/server:${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
                 ;;
             *)
             echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
@@ -409,7 +429,9 @@ detect_java_vm() {
 
     JAVA_SHLIB="libjava.so"
 
-    if test $IS_SCILAB_BINARY -eq 1; then
+    if test $OS == Darwin; then
+        set_macosx_java_vm
+    elif test $IS_SCILAB_BINARY -eq 1; then
         set_embedded_java_vm
     else  # NOT IS_SCILAB_BINARY
 
@@ -452,20 +474,6 @@ detect_java_vm() {
                     exit 1
                 fi
         else
-
-            case $OS in
-                *darwin* | *Darwin*)
-                    set_macosx_java_vm
-                    if test $SCIVERBOSE -ne 0; then
-                        echo "Using default Mac OS X vm: $JAVA_HOME"
-                        echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
-                        echo "And DYLD_LIBRARY_PATH: $DYLD_LIBRARY_PATH"
-                    fi
-                    ;;
-                *)
-                    ;;
-            esac
-
 # Browse "default directory" (if it means anything under Unix/Linux) of Java
 # to find where it could be !
             if test -z "$JAVA_HOME"; then
@@ -618,9 +626,6 @@ detect_java_vm() {
                     proc="win32"
                     JAVA_SHLIB="jvm.dll"
                     ;;
-                *darwin* | *Darwin*) # MacOS X
-                    set_macosx_java_vm
-                    ;;
                 *FreeBSD*)
                     proc=$MODEL
                     ;;
@@ -764,57 +769,6 @@ detect_macosx_version()
 
 }
 
-set_macox_specific_path()
-{
-
-    PATH_TO_SPECIFIC_10_13=$SCIBINARYBASE/lib/thirdparty/10.13/
-    PATH_TO_SPECIFIC_10_12=$SCIBINARYBASE/lib/thirdparty/10.12/
-    PATH_TO_SPECIFIC_10_11=$SCIBINARYBASE/lib/thirdparty/10.11/
-    PATH_TO_SPECIFIC_10_10=$SCIBINARYBASE/lib/thirdparty/10.10/
-    PATH_TO_SPECIFIC_10_6=$SCIBINARYBASE/lib/thirdparty/10.6/
-
-    case $macosxMajorVersion in
-        10)
-            case $macosxMinorVersion in
-                14|15)
-                    ;;
-                13)
-                    # Specific libBLAS.dylib & libz versions for 10.13
-                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_13${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_13${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
-                    ;;
-                12)
-                    # Specific libBLAS.dylib version for 10.12
-                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_12${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_12${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
-                    ;;
-                11)
-                    # Specific libBLAS.dylib & libLAPACK.dylib version for 10.11
-                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_11${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_11${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
-                    ;;
-                10)
-                    # Specific libBLAS.dylib & libLAPACK.dylib version for 10.10
-                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_10${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_10${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
-                    ;;
-                7|8|9)
-                    # Run normally on 10.7, 10.8 & 10.9
-                    ;;
-                6)
-                    # the iconv lib fails under 10.7, just declare it for 10.6
-                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
-                    ;;
-                *)
-                    fail_macosx_version
-                    ;;
-            esac
-            ;;
-    esac
-
-}
-
 #
 # Version checks for Mac
 #
@@ -825,31 +779,21 @@ dialog_try_or_exit()
 
 fail_macosx_version()
 {
-    dialog_try_or_exit "This version of Scilab may fail on this system ($macosxVersion): Scilab is currently supported from 10.8.3 (Mountain Lion) to 10.13 (High Sierra)."
+    dialog_try_or_exit "This version of Scilab may fail on this system ($macosxVersion): Scilab is currently supported from 10.13 (High Sierra) to 11 (Big Sur)."
 }
 check_macosx_version()
 {
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
-                9)
-                   # We force to install JRE on Mavericks
-                   /usr/libexec/java_home --request > /dev/null
+                13|14|15)
                    ;;
-                10|11|12|13|14|15)
-                   # ... but not on Yosemite, El Capitan, Sierra, High Sierra, Mojave or Catalina:
-                   # there will be a (better) error at launch
-                   ;;
-                8)
-                    if test $macosxBuildVersion -le 3; then
-                        # Version <= 10.8.3
-                        fail_macosx_version
-                    fi
-                    ;;
                 *)
                     fail_macosx_version
                     ;;
             esac
+            ;;
+        11)
             ;;
         *)
             fail_macosx_version
@@ -888,11 +832,10 @@ case $OS in
 
         # Now, check that I can run Scilab on this version of Mac OS X and
         # display a standard window
-        BINPATH=$(dirname $0)
+        BINPATH=$(dirname $0)/../bin
         # Do not perform the check with Scilab is started in CLI mode
 
         detect_macosx_version
-        set_macox_specific_path
 
         if test "$SCILAB_MODE" = "gui"; then
             check_macosx_version
@@ -1053,7 +996,7 @@ do_help()
     echo     "                    -e and -f arguments are mutually exclusive."
     echo     "  -quit           : force scilab exit after execution of script from -e or -f argument."
     echo     "                    this flag is ignored if it is not used with -e or -f argument."
-    echo     "  -l Lang         : set the current language. Lang can be equal to en_US, fr_FR, etc."
+    echo     "  -l Lang         : set the current language. Lang can be equal to fr or en."
     echo     "  -nb             : do not display Scilab loading on start."
     echo     "  -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
     echo     "  -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."

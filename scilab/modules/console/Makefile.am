@@ -167,11 +167,6 @@ libsciconsole_la_CPPFLAGS = \
     $(AM_CPPFLAGS)
 
 
-# FIXME: Plateform specific optimisation flags should be set on configure.ac
-if IS_MACOSX
-libsciconsole_la_CPPFLAGS += -msse2
-endif
-
 # Name of the library
 pkglib_LTLIBRARIES = libsciconsole-minimal.la
 

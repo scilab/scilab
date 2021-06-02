@@ -195,7 +195,7 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
             OSXAdapter.setAboutHandler(this, getClass().getMethod("macosxAbout", (Class[]) null));
             OSXAdapter.setQuitHandler(this, getClass().getMethod("macosxQuit", (Class[]) null));
             OSXAdapter.setPreferencesHandler(this, getClass().getMethod("macosxPreferences", (Class[]) null));
-            OSXAdapter.setDockIcon(new ImageIcon(FindIconHelper.findIcon("puffin", "256x256")));
+            OSXAdapter.setDockIcon(new ImageIcon(FindIconHelper.findIcon("scilabMacOs", "256x256")));
         } catch (java.lang.NoSuchMethodException e) {
             System.err.println("OSXAdapter could not find the method: " + e.getLocalizedMessage());
         }

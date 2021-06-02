@@ -34,7 +34,11 @@
 #else               //linux & mac
 #ifdef __cplusplus // C++
 #define finite(x) std::isfinite(x)
+#else
+#if defined(__APPLE__)
+#define finite(x) isfinite(x)
 #endif
+#endif /* __cplusplus */
 #endif /* _MSC_VER */
 
 #ifdef _MSC_VER     // windows
