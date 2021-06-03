@@ -183,10 +183,24 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-am__DEPENDENCIES_1 =
-libscilab_cli_la_DEPENDENCIES = $(ENGINE_LIBS) $(NO_GUI_LIBS) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
+@IS_MACOSX_FALSE@am__DEPENDENCIES_1 = $(top_builddir)/modules/gui/libscigui-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/console/libsciconsole-minimal.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/jvm/libscijvm-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/xcos/libscixcos-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/graphic_objects/libscigraphic_objects-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/commons/libscicommons-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/preferences/libscipreferences-cli.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/tclsci/libscitclsci-disable.la
+am__DEPENDENCIES_2 =
+libscilab_cli_la_DEPENDENCIES = $(ENGINE_LIBS) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_2) $(am__DEPENDENCIES_2) \
+	$(am__DEPENDENCIES_2)
 am_libscilab_cli_la_OBJECTS =
 libscilab_cli_la_OBJECTS = $(am_libscilab_cli_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -197,10 +211,11 @@ libscilab_cli_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(AM_CFLAGS) $(CFLAGS) $(libscilab_cli_la_LDFLAGS) $(LDFLAGS) \
 	-o $@
-libscilab_la_DEPENDENCIES = $(am__append_7) $(am__append_8) \
+@GUI_FALSE@am__DEPENDENCIES_3 = $(am__DEPENDENCIES_1)
+libscilab_la_DEPENDENCIES = $(am__append_7) $(am__DEPENDENCIES_3) \
 	$(top_builddir)/modules/libscilab-cli.la $(am__append_9) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
+	$(am__DEPENDENCIES_2) $(am__DEPENDENCIES_2) \
+	$(am__DEPENDENCIES_2)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -661,21 +676,22 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la
 
-NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
-	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
-	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
-	$(top_builddir)/modules/console/libsciconsole-minimal.la \
-	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
-	$(top_builddir)/modules/jvm/libscijvm-disable.la \
-	$(top_builddir)/modules/xcos/libscixcos-disable.la \
-	$(top_builddir)/modules/graphic_objects/libscigraphic_objects-disable.la \
-	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
-	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
-	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
-	$(top_builddir)/modules/commons/libscicommons-disable.la \
-	$(top_builddir)/modules/preferences/libscipreferences-cli.la \
-	$(top_builddir)/modules/tclsci/libscitclsci-disable.la
+@IS_MACOSX_FALSE@NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/console/libsciconsole-minimal.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/jvm/libscijvm-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/xcos/libscixcos-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/graphic_objects/libscigraphic_objects-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/commons/libscicommons-disable.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/preferences/libscipreferences-cli.la \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/tclsci/libscitclsci-disable.la
 
+@IS_MACOSX_TRUE@NO_GUI_LIBS = 
 ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \

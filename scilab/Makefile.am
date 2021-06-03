@@ -132,7 +132,27 @@ scilab_cli_bin_SOURCES	= modules/startup/src/cpp/scilab.cpp
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
 
 # See the comment about scilab_bin_LDADD (relative to BLAS_LIBS & LAPACK_LIBS)
+
+if IS_MACOSX
+scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la \
+    $(top_builddir)/modules/gui/libscigui-disable.la \
+	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
+	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
+	$(top_builddir)/modules/console/libsciconsole-minimal.la \
+	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
+	$(top_builddir)/modules/jvm/libscijvm-disable.la \
+	$(top_builddir)/modules/xcos/libscixcos-disable.la \
+	$(top_builddir)/modules/graphic_objects/libscigraphic_objects-disable.la \
+	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
+	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
+	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
+	$(top_builddir)/modules/commons/libscicommons-disable.la \
+	$(top_builddir)/modules/preferences/libscipreferences-cli.la \
+	$(top_builddir)/modules/tclsci/libscitclsci-disable.la \
+    $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
+else
 scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
+endif
 
 if MPI
 CXX = $(OPENMPI_CXX)

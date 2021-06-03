@@ -30,7 +30,8 @@
 #include "ConsoleIsWaitingForInput.h"
 #include "scilines.h"
 
-/*--------------------------------------------------------------------------*/
+#ifndef __APPLE__
+  /*--------------------------------------------------------------------------*/
 char *ConsoleRead(void)
 {
     return NULL;
@@ -67,12 +68,6 @@ BOOL SetConsolePrompt(const char *Sci_prompt)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-BOOL InitializeConsole(void)
-{
-    scilinesdefault();
-    return TRUE;
-}
-/*--------------------------------------------------------------------------*/
 BOOL ConsoleIsWaitingForInput(void)
 {
     return FALSE;
@@ -83,3 +78,11 @@ BOOL ScilabLinesUpdate(void)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
+#endif
+BOOL InitializeConsole(void)
+{
+    scilinesdefault();
+    return TRUE;
+}
+/*--------------------------------------------------------------------------*/
+

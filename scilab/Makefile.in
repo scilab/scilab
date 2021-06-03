@@ -290,9 +290,28 @@ am_scilab_cli_bin_OBJECTS =  \
 	modules/startup/src/cpp/scilab_cli_bin-scilab.$(OBJEXT) \
 	$(am__objects_2)
 scilab_cli_bin_OBJECTS = $(am_scilab_cli_bin_OBJECTS)
-scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) \
-	$(top_builddir)/modules/libscilab-cli.la $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+@IS_MACOSX_FALSE@scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) \
+@IS_MACOSX_FALSE@	$(top_builddir)/modules/libscilab-cli.la \
+@IS_MACOSX_FALSE@	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+@IS_MACOSX_FALSE@	$(am__DEPENDENCIES_1)
+@IS_MACOSX_TRUE@scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/libscilab-cli.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/gui/libscigui-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/console/libsciconsole-minimal.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/jvm/libscijvm-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/xcos/libscixcos-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/graphic_objects/libscigraphic_objects-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/commons/libscicommons-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/preferences/libscipreferences-cli.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/tclsci/libscitclsci-disable.la \
+@IS_MACOSX_TRUE@	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+@IS_MACOSX_TRUE@	$(am__DEPENDENCIES_1)
 scilab_cli_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(AM_CXXFLAGS) $(CXXFLAGS) $(scilab_cli_bin_LDFLAGS) \
@@ -909,9 +928,26 @@ scilab_cli_bin_SOURCES = modules/startup/src/cpp/scilab.cpp \
 	$(am__append_11)
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS) \
 	$(am__append_12)
+@IS_MACOSX_FALSE@scilab_cli_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
 
 # See the comment about scilab_bin_LDADD (relative to BLAS_LIBS & LAPACK_LIBS)
-scilab_cli_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
+@IS_MACOSX_TRUE@scilab_cli_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la \
+@IS_MACOSX_TRUE@    $(top_builddir)/modules/gui/libscigui-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/console/libsciconsole-minimal.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/jvm/libscijvm-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/xcos/libscixcos-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/graphic_objects/libscigraphic_objects-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/commons/libscicommons-disable.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/preferences/libscipreferences-cli.la \
+@IS_MACOSX_TRUE@	$(top_builddir)/modules/tclsci/libscitclsci-disable.la \
+@IS_MACOSX_TRUE@    $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
+
 LANG_DOMAIN = scilab
 TARGETS_ALL = macros $(am__append_13) $(am__append_14)
 

@@ -153,6 +153,9 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la
 
+if IS_MACOSX
+NO_GUI_LIBS = 
+else
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
@@ -167,7 +170,7 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/commons/libscicommons-disable.la \
 	$(top_builddir)/modules/preferences/libscipreferences-cli.la \
 	$(top_builddir)/modules/tclsci/libscitclsci-disable.la
-
+endif
 
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
