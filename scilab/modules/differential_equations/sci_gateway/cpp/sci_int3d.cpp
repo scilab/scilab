@@ -44,6 +44,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
     int nf          = 1;
     int minpts      = 0;
     int maxpts      = 1000;
+    int iFPar       = 3;
     double epsabs   = 0.0;
     double epsrel   = 1.0e-5;
     int irestar     = 0;
@@ -57,9 +58,9 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
     bool bCatch = false;
 
     // *** check the minimal number of input args. ***
-    if (in.size() < 4 || in.size() > 6)
+    if (in.size() < 4 || in.size() > 9)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "int3d", 4, 6);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "int3d", 4, 9);
         return types::Function::Error;
     }
 
@@ -72,87 +73,102 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
 
     // *** check type of input args and get it. ***
     // X
-    if (in[0]->isDouble() == false)
+    if (in.size() <= 6)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 1);
-        return types::Function::Error;
-    }
-    pDblX = in[0]->getAs<types::Double>();
-    if (pDblX->isComplex())
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 1);
-        return types::Function::Error;
-    }
+        if (in[0]->isDouble() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 1);
+            return types::Function::Error;
+        }
+        pDblX = in[0]->getAs<types::Double>();
+        if (pDblX->isComplex())
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 1);
+            return types::Function::Error;
+        }
 
-    if (pDblX->getRows() != 4)
-    {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A 4 by N matrix expected.\n"), "int3d", 1);
-        return types::Function::Error;
-    }
+        if (pDblX->getRows() != 4)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A 4 by N matrix expected.\n"), "int3d", 1);
+            return types::Function::Error;
+        }
 
-    // Y
-    if (in[1]->isDouble() == false)
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 2);
-        return types::Function::Error;
-    }
-    pDblY = in[1]->getAs<types::Double>();
-    if (pDblY->isComplex())
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 2);
-        return types::Function::Error;
-    }
+        // Y
+        if (in[1]->isDouble() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 2);
+            return types::Function::Error;
+        }
+        pDblY = in[1]->getAs<types::Double>();
+        if (pDblY->isComplex())
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 2);
+            return types::Function::Error;
+        }
 
-    if (pDblY->getRows() != 4)
-    {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A 4 by N matrix expected.\n"), "int3d", 2);
-        return types::Function::Error;
-    }
+        if (pDblY->getRows() != 4)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A 4 by N matrix expected.\n"), "int3d", 2);
+            return types::Function::Error;
+        }
 
-    if (pDblY->getCols() != pDblX->getCols())
-    {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Same size of input argument %d expected.\n"), "int3d", 2, 1);
-        return types::Function::Error;
-    }
+        if (pDblY->getCols() != pDblX->getCols())
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: Same size of input argument %d expected.\n"), "int3d", 2, 1);
+            return types::Function::Error;
+        }
 
-    // Z
-    if (in[2]->isDouble() == false)
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 3);
-        return types::Function::Error;
-    }
-    pDblZ = in[2]->getAs<types::Double>();
-    if (pDblZ->isComplex())
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 3);
-        return types::Function::Error;
-    }
+        // Z
+        if (in[2]->isDouble() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 3);
+            return types::Function::Error;
+        }
+        pDblZ = in[2]->getAs<types::Double>();
+        if (pDblZ->isComplex())
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 3);
+            return types::Function::Error;
+        }
 
-    if (pDblZ->getRows() != 4)
-    {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A 4 by N matrix expected.\n"), "int3d", 4);
-        return types::Function::Error;
-    }
+        if (pDblZ->getRows() != 4)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A 4 by N matrix expected.\n"), "int3d", 4);
+            return types::Function::Error;
+        }
 
-    if (pDblZ->getCols() != pDblX->getCols())
+        if (pDblZ->getCols() != pDblX->getCols())
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: Same size of input argument %d expected.\n"), "int3d", 3, 1);
+            return types::Function::Error;
+        }
+    }
+    else
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Same size of input argument %d expected.\n"), "int3d", 3, 1);
-        return types::Function::Error;
+        for (int i=0; i<6; i++)
+        {
+            if (in[i]->isDouble() == false || in[i]->getAs<types::Double>()->isComplex() ||  in[i]->getAs<types::Double>()->isScalar()==false)
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "int3d", i+1);
+                return types::Function::Error;
+            }
+        }
+        iFPar = 6;
     }
 
     // function
     DifferentialEquationFunctions deFunctionsManager(L"int3d");
     DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
 
-    if (in[3]->isCallable())
+    if (in[iFPar]->isCallable())
     {
-        types::Callable* pCall = in[3]->getAs<types::Callable>();
+        types::Callable* pCall = in[iFPar]->getAs<types::Callable>();
         deFunctionsManager.setFFunction(pCall);
     }
-    else if (in[3]->isString())
+    else if (in[iFPar]->isString())
     {
         bool bOK = false;
-        types::String* pStr = in[3]->getAs<types::String>();
+        types::String* pStr = in[iFPar]->getAs<types::String>();
         bOK = deFunctionsManager.setFFunction(pStr);
 
         if (bOK == false)
@@ -164,13 +180,13 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
     }
-    else if (in[3]->isList())
+    else if (in[iFPar]->isList())
     {
         types::List* pList = in[3]->getAs<types::List>();
 
         if (pList->getSize() == 0)
         {
-            Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "int3d", 4, "(string empty)");
+            Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "int3d", iFPar+1, "(string empty)");
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -185,38 +201,38 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: The first argument in the list must be a Scilab function.\n"), "int3d", 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d: The first argument in the list must be a Scilab function.\n"), "int3d", iFPar+1);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A function expected.\n"), "int3d", 4);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A function expected.\n"), "int3d", iFPar+1);
         DifferentialEquation::removeDifferentialEquationFunctions();
         return types::Function::Error;
     }
 
     // nf (optional)
-    if (in.size() > 4)
+    if (in.size() > iFPar+1)
     {
-        if (in[4]->isDouble() == false)
+        if (in[iFPar+1]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 5);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", iFPar+2);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
-        types::Double* pDblNf = in[4]->getAs<types::Double>();
+        types::Double* pDblNf = in[iFPar+1]->getAs<types::Double>();
         if (pDblNf->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 5);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", iFPar+2);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
 
         if (pDblNf->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "int3d", 5);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "int3d", iFPar+2);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -224,33 +240,33 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
 
         if (nf < 1)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: A positive value expected.\n"), "int3d", 5);
+            Scierror(999, _("%s: Wrong value for input argument #%d: A positive value expected.\n"), "int3d", iFPar+2);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
     }
 
     // params (optional)
-    if (in.size() == 6)
+    if (in.size() == iFPar+3)
     {
         if (in[5]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 6);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", iFPar+3);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
 
-        types::Double* pDblParams = in[5]->getAs<types::Double>();
+        types::Double* pDblParams = in[iFPar+2]->getAs<types::Double>();
         if (pDblParams->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", 6);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int3d", iFPar+3);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
 
         if (pDblParams->getSize() != 4)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: %d expected.\n"), "int3d", 6, 4);
+            Scierror(999, _("%s: Wrong size for input argument #%d: %d expected.\n"), "int3d", iFPar+3, 4);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -261,7 +277,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
             {
                 if (pDblParams->get(i) < 0)
                 {
-                    sciprint(_("%ls: Warning: Wrong value for the element %d of argument #%d: The default value will be used.\n"), L"int3d", i + 1, 6);
+                    sciprint(_("%ls: Warning: Wrong value for the element %d of argument #%d: The default value will be used.\n"), L"int3d", i + 1, iFPar+3);
                 }
             }
         }
@@ -275,7 +291,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
         {
             if (getWarningMode())
             {
-                sciprint(_("%ls: Warning: Wrong value for the element %d and %d of argument #%d: The default value will be used.\n"), L"int3d", 3, 4, 6);
+                sciprint(_("%ls: Warning: Wrong value for the element %d and %d of argument #%d: The default value will be used.\n"), L"int3d", 3, 4, iFPar+3);
             }
             epsabs = 0.0;
             epsrel = 1.0e-5;
@@ -283,9 +299,31 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
 
         if (minpts > maxpts)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: minpts smaller than maxpts expected.\n"), "int3d", 6);
+            Scierror(999, _("%s: Wrong value for input argument #%d: minpts smaller than maxpts expected.\n"), "int3d", iFPar+3);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
+        }
+    }
+
+    if (iFPar == 6)
+    {
+        // xmin,xmax,ymin,ymax,zmin,zmax style, divide paralepiped in 5 trihedrals
+        double dblXYZ[6];
+        int iX[20] = {0,1,1,0,0,1,1,1,0,1,0,0,0,1,0,0,1,0,1,1};
+        int iY[20] = {2,3,2,3,2,3,2,2,2,3,3,3,2,2,3,2,2,3,3,3};
+        int iZ[20] = {5,5,4,4,5,5,4,5,5,5,4,5,5,4,4,4,4,4,5,4};
+        for (int i=0; i<6; i++)
+        {
+            dblXYZ[i] = in[i]->getAs<types::Double>()->get(0);
+        }
+        pDblX = new types::Double(4,5);
+        pDblY = new types::Double(4,5);
+        pDblZ = new types::Double(4,5);
+        for (int i=0; i<20; i++)
+        {
+            pDblX->set(i,dblXYZ[iX[i]]);
+            pDblY->set(i,dblXYZ[iY[i]]);
+            pDblZ->set(i,dblXYZ[iZ[i]]);
         }
     }
 

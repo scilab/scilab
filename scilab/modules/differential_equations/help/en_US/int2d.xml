@@ -20,15 +20,16 @@
           xmlns:scilab="http://www.scilab.org" xml:id="int2d" xml:lang="en">
     <refnamediv>
         <refname>int2d</refname>
-        <refpurpose>definite 2D integral by quadrature and cubature
-            method
+        <refpurpose>definite 2D integral by quadrature method
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            [I, err] = int2d(X, Y, f)
-            [I, err] = int2d(X, Y, f, params)
+          [I, err] = int2d(X, Y, f)
+          [I, err] = int2d(X, Y, f, params)
+          [I, err] = int2d(xmin, xmax, ymin, ymax, f)
+          [I, err] = int2d(xmin, xmax, ymin, ymax, f, params)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -49,6 +50,14 @@
                     <para>
                         a 3 by <literal>N</literal> array containing the ordinates of the vertices of the
                         N triangles
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xmin, xmax, ymin, ymax</term>
+                <listitem>
+                    <para>
+                      real scalars defining a rectangle in the plane
                     </para>
                 </listitem>
             </varlistentry>
@@ -145,7 +154,8 @@
         <para>
             <literal>int2d</literal> computes the two-dimensional integral of a
             function <literal>f</literal> over a region consisting of
-            <literal>n</literal> triangles. A total error estimate is obtained and
+            <literal>N</literal> triangles or over a single rectangle [xmin,xmax]x[ymin,ymax] (internally
+            divided into two triangles). A total error estimate is obtained and
             compared with a tolerance - <literal>tol</literal> - that is provided as
             input to the subroutine. The error tolerance is treated as either relative
             or absolute depending on the input value of <literal>iflag</literal>. A
@@ -170,12 +180,15 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-X = [0,0;1,1;1,0];
-Y = [0,0;0,1;1,1];
 deff('z=f(x,y)','z=cos(x+y)')
+// computes the integral over the  triangle (0,0),(1 0),(0,1)
+X = [0 1 0]';
+Y = [0 0 1]';
 [I,e] = int2d(X,Y,f)
-// computes the integrand over the square [0 1]x[0 1]
- ]]></programlisting>
+
+// computes the integral over the square [0,1]x[0,1]
+[I,e] = int2d(0,1,0,1,f)
+]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

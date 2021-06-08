@@ -239,6 +239,9 @@ Feature changes and additions on 6.1.1
 * `scatter` and `scatter3d` are reforged. New `scatter` options: `"smallOnTop"` and `"datatips"`.
 * `asciimat` now supports input strings of different lengths or including international UTF8 extended characters.
 * polynomials can now use a greek letter as variable.
+* `int2d` can now compute direcly a double integral over a rectangle.
+* `int3d` can now compute direcly a triple integral over a cuboid.
+
 
 Help pages:
 -----------

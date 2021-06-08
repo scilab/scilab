@@ -12,6 +12,9 @@
             [result, err] = int3d(X, Y, Z, f)
             [result, err] = int3d(X, Y, Z, f, nf)
             [result, err] = int3d(X, Y, Z, f, nf, params)
+            [result, err] = int3d(xmin, xmax, ymin, ymax, zmin, zmax, f)
+            [result, err] = int3d(xmin, xmax, ymin, ymax, zmin, zmax, f, nf)
+            [result, err] = int3d(xmin, xmax, ymin, ymax, zmin, zmax, f, nf, params)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -21,8 +24,8 @@
                 <term>X</term>
                 <listitem>
                     <para>
-                        a 4 by <literal>NUMTET</literal> array containing the
-                        abscissae of the vertices of the <literal>NUMTET</literal>
+                        a 4 by <literal>N</literal> array containing the
+                        abscissae of the vertices of the <literal>N</literal>
                         tetrahedrons.
                     </para>
                 </listitem>
@@ -31,8 +34,8 @@
                 <term>Y</term>
                 <listitem>
                     <para>
-                        a 4 by <literal>NUMTET</literal> array containing the
-                        ordinates of the vertices of the <literal>NUMTET</literal>
+                        a 4 by <literal>N</literal> array containing the
+                        ordinates of the vertices of the <literal>N</literal>
                         tetrahedrons.
                     </para>
                 </listitem>
@@ -41,18 +44,27 @@
                 <term>Z</term>
                 <listitem>
                     <para>
-                        a 4 by <literal>NUMTET</literal> array containing the third
-                        coordinates of the vertices of the <literal>NUMTET</literal>
+                        a 4 by <literal>N</literal> array containing the third
+                        coordinates of the vertices of the <literal>N</literal>
                         tetrahedrons.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>xmin, xmax, ymin, ymax, zmin, zmax</term>
+                <listitem>
+                    <para>
+                      real scalars defining a cuboid in the plane</para>
+                </listitem>
+            </varlistentry>
+
+          <varlistentry>
                 <term>f</term>
                 <listitem>
                     <para>external (function or list or string) defining the integrand
                         <literal>f(xyz,nf)</literal>, where <literal>xyz</literal> is the
-                        vector of a point coordinates and <literal>nf</literal> is the number functions
+                        vector of a point coordinates and <literal>nf</literal> is the number of the
+                      function to compute.
                     </para>
                 </listitem>
             </varlistentry>
@@ -115,21 +127,14 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>The function calculates an approximation to a given vector of
-            definite integrals
+        <para>The function calculates approximations of the definite integrals
+          <latex alt="integral_{x_0}^{x_1(i)} f(v).dv">
+           \iiint_D f_i(x,y,z) \,dx\,dy\,dz, \,i=1\dots nf
+          </latex>
+            where the region of integration D is a collection of <literal>N</literal>
+            tetrahedrons or the single cuboid [xmin,xmax] x [ymin,ymax] x [zmin,zmax] (which is
+          internally divided in 5 tetrahedrons).
         </para>
-        <screen><![CDATA[
-I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
-          1  2      numfun
-]]></screen>
-        <para>
-            where the region of integration is a collection of <literal>NUMTET</literal>
-            tetrahedrons and where
-        </para>
-        <screen><![CDATA[
-F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
- J   J
-]]></screen>
         <para>A globally adaptive strategy is applied in order to compute
             approximations <literal>result(k)</literal> hopefully satisfying, for each
             component of  <literal>I</literal>, the following claim for accuracy:
@@ -176,34 +181,26 @@ F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
+// computes the intergral of exp(x*x+y*y+z*z) over the
+// tetrahedron (0.,0.,0.),(1.,0.,0.),(0.,1.,0.),(0.,0.,1.)
+
 X = [0;1;0;0];
 Y = [0;0;1;0];
 Z = [0;0;0;1];
-[RESULT, ERROR] = int3d(X, Y, Z, 'int3dex')
-// computes the integrand exp(x*x+y*y+z*z) over the
-//tetrahedron (0.,0.,0.),(1.,0.,0.),(0.,1.,0.),(0.,0.,1.)
 
-//integration over a cube  -1<=x<=1;-1<=y<=1;-1<=z<=1
+// function is computed by dynamically linked Fortran code
 
-//  bottom  -top-     right    -left-   front   -rear-
-X =[0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;
-   -1,-1,   -1,-1,    1, 1,   -1,-1,   -1,-1,   -1,-1;
-    1,-1,    1,-1,    1, 1,   -1,-1,    1,-1,    1,-1;
-    1, 1,    1, 1,    1, 1,   -1,-1,    1, 1,    1, 1];
-Y =[0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;
-   -1,-1,   -1,-1,   -1, 1,   -1, 1,   -1,-1,    1, 1;
-   -1, 1,   -1, 1,    1, 1,    1, 1,   -1,-1,    1, 1;
-    1, 1,    1, 1,   -1,-1,   -1,-1,   -1,-1,    1, 1];
-Z =[0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;
-   -1,-1,    1, 1,   -1, 1,   -1, 1,   -1,-1,   -1,-1;
-   -1,-1,    1, 1,   -1,-1,   -1,-1,   -1, 1,   -1, 1;
-   -1,-1,    1, 1,    1, 1,    1, 1,    1, 1,    1, 1];
+[result, err] = int3d(X, Y, Z, 'int3dex')
+
+// Scilab function
 
 function v = f(xyz,numfun),v=exp(xyz'*xyz), endfunction
 [result, err] = int3d(X, Y, Z, f, 1, [0,100000,1.d-5,1.d-7])
 
-function v = f(xyz,numfun), v=1, endfunction
-[result, err] = int3d(X, Y, Z, f, 1, [0,100000,1.d-5,1.d-7])
+// integration over a cube  -1<=x<=1;-1<=y<=1;-1<=z<=1
+
+function v = f(xyz,numfun), v=xyz'*xyz, endfunction
+[result, err] = int3d(-1,1,-1,1,-1,1, f, 1, [0,100000,1.d-5,1.d-7])
      ]]></programlisting>
     </refsection>
     <refsection role="see also">
