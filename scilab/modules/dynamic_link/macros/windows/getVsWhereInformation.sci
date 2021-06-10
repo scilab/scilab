@@ -11,7 +11,9 @@ function vs = getVsWhereInformation()
     //-format arg    Return information about instances found in a format described below.
     //-utf8          Use UTF-8 encoding (recommended for JSON).
 
-    cmd = sprintf("""%s"" -all -prerelease -format json -utf8 -include packages", fullfile(SCI, "tools", "vswhere", "vswhere"));
+    // Reported by a user, MS VS Build tools are only detected with -products *
+
+    cmd = sprintf("""%s"" -all -products * -prerelease -format json -utf8 -include packages", fullfile(SCI, "tools", "vswhere", "vswhere"));
     x = unix_g(cmd);
     vs = [];
     if isempty(x) == %f then
