@@ -238,7 +238,7 @@ Feature changes and additions on 6.1.1
 * `loglog`, `semilogx`, `semilogy` Matlab-compatible functions added.
 * `scatter` and `scatter3d` are reforged. New `scatter` options: `"smallOnTop"` and `"datatips"`.
 * `asciimat` now supports input strings of different lengths or including international UTF8 extended characters.
-
+* polynomials can now use a greek letter as variable.
 
 Help pages:
 -----------
