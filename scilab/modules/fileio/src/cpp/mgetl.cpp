@@ -84,24 +84,47 @@ int mgetl(int iFileID, int iLineCount, wchar_t*** pwstLines)
 
     int orig = ftell(fd);
 
-#ifndef _MSC_VER
-    //must reopen the file
-    std::wstring wname = pFile->getFilename();
-    char* name = wide_string_to_UTF8(wname.data());
-    std::ifstream ifs(name);
-    FREE(name);
-    //seek to same position
-    ifs.seekg(orig);
-#else
-    std::ifstream ifs(fd);
-#endif
-
     std::string str;
     std::vector<std::string> lst;
 
-    while ((iLineCount == -1 || lst.size() < iLineCount) && std::getline(ifs, str))
+    if (iFileID == 5)
     {
-        lst.push_back(str);
+        // read from stdin
+        while ((iLineCount == -1 || lst.size() < iLineCount) && std::getline(std::cin, str))
+        {
+            lst.push_back(str);
+        }
+    }
+    else
+    {
+#ifndef _MSC_VER
+        //must reopen the file
+        std::wstring wname = pFile->getFilename();
+        char* name = wide_string_to_UTF8(wname.data());
+        std::ifstream ifs(name);
+        FREE(name);
+        //seek to same position
+        ifs.seekg(orig);
+#else
+        std::ifstream ifs(fd);
+#endif
+        while ((iLineCount == -1 || lst.size() < iLineCount) && std::getline(ifs, str))
+        {
+            lst.push_back(str);
+        }
+#ifndef _MSC_VER
+        auto pos = ifs.tellg();
+        if (pos == -1)
+        {
+            fseek(fd, 0, SEEK_END);
+        }
+        else
+        {
+            fseek(fd, pos, SEEK_SET);
+        }
+
+        ifs.close();
+#endif
     }
 
     int nbLinesOut = (int)lst.size();
@@ -122,20 +145,6 @@ int mgetl(int iFileID, int iLineCount, wchar_t*** pwstLines)
         rtrim(str);
         (*pwstLines)[i] = str;
     }
-
-#ifndef _MSC_VER
-    auto pos = ifs.tellg();
-    if (pos == -1)
-    {
-        fseek(fd, 0, SEEK_END);
-    }
-    else
-    {
-        fseek(fd, pos, SEEK_SET);
-    }
-
-    ifs.close();
-#endif
 
     return nbLinesOut;
 }
