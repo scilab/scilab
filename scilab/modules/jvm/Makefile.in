@@ -125,10 +125,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @GUI_TRUE@am__append_1 = libscijvm.la
-
-# FIXME: This a platform specific flag, this should be done on configure.ac
-@IS_MACOSX_TRUE@am__append_2 = -framework JavaVM
-@NEED_JAVA_TRUE@am__append_3 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/jvm
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx.m4 \
@@ -682,7 +679,7 @@ libscijvm_la_CPPFLAGS = \
 pkglib_LTLIBRARIES = libscijvm-disable.la $(am__append_1)
 @GUI_TRUE@USEANT = 1
 @GUI_TRUE@noinst_LTLIBRARIES = libscijvm-algo.la
-libscijvm_la_LDFLAGS = -pthread $(AM_LDFLAGS) $(am__append_2)
+libscijvm_la_LDFLAGS = -pthread $(AM_LDFLAGS)
 libscijvm_la_LIBADD = libscijvm-algo.la $(XML_LIBS) $(JAVA_JNI_LIBS)
 
 #### jvm : gateway declaration ####
@@ -779,7 +776,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_3)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro

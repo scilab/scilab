@@ -2252,8 +2252,13 @@ doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@		for l in $(ALL_LINGUAS_DOC); do \
 @BUILD_HELP_TRUE@			echo "-- Building documentation ($$l) --"; \
 @BUILD_HELP_TRUE@			COMMAND="try xmltojar([],[],'$$l');catch disp(lasterror()); exit(-1);end;exit(0);"; \
-@BUILD_HELP_TRUE@			echo "LANG=$$l.UTF-8 LC_ALL=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' HOME=/tmp $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
-@BUILD_HELP_TRUE@			LANG=$$l.UTF-8 LC_ALL=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' HOME=/tmp $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
+@BUILD_HELP_TRUE@			if test "$(MACOSX)" = "1"; then \
+@BUILD_HELP_TRUE@				echo "LANG=$$l.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' HOME=/tmp $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
+@BUILD_HELP_TRUE@				LANG=$$l.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' HOME=/tmp $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
+@BUILD_HELP_TRUE@			else \
+@BUILD_HELP_TRUE@				echo "LANG=$$l.UTF-8 LC_ALL=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' HOME=/tmp $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
+@BUILD_HELP_TRUE@				LANG=$$l.UTF-8 LC_ALL=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' HOME=/tmp $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
+@BUILD_HELP_TRUE@			fi; \
 @BUILD_HELP_TRUE@		done; \
 @BUILD_HELP_TRUE@	else \
 @BUILD_HELP_TRUE@		echo "Cannot find Scilab-adv-cli binary"; \

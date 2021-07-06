@@ -131,11 +131,8 @@ host_triplet = @host@
 @GIWS_TRUE@am__append_1 = giws
 @SWIG_TRUE@am__append_2 = swig
 @IS_MACOSX_TRUE@am__append_3 = src/c/others/initMacOSXEnv.c
-
-# FIXME: Plateform specific optimisation flags should be set on configure.ac
-@IS_MACOSX_TRUE@am__append_4 = -msse2
-@GUI_TRUE@am__append_5 = libsciconsole.la
-@NEED_JAVA_TRUE@am__append_6 = java
+@GUI_TRUE@am__append_4 = libsciconsole.la
+@NEED_JAVA_TRUE@am__append_5 = java
 subdir = modules/console
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx.m4 \
@@ -789,32 +786,37 @@ libsciconsole_minimal_la_CPPFLAGS = \
 
 
 # Includes need for the compilation
-libsciconsole_la_CPPFLAGS =  \
-	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ \
-	-I$(srcdir)/src/jni/ -I$(top_srcdir)/modules/ast/includes/ast/ \
-	-I$(top_srcdir)/modules/ast/includes/exps/ \
-	-I$(top_srcdir)/modules/ast/includes/operations/ \
-	-I$(top_srcdir)/modules/ast/includes/parse/ \
-	-I$(top_srcdir)/modules/ast/includes/symbol/ \
-	-I$(top_srcdir)/modules/ast/includes/system_env/ \
-	-I$(top_srcdir)/modules/ast/includes/types/ \
-	-I$(top_srcdir)/modules/jvm/includes/ \
-	-I$(top_srcdir)/modules/action_binding/includes \
-	-I$(top_srcdir)/modules/history_manager/includes/ \
-	-I$(top_srcdir)/modules/ui_data/includes/ \
-	-I$(top_srcdir)/modules/threads/includes \
-	-I$(top_srcdir)/modules/completion/includes \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/fileio/includes \
-	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/commons/src/jni \
-	-I$(top_srcdir)/modules/dynamic_link/includes \
-	$(JAVA_JNI_INCLUDE) $(AM_CPPFLAGS) $(am__append_4)
+libsciconsole_la_CPPFLAGS = \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/jni/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/action_binding/includes \
+    -I$(top_srcdir)/modules/history_manager/includes/ \
+    -I$(top_srcdir)/modules/ui_data/includes/ \
+    -I$(top_srcdir)/modules/threads/includes \
+    -I$(top_srcdir)/modules/completion/includes \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/string/includes \
+    -I$(top_srcdir)/modules/fileio/includes \
+    -I$(top_srcdir)/modules/localization/includes \
+    -I$(top_srcdir)/modules/commons/src/jni \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    $(JAVA_JNI_INCLUDE) \
+    $(AM_CPPFLAGS)
+
 
 # Name of the library
-pkglib_LTLIBRARIES = libsciconsole-minimal.la $(am__append_5)
+pkglib_LTLIBRARIES = libsciconsole-minimal.la $(am__append_4)
 libsciconsole_la_LIBADD = libsciconsole-minimal.la
 
 # All the sources needed by libsciconsole.la
@@ -883,7 +885,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_6)
+TARGETS_ALL = $(am__append_5)
 
 ################ MACROS ######################
 # Rule to build a macro
