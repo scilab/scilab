@@ -481,6 +481,7 @@ Bug Fixes
 * [#16686](https://bugzilla.scilab.org/16686): `strsplit('a','a')`, `strsplit('ab','ab')`,  and `strsplit("abcd","cd")` yielded wrong results.
 * [#16687](https://bugzilla.scilab.org/16687): `spec` documentation used messy concurrent notations. It still refered to the Arnoldi module instead of `eigs`. The fr_FR version was incomplete.
 * [#16708](https://bugzilla.scilab.org/16708): `mgetl` could not read from stdin.
+* [#16711](https://bugzilla.scilab.org/16711): `prettyprint` export to html failed under Linux and macOS.
 
 
 ### Bugs fixed in 6.1.0:

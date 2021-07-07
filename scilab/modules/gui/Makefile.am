@@ -435,6 +435,12 @@ images/icons/scilab_close_active.png \
 images/icons/scilab_close_default.png \
 images/icons/undock_active.png \
 images/icons/undock_default.png \
+images/icons/openBrace.png \
+images/icons/openBracket.png \
+images/icons/openParen.png \
+images/icons/closeBrace.png \
+images/icons/closeBracket.png \
+images/icons/closeParen.png \
 images/preferences/integrated.png \
 images/preferences/simple.png
 
