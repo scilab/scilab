@@ -1,8 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Scilab Help Homepage</title>
     <style type="text/css" media="all">
         @import url("scilab_code.css");
@@ -22,11 +22,11 @@
         <a href="https://lists.scilab.org/" class="ulink">Mailing Lists Archives</a> |
         <a href="https://atoms.scilab.org/" class="ulink">ATOMS</a> |
         <a href="https://fileexchange.scilab.org/" class="ulink">File Exchange</a>
-        <hr />
+        <hr>
     </div>
     <span class="path"><a href="index.html">Scilab help</a> &gt;&gt; Homepage</span>
-    <br />
-    <br />
+    <br>
+    <br>
     <div class="refsection">
         <h3 class="title">Welcome to Scilab 6.1</h3>
         <p class="para">
@@ -34,178 +34,97 @@
             platform for numerical computation.
         </p>
         <p class="para">
-            Here is a tour of the changes between Scilab 6.0.2, &amp; 6.1.0.
+            Here is a tour of the changes between Scilab 6.1.0 &amp; 6.1.1.
         </p>
         <h2 class="title">Main new features</h2>
         <p class="para">
             In summary, the main new features are:
-            <ul>
-                <li>Webtools utilities added for HTTP protocol, JSON data usage.</li>
-                <li>Profiled values are available as Scilab values</li>
-                <li>Values have a cleaner display:
-                    <ul>
-                        <li>they are displayed in order on assignment.</li>
-                        <li>strings are quoted</li>
-                        <li>complex numbers are aligned for matrices</li>
-                        <li>numbers (IEEE 754 double) are not rounded</li>
-                        <li>polynomials and rationals display is more compact</li>
-                        <li>In structures, nested lists or structures are now displayed recursively compactly and more explicitly.</li>
-                    </ul>
-                </li>
-                <li><code>importgui</code> function has been added to easily interface csvRead</li>
-            </ul>
         </p>
+        <ul>
+            <li>The default Java Heap is increased to 512MB</li>
+            <li><code>http_get</code> can be used as an alternative download method for ATOMS</li>
+            <li>Atoms functions can either display or output values</li>
+            <li>Help browser allows to navigate to the web help, bugzilla and wiki</li>
+        </ul>
         <h2 class="title">Feature changes and additions</h2>
         <ul>
-            <li><code>airy</code> is added: Evaluation of Airy functions of the first and second kind, and their first derivative,
-                possibly scaled.</li>
-            <li>Empty strings are used as the default values on String allocation.</li>
-            <li>HTTP get, post, put, upload, patch, delete functions added.</li>
-            <li>JSON format compatibility through Scilab variables.</li>
-            <li>Memory invalid accesses have been greatly reduced thanks to :
+            <li>Axes labels and title default font size had been increased for better default rendering.</li>
+            <li><code>gsort</code> is upgraded:
                 <ul>
-                    <li>PVS-Studio inspections</li>
-                    <li>Coverity scan weekly source analysis</li>
+                    <li>It can now sort any sparse 2D matrix, in all <code>g, r, c, lr, lc</code> methods, including
+                        sparse booleans, and in a multi-level mode. It was formerly limited to sparse real or complex
+                        vectors and only to the <code>g</code> mode.</li>
+                    <li>Any hypermatrix can be sorted along a dimension &gt; 2.</li>
                 </ul>
             </li>
-            <li><code>bitget</code> is upgraded:
+            <li><code>unique</code> is enabled for any 2D sparse arrays, in simple, 'c' and 'r' modes.</li>
+            <li><code>%chars</code> constant added, to easily access to some selected sets of Unicode symbols.</li>
+            <li>Lists are displayed more compactly and comprehensively.</li>
+            <li><code>interp1</code> is upgraded:
                 <ul>
-                    <li>It now accepts positive signed encoded integers.</li>
-                    <li>It now supports the new uint64 and int64 types of encoded integers.</li>
-                    <li>For decimal numbers: bits with indices &gt; 52 can now be retrieved (up to <code>log2(number_properties("huge"))</code> = 1024).</li>
-                    <li>For decimal numbers <code>x &gt; 2^52</code>, queried bits below <code>%eps</code> (indices &lt; log2(x)-52) now return <code>Nan</code> instead of 0.</li>
-                    <li>Several bits can now be retrieved from each component of an input array.</li>
+                    <li>complex numbers <code>y</code> now supported: the real and imaginary parts are interpolated
+                        separately.</li>
+                    <li>extrapolation option extended: <code>edgevalue</code> mode added for all interpolations;
+                        <code>periodic</code> mode added for linear and spline interpolations. <code>linear</code> mode
+                        added for the spline interpolations.</li>
                 </ul>
             </li>
-            <li><code>bitset</code> is upgraded:
+            <li><code>xlfont</code> did not support the documented 4th argument.</li>
+            <li><code>bitcmp</code> is upgraded:
                 <ul>
-                    <li>It now accepts positive Signed encoded integers.</li>
-                    <li>It now supports the new uint64 and int64 types of encoded integers.</li>
-                    <li>For decimal numbers: bits with indices &gt; 32 can now be set (up to #1024).</li>
-                    <li>Several bits can now be set for each input component.</li>
-                    <li>Distributive scalar inputs are now accepted.</li>
+                    <li>Entended to 64-bit integers.</li>
+                    <li>Extended to all signed integers.</li>
+                    <li>Decimal positive integers &gt; 2^52 up to 2^1024 = number_properties(&quot;huge&quot;) can now
+                        be processed, with bitnum up to 1024 instead of 52.</li>
+                    <li>bitnum can be an array. It is now optional as well for input decimal integers.</li>
                 </ul>
             </li>
-            <li><code>edit</code> now accepts a line number as text (like "23").</li>
-            <li><code>profileEnable, profileDisable, profileGetInfo</code> could be used to instrument functions and gather execution information within Scilab.</li>
-            <li><code>prettyprint</code> is upgraded:
+            <li>The <code>Arnoldi</code> module is now internal.</li>
+            <li><code>sgolay</code> and the companion <code>sgolayfilter</code> and <code>sgolaydiff</code> functions
+                have been added to implement Savitsky-Golay filters.</li>
+            <li><code>clock</code> now returns the milliseconds, the time zone, and the daylight saving time.</li>
+            <li><code>mapsound</code> upgraded to have a colormap argument</li>
+            <li><code>mprintf</code>, <code>msprintf</code> and <code>mfprintf</code> can now print input booleans, as
+                <code>0</code>|<code>1</code> or as <code>T</code>|<code>F</code>.</li>
+            <li><code>setdiff</code> now supports input booleans and sparse matrices (boolean or numeric).</li>
+            <li><code>intersect</code> is extended to any sparse boolean or numeric arrays, in all simple, 'c' or 'r'
+                modes.</li>
+            <li><code>union</code> supports boolean, sparse boolean, and sparse numerical matrices.</li>
+            <li><code>kron</code> and <code>.*.</code> are extended to boolean arrays.</li>
+            <li><code>gamma</code> is extended to incomplete gamma integrals.</li>
+            <li><code>close</code> is extended to close the help browser, xcos, the variables browser, or editor GUIs.
+            </li>
+            <li><code>polyint</code> is introduced to compute polynomial antiderivatives.</li>
+            <li><code>det</code> is now actually extended to sparse matrices.</li>
+            <li><code>deff</code> is upgraded:
                 <ul>
-                    <li>Integer and Text input are now actually supported.</li>
-                    <li>Default input arguments can be skipped instead of still having to be provided.</li>
-                    <li>The result string is better formatted to be easily wrappable and indented.</li>
+                    <li>The created function may be returned as an output argument.</li>
+                    <li>Providing the function headline and body concatenated in a single input text vector is possible.
+                    </li>
+                    <li>For a simple function, a single string input definition can be provided.</li>
+                    <li>For assignable calls to <code>deff</code>, the <code>@</code> symbol can be used as a function
+                        pseudo-name.</li>
                 </ul>
             </li>
-            <li><code>mesh2d</code> has been introduced to compute a 2d mesh from vectors (x,y) of points.</li>
-            <li><code>loadmatfile</code> is upgraded:
-                <ul>
-                    <li>Octave native text data files can now be read.</li>
-                    <li>Automatic detection of the input data format implemented.</li>
-                    <li><code>-toStruct</code> option added, to return results in a structure instead of in the calling environment.</li>
-                </ul>
+            <li><code>mopen</code> and <code>mclose</code> now handle multiple files and file descriptors.</li>
+            <li><code>hash</code> function with SHA-1, SHA-2 and SHA-3 Secure Hash Algorithms has been added.</li>
+            <li><code>loglog</code>, <code>semilogx</code>, <code>semilogy</code> Matlab-compatible functions added.
             </li>
-            <li><code>jremove</code> is optional and <code>clear</code> could be used to release Java objects mapped to Scilab.</li>
-            <li><code>blockdiag</code> is introduced to improve, replace, and extend <code>sysdiag</code> to strings.</li>
-            <li><code>assert_checkequal</code> is upgraded:
-                <ul>
-                    <li>support added for Nan and void in lists, Nan in sparses, implicit lists, graphic handles, macros, libraries, and built-in.</li>
-                    <li>For arrays of matching typeof and sizes, and for lists of matching lengths, the failure message now indicates the index and values of the first mismatching elements.</li>
-                </ul>
-            </li>
-            <li><code>diophant</code> is upgraded:
-                <ul>
-                    <li>Encoded integers are accepted, in addition to decimal numbers. Only integer solutions are then searched.</li>
-                    <li>When there is no solution, <code>[]</code> is returned.</li>
-                    <li>When there is an infinite number of solutions, the err flag has a specific value.</li>
-                    <li>The output size gets the input's size.</li>
-                </ul>
-            </li>
-            <li><code>csvRead</code> and <code>csvTextScan</code> are now implemented without extra copies.</li>
-            <li><code>editvar</code> GUI support copy-paste of strings removing quotes.</li>
-            <li><code>calendar</code> can now display formatted calendars.</li>
-            <li><code>xmlSetValues</code> clones <code>setPreferencesValue</code> that is now obsolete.</li>
-            <li><code>unique</code> is upgraded:
-                <ul>
-                    <li>return the number of occurrences of distinct entities found in the input array.</li>
-                    <li>return distinct entities in their initial order (rather than sorted), with the <code>"keepOrder"</code> option.</li>
-                    <li>consider all <code>Nan</code> values as the same one, with the <code>"uniqueNan"</code> option.</li>
-                </ul>
-            </li>
-            <li><code>ellipj</code> function introduced, to compute the <code>sn, cn, dn, ns, nc and nd</code> Jacobi elliptic functions.</li>
-            <li><code>riccati</code> is upgraded:
-                <ul>
-                    <li><code>riccati(H)</code> and <code>riccati(H, E)</code> syntaxes added, to describe the Riccati equation through its Hamiltonian H or (E,H) pencil.</li>
-                    <li>The residual is returned as a new 3rd output argument.</li>
-                    <li>When no solution is found, <code>X=[] | X1=[]</code> is returned instead of yielding an error.</li>
-                </ul>
-            </li>
-            <li><code>hallchart</code> is upgraded:
-                <ul>
-                    <li>The default set of modules is set automatically, according to data bounds.</li>
-                    <li>Handles of the grids and labels are returned. Post-processing them becomes easy.</li>
-                    <li>Named colors accepted; better default colors.</li>
-                    <li>Improved placement of labels.</li>
-                </ul>
-            </li>
-            <li><code>playsnd</code> is upgraded:
-                <ul>
-                    <li>the name of a wav file can now be specified (instead of the sound data).</li>
-                    <li>the input sound can now be repeated a given number of times.</li>
-                    <li>the modal/non-modal processing is improved.</li>
-                </ul>
-            </li>
-            <li><code>nicholschart</code> is improved: more neutral default frame color; improved labels positioning; colors can now be specified by their predefined name or "#RRGGBB" hexa code; a structure of handles is now returned to easily post-process both subframes and the set of labels.</li>
-            <li><code>sciargs</code> returns a column instead of formerly a row.</li>
-            <li>Booleans and encoded integers can now be concatenated together, as in <code>[%f int8(-5)]</code>.</li>
-            <li><code>gsort</code> can now perform multilevel sorting. This noticeably allows sorting completely complex numbers.</li>
-            <li><code>factorial</code> can be used now from n=171 up to n=10^14.</li>
-            <li><code>intersect</code> now supports complex numbers.</li>
-            <li><code>setdiff</code> now supports complex numbers.</li>
-            <li><code>twinkle</code> can now blink together several hierarchically independent objects, like a curve and its labels, etc.</li>
-            <li><code>repmat</code> is improved: more neutral default frame color; improved labels positioning; colors can now be specified by their predefined name or "#RRGGBB" hexa code; a structure of handles is now returned to easily post-process both subframes and the set of labels.</li>
-            <li><code>plot</code> can now work in semi or bi-logarithmic mode with some input logflag.</li>
-            <li><code>plotimplicit</code> function added.</li>
-            <li>The default smarter grid_style value is now 7 instead of 3.</li>
-            <li><code>weekday</code> accepts new date formats and new syntaxes. A language option applying to the day names is now available.</li>
-            <li><code>vectorfind</code> is upgraded:
-                <ul>
-                    <li><code>vectorfind(m, [])</code> now returns <code>[]</code> instead of an error.</li>
-                    <li>A too long needle now returns [] instead of an error.</li>
-                    <li>%nan values never matched. They are now regularly processed, as other values.</li>
-                    <li>A needle shorter than the haystack size can now be used.</li>
-                    <li>A wildcard value matching any value of the haystack can now be specified and used in the needle. Actual matching ranges can then be returned: Options `joker` and `matching` added.</li>
-                    <li>Hypermatrices are now accepted as haystack.</li>
-                    <li>The probing direction can now be numeric: 1, 2, ..</li>
-                    <li>Returned indices can now be formatted with the new option <code>indType</code>.</li>
-                    <li>There were no unit tests. More than 100 tests are added.</li>
-                </ul>
-            </li>
-            <li><code>datafit</code> is now able to fit weighted data. It now supports any gap function vectorized for Data points, and so is much faster. It now accepts any matrix of parameters (not necessarily a colum). It now returns the average Model-to-data distance, and the termination status for the quasi-Newton algo.</li>
-            <li><code>tree_show</code> is upgraded:
-                <ul>
-                    <li>New <code>rootTitle</code> and <code>styles</code> optional inputs.</li>
-                    <li>New <code>arrayByFields</code> option, to allow displaying each array component as an object in its whole.</li>
-                    <li>Improved layout: detailled indices for 2D arrays, simplified symbols, etc.</li>
-                    <li>The content of implicitlist objects, and information for Scilab functions and libraries of functions are now displayed.</li>
-                </ul>
-            </li>
-            <li><code>nchoosek</code> is introduced, to compute the binomial coefficients.</li>
-            <li>The left .\. and right ./. Kronecker divisions are now implemented, for arrays of decimal or complex numbers.</li>
-            <li><code>perms</code> can now build and return only unique permutations, without duplicates.</li>
-            <li>Most of graphic objects can be moved interactively in opened figures.</li>
-            <li><code>circshift</code> is introduced.</li>
-            <li><code>atomsGetInstalledPath</code> is no longer sensitive to the case or completeness of the modules names. Providing the modules versions is now optional.</li>
-            <li><code>function</code> replaces <code>mc</code> as the new overloading code for functions in Scilab language.</li>
+            <li><code>scatter</code> and <code>scatter3d</code> are reforged. New <code>scatter</code> options:
+                <code>&quot;smallOnTop&quot;</code> and <code>&quot;datatips&quot;</code>.</li>
+            <li><code>asciimat</code> now supports input strings of different lengths or including international UTF8
+                extended characters.</li>
+            <li>polynomials can now use a greek letter as variable.</li>
+            <li><code>int2d</code> can now compute direcly a double integral over a rectangle.</li>
+            <li><code>int3d</code> can now compute direcly a triple integral over a cuboid.</li>
         </ul>
         <h2 class="title">Help pages</h2>
         <ul>
-            <li>overhauled/rewritten: <code>bitget, edit, factorial, vectorfind, datafit</code></li>
-            <li>fixed / improved:  <code>bench_run, M_SWITCH, comet, comet3d</code></li>
-            <li>Rewritten: <code>weekday</code></li>
-            <li>Translations added:
-                <ul>
-                    <li>ru_RU: <code>weekday</code></li>
-                </ul>
-            </li>
+            <li>overhauled / rewritten: <code>bitget</code>, <code>edit</code>, <code>factorial</code>,
+                <code>fft</code>, <code>vectorfind</code>, <code>datafit</code>, <code>mgeti</code></li>
+            <li>fixed / improved: <code>bench_run</code> <code>M_SWITCH</code>, <code>comet</code>,
+                <code>comet3d</code>, <code>plot2d</code></li>
+            <li>Rewritten: <code>getdate</code>, <code>weekday</code></li>
         </ul>
 
         <h2 class="title">Bug fixes</h2>
@@ -214,8 +133,8 @@
             Detailed information about those improvements can be found on the <a href="CHANGES.html">CHANGES</a> file.
         </p>
     </div>
-    <hr />
-    <br />
+    <hr>
+    <br>
     <div class="refsection">
         <h3 class="title">Documentation and help</h3>
         <p class="para">If you are new to Scilab, please use
@@ -226,10 +145,10 @@
         <p class="para">The Scilab Team provides also
             some <a href="https://www.scilab.org/tutorials">documentation
                 and tutorials</a>.</p>
-        <br />
+        <br>
     </div>
-    <hr />
-    <br />
+    <hr>
+    <br>
     <div class="refsection">
         <h3 class="title">Other resources</h3>
         <p class="para"><a href="https://www.scilab.org/" class="ulink">Scilab Homepage</a> - Consult Scilab official
@@ -245,7 +164,7 @@
         <p class="para"><a href="https://atoms.scilab.org/" class="ulink">ATOMS</a> - Browse Scilab packaged modules</p>
         <p class="para"><a href="https://fileexchange.scilab.org/" class="ulink">File Exchange</a> - Exchange your
             scripts, results and files.</p>
-        <br />
+        <br>
     </div>
 </body>
 

@@ -1,7 +1,7 @@
-Welcome to Scilab 6.1.0
+Welcome to Scilab 6.1.1
 =======================
 
-This file details the changes between Scilab 6.1.0 (this version), and the previous release 6.0.2.
+This file details the changes between Scilab 6.1.1 (this version), Scilab 6.1.0, and the previous 6.0.2 release.
 For changelogs of earlier releases, please see [Scilab 6.0.2][1].
 
 This file is intended for the specific needs of advanced users, and describes:
