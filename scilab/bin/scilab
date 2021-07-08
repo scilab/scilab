@@ -429,7 +429,7 @@ detect_java_vm() {
 
     JAVA_SHLIB="libjava.so"
 
-    if test $OS == Darwin; then
+    if test $OS = "Darwin"; then
         set_macosx_java_vm
     elif test $IS_SCILAB_BINARY -eq 1; then
         set_embedded_java_vm
