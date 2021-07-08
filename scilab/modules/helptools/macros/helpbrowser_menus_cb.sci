@@ -20,8 +20,7 @@ function helpbrowser_menus_cb(action, param)
         id = basename(url)
     end
     isSection = grep(id, "/^section_/", "r") <> []
-    tmp = msprintf("#^jar:file:/%s/modules/helptools/jar#", SCI)
-    isExternal = grep(url, tmp, "r") == []
+    isExternal = grep(url, "modules/helptools/jar") == []
 
     select action
     case "changeLang"
