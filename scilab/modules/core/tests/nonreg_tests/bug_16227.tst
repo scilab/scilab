@@ -7,6 +7,7 @@
 //
 // <-- Non-regression test for bug 16227 -->
 //
+// <-- WINDOWS ONLY -->
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 //
@@ -17,9 +18,4 @@
 // WSCI was not available among environment variables
 
 assert_checkequal(getenv("WSCI"), WSCI)
-
-if getos()=="Windows" then
-    assert_checktrue(dos("dir %WSCI%"))
-else
-    assert_checkequal(host("ls $WSCI"), 0)
-end
+assert_checktrue(dos("dir %WSCI%"))

@@ -150,8 +150,8 @@ Xb = Xb<5;
 Pb = grand(2,"prm",Xb);
 refPb = gsort(Pb+0,"g","i");
 assert_checkequal ( size(Pb) , [size(Xb) 2] );
-assert_checkequal ( refPb(1:36), zeros(36, 1) );
-assert_checkequal ( refPb(37:72), ones(36, 1) );
+assert_checkequal ( refPb(1:36), zeros(1,36) );
+assert_checkequal ( refPb(37:72), ones(1,36) );
 //
 // Of Ploynomials.
 //

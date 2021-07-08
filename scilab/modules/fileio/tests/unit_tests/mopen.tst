@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 fd = mopen(TMPDIR + filesep() + ['mclose_tst_1','mclose_tst_2'],'wt');
 mputl("test string 1",fd(1));

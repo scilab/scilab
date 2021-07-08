@@ -57,5 +57,5 @@ r = [
    1.00000000000000022
    1.
    ];
-assert_checkequal(coth(x), r);
-assert_checkequal(coth(-x), -r);
+assert_checkalmostequal(coth(x), r, 2*%eps);
+assert_checkalmostequal(coth(-x), -r, 2*%eps);

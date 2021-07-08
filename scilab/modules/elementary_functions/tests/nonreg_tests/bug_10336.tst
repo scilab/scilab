@@ -17,5 +17,6 @@
 
 x=rand(100,1);
 assert_checkequal(rand("info"), "uniform");
-x=rand(100,0,"norm");
-assert_checkequal(rand("info"), "uniform");
+cmd = "x=rand(100,0,""norm"")";
+msg = msprintf("%s: Wrong value for input argument #%d: %s or %s expected.\n","rand",3,"''uniform''","''normal''")
+assert_checkerror(cmd,msg)

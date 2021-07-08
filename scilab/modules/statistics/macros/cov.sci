@@ -155,7 +155,7 @@ function C = cov(x,y,nrmlztn)
     if isvector(x) & isvector(y)
         nobs = length(x)
         if nobs <> length(y)
-            error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected"),"cov", 1, 2));
+            error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"cov", 1, 2));
         end
         r = 1 / (nobs - 1 + nrmlztn);
         mx = mean(x);

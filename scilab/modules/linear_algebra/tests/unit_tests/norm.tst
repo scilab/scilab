@@ -63,7 +63,7 @@ assert_checkalmostequal ( norm(x,"inf") , norm(x,%inf)        , 100*%eps );
 assert_checkalmostequal ( norm(x,"fro") , norm(x,2)           , 100*%eps );
 
 // Matrices
-a = rand(10, 10, "g");
+a = rand(10, 10, "n");
 assert_checkalmostequal ( norm(a,1) , max(sum(abs(a),"r"))               , 100*%eps );
 assert_checkalmostequal ( norm(a,"inf") , max(sum(abs(a),"c"))           , 100*%eps );
 assert_checkalmostequal ( norm(a,%inf) , max(sum(abs(a),"c"))            , 100*%eps );

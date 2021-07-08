@@ -57,6 +57,6 @@ r = [
    0.99999999999999978
    1.
    ];
-assert_checkalmostequal(tanh(x), r, %eps);
-assert_checkalmostequal(tanh(-x), -r, %eps);
+assert_checkalmostequal(tanh(x), r,2*%eps);
+assert_checkalmostequal(tanh(-x), -r,2*%eps);
 assert_checkequal(1/tanh(-0), -%inf);

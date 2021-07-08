@@ -20,8 +20,8 @@ assert_checkequal(v([]), []);
 
 v=int32([1 2 3;4 5 6]);
 assert_checktrue(v(2) == int8(4));
-assert_checktrue(v([1 3]) == int8([1;2]));
-assert_checktrue(v([3 3]) == int8([2;2]));
+assert_checktrue(v([1 3]) == int8([1 2]));
+assert_checktrue(v([3 3]) == int8([2 2]));
 assert_checktrue(v(:) == int8([1;4;2;5;3;6]));
 assert_checktrue(v([]) == []);
 

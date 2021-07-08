@@ -403,7 +403,7 @@ assert_checkalmostequal ( c , e , 40 * %eps , [] , "element" );
 
 assert_checkequal ( tand([-360 -180 0 180 360]) , [0 0 0 0 0] );
 
-assert_checkalmostequal ( tand(30) , 1/sqrt(3) , %eps );
+assert_checkalmostequal ( tand(30) , 1/sqrt(3) , 2*%eps );
 assert_checkalmostequal ( tand(45) , 1         , 2 * %eps );
 assert_checkalmostequal ( tand(60) , sqrt(3)   , 2*%eps );
 
@@ -416,6 +416,6 @@ assert_checkequal ( isnan(tand(%nan))  , %t );
 assert_checkequal ( tand([])  , [] );
 
 assert_checkequal ( tand(0) , 0 );
-assert_checkalmostequal ( tand(30) , 1/sqrt(3) , %eps );
+assert_checkalmostequal ( tand(30) , 1/sqrt(3) , 2*%eps );
 assert_checkalmostequal ( tand(45) , 1         , 2 * %eps );
 assert_checkalmostequal ( tand(60) , sqrt(3)   , 2*%eps );

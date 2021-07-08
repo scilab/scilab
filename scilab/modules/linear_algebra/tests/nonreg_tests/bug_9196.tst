@@ -31,7 +31,7 @@ xexpected=[7129/2520
            113567/144144
            1768477/2450448];
 x=A\b;
-assert_checkalmostequal(x, xexpected, [], 1e-6);
+assert_checkalmostequal(x, xexpected, [], 1e-5);
 
 
 Ac=complex(A,zeros(A));

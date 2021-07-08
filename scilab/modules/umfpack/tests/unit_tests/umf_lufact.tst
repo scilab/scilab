@@ -50,7 +50,7 @@ firstNorm=norm(A*x - b);
 x = umf_lusolve(Lup,b,"Ax=b",A);
 secondNorm=norm(A*x - b);
 
-assert_checkfalse(firstNorm <> secondNorm);
+assert_checktrue(firstNorm > secondNorm);
 
 // don't forget to clear memory
 umf_ludel(Lup)

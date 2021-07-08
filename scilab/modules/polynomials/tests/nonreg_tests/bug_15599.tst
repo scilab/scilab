@@ -16,8 +16,8 @@
 // <-- Short Description -->
 // degree of zero polynomial should be -Inf instead of 0
 
-p=poly(0,'x','coeff');
-q=poly(1,'x','coeff');
+p=poly(0,'s','coeff');
+q=poly(1,'s','coeff');
 assert_checkequal(degree(p),-%inf);
 assert_checkequal(degree([p q q-q 0*%s 0*%i*%s]),[-%inf 0 -%inf -%inf -%inf]);
 assert_checkequal(degree(0),-%inf);

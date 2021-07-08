@@ -7,6 +7,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 fd(1) = mopen(TMPDIR + filesep() + 'mclose_tst_1','wt');
 fd(2) = mopen(TMPDIR + filesep() + 'mclose_tst_2','wt');

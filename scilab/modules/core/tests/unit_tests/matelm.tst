@@ -800,8 +800,8 @@ a=sparse([1 2;-3 4;5 -6]);
 assert_checkequal(cumsum(a), sparse([1,5;-2,9;3,3]));
 assert_checkequal(cumsum(a+0*a), sparse([1,5;-2,9;3,3]));
 a=sparse([1 2;-3 4;5 -6]+0*%i);
-assert_checkequal(cumsum(a), sparse([1,5;-2,9;3,3]+0*%i));
-assert_checkequal(cumsum(a+0*a), sparse([1,5;-2,9;3,3]+0*%i));
+assert_checkequal(cumsum(a), sparse([1,5;-2,9;3,3]));
+assert_checkequal(cumsum(a+0*a), sparse([1,5;-2,9;3,3]));
 
 //cumprod
 a=[1 2;-3 4;5 -6];
