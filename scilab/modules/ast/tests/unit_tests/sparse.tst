@@ -88,6 +88,12 @@ assert_checkequal(full(sp(:, 2:6)), s(:, 2:6));
 assert_checkequal(size(sp(:, 2:6)), size(s(:, 2:6)));
 assert_checkequal(full(sp(:, $)), s(:, $));
 assert_checkequal(size(sp(:, $)), size(s(:, $)));
+assert_checkequal(size(sp([1, 3 ; 2, 3])), size(s([1, 3 ; 2, 3])));
+assert_checkequal(size(sp([1, 2, 3])), size(s([1, 2, 3])));
+assert_checkequal(size(sp([1, 2, 3]')), size(s([1, 2, 3]')));
+assert_checkequal(size(sp([%t, %t ; %t, %t])), size(s([%t, %t ; %t, %t])));
+assert_checkequal(size(sp([%t, %t, %t, %t])), size(s([%t, %t, %t, %t])));
+assert_checkequal(size(sp([%t, %t, %t, %t]')), size(s([%t, %t, %t, %t]')));
 
 //next tests get from old module sparse (Scilab 5.4)
 ij=[1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6];

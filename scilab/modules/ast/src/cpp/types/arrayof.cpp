@@ -1360,8 +1360,10 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             {
                 if ((*_pArgs)[0]->isBool() || (*_pArgs)[0]->isSparseBool())
                 {
-                    //boolean extraction must return a column vector
-                    int piRealDim[2] = { piCountDim[0], 1 };
+                    //result has same shape of index if index is a vector otherwise yield a column
+                    types::GenericType* pGT = (*_pArgs)[0]->getAs<GenericType>();
+                    int piRealDim[2] = { 1, 1 };
+                    piRealDim[(int)(pGT->isVector() && pGT->getRows() == 1)] = piCountDim[0];
                     pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
                 }
                 else
