@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,18 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="help">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="help">
     <refnamediv>
         <refname>help</refname>
-        <refpurpose>on-line help command</refpurpose>
+        <refpurpose>queries and displays help pages in the Scilab help browser</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>help(key)
+        <synopsis>
             help
+            help(key)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,7 +33,7 @@
             <varlistentry>
                 <term>key</term>
                 <listitem>
-                    <para>character string. The requested help page</para>
+                    <para>character string: The requested help page or pattern.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -38,29 +41,140 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>help</literal> without argument displays the hypertext  page
-            containing the list of help chapters.
+            <emphasis role="bold">help</emphasis> opens the last displayed page.
         </para>
         <para>
-            <literal>help(key)</literal> displays the Scilab help file associated with the
-            given  <literal>key</literal>. If no help file is found, <literal>help(key)</literal>
-            automatically launches a search with the <literal>key</literal> word as search arguments.
+            <emphasis role="bold">help key</emphasis> searches for the <varname>key</varname>
+            in the table of known key ids.
+            <itemizedlist>
+                <listitem>
+                    If the key is known: opens the corresponding page. Exact keys are case-sensitive:
+                    For instance, <literal>help type</literal> and <literal>help Type</literal>
+                    open two different pages.
+                    <para/>
+                </listitem>
+                <listitem>
+                    Otherwise: calls <literal>apropos(key)</literal> that lists all pages
+                    including the given case-insensitive <varname>key</varname>, and opens
+                    the first page listed.
+                    The listed pages are ranked according to the frequency of the key occurrences
+                    in the page. The list entries are sorted by decreasing rank.
+                    <para/>
+                    In the <varname>key</varname>, any space or "|" character is considered as a
+                    sub-key separator. Each page including at least one subkey matches the query.
+                    For instance, <literal>help "linear sparse"</literal> will list all pages
+                    including any of the "linear" or "sparse" terms. Pages including both terms
+                    are at the top of the list.
+                </listitem>
+            </itemizedlist>
         </para>
         <para>
-            See <link linkend="man">man</link> for more explanation on how to write new help
-            pages .
+            <note>
+                A preferences option can be activated by Scilab's newcomers coming from Octave or
+                Matlab languages, in the <literal>General => Help and demos</literal> preferences
+                pannel:
+                <programlisting role="example"><![CDATA[
+                preferences
+             ]]></programlisting>
+                If the <emphasis>Redirect Matlab terms to closest Scilab equivalent</emphasis>
+                option is checked, then help queries matching no Scilab reserved
+                keyword but matching a known Matlab/Octave item are automatically redirected
+                to the equivalent Scilab feature and page.
+            </note>
+        </para>
+        <refsect3>
+            <title>Menus</title>
+            <para>
+                <table>
+                <tr>
+                    <th>Language :</th>
+                    <td>
+                        chooses the language of the displayed pages and left summary tree, among
+                        main supported ones.
+                        The current page is immediately updated for the chosen language.
+                        The chosen language is recorded for any forthcoming usage of the browser.
+                        The language used for the menus labels of the help browser is not changed.
+                    </td>
+                </tr>
+                <tr>
+                    <th>Online :</th>
+                    <td>
+                        <emphasis>See this page online</emphasis>: Tries to open the web browser and
+                        targets the current page on the https://help.scilab.org web site, for the
+                        current Scilab version and the current help language. A working internet
+                        connection is required.
+                        <para/>
+                        If the current page is from an external module or is a summary page, the
+                        action is impossible and canceled, and a warning messagebox is displayed.
+                    </td>
+                </tr>
+                <tr>
+                    <th>Issues :</th>
+                    <td>
+                        Tries to open the web browser, and searches on the
+                        https://bugzilla.scilab.org web site reports of issues declared about the
+                        item of the current page.
+                        A working internet connection is required.
+                        <para/>
+                        If the current page is from an external module or is a summary page, the
+                        action is impossible and canceled, and a warning messagebox is displayed.
+                    </td>
+                </tr>
+                </table>
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>Contextual menu</title>
+            <para>
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>Other interactive features</title>
+            <para>
+                The focus is on the displayed page:
+            </para>
+            <table>
+                <tr>
+                    <th align="right">CTRL F :</th>
+                    <td>open a search field (inside the page) at the bottom of the browser.
+                    </td>
+                </tr>
+                <tr>
+                    <th>CTRL mouse wheel :</th>
+                    <td>Zoom in/out the page's content.</td>
+                </tr>
+                <tr>
+                    <th align="right">CTRL + :</th>
+                    <td>Zoom in</td>
+                </tr>
+                <tr>
+                    <th align="right">CTRL - :</th>
+                    <td>Zoom out</td>
+                </tr>
+                <tr>
+                    <th align="right">CTRL W :</th>
+                    <td>closes the browser</td>
+                </tr>
+            </table>
+        </refsect3>
+        <para>
+            <emphasis role="bold">close help</emphasis> closes the help browser.
+        </para>
+        <para>
+            See <link linkend="man">man</link> for more explanation on how to write new help pages .
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-help();
+help
+help type
+help Type
 help plot3d
-help("plot")
-
+help 6.1.1  // lists all pages whose history shows 6.1.1
+help "linear sparse"
  ]]></programlisting>
     </refsection>
-
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
@@ -68,8 +182,42 @@ help("plot")
                 <link linkend="apropos">apropos</link>
             </member>
             <member>
+                <link linkend="head_comments">head_comments</link>
+            </member>
+            <member>
                 <link linkend="man">Scilab documentation format</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <emphasis>Language</emphasis>, <emphasis>Online</emphasis> and
+                            <emphasis>Issues</emphasis> menus and features added.
+                        </listitem>
+                        <listitem>
+                            The languages used for the help browser and for the session are now
+                            independent.
+                        </listitem>
+                        <listitem>
+                            <emphasis>"Redirect Matlab terms to the closest Scilab equivalent"</emphasis>
+                            feature implemented on Preferences.
+                        </listitem>
+                        <listitem>
+                            Loading an ATOMS module and its documentation no longer requires
+                            reopening the help browser to access it.
+                        </listitem>
+                        <listitem>
+                            <literal>close help</literal> implemented.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
