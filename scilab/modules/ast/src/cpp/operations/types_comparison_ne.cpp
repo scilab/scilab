@@ -3422,7 +3422,7 @@ InternalType* compnoequal_LT_LT(T *_pL, U *_pR)
     Bool* pB = new Bool(1, _pL->getSize());
     for (int i = 0; i < _pL->getSize(); i++)
     {
-        pB->set(i, !((*_pL->get(i) == *_pR->get(i)) && (_pL->get(i)->getType() != types::InternalType::ScilabVoid)));
+        pB->set(i, !((*_pL->get(i) == *_pR->get(i))));
     }
 
     return pB;
