@@ -2060,7 +2060,7 @@ GenericType* Sparse::extract(typed_list* _pArgs)
             {
                 iNewRows = piCountDim[0];
             }
-            else if ( (!isScalar() && isVector()) && ((*_pArgs)[0]->isImplicitList() || pGT->isVector()) )
+            else if ( ((!isScalar() && isVector()) && ((*_pArgs)[0]->isImplicitList() || pGT->isVector())) ||  ((*_pArgs)[0]->isBool() || (*_pArgs)[0]->isSparseBool()) ) 
             {
                 if (getRows() == 1)
                 {
