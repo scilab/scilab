@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -1274,6 +1274,11 @@ msgstr ""
 "%s: no puede computarse la norma. La precisión relativa es menor que 1e-3\n"
 "Hinfnorm es probablemente exacto máx sv(D)\n"
 "El sistema tal vez sea todos-pasan"
+
+#, fuzzy, c-format
+msgid "%s: Argument '%s': type real expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el argumento %d: Se esperaba un vector real.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Wrong color specification.\n"

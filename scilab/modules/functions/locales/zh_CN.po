@@ -8,34 +8,34 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-11-02 15:26+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2020-09-09 12:51+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为 'errcatch'。\n"
+msgstr "%s：第%d个输入参数的值错误：应该为 'errcatch'。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为整数。\n"
+msgstr "%s：第%d个输入参数类型错误：应该为整数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为整数或字符串。\n"
+msgstr "%s：第%d个输入参数类型错误：应该为整数或字符串。\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
-msgstr "%s：无法打开文件%s。\n"
+msgstr "%s：不能打开文件%s。\n"
 
 #, c-format
 msgid "%s: Unable to parse macro '%s'"
@@ -61,7 +61,7 @@ msgstr "%s：第%d个输入参数的类型错误：应该为字符串向量。\n
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -74,6 +74,10 @@ msgstr "%s：第%d个输入参数的维度错误：应该为字符串。\n"
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr "%s：不正确的库%s。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -102,6 +106,10 @@ msgstr "%s：请检查：%s\n"
 #, c-format
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s：文件 %s 不存在。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
@@ -141,4 +149,4 @@ msgstr "请使用 %s 替代。"
 
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
-msgstr "该函数将被永久地从 Scilab %s 中移除。"
+msgstr "该函数将被永久地从 Scilab %s 版本中移除。"

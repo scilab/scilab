@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -202,14 +202,10 @@ msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 msgid "%s: The config file ('%s') is not well formatted at line %d\n"
 msgstr "%s: 設定ファイル('%s')の%d行目は整形式ではありません.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Matrix with %s columns expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 行列の型付きリストを指定してくださ"
-"い.\n"
 
-#
-# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 34
 msgid "1 to 3"
 msgstr ""
 
@@ -221,11 +217,9 @@ msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 'user' または 'allusers'  または "
 "'all' を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d (:,3): 'user' or 'allusers' or 'all' expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'user' または 'allusers'  または "
-"'all' を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -298,6 +292,12 @@ msgstr "%s: ディレクトリー '%s' を作成中にエラー\n"
 #, c-format
 msgid "%s: Previously existing file with the same name in '%s'.\n"
 msgstr "%s: '%s' と同じ名前の既存のファイルが存在します.\n"
+
+#
+# File: modules/atoms/macros/atomsInstall.sci, line: 535
+# File: modules/atoms/macros/atomsRemove.sci, line: 365
+msgid "&Toolboxes"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -835,6 +835,17 @@ msgstr ""
 msgid "Download in progress... Please be patient."
 msgstr "ダウンロード中... しばらくお待ちください"
 
+#
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 220
+msgid "Couldn't resolve host name"
+msgstr ""
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: The given path does not exist.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 有効なバージョンではありません.\n"
+
 #, c-format
 msgid "%s: Error: the response status from the URL %s is invalid.\n"
 msgstr "%s: エラー: URL %s からの応答ステータスが不正です.\n"
@@ -1141,11 +1152,3 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: ASCまたはDESCを指定してください.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: All modules version should be "
-#~ "set.\n"
-#~ msgstr ""
-#~ "%s: 入力引数 #%d の値が間違っています: 全てのモジュールのバージョンが設定"
-#~ "される必要があります.\n"

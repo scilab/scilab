@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-02-25 14:32+0000\n"
+"PO-Revision-Date: 2020-03-11 14:43+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -160,6 +160,20 @@ msgstr "%s: Неверное количество выходных аргуме�
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Неверное значение входного параметра №%d.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+
+#
+# File: modules/fileio/sci_gateway/cpp/sci_get_absolute_file_path.cpp, line: 81
+#, c-format
+msgid "%s: Without arguments, this function must be called from a script.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s: Файл %s не открыт в Scilab.\n"
@@ -201,9 +215,14 @@ msgstr ""
 msgid "%s: File not found: '%s'.\n"
 msgstr "%s: Файл не найден: '%s'.\n"
 
-#, c-format
-msgid "%s: Wrong input arguments: '%s' expected.\n"
-msgstr "%s: Неверные входные аргументы: ожидались «%s».\n"
+#, fuzzy, c-format
+msgid "%s: Cannot close file %ls: File is not active.\n"
+msgstr "%s: Не удалось закрыть файл с дескриптором %d: Файл не активен.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалось вещественное число.\n"
 
 #, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
@@ -270,6 +289,14 @@ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалось целочисленное значение.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Incorrect conversion code; c, s, i "
+"or l expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось целочисленное "
+"значение.\n"
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось от %d до %d.\n"
@@ -324,6 +351,10 @@ msgstr "%s: Неверный размер входного параметра �
 #, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s: недопустимое имя файла.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: a single string expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Data mismatch.\n"
@@ -533,69 +564,6 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
 msgstr "%s: Неверный размер входного аргумента №%d: ожидалась строка.\n"
 
-msgid "Import data"
-msgstr ""
-
-msgid "Select a file"
-msgstr ""
-
-msgid "File has a header"
-msgstr ""
-
-msgid "Show all columns"
-msgstr ""
-
-msgid "It can take a long time"
-msgstr ""
-
-msgid "Separator"
-msgstr ""
-
-msgid "Colon"
-msgstr ""
-
-msgid "Comma"
-msgstr ""
-
-msgid "Pipe"
-msgstr ""
-
-msgid "Semicolon"
-msgstr ""
-
-msgid "Space"
-msgstr ""
-
-msgid "Tab"
-msgstr ""
-
-msgid "Decimal"
-msgstr ""
-
-msgid "Point"
-msgstr ""
-
-msgid "Conversion"
-msgstr ""
-
-msgid "Convert to double"
-msgstr ""
-
-msgid "Keep as strings"
-msgstr ""
-
-msgid "Import as variable"
-msgstr ""
-
-msgid "Quit"
-msgstr ""
-
-msgid "Copy function to clipboard"
-msgstr ""
-
-msgid "Cancel preview"
-msgstr ""
-
 #, c-format
 msgid "%s: Options ignored.\n"
 msgstr "%s: Опции проигнорированы.\n"
@@ -633,3 +601,70 @@ msgstr "Не определено"
 
 msgid "The system cannot find the file specified."
 msgstr "Система не может найти указанный файл."
+
+#, c-format
+#~ msgid "%s: Wrong input arguments: '%s' expected.\n"
+#~ msgstr "%s: Неверные входные аргументы: ожидались «%s».\n"
+
+#~ msgid "Import data"
+#~ msgstr "Данные импорта"
+
+#~ msgid "Select a file"
+#~ msgstr "Выберите файл"
+
+#~ msgid "File has a header"
+#~ msgstr "Файл имеет заголовок"
+
+#~ msgid "Show all columns"
+#~ msgstr "Показать все столбцы"
+
+#~ msgid "It can take a long time"
+#~ msgstr "Может потребоваться много времени"
+
+#~ msgid "Separator"
+#~ msgstr "Разделитель"
+
+#~ msgid "Colon"
+#~ msgstr "Двоеточие"
+
+#~ msgid "Comma"
+#~ msgstr "Запятая"
+
+#~ msgid "Pipe"
+#~ msgstr "Вертикальная черта"
+
+#~ msgid "Semicolon"
+#~ msgstr "Точка с запятой"
+
+#~ msgid "Space"
+#~ msgstr "Пробел"
+
+#~ msgid "Tab"
+#~ msgstr "Табуляция"
+
+#~ msgid "Decimal"
+#~ msgstr "Десятичное"
+
+#~ msgid "Point"
+#~ msgstr "Точка"
+
+#~ msgid "Conversion"
+#~ msgstr "Преобразование"
+
+#~ msgid "Convert to double"
+#~ msgstr "Преобразование в тип double"
+
+#~ msgid "Keep as strings"
+#~ msgstr "Оставить как строки"
+
+#~ msgid "Import as variable"
+#~ msgstr "Импортировать как переменную"
+
+#~ msgid "Quit"
+#~ msgstr "Выход"
+
+#~ msgid "Copy function to clipboard"
+#~ msgstr "Копировать функцию в буфер обмена"
+
+#~ msgid "Cancel preview"
+#~ msgstr "Отменить предварительный просмотр"

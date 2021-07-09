@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-24 11:08+0100\n"
+"Revision-Date: 2021-07-09 17:34+0100\n"
 
 #
 # File: modules/data_structures/sci_gateway/cpp/sci_definedfields.cpp, line: 44
@@ -178,13 +178,13 @@ msgid "%s library of %d functions @ %s"
 msgstr ""
 
 #
-# File: modules/data_structures/macros/num2cell.sci, line: 36
+# File: modules/data_structures/macros/num2cell.sci, line: 23
 #, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/data_structures/macros/num2cell.sci, line: 46
+# File: modules/data_structures/macros/num2cell.sci, line: 43
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
 msgstr ""

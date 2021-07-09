@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-01-10 15:21+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2020-09-05 08:13+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
@@ -43,7 +43,7 @@ msgstr "%s：第%d个输入参数的类型错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为非负标量。\n"
+msgstr "%s：第%d个输入参数的值错误：应该为非负标量。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
@@ -371,7 +371,7 @@ msgid "Auto complete keyword"
 msgstr "自动补全关键词"
 
 msgid "Generate Help prototype"
-msgstr ""
+msgstr "生成帮助原型"
 
 msgid "Tabify"
 msgstr "空格转制表符"
@@ -410,7 +410,7 @@ msgid "Paste a column"
 msgstr "粘贴列"
 
 msgid "Repeat selection on column"
-msgstr ""
+msgstr "在列上重复选择"
 
 msgid "Undo"
 msgstr "撤销"
@@ -697,8 +697,9 @@ msgstr "保存历史"
 msgid "Save file"
 msgstr "保存文件"
 
-msgid "Demos"
-msgstr ""
+#, fuzzy
+msgid "Help and demos"
+msgstr "关键词帮助"
 
 msgid "Environment"
 msgstr "环境设置"
@@ -716,7 +717,7 @@ msgid "Recursion limit: "
 msgstr "递推次数： "
 
 msgid "Containers display depth: "
-msgstr ""
+msgstr "容器显示深度： "
 
 msgid "Language setting"
 msgstr "语言设置"
@@ -752,7 +753,7 @@ msgid "Select a layout"
 msgstr "选择布局"
 
 msgid "(Modifying the layout requires to restart Scilab)"
-msgstr ""
+msgstr "（修改布局后需要重新启动Scilab）"
 
 msgid "Save layout on exiting"
 msgstr "退出时保存布局"
@@ -784,7 +785,16 @@ msgstr "操作名"
 msgid "Key binding"
 msgstr "快捷键绑定"
 
+msgid "Demos"
+msgstr "演示"
+
 msgid "The demo interface is dockable"
+msgstr "演示界面是可停靠的。"
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1413
+# File: modules/console/src/console_fake_xml.c, line: 1766
+msgid "Redirect Matlab terms to Scilab closest equivalent"
 msgstr ""
 
 #, c-format
@@ -812,16 +822,16 @@ msgstr "无法改变控制台前景"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr ""
+msgstr "%s：第#%d个输入参数的值错误：应该是'%s'。\n"

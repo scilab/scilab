@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-24 11:08+0100\n"
+"Revision-Date: 2021-07-09 17:34+0100\n"
 
 # File: modules/arnoldi/sci_gateway/c/sci_dnaupd.c, line: 99
 # File: modules/arnoldi/sci_gateway/c/sci_dnaupd.c, line: 117
@@ -229,10 +229,54 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 136
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 186
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
+"square matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 194
+#, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 248
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 255
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 292
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 350
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 262
+#, c-format
+msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
+msgstr ""
+
+#
 # File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 269
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: k must be in the range 1 to N.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 311
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
+" Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
 
 #
@@ -245,9 +289,68 @@ msgid ""
 msgstr ""
 
 #
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 328
+#, c-format
+msgid "%s: Invalid sigma value for complex or non symmetric problem.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 336
+#, c-format
+msgid "%s: Invalid sigma value for real symmetric problem.\n"
+msgstr ""
+
+#
 # File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 365
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 389
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 397
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: %s must be an integer positive "
+"value.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 419
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 427
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 450
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 459
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 466
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 486
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 511
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 522
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 543
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
+"boolean.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 530
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 551
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
 msgstr ""
 
 #
@@ -265,9 +368,39 @@ msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
 msgstr ""
 
 #
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 629
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 639
+#, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 650
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Start vector %s must be real for real "
+"problems.\n"
+msgstr ""
+
+#
 # File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 695
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 734
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
+"must be k < NCV <= N.\n"
 msgstr ""
 
 #
@@ -276,6 +409,30 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
 "must be k + 2 < NCV <= N.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 744
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
+"+ 1 < NCV <= N.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 753
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real symmetric problems, k must "
+"be an integer in the range 1 to N - 1.\n"
+msgstr ""
+
+#
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 757
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real non symmetric or complex "
+"problems, k must be an integer in the range 1 to N - 2.\n"
 msgstr ""
 
 #
@@ -298,230 +455,17 @@ msgid "%s: Error with %s: info = %d \n"
 msgstr ""
 
 #
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 791
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 795
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 800
+#, c-format
+msgid "%s: Error with %s: unknown mode returned.\n"
+msgstr ""
+
+#
 # File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 843
 # File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 878
 # File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 896
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-# File: modules/arnoldi/macros/eigs.sci, line: 17
-#, c-format
-msgid "%s : Wrong number of input arguments : %d to %d expected.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 22
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A full or sparse square matrix or a "
-"function expected"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 37
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A positive integer expected if the "
-"first input argument is a function."
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 88
-# File: modules/arnoldi/macros/eigs.sci, line: 160
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A structure expected"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 91
-#, c-format
-msgid ""
-"%s: Wrong type for input argument: If A is a matrix, use opts with tol, "
-"maxiter, ncv, resid, cholB"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 163
-#, c-format
-msgid ""
-"%s: Wrong type for input argument: If A is a function, use opts with tol, "
-"maxiter, ncv, resid, cholB, issym"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 281
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 287
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
-" Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 299
-# File: modules/arnoldi/macros/eigs.sci, line: 753
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 325
-# File: modules/arnoldi/macros/eigs.sci, line: 779
-#, c-format
-msgid "%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 350
-# File: modules/arnoldi/macros/eigs.sci, line: 804
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
-"must be k + 2 < NCV < N.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 396
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Start vector %s must be complex for "
-"complex problems.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 422
-# File: modules/arnoldi/macros/eigs.sci, line: 878
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: if opts.cholB is true, B must be "
-"upper triangular.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 435
-# File: modules/arnoldi/macros/eigs.sci, line: 890
-#, c-format
-msgid ""
-"%s: Impossible to use the Cholesky factorization with complex sparse "
-"matrices.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 506
-# File: modules/arnoldi/macros/eigs.sci, line: 511
-# File: modules/arnoldi/macros/eigs.sci, line: 517
-# File: modules/arnoldi/macros/eigs.sci, line: 588
-# File: modules/arnoldi/macros/eigs.sci, line: 605
-# File: modules/arnoldi/macros/eigs.sci, line: 641
-# File: modules/arnoldi/macros/eigs.sci, line: 948
-# File: modules/arnoldi/macros/eigs.sci, line: 953
-# File: modules/arnoldi/macros/eigs.sci, line: 959
-# File: modules/arnoldi/macros/eigs.sci, line: 1057
-# File: modules/arnoldi/macros/eigs.sci, line: 1074
-# File: modules/arnoldi/macros/eigs.sci, line: 1110
-#, c-format
-msgid "%s: Error with %s: info = %d.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 675
-# File: modules/arnoldi/macros/eigs.sci, line: 679
-#, c-format
-msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 714
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: For real symmetric problems, k must "
-"be in the range 1 to N - 1.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 718
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: For real non symmetric or complex "
-"problems, k must be in the range 1 to N - 2.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 729
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a scalar expected.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 736
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a string expected.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 740
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
-" Sigma must be one of %s, %s, %s, %s or %s.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 742
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
-" Sigma must be one of %s, %s, %s, %s, %s or %s.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 790
-#, c-format
-msgid ""
-"%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 842
-#, c-format
-msgid ""
-"%s: Wrong dimension for input argument #%d: Start vector opts.resid must be "
-"N by 1.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 848
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Start vector opts.resid must be real "
-"for real problems.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 852
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Start vector opts.resid must be "
-"complex for complex problems.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 1048
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: n does not match rows number of "
-"matrix A.\n"
-msgstr ""
-
-#
-# File: modules/arnoldi/macros/eigs.sci, line: 1050
-#, c-format
-msgid "%s: Wrong type or value for input arguments.\n"
 msgstr ""

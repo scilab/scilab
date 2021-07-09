@@ -15,7 +15,25 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-18 16:36+0100\n"
+"Revision-Date: 2021-07-09 17:35+0100\n"
+
+#
+# File: modules/statistics/sci_gateway/cpp/sci_percent_cov.cpp, line: 35
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected."
+msgstr ""
+
+#
+# File: modules/statistics/sci_gateway/cpp/sci_percent_cov.cpp, line: 43
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+
+#
+# File: modules/statistics/sci_gateway/cpp/sci_percent_cov.cpp, line: 50
+#, c-format
+msgid "%s: Wrong dimensions for input argument #%d: A scalar expected.\n"
+msgstr ""
 
 #
 # File: modules/statistics/src/c/CdfBase.c, line: 129
@@ -74,6 +92,19 @@ msgid ""
 "results.\n"
 msgstr ""
 
+# File: modules/statistics/macros/%sp_mean.sci, line: 24
+#, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/%sp_mean.sci, line: 32
+# File: modules/statistics/macros/geomean.sci, line: 37
+# File: modules/statistics/macros/stdev.sci, line: 77
+#, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
 #
 # File: modules/statistics/macros/binomial.sci, line: 36
 #, c-format
@@ -119,13 +150,12 @@ msgstr ""
 # File: modules/statistics/macros/geomean.sci, line: 20
 # File: modules/statistics/macros/harmean.sci, line: 36
 # File: modules/statistics/macros/harmean.sci, line: 54
+# File: modules/statistics/macros/histc.sci, line: 66
 # File: modules/statistics/macros/nand2mean.sci, line: 36
 # File: modules/statistics/macros/nanmean.sci, line: 34
 # File: modules/statistics/macros/nanmeanf.sci, line: 40
 # File: modules/statistics/macros/nanreglin.sci, line: 22
 # File: modules/statistics/macros/reglin.sci, line: 23
-# File: modules/statistics/macros/sample.sci, line: 35
-# File: modules/statistics/macros/samplef.sci, line: 44
 # File: modules/statistics/macros/show_pca.sci, line: 27
 # File: modules/statistics/macros/stdev.sci, line: 37
 # File: modules/statistics/macros/stdevf.sci, line: 39
@@ -164,6 +194,7 @@ msgstr ""
 
 #
 # File: modules/statistics/macros/correl.sci, line: 55
+# File: modules/statistics/macros/cov.sci, line: 158
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected"
 msgstr ""
@@ -187,16 +218,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/cov.sci, line: 106
-# File: modules/statistics/macros/cov.sci, line: 118
-# File: modules/statistics/macros/cov.sci, line: 155
-# File: modules/statistics/macros/cov.sci, line: 158
+# File: modules/statistics/macros/cov.sci, line: 100
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/cov.sci, line: 107
+# File: modules/statistics/macros/cov.sci, line: 145
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/cov.sci, line: 121
+# File: modules/statistics/macros/cov.sci, line: 113
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: an integer or a real matrix "
@@ -204,32 +239,16 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/cov.sci, line: 128
-# File: modules/statistics/macros/cov.sci, line: 178
+# File: modules/statistics/macros/cov.sci, line: 126
+# File: modules/statistics/macros/cov.sci, line: 151
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/cov.sci, line: 139
-# File: modules/statistics/macros/cov.sci, line: 142
-# File: modules/statistics/macros/cov.sci, line: 167
-# File: modules/statistics/macros/cov.sci, line: 170
-#, c-format
-msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
-msgstr ""
-
-#
-# File: modules/statistics/macros/cov.sci, line: 161
-# File: modules/statistics/macros/cov.sci, line: 173
+# File: modules/statistics/macros/cov.sci, line: 148
 #, c-format
 msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
-msgstr ""
-
-#
-# File: modules/statistics/macros/cov.sci, line: 187
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
 msgstr ""
 
 #
@@ -254,64 +273,93 @@ msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/geomean.sci, line: 37
-# File: modules/statistics/macros/stdev.sci, line: 77
-#, c-format
-msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-
-#
-# File: modules/statistics/macros/histc.sci, line: 23
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-
-#
-# File: modules/statistics/macros/histc.sci, line: 28
-#, c-format
-msgid "%s: Wrong type of input argument #%d: A single boolean expected.\n"
-msgstr ""
-
-#
-# File: modules/statistics/macros/histc.sci, line: 36
-# File: modules/statistics/macros/histc.sci, line: 43
-# File: modules/statistics/macros/stdev.sci, line: 101
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr ""
-
-#
-# File: modules/statistics/macros/histc.sci, line: 51
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
-msgstr ""
-
-#
-# File: modules/statistics/macros/histc.sci, line: 53
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr ""
-
-#
-# File: modules/statistics/macros/histc.sci, line: 65
+# File: modules/statistics/macros/histc.sci, line: 76
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
+"%s: data are now expected in argument #1 => arguments #1 and #2 switched\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/histc.sci, line: 104
+#, c-format
+msgid "%s: normalization boolean argument #3 is obsolete. %s option used.\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/histc.sci, line: 110
+#, c-format
+msgid "%s: Argument #%d: %s\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/histc.sci, line: 127
+#, c-format
+msgid "%s: Argument #%d: Text expected.\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/histc.sci, line: 140
+#, c-format
+msgid "%s: Data in argument #%d: Numbers or polynomials or texts expected.\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/histc.sci, line: 162
+#, c-format
+msgid "%s: data have only %inf or/and %nan values.\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/histc.sci, line: 236
+#, c-format
+msgid "%s: Argument #%d: wrong value for binning algo"
+msgstr ""
+
+#
+# File: modules/statistics/macros/histc.sci, line: 260
+#, c-format
+msgid ""
+"%s: Argument #2: Please provide bins edges or values or leave choosing "
+"default bins.\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/histc.sci, line: 266
+#, c-format
+msgid "%s: Argument #%d: non-zero decimal integer expected.\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/histc.sci, line: 269
+#, c-format
+msgid "%s: Argument #%d: decimal number > -Inf expected.\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/histc.sci, line: 321
+# File: modules/statistics/macros/histc.sci, line: 333
+# File: modules/statistics/macros/histc.sci, line: 366
+# File: modules/statistics/macros/histc.sci, line: 373
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same types expected.\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/histc.sci, line: 325
+#, c-format
+msgid "%s: Argument #%d: Elements must be sorted in increasing order.\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/histc.sci, line: 338
+#, c-format
+msgid "%s: Argument #%d: Elements must be in increasing order.\n"
 msgstr ""
 
 #
 # File: modules/statistics/macros/iqr.sci, line: 38
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr ""
-
-#
-# File: modules/statistics/macros/iqr.sci, line: 53
-#, c-format
-msgid ""
-"%s: Wrong dimensions for input argument #%d: A column vector or matrix "
-"expected.\n"
 msgstr ""
 
 #
@@ -373,13 +421,6 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/median.sci, line: 30
-# File: modules/statistics/macros/quart.sci, line: 32
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-
-#
 # File: modules/statistics/macros/median.sci, line: 50
 #, c-format
 msgid ""
@@ -389,7 +430,6 @@ msgstr ""
 
 #
 # File: modules/statistics/macros/mvcorrel.sci, line: 31
-# File: modules/statistics/macros/samwr.sci, line: 22
 # File: modules/statistics/macros/thrownan.sci, line: 30
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -426,8 +466,6 @@ msgstr ""
 
 #
 # File: modules/statistics/macros/nanmeanf.sci, line: 51
-# File: modules/statistics/macros/sample.sci, line: 54
-# File: modules/statistics/macros/samplef.sci, line: 103
 # File: modules/statistics/macros/variancef.sci, line: 135
 #, c-format
 msgid ""
@@ -481,42 +519,6 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/samplef.sci, line: 49
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
-msgstr ""
-
-#
-# File: modules/statistics/macros/samplef.sci, line: 61
-#, c-format
-msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
-msgstr ""
-
-#
-# File: modules/statistics/macros/samplef.sci, line: 77
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Same number of rows of the second "
-"input argument expected.\n"
-msgstr ""
-
-#
-# File: modules/statistics/macros/samplef.sci, line: 91
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Same number of columns of the second "
-"input argument expected.\n"
-msgstr ""
-
-#
-# File: modules/statistics/macros/samwr.sci, line: 27
-#, c-format
-msgid ""
-"%s: Wrong value of input argument #%d: Lower than or equal to size of input "
-"argument #%d expected.\n"
-msgstr ""
-
-#
 # File: modules/statistics/macros/show_pca.sci, line: 33
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
@@ -542,6 +544,12 @@ msgstr ""
 # File: modules/statistics/macros/stdev.sci, line: 43
 #, c-format
 msgid "%s: Argument #%d: Array of real numbers expected.\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/stdev.sci, line: 101
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
 #

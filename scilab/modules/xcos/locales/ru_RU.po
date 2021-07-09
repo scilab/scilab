@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-19-01 07:04+0000\n"
+"PO-Revision-Date: 2021-03-06 15:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: ru\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -149,7 +149,7 @@ msgid "Equations"
 msgstr "Уравнения"
 
 msgid "Discretes"
-msgstr ""
+msgstr "Дискреты"
 
 msgid "Inputs"
 msgstr "Входы"
@@ -286,7 +286,7 @@ msgid "Block Parameters"
 msgstr "Параметры блока"
 
 msgid "Selection to superblock"
-msgstr ""
+msgstr "Выбор суперблока"
 
 msgid "Superblock mask"
 msgstr "Маска суперблока"
@@ -307,13 +307,13 @@ msgid "Save block GUI"
 msgstr "Сохранить как блок GUI"
 
 msgid "matches"
-msgstr ""
+msgstr "совпадает с"
 
 msgid "Previous"
-msgstr ""
+msgstr "Предыдущий"
 
 msgid "Search"
-msgstr ""
+msgstr "Поиск"
 
 msgid "Searching..."
 msgstr "Поиск…"
@@ -442,7 +442,7 @@ msgid "Font style"
 msgstr "Стиль шрифта"
 
 msgid "Block legend"
-msgstr ""
+msgstr "Легенда блока"
 
 msgid "Image path"
 msgstr "Изображение"
@@ -520,7 +520,7 @@ msgid "Signal Routing"
 msgstr "Маршрутизация сигналов"
 
 msgid "Recently Used Blocks"
-msgstr ""
+msgstr "Недавно использованные блоки"
 
 msgid "User-Defined Functions"
 msgstr "Пользовательские функции"
@@ -564,11 +564,12 @@ msgstr "Отменить"
 msgid "Reset to default"
 msgstr "Сбросить на значения по умолчанию"
 
+#, fuzzy
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
 "block definitions using Scilab instructions.<br/>These instructions are "
-"evaluated once confirmed (i.e. you click on OK and every time the diagram is "
-"loaded)."
+"evaluated once confirmed (i.e. you click on OK), and every time the diagram "
+"is run."
 msgstr ""
 "Вы можете здесь ввести инструкции Scilab для определения символических "
 "параметров, используемых в определениях блока, использующего инструкции "
@@ -673,13 +674,13 @@ msgid "Middle"
 msgstr "По середине"
 
 msgid "Block edge"
-msgstr ""
+msgstr "Край блока"
 
 msgid "Block background"
-msgstr ""
+msgstr "Фон блока"
 
 msgid "Legend color"
-msgstr ""
+msgstr "Цвет легенды"
 
 msgid "Link Style"
 msgstr "Стиль соединений"
@@ -899,37 +900,37 @@ msgid "Opar: "
 msgstr "Opar: "
 
 msgid "Datatype: "
-msgstr ""
+msgstr "Тип данных: "
 
 msgid "Implicit: "
-msgstr ""
+msgstr "Неявно: "
 
 msgid "Source datatype: "
-msgstr ""
+msgstr "Тип данных исходника: "
 
 msgid "Target datatype: "
-msgstr ""
+msgstr "Тип данных назначения: "
 
 msgid "Label: "
 msgstr "Метка: "
 
 msgid "Optimal"
-msgstr ""
+msgstr "Оптимальный"
 
 msgid "Auto-Position Block"
-msgstr ""
+msgstr "Блок автопозиции"
 
 msgid "Split Block"
-msgstr ""
+msgstr "Блок разделения"
 
 msgid "Auto-Position Split Block"
-msgstr ""
+msgstr "Блок разделения автопозиции"
 
 msgid "A one-line description of the block"
-msgstr ""
+msgstr "Однолинейное описание блока"
 
 msgid "Annotation (or comment) attached to the object"
-msgstr ""
+msgstr "Аннотация (или комментарий), прикреплённая к объекту"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -958,7 +959,7 @@ msgid "Water tank"
 msgstr "Резервуар для воды"
 
 msgid "Discrete Controller"
-msgstr ""
+msgstr "Дискретный контроллер"
 
 msgid "Kalman Filter"
 msgstr "Калмановский фильтр"
@@ -967,7 +968,7 @@ msgid "Discrete Kalman Filter"
 msgstr "Дискретный калмановский фильтр"
 
 msgid "Cont.Plant-Hybrid Observer"
-msgstr ""
+msgstr "Наблюдатель Cont.Plant-Hybrid"
 
 msgid "Temperature Controller"
 msgstr "Контроллер температуры"
@@ -994,13 +995,13 @@ msgid "OpAmp amplifier"
 msgstr "Операционный усилитель"
 
 msgid "Switched capacitor integrator"
-msgstr ""
+msgstr "Интегратор с переключаемым конденсатором"
 
 msgid "DC/DC Buck Converter"
-msgstr ""
+msgstr "Преобразователь-ограничитель DC/DC"
 
 msgid "DC/DC Boost Converter"
-msgstr ""
+msgstr "Повышающий преобразователь DC/DC"
 
 msgid "Colpitts oscillator"
 msgstr "емкостной трёхточечный генератор"
@@ -1018,19 +1019,19 @@ msgid "And"
 msgstr "И"
 
 msgid "Automotive Suspension"
-msgstr ""
+msgstr "Автомобильная подвеска"
 
 msgid "Ball on a Platform"
 msgstr "Шар на платформе"
 
 msgid "Bouncing Ball"
-msgstr ""
+msgstr "Подпрыгивающий мяч"
 
 msgid "Chaos Modelica"
-msgstr ""
+msgstr "Modelica хаоса"
 
 msgid "Hydraulics blocks"
-msgstr ""
+msgstr "Блоки гидравлики"
 
 msgid "RLC circuit"
 msgstr "RLC-цепочка"
@@ -1039,19 +1040,19 @@ msgid "Heat conduction in a rod"
 msgstr "Теплопроводность в стержне"
 
 msgid "Second order rotational system"
-msgstr ""
+msgstr "Система вращения второго порядка"
 
 msgid "Old Gain Block"
-msgstr ""
+msgstr "Старый блок усиления"
 
 msgid "Optimal link route"
-msgstr ""
+msgstr "Оптимальный маршрут связи"
 
 msgid "Optimal split block position"
-msgstr ""
+msgstr "Оптимальное положение блока разделения"
 
 msgid "Standard demos"
-msgstr ""
+msgstr "Стандартные демонстрации"
 
 msgid "Control Systems"
 msgstr "Система управления"
@@ -1063,19 +1064,19 @@ msgid "Mechanical Systems"
 msgstr "Механические системы"
 
 msgid "Modelica demos"
-msgstr ""
+msgstr "Демонстрации Modelica"
 
 msgid "Old demos"
-msgstr ""
+msgstr "Старые демонстрации"
 
 msgid "Simple Demo"
-msgstr ""
+msgstr "Простые демонстрации"
 
 msgid "Bouncing Balls"
-msgstr ""
+msgstr "Скачущие мячи"
 
 msgid "Simple Thermostat"
-msgstr ""
+msgstr "Простой термостат"
 
 msgid "Table Lookup"
 msgstr "Поиск в таблице"
@@ -1102,10 +1103,10 @@ msgid "Goto/From blocks"
 msgstr "Goto/From-блоки"
 
 msgid "Event demos"
-msgstr ""
+msgstr "Демонстрации событий"
 
 msgid "Optimal positions"
-msgstr ""
+msgstr "Оптимальные положения"
 
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
@@ -1336,34 +1337,34 @@ msgid "Stopped after block:"
 msgstr "Остановлено после блока:"
 
 msgid "State derivative computation"
-msgstr ""
+msgstr "Вычисление производной состояния"
 
 msgid "Regular outputs update"
-msgstr ""
+msgstr "Обновление обычных портов вывода"
 
 msgid "States update on discrete event"
-msgstr ""
+msgstr "Обновление состояний на дискретном событии"
 
 msgid "Output activation dates"
-msgstr ""
+msgstr "Даты активации вывода"
 
 msgid "Initialization"
 msgstr "Инициализация"
 
 msgid "Ending"
-msgstr ""
+msgstr "Окончание"
 
 msgid "ReInitialization"
-msgstr ""
+msgstr "Повторная инициализация"
 
 msgid "Continuous states properties update"
-msgstr ""
+msgstr "Обновление свойств непрерывных состояний"
 
 msgid "Zero crossing surfaces computation"
-msgstr ""
+msgstr "Вычисление поверхностей пересекающих ноль"
 
 msgid "Residual computation"
-msgstr ""
+msgstr "Вычисление вычетов"
 
 msgid "&File"
 msgstr "&Файл"
@@ -1384,7 +1385,7 @@ msgid "Break point conditions"
 msgstr "Условия точки останова"
 
 msgid "Break on selected flags"
-msgstr ""
+msgstr "Разрыв на выбранных флагах"
 
 msgid "After call"
 msgstr "После вызова"
@@ -1393,22 +1394,22 @@ msgid "Before call"
 msgstr "Перед вызовом"
 
 msgid "After date"
-msgstr ""
+msgstr "После даты"
 
 msgid "On the Scilab condition above"
-msgstr ""
+msgstr "По условиям Scilab выше"
 
 msgid "Current simulation state"
-msgstr ""
+msgstr "Текущее состояние симуляции"
 
 msgid "scs_m block path:"
-msgstr ""
+msgstr "путь блока scs_m:"
 
 msgid "Time:"
 msgstr "Время:"
 
 msgid "Flag:"
-msgstr ""
+msgstr "Флаг:"
 
 msgid "End debug"
 msgstr "Конец отладки"

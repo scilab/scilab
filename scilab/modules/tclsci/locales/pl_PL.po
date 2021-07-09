@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2011-10-20 14:18+0000\n"
 "Last-Translator: Grzegorz Szostek <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: pl\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
 msgstr ""
@@ -139,8 +139,7 @@ msgstr ""
 "Inicjalizacja TCL nieudana !\n"
 
 msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
-msgstr ""
-"Błąd Tcl: Nie można utworzyć interpretatora Tcl (Tcl_CreateInterp).\n"
+msgstr "Błąd Tcl: Nie można utworzyć interpretatora Tcl (Tcl_CreateInterp).\n"
 
 #, c-format
 msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
@@ -235,6 +234,23 @@ msgstr ""
 #, c-format
 msgid "%s: Slave interpreter already exists.\n"
 msgstr "%s: Podrzędny (slave) interpreter już istnieje.\n"
+
+#
+# File: modules/tclsci/macros/ged_move_entity.sci, line: 38
+msgid "Mouse moving picker ON => Console LOCKED"
+msgstr ""
+
+#
+# File: modules/tclsci/macros/ged_move_entity.sci, line: 39
+msgid "On a figure: Click left to get and set. Click middle to QUIT...\n"
+msgstr ""
+
+#
+# File: modules/tclsci/macros/ged_move_entity.sci, line: 192
+msgid ""
+"\n"
+"--> // Moving picker OFF => Back to the console.\n"
+msgstr ""
 
 #, c-format
 msgid "Error %s while loading library %s"

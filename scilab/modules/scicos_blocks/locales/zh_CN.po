@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-10-15 12:09+0000\n"
-"Last-Translator: GuoZhiqiang <Unknown>\n"
+"PO-Revision-Date: 2020-08-22 13:32+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 msgid "overflow error"
 msgstr "溢出错误"
@@ -131,141 +131,141 @@ msgid "Set %s block parameters"
 msgstr "设置%s块的参数"
 
 msgid "Tag"
-msgstr ""
+msgstr "标签"
 
 msgid "Tag Visibility must be between 1 and 3"
-msgstr ""
+msgstr "标签可见性必须介于1到3之间"
 
 msgid "Goto Tag"
-msgstr ""
+msgstr "跳转标签"
 
 msgid "Number of output ports or vector of sizes"
-msgstr ""
+msgstr "输出端口数或大小向量"
 
 msgid "The block must have from 2 to 31 output ports"
-msgstr ""
+msgstr "该块必须具有2到31个输出端口"
 
 msgid "The block must have from 2 to 31 output ports.<br>size 0 is not allowed"
-msgstr ""
+msgstr "该块必须具有2到31个输出端口。<br>且不允许大小为0。"
 
 msgid "The block must have from 2 to 8 output ports"
-msgstr ""
+msgstr "该块必须具有2至8个输出端口"
 
 msgid "The block must have from 2 to 8 output ports.<br>size 0 is not allowed."
-msgstr ""
+msgstr "块必须具有2到8个输出端口。且不允许大小为0。"
 
 msgid "Number of output event ports"
-msgstr ""
+msgstr "输出事件端口数"
 
 msgid "The block must have at least two output ports"
-msgstr ""
+msgstr "该块必须至少有两个输出端口"
 
 msgid "Indices to extract"
-msgstr ""
+msgstr "提取指数"
 
 msgid "Number of outputs"
-msgstr ""
+msgstr "输出数目"
 
 msgid "The initial connected input is not a valid input port number"
-msgstr ""
+msgstr "初始连接的输入不是有效的输入端口号"
 
 msgid "Datatype (1= real double  2=Complex 3=int32 ...)"
-msgstr ""
+msgstr "数据类型(1 =双精度实数，2 =复数，3 = int32 ...)"
 
 msgid "Datatype not supported"
-msgstr ""
+msgstr "不支持的数据类型"
 
 msgid "Number of input ports or vector of sizes"
-msgstr ""
+msgstr "输入端口数或向量大小"
 
 msgid "The block must have from 2 to 31 input ports"
-msgstr ""
+msgstr "该块必须具有2到31个输入端口"
 
 msgid ""
 "The block must have from 2 to 31 input ports.<br>size 0 is not allowed. "
-msgstr ""
+msgstr "该块必须具有2到31个输入端口。且不允许大小为0。 "
 
 msgid "Block must have from 2 to 8 input ports"
-msgstr ""
+msgstr "模块必须具有2至8个输入端口"
 
 msgid "The block must have from 2 to 8 input ports.<br>size 0 is not allowed."
-msgstr ""
+msgstr "该块必须具有2到8个输入端口。<br> 且不允许大小为0。"
 
 msgid "Number of inputs"
-msgstr ""
+msgstr "输入数目"
 
 msgid "Number of inputs >=1 expected"
-msgstr ""
+msgstr "输入数目应该大于等于1"
 
 msgid "The zero base indexing must be 1 or 0"
-msgstr ""
+msgstr "索引最初值必须为1或0"
 
 msgid "Unknown rounding rule"
-msgstr ""
+msgstr "未知的取整规则"
 
 msgid "number of inputs"
-msgstr ""
+msgstr "输入数目"
 
 msgid "Size of output (-1: if don't know)"
-msgstr ""
+msgstr "输出大小(-1：如果不确定)"
 
 msgid "The size of output must be -1 or > 0"
-msgstr ""
+msgstr "输出的大小必须为-1或大于0"
 
 msgid "Datatype (1= real double  2=Complex 3=int32 ..)"
-msgstr ""
+msgstr "数据类型(1=双精度实数，2 =复数，3 = int32 ..)"
 
 msgid "Unknown Datatype"
-msgstr ""
+msgstr "未知的数据类型"
 
 msgid "Pass first input if: u2>=a (0), u2>a (1), u2~=a (2)"
-msgstr ""
+msgstr "如果满足以下条件，则通过第一个输入： u2>=a (0)，u2>a (1)， u2~=a (2)"
 
 msgid "Datatype (1=real double  2=complex 3=int32 ...)"
-msgstr ""
+msgstr "数据类型(1 =双精度实数，2 =复数，3 = int32 ...)"
 
 msgid "Connected input"
-msgstr ""
+msgstr "已连接输入"
 
 msgid "Initial Voltage"
-msgstr ""
+msgstr "初始电压"
 
 msgid "Saturation current (A)"
-msgstr ""
+msgstr "饱和电流 (A)"
 
 msgid "G1: Gyration conductance"
-msgstr ""
+msgstr "G1：回旋电导"
 
 #, c-format
 msgid "Set %s block parameters\n"
-msgstr ""
+msgstr "设置%s块参数\n"
 
 msgid "Width [m]"
-msgstr ""
+msgstr "宽度 [m]"
 
 msgid "Bf  : Forward beta"
-msgstr ""
+msgstr "Bf：正向beta"
 
 msgid "Open Loop Gain"
-msgstr ""
+msgstr "开环增益"
 
 msgid "Amplitude (Volt)"
-msgstr ""
+msgstr "振幅(Volt)"
 
 msgid "non-ideal electrical switch"
-msgstr ""
+msgstr "非理想电气开关"
 
 msgid "Resistance in On state (Ohm)"
-msgstr ""
+msgstr "接通状态下的电阻 (Ohm)"
 
 msgid "Frequency (Hz)"
-msgstr ""
+msgstr "频率 (Hz)"
 
 msgid "Set final simulation time"
-msgstr ""
+msgstr "设定最终仿真时间"
 
 msgid "Final simulation time"
-msgstr ""
+msgstr "最终仿真时间"
 
 msgid ""
 "Set Event Delay block parameters<br><br>Delay is the delay between an input "
@@ -274,12 +274,15 @@ msgid ""
 "initial output event' gives the date of this event.<br>&nbsp; Set a negative "
 "value to mind only the input events.<br><br>"
 msgstr ""
+"设置事件延迟块参数<br> <br>延迟是输入事件和生成的输出事件之间的延迟。<br> 块"
+"可以在任何输入事件之前生成最初输出事件。<br>“初始输出事件的时间点”给出了此事"
+"件的时间点。<br> 而设置为负值是指仅注意输入事件。<br> <br>"
 
 msgid "Delay"
-msgstr ""
+msgstr "延迟"
 
 msgid "Delay must be positive"
-msgstr ""
+msgstr "延迟值必须为正值"
 
 msgid ""
 "Set Event Delay block parameters<br><br>Delay is the delay between an input "
@@ -288,193 +291,139 @@ msgid ""
 "gives the date of this event.<br>&nbsp;&nbsp;Set a negative value if no "
 "initial event is required.<br><br>"
 msgstr ""
+"设置事件延迟块参数<br> <br>延迟指是输入事件与生成的输出事件之间的延迟。<br>块"
+"可以在任何输入事件之前生成最初的输出事件。<br>“初始输出事件的时间点”给出此事"
+"件的时间点。<br>如果不需要初始事件，则将其设置为一个负值。<br> <br>"
 
 msgid "Set Event time"
-msgstr ""
+msgstr "设置事件时间"
 
 msgid "Event Time"
-msgstr ""
+msgstr "事件时间"
 
 msgid "Set parameter of variable event delay"
-msgstr ""
+msgstr "设置可变事件延迟的参数"
 
 msgid "Initial event firing time (<0 if none)"
-msgstr ""
+msgstr "初始事件触发时间 (如果没有则<0)"
 
 msgid "State on halt"
-msgstr ""
+msgstr "停止状态"
 
 msgid "Inherit (1: no, 0: yes)"
-msgstr ""
+msgstr "继承 (1：否，0：是)"
 
 msgid "Basic period (1/f)"
-msgstr ""
+msgstr "基础间隔 (1/f)"
 
 msgid "Sample time"
-msgstr ""
+msgstr "采样时间"
 
 msgid "The offset and frequency must have the same size"
-msgstr ""
+msgstr "偏移和频率必须具有相同的大小"
 
 msgid "The frequency must be a positive number"
-msgstr ""
+msgstr "频率必须为正数"
 
 msgid "The |Offset| must be less than the Frequency"
-msgstr ""
+msgstr "|偏移量| 必须小于频率"
 
 msgid "Set frequency division block parameters"
-msgstr ""
+msgstr "设置分频块参数"
 
 msgid "Phase (0 to division factor -1)"
-msgstr ""
+msgstr "相位 (0至分频因子-1)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 38
 msgid "RESERVOIR parameters"
-msgstr ""
+msgstr "油箱参数"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 39
 msgid "Pressure at the reservoir surface : Patm (Pa)"
-msgstr ""
+msgstr "油箱表面压力：帕特 (Pa)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 40
 msgid "Reservoir section : A (m2)"
-msgstr ""
+msgstr "油箱横截面积：A (m2)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 41
 msgid "Altitude of input connection #1: ze1 (m)"
-msgstr ""
+msgstr "第1个输入连接的高度：ze1 (m)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 42
 msgid "Altitude of input connection #2: ze2 (m)"
-msgstr ""
+msgstr "第2个输入连接的高度：ze2 (m)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 43
 msgid "Altitude of output connection #1: zs1 (m)"
-msgstr ""
+msgstr "第1个输出连接的高度：zs1 (m)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 44
 msgid "Altitude of output connection #2: zs2 (m)"
-msgstr ""
+msgstr "第2个输出连接的高度：zs2 (m)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 45
 msgid "Starting fluid Altitude : z0 (m)"
-msgstr ""
+msgstr "起动液高度：z0 (m)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 46
 msgid "Initial fluid temperature : T0 (K)"
-msgstr ""
+msgstr "初始流体温度：T0 (K)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 47
-# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 44
 msgid "If >0, fixed fluid density : p_rho (kg/m3)"
-msgstr ""
+msgstr "如果大于 0，则固定流体密度：p_rho (kg/m3)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Flowmeter.sci, line: 37
 msgid "FLOWMETER parameters:"
-msgstr ""
+msgstr "流量计参数："
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 38
 msgid "PIPE parameters"
-msgstr ""
+msgstr "PIPE参数"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 39
 msgid "Pipe length : L (m)"
-msgstr ""
+msgstr "PIPE参数"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 40
 msgid "Pipe internal diameter : D (m)"
-msgstr ""
+msgstr "管道内径：D (m)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 41
 msgid "Coefficient of loss of load-friction (S.U): lambda"
-msgstr ""
+msgstr "减摩损耗系数(S.U)：lambda"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 42
 msgid "Altitude of pipe's inlet: z1 (m)"
-msgstr ""
+msgstr "管道进口高度：z1 (m)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 43
 msgid "Altitude of pipe's outlet: z2 (m)"
-msgstr ""
+msgstr "管道出口高度：z2 (m)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 38
 msgid "Fluid SINK parameters"
-msgstr ""
+msgstr "流体SINK参数"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 39
 msgid "Pressure of the source : P0 (Pa)"
-msgstr ""
+msgstr "源压力：P0 (Pa)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 40
 msgid "Temperature of the source : T0 (K)"
-msgstr ""
+msgstr "源温度：T0 (K)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 41
 msgid "Specific enthalpy of the source : H0 (J/kg)"
-msgstr ""
+msgstr "源比焓：H0 (J/kg)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 42
 msgid "Condition: 1=fixed temperature  2=fixed enthalpy"
-msgstr ""
+msgstr "条件：1 = 固定温度，2 = 固定焓"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 38
 msgid "Fluid SOURCE parameters"
-msgstr ""
+msgstr "流体源参数"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 39
 msgid "Pressure : P0 (Pa)"
-msgstr ""
+msgstr "压力：P0 (Pa)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 40
 msgid "Temperature : T0 (K)"
-msgstr ""
+msgstr "温度：T0 (K)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 41
 msgid "Specific enthalpy : H0 (J/kg)"
-msgstr ""
+msgstr "比焓：H0 (J/kg)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 42
 msgid "Condition: 1=Fixed temperature | 2=Fixed enthalpy"
-msgstr ""
+msgstr "条件：1 = 固定温度 | 2 = 固定焓"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/VanneReglante.sci, line: 38
 msgid "REGULATING VALVE parameters"
-msgstr ""
+msgstr "调节阀参数"
 
 msgid "Clear a bit"
 msgstr "清除一个比特"
 
 #, c-format
 msgid "Data Type %s (3:int32, 4:int16, 5:int8, ...)"
-msgstr ""
+msgstr "数据类型%s (3：int32、4：int16、5：int8...)"
 
 msgid "Index of Bit (0 is least significant)"
 msgstr "位索引(0是最低有效)"
@@ -504,13 +453,16 @@ msgid "Set a bit"
 msgstr "设定一个比特位"
 
 msgid "Data Type (3:int32, 4:int16, 5:int8, ...)"
-msgstr ""
+msgstr "数据类型 (3:int32，4:int16，5:int8, ...)"
 
 msgid ""
 "Set CONVERT block parameters<br><br>Type conversion<br><br>(a) 1|2:"
 "double&nbsp;  3:int32&nbsp;  4:int16&nbsp;  5:int8&nbsp;  6:uint32&nbsp;  7:"
 "uint16&nbsp;  8:uint8<br>(b) 0:Nothing, 1:Saturate, 2:Error<br><br>"
 msgstr ""
+"设置CONVERT块参数<br> <br>类型转换<br> <br>（a）1 | 2：double ，3：int32 ，"
+"4：int16 ，5：int8 ，6：uint32 ，7：uint16 ，8：uint8 <br>（b） 0：无，1：饱"
+"和，2：误差<br> <br>"
 
 msgid "Input type (a)"
 msgstr "输入类型(a)"
@@ -539,6 +491,11 @@ msgid ""
 "&nbsp;&nbsp;&nbsp;If 'Bits to Extract' is set to 'Range of bits': [Start, "
 "End]<br><br>"
 msgstr ""
+"设置EXTRACTBITS块参数<br> <br>位提取<br> <br> -要提取的位：<br> &nbsp;&nbsp;"
+"&nbsp;&nbsp;1上半部分<br> &nbsp;&nbsp;&nbsp;&nbsp;2下半部分<br> &nbsp;&nbsp;"
+"&nbsp;&nbsp;3范围从MSB <br> &nbsp;&nbsp;&nbsp;&nbsp;4到LSB < br> &nbsp;&nbsp;"
+"&nbsp;&nbsp;5位的范围<br> -位的数目或位的索引：索引0为LSB <br>如果“要提取的"
+"位”设置为“位的范围”：[开始,结束] <br> <br>"
 
 msgid "Bits to extract"
 msgstr "要提取的位"
@@ -578,215 +535,223 @@ msgstr "'%s'参数的值错误：%s。"
 
 #, c-format
 msgid "Indexes must be in the interval %s."
-msgstr ""
+msgstr "索引必须在%s的间隔内。"
 
 msgid "Integer matrix multiplication"
-msgstr ""
+msgstr "整数矩阵乘法"
 
 msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
-msgstr ""
+msgstr "溢出时执行(0：无，1：饱和，2：误差)"
 
 msgid ""
 "Set JKFLIPFLOP block parameters<br><br>JK flip-flop<br><br>The 'Initial "
 "Value' must be 0 or 1 of type int8<br>&nbsp;- Negative values are considered "
 "as int8(0)<br>&nbsp;- Positive values are considered as int8(1)<br><br>"
 msgstr ""
+"设置JKFLIPFLOP块参数<br> <br> JK触发器<br> <br>“初始值”必须为int8类型的0或1 "
+"<br>&nbsp;-负值被视为int8(0)<br>&nbsp;- 正值视为int8(1)<br> <br>"
 
 msgid "Initial Value"
-msgstr ""
+msgstr "初始值"
 
 msgid ""
 "Set LOGIC block parameters<br><br>Combinatorial logic:<br><br>&nbsp; Rows of "
 "the matrix are the output values.<br>&nbsp; Number of rows must be a power "
 "of two.<br>&nbsp; Number of columns gives the number of outputs.<br><br>"
 msgstr ""
+"设置LOGIC块参数<br> <br>组合逻辑：<br> <br>矩阵的行是输出值。<br>&nbsp;行数必"
+"须是2的幂。<br>&nbsp;列数是输出的数目。<br> <br>"
 
 msgid "Truth Table (matrix of outputs)"
-msgstr ""
+msgstr "真值表 (输出矩阵)"
 
 msgid "Accepts Inherited Events (0:No, 1:Yes)"
-msgstr ""
+msgstr "接受继承的事件 (0：否，1：是)"
 
 msgid "Truth Table"
-msgstr ""
+msgstr "真值表"
 
 #, c-format
 msgid "Wrong size for '%s' parameter: %d."
-msgstr ""
+msgstr "'%s'参数大小错误：%d。"
 
 msgid "Number of rows must be a power of two."
-msgstr ""
+msgstr "行数必须是2的幂。"
 
 #, c-format
 msgid "Wrong value for '%s' parameter."
-msgstr ""
+msgstr "参数'%s'的值错误。"
 
 #, c-format
 msgid "Elements must be in the interval %s."
-msgstr ""
+msgstr "元素必须在%s的间隔内。"
 
 msgid "Accepts Inherited Events"
-msgstr ""
+msgstr "接受继承的事件"
 
 msgid "Shift/Rotates bits"
-msgstr ""
+msgstr "移位/旋转位"
 
 msgid "Number of Bits to Shift Left (Negative number to shift right)"
-msgstr ""
+msgstr "向左移位的位数 (向右移位的负数)"
 
 msgid "Shift Type (0:Arithmetic, 1:Circular)"
-msgstr ""
+msgstr "移位类型 (0：算术，1：循环)"
 
 msgid "Shift Type"
-msgstr ""
+msgstr "移位类型"
 
 msgid ""
 "Set SR flip-flop block parameters<br><br>The 'Initial Value' must be 0 or 1 "
 "of type int8<br>&nbsp;- Negative values are considered as int8(0)<br>&nbsp;- "
 "Positive values are considered as int8(1)<br><br>"
 msgstr ""
+"设置SR触发器块参数<br> <br>“初始值”必须为int8类型的0或1 <br>&nbsp;-负值视为"
+"int8(0)<br>&nbsp;-正值视为int8(1)<br> <br>"
 
 msgid "Inputs ports signs/gain"
-msgstr ""
+msgstr "输入端口信号/增益"
 
 msgid "Set continuous SISO transfer parameters"
-msgstr ""
+msgstr "设置连续的SISO传输参数"
 
 msgid "Numerator (s)"
-msgstr ""
+msgstr "分子"
 
 msgid "Transfer function must be proper (degree(numer)  degree(denom))."
-msgstr ""
+msgstr "传递函数必须正确 (度 (数) 度 (面值) ) 。"
 
 msgid "Transfer must be proper (degree(numer)  degree(denom))"
-msgstr ""
+msgstr "转移必须正确 (度 (数) 度 (面值) )"
 
 msgid "Set continuous linear system parameters"
-msgstr ""
+msgstr "设置连续线性系统参数"
 
 msgid "A matrix"
-msgstr ""
+msgstr "矩阵"
 
 msgid "The Matrix A must be square"
-msgstr ""
+msgstr "矩阵A必须为方阵"
 
 msgid "The matrix D has some wrong size"
-msgstr ""
+msgstr "矩阵D大小错误"
 
 msgid "The matrix A must be square"
-msgstr ""
+msgstr "矩阵A必须为方阵"
 
 msgid "Set delay parameters"
-msgstr ""
+msgstr "设置延迟参数"
 
 msgid "Register's length must be > 1"
-msgstr ""
+msgstr "寄存器的长度必须大于1"
 
 msgid "Delay must be > 0"
-msgstr ""
+msgstr "延迟值必须大于 0"
 
 msgid ""
 "This block implements a discretized delay.<br>It consists of a shift "
 "register and a clock<br>value of the delay given by the<br>discretization "
 "time step multiplied by the<br>number-1 of state of the register"
 msgstr ""
+"此块实现离散延迟。<br>它由移位寄存器和延迟的时钟值组成，<br>该值由离散时间步"
+"长乘以寄存器的状态数-1得出。"
 
 msgid "Discretization time step"
-msgstr ""
+msgstr "离散时间步长"
 
 msgid "Register's length must be at least 1"
-msgstr ""
+msgstr "寄存器的长度必须至少为1"
 
 msgid "Discretization time step must be > 0"
-msgstr ""
+msgstr "离散化时间步长必须大于 0"
 
 msgid "Initial state"
-msgstr ""
+msgstr "初始状态"
 
 msgid ""
 "Incompatible sizes: states and their derivatives should have the same size"
-msgstr ""
+msgstr "不兼容的大小：状态及其导数应具有相同的大小"
 
 msgid "Initial state must have a size > 0"
-msgstr ""
+msgstr "初始状态的大小必须大于 0"
 
 msgid "Set discrete SISO transfer parameters"
-msgstr ""
+msgstr "设置离散的SISO传输参数"
 
 msgid "Numerator (z)"
-msgstr ""
+msgstr "分子 (z)"
 
 msgid "Transfer function must be proper (degree(numer)  degree(denom))"
-msgstr ""
+msgstr "传递函数必须合适 (度 (数) 度 (面) )"
 
 msgid "Transfer must be proper (degree(numer)   degree(denom))"
-msgstr ""
+msgstr "转移矩阵必须合适(度 (数) 度 (面) )"
 
 msgid "Set discrete linear system parameters"
-msgstr ""
+msgstr "设置离散线性系统参数"
 
 msgid "Set 1/z block parameters"
-msgstr ""
+msgstr "设置1/z块参数"
 
 msgid "Initial condition"
-msgstr ""
+msgstr "初始条件"
 
 msgid "Initial condition's datatype not supported"
-msgstr ""
+msgstr "不支持初始条件的数据类型"
 
 msgid "Initial condition: datatype not supported."
-msgstr ""
+msgstr "初始条件：不支持数据类型。"
 
 msgid "Gain"
-msgstr ""
+msgstr "增益"
 
 msgid "Gain must have at least one element"
-msgstr ""
+msgstr "增益必须至少包含一个元素"
 
 msgid "Complex gain not supported"
-msgstr ""
+msgstr "不支持复数增益"
 
 msgid "gain's datatype not supported."
-msgstr ""
+msgstr "不支持的增益数据类型。"
 
 msgid "gain's datatype: Encoded integer expected."
-msgstr ""
+msgstr "增益的数据类型：应该是编码后的整数。"
 
 msgid "Do on Overflow must be 0, 1, or 2"
-msgstr ""
+msgstr "溢出时的值必须为0、1或2"
 
 msgid "Initial Condition"
-msgstr ""
+msgstr "初始条件"
 
 msgid "x0 and Upper limit and Lower limit must have the same size"
-msgstr ""
+msgstr "x0和上限和下限必须具有相同的大小"
 
 msgid "Upper limits must be > Lower limits"
-msgstr ""
+msgstr "上限必须小于下限"
 
 msgid "Initial condition x0 should be within the limits"
-msgstr ""
+msgstr "初始条件x0应在限制范围内"
 
 msgid "Initial condition x0 should be inside the limits"
-msgstr ""
+msgstr "初始条件x0应在限制范围内"
 
 msgid "x0 and Upper limit and Lower limit must have same size"
-msgstr ""
+msgstr "x0和上限和下限必须具有相同的大小"
 
 msgid "Proportional"
-msgstr ""
+msgstr "比例项"
 
 msgid "Register initial condition"
-msgstr ""
+msgstr "寄存器初始条件"
 
 msgid "Register's length must be > 0"
-msgstr ""
+msgstr "寄存器的长度必须大于 0"
 
 msgid "Register's initial condition"
-msgstr ""
+msgstr "寄存器的初始条件"
 
 msgid "Datatype (1=real double 2=Complex 3=int32 ...)"
-msgstr ""
+msgstr "数据类型 (1 =双精度实数，2 =复数，3 = int32 ...)"
 
 msgid ""
 "This sum block is obsolete<br><br>Parameters cannot be modified. Please "
@@ -794,253 +759,422 @@ msgid ""
 "palette<br><br>Input ports are located at up, side and down positions."
 "<br>Current gains are: "
 msgstr ""
+"此求和块已过时<br> <br>无法修改参数。 请用线性面板中新的求和和增益块替换它。"
+"<br> <br>输入端口位于上面，侧面和下面。<br>当前增益为： "
 
 msgid "Datatype (1=real double  2=complex 3=int32 ..)"
-msgstr ""
+msgstr "数据类型 (1 =双精度实数，2 =复数，3 = int32 ..)"
 
 msgid "Do on overflow: must be 0,1, or 2"
-msgstr ""
+msgstr "溢出时的值：必须为0,1或2"
 
 msgid "Number of inputs must be > 0"
-msgstr ""
+msgstr "输入端口必须大于 0"
 
 msgid "Signs can only be +1 or -1"
-msgstr ""
+msgstr "符号只能是+1或-1"
 
 msgid "Buffer must be larger than 1"
-msgstr ""
+msgstr "缓冲区必须大于1"
 
 msgid "Max delay"
-msgstr ""
+msgstr "最大延迟"
 
 msgid "Datatype (1=real double  2=Complex)"
-msgstr ""
+msgstr "数据类型 (1 =双精度实数，2 =复数)"
 
 msgid "Unknown summation direction"
-msgstr ""
+msgstr "未知的求和方向"
 
 msgid "Unknown datatype"
-msgstr ""
+msgstr "未知的数据类型"
 
 msgid "Empty field"
-msgstr ""
+msgstr "空字段"
 
 msgid "Invalid index"
-msgstr ""
+msgstr "无效索引"
 
 msgid "Unknown extraction type"
-msgstr ""
+msgstr "未知的提取类型"
 
 msgid "Unknown decomposition type"
-msgstr ""
+msgstr "未知的分解类型"
 
 msgid "Conversion: 1=Complex->(Mag,Phi), 2=(Mag,Phi)->Complex"
-msgstr ""
+msgstr "转换：1 =复数->(Mag,Phi)，2 =(Mag,Phi)->复数"
 
 msgid "Conversion code (1|2)"
-msgstr ""
+msgstr "转换码 (1|2)"
 
 msgid "Unknown conversion code"
-msgstr ""
+msgstr "未知的转换码"
 
 msgid ""
 "Set MATMUL parameter<br><br>For the Multiplication rule:<br>    1= Matrix by "
 "Matrix<br>    2= Matrix by Matrix element wise <br>    3= Matrix by "
 "Scalar<br>In the third case, the second input will be the scalar<br><br>"
 msgstr ""
+"设置MATMUL参数<br> <br>对于乘法规则：<br> 1 =矩阵乘矩阵<br> 2 =矩阵乘矩阵元素"
+"<br> 3 =矩阵乘标量<br>在第三种情况下，第二个输入端口将为标量<br> <br>"
 
 msgid "Multiplication rule must be 1,2 or 3"
-msgstr ""
+msgstr "乘法规则必须为1,2或3"
 
 msgid "Output size > 0 expected"
-msgstr ""
+msgstr "输出大小应该大于 0"
 
 msgid "Input size > 0 expected"
-msgstr ""
+msgstr "输入大小应该大于 0"
 
 msgid "The first dimension of the output is too big"
-msgstr ""
+msgstr "输出的第一维太大"
 
 msgid "The second dimension of the output is too big"
-msgstr ""
+msgstr "输出的第二维太大"
 
 msgid "The dimensions of the output are too big"
-msgstr ""
+msgstr "输出的维度太大"
 
 msgid "Datatype (1=real double 2=Complex)"
-msgstr ""
+msgstr "数据类型 (1 =双精度实数，2 =复数)"
 
 msgid "Conversion type: 1=complex->(Real,Imag), 2=(Real,Imag)->complex"
-msgstr ""
+msgstr "转换类型：1 = 复数->(Real,Imag)，2 =(Real,Imag)-> 复数"
 
 msgid "Conversion direction (1|2)"
-msgstr ""
+msgstr "转换方向(1|2)"
 
 msgid "Type (1=Cont  2=Disc)"
-msgstr ""
+msgstr "类型 (1 =连续2 =离散)"
 
 msgid "Datatype(1=real double  2=Complex)"
-msgstr ""
+msgstr "数据类型 (1 =双精度实数，2 =复数)"
 
 msgid "Ending row index must be greater than starting one"
-msgstr ""
+msgstr "结束行索引必须大于开始的索引"
 
 msgid "Ending column index must be greater than starting one"
-msgstr ""
+msgstr "结束列索引必须大于开始索引"
 
 msgid "The index of ending row is out of range"
-msgstr ""
+msgstr "结束行的索引超出范围"
 
 msgid "The index of ending column is out of range"
-msgstr ""
+msgstr "结束列的索引超出范围"
 
 msgid "Jump from Mode "
-msgstr ""
+msgstr "从模式跳转 "
 
 msgid "Set Finite state machine model"
-msgstr ""
+msgstr "设置有限状态机模型"
 
 msgid "Number of finite-state Modes"
-msgstr ""
+msgstr "有限状态模式数"
 
 #, c-format
 msgid "The size of initial continuous-time states should be NX=%d"
-msgstr ""
+msgstr "初始连续时间状态的大小应为 NX=%d"
 
 #, c-format
 msgid "Xproperty matrix is not valid: It should have one or NMode=%d rows"
-msgstr ""
+msgstr "Xproperty矩阵无效：它应该有一个或NMode =%d行"
 
 #, c-format
 msgid "The number of modes should be %d"
-msgstr ""
+msgstr "模式数量应为%d"
 
 #, c-format
 msgid "A destination mode in Mode#%d targets is invalid!"
-msgstr ""
+msgstr "目标模式中的第%d个目标模式无效！"
 
 #, c-format
 msgid "There is an unused Mode or the Number of Modes should be %d"
-msgstr ""
+msgstr "存在未使用的模式，或者模式数应为%d"
 
 msgid "Initial output"
-msgstr ""
+msgstr "初始输出"
 
 msgid "Mass"
-msgstr ""
+msgstr "质量"
 
 msgid "Radius"
-msgstr ""
+msgstr "半径"
 
 msgid "g (gravity)"
-msgstr ""
+msgstr "g (重力)"
 
 msgid "C (aerodynamic coeff)"
-msgstr ""
+msgstr "C (空气动力系数)"
 
 msgid "All vectors must have the same size"
-msgstr ""
+msgstr "所有向量的大小必须相同"
 
 msgid "Mass and radius must be > 0"
-msgstr ""
+msgstr "质量和半径必须大于0"
 
 msgid "Colors"
-msgstr ""
+msgstr "颜色"
 
 msgid "Radii"
-msgstr ""
+msgstr "半径"
 
 msgid "Window number (-1 for automatic)"
-msgstr ""
+msgstr "窗体编号(-1自动分配)"
 
 msgid "Animation mode (0,1)"
-msgstr ""
+msgstr "动画模式 (0,1)"
 
 msgid "Colors and Radii must have the same size (number of balls)"
-msgstr ""
+msgstr "颜色和半径必须具有相同的大小 (球的数目)"
 
 msgid "The window number cannot be &lt; -1"
-msgstr ""
+msgstr "窗体编号不能小于-1"
 
 msgid "Ymax > Ymin expected"
-msgstr ""
+msgstr "Ymax 应该大于 Ymin"
 
 msgid "Xmax > Xmin expected"
-msgstr ""
+msgstr "Xmax 应该大于 Xmin"
 
 msgid "Pendulum length"
-msgstr ""
+msgstr "摆长"
 
 msgid "Cart size (square side)"
-msgstr ""
+msgstr "小车尺寸 (方形)"
 
 msgid "Slope"
-msgstr ""
+msgstr "斜坡"
 
 msgid "The pendulum length and cart size must be > 0."
-msgstr ""
+msgstr "摆的长度和手推车的大小必须大于 0。"
 
 msgid "Ymax > Ymin expected."
-msgstr ""
+msgstr "Ymax 应该大于 Ymin"
 
 msgid "Xmax > Xmin expected."
-msgstr ""
+msgstr "Xmax 应该大于 Xmin"
 
 msgid "Simulation function"
-msgstr ""
+msgstr "仿真函数"
 
 msgid "Input/output events ports size must be [] or 1"
-msgstr ""
+msgstr "输入/输出事件端口大小必须为[]或1"
 
 msgid "Set C-Block4 block parameters"
-msgstr ""
+msgstr "设置C-Block4块参数"
 
 msgid "Set Constraint block parameters"
-msgstr ""
+msgstr "设置约束块参数"
 
 msgid "Initial guess values of states x"
-msgstr ""
+msgstr "状态x的初始猜测值"
 
 msgid "States and their derivatives must have the same size."
-msgstr ""
+msgstr "状态及其派生词的大小必须相同。"
 
 msgid "States and ID must have the same size."
-msgstr ""
+msgstr "状态和ID必须具有相同的大小。"
 
 msgid "Number of states (constraints) must be > 0"
-msgstr ""
+msgstr "状态(约束)数必须大于 0"
 
 msgid ""
 "Id(i) must be either:<br> 0 when x'(i) is not present in the feedback<br> 1: "
 "when x'(i) is present in the feedback"
 msgstr ""
+"Id(i)必须为：<br>当反馈中不存在 x'(i) 时为0 <br> 当反馈中存在x'(i) 时为1"
 
 msgid "Set solver block parameters"
-msgstr ""
+msgstr "设置求解器块参数"
 
 msgid "Initial guess values"
-msgstr ""
+msgstr "初始猜测值"
 
 msgid "The number of states (constraints) must be > 0 "
-msgstr ""
+msgstr "状态(约束)数必须大于 0 "
 
 msgid "Upper limit"
-msgstr ""
+msgstr "上限"
 
 msgid "Upper limit must be > Lower limit"
-msgstr ""
+msgstr "上限必须大于下限"
 
 msgid "Enter scilab instructions for debugging."
-msgstr ""
+msgstr "输入scilab指令进行调试。"
 
 msgid "Error in the instructions"
-msgstr ""
+msgstr "指令错误"
 
 msgid "Invalid masked block."
-msgstr ""
+msgstr "无效的mask块。"
 
 msgid "rising (1), falling (-1), both (0)"
+msgstr "上升(1)，下降(-1)，两者(0)"
+
+msgid "Switch on at"
+msgstr "打开"
+
+msgid "switch on value must be >= switch off value"
+msgstr "接通值必须大于等于断开值"
+
+msgid "Operator codes: 0=AND  1=OR  2=NAND  3=NOR  4=XOR  5=NOT"
+msgstr "运算符代码：0 = AND，1 = OR，2 = NAND，3 = NOR，4 = XOR，5 = NOT"
+
+#, c-format
+msgid "Incorrect operator code %d ; must be 0 to 5."
+msgstr "操作错误代码%d：其值必须为0到5。"
+
+msgid "Only one input allowed for NOT operation"
+msgstr "仅一个输入允许NOT操作"
+
+msgid "Bitwise rule is only activated when Data type is integer"
+msgstr "仅当数据类型为整数时才激活按位规则"
+
+msgid "Set Modelica generic block parameters"
+msgstr "设置Modelica通用块参数"
+
+msgid "Error in evaluation of variables."
+msgstr "变量审查错误。"
+
+#, c-format
+msgid "Invalid variable name for the input #%d: %s."
+msgstr "第%d个输入变量名称无效：%s。"
+
+msgid "Please choose another variable name."
+msgstr "请选择另一个变量名。"
+
+#, c-format
+msgid "Invalid variable name for the output #%d: %s."
+msgstr "第%d个输出变量名称无效：%s。"
+
+#, c-format
+msgid "Invalid variable name for the parameter #%d: %s."
+msgstr "第%d个参数名称无效：%s。"
+
+msgid "Input type should be 'E' or 'I'!"
+msgstr "输入类型应为“ E”或“ I”！"
+
+msgid "Output type should be 'E' or 'I'!"
+msgstr "输出类型应为“ E”或“ I”！"
+
+msgid "Input variables are not well defined!"
+msgstr "输入变量定义不正确！"
+
+msgid "Output variables are not well defined!"
+msgstr "输出变量定义不正确！"
+
+msgid "The size of param and<br>size of param properties<br>must match"
+msgstr "参数的大小和参数属性的大小必须匹配"
+
+msgid "Parameters properties must be :"
+msgstr "参数属性必须为："
+
+msgid "The filename is not defined!"
+msgstr "文件名未定义！"
+
+msgid "Set parameters values"
+msgstr "设置参数值"
+
+msgid "Set memory block parameters"
+msgstr "设置内存块参数"
+
+msgid "The initial condition is empty"
+msgstr "初始条件为空"
+
+msgid "Input variables:    "
+msgstr "输入变量：    "
+
+msgid ""
+"Parameters properties must be:<br>0: if it is a parameter,<br>1: if it is an "
+"initial value of state,<br>2: if it is a fixed initial state value."
 msgstr ""
+"参数属性必须为：<br> 0：如果是参数，<br> 1：如果是状态的初始值，<br> 2：如果"
+"是固定的初始状态值。"
+
+msgid "The model name is not defined."
+msgstr "模型名称未定义。"
+
+msgid "Invalid model name"
+msgstr "模型名称无效"
+
+msgid "Pendulum length and cart size must be > 0."
+msgstr "摆的长度和小车的大小必须大于 0。"
+
+msgid "Ymax > Ymin required"
+msgstr "Ymax 需要大于 Ymin"
+
+msgid "Xmax > Xmin required"
+msgstr "Xmax 需要大于Xmin"
+
+msgid "Maximal slope (> 0)"
+msgstr "最大斜率(大于0)"
+
+msgid "We must have max_slope > 0 > min_slope."
+msgstr "我们必须使最大斜率 > 0 > 最小斜率。"
+
+msgid "Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)"
+msgstr "运算符： == (0)，~= (1)，< (2)，<= (3)，> (4)，>= (5)"
+
+#, c-format
+msgid "Incorrect operator code #%d : must be 0 to 5."
+msgstr "操作错误代码%d：必须为0到5。"
+
+msgid "Text"
+msgstr "文本"
+
+msgid "The font number must be in [1, 6]"
+msgstr "字体编号必须在[1,6]之间"
+
+msgid "The font size must be positive"
+msgstr "字体大小必须是正数"
+
+msgid "Input ports sizes"
+msgstr "输入端口大小"
+
+msgid "Set GENERIC block parameters"
+msgstr "设置GENERIC块参数"
+
+msgid "The function type cannot be negative"
+msgstr "函数类型不能为负"
+
+msgid "Input/output events ports sizes must be [] or 1"
+msgstr "输入/输出事件端口大小必须为[]或1"
+
+msgid "Object parameters must be a list"
+msgstr "对象参数必须是lsit类型"
+
+msgid "Initial object state must be a list"
+msgstr "初始对象状态必须是lsit类型"
+
+msgid "Frequency"
+msgstr "频率"
+
+msgid "Only regular blocks are supported"
+msgstr "仅支持常规块"
+
+msgid "Use zero_crossing (1:yes) (0:no)"
+msgstr "使用zero_crossing (1：是) (0：否)"
+
+msgid "Set block parameters"
+msgstr "设置块参数"
+
+msgid "Vector of p mesh points"
+msgstr "p网格点的向量"
+
+msgid ""
+"Transfer must be strictly proper, with<br>degree(Numerator) &lt; "
+"degree(Denominator)"
+msgstr "传输必须严格正确，并且具有<br>度 (分子) &lt;度 (分母)"
+
+msgid "Numerator roots matrix row size's is incorrect"
+msgstr "分子根矩阵行大小不正确"
+
+msgid "a^u: raise the value a to the power of the input"
+msgstr "a^u：将值a增大到输入值的幂次"
+
+msgid "a^u : a must be > 0"
+msgstr "a^u：a必须大于0"
 
 msgid ""
 "Set EXPRESSION block parameters<br><br>Give a scalar scilab expression using "
@@ -1048,1380 +1182,1228 @@ msgid ""
 "8)<br>ex: (dd*u1+sin(u2)>0)*u3<br>Note that here dd must be defined in the "
 "context<br><br>"
 msgstr ""
+"设置EXPRESSION块参数<br> <br>scilab表达式使用给出的输入标量u1，u2，...。如果"
+"只有一个输入，则输入为向量[u1,u2,...]（最大值8）<br > ex：(dd * u1 + "
+"sin(u2)> 0)* u3 <br>请注意这里dd必须在上下文中定义<br> <br>"
 
 msgid "Erroneous expression"
-msgstr ""
+msgstr "错误的表达"
 
 #, c-format
 msgid "Variable %s is not scalar."
-msgstr ""
+msgstr "变量 %s不是标量。"
 
 #, c-format
 msgid "Unknown variable %s."
-msgstr ""
+msgstr "未知变量%s。"
 
 #, c-format
 msgid "%s must have %d arguments"
-msgstr ""
+msgstr "%s必须具有%d个参数"
 
 #, c-format
 msgid "Function %s not supported."
-msgstr ""
-
-msgid "Switch on at"
-msgstr ""
-
-msgid "switch on value must be >= switch off value"
-msgstr ""
-
-msgid "Operator codes: 0=AND  1=OR  2=NAND  3=NOR  4=XOR  5=NOT"
-msgstr ""
-
-#, c-format
-msgid "Incorrect operator code %d ; must be 0 to 5."
-msgstr ""
-
-msgid "Only one input allowed for NOT operation"
-msgstr ""
-
-msgid "Bitwise rule is only activated when Data type is integer"
-msgstr ""
-
-msgid "Set Modelica generic block parameters"
-msgstr ""
-
-msgid "Error in evaluation of variables."
-msgstr ""
-
-#, c-format
-msgid "Invalid variable name for the input #%d: %s."
-msgstr ""
-
-msgid "Please choose another variable name."
-msgstr ""
-
-#, c-format
-msgid "Invalid variable name for the output #%d: %s."
-msgstr ""
-
-#, c-format
-msgid "Invalid variable name for the parameter #%d: %s."
-msgstr ""
-
-msgid "Input type should be 'E' or 'I'!"
-msgstr ""
-
-msgid "Output type should be 'E' or 'I'!"
-msgstr ""
-
-msgid "Input variables are not well defined!"
-msgstr ""
-
-msgid "Output variables are not well defined!"
-msgstr ""
-
-msgid "The size of param and<br>size of param properties<br>must match"
-msgstr ""
-
-msgid "Parameters properties must be :"
-msgstr ""
-
-msgid "The filename is not defined!"
-msgstr ""
-
-msgid "Set parameters values"
-msgstr ""
-
-msgid "Set memory block parameters"
-msgstr ""
-
-msgid "The initial condition is empty"
-msgstr ""
-
-msgid "Input variables:    "
-msgstr ""
-
-msgid ""
-"Parameters properties must be:<br>0: if it is a parameter,<br>1: if it is an "
-"initial value of state,<br>2: if it is a fixed initial state value."
-msgstr ""
-
-msgid "The model name is not defined."
-msgstr ""
-
-msgid "Invalid model name"
-msgstr ""
-
-msgid "Pendulum length and cart size must be > 0."
-msgstr ""
-
-msgid "Ymax > Ymin required"
-msgstr ""
-
-msgid "Xmax > Xmin required"
-msgstr ""
-
-msgid "Maximal slope (> 0)"
-msgstr ""
-
-msgid "We must have max_slope > 0 > min_slope."
-msgstr ""
-
-msgid "Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)"
-msgstr ""
-
-#, c-format
-msgid "Incorrect operator code #%d : must be 0 to 5."
-msgstr ""
-
-msgid "Text"
-msgstr ""
-
-msgid "The font number must be in [1, 6]"
-msgstr ""
-
-msgid "The font size must be positive"
-msgstr ""
-
-msgid "Input ports sizes"
-msgstr ""
-
-msgid "Set GENERIC block parameters"
-msgstr ""
-
-msgid "The function type cannot be negative"
-msgstr ""
-
-msgid "Input/output events ports sizes must be [] or 1"
-msgstr ""
-
-msgid "Object parameters must be a list"
-msgstr ""
-
-msgid "Initial object state must be a list"
-msgstr ""
-
-msgid "Frequency"
-msgstr ""
-
-msgid "Only regular blocks are supported"
-msgstr ""
-
-msgid "Use zero_crossing (1:yes) (0:no)"
-msgstr ""
-
-msgid "Set block parameters"
-msgstr ""
-
-msgid "Vector of p mesh points"
-msgstr ""
-
-msgid ""
-"Transfer must be strictly proper, with<br>degree(Numerator) &lt; "
-"degree(Denominator)"
-msgstr ""
-
-msgid "Numerator roots matrix row size's is incorrect"
-msgstr ""
-
-msgid "a^u: raise the value a to the power of the input"
-msgstr ""
-
-msgid "a^u : a must be > 0"
-msgstr ""
+msgstr "不支持功%s函数。"
 
 msgid "Set Interpolation block parameters"
-msgstr ""
+msgstr "设置Interpolation块参数"
 
 msgid "X coord."
-msgstr ""
+msgstr "X坐标。"
 
 msgid "X, Y, Z: incompatible sizes"
-msgstr ""
+msgstr "X，Y，Z：不兼容的大小"
 
 msgid "X and Y must be strictly increasing"
-msgstr ""
+msgstr "X和Y必须严格递增"
 
 msgid "X and Y must have the same sizes"
-msgstr ""
+msgstr "X和Y必须具有相同的大小"
 
 msgid "X must be strictly increasing"
-msgstr ""
+msgstr "X必须严格递增"
 
 msgid "Error on divide by zero (1:yes) (0:no)"
-msgstr ""
+msgstr "除以零的错误 (1：是) (0：否)"
 
 msgid "Basis (>1)"
-msgstr ""
+msgstr "基数 (>1)"
 
 msgid "Basis must be > 1"
-msgstr ""
+msgstr "基数必须大于1"
 
 msgid "2D Lookup table parameters"
-msgstr ""
+msgstr "2D查找表参数"
 
 msgid "Row index input values"
-msgstr ""
+msgstr "行索引输入值"
 
 msgid "Input row/column data size should be > 1"
-msgstr ""
+msgstr "输入行/列数据大小应大于1"
 
 msgid "Incompatible size of x and y"
-msgstr ""
+msgstr "x和y的大小不兼容"
 
 msgid "Row input values must be monotonically increasing"
-msgstr ""
+msgstr "行输入值必须单调递增"
 
 msgid "Column input values must be monotonically increasing"
-msgstr ""
+msgstr "列输入值必须单调递增"
 
 #, c-format
 msgid "x contains no data in x(%d)"
-msgstr ""
+msgstr "x在x(%d)中不包含任何数据"
 
 msgid "Lookup table parameters"
-msgstr ""
+msgstr "Lookup table参数"
 
 msgid "Spline Interpolation method (0..9)"
-msgstr ""
+msgstr "样条插值方法 (0..9)"
 
 msgid "Extrapolate method (0,1)"
-msgstr ""
+msgstr "外推法 (0,1)"
 
 msgid "Launch graphic window (y/n)?"
-msgstr ""
+msgstr "启动图形窗口 (y/n)？"
 
 msgid "Incompatible sizes of x and y"
-msgstr ""
+msgstr "x和y的大小不兼容"
 
 msgid " No [y] provided"
-msgstr ""
+msgstr " 没有提供[y]"
 
 msgid "Clear"
-msgstr ""
+msgstr "清除"
 
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 msgid "Autoscale"
-msgstr ""
+msgstr "自动缩放"
 
 msgid "Mouse click is offside!"
-msgstr ""
+msgstr "在区域外的鼠标单击！"
 
 msgid "Data Bounds"
-msgstr ""
+msgstr "数据范围"
 
 msgid "Enter new bounds"
-msgstr ""
+msgstr "输入新范围"
 
 msgid "Incorrect bounds"
-msgstr ""
+msgstr "不正确的范围"
 
 msgid "Extrapolation"
-msgstr ""
+msgstr "外推法"
 
 msgid "Extrapolation method (only for Method 1)"
-msgstr ""
+msgstr "外推法 (仅适用于方法1)"
 
 msgid "0: hold end values, 1: extrapolation"
-msgstr ""
+msgstr "0：保留最终值，1：外推"
 
 msgid " Sine parameters"
-msgstr ""
+msgstr " 正弦信号参数"
 
 msgid "Amplitude"
-msgstr ""
+msgstr "幅值"
 
 msgid "Sawtooth signal parameters"
-msgstr ""
+msgstr "锯齿信号参数"
 
 msgid "Square wave pulse signal"
-msgstr ""
+msgstr "方波脉冲信号"
 
 msgid "Normal (Gaussian) random signal"
-msgstr ""
+msgstr "正常(高斯) 随机信号"
 
 msgid "Mean"
-msgstr ""
+msgstr "平均"
 
 msgid "Uniform random signal"
-msgstr ""
+msgstr "均匀随机信号"
 
 msgid "Minimum"
-msgstr ""
+msgstr "最小值"
 
 msgid "Save/Exit"
-msgstr ""
+msgstr "保存/退出"
 
 msgid "Exit without save"
-msgstr ""
+msgstr "退出而不保存"
 
 msgid "Edit text data NOT IN USE"
-msgstr ""
+msgstr "编辑未使用的文本数据"
 
 msgid "Enter x and y data"
-msgstr ""
+msgstr "输入x和y数据"
 
 msgid "Mouse-left click: adding a new point"
-msgstr ""
+msgstr "鼠标左键单击：添加新点"
 
 msgid "Mouse-right click: remove a point"
-msgstr ""
+msgstr "鼠标右键单击：删除点"
 
 msgid "Mouse-left double click: edit a point's coordinates"
-msgstr ""
+msgstr "鼠标左键双击：编辑点的坐标"
 
 msgid "Mouse-left button press/drag/release: move a  point"
-msgstr ""
+msgstr "鼠标左键按下/拖动/释放：移动一个点"
 
 msgid "Change the window size: Data menu -> Databounds"
-msgstr ""
+msgstr "更改窗口大小：数据菜单->数据绑定"
 
 msgid "Load from Excel"
-msgstr ""
+msgstr "从Excel表中加载"
 
 msgid "Load from text file"
-msgstr ""
+msgstr "从文本文件中加载"
 
 msgid "Save to text file"
-msgstr ""
+msgstr "保存为文本文件"
 
 msgid "Replot"
-msgstr ""
+msgstr "重绘"
 
 msgid "Enter new x and y"
-msgstr ""
+msgstr "输入新的x和y"
 
 #, c-format
 msgid "%d points,  Method: %s,  %s"
-msgstr ""
+msgstr "%d点，方法：%s，%s"
 
 msgid "Excel data file "
-msgstr ""
+msgstr "Excel数据文件 "
 
 msgid "Filename"
-msgstr ""
+msgstr "文件名"
 
 #, c-format
 msgid "Scicos cannot find the excel file: %s"
-msgstr ""
+msgstr "Scicos找不到Excel文件：%s"
 
 #, c-format
 msgid "Bad address in X: %s"
-msgstr ""
+msgstr "X中的错误地址：%s"
 
 #, c-format
 msgid "Bad address in Y: %s"
-msgstr ""
+msgstr "Y中的错误地址：%s"
 
 msgid "Error in Row data addresses"
-msgstr ""
+msgstr "行数据地址错误"
 
 msgid "Error in Column data addresses"
-msgstr ""
+msgstr "列数据地址错误"
 
 msgid " Scicos cannot read your Excel file, please verify the parameters"
-msgstr ""
+msgstr " Scicos无法读取提供的Excel文件，请检查参数"
 
 #, c-format
 msgid " x contains no data:x(%d)"
-msgstr ""
+msgstr " x不包含任何数据：x(%d)"
 
 #, c-format
 msgid " Y contains no data:y(%d)"
-msgstr ""
+msgstr " y不包含任何数据：y(%d)"
 
 msgid "Text data file "
-msgstr ""
+msgstr "文本数据文件 "
 
 msgid "Bad format in reading data file"
-msgstr ""
+msgstr "读取数据文件格式错误"
 
 #, c-format
 msgid "Scicos cannot open the data file: %s"
-msgstr ""
+msgstr "Scicos无法打开数据文件：%s"
 
 msgid "No data read"
-msgstr ""
+msgstr "没有数据需要读取"
 
 msgid "Bad format"
-msgstr ""
+msgstr "错误的格式"
 
 msgid "Bad format in writing data file"
-msgstr ""
+msgstr "写入数据文件时发生格式错误"
 
 #, c-format
 msgid "ERROR in SPLINE: %s"
-msgstr ""
+msgstr "样条错误：%s"
 
 msgid "You have not defined a function"
-msgstr ""
+msgstr "函数尚未定义"
 
 msgid "Min (1) or Max (2) "
-msgstr ""
+msgstr "最小(1)或最大(2) "
 
 msgid "Wrong number of inputs: Only 1 and 2 allowed"
-msgstr ""
+msgstr "输入数目错误：仅允许1个和2个"
 
 msgid "u^a: raise each element of the input"
-msgstr ""
+msgstr "u^a：增加输入的每个元素"
 
 msgid "to the power of"
-msgstr ""
+msgstr "的值"
 
 msgid ""
 "<html>Number of inputs or sign vector<br>(multiplication is set with + 1, "
 "division with -1)"
-msgstr ""
+msgstr "<html>输入数或符号向量<br>（乘数设置为+ 1，除法设置为-1）"
 
 msgid "Set parameters"
-msgstr ""
+msgstr "设置参数"
 
 msgid "Step"
-msgstr ""
+msgstr "步长"
 
 msgid "Quantization Type must be from 1 to 4"
-msgstr ""
+msgstr "量化类型必须为1到4"
 
 msgid "Set Saturation parameters"
-msgstr ""
+msgstr "设置饱和度参数"
 
 msgid "Min"
-msgstr ""
+msgstr "最小值"
 
 msgid "Max must be > 0"
-msgstr ""
+msgstr "最大值必须大于 0"
 
 msgid "Slope must be > 0"
-msgstr ""
+msgstr "斜率必须大于 0"
 
 #, c-format
 msgid "Choose among %s,<br>%s"
-msgstr ""
+msgstr "在%s,<br>%s中选择"
 
 msgid "Finite differences"
-msgstr ""
+msgstr "有限差异"
 
 msgid "Finite elements"
-msgstr ""
+msgstr "有限元"
 
 msgid "negative"
-msgstr ""
+msgstr "负数"
 
 msgid "null"
-msgstr ""
+msgstr "空"
 
 msgid "positive"
-msgstr ""
+msgstr "正数"
 
 msgid "PDE block"
-msgstr ""
+msgstr "PDE块"
 
 msgid "Domain"
-msgstr ""
+msgstr "定义域"
 
 msgid "PDE Specification"
-msgstr ""
+msgstr "PDE格式"
 
 msgid "PDE Expression:"
-msgstr ""
+msgstr "PDE 表达式："
 
 msgid "Display"
-msgstr ""
+msgstr "显示"
 
 msgid "Discriminant type:"
-msgstr ""
+msgstr "判别类型："
 
 msgid "Constant discriminant"
-msgstr ""
+msgstr "持续判别"
 
 msgid "Variable discriminant:"
-msgstr ""
+msgstr "可变判别式："
 
 msgid "Spatial discretization method"
-msgstr ""
+msgstr "空间离散化方法"
 
 msgid "Choice:"
-msgstr ""
+msgstr "选择："
 
 msgid "Automatic"
-msgstr ""
+msgstr "自动设置"
 
 msgid "Manual"
-msgstr ""
+msgstr "手册"
 
 msgid "Type:"
-msgstr ""
+msgstr "类型："
 
 msgid "Ordering:"
-msgstr ""
+msgstr "排序："
 
 msgid "degree:"
-msgstr ""
+msgstr "度："
 
 msgid "Number of nodes:"
-msgstr ""
+msgstr "节点数："
 
 msgid "Display step value"
-msgstr ""
+msgstr "显示步长值"
 
 msgid "Initial conditions"
-msgstr ""
+msgstr "初始条件"
 
 msgid "Boundary condition on a"
-msgstr ""
+msgstr "边界条件a"
 
 msgid "Boundary condition on b"
-msgstr ""
+msgstr "边界条件b"
 
 msgid "Expression ="
-msgstr ""
+msgstr "表达式 ="
 
 msgid "Measurement points"
-msgstr ""
+msgstr "测量点"
 
 msgid "The measurement points"
-msgstr ""
+msgstr "测量点"
 
 msgid "Add"
-msgstr ""
+msgstr "添加"
 
 msgid "Remove"
-msgstr ""
+msgstr "移除"
 
 msgid "Validate"
-msgstr ""
+msgstr "验证"
 
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 msgid "Please give the discretization domain values"
-msgstr ""
+msgstr "请提供离散化域值"
 
 #, c-format
 msgid "Please give the %s operator coefficients"
-msgstr ""
+msgstr "请给出%s运算符系数"
 
 msgid "Please give the sign for the variable discriminant"
-msgstr ""
+msgstr "请为可变判别符号"
 
 msgid "Please give the discretization method type"
-msgstr ""
+msgstr "请提供离散化方法类型"
 
 msgid "Please give the discretization method degree"
-msgstr ""
+msgstr "请给出离散化程度"
 
 msgid "Please give the number of discretization points"
-msgstr ""
+msgstr "请提供离散化点数"
 
 #, c-format
 msgid "Please give the initial condition %s"
-msgstr ""
+msgstr "请提供初始化条件 %s"
 
 msgid "Please give the boundary conditions"
-msgstr ""
+msgstr "请给出边界条件"
 
 msgid "The chosen point is out of the domain"
-msgstr ""
+msgstr "选择的点不在域内"
 
 msgid "Please select the operators"
-msgstr ""
+msgstr "请选择操作"
 
 msgid "PLEASE, GIVE US THE BLOCK's NAME. "
-msgstr ""
+msgstr "请提供块的名字。 "
 
 msgid "New block's name: "
-msgstr ""
+msgstr "新块的名称： "
 
 msgid "Sorry, undefined C file name."
-msgstr ""
+msgstr "错误，未定义的C文件名。"
 
 msgid ""
 "The discriminant isn't constant.<br>You must choose its sign in the GUI."
-msgstr ""
+msgstr "判别式不是常数。<br>必须在GUI中选择其符号。"
 
 msgid "Please provide the values<br>of the domain's discretization"
-msgstr ""
+msgstr "请提供域离散化的值"
 
 msgid "Please provide the coefficients<br>    of the d2u/dt2 operator"
-msgstr ""
+msgstr "请提供d2u/dt2运算符的系数"
 
 msgid "Please provide the coefficients<br>   of the d2u/dx2 operator"
-msgstr ""
+msgstr "请提供d2u/dx2运算符的系数"
 
 msgid "Please provide the coefficients<br>   of the du/dt operator"
-msgstr ""
+msgstr "请提供du/dt运算符的系数"
 
 msgid "Please provide the coefficients<br>   of the d2u/dtdx operator"
-msgstr ""
+msgstr "请提供d2u/dtdx运算符的系数"
 
 msgid "Please provide the coefficients<br>    of the du/dx operator"
-msgstr ""
+msgstr "请提供du/dx运算符的系数"
 
 msgid "Please provide the coefficients<br>      of the u operator"
-msgstr ""
+msgstr "请提供u运算符的系数"
 
 msgid "Please provide the coefficients<br>      of the f operator."
-msgstr ""
+msgstr "请提供f运算符的系数。"
 
 msgid "Please provide the sign of<br>the non-constant discriminant."
-msgstr ""
+msgstr "请提供非恒定判别符号。"
 
 msgid "Please provide the type of<br>the discretization method."
-msgstr ""
+msgstr "请提供离散化方法的类型。"
 
 msgid "Please provide the degree of<br>the discretization method."
-msgstr ""
+msgstr "请提供离散化方法的等级。"
 
 msgid "Please provide the number<br>of discretisation points."
-msgstr ""
+msgstr "请提供离散化点数。"
 
 msgid "Please provide the<br>initial condition u(x,t0)."
-msgstr ""
+msgstr "请提供初始条件u(x,t0)。"
 
 msgid "Please provide the<br>initial condition du/dx|t0"
-msgstr ""
+msgstr "请提供初始条件 du/dx|t0"
 
 msgid "Please provide the boundary conditions."
-msgstr ""
+msgstr "请提供边界条件。"
 
 msgid "   /* First output */ "
-msgstr ""
+msgstr "   / *第一个输出* / "
 
 msgid "   /* Second output */ "
-msgstr ""
+msgstr "   / *第一个输出* / "
 
 msgid "   /* Fist output */ "
-msgstr ""
+msgstr "   / *第一个输出* / "
 
 msgid "No decision."
-msgstr ""
+msgstr "未决策。"
 
 msgid "Usage: y = multMatVect(M, x)"
-msgstr ""
+msgstr "用法：y = multMatVect(M, x)"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
-msgstr ""
+msgstr "%s：第%d个和第%d个参数错误：不兼容的大小。\n"
 
 #, c-format
 msgid "The finite element discretization took %.2f seconds"
-msgstr ""
+msgstr "有限元离散化耗时%.2f 秒"
 
 #, c-format
 msgid "The finite differences discretization took %.2f seconds"
-msgstr ""
+msgstr "有限差分离散化耗时%.2f秒"
 
 #, c-format
 msgid "The finite volume discretization took %.2f seconds"
-msgstr ""
+msgstr "有限体积离散化耗时%.2f秒"
 
 #, c-format
 msgid "The code generation, the compilation and link took %.2f seconds"
-msgstr ""
+msgstr "代码生成，编译和链接花费了%.2f 秒"
 
 msgid "Input Size"
-msgstr ""
+msgstr "输入大小"
 
 msgid "The Font number must be > 0"
-msgstr ""
+msgstr "字体编号必须大于0"
 
 msgid "The Font size must be > 0"
-msgstr ""
+msgstr "字体大小必须大于0"
 
 msgid "The Total number of digits must be > 3"
-msgstr ""
+msgstr "总位数必须大于 3"
 
 msgid "The Number of fractional part digits must be >= 0"
-msgstr ""
+msgstr "小数位数的位数必须大于等于 0"
 
 msgid "Some specified values are inconsistent:"
-msgstr ""
+msgstr "一些指定的值不一致："
 
 msgid "Accept inherited values are 0 and 1"
-msgstr ""
+msgstr "接受继承的值是0和1"
 
 msgid "Segs Thickness"
-msgstr ""
+msgstr "分段宽度"
 
 msgid "Ymax > Ymin is required."
-msgstr ""
+msgstr "Ymax需要大于 Ymin"
 
 msgid "Xmax > Xmin is required."
-msgstr ""
+msgstr "Xmax需要大于 Xmin"
 
 msgid "The lines thickness must be > 0."
-msgstr ""
+msgstr "线宽必须大于 0。"
 
 msgid "Number of Curves"
-msgstr ""
+msgstr "曲线数"
 
 msgid "Curves styles: Colors>0 | marks<0"
-msgstr ""
+msgstr "曲线样式：Colors大于0 | marks小于0"
 
 msgid "Curves thicknesses | marks sizes"
-msgstr ""
+msgstr "曲线宽度| 标记尺寸"
 
 msgid "Output window number (-1 for automatic)"
-msgstr ""
+msgstr "输出窗口号 (-1为自适应)"
 
 msgid "Output window position"
-msgstr ""
+msgstr "输出窗口位置"
 
 msgid "Output window sizes"
-msgstr ""
+msgstr "输出窗口大小"
 
 msgid "Buffer size"
-msgstr ""
+msgstr "缓冲区大小"
 
 msgid "'Window position' must be [] or a 2 vector"
-msgstr ""
+msgstr "“窗口位置”的值必须为[]或2维向量"
 
 msgid "'Window sizes' must be [] or a 2 vector"
-msgstr ""
+msgstr "“窗口大小”的值必须为[]或2维向量"
 
 msgid "The Window number must be >= -1"
-msgstr ""
+msgstr "窗口编号必须大于等于 -1"
 
 msgid "The Number of curves must be >= 1"
-msgstr ""
+msgstr "曲线数必须大于等于1"
 
 msgid "The Buffer size must be >= 1"
-msgstr ""
+msgstr "缓冲区大小必须大于等于 1"
 
 msgid "The Buffer size must be >= 2"
-msgstr ""
+msgstr "缓冲区大小必须大于等于 2"
 
 msgid "Ymax > Ymin is required"
-msgstr ""
+msgstr "Ymax 需要大于 Ymin"
 
 msgid "Number of curves"
-msgstr ""
+msgstr "曲线数目"
 
 msgid "Curves thicknesses or marks sizes"
-msgstr ""
+msgstr "曲线粗细或标记大小"
 
 msgid ""
 "The numbers of curves styles and of<br>curves thickness or marks size must "
 "match."
-msgstr ""
+msgstr "曲线样式的数量和曲线粗细<br>或标记大小的数量必须匹配。"
 
 #, c-format
 msgid "Not enough curves styles: At least %d expected."
-msgstr ""
+msgstr "曲线样式不足：至少应该为%d。"
 
 msgid "The Buffer size must be >= 2, or Change a color (must be <0)"
-msgstr ""
+msgstr "缓冲区大小必须大于等于2，或更改颜色 (必须小于0)"
 
 msgid "Xmax > Xmin is required"
-msgstr ""
+msgstr "Xmax需要大于 Xmin"
 
 msgid "Zmax > Zmin is required"
-msgstr ""
+msgstr "Zmax需要大于 Zmin"
 
 msgid "Number of event inputs"
-msgstr ""
+msgstr "输入事件端口数目"
 
 msgid "The Window position must be [] or a 2 vector"
-msgstr ""
+msgstr "窗口位置的值必须为[]或2维向量"
 
 msgid "The block must have at least one input event"
-msgstr ""
+msgstr "该块必须至少有一个输入事件"
 
 msgid "The number of curves styles must match the Number of inputs"
-msgstr ""
+msgstr "曲线样式的数量必须与输入的数量匹配"
 
 msgid "The Refresh period must be > 0"
-msgstr ""
+msgstr "刷新周期必须大于 0"
 
 msgid "'Window number' must be >= -1"
-msgstr ""
+msgstr "“窗口号”必须大于等于 -1"
 
 msgid "Link to view must be positive"
-msgstr ""
+msgstr "链接到视图必须是正数"
 
 msgid "Event output port"
-msgstr ""
+msgstr "事件输出端口"
 
 msgid "Port number"
-msgstr ""
+msgstr "端口号"
 
 #, c-format
 msgid "Wrong value for 'Port Number' parameter: %d."
-msgstr ""
+msgstr "“端口号”参数的值错误：%d.。"
 
 msgid "Strictly positive integer expected."
-msgstr ""
+msgstr "应该是严格的正整数。"
 
 msgid "Set Event Output block parameters"
-msgstr ""
+msgstr "设置事件输出块参数"
 
 msgid "Port number must be an integer > 0"
-msgstr ""
+msgstr "端口号必须是大于0的整数"
 
 msgid "Bounds Vector X (-1 for standard)"
-msgstr ""
+msgstr "边界向量X (标准为-1)"
 
 msgid "Bounds Vector Y (-1 for standard)"
-msgstr ""
+msgstr "边界向量Y (标准为-1)"
 
 msgid "ColorMap"
-msgstr ""
+msgstr "色彩图"
 
 msgid "Vectors X and Y must have the same size."
-msgstr ""
+msgstr "向量X和Y必须具有相同的大小。"
 
 msgid "Zmax > Zmin is required."
-msgstr ""
+msgstr "Zmax 应该大于 Zmin"
 
 msgid "Error with minimum and maximum values"
-msgstr ""
+msgstr "最小值和最大值有误差"
 
 msgid "The block must have at least one input port"
-msgstr ""
+msgstr "该块必须至少有一个输入端口"
 
 msgid "Port sizes must be > 0"
-msgstr ""
+msgstr "端口大小必须大于 0"
 
 #, c-format
 msgid "At least %d curves styles expected."
-msgstr ""
+msgstr "应该至少有%d条曲线样式。"
 
 msgid "The size of 'Refresh Periods' must match the Ymin|Ymax's one"
-msgstr ""
+msgstr "“刷新周期”的大小必须与 Ymin|Ymax 的大小匹配"
 
 msgid "All Refresh Periods must be > 0"
-msgstr ""
+msgstr "所有刷新周期必须大于 0"
 
 msgid "'Accept herited events' must be 0 or 1"
-msgstr ""
+msgstr "“接受事件继承”必须为0或1"
 
 msgid "Curve style: Color>0 | mark<0"
-msgstr ""
+msgstr "曲线样式：Color>0 | mark<0"
 
 msgid "Refresh period"
-msgstr ""
+msgstr "刷新周期"
 
 msgid "Accept herited events 0/1"
-msgstr ""
+msgstr "接受事件继承 0/1"
 
 msgid "Name of Scope (label&Id)"
-msgstr ""
+msgstr "范围名称 (标签和编号)"
 
 msgid "The Number of Curves must be > 0"
-msgstr ""
+msgstr "曲线数必须大于0"
 
 msgid ""
 "<html>The number of Colors or Mark styles<br>and the number of curves "
 "thicknesses or marks sizes<br>must match."
-msgstr ""
+msgstr "<html>颜色或标记样式的数量以及曲线粗细<br>或标记大小的数量必须匹配。"
 
 msgid "The number of curves must be > 0"
-msgstr ""
+msgstr "曲线数必须大于 0"
 
 msgid "The Window's number must be > -1"
-msgstr ""
+msgstr "窗口的编号必须大于 -1"
 
 msgid "The Buffer size must be at least 1"
-msgstr ""
+msgstr "缓冲区大小必须至少为1"
 
 msgid "The Buffer size must be at least 2 or Change a color (must be >0)"
-msgstr ""
+msgstr "缓冲区大小必须至少为2或更改颜色 (必须大于 0)"
 
 msgid "Implicit output port:"
-msgstr ""
+msgstr "隐式输出端口："
 
 msgid "Regular output port"
-msgstr ""
+msgstr "常规输出端口"
 
 #, c-format
 msgid "Not enough colors defined: At least %d required."
-msgstr ""
+msgstr "未定义足够的颜色：至少需要%d。"
 
 msgid "'Auto scaling' must be 0:No or 1:Yes"
-msgstr ""
+msgstr "自动缩放”的值必须为：0代表否，1代表是"
 
 msgid "'Window number' can't be  < -1"
-msgstr ""
+msgstr "“窗口编号”不能小于-1"
 
 msgid "Size of Refresh Period must equal size of Ymin/Ymax vector"
-msgstr ""
+msgstr "刷新周期的大小必须等于Ymin/Ymax向量的大小"
 
 msgid "Refresh Period must be > 0"
-msgstr ""
+msgstr "刷新周期必须大于 0"
 
 msgid "The Buffer size must be at least 2"
-msgstr ""
+msgstr "缓冲区大小必须至少为2"
 
 msgid "Window position must be [] or a 2 vector"
-msgstr ""
+msgstr "窗口位置必须为[]或2维向量"
 
 msgid "Window sizes must be [] or a 2 vector"
-msgstr ""
+msgstr "窗口大小必须为[]或2维向量"
 
 msgid "Window number can't be  < -1"
-msgstr ""
+msgstr "窗口编号不能小于-1"
 
 msgid "Size of buffer"
-msgstr ""
+msgstr "缓冲区大小"
 
 msgid "Size of buffer must be > 0"
-msgstr ""
+msgstr "缓冲区的大小必须大于 0"
 
 msgid "Invalid variable's name.<br>Please choose another name."
-msgstr ""
+msgstr "变量名称无效。<br>请选择其他名称。"
 
 msgid "Protected variable name.<br>Please choose another name."
-msgstr ""
+msgstr "受保护的变量名称。<br>请选择其他名称。"
 
 msgid "Buffer Size"
-msgstr ""
+msgstr "缓冲区"
 
 msgid "Swap Mode (0:No, 1:Yes)"
-msgstr ""
+msgstr "交换模式(0：否，1：是)"
 
 msgid "Write '.au' sound file on audio device"
-msgstr ""
+msgstr "在音频设备上写入“ .au”声音文件"
 
 #, c-format
 msgid "You cannot modify '%s' when running."
-msgstr ""
+msgstr "运行时无法修改'%s'。"
 
 msgid "End current simulation first"
-msgstr ""
+msgstr "首先结束当前仿真"
 
 msgid "Swap Mode"
-msgstr ""
+msgstr "交换模式"
 
 msgid "Write to C binary file"
-msgstr ""
+msgstr "写入C二进制文件"
 
 msgid "Input Format"
-msgstr ""
+msgstr "输入格式"
 
 msgid "Valid formats are: "
-msgstr ""
+msgstr "有效格式为： "
 
 #, c-format
 msgid "You cannot modify '%s' when running"
-msgstr ""
+msgstr "运行时无法修改“%s”"
 
 msgid "End current simulation first."
-msgstr ""
+msgstr "首先结束当前仿真。"
 
 msgid "You cannot modify 'Buffer Size' when running."
-msgstr ""
+msgstr "运行时无法修改“缓冲区大小”。"
 
 msgid "Output File Name"
-msgstr ""
+msgstr "输出文件名"
 
 msgid "You must provide a filename."
-msgstr ""
+msgstr "你必须提供一个文件名。"
 
 #, c-format
 msgid "Directory '%s' does not exist"
-msgstr ""
+msgstr "目录“%s”不存在"
 
 msgid "Event input port"
-msgstr ""
+msgstr "事件输入端口"
 
 msgid "Port Number"
-msgstr ""
+msgstr "端口号"
 
 #, c-format
 msgid "Wrong values for 'Port Number' parameter: %d."
-msgstr ""
+msgstr "“端口号”参数的值错误：%d。"
 
 msgid "Set Event Input block parameters"
-msgstr ""
+msgstr "设置事件输入块参数"
 
 msgid "'Port number' must be a positive integer."
-msgstr ""
+msgstr "“端口号”必须为正整数。"
 
 msgid "Event clock generator"
-msgstr ""
+msgstr "事件时钟发生器"
 
 msgid "&nbsp; Do not start if 'Initialisation Time' is negative"
-msgstr ""
+msgstr "&nbsp; 如果“初始化时间”为负，则不要开始"
 
 msgid "Initialisation Time"
-msgstr ""
+msgstr "初始化时间"
 
 msgid "Period"
-msgstr ""
+msgstr "间隔"
 
 msgid "Strictly positive number expected."
-msgstr ""
+msgstr "应该是严格的正数。"
 
 #, c-format
 msgid "Wrong values for '%s' parameter: %5.1e."
-msgstr ""
+msgstr "'%s'参数的值错误：%5.1e。"
 
 msgid "Set Clock  block parameters"
-msgstr ""
+msgstr "设置时钟块参数"
 
 msgid "Period must be > 0"
-msgstr ""
+msgstr "间隔必须大于 0"
 
 msgid "Set Constant value block"
-msgstr ""
+msgstr "设置常量值块"
 
 msgid "Value"
-msgstr ""
+msgstr "数值"
 
 msgid "The value must be non-empty"
-msgstr ""
+msgstr "该值必须为非空"
 
 msgid ""
 "The input value must be scalar.<br>Please use CONST_m to set a<br>constant "
 "input vector or matrix."
-msgstr ""
+msgstr "输入值必须为标量。<br>请使用CONST_m设置<br>恒定输入向量或矩阵。"
 
 msgid "Set Constant Block"
-msgstr ""
+msgstr "设置常量块"
 
 msgid "Value (scalar | vector | matrix)"
-msgstr ""
+msgstr "值 (标量|向量|矩阵)"
 
 msgid "The value must have at least one element."
-msgstr ""
+msgstr "该值必须至少包含一个元素。"
 
 msgid "Provides a CONSTant scalar, vector or Matrix"
-msgstr ""
+msgstr "提供常量，向量或矩阵"
 
 msgid "Constant Value"
-msgstr ""
+msgstr "常量值"
 
 msgid "Constant value must have at least one element."
-msgstr ""
+msgstr "常数必须至少包含一个元素。"
 
 #, c-format
 msgid "Wrong size for '%s' parameter"
-msgstr ""
+msgstr "'%s'参数大小错误"
 
 #, c-format
 msgid "Wrong type for '%s' parameter"
-msgstr ""
+msgstr "'%s'参数类型错误"
 
 msgid "The value must be numeric<br>(double, complex, int, int8, ..uint32)."
-msgstr ""
+msgstr "该值必须为数字<br>(双精度浮点数，复数，int，int8，.. uint32）。"
 
 msgid "Spline data"
-msgstr ""
+msgstr "样条数据"
 
 msgid "Spline Method (0..7)"
-msgstr ""
+msgstr "样条法 (0..7)"
 
 msgid "Periodic signal (y/n)?"
-msgstr ""
+msgstr "周期信号(y/n)？"
 
 msgid "Incompatible sizes of [x] and [y]"
-msgstr ""
+msgstr "[x]和[y]的大小不兼容"
 
 msgid " No [y] is provided"
-msgstr ""
+msgstr " 没有提供[y]"
 
 msgid "X should be positive"
-msgstr ""
+msgstr "X应该为正"
 
 msgid "Generating periodic signal"
-msgstr ""
+msgstr "产生周期性信号"
 
 msgid "Sine parameters"
-msgstr ""
+msgstr "正弦参数"
 
 msgid "Excel data file"
-msgstr ""
+msgstr "Excel数据文件"
 
 #, c-format
 msgid "Scicos cannot find the excel file '%s'."
-msgstr ""
+msgstr "Scicos无法找到excel文件'%s'。"
 
 msgid "Scicos cannot read your Excel file. Please verify the parameters"
-msgstr ""
+msgstr "Scicos无法读取Excel文件。 请检查参数"
 
 #, c-format
 msgid "x contains no data:x(%d)"
-msgstr ""
+msgstr "x不包含任何数据：x(%d)"
 
 #, c-format
 msgid "Y contains no data:y(%d)"
-msgstr ""
+msgstr "Y不包含任何数据：y(%d)"
 
 msgid "Text data file"
-msgstr ""
+msgstr "文字数据文件"
 
 msgid "Abscissae must be in increasing order"
-msgstr ""
+msgstr "横坐标必须按升序排列"
 
 msgid "Integer counter generator"
-msgstr ""
+msgstr "整数计数器发生器"
 
 msgid "Maximum"
-msgstr ""
+msgstr "最大值"
 
 msgid "Rule (1:Increment, 2:Decrement)"
-msgstr ""
+msgstr "规则 (1：递增，2：递减)"
 
 #, c-format
 msgid "Wrong values for 'Maximum' and 'Minimum' parameters: %d &lt; %d"
-msgstr ""
+msgstr "“最大”和“最小”参数的值错误：%d &lt; %d"
 
 msgid "'Minimum' must be less than 'Maximum'."
-msgstr ""
+msgstr "“最小”必须小于“最大”。"
 
 #, c-format
 msgid "Wrong value for 'Rule' parameter: %d"
-msgstr ""
+msgstr "“ Rule”参数的值错误：%d"
 
 msgid "Variable name"
-msgstr ""
+msgstr "变量名称"
 
 msgid "'Interpolation method' should be chosen in [0,1,2,3]"
-msgstr ""
+msgstr "[插值方法]应该在[0,1,2,3]中选择"
 
 msgid "'Use zero crossing' should be either 0 or 1"
-msgstr ""
+msgstr "“使用零交叉”应为0或1"
 
 msgid "'Output at end' should be either 0 or 1"
-msgstr ""
+msgstr "“末尾输出”应为0或1"
 
 msgid ""
 "Invalid variable name.<br>Please use another variable<br>or define this one."
-msgstr ""
+msgstr "无效的变量名称。<br>请使用另一个变量<br>或定义该变量。"
 
 msgid "Sine wave generator"
-msgstr ""
+msgstr "正弦波发生器"
 
 msgid "Frequency (rad/s)"
-msgstr ""
+msgstr "频率 (rad/s)"
 
 msgid "Phase (rad)"
-msgstr ""
+msgstr "相位  (rad)"
 
 #, c-format
 msgid "Wrong value for 'Frequency' parameter: %e."
-msgstr ""
+msgstr "“频率”参数的值错误：%e。"
 
 msgid "Minimum Value"
-msgstr ""
+msgstr "最小值"
 
 msgid "Implicit input port"
-msgstr ""
+msgstr "隐式输入端口"
 
 msgid "Outport size ([-1 -2] for inherit)"
-msgstr ""
+msgstr "输出大小 ([-1 -2]表示继承)"
 
 msgid "Outport Type (-1 for inherit)"
-msgstr ""
+msgstr "输出类型 (-1表示继承)"
 
 msgid "Port number must be a positive integer"
-msgstr ""
+msgstr "端口号必须为正整数"
 
 msgid "Outport Size must be a 2 elements vector"
-msgstr ""
+msgstr "输出大小必须是2个元素的向量"
 
 msgid "Outport type must be a number between 1 and 9, or -1 for inheritance."
-msgstr ""
+msgstr "输出类型必须为1到9之间的数字，或为-1表示继承。"
 
 msgid "Modulo counter (0 to N counter)"
-msgstr ""
+msgstr "模计数器 (0至N计数器)"
 
 msgid "Initial State (zero or positive number)"
-msgstr ""
+msgstr "初始状态 (零或正数)"
 
 msgid "Upper Limit (positive number)"
-msgstr ""
+msgstr "上限 (正数)"
 
 #, c-format
 msgid "Wrong value for 'Initial State' parameter: %d."
-msgstr ""
+msgstr "“初始状态”参数的值错误：%d。"
 
 msgid "Null or positive integer expected."
-msgstr ""
+msgstr "应该为空或正整数。"
 
 #, c-format
 msgid "Wrong values for 'Upper Limit' parameter: %d."
-msgstr ""
+msgstr "“上限”参数的值错误：%d。"
 
 msgid "Set Pulse Generator parameters"
-msgstr ""
+msgstr "设置脉冲发生器参数"
 
 msgid "Phase delay (s)"
-msgstr ""
+msgstr "相位延迟 (s)"
 
 msgid "The pulse width must be in [0,100]"
-msgstr ""
+msgstr "脉冲宽度必须为[0,100]"
 
 msgid "Offset must be < Period*(1-Width/100)"
-msgstr ""
+msgstr "偏移量必须小于 间隔*(1-脉宽/100)"
 
 msgid "Ramp function"
-msgstr ""
+msgstr "斜坡功能"
 
 msgid "Start Time"
-msgstr ""
+msgstr "起始时间"
 
 #, c-format
 msgid "Wrong value for 'Start Time' parameter: %e."
-msgstr ""
+msgstr "“开始时间”参数的值错误：%e。"
 
 msgid "Set Random generator block parameters"
-msgstr ""
+msgstr "设置随机数发生器块参数"
 
 msgid ""
 "flag = 0 : Uniform distribution. A is min and A+B max<br>flag = 1 : Normal "
 "distribution. A is mean and B deviation.<br><br>A and B must be vector with "
 "equal sizes.<br>Seed is the seed of random number generator (integer<2**31)"
 msgstr ""
+"flag = 0：均匀分布。 A是最小值，而A + B max <br> flag = 1：正态分布。 A是均值"
+"和B偏差。<br> <br> A和B必须是大小相等的向量。<br>种子是随机数生成器的种子 (小"
+"于2 ** 31的整数)"
 
 msgid "'flag' must be equal to 0 or 1"
-msgstr ""
+msgstr "“flag”必须等于0或1"
 
 msgid ""
 "flag = 0 : Uniform distribution A is min and A+B max.<br>flag = 1 : Normal "
 "distribution A is mean and B deviation<br><br>A and B must be matrix with "
 "equal sizes"
 msgstr ""
+"flag = 0：均匀分布A为最小值，而A + B最大。<br>flag = 1：正态分布A为平均值，且"
+"B偏差A和B<br>必须为等大小矩阵"
 
 msgid "Datatype (1=real double  2=complex)"
-msgstr ""
+msgstr "数据类型  (1 =双精度实数，2 =复杂)"
 
 msgid "Seed"
-msgstr ""
+msgstr "随机数种子"
 
 msgid "Read an Audio File"
-msgstr ""
+msgstr "读取音频文件"
 
 msgid "Read is done on a binary '.au' file"
-msgstr ""
+msgstr "读取二进制“ .au”文件完成"
 
 msgid "Input File Name"
-msgstr ""
+msgstr "输入文件名"
 
 msgid "Simulation running !!! You cannot modify Input file name"
-msgstr ""
+msgstr "仿真运行中！！！无法修改输入文件名"
 
 #, c-format
 msgid "Must be greater than %d."
-msgstr ""
+msgstr "必须大于%d。"
 
 msgid "Read from C binary file"
-msgstr ""
+msgstr "从C二进制文件读取"
 
 msgid "Time Record Selection"
-msgstr ""
+msgstr "时间记录选择"
 
 msgid "Must be a scalar or an empty matrix."
-msgstr ""
+msgstr "必须是标量或空矩阵。"
 
 msgid "You must provide a file name."
-msgstr ""
+msgstr "您必须提供一个文件名。"
 
 msgid "Record Size"
-msgstr ""
+msgstr "记录大小"
 
 #, c-format
 msgid "Wrong value for  '%s' parameter: %d."
-msgstr ""
+msgstr "'%s'参数的值错误：%d。"
 
 msgid "[1, Record Size = "
-msgstr ""
+msgstr "[1, 记录大小 = "
 
 msgid "Outputs Record Selection"
-msgstr ""
+msgstr "输出记录选择"
 
 #, c-format
 msgid "Wrong value for indexes in '%s' parameter: %s."
-msgstr ""
+msgstr "'%s'参数中的索引值错误：%s。"
 
 msgid "Initial Record Index"
-msgstr ""
+msgstr "初始记录索引"
 
 msgid "Read from an input file"
-msgstr ""
+msgstr "从输入文件读取"
 
 msgid ""
 "Read is done on:<br>&nbsp; - A binary file if no format given.<br>&nbsp; - A "
 "formatted text file if a  format (fortran type) is given.<br>"
 msgstr ""
+"读取完成于：<br>&nbsp; -如果没有给出格式，则为二进制文件。<br>&nbsp; -如果给"
+"出了格式(fortran类型)，则为格式化文本文件。<br>"
 
 msgid "Empty matrix or scalar expected."
-msgstr ""
+msgstr "预期为空矩阵或标量。"
 
 #, c-format
 msgid "Wrong value for '%s' parameter: %d"
-msgstr ""
+msgstr "'%s'参数的值错误：%d"
 
 msgid ""
 "Simulation running !!! You cannot switch <br />between formatted and "
 "unformatted"
-msgstr ""
+msgstr "模拟运行！！！您不能在<br />已格式化和未格式化之间切换"
 
 msgid "Simulation running !!! You cannot modify 'Input File Name"
-msgstr ""
+msgstr "模拟运行！！！您无法修改“输入文件名"
 
 msgid "Simulation running !!! You cannot modify 'Time Record Selection"
-msgstr ""
+msgstr "模拟运行！！！ 您无法修改“时间记录选择”"
 
 #, c-format
 msgid "Wrong value for '%s' parameter: %s"
-msgstr ""
+msgstr "'%s'参数的值错误：%s"
 
 #, c-format
 msgid "Wrong format for '%s' parameter: %s."
-msgstr ""
+msgstr "'%s'参数的格式错误：%s。"
 
 msgid "You must enclose the format's string between parentheses."
-msgstr ""
+msgstr "您必须将格式的字符串放在括号之间。"
 
 msgid "Buffer size must be at least 2."
-msgstr ""
+msgstr "缓冲区大小必须至少为2。"
 
 msgid "You must read at least one field in record."
-msgstr ""
+msgstr "您必须阅读记录中的至少一个字段。"
 
 msgid "Strictly positive indexes expected."
-msgstr ""
+msgstr "应该是严格的正数索引值。"
 
 msgid "Step Time"
-msgstr ""
+msgstr "步长时间"
 
 #, c-format
 msgid "'Initial Value' and 'Final Value': incompatible sizes: %d and %d."
-msgstr ""
+msgstr "“初始值”和“最终值”：不兼容的大小：%d和%d。"
 
 msgid "Same sizes expected."
-msgstr ""
+msgstr "预期大小相同。"
 
 msgid "'Sample time' must be >= 0"
-msgstr ""
+msgstr "“采样时间”必须大于等于 0"
 
 msgid "The |Offset| must be less than the Sample time"
-msgstr ""
+msgstr "|偏移量| 必须小于采样时间"
 
 msgid "Min value"
-msgstr ""
+msgstr "最小值"
 
 msgid "TK Source: "
-msgstr ""
+msgstr "TK源： "
 
 msgid "Set General Zero-Crossing parameters"
-msgstr ""
+msgstr "设置常规零交叉参数"
 
 msgid "Input size"
-msgstr ""
+msgstr "输入大小"
 
 msgid "Routing matrix"
-msgstr ""
+msgstr "路由矩阵"
 
 msgid "Set Zero-Crossing parameters<br><br>All surfaces must cross together"
-msgstr ""
+msgstr "设置零交叉参数<br> <br>所有表面必须交叉在一起"
 
 msgid "The block must have at least one input"
-msgstr ""
+msgstr "该块必须至少有一个输入"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该至少为%d个。\n"

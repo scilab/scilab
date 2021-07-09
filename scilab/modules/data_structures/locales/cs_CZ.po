@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s:  Wrong type for input argument #%d: List expected.\n"
@@ -90,52 +90,35 @@ msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d."
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
-#
-# File: modules/data_structures/macros/list2tree.sci, line: 32
-# File: modules/data_structures/macros/tree_show.sci, line: 42
 #, c-format
 msgid "%s: Argument #%d: Container or Xcos object expected.\n"
 msgstr ""
 
-#
-# File: modules/data_structures/macros/list2tree.sci, line: 43
-# File: modules/data_structures/macros/tree_show.sci, line: 53
 #, c-format
 msgid "%s: Argument #%d: Boolean(s) expected.\n"
 msgstr ""
 
-#
-# File: modules/data_structures/macros/list2tree.sci, line: 52
-# File: modules/data_structures/macros/tree_show.sci, line: 62
 #, c-format
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr ""
 
-#
-# File: modules/data_structures/macros/list2tree.sci, line: 158
 msgid " [Xcos diagram]"
 msgstr ""
 
-#
-# File: modules/data_structures/macros/list2tree.sci, line: 160
 msgid " [Xcos block]"
 msgstr ""
 
-#
-# File: modules/data_structures/macros/list2tree.sci, line: 238
 #, c-format
 msgid "%s() (%d lines)"
 msgstr ""
 
-#
-# File: modules/data_structures/macros/list2tree.sci, line: 245
 #, c-format
 msgid "%s library of %d functions @ %s"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d."
 
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"

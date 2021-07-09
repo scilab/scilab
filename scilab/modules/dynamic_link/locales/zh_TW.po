@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -516,12 +516,12 @@ msgid "   %s: File %s ignored.\n"
 msgstr "   %s: 檔案 %s 忽略.\n"
 
 #, c-format
-msgid "   %s: Need to run the compiler detection (configure).\n"
-msgstr "   %s: 必須執行編譯器偵測 (組態).\n"
-
-#, c-format
 msgid "   %s: Use the previous detection of compiler.\n"
 msgstr "   %s: 使用編譯器的上一個偵測.\n"
+
+#, c-format
+msgid "   %s: Need to run the compiler detection (configure).\n"
+msgstr "   %s: 必須執行編譯器偵測 (組態).\n"
 
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 127

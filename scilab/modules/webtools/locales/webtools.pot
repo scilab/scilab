@@ -15,12 +15,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-18 16:36+0100\n"
+"Revision-Date: 2021-07-09 17:35+0100\n"
 
 # File: modules/webtools/sci_gateway/cpp/checkCommonOpt.cpp, line: 40
 # File: modules/webtools/sci_gateway/cpp/checkCommonOpt.cpp, line: 73
-# File: modules/webtools/sci_gateway/cpp/sci_http_put_post.cpp, line: 105
-# File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 182
+# File: modules/webtools/sci_gateway/cpp/sci_http_put_post.cpp, line: 107
+# File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 184
 #, c-format
 msgid "%s: Wrong type for input argument #%s: A scalar string expected.\n"
 msgstr ""
@@ -81,10 +81,10 @@ msgstr ""
 #
 # File: modules/webtools/sci_gateway/cpp/sci_http_delete.cpp, line: 52
 # File: modules/webtools/sci_gateway/cpp/sci_http_get.cpp, line: 55
-# File: modules/webtools/sci_gateway/cpp/sci_http_get.cpp, line: 75
+# File: modules/webtools/sci_gateway/cpp/sci_http_get.cpp, line: 77
 # File: modules/webtools/sci_gateway/cpp/sci_http_put_post.cpp, line: 56
 # File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 56
-# File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 90
+# File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 92
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar string expected.\n"
 msgstr ""
@@ -99,10 +99,10 @@ msgid "%s: CURL initialization failed.\n"
 msgstr ""
 
 #
-# File: modules/webtools/sci_gateway/cpp/sci_http_delete.cpp, line: 76
-# File: modules/webtools/sci_gateway/cpp/sci_http_get.cpp, line: 110
-# File: modules/webtools/sci_gateway/cpp/sci_http_put_post.cpp, line: 94
-# File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 165
+# File: modules/webtools/sci_gateway/cpp/sci_http_delete.cpp, line: 78
+# File: modules/webtools/sci_gateway/cpp/sci_http_get.cpp, line: 112
+# File: modules/webtools/sci_gateway/cpp/sci_http_put_post.cpp, line: 96
+# File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 167
 #, c-format
 msgid ""
 "%s: Wrong proxy information, please check in the 'internet' Scilab "
@@ -110,10 +110,10 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/webtools/sci_gateway/cpp/sci_http_delete.cpp, line: 86
-# File: modules/webtools/sci_gateway/cpp/sci_http_get.cpp, line: 117
-# File: modules/webtools/sci_gateway/cpp/sci_http_put_post.cpp, line: 154
-# File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 210
+# File: modules/webtools/sci_gateway/cpp/sci_http_delete.cpp, line: 88
+# File: modules/webtools/sci_gateway/cpp/sci_http_get.cpp, line: 119
+# File: modules/webtools/sci_gateway/cpp/sci_http_put_post.cpp, line: 156
+# File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 212
 #, c-format
 msgid ""
 "%s: CURL execution failed.\n"
@@ -129,27 +129,27 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/webtools/sci_gateway/cpp/sci_http_get.cpp, line: 86
+# File: modules/webtools/sci_gateway/cpp/sci_http_get.cpp, line: 88
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: The given path does not exist.\n"
 msgstr ""
 
 #
-# File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 74
+# File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 76
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix string expected.\n"
 msgstr ""
 
 #
-# File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 132
+# File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 134
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A structure of size %d expected.\n"
 msgstr ""
 
 #
-# File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 193
+# File: modules/webtools/sci_gateway/cpp/sci_http_upload.cpp, line: 195
 #, c-format
 msgid "%s: Wrong value for input argument #%s: 'PUT' or 'POST' expected.\n"
 msgstr ""

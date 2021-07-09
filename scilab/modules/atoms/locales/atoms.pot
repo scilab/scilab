@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-24 11:08+0100\n"
+"Revision-Date: 2021-07-09 17:34+0100\n"
 
 # File: modules/atoms/macros/atomsAutoload.sci, line: 50
 # File: modules/atoms/macros/atomsLoad.sci, line: 41
@@ -123,7 +123,7 @@ msgstr ""
 # File: modules/atoms/macros/atomsAutoloadList.sci, line: 49
 # File: modules/atoms/macros/atomsCategoryList.sci, line: 39
 # File: modules/atoms/macros/atomsGetConfig.sci, line: 29
-# File: modules/atoms/macros/atomsGetInstalled.sci, line: 49
+# File: modules/atoms/macros/atomsGetInstalled.sci, line: 47
 # File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 30
 # File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 52
 # File: modules/atoms/macros/atomsInstall.sci, line: 100
@@ -302,7 +302,7 @@ msgstr ""
 #
 # File: modules/atoms/macros/atomsAutoloadDel.sci, line: 82
 # File: modules/atoms/macros/atomsAutoloadList.sci, line: 57
-# File: modules/atoms/macros/atomsGetInstalled.sci, line: 53
+# File: modules/atoms/macros/atomsGetInstalled.sci, line: 51
 # File: modules/atoms/macros/atomsIsInstalled.sci, line: 83
 # File: modules/atoms/macros/atoms_internals/atomsAutoloadLoad.sci, line: 42
 # File: modules/atoms/macros/atoms_internals/atomsGetDepChilds.sci, line: 57
@@ -320,7 +320,7 @@ msgstr ""
 
 #
 # File: modules/atoms/macros/atomsAutoloadList.sci, line: 30
-# File: modules/atoms/macros/atomsGetInstalled.sci, line: 38
+# File: modules/atoms/macros/atomsGetInstalled.sci, line: 36
 # File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 28
 # File: modules/atoms/macros/atoms_internals/atomsGetMRVersion.sci, line: 28
 # File: modules/atoms/macros/atoms_internals/atomsToremoveList.sci, line: 28
@@ -672,6 +672,12 @@ msgstr ""
 # File: modules/atoms/macros/atomsInstall.sci, line: 439
 #, c-format
 msgid "%s: Previously existing file with the same name in '%s'.\n"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsInstall.sci, line: 535
+# File: modules/atoms/macros/atomsRemove.sci, line: 365
+msgid "&Toolboxes"
 msgstr ""
 
 #
@@ -1382,12 +1388,12 @@ msgid "%s: The file %s is empty.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 119
+# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 120
 msgid "Updating Atoms modules database..."
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 144
+# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 150
 #, c-format
 msgid ""
 "%s: The file %s is not well formatted, the toolbox %s - %s does not contain "
@@ -1395,20 +1401,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 207
-# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 228
+# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 213
+# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 234
 #, c-format
 msgid "%s: name and version are not both defined\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 247
+# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 253
 #, c-format
 msgid "%s: The file '%s' is not well formatted at line %d\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 326
+# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 332
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' is not a registered category"
@@ -1457,126 +1463,138 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 101
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 104
 #, c-format
 msgid "%s: Neither Wget or Curl found: Please install one of them\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 185
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 188
 msgid "Download in progress... Please be patient."
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 204
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 220
+msgid "Couldn't resolve host name"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 222
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: The given path does not exist.\n"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 236
 #, c-format
 msgid "%s: Error: the response status from the URL %s is invalid.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 205
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 238
 #, c-format
 msgid "%s: Error while opening an Internet connection.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 206
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 240
 #, c-format
 msgid "%s: Error while opening the URL %s.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 207
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 242
 #, c-format
 msgid "%s: Error while creating the file %s on disk.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 208
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 244
 #, c-format
 msgid "%s: Error while retrieving the size of file at URL %s.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 209
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 246
 #, c-format
 msgid "%s: Error while reading the file from the URL %s.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 210
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 248
 #, c-format
 msgid "%s: Error while writing the file %s on disk.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 211
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 250
 #, c-format
 msgid "%s: Error while downloading the file from the URL %s.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 212
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 252
 #, c-format
 msgid "%s: Error: out of memory.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 218
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 254
 #, c-format
 msgid "%s: The following file hasn't been downloaded:\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 219
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 255
 #, c-format
 msgid "\t - URL      : '%s'\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 220
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 256
 #, c-format
 msgid "\t - Local location : '%s'\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 238
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 274
 #, c-format
 msgid "%s: The following file has not been copied:\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 239
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 275
 #, c-format
 msgid "\t - source    : '%s'\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 240
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 276
 #, c-format
 msgid "\t - destination : '%s'\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 255
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 291
 #, c-format
 msgid "%s: The downloaded file does not match the MD5SUM:\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 256
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 292
 #, c-format
 msgid "\t - file      : '%s'\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 257
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 293
 #, c-format
 msgid "\t - MD5SUM expected : '%s'\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 258
+# File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 294
 #, c-format
 msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr ""

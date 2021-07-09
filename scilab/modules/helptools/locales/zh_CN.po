@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-01-04 13:35+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2020-08-17 16:23+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -31,12 +31,14 @@ msgstr "%s：生成文档时发生错误：%s。\n"
 
 #, c-format
 msgid "%s: Execution Java stack: %s.\n"
-msgstr ""
+msgstr "%s：在Java堆栈中运行：%s。\n"
 
 msgid ""
 "If Scilab is started in a chroot, you might want to try to set the two "
 "environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
 msgstr ""
+"如果在chroot中启动Scilab，则可能要尝试设置两个环境变量：SCI_DISABLE_TK = 1 以"
+"及 SCI_JAVA_ENABLE_HEADLESS = 1\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -83,39 +85,39 @@ msgstr "-- 删除帮助文件 --\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是纯字母字符串。\n"
 
 #, c-format
 msgid "%s: Undefined variable %s.\n"
-msgstr ""
+msgstr "%s：未定义的变量 :  %s。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是一个存在于Scilab中的函数名称。\n"
 
 msgid "No comment available."
-msgstr ""
-
-#, c-format
-msgid "%s: The help browser is disabled in %s mode.\n"
-msgstr "%s：在%s模式下帮助浏览器被禁用。\n"
+msgstr "无有效评论。"
 
 #, c-format
 msgid "%s: help file(.jar) is not installed.\n"
 msgstr "%s：帮助文件（.jar）未安装。\n"
+
+#, c-format
+msgid "%s: The help browser is disabled in %s mode.\n"
+msgstr "%s：在%s模式下帮助浏览器被禁用。\n"
 
 #, c-format
 msgid ""
@@ -149,7 +151,7 @@ msgstr "%s：无法打开文件%s。\n"
 
 #, c-format
 msgid "%s: File skipped %s."
-msgstr ""
+msgstr "%s：文件%s被跳过。"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
@@ -157,13 +159,13 @@ msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Text(s) expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该是指定文本。\n"
 
 msgid " * Add some comments about XML file"
-msgstr ""
+msgstr " *添加有关XML文件的一些注释"
 
 msgid "Add short description here."
-msgstr ""
+msgstr "在此处添加简短说明。"
 
 msgid "Syntax"
 msgstr "语法"
@@ -172,13 +174,13 @@ msgid "Arguments"
 msgstr "参数"
 
 msgid "            Add here the input/output argument description."
-msgstr ""
+msgstr "            在此处添加输入/输出的说明。"
 
 msgid "          Add here a paragraph of the function description."
-msgstr ""
+msgstr "          在此处添加一段功能说明。"
 
 msgid "          Other paragraph can be added"
-msgstr ""
+msgstr "          其他功能可被添加"
 
 msgid "More information"
 msgstr "详细信息"
@@ -187,42 +189,62 @@ msgid "Examples"
 msgstr "示例"
 
 msgid "        Add here scilab instructions and comments"
-msgstr ""
+msgstr "        在此处添加scilab说明和评论"
 
 msgid "        Add here scilab instructions to generate a graphic"
-msgstr ""
+msgstr "        在此处添加scilab说明以生成图形"
 
 msgid "See Also"
 msgstr "参见"
 
 msgid "add a reference"
-msgstr ""
+msgstr "添加引用"
 
 msgid "add a reference name"
-msgstr ""
+msgstr "添加引用名称"
 
 msgid "Authors"
 msgstr "作者"
 
 msgid "add the author name and author reference"
-msgstr ""
+msgstr "添加作者姓名和作者引用"
 
 msgid "add another author name and his/her reference"
-msgstr ""
+msgstr "添加其他作者姓名及其引用"
 
 msgid "Bibliography"
-msgstr ""
+msgstr "参考目录"
 
 msgid "         Add here the function bibliography"
-msgstr ""
+msgstr "         在此处添加函数参考目录"
 
 msgid "History"
-msgstr ""
+msgstr "历史记录"
 
 msgid "Used Functions"
-msgstr ""
+msgstr "已使用的函数"
 
 msgid "         Add here the Scilab, C,... used code references"
+msgstr "         在此处添加使用Scilab，C等语言的代码示例"
+
+#
+# File: modules/helptools/macros/helpbrowser_menus_cb.sci, line: 42
+msgid "Help browser: Pages of external modules can't be viewed online"
+msgstr ""
+
+#
+# File: modules/helptools/macros/helpbrowser_menus_cb.sci, line: 47
+msgid "Help browser: Tables of contents can't be targeted online"
+msgstr ""
+
+#
+# File: modules/helptools/macros/helpbrowser_menus_cb.sci, line: 65
+msgid "Help browser: Bugs of external modules can't be listed."
+msgstr ""
+
+#
+# File: modules/helptools/macros/helpbrowser_menus_cb.sci, line: 70
+msgid "Help browser: Table of contents can't be targeted in Bugzilla"
 msgstr ""
 
 #, c-format
@@ -233,7 +255,7 @@ msgid "Help chapter"
 msgstr "帮助章节"
 
 msgid "Scilab Help"
-msgstr ""
+msgstr "Scilab帮助"
 
 #, c-format
 msgid ""
@@ -263,23 +285,27 @@ msgstr "\t%s\n"
 
 #, c-format
 msgid "Building the scilab manual file [%s]\n"
-msgstr ""
+msgstr "生成scilab手册文件[%s]\n"
 
 #, c-format
 msgid ""
 "\n"
 "Building the manual file [%s] in %s.\n"
 msgstr ""
+"\n"
+"构建帮助手册文件[%s]于%s中。\n"
 
 #, c-format
 msgid ""
 "\n"
 "Building the manual file [%s].\n"
 msgstr ""
+"\n"
+"正在构建手册文件[%s]。\n"
 
 #, c-format
 msgid "Post-processing Right-to-Left pages in %s...\n"
-msgstr ""
+msgstr "将对%s中的页面进行从右到左的后期处理...\n"
 
 #, c-format
 msgid "%s: %s has not been generated."
@@ -291,7 +317,7 @@ msgstr "%s：文件%s没有移动到目录%s。"
 
 #, c-format
 msgid "%s: Please check %s, number of modules is invalid.\n"
-msgstr ""
+msgstr "%s：请检查%s，模块数目无效。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"

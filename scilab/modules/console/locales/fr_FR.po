@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-18 11:22+0000\n"
-"Last-Translator: CARNIS Adeline <Unknown>\n"
+"PO-Revision-Date: 2021-07-09 13:09+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
@@ -709,8 +709,9 @@ msgstr "Enregistrer l'historique"
 msgid "Save file"
 msgstr "Enregistrer le fichier"
 
-msgid "Demos"
-msgstr "Démonstrations"
+#, fuzzy
+msgid "Help and demos"
+msgstr "Aide sur le mot-clé"
 
 msgid "Environment"
 msgstr "Environnement"
@@ -728,7 +729,7 @@ msgid "Recursion limit: "
 msgstr "Limite récursive : "
 
 msgid "Containers display depth: "
-msgstr ""
+msgstr "Profondeur d'affichage des containeurs: "
 
 msgid "Language setting"
 msgstr "Paramètres de la langue"
@@ -796,8 +797,17 @@ msgstr "Nom de l'action"
 msgid "Key binding"
 msgstr "Combinaison de touches"
 
+msgid "Demos"
+msgstr "Démonstrations"
+
 msgid "The demo interface is dockable"
 msgstr "L'interface de démonstration est ancrable."
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1413
+# File: modules/console/src/console_fake_xml.c, line: 1766
+msgid "Redirect Matlab terms to Scilab closest equivalent"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -824,16 +834,20 @@ msgstr "Impossible de changer la couleur de fond de la console."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s : nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
+"%s : type erroné de l'argument d'entrée n°%d : une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
+"%s : dimension erronée de l'argument d'entrée n°%d : une chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr ""
+msgstr "%s : Valeur erronée pour l'argument d'entrée n°%d: '%s' attendu.\n"

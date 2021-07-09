@@ -9,13 +9,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2017-12-14 15:52+0000\n"
-"Last-Translator: Adolfo Jayme <Unknown>\n"
+"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -121,12 +121,12 @@ msgid "No comment available."
 msgstr ""
 
 #, c-format
-msgid "%s: The help browser is disabled in %s mode.\n"
-msgstr "%s: El navegador de ayuda esta deshabilitado en modo %s.\n"
-
-#, c-format
 msgid "%s: help file(.jar) is not installed.\n"
 msgstr "%s: El archivo de ayuda (.jar) no está instalado.\n"
+
+#, c-format
+msgid "%s: The help browser is disabled in %s mode.\n"
+msgstr "%s: El navegador de ayuda esta deshabilitado en modo %s.\n"
 
 #, c-format
 msgid ""
@@ -237,6 +237,26 @@ msgid "Used Functions"
 msgstr ""
 
 msgid "         Add here the Scilab, C,... used code references"
+msgstr ""
+
+#
+# File: modules/helptools/macros/helpbrowser_menus_cb.sci, line: 42
+msgid "Help browser: Pages of external modules can't be viewed online"
+msgstr ""
+
+#
+# File: modules/helptools/macros/helpbrowser_menus_cb.sci, line: 47
+msgid "Help browser: Tables of contents can't be targeted online"
+msgstr ""
+
+#
+# File: modules/helptools/macros/helpbrowser_menus_cb.sci, line: 65
+msgid "Help browser: Bugs of external modules can't be listed."
+msgstr ""
+
+#
+# File: modules/helptools/macros/helpbrowser_menus_cb.sci, line: 70
+msgid "Help browser: Table of contents can't be targeted in Bugzilla"
 msgstr ""
 
 #, c-format

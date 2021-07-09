@@ -8,138 +8,141 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-03-04 09:48+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2020-08-19 14:55+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: zh_CN\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s： 第%d输入参数类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s：内存分配错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为双精度浮点数。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A double expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为一个双精度浮点数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为布尔型。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为布尔值。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of double expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为一个双精度浮点数矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A matrix of double, with integer "
 "values, expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为一个双精度浮点数或实数矩阵值。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
+"%s：第%d个输入参数的值错误：应该是 '%s'， '%s'， '%s'， '%s'， '%s' 或 '%s'中"
+"的一个。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A double (value %d to %d) expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为一个在%d到%d之间的双精度浮点数。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' , '%s', '%s', '%s', "
 "'%s' or '%s' expected.\n"
 msgstr ""
+"%s：第%d个输入参数类型错误：应该为'%s', '%s', '%s' , '%s', '%s', '%s', '%s' "
+"或者 '%s'中的一个。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Four entries expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该有四个入口。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A column or row vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是一个列向量或行向量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Inconsistent range.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：范围不一致。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数维度错误。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
-msgstr ""
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该是%s' 或者 '%s'字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误。\n"
 
 #, c-format
 msgid "%s: separator and decimal must have different values.\n"
-msgstr ""
+msgstr "%s：分隔符和小数必须具有不同的值。\n"
 
 #, c-format
 msgid "%s: %s does not exist.\n"
-msgstr ""
+msgstr "%s：%s不存在。\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
-msgstr ""
+msgstr "%s：无法打开文件%s。\n"
 
 #, c-format
 msgid "%s: can not read file %s: Error in the column structure\n"
-msgstr ""
+msgstr "%s：无法读取文件%s：列结构错误\n"
 
 #, c-format
 msgid "%s: can not read file %s.\n"
-msgstr ""
+msgstr "%s：无法读取文件%s。\n"
 
 #, c-format
 msgid "%s: can not convert data.\n"
-msgstr ""
+msgstr "%s：无法转换数据。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是字符串向量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array of strings "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是一个 1 x n 或者 m x 1 字符串数组。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A double (value 1 to 17) expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是一个介于1到7之间的双精度浮点数。\n"
 
 #, c-format
 msgid "%s: Not supported format %s.\n"
-msgstr ""
+msgstr "%s：不支持的格式 %s。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -149,23 +152,23 @@ msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of string or a matrix of "
 "real expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是一个字符串矩阵或者实数矩阵。\n"
 
 #, c-format
 msgid "%s: error.\n"
-msgstr ""
+msgstr "%s：错误。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "The file %s does not exist.\n"
@@ -173,11 +176,11 @@ msgstr "文件%s不存在。\n"
 
 #, c-format
 msgid "%s: Cannot read file name.\n"
-msgstr ""
+msgstr "%s：无法读取文件名。\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr ""
+msgstr "%s：文件%s不存在。\n"
 
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
@@ -189,15 +192,15 @@ msgstr "%s：无法打开文件%s。\n"
 
 #, c-format
 msgid "There is no xls stream in the ole2 file %ls.\n"
-msgstr ""
+msgstr "ole2文件%ls中没有xls流。\n"
 
 #, c-format
 msgid "%s: invalid filename.\n"
-msgstr ""
+msgstr "%s：无效的文件名。\n"
 
 #, c-format
 msgid "%s: invalid status.\n"
-msgstr ""
+msgstr "%s：无效状态。\n"
 
 #, c-format
 msgid "%s: Not an ole2 file.\n"
@@ -221,7 +224,7 @@ msgstr "%s：只能处理BIFF8文件格式。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: Failed to read expected data, may be invalid xls file.\n"
@@ -233,20 +236,20 @@ msgstr "%s：文件结束。\n"
 
 #, c-format
 msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
-msgstr ""
+msgstr "%s：行或/和列的左指标超出范围。\n"
 
 #, c-format
 msgid ""
 "%s: Inconsistency found in the columns. At line %d, found %d columns while "
 "the previous had %d.\n"
-msgstr ""
+msgstr "%s：在列向量中发现不一致情况。 在%d行中，找到%d列，但前一行有%d。\n"
 
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #, c-format
 msgid "%s: can not read file, error in the column structure\n"
-msgstr ""
+msgstr "%s：无法读取文件，列结构错误\n"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
@@ -296,7 +299,9 @@ msgstr "%s：%d：OLE_load_FAT：错误：不能申请%d个字节。\n"
 msgid ""
 "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
 "position = 0x%x"
-msgstr "%s：%d：OLE_load_FAT：错误：无法装载块，import sector = 0x%x，fat position = 0x%x"
+msgstr ""
+"%s：%d：OLE_load_FAT：错误：无法装载块，import sector = 0x%x，fat position = "
+"0x%x"
 
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
@@ -345,22 +350,24 @@ msgstr "%s：%d：OLE_store_stream：警告：只写了%d字节（总共%d字节
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
 "'%s' and '%s'"
-msgstr "%s：%d：OLEUNWRAP_save_stream：错误：不能从'%s'和'%s'来创建文件名字符串。"
+msgstr ""
+"%s：%d：OLEUNWRAP_save_stream：错误：不能从'%s'和'%s'来创建文件名字符串。"
 
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
-msgstr "%s：%d：OLEUNWRAP_save_stream：警告：只写了%d字节（总共%d字节）到文件%s\n"
+msgstr ""
+"%s：%d：OLEUNWRAP_save_stream：警告：只写了%d字节（总共%d字节）到文件%s\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr "%s：%d：OLEUNWRAP_save_stream：错误：不能打开%s进行写操作（%s）\n"
 
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
-msgstr "%s：%d：OLEUNWRAP_decode_attachment：调试：Attachment %s:%s:%s size = %d\n"
+msgstr ""
+"%s：%d：OLEUNWRAP_decode_attachment：调试：Attachment %s:%s:%s size = %d\n"
 
 #, c-format
 msgid ""
@@ -399,7 +406,7 @@ msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Scilab spreadsheet 模块没有安装。\n"
 
 msgid "Spreadsheet"
-msgstr ""
+msgstr "电子表格"
 
 msgid "Read a xls file"
-msgstr ""
+msgstr "读取xls文件"

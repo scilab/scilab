@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 msgid "Warning :\n"
 msgstr "警告:\n"
@@ -49,6 +49,12 @@ msgstr "デバッガがエラーで停止しました (関数 %ls, %d 行目)\n"
 msgid "Leave debugger.\n"
 msgstr "デバッガを離れます.\n"
 
+#
+# File: modules/ast/src/cpp/ast/debuggervisitor.cpp, line: 186
+#, c-format
+msgid "Wrong breakpoint condition: A result expected.\n"
+msgstr ""
+
 #, c-format
 msgid "Undefined variable: %s\n"
 msgstr "未定義の変数: %s\n"
@@ -67,6 +73,14 @@ msgstr "Scilab では未実装です.\n"
 
 msgid "Invalid index.\n"
 msgstr "添字が不正です.\n"
+
+#
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 477
+# File: modules/ast/src/cpp/types/mlist.cpp, line: 154
+# File: modules/ast/src/cpp/types/tlist.cpp, line: 231
+#, c-format
+msgid "%s: Extraction must have at least one output.\n"
+msgstr ""
 
 msgid "Redefining permanent variable.\n"
 msgstr "永続的変数を再定義しています.\n"
@@ -378,19 +392,10 @@ msgstr "類似性がない型の間の代入はできません.\n"
 msgid "Can not allocate data.\n"
 msgstr "データ保持用のメモリを確保できません.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Field \"%ls\" does not exist\n"
-msgstr "フィールド \"%ls\" は存在しません.\n"
+msgstr ""
 
 #, c-format
 msgid "variable size exceeded : less than %d expected.\n"
 msgstr "変数の大きさを超えました: %d 未満にしてください.\n"
-
-#~ msgid "Bad value in the left or right operand.\n"
-#~ msgstr "左または右オペランドの値が不正です.\n"
-
-#~ msgid "Bad size for left or right operand.\n"
-#~ msgstr "左または右オペランドの大きさが不正です.\n"
-
-#~ msgid "Bad value in the left operand.\n"
-#~ msgstr "左オペランドの値が不正です.\n"

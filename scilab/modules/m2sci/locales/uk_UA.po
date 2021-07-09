@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-19 07:06+0000\n"
+"PO-Revision-Date: 2020-02-24 18:24+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 msgid "Input file"
 msgstr "Вхідний файл"
@@ -325,6 +325,18 @@ msgstr "Ще не реалізовано."
 msgid "Extraction of %s from '%s' tlist is not yet implemented."
 msgstr "Видобування %s з tlist «%s» ще не реалізовано."
 
+#, fuzzy, c-format
+msgid "Extraction of '%s' from '%s' tlist is not yet implemented.\n"
+msgstr "Видобування %s з tlist «%s» ще не реалізовано."
+
+#, fuzzy, c-format
+msgid "%s: The field '%s' does not exist.\n"
+msgstr "%s: обробки формату «%s» ще не передбачено.\n"
+
+#, fuzzy, c-format
+msgid "Extraction of '%s' from '%s' tlist is not yet implemented."
+msgstr "Видобування %s з tlist «%s» ще не реалізовано."
+
 #, c-format
 msgid "index must be a list instead of a: %s."
 msgstr "покажчик має бути списком, а не %s."
@@ -384,32 +396,48 @@ msgstr "matname має бути рядком, а не %s."
 msgid "infer must be an 'infer' tlist instead of a: %s."
 msgstr "Для infer слід використовувати tlist «infer», а не %s."
 
-#, c-format
-msgid "operator must be a string instead of a: %s."
+#, fuzzy, c-format
+msgid "%s: operator as Argument #%d must be a string instead of a '%s'.\n"
 msgstr "оператор має бути рядком, а не %s."
 
-#, c-format
-msgid "operands must be a list instead of a: %s."
+#, fuzzy, c-format
+msgid "%s: operands as Argument #%d must be a list instead of a '%s'.\n"
 msgstr "операнди мають бути списками, а не %s."
 
-#, c-format
-msgid "out must be a list instead of a: %s."
+#, fuzzy, c-format
+msgid "%s: out as Argument #%d must be a list instead of a '%s'.\n"
 msgstr "out має бути списком, а не %s."
+
+#, fuzzy, c-format
+msgid "vtype '%s' is not yet implemented.\n"
+msgstr "%s ще не реалізовано."
+
+#, fuzzy
+msgid "List of properties is not yet implemented.\n"
+msgstr "список властивостей ще не реалізовано."
+
+#, fuzzy, c-format
+msgid "Wrong property '%s' for vtype '%s'.\n"
+msgstr "помилкова властивість %s."
+
+#, fuzzy, c-format
+msgid "m2sci.convert2double(): Type %s not yet implemented."
+msgstr "список властивостей ще не реалізовано."
+
+#, c-format
+msgid "recursive extraction with one index of type %s is not yet implemented."
+msgstr "рекурсивне видобування з одним індексом типу %s ще не реалізовано."
 
 #, c-format
 msgid "%s is not yet implemented."
 msgstr "%s ще не реалізовано."
 
-msgid "list of properties is not yet implemented."
-msgstr "список властивостей ще не реалізовано."
+#, fuzzy, c-format
+msgid "Error while executing : [sci_equiv] = sci_%s(mtlb_expr)."
+msgstr "Помилка під час виконання: [sci_equiv]=sci_%s(mtlb_expr)."
 
-#, c-format
-msgid "wrong property %s."
-msgstr "помилкова властивість %s."
-
-#, c-format
-msgid "unknown clause type: %s."
-msgstr "невідомий тип умови: %s."
+msgid "not matlab path"
+msgstr "не є записом каталогу matlab"
 
 #, c-format
 msgid "Matlab function %s not yet converted, original calling sequence used."
@@ -445,35 +473,6 @@ msgstr ""
 "Невідому функцію %s не перетворено, використано початкову послідовність "
 "виклику."
 
-#, c-format
-msgid "lhs cannot be a %s operation."
-msgstr "lhs не може бути операцією %s."
-
-#, c-format
-msgid "lhs cannot be a %s."
-msgstr "lhs не може бути %s."
-
-#, c-format
-msgid "recursive extraction with one index of type %s is not yet implemented."
-msgstr "рекурсивне видобування з одним індексом типу %s ще не реалізовано."
-
-#, c-format
-msgid "Error while executing : [sci_equiv]=sci_%s(mtlb_expr)."
-msgstr "Помилка під час виконання: [sci_equiv]=sci_%s(mtlb_expr)."
-
-msgid ": The 24 first characters of the files names are equal: "
-msgstr ": перші 24 символи цих файлів є однаковими: "
-
-#, c-format
-msgid "Matlab function %s not yet converted."
-msgstr "Функцію Matlab %s ще не перетворено."
-
-#, c-format
-msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
-msgstr ""
-"mtlb(%s) можна замінити на %s() або %s, незалежно від того, є %s M-файлом чи "
-"ні."
-
 msgid "input argument must be an 'operation' tlist."
 msgstr "вхідний параметр має бути tlist «operation»."
 
@@ -499,8 +498,30 @@ msgid "L.%d: Unknown variable %s."
 msgstr "L.%d: невідома змінна %s."
 
 #, c-format
+msgid "Matlab function %s not yet converted."
+msgstr "Функцію Matlab %s ще не перетворено."
+
+#, c-format
+msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgstr ""
+"mtlb(%s) можна замінити на %s() або %s, незалежно від того, є %s M-файлом чи "
+"ні."
+
+#, c-format
 msgid "unknown instruction type %s."
 msgstr "невідомий тип інструкції %s."
+
+#, fuzzy, c-format
+msgid "Wrong LHS '%s' operation: Insertion expected.\n"
+msgstr "%s: помилкова розмірність «%s»: слід використовувати вектор.\n"
+
+#, c-format
+msgid "lhs cannot be a %s."
+msgstr "lhs не може бути %s."
+
+#, c-format
+msgid "unknown clause type: %s."
+msgstr "невідомий тип умови: %s."
 
 #, c-format
 msgid "Bad use of isdefinedvar() with input: %s."
@@ -518,14 +539,11 @@ msgstr " -- Всі функції, перетворені окремо: %s -- "
 msgid " -- Temporary files put in: %s -- "
 msgstr " -- Тимчасові файли збережено до: %s -- "
 
+msgid ": The 24 first characters of the files names are equal: "
+msgstr ": перші 24 символи цих файлів є однаковими: "
+
 msgid "// Number of arguments in function call"
 msgstr "// Кількість параметрів у виклику функції"
-
-msgid "// Display mode"
-msgstr "// Режим показу"
-
-msgid "// Display warning for floating point exception"
-msgstr "// Показ попередження для виключень під час операцій з плаваючою комою"
 
 msgid "// Output variables initialisation (not found in input variables)"
 msgstr "// Ініціалізація вихідних змінних (не знайдено у вхідних змінних)"
@@ -576,8 +594,49 @@ msgstr ""
 msgid "m2sciassume is obsolete, used m2scideclare instead."
 msgstr "Функція m2sciassume застаріла, використано m2scideclare."
 
-msgid "not matlab path"
-msgstr "не є записом каталогу matlab"
+msgid ""
+"not enough data, you should give at least variable_name|dimensions|datatype."
+msgstr ""
+"недостатньо даних, вам слід вказати принаймні variable_name|dimensions|"
+"datatype."
+
+msgid "too much data."
+msgstr "забагато даних."
+
+#
+# File: modules/m2sci/macros/kernel/m2scideclare.sci, line: 93
+#, c-format
+msgid "'%s' current size %s <> %s in m2scideclare:  m2scideclare IGNORED.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Unknown datatype '%s'.\n"
+msgstr "Невідомий тип даних %s."
+
+#
+# File: modules/m2sci/macros/kernel/m2scideclare.sci, line: 106
+#, c-format
+msgid ""
+"'%s' current type '%s' <> '%s' in m2scideclare:  m2scideclare IGNORED.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Unknown property '%s' for the type '%s'.\n"
+msgstr "Невідома властивість %s."
+
+#
+# File: modules/m2sci/macros/kernel/m2scideclare.sci, line: 139
+#, c-format
+msgid ""
+"'%s' current property '%s' <> '%s' in m2scideclare:  m2scideclare IGNORED.\n"
+msgstr ""
+
+msgid "Wrong dimensions user data."
+msgstr "Помилкова розмірність даних користувача."
+
+#, c-format
+msgid "%graphicswindow set to default value Handle."
+msgstr "%graphicswindow встановлено у типове значення елемента керування."
 
 msgid "wrong type of input."
 msgstr "помилковий тип вхідних даних."
@@ -605,70 +664,6 @@ msgstr " може бути замінено на:"
 
 msgid "if"
 msgstr "якщо"
-
-msgid ""
-"not enough data, you should give at least variable_name|dimensions|datatype."
-msgstr ""
-"недостатньо даних, вам слід вказати принаймні variable_name|dimensions|"
-"datatype."
-
-msgid "too much data."
-msgstr "забагато даних."
-
-#, c-format
-msgid "Unknown datatype %s."
-msgstr "Невідомий тип даних %s."
-
-#, c-format
-msgid "Unknown property %s."
-msgstr "Невідома властивість %s."
-
-msgid "Wrong dimensions user data."
-msgstr "Помилкова розмірність даних користувача."
-
-#, c-format
-msgid ""
-"Dimensions current value and m2scideclare statements conflict for: %s\n"
-"   m2scideclare given dimension: %s\n"
-"   Current dimension: %s\n"
-"   m2scideclare IGNORED"
-msgstr ""
-"Поточне значення розмірності та інструкції m2scideclare конфліктують: %s\n"
-"   вказана розмірність m2scideclare: %s\n"
-"   поточна розмірність: %s\n"
-"   m2scideclare проігноровано"
-
-#, c-format
-msgid ""
-"Type current value and m2scideclare statements conflict for: %s\n"
-"   m2scideclare given type: %s\n"
-"   current type: %s\n"
-"   m2scideclare IGNORED"
-msgstr ""
-"Поточний тип та інструкції m2scideclare конфліктують: %s\n"
-"   вказаний тип m2scideclare: %s\n"
-"   поточний тип: %s\n"
-"   m2scideclare проігноровано"
-
-#, c-format
-msgid ""
-"Property current value and m2scideclare statements conflict for: %s\n"
-"   m2scideclare given type: %s\n"
-"   current type: %s\n"
-"   m2scideclare IGNORED"
-msgstr ""
-"Поточне значення властивості та інструкції m2scideclare конфліктують: %s\n"
-"   вказаний тип m2scideclare: %s\n"
-"   поточний тип: %s\n"
-"   m2scideclare проігноровано"
-
-#, c-format
-msgid "%graphicswindow set to default value Handle."
-msgstr "%graphicswindow встановлено у типове значення елемента керування."
-
-#, c-format
-msgid "type %d is not implemented."
-msgstr "тип %d ще не реалізовано."
 
 msgid "Matlab to Scilab conversion tool"
 msgstr "Інструмент перетворення команд Matlab на команди Scilab"
@@ -865,12 +860,6 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** Завершення сеансу mfile2sci() ******"
 
 #, c-format
-msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
-msgstr ""
-"Принаймні один з операндів %s є порожньою матрицею. Еквівалентом у Scilab "
-"буде []."
-
-#, c-format
 msgid "recursive extraction from a variable %s of type %s."
 msgstr "рекурсивне видобування зі змінної %s типу %s."
 
@@ -895,21 +884,20 @@ msgid "One operand is an empty matrix in : %s, result set to []."
 msgstr "У %s одним з операндів є порожня матриця, результат встановлено у []."
 
 #, c-format
-msgid ""
-"At least one operand is an empty matrix for operator: %s, result set to []."
+msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
-"Принаймні один з операндів є порожньою матрицею: %s, встановлено результат "
-"[]."
+"Принаймні один з операндів %s є порожньою матрицею. Еквівалентом у Scilab "
+"буде []."
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "If %s is imaginary and its module is > 1\n"
 "      the real part of %s is -pi/2 in Scilab instead of +pi/2 in Matlab."
 msgstr ""
-"Якщо %s є уявною частиною і її модуль > 1,\n"
+"Якщо %s є уявним числом і його модуль > 1,\n"
 "      дійсна частина %s у Scilab дорівнює -π/2, а не +π/2, як у Matlab."
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "If %s is in [0,1)\n"
 "  imag(%s) is -pi/2 in Scilab instead of +pi/2 in Matlab."
@@ -1155,3 +1143,62 @@ msgstr "%s: вихідне значення встановлено у значе
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
+
+#, c-format
+#~ msgid "lhs cannot be a %s operation."
+#~ msgstr "lhs не може бути операцією %s."
+
+#~ msgid "// Display mode"
+#~ msgstr "// Режим показу"
+
+#~ msgid "// Display warning for floating point exception"
+#~ msgstr ""
+#~ "// Показ попередження для виключень під час операцій з плаваючою комою"
+
+#, c-format
+#~ msgid ""
+#~ "Dimensions current value and m2scideclare statements conflict for: %s\n"
+#~ "   m2scideclare given dimension: %s\n"
+#~ "   Current dimension: %s\n"
+#~ "   m2scideclare IGNORED"
+#~ msgstr ""
+#~ "Поточне значення розмірності та інструкції m2scideclare конфліктують: %s\n"
+#~ "   вказана розмірність m2scideclare: %s\n"
+#~ "   поточна розмірність: %s\n"
+#~ "   m2scideclare проігноровано"
+
+#, c-format
+#~ msgid ""
+#~ "Type current value and m2scideclare statements conflict for: %s\n"
+#~ "   m2scideclare given type: %s\n"
+#~ "   current type: %s\n"
+#~ "   m2scideclare IGNORED"
+#~ msgstr ""
+#~ "Поточний тип та інструкції m2scideclare конфліктують: %s\n"
+#~ "   вказаний тип m2scideclare: %s\n"
+#~ "   поточний тип: %s\n"
+#~ "   m2scideclare проігноровано"
+
+#, c-format
+#~ msgid ""
+#~ "Property current value and m2scideclare statements conflict for: %s\n"
+#~ "   m2scideclare given type: %s\n"
+#~ "   current type: %s\n"
+#~ "   m2scideclare IGNORED"
+#~ msgstr ""
+#~ "Поточне значення властивості та інструкції m2scideclare конфліктують: %s\n"
+#~ "   вказаний тип m2scideclare: %s\n"
+#~ "   поточний тип: %s\n"
+#~ "   m2scideclare проігноровано"
+
+#, c-format
+#~ msgid "type %d is not implemented."
+#~ msgstr "тип %d ще не реалізовано."
+
+#, c-format
+#~ msgid ""
+#~ "At least one operand is an empty matrix for operator: %s, result set to "
+#~ "[]."
+#~ msgstr ""
+#~ "Принаймні один з операндів є порожньою матрицею: %s, встановлено "
+#~ "результат []."

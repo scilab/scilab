@@ -1,0 +1,192 @@
+# Chinese (Simplified) translation for scilab
+# Copyright (c) 2020 Rosetta Contributors and Canonical Ltd 2020
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2020-08-29 00:07+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
+"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s：输入参数数目错误：应该至少为 %d 个。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr "%s：输入参数数目错误：应该至少%d个。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s： 第%d输入参数类型错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr "%s：第%d个输入参数大小错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: The directory '%s' doesn't exist or is not read accessible.\n"
+msgstr "%s：目录'%s'不存在或不可读取。\n"
+
+msgid "Building blocks...\n"
+msgstr "构建blocks中...\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s：无法将%s导出到%s。\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s .\n"
+msgstr "%s：无法将%s导出到%s。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
+
+#, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
+msgstr "%s：第%d个参数错误：应该是指定文本。\n"
+
+msgid "Generating cleaner.sce...\n"
+msgstr "生成 cleaner.sce中...\n"
+
+#, c-format
+msgid ""
+"%s: The file %s cannot been created, please check if you have write access "
+"on this file.\n"
+msgstr "%s：无法创建文件%s，请检查您是否对此文件具有写权限。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该是一个字符串矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: At most %d rows expected.\n"
+msgstr "%s：第%d个输入参数大小错误：最多%d行。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: The directory '%s' doesn't exist or "
+"is not read accessible.\n"
+msgstr "%s：第%d个输入参数的值错误：目录'%s'不存在或不可读取。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Can't go to '%s'.\n"
+msgstr "%s：第%d个输入参数的值错误：无法进入'%s'。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该为布尔型。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s：第%d个输入参数大小错误：应该为布尔值。\n"
+
+#, c-format
+msgid "%s: Can't go to directory '%s'.\n"
+msgstr "%s：无法进入目录'%s'。\n"
+
+msgid "Generating cleaner_gateway.sce...\n"
+msgstr "生成cleaner_gateway.sce中...\n"
+
+msgid "Generating loader_gateway.sce...\n"
+msgstr "生成loader_gateway.sce中...\n"
+
+#, c-format
+msgid "%s: documentation cannot be built in this scilab mode: %s.\n"
+msgstr "%s：无法在此scilab模式下构建文档：%s。\n"
+
+msgid "Generating loader.sce...\n"
+msgstr "生成loader.sce中...\n"
+
+msgid "Generating unloader.sce...\n"
+msgstr "生成unloader.sce中...\n"
+
+#, c-format
+msgid "%s: The module '%s' has no entry to be localized.\n"
+msgstr "%s：模块'%s'中没有要本地化的条目。\n"
+
+#, c-format
+msgid ""
+"%s: \n"
+"   '%s' has been generated in the module.\n"
+"   Please\n"
+"   - clone it into la_LA.po (ex: pt_BR.po) in the same directory\n"
+"   - translate the copies\n"
+"   - rerun the build\n"
+msgstr ""
+"%s： \n"
+"   模块中已生成'%s'。\n"
+"   请\n"
+"   -将其克隆到同一目录中的la_LA.po（例如：pt_BR.po）\n"
+"   -翻译副本\n"
+"   -重新运行构建\n"
+
+msgid "Generating localization\n"
+msgstr "生成本地化文件\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该为字符串数组。\n"
+
+msgid "Generating cleaner_src.sce...\n"
+msgstr "生成cleaner_src.sce中...\n"
+
+#, c-format
+msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
+msgstr "%s：文件'%s'不存在或不可读取。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s：输入参数数目错误，应该为%d个。\n"
+
+#, c-format
+msgid "%s: This module required a C compiler and it has not been found.\n"
+msgstr "%s：该模块需要C编译器，但未找到C编译器。\n"
+
+msgid "Building gateway...\n"
+msgstr "构建gateway中...\n"
+
+#, c-format
+msgid "Could not use the default compilation of gateways in %s."
+msgstr "无法在%s中使用gateways的默认编译。"
+
+#, c-format
+msgid "No builder script found in %s."
+msgstr "在 %s中找不到构建器脚本。"
+
+msgid "Building help...\n"
+msgstr "构建帮助文档中...\n"
+
+msgid "Building macros...\n"
+msgstr "构建macros宏文件中...\n"
+
+msgid "Building sources...\n"
+msgstr "构建sources源文件中...\n"
+
+msgid "No builder file found, nothing to be done"
+msgstr "找不到builder文件，停止操作"
+
+#, c-format
+msgid ""
+"%s: This module requires a C or Fortran compiler and it has not been found.\n"
+msgstr "%s：该模块需要C或Fortran编译器，未找到C或Fortran编译器。\n"
+
+msgid "No builder file found, nothing to be done."
+msgstr "找不到builder文件，停止操作"
+
+#, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr "%s：第%d个参数错误：应该是一个数字。\n"
+
+msgid "toolbox_skeleton"
+msgstr "工具箱架构"

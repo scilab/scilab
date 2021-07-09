@@ -1,0 +1,110 @@
+# Chinese (Simplified) translation for scilab
+# Copyright (c) 2020 Rosetta Contributors and Canonical Ltd 2020
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2020-08-16 15:22+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
+"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: An MPI communicator expected.\n"
+msgstr "%s：输入参数%s类型错误：应该是一个MPI通讯器。\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s：无法读取第%d个输入参数。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该为一个整数。\n"
+
+#, c-format
+msgid "%s: Could not get communicator rank of the node %d: %s\n"
+msgstr "%s：无法获得节点%d的通信器等级：%s\n"
+
+msgid "Unable to serialize data\n"
+msgstr "无法序列化数据\n"
+
+#, c-format
+msgid "%s: Could not broadcast the variable to the node %d: %s\n"
+msgstr "%s：无法将变量广播到节点%d：%s\n"
+
+#, c-format
+msgid "%s: Unable to deserialize data.\n"
+msgstr "%s：无法反序列化数据。\n"
+
+#, c-format
+msgid "%s: Unable to create variable.\n"
+msgstr "%s：无法创建变量。\n"
+
+#, c-format
+msgid "%s: Could not finalize the MPI instance: %s\n"
+msgstr "%s：无法完成MPI实例化：%s\n"
+
+#, c-format
+msgid "%s: Could not get processor name: %s\n"
+msgstr "%s：无法获取进程名：%s\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s：内存分配错误。\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Positive value expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该是一个正值。\n"
+
+#, c-format
+msgid "%s: MPI_Probe failed. Rank %d / Tag %d: %s\n"
+msgstr "%s：: 尝试寻找MPI失败。等级%d /记录标签%d：%s\n"
+
+#, c-format
+msgid "%s: MPI_Get_count failed. Rank %d / Tag %d: %s\n"
+msgstr "%s：MPI获取计数失败。级别%d /记录标签 %d： %s\n"
+
+#, c-format
+msgid "%s: MPI_Irecv failed. Rank %d / Tag %d: %s\n"
+msgstr "%s：MPI_Irecv失败。级别%d /记录标签%d: %s\n"
+
+#, c-format
+msgid "%s: Could not send the variable to the node %d: %s\n"
+msgstr "%s：无法发送变量到节点%d：%s\n"
+
+#, c-format
+msgid "%s: Could not create the received variable.\n"
+msgstr "%s：无法创建接收到的变量。\n"
+
+#, c-format
+msgid "%s: MPI_Recv failed. Rank %d / Tag %d: %s\n"
+msgstr "%s：MPI_Recv失败。级别%d /记录标签%d: %s\n"
+
+#, c-format
+msgid "%s: Unable to deserialize data !\n"
+msgstr "%s：无法反序列化数据！\n"
+
+#, c-format
+msgid "%s: MPI_Wait failed while waiting %d: %s\n"
+msgstr "%s：MPI_Wait在等待%d时失败：%s\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s：输入参数数目错误：应该为%d个。\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s：输出参数数目错误：应该为%d个。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Matrix expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该是一个矩阵。\n"

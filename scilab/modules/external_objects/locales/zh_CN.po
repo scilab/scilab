@@ -1,0 +1,182 @@
+# Chinese (Simplified) translation for scilab
+# Copyright (c) 2020 Rosetta Contributors and Canonical Ltd 2020
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2020-08-18 14:11+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
+"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
+
+msgid "Invalid variable: cannot retrieve the data"
+msgstr "无效的变量：无法检索数据"
+
+#, c-format
+msgid "%s: An error occurred: %s"
+msgstr "%s：发生错误：%s"
+
+#, c-format
+msgid "Invalid environment: identifier %d is invalid"
+msgstr "无效的环境：标识符%d无效"
+
+msgid "Invalid environment"
+msgstr "无效的环境"
+
+#, c-format
+msgid "Invalid variable name: %s"
+msgstr "无效的变量名：%s"
+
+msgid "Cannot allocate memory"
+msgstr "无法分配内存"
+
+msgid "Invalid variable: cannot create data"
+msgstr "无效的变量：无法创建数据"
+
+msgid "External Class expected"
+msgstr "应为外部类"
+
+msgid "External object expected"
+msgstr "应为外部对象"
+
+msgid "Incompatible External object"
+msgstr "无法兼容的外部对象"
+
+#, c-format
+msgid "Unable to wrap. Unmanaged datatype (%d) ?"
+msgstr "无法转换包装。 非托管数据类型(%d)？"
+
+msgid "Invalid String"
+msgstr "无效的字符串"
+
+msgid "A single string expected"
+msgstr "应为单一字符串"
+
+msgid "A single String expected"
+msgstr "应为单一字符串"
+
+#, c-format
+msgid "Wrong type for argument #%d: string expected."
+msgstr "第%d个参数类型错误：应为字符串。"
+
+#, c-format
+msgid "Cannot open the given file %s."
+msgstr "无法打给文件：%s。"
+
+#, c-format
+msgid "Wrong number of arguments : more than %d expected."
+msgstr "参数数目错误：应该超过%d个。"
+
+#, c-format
+msgid "A strictly positive integer is expected at position %d."
+msgstr "位置%d处应严格的使用正整数。"
+
+msgid "Incompatible External Objects"
+msgstr "不兼容的外部对象"
+
+msgid "Invalid name"
+msgstr "无效的名称"
+
+#, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr "第%d个输入参数类型错误：应该是外部对象。"
+
+msgid "Incompatible External Object"
+msgstr "不兼容的外部对象"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A String expected."
+msgstr "第%d个输入参数类型错误：应该是字符串。"
+
+#, c-format
+msgid "Invalid dimension for argument #%d: A row or a column expected."
+msgstr "第%d个参数的维度无效：应该是一维行向量或者一维列向量。"
+
+msgid "The argument must be 'rc' or 'cr'."
+msgstr "参数必须是'rc' 或者 'cr'。"
+
+#, c-format
+msgid "Invalid dimensions for input argument #%d: A single string expected."
+msgstr "第%d个输入参数维度无效：应该是单一的字符串。"
+
+msgid "Invalid dimensions: arguments #2 and #3 must have the same."
+msgstr "无效的维度：第2个和第3个参数应当保持一致。"
+
+msgid "Invalid variable: cannot create the data"
+msgstr "无效的变量：无法创建数据"
+
+#, c-format
+msgid "Wrong type for input argument #%d: string expected."
+msgstr "第%d个输入参数类型错误：应该是字符串。"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A boolean expected."
+msgstr "第%d个输入参数类型错误：应该是布尔量。"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A single boolean expected."
+msgstr "第%d个输入参数类型错误：应该是单一的布尔量。"
+
+#, c-format
+msgid "Wrong type for input argument #%d: An External Object expected."
+msgstr "第%d个输入参数类型错误：应该是一个外部对象。"
+
+msgid "Cannot create the identifier"
+msgstr "无法创建标识符"
+
+msgid "The class name cannot end with a dot."
+msgstr "类名不能以点号结尾。"
+
+msgid "The class name cannot start with a dot."
+msgstr "类名不能以点开头。"
+
+msgid "A variable with this name is already existing"
+msgstr "该变量名称已存在"
+
+msgid "Bad number of output arguments"
+msgstr "输出参数数目错误"
+
+msgid "Wrong number of arguments : more than 2 arguments expected"
+msgstr "输出参数数目错误：应该超过2个参数"
+
+msgid "Cannot invoke on null object"
+msgstr "无法调用空对象"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A List expected."
+msgstr "第%d个输入参数类型错误：应该是一个List类型。"
+
+#, c-format
+msgid "Wrong type for input argument #%d: An Integer32 expected."
+msgstr "第%d个输入参数类型错误：应该是一个32位整数。"
+
+msgid "Cannot invoke on null object."
+msgstr "无法调用空对象。"
+
+msgid "Wrong number of arguments : more than 1 argument expected"
+msgstr "参数数目错误：应该超过1个参数"
+
+msgid "Wrong number of arguments : more than 1 argument expected."
+msgstr "参数数目错误：应该超过1个参数。"
+
+#, c-format
+msgid "Cannot wrap argument %d."
+msgstr "无法转换包装参数%d。"
+
+msgid "Can only wrap as a reference to a named variable"
+msgstr "只能转换包装为对命名变量的引用"
+
+msgid "Invalid variable: cannot retrieve the data type"
+msgstr "无效的变量：无法检索数据类型"
+
+#, c-format
+msgid "%s: Wrong argument type at position %i: Double expected\n"
+msgstr "%s：第%i个参数类型错误：应该为双精度浮点数\n"

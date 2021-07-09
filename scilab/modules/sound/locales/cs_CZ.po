@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-10-30 22:03+0000\n"
+"PO-Revision-Date: 2015-10-08 22:03+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: cs\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -34,6 +34,30 @@ msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Zvukový modul Scilab není nainstalován\n"
+
+# File: modules/sound/demos/mapsound.dem.sce, line: 29
+msgid "<html><h4>Example #1: Standard</h4>"
+msgstr ""
+
+#
+# File: modules/sound/demos/mapsound.dem.sce, line: 42
+msgid "Next example"
+msgstr ""
+
+#
+# File: modules/sound/demos/mapsound.dem.sce, line: 78
+msgid "Next exampleStop"
+msgstr ""
+
+#
+# File: modules/sound/demos/mapsound.dem.sce, line: 91
+msgid "<html><h4>Example #3: chimes.wav sound</h4>"
+msgstr ""
+
+#
+# File: modules/sound/demos/mapsound.dem.sce, line: 97
+msgid "End"
+msgstr ""
 
 msgid "Sound file handling"
 msgstr ""
@@ -120,6 +144,29 @@ msgstr "%s: Špatný počet výstupních argumentů.\n"
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Špatný počet výstupních argumentů.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Function expected.\n"
+msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: A colormap function expected.\n"
+msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
+
+#
+# File: modules/sound/macros/mapsound.sci, line: 126
+msgid "Time [s]"
+msgstr ""
+
+#
+# File: modules/sound/macros/mapsound.sci, line: 127
+msgid "Frequency [Hz]"
+msgstr ""
+
+#
+# File: modules/sound/macros/mapsound.sci, line: 137
+msgid "Amplitude"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -223,8 +270,7 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Vyskytla se chyba: %s není podporován.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Vyskytla se chyba: neplatný formát souboru. Chyba při čtení kusu <%s>.\n"
 
@@ -245,8 +291,9 @@ msgstr "Vyba při čtení souboru .wav."
 msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr "%s: Vyskytla se chyba: Formát komprese dat %s není podporován.\n"
 
+#, fuzzy
 msgid "Cannot read .wav file  with more than 32 bits per sample."
-msgstr "Nelze číst soubor .wav s více než 32 bity na vzorek."
+msgstr "Nelze číst soubor .wav s více než 16 bity na vzorek."
 
 msgid "Sample limit vector must have 2 entries."
 msgstr "Vektor limitu vzorku musí mít 2 záznamy."

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -161,6 +161,22 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
+
+#
+# File: modules/fileio/sci_gateway/cpp/sci_get_absolute_file_path.cpp, line: 81
+#, c-format
+msgid "%s: Without arguments, this function must be called from a script.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s: Il file %s non è aperto in Scilab.\n"
@@ -198,9 +214,17 @@ msgstr ""
 msgid "%s: File not found: '%s'.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong input arguments: '%s' expected.\n"
+#, fuzzy, c-format
+msgid "%s: Cannot close file %ls: File is not active.\n"
 msgstr ""
+"%s: Non è possibile chiudere il file il cui descrittore è %d: il file non è "
+"attivo.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
 
 #, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
@@ -260,6 +284,14 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Incorrect conversion code; c, s, i "
+"or l expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
+"\"%s\" o \"%s\".\n"
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -316,6 +348,12 @@ msgstr ""
 #, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s: nomefile non valido.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: a single string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"matrice non vuota.\n"
 
 #, c-format
 msgid "%s: Data mismatch.\n"
@@ -535,69 +573,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-msgstr ""
-
-msgid "Import data"
-msgstr ""
-
-msgid "Select a file"
-msgstr ""
-
-msgid "File has a header"
-msgstr ""
-
-msgid "Show all columns"
-msgstr ""
-
-msgid "It can take a long time"
-msgstr ""
-
-msgid "Separator"
-msgstr ""
-
-msgid "Colon"
-msgstr ""
-
-msgid "Comma"
-msgstr ""
-
-msgid "Pipe"
-msgstr ""
-
-msgid "Semicolon"
-msgstr ""
-
-msgid "Space"
-msgstr ""
-
-msgid "Tab"
-msgstr ""
-
-msgid "Decimal"
-msgstr ""
-
-msgid "Point"
-msgstr ""
-
-msgid "Conversion"
-msgstr ""
-
-msgid "Convert to double"
-msgstr ""
-
-msgid "Keep as strings"
-msgstr ""
-
-msgid "Import as variable"
-msgstr ""
-
-msgid "Quit"
-msgstr ""
-
-msgid "Copy function to clipboard"
-msgstr ""
-
-msgid "Cancel preview"
 msgstr ""
 
 #, c-format

@@ -11,11 +11,28 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:02+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: it\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument(s): %d expected."
+msgstr ""
+"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un numero "
+"reale.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong dimensions for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"numero reale.\n"
 
 #, c-format
 msgid "%s: Answer appears to be lower than lowest search bound %g\n"
@@ -56,6 +73,16 @@ msgid ""
 msgstr ""
 "%s: Attenzione: usare valori non interi per l'argomento #%d può portare a "
 "risultati errati.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare "
+"o un vettore.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -133,6 +160,12 @@ msgstr ""
 "numero di colonna del primo argomento in ingresso.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d, "
+"%d o %d.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: a real matrix expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
@@ -152,21 +185,9 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso %d o %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa "
-"%dx%d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d, "
-"%d o %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -183,43 +204,81 @@ msgstr ""
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
 msgstr ""
 
+#
+# File: modules/statistics/macros/histc.sci, line: 76
 #, c-format
-msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgid ""
+"%s: data are now expected in argument #1 => arguments #1 and #2 switched\n"
 msgstr ""
 
+#
+# File: modules/statistics/macros/histc.sci, line: 104
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgid "%s: normalization boolean argument #3 is obsolete. %s option used.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
-"almeno %d.\n"
 
+#
+# File: modules/statistics/macros/histc.sci, line: 110
 #, c-format
-msgid "%s: Wrong type of input argument #%d: A single boolean expected.\n"
+msgid "%s: Argument #%d: %s\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un solo "
-"booleano.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"reale.\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+#, fuzzy, c-format
+msgid "%s: Data in argument #%d: Numbers or polynomials or texts expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
-"nell'intervallo %s.\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: ne era atteso uno "
+"numerico.\n"
 
+#
+# File: modules/statistics/macros/histc.sci, line: 162
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgid "%s: data have only %inf or/and %nan values.\n"
+msgstr ""
+
+#
+# File: modules/statistics/macros/histc.sci, line: 236
+#, c-format
+msgid "%s: Argument #%d: wrong value for binning algo"
+msgstr ""
+
+#
+# File: modules/statistics/macros/histc.sci, line: 260
+#, c-format
+msgid ""
+"%s: Argument #2: Please provide bins edges or values or leave choosing "
+"default bins.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: non-zero decimal integer expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: decimal number > -Inf expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un numero "
+"reale compreso tra %d e %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same types expected.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: erano attese le "
+"stesse dimensioni."
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Elements must be sorted in increasing order.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: gli elementi devono "
+"essere in ordine crescente.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Elements must be in increasing order.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha dei valori sbagliati: gli elementi devono "
 "essere in ordine crescente.\n"
@@ -229,14 +288,6 @@ msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
 "almeno %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong dimensions for input argument #%d: A column vector or matrix "
-"expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha delle dimensioni sbagliate: era atteso un "
-"vettore colonna o una matrice.\n"
 
 #, c-format
 msgid ""
@@ -285,12 +336,6 @@ msgid ""
 msgstr ""
 "%s: Gli argomenti in ingresso #%d e #%d hanno una dimensione sbagliata: "
 "erano attese le stesse dimensioni.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d o "
-"%d.\n"
 
 #, c-format
 msgid ""
@@ -379,43 +424,6 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr "%s: Sono stati trovati dei NaN, usare %s() invece.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: erano attesi dei "
-"valori non-negativi.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
-msgstr ""
-"%s: Gli argomenti in ingresso #%d e #%d hanno una dimensione sbagliata: "
-"erano attese le stesse dimensioni.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Same number of rows of the second "
-"input argument expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso lo "
-"stesso numero di righe del secondo argomento in ingresso.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Same number of columns of the second "
-"input argument expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso lo "
-"stesso numero di colonne del secondo argomento in ingresso.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value of input argument #%d: Lower than or equal to size of input "
-"argument #%d expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso minore o "
-"uguale alla dimens. dell'argomento in ingresso #%d.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
@@ -436,12 +444,17 @@ msgid "%s: Argument #%d: Array of real numbers expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"reale.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s', "
 "'%s', %d o %d.\n"
@@ -512,3 +525,85 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere >%d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa "
+#~ "%dx%d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+#~ "almeno %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type of input argument #%d: A single boolean expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un solo "
+#~ "booleano.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
+#~ "nell'intervallo %s.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un "
+#~ "intero.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong dimensions for input argument #%d: A column vector or matrix "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha delle dimensioni sbagliate: era atteso "
+#~ "un vettore colonna o una matrice.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d "
+#~ "o %d.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha un valore sbagliato: erano attesi dei "
+#~ "valori non-negativi.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
+#~ msgstr ""
+#~ "%s: Gli argomenti in ingresso #%d e #%d hanno una dimensione sbagliata: "
+#~ "erano attese le stesse dimensioni.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Same number of rows of the second "
+#~ "input argument expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso "
+#~ "lo stesso numero di righe del secondo argomento in ingresso.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Same number of columns of the "
+#~ "second input argument expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso "
+#~ "lo stesso numero di colonne del secondo argomento in ingresso.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value of input argument #%d: Lower than or equal to size of "
+#~ "input argument #%d expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso minore "
+#~ "o uguale alla dimens. dell'argomento in ingresso #%d.\n"

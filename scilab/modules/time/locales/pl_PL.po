@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2020-01-21 14:09+0000\n"
 "Last-Translator: Stéphane Mottelet <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: pl\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
@@ -147,8 +147,7 @@ msgstr ""
 "macierz m*3lub m*6.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego nr %d: %s musi być pomiędzy "
 "%d a %d.\n"
@@ -195,8 +194,7 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -215,39 +213,91 @@ msgstr ""
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
 
-#, c-format
-msgid ""
-"%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwana stała macierz "
-"typu Real.\n"
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d lub %d.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers in [1,12] expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwano '%s' lub "
-"'%s' .\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany '%s' lub "
+"integer.\n"
 
-msgid "Sat"
-msgstr "sb"
+#, fuzzy, c-format
+msgid "%s: Argument #%d missing: Integers in [1,31] expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany '%s' lub "
+"integer.\n"
 
-msgid "Sun"
-msgstr "nd"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers in [1,31] expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany '%s' lub "
+"integer.\n"
 
-msgid "Mon"
-msgstr "pn"
+#, fuzzy, c-format
+msgid "%s: Arguments #%d to #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wielkość wprowadzanych argumentów.  Oczekiwana jest taka "
+"sama wielkość.\n"
 
-msgid "Tue"
-msgstr "wt"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Numbers or texts expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany '%s' lub "
+"integer.\n"
 
-msgid "Wed"
-msgstr "śr"
+#
+# File: modules/time/macros/weekday.sci, line: 99
+# File: modules/time/macros/weekday.sci, line: 117
+# File: modules/time/macros/weekday.sci, line: 138
+# File: modules/time/macros/weekday.sci, line: 159
+#, c-format
+msgid "%s: Argument #%d: All dates must have the same format.\n"
+msgstr ""
 
-msgid "Thu"
-msgstr "Cz"
+#
+# File: modules/time/macros/weekday.sci, line: 165
+#, c-format
+msgid "%s: Argument #%d: Wrong dates format.\n"
+msgstr ""
 
-msgid "Fri"
-msgstr "pt"
+#
+# File: modules/time/macros/weekday.sci, line: 169
+#, c-format
+msgid "%s: Argument #%d: Month indices expected in [1,12].\n"
+msgstr ""
+
+#
+# File: modules/time/macros/weekday.sci, line: 173
+#, c-format
+msgid "%s: Argument #%d: Day indices expected in [1,31].\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Single text word expected.\n"
+msgstr ""
+"%s: Niewłaściwy typ argumentu wejściowego nr %d: oczekiwany jest wektor "
+"wartości typu real.\n"
+
+#
+# File: modules/time/macros/weekday.sci, line: 199
+#, c-format
+msgid "%s: Argument #%d: Wrong langage code.\n"
+msgstr ""
+
+#
+# File: modules/time/macros/weekday.sci, line: 204
+#, c-format
+msgid "%s: Argument #%d: Unknown option.\n"
+msgstr ""
+
+msgid "Friday"
+msgstr "piątek"
+
+msgid "Monday"
+msgstr "poniedziałek"
 
 msgid "Saturday"
 msgstr "sobota"
@@ -255,8 +305,8 @@ msgstr "sobota"
 msgid "Sunday"
 msgstr "niedziela"
 
-msgid "Monday"
-msgstr "poniedziałek"
+msgid "Thursday"
+msgstr "czwartek"
 
 msgid "Tuesday"
 msgstr "wtorek"
@@ -264,8 +314,36 @@ msgstr "wtorek"
 msgid "Wednesday"
 msgstr "środa"
 
-msgid "Thursday"
-msgstr "czwartek"
+msgid "Fri"
+msgstr "pt"
 
-msgid "Friday"
-msgstr "piątek"
+msgid "Mon"
+msgstr "pn"
+
+msgid "Sat"
+msgstr "sb"
+
+msgid "Sun"
+msgstr "nd"
+
+msgid "Thu"
+msgstr "Cz"
+
+msgid "Tue"
+msgstr "wt"
+
+msgid "Wed"
+msgstr "śr"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwana stała "
+#~ "macierz typu Real.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwano '%s' "
+#~ "lub '%s' .\n"

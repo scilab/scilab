@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-24 11:08+0100\n"
+"Revision-Date: 2021-07-09 17:35+0100\n"
 
 # File: modules/scicos/sci_gateway/cpp/sci_buildouttb.cpp, line: 72
 # File: modules/scicos/sci_gateway/cpp/sci_coserror.cpp, line: 61
@@ -651,14 +651,14 @@ msgstr ""
 # File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1475
 # File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1496
 # File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1518
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1640
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1664
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1689
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1734
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1848
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1875
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1903
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1951
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1648
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1672
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1697
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1742
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1870
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1897
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1925
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1973
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -697,7 +697,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2037
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2059
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of element #%d of argument #%d : A matrix "
@@ -705,78 +705,78 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2068
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2090
 #, c-format
 msgid "%s : No more free memory.\n"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2170
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2192
 msgid "scheduling problem"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2175
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2197
 msgid "input to zero-crossing stuck on zero"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2180
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2202
 msgid "event conflict"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2185
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2207
 msgid "algebraic loop detected"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2190
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2203
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2232
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2280
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2212
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2225
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2254
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2302
 msgid "cannot allocate memory"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2199
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2221
 #, c-format
 msgid "the block %d has been called with input out of its domain"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2208
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2230
 msgid "singularity in a block"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2212
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2234
 msgid "block produces an internal error"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2220
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2242
 msgid "initial conditions not converging"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2228
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2250
 #, c-format
 msgid "cannot allocate memory in block=%d"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2237
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2259
 msgid "sliding mode condition, cannot integrate"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2241
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2263
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2244
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2266
 msgid ""
 "You have changed a parameter in your model, but the model has been compiled "
 "to use an XML file containing initial values and parameters. So you should "
@@ -785,12 +785,12 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2253
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2275
 msgid "Undefined data type."
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2256
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2278
 msgid ""
 "The number of parameter provided by Scicos blocks is different from what "
 "expected by the code generated by the Modelica compiler. You might have "
@@ -799,18 +799,18 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2263
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2285
 msgid "unknown or erroneous block"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2276
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2298
 #, c-format
 msgid "integration problem istate=%d"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2286
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2308
 msgid "scicos unexpected error, please report..."
 msgstr ""
 
@@ -2212,8 +2212,7 @@ msgid "Event output ports are not numbered properly."
 msgstr ""
 
 #
-# File: modules/scicos/macros/scicos_scicos/scicos_flat.sci, line: 347
-# File: modules/scicos/macros/scicos_scicos/scicos_flat.sci, line: 349
+# File: modules/scicos/macros/scicos_scicos/scicos_flat.sci, line: 346
 #, c-format
 msgid "%s: Empty diagram"
 msgstr ""
@@ -2226,13 +2225,13 @@ msgstr ""
 
 #
 # File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 42
-# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 68
-# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 111
+# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 70
+# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 112
 msgid "Set Xcos context"
 msgstr ""
 
 #
-# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 86
+# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 85
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored\n"
 msgstr ""

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-01-14 20:01+0000\n"
+"PO-Revision-Date: 2020-03-11 14:58+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: ru\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -27,8 +27,7 @@ msgstr "%s: Неверное количество выходных аргуме�
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr ""
-"%s: Неверное количество входных аргументов: ожидалось %d, %d или %d.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d, %d или %d.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -38,12 +37,12 @@ msgstr "%s: Не могу прочитать входной аргумент №
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
+msgid "Redefining permanent variable.\n"
+msgstr "Переопределение неизменной переменной.\n"
+
 #, c-format
 msgid "%s: Undefined variable: %s.\n"
 msgstr "%s: Неопределённая переменная: %s.\n"
-
-msgid "Redefining permanent variable.\n"
-msgstr "Переопределение неизменной переменной.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
@@ -76,7 +75,7 @@ msgid "Visibility"
 msgstr "Видимость"
 
 msgid "Memory"
-msgstr ""
+msgstr "Память"
 
 msgid "User"
 msgstr "Пользователь"
@@ -382,3 +381,116 @@ msgstr "&Справка"
 
 msgid "&About Scilab..."
 msgstr "&О Scilab"
+
+# File: modules/ui_data/macros/browsevar_seeSpecial.sci, line: 51
+msgid "Library "
+msgstr ""
+
+#
+# File: modules/ui_data/macros/browsevar_seeSpecial.sci, line: 52
+msgid "Path = "
+msgstr ""
+
+#, fuzzy
+msgid "Functions:"
+msgstr "Function library"
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 56
+msgid "Import data"
+msgstr ""
+
+#, fuzzy
+msgid "Select a file"
+msgstr "Выберите папку"
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 112
+msgid "File has a header"
+msgstr ""
+
+#, fuzzy
+msgid "Show all columns"
+msgstr "Удалить столбцы"
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 120
+msgid "It can take a long time"
+msgstr ""
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 127
+msgid "Separator"
+msgstr ""
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 133
+msgid "Colon"
+msgstr ""
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 133
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 148
+msgid "Comma"
+msgstr ""
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 133
+msgid "Pipe"
+msgstr ""
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 133
+msgid "Semicolon"
+msgstr ""
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 133
+msgid "Space"
+msgstr ""
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 133
+msgid "Tab"
+msgstr ""
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 142
+msgid "Decimal"
+msgstr ""
+
+#, fuzzy
+msgid "Point"
+msgstr "Pointer"
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 157
+msgid "Conversion"
+msgstr ""
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 163
+msgid "Convert to double"
+msgstr ""
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 163
+msgid "Keep as strings"
+msgstr ""
+
+#, fuzzy
+msgid "Import as variable"
+msgstr "Создать новую переменню"
+
+#
+# File: modules/ui_data/macros/uiSpreadsheet.sci, line: 193
+msgid "Quit"
+msgstr ""
+
+#, fuzzy
+msgid "Copy function to clipboard"
+msgstr "Function library"
+
+#, fuzzy
+msgid "Cancel preview"
+msgstr "Отменить"

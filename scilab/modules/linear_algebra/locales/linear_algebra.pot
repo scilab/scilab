@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-24 11:08+0100\n"
+"Revision-Date: 2021-07-09 17:35+0100\n"
 
 # File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 61
 #, c-format
@@ -78,7 +78,7 @@ msgstr ""
 
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 79
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 303
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 315
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
 msgstr ""
@@ -88,7 +88,6 @@ msgstr ""
 # File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 68
 # File: modules/linear_algebra/sci_gateway/cpp/sci_chol.cpp, line: 53
 # File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 61
-# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 56
 # File: modules/linear_algebra/sci_gateway/cpp/sci_rcond.cpp, line: 54
 # File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 70
 # File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 90
@@ -105,9 +104,9 @@ msgstr ""
 # File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 67
 # File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 70
 # File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 100
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 336
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 343
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 350
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 348
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 355
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 362
 # File: modules/linear_algebra/sci_gateway/cpp/sci_svd.cpp, line: 207
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
@@ -182,7 +181,7 @@ msgstr ""
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 75
 # File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 67
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 296
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 308
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
@@ -200,19 +199,25 @@ msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 95
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 431
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 74
+#, c-format
+msgid "%s: Argument %d: Square matrix expected. Please use pinv() otherwise.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 107
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 443
 msgid "Warning :\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 96
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 108
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 103
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 115
 #, c-format
 msgid "%s: Problem is singular.\n"
 msgstr ""
@@ -274,8 +279,8 @@ msgstr ""
 
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 117
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 366
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 374
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 378
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 386
 #, c-format
 msgid "%s: Wrong value for input argument %d: Must not contain NaN or Inf.\n"
 msgstr ""
@@ -300,8 +305,8 @@ msgstr ""
 
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 182
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 248
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 440
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 256
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 452
 #, c-format
 msgid ""
 "%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack "
@@ -310,7 +315,7 @@ msgstr ""
 
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 189
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 466
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 478
 #, c-format
 msgid ""
 "%s: The QR algorithm failed to compute all the eigenvalues, and no "
@@ -319,7 +324,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 255
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 267
 #, c-format
 msgid ""
 "%s: The QR algorithm failed to compute all the eigenvalues, and no "
@@ -328,30 +333,30 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 432
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 444
 msgid "Non convergence in the QZ algorithm.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 433
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 445
 #, c-format
 msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 450
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 462
 #, c-format
 msgid "%s: The QZ iteration failed in DGGEV.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 456
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 468
 #, c-format
 msgid "%s: Other than QZ iteration failed in DHGEQZ.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 460
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 472
 #, c-format
 msgid "%s: Error return from DTGEVC.\n"
 msgstr ""
@@ -468,6 +473,7 @@ msgstr ""
 
 #
 # File: modules/linear_algebra/macros/cond.sci, line: 48
+# File: modules/linear_algebra/macros/eigs.sci, line: 217
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
 msgstr ""
@@ -504,6 +510,401 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 17
+#, c-format
+msgid "%s : Wrong number of input arguments : %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 22
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A full or sparse square matrix or a "
+"function expected"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 37
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A positive integer expected if the "
+"first input argument is a function."
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 88
+# File: modules/linear_algebra/macros/eigs.sci, line: 160
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A structure expected"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 91
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: If A is a matrix, use opts with tol, "
+"maxiter, ncv, resid, cholB"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 163
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: If A is a function, use opts with tol, "
+"maxiter, ncv, resid, cholB, issym"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 230
+# File: modules/linear_algebra/macros/eigs.sci, line: 691
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
+"square matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 236
+# File: modules/linear_algebra/macros/eigs.sci, line: 698
+#, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 249
+# File: modules/linear_algebra/macros/eigs.sci, line: 273
+# File: modules/linear_algebra/macros/eigs.sci, line: 710
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 253
+# File: modules/linear_algebra/macros/eigs.sci, line: 714
+#, c-format
+msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 258
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real symmetric problems, k must "
+"be an integer in the range 1 to N - 1.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 262
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real non symmetric or complex "
+"problems, k must be an integer in the range 1 to N - 2.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 281
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 285
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
+" Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 287
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
+" Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 291
+# File: modules/linear_algebra/macros/eigs.sci, line: 751
+#, c-format
+msgid "%s: Invalid sigma value for complex or non symmetric problem.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 294
+# File: modules/linear_algebra/macros/eigs.sci, line: 754
+#, c-format
+msgid "%s: Invalid sigma value for real symmetric problem.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 299
+# File: modules/linear_algebra/macros/eigs.sci, line: 758
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 310
+# File: modules/linear_algebra/macros/eigs.sci, line: 769
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 314
+# File: modules/linear_algebra/macros/eigs.sci, line: 773
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: %s must be an integer positive "
+"value.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 321
+# File: modules/linear_algebra/macros/eigs.sci, line: 780
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 325
+# File: modules/linear_algebra/macros/eigs.sci, line: 784
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 332
+# File: modules/linear_algebra/macros/eigs.sci, line: 336
+# File: modules/linear_algebra/macros/eigs.sci, line: 791
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 348
+# File: modules/linear_algebra/macros/eigs.sci, line: 807
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
+"must be k < NCV <= N.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 350
+# File: modules/linear_algebra/macros/eigs.sci, line: 809
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
+"must be k + 2 < NCV < N.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 352
+# File: modules/linear_algebra/macros/eigs.sci, line: 812
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
+"+ 1 < NCV <= N.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 363
+# File: modules/linear_algebra/macros/eigs.sci, line: 372
+# File: modules/linear_algebra/macros/eigs.sci, line: 823
+# File: modules/linear_algebra/macros/eigs.sci, line: 833
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 368
+# File: modules/linear_algebra/macros/eigs.sci, line: 375
+# File: modules/linear_algebra/macros/eigs.sci, line: 828
+# File: modules/linear_algebra/macros/eigs.sci, line: 836
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
+"boolean.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 382
+# File: modules/linear_algebra/macros/eigs.sci, line: 843
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 386
+#, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 392
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Start vector %s must be real for real "
+"problems.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 396
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Start vector %s must be complex for "
+"complex problems.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 422
+# File: modules/linear_algebra/macros/eigs.sci, line: 883
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: if opts.cholB is true, B must be "
+"upper triangular.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 435
+# File: modules/linear_algebra/macros/eigs.sci, line: 895
+#, c-format
+msgid ""
+"%s: Impossible to use the Cholesky factorization with complex sparse "
+"matrices.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 506
+# File: modules/linear_algebra/macros/eigs.sci, line: 512
+# File: modules/linear_algebra/macros/eigs.sci, line: 519
+# File: modules/linear_algebra/macros/eigs.sci, line: 591
+# File: modules/linear_algebra/macros/eigs.sci, line: 609
+# File: modules/linear_algebra/macros/eigs.sci, line: 646
+# File: modules/linear_algebra/macros/eigs.sci, line: 953
+# File: modules/linear_algebra/macros/eigs.sci, line: 958
+# File: modules/linear_algebra/macros/eigs.sci, line: 964
+# File: modules/linear_algebra/macros/eigs.sci, line: 1062
+# File: modules/linear_algebra/macros/eigs.sci, line: 1079
+# File: modules/linear_algebra/macros/eigs.sci, line: 1115
+#, c-format
+msgid "%s: Error with %s: info = %d.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 573
+# File: modules/linear_algebra/macros/eigs.sci, line: 575
+# File: modules/linear_algebra/macros/eigs.sci, line: 578
+# File: modules/linear_algebra/macros/eigs.sci, line: 1040
+# File: modules/linear_algebra/macros/eigs.sci, line: 1042
+# File: modules/linear_algebra/macros/eigs.sci, line: 1045
+#, c-format
+msgid "%s: Error with %s: unknown mode returned.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 680
+# File: modules/linear_algebra/macros/eigs.sci, line: 684
+#, c-format
+msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 719
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real symmetric problems, k must "
+"be in the range 1 to N - 1.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 723
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real non symmetric or complex "
+"problems, k must be in the range 1 to N - 2.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 734
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a scalar expected.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 741
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 745
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
+" Sigma must be one of %s, %s, %s, %s or %s.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 747
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
+" Sigma must be one of %s, %s, %s, %s, %s or %s.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 795
+#, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 847
+#, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: Start vector opts.resid must be "
+"N by 1.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 853
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Start vector opts.resid must be real "
+"for real problems.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 857
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Start vector opts.resid must be "
+"complex for complex problems.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 1053
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: n does not match rows number of "
+"matrix A.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 1055
+#, c-format
+msgid "%s: Wrong type or value for input arguments.\n"
 msgstr ""
 
 #

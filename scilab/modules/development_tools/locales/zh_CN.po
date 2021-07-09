@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-11-02 13:03+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2020-08-17 15:51+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected."
@@ -27,7 +27,7 @@ msgstr "%s：第%d个输入参数的类型有误：应为矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为多项式。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -51,7 +51,7 @@ msgstr "%s：第%d和第%d个输入参数不兼容：应具有相同尺寸。\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d: Same degrees expected.\n"
-msgstr ""
+msgstr "%s：第%d个和第%d个参数错误：两者的最高次幂应该一致。\n"
 
 #, c-format
 msgid "%s: Assertion failed: expected = %s while computed = %s"
@@ -75,35 +75,35 @@ msgstr "%s：计算值为复数，应为实数。"
 
 #, c-format
 msgid "%s: Assertion failed: expected= %s  while computed= %s"
-msgstr ""
+msgstr "%s：声明失败：预期=%s，而计算=%s"
 
 #, c-format
 msgid ""
 "%s: Assertion failed: expected and computed are two distinct built-in "
 "functions."
-msgstr ""
+msgstr "%s：声明失败：预期和计算是两个不同的内置函数。"
 
 #, c-format
 msgid "expected(%d)= "
-msgstr ""
+msgstr "预期(%d)= "
 
 #, c-format
 msgid "computed(%d)= "
-msgstr ""
+msgstr "计算(%d)= "
 
 msgid "expected= "
-msgstr ""
+msgstr "预期= "
 
 msgid "computed= "
-msgstr ""
+msgstr "计算= "
 
 #, c-format
 msgid "%s: Assertion failed: %s  while %s (mean diff = %s)"
-msgstr ""
+msgstr "%s：声明失败：%s，而%s（均差=%s）"
 
 #, c-format
 msgid "%s: Assertion failed: %s  while %s"
-msgstr ""
+msgstr "%s：声明失败：%s，而%s"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -148,12 +148,14 @@ msgstr "%s：第 %d 个输入参数的类型有误：应为布尔矩阵。\n"
 
 #, c-format
 msgid "%s: Assertion failed: Entry %%T found in condition(%d).\n"
-msgstr ""
+msgstr "%s：声明失败：入口%%T位于条件(%d)下。\n"
 
 #, c-format
 msgid ""
 "%s: Expected type %s or %s for input argument %s #%d, but got %s instead."
 msgstr ""
+"%s：输入参数的预期类型%s或者%s，问题来源于%s函数的第%d个参数，此处错误的值"
+"为%s。"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -167,7 +169,7 @@ msgstr "%s：不能打开文件%s。\n"
 msgid ""
 "%s: The content of computed file %s is different from the content of "
 "reference file %s."
-msgstr ""
+msgstr "%s：计算文件%s的内容与参考文件%s的内容不同。"
 
 #, c-format
 msgid "%s: Cannot close file %s.\n"
@@ -175,7 +177,7 @@ msgstr "%s：不能关闭文件%s。\n"
 
 #, c-format
 msgid "%s: Assertion failed: Entry %%F found in condition(%d).\n"
-msgstr ""
+msgstr "%s：声明失败：入口%%F位于条件(%d)下。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -189,79 +191,79 @@ msgstr "%s：输出参数%d的数目和输入参数的%d的数目不匹配。"
 
 #, c-format
 msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
-msgstr ""
+msgstr "%s：输入参数的行大小应为%d，问题来源于第%d个参数，此处错误的值为%d行。"
 
 #, c-format
 msgid ""
 "%s: Expected %d columns in input argument #%d, but found %d columns instead."
-msgstr ""
+msgstr "%s：输入参数的列大小应为%d，问题来源于第%d个参数，此处错误的值为%d列。"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be real.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：必须为实数。\n"
 
 #, c-format
 msgid "%s: %s is not an installed module"
-msgstr ""
+msgstr "%s：%s模块并未安装。"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: test %s not found in the list of "
 "modules"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：经检测%s模块并未在已安装的模块列表中。"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Cannot create file %s, created file %s instead.\n"
-msgstr ""
+msgstr "%s：无法创建文件 %s，因此创建文件%s用来替代。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A row array of strings expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是行为1字符串数组。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A row array of strings expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是行为1字符串数组。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A row array of strings or empty "
 "matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是行为1字符串数组或者是空矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A row array of strings or empty "
 "matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是行为1字符串数组或者是空矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s： 第#%d输入参数类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为字符串。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab module name expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是一个Scilab模块的名字。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid language expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是一个有效的语言类型。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A '%s' module function name "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是隶属于 '%s'模块中的函数名。\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
@@ -296,7 +298,7 @@ msgstr "测试 %s 无法从模块 %s 找到。"
 
 #, c-format
 msgid "%s: Wrong number of input arguments."
-msgstr ""
+msgstr "%s：输入参数数目错误。"
 
 #, c-format
 msgid "%s is not an installed module or toolbox"
@@ -304,7 +306,7 @@ msgstr "%s是未安装的模块或工具箱"
 
 msgid ""
 "option JVM NOT MANDATORY is deprecated, please use CLI SHELL MODE instead"
-msgstr ""
+msgstr "不建议使用JVM NOT MANDATORY选项，请改用CLI SHELL MODE"
 
 #, c-format
 msgid "The ref file (%s) doesn't exist"
@@ -314,7 +316,7 @@ msgstr "ref文件 (%s) 不存在"
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "
 "'testsuites'.\n"
-msgstr ""
+msgstr "文件'%s'没有遵循XUnit XML格式。 根标签应为“ testsuites”。\n"
 
 #, c-format
 msgid "No variable %s_ref in reference file"

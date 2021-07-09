@@ -8,217 +8,227 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2009-10-29 05:45+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2020-08-22 14:25+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong method for input argument #%d: %s unknown.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数方法错误：未知的%s。\n"
 
 #, c-format
 msgid "%s: Wrong position for input argument #%d : Must be in position %d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数位置错误：必须在位置%d。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : Only one string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该只有一个字符串。\n"
 
 msgid "Missing vect for random permutation\n"
-msgstr ""
+msgstr "缺少用于随机排列的向量\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是正标量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : At least %.0E expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该至少是 %.0E。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Positive integer expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该至少是正整数。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : A value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是一个值。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Positive no null value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是正数且不为空。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : value > 1.0 expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：值应该大于1.0。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Positive value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是正数。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Positive non null value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是正数且不为空。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A matrix of size m x 1 expected.(m > "
 "0)\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是一个大小为m x 1的矩阵。(m>0)\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Mean and Cov have "
 "incompatible dimensions.\n"
-msgstr ""
+msgstr "%s：第%d个和第%d个输入参数大小错误：Mean和Cov的尺寸不兼容。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A square symmetric positive definite "
 "matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是方形对称的正定矩阵。\n"
 
 #, c-format
 msgid "%s: setgmn return with state %d.\n"
-msgstr ""
+msgstr "%s：状态为%d的setgmn返回。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Must be between %.1E and %d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：必须在 %.1E和 %d之间。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A square matrix or a row vector "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是方矩阵或行向量。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: No empty matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是非空矩阵。\n"
 
 #, c-format
 msgid "%s: X0(%d) must be in the range [1,%d[.\n"
-msgstr ""
+msgstr "%s：X0(%d)必须在[1,%d]范围内。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: P(%d,%d) must be in the range [0 "
 "1].\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误： P(%d,%d)应该在[0 1]范围内。\n"
 
 #, c-format
 msgid "%s: Sum of P(%d,1:%d)=%lf ~= 1.\n"
-msgstr ""
+msgstr "%s：总和P(%d,1:%d)=%lf ~= 1。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为一个标量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A positive scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为一个正标量。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为列向量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: P(%d) must be in the range [0 1].\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：P(%d)必须在[0 1]范围内。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Sum of P(i) > 1.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：P(i)的和应大于1。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: Matrix (full or sparse) or Hypermatrix of "
 "Reals, Complexes, Integers, Booleans, Strings or Polynomials expected.\n"
 msgstr ""
+"%s：输入参数类型错误：应该为实数，复数，整数，布尔值，字符串或多项式的矩阵(完"
+"整或稀疏)或超矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
-msgstr ""
+msgstr "%s：第%d个和的%d个输入参数的值错误：小值必须小于大值。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input arguments #%d and #%d: Low and High must be a 32 "
 "bits integer value and (high - low + 1) <=  2147483561.\n"
 msgstr ""
+"%s：第%d个和第%d个输入参数的值错误：Low和High必须是32位整数值，并且(高-低+ 1)"
+"小于等于2147483561。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
+"%s：第%d个输入参数的值错误：应该是 '%s'， '%s'， '%s'， '%s'， '%s' 或 '%s'中"
+"的一个。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A scalar or a vector of size %d "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为标量或者一个大小为%d的向量。\n"
 
 #, c-format
 msgid "%s: Wrong value for the last %d input argument(s).\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : One string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是一个字符串。\n"
 
 #, c-format
 msgid "The %s option affects only the %s generator\n"
-msgstr ""
+msgstr "%s 选项仅影响%s 生成器\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：必须处于[%d, %d]之间。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Must be between %d, %d or %d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：其值必须是%d, %d 或者%d中的一个。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Must be > %d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：其值必须大于%d。\n"
 
 msgid ""
 "\n"
 "Bad seeds for clcg2, must be integers with  s1 in [1, 2147483562]\n"
 "                                        and  s2 in [1, 2147483398]\n"
 msgstr ""
+"\n"
+"clcg2的错误种子，必须是整数且s1在[1,2147483562]中\n"
+"                                                              s2在"
+"[1,2147483398]中\n"
 
 msgid ""
 "\n"
@@ -227,10 +237,18 @@ msgid ""
 "                                             s3 in [1, 2147483422]\n"
 "                                             s4 in [1, 2147483322]"
 msgstr ""
+"\n"
+" clcg4的错误种子，必须是整数且s1在[1,2147483646]中\n"
+"                                                              s2在"
+"[1,2147483542]中\n"
+"                                                              s3在"
+"[1,2147483422]中\n"
+"                                                              s4在"
+"[1,2147483322]中"
 
 #, c-format
 msgid "WARNING: %s\n"
-msgstr ""
+msgstr "警告：%s\n"
 
 #, c-format
 msgid ""
@@ -238,89 +256,94 @@ msgid ""
 "    between the virtual generator %d and the others.\n"
 "    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."
 msgstr ""
+"请注意，您可能已失去同步\n"
+"    在虚拟生成器%d与其他生成器之间。\n"
+"    如果要恢复它，请使用grand(\"setall\", s1, s2, s3, s4)。"
 
 msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
-msgstr ""
+msgstr "kiss的错误种子，必须是[0,2^32-1]中的整数\n"
 
 msgid "Bad seed for mt, must be an int in [0, 2^32-1]\n"
-msgstr ""
+msgstr "mt的错误种子，必须是[0,2^32-1]中的整数\n"
 
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
-msgstr ""
+msgstr "mt状态mt的第一部分必须是[1，624]中的整数\n"
 
 msgid ""
 "\n"
 "Bad seed for urand, must be an int in [0,  2147483647]\n"
 msgstr ""
+"\n"
+"urand的错误种子，必须是[0,2147483647]中的整数\n"
 
 msgid "Scilab randlib interface not installed.\n"
-msgstr ""
+msgstr "Scilab randlib接口未安装。\n"
 
 msgid "Simulation of a binomial random variable"
-msgstr ""
+msgstr "二项式随机变量的仿真"
 
 msgid "Simulation"
-msgstr ""
+msgstr "仿真"
 
 msgid "Theory"
-msgstr ""
+msgstr "理论"
 
 msgid "Simulation of a discrete random variable"
-msgstr ""
+msgstr "离散随机变量的仿真"
 
 msgid "Simulation of a discrete uniform random variable"
-msgstr ""
+msgstr "离散均匀随机变量的仿真"
 
 msgid "Simulation of a Erlang random variable"
-msgstr ""
+msgstr "Erlang随机变量的仿真"
 
 msgid "Simulation of an exponential random variable"
-msgstr ""
+msgstr "指数随机变量的仿真"
 
 msgid "Classes"
-msgstr ""
+msgstr "类"
 
 msgid "p must be < 1"
-msgstr ""
+msgstr "p必须小于1"
 
 msgid "Simulation of a geometric random variable"
-msgstr ""
+msgstr "几何随机变量的仿真"
 
 msgid "Simulation of a hyper geometric random variable"
-msgstr ""
+msgstr "超几何随机变量的仿真"
 
 msgid "Simulation of a Poisson random variable"
-msgstr ""
+msgstr "泊松随机变量的仿真"
 
 msgid "Random"
-msgstr ""
+msgstr "随机"
 
 msgid "binomial random variable"
-msgstr ""
+msgstr "二项式随机变量"
 
 msgid "discrete random variable"
-msgstr ""
+msgstr "离散随机变量"
 
 msgid "discrete uniform random variable"
-msgstr ""
+msgstr "离散均匀随机变量"
 
 msgid "geometric random variable"
-msgstr ""
+msgstr "几何随机变量"
 
 msgid "Poisson random variable"
-msgstr ""
+msgstr "泊松随机变量"
 
 msgid "Exponential random variable"
-msgstr ""
+msgstr "指数随机变量"
 
 msgid "Weibull random variable"
-msgstr ""
+msgstr "威布尔随机变量"
 
 msgid "Hyper geometric random variable"
-msgstr ""
+msgstr "超几何随机变量"
 
 msgid "Erlang random variable"
-msgstr ""
+msgstr "Erlang随机变量"
 
 msgid "Simulation of a Weibull random variable"
-msgstr ""
+msgstr "Weibull 随机变量的仿真"

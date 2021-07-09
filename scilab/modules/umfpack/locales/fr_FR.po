@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:09+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: fr\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -95,8 +95,7 @@ msgstr "%s : Pas assez de mémoire disponible.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A pointer expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un pointeur attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un pointeur attendu.\n"
 
 #, c-format
 msgid ""
@@ -164,8 +163,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
 
 msgid "numeric factorization"
 msgstr "Factorisation numérique"
@@ -183,8 +181,7 @@ msgid "invalid matrix"
 msgstr "Matrice invalide"
 
 msgid "GENMMD ordering only works on symmetric matrices.\n"
-msgstr ""
-"Le classement GENMMD ne fonctionne que sur des matrices symétriques.\n"
+msgstr "Le classement GENMMD ne fonctionne que sur des matrices symétriques.\n"
 
 msgid "The lower part of the matrix must be represented.\n"
 msgstr "La partie inférieure de la matrice doit être représentée.\n"
@@ -397,8 +394,7 @@ msgid ""
 "definite (s.p.d.)."
 msgstr ""
 
-msgid ""
-"  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
+msgid "  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
 msgstr ""
 
 #, c-format
@@ -480,8 +476,7 @@ msgstr "   ensuite cliquez sur Ok   "
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'\"entrée : Au moins %d attendus.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'\"entrée : Au moins %d attendus.\n"
 
 #, c-format
 msgid "%s: The file contains a rhs but it will not be read !"
@@ -545,15 +540,13 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice creuse carrée "
 "attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice creuse "
 "carrée attendue.\n"

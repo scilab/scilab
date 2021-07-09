@@ -8,102 +8,104 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-11-02 13:26+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2020-08-16 15:48+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: zh_CN\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
-msgstr ""
+msgstr "警告：TCL / TK接口存在问题。 接口尚未启用。\n"
 
 msgid "Tcl/TK interface disabled in -nogui mode.\n"
-msgstr ""
+msgstr "在 -nogui 模式下Tcl / TK接口被禁用。\n"
 
 #, c-format
 msgid "%s: Error main TCL interpreter not initialized.\n"
-msgstr ""
+msgstr "%s：主TCL解释器未正确初始化。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该是一个字符串。\n"
 
 #, c-format
 msgid "%s: No such slave interpreter.\n"
-msgstr ""
+msgstr "%s：从属解释器不存在。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: File %s not found.\n"
-msgstr ""
+msgstr "%s：文件%s未找到。\n"
 
 #, c-format
 msgid ""
 "%s, at line %i of file %s\n"
 "\t%s.\n"
 msgstr ""
+"%s，在第%i行，其位于文件%s中\n"
+"\t%s。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该是字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s：内存分配错误。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: String or vector of strings "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是一个字符串或者字符串向量。\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr ""
+msgstr "%s：内存不足。\n"
 
 #, c-format
 msgid "%s: Could not read Tcl Variable.\n"
-msgstr ""
+msgstr "%s：无法读取Tcl变量。\n"
 
 msgid "Alpha Release"
-msgstr ""
+msgstr "Alpha 版本发布"
 
 msgid "Beta Release"
-msgstr ""
+msgstr "Beta 版本发布"
 
 msgid "Final Release"
-msgstr ""
+msgstr "Final 版本发布"
 
 msgid "Unknown Release"
-msgstr ""
+msgstr "未知版本发布"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为‘%s’。\n"
 
 msgid "This function doesn't work with Complex.\n"
-msgstr ""
+msgstr "此函数无法在复数情形下运行。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A real expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该是一个实数。\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
-msgstr ""
+msgstr "在Tcl/Tk中无法使用空矩阵[]。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr ""
+msgstr "%s：第%d个或第%d个输入参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -178,34 +180,34 @@ msgstr "%s：错误：Tcl解释器没有初始化。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：其至少有一个。\n"
 
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Scilab Tcl/Tk 模块没有安装。\n"
 
 msgid "Color"
-msgstr ""
+msgstr "颜色"
 
 msgid "Puzzle"
-msgstr ""
+msgstr "拼图游戏"
 
 msgid "Scroll"
-msgstr ""
+msgstr "滚动条"
 
 msgid "Scale"
-msgstr ""
+msgstr "范围伸缩"
 
 #, c-format
 msgid "%s: Argument #%d: Text(s) expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该是指定文本。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Variable undefined.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：变量未定义。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Name of a variable of type 1, 4 or 10 expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该是类型为1，4，10的变量名称。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -226,6 +228,23 @@ msgstr "%s：第%d个输入参数的类型错误：应该为布尔值。\n"
 #, c-format
 msgid "%s: Slave interpreter already exists.\n"
 msgstr "%s：Slave interpreter 已经存在。\n"
+
+#
+# File: modules/tclsci/macros/ged_move_entity.sci, line: 38
+msgid "Mouse moving picker ON => Console LOCKED"
+msgstr ""
+
+#
+# File: modules/tclsci/macros/ged_move_entity.sci, line: 39
+msgid "On a figure: Click left to get and set. Click middle to QUIT...\n"
+msgstr ""
+
+#
+# File: modules/tclsci/macros/ged_move_entity.sci, line: 192
+msgid ""
+"\n"
+"--> // Moving picker OFF => Back to the console.\n"
+msgstr ""
 
 #, c-format
 msgid "Error %s while loading library %s"

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
@@ -69,12 +69,6 @@ msgstr "%s : Dimensions erronées de l'argument : Dimensions incompatibles.\n"
 #, c-format
 msgid "%s: Too many coefficients are required.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr ""
-"%s : Type erroné pour l'argument d'entrée n°%d : Une matrice réelle "
-"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
@@ -365,6 +359,16 @@ msgstr ""
 "%s : Arguments d'entrée n°%d et n°%d incompatibles : un polynôme et une "
 "matrice 1-par-1 ou deux polynômes attendus.\n"
 
+#
+# File: modules/signal_processing/macros/%_unwrap.sci, line: 23
+msgid ": 1-D examples "
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/%_unwrap.sci, line: 103
+msgid ": 2-D examples"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floating point numbers "
@@ -569,6 +573,42 @@ msgstr ""
 "%s : Arguments d'entrée n°%d et n°%d incompatibles : Mêmes dimensions "
 "attendues.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un entier positif "
+"attendu.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: a scalar with integer value "
+"expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un entier positif attendu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be odd.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Doit être impair.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr "%s : Type erroné de l'argument n°%d : Un vecteur réel attendu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Incompatible input arguments #%d and #%d\n"
+msgstr ""
+"%s : Arguments d'entrée n°%d et n°%d incompatibles : Mêmes dimensions "
+"attendues.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument %d: At least %d expected.\n"
+msgstr "%s : Dimension erronée de l'argument n°%d : Un vecteur attendu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for argument %d: At most %d expected.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %s ou %s attendu.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée.\n"
@@ -585,6 +625,36 @@ msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un tableau de %d "
 "éléments attendu.\n"
+
+#
+# File: modules/signal_processing/macros/unwrap.sci, line: 37
+msgid "Press return to display 2D examples"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : Un scalaire attendu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+"%s : Valeurs erronées de l'argument d'entrée n°%d : Le degré doit être dans "
+"l'ensemble {%s}.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s : Type erroné de l'argument n°%d : Une matrice attendue.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Doit être impair.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Doit être impair.\n"
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"
@@ -749,3 +819,9 @@ msgstr ""
 msgid "%s: Too abrupt change near end of frequency range.\n"
 msgstr ""
 "%s : Changement trop brusque près de la fin de la bande de fréquence.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+#~ msgstr ""
+#~ "%s : Type erroné pour l'argument d'entrée n°%d : Une matrice réelle "
+#~ "attendue.\n"

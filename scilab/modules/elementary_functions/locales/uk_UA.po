@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-19 09:00+0000\n"
+"PO-Revision-Date: 2020-02-24 18:08+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -81,12 +81,6 @@ msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути вказано матрицю з "
 "дійсними елементами.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідних параметрів №%d та №%d: розмірність має "
-"бути однаковою.\n"
 
 #, c-format
 msgid ""
@@ -185,18 +179,18 @@ msgstr ""
 "%s: помилкові значення вхідного параметра №%d: слід використовувати матрицю "
 "з додатних цілих значень\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^53.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
-"між 0 та 2^52.\n"
+"%s: помилкове значення вхідного параметра %d: мало бути використано значення "
+"від 0 до 2^53.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real or integer matrix expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мало бути вказано матрицю з "
-"дійсними елементами.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"дійсних або цілих значень.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
@@ -247,9 +241,19 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
 "квадратну матрицю.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід вказати принаймні %d.\n"
+
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Argument #%d: Must be in the set {%s} or integer in range [%d, %d].\n"
+msgstr "%s: параметр %d: має потрапляти до проміжку [%s, %s].\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
@@ -349,6 +353,19 @@ msgstr ""
 "однакового розміру.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано «%s», «%s», "
+"«%s» або «%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d : A constant scalar expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано стале "
@@ -363,21 +380,14 @@ msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
 msgstr "%s: помилкова розмірність параметра %d: мало бути (%d,%d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мало бути вказано «%s», «%s», "
-"«%s» або «%s».\n"
-
-msgid ": 1-D examples "
-msgstr ": одновимірні приклади "
-
-msgid ": 2-D examples"
-msgstr ": двовимірні приклади"
-
-#, c-format
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr "%s: параметр №%d: мало бути вказано текстові дані.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значення має перебувати у "
+"інтервалі %s.\n"
 
 #, c-format
 msgid "%s: Argument #%d: List expected.\n"
@@ -408,9 +418,9 @@ msgid "%s: Arguments #%d and #%d: Same integer types expected.\n"
 msgstr ""
 "%s: параметр%d і %d: мало бути використано однакові типи цілих чисел.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
-msgstr "%s: параметри №%d і №%d: розмірності мали бути однаковими.\n"
+msgstr "%s: параметри %d і %d: несумісні розмірності.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
@@ -418,25 +428,9 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути використано ціле "
 "число >= %d.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
-"«%s», «%s», «%s» або «%s».\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
-"«%s».\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мали бути розряджені "
-"вектори.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Complex sparse not yet supported in %s mode.\n"
+msgstr "%s: параметр %d: підтримки комплексних чисел не передбачено.\n"
 
 #, c-format
 msgid "%s: Wrong size of input argument: %d expected.\n"
@@ -535,17 +529,33 @@ msgid "%s: Argument #%d: Integers >=0 expected.\n"
 msgstr "%s: параметр №%d: мало бути ціле число >=0.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: помилковий вхідний параметр №%d: слід використовувати число/матрицю "
-"цілих чисел без знака.\n"
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or encoded integers expected.\n"
+msgstr "%s: параметр %d: мало бути використано десяткове ціле число.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Positive decimal integers expected.\n"
+msgstr "%s: параметр %d: мало бути використано десяткове ціле число.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong size.\n"
+msgstr "%s: параметр №%d: мало бути вказано стовпчик.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Real or encoded integer expected.\n"
+msgstr "%s: параметр %d: мало бути використано десяткове ціле число.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
+msgstr "%s: параметр %d: має потрапляти до проміжку [%s, %s].\n"
 
 #, c-format
-msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
-msgstr ""
-"%s: помилковий вхідний параметр №%d: слід використовувати ціле число без "
-"знака.\n"
+msgid "%s: Argument #%d: Non-negative integers expected.\n"
+msgstr "%s: параметр %d: мало бути використано невід'ємні цілі числа.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
@@ -554,32 +564,23 @@ msgstr ""
 "між %d та %d.\n"
 
 #, c-format
-msgid "%s: Argument #%d: Non-negative integers expected.\n"
-msgstr "%s: параметр %d: мало бути використано невід'ємні цілі числа.\n"
+msgid "%s: Argument #%d: Non-negative real integers expected.\n"
+msgstr "%s: параметр %d: мало бути використано невід'ємні числа.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: Argument #%d: Non-negative real integers expected.\n"
-msgstr "%s: параметр %d: мало бути використано невід'ємні цілі числа.\n"
-
-#, fuzzy, c-format
 msgid "%s: Argument #%d: integers > 0 expected.\n"
-msgstr "%s: параметр №%d: мало бути ціле число >=0.\n"
+msgstr "%s: параметр %d: мало бути використано додатні цілі числа.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers <= %d expected.\n"
-msgstr "%s: параметр №%d: мало бути ціле число >=0.\n"
+msgstr "%s: параметр %d: мало бути використано цілі числа <= %d.\n"
 
-#
-# File: modules/elementary_functions/macros/bitset.sci, line: 78
 #, c-format
 msgid ""
 "%s: Argument #%d is longer than %d. Please check against duplicate values.\n"
 msgstr ""
+"%s: довжина параметра %d перевищує %d. Будь ласка, перевірте, чи немає "
+"дублювання значень.\n"
 
 #, c-format
 msgid ""
@@ -605,23 +606,22 @@ msgstr ""
 msgid "%s: Wrong type for input arguments: Same types expected.\n"
 msgstr "%s: помилковий тип вхідних параметрів: типи мали збігатися.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong type. A sizeable type expected.\n"
-msgstr "%s: параметр %d: мало бути використано невід'ємні цілі числа.\n"
-
-#, fuzzy, c-format
-msgid "%s: Argument #%d: Integer(s) expected.\n"
-msgstr "%s: параметр №%d: мало бути ціле число >=0.\n"
-
-#, fuzzy, c-format
-msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
-"у інтервалі [%s, %s].\n"
+"%s: параметр %d: помилковий тип. Мало бути використано розмірний тип.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
-msgstr "%s: помилковий тип параметра %d: слід використовувати матрицю.\n"
+msgid "%s: Argument #%d: Integer(s) expected.\n"
+msgstr "%s: параметр %d: мало бути використано цілі числа.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
+msgstr "%s: параметр %d: має потрапляти до проміжку [%s, %s].\n"
+
+#, c-format
+msgid "%s: Argument #%d: Decimal numbers expected.\n"
+msgstr "%s: параметр %d: мало бути використано десяткове число.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -727,10 +727,6 @@ msgid "%s: Argument #%d: %s not supported.\n"
 msgstr "%s: параметр %d: підтримки %s не передбачено.\n"
 
 #, c-format
-msgid "%s: Argument #%d: Decimal numbers expected.\n"
-msgstr "%s: параметр %d: мало бути використано десяткове число.\n"
-
-#, c-format
 msgid "%s: Log of a singular matrix.\n"
 msgstr "%s: логарифм від виродженої матриці.\n"
 
@@ -744,9 +740,11 @@ msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор-"
 "стовпчик.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d. Слід використовувати значення "
+"цілого типу.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
@@ -791,6 +789,10 @@ msgid "%s: Option %s only relevant for %s and %s modes => ignored.\n"
 msgstr ""
 "%s: параметр %s можна використовувати лише у режимах %s і %s => "
 "проігноровано.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
+msgstr "%s: помилковий тип параметра %d: слід використовувати матрицю.\n"
 
 #, c-format
 msgid ""
@@ -840,19 +842,17 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 "%s: несумісні вхідні параметри №%d і №%d. Типи параметрів мали збігатися.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal integer expected.\n"
-msgstr "%s: параметр %d: мало бути використано десяткове число.\n"
+msgstr "%s: параметр %d: мало бути використано десяткове ціле число.\n"
 
-#
-# File: modules/elementary_functions/macros/nchoosek.sci, line: 62
 #, c-format
 msgid "%s: n(%d) < k(%d) is forbidden.\n"
-msgstr ""
+msgstr "%s: n(%d) < k(%d) не можна використовувати.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Text expected.\n"
-msgstr "%s: параметр №%d: мало бути вказано текстові дані.\n"
+msgstr "%s: параметр %d: мало бути використано текст.\n"
 
 #, c-format
 msgid ""
@@ -880,36 +880,34 @@ msgstr ""
 msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr "%s: якщо x є від’ємним, n повинне містити лише непарні цілі числа.\n"
 
-#
-# File: modules/elementary_functions/macros/perms.sci, line: 70
 msgid ""
 "perms: The unique option can be used only for sortable real numbers, "
 "booleans or texts.\n"
 msgstr ""
+"perms: параметр неповторюваності може бути використано лише для "
+"упорядковуваних дійсних чисел, булевих значень або текстових фрагментів.\n"
 
-#
-# File: modules/elementary_functions/macros/perms.sci, line: 199
 #, c-format
 msgid "perms: Too many permutations (%d). Would run out of memory.\n"
-msgstr ""
+msgstr "perms: забагато переставлянь (%d). Не вистачить пам'яті.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
 msgstr "%s: несумісні вхідні параметри: типи мали бути однаковими.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
-msgstr "%s: параметр %d: має бути <= %d.\n"
+msgstr "%s: аргумент %d: має бути >= %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be in the interval %s.\n"
-msgstr "%s: параметр %d: має бути <= %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значення має перебувати у "
+"інтервалі %s.\n"
 
-#
-# File: modules/elementary_functions/macros/prbs_a.sci, line: 54
 #, c-format
 msgid "%s: The number of switches can't be  %d = number of points.\n"
-msgstr ""
+msgstr "%s: кількість перемикань не може бути рівною  %d = кількості точок.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -926,10 +924,6 @@ msgid "%s: Wrong size for input argument #%d: A scalar or vector expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра %d: мало бути вказано число або "
 "вектор.\n"
-
-#, c-format
-msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr "%s: параметр №%d: мало бути вказано скаляр (1 елемент).\n"
 
 #, c-format
 msgid ""
@@ -989,6 +983,56 @@ msgstr "%s: підтримки перетворення поліномів не 
 msgid "%s: conversion into %s is not supported\n"
 msgstr "%s: підтримки перетворення на %s не передбачено\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', %d or %d "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s», «%s», «%s» або «%s».\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+"значення.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of rows of the second "
+"input argument expected.\n"
+msgstr ""
+"%s: помилкова розмірність параметра %d%s: розмірність мала збігатися із "
+"розмірністю вхідного параметра %d.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of columns of the second "
+"input argument expected.\n"
+msgstr ""
+"%s: помилкова розмірність параметра %d%s: розмірність мала збігатися із "
+"розмірністю вхідного параметра %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value of input argument #%d: Lower than or equal to size of input "
+"argument #%d expected.\n"
+msgstr ""
+"%s: помилкова розмірність параметра %d%s: розмірність мала збігатися із "
+"розмірністю вхідного параметра %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Unsupported type %s.\n"
+msgstr "%s: параметр %d: підтримки %s не передбачено.\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same types expected.\n"
+msgstr "%s: параметри №%d і №%d: розмірності мали бути однаковими.\n"
+
 #, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
 msgstr ""
@@ -1024,38 +1068,16 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати %d, "
 "«%s», %d або «%s»\n"
 
-msgid "Press return to display 2D examples"
-msgstr "Натисніть Enter, щоб переглянути двовимірні приклади"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: '%s' not allowed for an hypermatrix.\n"
+msgstr ""
+"%s: параметр %d: для гіперматриць не передбачено підтримки орієнтації.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
-"значень.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d. Значення має належати набору "
-"{%s}.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: рядків має бути принаймні "
-"4.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: стовпчиків має бути "
-"принаймні 4.\n"
+"%s: несумісні вхідні параметри №%d і №%d: слід використовувати параметри "
+"одного типу.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
@@ -1064,63 +1086,86 @@ msgstr ""
 "вектор.\n"
 
 #, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
-msgstr ""
-"%s: несумісні вхідні параметри №%d і №%d: слід використовувати параметри "
-"одного типу.\n"
-
-#, fuzzy, c-format
 msgid "%s: Argument #%d: Text or integer decimal expected.\n"
-msgstr "%s: параметр №%d: мало бути ціле число >=0.\n"
+msgstr ""
+"%s: параметр %d: мало бути використано текст або десяткове ціле число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"вектор.\n"
+"число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: non-zero number expected.\n"
-msgstr "%s: параметр %d: мало бути використано десяткове число.\n"
+msgstr "%s: параметр %d: мало бути використано ненульове число.\n"
 
 #, c-format
-#~ msgid "%s: No more memory.\n"
-#~ msgstr "%s: доступну пам’ять вичерпано.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d.\n"
-#~ msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
+#~ msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
 #~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d, значення не вдалося "
-#~ "перетворити.\n"
+#~ "%s: помилкова розмірність вхідних параметрів №%d та №%d: розмірність має "
+#~ "бути однаковою.\n"
+
+#~ msgid ": 1-D examples "
+#~ msgstr ": одновимірні приклади "
+
+#~ msgid ": 2-D examples"
+#~ msgstr ": двовимірні приклади"
 
 #, c-format
-#~ msgid "%s: Memory allocation error.\n"
-#~ msgstr "%s: помилка під час спроби виділення пам’яті.\n"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: 0 or 1 expected.\n"
-#~ msgstr "%s: помилкове значення вхідного параметра №%d: мало бути 0 або 1.\n"
+#~ msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: мали бути розряджені "
+#~ "вектори.\n"
 
 #, c-format
 #~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of "
-#~ "unsigned integers expected.\n"
+#~ "%s: Wrong input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
 #~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: мало бути вказано, скаляр, "
-#~ "матрицю або гіперматрицю цілих чисел без знаку.\n"
+#~ "%s: помилковий вхідний параметр №%d: слід використовувати число/матрицю "
+#~ "цілих чисел без знака.\n"
+
+#, c-format
+#~ msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий вхідний параметр №%d: слід використовувати ціле число без "
+#~ "знака.\n"
+
+#, c-format
+#~ msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+#~ msgstr "%s: параметр №%d: мало бути вказано скаляр (1 елемент).\n"
+
+#~ msgid "Press return to display 2D examples"
+#~ msgstr "Натисніть Enter, щоб переглянути двовимірні приклади"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+#~ "дійсних значень.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d. Значення має належати "
+#~ "набору {%s}.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+#~ "«string».\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: рядків має бути "
+#~ "принаймні 4.\n"
 
 #, c-format
 #~ msgid ""
-#~ "%s: Wrong value for input argument #%d: A positive integer expected.\n"
+#~ "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 #~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: мало бути використано "
-#~ "додатне ціле число.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
-#~ msgstr ""
-#~ "%s: помилкові розмірності вхідних параметрів: несумісні розмірності.\n"
+#~ "%s: помилкова розмірність вхідного параметра №%d: стовпчиків має бути "
+#~ "принаймні 4.\n"

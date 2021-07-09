@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-24 11:08+0100\n"
+"Revision-Date: 2021-07-09 17:35+0100\n"
 
 # File: modules/scicos_blocks/src/c/convert.c, line: 1214
 # File: modules/scicos_blocks/src/c/convert.c, line: 1239
@@ -542,8 +542,8 @@ msgstr ""
 # File: modules/scicos_blocks/macros/Linear/DELAYV_f.sci, line: 39
 # File: modules/scicos_blocks/macros/MatrixOp/MATCATH.sci, line: 38
 # File: modules/scicos_blocks/macros/MatrixOp/MATCATV.sci, line: 38
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 43
 # File: modules/scicos_blocks/macros/Misc/LOGICAL_OP.sci, line: 40
+# File: modules/scicos_blocks/macros/NonLinear/EXPRESSION.sci, line: 43
 msgid "Number of inputs"
 msgstr ""
 
@@ -2040,45 +2040,6 @@ msgid "rising (1), falling (-1), both (0)"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 41
-msgid ""
-"Set EXPRESSION block parameters<br><br>Give a scalar scilab expression using "
-"inputs u1, u2,...<br>If only one input, input is vector [u1,u2,...] (max "
-"8)<br>ex: (dd*u1+sin(u2)>0)*u3<br>Note that here dd must be defined in the "
-"context<br><br>"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 73
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 87
-msgid "Erroneous expression"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 262
-#, c-format
-msgid "Variable %s is not scalar."
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 271
-#, c-format
-msgid "Unknown variable %s."
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 287
-#, c-format
-msgid "%s must have %d arguments"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 335
-#, c-format
-msgid "Function %s not supported."
-msgstr ""
-
-#
 # File: modules/scicos_blocks/macros/Misc/HYSTHERESIS.sci, line: 35
 msgid "Switch on at"
 msgstr ""
@@ -2369,6 +2330,45 @@ msgstr ""
 # File: modules/scicos_blocks/macros/NonLinear/EXPBLK_f.sci, line: 42
 # File: modules/scicos_blocks/macros/NonLinear/EXPBLK_m.sci, line: 42
 msgid "a^u : a must be > 0"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/NonLinear/EXPRESSION.sci, line: 41
+msgid ""
+"Set EXPRESSION block parameters<br><br>Give a scalar scilab expression using "
+"inputs u1, u2,...<br>If only one input, input is vector [u1,u2,...] (max "
+"8)<br>ex: (dd*u1+sin(u2)>0)*u3<br>Note that here dd must be defined in the "
+"context<br><br>"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/NonLinear/EXPRESSION.sci, line: 73
+# File: modules/scicos_blocks/macros/NonLinear/EXPRESSION.sci, line: 87
+msgid "Erroneous expression"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/NonLinear/EXPRESSION.sci, line: 262
+#, c-format
+msgid "Variable %s is not scalar."
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/NonLinear/EXPRESSION.sci, line: 271
+#, c-format
+msgid "Unknown variable %s."
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/NonLinear/EXPRESSION.sci, line: 287
+#, c-format
+msgid "%s must have %d arguments"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/NonLinear/EXPRESSION.sci, line: 335
+#, c-format
+msgid "Function %s not supported."
 msgstr ""
 
 #

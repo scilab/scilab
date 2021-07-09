@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-11-02 15:33+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2020-08-15 09:49+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %d.\n"
@@ -81,12 +81,12 @@ msgid "Parameters"
 msgstr "参数"
 
 msgid "plist handling"
-msgstr ""
+msgstr "plist类型处理"
 
 msgid ""
 "This demo shows examples of plist utilizations: creation, insertion, "
 "removal, ..."
-msgstr ""
+msgstr "此演示展示了plist类型的用法示例：包含创建，插入，删除，..."
 
 #, c-format
 msgid ""
@@ -94,12 +94,16 @@ msgid ""
 "Create a plist '%s' containing two fields 'min' = [0 0 0] and 'max' = [1 1 "
 "1].\n"
 msgstr ""
+"\n"
+"创建一个包含‘min’= [0 0 0]和‘max‘= [1 1 1]两个字段的plist类型数据 ‘%s’。\n"
 
 #, c-format
 msgid ""
 "\n"
 "Check fields: \n"
 msgstr ""
+"\n"
+"检查字段： \n"
 
 #, c-format
 msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
@@ -122,18 +126,24 @@ msgid ""
 "\n"
 "Before remove_param: \n"
 msgstr ""
+"\n"
+"在移除参数前： \n"
 
 #, c-format
 msgid ""
 "\n"
 "After remove_param: \n"
 msgstr ""
+"\n"
+"在移除参数后： \n"
 
 #, c-format
 msgid ""
 "\n"
 "Check removal: \n"
 msgstr ""
+"\n"
+"检查清除结果： \n"
 
 #, c-format
 msgid ""

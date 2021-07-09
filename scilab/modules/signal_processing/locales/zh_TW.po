@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
@@ -66,10 +66,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Too many coefficients are required.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -343,6 +339,16 @@ msgid ""
 "or two polynomials expected.\n"
 msgstr ""
 
+#
+# File: modules/signal_processing/macros/%_unwrap.sci, line: 23
+msgid ": 1-D examples "
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/%_unwrap.sci, line: 103
+msgid ": 2-D examples"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floating point numbers "
@@ -505,6 +511,36 @@ msgstr "%s:  輸入參數 #%d and #%d 不相容: 參數 #%d  比#%d 小才對.\n
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s: 第 %d 及 第 %d 輸入參數不相容 : 應為相同大小.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為非負整數.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: a scalar with integer value "
+"expected.\n"
+msgstr "%s: 第 %d 輸入參數型別有誤: 有理數的分式陣列才對.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be odd.\n"
+msgstr "%s:第 %d 輸入參數值有誤: 元素必須是正值.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr "%s: 第 %d 輸入參數型別有誤: 有理數的分式陣列才對.\n"
+
+#, fuzzy, c-format
+msgid "%s: Incompatible input arguments #%d and #%d\n"
+msgstr "%s: 第 %d 及 第 %d 輸入參數不相容 : 應為相同大小.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument %d: At least %d expected.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤 :  tall 矩陣才對.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for argument %d: At most %d expected.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤 :  tall 矩陣才對.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
@@ -517,6 +553,31 @@ msgstr "%s: 第 %d 輸入參數型別有誤: 有理數的分式陣列才對.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr "%s: 輸入參數大小錯誤 #%d:  %d 元素的陣列才對.\n"
+
+#
+# File: modules/signal_processing/macros/unwrap.sci, line: 37
+msgid "Press return to display 2D examples"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤: 應為一多項式.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr "%s: 第#%d個輸入參數值有誤 :度數要在集合{%s}中.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤 :  tall 矩陣才對.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤 :  tall 矩陣才對.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤 :  tall 矩陣才對.\n"
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"

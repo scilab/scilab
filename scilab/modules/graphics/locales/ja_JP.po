@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-18 22:04+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2020-02-24 18:52+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -131,11 +131,9 @@ msgstr ""
 "%s: 引数オプションの位置が間違っています: #%d は,位置　%d でなくてはなりませ"
 "ん.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:  %d 行%d列の行列またはスカラーを指"
-"定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
@@ -215,15 +213,6 @@ msgid ""
 "%s: Wrong number of columns for input argument #%d: at least %d expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の列の数が間違っています : %d 列以上を指定してください.\n"
-
-#, c-format
-msgid "%s: Could not read property '%s' for console object.\n"
-msgstr ""
-"%s: コンソールオブジェクトに関するプロパティ '%s' を読み込めませんでした.\n"
-
-#, c-format
-msgid "%s: Unable to get useful path from this handle.\n"
-msgstr "%s: このハンドルから利用可能なパスを取得できません.\n"
 
 #, c-format
 msgid "%s: Each handle should not appear twice.\n"
@@ -551,6 +540,14 @@ msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
 msgstr ""
 "%s: 入力引数#%dの型が間違っています: 負ではない整数を指定してください.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s is obsolete. It will be removed from Scilab %s.\n"
+"Please use %s instead.\n"
+msgstr ""
+"'%s' プロパティは廃止予定であり,削除されます, 代わりに '%s' を使用してくださ"
+"い.\n"
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
@@ -643,6 +640,10 @@ msgstr ""
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
 msgstr "%s: ルートオブジェクトのプロパティ '%s' を読み込めません.\n"
+
+#, c-format
+msgid "%s: Unable to get useful path from this handle.\n"
+msgstr "%s: このハンドルから利用可能なパスを取得できません.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: scalar string expected.\n"
@@ -1044,6 +1045,13 @@ msgstr "%s は文字列ベクトルとしてください.\n"
 # File: src/c/getHandleProperty/SetHashTable.c, line: 246
 #, c-format
 msgid "Unknown property: %s.\n"
+msgstr "未知のプロパティ: %s\n"
+
+#
+# File: src/c/getHandleProperty/GetHashTable.c, line: 248
+# File: src/c/getHandleProperty/SetHashTable.c, line: 246
+#, fuzzy, c-format
+msgid "Read-only property: %s.\n"
 msgstr "未知のプロパティ: %s\n"
 
 #, c-format
@@ -1865,8 +1873,6 @@ msgstr "棒グラフ(グループ化)"
 msgid "histplot"
 msgstr "histplot"
 
-#
-# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 18
 msgid "bar3d"
 msgstr ""
 
@@ -2062,9 +2068,7 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 範囲 %s とする
 msgid "April"
 msgstr "4月"
 
-#
-# File: modules/graphics/macros/bar3d.sci, line: 29
-msgid "Febuary"
+msgid "February"
 msgstr ""
 
 msgid "January"
@@ -2322,6 +2326,30 @@ msgstr "%s: 入力引数の数が間違っています: %d 以上を指定して
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数の行列を指定してください.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Axes handle or vector of decimal numbers expected.\n"
+msgstr "%s: 引数 #%d: 10進数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Axes handle expected.\n"
+msgstr "%s: 引数 #%d: テキストを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: incomplete {'name', value} pair.\n"
+msgstr "%s: 入力引数の数が間違っています:  %d 以上の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: 'x' or 'y' expected.\n"
+msgstr "%s: 引数 #%d: テキストを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: one word among {%s} expected.\n"
+msgstr "%s: 引数 #%d: %d 個以上の要素を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: widths vector: %d components expected.\n"
+msgstr "%s: 引数 #%d: %d 個以上の要素を指定してください.\n"
+
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: 空のカスケードメニューが見つかりました."
 
@@ -2466,6 +2494,15 @@ msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが正しくありません: 実数を1つ指定してください.\n"
 
+#, fuzzy
+msgid "Current colormap"
+msgstr "カラーマップ"
+
+#
+# File: modules/graphics/macros/getcolor.sci, line: 72
+msgid "Default colormap"
+msgstr ""
+
 #
 # File: macros/getcolor.sci, line: 74
 # File: macros/getfont.sci, line: 39
@@ -2508,9 +2545,6 @@ msgstr "OK"
 # File: macros/getcolor.sci, line: 132
 msgid "Cancel"
 msgstr "キャンセル"
-
-msgid "February"
-msgstr ""
 
 msgid "histplot() : (normalized) histogram plot"
 msgstr "histplot(): (正規化された)ヒストグラムプロット"
@@ -2607,13 +2641,13 @@ msgstr ""
 msgid "%s: Argument #%d: Graphic handle(s) of type %s expected.\n"
 msgstr "%s: 引数 #%d: %s型のグラフィックハンドルを指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: log flags: scalar expected.\n"
-msgstr "%s: 引数 #%d: 負でない値を指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: log flags: wrong value. Ignored.\n"
-msgstr "%s: 引数 #%d: 値Inf および Nanは禁止されています.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: wrong list() specification for the curve #%d.\n"
@@ -2627,6 +2661,22 @@ msgstr "%s: エラー : 入力引数 '%s' を評価できません."
 msgid "Error %d at line %d of the function: '%s"
 msgstr "エラー %d (関数の %d 行目) : '%s"
 
+#
+# File: modules/graphics/macros/plot.sci, line: 314
+#, c-format
+msgid "%s: Plot #%d: Numbers of x columns and of %s must match.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plot.sci, line: 316
+msgid "polynomials"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plot.sci, line: 318
+msgid "rationals"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
@@ -2635,41 +2685,37 @@ msgstr ""
 "%s: 入力引数の値が間違っています: '%s', '%s', '%s', '%s' または '%s' を指定し"
 "てください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real vector or colon : expected.\n"
-msgstr "%s: 引数 #%d: 4または6個の列を指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Vector expected.\n"
-msgstr "%s: 引数 #%d: テキストを指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real value expected.\n"
-msgstr "%s: 引数 #%d: 負でない値を指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Argument #%d: Real matrix or String or Scilab function or list "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実行列またはScilab関数を指定してくださ"
-"い.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Argument #%d(#%d): Identifier of a Scilab or built-in function "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実行列またはScilab関数を指定してくださ"
-"い.\n"
 
 #, c-format
 msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Error %d : in plot called by plotimplicit"
-msgstr "エラー %d: contour2d によりコールされたplot2dで発生"
+msgstr ""
 
 #, c-format
 msgid "%s: '%s' cannot be used with '%s'.\n"
@@ -2730,6 +2776,64 @@ msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています:  ハンドル '%s' を指定してくださ"
 "い.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong type of graphic handle: '%s' expected.\n"
+msgstr "%s: 引数 #%d: '%s' 型のグラフィックハンドルを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
+msgstr ""
+"%s: 入力引数 #%d と #%d に互換性がありません: 行の数を同じにしてください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Argument #%d: Wrong value. Please check allowed syntaxes and values.\n"
+msgstr "%s: 引数 #%d: 型が間違っています. 利用可能な構文を確認してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be >= %d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 範囲 %s とする必要があります.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Number(s) or text expected.\n"
+msgstr "%s: 引数 #%d: 数値または文字列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong size: one or %d colors expected.\n"
+msgstr "%s: 引数 #%d: 4または6個の列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Number or text expected.\n"
+msgstr "%s: 引数 #%d: 数値または文字列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong marker id.\n"
+msgstr "%s: 引数 #%d: 色の指定が間違っています.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: keyword or property name expected.\n"
+msgstr "%s: 引数 #%d: 数値または文字列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Unknown property name '%s'.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 範囲 %s とする必要があります.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Value missing for the given property.\n"
+msgstr "%s: 引数 #%d: 数値または文字列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong marker specification.\n"
+msgstr "%s: 引数 #%d: 色の指定が間違っています.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Non-negative integers expected.\n"
+msgstr "%s: 引数 #%d: 負でない値を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers in %s expected.\n"
+msgstr "%s: 引数 #%d: テキストを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
@@ -2876,79 +2980,8 @@ msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさで
 msgid "%s: Wrong value given for %s."
 msgstr "%s: %s に指定された値が間違っています."
 
-#~ msgid "hist3d"
-#~ msgstr "hist3d"
-
-#~ msgid "'datatips' property"
-#~ msgstr "'datatips' プロパティ"
-
 #, c-format
-#~ msgid "%s: Wrong type for curve user_data field: a struct expected.\n"
+#~ msgid "%s: Could not read property '%s' for console object.\n"
 #~ msgstr ""
-#~ "%s: 曲線 user_dataフィールドの型が間違っています: 構造体を指定してくださ"
-#~ "い.\n"
-
-#~ msgid "Square mark, boxed label"
-#~ msgstr "四角, ボックス付きのラベル"
-
-#~ msgid "Square mark, simple label"
-#~ msgstr "四角, 簡単なラベル"
-
-#~ msgid "Square mark, no label"
-#~ msgstr "四角, ラベルなし"
-
-#~ msgid "Directional arrow, boxed label"
-#~ msgstr "方向矢印, 囲い付きラベル"
-
-#~ msgid "Directional arrow, simple label"
-#~ msgstr "方向矢印, 簡易ラベル"
-
-#~ msgid "Directional arrow, no label"
-#~ msgstr "方向矢印, ラベルなし"
-
-#~ msgid "Select tip style"
-#~ msgstr "ティップ形式を選択"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
-#~ msgstr ""
-#~ "%s: 入力引数 #%d の型が間違っています: スカラー論理値を指定してください.\n"
-
-#~ msgid "Datatips style"
-#~ msgstr "データティップ形式"
-
-#~ msgid "Marker style:"
-#~ msgstr "マーカ形式:"
-
-#~ msgid "Square"
-#~ msgstr "正方形"
-
-#~ msgid "Arrow"
-#~ msgstr "矢印"
-
-#~ msgid "Labeled?"
-#~ msgstr "ラベル付き?"
-
-#~ msgid "Yes"
-#~ msgstr "はい"
-
-#~ msgid "No"
-#~ msgstr "いいえ"
-
-#~ msgid "Boxed?"
-#~ msgstr "ボックス付き"
-
-#~ msgid "Positionning?"
-#~ msgstr "位置?"
-
-#~ msgid "Knots"
-#~ msgstr "ノット"
-
-#~ msgid "Interpolated"
-#~ msgstr "補完後"
-
-#~ msgid "Allow multiple datatips?"
-#~ msgstr "複数のデータティップは利用可能?"
-
-#~ msgid "Edit label generator"
-#~ msgstr "ラベル生成器を編集"
+#~ "%s: コンソールオブジェクトに関するプロパティ '%s' を読み込めませんでし"
+#~ "た.\n"

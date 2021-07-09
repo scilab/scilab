@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-24 11:08+0100\n"
+"Revision-Date: 2021-07-09 17:34+0100\n"
 
 # File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 98
 # File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 18
@@ -106,7 +106,7 @@ msgstr ""
 
 #
 # File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 167
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 48
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 45
 # File: modules/development_tools/macros/assert/assert_computedigits.sci, line: 92
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -139,27 +139,27 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 57
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 54
 #, c-format
 msgid "%s: Computed is real, but expected is complex."
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 61
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 58
 #, c-format
 msgid "%s: Computed is complex, but expected is real."
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 79
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 85
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 102
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 76
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 82
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 99
 #, c-format
 msgid "%s: Assertion failed: expected= %s  while computed= %s"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 90
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 87
 #, c-format
 msgid ""
 "%s: Assertion failed: expected and computed are two distinct built-in "
@@ -167,35 +167,35 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 175
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 171
 #, c-format
 msgid "expected(%d)= "
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 176
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 172
 #, c-format
 msgid "computed(%d)= "
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 178
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 174
 msgid "expected= "
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 179
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 175
 msgid "computed= "
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 184
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 180
 #, c-format
 msgid "%s: Assertion failed: %s  while %s (mean diff = %s)"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 186
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 182
 #, c-format
 msgid "%s: Assertion failed: %s  while %s"
 msgstr ""
@@ -502,13 +502,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/development_tools/macros/test_run.sci, line: 1194
+# File: modules/development_tools/macros/test_run.sci, line: 1200
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/test_run.sci, line: 1341
+# File: modules/development_tools/macros/test_run.sci, line: 1347
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "

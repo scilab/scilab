@@ -8,26 +8,26 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:13+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2020-08-25 14:30+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s：无法读取第%d个输入参数。\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s：内存分配错误。\n"
 
 #, c-format
 msgid "%s: Can not read named argument %s.\n"
-msgstr ""
+msgstr "%s：无法读取命名参数%s。\n"
 
 #, c-format
 msgid "%s: Cannot go to directory %s\n"
@@ -60,27 +60,27 @@ msgstr "%s：输入参数#%d的类型错误：\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
-msgstr ""
+msgstr "%s：无法打开文件%s。\n"
 
 #, c-format
 msgid "%s: Invalid format.\n"
-msgstr ""
+msgstr "%s：无效的格式。\n"
 
 #, c-format
 msgid "%s: error.\n"
-msgstr ""
+msgstr "%s：错误。\n"
 
 #, c-format
 msgid "%s: can not read file %s.\n"
-msgstr ""
+msgstr "%s：无法读取文件%s。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Could not create the output argument.\n"
-msgstr ""
+msgstr "%s：无法创建输出参数。\n"
 
 #, c-format
 msgid "%s: An error occurred.\n"
@@ -88,21 +88,21 @@ msgstr "%s：发生一个错误。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为一个标量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A string (3 characters max.) "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数大小错误：应该为一个最多为3个字符的字符串。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -110,31 +110,31 @@ msgstr "%s：第%d个输入参数的类型错误：应该为布尔型。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar boolean expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数大小错误：应该为一个布尔标量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为一个字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%ls: Warning: Directory '%ls' already exists.\n"
-msgstr ""
+msgstr "%ls：警告：目录'%ls'已经存在。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误，应该为字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -142,11 +142,25 @@ msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该介于%d与%d之间。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s：输入参数#%d的值错误。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
+msgstr "%s：输出参数数目错误：应该介于%d到%d个之间。\n"
+
+#
+# File: modules/fileio/sci_gateway/cpp/sci_get_absolute_file_path.cpp, line: 81
+#, c-format
+msgid "%s: Without arguments, this function must be called from a script.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
@@ -154,15 +168,15 @@ msgstr "%s：不能在Scilab中打开文件 %s 。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是一个字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same size expected.\n"
-msgstr ""
+msgstr "%s：第%d个和第%d个输入参数不兼容：应该大小相同。\n"
 
 #, c-format
 msgid ""
@@ -171,21 +185,25 @@ msgstr "%s：输入参数#%d的大小错误：必须少于%d个字符。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为实数。\n"
 
 #, c-format
 msgid ""
 "%s: Cannot check the end of file whose descriptor is %d: File is not "
 "active.\n"
-msgstr ""
+msgstr "%s：无法检查描述符为%d的文件结尾：文件未激活。\n"
 
 #, c-format
 msgid "%s: File not found: '%s'.\n"
-msgstr ""
+msgstr "%s：未找到文件：'%s'。\n"
 
-#, c-format
-msgid "%s: Wrong input arguments: '%s' expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Cannot close file %ls: File is not active.\n"
+msgstr "%s：无法关闭文件描述符为%d的文件：文件不是激活状态。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该为实数。\n"
 
 #, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
@@ -193,17 +211,17 @@ msgstr "%s：错误的文件描述符：%d。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为整数或字符串。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid ""
 "%ls: Cannot check the end of file whose descriptor is %d: File is not "
 "active.\n"
-msgstr ""
+msgstr "%ls：无法检查描述符为%d的文件结尾：该文件未激活。\n"
 
 #, c-format
 msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
@@ -211,7 +229,7 @@ msgstr "%s：不能读文件描述符为%d的文件：文件不是打开状态�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为一个实数型的。\n"
 
 #, c-format
 msgid "%s: Wrong file mode: READ only.\n"
@@ -219,11 +237,11 @@ msgstr "%s：错误的文件模式：只能读。\n"
 
 #, c-format
 msgid "%s: Error while writing in file: disk full or deleted file.\n"
-msgstr ""
+msgstr "%s：写入文件时出错：磁盘已满或已删除文件。\n"
 
 #, c-format
 msgid "%s: Cannot read file %d.\n"
-msgstr ""
+msgstr "%s：无法读取文件%d。\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -232,36 +250,42 @@ msgstr "%s: 内存不足。\n"
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A positive integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该为正整数。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A positive integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为一个正整数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为整数。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Incorrect conversion code; c, s, i "
+"or l expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为整数。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数大小错误：应该一个整数。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
 
 #, c-format
 msgid "%s: Too many files opened!\n"
-msgstr ""
+msgstr "%s：打开文件过多!\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -269,7 +293,7 @@ msgstr "%s：无法打开文件%s。\n"
 
 #, c-format
 msgid "%s: invalid filename %s.\n"
-msgstr ""
+msgstr "%s：无效的文件名 %s。\n"
 
 #, c-format
 msgid "%s: invalid status.\n"
@@ -277,11 +301,11 @@ msgstr "%s：不正确的状态。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为字符串或整数。\n"
 
 #, c-format
 msgid "%s: Unable to read file %d.\n"
-msgstr ""
+msgstr "%s：无法读取文件%d。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
@@ -295,13 +319,17 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个整数。\n"
 msgid "%s: invalid filename.\n"
 msgstr "%s：不正确的文件名。\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: a single string expected.\n"
+msgstr "%s：第%d个参数的类型错误：应该为字符串。\n"
+
 #, c-format
 msgid "%s: Data mismatch.\n"
 msgstr "%s：数据不匹配。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为实数或者字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
@@ -309,11 +337,11 @@ msgstr "%s：输入参数#%d的值错误：应该为'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Strings expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: An error occurred: Not enough entries.\n"
-msgstr ""
+msgstr "%s：发生错误：没有足够的入口。\n"
 
 #, c-format
 msgid "%s: Error while opening, reading or writing.\n"
@@ -321,62 +349,62 @@ msgstr "%s：打开文件，读文件或写文件时发生错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String(s) expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\n"
 
 #, c-format
 msgid "%s: Warning: Directory '%ls' does not exist.\n"
-msgstr ""
+msgstr "%s：警告：目录'%ls'不存在。\n"
 
 msgid "Could not parse the URL.\n"
-msgstr ""
+msgstr "无法解析URL。\n"
 
 #, c-format
 msgid "Failed getting current dir, error code: %d\n"
-msgstr ""
+msgstr "获取当前牡蛎失败，错误代码：%d\n"
 
 #, c-format
 msgid "Failed to set URL [%s]\n"
-msgstr ""
+msgstr "设置URL[%s]失败\n"
 
 #, c-format
 msgid "Failed to set user:pwd [%s]\n"
-msgstr ""
+msgstr "设置用户：密码[%s]失败\n"
 
 #, c-format
 msgid "Failed to set proxy host [%s]\n"
-msgstr ""
+msgstr "无法设置代理主机[%s]\n"
 
 #, c-format
 msgid "Failed to set proxy port [%s]\n"
-msgstr ""
+msgstr "设置代理服务器端口[%s]失败\n"
 
 #, c-format
 msgid "Failed to set proxy user:password [%s]\n"
-msgstr ""
+msgstr "设置代理服务器用户名：密码[%s]失败\n"
 
 #, c-format
 msgid "Failed to set write function [%s]\n"
-msgstr ""
+msgstr "设置写入函数[%s]失败\n"
 
 #, c-format
 msgid "Failed to set write data [%s]\n"
-msgstr ""
+msgstr "设置写数据[%s]失败\n"
 
 #, c-format
 msgid "Failed to set 'Follow Location' [%s]\n"
-msgstr ""
+msgstr "无法设置“Follow Location” [%s]\n"
 
 #, c-format
 msgid "Transfer did not complete successfully: %s\n"
-msgstr ""
+msgstr "传送未完成：%s\n"
 
 #, c-format
 msgid "Failed opening '%s' for writing.\n"
-msgstr ""
+msgstr "无法打开“%s”进行写入。\n"
 
 msgid "unclosed [ directive."
 msgstr "未关闭的 [ 标志."
@@ -422,7 +450,7 @@ msgstr "警告：不能删除目录%s：%s\n"
 
 #, c-format
 msgid "Can't go to directory %s: %s\n"
-msgstr ""
+msgstr "无法转到目录%s：%s\n"
 
 #, c-format
 msgid "Can't go to directory %s.\n"
@@ -478,82 +506,19 @@ msgstr "%s：输入参数#%d（%s）的值错误：格式未被识别。\n"
 
 #, c-format
 msgid "%s: No output file.\n"
-msgstr ""
+msgstr "%s：无输出文件。\n"
 
 #, c-format
 msgid "%s: %s format not recognized.\n"
-msgstr ""
+msgstr "%s：%s 格式无法识别。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-msgstr ""
-
-msgid "Import data"
-msgstr ""
-
-msgid "Select a file"
-msgstr ""
-
-msgid "File has a header"
-msgstr ""
-
-msgid "Show all columns"
-msgstr ""
-
-msgid "It can take a long time"
-msgstr ""
-
-msgid "Separator"
-msgstr ""
-
-msgid "Colon"
-msgstr ""
-
-msgid "Comma"
-msgstr ""
-
-msgid "Pipe"
-msgstr ""
-
-msgid "Semicolon"
-msgstr ""
-
-msgid "Space"
-msgstr ""
-
-msgid "Tab"
-msgstr ""
-
-msgid "Decimal"
-msgstr ""
-
-msgid "Point"
-msgstr ""
-
-msgid "Conversion"
-msgstr ""
-
-msgid "Convert to double"
-msgstr ""
-
-msgid "Keep as strings"
-msgstr ""
-
-msgid "Import as variable"
-msgstr ""
-
-msgid "Quit"
-msgstr ""
-
-msgid "Copy function to clipboard"
-msgstr ""
-
-msgid "Cancel preview"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是一个字符串。\n"
 
 #, c-format
 msgid "%s: Options ignored.\n"
@@ -572,23 +537,90 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
 
 msgid "Impossible to create directory "
-msgstr ""
+msgstr "无法创建目录 "
 
 msgid "This directory already exists in "
-msgstr ""
+msgstr "此目录已存在于 "
 
 msgid "A file with the same name already exists in "
-msgstr ""
+msgstr "具有相同名称的文件已存在于 "
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be '%s'.\n"
 msgstr "%s：输入参数#%d的值错误：必须为'%s'。\n"
 
 msgid "Error: The directory is not empty."
-msgstr ""
+msgstr "错误：目录不为空。"
 
 msgid "Undefined"
-msgstr ""
+msgstr "未定义"
 
 msgid "The system cannot find the file specified."
-msgstr ""
+msgstr "该系统找不到指定的文件。"
+
+#, c-format
+#~ msgid "%s: Wrong input arguments: '%s' expected.\n"
+#~ msgstr "%s：输入参数错误：应该为'%s'。\n"
+
+#~ msgid "Import data"
+#~ msgstr "导入数据"
+
+#~ msgid "Select a file"
+#~ msgstr "选择文件"
+
+#~ msgid "File has a header"
+#~ msgstr "文件存在文件头"
+
+#~ msgid "Show all columns"
+#~ msgstr "显示所有的列"
+
+#~ msgid "It can take a long time"
+#~ msgstr "花费了太长的时间"
+
+#~ msgid "Separator"
+#~ msgstr "分隔符"
+
+#~ msgid "Colon"
+#~ msgstr "冒号"
+
+#~ msgid "Comma"
+#~ msgstr "逗号"
+
+#~ msgid "Pipe"
+#~ msgstr "管道(|)"
+
+#~ msgid "Semicolon"
+#~ msgstr "分号(;)"
+
+#~ msgid "Space"
+#~ msgstr "空格"
+
+#~ msgid "Tab"
+#~ msgstr "Tab"
+
+#~ msgid "Decimal"
+#~ msgstr "十进制"
+
+#~ msgid "Point"
+#~ msgstr "点"
+
+#~ msgid "Conversion"
+#~ msgstr "转换"
+
+#~ msgid "Convert to double"
+#~ msgstr "转换为双精度浮点数"
+
+#~ msgid "Keep as strings"
+#~ msgstr "保持为字符串"
+
+#~ msgid "Import as variable"
+#~ msgstr "导入变量"
+
+#~ msgid "Quit"
+#~ msgstr "退出"
+
+#~ msgid "Copy function to clipboard"
+#~ msgstr "复制函数到剪贴板"
+
+#~ msgid "Cancel preview"
+#~ msgstr "取消预览"

@@ -1,0 +1,109 @@
+# French translation for scilab
+# Copyright (c) 2021 Rosetta Contributors and Canonical Ltd 2021
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2021-07-09 13:45+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: A scalar string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%s : chaînes de caractères "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%s: 'none' expected.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%s : 'none' attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: A scalar boolean expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%s : Booléen attendu.\\n\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"file\" expected.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : \"file\" attendu.\n"
+
+#, c-format
+msgid "%s: JSON format expected.\n"
+msgstr "%s : format JSON attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar string expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : texte attendu.\n"
+
+#, c-format
+msgid "%s: CURL initialization failed.\n"
+msgstr "%s : l'initialisation de CURL a échouée.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong proxy information, please check in the 'internet' Scilab "
+"preference.\n"
+msgstr ""
+"%s : Mauvais information de proxy, veuillez consulter l'onglet 'Internet' "
+"dans les Préférences de Scilab.\n"
+
+#, c-format
+msgid ""
+"%s: CURL execution failed.\n"
+"%s\n"
+msgstr ""
+"%s : l'exécution de CURL a échouée.\n"
+"%s\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: The given path does not exist.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Le chemin donné n'existe "
+"pas.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix string expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Texte attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A structure of size %d expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Structure de taille %d "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%s: 'PUT' or 'POST' expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%s : 'PUT' ou 'POST' attendu.\n"

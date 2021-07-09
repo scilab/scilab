@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:17+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2020-09-03 13:04+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: zh_CN\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -79,33 +79,47 @@ msgstr "%s：第%d个参数的类型错误：应该为实数矩阵或复数矩�
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: Decimal number(s) expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数矩阵。\n"
+msgstr "%s：输入参数数目错误：应该至少为 %d 个。\n"
 
 #, c-format
 msgid ""
 "%s: Function not defined for the given argument type.\n"
 "  Check arguments or define function %s for overloading.\n"
 msgstr ""
+"%s：给定参数类型的函数未定义。\n"
+"  请检查参数或者将%s函数进行重载。\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal numbers expected.\n"
+msgstr "%s：第#%d参数错误：应该是一个小数。\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be > %d.\n"
+msgstr "%s：第#%d个参数错误：必须在{%s}集合中。\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s：第%d个参数错误：应该为指定文本。\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: '%s' expected .\n"
+msgstr "%s：第%d个参数错误：应该为指定文本。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Integer number or string expected.\n"
-msgstr ""
+msgstr "%s：第#%d个参数错误：应该是一个整数或者字符串。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr ""
+msgstr "%s：第#%d个参数错误：必须在{%s}集合中。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number expected.\n"
-msgstr ""
+msgstr "%s：第#%d个参数错误：应该是一个小数或者复数。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -117,28 +131,42 @@ msgstr "%s：第%d个参数的值错误：应该为0、1、2。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Text expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该为指定文本。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该介于%d与%d之间。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal number expected.\n"
-msgstr ""
+msgstr "%s：第#%d参数错误：应该是一个小数。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
-msgstr ""
+msgstr "%s：第#%d个参数错误：必须处于[%d, %d]之间。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数。\n"
+msgstr "%s：第%d个输入参数类型错误：应该为实数。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, sparse or full "
+"matrix or hypermatrix expected.\n"
+msgstr "%s：第%d个参数的类型错误：应该为实数矩阵或复数矩阵。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s：输入参数的值错误：必须 > %d。\n"
+
+#, c-format
+#~ msgid "%s: Argument #%d: Decimal number(s) expected.\n"
+#~ msgstr "%s：第%d个参数错误：应该是小数。\n"

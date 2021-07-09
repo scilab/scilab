@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2020-01-21 14:09+0000\n"
 "Last-Translator: Stéphane Mottelet <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: cs\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
@@ -51,8 +51,7 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být > %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno reálné číslo.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
@@ -138,8 +137,7 @@ msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: očekávána matice m*3 nebo m*6.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: %s musí být mezi %d a %d.\n"
 
@@ -164,8 +162,7 @@ msgstr "%s: Špatný typ vstupních argumentů.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupních argumentů: Očekávána stejná velikost.\n"
+msgstr "%s: Špatná velikost vstupních argumentů: Očekávána stejná velikost.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
@@ -184,8 +181,7 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -194,44 +190,88 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný vektor.\
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Musí být mezi %d a %d.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Musí být mezi %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
 
-#, c-format
-msgid ""
-"%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers in [1,12] expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána reálná konstantní matice.\n"
+"%s: Špatný typ vstupního argumentu #%d: očekáváno celé číslo nebo '%s'.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d missing: Integers in [1,31] expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno \"%s\", nebo \"%s\".\n"
+"%s: Špatný typ vstupního argumentu #%d: očekáváno celé číslo nebo '%s'.\n"
 
-msgid "Sat"
-msgstr "So"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers in [1,31] expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: očekáváno celé číslo nebo '%s'.\n"
 
-msgid "Sun"
-msgstr "Ne"
+#, fuzzy, c-format
+msgid "%s: Arguments #%d to #%d: Same sizes expected.\n"
+msgstr "%s: Špatná velikost vstupních argumentů: Očekávána stejná velikost.\n"
 
-msgid "Mon"
-msgstr "Po"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Numbers or texts expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: očekáváno celé číslo nebo '%s'.\n"
 
-msgid "Tue"
-msgstr "Út"
+#
+# File: modules/time/macros/weekday.sci, line: 99
+# File: modules/time/macros/weekday.sci, line: 117
+# File: modules/time/macros/weekday.sci, line: 138
+# File: modules/time/macros/weekday.sci, line: 159
+#, c-format
+msgid "%s: Argument #%d: All dates must have the same format.\n"
+msgstr ""
 
-msgid "Wed"
-msgstr "St"
+#
+# File: modules/time/macros/weekday.sci, line: 165
+#, c-format
+msgid "%s: Argument #%d: Wrong dates format.\n"
+msgstr ""
 
-msgid "Thu"
-msgstr "Čt"
+#
+# File: modules/time/macros/weekday.sci, line: 169
+#, c-format
+msgid "%s: Argument #%d: Month indices expected in [1,12].\n"
+msgstr ""
 
-msgid "Fri"
-msgstr "Pá"
+#
+# File: modules/time/macros/weekday.sci, line: 173
+#, c-format
+msgid "%s: Argument #%d: Day indices expected in [1,31].\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Single text word expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný vektor.\n"
+
+#
+# File: modules/time/macros/weekday.sci, line: 199
+#, c-format
+msgid "%s: Argument #%d: Wrong langage code.\n"
+msgstr ""
+
+#
+# File: modules/time/macros/weekday.sci, line: 204
+#, c-format
+msgid "%s: Argument #%d: Unknown option.\n"
+msgstr ""
+
+msgid "Friday"
+msgstr "Pátek"
+
+msgid "Monday"
+msgstr "Pondělí"
 
 msgid "Saturday"
 msgstr "Sobota"
@@ -239,8 +279,8 @@ msgstr "Sobota"
 msgid "Sunday"
 msgstr "Neděle"
 
-msgid "Monday"
-msgstr "Pondělí"
+msgid "Thursday"
+msgstr "Čtvrtek"
 
 msgid "Tuesday"
 msgstr "Úterý"
@@ -248,8 +288,36 @@ msgstr "Úterý"
 msgid "Wednesday"
 msgstr "Středa"
 
-msgid "Thursday"
-msgstr "Čtvrtek"
+msgid "Fri"
+msgstr "Pá"
 
-msgid "Friday"
-msgstr "Pátek"
+msgid "Mon"
+msgstr "Po"
+
+msgid "Sat"
+msgstr "So"
+
+msgid "Sun"
+msgstr "Ne"
+
+msgid "Thu"
+msgstr "Čt"
+
+msgid "Tue"
+msgstr "Út"
+
+msgid "Wed"
+msgstr "St"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
+#~ msgstr ""
+#~ "%s: Špatný typ vstupního argumentu #%d: Očekávána reálná konstantní "
+#~ "matice.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno \"%s\", nebo \"%s"
+#~ "\".\n"

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -361,6 +361,18 @@ msgstr "未実装です."
 msgid "Extraction of %s from '%s' tlist is not yet implemented."
 msgstr "'%2$s' tlist からの %1$s の展開は未実装です."
 
+#, fuzzy, c-format
+msgid "Extraction of '%s' from '%s' tlist is not yet implemented.\n"
+msgstr "'%2$s' tlist からの %1$s の展開は未実装です."
+
+#, fuzzy, c-format
+msgid "%s: The field '%s' does not exist.\n"
+msgstr "%s: フォーマット '%s' はまだ処理されていません.\n"
+
+#, fuzzy, c-format
+msgid "Extraction of '%s' from '%s' tlist is not yet implemented."
+msgstr "'%2$s' tlist からの %1$s の展開は未実装です."
+
 #, c-format
 msgid "index must be a list instead of a: %s."
 msgstr "index は %s ではなくリストとする必要があります."
@@ -435,36 +447,54 @@ msgstr "matname は、文字でなくてはなりません: %s"
 msgid "infer must be an 'infer' tlist instead of a: %s."
 msgstr "infer は %s ではなく 'infer' tlist とする必要があります."
 
-#, c-format
-msgid "operator must be a string instead of a: %s."
+#, fuzzy, c-format
+msgid "%s: operator as Argument #%d must be a string instead of a '%s'.\n"
 msgstr "operator は %s ではなく文字列とする必要があります."
 
-#, c-format
-msgid "operands must be a list instead of a: %s."
+#, fuzzy, c-format
+msgid "%s: operands as Argument #%d must be a list instead of a '%s'.\n"
 msgstr "オペランドは %s ではなくリストとする必要があります."
 
-#, c-format
-msgid "out must be a list instead of a: %s."
+#, fuzzy, c-format
+msgid "%s: out as Argument #%d must be a list instead of a '%s'.\n"
 msgstr "out  は %s ではなくリストとする必要があります."
+
+#, fuzzy, c-format
+msgid "vtype '%s' is not yet implemented.\n"
+msgstr "%s は未実装です."
+
+#, fuzzy
+msgid "List of properties is not yet implemented.\n"
+msgstr "プロパティのリストは未実装です."
+
+#
+# File: macros/kernel/Type.sci, line: 26
+#, fuzzy, c-format
+msgid "Wrong property '%s' for vtype '%s'.\n"
+msgstr "プロパティ %s が間違っています。"
+
+#, fuzzy, c-format
+msgid "m2sci.convert2double(): Type %s not yet implemented."
+msgstr "プロパティのリストは未実装です."
+
+#, c-format
+msgid "recursive extraction with one index of type %s is not yet implemented."
+msgstr "インデックスを1つ有する %s 型の展開は未実装です."
 
 #, c-format
 msgid "%s is not yet implemented."
 msgstr "%s は未実装です."
 
-msgid "list of properties is not yet implemented."
-msgstr "プロパティのリストは未実装です."
+#
+# File: macros/kernel/funcall2sci.sci, line: 82
+#, fuzzy, c-format
+msgid "Error while executing : [sci_equiv] = sci_%s(mtlb_expr)."
+msgstr "実行中にエラー : [sci_equiv]=sci_%s(mtlb_expr)."
 
 #
-# File: macros/kernel/Type.sci, line: 26
-#, c-format
-msgid "wrong property %s."
-msgstr "プロパティ %s が間違っています。"
-
-#
-# File: macros/kernel/clause2sci.sci, line: 379
-#, c-format
-msgid "unknown clause type: %s."
-msgstr "未知の節型: %s"
+# File: macros/kernel/mtlbtoolfun.sci, line: 18
+msgid "not matlab path"
+msgstr "Matlabパスではありません"
 
 #, c-format
 msgid "Matlab function %s not yet converted, original calling sequence used."
@@ -501,43 +531,6 @@ msgid "Unknown function %s not converted, original calling sequence used."
 msgstr "未知の関数 %s は変換されません、元の呼び出し順で使われました。"
 
 #
-# File: macros/kernel/equal2sci.sci, line: 42
-#, c-format
-msgid "lhs cannot be a %s operation."
-msgstr "lhsは、%s オペレーションができません。"
-
-#
-# File: macros/kernel/equal2sci.sci, line: 56
-#, c-format
-msgid "lhs cannot be a %s."
-msgstr "lhs は、%s ができません。"
-
-#, c-format
-msgid "recursive extraction with one index of type %s is not yet implemented."
-msgstr "インデックスを1つ有する %s 型の展開は未実装です."
-
-#
-# File: macros/kernel/funcall2sci.sci, line: 82
-#, c-format
-msgid "Error while executing : [sci_equiv]=sci_%s(mtlb_expr)."
-msgstr "実行中にエラー : [sci_equiv]=sci_%s(mtlb_expr)."
-
-msgid ": The 24 first characters of the files names are equal: "
-msgstr ":ファイル名の最初の24文字が同じです: "
-
-#
-# File: macros/kernel/get_unknown.sci, line: 22
-#, c-format
-msgid "Matlab function %s not yet converted."
-msgstr "Matlab関数 %s はまだ変換されていません。"
-
-#, c-format
-msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
-msgstr ""
-"mtlb(%s) は %s() または %s で置き換えることができます. これは, %s が M-file "
-"であるかどうかに依存しません."
-
-#
 # File: macros/kernel/getoperands.sci, line: 15
 msgid "input argument must be an 'operation' tlist."
 msgstr "入力引数は、'operation' tlist でなくてはなりません。"
@@ -570,10 +563,38 @@ msgid "L.%d: Unknown variable %s."
 msgstr "L.%d: 未知の変数 %s"
 
 #
+# File: macros/kernel/get_unknown.sci, line: 22
+#, c-format
+msgid "Matlab function %s not yet converted."
+msgstr "Matlab関数 %s はまだ変換されていません。"
+
+#, c-format
+msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgstr ""
+"mtlb(%s) は %s() または %s で置き換えることができます. これは, %s が M-file "
+"であるかどうかに依存しません."
+
+#
 # File: macros/kernel/instruction2sci.sci, line: 29
 #, c-format
 msgid "unknown instruction type %s."
 msgstr "未知の指示型 %s"
+
+#, fuzzy, c-format
+msgid "Wrong LHS '%s' operation: Insertion expected.\n"
+msgstr "%s: '%s'の大きさが間違っています: ベクトルを指定してください.\n"
+
+#
+# File: macros/kernel/equal2sci.sci, line: 56
+#, c-format
+msgid "lhs cannot be a %s."
+msgstr "lhs は、%s ができません。"
+
+#
+# File: macros/kernel/clause2sci.sci, line: 379
+#, c-format
+msgid "unknown clause type: %s."
+msgstr "未知の節型: %s"
 
 #, c-format
 msgid "Bad use of isdefinedvar() with input: %s."
@@ -594,18 +615,11 @@ msgstr " -- 各関数は別々に変換されました: %s -- "
 msgid " -- Temporary files put in: %s -- "
 msgstr " -- テンポラリファイルを作成: %s -- "
 
+msgid ": The 24 first characters of the files names are equal: "
+msgstr ":ファイル名の最初の24文字が同じです: "
+
 msgid "// Number of arguments in function call"
 msgstr "// 関数呼び出し時の引数の数"
-
-#
-# File: macros/kernel/m2sci.sci, line: 114
-msgid "// Display mode"
-msgstr "// 表示モード"
-
-#
-# File: macros/kernel/m2sci.sci, line: 116
-msgid "// Display warning for floating point exception"
-msgstr "// 浮動小数点例外の警告表示"
 
 msgid "// Output variables initialisation (not found in input variables)"
 msgstr "// 出力変数初期化(入力変数では見つかりません)"
@@ -664,10 +678,57 @@ msgstr ""
 msgid "m2sciassume is obsolete, used m2scideclare instead."
 msgstr "m2sciassume はもう使われません, 代わりに m2scideclare を使いました。"
 
+msgid ""
+"not enough data, you should give at least variable_name|dimensions|datatype."
+msgstr ""
+"データが足りません. 少なくとも「変数名/次元/データ型」を指定する必要がありま"
+"す."
+
 #
-# File: macros/kernel/mtlbtoolfun.sci, line: 18
-msgid "not matlab path"
-msgstr "Matlabパスではありません"
+# File: macros/kernel/sci_m2scideclare.sci, line: 55
+msgid "too much data."
+msgstr "多すぎるデータです。"
+
+#
+# File: modules/m2sci/macros/kernel/m2scideclare.sci, line: 93
+#, c-format
+msgid "'%s' current size %s <> %s in m2scideclare:  m2scideclare IGNORED.\n"
+msgstr ""
+
+#
+# File: macros/kernel/sci_m2scideclare.sci, line: 90
+#, fuzzy, c-format
+msgid "Unknown datatype '%s'.\n"
+msgstr "未知のデータ型 %s です。"
+
+#
+# File: modules/m2sci/macros/kernel/m2scideclare.sci, line: 106
+#, c-format
+msgid ""
+"'%s' current type '%s' <> '%s' in m2scideclare:  m2scideclare IGNORED.\n"
+msgstr ""
+
+#
+# File: macros/kernel/sci_m2scideclare.sci, line: 100
+#, fuzzy, c-format
+msgid "%s: Unknown property '%s' for the type '%s'.\n"
+msgstr "未知のプロパティ %s です。"
+
+#
+# File: modules/m2sci/macros/kernel/m2scideclare.sci, line: 139
+#, c-format
+msgid ""
+"'%s' current property '%s' <> '%s' in m2scideclare:  m2scideclare IGNORED.\n"
+msgstr ""
+
+#
+# File: macros/kernel/sci_m2scideclare.sci, line: 138
+msgid "Wrong dimensions user data."
+msgstr "ユーザー・データの次元が不正です。"
+
+#, c-format
+msgid "%graphicswindow set to default value Handle."
+msgstr "%graphicswindow　をハンドルのデフォルト値に設定します."
 
 #
 # File: macros/kernel/mtlbtree2sci.sci, line: 28
@@ -707,81 +768,6 @@ msgstr " は以下で置換できる可能性があります:"
 # File: macros/kernel/repl_poss.sci, line: 35
 msgid "if"
 msgstr "もし"
-
-msgid ""
-"not enough data, you should give at least variable_name|dimensions|datatype."
-msgstr ""
-"データが足りません. 少なくとも「変数名/次元/データ型」を指定する必要がありま"
-"す."
-
-#
-# File: macros/kernel/sci_m2scideclare.sci, line: 55
-msgid "too much data."
-msgstr "多すぎるデータです。"
-
-#
-# File: macros/kernel/sci_m2scideclare.sci, line: 90
-#, c-format
-msgid "Unknown datatype %s."
-msgstr "未知のデータ型 %s です。"
-
-#
-# File: macros/kernel/sci_m2scideclare.sci, line: 100
-#, c-format
-msgid "Unknown property %s."
-msgstr "未知のプロパティ %s です。"
-
-#
-# File: macros/kernel/sci_m2scideclare.sci, line: 138
-msgid "Wrong dimensions user data."
-msgstr "ユーザー・データの次元が不正です。"
-
-#
-# File: macros/kernel/sci_m2scideclare.sci, line: 197
-# File: macros/kernel/sci_m2scideclare.sci, line: 278
-#, c-format
-msgid ""
-"Dimensions current value and m2scideclare statements conflict for: %s\n"
-"   m2scideclare given dimension: %s\n"
-"   Current dimension: %s\n"
-"   m2scideclare IGNORED"
-msgstr ""
-"以下のように、次元の現在値とm２scideclare文が矛盾します: %s\n"
-"   m2scideclare 与えられた次元: %s\n"
-"   現在の次元: %s\n"
-"   m2scideclare を無視しました"
-
-#, c-format
-msgid ""
-"Type current value and m2scideclare statements conflict for: %s\n"
-"   m2scideclare given type: %s\n"
-"   current type: %s\n"
-"   m2scideclare IGNORED"
-msgstr ""
-"現在の値型とm２scideclare文が矛盾します: %s\n"
-"   m2scideclare 与えられた型: %s\n"
-"   現在の型: %s\n"
-"   m2scideclareを無視しました"
-
-#, c-format
-msgid ""
-"Property current value and m2scideclare statements conflict for: %s\n"
-"   m2scideclare given type: %s\n"
-"   current type: %s\n"
-"   m2scideclare IGNORED"
-msgstr ""
-"現在の値プロパティとm2scideclare文が矛盾: %s\n"
-"   m2scideclare に与えられた型: %s\n"
-"   現在の値の型: %s\n"
-"   m2scideclareを無視しました"
-
-#, c-format
-msgid "%graphicswindow set to default value Handle."
-msgstr "%graphicswindow　をハンドルのデフォルト値に設定します."
-
-#, c-format
-msgid "type %d is not implemented."
-msgstr "%d 型は実装されていません."
 
 #
 # File: macros/m2sci_gui.sci, line: 22
@@ -1079,12 +1065,6 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** mfile2sci() セッションの終了 ******"
 
 #, c-format
-msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
-msgstr ""
-"%s の少なくとも1つのオペランドが空行列です, Scilabにおける等価な値は  [] で"
-"す."
-
-#, c-format
 msgid "recursive extraction from a variable %s of type %s."
 msgstr "型 %2$s の変数 %1$s から、再帰抽出"
 
@@ -1116,27 +1096,17 @@ msgid "One operand is an empty matrix in : %s, result set to []."
 msgstr "１つのオペランドが空行列です: %s , 結果を [] に設定します。"
 
 #, c-format
-msgid ""
-"At least one operand is an empty matrix for operator: %s, result set to []."
+msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
-"演算子 %s の少なくとも1つのオペランドが空行列です, 結果は [] に設定されます."
+"%s の少なくとも1つのオペランドが空行列です, Scilabにおける等価な値は  [] で"
+"す."
 
-#
-# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 25
 #, c-format
 msgid ""
 "If %s is imaginary and its module is > 1\n"
 "      the real part of %s is -pi/2 in Scilab instead of +pi/2 in Matlab."
 msgstr ""
 
-#
-# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 27
 #, c-format
 msgid ""
 "If %s is in [0,1)\n"
@@ -1439,3 +1409,70 @@ msgstr "%s: 出力値に'on'を設定"
 # File: macros/translatepaths.sci, line: 188
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
+
+#
+# File: macros/kernel/equal2sci.sci, line: 42
+#, c-format
+#~ msgid "lhs cannot be a %s operation."
+#~ msgstr "lhsは、%s オペレーションができません。"
+
+#
+# File: macros/kernel/m2sci.sci, line: 114
+#~ msgid "// Display mode"
+#~ msgstr "// 表示モード"
+
+#
+# File: macros/kernel/m2sci.sci, line: 116
+#~ msgid "// Display warning for floating point exception"
+#~ msgstr "// 浮動小数点例外の警告表示"
+
+#
+# File: macros/kernel/sci_m2scideclare.sci, line: 197
+# File: macros/kernel/sci_m2scideclare.sci, line: 278
+#, c-format
+#~ msgid ""
+#~ "Dimensions current value and m2scideclare statements conflict for: %s\n"
+#~ "   m2scideclare given dimension: %s\n"
+#~ "   Current dimension: %s\n"
+#~ "   m2scideclare IGNORED"
+#~ msgstr ""
+#~ "以下のように、次元の現在値とm２scideclare文が矛盾します: %s\n"
+#~ "   m2scideclare 与えられた次元: %s\n"
+#~ "   現在の次元: %s\n"
+#~ "   m2scideclare を無視しました"
+
+#, c-format
+#~ msgid ""
+#~ "Type current value and m2scideclare statements conflict for: %s\n"
+#~ "   m2scideclare given type: %s\n"
+#~ "   current type: %s\n"
+#~ "   m2scideclare IGNORED"
+#~ msgstr ""
+#~ "現在の値型とm２scideclare文が矛盾します: %s\n"
+#~ "   m2scideclare 与えられた型: %s\n"
+#~ "   現在の型: %s\n"
+#~ "   m2scideclareを無視しました"
+
+#, c-format
+#~ msgid ""
+#~ "Property current value and m2scideclare statements conflict for: %s\n"
+#~ "   m2scideclare given type: %s\n"
+#~ "   current type: %s\n"
+#~ "   m2scideclare IGNORED"
+#~ msgstr ""
+#~ "現在の値プロパティとm2scideclare文が矛盾: %s\n"
+#~ "   m2scideclare に与えられた型: %s\n"
+#~ "   現在の値の型: %s\n"
+#~ "   m2scideclareを無視しました"
+
+#, c-format
+#~ msgid "type %d is not implemented."
+#~ msgstr "%d 型は実装されていません."
+
+#, c-format
+#~ msgid ""
+#~ "At least one operand is an empty matrix for operator: %s, result set to "
+#~ "[]."
+#~ msgstr ""
+#~ "演算子 %s の少なくとも1つのオペランドが空行列です, 結果は [] に設定されま"
+#~ "す."

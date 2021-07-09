@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-19 06:39+0000\n"
+"PO-Revision-Date: 2020-02-24 18:56+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -138,11 +138,11 @@ msgstr "%s: будь ласка, скористайтеся %s.\n"
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s: додатковий параметр не на місці: №%d має бути у позиції %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
-"матрицю %d на %d елементів або числове значення.\n"
+"%s: помилкова розмірність вхідного параметра №%d: мала бути матриця %d на "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
@@ -230,14 +230,6 @@ msgid ""
 msgstr ""
 "%s: помилкова кількість стовпчиків для вхідного параметра %d: мало бути "
 "принаймні %d.\n"
-
-#, c-format
-msgid "%s: Could not read property '%s' for console object.\n"
-msgstr "%s: не вдалося прочитати властивість «%s» об’єкта консолі.\n"
-
-#, c-format
-msgid "%s: Unable to get useful path from this handle.\n"
-msgstr "%s: не вдалося отримати корисний шлях з цього елемента керування.\n"
 
 #, c-format
 msgid "%s: Each handle should not appear twice.\n"
@@ -589,6 +581,14 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід було вказувати невід’ємне "
 "ціле число.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s is obsolete. It will be removed from Scilab %s.\n"
+"Please use %s instead.\n"
+msgstr ""
+"Властивість «%s» є застарілою, її буде вилучено. Замість неї використовуйте "
+"«%s».\n"
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
@@ -687,6 +687,10 @@ msgstr ""
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
 msgstr "%s: не вдалося прочитати властивість «%s» кореневого об’єкта.\n"
+
+#, c-format
+msgid "%s: Unable to get useful path from this handle.\n"
+msgstr "%s: не вдалося отримати корисний шлях з цього елемента керування.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: scalar string expected.\n"
@@ -909,6 +913,10 @@ msgstr "%s має бути вектором рядків.\n"
 
 #, c-format
 msgid "Unknown property: %s.\n"
+msgstr "Невідома властивість: %s.\n"
+
+#, fuzzy, c-format
+msgid "Read-only property: %s.\n"
 msgstr "Невідома властивість: %s.\n"
 
 #, c-format
@@ -1618,10 +1626,8 @@ msgstr "Стовпчики (згруповані)"
 msgid "histplot"
 msgstr "histplot"
 
-#
-# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 18
 msgid "bar3d"
-msgstr ""
+msgstr "bar3d"
 
 msgid "Classical Matplot"
 msgstr "Класичний Matplot"
@@ -1831,8 +1837,7 @@ msgstr ""
 msgid "April"
 msgstr "квітень"
 
-#, fuzzy
-msgid "Febuary"
+msgid "February"
 msgstr "лютий"
 
 msgid "January"
@@ -2112,6 +2117,31 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути вказано матрицю з "
 "дійсними елементами.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Axes handle or vector of decimal numbers expected.\n"
+msgstr "%s: параметр %d: мало бути використано десяткове число.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Axes handle expected.\n"
+msgstr "%s: параметр %d: мало бути використано дійсне значення.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: incomplete {'name', value} pair.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути вказано принаймні %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: 'x' or 'y' expected.\n"
+msgstr "%s: параметр %d: мало бути «on» або «off».\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: one word among {%s} expected.\n"
+msgstr "%s: параметр %d: мало бути «on» або «off».\n"
+
+#, fuzzy, c-format
+msgid "%s: widths vector: %d components expected.\n"
+msgstr "%s: параметр %d: мало бути вказано принаймні %d компонентів.\n"
+
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: знайдено порожнє ієрархічне меню."
 
@@ -2261,6 +2291,15 @@ msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: очікувалося дійсне число.\n"
 
+#, fuzzy
+msgid "Current colormap"
+msgstr "Карта кольорів"
+
+#
+# File: modules/graphics/macros/getcolor.sci, line: 72
+msgid "Default colormap"
+msgstr ""
+
 msgid "&File"
 msgstr "&Файл"
 
@@ -2278,9 +2317,6 @@ msgstr "Гаразд"
 
 msgid "Cancel"
 msgstr "Скасувати"
-
-msgid "February"
-msgstr "лютий"
 
 msgid "histplot() : (normalized) histogram plot"
 msgstr "histplot(): (нормалізована) гістограма"
@@ -2381,13 +2417,13 @@ msgid "%s: Argument #%d: Graphic handle(s) of type %s expected.\n"
 msgstr ""
 "%s: параметр %d: мало бути вказано засоби керування графікою типу %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: log flags: scalar expected.\n"
-msgstr "%s: параметр %d: мало бути використано додатне число.\n"
+msgstr "%s: параметр %d: прапорці логарифмів: мало бути вказано число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: log flags: wrong value. Ignored.\n"
-msgstr "%s: параметр %d: не можна використовувати значення Inf та Nan.\n"
+msgstr "%s: параметр %d: прапорці логарифмів: помилкове значення. Ігноруємо.\n"
 
 #, c-format
 msgid "%s: wrong list() specification for the curve #%d.\n"
@@ -2401,6 +2437,22 @@ msgstr "%s: помилка: не вдалося обчислити вхідну 
 msgid "Error %d at line %d of the function: '%s"
 msgstr "Помилка %d у рядку %d функції: '%s"
 
+#
+# File: modules/graphics/macros/plot.sci, line: 314
+#, c-format
+msgid "%s: Plot #%d: Numbers of x columns and of %s must match.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plot.sci, line: 316
+msgid "polynomials"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plot.sci, line: 318
+msgid "rationals"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
@@ -2409,31 +2461,35 @@ msgstr ""
 "%s: помилкове значення вхідного параметра. Слід використовувати «%s», «%s», "
 "«%s», «%s» або «%s».\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real vector or colon : expected.\n"
-msgstr "%s: параметр №%d: мало бути вказано матрицю із 4 або 6 стовпчиками.\n"
+msgstr ""
+"%s: параметр %d: мало бути використано вектор з дійсних чисел або "
+"двокрапку.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Vector expected.\n"
-msgstr "%s: параметр %d: мало бути використано текст.\n"
+msgstr "%s: параметр %d: мало бути використано вектор.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real value expected.\n"
-msgstr "%s: параметр %d: мало бути використано невідʼємні значення.\n"
+msgstr "%s: параметр %d: мало бути використано дійсне значення.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Argument #%d: Real matrix or String or Scilab function or list "
 "expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра %d: мало бути вказано матрицю з "
-"дійсних чисел, рядок або функцію Scilab.\n"
+"%s: параметр %d: мало бути використано матрицю з дійсних чисел, рядок, назву "
+"функції Scilab або список.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Argument #%d(#%d): Identifier of a Scilab or built-in function "
 "expected.\n"
-msgstr "%s: параметр %d: мало бути використано додатне число.\n"
+msgstr ""
+"%s: параметр %d(%d): мало бути використано ідентифікатор функції Scilab або "
+"вбудованої функції.\n"
 
 #, c-format
 msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
@@ -2441,9 +2497,9 @@ msgstr ""
 "%s: на основі обчислених значень функції у вказаному діапазоні можна "
 "вважати, що вона не перетинає нульову вісь.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Error %d : in plot called by plotimplicit"
-msgstr "Помилка %d: у кресленні, яке викликано функцією implicitplot"
+msgstr "Помилка %d: на рисунку, який викликано plotimplicit"
 
 #, c-format
 msgid "%s: '%s' cannot be used with '%s'.\n"
@@ -2513,6 +2569,71 @@ msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано елемент "
 "керування «%s».\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong type of graphic handle: '%s' expected.\n"
+msgstr ""
+"%s: параметр %d: мало бути використано елемент керування графікою типу "
+"«%s».\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
+msgstr ""
+"%s: несумісні вхідні параметри №%d і №%d: кількість рядків має бути "
+"однаковою.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Argument #%d: Wrong value. Please check allowed syntaxes and values.\n"
+msgstr ""
+"%s: параметр №%d: помилковий тип. Будь ласка, ознайомтеся із доступними "
+"синтаксичними конструкціями.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be >= %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значення має перебувати у "
+"інтервалі %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Number(s) or text expected.\n"
+msgstr "%s: параметр %d: мало бути вказано числа або текст.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong size: one or %d colors expected.\n"
+msgstr "%s: параметр №%d: мало бути вказано матрицю із 4 або 6 стовпчиками.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Number or text expected.\n"
+msgstr "%s: параметр %d: мало бути вказано числа або текст.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong marker id.\n"
+msgstr "%s: параметр %d: помилкова специфікація кольору.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: keyword or property name expected.\n"
+msgstr "%s: параметр %d: мало бути вказано числа або текст.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Unknown property name '%s'.\n"
+msgstr "%s: параметр %d: мало бути «on» або «off».\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Value missing for the given property.\n"
+msgstr "%s: параметр %d: мало бути вказано числа або текст.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong marker specification.\n"
+msgstr "%s: параметр %d: помилкова специфікація кольору.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Non-negative integers expected.\n"
+msgstr "%s: параметр %d: мало бути використано невідʼємні значення.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers in %s expected.\n"
+msgstr "%s: параметр %d: мало бути використано символи з {a.#1}.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
@@ -2664,92 +2785,9 @@ msgstr ""
 msgid "%s: Wrong value given for %s."
 msgstr "%s: вказано помилкове значення %s."
 
-#~ msgid "hist3d"
-#~ msgstr "hist3d"
-
-#~ msgid "'datatips' property"
-#~ msgstr "властивість «datatips»"
-
 #, c-format
-#~ msgid "%s: Wrong type for curve user_data field: a struct expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип поля кривої user_data: слід використовувати тип "
-#~ "«struct».\n"
+#~ msgid "%s: Could not read property '%s' for console object.\n"
+#~ msgstr "%s: не вдалося прочитати властивість «%s» об’єкта консолі.\n"
 
-#~ msgid "Square mark, boxed label"
-#~ msgstr "Квадратна позначка, мітка у рамці"
-
-#~ msgid "Square mark, simple label"
-#~ msgstr "Квадратна позначка, проста мітка"
-
-#~ msgid "Square mark, no label"
-#~ msgstr "Квадратна позначка, без мітки"
-
-#~ msgid "Directional arrow, boxed label"
-#~ msgstr "Спрямована стрілка, мітка у рамці"
-
-#~ msgid "Directional arrow, simple label"
-#~ msgstr "Спрямована стрілка, проста мітка"
-
-#~ msgid "Directional arrow, no label"
-#~ msgstr "Спрямована стрілка, без мітки"
-
-#~ msgid "Select tip style"
-#~ msgstr "Виберіть тип позначки"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати числове "
-#~ "значення типу «boolean».\n"
-
-#~ msgid "Datatips style"
-#~ msgstr "Стиль позначок даних"
-
-#~ msgid "Marker style:"
-#~ msgstr "Стиль позначки:"
-
-#~ msgid "Square"
-#~ msgstr "Квадрат"
-
-#~ msgid "Arrow"
-#~ msgstr "Стрілка"
-
-#~ msgid "Labeled?"
-#~ msgstr "З міткою?"
-
-#~ msgid "Yes"
-#~ msgstr "Так"
-
-#~ msgid "No"
-#~ msgstr "Ні"
-
-#~ msgid "Boxed?"
-#~ msgstr "У рамці?"
-
-#~ msgid "Positionning?"
-#~ msgstr "Розташування?"
-
-#~ msgid "Knots"
-#~ msgstr "Вузли"
-
-#~ msgid "Interpolated"
-#~ msgstr "Інтерполяція"
-
-#~ msgid "Allow multiple datatips?"
-#~ msgstr "Дозволити декілька позначок даних?"
-
-#~ msgid "Edit label generator"
-#~ msgstr "Змінити параметри створення міток"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра %d: мало бути вказано дійсне "
-#~ "значення.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова розмірність вхідного параметра %d: мало бути використано "
-#~ "числовий рядок.\n"
+#~ msgid "Febuary"
+#~ msgstr "лютий"

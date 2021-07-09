@@ -15,12 +15,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-18 16:36+0100\n"
+"Revision-Date: 2021-07-09 17:35+0100\n"
 
 # File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 34
 # File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 51
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 38
-# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 32
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 39
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 33
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
@@ -36,7 +36,7 @@ msgstr ""
 # File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 41
 # File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 45
 # File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 88
-# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 38
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 39
 # File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 45
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -260,40 +260,57 @@ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 65
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 66
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 72
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 73
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A m-by-n matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 130
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 146
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 131
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 147
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 134
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 135
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 152
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 153
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be less than %d.\n"
+msgstr ""
+
+#
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 159
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
 msgstr ""
 
 #
 # File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 168
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 186
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 104
+#, c-format
+msgid ""
+"%s: Warning: You have created a Sparse of size > %d.\n"
+"Due to a Scilab limitation, reading or writing values from/to \n"
+"this sparse using a unique index could lead to unexpected behavior."
+msgstr ""
+
+#
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 185
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 203
 #, c-format
 msgid "%s: Invalid index.\n"
 msgstr ""
@@ -349,17 +366,24 @@ msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 49
-# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 55
-# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 64
-# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 70
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 50
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 56
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 65
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 71
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 77
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 79
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 90
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be less than %d.\n"
+msgstr ""
+
+#
 # File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 84
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 95
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-18 16:36+0100\n"
+"Revision-Date: 2021-07-09 17:35+0100\n"
 
 # File: modules/tclsci/sci_gateway/c/gw_tclsci.c, line: 72
 msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
@@ -239,15 +239,15 @@ msgid "Impossible to set system encoding."
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 77
+# File: modules/tclsci/src/c/InitTclTk.c, line: 82
 msgid ""
 "The SCI environment variable is not set.\n"
 "TCL initialisation failed !\n"
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 106
-# File: modules/tclsci/src/c/InitTclTk.c, line: 139
+# File: modules/tclsci/src/c/InitTclTk.c, line: 111
+# File: modules/tclsci/src/c/InitTclTk.c, line: 144
 msgid ""
 "Unable to find Tcl initialisation scripts.\n"
 "Check your SCI environment variable.\n"
@@ -255,31 +255,31 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 121
+# File: modules/tclsci/src/c/InitTclTk.c, line: 126
 msgid ""
 "The SCI environment variable is not set.\n"
 "Tcl initialisation failed !\n"
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 167
+# File: modules/tclsci/src/c/InitTclTk.c, line: 172
 msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 180
+# File: modules/tclsci/src/c/InitTclTk.c, line: 185
 #, c-format
 msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 199
+# File: modules/tclsci/src/c/InitTclTk.c, line: 204
 #, c-format
 msgid "Tcl Error: Error during the TK initialization (Tk_Init): %s\n"
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 216
+# File: modules/tclsci/src/c/InitTclTk.c, line: 221
 #, c-format
 msgid ""
 "Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: "
@@ -287,7 +287,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 241
+# File: modules/tclsci/src/c/InitTclTk.c, line: 246
 #, c-format
 msgid ""
 "Tcl Error: Error during the Scilab/TK init process. Error while loading %s: "
@@ -295,8 +295,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/TCL_ArrayDim.c, line: 67
-# File: modules/tclsci/src/c/TCL_ArrayDim.c, line: 78
+# File: modules/tclsci/src/c/TCL_ArrayDim.c, line: 66
+# File: modules/tclsci/src/c/TCL_ArrayDim.c, line: 77
 # File: modules/tclsci/src/c/TCL_ArrayExist.c, line: 36
 #, c-format
 msgid "Tcl Error : %s\n"
@@ -398,6 +398,23 @@ msgstr ""
 # File: modules/tclsci/macros/TCL_CreateSlave.sci, line: 41
 #, c-format
 msgid "%s: Slave interpreter already exists.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/macros/ged_move_entity.sci, line: 38
+msgid "Mouse moving picker ON => Console LOCKED"
+msgstr ""
+
+#
+# File: modules/tclsci/macros/ged_move_entity.sci, line: 39
+msgid "On a figure: Click left to get and set. Click middle to QUIT...\n"
+msgstr ""
+
+#
+# File: modules/tclsci/macros/ged_move_entity.sci, line: 192
+msgid ""
+"\n"
+"--> // Moving picker OFF => Back to the console.\n"
 msgstr ""
 
 #

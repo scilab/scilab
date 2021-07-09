@@ -1,0 +1,109 @@
+# Russian translation for scilab
+# Copyright (c) 2020 Rosetta Contributors and Canonical Ltd 2020
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2020-02-24 15:40+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: A scalar string expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%s: ожидалась скалярное строковое "
+"значение.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%s: 'none' expected.\n"
+msgstr "%s: Неверное значение входного аргумента №%s: ожидалось 'none'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: A scalar boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%s: ожидалось скалярное логическое "
+"значение.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"file\" expected.\n"
+msgstr "%s: Неверное значение входного аргумента №%d: ожидалось \"file\".\n"
+
+#, c-format
+msgid "%s: JSON format expected.\n"
+msgstr "%s: ожидался формат JSON.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar string expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась скалярная строка.\n"
+
+#, c-format
+msgid "%s: CURL initialization failed.\n"
+msgstr "%s: инициализация CURL провалилась.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong proxy information, please check in the 'internet' Scilab "
+"preference.\n"
+msgstr ""
+"%s: Неверная информация о прокси, пожалуйста, проверьте настройки 'internet' "
+"Scilab.\n"
+
+#, c-format
+msgid ""
+"%s: CURL execution failed.\n"
+"%s\n"
+msgstr ""
+"%s: исполнение CURL провалено.\n"
+"%s\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: The given path does not exist.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: указанный путь не существует.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix string expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица строковых "
+"значений.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A structure of size %d expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась структура размером %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%s: 'PUT' or 'POST' expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%s: ожидалось 'PUT' или 'POST'.\n"

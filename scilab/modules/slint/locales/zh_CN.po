@@ -1,0 +1,346 @@
+# Chinese (Simplified) translation for scilab
+# Copyright (c) 2020 Rosetta Contributors and Canonical Ltd 2020
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2020-08-22 16:04+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
+"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s：输入参数数目错误：应该至少%d个。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single boolean expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该为一个布尔量。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该是一个字符串或者一个布尔量。\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s：%s\n"
+
+msgid "Module developed with the contribution of CNES."
+msgstr "在CNES的贡献下开发的模块。"
+
+msgid "Expression is not bracketed."
+msgstr "表达式未被括在方括号中。"
+
+#, c-format
+msgid "Number of break is limited: %d max."
+msgstr "中断次数是有限制的：最大%d次。"
+
+#, c-format
+msgid "Number of continue is limited: %d max."
+msgstr "恢复次数是有限制的：最大%d次。"
+
+msgid "Cannot open the file"
+msgstr "无法打开文件"
+
+#, c-format
+msgid ""
+"The minimal ratio between commented lines and total lines is not reached: %d "
+"< %d."
+msgstr "未达到注释行与总行之间的最小比例： %d < %d。"
+
+#, c-format
+msgid "Bad decimal exponent: %s was expected and %s was found."
+msgstr "错误的十进制指数：应为%s ，且已找到%s。"
+
+msgid "Decimal numbers must not begin by a dot."
+msgstr "小数不能以点开头。"
+
+#, c-format
+msgid "Deprecated function: %s."
+msgstr "已过时的函数：%s。"
+
+#, c-format
+msgid "Deprecated function %s: use %s instead."
+msgstr "已过时的函数%s ：请改用%s 。"
+
+msgid "svd(..., 0) is deprecated."
+msgstr "svd(..., 0) 已过时。"
+
+msgid "mfprintf(-1, ...) is deprecated."
+msgstr "mfprintf(-1, ...) 已过时。"
+
+msgid "Empty block."
+msgstr "空区域。"
+
+msgid ""
+"Possible confusion between assignment operator '=' and equality operator "
+"'=='."
+msgstr "赋值运算符“ =”和相等运算符“ ==”之间可能存在混淆。"
+
+#, c-format
+msgid "Number of expressions in condition is limited: %d max."
+msgstr "条件表达式的数目是有限制的：最大值为%d。"
+
+#, c-format
+msgid "Duplicated function arguments: %s."
+msgstr "重复的函数参数：%s。"
+
+#, c-format
+msgid "Duplicated function output values: %s."
+msgstr "重复的函数输出值：%s。"
+
+#, c-format
+msgid "Function arguments used as output values: %s."
+msgstr "用作输出值的函数参数：%s。"
+
+#, c-format
+msgid "Argument at position %d must be an assignment."
+msgstr "第%d个参数必须被赋值。"
+
+#, c-format
+msgid "Argument %s declared at position %d and assigned at position %d."
+msgstr "参数%s 在位置%d处声明并已在位置%d处分配。"
+
+#, c-format
+msgid "Function name doesn't match the pattern: %s, %s"
+msgstr "函数名称与模式不匹配：%s, %s"
+
+#, c-format
+msgid "Function name length is lower than minimum: %d < %d"
+msgstr "函数名称的长度小于最小值： %d < %d"
+
+#, c-format
+msgid "Function name length is greater than maximum: %d > %d"
+msgstr "函数名称的长度大于最大值： %d > %d"
+
+#, c-format
+msgid "Function %s requires an error checking just after the call."
+msgstr "函数%s需要在调用后立即进行错误检查。"
+
+msgid "Function 'global' not allowed."
+msgstr "不允许使用“全局”函数。"
+
+#, c-format
+msgid "Illegal call: %s."
+msgstr "非法调用：%s"
+
+msgid "Invalid list, it contains NaN or Inf."
+msgstr "无效列表，它包含NaN或Inf。"
+
+msgid "Bad use of ':' operator."
+msgstr "错误使用'：'运算符。"
+
+#, c-format
+msgid "Maximum line length exceeded at lines: %s."
+msgstr "行数超出最大行数： %s。"
+
+#, c-format
+msgid "Maximum lines number exceeded: %d > %d."
+msgstr "超过最大行数：%d >%d。"
+
+#, c-format
+msgid "Function %s has at least one argument."
+msgstr "函数%s至少具有一个参数。"
+
+#, c-format
+msgid "Function %s should be called with names of variables."
+msgstr "应使用变量名称来调用函数 %s。"
+
+#, c-format
+msgid "Function %s should be called with constant strings."
+msgstr "函数 %s应该使用常量字符串来调用。"
+
+#, c-format
+msgid "McCabe's complexity is %d and is greater than %d."
+msgstr "McCabe的复杂度为%d，且应大于%d。"
+
+msgid "Open file is not assigned."
+msgstr "打开的文件未分配。"
+
+msgid "The instruction mclose(\"all\") may have any side effects."
+msgstr "指令mclose(\"all\") 可能有副作用。"
+
+#, c-format
+msgid "Open files not closed: %s."
+msgstr "已打开文件未关闭：%s。"
+
+#, c-format
+msgid "Use %nan in a comparison expression will return false."
+msgstr "在比较表达式中使用 %nan将返回false。"
+
+#, c-format
+msgid "Use isnan() when comparing values with %nan."
+msgstr "将值与%nan比较时，请使用isnan() 。"
+
+#, c-format
+msgid "Too many nested blocks: %d max."
+msgstr "嵌套块过多：最大%d个。"
+
+#, c-format
+msgid "Operator '%s' should be used rather than '%s'."
+msgstr "应该使用运算符“%s”而不是“%s”。"
+
+msgid "Double negation is not allowed."
+msgstr "不允许使用双重否定。"
+
+msgid "Not operator '~' should be used rather than '@'."
+msgstr "不应使用运算符“〜”而代替“ @”。"
+
+#, c-format
+msgid "Invalid number of arguments in %s: data don't correspond to the format."
+msgstr "%s中的参数数目无效：数据与格式不对应。"
+
+#, c-format
+msgid "Redefinition of Scilab's constant: %s."
+msgstr "重新定义Scilab常数：%s。"
+
+#, c-format
+msgid "Redefinition of a built-in function: %s."
+msgstr "重新定义内置函数：%s。"
+
+#, c-format
+msgid "Redefinition of a library function: %s."
+msgstr "重新定义库函数：%s。"
+
+#, c-format
+msgid "Redefinition of a macro: %s."
+msgstr "重新定义宏：%s。"
+
+#, c-format
+msgid "Redefinition of a private macro: %s."
+msgstr "重新定义一个私有宏：%s。"
+
+#, c-format
+msgid "Too many return instructions: %d max."
+msgstr "返回参数太多：最多%d个。"
+
+msgid "Select should have a default case."
+msgstr "选择应具有默认情形。"
+
+msgid "Select with no case."
+msgstr "没有选择情况。"
+
+msgid "Select with one case: it could be replaced by an if statement."
+msgstr "选择了一种情况：可以用if语句代替。"
+
+msgid "Case expression should be a number or string."
+msgstr "大小写表达式应为数字或字符串。"
+
+msgid "Case expression types are mixed."
+msgstr "情形表达类型是混合的。"
+
+msgid "Instruction not finished by a semi-colon."
+msgstr "命令未使用分号结尾。"
+
+msgid "Two instructions on the same line."
+msgstr "两条命令在同一行上。"
+
+#, c-format
+msgid "Operator %s should be surrounded by single spaces."
+msgstr "运算符%s应该用单个空格包围。"
+
+msgid "No space after function argument."
+msgstr "函数参数后无空格。"
+
+msgid "No space before first function argument."
+msgstr "第一个函数参数前没有空格。"
+
+msgid "A function argument must be preceded by a single space."
+msgstr "函数参数必须在前面加上一个空格。"
+
+msgid "All the fields in a struct should be defined at the struct definition."
+msgstr "结构中的所有字段都应在结构定义中被定义。"
+
+msgid "Struct definition must contain an even number of arguments."
+msgstr "结构定义必须包含偶数个参数。"
+
+#, c-format
+msgid "Field name doesn't match the pattern: %s, %s"
+msgstr "字段名称与模式不匹配：%s, %s"
+
+#, c-format
+msgid "Field name length is lower than minimum: %d < %d"
+msgstr "字段名称的长度小于最小值：%d < %d"
+
+#, c-format
+msgid "Field name length is greater than maximum: %d > %d"
+msgstr "字段名称长度大于最大值：%d > %d"
+
+#, c-format
+msgid "Duplicated field definition: %s."
+msgstr "重复的字段定义：%s。"
+
+msgid "Field should be defined by a constant string."
+msgstr "字段应由常量字符串定义。"
+
+msgid "Function struct has only one return argument."
+msgstr "函数struct只有一个返回参数。"
+
+#, c-format
+msgid "It should be better to define field %s at struct definition."
+msgstr "最好在结构定义中定义字段%s。"
+
+#, c-format
+msgid "Read an undefined field: %s."
+msgstr "读取一个未定义的字段： %s。"
+
+msgid "Comment contains a TODO."
+msgstr "注释包含一个待办事项。"
+
+msgid "The code after the return statement is unreachable."
+msgstr "return语句后的代码不可访问。"
+
+#, c-format
+msgid "Function argument might be unused: %s."
+msgstr "函数参数可能未使用：%s。"
+
+msgid "Possible useless operation."
+msgstr "可能无效的操作。"
+
+#, c-format
+msgid "Function returned value might be unused: %s."
+msgstr "函数返回的值可能未使用：%s。"
+
+#, c-format
+msgid "Variable name doesn't match the pattern: %s, %s"
+msgstr "变量名称与模式不匹配：%s, %s"
+
+#, c-format
+msgid "Variable name length is lower than minimum: %d < %d"
+msgstr "变量名称长度小于最小值：%d < %d"
+
+#, c-format
+msgid "Variable name length is greater than maximum: %d > %d"
+msgstr "变量名称的长度大于最大值：%d > %d"
+
+#, c-format
+msgid "Use of non-initialized variable '%s' may have any side-effects."
+msgstr "使用未初始化的变量'%s'可能会有其他影响。"
+
+#, c-format
+msgid "Use of a private macro '%s' defined in another file %s."
+msgstr "使用的私有宏'%s'已在另一个文件%s中定义。"
+
+#, c-format
+msgid "Use of non-initialized variable '%s' may have side effects."
+msgstr "使用未初始化的变量'%s'可能会有其他影响。"
+
+#, c-format
+msgid "Declared variable and might be unused: %s."
+msgstr "声明的变量可能未使用：%s。"
+
+msgid "Cannot create a parser context"
+msgstr "无法创建解析内容"

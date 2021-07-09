@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
@@ -67,10 +67,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Too many coefficients are required.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -344,6 +340,16 @@ msgid ""
 "or two polynomials expected.\n"
 msgstr ""
 
+#
+# File: modules/signal_processing/macros/%_unwrap.sci, line: 23
+msgid ": 1-D examples "
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/%_unwrap.sci, line: 103
+msgid ": 2-D examples"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floating point numbers "
@@ -539,6 +545,46 @@ msgstr ""
 "%s: Os argumentos de entrada #%d e #%d estão incompatíveis: esperava-se as "
 "mesmas dimensões.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: Valores incorretos para o argumento de entrada #%d: esperava-se números "
+"inteiros não negativos.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: a scalar with integer value "
+"expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
+"inteiro positivo.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be odd.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: tem que ser ímpar.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr "%s: Tipo errado para argumento #%d: vetor real é esperado.\n"
+
+#, fuzzy, c-format
+msgid "%s: Incompatible input arguments #%d and #%d\n"
+msgstr ""
+"%s: Os argumentos de entrada #%d e #%d estão incompatíveis: esperava-se as "
+"mesmas dimensões.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument %d: At least %d expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz alta.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for argument %d: At most %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de saída: esperava-se %d ou %d.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Quantidade incorreta de argumentos de entrada.\n"
@@ -555,6 +601,37 @@ msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
 "matriz de %d elementos.\n"
+
+#
+# File: modules/signal_processing/macros/unwrap.sci, line: 37
+msgid "Press return to display 2D examples"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr "%s: Tipo errado para argumento #%d: vetor real é esperado.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+"%s: Valores incorretos para o argumento de entrada #%d: o grau deve "
+"pertencer ao conjunto {%s}.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
+"inteiro positivo.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: tem que ser ímpar.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: tem que ser ímpar.\n"
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"

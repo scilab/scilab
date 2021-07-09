@@ -8,30 +8,30 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 21:59+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2020-09-03 12:47+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s：无法读取第%d个输入参数。\n"
 
 #, c-format
 msgid "%s: Invalid H5Object.\n"
-msgstr ""
+msgstr "%s：无效的H5对象。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or H5Object expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为字符串或者H5对象。\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr ""
+msgstr "%s：内存不足。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -43,138 +43,138 @@ msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: %s\n"
-msgstr ""
+msgstr "%s：%s\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A H5Object expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是一个H5对象。\n"
 
 #, c-format
 msgid "%s: Cannot remove H5Object.\n"
-msgstr ""
+msgstr "%s：无法删除H5对象。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为双精度浮点数矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Five row vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是行数为5向量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为单字符串。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: six row vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是一个行数为六的向量。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d column vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是一个列数为%d的向量。\n"
 
 #, c-format
 msgid "%s: Can not print H5Object: invalid object.\n"
-msgstr ""
+msgstr "%s：无法打印H5对象：无效的对象。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是一个H5对象。\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数大小错误：应该是字符串。\n"
 
 #, c-format
 msgid "%s: Can not create output argument.\n"
-msgstr ""
+msgstr "%s：无法创建输出参数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A HDF5 object expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是一个HDF5对象。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为布尔型。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数维度错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为实数向量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Real row or column vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是实数的行或列向量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是行字符串数组。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A row or column vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是行或者列向量。\n"
 
 #, c-format
 msgid "%s: Can not use H5Object: invalid object.\n"
-msgstr ""
+msgstr "%s：不能使用H5对象：无效的对象。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是字符串或者布尔量。\n"
 
 #, c-format
 msgid "%s: Invalid number of arguments: more than %d expected.\n"
-msgstr ""
+msgstr "%s：参数数目无效：应该超出%d个。\n"
 
 #, c-format
 msgid "%s: Invalid access mode: %s.\n"
-msgstr ""
+msgstr "%s：无效的访问模式：%s。\n"
 
 #, c-format
 msgid "%s: Invalid number of input arguments.\n"
-msgstr ""
+msgstr "%s：输入参数数目无效。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为双精度浮点数。\n"
 
 #, c-format
 msgid "%s: Invalid number of input argument.\n"
-msgstr ""
+msgstr "%s：输入参数的数量无效。\n"
 
 #, c-format
 msgid "%s: Invalid path: cannot be empty.\n"
-msgstr ""
+msgstr "%s：无效的路径：不能为空。\n"
 
 #, c-format
 msgid "%s: Second argument must be a dataset name.\n"
-msgstr ""
+msgstr "%s：第二个参数必须是数据集名称。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same size as the data expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该与数据相同大小。\n"
 
 #, c-format
 msgid "%s: Argument 'count' is missing.\n"
-msgstr ""
+msgstr "%s：参数'count'丢失。\n"
 
 #, c-format
 msgid "%s: Invalid number of argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：参数数目无效：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误，应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为至少%d个。\n"
 
 #, c-format
 msgid "%s: Unable to open file: %s\n"
@@ -182,7 +182,7 @@ msgstr "%s：无法打开文件：%s\n"
 
 #, c-format
 msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
-msgstr ""
+msgstr "%s: 错误的SOD 文件格式版本。最大支持版本为: %d 当前版本为: %d\n"
 
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
@@ -190,34 +190,34 @@ msgstr "%s：无效的HDF5 Scilab格式.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Unable to open file: '%s'.\n"
-msgstr ""
+msgstr "%s：无法打开文件：'%s'。\n"
 
 msgid "Redefining permanent variable.\n"
-msgstr ""
+msgstr "重定义永久变量。\n"
 
 #, c-format
 msgid "%s: %s is not a valid lib file.\n"
-msgstr ""
+msgstr "%s：%s不是有效的lib文件。\n"
 
 #, c-format
 msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
-msgstr ""
+msgstr "%s：错误的SOD文件格式版本。应该是%d，但找到的是%d\n"
 
 #, c-format
 msgid "%s: Unable to load '%s'.\n"
-msgstr ""
+msgstr "%s：无法加载“%s”。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
@@ -233,553 +233,557 @@ msgstr "%s：不能打开文件%s。\n"
 
 #, c-format
 msgid "%s: Unable to delete existing variable \"%s\".\n"
-msgstr ""
+msgstr "%s：无法删除现有变量“%s”。\n"
 
 #, c-format
 msgid ""
 "%s: Variable '%s' already exists in file '%s'\n"
 "Use -append option to replace existing variable.\n"
 msgstr ""
+"%s：文件'%s'中已经存在变量'%s'\n"
+"使用-append选项替换现有变量。\n"
 
 #, c-format
 msgid "%s: Unable to export variable '%s' in file '%s'.\n"
-msgstr ""
+msgstr "%s：无法导出变量'%s'(文件'%s'中)。\n"
 
 #, c-format
 msgid "%s: Unable to update Scilab version in \"%s\"."
-msgstr ""
+msgstr "%s：无法在“%s”中更新Scilab版本。"
 
 #, c-format
 msgid "%s: Unable to update HDF5 format version in \"%s\"."
-msgstr ""
+msgstr "%s：无法在“%s”中更新HDF5格式版本。"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: More than %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该大于%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or double expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是字符串或双精度浮点数。\n"
 
 #, c-format
 msgid "%s: Only one field can be requested.\n"
-msgstr ""
+msgstr "%s：只能请求一个字段。\n"
 
 #, c-format
 msgid ""
 "%s: Error in retrieving field content:\n"
 "%s\n"
 msgstr ""
+"%s：检索字段内容时出错：\n"
+"%s\n"
 
 #, c-format
 msgid "%s: Not an H5 Compound object.\n"
-msgstr ""
+msgstr "%s：不是H5复合对象。\n"
 
 #, c-format
 msgid "%s: Can not print H5Object.\n"
-msgstr ""
+msgstr "%s：无法打印H5对象。\n"
 
 msgid "Invalid index.\n"
-msgstr ""
+msgstr "无效索引。\n"
 
 msgid "Dimensions"
-msgstr ""
+msgstr "维度"
 
 #, c-format
 msgid "Cannot open attribute: %s"
-msgstr ""
+msgstr "无法打开属性：%s"
 
 msgid "Cannot get the attribute type"
-msgstr ""
+msgstr "无法获取属性类型"
 
 msgid "Cannot get the attribute dataspace"
-msgstr ""
+msgstr "无法获取属性数据空间"
 
 msgid "Error in retrieving data."
-msgstr ""
+msgstr "检索数据时出错。"
 
 #, c-format
 msgid "Attribute %s already exists."
-msgstr ""
+msgstr "属性%s已存在。"
 
 msgid "Cannot create a new attribute."
-msgstr ""
+msgstr "无法创建新属性。"
 
 msgid "Cannot write data in the attribute."
-msgstr ""
+msgstr "无法在属性中写入数据。"
 
 msgid "Cannot copy the attribute"
-msgstr ""
+msgstr "无法复制属性数据"
 
 msgid "Cannot read attribute data."
-msgstr ""
+msgstr "无法读取属性数据。"
 
 msgid "Cannot get the size of attribute list."
-msgstr ""
+msgstr "无法获取属性列表的大小。"
 
 #, c-format
 msgid "Invalid index %d: must be between 0 and %d."
-msgstr ""
+msgstr "索引%d无效：必须介于0和%d之间。"
 
 #, c-format
 msgid "Cannot open attribute at position %d."
-msgstr ""
+msgstr "无法获取位置%d处的属性。"
 
 msgid "Filename"
-msgstr ""
+msgstr "文件名"
 
 msgid "Number of elements"
-msgstr ""
+msgstr "元素个数"
 
 msgid "Cannot copy data to an empty pointer"
-msgstr ""
+msgstr "无法将数据复制到空指针"
 
 msgid "Wrong dimensions."
-msgstr ""
+msgstr "维度错误。"
 
 #, c-format
 msgid "Invalid field name: %s"
-msgstr ""
+msgstr "无效字段名：%s"
 
 msgid "Fields Names"
-msgstr ""
+msgstr "字段名"
 
 msgid "Cannot create an hypermatrix on the stack"
-msgstr ""
+msgstr "无法在堆栈上创建一个超矩阵"
 
 msgid "Cannot get the data type"
-msgstr ""
+msgstr "无法获取数据类型"
 
 msgid "Unknown integer datatype."
-msgstr ""
+msgstr "未知的整数数据类型。"
 
 msgid "Unknown floating-point datatype."
-msgstr ""
+msgstr "未知的浮点数据类型。"
 
 msgid "Bitfield is too big"
-msgstr ""
+msgstr "位域太大"
 
 msgid "Cannot get data from an unknown data type."
-msgstr ""
+msgstr "无法从未知数据类型获取数据。"
 
 msgid "Memory to allocate is too big"
-msgstr ""
+msgstr "分配的内存太大"
 
 msgid "Cannot allocate memory to get the data"
-msgstr ""
+msgstr "无法分配内存导致获取数据"
 
 msgid "Cannot retrieve the data from the attribute"
-msgstr ""
+msgstr "无法从属性检索数据"
 
 #, c-format
 msgid "Cannot open the given dataset %s."
-msgstr ""
+msgstr "无法打开给定的数据集%s。"
 
 #, c-format
 msgid "Cannot get the dataspace associated with dataset named %s."
-msgstr ""
+msgstr "无法获取与名为%s的数据集关联的数据空间。"
 
 msgid "Invalid layout"
-msgstr ""
+msgstr "无效的布局"
 
 #, c-format
 msgid "Only %d dimensions."
-msgstr ""
+msgstr "维度是%d。"
 
 msgid "Cannot list dataset attributes."
-msgstr ""
+msgstr "无法列出数据集属性。"
 
 #, c-format
 msgid "Cannot open the dataset: %s"
-msgstr ""
+msgstr "无法打开数据集：%s"
 
 msgid "Invalid source space"
-msgstr ""
+msgstr "无效的源空间"
 
 msgid "Invalid target space"
-msgstr ""
+msgstr "无效的目标空间"
 
 msgid "Cannot modify maximum dimensions."
-msgstr ""
+msgstr "无法修改最大维度。"
 
 #, c-format
 msgid "Cannot modify dimension %d."
-msgstr ""
+msgstr "无法修改维度%d。"
 
 #, c-format
 msgid "Cannot set the chunk dimensions: %s"
-msgstr ""
+msgstr "无法设置块的维度：%s"
 
 #, c-format
 msgid "Cannot create the dataset: %s"
-msgstr ""
+msgstr "无法创建数据集：%s"
 
 msgid "Cannot write data in the dataset."
-msgstr ""
+msgstr "无法将数据写入数据集中。"
 
 msgid "unknown dataspace"
-msgstr ""
+msgstr "未知数据空间"
 
 msgid "Unknown dataspace: cannot get its dimensions"
-msgstr ""
+msgstr "未知的数据空间：无法获取其维度"
 
 msgid "Cannot select all."
-msgstr ""
+msgstr "无法全部选择。"
 
 msgid "Cannot create an array of integer on the stack."
-msgstr ""
+msgstr "无法在堆栈上创建整数数组。"
 
 msgid "Cannot create a string on the stack."
-msgstr ""
+msgstr "无法在堆栈上创建字符串。"
 
 msgid "Unknown dataspace"
-msgstr ""
+msgstr "未知的数据空间"
 
 msgid "Extents"
-msgstr ""
+msgstr "范围"
 
 msgid "Invalid selection rank."
-msgstr ""
+msgstr "无效的选择级别。"
 
 msgid "Invalid selection."
-msgstr ""
+msgstr "无效的选择"
 
 msgid "Cannot get the current stack of errors."
-msgstr ""
+msgstr "无法获取当前的错误堆栈。"
 
 msgid "HDF5 description"
-msgstr ""
+msgstr "HDF5说明"
 
 msgid "Exception thrown in file"
-msgstr ""
+msgstr "抛出异常的文件是"
 
 msgid "at line"
-msgstr ""
+msgstr "其中抛出异常的位置在行"
 
 msgid "Cannot get the link info"
-msgstr ""
+msgstr "无法获取链接信息"
 
 msgid "Cannot get the link target"
-msgstr ""
+msgstr "无法获取链接目标"
 
 msgid "Link type"
-msgstr ""
+msgstr "链接类型"
 
 msgid "Link name"
-msgstr ""
+msgstr "链接名称"
 
 msgid "Link path"
-msgstr ""
+msgstr "链接路径"
 
 msgid "Link target file"
-msgstr ""
+msgstr "链接目标文件"
 
 msgid "Link target path"
-msgstr ""
+msgstr "链接目标路径"
 
 msgid "Invalid hdf5 file: empty filename."
-msgstr ""
+msgstr "无效的hdf5文件：空文件名。"
 
 #, c-format
 msgid "Invalid hdf5 file: %s."
-msgstr ""
+msgstr "无效的hdf5文件： %s。"
 
 #, c-format
 msgid "Cannot open the given hdf5 file: %s."
-msgstr ""
+msgstr "无法打开给定的hdf5文件：%s。"
 
 #, c-format
 msgid "Cannot create the given hdf5 file: %s."
-msgstr ""
+msgstr "无法创建给定的hdf5文件：%s。"
 
 #, c-format
 msgid ""
 "Cannot open the file: %s, an empty file with the same name already exists."
-msgstr ""
+msgstr "无法打开文件：%s，已经存在一个具有相同名称的空文件。"
 
 #, c-format
 msgid "Cannot append the file (not HDF5): %s."
-msgstr ""
+msgstr "无法附加文件(不是HDF5)：%s。"
 
 msgid "Invalid flag."
-msgstr ""
+msgstr "无效的标志位。"
 
 #, c-format
 msgid "Invalid path: %s"
-msgstr ""
+msgstr "无效的路径： %s"
 
 msgid "Cannot set 'core' as driver."
-msgstr ""
+msgstr "无法将“core”设置为驱动程序。"
 
 #, c-format
 msgid "Invalid filename: must contain a '%d'."
-msgstr ""
+msgstr "无效的文件名：必须包含'%d'。"
 
 msgid "Cannot set 'family' as driver."
-msgstr ""
+msgstr "无法将“family”设置为驱动程序。"
 
 msgid "Error in flushing the file."
-msgstr ""
+msgstr "刷新文件时出错。"
 
 #, c-format
 msgid "Cannot retrieve file size: %s"
-msgstr ""
+msgstr "无法检索文件大小： %s"
 
 #, c-format
 msgid "Cannot retrieve file version: %s"
-msgstr ""
+msgstr "无法检索文件版本：%s"
 
 msgid "Cannot create an integer on the stack."
-msgstr ""
+msgstr "无法在堆栈上创建整数。"
 
 #, c-format
 msgid "Invalid field %s."
-msgstr ""
+msgstr "无效的字段%s。"
 
 #, c-format
 msgid "Cannot open the group %s."
-msgstr ""
+msgstr "无法打开组%s。"
 
 msgid "Cannot get the links number"
-msgstr ""
+msgstr "无法获取链接号"
 
 msgid "Cannot create a column of strings on the stack."
-msgstr ""
+msgstr "无法在堆栈上创建一列字符串。"
 
 msgid "Cannot list group links."
-msgstr ""
+msgstr "无法列出组链接。"
 
 msgid "Cannot list group attributes."
-msgstr ""
+msgstr "无法列出组属性。"
 
 msgid "Cannot list group contents"
-msgstr ""
+msgstr "无法列出群组内容"
 
 #, c-format
 msgid "The group already exists: %s."
-msgstr ""
+msgstr "该组已存在：%s。"
 
 #, c-format
 msgid "Cannot create the group: %s."
-msgstr ""
+msgstr "无法创建组：%s。"
 
 msgid "Cannot get the number of groups."
-msgstr ""
+msgstr "无法获取组数。"
 
 msgid "Cannot get linked object"
-msgstr ""
+msgstr "无法获取链接对象"
 
 msgid "Link target name"
-msgstr ""
+msgstr "链接目标名称"
 
 #, c-format
 msgid "The link %s does not exist."
-msgstr ""
+msgstr "链接 %s不存在。"
 
 #, c-format
 msgid "Invalid link type: %s."
-msgstr ""
+msgstr "无效的链接类型：%s。"
 
 msgid "Cannot get the number of links."
-msgstr ""
+msgstr "无法获取链接数。"
 
 msgid "Invalid operation"
-msgstr ""
+msgstr "无效操作"
 
 #, c-format
 msgid "Invalid index at position %d"
-msgstr ""
+msgstr "位置 %d处的索引无效"
 
 msgid "Cannot get the number of objects."
-msgstr ""
+msgstr "无法获取对象数。"
 
 msgid "Parent group name"
-msgstr ""
+msgstr "父组名称"
 
 msgid "Parent group path"
-msgstr ""
+msgstr "父组路径"
 
 msgid "Elements type"
-msgstr ""
+msgstr "元素类型"
 
 msgid "Size"
-msgstr ""
+msgstr "大小"
 
 #, c-format
 msgid "Invalid index: %d."
-msgstr ""
+msgstr "无效的索引： %d。"
 
 #, c-format
 msgid "Cannot get object at position %d."
-msgstr ""
+msgstr "无法在位置%d获得对象。"
 
 #, c-format
 msgid "Invalid name: %s."
-msgstr ""
+msgstr "无效名称：%s。"
 
 msgid "Invalid HDF5 object"
-msgstr ""
+msgstr "无效的HDF5对象"
 
 #, c-format
 msgid "Invalid field: %s"
-msgstr ""
+msgstr "无效的字段： %s"
 
 msgid "Cannot create a mlist on the stack."
-msgstr ""
+msgstr "无法在堆栈上创建mlist。"
 
 msgid "Cannot list names."
-msgstr ""
+msgstr "无法列出名称。"
 
 msgid "Cannot retrieve information about the object"
-msgstr ""
+msgstr "无法检索有关对象的信息"
 
 msgid "Unknown HDF5 object"
-msgstr ""
+msgstr "未知的HDF5对象"
 
 msgid "Cannot retrieve numeric index."
-msgstr ""
+msgstr "无法检索数字索引。"
 
 msgid "Invalid option: must be C or FORTRAN."
-msgstr ""
+msgstr "无效的选项：必须为C或FORTRAN。"
 
 msgid "Cannot open object at the given position."
-msgstr ""
+msgstr "无法打开给定位置的对象。"
 
 msgid "Link target"
-msgstr ""
+msgstr "链接目标"
 
 msgid "Cannot free the memory associated with String data"
-msgstr ""
+msgstr "无法释放与String数据关联的内存"
 
 #, c-format
 msgid "Invalid H5Type name: %s."
-msgstr ""
+msgstr "无效的H5Type名称：%s。"
 
 msgid "Unknown datatype"
-msgstr ""
+msgstr "未知的数据类型"
 
 msgid "Cannot get H5Object id"
-msgstr ""
+msgstr "无法获取H5对象ID"
 
 msgid "Invalid object: not a dataset."
-msgstr ""
+msgstr "无效的对象：不是数据集。"
 
 msgid "Cannot remove a file."
-msgstr ""
+msgstr "无法删除文件。"
 
 msgid "Cannot remove root element."
-msgstr ""
+msgstr "无法删除根元素。"
 
 #, c-format
 msgid "The name doesn't exist: %s."
-msgstr ""
+msgstr "该名称不存在：%s。"
 
 #, c-format
 msgid "Cannot remove the attribute: %s."
-msgstr ""
+msgstr "无法删除属性：%s。"
 
 #, c-format
 msgid "Cannot remove the link: %s."
-msgstr ""
+msgstr "无法删除链接：%s。"
 
 #, c-format
 msgid "The link already exists: %s."
-msgstr ""
+msgstr "该链接已存在：%s。"
 
 #, c-format
 msgid "Cannot create the hard link: %s."
-msgstr ""
+msgstr "无法创建硬链接：%s。"
 
 #, c-format
 msgid "Cannot create the soft link: %s."
-msgstr ""
+msgstr "无法创建软链接：%s。"
 
 #, c-format
 msgid "Cannot create a hard link to the external object: %s."
-msgstr ""
+msgstr "无法创建到外部对象%s的硬链接。"
 
 #, c-format
 msgid "Cannot create the external link: %s."
-msgstr ""
+msgstr "无法创建外部链接：%s。"
 
 msgid "Cannot copy object."
-msgstr ""
+msgstr "无法复制对象。"
 
 msgid "Invalid filter"
-msgstr ""
+msgstr "无效筛选"
 
 msgid "Can only label a dataset"
-msgstr ""
+msgstr "只能标记数据集"
 
 msgid "Target object is not a file"
-msgstr ""
+msgstr "目标对象不是文件"
 
 msgid "Invalid location"
-msgstr ""
+msgstr "无效的位置"
 
 #, c-format
 msgid "Invalid location: %s"
-msgstr ""
+msgstr "无效的位置：%s"
 
 #, c-format
 msgid "Cannot mount the file: %s"
-msgstr ""
+msgstr "无法挂载文件：%s"
 
 #, c-format
 msgid "Cannot unmount the file at location: %s"
-msgstr ""
+msgstr "无法在以下位置卸载文件：%s"
 
 #, c-format
 msgid "Can not read input argument #%d."
-msgstr ""
+msgstr "无法读取第%d个输入参数。"
 
 #, c-format
 msgid "%s: Datatype not handled for now."
-msgstr ""
+msgstr "%s：暂时未处理数据类型。"
 
 #, c-format
 msgid "Invalid rank, must be in the interval [0, %d]."
-msgstr ""
+msgstr "无效的界别，必须在[0,%d]之间。"
 
 msgid "No converter found for the specified target datatype."
-msgstr ""
+msgstr "找不到指定目标数据类型的转换器。"
 
 msgid "Cannot create a new dataspace."
-msgstr ""
+msgstr "无法创建新的数据空间。"
 
 msgid "Invalid target dataspace."
-msgstr ""
+msgstr "无效的目标数据空间。"
 
 msgid "Cannot create the target type."
-msgstr ""
+msgstr "无法创建目标类型。"
 
 msgid "Incompatible dimensions"
-msgstr ""
+msgstr "不兼容的维度"
 
 msgid "References must be given as strings"
-msgstr ""
+msgstr "引用必须以字符串形式给出"
 
 #, c-format
 msgid "Invalid path: %s."
-msgstr ""
+msgstr "无效的路径： %s。"
 
 msgid "HDF5"
-msgstr ""
+msgstr "HDF5"
 
 msgid "Ring resonator (HDF5 data source)"
-msgstr ""
+msgstr "环形谐振器(HDF5数据源)"
 
 msgid "Ring Resonator from a HDF5 file"
-msgstr ""
+msgstr "HDF5文件中的环形谐振器"
 
 msgid "X position [a]"
-msgstr ""
+msgstr "X位置[a]"
 
 msgid "Y position [a]"
-msgstr ""
+msgstr "Y位置[a]"
 
 msgid "Permittivity"
-msgstr ""
+msgstr "介电常数"
 
 msgid "Ring Resonator"
-msgstr ""
+msgstr "环形谐振器"

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -121,6 +121,10 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 正方行列を指�
 #, c-format
 msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
 msgstr "%s: 大きさが可変の引数 a*eye(), (arg %d) はここで使用できません.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument %d: Square matrix expected. Please use pinv() otherwise.\n"
+msgstr "%s: 引数 #%d: 正方行列を指定してください.\n"
 
 msgid "Warning :\n"
 msgstr "警告:\n"
@@ -346,6 +350,334 @@ msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s : Wrong number of input arguments : %d to %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A full or sparse square matrix or a "
+"function expected"
+msgstr "%s: 入力引数 #%d の型が間違っています: 正方行列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A positive integer expected if the "
+"first input argument is a function."
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています:  文字列または整数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A structure expected"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument: If A is a matrix, use opts with tol, "
+"maxiter, ncv, resid, cholB"
+msgstr "%s: 入力引数 #%d の型が間違っています: 正方行列を指定してください.\n"
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 163
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: If A is a function, use opts with tol, "
+"maxiter, ncv, resid, cholB, issym"
+msgstr ""
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
+"square matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 正方行列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
+"さい.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実スカラーを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real symmetric problems, k must "
+"be an integer in the range 1 to N - 1.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
+"さい.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real non symmetric or complex "
+"problems, k must be an integer in the range 1 to N - 2.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
+" Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d, %d, %s, '%s' または '%s'としてくだ"
+"さい.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
+" Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d, %d, %s, '%s' または '%s'としてくだ"
+"さい.\n"
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 291
+# File: modules/linear_algebra/macros/eigs.sci, line: 751
+#, c-format
+msgid "%s: Invalid sigma value for complex or non symmetric problem.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 294
+# File: modules/linear_algebra/macros/eigs.sci, line: 754
+#, c-format
+msgid "%s: Invalid sigma value for real symmetric problem.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: スカラーまたは文字列を指定してくださ"
+"い.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実スカラーを指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: %s must be an integer positive "
+"value.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています:  文字列または整数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実スカラーを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
+"さい.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています:  文字列または整数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
+"must be k < NCV <= N.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
+"さい.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
+"must be k + 2 < NCV < N.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数または文字列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
+"+ 1 < NCV <= N.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d, %d, %s, '%s' または '%s'としてくだ"
+"さい.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %s または %s を含むことはできません.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
+"boolean.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実スカラーを指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
+msgstr ""
+"%s: 引数 #%d の型が間違っています:　実数または複素数の行列を指定してくださ"
+"い.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
+msgstr ""
+"%s: 入力引数  #%d の大きさが間違っています: 列ベクトルを指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Start vector %s must be real for real "
+"problems.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています:  文字列または整数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Start vector %s must be complex for "
+"complex problems.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています:  文字列または整数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: if opts.cholB is true, B must be "
+"upper triangular.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: スカラーまたは文字列を指定してくださ"
+"い.\n"
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 435
+# File: modules/linear_algebra/macros/eigs.sci, line: 895
+#, c-format
+msgid ""
+"%s: Impossible to use the Cholesky factorization with complex sparse "
+"matrices.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 506
+# File: modules/linear_algebra/macros/eigs.sci, line: 512
+# File: modules/linear_algebra/macros/eigs.sci, line: 519
+# File: modules/linear_algebra/macros/eigs.sci, line: 591
+# File: modules/linear_algebra/macros/eigs.sci, line: 609
+# File: modules/linear_algebra/macros/eigs.sci, line: 646
+# File: modules/linear_algebra/macros/eigs.sci, line: 953
+# File: modules/linear_algebra/macros/eigs.sci, line: 958
+# File: modules/linear_algebra/macros/eigs.sci, line: 964
+# File: modules/linear_algebra/macros/eigs.sci, line: 1062
+# File: modules/linear_algebra/macros/eigs.sci, line: 1079
+# File: modules/linear_algebra/macros/eigs.sci, line: 1115
+#, c-format
+msgid "%s: Error with %s: info = %d.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 573
+# File: modules/linear_algebra/macros/eigs.sci, line: 575
+# File: modules/linear_algebra/macros/eigs.sci, line: 578
+# File: modules/linear_algebra/macros/eigs.sci, line: 1040
+# File: modules/linear_algebra/macros/eigs.sci, line: 1042
+# File: modules/linear_algebra/macros/eigs.sci, line: 1045
+#, c-format
+msgid "%s: Error with %s: unknown mode returned.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real symmetric problems, k must "
+"be in the range 1 to N - 1.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
+"さい.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real non symmetric or complex "
+"problems, k must be in the range 1 to N - 2.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
+"さい.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: a scalar expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実スカラーを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
+" Sigma must be one of %s, %s, %s, %s or %s.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d, %d, %s, '%s' または '%s'としてくだ"
+"さい.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
+" Sigma must be one of %s, %s, %s, %s, %s or %s.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d, %d, %s, '%s' または '%s'としてくだ"
+"さい.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
+"さい.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: Start vector opts.resid must be "
+"N by 1.\n"
+msgstr ""
+"%s: 入力引数  #%d の大きさが間違っています: 列ベクトルを指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Start vector opts.resid must be real "
+"for real problems.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています:  文字列または整数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Start vector opts.resid must be "
+"complex for complex problems.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています:  文字列または整数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: n does not match rows number of "
+"matrix A.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %s または %s を含むことはできません.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type or value for input arguments.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-23 16:36+0100\n"
+"Revision-Date: 2021-07-09 17:35+0100\n"
 
 # File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 54
 #, c-format
@@ -686,15 +686,15 @@ msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 121
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1885
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2033
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1883
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2031
 msgid "Grid"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 122
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1879
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2027
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1877
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2025
 msgid "Diagram background"
 msgstr ""
 
@@ -927,8 +927,8 @@ msgstr ""
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
 "block definitions using Scilab instructions.<br/>These instructions are "
-"evaluated once confirmed (i.e. you click on OK and every time the diagram is "
-"loaded)."
+"evaluated once confirmed (i.e. you click on OK), and every time the diagram "
+"is run."
 msgstr ""
 
 #
@@ -1094,29 +1094,29 @@ msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 225
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1865
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2013
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1863
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2011
 msgid "Link Style"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 226
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1756
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1798
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1754
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1796
 msgid "Straight"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 227
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1757
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1799
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1755
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1797
 msgid "Horizontal"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 228
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1758
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1800
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1756
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1798
 msgid "Vertical"
 msgstr ""
 
@@ -1132,57 +1132,57 @@ msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 234
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1901
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2049
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1899
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2047
 msgid "Final integration time"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 235
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1907
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2055
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1905
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2053
 msgid "Real time scaling"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 236
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1913
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2061
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1911
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2059
 msgid "Integrator absolute tolerance"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 237
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1919
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2067
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1917
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2065
 msgid "Integrator relative tolerance"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 238
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1925
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2073
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1923
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2071
 msgid "Tolerance on time"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 239
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1931
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2079
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1929
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2077
 msgid "Max integration time interval"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 240
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1937
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2085
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1935
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2083
 msgid "Solver kind"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 241
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1951
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2099
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1949
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2097
 msgid "Maximum step size (0 means no limit)"
 msgstr ""
 
@@ -1253,29 +1253,29 @@ msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 263
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1778
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1820
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1776
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1818
 msgid "No trace nor debug printing"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 264
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1779
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1821
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1777
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1819
 msgid "Light Simulation trace (Discrete and Continuous part switches)"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 265
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1780
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1822
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1778
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1820
 msgid "Per block execution trace and Debug block calls"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 266
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1781
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1823
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1779
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1821
 msgid "Debug block calls without trace"
 msgstr ""
 
@@ -1536,26 +1536,26 @@ msgid "Scilab '%s' module not installed.\n"
 msgstr ""
 
 #
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1834
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1982
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1832
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1980
 msgid "Number of recently opened files to display: "
 msgstr ""
 
 #
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1846
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1994
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1844
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1992
 msgid "Default file format"
 msgstr ""
 
 #
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1899
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2047
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1897
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2045
 msgid "Default simulation settings"
 msgstr ""
 
 #
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1960
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2108
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1958
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2106
 msgid "Default trace settings"
 msgstr ""
 

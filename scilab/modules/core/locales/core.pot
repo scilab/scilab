@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-24 11:08+0100\n"
+"Revision-Date: 2021-07-09 17:34+0100\n"
 
 # File: modules/core/sci_gateway/c/sci_debug.c, line: 43
 #, c-format
@@ -68,6 +68,7 @@ msgstr ""
 # File: modules/core/sci_gateway/cpp/sci_fieldnames.cpp, line: 35
 # File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 36
 # File: modules/core/sci_gateway/cpp/sci_getscilabmode.cpp, line: 36
+# File: modules/core/sci_gateway/cpp/sci_hash.cpp, line: 49
 # File: modules/core/sci_gateway/cpp/sci_isfield.cpp, line: 41
 # File: modules/core/sci_gateway/cpp/sci_isglobal.cpp, line: 36
 # File: modules/core/sci_gateway/cpp/sci_oldEmptyBehaviour.cpp, line: 34
@@ -101,6 +102,7 @@ msgstr ""
 # File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 40
 # File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 39
 # File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 82
+# File: modules/core/sci_gateway/cpp/sci_hash.cpp, line: 43
 # File: modules/core/sci_gateway/cpp/sci_ieee.cpp, line: 42
 # File: modules/core/sci_gateway/cpp/sci_isfield.cpp, line: 35
 # File: modules/core/sci_gateway/cpp/sci_macr2tree.cpp, line: 42
@@ -281,13 +283,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 68
+# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 74
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 74
+# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 80
 # File: modules/core/sci_gateway/cpp/sci_who.cpp, line: 72
 # File: modules/core/sci_gateway/cpp/sci_who.cpp, line: 99
 #, c-format
@@ -295,7 +297,7 @@ msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 113
+# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 119
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
 msgstr ""
@@ -376,8 +378,8 @@ msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 102
-# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 120
+# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 105
+# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 127
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr ""
@@ -415,6 +417,37 @@ msgstr ""
 # File: modules/core/sci_gateway/cpp/sci_global.cpp, line: 62
 #, c-format
 msgid "%s : Wrong value for argument #%d: %s\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_hash.cpp, line: 55
+#, c-format
+msgid ""
+"%s: Wrong type of input argument #%d: String or File descriptor expected.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_hash.cpp, line: 61
+#, c-format
+msgid "%s: Wrong type of input argument #%d: a single string expected.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_hash.cpp, line: 102
+#, c-format
+msgid "%s: algorithm %ls is unknown.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_hash.cpp, line: 151
+#, c-format
+msgid "%s: Wrong file descriptor: %d.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_hash.cpp, line: 156
+#, c-format
+msgid "%s: File must be opened for reading.\n"
 msgstr ""
 
 #
@@ -909,7 +942,7 @@ msgstr ""
 
 #
 # File: modules/core/src/cpp/banner.cpp, line: 41
-msgid "Copyright (c) 2017-2020 (ESI Group)\n"
+msgid "Copyright (c) 2017-2021 (ESI Group)\n"
 msgstr ""
 
 #
@@ -928,7 +961,7 @@ msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr ""
 
 #
-# File: modules/core/src/cpp/runner.cpp, line: 125
+# File: modules/core/src/cpp/runner.cpp, line: 126
 #, c-format
 msgid "Recursion limit reached (%d).\n"
 msgstr ""
@@ -951,61 +984,61 @@ msgstr ""
 msgid "Scilab %s Console"
 msgstr ""
 
-# File: /home/davidcl/work/branches/master/scilab/etc/scilab.start, line: 46
+# File: /home/davidcl/work/branches/6.1-review/scilab/etc/scilab.start, line: 46
 msgid "Startup execution:"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master/scilab/etc/scilab.start, line: 47
+# File: /home/davidcl/work/branches/6.1-review/scilab/etc/scilab.start, line: 47
 #, c-format
 msgid "  loading initial environment"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master/scilab/etc/scilab.start, line: 63
+# File: /home/davidcl/work/branches/6.1-review/scilab/etc/scilab.start, line: 63
 #, c-format
 msgid "Failed to execute %s:"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master/scilab/etc/scilab.start, line: 146
+# File: /home/davidcl/work/branches/6.1-review/scilab/etc/scilab.start, line: 153
 msgid "&File"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master/scilab/etc/scilab.start, line: 147
+# File: /home/davidcl/work/branches/6.1-review/scilab/etc/scilab.start, line: 154
 msgid "&Edit"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master/scilab/etc/scilab.start, line: 148
+# File: /home/davidcl/work/branches/6.1-review/scilab/etc/scilab.start, line: 155
 msgid "&Preferences"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master/scilab/etc/scilab.start, line: 149
+# File: /home/davidcl/work/branches/6.1-review/scilab/etc/scilab.start, line: 156
 msgid "&Control"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master/scilab/etc/scilab.start, line: 150
-# File: /home/davidcl/work/branches/master/scilab/etc/scilab.start, line: 152
-# File: /home/davidcl/work/branches/master/scilab/etc/scilab.start, line: 155
-# File: /home/davidcl/work/branches/master/scilab/etc/scilab.start, line: 158
-# File: /home/davidcl/work/branches/master/scilab/etc/scilab.start, line: 161
+# File: /home/davidcl/work/branches/6.1-review/scilab/etc/scilab.start, line: 157
+# File: /home/davidcl/work/branches/6.1-review/scilab/etc/scilab.start, line: 159
+# File: /home/davidcl/work/branches/6.1-review/scilab/etc/scilab.start, line: 162
+# File: /home/davidcl/work/branches/6.1-review/scilab/etc/scilab.start, line: 165
+# File: /home/davidcl/work/branches/6.1-review/scilab/etc/scilab.start, line: 168
 msgid "&Applications"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master/scilab/etc/scilab.start, line: 163
+# File: /home/davidcl/work/branches/6.1-review/scilab/etc/scilab.start, line: 170
 msgid "&?"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master/scilab/etc/scilab.start, line: 164
+# File: /home/davidcl/work/branches/6.1-review/scilab/etc/scilab.start, line: 171
+# File: modules/core/macros/toolboxes.sci, line: 69
 # File: modules/core/macros/toolboxes.sci, line: 70
-# File: modules/core/macros/toolboxes.sci, line: 71
-# File: modules/core/macros/toolboxes.sci, line: 80
+# File: modules/core/macros/toolboxes.sci, line: 79
 msgid "&Toolboxes"
 msgstr ""
 

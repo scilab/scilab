@@ -8,38 +8,38 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-11-02 09:35+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2020-08-29 10:40+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: zh_CN\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为%s。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or %s expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为字符串或者%s。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该至少%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -74,10 +74,10 @@ msgid "Incompatibility detected"
 msgstr "检测到不兼容问题"
 
 msgid "Please check the diagram, before trying to simulate it."
-msgstr "仿真前请检查图表。"
+msgstr "仿真前请检查框图。"
 
 msgid "Some blocks have been removed to ensure compatibility."
-msgstr ""
+msgstr "已删除某些块以确保兼容性。"
 
 #, c-format
 msgid "Unable to decode \"%s\" : invalid data."
@@ -85,146 +85,146 @@ msgstr "无法解码“%s”：无效数据。"
 
 #, c-format
 msgid "Unable to decode \"%s.%s\" : invalid field."
-msgstr ""
+msgstr "无法解码“%s.%s”：无效字段。"
 
 msgid "Modelica settings"
-msgstr ""
+msgstr "Modelica设置"
 
 msgid "name"
-msgstr ""
+msgstr "名称"
 
 msgid "id"
 msgstr "编号"
 
 msgid "kind"
-msgstr ""
+msgstr "类别"
 
 msgid "fixed"
 msgstr "固定"
 
 msgid "initial"
-msgstr ""
+msgstr "初始值"
 
 msgid "weight"
-msgstr ""
+msgstr "粗细"
 
 msgid "max"
-msgstr ""
+msgstr "最大值"
 
 msgid "min"
-msgstr ""
+msgstr "最小值"
 
 msgid "nominal"
-msgstr ""
+msgstr "标量"
 
 msgid "comment"
 msgstr "注释"
 
 msgid "selected"
-msgstr ""
+msgstr "已选中"
 
 msgid "Fix derivatives"
-msgstr ""
+msgstr "标准衍生"
 
 msgid "Fix states"
-msgstr ""
+msgstr "标准状态"
 
 msgid "Solve"
-msgstr ""
+msgstr "求解器"
 
 msgid "model is not valid"
-msgstr ""
+msgstr "model无效"
 
 msgid "Compiling"
-msgstr ""
+msgstr "编译中"
 
 msgid "Computing"
-msgstr ""
+msgstr "计算中"
 
 msgid "Global"
-msgstr ""
+msgstr "全局变量"
 
 msgid "Equations"
-msgstr ""
+msgstr "表达式"
 
 msgid "Discretes"
-msgstr ""
+msgstr "离散"
 
 msgid "Inputs"
-msgstr ""
+msgstr "输入"
 
 msgid "Outputs"
-msgstr ""
+msgstr "输出"
 
 msgid "Solver"
-msgstr ""
+msgstr "求解器"
 
 msgid "Initial computing method"
-msgstr ""
+msgstr "初始化计算方法"
 
 msgid "Parameter embedding"
-msgstr ""
+msgstr "参数嵌入中"
 
 msgid ""
 "lets the user change the parameters and call the solver without regenerating "
 "code."
-msgstr ""
+msgstr "允许用户更改参数并调用求解器时无需重新生成代码。"
 
 msgid "Generate Jacobian"
-msgstr ""
+msgstr "生成雅可比式"
 
 msgid "Error"
-msgstr ""
+msgstr "错误"
 
 msgid "Unknowns not equal to Equations"
-msgstr ""
+msgstr "未知不等方程式"
 
 msgid "Unknowns"
-msgstr ""
+msgstr "未知数"
 
 msgid "Reduced"
-msgstr ""
+msgstr "减少"
 
 msgid "Extended"
-msgstr ""
+msgstr "扩展"
 
 msgid "Diff. States"
-msgstr ""
+msgstr "不同状态"
 
 msgid "Fixed parameters"
-msgstr ""
+msgstr "固定参数"
 
 msgid "Relaxed parameters"
-msgstr ""
+msgstr "缓和参数"
 
 msgid "Fixed variables"
-msgstr ""
+msgstr "标准变量"
 
 msgid "Relaxed variables"
-msgstr ""
+msgstr "缓和变量"
 
 msgid "Please take a look into the Scilab console"
-msgstr ""
+msgstr "请查看Scilab控制台"
 
 #, c-format
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
-msgstr ""
+msgstr "输入参数“%s”错误：树路径无效。\n"
 
 #, c-format
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
-msgstr ""
+msgstr "输入参数“%s”错误：节点无效，请改用“ xcosPalDisable”。\n"
 
 #, c-format
 msgid "Unable to import %s .\n"
-msgstr ""
+msgstr "无法导入 %s。\n"
 
 #, c-format
 msgid "Unable to load block from %s ."
-msgstr ""
+msgstr "无法从%s加载块。"
 
 msgid "Loading the block"
-msgstr ""
+msgstr "加载块"
 
 msgid "Untitled"
 msgstr "无标题"
@@ -245,7 +245,7 @@ msgid "Open"
 msgstr "打开"
 
 msgid "Open file in Scilab current directory"
-msgstr ""
+msgstr "从Scilab当前目录打开文件"
 
 msgid "Save"
 msgstr "保存"
@@ -257,7 +257,7 @@ msgid "Export"
 msgstr "导出"
 
 msgid "Export all diagrams"
-msgstr ""
+msgstr "导出所有框图"
 
 msgid "Save as interface function"
 msgstr "保存为接口函数"
@@ -269,10 +269,10 @@ msgid "Close"
 msgstr "关闭"
 
 msgid "Quit Xcos"
-msgstr ""
+msgstr "退出Xcos"
 
 msgid "Recent files"
-msgstr ""
+msgstr "最近打开的文件"
 
 msgid "Edit"
 msgstr "编辑"
@@ -281,16 +281,16 @@ msgid "Block Parameters"
 msgstr "图块参数"
 
 msgid "Selection to superblock"
-msgstr ""
+msgstr "将选中的块打包为超级块"
 
 msgid "Superblock mask"
-msgstr ""
+msgstr "超级块封装"
 
 msgid "Create"
 msgstr "创建"
 
 msgid "Rename"
-msgstr ""
+msgstr "重命名"
 
 msgid "Remove"
 msgstr "移除"
@@ -299,49 +299,49 @@ msgid "Customize"
 msgstr "自定义"
 
 msgid "Save block GUI"
-msgstr ""
+msgstr "保存块GUI"
 
 msgid "matches"
-msgstr ""
+msgstr "匹配"
 
 msgid "Previous"
-msgstr ""
+msgstr "上一个"
 
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
 msgid "Searching..."
-msgstr ""
+msgstr "正在搜索..."
 
 msgid "Zoom In"
-msgstr ""
+msgstr "放大"
 
 msgid "Zoom Out"
-msgstr ""
+msgstr "缩小"
 
 msgid "Unable to load the selected blocks."
-msgstr ""
+msgstr "无法加载所选块。"
 
 msgid "Loading blocks"
-msgstr ""
+msgstr "加载块中"
 
 msgid "Load as palette"
-msgstr ""
+msgstr "加载组件盘"
 
 msgid "User-Defined"
-msgstr ""
+msgstr "用户自定义"
 
 msgid "Create a category"
-msgstr ""
+msgstr "创建类别"
 
 msgid "Add to a new category"
-msgstr ""
+msgstr "添加到新类别"
 
 msgid "Category"
-msgstr ""
+msgstr "类别"
 
 msgid "Enter a name"
-msgstr ""
+msgstr "输入名称"
 
 msgid "Dump"
 msgstr "转储"
@@ -353,7 +353,7 @@ msgid "View"
 msgstr "查看"
 
 msgid "Fit diagram or blocks to view"
-msgstr ""
+msgstr "适应窗口"
 
 msgid "Normal 100%"
 msgstr "普通 100%"
@@ -362,7 +362,7 @@ msgid "Palette browser"
 msgstr "组件盘浏览"
 
 msgid "tree_show(scs_m)"
-msgstr ""
+msgstr "查看框图树"
 
 msgid "Diagram browser"
 msgstr "图表浏览器"
@@ -377,7 +377,7 @@ msgid "Details"
 msgstr "详细信息"
 
 msgid "Show parent diagram"
-msgstr ""
+msgstr "显示上层框图"
 
 msgid "Simulation"
 msgstr "模拟"
@@ -395,7 +395,7 @@ msgid "Stop"
 msgstr "停止"
 
 msgid "Set Context"
-msgstr ""
+msgstr "设置关联指令"
 
 msgid "Format"
 msgstr "格式"
@@ -410,7 +410,7 @@ msgid "Flip"
 msgstr "翻转"
 
 msgid "Mirror"
-msgstr ""
+msgstr "镜像翻转"
 
 msgid "Show/Hide shadow"
 msgstr "显示/隐藏阴影"
@@ -422,25 +422,25 @@ msgid "Diagram background"
 msgstr "图表背景"
 
 msgid "Bold"
-msgstr ""
+msgstr "加粗"
 
 msgid "Italic"
-msgstr ""
+msgstr "斜体"
 
 msgid "Font size"
-msgstr ""
+msgstr "字体大小"
 
 msgid "Font name"
-msgstr ""
+msgstr "字体"
 
 msgid "Font style"
-msgstr ""
+msgstr "字体样式"
 
 msgid "Block legend"
-msgstr ""
+msgstr "模块图例"
 
 msgid "Image path"
-msgstr ""
+msgstr "图像路径"
 
 msgid "Tools"
 msgstr "工具"
@@ -449,19 +449,19 @@ msgid "Code generation"
 msgstr "代码生成"
 
 msgid "?"
-msgstr ""
+msgstr "？"
 
 msgid "Xcos Help"
 msgstr "Xcos帮助"
 
 msgid "Block Help"
-msgstr ""
+msgstr "模块帮助"
 
 msgid "Xcos Demonstrations"
-msgstr ""
+msgstr "Xcos示例"
 
 msgid "About Scilab"
-msgstr ""
+msgstr "关于Scilab"
 
 msgid "Palettes"
 msgstr "组件盘"
@@ -470,73 +470,73 @@ msgid "Sources"
 msgstr "信号源"
 
 msgid "Continuous time systems"
-msgstr ""
+msgstr "连续时间系统"
 
 msgid "Implicit"
-msgstr ""
+msgstr "隐式"
 
 msgid "Discontinuities"
-msgstr ""
+msgstr "非线性系统"
 
 msgid "Lookup Tables"
-msgstr ""
+msgstr "查找表"
 
 msgid "Signal Processing"
 msgstr "信号处理"
 
 msgid "Zero crossing detection"
-msgstr ""
+msgstr "过零检测"
 
 msgid "Mathematical Operations"
-msgstr ""
+msgstr "数学运算"
 
 msgid "Integer"
-msgstr ""
+msgstr "整数运算"
 
 msgid "Matrix"
-msgstr ""
+msgstr "矩阵运算"
 
 msgid "Sinks"
-msgstr ""
+msgstr "数据显示"
 
 msgid "Port & Subsystem"
-msgstr ""
+msgstr "端口和子系统"
 
 msgid "Annotations"
-msgstr ""
+msgstr "注释块"
 
 msgid "Discrete time systems"
-msgstr ""
+msgstr "离散时间系统"
 
 msgid "Event handling"
-msgstr ""
+msgstr "事件处理"
 
 msgid "Signal Routing"
-msgstr ""
+msgstr "信号路由"
 
 msgid "Recently Used Blocks"
-msgstr ""
+msgstr "最近使用模块"
 
 msgid "User-Defined Functions"
 msgstr "自定义函数"
 
 msgid "Demonstrations Blocks"
-msgstr ""
+msgstr "示例模块"
 
 msgid "Electrical"
-msgstr ""
+msgstr "电学模块"
 
 msgid "Thermo-Hydraulics"
-msgstr ""
+msgstr "热力学模块"
 
 msgid "Enable"
-msgstr ""
+msgstr "启用"
 
 msgid "Palette name"
-msgstr ""
+msgstr "组件盘名称"
 
 msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
-msgstr ""
+msgstr "自上次保存以来，框图已被修改。<br/>是否要保存？"
 
 #, c-format
 msgid ""
@@ -548,7 +548,7 @@ msgstr ""
 
 #, c-format
 msgid "Unable to decode the URI : %s ."
-msgstr ""
+msgstr "无法解码URI：%s。"
 
 msgid "Ok"
 msgstr "确定"
@@ -557,14 +557,17 @@ msgid "Cancel"
 msgstr "取消"
 
 msgid "Reset to default"
-msgstr ""
+msgstr "重设为默认值"
 
+#, fuzzy
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
 "block definitions using Scilab instructions.<br/>These instructions are "
-"evaluated once confirmed (i.e. you click on OK and every time the diagram is "
-"loaded)."
+"evaluated once confirmed (i.e. you click on OK), and every time the diagram "
+"is run."
 msgstr ""
+"您可以在此处输入scilab指令来定义需在框图模块中使用符号参数。<br/>一旦开始仿"
+"真，这些指令便会同步运行（即单击确定后会在每次加载图表时运行）。"
 
 msgid "Failed to load Diagram"
 msgstr "载入图表失败"
@@ -582,28 +585,28 @@ msgid "Image contains no data."
 msgstr "图像中没有数据。"
 
 msgid "Unknown Diagram Version : "
-msgstr ""
+msgstr "未知的框图版本： "
 
 msgid "Will try to continue..."
-msgstr ""
+msgstr "将尝试继续..."
 
 msgid "Xcos error"
 msgstr "Xcos错误"
 
 msgid "Unable to delete "
-msgstr ""
+msgstr "无法删除 "
 
 msgid "No block selected"
-msgstr ""
+msgstr "未选中模块"
 
 msgid "Export to XML"
-msgstr ""
+msgstr "导出为XML文件"
 
 msgid "Export in progress"
-msgstr ""
+msgstr "正在导出"
 
 msgid "Import from XML"
-msgstr ""
+msgstr "从XML文件中导入"
 
 msgid "Add to"
 msgstr "添加到"
@@ -631,10 +634,10 @@ msgstr "控制端口必须跟命令端口相连"
 
 msgid ""
 "Port is already connected, please select an unconnected port or a valid link."
-msgstr ""
+msgstr "端口已连接，请选择未连接的端口或有效链接。"
 
 msgid "Align Blocks"
-msgstr ""
+msgstr "对齐模块"
 
 msgid "Left"
 msgstr "左对齐"
@@ -655,458 +658,460 @@ msgid "Middle"
 msgstr "垂直居中"
 
 msgid "Block edge"
-msgstr ""
+msgstr "模块边缘"
 
 msgid "Block background"
-msgstr ""
+msgstr "模块背景"
 
 msgid "Legend color"
-msgstr ""
+msgstr "图例颜色"
 
 msgid "Link Style"
-msgstr ""
+msgstr "连线样式"
 
 msgid "Straight"
-msgstr ""
+msgstr "直线"
 
 msgid "Horizontal"
-msgstr ""
+msgstr "水平"
 
 msgid "Vertical"
-msgstr ""
+msgstr "垂直"
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
-msgstr ""
+msgstr "设置调试级别(0,1,2,3)<br/>它将执行函数scicos_debug(n)"
 
 msgid "Execution trace and Debug"
-msgstr ""
+msgstr "执行跟踪和调试"
 
 msgid "Final integration time"
-msgstr ""
+msgstr "最终积分时间"
 
 msgid "Real time scaling"
-msgstr ""
+msgstr "实时缩放"
 
 msgid "Integrator absolute tolerance"
-msgstr ""
+msgstr "积分器绝对误差"
 
 msgid "Integrator relative tolerance"
-msgstr ""
+msgstr "积分器相对公差"
 
 msgid "Tolerance on time"
-msgstr ""
+msgstr "时间公差"
 
 msgid "Max integration time interval"
-msgstr ""
+msgstr "最大积分时间间隔"
 
 msgid "Solver kind"
-msgstr ""
+msgstr "求解器类型"
 
 msgid "Maximum step size (0 means no limit)"
-msgstr ""
+msgstr "最大步长 (0表示无限制)"
 
 msgid "Default"
-msgstr ""
+msgstr "默认值"
 
 msgid "Set Parameters"
-msgstr ""
+msgstr "设置参数"
 
 msgid "Based on Scicos"
-msgstr ""
+msgstr "基于Scicos"
 
 msgid "Saving diagram"
-msgstr ""
+msgstr "保存框图"
 
 msgid "Loading diagram"
-msgstr ""
+msgstr "加载框图"
 
 msgid "Loading palettes"
-msgstr ""
+msgstr "加载组件盘"
 
 msgid "Loading user defined palettes"
-msgstr ""
+msgstr "加载用户自定义组件盘"
 
 msgid "Generating C Code for SuperBlock"
-msgstr ""
+msgstr "将超级块生成为C代码"
 
 msgid "A SuperBlock must be selected to generate code"
-msgstr ""
+msgstr "必须选择超级块才能进行代码生成"
 
 msgid "Simulation in progress"
-msgstr ""
+msgstr "正在仿真"
 
 msgid "Compilation in progress, results will be stored in the 'cpr' variable"
-msgstr ""
+msgstr "正在编译，结果将存储在“cpr”变量中"
 
 msgid "Generate SuperBlock, please wait"
-msgstr ""
+msgstr "生成超级块，请稍候"
 
 msgid "Click on diagram to add link point or on a compatible target to finish"
-msgstr ""
+msgstr "单击框图添加链接点或在兼容目标上完成"
 
 msgid "No trace nor debug printing"
-msgstr ""
+msgstr "不跟踪也不打印调试信息"
 
 msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr ""
+msgstr "轻度仿真跟踪(仅针对离散和连续类模块)"
 
 msgid "Per block execution trace and Debug block calls"
-msgstr ""
+msgstr "对所有模块执行跟踪和调试"
 
 msgid "Debug block calls without trace"
-msgstr ""
+msgstr "仅对模块进行非跟踪调试"
 
 msgid "All supported formats"
-msgstr ""
+msgstr "所有支持的格式"
 
 msgid "Scicos file"
-msgstr ""
+msgstr "Scicos文件"
 
 msgid "Xcos file"
-msgstr ""
+msgstr "Xcos文件"
 
 msgid "Xcos (zip) file"
-msgstr ""
+msgstr "Xcos(zip)文件"
 
 msgid "XMI (Eclipse EMF) file"
-msgstr ""
+msgstr "XMI (Eclipse EMF) 文件"
 
 msgid "Scilab Open Data file"
-msgstr ""
+msgstr "Scilab打开数据文件"
 
 msgid "Masked SuperBlock editor"
-msgstr ""
+msgstr "打包超级块属性编辑器"
 
 msgid "Insert"
-msgstr ""
+msgstr "插入"
 
 msgid "Delete"
 msgstr "删除"
 
 msgid "Move Up"
-msgstr ""
+msgstr "上移"
 
 msgid "Move Down"
-msgstr ""
+msgstr "下移"
 
 msgid "Rows"
-msgstr ""
+msgstr "行"
 
 msgid "Variable settings"
-msgstr ""
+msgstr "变量设置"
 
 msgid "Default values"
-msgstr ""
+msgstr "默认值"
 
 msgid "WinTitle"
-msgstr ""
+msgstr "WinTitle"
 
 msgid "Window title"
-msgstr ""
+msgstr "窗口标题"
 
 msgid "Variable names"
-msgstr ""
+msgstr "变量名"
 
 msgid "Variable descriptions"
-msgstr ""
+msgstr "变量描述"
 
 msgid "Editable"
-msgstr ""
+msgstr "可编辑性"
 
 msgid "Values"
-msgstr ""
+msgstr "值"
 
 msgid "Set block parameters"
-msgstr ""
+msgstr "设置模块参数"
 
 msgid ""
 "The user palette configuration file (palettes.xml) is invalid.<BR> Switching "
 "to the default one."
-msgstr ""
+msgstr "用户组件盘配置文件 (palettes.xml)无效。<BR>将切换到默认状态。"
 
 msgid ""
 "The user configuration file (xcos.xml) is invalid.<BR> Switching to the "
 "default one."
-msgstr ""
+msgstr "用户配置文件(xcos.xml)无效。<BR>切换到默认状态。"
 
 msgid "Setting up Modelica Compiler."
-msgstr ""
+msgstr "设置Modelica编译器。"
 
 msgid "Modelica initialize"
-msgstr ""
+msgstr "Modelica初始化"
 
 msgid "Error: unable to compile this SuperBlock"
-msgstr ""
+msgstr "错误：无法编译此超级块"
 
 msgid "Evaluation problem: wrong port number."
-msgstr ""
+msgstr "运行问题：端口号错误。"
 
 #, c-format
 msgid "Expecting <code>%d</code> but got <code>%d</code>."
-msgstr ""
+msgstr "应该是<code>%d</code>，但获得了<code>%d </code>。"
 
 msgid ""
 "<html><body>Compilation error: link ignored because it is not connected. <br/"
 ">Please reconnect it.</body></html>"
 msgstr ""
+"<html> <body>编译错误：链接被忽略，因为未实际连接。 <br/>请重新连接。</body> "
+"</html>"
 
 msgid "Block name: "
-msgstr ""
+msgstr "模块名： "
 
 msgid "Simulation: "
-msgstr ""
+msgstr "仿真计算函数： "
 
 msgid "UID: "
-msgstr ""
+msgstr "UID： "
 
 msgid "Style: "
-msgstr ""
+msgstr "模块接口函数： "
 
 msgid "Rpar: "
-msgstr ""
+msgstr "Rpar： "
 
 msgid "Ipar: "
-msgstr ""
+msgstr "Ipar： "
 
 msgid "Opar: "
-msgstr ""
+msgstr "Opar： "
 
 msgid "Datatype: "
-msgstr ""
+msgstr "数据类型： "
 
 msgid "Implicit: "
-msgstr ""
+msgstr "是否为隐式端口： "
 
 msgid "Source datatype: "
-msgstr ""
+msgstr "源数据类型： "
 
 msgid "Target datatype: "
-msgstr ""
+msgstr "目标数据类型： "
 
 msgid "Label: "
-msgstr ""
+msgstr "标签： "
 
 msgid "Optimal"
-msgstr ""
+msgstr "最优"
 
 msgid "Auto-Position Block"
-msgstr ""
+msgstr "模块自动定位"
 
 msgid "Split Block"
-msgstr ""
+msgstr "节点模块"
 
 msgid "Auto-Position Split Block"
-msgstr ""
+msgstr "节点模块自动定位"
 
 msgid "A one-line description of the block"
-msgstr ""
+msgstr "模块的单行简要描述"
 
 msgid "Annotation (or comment) attached to the object"
-msgstr ""
+msgstr "附加到对象的注释"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
+msgstr "Scilab的‘%s’模块在-nogui或-nwni模式下无效。\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab模块'%s'尚未安装。\n"
 
 msgid "Number of recently opened files to display: "
-msgstr ""
+msgstr "显示最近打开文件的数目: "
 
 msgid "Default file format"
-msgstr ""
+msgstr "默认文件格式"
 
 msgid "Default simulation settings"
-msgstr ""
+msgstr "默认仿真参数设置"
 
 msgid "Default trace settings"
-msgstr ""
+msgstr "默认仿真调试参数设置"
 
 msgid "Basic controller"
-msgstr ""
+msgstr "基础控制器"
 
 msgid "Water tank"
-msgstr ""
+msgstr "水箱系统"
 
 msgid "Discrete Controller"
-msgstr ""
+msgstr "离散控制器"
 
 msgid "Kalman Filter"
-msgstr ""
+msgstr "卡尔曼滤波器"
 
 msgid "Discrete Kalman Filter"
-msgstr ""
+msgstr "离散卡尔曼滤波器"
 
 msgid "Cont.Plant-Hybrid Observer"
-msgstr ""
+msgstr "连续Plant-Hybrid观测"
 
 msgid "Temperature Controller"
-msgstr ""
+msgstr "温度控制器"
 
 msgid "Inverted pendulum"
-msgstr ""
+msgstr "倒立摆"
 
 msgid "Lorenz butterfly"
-msgstr ""
+msgstr "洛伦兹效应"
 
 msgid "RLC Circuit"
-msgstr ""
+msgstr "RLC电路"
 
 msgid "Bridge Rectifer"
-msgstr ""
+msgstr "桥式整流器"
 
 msgid "Transformer"
-msgstr ""
+msgstr "变压器"
 
 msgid "Differential amplifier"
-msgstr ""
+msgstr "差分放大器"
 
 msgid "OpAmp amplifier"
-msgstr ""
+msgstr "运算放大器"
 
 msgid "Switched capacitor integrator"
-msgstr ""
+msgstr "开关电容积分器"
 
 msgid "DC/DC Buck Converter"
-msgstr ""
+msgstr "DC / DC降压转换器"
 
 msgid "DC/DC Boost Converter"
-msgstr ""
+msgstr "DC / DC升压转换器"
 
 msgid "Colpitts oscillator"
-msgstr ""
+msgstr "科尔皮兹振荡器"
 
 msgid "Logic AND gate"
-msgstr ""
+msgstr "逻辑与门"
 
 msgid "Logic NOR gate"
-msgstr ""
+msgstr "逻辑或非门"
 
 msgid "If Then Else"
-msgstr ""
+msgstr "条件模块"
 
 msgid "And"
-msgstr ""
+msgstr "与"
 
 msgid "Automotive Suspension"
-msgstr ""
+msgstr "自运动系统"
 
 msgid "Ball on a Platform"
-msgstr ""
+msgstr "平台上的球"
 
 msgid "Bouncing Ball"
-msgstr ""
+msgstr "弹跳球"
 
 msgid "Chaos Modelica"
-msgstr ""
+msgstr "混合的Modelica"
 
 msgid "Hydraulics blocks"
-msgstr ""
+msgstr "液压模块"
 
 msgid "RLC circuit"
-msgstr ""
+msgstr "RLC电路"
 
 msgid "Heat conduction in a rod"
-msgstr ""
+msgstr "杆中的热传导"
 
 msgid "Second order rotational system"
-msgstr ""
+msgstr "二阶旋转系统"
 
 msgid "Old Gain Block"
-msgstr ""
+msgstr "旧式增益模块"
 
 msgid "Optimal link route"
-msgstr ""
+msgstr "位置优化示例"
 
 msgid "Optimal split block position"
-msgstr ""
+msgstr "节点位置优化示例"
 
 msgid "Standard demos"
-msgstr ""
+msgstr "标准示例"
 
 msgid "Control Systems"
-msgstr ""
+msgstr "控制系统"
 
 msgid "Electrical Systems"
-msgstr ""
+msgstr "电学系统"
 
 msgid "Mechanical Systems"
-msgstr ""
+msgstr "机械学系统"
 
 msgid "Modelica demos"
-msgstr ""
+msgstr "Modelica示例"
 
 msgid "Old demos"
-msgstr ""
+msgstr "旧式示例"
 
 msgid "Simple Demo"
-msgstr ""
+msgstr "简单示例"
 
 msgid "Bouncing Balls"
-msgstr ""
+msgstr "弹跳球"
 
 msgid "Simple Thermostat"
-msgstr ""
+msgstr "简易恒温器"
 
 msgid "Table Lookup"
-msgstr ""
+msgstr "表查找"
 
 msgid "Signal Builder"
-msgstr ""
+msgstr "信号生成"
 
 msgid "Fibonacci Numbers"
-msgstr ""
+msgstr "斐波纳契数"
 
 msgid "Scilab block"
-msgstr ""
+msgstr "Scilab模块"
 
 msgid "Xcos data types"
-msgstr ""
+msgstr "Xcos数据类型"
 
 msgid "Zero Crossing"
-msgstr ""
+msgstr "过零交叉示例"
 
 msgid "_IF_ Xcos block"
-msgstr ""
+msgstr "Xcos中的_IF_模块"
 
 msgid "Goto/From blocks"
-msgstr ""
+msgstr "Xcos中的Goto/From模块"
 
 msgid "Event demos"
-msgstr ""
+msgstr "事件示例"
 
 msgid "Optimal positions"
-msgstr ""
+msgstr "位置优化"
 
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
-msgstr ""
+msgstr "%s：无法将%s导出到%s。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: Block type expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s类型错误：应该是模块的类型值。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s类型错误：应该是目录路径字符串。\n"
 
 #, c-format
 msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s错误：应该是svg, gif 或者 jpg。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s类型错误：应该是字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: boolean expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s类型错误：应该是布尔量。\n"
 
 #, c-format
 msgid "%s: File '%s' does not exist.\n"
@@ -1114,307 +1119,306 @@ msgstr "%s：文件'%s'不存在。\n"
 
 #, c-format
 msgid "%s: File '%s' is not a valid palette file.\n"
-msgstr ""
+msgstr "%s：文件'%s'不是有效的组件盘配置文件。\n"
 
 #, c-format
 msgid "%s: Found '%s' instead of a block.\n"
-msgstr ""
+msgstr "%s：找到了'%s'而不是一个模块。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: diagram structure expected"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该是框图结构体(scs_m)。"
 
 #, c-format
 msgid "%s: Wrong type for %s variable: A string array expected.\n"
-msgstr ""
+msgstr "%s： %s变量类型错误：应该是字符串数组。\n"
 
 #, c-format
 msgid "%s: All paths defined by %s variable must exist.\n"
-msgstr ""
+msgstr "%s：必须使用%s变量定义的所有路径。\n"
 
 #, c-format
 msgid ""
 "%s: The directory %s cannot been created, please check if you have write "
 "access on this directory.\n"
-msgstr ""
+msgstr "%s：路径 %s 不能被创建，请检查您是否在这个路径上拥有写访问权限。\n"
 
 #, c-format
 msgid "Unable to open %s"
-msgstr ""
+msgstr "无法打开 %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个。"
 
 #, c-format
 msgid "%s: Not supported format %s.\n"
-msgstr ""
+msgstr "%s：不支持的格式 %s。\n"
 
 #, c-format
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
-msgstr ""
+msgstr "%s：%s模块不可用，请使用其对应的兼容模块更新该模型框图。"
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
-msgstr ""
+msgstr "%s是无效名称，请更改框图标题。"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string type expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s类型错误：应该是字符串类型。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s类型错误：应该是框图结构体类型。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该介于%d与%d之间。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s类型错误：应该是组件盘类型或者路径。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: File not found.\n"
-msgstr ""
+msgstr "%s：输入参数%s类型错误：文件未找到。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string vector expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s类型错误：应该是字符串向量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: palette type expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s类型错误：应该是组件盘类型。\n"
 
 #, c-format
 msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-msgstr ""
+msgstr "%s：无法从%s中加载模块：应该是hdf5文件。\n"
 
 #, c-format
 msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
-msgstr ""
+msgstr "%s：无法从%s加载模块：未找到'scs_m'变量。\n"
 
-#
-# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 102
 #, c-format
 msgid "%s: Unable to load block from %s: Missing file.\n"
-msgstr ""
+msgstr "%s：无法从%s加载模块：缺少文件。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument %s: function as string or Block type or "
 "full path string expected.\n"
 msgstr ""
+"%s：输入参数%s类型错误：应该是字符串函数或模块类型或完整的路径字符串。\n"
 
 #, c-format
 msgid "%s: Unable to generate the palette icon : %s already exists.\n"
-msgstr ""
+msgstr "%s：无法生成组件盘图标：%s已存在。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: path string expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s类型错误：应该是路径字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s的值错误：应该是存在的文件。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
 "expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s的值错误：应该是有效的文件格式 (png, jpg, gif) 。\n"
 
 #, c-format
 msgid "%s: Unable to generate the image %s.\n"
-msgstr ""
+msgstr "%s：无法生成图像%s。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s类型错误：应该是字符串或结构体类型。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: full path string expected.\n"
-msgstr ""
+msgstr "%s：输入参数%s类型错误：应该是全路径字符串。\n"
 
 #, c-format
 msgid "%s: Unable to export the palette to hdf5.\n"
-msgstr ""
+msgstr "%s：无法将组件盘设置导出至hdf5文件。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型出错：应该为字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为向量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: No block found.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：未找到模块。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A String expected."
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该是字符串。"
 
 msgid "Interface function does not exist or can not be called."
-msgstr ""
+msgstr "接口函数不存在或无法调用。"
 
 #, c-format
 msgid "%s is not a valid block descriptor."
-msgstr ""
+msgstr "%s不是有效的模块描述符。"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为%d×%d的矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "Block definition with function [%s] failed."
-msgstr ""
+msgstr "函数[%s]的模块定义失败。"
 
 #, c-format
 msgid "Block configuration with function [%s] failed."
-msgstr ""
+msgstr "函数[%s]的模块配置失败。"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A Block expected."
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该是一个模块。"
 
 #, c-format
 msgid "Field %s has different values."
-msgstr ""
+msgstr "字段%s具有不同的值。"
 
 msgid "Stopped before block:"
-msgstr ""
+msgstr "在模块停止前："
 
 msgid "Stopped after block:"
-msgstr ""
+msgstr "在模块停止后："
 
 msgid "State derivative computation"
-msgstr ""
+msgstr "状态导数计算"
 
 msgid "Regular outputs update"
-msgstr ""
+msgstr "常规输出端口更新"
 
 msgid "States update on discrete event"
-msgstr ""
+msgstr "离散事件状态更新"
 
 msgid "Output activation dates"
-msgstr ""
+msgstr "输出激活时刻"
 
 msgid "Initialization"
-msgstr ""
+msgstr "初始化"
 
 msgid "Ending"
-msgstr ""
+msgstr "结束"
 
 msgid "ReInitialization"
-msgstr ""
+msgstr "重新初始化"
 
 msgid "Continuous states properties update"
-msgstr ""
+msgstr "连续状态属性更新"
 
 msgid "Zero crossing surfaces computation"
-msgstr ""
+msgstr "过零面计算"
 
 msgid "Residual computation"
-msgstr ""
+msgstr "残差计算"
 
 msgid "&File"
-msgstr ""
+msgstr "文件(&F)"
 
 msgid "&Tools"
-msgstr ""
+msgstr "工具(&T)"
 
 msgid "&Edit"
-msgstr ""
+msgstr "编辑(&E)"
 
 msgid "&?"
-msgstr ""
+msgstr "&?"
 
 msgid "Xcos debug"
-msgstr ""
+msgstr "Xcos 调试"
 
 msgid "Break point conditions"
-msgstr ""
+msgstr "断点条件"
 
 msgid "Break on selected flags"
-msgstr ""
+msgstr "所选标志中断"
 
 msgid "After call"
-msgstr ""
+msgstr "调用后"
 
 msgid "Before call"
-msgstr ""
+msgstr "调用前"
 
 msgid "After date"
-msgstr ""
+msgstr "时刻后"
 
 msgid "On the Scilab condition above"
-msgstr ""
+msgstr "在上述Scilab条件下"
 
 msgid "Current simulation state"
-msgstr ""
+msgstr "当前仿真状态"
 
 msgid "scs_m block path:"
-msgstr ""
+msgstr "scs_m中模块路径："
 
 msgid "Time:"
-msgstr ""
+msgstr "时间："
 
 msgid "Flag:"
-msgstr ""
+msgstr "标志："
 
 msgid "End debug"
-msgstr ""
+msgstr "结束调试"
 
 msgid "Pause"
-msgstr ""
+msgstr "暂停"
 
 #, c-format
 msgid "Use the %s button to end the debugging"
-msgstr ""
+msgstr "使用%s按钮结束调试"
 
 #, c-format
 msgid "Unable to simulate %s"
-msgstr ""
+msgstr "无法仿真%s"
 
 msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
-msgstr ""
+msgstr "pre_xcos_simulate函数中发生错误：退出仿真。"
 
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
-msgstr ""
+msgstr "%s：模块参数验证期间出错。\n"
 
 #, c-format
 msgid "%s: Error during block parameters update.\n"
-msgstr ""
+msgstr "%s：模块参数更新期间出错。\n"
 
 msgid "Initialisation problem"
-msgstr ""
+msgstr "初始化问题"
 
 msgid "End problem"
-msgstr ""
+msgstr "结束问题"
 
 msgid "Simulation problem"
-msgstr ""
+msgstr "仿真运行问题"
 
 msgid "Error in post_xcos_simulate: ending simulation."
-msgstr ""
+msgstr "post_xcos_simulate函数中的错误：退出仿真。"
 
 #, c-format
 msgid "%s: Cannot open file '%s' for reading.\n"
-msgstr ""
+msgstr "%s：无法打开文件'%s'进行读取。\n"
 
 #, c-format
 msgid "%s: Error while trying to read file contents from '%s'.\n"
-msgstr ""
+msgstr "%s：尝试从“%s”读取文件内容时出错。\n"
 
 #, c-format
 msgid "%s: Syntax error while trying to set up context from"
-msgstr ""
+msgstr "%s：设置关联指令时指令中出现语法错误"

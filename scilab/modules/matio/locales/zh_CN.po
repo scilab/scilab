@@ -1,0 +1,214 @@
+# Chinese (Simplified) translation for scilab
+# Copyright (c) 2020 Rosetta Contributors and Canonical Ltd 2020
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2020-08-19 13:51+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
+"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
+
+#, c-format
+msgid "%s: Wrong size for first input argument: Single double expected.\n"
+msgstr "%s：第一个输入参数大小错误：应该是一个双精度浮点数。\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Double expected.\n"
+msgstr "%s：第一个输入参数类型错误：应该是双精度浮点数。\n"
+
+#, c-format
+msgid "%s: Invalid file identifier.\n"
+msgstr "%s：无效的文件标识符。\n"
+
+#, c-format
+msgid "%s: Could not rewind the file %s.\n"
+msgstr "%s：无法回退文件 %s。\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s：内存不足。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s：内存分配错误。\n"
+
+#, c-format
+msgid "%s: Wrong size for first input argument: string expected.\n"
+msgstr "%s：第一个输入参数大小错误：应该是一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: string expected.\n"
+msgstr "%s：第一个输入参数类型错误：应该是字符串。\n"
+
+#, c-format
+msgid "%s: Wrong size for second input argument: string expected.\n"
+msgstr "%s：第二个输入参数大小错误：应该是一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong value for second input argument: 'r' or 'w' expected.\n"
+msgstr "%s：第二个输入参数的值错误：应该是'r'或者'w'。\n"
+
+#, c-format
+msgid "%s: Wrong type for second input argument: string expected.\n"
+msgstr "%s：第二个输入参数类型错误：应该是字符串。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr "%s：第%d个输入参数大小错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s： 第#%d输入参数类型错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong size for first input argument: An integer value expected.\n"
+msgstr "%s：第一个输入参数大小错误：应该是一个整数。\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: An integer value expected.\n"
+msgstr "%s：第一个输入参数类型错误：应该是整数。\n"
+
+#, c-format
+msgid "%s: Wrong size for fourth input argument: A boolean expected.\n"
+msgstr "%s：第四个输入参数大小错误：应该是一个布尔量。\n"
+
+#, c-format
+msgid "%s: Wrong type for fourth input argument: A boolean expected.\n"
+msgstr "%s：第四个输入参数类型错误：应该是一个布尔量。\n"
+
+#, c-format
+msgid "%s: N-D arrays of chars not implemented.\n"
+msgstr "%s：未实现字符的N-D数组。\n"
+
+#, c-format
+msgid "%s: 2D array of strings saving is not implemented.\n"
+msgstr "%s：未实现二维字符串数组的保存。\n"
+
+#, c-format
+msgid "%s: Row array of strings saving is not implemented.\n"
+msgstr "%s：未实现字符串行数组的保存。\n"
+
+#, c-format
+msgid ""
+"%s: Column array of strings with different lengths saving is not "
+"implemented.\n"
+msgstr "%s：未实现具有不同长度字符串列数组的保存。\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
+msgstr "%s：第一个输入参数类型错误：应为双精度浮点数矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Integer matrix expected.\n"
+msgstr "%s：第一个输入参数类型错误：应为整数矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer matrix expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应为整数矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: MList expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应为MList类型。\n"
+
+#, c-format
+msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
+msgstr "%s：不能将类型为%s的Mlist写入Matlab二进制文件。\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
+msgstr "%s：第1个输入参数类型错误：应为稀疏矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s：第%d个输入参数类型错误，应该为字符串矩阵。\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: %s."
+msgstr "%s：此功能尚未实现：%s。"
+
+#, c-format
+msgid "%s: The file '%s' does not exist.\n"
+msgstr "%s：'%s'文件并不存在。\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s：无法打开文件%s。\n"
+
+#, c-format
+msgid "%s: Unsupported input file data type: '%s'.\n"
+msgstr "%s：不支持的输入文件数据类型：'%s'。\n"
+
+#, c-format
+msgid ""
+"%s: No variable read in file '%s'. Check if your file is not corrupted.\n"
+msgstr "%s：无法从文件'%s'中读取变量。 请确保您的文件未损坏。\n"
+
+#, c-format
+msgid "loadmatfile: Error in input file at line #%d: '%s' expected.\n"
+msgstr "loadmatfile：输入文件在第%d行出错：应该为'%s'。\n"
+
+#, c-format
+msgid "%s: %s module is not installed.\n"
+msgstr "%s：%s模块未安装。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr "%s：第%d个参数类型出错：应该为布尔型矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr "%s：第%d个输入参数大小错误：应该为%d×%d的矩阵。\n"
+
+#, c-format
+msgid "%s: Could not read variables in %s"
+msgstr "%s：无法在%s中读取变量"
+
+#, c-format
+msgid "%s: Argument #%d: String expected.\n"
+msgstr "%s：第%d个参数错误：应该是字符串。\n"
+
+#, c-format
+msgid "Option %s not implemented: IGNORED."
+msgstr "选项%s未实现：已忽略。"
+
+msgid "Option -v7 added."
+msgstr "选项 -v7 已添加。"
+
+#, c-format
+msgid ""
+"%s: Name conflict: it is not possible to save variable with name %s "
+"(ignored)."
+msgstr "%s：名称冲突：无法保存名称为%s（已忽略）的变量。"
+
+msgid "Attempt to write an unsupported data type to a binary file."
+msgstr "尝试将不支持的数据类型写入二进制文件。"
+
+msgid "savematfile: No variable to save => No file written."
+msgstr "avematfile：没有要保存的变量=>没有进行写文件操作。"
+
+#, c-format
+msgid "%s: Could not open file '%s'.\n"
+msgstr "%s：无法打开文件'%s'。\n"
+
+#, c-format
+msgid "savematfile: could not write variable %s.\n"
+msgstr "savematfile：无法写入变量%s。\n"
+
+#, c-format
+msgid ""
+"%s: Variable %s can not be saved in MAT-file version %s (type %d "
+"unsupported): IGNORED.\n"
+msgstr "%s：变量%s无法保存在MAT文件版本%s中（不支持类型%d）：已忽略。\n"

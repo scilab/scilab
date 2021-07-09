@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-10-30 12:53+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2020-08-16 03:18+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: zh_CN\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -35,20 +35,44 @@ msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
 msgid "Scilab sound module not installed.\n"
 msgstr "Scilab sound模块没有被安装。\n"
 
-msgid "Sound file handling"
+# File: modules/sound/demos/mapsound.dem.sce, line: 29
+msgid "<html><h4>Example #1: Standard</h4>"
 msgstr ""
+
+#
+# File: modules/sound/demos/mapsound.dem.sce, line: 42
+msgid "Next example"
+msgstr ""
+
+#
+# File: modules/sound/demos/mapsound.dem.sce, line: 78
+msgid "Next exampleStop"
+msgstr ""
+
+#
+# File: modules/sound/demos/mapsound.dem.sce, line: 91
+msgid "<html><h4>Example #3: chimes.wav sound</h4>"
+msgstr ""
+
+#
+# File: modules/sound/demos/mapsound.dem.sce, line: 97
+msgid "End"
+msgstr ""
+
+msgid "Sound file handling"
+msgstr "声音文件句柄"
 
 msgid "FFT on a wav file"
-msgstr ""
+msgstr "对wav文件进行快速傅立叶变换(FFT)"
 
 msgid "Fourier analysis of 0.5 seconds of sound parameters."
-msgstr ""
+msgstr "傅立叶分析0.5秒时的声音参数。"
 
 msgid "A complete picture of the sound."
-msgstr ""
+msgstr "一段完整的声音立方图。"
 
 msgid "see 'mapsound' function"
-msgstr ""
+msgstr "可参看‘mapsound’函数"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -59,36 +83,36 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s：无法打开文件%s。\n"
 
 msgid "Index range must be specified as a scalar or a 2 elements vector."
-msgstr ""
+msgstr "索引范围必须指定为1个标量或2个元素的向量。"
 
 #, c-format
 msgid "%s: File '%s': Unrecognized data format.\n"
-msgstr ""
+msgstr "%s: '%s'文件错误：无法识别的数据格式。\n"
 
 msgid "Sample limit vector must have 2 elements."
-msgstr ""
+msgstr "采样限制向量必须包含2个元素。"
 
 msgid "Sample limits out of range."
 msgstr "采样限制超出范围。"
 
 msgid "Sample limits must be given in ascending order."
-msgstr ""
+msgstr "采样限制向量必须以升序给出。"
 
 msgid "Error in file format."
-msgstr ""
+msgstr "文件格式错误。"
 
 #, c-format
 msgid "%s: File '%s' is not a .au sound file.\n"
-msgstr ""
+msgstr "%s：'%s'文件并不是一个.au类声音文件。\n"
 
 msgid "Error while reading sound file."
-msgstr ""
+msgstr "在读取声音文件时发生错误。"
 
 msgid "Unrecognized data format."
 msgstr "无法识别的数据格式。"
 
 msgid "Truncated data file."
-msgstr ""
+msgstr "数据文件被截断。"
 
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"
@@ -98,7 +122,7 @@ msgid "Data array must have 1- or 2-dimensions only."
 msgstr "数据数组必须只能有1维或2维。"
 
 msgid "Data clipped during write to file."
-msgstr ""
+msgstr "在写入文件时数据呗截断。"
 
 msgid "Error while writing sound file."
 msgstr "写声音文件时出错。"
@@ -118,33 +142,56 @@ msgstr "%s：输出参数的数目错误。\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s：输出参数的数目错误。\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Function expected.\n"
+msgstr "%s：第%d个参数错误：应该为%s。\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: A colormap function expected.\n"
+msgstr "%s：第%d参数错误：应该是一个小数。\n"
+
+#
+# File: modules/sound/macros/mapsound.sci, line: 126
+msgid "Time [s]"
+msgstr ""
+
+#
+# File: modules/sound/macros/mapsound.sci, line: 127
+msgid "Frequency [Hz]"
+msgstr ""
+
+#
+# File: modules/sound/macros/mapsound.sci, line: 137
+msgid "Amplitude"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Argument #%d: %s expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该为%s。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
-msgstr ""
+msgstr "%s：第%d参数错误：必须大于等于%d。\n"
 
 #, c-format
 msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：'%s'只是一个目录。其实应该是一个文件。\n"
 
 #, c-format
 msgid "%s: Argument #%d: The file '%s' does not exist.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：'%s'文件不存在。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal number expected.\n"
-msgstr ""
+msgstr "%s：第%d参数错误：应该是一个小数。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：其值必须大于%d。\n"
 
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
@@ -173,21 +220,22 @@ msgstr "值需要2D值。"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为%d×%d的矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该为实数矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数错误：其值必须大于等于%d。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
 "vector of %d integers.\n"
-msgstr "%s：输入参数#%d的值错误：必须为%s或%s，一个整数，或者一个含有%d整数的向量。\n"
+msgstr ""
+"%s：输入参数#%d的值错误：必须为%s或%s，一个整数，或者一个含有%d整数的向量。\n"
 
 #, c-format
 msgid ""
@@ -197,7 +245,7 @@ msgstr "%s：输入参数的值错误：索引范围必须制定为一个标量�
 
 #, c-format
 msgid "%s: The file '%s' does not exist.\n"
-msgstr ""
+msgstr "%s：'%s'文件并不存在。\n"
 
 msgid ".wav file does not contain the RIFF identifier."
 msgstr ".wav文件不包含RIFF标识。"
@@ -216,8 +264,7 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s：发生了一个错误：不支持%s。\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr "%s：发生了一个错误：不正确的文件格式。读<%s>区块时出错。\n"
 
 msgid "Invalid .wav file: found data before format information."
@@ -228,7 +275,7 @@ msgstr "在RIFF文件中有不正确的块（chunk）大小信息。"
 
 #, c-format
 msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
-msgstr ""
+msgstr "%s：第%d格式的wav文件已被弃用。目前仅支持第 %s 种的wav格式。\n"
 
 msgid "Error reading wav file."
 msgstr "读wav文件时发生错误。"
@@ -237,8 +284,9 @@ msgstr "读wav文件时发生错误。"
 msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr "%s：一个错误发生：不支持格式%s的数据压缩。\n"
 
+#, fuzzy
 msgid "Cannot read .wav file  with more than 32 bits per sample."
-msgstr "无法读每个采样超过32位的.wav文件。"
+msgstr "无法读每个采样超过16位的.wav文件。"
 
 msgid "Sample limit vector must have 2 entries."
 msgstr "采样限制向量必须有2个入口。"

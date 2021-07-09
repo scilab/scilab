@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-12-11 12:47+0000\n"
+"PO-Revision-Date: 2020-02-24 14:37+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -75,6 +75,12 @@ msgstr "%s: Парные узлы или все узлы лежат на одн�
 msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
 msgstr ""
 "%s: Неверное количество выходных аргументов: ожидалось %d, %d или %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s: Неверный размер входных параметров №%d и №%d: ожидался одинаковый "
+"размер.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
@@ -192,42 +198,43 @@ msgstr "%ls: Предупреждение:  нехватка ранга матр
 #, c-format
 msgid "%s: Wrong value for input argument #%d: incorrect element #%d\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: некорректный элемент №%d\n"
 
 #, c-format
 msgid "%s: last connected component of boundary is not closed\n"
-msgstr ""
+msgstr "%s: последний соединённый компонент интервала не близок\n"
 
 #, c-format
 msgid "%s: some points are identical.\n"
-msgstr ""
+msgstr "%s: некоторые точки идентичны.\n"
 
 #, c-format
 msgid "%s: wrong boundary array.\n"
-msgstr ""
+msgstr "%s: неверный массив границ.\n"
 
 #, c-format
 msgid "%s: crossed boundary.\n"
-msgstr ""
+msgstr "%s: пересечённые границы.\n"
 
 #, c-format
 msgid "%s: wrong orientation of the boundary.\n"
-msgstr ""
+msgstr "%s: неверная ориентация границ.\n"
 
 #, c-format
 msgid "%s: size limitation.\n"
-msgstr ""
+msgstr "%s: ограничение размера.\n"
 
 #, c-format
 msgid "%s: an interior point is on the boundary.\n"
-msgstr ""
+msgstr "%s: внутренняя точка находится внутри границ.\n"
 
 #, c-format
 msgid "%s: an interior point is too close to the boundary.\n"
-msgstr ""
+msgstr "%s: внутренняя точка слишком близка к границе.\n"
 
 #, c-format
 msgid "%s: some points are identical or size limitation.\n"
-msgstr ""
+msgstr "%s: некоторые точки идентичны или ограничение размера.\n"
 
 #, c-format
 msgid ""
@@ -320,40 +327,79 @@ msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
 msgstr ""
 "%s: Неверное количество входных аргументов: должно быть между %d и %d.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Real numbers expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидается две строки.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Vector expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор.\n"
+
+#
+# File: modules/interpolation/macros/interp1.sci, line: 53
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
+msgid "%s: Argument #%d: Nan value forbidden.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: At least 2 elements expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d : ожидался размер не менее 2.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: vector or at least 2 rows expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался вектор размером не "
+"меньше 2.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex numbers expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидается вектор или матрица.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидается массив вещественных "
-"чисел.\n"
+"%s: Неверный размер входных параметров №%d и №%d: ожидался одинаковый "
+"размер.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
 msgstr ""
-"%s: Неверное значение входного аргумента №%d: ожидались вещественные числа, "
-"однако найдены значения NaN.\n"
+"%s: Неверный размер входных параметров №%d и №%d: ожидался одинаковый "
+"размер.\n"
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal numbers expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента #%d: Ожидалось '%s', '%s' или "
-"'%s'.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
+#
+# File: modules/interpolation/macros/interp1.sci, line: 138
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or real expected.\n"
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
 msgstr ""
-"%s: Неверное значение входного аргумента №%d: ожидается '%s' или "
-"вещественное число.\n"
+
+#
+# File: modules/interpolation/macros/interp1.sci, line: 166
+#, c-format
+msgid "%s: Argument #%d: periodicity y($)==y(1) expected.\n"
+msgstr ""
+
+#
+# File: modules/interpolation/macros/interp1.sci, line: 168
+#, c-format
+msgid "%s: Argument #%d: periodicity y($,:)==y(1,:) expected.\n"
+msgstr ""
+
+#
+# File: modules/interpolation/macros/interp1.sci, line: 197
+#, c-format
+msgid "%s: Argument #%d: scalar number or one of {%s} expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
@@ -361,12 +407,39 @@ msgstr "%s: Неверный размер входного аргумента �
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d или %d.\n"
 
 #, c-format
 msgid "%s: all points are coincident.\n"
-msgstr ""
+msgstr "%s: все точки сходятся.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного аргумента №%d: ожидается массив вещественных "
+#~ "чисел.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Reals expected but some NaN "
+#~ "found.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного аргумента №%d: ожидались вещественные "
+#~ "числа, однако найдены значения NaN.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного аргумента #%d: Ожидалось '%s', '%s' или "
+#~ "'%s'.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' or real expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного аргумента №%d: ожидается '%s' или "
+#~ "вещественное число.\n"

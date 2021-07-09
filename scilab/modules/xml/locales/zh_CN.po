@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 20:07+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2020-08-22 15:47+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: zh_CN\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -23,7 +23,7 @@ msgstr "%s：无法读取第%d个输入参数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A %s expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是%s。\n"
 
 #, c-format
 msgid "%s: XML object does not exist.\n"
@@ -46,61 +46,63 @@ msgid ""
 "%s: Cannot read the file:\n"
 "%s"
 msgstr ""
+"%s：无法读取文件：\n"
+"%s"
 
 #, c-format
 msgid ""
 "%s: Cannot parse the string:\n"
 "%s"
 msgstr ""
+"%s：无法解析文件：\n"
+"%s"
 
 #, c-format
 msgid "%s: XML Document does not exist.\n"
-msgstr ""
+msgstr "%s：XML文档不存在。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是字符串或者布尔量。\n"
 
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数维度错误：应该是字符串。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为非空字符串。\n"
 
 #, c-format
-msgid ""
-"%s: The XML Document has not an URI and there is no second argument.\n"
-msgstr ""
+msgid "%s: The XML Document has not an URI and there is no second argument.\n"
+msgstr "%s：XML文档没有URI，且没有第二个参数。\n"
 
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: A boolean expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数维度错误：应该是一个布尔量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为布尔型。\n"
 
 #, c-format
 msgid "%s: Cannot write the file: %s\n"
-msgstr ""
+msgstr "%s：无法写入文件：%s\n"
 
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: A real scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数维度错误：应该是实数。\n"
 
 #, c-format
 msgid "%s: XML attribute does not exist.\n"
-msgstr ""
+msgstr "%s：XML属性不存在。\n"
 
 #, c-format
 msgid "%s: XMLList does not exist.\n"
-msgstr ""
+msgstr "%s：XMLList不存在。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr "%s：第%d个输入参数的值出错：应该为‘%s’、‘%s’或‘%s’。\n"
 
 #, c-format
@@ -110,7 +112,7 @@ msgstr "%s：第%d个输入参数的维数错误：应该为字符串或双精�
 
 #, c-format
 msgid "%s: Unknown field: %s\n"
-msgstr ""
+msgstr "%s：未知的字段：%s\n"
 
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: Single double expected.\n"
@@ -122,267 +124,278 @@ msgstr "%s：第%d个输入参数的类型错误：应该为双精度型。\n"
 
 #, c-format
 msgid "%s: Wrong index in the XMLList.\n"
-msgstr ""
+msgstr "%s：XMLList中的索引错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: XMLList or XMLSet expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是XMLList 或者 XMLSet类型。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: string or single integer expected\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是字符串或者整数类型\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: string or single integer expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是字符串胡子和整数类型。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为双精度浮点数。\n"
 
 #, c-format
 msgid "%s: xmlFormat must return a string.\n"
-msgstr ""
+msgstr "%s：xmlFormat必须返回一个字符串。\n"
 
 #, c-format
 msgid "%s: You must define %%s_xmlFormat function.\n"
-msgstr ""
+msgstr "%s：您必须定义%%s_xmlFormat 函数。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该至少%d个。\n"
 
 #, c-format
 msgid "%s: XML element does not exist.\n"
-msgstr ""
+msgstr "%s：XML元素不存在。\n"
 
 #, c-format
 msgid "%s: XML Namespace does not exist.\n"
-msgstr ""
+msgstr "%s：XML命名空间不存在。\n"
 
 #, c-format
 msgid "%s: XML document does not exist.\n"
-msgstr ""
+msgstr "%s：XML文档不存在。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%i: XMLSet or XMLList expected.\n"
-msgstr ""
+msgstr "%s：第%i个输入参数类型错误：应该是XMLSet 或者 XMLList类型。\n"
 
 #, c-format
 msgid "%s: XMLSet or XMLList does not exist.\n"
-msgstr ""
+msgstr "%s：XMLSet或XMLList不存在。\n"
 
 #, c-format
 msgid "%s: XML validation file does not exist.\n"
-msgstr ""
+msgstr "%s：XML验证文件不存在。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A %s expected\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为%s类型\n"
 
 #, c-format
 msgid "%s: Bad input argument #%d: A valid XML name expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数错误：应该为有效的XML名称。\n"
 
 #, c-format
 msgid "%s: Can not read named argument %s.\n"
-msgstr ""
+msgstr "%s：无法读取命名参数%s。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%i: XMLSet, XMLList, XMLAttr or XMLElem "
 "expected.\n"
 msgstr ""
+"%s：第%i个输入参数类型错误：应该为XMLSet，XMLList，XMLAttr或XMLElem中的一"
+"个。\n"
 
 #, c-format
 msgid "%s: XMLAttr does not exist.\n"
-msgstr ""
+msgstr "%s：XMLAttr不存在。\n"
 
 #, c-format
 msgid "%s: XMLElem does not exist.\n"
-msgstr ""
+msgstr "%s：XMLElem不存在。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong dimensions for input argument #%d: A single boolean or string "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为单个布尔值或字符串。\n"
 
 #, c-format
 msgid "%s: Invalid number of input arguments.\n"
-msgstr ""
+msgstr "%s：输入参数数目无效。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A XMLElem or a XMLList or a XMLSet "
 "expected.\n"
 msgstr ""
+"%s：第%d个输入参数类型错误：应该为XMLElem ， XMLList 或者 XMLSet中的一种。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A XMLAttr or a XMLElem or a XMLList "
 "or a XMLSet expected.\n"
 msgstr ""
+"%s：第%d个输入参数类型错误：应该为XMLAttr ，XMLElem，XMLList 或者XMLSet 中的"
+"一种。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matrix nx2 or nx3 of strings "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是nx2或者nx3的字符串矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of strings or a XMLDoc "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是字符串矩阵或者XMLDoc类型。\n"
 
 #, c-format
 msgid ""
 "The file %s is not valid:\n"
 "%s\n"
 msgstr ""
+"文件%s是无效的：\n"
+"%s\n"
 
 #, c-format
 msgid "%s: Cannot write the file.\n"
-msgstr ""
+msgstr "%s：无法写文件。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是XMLDoc或者XMLElem类型。\n"
 
 #, c-format
 msgid "%s: Bad number of columns for argument #%d: two expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数列数错误：应该是2。\n"
 
 #, c-format
 msgid ""
 "%s: Bad XPath query:\n"
 "%s"
 msgstr ""
+"%s：错误的XPath域：\n"
+"%s"
 
 #, c-format
 msgid "%s: XPath query returned a not handled type: %i\n"
-msgstr ""
+msgstr "%s：XPath查询返回了一个未处理的类型：%i\n"
 
 msgid "Invalid file name: "
-msgstr ""
+msgstr "无效的文件名： "
 
 msgid "Cannot create a parser context"
-msgstr ""
+msgstr "无法创建解析内容"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%i: A double expected.\n"
-msgstr ""
+msgstr "%s：第%i个输入参数类型错误：应该为双精度浮点数。\n"
 
 #, c-format
 msgid "%s: Error in getting rhs argument.\n"
-msgstr ""
+msgstr "%s：获取rhs参数时出错。\n"
 
 msgid "Unknown tag.\n"
-msgstr ""
+msgstr "未知的标签。\n"
 
 msgid " at line "
-msgstr ""
+msgstr " 在行 "
 
 msgid "Cannot create a buffer"
-msgstr ""
+msgstr "无法创建缓冲区"
 
 msgid "Cannot create a reader"
-msgstr ""
+msgstr "无法创建读句柄"
 
 msgid "Invalid file"
-msgstr ""
+msgstr "无效文件"
 
 msgid "Cannot parse the DTD"
-msgstr ""
+msgstr "无法解析DTD"
 
 msgid "Cannot create a valid context"
-msgstr ""
+msgstr "无法创建爱你一个有效的内容"
 
 msgid ""
 "Due to a libxml2 limitation, it is not possible to validate a document "
 "against an external DTD\n"
 "Please see help xmlValidate.\n"
 msgstr ""
+"由于libxml2的限制，无法针对外部DTD验证文档\n"
+"请参阅xmlValidate帮助。\n"
 
 msgid "Cannot create a validation context"
-msgstr ""
+msgstr "无法创建验证内容"
 
 msgid "Cannot parse the Relax NG grammar"
-msgstr ""
+msgstr "无法解析Relax NG语法"
 
 msgid "Cannot parse the schema"
-msgstr ""
+msgstr "无法解析架构"
 
 msgid "Cannot read the stream"
-msgstr ""
+msgstr "无法读取流"
 
 #, c-format
 msgid "%s: No root element.\n"
-msgstr ""
+msgstr "%s：没有根节点。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%i: string expected.\n"
-msgstr ""
+msgstr "%s：第%i个输入参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type to set %s field.\n"
-msgstr ""
+msgstr "%s：设置%s字段类型错误。\n"
 
 #, c-format
 msgid "%s: Not valid xml for root.\n"
-msgstr ""
+msgstr "%s：无效的xml根节点。\n"
 
 #, c-format
 msgid "%s: Field %s is not modifiable: %s\n"
-msgstr ""
+msgstr "%s：字段%s不可修改：%s\n"
 
 msgid "CML read"
-msgstr ""
+msgstr "CML读取"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Invalid %s file.\n"
-msgstr ""
+msgstr "%s：无效的%s文件。\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr ""
+msgstr "%s：文件%s不存在。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为XMLDoc。\n"
 
 #, c-format
 msgid "%s: Invalid XPath request.\n"
-msgstr ""
+msgstr "%s：无效的XPath请求。\n"
 
 #, c-format
 msgid "%s: Invalid XPath request."
-msgstr ""
+msgstr "%s：无效的XPath请求。"
 
 #, c-format
 msgid "%s: Target node is not a XML_ELEMENT_NODE."
-msgstr ""
+msgstr "%s：目标节点不是XML_ELEMENT_NODE。"
 
 #, c-format
 msgid "%s: Invalid attribute name: %s."
-msgstr ""
+msgstr "%s：无效的属性名：%s。"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为2xN矩阵。\n"
 
 #, c-format
 msgid "%s: Invalid XConfiguration.xml file.\n"
-msgstr ""
+msgstr "%s：无效的XConfiguration.xml文件。\n"

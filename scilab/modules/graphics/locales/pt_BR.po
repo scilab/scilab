@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-18 22:00+0000\n"
+"PO-Revision-Date: 2020-02-24 18:54+0000\n"
 "Last-Translator: Roberto Coelho de Berredo <rcberredo@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -123,11 +123,9 @@ msgstr ""
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s: Argumento opcional deslocado: %dº deve estar na posição %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o %dº argumento de entrada: esperava-se uma "
-"matriz %d x %d ou %d x %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
@@ -201,14 +199,6 @@ msgstr "%s: Valor incorreto para %s '%c': esperava-se '%s', '%s' e '%s'.\n"
 #, c-format
 msgid ""
 "%s: Wrong number of columns for input argument #%d: at least %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Could not read property '%s' for console object.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to get useful path from this handle.\n"
 msgstr ""
 
 #, c-format
@@ -538,6 +528,14 @@ msgstr ""
 "%s: Tipo incorreto para o %dº argumento de entrada: esperava-se um número "
 "inteiro não-negativo.\n"
 
+#
+# File: modules/graphics/sci_gateway/c/sci_xname.c, line: 49
+#, c-format
+msgid ""
+"%s is obsolete. It will be removed from Scilab %s.\n"
+"Please use %s instead.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
@@ -637,6 +635,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to get useful path from this handle.\n"
 msgstr ""
 
 #, c-format
@@ -834,6 +836,10 @@ msgstr "%s deveria ser um vetor de textos.\n"
 
 #, c-format
 msgid "Unknown property: %s.\n"
+msgstr "Propriedade desconhecida: %s.\n"
+
+#, fuzzy, c-format
+msgid "Read-only property: %s.\n"
 msgstr "Propriedade desconhecida: %s.\n"
 
 #, c-format
@@ -1447,8 +1453,6 @@ msgstr ""
 msgid "histplot"
 msgstr ""
 
-#
-# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 18
 msgid "bar3d"
 msgstr ""
 
@@ -1625,9 +1629,7 @@ msgstr "%s: %dº argumento de entrada : tem que estar no intervalo %s.\n"
 msgid "April"
 msgstr ""
 
-#
-# File: modules/graphics/macros/bar3d.sci, line: 29
-msgid "Febuary"
+msgid "February"
 msgstr ""
 
 msgid "January"
@@ -1875,6 +1877,34 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Axes handle or vector of decimal numbers expected.\n"
+msgstr "%s: Tipo incorreto para o argumento %d: esperava-se números reais.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Axes handle expected.\n"
+msgstr "%s: Tipo incorreto para o argumento %d: esperava-se números reais.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: incomplete {'name', value} pair.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se pelo menos "
+"%d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: 'x' or 'y' expected.\n"
+msgstr "%s: Tipo incorreto para o argumento %d: esperava-se números reais.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: one word among {%s} expected.\n"
+msgstr "%s: argumento #%d: matriz não vazia esperada.\n"
+
+#
+# File: modules/graphics/macros/cutaxes.sci, line: 91
+#, c-format
+msgid "%s: widths vector: %d components expected.\n"
+msgstr ""
+
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: encontrado um menu de cascata vazio."
 
@@ -2016,6 +2046,16 @@ msgstr ""
 "%s: Tamanho incorreto para o %dº argumento de entrada: esperava-se um número "
 "real.\n"
 
+#
+# File: modules/graphics/macros/getcolor.sci, line: 69
+msgid "Current colormap"
+msgstr ""
+
+#
+# File: modules/graphics/macros/getcolor.sci, line: 72
+msgid "Default colormap"
+msgstr ""
+
 msgid "&File"
 msgstr "&Arquivo"
 
@@ -2033,9 +2073,6 @@ msgstr "Ok"
 
 msgid "Cancel"
 msgstr "Cancelar"
-
-msgid "February"
-msgstr ""
 
 msgid "histplot() : (normalized) histogram plot"
 msgstr "histplot() : (normalizado) histograma"
@@ -2119,13 +2156,13 @@ msgstr ""
 msgid "%s: Argument #%d: Graphic handle(s) of type %s expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: log flags: scalar expected.\n"
-msgstr "%s: argumento #%d: valores não negativos esperados.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: log flags: wrong value. Ignored.\n"
-msgstr "%s: argumento #%d: valores não negativos esperados.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: wrong list() specification for the curve #%d.\n"
@@ -2139,47 +2176,59 @@ msgstr "%s: Erro: não foi capaz de avaliar a função de entrada '%s'."
 msgid "Error %d at line %d of the function: '%s"
 msgstr ""
 
+#
+# File: modules/graphics/macros/plot.sci, line: 314
+#, c-format
+msgid "%s: Plot #%d: Numbers of x columns and of %s must match.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plot.sci, line: 316
+msgid "polynomials"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plot.sci, line: 318
+msgid "rationals"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real vector or colon : expected.\n"
-msgstr "%s: Tipo incorreto para o argumento %d: esperava-se números reais.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Vector expected.\n"
-msgstr "%s: Tipo incorreto para o argumento %d: esperava-se números reais.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real value expected.\n"
-msgstr "%s: argumento #%d: valores não negativos esperados.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Argument #%d: Real matrix or String or Scilab function or list "
 "expected.\n"
 msgstr ""
-"%s: Tipo errado para argumento de entrada #%d: matriz real ou função Scilab "
-"esperada.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Argument #%d(#%d): Identifier of a Scilab or built-in function "
 "expected.\n"
 msgstr ""
-"%s: Tipo errado para argumento de entrada #%d: matriz real ou função Scilab "
-"esperada.\n"
 
 #, c-format
 msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Error %d : in plot called by plotimplicit"
-msgstr "Erro %d: em plot2d chamado por contour2d"
+msgstr ""
 
 #, c-format
 msgid "%s: '%s' cannot be used with '%s'.\n"
@@ -2231,6 +2280,68 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong type of graphic handle: '%s' expected.\n"
+msgstr "%s: argumento #%d: valores não negativos esperados.\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
+msgstr ""
+"%s: Argumentos de entrada %dº e %dº incompatíveis: esperava-se o mesmo "
+"número de linhas.\n"
+
+#
+# File: modules/graphics/macros/scatter3d.sci, line: 176
+# File: modules/graphics/macros/scatter3d.sci, line: 179
+#, c-format
+msgid ""
+"%s: Argument #%d: Wrong value. Please check allowed syntaxes and values.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be >= %d.\n"
+msgstr "%s: %dº argumento de entrada : tem que estar no intervalo %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Number(s) or text expected.\n"
+msgstr "%s: Tipo incorreto para o argumento %d: esperava-se números reais.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong size: one or %d colors expected.\n"
+msgstr "%s: argumento #%d: valores não negativos esperados.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Number or text expected.\n"
+msgstr "%s: Tipo incorreto para o argumento %d: esperava-se números reais.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong marker id.\n"
+msgstr "%s: argumento #%d: matriz não vazia esperada.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: keyword or property name expected.\n"
+msgstr "%s: argumento #%d: matriz não vazia esperada.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Unknown property name '%s'.\n"
+msgstr "%s: %dº argumento de entrada : tem que estar no intervalo %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Value missing for the given property.\n"
+msgstr "%s: %dº argumento de entrada : tem que estar no intervalo %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong marker specification.\n"
+msgstr "%s: argumento #%d: matriz não vazia esperada.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Non-negative integers expected.\n"
+msgstr "%s: argumento #%d: valores não negativos esperados.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers in %s expected.\n"
+msgstr "%s: argumento #%d: valores não negativos esperados.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
@@ -2359,74 +2470,3 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: Valor errado dado por %s."
-
-#, c-format
-#~ msgid "%s: Wrong type for curve user_data field: a struct expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo inválido para campo curva user_data: esperava-se uma estrutura.\n"
-
-#~ msgid "Square mark, boxed label"
-#~ msgstr "Marca quadrada, rótulo em caixa"
-
-#~ msgid "Square mark, simple label"
-#~ msgstr "Marca quadrada, rótulo simples"
-
-#~ msgid "Square mark, no label"
-#~ msgstr "Marca quadrada, sem rótulo"
-
-#~ msgid "Directional arrow, boxed label"
-#~ msgstr "Seta direcional, rótulo em caixa"
-
-#~ msgid "Directional arrow, simple label"
-#~ msgstr "Seta direcional, rótulo simples"
-
-#~ msgid "Directional arrow, no label"
-#~ msgstr "Seta direcional, sem rótulo"
-
-#~ msgid "Select tip style"
-#~ msgstr "Selecione o estilo da ponta"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo incorreto para o %dº argumento de entrada: esperava-se um "
-#~ "escalar booleano.\n"
-
-#~ msgid "Datatips style"
-#~ msgstr "Estilo de anotações de dados"
-
-#~ msgid "Marker style:"
-#~ msgstr "Estilo de marcadores"
-
-#~ msgid "Square"
-#~ msgstr "Quadrado"
-
-#~ msgid "Arrow"
-#~ msgstr "Seta"
-
-#~ msgid "Labeled?"
-#~ msgstr "Rotulado?"
-
-#~ msgid "Yes"
-#~ msgstr "Sim"
-
-#~ msgid "No"
-#~ msgstr "Não"
-
-#~ msgid "Boxed?"
-#~ msgstr "Em caixa?"
-
-#~ msgid "Positionning?"
-#~ msgstr "Posicionamento?"
-
-#~ msgid "Knots"
-#~ msgstr "Nós"
-
-#~ msgid "Interpolated"
-#~ msgstr "Interpolado"
-
-#~ msgid "Allow multiple datatips?"
-#~ msgstr "Permitir múltiplas anotações de dados?"
-
-#~ msgid "Edit label generator"
-#~ msgstr "Editar gerador de rótulos"

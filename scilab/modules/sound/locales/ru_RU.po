@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: sound-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-10-30 08:54+0000\n"
-"Last-Translator: Aleksey Kabanov <Unknown>\n"
+"PO-Revision-Date: 2020-02-24 15:44+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: ru\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -36,6 +36,30 @@ msgstr "%s: Неверный входной параметр №%d: ожидал
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Модуль «Sound» не установлен.\n"
+
+# File: modules/sound/demos/mapsound.dem.sce, line: 29
+msgid "<html><h4>Example #1: Standard</h4>"
+msgstr ""
+
+#
+# File: modules/sound/demos/mapsound.dem.sce, line: 42
+msgid "Next example"
+msgstr ""
+
+#
+# File: modules/sound/demos/mapsound.dem.sce, line: 78
+msgid "Next exampleStop"
+msgstr ""
+
+#
+# File: modules/sound/demos/mapsound.dem.sce, line: 91
+msgid "<html><h4>Example #3: chimes.wav sound</h4>"
+msgstr ""
+
+#
+# File: modules/sound/demos/mapsound.dem.sce, line: 97
+msgid "End"
+msgstr ""
 
 msgid "Sound file handling"
 msgstr "Обработка звукового файла"
@@ -125,33 +149,56 @@ msgstr "%s: Неверное количество выходных параме�
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Неверное количество выходных параметров.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Function expected.\n"
+msgstr "%s: Аргумент №%d: ожидался %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: A colormap function expected.\n"
+msgstr "%s: Аргумент №%d: ожидалось десятичное число.\n"
+
+#
+# File: modules/sound/macros/mapsound.sci, line: 126
+msgid "Time [s]"
+msgstr ""
+
+#
+# File: modules/sound/macros/mapsound.sci, line: 127
+msgid "Frequency [Hz]"
+msgstr ""
+
+#
+# File: modules/sound/macros/mapsound.sci, line: 137
+msgid "Amplitude"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
 
 #, c-format
 msgid "%s: Argument #%d: %s expected.\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: ожидался %s.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: должен быть >= %d.\n"
 
 #, c-format
 msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: '%s' является директорией. Ожидался файл.\n"
 
 #, c-format
 msgid "%s: Argument #%d: The file '%s' does not exist.\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: файл '%s' не существует.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal number expected.\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: ожидалось десятичное число.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: должен быть > %d.\n"
 
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
@@ -209,7 +256,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: The file '%s' does not exist.\n"
-msgstr ""
+msgstr "%s: Файл '%s' не существует.\n"
 
 msgid ".wav file does not contain the RIFF identifier."
 msgstr ".wav файл не содержит идентификатора RIFF."
@@ -228,8 +275,7 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Произошла ошибка: %s не подерживается.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Произошла ошибка: неверный формат файла. Ошибка чтения блока <%s>.\n"
 
@@ -241,7 +287,7 @@ msgstr "Некорректная информация о размере блок
 
 #, c-format
 msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
-msgstr ""
+msgstr "%s: wav-формат %d обнаружен. Поддерживаются только wav-форматы №%s.\n"
 
 msgid "Error reading wav file."
 msgstr "Ошибка чтения wav файла."
@@ -250,12 +296,12 @@ msgstr "Ошибка чтения wav файла."
 msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr "%s: Произошла ошибка: формат сжатия данных %s не поддерживается.\n"
 
+#, fuzzy
 msgid "Cannot read .wav file  with more than 32 bits per sample."
-msgstr "Не удалось прочитать .wav файл с более чем 32-я битами на сэмпл."
+msgstr "Не удалось прочитать .wav файл с более чем 16-ю битами на сэмпл."
 
 msgid "Sample limit vector must have 2 entries."
-msgstr ""
-"Вектор границ сэмплов (Sample limit vector) должен иметь два элемента."
+msgstr "Вектор границ сэмплов (Sample limit vector) должен иметь два элемента."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Неверные границы сэмплов (нужно указывать их по возрастанию)."

@@ -8,383 +8,389 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-09-01 09:38+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2020-09-06 12:33+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real or integer matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是实数或整数矩阵。\n"
 
 #, c-format
 msgid "%s : inconsistent dimensions between arguments.\n"
-msgstr ""
+msgstr "%s：参数之间的维度不一致。\n"
 
 #, c-format
 msgid "%s : bad dimension for argument #%d.\n"
-msgstr ""
+msgstr "%s：第%d个参数的维度错误。\n"
 
 #, c-format
 msgid "%s : arguments must have the same length.\n"
-msgstr ""
+msgstr "%s：参数必须具有相同的长度。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
-msgstr ""
+msgstr "%s：第一个参数必须是scicos_block类型的list变量。\n"
 
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
-msgstr ""
+msgstr "%s：第一个参数必须是有效的scicos_block类型的list变量。\n"
 
 #, c-format
 msgid "%s : Second argument must be scalar.\n"
-msgstr ""
+msgstr "%s：第二个参数必须是标量。\n"
 
 #, c-format
 msgid "%s : Third argument must be scalar.\n"
-msgstr ""
+msgstr "%s：第三个参数必须是标量。\n"
 
 #, c-format
 msgid "%s: scicosim is not running.\n"
-msgstr ""
+msgstr "%s：scicosim未运行。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为实数矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real, complex or integer matrix "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为实数，复数或者整数矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Only hypermatrices with 3 dimensions "
 "are allowed.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：只允许维度为3的超矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为实数。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是一个标量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : A real value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为实数。\n"
 
 #, c-format
 msgid "%s: 1st and 2nd argument must have equal size\n"
-msgstr ""
+msgstr "%s：第一个和第二个参数大小必须一致\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 msgid ""
 "\n"
 "getscicosvars: utility function to retrieve\n"
 msgstr ""
+"\n"
+"getscicosvars：常用函数检索\n"
 
 msgid ""
 "                scicos arrays during simulation.\n"
 "\n"
 msgstr ""
+"                仿真期间的scicos数组。\n"
+"\n"
 
 msgid ""
 "Usage: [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
 "\n"
 msgstr ""
+"用法：[myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
+"\n"
 
 msgid "- myvar: an int32 or double matrix or a Tlist.\n"
-msgstr ""
+msgstr "-myvar：int32或双矩阵或Tlist。\n"
 
 msgid "- [\"str1\";\"str2\",...] is a string matrix\n"
-msgstr ""
+msgstr "-[\"str1\";\"str2\",...]是一个字符串矩阵\n"
 
 msgid "  that must be informed with the following values:\n"
-msgstr ""
+msgstr "  必须提供以下值：\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为一个字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Undefined field in string matrix position: %d.\n"
-msgstr ""
+msgstr "%s：未定义字段在字符串矩阵中的位置是：第%d个。\n"
 
 #, c-format
 msgid "%s: Error with parameter \"%s\".\n"
-msgstr ""
+msgstr "%s：参数“%s”出错。\n"
 
 #, c-format
 msgid "%s : First argument must be a Typed list.\n"
-msgstr ""
+msgstr "%s：第一个参数必须是list类型。\n"
 
 #, c-format
 msgid "%s : unknown block : %s\n"
-msgstr ""
+msgstr "%s：未知的块：%s\n"
 
 #, c-format
 msgid "%s : type 1 function not allowed for scilab blocks\n"
-msgstr ""
+msgstr "%s：scilab块已不允许使用类型为1的计算函数\n"
 
 #, c-format
 msgid "%s : type 2 function not allowed for scilab blocks\n"
-msgstr ""
+msgstr "%s：scilab块已不允许使用类型为2的计算函数\n"
 
 #, c-format
 msgid "%s : Undefined Function type\n"
-msgstr ""
+msgstr "%s：未定义的函数类型\n"
 
 #, c-format
 msgid "%s : Undetermined Size. in(%d)=%d. Please adjust your model.\n"
-msgstr ""
+msgstr "%s：不确定的大小。 in(%d)=%d.。 请调整您的模型。\n"
 
 #, c-format
 msgid "%s : Allocation error.\n"
-msgstr ""
+msgstr "%s：分配错误。\n"
 
 #, c-format
 msgid "%s : Undetermined Size. in2(%d)=%d. Please adjust your model.\n"
-msgstr ""
+msgstr "%s：不确定的大小。 in2(%d)=%d.。 请调整您的模型。\n"
 
 #, c-format
 msgid "%s : Undetermined Size. intyp(%d)=%d. Please adjust your model.\n"
-msgstr ""
+msgstr "%s：不确定的大小。 intyp(%d)=%d.。 请调整您的模型。\n"
 
 #, c-format
 msgid "%s : Unknown Data type\n"
-msgstr ""
+msgstr "%s：未知的数据类型\n"
 
 #, c-format
 msgid "%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"
-msgstr ""
+msgstr "%s：不确定的大小。 out(%d)=%d.。 请调整您的模型。\n"
 
 #, c-format
 msgid "%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"
-msgstr ""
+msgstr "%s：不确定的大小。 out2(%d)=%d.。 请调整您的模型。\n"
 
 #, c-format
 msgid "%s : Undetermined Size. outtyp(%d)=%d. Please adjust your model.\n"
-msgstr ""
+msgstr "%s：不确定的大小。outtyp(%d)=%d.。 请调整您的模型。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该至少%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s： 第%d输入参数类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为%s。\n"
 
 #, c-format
 msgid "%s: Unable to load \"%s\" .\n"
-msgstr ""
+msgstr "%s：无法加载\"%s\" 。\n"
 
 #, c-format
 msgid "%s: Unable to save \"%s\" .\n"
-msgstr ""
+msgstr "%s：无法保存\"%s\" 。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A real scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数大小错误：应该是实数。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : An integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数的值错误：应该是整数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be one of %ls.\n"
-msgstr ""
+msgstr "%s：第%d个参数的值错误：应该%ls中的一个。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"
-msgstr ""
+msgstr "%s：第%d个参数的值错误：不能被设置为“%ls”。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数大小错误：应该为行向量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
-msgstr ""
+msgstr "%s：第%d个参数的值错误：无法“%ls”类型。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：其大小应该为%dx%d。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: invalid UID.\n"
-msgstr ""
+msgstr "%s：第%d个参数的值错误：无效的UID。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: not handled kind.\n"
-msgstr ""
+msgstr "%s：第%d个参数的值错误：无法处理的类型。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该至少为 %d 个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or ID expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该是字符串或者ID。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该是tlist类型。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : %d elements expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该有%d个元素。\n"
 
 #, c-format
 msgid "%s: Wrong type for element #%d of argument #%d : A matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个元素(第%d个参数中)类型错误：应该是矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for element #%d of argument #%d : A list expected.\n"
-msgstr ""
+msgstr "%s：第%d个元素(第%d个参数中)类型错误：应该是list类型。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为矩阵。\n"
 
 #, c-format
 msgid "%s : Incompatible sim.nb RHS parameter.\n"
-msgstr ""
+msgstr "%s：sim.nb 和 RHS参数不兼容。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of argument #%d : A string matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个元素(第%d个参数中)类型错误：应该是字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s：内存分配错误。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是%s, %s %s %s 或者 %s中的一个。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : %d to %d elements expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该有%d到%d个。\n"
 
 #, c-format
 msgid "%s : error in cross variable size checking : %d\n"
-msgstr ""
+msgstr "%s：交叉变量大小检查错误：%d\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for element #%d of input argument #%d : A scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个元素(第%d个输入参数中)类型错误：应该是标量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of input argument #%d : string or macro "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个元素(第%d个输入参数中)类型错误：应该是字符串或者宏脚本。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of element #%d of argument #%d : A matrix "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个和第%d个元素(第%d个输入参数中)类型错误：应该是矩阵。\n"
 
 #, c-format
 msgid "%s : No more free memory.\n"
-msgstr ""
+msgstr "%s：无可用内存。\n"
 
 msgid "scheduling problem"
-msgstr ""
+msgstr "调度问题"
 
 msgid "input to zero-crossing stuck on zero"
-msgstr ""
+msgstr "过零面的输入数据卡在零面上"
 
 msgid "event conflict"
-msgstr ""
+msgstr "事件冲突"
 
 msgid "algebraic loop detected"
-msgstr ""
+msgstr "检测到代数环"
 
 msgid "cannot allocate memory"
-msgstr ""
+msgstr "无法分配内存"
 
 #, c-format
 msgid "the block %d has been called with input out of its domain"
-msgstr ""
+msgstr "块%d的在其作用域外被调用"
 
 msgid "singularity in a block"
-msgstr ""
+msgstr "块中存在奇点"
 
 msgid "block produces an internal error"
-msgstr ""
+msgstr "块内部产生错误"
 
 msgid "initial conditions not converging"
-msgstr ""
+msgstr "初始条件不收敛"
 
 #, c-format
 msgid "cannot allocate memory in block=%d"
-msgstr ""
+msgstr "无法在block = %d中分配内存"
 
 msgid "sliding mode condition, cannot integrate"
-msgstr ""
+msgstr "滑模状态，无法合成"
 
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
-msgstr ""
+msgstr "找不到初始模式，可能存在滑动模式条件"
 
 msgid ""
 "You have changed a parameter in your model, but the model has been compiled "
@@ -392,9 +398,11 @@ msgid ""
 "either recompile your Scicos diagram or [re]launch the initialization "
 "interface to regenerate the XML file  with new parameters."
 msgstr ""
+"您虽然更改了模型中的参数，但是初始模型已编译为包含初始值和参数的XML文件。 因"
+"此，您应该重新编译Scicos图或[重新]启动初始化接口以使用新参数重新生成XML文件。"
 
 msgid "Undefined data type."
-msgstr ""
+msgstr "未定义的数据类型"
 
 msgid ""
 "The number of parameter provided by Scicos blocks is different from what "
@@ -402,61 +410,64 @@ msgid ""
 "relaxed a parameter using FIXED property (i.e., fixed=false) in a Modelica "
 "model. This will be corrected in the next version"
 msgstr ""
+"Scicos块提供的参数数量与Modelica编译器生成的代码所期望的数量不同。这可能是在"
+"Modelica模型中使用了FIXED属性(即，fixed = false)来放宽参数检查 。下一个版本将"
+"对此进行更正"
 
 msgid "unknown or erroneous block"
-msgstr ""
+msgstr "未知或错误的块"
 
 #, c-format
 msgid "integration problem istate=%d"
-msgstr ""
+msgstr "合成问题istate =%d"
 
 msgid "scicos unexpected error, please report..."
-msgstr ""
+msgstr "scicos发生意外错误，请上报..."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是一个向量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : %d or %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是%d或%d。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A struct expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是struct变量。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A single struct expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是单个struct变量。\n"
 
 #, c-format
 msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数字段错误：应该是“%s”或“%s”。\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数大小错误：应该是字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real row vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为一个实数行向量。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为一个行向量。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: At least %dx%d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：其大小至少是 %dx%d 。\n"
 
 msgid "type 1 function not allowed for scilab blocks\n"
-msgstr ""
+msgstr "scilab块已不允许使用类型为1的计算函数\n"
 
 msgid "type 2 function not allowed for scilab blocks\n"
-msgstr ""
+msgstr "scilab块已不允许使用类型为2的计算函数\n"
 
 msgid "Undefined Function type\n"
-msgstr ""
+msgstr "未知的函数类型\n"
 
 #, c-format
 msgid ""
@@ -464,6 +475,9 @@ msgid ""
 "SUNDIALS_ERROR: %s() failed - returned NULL pointer\n"
 "\n"
 msgstr ""
+"\n"
+"SUNDIALS错误：%s()执行失败-将返回NULL指针\n"
+"\n"
 
 #, c-format
 msgid ""
@@ -471,6 +485,9 @@ msgid ""
 "SUNDIALS_ERROR: %s() failed with flag = %d\n"
 "\n"
 msgstr ""
+"\n"
+"SUNDIALS错误：%s()在flag = %d时执行失败\n"
+"\n"
 
 #, c-format
 msgid ""
@@ -478,168 +495,204 @@ msgid ""
 "MEMORY_ERROR: %s() failed - returned NULL pointer\n"
 "\n"
 msgstr ""
+"\n"
+"MEMORY错误：%s()执行失败-将返回NULL指针\n"
+"\n"
 
 #, c-format
 msgid "****SUNDIALS.Cvode from: %f to %f hot= %d  \n"
-msgstr ""
+msgstr "**** SUNDIALS.Cvode从：%f到%f 其hot =%d  \n"
 
 #, c-format
 msgid "****SUNDIALS.Cvode reached: %f\n"
-msgstr ""
+msgstr "****SUNDIALS.Cvode 到达了：%f\n"
 
 #, c-format
 msgid ""
 "****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
 "ATOL)\n"
 msgstr ""
+"**** SUNDIALS.Cvode：在仿真时间=%g处产生了太多的任务(刚性区域，请尝试修改RTOL"
+"和ATOL)\n"
 
 #, c-format
 msgid "root found at t=: %f\n"
-msgstr ""
+msgstr "在t = %f处找到根节点\n"
 
 #, c-format
 msgid "Event: %d activated at t=%f\n"
-msgstr ""
+msgstr "事件编号：%d在t = %f处被激活\n"
 
 #, c-format
 msgid "mode of block %d=%d, "
-msgstr ""
+msgstr "块的模式 %d=%d， "
 
 msgid "**mod**\n"
-msgstr ""
+msgstr "**模式**\n"
 
 msgid "End of activation\n"
-msgstr ""
+msgstr "激活结束\n"
 
 msgid "**** SUNDIALS.IDA successfully initialized *****\n"
-msgstr ""
+msgstr "**** SUNDIALS.IDA已成功初始化*****\n"
 
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
-msgstr ""
+msgstr "**** SUNDIALS.IDA无法初始化->请尝试重试*****\n"
 
 #, c-format
 msgid "****daskr from: %f to %f hot= %d  \n"
-msgstr ""
+msgstr "**** daskr从：%f到%f 其hot =%d  \n"
 
 #, c-format
 msgid "****SUNDIALS.Ida reached: %f\n"
-msgstr ""
+msgstr "**** SUNDIALS.Ida已达到：%f\n"
 
 #, c-format
 msgid ""
 "**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and "
 "ATOL)\n"
 msgstr ""
+"**** SUNDIALS.Ida：在时间 = %g处产生了太多的任务(刚性区域，更改RTOL和ATOL)\n"
 
 #, c-format
 msgid "block %d [%s] is called "
-msgstr ""
+msgstr "块%d [%s]被调用 "
 
 #, c-format
 msgid "with flag %d "
-msgstr ""
+msgstr "，其仿真标志为%d "
 
 #, c-format
 msgid "at time %f \n"
-msgstr ""
+msgstr "，此时仿真时间为%f \n"
 
 msgid "Entering the block \n"
-msgstr ""
+msgstr "进入块 \n"
 
 #, c-format
 msgid "Leaving block %d \n"
-msgstr ""
+msgstr "离开块%d \n"
 
 msgid "Error in the Debug block \n"
-msgstr ""
+msgstr "调试块发生错误 \n"
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The computing function #%d returns a NaN/Inf"
 msgstr ""
+"\n"
+"警告：第%d个计算函数返回了 NaN/Inf 值"
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The zero_crossing function #%d returns a NaN/Inf"
 msgstr ""
+"\n"
+"警告：第%d个过零面函数返回了 NaN/Inf 值"
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The zero-crossing function #%d returns a NaN"
 msgstr ""
+"\n"
+"警告：第%d个过零面函数返回了 NaN 值"
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The residual function #%d returns a NaN"
 msgstr ""
+"\n"
+"警告：第%d个残余函数返回了 NaN 值"
 
 msgid ""
 "\n"
 "Error: Problem in the evaluation of a root function"
 msgstr ""
+"\n"
+"错误：预处理根函数时出现问题"
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The preconditioner evaluation function returns a NaN at index #%d."
 msgstr ""
+"\n"
+"警告：预处理器评估函数在索引%d处返回NaN值。"
 
 msgid ""
 "\n"
 "Error: The preconditioner evaluation function failed."
 msgstr ""
+"\n"
+"错误：预处理器评估功能失败。"
 
 msgid ""
 "\n"
 "Error: Failed to factor the preconditioner."
 msgstr ""
+"\n"
+"错误：无法分解前置条件。"
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The preconditioner application function returns a NaN at index #%d."
 msgstr ""
+"\n"
+"警告：预处理应用函数在索引%d处返回了NaN值。"
 
 #, c-format
 msgid ""
 "\n"
 " Warning: an event is reprogrammed at t=%g by removing another"
 msgstr ""
+"\n"
+" 警告：在删除另一个事件时，会在t = %g处将事件重新编程"
 
 msgid ""
 "\n"
 "         (already programmed) event. There may be an error in"
 msgstr ""
+"\n"
+"         (已编程)事件。 可能存在错误"
 
 msgid ""
 "\n"
 "         your model. Please check your model\n"
 msgstr ""
+"\n"
+"         您的模型。 请检查您的模型\n"
 
 msgid ""
 "\n"
 " error in Jacobian"
 msgstr ""
+"\n"
+" 在 Jacobian中发生错误"
 
 #, c-format
 msgid "Error: Cannot find file '%s'.\n"
-msgstr ""
+msgstr "错误：找不到文件'%s'。\n"
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The initialization system #%d returns a NaN/Inf"
 msgstr ""
+"\n"
+"警告：第%d个初始化系统返回了 NaN/Inf 值"
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The residual function #%d returns a NaN/Inf"
 msgstr ""
+"\n"
+"警告：第%d个残差函数返回了 NaN/Inf 值"
 
 msgid ""
 "\n"
@@ -647,253 +700,258 @@ msgid ""
 " Please verify your model:\n"
 " some functions might be called with illegal inputs."
 msgstr ""
+"\n"
+" 残差函数返回了NAN/Inf。\n"
+" 请检查您的模型：\n"
+" 某些函数的输入可能会被非正常调用。"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: unknown integer type.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：未知的整数类型。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Could not read its content.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：未能读取其中的内容。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是%s, %s, %s, %s 或者 %s中的一个。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for element #%d of input argument #%d: Integer matrix cannot "
 "be empty.\n"
-msgstr ""
+msgstr "%s：第%d个元素(第%d个输入参数中)的值错误：应该是非空整数矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for element #%d of input argument #%d: String matrix cannot "
 "be empty.\n"
-msgstr ""
+msgstr "%s：第%d个元素(第%d个输入参数中)的值错误：应该是非空字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
-msgstr ""
+msgstr "%s：第%d个元素(第%d个输入参数)的值错误：未知类型。\n"
 
 #, c-format
 msgid "Wrong type for field %ls: Tlist or Mlist expected.\n"
-msgstr ""
+msgstr "字段“%ls”类型错误：应该是Tlist或者Mlist类型。\n"
 
 #, c-format
 msgid "Wrong length for field %ls: at least %d element expected.\n"
-msgstr ""
+msgstr "字段“%ls”长度错误：应该至少有%d个元素。\n"
 
 #, c-format
 msgid ""
 "Wrong length for header of field \"%ls\": at least %d element expected.\n"
-msgstr ""
+msgstr "字段“%ls”的头部长度错误：应该至少有%d个元素。\n"
 
 #, c-format
 msgid "Wrong value for header of field \"%ls\": \"%ls\" expected.\n"
-msgstr ""
+msgstr "字段“%ls”头部的值错误：应该是“%ls”。\n"
 
 #, c-format
 msgid "Wrong type for field %s: list expected.\n"
-msgstr ""
+msgstr "字段“%s”类型错误：应该是list类型。\n"
 
 #, c-format
 msgid "Wrong type for element %d of field %s: unknown Scicos object.\n"
-msgstr ""
+msgstr "第%d个元素(字段%s中)类型错误：未知的Scicos对象。\n"
 
 #, c-format
 msgid "Wrong dimension for field %s: %d-by-%d expected.\n"
-msgstr ""
+msgstr "字段%s维度错误：其大小应该是 %dx%d 。\n"
 
 #, c-format
 msgid "Wrong size for field %s: at least %d-by-%d expected.\n"
-msgstr ""
+msgstr "字段%s大小错误：其大小至少应该是 %dx%d 。\n"
 
 #, c-format
 msgid "\"%s\" is a read-only field.\n"
-msgstr ""
+msgstr "“%s”是只读字段。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s: Real matrix expected.\n"
-msgstr ""
+msgstr "字段 %s.%s类型错误：应为实数矩阵。\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s: %d-by-%d expected.\n"
-msgstr ""
+msgstr "字段 %s.%s维度错误：其大小应为 %dx%d。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s: string expected.\n"
-msgstr ""
+msgstr "字段 %s.%s类型错误：应为字符串。\n"
 
 #, c-format
 msgid "Wrong type for field %s: Real matrix object.\n"
-msgstr ""
+msgstr "字段 %s类型错误：应为实数矩阵。\n"
 
 #, c-format
 msgid "Wrong type for field %s: String matrix expected.\n"
-msgstr ""
+msgstr "字段 %s类型错误：应为字符串矩阵。\n"
 
 #, c-format
 msgid "Wrong type for field %s: Real matrix expected.\n"
-msgstr ""
+msgstr "字段 %s类型错误：应为实数矩阵。\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s : %d-by-%d expected.\n"
-msgstr ""
+msgstr "字段 %s.%s维度错误：其大小应为 %dx%d 。\n"
 
 #, c-format
 msgid "Wrong length for field %s.%s : %d expected.\n"
-msgstr ""
+msgstr "字段 %s.%s长度错误：应为%d。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : String matrix expected.\n"
-msgstr ""
+msgstr "字段 %s.%s类型错误：应为字符串矩阵。\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s : Round number expected.\n"
-msgstr ""
+msgstr "字段 %s.%s的值错误：应为圈数。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : Real vector expected.\n"
-msgstr ""
+msgstr "字段 %s.%s类型错误：应为实数向量。\n"
 
 #, c-format
 msgid "Wrong size for field %s.%s : Real vector expected.\n"
-msgstr ""
+msgstr "字段 %s.%s大小错误：应为实数向量。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : Real matrix expected.\n"
-msgstr ""
+msgstr "字段 %s.%s类型错误：应为实数矩阵。\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s : m-by-1 expected.\n"
-msgstr ""
+msgstr "字段 %s.%s维度错误：其大小应为 mx1 。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : List expected.\n"
-msgstr ""
+msgstr "字段 %s.%s类型错误：应为List类型。\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s : %s (%s) has an invalid port number.\n"
-msgstr ""
+msgstr "字段 %s.%s的值错误：%s (%s) 端口号无效。\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s : %s (%s) has an invalid implicit port.\n"
-msgstr ""
+msgstr "字段 %s.%s的值错误：%s (%s) 隐式端口号无效。\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s : %s (%s) has an invalid explicit port.\n"
-msgstr ""
+msgstr "字段 %s.%s的值错误：%s (%s) 显式端口号无效。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : Diagram expected.\n"
-msgstr ""
+msgstr "字段 %s.%s类型错误：应该是一个框图数据(Diagram)。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : List clear previous value.\n"
-msgstr ""
+msgstr "字段 %s.%s类型错误：列出已清除的前值。\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s : m-by-1 matrix expected.\n"
-msgstr ""
+msgstr "字段 %s.%s维度错误：应是大小为 mx1 的矩阵。\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s : Integer values expected.\n"
-msgstr ""
+msgstr "字段 %s.%s的值错误：应是整数。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : String expected.\n"
-msgstr ""
+msgstr "字段 %s.%s类型错误：应是字符串。\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s : String expected.\n"
-msgstr ""
+msgstr "字段 %s.%s维度错误：应是字符串。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : Boolean matrix expected.\n"
-msgstr ""
+msgstr "字段 %s.%s维度错误：应是布尔量。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s: String expected.\n"
-msgstr ""
+msgstr "字段 %s.%s类型错误：应是字符串。\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s: String expected.\n"
-msgstr ""
+msgstr "字段 %s.%s维度错误：应是字符串。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s: Real expected.\n"
-msgstr ""
+msgstr "字段 %s.%s类型错误：应是实数。\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s: Real expected.\n"
-msgstr ""
+msgstr "字段 %s.%s维度错误：应是实数。\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s: m-by-1 expected.\n"
-msgstr ""
+msgstr "字段 %s.%s维度错误：其大小应是 mx1 。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : string expected.\n"
-msgstr ""
+msgstr "字段 %s.%s类型错误：应是字符串。\n"
 
 #, c-format
 msgid "Wrong type for field %s: Mlist expected.\n"
-msgstr ""
+msgstr "字段 %s类型错误：应是Mlsit类型。\n"
 
 #, c-format
 msgid "Wrong size for field %s: at least %d elements expected.\n"
-msgstr ""
+msgstr "字段 %s大小错误：至少含有%d个元素。\n"
 
 #, c-format
 msgid "Wrong value for header of field %s: field %s expected.\n"
-msgstr ""
+msgstr "字段 %s 头部的值错误：应是%s字段。\n"
 
 #, c-format
 msgid "Wrong dimensions for field %s.%s: %d-by-%d expected.\n"
-msgstr ""
+msgstr "字段 %s.%s维度错误：其大小应为 %dx%d 。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s: String matrix expected.\n"
-msgstr ""
+msgstr "字段 %s.%s类型错误：应该是字符串矩阵。\n"
 
 #, c-format
 msgid ""
 "Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' "
 "vector. Switching to '%s'.\n"
 msgstr ""
+"字段 %s.%s的值错误：无法识别'%s'，只应该是'%s'或'%s'向量。 请切换到“%s”。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s.\n"
-msgstr ""
+msgstr "字段 %s.%s类错误。\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s: Round number expected.\n"
-msgstr ""
+msgstr "字段 %s.%s的值错误：应该是圈数。\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s .\n"
-msgstr ""
+msgstr "字段 %s.%s类型错误。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：至少为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是一个框图(diagram)数据。\n"
 
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
-msgstr ""
+msgstr "%s：模块参数验证期间出错。\n"
 
 #, c-format
 msgid "%s: Unable to find diagram inputs\n"
-msgstr ""
+msgstr "%s：找不到框图输入\n"
 
 #, c-format
 msgid "%s: Unable to find diagram outputs\n"
-msgstr ""
+msgstr "%s：找不到框图输出\n"
 
 #, c-format
 msgid "%s: Input ports are not numbered properly.\n"
@@ -909,11 +967,11 @@ msgstr "%s:图没有通过编译%d。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Empty matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是空矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为%d×%d的矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
@@ -921,109 +979,117 @@ msgstr "%s：输入参数的数目错误：数目应该介于 %d 与 %d 之间�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为%s类型的数据结构。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为list变量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为‘%s’。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为字符串数组。\n"
 
 msgid "Can't convert old diagram (problem in version)"
-msgstr ""
+msgstr "无法转换旧图(版本问题)"
 
 #, c-format
 msgid ""
 "Warning the variable %s does not match any context variable name\n"
 "ignored"
 msgstr ""
+"警告 变量%s与任何关联指令中的变量名称都不匹配\n"
+"将被忽略"
 
 #, c-format
 msgid "%s: Error during block parameters update.\n"
-msgstr ""
+msgstr "%s：模块参数更新期间出错。\n"
 
 msgid ""
 "Diagram has been compiled for implicit solver\n"
 "switching to implicit solver.\n"
 msgstr ""
+"该框图已为隐式求解程序进行了编译\n"
+"已切换到隐式求解器。\n"
 
 msgid ""
 "Diagram has been compiled for explicit solver\n"
 "switching to explicit solver.\n"
 msgstr ""
+"框图已编译为显式求解器\n"
+"已切换到显式求解器。\n"
 
 msgid "Simulation parameters not set:"
-msgstr ""
+msgstr "未设置仿真参数："
 
 msgid "Initialization problem:"
-msgstr ""
+msgstr "初始化问题："
 
 msgid "Simulation problem: "
-msgstr ""
+msgstr "仿真问题： "
 
 msgid "End problem: "
-msgstr ""
+msgstr "结束问题： "
 
 #, c-format
 msgid "%s: property %s obsolete, please use %s instead.\n"
-msgstr ""
+msgstr "%s：属性%s已弃用，请改用%s。\n"
 
 #, c-format
 msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"
-msgstr ""
+msgstr "框图的第%d个元素类型错误：应该是%s，%s或%s。\n"
 
 msgid ""
 "Your model contains states defined in standard Scicos blocks.\n"
 "Current initialization interface does not support mixed models."
 msgstr ""
+"您的模型包含在标准Scicos块中定义的状态。\n"
+"当前的初始化接口不支持混合模型。"
 
 #, c-format
 msgid "Initialisation problem in %s "
-msgstr ""
+msgstr "在 %s 中发生初始化问题 "
 
 #, c-format
 msgid "Initialisation problem in the %s method"
-msgstr ""
+msgstr "%s函数中发生初始化问题"
 
 msgid "Initialisation problem in the finish phase"
-msgstr ""
+msgstr "结束阶段的初始化问题"
 
 msgid "Problem with the block generated from modelica blocks."
-msgstr ""
+msgstr "生成的Modelica块存在问题。"
 
 msgid "Block has connected output port<br />with incompatible size:"
-msgstr ""
+msgstr "块连接了大小不兼容的输出端口："
 
 #, c-format
 msgid "Output port %s size is: %s"
-msgstr ""
+msgstr "输出端口%s的大小为：%s"
 
 #, c-format
 msgid "Input port %s size is: %s"
-msgstr ""
+msgstr "输入端口%s的大小为：%s"
 
 msgid "Block has connected output port<br />with incompatible type."
-msgstr ""
+msgstr "块连接了类型不兼容的输出端口。"
 
 #, c-format
 msgid "Output port %s type is: %s"
-msgstr ""
+msgstr "输出端口%s类型为：%s"
 
 #, c-format
 msgid "Input port %s type is: %s"
-msgstr ""
+msgstr "输入端口%s类型为：%s"
 
 msgid "Block has connected input port<br />with incompatible size:"
-msgstr ""
+msgstr "块连接了大小不兼容的输入端口："
 
 msgid "Block has connected input port<br />with incompatible type:"
-msgstr ""
+msgstr "块连接了类型不兼容的输入端口："
 
 #, c-format
 msgid "%s: Error: A scifunc block has not been defined."
@@ -1031,13 +1097,13 @@ msgstr "%s：错误：一个 scifunc 区块没有被定义。"
 
 #, c-format
 msgid " Main Modelica : %s"
-msgstr ""
+msgstr " Modelica主版本：%s"
 
 msgid "No block can be activated"
-msgstr ""
+msgstr "没有模块被激活"
 
 msgid "Problem in port size or type."
-msgstr ""
+msgstr "端口大小或类型存在问题。"
 
 msgid ""
 "No continuous-time state. Thresholds are ignored; this \n"
@@ -1047,280 +1113,307 @@ msgid ""
 "to include a block with continuous-time state in your diagram.\n"
 "   You can for example include DUMMY CLSS block (linear palette)."
 msgstr ""
+"没有连续时间状态。 阈值已被忽略； 如此做的前提是您不\n"
+"使用它们生成外部事件。如果要重新激活阈值，则需要在框\n"
+"图中包含具有连续时间状态的块。 \n"
+"例如，您可以加入DUMMY CLSS块（在线性系统组件盘中）。"
 
 msgid "Diagram contains implicit blocks, compiling for implicit Solver."
-msgstr ""
+msgstr "框图中包含隐式模块，将使用隐式规则进行编译和求解。"
 
 msgid "Algebraic loop on events."
-msgstr ""
+msgstr "事件发生代数循环。"
 
 msgid "Algebraic loop."
-msgstr ""
+msgstr "代数环。"
 
 msgid ""
 "A C or Fortran block is used but not linked.\n"
 "You can save your compiled diagram and load it.\n"
 "This will automatically link the C or Fortran function."
 msgstr ""
+"使用了C或Fortran块，但无法链接对应函数。\n"
+"您可以保存已编译的图并重新加载它。\n"
+"以自动链接C或Fortran函数。"
 
 #, c-format
 msgid "Number of modes in block #%d cannot be determined."
-msgstr ""
+msgstr "无法确定第%d个块中的模式数目。"
 
 #, c-format
 msgid "Number of zero crossings in block #%d cannot be determined."
-msgstr ""
+msgstr "无法确定第%d个块中的过零面数目。"
 
 msgid ""
 "Not enough information to find port sizes.\n"
 "I try to find the problem."
 msgstr ""
+"没有足够信息来确定链接端口的大小。\n"
+"正在尝试找到端口大小问题产生的原因。"
 
 msgid ""
 "I cannot find a link with undetermined size.\n"
 "My guess is that you have a block with unconnected \n"
 "undetermined output ports."
 msgstr ""
+"无法找不到端口大小不确定的链接。\n"
+"据猜测，框图中可能含有有一个未连\n"
+"接的但不确定输出端口大小的模块。"
 
 msgid "One of this block output has negative size.<br />Please check."
-msgstr ""
+msgstr "此模块输出端口之一的大小是负数。<br />请检查。"
 
 msgid "Block input has negative size:"
-msgstr ""
+msgstr "模块输入大小为负数："
 
 msgid "Please compile the diagram to report the error."
-msgstr ""
+msgstr "请编译框图以显示报错信息。"
 
 msgid "Unable to report an error into a SuperBlock"
-msgstr ""
+msgstr "无法在超级块内进行报错"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined size:"
-msgstr ""
+msgstr "<em>请更新框图以避免出现此警告。</em> <br/>模块输出端口大小不确定："
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined type:"
-msgstr ""
+msgstr "<em>请更新框图以避免出现此警告。</em> <br/>模块输出端口类型不确定："
 
 #, c-format
 msgid "Output port %s type."
-msgstr ""
+msgstr "输出端口是%s类型。"
 
 #, c-format
 msgid "Input port %s type."
-msgstr ""
+msgstr "输入端口是%s类型。"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined size:"
-msgstr ""
+msgstr "<em>请更新框图以避免发生此警告。</em> <br />模块输入端口大小不确定："
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined type:"
-msgstr ""
+msgstr "<em>请更新框图以避免发生此警告。</em> <br />模块输入端口类型不确定："
 
 msgid ""
 "Highlighted block(s) have connected ports \n"
 "with  sizes that cannot be determined by the context.\n"
 "What is the size of this link?"
 msgstr ""
+"被高亮显示的块的连接端口其 \n"
+"大小无法通过前后模块来确定。\n"
+"请确定该链接的大小应是多少？"
 
 #, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
 "It should be a column vector of size %d."
 msgstr ""
+"%s模块的dep_ut大小不正确。\n"
+"其应该是大小为%d的列向量。"
 
 msgid ""
 "Not enough information to find port type.\n"
 "I will try to find the problem."
 msgstr ""
+"没有足够信息来确定端口类型。\n"
+"将尝试查找产生问题的原因。"
 
 msgid ""
 "I cannot find a link with undetermined size.\n"
 "My guess is that you have a block with unconnected \n"
 "undetermined types."
 msgstr ""
+"无法找到端口类型不定的链接。\n"
+"据猜测可能是框图中存在一个\n"
+"未连接的块导致的类型不确定。"
 
 msgid "Modelica compiler (flat2C)"
-msgstr ""
+msgstr "Modelica编译器(flat2C)"
 
 msgid "The initialization file already exists!"
-msgstr ""
+msgstr "初始化文件已经存在！"
 
 msgid "Do you want to overwrite it?"
-msgstr ""
+msgstr "你想覆盖这个文件吗？"
 
 msgid "No"
-msgstr ""
+msgstr "否"
 
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 msgid "Modelica blocks are reduced to a block with:"
-msgstr ""
+msgstr "将Modelica块简化为具有以下特征的块："
 
 #, c-format
 msgid "Number of differential states: %d"
-msgstr ""
+msgstr "差分状态数：%d"
 
 #, c-format
 msgid "Number of algebraic states: %d"
-msgstr ""
+msgstr "代数状态数：%d"
 
 #, c-format
 msgid "Number of discrete time states  : %d"
-msgstr ""
+msgstr "离散时间状态数：%d"
 
 #, c-format
 msgid "Number of zero-crossing surfaces: %d"
-msgstr ""
+msgstr "过零面的数量：%d"
 
 #, c-format
 msgid "Number of modes  : %d"
-msgstr ""
+msgstr "模式数量：%d"
 
 #, c-format
 msgid "Number of inputs : %d"
-msgstr ""
+msgstr "输入数量：%d"
 
 #, c-format
 msgid "Number of outputs: %d"
-msgstr ""
+msgstr "输出数量：%d"
 
 #, c-format
 msgid "Input/output dependency:[%s]"
-msgstr ""
+msgstr "输入/输出依赖性：[%s]"
 
 #, c-format
 msgid "Analytical Jacobian: enabled  (%%Jacobian=%s)"
-msgstr ""
+msgstr "解析雅可比行列：已启用(%%Jacobian=%s)"
 
 #, c-format
 msgid "Parameter embedding mode: enabled (%%Modelica_ParEmb=%s)"
-msgstr ""
+msgstr "参数嵌入模式：启用(%%Modelica_ParEmb=%s)"
 
 #, c-format
 msgid "Generated files path: %s"
-msgstr ""
+msgstr "文件生成路径：%s"
 
 msgid "Hyper Matrix is not supported"
-msgstr ""
+msgstr "不支持Hyper Matrix"
 
 msgid "Type not recognized"
-msgstr ""
+msgstr "类型无法识别"
 
 msgid "Complex Matrix is not supported"
-msgstr ""
+msgstr "不支持复数矩阵"
 
 msgid "Block is ignored because of undefined input(s)."
-msgstr ""
+msgstr "由于输入未定义，块已被忽略。"
 
 msgid "Superblock should not contains any Scilab function block."
-msgstr ""
+msgstr "超级块不应包含任何Scilab函数块。"
 
 msgid "Generated block cannot be linked with Scilab."
-msgstr ""
+msgstr "Scilab无法链接生成的块。"
 
 msgid "Evaluation problem: value not updated from context."
-msgstr ""
+msgstr "评估问题：值在关联指令中未更新。"
 
 msgid "Evaluation problem: Unknown block"
-msgstr ""
+msgstr "评估问题：未知的模块"
 
 #, c-format
 msgid ""
 "%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, "
 "%%scicos_prob=%%%s).\n"
 msgstr ""
+"%s：调用模块%s[uid ='%s']时出错：其参数无效 (ier =%f，%%scicos_prob = %%"
+"%s)。\n"
 
 msgid "Cannot load dynamic library: "
-msgstr ""
+msgstr "无法加载动态库： "
 
 msgid "Can't include "
-msgstr ""
+msgstr "无法包含 "
 
 msgid "This file does not exist"
-msgstr ""
+msgstr "此文件爱你不存在"
 
 msgid "Modelica compiler"
-msgstr ""
+msgstr "Modelica编译器"
 
 msgid "Sorry: Only C or FORTRAN languages are supported"
-msgstr ""
+msgstr "抱歉：仅支持C或FORTRAN语言"
 
 msgid "Sorry file name not defined in "
-msgstr ""
+msgstr "抱歉，文件名称未定义，其位于 "
 
 msgid "I/O blocks must be only used in a Super Block"
-msgstr ""
+msgstr "I/O模块只能在超级块中使用"
 
 msgid "This Super block input port is not connected."
-msgstr ""
+msgstr "该超级块输入端口未连接。"
 
 msgid "Input ports are not numbered properly."
-msgstr ""
+msgstr "输入端口编号不正确。"
 
 msgid "Output ports are not numbered properly."
-msgstr ""
+msgstr "输出端口编号不正确。"
 
 msgid "Event input ports are not numbered properly."
-msgstr ""
+msgstr "事件输入端口编号不正确。"
 
 msgid "Event output ports are not numbered properly."
-msgstr ""
+msgstr "事件输出端口编号不正确。"
 
 #, c-format
 msgid "%s: Empty diagram"
-msgstr ""
+msgstr "%s：空白框图"
 
 #, c-format
 msgid "%s: Wrong input argument.\n"
-msgstr ""
+msgstr "%s：输入参数错误。\n"
 
 msgid "Set Xcos context"
-msgstr ""
+msgstr "设置Xcos关联指令"
 
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored\n"
-msgstr ""
+msgstr "变量名称%s不能用作模块参数：已被忽略\n"
 
 msgid "scs_show active..."
-msgstr ""
+msgstr "scs_show有效..."
 
 #, c-format
 msgid "Scilab Graphics of %s"
-msgstr ""
+msgstr "%s的Scilab图形"
 
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
-msgstr ""
+msgstr "%s：类型%s尚未实现。\n"
 
 #, c-format
 msgid "%s: Wrong size for block parameter '%s': %s expected, getting %s"
-msgstr ""
+msgstr "%s：模块参数'%s'的大小错误：应该是%s，但获取到的是%s"
 
 #, c-format
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
-msgstr ""
+msgstr "%s：模块参数'%s'的类型错误：应该是%s(%s)，但获取到的是%s"
 
 msgid ""
 "There are too many Modelica files.\n"
 "It would be better to define several \n"
 "Modelica programs in a single file."
 msgstr ""
+"Modelica文件过多。\n"
+"最好定义几个Modelica\n"
+"子程序在单个文件中。"
 
 msgid "-------Modelica translator error message:-----"
-msgstr ""
+msgstr "------- Modelica转换器错误信息：-----"
 
 msgid "XML to Modelica"
-msgstr ""
+msgstr "XML转Modelica"
 
 msgid "Xcos block parameter error"
-msgstr ""
+msgstr "Xcos模块参数错误"
 
 #, c-format
 msgid ""
@@ -1328,15 +1421,22 @@ msgid ""
 " has invalid dimension: \n"
 " waiting for dimension %s.\n"
 msgstr ""
+"针对%s给出的结论，\n"
+"其维度不正确：\n"
+"等待维度%s。\n"
 
 #, c-format
 msgid ""
 "Answer given for %s \n"
 " has incorrect type %s.\n"
 msgstr ""
+"针对%s给出的结论，\n"
+"其类型不正确：%s。\n"
 
 #, c-format
 msgid ""
 "Answer given for %s \n"
 " is incorrect: %s.\n"
 msgstr ""
+"针对%s给出的结论，\n"
+"并不正确：%s。\n"

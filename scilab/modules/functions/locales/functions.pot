@@ -15,48 +15,48 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-24 11:08+0100\n"
+"Revision-Date: 2021-07-09 17:34+0100\n"
 
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 102
-# File: modules/functions/sci_gateway/cpp/sci_execstr.cpp, line: 55
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 103
+# File: modules/functions/sci_gateway/cpp/sci_execstr.cpp, line: 56
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 120
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 141
-# File: modules/functions/sci_gateway/cpp/sci_execstr.cpp, line: 76
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 121
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 142
+# File: modules/functions/sci_gateway/cpp/sci_execstr.cpp, line: 77
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
 msgstr ""
 
 #
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 130
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 131
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 
 #
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 150
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 151
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr ""
 
 #
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 177
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 178
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 246
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 247
 #, c-format
 msgid "%s: Unable to parse macro '%s'"
 msgstr ""
 
 #
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 263
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 264
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A macro without varargin and "
@@ -64,20 +64,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 323
-# File: modules/functions/sci_gateway/cpp/sci_execstr.cpp, line: 235
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 327
+# File: modules/functions/sci_gateway/cpp/sci_execstr.cpp, line: 239
 #, c-format
 msgid "Recursion limit reached (%d).\n"
 msgstr ""
 
 #
-# File: modules/functions/sci_gateway/cpp/sci_execstr.cpp, line: 102
+# File: modules/functions/sci_gateway/cpp/sci_execstr.cpp, line: 103
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: modules/functions/sci_gateway/cpp/sci_execstr.cpp, line: 117
+# File: modules/functions/sci_gateway/cpp/sci_execstr.cpp, line: 118
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
@@ -105,6 +105,13 @@ msgstr ""
 # File: modules/functions/sci_gateway/cpp/sci_libraryinfo.cpp, line: 63
 #, c-format
 msgid "%s: Invalid library %s.\n"
+msgstr ""
+
+#
+# File: modules/functions/sci_gateway/cpp/sci_macrovar.cpp, line: 45
+# File: modules/functions/sci_gateway/cpp/sci_testGVN.cpp, line: 45
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
@@ -149,7 +156,13 @@ msgid "%s: File %s doesn't exist.\n"
 msgstr ""
 
 #
-# File: modules/functions/macros/expression2code.sci, line: 357
+# File: modules/functions/macros/deff.sci, line: 16
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#
+# File: modules/functions/macros/expression2code.sci, line: 347
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
 msgstr ""

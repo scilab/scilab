@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-18 21:57+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2020-06-27 14:22+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 msgid "overflow error"
 msgstr "ошибка переполнения"
@@ -140,83 +140,83 @@ msgid "Tag"
 msgstr ""
 
 msgid "Tag Visibility must be between 1 and 3"
-msgstr ""
+msgstr "Тег Visibility должен быть между 1 и 3"
 
 msgid "Goto Tag"
-msgstr ""
+msgstr "Тег Goto"
 
 msgid "Number of output ports or vector of sizes"
-msgstr ""
+msgstr "Количество выходных портов или вектор размеров"
 
 msgid "The block must have from 2 to 31 output ports"
-msgstr ""
+msgstr "Блок должен иметь от 2 до 31 выходных порта"
 
 msgid "The block must have from 2 to 31 output ports.<br>size 0 is not allowed"
-msgstr ""
+msgstr "Блок должен иметь от 2 до 31 выходного порта.<br>размер 0 не разрешён"
 
 msgid "The block must have from 2 to 8 output ports"
-msgstr ""
+msgstr "Блок должен иметь от 2 до 8 выходных портов"
 
 msgid "The block must have from 2 to 8 output ports.<br>size 0 is not allowed."
-msgstr ""
+msgstr "Блок должен иметь от 2 до 8 выходных портов.<br>размер 0 не разрешён."
 
 msgid "Number of output event ports"
 msgstr ""
 
 msgid "The block must have at least two output ports"
-msgstr ""
+msgstr "Блок должен иметь не менее двух выходных портов"
 
 msgid "Indices to extract"
-msgstr ""
+msgstr "Индексы для выделения"
 
 msgid "Number of outputs"
-msgstr ""
+msgstr "Количество выходов"
 
 msgid "The initial connected input is not a valid input port number"
 msgstr ""
 
 msgid "Datatype (1= real double  2=Complex 3=int32 ...)"
-msgstr ""
+msgstr "Datatype (1= вещественное double  2=комплексное 3=int32 ...)"
 
 msgid "Datatype not supported"
-msgstr ""
+msgstr "Datatype не поддерживается"
 
 msgid "Number of input ports or vector of sizes"
-msgstr ""
+msgstr "Количество входных портов или вектор размеров"
 
 msgid "The block must have from 2 to 31 input ports"
-msgstr ""
+msgstr "Блок должен иметь от 2 до 31 входных портов"
 
 msgid ""
 "The block must have from 2 to 31 input ports.<br>size 0 is not allowed. "
-msgstr ""
+msgstr "Блок должен иметь от 2 до 31 входных портов.<br>размер 0 не разрешён. "
 
 msgid "Block must have from 2 to 8 input ports"
-msgstr ""
+msgstr "Блок должен иметь от 2 до 8 входных портов"
 
 msgid "The block must have from 2 to 8 input ports.<br>size 0 is not allowed."
-msgstr ""
+msgstr "Блок должен иметь от 2 до 8 входных портов.<br>размер 0 не разрешён."
 
 msgid "Number of inputs"
-msgstr ""
+msgstr "Количество входов"
 
 msgid "Number of inputs >=1 expected"
-msgstr ""
+msgstr "Ожидалось количесто входов >=1"
 
 msgid "The zero base indexing must be 1 or 0"
 msgstr ""
 
 msgid "Unknown rounding rule"
-msgstr ""
+msgstr "Неизвестное правило округления"
 
 msgid "number of inputs"
-msgstr ""
+msgstr "количество входов"
 
 msgid "Size of output (-1: if don't know)"
-msgstr ""
+msgstr "Размер выхода (-1: если не известно)"
 
 msgid "The size of output must be -1 or > 0"
-msgstr ""
+msgstr "Размер выхода должен быть -1 или > 0"
 
 msgid "Datatype (1= real double  2=Complex 3=int32 ..)"
 msgstr ""
@@ -234,20 +234,20 @@ msgid "Connected input"
 msgstr ""
 
 msgid "Initial Voltage"
-msgstr ""
+msgstr "Исходное напряжение"
 
 msgid "Saturation current (A)"
-msgstr ""
+msgstr "Ток насыщения (A)"
 
 msgid "G1: Gyration conductance"
 msgstr ""
 
 #, c-format
 msgid "Set %s block parameters\n"
-msgstr ""
+msgstr "Установить параметры блока %s\n"
 
 msgid "Width [m]"
-msgstr ""
+msgstr "Ширина [м]"
 
 msgid "Bf  : Forward beta"
 msgstr ""
@@ -256,16 +256,16 @@ msgid "Open Loop Gain"
 msgstr ""
 
 msgid "Amplitude (Volt)"
-msgstr ""
+msgstr "Амплитуда (Вольт)"
 
 msgid "non-ideal electrical switch"
-msgstr ""
+msgstr "неидеальный электрический переключатель"
 
 msgid "Resistance in On state (Ohm)"
-msgstr ""
+msgstr "Сопротивление в состоянии Вкл (Ом)"
 
 msgid "Frequency (Hz)"
-msgstr ""
+msgstr "Частота (Гц)"
 
 msgid "Set final simulation time"
 msgstr ""
@@ -282,10 +282,10 @@ msgid ""
 msgstr ""
 
 msgid "Delay"
-msgstr ""
+msgstr "Задержка"
 
 msgid "Delay must be positive"
-msgstr ""
+msgstr "Задержка должна быть положительной"
 
 msgid ""
 "Set Event Delay block parameters<br><br>Delay is the delay between an input "
@@ -323,10 +323,10 @@ msgid "The offset and frequency must have the same size"
 msgstr ""
 
 msgid "The frequency must be a positive number"
-msgstr ""
+msgstr "Частота должна быть положительным числом"
 
 msgid "The |Offset| must be less than the Frequency"
-msgstr ""
+msgstr "|Смещение| должно быть меньше частоты"
 
 msgid "Set frequency division block parameters"
 msgstr ""
@@ -334,144 +334,87 @@ msgstr ""
 msgid "Phase (0 to division factor -1)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 38
 msgid "RESERVOIR parameters"
-msgstr ""
+msgstr "параметры RESERVOIR"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 39
 msgid "Pressure at the reservoir surface : Patm (Pa)"
-msgstr ""
+msgstr "Давление на поверхности резервуара: Patm (Па)"
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 40
 msgid "Reservoir section : A (m2)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 41
 msgid "Altitude of input connection #1: ze1 (m)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 42
 msgid "Altitude of input connection #2: ze2 (m)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 43
 msgid "Altitude of output connection #1: zs1 (m)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 44
 msgid "Altitude of output connection #2: zs2 (m)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 45
 msgid "Starting fluid Altitude : z0 (m)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 46
 msgid "Initial fluid temperature : T0 (K)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 47
-# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 44
 msgid "If >0, fixed fluid density : p_rho (kg/m3)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/Flowmeter.sci, line: 37
 msgid "FLOWMETER parameters:"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 38
 msgid "PIPE parameters"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 39
 msgid "Pipe length : L (m)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 40
 msgid "Pipe internal diameter : D (m)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 41
 msgid "Coefficient of loss of load-friction (S.U): lambda"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 42
 msgid "Altitude of pipe's inlet: z1 (m)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 43
 msgid "Altitude of pipe's outlet: z2 (m)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 38
 msgid "Fluid SINK parameters"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 39
 msgid "Pressure of the source : P0 (Pa)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 40
 msgid "Temperature of the source : T0 (K)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 41
 msgid "Specific enthalpy of the source : H0 (J/kg)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 42
 msgid "Condition: 1=fixed temperature  2=fixed enthalpy"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 38
 msgid "Fluid SOURCE parameters"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 39
 msgid "Pressure : P0 (Pa)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 40
 msgid "Temperature : T0 (K)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 41
 msgid "Specific enthalpy : H0 (J/kg)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 42
 msgid "Condition: 1=Fixed temperature | 2=Fixed enthalpy"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Hydraulics/VanneReglante.sci, line: 38
 msgid "REGULATING VALVE parameters"
 msgstr ""
 
@@ -1049,32 +992,6 @@ msgstr "Некорректно маскированный блок."
 msgid "rising (1), falling (-1), both (0)"
 msgstr ""
 
-msgid ""
-"Set EXPRESSION block parameters<br><br>Give a scalar scilab expression using "
-"inputs u1, u2,...<br>If only one input, input is vector [u1,u2,...] (max "
-"8)<br>ex: (dd*u1+sin(u2)>0)*u3<br>Note that here dd must be defined in the "
-"context<br><br>"
-msgstr ""
-
-msgid "Erroneous expression"
-msgstr ""
-
-#, c-format
-msgid "Variable %s is not scalar."
-msgstr ""
-
-#, c-format
-msgid "Unknown variable %s."
-msgstr ""
-
-#, c-format
-msgid "%s must have %d arguments"
-msgstr ""
-
-#, c-format
-msgid "Function %s not supported."
-msgstr ""
-
 msgid "Switch on at"
 msgstr ""
 
@@ -1235,6 +1152,32 @@ msgid "a^u: raise the value a to the power of the input"
 msgstr ""
 
 msgid "a^u : a must be > 0"
+msgstr ""
+
+msgid ""
+"Set EXPRESSION block parameters<br><br>Give a scalar scilab expression using "
+"inputs u1, u2,...<br>If only one input, input is vector [u1,u2,...] (max "
+"8)<br>ex: (dd*u1+sin(u2)>0)*u3<br>Note that here dd must be defined in the "
+"context<br><br>"
+msgstr ""
+
+msgid "Erroneous expression"
+msgstr ""
+
+#, c-format
+msgid "Variable %s is not scalar."
+msgstr ""
+
+#, c-format
+msgid "Unknown variable %s."
+msgstr ""
+
+#, c-format
+msgid "%s must have %d arguments"
+msgstr ""
+
+#, c-format
+msgid "Function %s not supported."
 msgstr ""
 
 msgid "Set Interpolation block parameters"

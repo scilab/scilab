@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-18 16:36+0100\n"
+"Revision-Date: 2021-07-09 17:35+0100\n"
 
 # File: modules/spreadsheet/sci_gateway/c/gw_csv_helpers.c, line: 77
 # File: modules/spreadsheet/sci_gateway/c/gw_csv_helpers.c, line: 157
@@ -44,15 +44,15 @@ msgstr ""
 # File: modules/spreadsheet/sci_gateway/c/gw_csv_helpers.c, line: 649
 # File: modules/spreadsheet/sci_gateway/c/sci_csvDefault.c, line: 144
 # File: modules/spreadsheet/sci_gateway/c/sci_csvDefault.c, line: 297
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 328
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 338
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 359
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 387
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 404
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 420
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 443
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 470
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 490
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 330
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 340
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 361
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 389
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 406
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 422
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 445
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 472
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 492
 # File: modules/spreadsheet/sci_gateway/c/sci_csvStringToDouble.c, line: 81
 # File: modules/spreadsheet/sci_gateway/c/sci_csvStringToDouble.c, line: 106
 # File: modules/spreadsheet/sci_gateway/c/sci_csvTextScan.c, line: 237
@@ -127,14 +127,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 94
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 95
 # File: modules/spreadsheet/sci_gateway/c/sci_csvTextScan.c, line: 90
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Four entries expected.\n"
 msgstr ""
 
 #
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 101
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 102
 # File: modules/spreadsheet/sci_gateway/c/sci_csvTextScan.c, line: 97
 #, c-format
 msgid ""
@@ -142,20 +142,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 112
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 113
 # File: modules/spreadsheet/sci_gateway/c/sci_csvTextScan.c, line: 108
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Inconsistent range.\n"
 msgstr ""
 
 #
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 173
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 175
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 198
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 200
 # File: modules/spreadsheet/sci_gateway/c/sci_csvTextScan.c, line: 125
 # File: modules/spreadsheet/sci_gateway/c/sci_csvTextScan.c, line: 146
 #, c-format
@@ -163,13 +163,13 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 
 #
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 271
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 273
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 277
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 279
 # File: modules/spreadsheet/sci_gateway/c/sci_csvTextScan.c, line: 194
 # File: modules/spreadsheet/sci_gateway/c/sci_csvWrite.c, line: 272
 #, c-format
@@ -177,26 +177,26 @@ msgid "%s: separator and decimal must have different values.\n"
 msgstr ""
 
 #
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 457
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 459
 #, c-format
 msgid "%s: %s does not exist.\n"
 msgstr ""
 
 #
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 464
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 466
 # File: modules/spreadsheet/sci_gateway/c/sci_csvWrite.c, line: 284
 #, c-format
 msgid "%s: can not open file %s.\n"
 msgstr ""
 
 #
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 476
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 478
 #, c-format
 msgid "%s: can not read file %s: Error in the column structure\n"
 msgstr ""
 
 #
-# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 483
+# File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 485
 #, c-format
 msgid "%s: can not read file %s.\n"
 msgstr ""
@@ -377,14 +377,14 @@ msgid "%s: End of file.\n"
 msgstr ""
 
 #
+# File: modules/spreadsheet/src/c/csvRead.c, line: 372
 # File: modules/spreadsheet/src/c/csvRead.c, line: 376
-# File: modules/spreadsheet/src/c/csvRead.c, line: 380
 #, c-format
 msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
 msgstr ""
 
 #
-# File: modules/spreadsheet/src/c/csvRead.c, line: 445
+# File: modules/spreadsheet/src/c/csvRead.c, line: 441
 #, c-format
 msgid ""
 "%s: Inconsistency found in the columns. At line %d, found %d columns while "
@@ -392,12 +392,12 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/spreadsheet/src/c/csvRead.c, line: 445
+# File: modules/spreadsheet/src/c/csvRead.c, line: 441
 msgid "Warning"
 msgstr ""
 
 #
-# File: modules/spreadsheet/src/c/csvRead.c, line: 446
+# File: modules/spreadsheet/src/c/csvRead.c, line: 442
 #, c-format
 msgid "%s: can not read file, error in the column structure\n"
 msgstr ""

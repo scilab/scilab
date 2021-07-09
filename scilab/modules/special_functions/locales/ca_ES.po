@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2019-02-15 22:14+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: ca\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -84,16 +84,33 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Argument #%d: Decimal number(s) expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
-"real.\n"
-
-#, c-format
 msgid ""
 "%s: Function not defined for the given argument type.\n"
 "  Check arguments or define function %s for overloading.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal numbers expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
+"real.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be > %d.\n"
+msgstr ""
+"%s: Els arguments d'entrada tenen un valor incorrecte: Han de ser > %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
+"real.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: '%s' expected .\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
+"real.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -148,3 +165,16 @@ msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
 "real.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, sparse or full "
+"matrix or hypermatrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
+"real.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Els arguments d'entrada tenen un valor incorrecte: Han de ser > %d.\n"

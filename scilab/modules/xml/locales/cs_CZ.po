@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2020-02-18 21:59+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: cs\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -76,8 +76,7 @@ msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván neprázdný řetězec.\n"
 
 #, c-format
-msgid ""
-"%s: The XML Document has not an URI and there is no second argument.\n"
+msgid "%s: The XML Document has not an URI and there is no second argument.\n"
 msgstr "%s: Dokument XML nemá URI a neexistuje druhý argument.\n"
 
 #, c-format
@@ -105,8 +104,7 @@ msgid "%s: XMLList does not exist.\n"
 msgstr "%s: XMLList neexistuje.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', '%s' nebo '%s'.\n"
 

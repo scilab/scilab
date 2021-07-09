@@ -8,79 +8,79 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-18 22:04+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2020-08-17 15:21+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s:  Wrong type for input argument #%d: List expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是List类型。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: List expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是List类型。\n"
 
 #, c-format
 msgid "%s: Soft coded field names not yet implemented.\n"
-msgstr ""
+msgstr "%s：软编码字段名称尚未实现。\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
-msgstr ""
+msgstr "%s：无效的索引值。\n"
 
 msgid "Invalid index.\n"
-msgstr ""
+msgstr "无效索引。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "List element number %d is Undefined.\n"
-msgstr ""
+msgstr "List的第%d个元素未定义。\n"
 
 #, c-format
 msgid "%s: Could not read the argument #%d properties.\n"
-msgstr ""
+msgstr "%s：无法读取第%d个参数的属性。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: At most %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：最大应为%d。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是整数。\n"
 
 #, c-format
 msgid "%s: Not implemented in scilab...\n"
-msgstr ""
+msgstr "%s：在Scilab中尚未实现...\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是Cell类型。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Same type expected for all cell "
 "contents"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：对所有cell类型其内容应当保持一致。"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：必须小于等于%d。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是一个字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
@@ -88,55 +88,42 @@ msgstr "%s：输入参数的数目错误：应该为%d个。"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
-#
-# File: modules/data_structures/macros/list2tree.sci, line: 32
-# File: modules/data_structures/macros/tree_show.sci, line: 42
 #, c-format
 msgid "%s: Argument #%d: Container or Xcos object expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该是一个Container或Xcos对象。\n"
 
-#
-# File: modules/data_structures/macros/list2tree.sci, line: 43
-# File: modules/data_structures/macros/tree_show.sci, line: 53
 #, c-format
 msgid "%s: Argument #%d: Boolean(s) expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该是布尔量。\n"
 
-#
-# File: modules/data_structures/macros/list2tree.sci, line: 52
-# File: modules/data_structures/macros/tree_show.sci, line: 62
 #, c-format
 msgid "%s: Argument #%d: Text(s) expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该是指定文本。\n"
 
-#
-# File: modules/data_structures/macros/list2tree.sci, line: 158
 msgid " [Xcos diagram]"
-msgstr ""
+msgstr " [Xcos 框图]"
 
-#
-# File: modules/data_structures/macros/list2tree.sci, line: 160
 msgid " [Xcos block]"
-msgstr ""
+msgstr " [Xcos 块]"
 
-#
-# File: modules/data_structures/macros/list2tree.sci, line: 238
 #, c-format
 msgid "%s() (%d lines)"
-msgstr ""
+msgstr "%s() (%d 行)"
 
-#
-# File: modules/data_structures/macros/list2tree.sci, line: 245
 #, c-format
 msgid "%s library of %d functions @ %s"
-msgstr ""
+msgstr "%s 库 包含 %d 个函数@ %s"
 
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该是正整数。\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+#~ msgstr "%s：输入参数数目错误：应该至少为 %d 个。\n"

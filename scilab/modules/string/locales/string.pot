@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-18 16:36+0100\n"
+"Revision-Date: 2021-07-09 17:35+0100\n"
 
 # File: modules/string/sci_gateway/cpp/sci_ascii.cpp, line: 69
 # File: modules/string/sci_gateway/cpp/sci_isletter.cpp, line: 45
@@ -88,7 +88,7 @@ msgstr ""
 
 #
 # File: modules/string/sci_gateway/cpp/sci_convstr.cpp, line: 45
-# File: modules/string/sci_gateway/cpp/sci_strcat.cpp, line: 66
+# File: modules/string/sci_gateway/cpp/sci_strcat.cpp, line: 59
 # File: modules/string/sci_gateway/cpp/sci_strncpy.cpp, line: 51
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -125,7 +125,7 @@ msgstr ""
 #
 # File: modules/string/sci_gateway/cpp/sci_grep.cpp, line: 61
 # File: modules/string/sci_gateway/cpp/sci_regexp.cpp, line: 63
-# File: modules/string/sci_gateway/cpp/sci_strcat.cpp, line: 58
+# File: modules/string/sci_gateway/cpp/sci_strcat.cpp, line: 51
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
@@ -204,7 +204,7 @@ msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 
 #
-# File: modules/string/sci_gateway/cpp/sci_part.cpp, line: 88
+# File: modules/string/sci_gateway/cpp/sci_part.cpp, line: 89
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
 msgstr ""
@@ -223,7 +223,7 @@ msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #
-# File: modules/string/sci_gateway/cpp/sci_strcat.cpp, line: 94
+# File: modules/string/sci_gateway/cpp/sci_strcat.cpp, line: 87
 #, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
@@ -316,12 +316,6 @@ msgstr ""
 # File: modules/string/sci_gateway/cpp/sci_stripblanks.cpp, line: 70
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#
-# File: modules/string/sci_gateway/cpp/sci_stripblanks.cpp, line: 80
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 
 #
@@ -535,14 +529,6 @@ msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
 msgstr ""
 
 #
-# File: modules/string/macros/asciimat.sci, line: 43
-# File: modules/string/macros/asciimat.sci, line: 57
-# File: modules/string/macros/asciimat.sci, line: 71
-#, c-format
-msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
-msgstr ""
-
-#
 # File: modules/string/macros/blanks.sci, line: 20
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
@@ -618,35 +604,27 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected."
 msgstr ""
 
 #
-# File: modules/string/macros/prettyprint.sci, line: 87
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-
-#
-# File: modules/string/macros/prettyprint.sci, line: 90
-# File: modules/string/macros/prettyprint.sci, line: 93
+# File: modules/string/macros/prettyprint.sci, line: 97
+# File: modules/string/macros/prettyprint.sci, line: 100
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
 msgstr ""
 
 #
-# File: modules/string/macros/prettyprint.sci, line: 100
+# File: modules/string/macros/prettyprint.sci, line: 107
 #, c-format
 msgid "%s: Wrong export format: %s"
 msgstr ""
 
 #
-# File: modules/string/macros/prettyprint.sci, line: 661
+# File: modules/string/macros/prettyprint.sci, line: 865
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
 msgstr ""
 
 #
-# File: modules/string/macros/sci2exp.sci, line: 112
-# File: modules/string/macros/sci2exp.sci, line: 857
+# File: modules/string/macros/sci2exp.sci, line: 116
+# File: modules/string/macros/sci2exp.sci, line: 898
 #, c-format
 msgid ""
 "%s: This feature has not been implemented: Variable translation of type %s.\n"

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:03+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2020-09-10 14:37+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -35,7 +35,7 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个实数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是句柄矩阵。\n"
 
 #, c-format
 msgid ""
@@ -52,7 +52,7 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个实数标量或者�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是有效的图形标识符。\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -72,7 +72,7 @@ msgstr "%s：第%d个输入参数的维度出错：应该为字符串。\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected."
-msgstr ""
+msgstr "'%s'属性的值错误：应该是'%s'或'%s'。"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double vector expected.\n"
@@ -116,7 +116,7 @@ msgstr "警告"
 
 #, c-format
 msgid "%s: Please use %s instead.\n"
-msgstr ""
+msgstr "%s：请改用%s。\n"
 
 #, c-format
 msgid ""
@@ -209,32 +209,32 @@ msgstr "%s：无法创建'Uicontrol'句柄。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个图形句柄。\n"
+msgstr "%s：第%d个输入参数类型错误：应该为一个图形句柄。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为句柄。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个'%s'或'%s'句柄。\n"
+msgstr "%s：第%d个输入参数类型错误：应该为一个'%s'或'%s'句柄。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为'%s'句柄。\n"
+msgstr "%s：第%d个输入参数类型错误：应该为'%s'句柄。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个实数或者一个字符串。\n"
+msgstr "%s：第%d个输入参数类型错误：应该为一个实数或者一个字符串。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为'%s'句柄。\n"
+msgstr "%s：第%d个输入参数大小错误：应该为'%s'句柄。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是有效的'%s'句柄。\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
@@ -277,19 +277,19 @@ msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是字符串或者宏名称。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是字符串或者宏名称。\n"
 
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数维度错误：应该是字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为%d或%d。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
@@ -297,20 +297,20 @@ msgstr "%s：第%d个输入参数的类型错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: %s is obsolete and will be removed from Scilab %s\n"
-msgstr ""
+msgstr "%s：%s已弃用，将从Scilab%s版本中删除\n"
 
 #, c-format
 msgid "%s: Wrong number for input argument: %d or %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该是%d个或%d个。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: 1-by-%d or %d-by-1 vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是大小为 1x%d 或者 %dx1 的向量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是标量或向量。\n"
 
 #, c-format
 msgid "%s: Can not create output argument #%d.\n"
@@ -318,11 +318,11 @@ msgstr "%s：无法创建第%d个输出参数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是句柄。\n"
 
 #, c-format
 msgid "%s: Invalid value for datatip index %d.\n"
-msgstr ""
+msgstr "%s：数据提示索引%d的值无效。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -330,64 +330,66 @@ msgstr "%s：第%d个输入参数的大小错误：应该为标量。\n"
 
 #, c-format
 msgid "%s:  Wrong number of output argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s：输出参数数目错误：应该是%d个或%d个。"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A list expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是list类型。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : At least %d elements expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该至少含有%d个元素。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of input argument #%d : string expected.\n"
-msgstr ""
+msgstr "%s：第%d个元素(第%d个输入参数中)类型错误：应该是字符串。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for element #%d of input argument #%d : At least %d element "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个元素(第%d个输入参数中)大小错误：应该至少含有%d个元素。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Tree expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是Tree类型。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of input argument #%d : A struct expected.\n"
-msgstr ""
+msgstr "%s：第%d个元素(第%d个输入参数中)类型错误：应该是struct类型。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong fields for element #%d of input argument #%d : \"%s\" and \"%s\" "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个元素(第%d个输入参数中)字段错误：应该是“%s”和“%s”。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of element #%d of input argument #%d : string "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个和第%d个元素(第%d个输入参数中)类型错误：应该是字符串。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for element #%d of element #%d of input argument #%d : A "
 "single string expected.\n"
-msgstr ""
+msgstr "%s：第%d个和第%d个元素(第%d个输入参数中)类型错误：应该是字符串。\n"
 
 #, c-format
 msgid "%s: Error in the tree parsing.\n"
-msgstr ""
+msgstr "%s：树状数据解析错误。\n"
 
 #, c-format
 msgid ""
 "%s: A Java exception has arisen:\n"
 "%s"
 msgstr ""
+"%s：出现Java异常：\n"
+"%s"
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
@@ -398,41 +400,43 @@ msgstr "不能得到目前的界面风格"
 
 #, c-format
 msgid "%s:  Wrong type for input argument #%d: A boolean expected."
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是布尔量。"
 
 #, c-format
 msgid "%s:  Wrong type for input argument #%d: string expected."
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是字符串。"
 
 #, c-format
 msgid "%s:  Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s：输入参数数目错误：应该介于%d个到%d个之间。"
 
 #, c-format
 msgid "%s: This file %s does not exist.\n"
-msgstr ""
+msgstr "%s：文件%s不存在。\n"
 
 #, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
 msgstr ""
+"%s：出现一个Java异常：\n"
+"%s"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single handle expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是一个句柄对象。\n"
 
 #, c-format
 msgid "%s: The handle is not or no more valid.\n"
-msgstr ""
+msgstr "%s：句柄不正确。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Figure handle expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是图片句柄。\n"
 
 #, c-format
 msgid "%s: %s.\n"
-msgstr ""
+msgstr "%s：%s。\n"
 
 #, c-format
 msgid ""
@@ -448,11 +452,11 @@ msgstr "%s：文件%s不存在。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是正整数。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Positive integer expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是正整数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -473,7 +477,7 @@ msgstr "%s：第%d个输入参数错误：应该为‘%s’或‘%s’。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是'pos' 或者 'gdi' 。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
@@ -509,34 +513,34 @@ msgstr "Scilab需要多个值"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为字符串向量。\n"
+msgstr "%s：第%d个输入参数大小错误：应该为字符串向量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: It must have same dimensions as "
 "argument #%d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该与第%d个参数有一样的维度。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为 %dx%d 字符串矩阵。\n"
+msgstr "%s：第%d个输入参数大小错误：应该是大小为 %dx%d 的字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
+msgstr "%s：第%d个输入参数类型错误，应该为字符串矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数或复数向量。\n"
+msgstr "%s：第%d个输入参数类型错误：应该为实数或复数向量。\n"
 
 msgid "Scilab Choices Request"
 msgstr "Scilab需要选择"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
-msgstr ""
+msgstr "该句柄不存在'%s'属性。\n"
 
 #, c-format
 msgid "No '%s' property for this object.\n"
@@ -544,23 +548,23 @@ msgstr "该对象无'%s'属性。\n"
 
 #, c-format
 msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
-msgstr ""
+msgstr "%s：父组件类型错误：应该是句柄或0。\n"
 
 #, c-format
 msgid "%s: can not add a menu into the console in this mode.\n"
-msgstr ""
+msgstr "%s：在这种模式下无法将菜单添加到控制台。\n"
 
 #, c-format
 msgid "%s: Wrong type for parent: A handle expected.\n"
-msgstr ""
+msgstr "%s：父组件类型错误：应该是一个句柄。\n"
 
 #, c-format
 msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
-msgstr ""
+msgstr "%s：父组件类型错误：应该是图形或uimenu句柄。\n"
 
 #, c-format
 msgid "%s: Wrong value for parent: 0 expected.\n"
-msgstr ""
+msgstr "%s：父组件的值错误：应该是0。\n"
 
 #, c-format
 msgid ""
@@ -582,7 +586,7 @@ msgstr "属性'%s'的类型错误：应该为 1x3 的实数行向量或一个 'R
 
 #, c-format
 msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr ""
+msgstr "'%s'属性的值错误：应该是介于0和1之间的数字。\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: string expected.\n"
@@ -623,7 +627,7 @@ msgstr "属性'%s'的大小错误：应该为'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
-msgstr ""
+msgstr "属性 %s 的类型错误：应该是字符串。\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
@@ -650,6 +654,7 @@ msgid ""
 "Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
+"'%s'属性类型错误：应该是'%s'，'%s'，'%s'，'%s'，'%s'，'%s'或'%s'中的一个。\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
@@ -665,7 +670,7 @@ msgstr "属性'%s'的大小错误：应该为一个字符串或者一个字符�
 
 #, c-format
 msgid "Wrong type for '%s' property: string or vector of strings expected.\n"
-msgstr ""
+msgstr "'%s'属性类型错误：应该是字符串或字符串向量。\n"
 
 #, c-format
 msgid ""
@@ -685,7 +690,7 @@ msgstr "属性'%s'的大小错误：应该为一个实数行向量。\n"
 msgid ""
 "Wrong value for '%s' property: A String containing a numeric value "
 "expected.\n"
-msgstr ""
+msgstr "'%s'属性的值错误：应该是包含数字的字符串。\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
@@ -695,14 +700,14 @@ msgstr "属性'%s'的类型错误：应该为一个实数行向量或者一个�
 msgid ""
 "Warning: '%s' 'Value' property should be an integer, the value will be "
 "truncated.\n"
-msgstr ""
+msgstr "警告：“%s”的“值”属性应为整数，该值将被截断。\n"
 
 msgid "(Max - Min) must be greater than 1 to allow the multiple selection.\n"
-msgstr ""
+msgstr "(Max - Min)必须大于1以允许多重选择。\n"
 
 #, c-format
 msgid "'%s' value must be between 0 and %d.\n"
-msgstr ""
+msgstr "'%s'值必须在0到%d之间。\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
@@ -756,7 +761,7 @@ msgid "&Original View"
 msgstr "原始视图(&O)"
 
 msgid "Reframe to contents"
-msgstr ""
+msgstr "重新构图"
 
 msgid "2D/3D &Rotation"
 msgstr "2D/3D旋转(&R)"
@@ -776,54 +781,47 @@ msgstr "Figure属性(&F)"
 msgid "&Axes properties"
 msgstr "坐标轴属性(&A)"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 21
-# File: modules/gui/src/gui_fake_xml.c, line: 58
 msgid "&Move objects"
-msgstr ""
+msgstr "&移动对象"
 
-#, fuzzy
 msgid "Start entity &picker"
-msgstr "开始选择实体(&S)"
+msgstr "启动实体&选择器"
 
 msgid "S&top entity picker"
 msgstr "停止选择实体(&t)"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 24
-# File: modules/gui/src/gui_fake_xml.c, line: 61
 msgid "Start &datatip manager"
-msgstr ""
+msgstr "启动&数据提示管理器"
 
 msgid "Stop datatip manager"
-msgstr ""
+msgstr "停止数据提示管理器"
 
 msgid "Start curve data modification"
-msgstr ""
+msgstr "开始曲线数据修改"
 
 msgid "Stop curve data modification"
-msgstr ""
+msgstr "停止曲线数据修改"
 
 msgid "Plot Browser"
-msgstr ""
+msgstr "绘图浏览器"
 
 msgid "Scilab Graphic Editor - GED"
-msgstr ""
+msgstr "Scilab图形编辑器-GED"
 
 msgid "&Quick Editor"
-msgstr ""
+msgstr "&快速编辑器"
 
 msgid "&MVC"
 msgstr "&MVC"
 
 msgid "&Log View (Trace all View notifications)"
-msgstr ""
+msgstr "&日志视图 (跟踪所有视图通知)"
 
 msgid "&All Objects View (All objects with properties)"
-msgstr ""
+msgstr "&全部对象视图(所有具有属性的对象)"
 
 msgid "&Ged-like View (Future ged)"
-msgstr ""
+msgstr "&Ged式检视(未来ged)"
 
 msgid "&?"
 msgstr "&?"
@@ -846,6 +844,68 @@ msgstr "增大字体(&c)"
 msgid "&Decrease font size"
 msgstr "减小字体(&D)"
 
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 81
+# File: modules/gui/src/gui_fake_xml.c, line: 100
+msgid "&Language"
+msgstr ""
+
+#, fuzzy
+msgid "en"
+msgstr "菜单"
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 83
+# File: modules/gui/src/gui_fake_xml.c, line: 102
+msgid "fr"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 84
+# File: modules/gui/src/gui_fake_xml.c, line: 103
+msgid "ja"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 85
+# File: modules/gui/src/gui_fake_xml.c, line: 104
+msgid "pt"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 86
+# File: modules/gui/src/gui_fake_xml.c, line: 105
+msgid "ru"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 87
+# File: modules/gui/src/gui_fake_xml.c, line: 106
+msgid "&Online"
+msgstr ""
+
+#, fuzzy
+msgid "See this page online"
+msgstr "删除该点"
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 89
+# File: modules/gui/src/gui_fake_xml.c, line: 108
+msgid "&Issues"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 90
+# File: modules/gui/src/gui_fake_xml.c, line: 109
+msgid "List ALL issues declared for this item (online)"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 91
+# File: modules/gui/src/gui_fake_xml.c, line: 110
+msgid "List only UNRESOLVED issues declared for this item (online)"
+msgstr ""
+
 msgid "&Execute..."
 msgstr "执行(&E)..."
 
@@ -859,22 +919,22 @@ msgid "&Save environment..."
 msgstr "保存运行环境(&S)"
 
 msgid "&Current Working Directory"
-msgstr ""
+msgstr "&当前工作目录"
 
 msgid "    &Browse for new"
-msgstr ""
+msgstr "    &浏览新内容"
 
 msgid "    Go to &Favorite"
-msgstr ""
+msgstr "    转到&收藏夹"
 
 msgid "TMPDIR"
-msgstr ""
+msgstr "TMPDIR"
 
 msgid "SCIHOME"
-msgstr ""
+msgstr "SCIHOME"
 
 msgid "SCI"
-msgstr ""
+msgstr "SCI"
 
 msgid "User's home ~"
 msgstr "用户目录~"
@@ -949,7 +1009,7 @@ msgid "Scilab &Demonstrations"
 msgstr "Scilab示例(&D)"
 
 msgid "&News feed"
-msgstr ""
+msgstr "&新闻动态"
 
 msgid "&Links"
 msgstr "链接(&L)"
@@ -976,7 +1036,7 @@ msgid "Mailing Lists &Archives"
 msgstr "邮件列表存档(&A)"
 
 msgid "&Forge"
-msgstr ""
+msgstr "＆链接"
 
 msgid "&Bugs And Requests"
 msgstr "错误和新功能需求数据库(&B)"
@@ -994,19 +1054,17 @@ msgid "Original View"
 msgstr "原始视图"
 
 msgid "Toggle datatip mode"
-msgstr ""
+msgstr "切换数据提示模式"
 
 msgid "Open the graphics editor"
-msgstr ""
+msgstr "打开图形编辑器"
 
 msgid "Toggle curve data modification"
-msgstr ""
+msgstr "切换曲线数据修改"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 204
-# File: modules/gui/src/gui_fake_xml.c, line: 213
-msgid "Move objects"
-msgstr ""
+#, fuzzy
+msgid "Move objects (2D view)"
+msgstr "移动对象"
 
 msgid "Help Browser"
 msgstr "Scilab帮助"
@@ -1057,7 +1115,7 @@ msgid "Figure saved.\n"
 msgstr "Figure已被保存\n"
 
 msgid "'Right click and drag to rotate.'"
-msgstr ""
+msgstr "“右键单击并拖动以旋转。”"
 
 msgid "Colors"
 msgstr "颜色"
@@ -1084,16 +1142,16 @@ msgid "Keyword color "
 msgstr "关键词颜色 "
 
 msgid "&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;"
-msgstr ""
+msgstr "&lt;html&gt;&lt;b&gt;加粗&lt;/b&gt;&lt;html&gt;"
 
 msgid "&lt;html&gt;&lt;i&gt;Italic&lt;/i&gt;&lt;html&gt;"
-msgstr ""
+msgstr "&lt;html&gt;&lt;i&gt;斜体&lt;/i&gt;&lt;html&gt;"
 
 msgid "&lt;html&gt;&lt;u&gt;Underline&lt;/u&gt;&lt;html&gt;"
-msgstr ""
+msgstr "&lt;html&gt;&lt;u&gt;强调&lt;/u&gt;&lt;html&gt;"
 
 msgid "&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;"
-msgstr ""
+msgstr "&lt;html&gt;&lt;s&gt;删除线&lt;/s&gt;&lt;html&gt;"
 
 msgid "Fonts"
 msgstr "字体"
@@ -1111,7 +1169,7 @@ msgid "Custom font"
 msgstr "自定义字体"
 
 msgid "Fonts to use:"
-msgstr ""
+msgstr "使用的字体："
 
 msgid "Desktop text font"
 msgstr "桌面文本字体"
@@ -1120,13 +1178,13 @@ msgid "Custom:"
 msgstr "自定义："
 
 msgid "LaTeX preview"
-msgstr ""
+msgstr "LaTeX预览"
 
 msgid "LaTeX font size:"
-msgstr ""
+msgstr "LaTeX字体大小："
 
 msgid "Web"
-msgstr ""
+msgstr "网页"
 
 msgid "Web browser and mailer"
 msgstr "网页浏览器和邮件程序"
@@ -1135,7 +1193,7 @@ msgid "Use default web browser"
 msgstr "使用默认网络浏览器"
 
 msgid "Command for web browser: "
-msgstr ""
+msgstr "网络浏览器命令： "
 
 msgid "(Don't forget to quote path containing white spaces)"
 msgstr "(不要忘记含空格的路径要加双引号)"
@@ -1144,7 +1202,7 @@ msgid "Use default mailer"
 msgstr "使用默认邮件程序"
 
 msgid "Command for mailer: "
-msgstr ""
+msgstr "邮递员命令： "
 
 msgid "Proxy settings"
 msgstr "代理设置"
@@ -1179,10 +1237,12 @@ msgid ""
 "where mixing uicontrols and graphics is not available. Type %s for more "
 "information."
 msgstr ""
+"警告：由于配置限制，Scilab切换为无法混合使用uicontrols和图形的模式。 键入%s以"
+"获得更多信息。"
 
 #, c-format
 msgid "In some cases, %s fixes the issue"
-msgstr ""
+msgstr "在某些情况下，%s解决了该问题"
 
 msgid ""
 "Due to your video card drivers limitations, that are not able to manage "
@@ -1197,6 +1257,8 @@ msgid ""
 "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
 "information.\")"
 msgstr ""
+"disp(\"警告：尽管有先前的警告，您仍选择使用具有高级图形功能的Scilab。键入"
+"\"\"help usecanvas\"\"以获取更多信息。\")"
 
 msgid "Are you sure you want to clear the console ?"
 msgstr "您确定要清空控制台吗？"
@@ -1227,19 +1289,19 @@ msgstr "回隐表达式计算其值"
 
 #, c-format
 msgid "Option for %s format"
-msgstr ""
+msgstr "%s格式的选项"
 
 msgid "Portrait"
-msgstr ""
+msgstr "纵向"
 
 msgid "Landscape"
-msgstr ""
+msgstr "横向"
 
 msgid "Confirm"
-msgstr ""
+msgstr "确认"
 
 msgid "Orientation"
-msgstr ""
+msgstr "定向"
 
 #, c-format
 msgid "An error occurred during export: %s"
@@ -1264,13 +1326,13 @@ msgid "PPM image"
 msgstr "PPM图像"
 
 msgid "Enhanced Metafile image (EMF)"
-msgstr ""
+msgstr "增强型图元文件图像 (EMF)"
 
 msgid "Encapsulated PostScript image (EPS)"
-msgstr ""
+msgstr "封装的PostScript图像 (EPS)"
 
 msgid "PostScript image (PS)"
-msgstr ""
+msgstr "PostScript图片(PS)"
 
 msgid "PDF image"
 msgstr "PDF图像"
@@ -1288,7 +1350,7 @@ msgid "Export"
 msgstr "导出"
 
 msgid "Preview selected image file"
-msgstr ""
+msgstr "预览选定的图像文件"
 
 msgid "Replace existing file?"
 msgstr "替换已有的文件？"
@@ -1307,6 +1369,8 @@ msgid ""
 "Unrecognized extension '%s'.\n"
 " Please specify a valid file format."
 msgstr ""
+"无法识别的扩展名'%s'。\n"
+"  请指定有效的文件格式。"
 
 msgid "Font Chooser"
 msgstr "字体选择器"
@@ -1327,7 +1391,7 @@ msgid "Monospaced"
 msgstr "等宽"
 
 msgid "SciNotes compatible"
-msgstr ""
+msgstr "兼容SciNotes"
 
 msgid "Preview"
 msgstr "预览"
@@ -1336,7 +1400,7 @@ msgid "Loading help browser..."
 msgstr "加载帮助文档……"
 
 msgid "Feature not available in this mode..."
-msgstr ""
+msgstr "该功能在此模式下不可用..."
 
 msgid "No text selected"
 msgstr "没有选择文字"
@@ -1357,752 +1421,749 @@ msgid "OK"
 msgstr "确认"
 
 msgid "Tree Overview"
-msgstr ""
+msgstr "树状图总览"
 
 msgid ""
 "Left click on the curve creates a datatip and right click on the datatip "
 "removes it."
-msgstr ""
+msgstr "左键单击曲线将创建一个数据提示，而右键单击该数据提示将其删除。"
 
 msgid "Delete all the datatips"
-msgstr ""
+msgstr "删除所有数据提示"
 
 msgid "Delete all the datatips on the selected curve"
-msgstr ""
+msgstr "删除所选曲线上的所有数据提示"
 
 msgid "Delete the nearest datatip"
-msgstr ""
-
-msgid "Delete the last datatip"
-msgstr ""
+msgstr "删除最近的数据提示"
 
 msgid "Edit curve datatip display function"
-msgstr ""
+msgstr "编辑曲线数据提示显示功能"
 
 msgid "Enable interpolation"
-msgstr ""
+msgstr "启用插值"
 
 msgid "Disable interpolation"
-msgstr ""
+msgstr "禁用插值"
 
 msgid "Display function name"
-msgstr ""
+msgstr "显示函数名称"
 
 msgid "Insert"
-msgstr ""
+msgstr "插入"
 
 msgid "Insert a new point here"
-msgstr ""
+msgstr "在这里插入新点"
 
 msgid "Remove"
-msgstr ""
+msgstr "移除"
 
 msgid "Remove this point"
-msgstr ""
+msgstr "删除该点"
 
 msgid "Exit"
 msgstr "退出"
 
 msgid "Leave data editor mode"
-msgstr ""
+msgstr "离开数据编辑器模式"
 
 msgid "Label"
-msgstr ""
+msgstr "标签"
 
 msgid "Legend"
-msgstr ""
+msgstr "图例"
 
 msgid "Copy selected object"
-msgstr ""
+msgstr "复制所选对象"
 
 msgid "Cut selected object"
-msgstr ""
+msgstr "剪切所选对象"
 
 msgid "Paste copied object on this figure"
-msgstr ""
+msgstr "粘贴到此处"
 
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
 msgid "Delete selected object"
-msgstr ""
+msgstr "删除所选对象"
 
 msgid "Clear axes"
 msgstr "清除該區域"
 
 msgid "Delete axes contents and labels"
-msgstr ""
+msgstr "删除轴内容和标签"
 
 msgid "Hide"
-msgstr ""
+msgstr "隐藏"
 
 msgid "Hide selected object"
-msgstr ""
+msgstr "隐藏所选对象"
 
 msgid "Unhide all"
-msgstr ""
+msgstr "取消所有隐藏"
 
 msgid "Unhide all objects"
-msgstr ""
+msgstr "取消所有隐藏"
 
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "复制到剪贴板"
 
 msgid "Copy figure to system clipboard"
-msgstr ""
+msgstr "将图形复制到系统剪贴板"
 
 msgid "Set the axes main title"
-msgstr ""
+msgstr "设置坐标轴标题"
 
 msgid "Label X"
-msgstr ""
+msgstr "标签X"
 
 msgid "Set the X axis label"
-msgstr ""
+msgstr "设置X轴标签"
 
 msgid "Label Y"
-msgstr ""
+msgstr "标签Y"
 
 msgid "Set the Y axis label"
-msgstr ""
+msgstr "设置Y轴标签"
 
 msgid "Label Z"
-msgstr ""
+msgstr "标签Z"
 
 msgid "Set the Z axis label"
-msgstr ""
+msgstr "设置Z轴标签"
 
 msgid "Insert a legend into the selected curve"
-msgstr ""
+msgstr "将图例插入所选曲线"
 
 msgid "Remove the legend from the selected curve"
-msgstr ""
+msgstr "从选定曲线中删除图例"
 
 msgid "Open Quick Editor"
-msgstr ""
+msgstr "打开快速编辑器"
 
 msgid "Initialize the graphics editor"
-msgstr ""
+msgstr "初始化图形编辑器"
 
 msgid "Edit curve data"
-msgstr ""
+msgstr "编辑曲线数据"
 
 msgid "Enables curve data modification"
-msgstr ""
+msgstr "启用曲线数据修改"
 
 msgid "Undo"
-msgstr ""
+msgstr "撤销"
 
 msgid "Undo last action"
-msgstr ""
+msgstr "撤销上一个操作"
 
 msgid "Redo"
-msgstr ""
+msgstr "重做"
 
 msgid "Redo last undo action"
-msgstr ""
+msgstr "重做上一个操作"
 
 msgid "Copy style"
-msgstr ""
+msgstr "复制样式"
 
 msgid "Copy the style of the axes"
-msgstr ""
+msgstr "复制坐标轴样式"
 
 msgid "Paste style"
-msgstr ""
+msgstr "粘贴样式"
 
 msgid "Paste the copied style on these axes"
-msgstr ""
+msgstr "将复制的样式粘贴到坐标轴"
 
 msgid "Enter the text"
-msgstr ""
+msgstr "输入文本"
 
 msgid "Set label text"
-msgstr ""
+msgstr "设置标签文字"
 
 msgid "Set legend text"
-msgstr ""
+msgstr "设置图例文字"
 
 msgid "Quick GED"
-msgstr ""
+msgstr "快速GED"
 
 msgid "Property List"
-msgstr ""
+msgstr "属性列表"
 
 msgid "Show"
-msgstr ""
+msgstr "显示"
 
 msgid "Arc"
-msgstr ""
+msgstr "弧"
 
 msgid "Axes"
-msgstr ""
+msgstr "坐标轴"
 
 msgid "Champ"
-msgstr ""
+msgstr "Champ"
 
 msgid "Datatip"
-msgstr ""
+msgstr "数据提示"
 
 msgid "Polyline"
-msgstr ""
+msgstr "折线"
 
 msgid "Fec"
-msgstr ""
+msgstr "Fec"
 
 msgid "Figure"
-msgstr ""
+msgstr "图表"
 
 msgid "Segs"
-msgstr ""
+msgstr "段"
 
 msgid "Surface"
-msgstr ""
+msgstr "表面"
 
 msgid "Plot3D"
-msgstr ""
+msgstr "Plot3D"
 
 msgid "Rectangle"
-msgstr ""
+msgstr "矩型"
 
 msgid "Fac3D"
-msgstr ""
+msgstr "Fac3D"
 
 msgid "Grayplot"
-msgstr ""
+msgstr "灰度图"
 
 msgid "Matplot"
-msgstr ""
+msgstr "Matplot"
 
 msgid "Arc Drawing Method"
-msgstr ""
+msgstr "弧线绘制方法"
 
 msgid "Auto Rotation"
-msgstr ""
+msgstr "Auto Rotation"
 
 msgid "Auto Position"
-msgstr ""
+msgstr "自动定位"
 
 msgid "Auto Ticks"
-msgstr ""
+msgstr "自动勾选"
 
 msgid "Tick"
-msgstr ""
+msgstr "打钩"
 
 msgid "Lines"
-msgstr ""
+msgstr "行"
 
 msgid "Nurbs"
-msgstr ""
+msgstr "Nurbs"
 
 msgid "Anti-aliasing"
-msgstr ""
+msgstr "抗锯齿"
 
 msgid "Auto Clear"
-msgstr ""
+msgstr "自动清除"
 
 msgid "Auto Orientation"
-msgstr ""
+msgstr "自动定向"
 
 msgid "Auto Scale"
-msgstr ""
+msgstr "自动比例"
 
 msgid "Auto Resize"
-msgstr ""
+msgstr "自动缩放"
 
 msgid "Axes Visible"
-msgstr ""
+msgstr "坐标轴可见性"
 
 msgid "Axes Reverse"
-msgstr ""
+msgstr "坐标轴反转"
 
 msgid "Closed"
-msgstr ""
+msgstr "已关闭"
 
 msgid "Cube Scaling"
-msgstr ""
+msgstr "多维数据集缩放"
 
 msgid "Fill Mode"
-msgstr ""
+msgstr "填充模式"
 
 msgid "Immediate Drawing"
-msgstr ""
+msgstr "立即绘图"
 
 msgid "Isometric View"
-msgstr ""
+msgstr "等轴测图"
 
 msgid "Label Mode"
-msgstr ""
+msgstr "标签模式"
 
 msgid "Line Mode"
-msgstr ""
+msgstr "线模式"
 
 msgid "Mark Mode"
-msgstr ""
+msgstr "标记模式"
 
 msgid "Visible"
-msgstr ""
+msgstr "可见性"
 
 msgid "Base Properties"
-msgstr ""
+msgstr "基本属性"
 
 msgid "On"
-msgstr ""
+msgstr "开启"
 
 msgid "Off"
-msgstr ""
+msgstr "关闭"
 
 msgid "Pixmap"
-msgstr ""
+msgstr "位图"
 
 msgid "Tag"
-msgstr ""
+msgstr "标签"
 
 msgid "Text"
-msgstr ""
+msgstr "文本"
 
 msgid "Surface Mode"
-msgstr ""
+msgstr "表面模式"
 
 msgid "Box"
-msgstr ""
+msgstr "文字框"
 
 msgid "Hidden Axis Color"
-msgstr ""
+msgstr "隐藏坐标轴颜色"
 
 msgid "Camera"
-msgstr ""
+msgstr "摄像头"
 
 msgid "Alpha"
-msgstr ""
+msgstr "Alpha"
 
 msgid "Theta"
-msgstr ""
+msgstr "Theta"
 
 msgid "Ticks"
-msgstr ""
+msgstr "滴答"
 
 msgid ""
 "The data bounds from the axis must be strictly positive to be changed to "
 "logarithmic scale."
-msgstr ""
+msgstr "坐标轴数据边界必须严格为正，才能更改为对数刻度。"
 
 msgid "Choose Background Color"
-msgstr ""
+msgstr "选择背景色"
 
 msgid "Choose Foreground Color"
-msgstr ""
+msgstr "选择前景色"
 
 msgid "Choose Font Color"
-msgstr ""
+msgstr "选择字体颜色"
 
 msgid "Choose a Color"
-msgstr ""
+msgstr "选择颜色"
 
 msgid "Arrow Size"
-msgstr ""
+msgstr "箭头大小"
 
 msgid "Colored"
-msgstr ""
+msgstr "彩色"
 
 msgid "Background"
-msgstr ""
+msgstr "背景色"
 
 msgid "Foreground"
-msgstr ""
+msgstr "前景色"
 
 msgid "Grid Position"
-msgstr ""
+msgstr "网格位置"
 
 msgid "X Grid Color"
-msgstr ""
+msgstr "X网格颜色"
 
 msgid "Y Grid Color"
-msgstr ""
+msgstr "Y网格颜色"
 
 msgid "Back Half"
-msgstr ""
+msgstr "后半"
 
 msgid "Hidden Axes"
-msgstr ""
+msgstr "隐藏坐标轴"
 
 msgid "Style/Appearance"
-msgstr ""
+msgstr "样式/外观"
 
 msgid "Foreground Color"
-msgstr ""
+msgstr "前景色"
 
 msgid "Line Style"
-msgstr ""
+msgstr "线条样式"
 
 msgid "solid"
-msgstr ""
+msgstr "实线"
 
 msgid "dash"
-msgstr ""
+msgstr "虚线"
 
 msgid "dash dot"
-msgstr ""
+msgstr "点划线"
 
 msgid "longdash dot"
-msgstr ""
+msgstr "长虚线"
 
 msgid "bigdash dot"
-msgstr ""
+msgstr "长点划线"
 
 msgid "bigdash longdash"
-msgstr ""
+msgstr "长点划虚线"
 
 msgid "dot"
-msgstr ""
+msgstr "点"
 
 msgid "double dot"
-msgstr ""
+msgstr "双点"
 
 msgid "Polyline Style"
-msgstr ""
+msgstr "折线样式"
 
 msgid "interpolated"
-msgstr ""
+msgstr "内插"
 
 msgid "staircase"
-msgstr ""
+msgstr "阶梯"
 
 msgid "barplot"
-msgstr ""
+msgstr "条形图"
 
 msgid "bar"
-msgstr ""
+msgstr "条形"
 
 msgid "arrowed"
-msgstr ""
+msgstr "箭形"
 
 msgid "filled"
-msgstr ""
+msgstr "填充"
 
 msgid "Min"
-msgstr ""
+msgstr "最小值"
 
 msgid "Max"
-msgstr ""
+msgstr "最大值"
 
 msgid "Color Range"
-msgstr ""
+msgstr "色彩范围"
 
 msgid "Outside Color"
-msgstr ""
+msgstr "外色"
 
 msgid "Z Bounds"
-msgstr ""
+msgstr "Z界"
 
 msgid "Pixel Drawing Mode"
-msgstr ""
+msgstr "像素绘图模式"
 
 msgid "Rotation Style"
-msgstr ""
+msgstr "旋转样式"
 
 msgid "unary"
-msgstr ""
+msgstr "一元"
 
 msgid "multiple"
-msgstr ""
+msgstr "多个"
 
 msgid "Arrow Size Factor"
-msgstr ""
+msgstr "箭头大小"
 
 msgid "Bar Width"
-msgstr ""
+msgstr "条形宽度"
 
 msgid "Color Mode"
-msgstr ""
+msgstr "色彩模式"
 
 msgid "Color Flag"
-msgstr ""
+msgstr "色标"
 
 msgid "Hidden Color"
-msgstr ""
+msgstr "隐藏颜色"
 
 msgid "Thickness"
-msgstr ""
+msgstr "线宽"
 
 msgid "Mark"
-msgstr ""
+msgstr "标记"
 
 msgid "Mark Background"
-msgstr ""
+msgstr "背景标记"
 
 msgid "Mark Foreground"
-msgstr ""
+msgstr "前景标记"
 
 msgid "Mark Size"
-msgstr ""
+msgstr "大小标记"
 
 msgid "Mark Style"
-msgstr ""
+msgstr "样式标记"
 
 msgid "Components display"
-msgstr ""
+msgstr "显示组件"
 
 msgid "Data Properties"
-msgstr ""
+msgstr "数据属性"
 
 msgid "Data Mapping"
-msgstr ""
+msgstr "数据图"
 
 msgid "Direct"
-msgstr ""
+msgstr "直接"
 
 msgid "Clip Box"
-msgstr ""
+msgstr "夹盒"
 
 msgid "Upper-left"
-msgstr ""
+msgstr "左上"
 
 msgid "Point"
-msgstr ""
+msgstr "点"
 
 msgid "Clip State"
-msgstr ""
+msgstr "剪辑状态"
 
 msgid "clipgrf"
-msgstr ""
+msgstr "剪贴画"
 
 msgid "Data"
-msgstr ""
+msgstr "数据"
 
 msgid "Figure ID"
-msgstr ""
+msgstr "图表ID"
 
 msgid "Figure Name"
-msgstr ""
+msgstr "图表名称"
 
 msgid "Info Message"
-msgstr ""
+msgstr "信息"
 
 msgid "Units"
-msgstr ""
+msgstr "单元"
 
 msgid "Upper Left Point"
-msgstr ""
+msgstr "左上角"
 
 msgid "User Data"
 msgstr "用户数据"
 
 msgid "X Label"
-msgstr ""
+msgstr "X轴"
 
 msgid "Y Label"
-msgstr ""
+msgstr "Y轴"
 
 msgid "Z Label"
-msgstr ""
+msgstr "Z轴"
 
 msgid "Scaled"
-msgstr ""
+msgstr "等比例缩放"
 
 msgid "Start Angle"
-msgstr ""
+msgstr "起始角度"
 
 msgid "End Angle"
-msgstr ""
+msgstr "终点角度"
 
 msgid "Number of current figure."
-msgstr ""
+msgstr "当前图表号。"
 
 msgid "Enter a figure name."
-msgstr ""
+msgstr "输入图表名称。"
 
 msgid "Refresh"
-msgstr ""
+msgstr "刷新"
 
 msgid "Submit and close"
-msgstr ""
+msgstr "提交并关闭"
 
 msgid "Append"
-msgstr ""
+msgstr "追加"
 
 msgid "Data Editor"
-msgstr ""
+msgstr "数据编辑器"
 
 msgid "2D"
-msgstr ""
+msgstr "2D"
 
 msgid "3D"
-msgstr ""
+msgstr "3D"
 
 msgid "Control"
-msgstr ""
+msgstr "控制"
 
 msgid "Axes Size"
-msgstr ""
+msgstr "坐标轴大小"
 
 msgid "CloseRequestFcn"
-msgstr ""
+msgstr "CloseRequestFcn"
 
 msgid "ResizeFcn"
-msgstr ""
+msgstr "ResizeFcn"
 
 msgid "Figure Position"
-msgstr ""
+msgstr "图表位置"
 
 msgid "Figure Size"
-msgstr ""
+msgstr "图表大小"
 
 msgid "Event Handler"
-msgstr ""
+msgstr "事件句柄"
 
 msgid "Function"
-msgstr ""
+msgstr "函数"
 
 msgid "View"
-msgstr ""
+msgstr "视图"
 
 msgid "Viewport"
 msgstr "视区"
 
 msgid "X Left"
-msgstr ""
+msgstr "X向左"
 
 msgid "Y Up"
-msgstr ""
+msgstr "Y向上"
 
 msgid "Log Flags"
-msgstr ""
+msgstr "日志标志"
 
 msgid "X Tight Limits"
-msgstr ""
+msgstr "X严格限制"
 
 msgid "Y Tight Limits"
-msgstr ""
+msgstr "Y严格限制"
 
 msgid "Z Tight Limits"
-msgstr ""
+msgstr "Z严格限制"
 
 msgid "Enter a x position."
-msgstr ""
+msgstr "输入x位置。"
 
 msgid "Enter a y position."
-msgstr ""
+msgstr "输入y位置。"
 
 msgid "Enter a x size."
-msgstr ""
+msgstr "输入x大小。"
 
 msgid "Enter a y size."
-msgstr ""
+msgstr "输入y大小。"
 
 msgid "Axis Rulers"
-msgstr ""
+msgstr "轴尺"
 
 msgid "X Location"
-msgstr ""
+msgstr "X 位置"
 
 msgid "Y Location"
-msgstr ""
+msgstr "Y 位置"
 
 msgid "Location"
-msgstr ""
+msgstr "位置"
 
 msgid "bottom"
-msgstr ""
+msgstr "底部"
 
 msgid "middle"
-msgstr ""
+msgstr "中部"
 
 msgid "origin"
-msgstr ""
+msgstr "原点"
 
 msgid "top"
-msgstr ""
+msgstr "顶部"
 
 msgid "left"
-msgstr ""
+msgstr "左侧"
 
 msgid "right"
-msgstr ""
+msgstr "右侧"
 
 msgid "Reverse"
-msgstr ""
+msgstr "反转"
 
 msgid "Box Mode"
-msgstr ""
+msgstr "Box模式"
 
 msgid "Title Page"
-msgstr ""
+msgstr "标题页面"
 
 msgid "Axis Title"
-msgstr ""
+msgstr "坐标轴标题"
 
 msgid "Font Angle"
-msgstr ""
+msgstr "字体角度"
 
 msgid "Font Color"
-msgstr ""
+msgstr "字体颜色"
 
 msgid "Font Size"
-msgstr ""
+msgstr "字体大小"
 
 msgid "Font Style"
-msgstr ""
+msgstr "字体样式"
 
 msgid "Fractional Font"
-msgstr ""
+msgstr "小数字体"
 
 msgid "Sub Ticks"
-msgstr ""
+msgstr "线宽"
 
 msgid "Coordinates"
-msgstr ""
+msgstr "坐标系"
 
 msgid "X Coordinate"
-msgstr ""
+msgstr "X 轴"
 
 msgid "Y Coordinate"
-msgstr ""
+msgstr "Y 轴"
 
 msgid "Position"
-msgstr ""
+msgstr "位置"
 
 msgid "Axes Bounds"
-msgstr ""
+msgstr "坐标轴范围"
 
 msgid "Mark Size Unit"
-msgstr ""
+msgstr "标记大小单位"
 
 msgid "Shift"
-msgstr ""
+msgstr "偏移"
 
 msgid "Up"
-msgstr ""
+msgstr "向上"
 
 msgid "Width"
-msgstr ""
+msgstr "宽度"
 
 msgid "Height"
-msgstr ""
+msgstr "高度"
 
 msgid "Margins"
-msgstr ""
+msgstr "边界"
 
 msgid "Rotation Angles"
-msgstr ""
+msgstr "旋转角度"
 
 msgid "Tabulated"
-msgstr ""
+msgstr "制表符"
 
 msgid "X Shift"
-msgstr ""
+msgstr "X偏移"
 
 msgid "Y Shift"
-msgstr ""
+msgstr "Y偏移"
 
 msgid "Z Shift"
-msgstr ""
+msgstr "Z偏移"
 
 msgid "Save and execute"
 msgstr "保存并执行"
 
 msgid "Axis"
-msgstr ""
+msgstr "坐标轴"
 
 msgid "Empty tab"
 msgstr "空标签"
@@ -2112,6 +2173,8 @@ msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
+"uuid为%s的选项卡无法还原。\n"
+"请使用上一条消息报告错误，并附上文件%s。"
 
 #, c-format
 msgid "Are you sure you want to close %s ?"
@@ -2125,10 +2188,10 @@ msgid "An error occurred: "
 msgstr "发生错误： "
 
 msgid "Scilab SCI files"
-msgstr ""
+msgstr "Scilab SCI 文件"
 
 msgid "Scilab SCE files"
-msgstr ""
+msgstr "Scilab SCE 文件"
 
 msgid "Scilab binary files"
 msgstr "Scilab二进制文件"
@@ -2143,10 +2206,10 @@ msgid "Test files"
 msgstr "测试文件"
 
 msgid "Scilab Start files"
-msgstr ""
+msgstr "Scilab Start 文件"
 
 msgid "Scilab Quit files"
-msgstr ""
+msgstr "Scilab Quit 文件"
 
 msgid "Scilab Demo files"
 msgstr "Scilab示例文件"
@@ -2167,7 +2230,7 @@ msgid "All RTF (Rich Text Format) files"
 msgstr "所有RTF (Rich Text Format) 文件"
 
 msgid "All HTML files"
-msgstr ""
+msgstr "所有的HTML文件"
 
 #, c-format
 msgid "All %s files"
@@ -2183,13 +2246,13 @@ msgid "Could not open: "
 msgstr "无法打开： "
 
 msgid "Restoration error"
-msgstr ""
+msgstr "恢复错误"
 
 msgid "The configuration file has been corrupted and reset to the default one."
-msgstr ""
+msgstr "配置文件已损坏，并重置为默认文件。"
 
 msgid "The configuration file has been corrupted. Scilab needs to restart."
-msgstr ""
+msgstr "配置文件已损坏。 Scilab需要重新启动。"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -2203,261 +2266,261 @@ msgid "Error. A signal has been caught.\n"
 msgstr "错误。已产生一个信号。\n"
 
 msgid "Control Plot3d"
-msgstr ""
+msgstr "控制Plot3d"
 
 msgid "Control Panel"
-msgstr ""
+msgstr "控制面板"
 
 msgid "Rotation angle"
-msgstr ""
+msgstr "旋转角度"
 
 msgid "Colormap"
-msgstr ""
+msgstr "色彩图"
 
 msgid "Show / Hide"
-msgstr ""
+msgstr "显示/隐藏"
 
 msgid "messagebox"
-msgstr ""
+msgstr "消息框"
 
 msgid "x_choose"
-msgstr ""
+msgstr "x_choose"
 
 msgid "x_dialog"
-msgstr ""
+msgstr "x_dialog"
 
 msgid "x_mdialog"
-msgstr ""
+msgstr "x_mdialog"
 
 msgid "Simple example of message"
-msgstr ""
+msgstr "消息的简单示例"
 
 msgid "Button 1Button 2"
-msgstr ""
+msgstr "按钮1按钮2"
 
 msgid "Button 1 clicked."
-msgstr ""
+msgstr "按钮1被点击"
 
 msgid "Button 2 clicked"
-msgstr ""
+msgstr "按钮2被点击"
 
 msgid ""
 "Message: Selection (double-click on an item --> returns the item number)"
-msgstr ""
+msgstr "消息：选择 (双击项目->返回项目编号)"
 
 msgid "Item selected: "
-msgstr ""
+msgstr "已选项目： "
 
 msgid "Message: enter a value"
-msgstr ""
+msgstr "消息：输入一个值"
 
 msgid "Value entered: "
-msgstr ""
+msgstr "输入的值： "
 
 msgid "Message"
-msgstr ""
+msgstr "消息"
 
 msgid "first row"
-msgstr ""
+msgstr "第一行"
 
 msgid "Values entered: "
-msgstr ""
+msgstr "输入的值： "
 
 msgid "row"
-msgstr ""
+msgstr "行"
 
 msgid "col"
-msgstr ""
+msgstr "列"
 
 msgid "Matrix to edit"
-msgstr ""
+msgstr "编辑矩阵"
 
 msgid "Matrix entered: "
-msgstr ""
+msgstr "输入的矩阵： "
 
 msgid "GUI"
-msgstr ""
+msgstr "GUI"
 
 msgid "Dialogs"
-msgstr ""
+msgstr "对话框"
 
 msgid "Uicontrols 1"
-msgstr ""
+msgstr "Uicontrols 1"
 
 msgid "Uicontrols 2"
-msgstr ""
+msgstr "Uicontrols 2"
 
 msgid "Uicontrols with LaTeX/MathML"
-msgstr ""
+msgstr "带LaTeX/MathML的Uicontrols"
 
 msgid "Show images with uicontrols "
-msgstr ""
+msgstr "使用uicontrols显示图像 "
 
 msgid "Listboxes and Popupmenus"
-msgstr ""
+msgstr "列表框和弹出菜单"
 
 msgid "Uicontrols rendering"
-msgstr ""
+msgstr "Uicontrols渲染"
 
 msgid "Uicontrols layout"
-msgstr ""
+msgstr "Uicontrols布局"
 
 msgid "Uicontrols messagebox-like"
-msgstr ""
+msgstr "Uicontrols消息框模拟"
 
 msgid "UIcontrols Game of Dice"
-msgstr ""
+msgstr "UIcontrols骰子游戏"
 
 msgid "<Enter color name here>"
-msgstr ""
+msgstr "<在此处输入颜色名称>"
 
 msgid "Error"
-msgstr ""
+msgstr "错误"
 
 msgid "Please enter a color name first."
-msgstr ""
+msgstr "请首先输入颜色名称。"
 
 msgid "Unknown color."
-msgstr ""
+msgstr "未知的颜色。"
 
 msgid "No color selected."
-msgstr ""
+msgstr "未选择颜色。"
 
 msgid "Color selection"
-msgstr ""
+msgstr "颜色选择"
 
 #, c-format
 msgid "Selected colors are: %s."
-msgstr ""
+msgstr "选择的颜色为：%s。"
 
 #, c-format
 msgid "Deleted colors are: %s."
-msgstr ""
+msgstr "删除的颜色是：%s."
 
 #, c-format
 msgid "You clicked on menu '%s'."
-msgstr ""
+msgstr "点击的菜单是'%s'。"
 
 msgid "Selected menu"
-msgstr ""
+msgstr "已选菜单"
 
 msgid "checked"
-msgstr ""
+msgstr "已勾选"
 
 msgid "unchecked"
-msgstr ""
+msgstr "未勾选"
 
 #, c-format
 msgid "Menu '%s' is %s."
-msgstr ""
+msgstr "菜单“%s”为%s。"
 
 msgid "Menu status"
-msgstr ""
+msgstr "菜单状态"
 
 msgid "Slider value: "
-msgstr ""
+msgstr "滑块值： "
 
 #, c-format
 msgid "You selected '%s'."
-msgstr ""
+msgstr "您选择了“%s”。"
 
 msgid "Popupmenu selection"
-msgstr ""
+msgstr "弹出菜单选择"
 
 msgid "Do you really want to quit Scilab?"
-msgstr ""
+msgstr "您真的要退出Scilab吗？"
 
 msgid "Quit Scilab"
-msgstr ""
+msgstr "退出Scilab"
 
 msgid "Uicontrols demo"
-msgstr ""
+msgstr "Uicontrols演示"
 
 msgid "Application"
-msgstr ""
+msgstr "应用"
 
 msgid "Close figure"
-msgstr ""
+msgstr "关闭图表"
 
 msgid "Scilab Graphics"
-msgstr ""
+msgstr "Scilab图形"
 
 msgid "Launch plot3d"
-msgstr ""
+msgstr "启动plot3d"
 
 msgid "Launch plot2d"
-msgstr ""
+msgstr "启动plot2d"
 
 msgid "Menu"
-msgstr ""
+msgstr "菜单"
 
 msgid "Sub-menu 1"
-msgstr ""
+msgstr "菜单子项 1"
 
 msgid "Sub-menu 2"
-msgstr ""
+msgstr "菜单子项 2"
 
 msgid "Sub-menu 2-1"
-msgstr ""
+msgstr "菜单子项 2-1"
 
 msgid "Sub-menu 2-2"
-msgstr ""
+msgstr "菜单子项 2-2"
 
 msgid "item1|item2|item3|item4"
-msgstr ""
+msgstr "子项1|子项2|子项3|子项4"
 
 msgid "Pop-up menu"
-msgstr ""
+msgstr "弹出菜单"
 
 msgid "Slider demo"
-msgstr ""
+msgstr "滑块演示"
 
 msgid "Colors list edition"
-msgstr ""
+msgstr "颜色编辑列表"
 
 msgid "Add color in listbox"
-msgstr ""
+msgstr "在列表框中添加颜色"
 
 msgid "Delete color in listbox"
-msgstr ""
+msgstr "在列表框中删除颜色"
 
 msgid "blue"
-msgstr ""
+msgstr "蓝色"
 
 msgid "green"
-msgstr ""
+msgstr "绿色"
 
 msgid "red"
-msgstr ""
+msgstr "红色"
 
 msgid "yellow"
-msgstr ""
+msgstr "黄色"
 
 msgid "Display selection"
-msgstr ""
+msgstr "显示选择"
 
 msgid "Delete selection"
-msgstr ""
+msgstr "删除所选"
 
 msgid "Default"
-msgstr ""
+msgstr "默认值"
 
 msgid "Quit demonstration"
-msgstr ""
+msgstr "退出示例"
 
 msgid "Uicontrols demo with LaTeX"
-msgstr ""
+msgstr "带有LaTeX的Uicontrols演示"
 
 msgid "Please fill the table"
-msgstr ""
+msgstr "请填充表格"
 
 #, c-format
 msgid "%s: can not add a menu in this mode: %s.\n"
-msgstr ""
+msgstr "%s：无法在以下模式下添加菜单：%s。\n"
 
 #, c-format
 msgid "%s: can not add a menu in console in this mode: %s.\n"
-msgstr ""
+msgstr "%s：在以下模式下无法在控制台中添加菜单：%s。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
@@ -2483,6 +2546,12 @@ msgstr "%s： '%s'的属性类型错误：应该为一个字符串。\n"
 msgid "%s: function not available in NWNI mode.\n"
 msgstr "%s：在无窗口非交互模式（NWNI）下函数不可用。\n"
 
+#
+# File: modules/gui/macros/close.sci, line: 82
+#, c-format
+msgid "%s: Argument #%d: Unknown GUI name '%s'.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
@@ -2490,64 +2559,84 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个图形句柄或者�
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected."
-msgstr ""
+msgstr "%s：输入参数数目错误：应该至少是%d个。"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个到%d 个。"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为整数。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected."
-msgstr ""
+msgstr "%s：输入参数数目错误：应该是%d个，%d个或%d个。"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A integer or a string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是整数或者字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是边框或者字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Font Border expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是字体边框。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr ""
+msgstr "%s：输入参数的数目出错：应为 %d 或者 %d 个。"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A border expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是边框。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个。"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：其值必须在集合{%s}中。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是整数。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该为 %s 或 %s 。\n"
+
+#, fuzzy, c-format
+msgid "%s: Input argument #%d must be a valid handle.\n"
+msgstr "%s：输入参数#%d的值错误：必须大于%d。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr "%s：第%d个参数的类型错误：应该为字符串。\n"
+
+#
+# File: modules/gui/macros/findobj.sci, line: 96
+# File: modules/gui/macros/findobj.sci, line: 101
+#, c-format
+msgid "%s: Argument #%d cannot be a binary operator."
 msgstr ""
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A positive integer value expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该是整数。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该介于%d与%d之间。\n"
 
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
@@ -2576,25 +2665,27 @@ msgid ""
 "Answer given for %s \n"
 " is incorrect: %s.\n"
 msgstr ""
+"针对%s给出的结论，\n"
+"并不正确：%s。\n"
 
 msgid "Select a file to open"
-msgstr ""
+msgstr "选择要打开的文件"
 
 msgid "Scilab scripts"
-msgstr ""
+msgstr "Scilab脚本文件"
 
 msgid "Xcos diagrams"
-msgstr ""
+msgstr "Xcos框图文件"
 
 msgid "Scilab Tests"
-msgstr ""
+msgstr "Scilab测试文件"
 
 msgid "Scilab Library"
-msgstr ""
+msgstr "Scilab库"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是uitree。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -2602,11 +2693,11 @@ msgstr "%s：输入参数的数目错误：至少%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
-msgstr ""
+msgstr "%s：第%d个元素(第%d个输入参数)类型错误：应该是uitree。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or uitree expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是字符串或uitree。\n"
 
 #, c-format
 msgid "%s: Invalid position '%s'.\n"
@@ -2640,11 +2731,11 @@ msgstr "%s：输入参数#%d或#%d的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: No results found.\n"
-msgstr ""
+msgstr "%s：未找到结果。\n"
 
 #, c-format
 msgid "%s: No results found for property '%s' and value '%s'.\n"
-msgstr ""
+msgstr "%s：找不到属性“%s”和值“%s”的结果。\n"
 
 #, c-format
 msgid "%s:  #%d matching parent nodes.\n"
@@ -2656,7 +2747,7 @@ msgstr "%s：不正确的父节点。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+msgstr "%s：第%d个输入参数类型错误：应该为list变量。\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A list expected.\n"
@@ -2681,3 +2772,15 @@ msgstr "%s：%s的类型错误：应该为一个实数。\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s：%s的大小错误：应该为一个实数。\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Booleans, numbers, or text expected.\n"
+msgstr "%s：参数 %d 的类型出错：应该为布尔型矩阵。\n"
+
+#
+# File: modules/gui/macros/x_matrix.sci, line: 57
+msgid "<html>(quotes <b> '</b> inside texts must be doubled)"
+msgstr ""
+
+#~ msgid "Delete the last datatip"
+#~ msgstr "删除最后一个数据提示"

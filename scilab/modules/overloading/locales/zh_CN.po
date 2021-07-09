@@ -8,70 +8,66 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:17+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2020-09-10 12:05+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-
-#, c-format
-msgid "%s: Invalid index.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误。\n"
+
+#, c-format
+msgid "%s: Invalid index.\n"
+msgstr "%s：无效的索引值。\n"
 
 #, c-format
 msgid "%s: Multidimensional sparse matrices are not handled.\n"
-msgstr ""
+msgstr "%s：不处理多维稀疏矩阵。\n"
 
 #, c-format
 msgid "%s: Non implemented feature.\n"
-msgstr ""
+msgstr "%s：尚未实现。\n"
 
 #, c-format
 msgid "%c: input argument #%d has duplicates\n"
-msgstr ""
+msgstr "%c：第%d个输入参数具有重复项\n"
 
 #, c-format
 msgid "%c: input argument #%d must be sorted in lexicographic order\n"
-msgstr ""
+msgstr "%c：第%d个输入参数必须按字典顺序排序\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'c', 'd' or a scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是 'c', 'd' 或者是一个标量。\n"
 
 #, c-format
 msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
-msgstr ""
+msgstr "%s：字符串对数字矩阵的影响未实现。\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
-msgstr ""
+msgstr "%s：第%d个和第%d个参数错误：不兼容的大小。\n"
 
 #, c-format
 msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
-msgstr ""
+msgstr "%s：语法x(j)仅适用于行cblock。\n"
 
 msgid "  (empty table)\n"
-msgstr ""
+msgstr "  (空表)\n"
 
 #, c-format
 msgid "%s: Invalid field name.\n"
-msgstr ""
+msgstr "%s：无效的字段名。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是一个有效的字段名。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -83,127 +79,177 @@ msgstr "%s：输出参数的数目错误。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：无法定义转置。\n"
 
 #, c-format
 msgid "%s: Invalid path.\n"
-msgstr ""
+msgstr "%s：无效的路径。\n"
 
 #, c-format
 msgid ""
 "%s: Input argument #%d and input argument #%d have incompatible dimensions.\n"
-msgstr ""
+msgstr "%s：第%d个和第%d个输入参数维度不兼容。\n"
 
 #, c-format
 msgid "%s: Implicit size not supported.\n"
-msgstr ""
+msgstr "%s：不支持隐式大小。\n"
 
 #, c-format
 msgid ""
 "%s: In concatenation the number of dimensions for each component must "
 "match.\n"
-msgstr ""
+msgstr "%s：串联时，每个组件的尺寸数必须匹配。\n"
 
 #, c-format
 msgid "%s: Inconsistent dimensions.\n"
-msgstr ""
+msgstr "%s：维度不一致。\n"
 
 #, c-format
 msgid "%s: Inconsistent element-wise operation.\n"
-msgstr ""
+msgstr "%s：元素方式操作不一致。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是3D的最大值。\n"
 
 #, c-format
 msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
-msgstr ""
+msgstr "%s：参数数目错误：不兼容的维度。\n"
 
 #, c-format
 msgid "%s: not implemented for argin#1 hypermatrix and argin#2 matrix\n"
-msgstr ""
+msgstr "%s：参数1的超矩阵和参数2的矩阵并未实现。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是一个实数矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: integer <= ndims(argument #%d) "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是整数并小于等于第%d个参数的ndims。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是一个整数。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该是一个数字。\n"
+
+#, c-format
+msgid "%s struct with no field"
+msgstr "没有字段的%s结构变量"
+
+msgid "0x0 struct with fields:"
+msgstr "0x0结构变量的字段："
+
+#, c-format
+msgid "%s struct with fields:"
+msgstr "%s结构变量的字段："
+
+msgid "(void)"
+msgstr "(空)"
+
+#, c-format
+msgid "(%d lines)"
+msgstr "(行%d)"
+
+msgid "rational"
+msgstr "有理数"
+
+msgid "complex rational"
+msgstr "复数有理数"
+
+#, c-format
+msgid "[%s %s] of %s"
+msgstr "[%s %s] 位于 %s"
+
+msgid "cell"
+msgstr "cell"
+
+#, fuzzy
+msgid "empty list()"
+msgstr " 空list()"
+
+#, c-format
+msgid "[%s] %s without field."
+msgstr "无字段的[%s]%s。"
+
+#, c-format
+msgid "[%s] %s with fields:"
+msgstr "有字段的[%s]%s。"
+
+msgid "[0x0 struct] with no field"
+msgstr "[0x0结构变量]没有字段"
+
+#, c-format
+msgid "[%s struct] with fields:"
+msgstr "[%s 结构变量]有字段"
 
 #, c-format
 msgid "%s: time domains are not compatible.\n"
-msgstr ""
+msgstr "%s：时间域不兼容。\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
-msgstr ""
+msgstr "%s：第%d个和第%d个输入参数不兼容：应该具有相同的行。\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of columns "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个和第%d个输入参数不兼容：应该具有相同的列。\n"
 
 #, c-format
 msgid "%s: Invalid syntax for a MIMO system.\n"
-msgstr ""
+msgstr "%s：无效的MIMO系统的语法。\n"
 
 #, c-format
 msgid "%s: The problem is singular.\n"
-msgstr ""
+msgstr "%s：问题很单一。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Inconsistent addition.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Division by 0...\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Division by zero..."
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: Square matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数的值错误：应该是 %d或者 %s。\n"
 
 #, c-format
 msgid "%s: Eye variable undefined in this context.\n"
-msgstr ""
+msgstr "%s：在此上下文中未定义Eye变量。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
+msgstr "%s：第%d个参数类型错误：应该是一个整数矩阵。\n"
+
+#, c-format
+msgid "%s: Division by 0...\n"
+msgstr "%s：除以0 ...\n"
+
+#, c-format
+msgid "%s: Division by zero..."
+msgstr "%s：除以0 ..."
+
+#, c-format
+msgid "%s: Argument #%d: Square matrix expected.\n"
+msgstr "%s：第%d个参数错误：应该是一个方阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments.\n"
-msgstr ""
+msgstr "%s：输入参数大小错误。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument(s).\n"
-msgstr ""
+msgstr "%s：输入参数大小错误。\n"
+
+#, c-format
+msgid "%s: Inconsistent addition.\n"
+msgstr "%s：添加不一致。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -211,7 +257,7 @@ msgstr "%s：第%d个输入参数的大小错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应当是整数且大于等于%d。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
@@ -223,118 +269,120 @@ msgstr "%s：第%d个输入参数的值错误：必须在集合{%s}中。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该字符串或标量。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal number(s) expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该是小数。\n"
 
 msgid "Invalid exponent: expected real exponents."
-msgstr ""
+msgstr "无效的指数：应该是实数指数。"
 
 msgid "Division by zero"
-msgstr ""
+msgstr "除数为零"
 
 msgid "Invalid Exponent"
-msgstr ""
+msgstr "无效的指数"
 
 #, c-format
 msgid "%s: Hypermatrix not supported.\n"
-msgstr ""
+msgstr "%s：不支持超矩阵。\n"
 
 #, c-format
 msgid "%s: Inconsistent multiplication.\n"
-msgstr ""
+msgstr "%s：不符的乘法。\n"
 
 #, c-format
 msgid "column %d"
-msgstr ""
+msgstr "列%d"
 
 #, c-format
 msgid "columns %d to %d"
-msgstr ""
+msgstr "列%d到列%d"
 
 msgid "Not implemented"
-msgstr ""
+msgstr "尚未实现"
 
 msgid "Invalid exponent"
-msgstr ""
+msgstr "无效指数"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid ""
 "Complex comparison not supported. Please define %s_1_s_custom() or check "
 "your code."
-msgstr ""
+msgstr "不支持复数的比较。 请定义%s_1_s_custom()或检查您的代码。"
 
 #, c-format
 msgid ""
 "Complex comparison not supported. Please define %s_2_s_custom() or check "
 "your code."
-msgstr ""
+msgstr "不支持复数的比较。 请定义%s_2_s_custom()或检查您的代码。"
 
 #, c-format
 msgid ""
 "Complex comparison not supported. Please define %s_3_s_custom() or check "
 "your code."
-msgstr ""
+msgstr "不支持复数的比较。 请定义%s_3_s_custom()或检查您的代码。"
 
 #, c-format
 msgid ""
 "Complex comparison not supported. Please define %s_4_s_custom() or check "
 "your code."
-msgstr ""
+msgstr "不支持复数的比较。 请定义%s_4_s_custom()或检查您的代码。"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
-msgstr ""
+msgstr "%s：第%d个和第%d个输入参数类型错误：应该是整数。\n"
 
 #, c-format
 msgid "%s: Not yet implemented.\n"
-msgstr ""
+msgstr "%s：尚未实现。\n"
 
 #, c-format
 msgid "%s: Wrong argument #%d.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误。\n"
 
 #, c-format
 msgid "%s: A null assignment can have only one non-colon index.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Invalid index\n"
-msgstr ""
+msgstr "%s：空值(null)分配只能有一个非冒号索引。\n"
 
 #, c-format
 msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
-msgstr ""
+msgstr "%s：参数1矩阵和参数2超矩阵未实现\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为方阵。\n"
 
 #, c-format
 msgid "%s: Unable to diagonalize.\n"
-msgstr ""
+msgstr "%s：不能对角化。\n"
 
 msgid "Not implemented in scilab...\n"
-msgstr ""
+msgstr "在Scilab中尚未实现...\n"
 
 #, c-format
 msgid ""
 "%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
-msgstr ""
+msgstr "%s：在数字矩阵中插入的稀疏矩阵未定义。\n"
 
 #, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
-msgstr ""
+msgstr "%s：稀疏插入情形未实现。\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
+msgstr "%s：第%d个和第%d个参数错误：其行大小应该相同。\n"
+
+#
+# File: modules/overloading/macros/%sp_l_sp.sci, line: 35
+#, c-format
+msgid "sparse  sparse: Deficient rank: rank = %d"
 msgstr ""
 
 #, c-format
@@ -343,115 +391,76 @@ msgstr "%s：第%d个输入参数的大小错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该为整数。\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
+msgstr "%s：第%d个和第%d个参数错误：其行大小应该相同。\n"
+
+#
+# File: modules/overloading/macros/%sp_r_sp.sci, line: 36
+#, c-format
+msgid "sparse / sparse: Deficient rank: rank = %d"
 msgstr ""
 
 #, c-format
 msgid "%s: Concatenated arrays must have the same number of dimensions.\n"
-msgstr ""
+msgstr "%s：级联数组必须具有相同的维度。\n"
 
 #, c-format
 msgid "%s: Field names mismatch.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
-msgstr ""
-
-#, c-format
-msgid "%s struct with no field"
-msgstr ""
-
-msgid "0x0 struct with fields:"
-msgstr ""
-
-#, c-format
-msgid "%s struct with fields:"
-msgstr ""
-
-msgid "(void)"
-msgstr ""
-
-#, c-format
-msgid "(%d lines)"
-msgstr ""
-
-msgid "rational"
-msgstr ""
-
-msgid "complex rational"
-msgstr ""
-
-#, c-format
-msgid "[%s %s] of %s"
-msgstr ""
-
-msgid "cell"
-msgstr ""
-
-msgid " empty list()"
-msgstr ""
-
-#, c-format
-msgid "[%s] %s without field."
-msgstr ""
-
-#, c-format
-msgid "[%s] %s with fields:"
-msgstr ""
-
-msgid "[0x0 struct] with no field"
-msgstr ""
-
-#, c-format
-msgid "[%s struct] with fields:"
-msgstr ""
+msgstr "%s：字段名称不匹配。\n"
 
 msgid "Inconsistent row/column dimensions.\n"
-msgstr ""
+msgstr "行/列大小不一致。\n"
 
 msgid "Inconsistent multiplication.\n"
-msgstr ""
+msgstr "不符的乘法。\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr ""
+msgstr "%s：第%d个和第%d个输入参数不兼容：其大小应该相同。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个。\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #1(1): string expected.\n"
+msgstr "%s：第%d个参数错误：应该是一个方阵。\n"
 
 #, c-format
 msgid "%s: Not implemented.\n"
-msgstr ""
+msgstr "%s：尚未实现。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong assignment: for insertion in cell, use e.g. x(i,j).entries=y.\n"
 msgstr ""
+"%s：分配错误：如需在cell中插入原数，请使用例如 x(i,j).entries=y实现。\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible sizes for properties '%s' and '%s': Same sizes expected.\n"
-msgstr ""
+msgstr "%s：属性'%s'和'%s'的大小不兼容：其大小应该相同。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误，应该为%d个。\n"
 
 #, c-format
-msgid "%s: Incorrect assignment.\n"
-msgstr ""
+#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
-#~ msgstr "%s：第%d个参数的类型错误：应该为实数向量。\n"
+#~ msgid "%s: Invalid index\n"
+#~ msgstr "%s：无效索引\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-#~ msgstr "%s：参数%d的类型错误：应该为实数标量。\n"
+#~ msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
+#~ msgstr "%s：第%d个输入参数的值错误：字段名无效。\n"
 
 #, c-format
-#~ msgid ""
-#~ "%s: input and output matrices  must have the same number of elements.\n"
-#~ msgstr "%s：输入和输出矩阵必须有相同数目的元素。\n"
+#~ msgid "%s: Incorrect assignment.\n"
+#~ msgstr "%s：分配错误。\n"

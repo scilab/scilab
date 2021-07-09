@@ -1,0 +1,392 @@
+# Chinese (Simplified) translation for scilab
+# Copyright (c) 2020 Rosetta Contributors and Canonical Ltd 2020
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2015-08-17 11:20+0100\n"
+"PO-Revision-Date: 2020-08-26 13:44+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
+"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
+
+msgid "Warning :\n"
+msgstr "警告：\n"
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
+msgstr "矩阵接近奇异或缩放变换不正确。 rcond = %1.4E\n"
+
+msgid "computing least squares solution. (see lsq).\n"
+msgstr "计算最小二乘解。(请参阅lsq)。\n"
+
+#, c-format
+msgid "debugger stop on breakpoint(%d) in function %s at line %d\n"
+msgstr "调试器的断点(%d)在函数%s中的第%d行处停止\n"
+
+#, c-format
+msgid "debugger stop on breakpoint(%d) in file %s at line %d\n"
+msgstr "调试器的断点(%d)在文件%s中的第%d行处停止\n"
+
+msgid "Execution aborted.\n"
+msgstr "停止运行。\n"
+
+#, c-format
+msgid "debugger stop on error in file %ls line %d\n"
+msgstr "调试器因文件%ls中第%d行中的错误而停止\n"
+
+#, c-format
+msgid "debugger stop on error in function %ls line %d\n"
+msgstr "调试器因函数%ls中第%d行中的错误而停止\n"
+
+msgid "Leave debugger.\n"
+msgstr "离开调试器。\n"
+
+#
+# File: modules/ast/src/cpp/ast/debuggervisitor.cpp, line: 186
+#, c-format
+msgid "Wrong breakpoint condition: A result expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Undefined variable: %s\n"
+msgstr "未定义变量：%s\n"
+
+msgid "inconsistent row/column dimensions\n"
+msgstr "行/列大小不一致\n"
+
+msgid "/!\\ Unmanaged FieldExp.\n"
+msgstr "/!\\ 非托管字段Exp。\n"
+
+msgid "Attempt to reference field of non-structure array.\n"
+msgstr "尝试去引用非结构数组字段。\n"
+
+msgid "Not yet implemented in Scilab.\n"
+msgstr "在Scilab中尚未实现。\n"
+
+msgid "Invalid index.\n"
+msgstr "无效索引。\n"
+
+#
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 477
+# File: modules/ast/src/cpp/types/mlist.cpp, line: 154
+# File: modules/ast/src/cpp/types/tlist.cpp, line: 231
+#, c-format
+msgid "%s: Extraction must have at least one output.\n"
+msgstr ""
+
+msgid "Redefining permanent variable.\n"
+msgstr "重定义永久变量。\n"
+
+msgid "for expression can only manage 1 or 2 dimensions variables\n"
+msgstr "只能用于管理表达式的1或2维变量\n"
+
+msgid "for expression : Wrong type for loop iterator.\n"
+msgstr "对于表达式：循环迭代器的类型错误。\n"
+
+msgid "With input arguments, return / resume expects output arguments.\n"
+msgstr "使用输入参数时，return / resume期望输出参数。\n"
+
+#, c-format
+msgid "%ls: Can not transpose multiple elements.\n"
+msgstr "%ls：不能转置多个元素。\n"
+
+#, c-format
+msgid ""
+"It is not possible to redefine the %s primitive this way (see clearfun).\n"
+msgstr "无法以这种方式重定义%s私有函数 (请参阅clearfun)。\n"
+
+#, c-format
+msgid ""
+"%ls: Too many %ls or wrong type for argument %d: Real scalar expected.\n"
+msgstr "%ls：%ls过多或第%d个参数类型错误：应该是实数标量。\n"
+
+#, c-format
+msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
+msgstr "%ls：第%d个参数类型错误：应该是实数标量。\n"
+
+#, c-format
+msgid "Recursion limit reached (%d).\n"
+msgstr "达到迭代限制次数(%d)。\n"
+
+msgid "Unknown expression"
+msgstr "未知的表达式"
+
+msgid "Error in overload function: "
+msgstr "重载函数错误： "
+
+msgid "Wrong insertion : use extraction with {} only on a Cell."
+msgstr "错误的插入：仅对单元格使用{}进行提取。"
+
+msgid "Unable to insert multiple item in a Struct."
+msgstr "无法在Struct中插入多个条目。"
+
+msgid "Unable to insert multiple item in a List."
+msgstr "无法在List中插入多个项目。"
+
+msgid "Wrong insertion."
+msgstr "插入错误。"
+
+msgid "Wrong insertion in a Cell."
+msgstr "插入单元格错误。"
+
+#, c-format
+msgid "Wrong insertion: insertion in output of '%s' is not allowed.\n"
+msgstr "错误的插入：不允许在'%s'的输出中插入。\n"
+
+msgid "Wrong insertion : Cannot insert without arguments."
+msgstr "错误插入：无参数时无法插入。"
+
+msgid "Unexpected redefinition of Scilab function."
+msgstr "意外地重定义了Scilab函数。"
+
+msgid "Submatrix incorrectly defined.\n"
+msgstr "子矩阵定义不正确。\n"
+
+msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
+msgstr "插入错误：应该是Cell类型：使用{...}代替 (...)。\n"
+
+msgid "Inconsistent row/column dimensions.\n"
+msgstr "行/列大小不一致。\n"
+
+msgid ""
+"operation +: Warning adding a matrix with the empty matrix old behaviour.\n"
+msgstr "操作+：警告发生了参数中具有空矩阵的过时行为。\n"
+
+msgid ""
+"operation +: Warning adding a matrix with the empty matrix will give an "
+"empty matrix result.\n"
+msgstr "操作+：警告发生了参数中具有空矩阵的行为将导致输出空矩阵结果。\n"
+
+#, c-format
+msgid ""
+"Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"
+msgstr "错误：运算符%ls：矩阵大小必须一致(op1为%ls，op2为%ls)。\n"
+
+msgid "With NaN or Inf a division by scalar expected.\n"
+msgstr "对于NaN或Inf，应按标量进行除法。\n"
+
+msgid "Division by zero...\n"
+msgstr "被零除...\n"
+
+msgid "Warning : Division by zero...\n"
+msgstr "警告：除以零...\n"
+
+#, c-format
+msgid "Operator / : Error %d not yet managed.\n"
+msgstr "操作/：错误代码%d尚未归档。\n"
+
+msgid "Warning : division by zero...\n"
+msgstr "警告：除以零...\n"
+
+msgid "With NaN or Inf a left division by scalar expected.\n"
+msgstr "使用NaN或Inf时，应将其除以标量。\n"
+
+msgid "Left division by zero...\n"
+msgstr "左除以零...\n"
+
+msgid "Warning : Left division by zero...\n"
+msgstr "警告：左除以零...\n"
+
+#, c-format
+msgid "Operator \\ : Error %d not yet managed.\n"
+msgstr "操作\\：错误代码%d尚未归档。\n"
+
+msgid "Invalid exponent: expected finite integer exponents.\n"
+msgstr "无效的指数：应该是有限整数指数。\n"
+
+msgid "Invalid exponent.\n"
+msgstr "无效的指数。\n"
+
+msgid ""
+"operation -: Warning adding a matrix with the empty matrix old behaviour.\n"
+msgstr "操作-：警告发生了参数中具有空矩阵的过时行为。\n"
+
+msgid ""
+"operation -: Warning adding a matrix with the empty matrix will give an "
+"empty matrix result.\n"
+msgstr "操作-：警告发生了参数中具有空矩阵的过时行为将输出空矩阵结果。\n"
+
+#, c-format
+msgid "%ls: Cannot open file %ls.\n"
+msgstr "%ls：无法打开文件%ls。\n"
+
+msgid "Error: "
+msgstr "错误： "
+
+msgid "Your variables are:"
+msgstr "您的变量是："
+
+#, c-format
+msgid " using %10d elements out of  %10d.\n"
+msgstr " 使用%10d个元素，其位于%10d中。\n"
+
+#, c-format
+msgid " and   %10d variables out of %10d.\n"
+msgstr " 和%10d个变量（占%10d个）。\n"
+
+msgid "Your global variables are:"
+msgstr "您的全局变量是："
+
+#, c-format
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgstr "警告：重定义函数：%s。 使用funcprot(0)忽略此消息"
+
+msgid "in builtin "
+msgstr "内置 "
+
+#, c-format
+msgid "at line % 5d of function "
+msgstr "在函数的第 %5d行 "
+
+#, c-format
+msgid "at line % 5d of executed string "
+msgstr "在执行的字符串的第%5d行 "
+
+#, c-format
+msgid "at line % 5d of executed file "
+msgstr "在执行文件的第 %5d 行 "
+
+msgid "line"
+msgstr "行"
+
+msgid "Cannot find Windows temporary directory (1)."
+msgstr "找不到Windows临时目录(1)。"
+
+msgid "Error"
+msgstr "错误"
+
+#, c-format
+msgid "Impossible to create : %s"
+msgstr "无法创建：%s"
+
+#, c-format
+msgid "Error: Could not resolve symbolic link %s\n"
+msgstr "错误：无法解析符号链接%s\n"
+
+#, c-format
+msgid "Error: Could not find %s\n"
+msgstr "错误：找不到%s\n"
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr "错误：无法创建%s：%s\n"
+
+#, c-format
+msgid "Scilab '%s' function disabled in -nogui or -nwni mode.\n"
+msgstr "在-nogui或-nwni模式下禁用了Scilab的'%s'函数。\n"
+
+#, c-format
+msgid ""
+"%s: Library name must not be empty\n"
+"."
+msgstr "%s：库名称不能为空"
+
+#, c-format
+msgid "An error has been detected while loading %s: %s\n"
+msgstr "加载%s时检测到错误：%s\n"
+
+#, c-format
+msgid "Impossible to load %s library\n"
+msgstr "无法加载%s库\n"
+
+#, c-format
+msgid "Impossible to load %s function in %s library: %s\n"
+msgstr "无法将%s函数加载到%s库中：%s\n"
+
+msgid "Cannot allocate memory"
+msgstr "无法分配内存"
+
+#, c-format
+msgid "Functions files location : %s.\n"
+msgstr "函数文件的位置：%s。\n"
+
+#, c-format
+msgid "Unknown field : %ls.\n"
+msgstr "未知字段：%ls。\n"
+
+msgid "Unable to insert multiple item in a list.\n"
+msgstr "无法在list类型变量中插入多个条目。\n"
+
+msgid "Index out of bounds.\n"
+msgstr "索引超出范围。\n"
+
+msgid "Wrong number of input arguments: This function has no input argument.\n"
+msgstr "输入参数数目错误：此函数没有输入参数。\n"
+
+msgid "Wrong number of input arguments.\n"
+msgstr "输入参数数目错误。\n"
+
+#, c-format
+msgid "Undefined variable '%s' in function '%s'.\n"
+msgstr "变量'%s'未在函数'%s'中定义。\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr "%s：%s的类型错误：应该适一个list类型。\n"
+
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr "List的第%d个元素未定义。\n"
+
+#, c-format
+msgid "Unable to open : %s.\n"
+msgstr "无法打开：%s。\n"
+
+#, c-format
+msgid ""
+"Warning : please rename your overloaded function\n"
+" \"%s\" to \"%s\"\n"
+msgstr ""
+"警告：请重命名重载函数\n"
+"  从“%s”到“%s”\n"
+
+#, c-format
+msgid "check or define function %s for overloading.\n"
+msgstr "检查或定义函数%s以进行重载。\n"
+
+msgid "Undefined operation for the given operands.\n"
+msgstr "给定操作数的未定义操作。\n"
+
+#, c-format
+msgid "  check arguments or define function %s for overloading.\n"
+msgstr "  语法参数或定义函数%s以进行重载。\n"
+
+msgid "Function not defined for given argument type(s),\n"
+msgstr "未为给定参数类型定义函数，\n"
+
+msgid "Input arguments should have the same formal variable name.\n"
+msgstr "输入参数应具有相同的形式变量名称。\n"
+
+#, c-format
+msgid "Can not allocate negative size (%d).\n"
+msgstr "无法分配负大小 (%d)。\n"
+
+#, c-format
+msgid "Can not allocate %s memory.\n"
+msgstr "无法分配 %s内存。\n"
+
+msgid "Unable to insert multiple item in a struct.\n"
+msgstr "无法在struct类型变量中插入多个条目。\n"
+
+msgid "Assignment between unlike types is not allowed.\n"
+msgstr "不允许在不同类型之间进行分配。\n"
+
+msgid "Can not allocate data.\n"
+msgstr "无法分配数据。\n"
+
+#, c-format
+msgid "Field \"%ls\" does not exist\n"
+msgstr "字段“%ls”不存在\n"
+
+#, c-format
+msgid "variable size exceeded : less than %d expected.\n"
+msgstr "变量超出大小：应该比%d小。\n"

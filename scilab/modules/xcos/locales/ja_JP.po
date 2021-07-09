@@ -8,22 +8,16 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-15 22:10+0000\n"
+"PO-Revision-Date: 2019-02-15 22:10+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
-
-msgid "Signal Processing"
-msgstr "信号処理"
-
-msgid "Discrete time systems"
-msgstr "離散時間システム"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -494,6 +488,9 @@ msgstr "不連続"
 msgid "Lookup Tables"
 msgstr "ルックアップ・テーブル"
 
+msgid "Signal Processing"
+msgstr "信号処理"
+
 msgid "Zero crossing detection"
 msgstr "ゼロクロス検出"
 
@@ -514,6 +511,9 @@ msgstr "ポートとサブシステム"
 
 msgid "Annotations"
 msgstr "注釈"
+
+msgid "Discrete time systems"
+msgstr "離散時間システム"
 
 msgid "Event handling"
 msgstr "イベント・ハンドリング"
@@ -566,11 +566,12 @@ msgstr "キャンセル"
 msgid "Reset to default"
 msgstr "デフォルトに戻す"
 
+#, fuzzy
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
 "block definitions using Scilab instructions.<br/>These instructions are "
-"evaluated once confirmed (i.e. you click on OK and every time the diagram is "
-"loaded)."
+"evaluated once confirmed (i.e. you click on OK), and every time the diagram "
+"is run."
 msgstr ""
 "Scilab命令を用いたブロック定義で使用される記号パラメータを定義するための"
 "Scilab命令をここに入力することができます.<br/>これらの命令は確認後(すなわち,"

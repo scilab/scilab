@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -73,10 +73,6 @@ msgstr "%s: 引数の大きさが間違っています:  次元に互換性が�
 #, c-format
 msgid "%s: Too many coefficients are required.\n"
 msgstr "%s: 必要とされる係数が多すぎます.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr "%s: 引数 %d の型が間違っています: 実数行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
@@ -373,6 +369,16 @@ msgstr ""
 "%s: 入力引数 #%d および #%d に互換性がありません:  多項式及び1行1列行列または"
 "2つの多項式を指定してください.\n"
 
+#
+# File: modules/signal_processing/macros/%_unwrap.sci, line: 23
+msgid ": 1-D examples "
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/%_unwrap.sci, line: 103
+msgid ": 2-D examples"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floating point numbers "
@@ -582,6 +588,38 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 正の整数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: a scalar with integer value "
+"expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 正の整数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be odd.\n"
+msgstr "%s: 入力引数 #%dの値が間違っています: 奇数とする必要があります.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 実数ベクトルを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Incompatible input arguments #%d and #%d\n"
+msgstr ""
+"%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument %d: At least %d expected.\n"
+msgstr "%s: 引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for argument %d: At most %d expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %s または %sを指定してください.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: 入力引数の数が間違っています.\n"
@@ -598,6 +636,33 @@ msgstr "%s: 入力引数 #%d で不正な型: 有理分数配列を想定しま�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: %d 要素配列を想定します。\n"
+
+#
+# File: modules/signal_processing/macros/unwrap.sci, line: 37
+msgid "Press return to display 2D examples"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+
+#
+# File: macros/bilt.sci, line: 46
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr "%s: 入力引数 #%d で不正な値: set {%s} をしなくてはなりません。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
+msgstr "%s: 入力引数 #%dの値が間違っています: 奇数とする必要があります.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgstr "%s: 入力引数 #%dの値が間違っています: 奇数とする必要があります.\n"
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"
@@ -755,3 +820,7 @@ msgstr ""
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"
 msgstr "%s: 周波数範囲の終端近くで急峻過ぎる変化です.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+#~ msgstr "%s: 引数 %d の型が間違っています: 実数行列を指定してください.\n"

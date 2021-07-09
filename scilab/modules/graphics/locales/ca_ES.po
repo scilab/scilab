@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-18 22:04+0000\n"
+"PO-Revision-Date: 2020-02-24 18:39+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -127,11 +127,9 @@ msgstr ""
 "%s: L'argument opcional està mal colocat: El #%d ha d'estar a la posició "
 "%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"mida %dx%d o %dx%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
@@ -204,14 +202,6 @@ msgstr "%s: Valor incorrecte de %s '%c': Ha de ser '%s', '%s' i '%s'.\n"
 #, c-format
 msgid ""
 "%s: Wrong number of columns for input argument #%d: at least %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Could not read property '%s' for console object.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to get useful path from this handle.\n"
 msgstr ""
 
 #, c-format
@@ -531,6 +521,14 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter no-"
 "negatiu.\n"
 
+#
+# File: modules/graphics/sci_gateway/c/sci_xname.c, line: 49
+#, c-format
+msgid ""
+"%s is obsolete. It will be removed from Scilab %s.\n"
+"Please use %s instead.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
@@ -626,6 +624,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to get useful path from this handle.\n"
 msgstr ""
 
 #, c-format
@@ -823,6 +825,10 @@ msgstr "%s hauria de ser un vector de cadenes de text.\n"
 
 #, c-format
 msgid "Unknown property: %s.\n"
+msgstr "Propietat desconeguda: %s.\n"
+
+#, fuzzy, c-format
+msgid "Read-only property: %s.\n"
 msgstr "Propietat desconeguda: %s.\n"
 
 #, c-format
@@ -1430,8 +1436,6 @@ msgstr ""
 msgid "histplot"
 msgstr ""
 
-#
-# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 18
 msgid "bar3d"
 msgstr ""
 
@@ -1611,9 +1615,7 @@ msgstr "%s: Argument d'entrada #%d : Ha de ser a l'interval %s.\n"
 msgid "April"
 msgstr ""
 
-#
-# File: modules/graphics/macros/bar3d.sci, line: 29
-msgid "Febuary"
+msgid "February"
 msgstr ""
 
 msgid "January"
@@ -1842,6 +1844,41 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Axes handle or vector of decimal numbers expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
+"tractament o un vector de doubles.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Axes handle expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
+"negatiu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: incomplete {'name', value} pair.\n"
+msgstr ""
+"%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: 'x' or 'y' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
+"negatiu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: one word among {%s} expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
+"negatiu.\n"
+
+#
+# File: modules/graphics/macros/cutaxes.sci, line: 91
+#, c-format
+msgid "%s: widths vector: %d components expected.\n"
+msgstr ""
+
 msgid "createPopupItems: found an empty cascading menu."
 msgstr ""
 
@@ -1971,6 +2008,16 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
 "real.\n"
 
+#
+# File: modules/graphics/macros/getcolor.sci, line: 69
+msgid "Current colormap"
+msgstr ""
+
+#
+# File: modules/graphics/macros/getcolor.sci, line: 72
+msgid "Default colormap"
+msgstr ""
+
 msgid "&File"
 msgstr "&Fitxer"
 
@@ -1988,9 +2035,6 @@ msgstr "Accepta"
 
 msgid "Cancel"
 msgstr "Cancel·la"
-
-msgid "February"
-msgstr ""
 
 msgid "histplot() : (normalized) histogram plot"
 msgstr ""
@@ -2074,17 +2118,13 @@ msgstr ""
 msgid "%s: Argument #%d: Graphic handle(s) of type %s expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: log flags: scalar expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
-"negatiu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: log flags: wrong value. Ignored.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
-"negatiu.\n"
 
 #, c-format
 msgid "%s: wrong list() specification for the curve #%d.\n"
@@ -2098,40 +2138,46 @@ msgstr "%s: Error : No s'ha pogut avaluar la funció d'entrada %s."
 msgid "Error %d at line %d of the function: '%s"
 msgstr ""
 
+#
+# File: modules/graphics/macros/plot.sci, line: 314
+#, c-format
+msgid "%s: Plot #%d: Numbers of x columns and of %s must match.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plot.sci, line: 316
+msgid "polynomials"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plot.sci, line: 318
+msgid "rationals"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real vector or colon : expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
-"de fila real o un booleà.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Vector expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
-"negatiu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real value expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
-"negatiu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Argument #%d: Real matrix or String or Scilab function or list "
 "expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
-"negatiu.\n"
 
-#
-# File: modules/graphics/macros/plotimplicit.sci, line: 118
 #, c-format
 msgid ""
 "%s: Argument #%d(#%d): Identifier of a Scilab or built-in function "
@@ -2142,8 +2188,6 @@ msgstr ""
 msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
 msgstr ""
 
-#
-# File: modules/graphics/macros/plotimplicit.sci, line: 217
 #, c-format
 msgid "Error %d : in plot called by plotimplicit"
 msgstr ""
@@ -2198,6 +2242,86 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong type of graphic handle: '%s' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
+"negatiu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir el "
+"mateix nombre d'elements.\n"
+
+#
+# File: modules/graphics/macros/scatter3d.sci, line: 176
+# File: modules/graphics/macros/scatter3d.sci, line: 179
+#, c-format
+msgid ""
+"%s: Argument #%d: Wrong value. Please check allowed syntaxes and values.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be >= %d.\n"
+msgstr "%s: Argument d'entrada #%d : Ha de ser a l'interval %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Number(s) or text expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
+"negatiu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong size: one or %d colors expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
+"negatiu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Number or text expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
+"negatiu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong marker id.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
+"negatiu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: keyword or property name expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
+"negatiu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Unknown property name '%s'.\n"
+msgstr "%s: Argument d'entrada #%d : Ha de ser a l'interval %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Value missing for the given property.\n"
+msgstr "%s: Argument d'entrada #%d : Ha de ser a l'interval %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong marker specification.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
+"negatiu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
+"negatiu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers in %s expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser no-"
+"negatiu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"

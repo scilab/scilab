@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-23 22:11+0000\n"
+"PO-Revision-Date: 2020-02-23 15:39+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -898,22 +898,17 @@ msgstr "&Proprietà della figura"
 msgid "&Axes properties"
 msgstr "&Proprietà degli assi"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 21
-# File: modules/gui/src/gui_fake_xml.c, line: 58
 msgid "&Move objects"
 msgstr ""
 
-#, fuzzy
 msgid "Start entity &picker"
-msgstr "&Avvia il selettore della entità"
+msgstr ""
 
 msgid "S&top entity picker"
 msgstr "&Ferma il selettore della entità"
 
-#, fuzzy
 msgid "Start &datatip manager"
-msgstr "&Avvia il gestore dei datatip"
+msgstr ""
 
 msgid "Stop datatip manager"
 msgstr "Ferma il gestore dei datatip"
@@ -965,6 +960,72 @@ msgstr "In&crementa la dimensione del carattere"
 
 msgid "&Decrease font size"
 msgstr "&Diminuisci la dimensione del carattere"
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 81
+# File: modules/gui/src/gui_fake_xml.c, line: 100
+msgid "&Language"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 82
+# File: modules/gui/src/gui_fake_xml.c, line: 101
+msgid "en"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 83
+# File: modules/gui/src/gui_fake_xml.c, line: 102
+msgid "fr"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 84
+# File: modules/gui/src/gui_fake_xml.c, line: 103
+msgid "ja"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 85
+# File: modules/gui/src/gui_fake_xml.c, line: 104
+msgid "pt"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 86
+# File: modules/gui/src/gui_fake_xml.c, line: 105
+msgid "ru"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 87
+# File: modules/gui/src/gui_fake_xml.c, line: 106
+msgid "&Online"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 88
+# File: modules/gui/src/gui_fake_xml.c, line: 107
+msgid "See this page online"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 89
+# File: modules/gui/src/gui_fake_xml.c, line: 108
+msgid "&Issues"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 90
+# File: modules/gui/src/gui_fake_xml.c, line: 109
+msgid "List ALL issues declared for this item (online)"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 91
+# File: modules/gui/src/gui_fake_xml.c, line: 110
+msgid "List only UNRESOLVED issues declared for this item (online)"
+msgstr ""
 
 msgid "&Execute..."
 msgstr "&Esegui..."
@@ -1123,9 +1184,9 @@ msgid "Toggle curve data modification"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 204
-# File: modules/gui/src/gui_fake_xml.c, line: 213
-msgid "Move objects"
+# File: modules/gui/src/gui_fake_xml.c, line: 226
+# File: modules/gui/src/gui_fake_xml.c, line: 235
+msgid "Move objects (2D view)"
 msgstr ""
 
 msgid "Help Browser"
@@ -1489,9 +1550,6 @@ msgid "Delete all the datatips on the selected curve"
 msgstr ""
 
 msgid "Delete the nearest datatip"
-msgstr ""
-
-msgid "Delete the last datatip"
 msgstr ""
 
 msgid "Edit curve datatip display function"
@@ -2606,6 +2664,12 @@ msgstr "%s: La proprietà '%s' è di tipo sbagliato: era attesa una stringa.\n"
 msgid "%s: function not available in NWNI mode.\n"
 msgstr "%s: funzione non disponibile nella modalità NWNI.\n"
 
+#
+# File: modules/gui/macros/close.sci, line: 82
+#, c-format
+msgid "%s: Argument #%d: Unknown GUI name '%s'.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
@@ -2670,6 +2734,30 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Input argument #%d must be a valid handle.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso >%d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
+"di stringhe.\n"
+
+#
+# File: modules/gui/macros/findobj.sci, line: 96
+# File: modules/gui/macros/findobj.sci, line: 101
+#, c-format
+msgid "%s: Argument #%d cannot be a binary operator."
+msgstr ""
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A positive integer value expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -2825,3 +2913,14 @@ msgstr "%s: %s è di tipo sbagliato: era atteso un numero reale.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: %s ha una dimensione sbagliata: era atteso un numero reale.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Booleans, numbers, or text expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
+"booleano.\n"
+
+#
+# File: modules/gui/macros/x_matrix.sci, line: 57
+msgid "<html>(quotes <b> '</b> inside texts must be doubled)"
+msgstr ""

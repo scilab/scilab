@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2015-08-17 11:20+0100\n"
-"PO-Revision-Date: 2020-02-20 17:52+0000\n"
+"PO-Revision-Date: 2020-04-24 19:01+0000\n"
 "Last-Translator: Stephan Woidowski <swoidowski@t-online.de>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 msgid "Warning :\n"
 msgstr "Warnung:\n"
@@ -25,15 +25,15 @@ msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
 msgstr "Matrix ist nahe an Singular oder schlecht skaliert. rcond = %1.4E\n"
 
 msgid "computing least squares solution. (see lsq).\n"
-msgstr ""
+msgstr "Berechnung der Lösung der kleinsten Quadrate. (siehe lsq).\n"
 
 #, c-format
 msgid "debugger stop on breakpoint(%d) in function %s at line %d\n"
-msgstr ""
+msgstr "Debugger-Stop an Haltepunkt(%d) in Funktion %s bei Zeile %d\n"
 
 #, c-format
 msgid "debugger stop on breakpoint(%d) in file %s at line %d\n"
-msgstr ""
+msgstr "Debugger-Stop an Haltepunkt (%d) in Datei %s bei Zeile %d\n"
 
 msgid "Execution aborted.\n"
 msgstr "Ausführung abgebrochen.\n"
@@ -49,6 +49,12 @@ msgstr "Debugger-Halt wegen Fehler in Funktion %ls Zeile %d\n"
 msgid "Leave debugger.\n"
 msgstr "Verlasse Debugger.\n"
 
+#
+# File: modules/ast/src/cpp/ast/debuggervisitor.cpp, line: 186
+#, c-format
+msgid "Wrong breakpoint condition: A result expected.\n"
+msgstr ""
+
 #, c-format
 msgid "Undefined variable: %s\n"
 msgstr "Undefinierte Variable: %s\n"
@@ -61,6 +67,7 @@ msgstr "/!\\Nicht verwalteter Feldausdruck.\n"
 
 msgid "Attempt to reference field of non-structure array.\n"
 msgstr ""
+"Versuch, ein Feld in einem nicht strukturierten Array zu referenzieren.\n"
 
 msgid "Not yet implemented in Scilab.\n"
 msgstr "Noch nicht in Scilab implementiert.\n"
@@ -68,11 +75,19 @@ msgstr "Noch nicht in Scilab implementiert.\n"
 msgid "Invalid index.\n"
 msgstr "Ungültiger Index.\n"
 
+#
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 477
+# File: modules/ast/src/cpp/types/mlist.cpp, line: 154
+# File: modules/ast/src/cpp/types/tlist.cpp, line: 231
+#, c-format
+msgid "%s: Extraction must have at least one output.\n"
+msgstr ""
+
 msgid "Redefining permanent variable.\n"
 msgstr "Neudefinition der permanenten Variablen\n"
 
 msgid "for expression can only manage 1 or 2 dimensions variables\n"
-msgstr ""
+msgstr "Der for-Ausdruck kann nur 1 oder 2-dimensionale Variablen verwalten\n"
 
 msgid "for expression : Wrong type for loop iterator.\n"
 msgstr "Für Ausdruck: Falscher Typ für Schleifeniterator.\n"
@@ -184,7 +199,7 @@ msgid "Warning : division by zero...\n"
 msgstr "Warnung: Division durch Null...\n"
 
 msgid "With NaN or Inf a left division by scalar expected.\n"
-msgstr ""
+msgstr "Mit NaN oder Inf wird eine Division durch einen Skalar erwartet.\n"
 
 msgid "Left division by zero...\n"
 msgstr "Linke Divsion durch Null...\n"
@@ -194,7 +209,7 @@ msgstr "Warnung: Linke Division durch Null...\n"
 
 #, c-format
 msgid "Operator \\ : Error %d not yet managed.\n"
-msgstr ""
+msgstr "Operator \\: Fehler %d noch nicht verwaltet.\n"
 
 msgid "Invalid exponent: expected finite integer exponents.\n"
 msgstr "Ungültiger Exponent: Endliche ganzzahlige Exponenten erwartet.\n"
@@ -205,11 +220,15 @@ msgstr "Ungültiger Exponent.\n"
 msgid ""
 "operation -: Warning adding a matrix with the empty matrix old behaviour.\n"
 msgstr ""
+"Berechnung-: Warnung, Hinzufügen einer Matrix mit dem alten Verhalten der "
+"leeren Matrix.\n"
 
 msgid ""
 "operation -: Warning adding a matrix with the empty matrix will give an "
 "empty matrix result.\n"
 msgstr ""
+"Operation -: Warnung, das Hinzufügen einer Matrix zur leeren Matrix führt im "
+"Ergebnis zu einer leeren Matrix.\n"
 
 #, c-format
 msgid "%ls: Cannot open file %ls.\n"
@@ -240,19 +259,19 @@ msgstr ""
 "Meldung zu vermeiden"
 
 msgid "in builtin "
-msgstr ""
+msgstr "In builtin "
 
 #, c-format
 msgid "at line % 5d of function "
-msgstr ""
+msgstr "bei Zeile % 5d von Funktion "
 
 #, c-format
 msgid "at line % 5d of executed string "
-msgstr ""
+msgstr "bei Zeile % 5d von ausgeführtem String "
 
 #, c-format
 msgid "at line % 5d of executed file "
-msgstr ""
+msgstr "bei Zeile % 5d von ausgeführter Datei "
 
 msgid "line"
 msgstr "Zeile"
@@ -261,131 +280,133 @@ msgid "Cannot find Windows temporary directory (1)."
 msgstr "Kann temporäres Windows-Verzeichnis (1) nicht finden."
 
 msgid "Error"
-msgstr ""
+msgstr "Fehler"
 
 #, c-format
 msgid "Impossible to create : %s"
-msgstr ""
+msgstr "Erstellung nicht möglich: %s"
 
 #, c-format
 msgid "Error: Could not resolve symbolic link %s\n"
-msgstr ""
+msgstr "Fehler: Konnte symbolischen Link %s nicht auflösen\n"
 
 #, c-format
 msgid "Error: Could not find %s\n"
-msgstr ""
+msgstr "Fehler: Konnte %s nicht finden\n"
 
 #, c-format
 msgid "Error: Could not create %s: %s\n"
-msgstr ""
+msgstr "Fehler: Konnte %s nicht erstellen: %s\n"
 
 #, c-format
 msgid "Scilab '%s' function disabled in -nogui or -nwni mode.\n"
-msgstr ""
+msgstr "Scilab '%s' Funktion in -nogui oder -nwni Modus deaktiviert.\n"
 
 #, c-format
 msgid ""
 "%s: Library name must not be empty\n"
 "."
-msgstr ""
+msgstr "%s: Name der Bibliothek darf nicht leer sein"
 
 #, c-format
 msgid "An error has been detected while loading %s: %s\n"
-msgstr ""
+msgstr "Während des Ladens von %s wurde ein Fehler entdeckt: %s\n"
 
 #, c-format
 msgid "Impossible to load %s library\n"
-msgstr ""
+msgstr "Es ist nicht möglich, die Bibliothek %s zu laden\n"
 
 #, c-format
 msgid "Impossible to load %s function in %s library: %s\n"
-msgstr ""
+msgstr "%s-Funktion kann nicht in %s-Bibliothek geladen werden: %s\n"
 
 msgid "Cannot allocate memory"
-msgstr ""
+msgstr "Speicher kann nicht zugewiesen werden"
 
 #, c-format
 msgid "Functions files location : %s.\n"
-msgstr ""
+msgstr "Speicherort der Funktionsdateien: %s.\n"
 
 #, c-format
 msgid "Unknown field : %ls.\n"
-msgstr ""
+msgstr "Unbekanntes Feld: %ls.\n"
 
 msgid "Unable to insert multiple item in a list.\n"
-msgstr ""
+msgstr "Es ist nicht möglich, einer Liste mehrere Elemente hinzuzufügen\n"
 
 msgid "Index out of bounds.\n"
-msgstr ""
+msgstr "Index ausserhalb der Grenzen.\n"
 
 msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
+"Falsche Anzahl von Eingabeargumenten. Diese Funktion besitzt kein "
+"Eingabeargument.\n"
 
 msgid "Wrong number of input arguments.\n"
-msgstr ""
+msgstr "Falsche Anzahl von Eingabeargumenten.\n"
 
 #, c-format
 msgid "Undefined variable '%s' in function '%s'.\n"
-msgstr ""
+msgstr "Nicht definierte Variable '%s' in Funktion '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A list expected.\n"
-msgstr ""
+msgstr "%s: Falscher Typ für %s: Eine Liste wird erwartet.\n"
 
 #, c-format
 msgid "List element number %d is Undefined.\n"
-msgstr ""
+msgstr "Listenelement Nummer %d ist nicht definiert.\n"
 
 #, c-format
 msgid "Unable to open : %s.\n"
-msgstr ""
+msgstr "Öffnen nicht möglich: %s.\n"
 
 #, c-format
 msgid ""
 "Warning : please rename your overloaded function\n"
 " \"%s\" to \"%s\"\n"
 msgstr ""
+"Warnung: Bitte benennen Sie Ihre überladene Funktion\n"
+" \"%s\" in \"%s\" um\n"
 
 #, c-format
 msgid "check or define function %s for overloading.\n"
-msgstr ""
+msgstr "Funktion %s für Überladung prüfen oder definieren.\n"
 
 msgid "Undefined operation for the given operands.\n"
-msgstr ""
+msgstr "Undefinierte Operation für die gegebenen Operanden.\n"
 
 #, c-format
 msgid "  check arguments or define function %s for overloading.\n"
-msgstr ""
+msgstr "  Argumente prüfen oder die Funktion %s für Überladung definieren.\n"
 
 msgid "Function not defined for given argument type(s),\n"
-msgstr ""
+msgstr "Funktion wurde für gegebene(n) Argumenttyp(en) nicht definiert.\n"
 
 msgid "Input arguments should have the same formal variable name.\n"
-msgstr ""
+msgstr "Eingabeargumente sollten den gleichen formalen Variablennamen haben.\n"
 
 #, c-format
 msgid "Can not allocate negative size (%d).\n"
-msgstr ""
+msgstr "Kann keine negative Größe zuweisen (%d).\n"
 
 #, c-format
 msgid "Can not allocate %s memory.\n"
-msgstr ""
+msgstr "Kann Speicher %s nicht zuweisen.\n"
 
 msgid "Unable to insert multiple item in a struct.\n"
-msgstr ""
+msgstr "Es ist nicht möglich, mehrere Elemente in eine Struktur einzufügen\n"
 
 msgid "Assignment between unlike types is not allowed.\n"
-msgstr ""
+msgstr "Eine Zuordnung zwischen ungleichen Typen ist nicht zulässig.\n"
 
 msgid "Can not allocate data.\n"
-msgstr ""
+msgstr "Kann Daten nicht zuweisen.\n"
 
-#
-# File: modules/ast/src/cpp/types/struct.cpp, line: 208
 #, c-format
 msgid "Field \"%ls\" does not exist\n"
-msgstr ""
+msgstr "Feld \"%ls\" existiert nicht.\n"
 
 #, c-format
 msgid "variable size exceeded : less than %d expected.\n"
-msgstr ""
+msgstr "Variablengröße überschritten: Weniger als %d erwartet.\n"

@@ -8,458 +8,474 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-03-10 12:41+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2020-09-04 15:35+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Value at most 20 expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该至少是20。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A vector of size %d (N) expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是大小为%d的向量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Sum of m (%d) must be less than 40.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误： m (%d)的总和必须小于40。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: zeta(j) lower or equal to zeta(j+1) "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误： zeta(j)应该小于或等于zeta(j+1) 。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector of size 11 expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入大小错误： 应该是大小为11的向量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Wrong value for element %s: %d or %d "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入的值错误： 第%s个元素的值错误：应该是%d或%d。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Wrong value for element %s: %d to %d "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：元素%s的值错误：应该是从%d到%d。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Wrong value for element %s: %d to "
 "sum of m (=%d) expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：元素%s的值错误：应该是%d与m (=%d)之和。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Wrong value for element %d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：第%d个元素的值错误。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Wrong value for element %d: %d to %d "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：第%d个元素的值错误：应该是从%d到%d。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: An array of size %d (ipar(4)) "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是大小为%d (ipar(4))的数组。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %d to sum of m (=%d) expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是%d到m (=%d)之和。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Bad value for ltol(%d): ltol(1) < "
 "ltol(2) < ... < ltol(NTOL) <= M (sum of m) expected.\n"
 msgstr ""
+"%s：第%d个输入参数的值错误：应该是ltol(%d)的错误值：ltol(1) < ltol(2) < ... "
+"< ltol(NTOL) <= M (m的总和)。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: An array of size %d (ipar(11)) "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是大小为%d (ipar(11))的数组。\n"
 
 #, c-format
 msgid "%s: Subroutine not found: %s\n"
-msgstr ""
+msgstr "%s：未找到子例程：%s\n"
 
 #, c-format
 msgid "%s: Argument #%d: Subroutine not found in list: %s\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：在列表中找不到子例程：%s\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: The first argument in the list must "
 "be a Scilab function.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：列表中的第一个参数必须是Scilab函数。\n"
 
 #, c-format
 msgid "%s: An error occurred in '%s' subroutine.\n"
-msgstr ""
+msgstr "%s：'%s'子例程中发生错误。\n"
 
 #, c-format
 msgid "%s: The collocation matrix is singular.\n"
-msgstr ""
+msgstr "%s：搭配矩阵为奇数。\n"
 
 #, c-format
 msgid "%s: The expected no. of subintervals exceeds storage specifications.\n"
-msgstr ""
+msgstr "%s：应该是编号为子间隔，其超出了存储规格。\n"
 
 #, c-format
 msgid "%s: The nonlinear iteration has not converged.\n"
-msgstr ""
+msgstr "%s：非线性迭代尚未收敛。\n"
 
 #, c-format
 msgid "%s: There is an input data error.\n"
-msgstr ""
+msgstr "%s：存在输入数据错误。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是一个实数矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A real matrix with %d to %d column(s) "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是一个列数从%d到%d的实数矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为一个标量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A scalar or a matrix of size %d "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是标量或大小为%d的矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Atol and Rtol must have the same "
 "size.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：Atol和Rtol必须具有相同的大小。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix or a list expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是一个矩阵或者list变量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Argument %d in the list must be a "
 "matrix.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：在list变量中的第%d个参数应该是一个矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A list of size %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是一个大小为%d的list变量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Element %d in the info list must be a "
 "scalar.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：在list变量中的第%d个参数应该是一个标量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Element %d in the info list must be a "
 "matrix.\n"
 msgstr ""
+"%s：第%d个输入参数类型错误：在info的list变量中的第%d个参数必须是一个矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Argument %d in the list must be of "
 "size %d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：在list变量中的第%d个参数的大小必须是%d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: The first argument in the list must "
 "be a string, a function or a matrix in case of argument info.\n"
 msgstr ""
+"%s：第%d个输入参数类型错误：如果使用参数信息，则列表中的第一个参数必须是字符"
+"串，函数或矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix or a function expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是矩阵或函数。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument(s) %d: %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是%d个。\n"
 
 #, c-format
 msgid "%s: %s return with state %d.\n"
-msgstr ""
+msgstr "%s：%s以状态%d返回。\n"
 
 #, c-format
 msgid "%ls: An error occurred in '%ls' subroutine.\n"
-msgstr ""
+msgstr "%ls：'%ls'子例程中发生错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为实数矩阵。\n"
 
 #, c-format
 msgid "%s: Argument #%d : Subroutine not found in list: %s\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：在列表中找不到子例程：%s。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : The first argument in the list must "
 "be a Scilab function.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：列表中的第一个参数必须是Scilab函数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A function expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是函数。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: It must be one of the following "
 "strings: adams or stiff.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：它必须是以下字符串之一：adams或stiff。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是一个实数向量。\n"
 
 #, c-format
 msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
-msgstr ""
+msgstr "%s：参数%d和参数%d必须具有一致的维度。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: The first argument in the list must "
 "be a string or a function.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：列表中的第一个参数必须是字符串或函数。\n"
 
 #, c-format
 msgid "%s: Wrong size for w and iw: w = %d and iw = %d expected.\n"
-msgstr ""
+msgstr "%s：w和iw的大小错误：w =%d，iw =%d。\n"
 
 msgid ""
 "The user-supplied subroutine res signalled lsodi to halt the integration and "
 "return (ires=2). Execution of the external function has failed.\n"
 msgstr ""
+"用户提供的子例程res向lsodi发出信号，以终止积分并返回(ires=2)。 外部功能的执行"
+"失败。\n"
 
 #, c-format
 msgid "%s: %s exit with state %d.\n"
-msgstr ""
+msgstr "%s：%s以状态%d退出。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A 3 by N matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是3 x N的矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same size of input argument %d "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该与第%d输入的大小。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该为实数。\n"
 
 #, c-format
 msgid ""
 "%s: Argument #%d: Variable returned by scilab argument function is "
 "incorrect.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：scilab参数函数返回的变量不正确。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为%d。\n"
 
 #, c-format
 msgid ""
 "%ls: Warning: Wrong value for the first element of argument #%d: The default "
 "value will be used.\n"
-msgstr ""
+msgstr "%ls：警告：第%d个参数的第一个元素的值错误：将使用默认值。\n"
 
 #, c-format
 msgid ""
 "%ls: Warning: Wrong value for the third element of argument #%d: The default "
 "value will be used.\n"
-msgstr ""
+msgstr "%ls：警告：第%d个参数的第三个元素的值错误：将使用默认值。\n"
 
 #, c-format
 msgid ""
 "%ls: Warning: Wrong value for the fourth element of argument #%d: The "
 "default value will be used.\n"
-msgstr ""
+msgstr "%ls：警告：第%d个参数的第四个元素的值错误：将使用默认值。\n"
 
 #, c-format
 msgid "%s: Means termination for lack of space to divide another triangle.\n"
-msgstr ""
+msgstr "%s：表示由于没有足够的空间来分割另一个三角形而终止。\n"
 
 #, c-format
 msgid "%s: Means termination because of roundoff noise.\n"
-msgstr ""
+msgstr "%s：表示由于舍入噪声而终止。\n"
 
 #, c-format
 msgid "%s: means termination with relative error <= 5.0* machine epsilon.\n"
-msgstr ""
+msgstr "%s：表示终止，相对错误小于等于5.0x机器的epsilon值。\n"
 
 #, c-format
 msgid ""
 "%s: Means termination because the number of function evaluations has "
 "exceeded MEVALS.\n"
-msgstr ""
+msgstr "%s：表示终止，因为功能评估的次数已超过MEVALS。\n"
 
 #, c-format
 msgid "%s: Means termination because of error in input flag.\n"
-msgstr ""
+msgstr "%s：表示由于输入标志错误而终止。\n"
 
 #, c-format
 msgid "%s: twodq return with state %d.\n"
-msgstr ""
+msgstr "%s：twodq返回状态为%d。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A 4 by N matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是4 x N的矩阵。、\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A positive value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为正值。\n"
 
 #, c-format
 msgid ""
 "%ls: Warning: Wrong value for the element %d of argument #%d: The default "
 "value will be used.\n"
-msgstr ""
+msgstr "%ls：警告：第%d个参数的第%d个元素的值错误：将使用默认值。\n"
 
 #, c-format
 msgid ""
 "%ls: Warning: Wrong value for the element %d and %d of argument #%d: The "
 "default value will be used.\n"
-msgstr ""
+msgstr "%ls：警告：第%d个参数的第%d个和第%d个元素的值错误：将使用默认值。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: minpts smaller than maxpts "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：分钟数应该小于最大数。\n"
 
 #, c-format
 msgid "%ls: Warning: maxpts was too small to obtain the required accuracy.\n"
-msgstr ""
+msgstr "%ls：警告：maxpts太小，无法获得所需的精度。\n"
 
 #, c-format
 msgid "%s: The volume of one of the initially given tetrahedrons is zero.\n"
-msgstr ""
+msgstr "%s：最初给定的四面体之一的体积为零。\n"
 
 #, c-format
 msgid "%s: dcutet return with error %d.\n"
-msgstr ""
+msgstr "%s：dcutet返回，错误为%d。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Must not contain NaN or Inf.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：不应该包含NaN或Inf。\n"
 
 #, c-format
 msgid ""
 "%s: Maximum number of subdivisions achieved. Splitting the interval might "
 "help.\n"
-msgstr ""
+msgstr "%s：达到的最大细分数。 分割时间间隔可能会有所帮助。\n"
 
 #, c-format
 msgid ""
 "%s: Round-off error detected, the requested tolerance (or default) cannot be "
 "achieved. Try using bigger tolerances.\n"
 msgstr ""
+"%s：检测到舍入错误，无法达到请求的公差（或默认值）。 尝试使用更大的公差。\n"
 
 #, c-format
 msgid ""
 "%s: Bad integrand behavior occurs at some points of the integration "
 "interval.\n"
-msgstr ""
+msgstr "%s：在积分间隔的某些时间点出现不良的被积物行为。\n"
 
 #, c-format
 msgid ""
 "%s: Convergence problem, round-off error detected. Try using bigger "
 "tolerances.\n"
-msgstr ""
+msgstr "%s：收敛问题，检测到舍入错误。 尝试使用更大的公差。\n"
 
 #, c-format
 msgid "%s: The integral is probably divergent, or slowly convergent.\n"
-msgstr ""
+msgstr "%s：积分可能是发散的或缓慢收敛的。\n"
 
 #, c-format
 msgid ""
 "%s: Invalid input, absolute tolerance <= 0 and relative tolerance < 2.e-14.\n"
-msgstr ""
+msgstr "%s：无效输入，绝对公差小于等于0，相对公差小于2.e-14。\n"
 
 #, c-format
 msgid "%s: Convergence problem...\n"
-msgstr ""
+msgstr "%s：转换出现问题...\n"
 
 #, c-format
 msgid "%s: Feature %s is obsolete.\n"
-msgstr ""
+msgstr "%s：特性%s已弃用。\n"
 
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #, c-format
 msgid "%s: Please use %s instead.\n"
-msgstr ""
+msgstr "%s：请改用%s。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: It must be one of the following "
 "strings: adams, stiff, rk, rkf, fix, root or discrete.\n"
 msgstr ""
+"%s：第%d个输入参数的值错误：它必须是以下字符串之一：adams，stiff，rk，rkf，"
+"fix，root或discrete。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个，%d个或%d个。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value of hmin and hmax: hmin = %d is greater than hmax = %d.\n"
-msgstr ""
+msgstr "%s：hmin和hmax的值错误：hmin =%d大于hmax =%d。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value of Jacobian type: A number between %d and %d expected.\n"
-msgstr ""
+msgstr "%s：Jacobian类型的值错误：应该是介于%d和%d之间的数字。\n"
 
 #, c-format
 msgid "%s: Warning: Jacobian is given, but not used.\n"
-msgstr ""
+msgstr "%s：警告：给出了Jacobian，但未使用。\n"
 
 msgid ""
 "%s: Warning: No Jacobian external given, but one is required by "
 "%ODEOPTIONS(6) value. Jacobian will be estimated.\n"
 msgstr ""
+"%s：警告：未给定Jacobian外部变量，但%ODEOPTIONS(6)值需要一个。 Jacobian 将被"
+"评估和运行。\n"
 
 #, c-format
 msgid ""
@@ -467,320 +483,331 @@ msgid ""
 "At most %d for mxordn, %d for mxords and no null value for both expected.\n"
 "Wrong value will be reduced to the default value.\n"
 msgstr ""
+"%s：警告：允许的最大刚性/非刚性顺序的值错误：\n"
+"对于mxordn最多为%d，对于mxords最多为%d，并且两个预期值都不为空值。\n"
+"错误的值将减少为默认值。\n"
 
 #, c-format
 msgid "itask = %d\tmeth = %d\tjactyp = %d\tml = %d\tmu = %d\tiopt = %d\n"
-msgstr ""
+msgstr "itask =%d \t meth =%d \t jactyp =%d \t ml =%d \t mu =%d \t iopt =%d\n"
 
 #, c-format
 msgid "tcrit = %lf\th0 = %lf\thmax = %lf\thmin = %lf\n"
-msgstr ""
+msgstr "tcrit =%lf \t h0 =%lf \t hmax =%lf \t hmin =%lf\n"
 
 #, c-format
 msgid ""
 "itask = %d: At most one value of t is allowed, the last element of t is "
 "used.\n"
-msgstr ""
+msgstr "itask =%d：最多允许t的一个值，使用t的最后一个元素。\n"
 
 #, c-format
 msgid "Integration was stopped at t = %lf.\n"
-msgstr ""
+msgstr "在t =%lf处停止积分。\n"
 
 #, c-format
 msgid "%s: Warning: At t = %lf, y is a root, jroot = "
-msgstr ""
+msgstr "%s：警告：在t =%lf时，y是根，jroot = "
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A real column vector expected (n x "
 "1).\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是实数列向量 (n x 1)。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是矩阵\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value must not exceeds dimension of "
 "argument %d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：其值不能超过第%d个参数的大小。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d values expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：其值应该是 %d或 %d值。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value of nd exceeds dimension of "
 "y0.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：nd的值超出y0的维数。\n"
 
 #, c-format
 msgid "%s: Warning: odedc forces itask = %d.\n"
-msgstr ""
+msgstr "%s：警告：odedc强制itask =%d。\n"
 
 #, c-format
 msgid "itask = %d\tmeth = %d\tjactyp = %d\tml = %d\tmu = %d\n"
-msgstr ""
+msgstr "itask =%d \t meth =%d \t jactyp =%d \t ml =%d \t mu =%d\n"
 
 #, c-format
 msgid "update at t = %lf\n"
-msgstr ""
+msgstr "在t =%lg处更新\n"
 
 #, c-format
 msgid "integ. from tleft= %lf to tf= %lf\n"
-msgstr ""
+msgstr "应该是从tleft =%lf到tf =%lf的整数\n"
 
 #, c-format
 msgid "integ. from tleft= %lf to hf=tf= %lf\n"
-msgstr ""
+msgstr "应该是从left= %lf到hf=tf= %lf的整数\n"
 
 #, c-format
 msgid "integ. from tleft= %lf to hf= %lf\n"
-msgstr ""
+msgstr "应该是从tleft= %lf到hf= %lf的整数\n"
 
 msgid "Insufficient Work space to finish (see messages).\n"
-msgstr ""
+msgstr "工作空间不足，无法完成 (请参阅消息)。\n"
 
 msgid "Excessive work done on this call (perhaps wrong jacobian type).\n"
-msgstr ""
+msgstr "在此调用上做了大量的工作(可能是错误的jacobian类型)。\n"
 
 msgid "Excessive accuracy requested (tolerances too small).\n"
-msgstr ""
+msgstr "要求的精度过高(公差太小)。\n"
 
 msgid "Illegal input detected (see printed message).\n"
-msgstr ""
+msgstr "检测到非法输入 (请参阅打印的消息)。\n"
 
 msgid "Repeated error test failures (check all inputs).\n"
-msgstr ""
+msgstr "重复的错误测试失败(检查所有输入)。\n"
 
 msgid ""
 "Repeated convergence failures (perhaps bad jacobian supplied or wrong choice "
 "of jacobian type or tolerances).\n"
 msgstr ""
+"重复收敛失败(可能是错误的jacobian提供的，或者错误的jacobian类型或公差选"
+"择)。\n"
 
 msgid ""
 "Error weight became zero during problem. (solution component i vanished, and "
 "atol or atol(i) = 0.)\n"
 msgstr ""
+"问题期间错误权重变为零。 (解决方案成分i消失，并且atol或 atol(i) = 0。)\n"
 
 msgid ""
 "The user-supplied subroutine res set its error flag (ires = 3) despite "
 "repeated tries by lsodi to avoid that condition.\n"
 msgstr ""
+"尽管lsodi反复尝试避免这种情况，但用户提供的子例程res仍设置其错误标志(ires = "
+"3)。\n"
 
 msgid ""
 "istate was 0 on input but lsodi was unable to compute the initial value of "
 "dy/dt.\n"
-msgstr ""
+msgstr "输入的istate为0，但lsodi无法计算dy/dt的初始值。\n"
 
 msgid ""
 "Integration was not completed because relative error tolerance was too "
 "small. rerr has been increased appropriately for continuing.\n"
-msgstr ""
+msgstr "由于相对误差容限太小，集成未完成。 rerr已适当增加以继续。\n"
 
 msgid ""
 "Integration was not completed because more than 3000 derivative evaluations "
 "were needed. This is approximately 500 steps.\n"
-msgstr ""
+msgstr "集成未完成，因为需要进行3000多次派生评估运行。 这大约是500个步骤。\n"
 
 msgid ""
 "Integration was not completed because solution vanished making a pure "
 "relative error test impossible. Must use non-zero aerr to continue. Using "
 "the one-step integration mode for one step is a good way to proceed.\n"
 msgstr ""
+"集成未完成，因为解决方案消失了，无法进行纯粹的相对误差测试。 必须使用非零aerr"
+"才能继续。 将一步集成模式用于一步是一种很好的进行方法。\n"
 
 msgid ""
 "Integration was not completed because requested accuracy could not be "
 "achieved using smallest allowable stepsize. User must increase the error "
 "tolerance before continued integration can be attempted.\n"
 msgstr ""
+"集成未完成，因为使用最小允许步长无法达到要求的精度。 用户必须提高容错能力，然"
+"后才能尝试继续集成。\n"
 
 msgid ""
 "It is likely that rkf45 is inefficient for solving this problem. Too much "
 "output is restricting the natural stepsize choice. Use the one-step "
 "integrator mode.\n"
 msgstr ""
+"rkf45可能无法有效解决此问题。 输出过多限制了自然的分步选择。 使用单步积分器模"
+"式。\n"
 
 msgid "Invalid input parameters : atol and rtol must be greater than 0.\n"
-msgstr ""
+msgstr "输入参数无效：atol和rtol必须大于0。\n"
 
 msgid "Inappropriate error tolerance.\n"
-msgstr ""
+msgstr "错误的容错能力。\n"
 
 msgid ""
 "Too many steps necessary to reach next required time discretization point. "
 "Change discretisation of time vector t or decrease accuracy.\n"
 msgstr ""
+"达到下一个所需时间离散点所需的步骤太多。 更改时间向量t的离散化或降低精度。\n"
 
 msgid "The error tolerances are too stringent.\n"
-msgstr ""
+msgstr "误差的容错率太严格。\n"
 
 msgid "Atol and computed test value are zero.\n"
-msgstr ""
+msgstr "Atol和计算出的测试值为零。\n"
 
 msgid "Cannot evaluate the preconditioner.\n"
-msgstr ""
+msgstr "无法评估预处理器。\n"
 
 msgid "A singularity in the solution may be present.\n"
-msgstr ""
+msgstr "解决方案中可能存在奇异之处。\n"
 
 msgid "May be inaccurate or ill-conditioned JACOBIAN.\n"
-msgstr ""
+msgstr "可能是JACOBIAN的错误或劣势。\n"
 
 msgid "Singular partial derivatives matrix (may be redundant equations).\n"
-msgstr ""
+msgstr "奇异偏导数矩阵(可能是冗余方程)。\n"
 
 msgid "Either ill-posed problem or discontinuity or singularity encountered.\n"
-msgstr ""
+msgstr "遇到不适的问题，或者遇到不连续性或奇异性。\n"
 
 msgid "External 'res' return many times with ires=-1.\n"
-msgstr ""
+msgstr "外部“ res”以ires = -1多次返回。\n"
 
 msgid "Error in external 'res'.\n"
-msgstr ""
+msgstr "外部“ res”错误。\n"
 
 msgid "failed to compute the initial Ydot.\n"
-msgstr ""
+msgstr "无法计算初始Ydot。\n"
 
 msgid "Error in external psol.\n"
-msgstr ""
+msgstr "外部psol错误。\n"
 
 msgid "The Krylov linear system did not converge.\n"
-msgstr ""
+msgstr "克雷洛夫线性系统没有收敛。\n"
 
 #, c-format
 msgid "%s encountered trouble.\n"
-msgstr ""
+msgstr "%s遇到麻烦。\n"
 
 #, c-format
 msgid "Undefined function '%ls'.\n"
-msgstr ""
+msgstr "未定义的函数'%ls'。\n"
 
 #, c-format
 msgid "User function '%s' have not been set.\n"
-msgstr ""
+msgstr "尚未设置用户函数'%s'。\n"
 
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输出参数类型错误：应该是实数矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for output argument #%d: A size less or equal than %d "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输出参数大小错误：其大小应该小于等于%d。\n"
 
 #, c-format
 msgid "%s: Wrong size for output argument #%d: A Scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输出参数大小错误：应该是一个纯量。\n"
 
 #, c-format
 msgid "%s: Wrong size for output argument #%d: Matrix of size %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输出参数大小错误：应该是大小为%d的矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输出参数大小错误：应该是大小为%d的矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输出参数大小错误：应该是大小为%d的矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输出参数类型错误：应该是矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输出参数大小错误：应该是大小为%dx%d的矩阵。\n"
 
 msgid "An error occurred while getting DifferentialEquationFunctions object.\n"
-msgstr ""
+msgstr "获取DifferentialEquationFunctions对象时发生错误。\n"
 
 msgid "Unstable trajectory"
-msgstr ""
+msgstr "不稳定的轨迹"
 
 msgid "Stable trajectory"
-msgstr ""
+msgstr "稳定的轨迹"
 
 msgid "bike simulation, stable trajectory"
-msgstr ""
+msgstr "自行车模拟，轨迹是稳定的"
 
 msgid "bike simulation, unstable trajectory"
-msgstr ""
+msgstr "自行车模拟，轨迹是不稳定的"
 
 msgid "spherical pendulum simulation"
-msgstr ""
+msgstr "球形摆仿真"
 
 msgid "Simulation"
-msgstr ""
+msgstr "仿真"
 
 msgid "n-pendulum"
-msgstr ""
+msgstr "正摆"
 
 msgid "Wheel simulation"
-msgstr ""
+msgstr "车轮仿真"
 
 msgid "Bike simulation"
-msgstr ""
+msgstr "自行车仿真"
 
 msgid "ODE'S"
-msgstr ""
+msgstr "ODE类"
 
 msgid "DAE'S"
-msgstr ""
+msgstr "DAE类"
 
 msgid "Flow simulation"
-msgstr ""
+msgstr "流仿真"
 
 msgid "Levitron"
-msgstr ""
+msgstr "漂浮器"
 
 msgid "Blackhole"
-msgstr ""
+msgstr "黑洞"
 
 msgid "Simulation Parameters"
-msgstr ""
+msgstr "仿真参数"
 
 msgid "Cylinder"
-msgstr ""
+msgstr "柱面"
 
 msgid "Sphere"
-msgstr ""
+msgstr "圆面"
 
 msgid "ODE 1D vector field"
-msgstr ""
+msgstr "ODE 1D矢量场"
 
 msgid "chemical process (implicit)"
-msgstr ""
+msgstr "化学过程 (隐式)"
 
 msgid "Lorenz differential equation"
-msgstr ""
+msgstr "洛伦兹微分方程"
 
 msgid "Lotka-Volterra vector field"
-msgstr ""
+msgstr "Lotka-Volterra矢量场"
 
 msgid "Van der Pol vector field"
-msgstr ""
+msgstr "范德波尔矢量场"
 
 msgid "Reading a precomputed trajectory"
-msgstr ""
+msgstr "读取预先计算的轨迹"
 
 msgid "Simulation with ode (needs a Fortran compiler)"
-msgstr ""
+msgstr "用ode进行仿真 (需要Fortran编译器)"
 
 msgid "Simulation of mechanical system with holonomic constraints"
-msgstr ""
+msgstr "具有完整约束的机械系统仿真"
 
 msgid "Differential equations code generated by Maple"
-msgstr ""
+msgstr "Maple生成的微分方程代码"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
@@ -788,23 +815,23 @@ msgstr "%s：输入参数的数目错误：应该为%d或%d。\n"
 
 #, c-format
 msgid "%s: Invalid option %s: real matrix expected.\n"
-msgstr ""
+msgstr "%s：无效的选项%s：应为实数矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该为至少%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为实数。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个实数。\n"
+msgstr "%s：第%d个参数错误：应该是一个数字。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：需要Scilab函数。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -821,79 +848,79 @@ msgstr "%s：输入参数#%d的类型错误：应该为实数。\n"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: syntax error in given expression\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：给定表达式中的语法错误\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A real expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为实数。\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr ""
+msgstr "%s：输入参数大小错误：应该为相同的大小。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Real number(s) expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该是实数。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该介于%d与%d之间。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该是函数或者list变量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Function expected in first element of "
 "list.\n"
-msgstr ""
+msgstr "%s：第%d个参数的值错误：list变量的第一个元素应该是函数。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong number of elements in input argument #%d: At least %d elements "
 "expected, but current number is %d.\n"
-msgstr ""
+msgstr "%s：第%d输入参数的值错误：至少应包含%d个元素，但当前数量为%d个。。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该为矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为向量。\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
+msgstr "%s：第%d和第%d个输入参数不匹配：应该为相同大小。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误，应大于%d。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为%d×%d的矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值有误：必须在集合{%s}中。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为字符串数组。\n"
 
 #, c-format
 msgid "%s: Q must be orthogonal.\n"
-msgstr ""
+msgstr "%s：Q必须正交。\n"
 
 #, c-format
 msgid "%s: Unknown value %s for option %s.\n"
-msgstr ""
+msgstr "%s：选项%s的未知值%s。\n"
 
 msgid "Defining %ODEOPTIONS variable"
 msgstr "定义 %ODEOPTIONS 变量"
@@ -935,31 +962,31 @@ msgid "4 : user-supplied banded jacobian (see ml,mu)"
 msgstr "用户提供的带雅可比行列式(见 ml,mu)"
 
 msgid "5 : internally generated banded jacobian (see ml,mu)"
-msgstr ""
+msgstr "5：内部产生的带状雅各布(见ml,mu)"
 
 msgid "Meaning of ml,mu:"
-msgstr ""
+msgstr "ml，mu的含义："
 
 msgid "If jactype = 4 or 5 ml and mu are the lower and upper half-bandwidths"
-msgstr ""
+msgstr "如果jactype = 4或5 ml，并且mu是上下半带宽"
 
 msgid "of the banded jacobian: the band is the i,j's with i-ml <= j <= ny-1"
-msgstr ""
+msgstr "的雅各布的纽带：其值是i，其中ml <= j <= ny-1的i，j"
 
 msgid "If jactype = 4 the jacobian function must return"
-msgstr ""
+msgstr "如果jactype = 4，则jacobian函数必须返回"
 
 msgid "a matrix J which is  ml+mu+1 x ny (where ny=dim of y in ydot=f(t,y))"
-msgstr ""
+msgstr "矩阵J为ml + mu + 1 x ny (在ydot=f(t,y)中ny=dim)"
 
 msgid "such that column 1 of J is made of mu zeros followed by"
-msgstr ""
+msgstr "使得J的第1列由mu个零组成，后跟"
 
 msgid "df1/dy1, df2/dy1, df3/dy1,... (1+ml possibly non-zero entries)"
 msgstr "df1/dy1, df2/dy1, df3/dy1,... (1+ml 可能非零)"
 
 msgid "column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2,etc"
-msgstr ""
+msgstr "第2列由mu-1个零组成，后跟df1/dx2, df2/dx2等"
 
 msgid "Default values are given in square brackets"
 msgstr "默认值在方括号中"
@@ -968,25 +995,25 @@ msgid "If the function is called without argument, default values are used"
 msgstr "如果函数没有参数调用，使用默认值"
 
 msgid "tcrit (assumes itask=4 or 5)"
-msgstr ""
+msgstr "tcrit (假设itask = 4或5)"
 
 msgid "h0 (first step tried)"
-msgstr ""
+msgstr "h0(尝试了第一步)"
 
 msgid "hmax (max step size)"
-msgstr ""
+msgstr "hmax (最大步长)"
 
 msgid "hmin (min step size)"
-msgstr ""
+msgstr "hmin (最小步长)"
 
 msgid "mxstep (max number of steps allowed)"
-msgstr ""
+msgstr "mxstep (允许的最大步数)"
 
 msgid "maxordn (maximum non-stiff order allowed, at most 12)"
-msgstr ""
+msgstr "maxordn(允许的最大非刚性订单，最多12个)"
 
 msgid "maxords (maximum stiff order allowed, at most 5)"
-msgstr ""
+msgstr "maxords(允许的最大刚性顺序，最多5个)"
 
 msgid "ixpr (print level 0 or 1)"
-msgstr ""
+msgstr "ixpr(打印级别0或1)"

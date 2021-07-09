@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -1372,6 +1372,10 @@ msgstr ""
 "petite que 1e-3\n"
 "Hinfnorm est probablement exactement égal à max sv(D)\n"
 "Le système est peut être passe-tout."
+
+#, fuzzy, c-format
+msgid "%s: Argument '%s': type real expected.\n"
+msgstr "%s : Argument #%d : %s attendu.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Wrong color specification.\n"

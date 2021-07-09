@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-01-21 14:09+0000\n"
+"PO-Revision-Date: 2020-02-24 15:29+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: ru\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
@@ -66,11 +66,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Argument #%d: the scalar must be positive.\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: скаляр должен быть положительным.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
@@ -78,11 +78,11 @@ msgstr "%s: Неверное значение входного аргумент�
 
 #, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: должен быть в интервале [%d, %d].\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -141,8 +141,7 @@ msgstr ""
 "матрица.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: %s должно быть между %d и %d.\n"
 
@@ -167,8 +166,7 @@ msgstr "%s: Неверный тип входных параметров.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr ""
-"%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
@@ -189,8 +187,7 @@ msgstr ""
 "значение.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Неверный размер входных аргументов №%d и №%d: Ожидался одинаковый "
 "размер.\n"
@@ -212,38 +209,67 @@ msgstr ""
 "%s: Неверный размер входных аргументов №%d и №%d: ожидается один и тот же "
 "размер.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers in [1,12] expected.\n"
+msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d missing: Integers in [1,31] expected.\n"
+msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers in [1,31] expected.\n"
+msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d to #%d: Same sizes expected.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась матрица вещественных "
-"констант.\n"
+"%s: Неверный размер входных аргументов №%d и №%d: Ожидался одинаковый "
+"размер.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Numbers or texts expected.\n"
+msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: All dates must have the same format.\n"
+msgstr "%s: Аргумент №%d: скаляр должен быть положительным.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong dates format.\n"
+msgstr "%s: Аргумент №%d: скаляр должен быть положительным.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Month indices expected in [1,12].\n"
+msgstr "%s: Аргумент №%d: должен быть в интервале [%d, %d].\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Day indices expected in [1,31].\n"
+msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Single text word expected.\n"
+msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong langage code.\n"
+msgstr "%s: Аргумент №%d: скаляр должен быть положительным.\n"
+
+#
+# File: modules/time/macros/weekday.sci, line: 204
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgid "%s: Argument #%d: Unknown option.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
 
-msgid "Sat"
-msgstr "Сбт"
+msgid "Friday"
+msgstr "Пятница"
 
-msgid "Sun"
-msgstr "Вск"
-
-msgid "Mon"
-msgstr "Пнд"
-
-msgid "Tue"
-msgstr "Втр"
-
-msgid "Wed"
-msgstr "Срд"
-
-msgid "Thu"
-msgstr "Чтв"
-
-msgid "Fri"
-msgstr "Птн"
+msgid "Monday"
+msgstr "Понедельник"
 
 msgid "Saturday"
 msgstr "Суббота"
@@ -251,8 +277,8 @@ msgstr "Суббота"
 msgid "Sunday"
 msgstr "Воскресенье"
 
-msgid "Monday"
-msgstr "Понедельник"
+msgid "Thursday"
+msgstr "Четверг"
 
 msgid "Tuesday"
 msgstr "Вторник"
@@ -260,8 +286,35 @@ msgstr "Вторник"
 msgid "Wednesday"
 msgstr "Среда"
 
-msgid "Thursday"
-msgstr "Четверг"
+msgid "Fri"
+msgstr "Птн"
 
-msgid "Friday"
-msgstr "Пятница"
+msgid "Mon"
+msgstr "Пнд"
+
+msgid "Sat"
+msgstr "Сбт"
+
+msgid "Sun"
+msgstr "Вск"
+
+msgid "Thu"
+msgstr "Чтв"
+
+msgid "Tue"
+msgstr "Втр"
+
+msgid "Wed"
+msgstr "Срд"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидалась матрица вещественных "
+#~ "констант.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"

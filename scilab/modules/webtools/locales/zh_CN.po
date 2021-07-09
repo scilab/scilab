@@ -1,0 +1,100 @@
+# Chinese (Simplified) translation for scilab
+# Copyright (c) 2020 Rosetta Contributors and Canonical Ltd 2020
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2020-08-29 00:02+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
+"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: A scalar string expected.\n"
+msgstr "%s：输入参数%s的类型错误：应该是一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%s: 'none' expected.\n"
+msgstr "%s：输入参数%s的值错误：应该是“none”。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: A scalar boolean expected.\n"
+msgstr "%s：输入参数%s的类型错误：应该是一个布尔量。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s： 第%d输入参数类型错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"file\" expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该为“file”。\n"
+
+#, c-format
+msgid "%s: JSON format expected.\n"
+msgstr "%s: 应该为JSON格式。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s：输入参数数目错误：应该为%d个。\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s：输出参数数目错误：应该介于%d到%d个之间。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar string expected.\n"
+msgstr "%s： 第%d输入参数类型错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: CURL initialization failed.\n"
+msgstr "%s：CURL初始化失败。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong proxy information, please check in the 'internet' Scilab "
+"preference.\n"
+msgstr ""
+"%s：代理服务器（proxy）信息错误，请在Scilab的首选项中检查“internet”选项设"
+"置。\n"
+
+#, c-format
+msgid ""
+"%s: CURL execution failed.\n"
+"%s\n"
+msgstr ""
+"%s：CURL运行错误。\n"
+"%s\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: The given path does not exist.\n"
+msgstr "%s：第%d个输入参数的值错误：给定的路径不存在。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix string expected.\n"
+msgstr "%s：第#%d个输入参数类型错误：应该为一个字符串矩阵。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A structure of size %d expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该是一个大小为%d的结构体变量。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%s: 'PUT' or 'POST' expected.\n"
+msgstr "%s：输入参数%s的值错误：应该为“PUT”或者“POST”。\n"

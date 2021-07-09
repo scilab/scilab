@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-24 11:08+0100\n"
+"Revision-Date: 2021-07-09 17:35+0100\n"
 
 #
 # File: modules/signal_processing/sci_gateway/c/sci_amell.c, line: 56
@@ -134,12 +134,6 @@ msgstr ""
 # File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 465
 #, c-format
 msgid "%s: Too many coefficients are required.\n"
-msgstr ""
-
-#
-# File: modules/signal_processing/sci_gateway/cpp/sci_delip.cpp, line: 45
-#, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
 
 #
@@ -610,6 +604,16 @@ msgid ""
 msgstr ""
 
 #
+# File: modules/signal_processing/macros/%_unwrap.sci, line: 23
+msgid ": 1-D examples "
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/%_unwrap.sci, line: 103
+msgid ": 2-D examples"
+msgstr ""
+
+#
 # File: modules/signal_processing/macros/bilt.sci, line: 28
 # File: modules/signal_processing/macros/bilt.sci, line: 31
 # File: modules/signal_processing/macros/bilt.sci, line: 34
@@ -660,6 +664,7 @@ msgstr ""
 #
 # File: modules/signal_processing/macros/cepstrum.sci, line: 32
 # File: modules/signal_processing/macros/cepstrum.sci, line: 48
+# File: modules/signal_processing/macros/sgolay.sci, line: 74
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
 msgstr ""
@@ -872,6 +877,7 @@ msgstr ""
 
 #
 # File: modules/signal_processing/macros/pspect.sci, line: 41
+# File: modules/signal_processing/macros/sgolay.sci, line: 59
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be "
@@ -884,6 +890,54 @@ msgstr ""
 # File: modules/signal_processing/macros/yulewalk.sci, line: 47
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/sgolay.sci, line: 39
+# File: modules/signal_processing/macros/sgolaydiff.sci, line: 22
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/sgolay.sci, line: 46
+# File: modules/signal_processing/macros/sgolay.sci, line: 51
+# File: modules/signal_processing/macros/sgolaydiff.sci, line: 25
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: a scalar with integer value "
+"expected.\n"
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/sgolay.sci, line: 56
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be odd.\n"
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/sgolay.sci, line: 66
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/sgolay.sci, line: 70
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d\n"
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/sgolaydiff.sci, line: 39
+# File: modules/signal_processing/macros/sgolayfilt.sci, line: 52
+#, c-format
+msgid "%s: Wrong size for argument %d: At least %d expected.\n"
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/sgolaydiff.sci, line: 42
+#, c-format
+msgid "%s: Wrong value for argument %d: At most %d expected.\n"
 msgstr ""
 
 #
@@ -903,6 +957,43 @@ msgstr ""
 # File: modules/signal_processing/macros/trans.sci, line: 68
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/unwrap.sci, line: 37
+msgid "Press return to display 2D examples"
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/unwrap.sci, line: 44
+# File: modules/signal_processing/macros/unwrap.sci, line: 58
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/unwrap.sci, line: 52
+# File: modules/signal_processing/macros/unwrap.sci, line: 72
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/unwrap.sci, line: 67
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/unwrap.sci, line: 87
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
+msgstr ""
+
+#
+# File: modules/signal_processing/macros/unwrap.sci, line: 89
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 
 #

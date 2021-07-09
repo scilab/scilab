@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 20:06+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2020-08-20 13:42+0000\n"
+"Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -23,71 +23,71 @@ msgstr "%s：无法读取第%d个输入参数。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数类型错误：应该为实数矩阵或复数矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是字符串或者整数。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s, %s, or %s expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是 %s， %s， %s， 或者 %s。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s, %s or %s expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为%s、%s、%s或%s。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为实数。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数大小错误：应该是一个实数标量。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
-msgstr ""
+msgstr "%s：第 %d 个和第 %d 个参数必须有一致的维度。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Square matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是一个方阵。\n"
 
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
-msgstr ""
+msgstr "%s：无法分配更多内存。\n"
 
 #, c-format
 msgid "%s: LAPACK error n%d.\n"
-msgstr ""
+msgstr "%s: LAPACK 发生错误 n%d。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
-msgstr ""
+msgstr "%s：第 %d 个参数类型错误：应该为实数或复数矩阵阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A scalar expected.\n"
-msgstr ""
+msgstr "%s：第 %d 个参数类型错误：应该一个标量。\n"
 
 #, c-format
 msgid "%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"
-msgstr ""
+msgstr "%s：第 %d 个输入参数的值错误：必须不包含NaN值或Inf值。\n"
 
 #, c-format
 msgid "%s: Allocation failed.\n"
-msgstr ""
+msgstr "%s：分配失败。\n"
 
 #, c-format
 msgid "%s: Non convergence in QR steps.\n"
@@ -95,34 +95,38 @@ msgstr "%s：QR分解的迭代中不收敛。\n"
 
 #, c-format
 msgid "%s: Matrix is not positive definite.\n"
-msgstr ""
+msgstr "%s：矩阵不是正定的。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
-msgstr ""
+msgstr "%s：第 %d 个输入参数类型错误：应该为方阵。\n"
 
 #, c-format
 msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
-msgstr ""
+msgstr "%s：此处不允许使用大小可变的参数a * eye()，(参数%d)。\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument %d: Square matrix expected. Please use pinv() otherwise.\n"
+msgstr "%s：第%d个参数错误：应该是一个方阵。\n"
 
 msgid "Warning :\n"
-msgstr ""
+msgstr "警告：\n"
 
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
-msgstr ""
+msgstr "矩阵接近奇异或缩放不正确。 rcond = %1.4E\n"
 
 #, c-format
 msgid "%s: Problem is singular.\n"
-msgstr ""
+msgstr "%s：单一问题。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为一个实数型的。\n"
 
 #, c-format
 msgid "%s: %s and %s must have equal number of rows.\n"
-msgstr ""
+msgstr "%s：%s和%s必须具有相等的行数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
@@ -130,15 +134,15 @@ msgstr "%s：第%d个输入参数的类型错误：应该为实数标量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该为一个实数或者一个字符串。\n"
 
 #, c-format
 msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
-msgstr ""
+msgstr "%s：参数%d和参数%d必须具有一致的维度。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -146,33 +150,33 @@ msgstr "%s：输入参数#%d的类型错误：应该为实数矩阵。\n"
 
 #, c-format
 msgid "%s: Subroutine not found: %s\n"
-msgstr ""
+msgstr "%s：未找到子例程：%s\n"
 
 #, c-format
 msgid "%s: Schur exit with state %d\n"
-msgstr ""
+msgstr "%s：状态为%d的Schur退出\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument %d: Must not contain NaN or Inf.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：不得包含NaN或Inf。\n"
 
 #, c-format
 msgid ""
 "%s: On entry to ZGEEV parameter number  3 had an illegal value (lapack "
 "library problem).\n"
-msgstr ""
+msgstr "%s：在输入ZGEEV时，参数3具有非法值(lapack库问题)。\n"
 
 #, c-format
 msgid ""
 "%s: Convergence problem, %d off-diagonal elements of an intermediate "
 "tridiagonal form did not converge to zero.\n"
-msgstr ""
+msgstr "%s：收敛问题，中间三对角形式的%d个非对角元素未收敛为零。\n"
 
 #, c-format
 msgid ""
 "%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack "
 "library problem).\n"
-msgstr ""
+msgstr "%s：在输入ZHEEV 时，参数3具有非法值(lapack库问题)。\n"
 
 #, c-format
 msgid ""
@@ -180,6 +184,8 @@ msgid ""
 "eigenvectors have been computed. Elements and %d+1:N of W contain "
 "eigenvalues which have converged.\n"
 msgstr ""
+"%s：QR算法无法计算所有特征值，并且尚未计算任何特征向量。 W的元素和%d + 1：N包"
+"含已收敛的特征值。\n"
 
 #, c-format
 msgid ""
@@ -187,86 +193,92 @@ msgid ""
 "eigenvectors have been computed. Elements and %d+1:N of WR and WI contain "
 "eigenvalues which have converged.\n"
 msgstr ""
+"%s：QR算法无法计算所有特征值，并且尚未计算任何特征向量。 WR和WI的元素和%d + "
+"1：N包含已收敛的特征值。\n"
 
 msgid "Non convergence in the QZ algorithm.\n"
-msgstr ""
+msgstr "QZ算法中的非收敛性。\n"
 
 #, c-format
 msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
-msgstr ""
+msgstr "前 %d x %d个块可能不是通用的Schur形式。\n"
 
 #, c-format
 msgid "%s: The QZ iteration failed in DGGEV.\n"
-msgstr ""
+msgstr "%s：在DGGEV中QZ迭代失败。\n"
 
 #, c-format
 msgid "%s: Other than QZ iteration failed in DHGEQZ.\n"
-msgstr ""
+msgstr "%s：DHGEQZ中除QZ迭代失败。\n"
 
 #, c-format
 msgid "%s: Error return from DTGEVC.\n"
-msgstr ""
+msgstr "%s：从DTGEVC返回错误。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数数目错误：应该至少有%d个。\n"
 
 #, c-format
 msgid "%s: Convergence problem...\n"
-msgstr ""
+msgstr "%s：转换出现问题...\n"
 
 #, c-format
 msgid "Argument %d in dgees had an illegal value.\n"
-msgstr ""
+msgstr "dgees中的第%d个参数是非法值。\n"
 
 msgid "The QR algorithm failed to compute all the eigenvalues.\n"
-msgstr ""
+msgstr "QR算法无法计算所有特征值。\n"
 
 msgid ""
 "The eigenvalues could not be reordered because some eigenvalues were too "
 "close to separate (the problem is very ill-conditioned).\n"
 msgstr ""
+"无法对特征值进行重新排序，因为某些特征值过于接近而无法分离（问题非常严"
+"重）。\n"
 
 msgid ""
 "After reordering, roundoff changed values of some complex eigenvalues so "
 "that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. "
 "This could also be caused by underflow due to scaling.\n"
 msgstr ""
+"重新排序后，舍入会更改某些复杂特征值的值，以使Schur格式中的前导特征值不再满足"
+"SELECT = .TRUE。 这也可能是由于缩放导致的下溢。\n"
 
 #, c-format
 msgid "Argument %d in zgees had an illegal value.\n"
-msgstr ""
+msgstr "zgees中的第%d个参数是非法值。\n"
 
 #, c-format
 msgid "Argument %d in dgges had an illegal value.\n"
-msgstr ""
+msgstr "dgges中的第%d个参数是非法值。\n"
 
 msgid "The QZ iteration failed. (A,E) are not in Schur form.\n"
-msgstr ""
+msgstr "QZ迭代失败。(A，E)不是Schur形式。\n"
 
 msgid "Other than QZ iteration failed in DHGEQZ.\n"
-msgstr ""
+msgstr "在DHGEQZ中，除QZ迭代外失败。\n"
 
 msgid "Reordering failed in DTGSEN.\n"
-msgstr ""
+msgstr "在DTGSEN中重新排序失败。\n"
 
 #, c-format
 msgid "Argument %d in zgges had an illegal value.\n"
-msgstr ""
+msgstr "zgges中的第%d个参数是非法值。\n"
 
 msgid "Other than QZ iteration failed in ZHGEQZ.\n"
-msgstr ""
+msgstr "除QZ之外，ZHGEQZ中的其他迭代均失败。\n"
 
 msgid "Reordering failed in ZTGSEN.\n"
-msgstr ""
+msgstr "ZTGSEN中的重新排序失败。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该是小数或者是复数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected."
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是多项式。"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: must not contain %s or %s.\n"
@@ -278,20 +290,20 @@ msgstr "%s：第%d个输入参数的类型错误：应该为矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是方阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是标量或者字符串。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: must be %d, %d, %s, '%s' or '%s'.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该是%d， %d， %s， '%s' 或者 '%s'。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -302,17 +314,301 @@ msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为非负整数矩阵。\n"
 
+#, fuzzy, c-format
+msgid "%s : Wrong number of input arguments : %d to %d expected.\n"
+msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A full or sparse square matrix or a "
+"function expected"
+msgstr "%s：第%d个输入参数类型错误：应该是方阵。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A positive integer expected if the "
+"first input argument is a function."
+msgstr "%s：第%d个输入参数类型错误：应该是字符串或者整数。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A structure expected"
+msgstr "%s：第%d个输入参数类型错误：应该为实数。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument: If A is a matrix, use opts with tol, "
+"maxiter, ncv, resid, cholB"
+msgstr "%s：第%d个输入参数类型错误：应该是方阵。\n"
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 163
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: If A is a function, use opts with tol, "
+"maxiter, ncv, resid, cholB, issym"
+msgstr ""
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
+"square matrix expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该是方阵。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
+msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为实数标量。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为矩阵。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real symmetric problems, k must "
+"be an integer in the range 1 to N - 1.\n"
+msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real non symmetric or complex "
+"problems, k must be an integer in the range 1 to N - 2.\n"
+msgstr "%s：输入参数#%d的值错误：应该为非负整数。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s：第%d个输入参数大小错误：应该为字符串。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
+" Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
+msgstr "%s：第%d个输入参数的值错误：应该是%d， %d， %s， '%s' 或者 '%s'。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
+" Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n"
+msgstr "%s：第%d个输入参数的值错误：应该是%d， %d， %s， '%s' 或者 '%s'。\n"
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 291
+# File: modules/linear_algebra/macros/eigs.sci, line: 751
+#, c-format
+msgid "%s: Invalid sigma value for complex or non symmetric problem.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 294
+# File: modules/linear_algebra/macros/eigs.sci, line: 754
+#, c-format
+msgid "%s: Invalid sigma value for real symmetric problem.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"
+msgstr "%s：第%d个输入参数类型错误：应该是标量或者字符串。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为实数标量。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: %s must be an integer positive "
+"value.\n"
+msgstr "%s：第%d个输入参数类型错误：应该是字符串或者整数。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为实数标量。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"
+msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
+msgstr "%s：第%d个输入参数类型错误：应该是字符串或者整数。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
+"must be k < NCV <= N.\n"
+msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
+"must be k + 2 < NCV < N.\n"
+msgstr "%s：第%d个输入参数类型错误：应该为一个实数或者一个字符串。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
+"+ 1 < NCV <= N.\n"
+msgstr "%s：第%d个输入参数的值错误：应该是%d， %d， %s， '%s' 或者 '%s'。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
+msgstr "%s：第%d个输入参数的值错误：不能包含%s或%s。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
+"boolean.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为实数标量。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
+msgstr "%s：第%d个参数类型错误：应该为实数矩阵或复数矩阵。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
+msgstr "%s：第%d个输入参数维度错误：应该为列向量。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Start vector %s must be real for real "
+"problems.\n"
+msgstr "%s：第%d个输入参数类型错误：应该是字符串或者整数。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Start vector %s must be complex for "
+"complex problems.\n"
+msgstr "%s：第%d个输入参数类型错误：应该是字符串或者整数。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: if opts.cholB is true, B must be "
+"upper triangular.\n"
+msgstr "%s：第%d个输入参数类型错误：应该是标量或者字符串。\n"
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 435
+# File: modules/linear_algebra/macros/eigs.sci, line: 895
+#, c-format
+msgid ""
+"%s: Impossible to use the Cholesky factorization with complex sparse "
+"matrices.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 506
+# File: modules/linear_algebra/macros/eigs.sci, line: 512
+# File: modules/linear_algebra/macros/eigs.sci, line: 519
+# File: modules/linear_algebra/macros/eigs.sci, line: 591
+# File: modules/linear_algebra/macros/eigs.sci, line: 609
+# File: modules/linear_algebra/macros/eigs.sci, line: 646
+# File: modules/linear_algebra/macros/eigs.sci, line: 953
+# File: modules/linear_algebra/macros/eigs.sci, line: 958
+# File: modules/linear_algebra/macros/eigs.sci, line: 964
+# File: modules/linear_algebra/macros/eigs.sci, line: 1062
+# File: modules/linear_algebra/macros/eigs.sci, line: 1079
+# File: modules/linear_algebra/macros/eigs.sci, line: 1115
+#, c-format
+msgid "%s: Error with %s: info = %d.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/eigs.sci, line: 573
+# File: modules/linear_algebra/macros/eigs.sci, line: 575
+# File: modules/linear_algebra/macros/eigs.sci, line: 578
+# File: modules/linear_algebra/macros/eigs.sci, line: 1040
+# File: modules/linear_algebra/macros/eigs.sci, line: 1042
+# File: modules/linear_algebra/macros/eigs.sci, line: 1045
+#, c-format
+msgid "%s: Error with %s: unknown mode returned.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为矩阵。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real symmetric problems, k must "
+"be in the range 1 to N - 1.\n"
+msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: For real non symmetric or complex "
+"problems, k must be in the range 1 to N - 2.\n"
+msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: a scalar expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为实数标量。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为矩阵。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
+" Sigma must be one of %s, %s, %s, %s or %s.\n"
+msgstr "%s：第%d个输入参数的值错误：应该是%d， %d， %s， '%s' 或者 '%s'。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
+" Sigma must be one of %s, %s, %s, %s, %s or %s.\n"
+msgstr "%s：第%d个输入参数的值错误：应该是%d， %d， %s， '%s' 或者 '%s'。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"
+msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: Start vector opts.resid must be "
+"N by 1.\n"
+msgstr "%s：第%d个输入参数维度错误：应该为列向量。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Start vector opts.resid must be real "
+"for real problems.\n"
+msgstr "%s：第%d个输入参数类型错误：应该是字符串或者整数。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Start vector opts.resid must be "
+"complex for complex problems.\n"
+msgstr "%s：第%d个输入参数类型错误：应该是字符串或者整数。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: n does not match rows number of "
+"matrix A.\n"
+msgstr "%s：第%d个输入参数的值错误：不能包含%s或%s。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type or value for input arguments.\n"
+msgstr "%s：第%d个输入参数的类型错误。\n"
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个列向量。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数类型错误：应该是小数或者复数。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数维度错误：应该为列向量。\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -327,14 +623,14 @@ msgid "%s: This feature has not been implemented.\n"
 msgstr "%s：该功能尚未实现。\n"
 
 msgid "Conflicting linear constraints."
-msgstr ""
+msgstr "线性约束冲突。"
 
 msgid "Recomputing initial guess"
-msgstr ""
+msgstr "重新计算初始猜测"
 
 #, c-format
 msgid "Possible Conflicting linear constraints, error in the order of %s"
-msgstr ""
+msgstr "可能有冲突的线性约束，误差为%s"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -342,7 +638,7 @@ msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Square matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数错误：应该是一个方阵。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -350,12 +646,12 @@ msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
 
 #, c-format
 msgid "%s: Singular pencil."
-msgstr ""
+msgstr "%s：单支铅笔。"
 
 #, c-format
 msgid ""
 "%s: Function not defined for type '%s'. Check argument or define function %s."
-msgstr ""
+msgstr "%s：未定义类型为'%s'的函数。 检查参数或定义函数%s。"
 
 #, c-format
 msgid ""

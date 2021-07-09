@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -497,12 +497,12 @@ msgid "   %s: File %s ignored.\n"
 msgstr "   %s: El archivo %s fue ignorado.\n"
 
 #, c-format
-msgid "   %s: Need to run the compiler detection (configure).\n"
-msgstr "   %s: Necesita ejecutar la detección de compilador (configurar).\n"
-
-#, c-format
 msgid "   %s: Use the previous detection of compiler.\n"
 msgstr "   %s: Usar la detección anterior de compilador.\n"
+
+#, c-format
+msgid "   %s: Need to run the compiler detection (configure).\n"
+msgstr "   %s: Necesita ejecutar la detección de compilador (configurar).\n"
 
 #, c-format
 msgid "   %s: Modification of the Makefile in TMPDIR.\n"
