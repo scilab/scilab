@@ -8,6 +8,8 @@
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 
+// See also SCI/overloading/tests/unit_tests/concatenation_mixed.tst
+
 function checkCallOverload(mat)
     assert_checkerror(mat, [], 999);
 endfunction
@@ -34,7 +36,7 @@ assert_checkequal([ldouble lint],  [ldouble double(lint)]);
 assert_checkequal([ldouble lint16],  [ldouble double(lint16)]);
 assert_checkequal([ldouble lpoly], [(ldouble + 0*%s) lpoly]);
 assert_checkequal([ldouble lsparse], [sparse(ldouble) lsparse]);
-checkCallOverload("[ldouble lspb]");
+assert_checkequal([ldouble lspb], [sparse(ldouble) lspb]);
 checkCallOverload("[ldouble lstring]");
 checkCallOverload("[ldouble lsta]");
 
@@ -44,7 +46,7 @@ assert_checkequal([ldouble ; lint],  [ldouble ; double(lint)]);
 assert_checkequal([ldouble ; lint16],[ldouble ; double(lint16)]);
 assert_checkequal([ldouble ; lpoly], [(ldouble + 0*%s) ; lpoly]);
 assert_checkequal([ldouble ; lsparse], [sparse(ldouble) ; lsparse]);
-checkCallOverload("[ldouble ; lspb]");
+assert_checkequal([ldouble ; lspb], [sparse(ldouble) ; lspb]);
 checkCallOverload("[ldouble ; lstring]");
 checkCallOverload("[ldouble ; lsta]");
 
@@ -54,7 +56,7 @@ assert_checkequal([lbool lbool], [%t %f %t %t %f %t]);
 assert_checkequal([lbool lint], int32([1 0 1 1 2 3]));
 assert_checkequal([lbool lint16], int16([1 0 1 1 2 3]));
 checkCallOverload("[lbool lpoly]");
-checkCallOverload("[lbool lsparse]");
+assert_checkequal([lbool lsparse], [sparse(lbool) lsparse]);
 assert_checkequal([lbool lspb], [sparse(lbool) lspb]);
 checkCallOverload("[lbool lstring]");
 checkCallOverload("[lbool lsta]");
@@ -64,7 +66,7 @@ assert_checkequal([lbool ; lbool], matrix([%t %t %f %f %t %t], 2, 3));
 assert_checkequal([lbool ; lint], int32([1 0 1;1 2 3]));
 assert_checkequal([lbool ; lint16], int16([1 0 1;1 2 3]));
 checkCallOverload("[lbool ; lpoly]");
-checkCallOverload("[lbool ; lsparse]");
+assert_checkequal([lbool ; lsparse], [sparse(lbool) ; lsparse]);
 assert_checkequal([lbool ; lspb], [sparse(lbool) ; lspb]);
 checkCallOverload("[lbool ; lstring]");
 checkCallOverload("[lbool ; lsta]");
@@ -73,9 +75,9 @@ checkCallOverload("[lbool ; lsta]");
 assert_checkequal([lint ldouble], [double(lint) ldouble]);
 assert_checkequal([lint lbool], int32([1 2 3 1 0 1]));
 assert_checkequal([lint lint], int32([1 2 3 1 2 3]));
+assert_checkequal([lint lsparse], sparse([1 2 3 1 2 3]));
 checkCallOverload("[lint lint16]");
 checkCallOverload("[lint lpoly]");
-checkCallOverload("[lint lsparse]");
 checkCallOverload("[lint lspb]");
 checkCallOverload("[lint lstring]");
 checkCallOverload("[lint lsta]");
@@ -83,9 +85,9 @@ checkCallOverload("[lint lsta]");
 assert_checkequal([lint ; ldouble], [double(lint) ; ldouble]);
 assert_checkequal([lint ; lbool], int32([1 2 3;1 0 1]));
 assert_checkequal([lint ; lint], int32(matrix([1 1 2 2 3 3], 2, 3)));
+assert_checkequal([lint ; lsparse], sparse([1 2 3 ; 1 2 3]));
 checkCallOverload("[lint ; lint16]");
 checkCallOverload("[lint ; lpoly]");
-checkCallOverload("[lint ; lsparse]");
 checkCallOverload("[lint ; lspb]");
 checkCallOverload("[lint  lstring]");
 checkCallOverload("[lint ; lsta]");
@@ -113,42 +115,42 @@ checkCallOverload("[lpoly ; lsta]");
 
 // sparse
 assert_checkequal([lsparse ldouble], sparse([1 2 3 1 2 3]));
-checkCallOverload("[lsparse lbool]");
-checkCallOverload("[lsparse lint]");
-checkCallOverload("[lsparse lint16]");
+assert_checkequal([lsparse lint], sparse([1 2 3 1 2 3]));
+assert_checkequal([lsparse lint16], sparse([1 2 3 1 2 3]));
+assert_checkequal([lsparse lbool], sparse([1 2 3 1 0 1]));
 checkCallOverload("[lsparse lpoly]");
 assert_checkequal([lsparse lsparse], sparse([1 2 3 1 2 3]));
-checkCallOverload("[lsparse lspb]");
+assert_checkequal([lsparse lspb], sparse([1 2 3 1 0 1]));
 checkCallOverload("[lsparse lstring]");
 checkCallOverload("[lsparse lsta]");
 
 assert_checkequal([lsparse ; ldouble], sparse(matrix([1 1 2 2 3 3], 2, 3)));
-checkCallOverload("[lsparse  ;lbool]");
-checkCallOverload("[lsparse ; lint]");
-checkCallOverload("[lsparse ; lint16]");
+assert_checkequal([lsparse ; lint], sparse([1 2 3 ; 1 2 3]));
+assert_checkequal([lsparse ; lint16], sparse([1 2 3 ; 1 2 3]));
+assert_checkequal([lsparse ; lbool], sparse([1 2 3 ; 1 0 1]));
 checkCallOverload("[lsparse ; lpoly]");
 assert_checkequal([lsparse ; lsparse], sparse(matrix([1 1 2 2 3 3], 2, 3)));
-checkCallOverload("[lsparse ; lspb]");
+assert_checkequal([lsparse ; lspb], sparse([1 2 3 ; 1 0 1]));
 checkCallOverload("[lsparse ; lstring]");
 checkCallOverload("[lsparse ; lsta]");
 
 // boolean sparse
-checkCallOverload("[lspb ldouble]");
+assert_checkequal([lspb ldouble], sparse([1 0 1 1 2 3]));
+assert_checkequal([lspb lsparse], sparse([1 0 1 1 2 3]));
 assert_checkequal([lspb lbool], sparse([%t %f %t %t %f %t]));
 checkCallOverload("[lspb lint]");
 checkCallOverload("[lspb lint16]");
 checkCallOverload("[lspb lpoly]");
-checkCallOverload("[lspb lsparse]");
 assert_checkequal([lspb lspb], sparse([%t %f %t %t %f %t]));
 checkCallOverload("[lspb lstring]");
 checkCallOverload("[lspb lsta]");
 
-checkCallOverload("[lspb ; ldouble]");
+assert_checkequal([lspb ; ldouble], sparse([1 0 1 ; 1 2 3]));
+assert_checkequal([lspb ; lsparse], sparse([1 0 1 ; 1 2 3]));
 assert_checkequal([lspb ; lbool], sparse(matrix([%t %t %f %f %t %t], 2 ,3)));
 checkCallOverload("[lspb ; lint]");
 checkCallOverload("[lspb ; lint16]");
 checkCallOverload("[lspb ; lpoly]");
-checkCallOverload("[lspb ; lsparse]");
 assert_checkequal([lspb ; lspb], sparse(matrix([%t %t %f %f %t %t], 2 ,3)));
 checkCallOverload("[lspb ; lstring]");
 checkCallOverload("[lspb ; lsta]");

@@ -7,6 +7,7 @@
 
 // <-- TEST WITH GRAPHIC -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 // <-- Non-regression test for bug 3572 -->
 //
 // <-- Bugzilla URL -->

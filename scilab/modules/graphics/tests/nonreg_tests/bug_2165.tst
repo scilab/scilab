@@ -5,13 +5,16 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- NOT FIXED -->
 // <-- TEST WITH GRAPHIC -->
 // <-- ENGLISH IMPOSED -->
 
 // <-- Non-regression test for bug 2165 -->
+// <-- Non-regression test for bug 15410 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=2165
+// http://bugzilla.scilab.org/2165
+// http://bugzilla.scilab.org/15410
 //
 // <-- Short Description -->
 // Impossible to save Scilab variables when there are no more existing handles.

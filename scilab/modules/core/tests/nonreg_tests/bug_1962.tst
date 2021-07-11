@@ -14,13 +14,14 @@
 // <-- Short Description -->
 // primitive commands does not work as expected when overloaded by a macro
 
+// <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 
 funcprot(0);
 
-function ok=clear(varargin),ok=%t,endfunction
-clear xxyyzz
+function ok=sin(varargin),ok=%t,endfunction
+sin xxyyzz
 if ~ans then pause,end
-clear('xxyyzz')
+sin('xxyyzz')
 if ~ans then pause,end
-clear=null() //reset initial definition
+clear sin //reset initial definition

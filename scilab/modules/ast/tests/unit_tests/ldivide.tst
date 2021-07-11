@@ -6,6 +6,7 @@
 // ============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 r = 2;
 R = [1,2;3,4];
@@ -53,7 +54,7 @@ assert_checkalmostequal(c \ C, C / c);
 //DOUBLE \ DOUBLE
 
 //R \ R
-assert_checkalmostequal(R \ R, R / R);
+assert_checkalmostequal(R \ R, R / R, [], %eps);
 //R \ C
 assert_checkalmostequal(R \ C, C / R);
 //C \ R

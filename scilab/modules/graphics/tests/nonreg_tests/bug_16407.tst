@@ -24,6 +24,8 @@ clf
 n=4;
 gcf().color_map = jetcolormap(n)
 fec(x,y,triangles,z);
+// hide axes because different stacking between Windows and others
+gca().axes_visible="off"
 xs2png(0,fullfile(TMPDIR,"bug_16407_1.png"))
 //
 w = 0.125;

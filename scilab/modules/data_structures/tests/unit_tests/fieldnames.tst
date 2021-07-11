@@ -9,8 +9,6 @@
 // <-- XCOS TEST -->
 //
 // <-- ENGLISH IMPOSED -->
-//
-// <-- CLI SHELL MODE -->
 
 // unit tests for fieldnames function
 // =============================================================================

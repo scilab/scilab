@@ -15,6 +15,7 @@
 // invalid operation on hypermatrix must call overload functions
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //error msg
 msg1 = _("Undefined operation for the given operands.\n");
@@ -54,8 +55,8 @@ assert_checkerror("a2 / a3", msprintf(msg1 + "%s", msprintf(msg2, "%s_r_s")));
 assert_checkerror("a3 / a2", msprintf(msg1 + "%s", msprintf(msg2, "%s_r_s")));
 
 //sparse / double
-assert_checkerror("sparse(a2) / a3", msprintf(msg1 + "%s", msprintf(msg2, "%sp_r_s")));
-assert_checkerror("a3 / sparse(a2)", msprintf(msg1 + "%s", msprintf(msg2, "%s_r_sp")));
+assert_checkerror("sparse(a2) / a3", msprintf(msg1 + "%s", msprintf(msg2, "%s_r_s")));
+assert_checkerror("a3 / sparse(a2)", msprintf(msg1 + "%s", msprintf(msg2, "%s_r_s")));
 
 // dotdivide
 //double ./ double

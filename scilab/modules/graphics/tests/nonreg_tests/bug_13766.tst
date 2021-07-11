@@ -8,6 +8,7 @@
 //
 // <-- TEST WITH GRAPHIC -->
 // <-- NO CHECK REF -->
+// <-- NOT FIXED -->
 //
 // <-- Non-regression test for bug 13766 -->
 //
@@ -26,8 +27,10 @@ if getos()=="Windows" then
     hmin = getsystemmetrics("SM_CYMIN")
     fg.figure_size = [wmin, hmin];
     assert_checkequal(fg.figure_size, [wmin,hmin]);
-    fg.figure_size(1) = wmin - 1;
+    fg.figure_size(1) = wmin - 1; 
     assert_checkequal(fg.figure_size(1), wmin);
+    // KO: On Windows 10, the minimal value actually set can be < wmin
+
     fg.figure_size(1) = hmin - 1;
-    assert_checkequal(fg.figure_size(2), hmin);
+    assert_checkequal(fg.figure_size(2), hmin);  // OK
 end
