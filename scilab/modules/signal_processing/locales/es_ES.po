@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:08+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Federico Vera <fede@riddler.com.ar>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "Language: es\n"
@@ -543,46 +543,35 @@ msgstr ""
 "%s: Argumentos de entrada #%d y #%d incompatibles: Se los esperaba del mismo "
 "tamaño.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-"%s: Valores incorrectos de argumentos de entrada #%d: Se esperaban enteros "
-"positivos.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a scalar with integer value "
 "expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un entero "
-"positivo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be odd.\n"
 msgstr ""
-"%s:  Valor incorrecto para el argumento de entrada #%d: Debe ser impar.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
-"%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba un vector "
-"real %d-por-%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d\n"
 msgstr ""
-"%s: Argumentos de entrada #%d y #%d incompatibles: Se los esperaba del mismo "
-"tamaño.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una matriz.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for argument %d: At most %d expected.\n"
 msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una matriz.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -606,33 +595,25 @@ msgstr ""
 msgid "Press return to display 2D examples"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un "
-"polinomio.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
-"%s: Valores incorrectos del argumento de entrada #%d: el grado debe estar en "
-"el conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un entero "
-"positivo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
-"%s:  Valor incorrecto para el argumento de entrada #%d: Debe ser impar.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
-"%s:  Valor incorrecto para el argumento de entrada #%d: Debe ser impar.\n"
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"

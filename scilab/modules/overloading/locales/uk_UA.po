@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-19 07:10+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
@@ -190,9 +190,8 @@ msgstr "[%s %s] з %s"
 msgid "cell"
 msgstr "комірка"
 
-#, fuzzy
 msgid "empty list()"
-msgstr " порожній список()"
+msgstr ""
 
 #, c-format
 msgid "[%s] %s without field."
@@ -452,9 +451,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
-msgstr "%s: параметри %d і %d: кількість рядків мала бути однаковою.\n"
+msgstr ""
 
 #
 # File: modules/overloading/macros/%sp_r_sp.sci, line: 36
@@ -487,9 +486,9 @@ msgstr ""
 msgid "%s: Wrong number of output argument: %d expected.\n"
 msgstr "%s: помилкова кількість вихідного параметра: мало бути %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #1(1): string expected.\n"
-msgstr "%s: параметр №%d: мала бути квадратна матриця.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Not implemented.\n"

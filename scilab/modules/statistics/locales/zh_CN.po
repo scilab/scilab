@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-08-20 13:36+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
@@ -17,17 +17,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr "%s：输出参数数目错误：应该为%d个。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr "%s：第%d个输入参数类型错误：应该为实数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong dimensions for input argument #%d: A scalar expected.\n"
-msgstr "%s：第%d个输入参数大小错误：应该为实数。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Answer appears to be lower than lowest search bound %g\n"
@@ -67,9 +67,9 @@ msgid ""
 "results.\n"
 msgstr "%s：警告：对第%d个参数使用非整数值可能会导致错误的结果。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr "%s：第%d个参数错误：应该是小数或者是复数。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
@@ -175,17 +175,17 @@ msgstr ""
 msgid "%s: normalization boolean argument #3 is obsolete. %s option used.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: %s\n"
-msgstr "%s：第%d个参数错误：必须在{%s}集合中。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Text expected.\n"
-msgstr "%s：第%d个参数错误：应该是实数数组。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Data in argument #%d: Numbers or polynomials or texts expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为数字。\n"
+msgstr ""
 
 #
 # File: modules/statistics/macros/histc.sci, line: 162
@@ -207,25 +207,25 @@ msgid ""
 "default bins.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: non-zero decimal integer expected.\n"
-msgstr "%s：第%d个参数错误：应该是实数数组。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: decimal number > -Inf expected.\n"
-msgstr "%s：第%d个参数错误：应该是小数或者是复数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same types expected.\n"
-msgstr "%s：第%d个和第%d输入参数不兼容：其大小应当相同。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Elements must be sorted in increasing order.\n"
-msgstr "%s：第%d个输入参数的值错误：元素必须按升序排列。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Elements must be in increasing order.\n"
-msgstr "%s：第%d个输入参数的值错误：元素必须按升序排列。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"

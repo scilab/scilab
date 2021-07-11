@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-04-19 18:11+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Marc Coll Carrillo <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
@@ -283,11 +283,9 @@ msgstr ""
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: L'argument d'entrada #%d ha de ser un nombre real.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Polynomial expected.\n"
 msgstr ""
-"%s: tipus de dades del paràmetre d'entrada #%d incorrecte: s'esperava un "
-"polinomi.\n"
 
 #
 # File: modules/polynomials/macros/polyint.sci, line: 48

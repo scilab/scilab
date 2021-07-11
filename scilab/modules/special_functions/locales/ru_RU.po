@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-03-11 14:58+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -98,21 +98,21 @@ msgstr ""
 "%s: Для указанного типа аргумента функция не определена.\n"
 "  Проверьте аргументы или определите функцию %s для перегрузки.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
-msgstr "%s: Аргумент №%d: ожидалось десятичное число.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
-msgstr "%s: Аргумент №%d: должен находиться во множестве {%s}.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
-msgstr "%s: Аргумент №%d: ожидался текст.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: '%s' expected .\n"
-msgstr "%s: Аргумент №%d: ожидался текст.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -167,17 +167,15 @@ msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex, sparse or full "
 "matrix or hypermatrix expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента №%d: ожидалась вещественная или комплексная "
-"матрица.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: Неверные значения входных параметров: должны быть > %d.\n"
+msgstr ""
 
 #, c-format
 #~ msgid "%s: Argument #%d: Decimal number(s) expected.\n"

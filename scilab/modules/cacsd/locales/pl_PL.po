@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:17+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: konrad509 <konrad509@op.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "Language: pl\n"
@@ -1247,10 +1247,9 @@ msgstr ""
 "Hinfnorm jest prawdopodobnie dokładnie max sv(D)\n"
 "Układ może przepuszczać wszystko"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument '%s': type real expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru %d: Oczekiwano wektora liczb rzeczywistych.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Wrong color specification.\n"

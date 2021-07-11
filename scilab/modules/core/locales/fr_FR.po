@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2021-07-09 13:10+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "Language: fr\n"
@@ -237,18 +237,14 @@ msgstr "%s : Nombre erroné d'arguments en sortie : Au moins %d attendus.\n"
 msgid "%s : Wrong value for argument #%d: %s\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %s\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type of input argument #%d: String or File descriptor expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
-"un entier attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type of input argument #%d: a single string expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une seule chaîne de "
-"caractères attendue.\n"
 
 #
 # File: modules/core/sci_gateway/cpp/sci_hash.cpp, line: 102
@@ -256,13 +252,13 @@ msgstr ""
 msgid "%s: algorithm %ls is unknown.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
-msgstr "%s: fichier version.xml incorrect %s.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: File must be opened for reading.\n"
-msgstr "%s : Les champs des noms doivent être des chaînes de caractères.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
@@ -638,9 +634,8 @@ msgstr ""
 msgid "ESI Group\n"
 msgstr "ESI Group\n"
 
-#, fuzzy
 msgid "Copyright (c) 2017-2021 (ESI Group)\n"
-msgstr "Copyright (c) 2017-2020 (ESI Group)\n"
+msgstr ""
 
 msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
 msgstr "Copyright (c) 2011-2017 (Scilab Enterprises)\n"

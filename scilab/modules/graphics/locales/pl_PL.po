@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-24 18:46+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "Language: pl\n"
@@ -844,9 +844,9 @@ msgstr "%s powinno być wektorem łańcuchów.\n"
 msgid "Unknown property: %s.\n"
 msgstr "Nieznana właściwość: %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Read-only property: %s.\n"
-msgstr "Nieznana właściwość: %s.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
@@ -1872,36 +1872,25 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle or vector of decimal numbers expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwano uchwytu "
-"(handle) lub wektora wartości o podwójnej precyzji (double).\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwano uchwyt "
-"(handle) typu 'Text'.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: incomplete {'name', value} pair.\n"
 msgstr ""
-"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano przynajmniej "
-"%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: 'x' or 'y' expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano '%s' lub "
-"'%s'.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: one word among {%s} expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany jest wektor %s "
-"lub %s.\n"
-".\n"
 
 #
 # File: modules/graphics/macros/cutaxes.sci, line: 91
@@ -2271,17 +2260,13 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong type of graphic handle: '%s' expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano uchwytu "
-"(handle) graficznego.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s: Niezgodne argumenty wejściowe nr %d oraz nr %d: oczekiwano jednakową "
-"ilość wierszy.\n"
 
 #
 # File: modules/graphics/macros/scatter3d.sci, line: 176
@@ -2291,54 +2276,37 @@ msgid ""
 "%s: Argument #%d: Wrong value. Please check allowed syntaxes and values.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być w przedziale "
-"%s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number(s) or text expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być w przedziale "
-"%s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong size: one or %d colors expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwano wektor o "
-"rozmiarze %d lub %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number or text expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być w przedziale "
-"%s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong marker id.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być w przedziale "
-"%s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: keyword or property name expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany jest wektor %s "
-"lub %s.\n"
-".\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Unknown property name '%s'.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być w przedziale "
-"%s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Value missing for the given property.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być w przedziale "
-"%s.\n"
 
 #
 # File: modules/graphics/macros/scatter3d.sci, line: 344
@@ -2346,15 +2314,13 @@ msgstr ""
 msgid "%s: Argument #%d: Wrong marker specification.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Non-negative integers expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana jest nieujemna "
-"wartość int.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in %s expected.\n"
-msgstr "%s: Nieprawidłowy rozmiar argumentu %d: oczekiwano %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"

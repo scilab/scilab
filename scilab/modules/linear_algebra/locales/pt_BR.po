@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-07 22:11+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "Language: pt_BR\n"
@@ -314,40 +314,31 @@ msgstr ""
 "%s: Valores incorretos para o argumento de entrada #%d: esperava-se números "
 "inteiros não negativos.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s : Wrong number of input arguments : %d to %d expected.\n"
 msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A full or sparse square matrix or a "
 "function expected"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
-"matriz quadrada.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A positive integer expected if the "
 "first input argument is a function."
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um número "
-"inteiro não negativo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A structure expected"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"escalar.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument: If A is a matrix, use opts with tol, "
 "maxiter, ncv, resid, cholB"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
 
 #
 # File: modules/linear_algebra/macros/eigs.sci, line: 163
@@ -357,62 +348,46 @@ msgid ""
 "maxiter, ncv, resid, cholB, issym"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
 "square matrix expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
-"matriz quadrada.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"escalar.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be an integer in the range 1 to N - 1.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be an integer in the range 1 to N - 2.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um número "
-"inteiro não negativo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
 #
 # File: modules/linear_algebra/macros/eigs.sci, line: 287
@@ -436,118 +411,88 @@ msgstr ""
 msgid "%s: Invalid sigma value for real symmetric problem.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
-msgstr "%s: Tipo incorreto para o argumento de entrada #%d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer positive "
 "value.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
 "must be k < NCV <= N.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
 "must be k + 2 < NCV < N.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
 "+ 1 < NCV <= N.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
 "boolean.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um vetor "
-"coluna.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be real for real "
 "problems.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be complex for "
 "complex problems.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: if opts.cholB is true, B must be "
 "upper triangular.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
 
 #
 # File: modules/linear_algebra/macros/eigs.sci, line: 435
@@ -586,98 +531,74 @@ msgstr ""
 msgid "%s: Error with %s: unknown mode returned.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be in the range 1 to N - 1.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be in the range 1 to N - 2.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: a scalar expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"escalar.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of %s, %s, %s, %s or %s.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of %s, %s, %s, %s, %s or %s.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector opts.resid must be "
 "N by 1.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um vetor "
-"coluna.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be real "
 "for real problems.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be "
 "complex for complex problems.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: n does not match rows number of "
 "matrix A.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type or value for input arguments.\n"
-msgstr "%s: Tipo incorreto para o argumento de entrada #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"

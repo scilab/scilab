@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-05-16 16:08+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Michel Hua <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -263,13 +263,13 @@ msgid "pointer"
 msgstr "pointeur"
 
 msgid "polynomial matrix"
-msgstr "polynôme de matrice"
+msgstr "matrice de polynômes"
 
 msgid "sparse matrix"
 msgstr "Matrice creuse"
 
 msgid "string matrix"
-msgstr "Matrice de chaîne de caractères"
+msgstr "Matrice de chaînes de caractères"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"

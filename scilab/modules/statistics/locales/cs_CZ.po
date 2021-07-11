@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-30 20:14+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
@@ -17,17 +17,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong dimensions for input argument #%d: A scalar expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Answer appears to be lower than lowest search bound %g\n"
@@ -69,9 +69,9 @@ msgstr ""
 "%s: Varování: použití neceločíselných hodnot v argumentu #%d může vést k "
 "nesprávným výsledkům.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor nebo skalár.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
@@ -192,13 +192,13 @@ msgstr ""
 msgid "%s: Argument #%d: %s\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Text expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Data in argument #%d: Numbers or polynomials or texts expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno číslo.\n"
+msgstr ""
 
 #
 # File: modules/statistics/macros/histc.sci, line: 162
@@ -220,21 +220,17 @@ msgid ""
 "default bins.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: non-zero decimal integer expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: decimal number > -Inf expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno reálné číslo mezi %d "
-"až %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same types expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupních argumentů #%d a #%d: Očekávány stejné "
-"velikosti.\n"
 
 #
 # File: modules/statistics/macros/histc.sci, line: 325

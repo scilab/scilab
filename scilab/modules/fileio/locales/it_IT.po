@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:08+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
@@ -161,15 +161,13 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
 
 #
 # File: modules/fileio/sci_gateway/cpp/sci_get_absolute_file_path.cpp, line: 81
@@ -214,17 +212,13 @@ msgstr ""
 msgid "%s: File not found: '%s'.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Cannot close file %ls: File is not active.\n"
 msgstr ""
-"%s: Non è possibile chiudere il file il cui descrittore è %d: il file non è "
-"attivo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
 
 #, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
@@ -284,13 +278,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Incorrect conversion code; c, s, i "
 "or l expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
-"\"%s\" o \"%s\".\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -349,11 +341,9 @@ msgstr ""
 msgid "%s: invalid filename.\n"
 msgstr "%s: nomefile non valido.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: a single string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"matrice non vuota.\n"
 
 #, c-format
 msgid "%s: Data mismatch.\n"

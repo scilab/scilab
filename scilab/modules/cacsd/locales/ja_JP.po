@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-07 13:13+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
@@ -1381,9 +1381,9 @@ msgstr ""
 "Hinfノルムはおそらく sv(D)の最大値となっています.\n"
 "このシステムはおそらく全域通過特性を有しています."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument '%s': type real expected.\n"
-msgstr "%s: 引数 #%d : %s を指定してください.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Wrong color specification.\n"

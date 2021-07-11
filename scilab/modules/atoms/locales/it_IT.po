@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-07 13:13+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
@@ -874,12 +874,10 @@ msgstr "Download in corso... Attendere."
 msgid "Couldn't resolve host name"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: The given path does not exist.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: non è una versione "
-"valida.\n"
 
 #, c-format
 msgid "%s: Error: the response status from the URL %s is invalid.\n"

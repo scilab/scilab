@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-05-01 15:27+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
@@ -157,13 +157,13 @@ msgstr "%s: 出力引数の数が間違っています.\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: 出力引数の数が間違っています.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Function expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: A colormap function expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"
+msgstr ""
 
 #
 # File: modules/sound/macros/mapsound.sci, line: 126
@@ -325,9 +325,8 @@ msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr ""
 "%s: エラーが起きました: データ圧縮フォーマット %s サポートされません。\n"
 
-#, fuzzy
 msgid "Cannot read .wav file  with more than 32 bits per sample."
-msgstr "16ビット/サンプルを超える .wav ファイルを読み込むことはできません."
+msgstr ""
 
 msgid "Sample limit vector must have 2 entries."
 msgstr "サンプル範囲ベクトルは2つのエントリを有する必要があります."

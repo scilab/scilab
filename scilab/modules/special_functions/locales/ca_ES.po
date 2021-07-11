@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:14+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
@@ -89,28 +89,21 @@ msgid ""
 "  Check arguments or define function %s for overloading.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
-"real.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
 msgstr ""
-"%s: Els arguments d'entrada tenen un valor incorrecte: Han de ser > %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
-"real.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: '%s' expected .\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
-"real.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -166,15 +159,12 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
 "real.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex, sparse or full "
 "matrix or hypermatrix expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
-"real.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
-"%s: Els arguments d'entrada tenen un valor incorrecte: Han de ser > %d.\n"

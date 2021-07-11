@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-01-15 18:38+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
@@ -175,15 +175,13 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: помилкове значення вхідного параметра №%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
 msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr ""
 
 #
 # File: modules/fileio/sci_gateway/cpp/sci_get_absolute_file_path.cpp, line: 81
@@ -235,15 +233,13 @@ msgstr ""
 msgid "%s: File not found: '%s'.\n"
 msgstr "%s: файл не знайдено: «%s».\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Cannot close file %ls: File is not active.\n"
-msgstr "%s: не вдалося закрити файл з дескриптором %d: файл не задіяно.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
-"значень.\n"
 
 #, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
@@ -314,13 +310,11 @@ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано ціле число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Incorrect conversion code; c, s, i "
 "or l expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
-"значення.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -385,9 +379,9 @@ msgstr ""
 msgid "%s: invalid filename.\n"
 msgstr "%s: некоректна назва файла.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: a single string expected.\n"
-msgstr "%s: помилковий тип параметра №%d: слід використовувати рядок.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Data mismatch.\n"

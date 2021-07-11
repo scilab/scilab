@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-09-07 14:24+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
@@ -295,17 +295,17 @@ msgstr "尚未实现。"
 msgid "Extraction of %s from '%s' tlist is not yet implemented."
 msgstr "提取%s(从'%s'tlist中)尚未实现。"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Extraction of '%s' from '%s' tlist is not yet implemented.\n"
-msgstr "提取%s(从'%s'tlist中)尚未实现。"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: The field '%s' does not exist.\n"
-msgstr "%s：格式“%s”尚无法处理。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Extraction of '%s' from '%s' tlist is not yet implemented."
-msgstr "提取%s(从'%s'tlist中)尚未实现。"
+msgstr ""
 
 #, c-format
 msgid "index must be a list instead of a: %s."
@@ -366,33 +366,32 @@ msgstr "matname必须是字符串，而不是：%s。"
 msgid "infer must be an 'infer' tlist instead of a: %s."
 msgstr "infer必须是“推断”的tlist，而不是：%s。"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: operator as Argument #%d must be a string instead of a '%s'.\n"
-msgstr "operator必须是字符串，而不是：%s。"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: operands as Argument #%d must be a list instead of a '%s'.\n"
-msgstr "operands必须是列表，而不是：%s。"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: out as Argument #%d must be a list instead of a '%s'.\n"
-msgstr "out必须是列表，而不是：%s。"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "vtype '%s' is not yet implemented.\n"
-msgstr "%s 暂时没有实现。"
+msgstr ""
 
-#, fuzzy
 msgid "List of properties is not yet implemented.\n"
-msgstr "属性列表尚未实现。"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong property '%s' for vtype '%s'.\n"
-msgstr "错误属性%s。"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "m2sci.convert2double(): Type %s not yet implemented."
-msgstr "属性列表尚未实现。"
+msgstr ""
 
 #, c-format
 msgid "recursive extraction with one index of type %s is not yet implemented."
@@ -402,9 +401,9 @@ msgstr "尚未执行具有%s类型的索引递归提取。"
 msgid "%s is not yet implemented."
 msgstr "%s 暂时没有实现。"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Error while executing : [sci_equiv] = sci_%s(mtlb_expr)."
-msgstr "执行时出错: [sci_equiv]=sci_%s(mtlb_expr)。"
+msgstr ""
 
 msgid "not matlab path"
 msgstr "不是MATLIB路径"
@@ -469,9 +468,9 @@ msgstr "mtlb(%s)都可以由%s()或%s代替，在不论%s是否为M文件的情�
 msgid "unknown instruction type %s."
 msgstr "未知的指令类型 %s 。"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong LHS '%s' operation: Insertion expected.\n"
-msgstr "%s：“%s”的大小出错：应该为向量。\n"
+msgstr ""
 
 #, c-format
 msgid "lhs cannot be a %s."
@@ -563,9 +562,9 @@ msgstr "数据过大"
 msgid "'%s' current size %s <> %s in m2scideclare:  m2scideclare IGNORED.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown datatype '%s'.\n"
-msgstr "未知数据类型%s。"
+msgstr ""
 
 #
 # File: modules/m2sci/macros/kernel/m2scideclare.sci, line: 106
@@ -574,9 +573,9 @@ msgid ""
 "'%s' current type '%s' <> '%s' in m2scideclare:  m2scideclare IGNORED.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Unknown property '%s' for the type '%s'.\n"
-msgstr "未知属性%s。"
+msgstr ""
 
 #
 # File: modules/m2sci/macros/kernel/m2scideclare.sci, line: 139

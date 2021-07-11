@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:09+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
@@ -156,13 +156,13 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+msgstr ""
 
 #
 # File: modules/fileio/sci_gateway/cpp/sci_get_absolute_file_path.cpp, line: 81
@@ -207,13 +207,13 @@ msgstr ""
 msgid "%s: File not found: '%s'.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Cannot close file %ls: File is not active.\n"
-msgstr "%s: Nelze zavřít soubor s popisovačem %d: Soubor není aktivní.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: očekáván řetězec.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
@@ -271,13 +271,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Incorrect conversion code; c, s, i "
 "or l expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s' nebo '%s' nebo "
-"'%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -332,9 +330,9 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno celé čís
 msgid "%s: invalid filename.\n"
 msgstr "%s: neplatný název souboru.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: a single string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: očekáván řetězec.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Data mismatch.\n"

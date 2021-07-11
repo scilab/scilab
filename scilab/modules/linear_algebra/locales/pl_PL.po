@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-07 22:11+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "Language: pl\n"
@@ -317,38 +317,31 @@ msgstr ""
 "%s: Nieprawidłowe wartości argumentu wejściowego nr %d: oczekiwano "
 "nieujemnych wartości całkowitych.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s : Wrong number of input arguments : %d to %d expected.\n"
 msgstr ""
-"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d lub %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A full or sparse square matrix or a "
 "function expected"
 msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwana macierz "
-"kwadratowa.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A positive integer expected if the "
 "first input argument is a function."
 msgstr ""
-"%s: Nieprawidłowa wartość dla parametru wejściowego nr %d: Oczekiwano "
-"nieujemnej wartość integer.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A structure expected"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument: If A is a matrix, use opts with tol, "
 "maxiter, ncv, resid, cholB"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz.\n"
 
 #
 # File: modules/linear_algebra/macros/eigs.sci, line: 163
@@ -358,68 +351,52 @@ msgid ""
 "maxiter, ncv, resid, cholB, issym"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
 "square matrix expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwana macierz "
-"kwadratowa.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
-"{%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwany "
-"skalar.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be an integer in the range 1 to N - 1.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
-"{%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be an integer in the range 1 to N - 2.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość dla parametru wejściowego nr %d: Oczekiwano "
-"nieujemnej wartość integer.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: nie może zawerać %s ani "
-"%s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: nie może zawerać %s ani "
-"%s.\n"
 
 #
 # File: modules/linear_algebra/macros/eigs.sci, line: 291
@@ -435,117 +412,88 @@ msgstr ""
 msgid "%s: Invalid sigma value for real symmetric problem.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"
 msgstr ""
-"%s: Niewłaściwy typ argumentu wejściowego nr %d: oczekiwana macierz wartości "
-"typu real.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer positive "
 "value.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
-"{%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
-"{%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
-"{%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
 "must be k < NCV <= N.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
-"{%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
 "must be k + 2 < NCV < N.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
-"{%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
 "+ 1 < NCV <= N.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
-"{%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: nie może zawerać %s ani "
-"%s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
 "boolean.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: nie może zawerać %s ani "
-"%s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
 msgstr ""
-"%s: Niewłaściwy typ argumentu wejściowego nr %d: oczekiwana macierz wartości "
-"typu real.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwany wektor "
-"kolumnowy.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be real for real "
 "problems.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be complex for "
 "complex problems.\n"
 msgstr ""
-"%s: Niewłaściwy typ argumentu wejściowego nr %d: oczekiwana macierz wartości "
-"typu real.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: if opts.cholB is true, B must be "
 "upper triangular.\n"
 msgstr ""
-"%s: Niewłaściwy typ argumentu wejściowego nr %d: oczekiwana macierz wartości "
-"typu real.\n"
 
 #
 # File: modules/linear_algebra/macros/eigs.sci, line: 435
@@ -584,96 +532,74 @@ msgstr ""
 msgid "%s: Error with %s: unknown mode returned.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be in the range 1 to N - 1.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
-"{%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be in the range 1 to N - 2.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
-"{%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: a scalar expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwany "
-"skalar.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of %s, %s, %s, %s or %s.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: nie może zawerać %s ani "
-"%s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of %s, %s, %s, %s, %s or %s.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: nie może zawerać %s ani "
-"%s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
-"{%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector opts.resid must be "
 "N by 1.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwany wektor "
-"kolumnowy.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be real "
 "for real problems.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: nie może zawerać %s ani "
-"%s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be "
 "complex for complex problems.\n"
 msgstr ""
-"%s: Niewłaściwy typ argumentu wejściowego nr %d: oczekiwana macierz wartości "
-"typu real.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: n does not match rows number of "
 "matrix A.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: nie może zawerać %s ani "
-"%s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type or value for input arguments.\n"
-msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"

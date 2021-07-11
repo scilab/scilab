@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-08-17 15:21+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
@@ -116,9 +116,9 @@ msgstr "%s() (%d 行)"
 msgid "%s library of %d functions @ %s"
 msgstr "%s 库 包含 %d 个函数@ %s"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"

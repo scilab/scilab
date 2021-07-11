@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-19 07:18+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
@@ -223,57 +223,53 @@ msgstr ""
 "%s: помилкові розмірності вхідних параметрів №%d та №%d: розмірності мали "
 "бути однаковими.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in [1,12] expected.\n"
-msgstr "%s: параметр №%d: мало бути вказано скаляр (1 елемент).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d missing: Integers in [1,31] expected.\n"
-msgstr "%s: параметр №%d: мало бути вказано скаляр (1 елемент).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in [1,31] expected.\n"
-msgstr "%s: параметр №%d: мало бути вказано скаляр (1 елемент).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d to #%d: Same sizes expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідних параметрів №%d і №%d: розмірність мала "
-"збігатися.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Numbers or texts expected.\n"
-msgstr "%s: параметр №%d: мало бути вказано скаляр (1 елемент).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: All dates must have the same format.\n"
-msgstr "%s: параметр %d: числове значення має бути додатним.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong dates format.\n"
-msgstr "%s: параметр %d: числове значення має бути додатним.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Month indices expected in [1,12].\n"
-msgstr "%s: параметр %d: значення мало потрапляти до проміжку [%d, %d].\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Day indices expected in [1,31].\n"
-msgstr "%s: параметр №%d: мало бути вказано скаляр (1 елемент).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Single text word expected.\n"
-msgstr "%s: параметр №%d: мало бути вказано скаляр (1 елемент).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong langage code.\n"
-msgstr "%s: параметр %d: числове значення має бути додатним.\n"
+msgstr ""
 
 #
 # File: modules/time/macros/weekday.sci, line: 204

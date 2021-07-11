@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-08-30 15:51+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -775,10 +775,10 @@ msgstr "正在下载...请耐心等待。"
 msgid "Couldn't resolve host name"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: The given path does not exist.\n"
-msgstr "%s：输入参数 #%d 的值出错：这是一个无效的版本。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Error: the response status from the URL %s is invalid.\n"

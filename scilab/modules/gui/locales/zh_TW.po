@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-23 15:39+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "Language: zh_TW\n"
@@ -2600,13 +2600,13 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Input argument #%d must be a valid handle.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應 > %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串向量.\n"
+msgstr ""
 
 #
 # File: modules/gui/macros/findobj.sci, line: 96
@@ -2615,10 +2615,10 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串向量.\n"
 msgid "%s: Argument #%d cannot be a binary operator."
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A positive integer value expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串向量.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -2763,9 +2763,9 @@ msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一實數.\n"
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: 參數 %s 長度錯誤: 應為一實數.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Booleans, numbers, or text expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應該是布林值.\n"
+msgstr ""
 
 #
 # File: modules/gui/macros/x_matrix.sci, line: 57

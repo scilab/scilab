@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-09-07 15:14+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -209,14 +209,14 @@ msgstr "%s：输出参数的数目错误：应该至少%d个。\n"
 msgid "%s : Wrong value for argument #%d: %s\n"
 msgstr "%s：第%d个输入参数的值错误：%s\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type of input argument #%d: String or File descriptor expected.\n"
-msgstr "%s：第%d个输入参数类型错误：应该是字符串或者整数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type of input argument #%d: a single string expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为单字符串（即不是字符串矩阵）。\n"
+msgstr ""
 
 #
 # File: modules/core/sci_gateway/cpp/sci_hash.cpp, line: 102
@@ -224,13 +224,13 @@ msgstr "%s：第%d个输入参数的类型错误：应该为单字符串（即�
 msgid "%s: algorithm %ls is unknown.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
-msgstr "%s：文件version.xml错误%s。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: File must be opened for reading.\n"
-msgstr "%s：字段名称必须是字符串。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
@@ -565,9 +565,8 @@ msgstr ""
 msgid "ESI Group\n"
 msgstr "ESI 组织\n"
 
-#, fuzzy
 msgid "Copyright (c) 2017-2021 (ESI Group)\n"
-msgstr "版权(c) 2017-2020 (ESI 组织)\n"
+msgstr ""
 
 msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
 msgstr "版权(c) 2011-2017 (Scilab 公司)\n"

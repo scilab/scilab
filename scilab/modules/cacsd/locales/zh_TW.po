@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-06 17:02+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "Language: zh_TW\n"
@@ -1302,9 +1302,9 @@ msgstr ""
 "Hinfnorm 很可能恰為 max sv(D)\n"
 "系統可能全過 (all-pass)"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument '%s': type real expected.\n"
-msgstr "%s: 參數 %d 型態錯誤: 應為實數向量.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Wrong color specification.\n"

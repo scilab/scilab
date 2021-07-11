@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:07+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
@@ -88,24 +88,21 @@ msgid ""
 "  Check arguments or define function %s for overloading.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána matice reálných čísel.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
-msgstr "%s: Chybná hodnota vstupního argumentu: Musí být > %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána matice reálných čísel.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: '%s' expected .\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána matice reálných čísel.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -159,12 +156,12 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex, sparse or full "
 "matrix or hypermatrix expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: Chybná hodnota vstupního argumentu: Musí být > %d.\n"
+msgstr ""

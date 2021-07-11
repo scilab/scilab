@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-18 21:38+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
@@ -221,15 +221,14 @@ msgstr "%s: 出力引数の数が間違っています: 最大でも %d 個と�
 msgid "%s : Wrong value for argument #%d: %s\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: %s\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type of input argument #%d: String or File descriptor expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています:  文字列または整数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type of input argument #%d: a single string expected.\n"
-msgstr "%s: 入力引数#%dの型が間違っています: 文字列を指定してください.\n"
+msgstr ""
 
 #
 # File: modules/core/sci_gateway/cpp/sci_hash.cpp, line: 102
@@ -237,13 +236,13 @@ msgstr "%s: 入力引数#%dの型が間違っています: 文字列を指定し
 msgid "%s: algorithm %ls is unknown.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
-msgstr "%s: ファイル version.xml %s に誤りがあります.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: File must be opened for reading.\n"
-msgstr "%s: フィールド名には文字列を指定してください.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
@@ -615,9 +614,8 @@ msgstr ""
 msgid "ESI Group\n"
 msgstr "ESIグループ\n"
 
-#, fuzzy
 msgid "Copyright (c) 2017-2021 (ESI Group)\n"
-msgstr "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
+msgstr ""
 
 msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
 msgstr "Copyright (c) 2011-2017 (Scilab Enterprises)\n"

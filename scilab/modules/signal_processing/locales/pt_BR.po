@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:17+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "Language: pt_BR\n"
@@ -545,45 +545,35 @@ msgstr ""
 "%s: Os argumentos de entrada #%d e #%d estão incompatíveis: esperava-se as "
 "mesmas dimensões.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-"%s: Valores incorretos para o argumento de entrada #%d: esperava-se números "
-"inteiros não negativos.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a scalar with integer value "
 "expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
-"inteiro positivo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be odd.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: tem que ser ímpar.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr "%s: Tipo errado para argumento #%d: vetor real é esperado.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d\n"
 msgstr ""
-"%s: Os argumentos de entrada #%d e #%d estão incompatíveis: esperava-se as "
-"mesmas dimensões.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
-"matriz alta.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for argument %d: At most %d expected.\n"
 msgstr ""
-"%s: Quantidade incorreta de argumentos de saída: esperava-se %d ou %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -607,31 +597,25 @@ msgstr ""
 msgid "Press return to display 2D examples"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-msgstr "%s: Tipo errado para argumento #%d: vetor real é esperado.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
-"%s: Valores incorretos para o argumento de entrada #%d: o grau deve "
-"pertencer ao conjunto {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
-"inteiro positivo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: tem que ser ímpar.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: tem que ser ímpar.\n"
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"

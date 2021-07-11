@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:15+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -449,9 +449,9 @@ msgstr "%s : argument n°%d : scalaire attendu.\n"
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s : argument n°%d : entier attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
-msgstr "%s : Arguments #%d et #%d : Même nombre de lignes attendu.\n"
+msgstr ""
 
 #
 # File: modules/overloading/macros/%sp_r_sp.sci, line: 36
@@ -482,9 +482,9 @@ msgstr "%s : Les arguments #%d et #%d doivent être de même taille.\n"
 msgid "%s: Wrong number of output argument: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #1(1): string expected.\n"
-msgstr "%s : Argument #%d : matrice carrée attendue.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Not implemented.\n"

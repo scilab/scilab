@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-24 15:30+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "Language: ru\n"
@@ -961,9 +961,8 @@ msgstr "У&меньшить размер шрифта"
 msgid "&Language"
 msgstr ""
 
-#, fuzzy
 msgid "en"
-msgstr "Меню"
+msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 83
@@ -995,9 +994,8 @@ msgstr ""
 msgid "&Online"
 msgstr ""
 
-#, fuzzy
 msgid "See this page online"
-msgstr "Удалить эту точку"
+msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 89
@@ -2742,13 +2740,13 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr "%s: Неверное значение входного аргумента №%d: ожидалось %s или %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Input argument #%d must be a valid handle.\n"
-msgstr "%s: Неверное значение входного параметра №%d: должно быть больше %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
+msgstr ""
 
 #
 # File: modules/gui/macros/findobj.sci, line: 96
@@ -2757,11 +2755,10 @@ msgstr "%s: Неверный тип аргумента №%d: ожидалась
 msgid "%s: Argument #%d cannot be a binary operator."
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A positive integer value expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалось целочисленное значение.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -2911,10 +2908,9 @@ msgstr "%s: Неверный тип %s: ожидалось вещественн�
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Неверный размер %s: ожидалось вещественное число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Booleans, numbers, or text expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента №%d: ожидалась матрица логических значений.\n"
 
 #
 # File: modules/gui/macros/x_matrix.sci, line: 57

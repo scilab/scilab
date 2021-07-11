@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: sound-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-24 15:44+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "Language: ru\n"
@@ -149,13 +149,13 @@ msgstr "%s: Неверное количество выходных параме�
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Неверное количество выходных параметров.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Function expected.\n"
-msgstr "%s: Аргумент №%d: ожидался %s.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: A colormap function expected.\n"
-msgstr "%s: Аргумент №%d: ожидалось десятичное число.\n"
+msgstr ""
 
 #
 # File: modules/sound/macros/mapsound.sci, line: 126
@@ -296,9 +296,8 @@ msgstr "Ошибка чтения wav файла."
 msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr "%s: Произошла ошибка: формат сжатия данных %s не поддерживается.\n"
 
-#, fuzzy
 msgid "Cannot read .wav file  with more than 32 bits per sample."
-msgstr "Не удалось прочитать .wav файл с более чем 16-ю битами на сэмпл."
+msgstr ""
 
 msgid "Sample limit vector must have 2 entries."
 msgstr "Вектор границ сэмплов (Sample limit vector) должен иметь два элемента."

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:08+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "Language: zh_TW\n"
@@ -387,9 +387,8 @@ msgstr ""
 msgid "Path = "
 msgstr ""
 
-#, fuzzy
 msgid "Functions:"
-msgstr "Function"
+msgstr ""
 
 #
 # File: modules/ui_data/macros/uiSpreadsheet.sci, line: 56

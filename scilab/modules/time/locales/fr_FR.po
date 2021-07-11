@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2021-07-09 14:05+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: davidcl <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -214,61 +214,53 @@ msgstr ""
 "%s : Dimension erronée des arguments d'entrée n°%d et n°%d : Même dimension "
 "attendue.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in [1,12] expected.\n"
-msgstr "%s : Argument #%d : scalaire (1 élément) attendu.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d missing: Integers in [1,31] expected.\n"
-msgstr "%s : Argument #%d : scalaire (1 élément) attendu.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in [1,31] expected.\n"
-msgstr "%s : Argument #%d : scalaire (1 élément) attendu.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d to #%d: Same sizes expected.\n"
 msgstr ""
-"%s : Dimension erronée des arguments d'entrée n°%d et n°%d : Mêmes "
-"dimensions attendues.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Numbers or texts expected.\n"
-msgstr "%s : Argument #%d : scalaire (1 élément) attendu.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: All dates must have the same format.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : la valeur doit être "
-"positive.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong dates format.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : la valeur doit être "
-"positive.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Month indices expected in [1,12].\n"
-msgstr "%s: Argument n°%d: valeur dans [%d, %d] attendue.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Day indices expected in [1,31].\n"
-msgstr "%s : Argument #%d : scalaire (1 élément) attendu.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Single text word expected.\n"
-msgstr "%s : Argument #%d : scalaire (1 élément) attendu.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong langage code.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : la valeur doit être "
-"positive.\n"
 
 #
 # File: modules/time/macros/weekday.sci, line: 204

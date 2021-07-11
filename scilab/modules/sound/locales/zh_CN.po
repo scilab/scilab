@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-08-16 03:18+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
@@ -142,13 +142,13 @@ msgstr "%s：输出参数的数目错误。\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s：输出参数的数目错误。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Function expected.\n"
-msgstr "%s：第%d个参数错误：应该为%s。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: A colormap function expected.\n"
-msgstr "%s：第%d参数错误：应该是一个小数。\n"
+msgstr ""
 
 #
 # File: modules/sound/macros/mapsound.sci, line: 126
@@ -284,9 +284,8 @@ msgstr "读wav文件时发生错误。"
 msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr "%s：一个错误发生：不支持格式%s的数据压缩。\n"
 
-#, fuzzy
 msgid "Cannot read .wav file  with more than 32 bits per sample."
-msgstr "无法读每个采样超过16位的.wav文件。"
+msgstr ""
 
 msgid "Sample limit vector must have 2 entries."
 msgstr "采样限制向量必须有2个入口。"

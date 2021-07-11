@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:09+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "Language: pl\n"
@@ -280,9 +280,9 @@ msgstr "%s: Nieprawidłowy typ argumentu #%d: Oczekiwano wielomianu.\n"
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: Parametr wejściowy nr %d musi być wartością rzeczywistą.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Polynomial expected.\n"
-msgstr "%s: Nieprawidłowy typ argumentu #%d: Oczekiwano wielomianu.\n"
+msgstr ""
 
 #
 # File: modules/polynomials/macros/polyint.sci, line: 48

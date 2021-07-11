@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-18 22:05+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
@@ -245,18 +245,14 @@ msgstr ""
 msgid "%s : Wrong value for argument #%d: %s\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type of input argument #%d: String or File descriptor expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type of input argument #%d: a single string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
 
 #
 # File: modules/core/sci_gateway/cpp/sci_hash.cpp, line: 102
@@ -264,9 +260,9 @@ msgstr ""
 msgid "%s: algorithm %ls is unknown.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
-msgstr "%s: La versione %s del file .xml è sbagliata.\n"
+msgstr ""
 
 #
 # File: modules/core/sci_gateway/cpp/sci_hash.cpp, line: 156

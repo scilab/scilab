@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-18 21:44+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "Language: pt_BR\n"
@@ -117,10 +117,9 @@ msgstr ""
 msgid "%s library of %d functions @ %s"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"

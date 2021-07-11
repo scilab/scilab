@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:05+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
@@ -182,11 +182,9 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d : A square matrix expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
-"%s: El nombre d'arguments d'entrada és incorrecte: Han de ser %d com a "
-"màxim.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
@@ -447,17 +445,13 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal or encoded integers expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és incorrecte: Ha de ser un escalar o una "
-"matriu d'enters sense signe.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Positive decimal integers expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
-"enter positiu.\n"
 
 #
 # File: modules/elementary_functions/macros/bitcmp.sci, line: 66
@@ -465,17 +459,13 @@ msgstr ""
 msgid "%s: Argument #%d: Wrong size.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real or encoded integer expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és incorrecte: Ha de ser un nombre enter sense "
-"signe.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha d'estar entre %d i "
-"%d.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Non-negative integers expected.\n"
@@ -854,48 +844,37 @@ msgstr ""
 msgid "%s: conversion into %s is not supported\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', %d or %d "
 "expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %d, '%s', %d "
-"o '%s'.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte:  Ha de ser un nombre "
-"real positiu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same number of rows of the second "
 "input argument expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector "
-"dispers.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same number of columns of the second "
 "input argument expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector "
-"dispers.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value of input argument #%d: Lower than or equal to size of input "
 "argument #%d expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un escalar/"
-"matriu/hipermatriu de nombres enters positius.\n"
 
 #
 # File: modules/elementary_functions/macros/setdiff.sci, line: 33
@@ -903,11 +882,9 @@ msgstr ""
 msgid "%s: Argument #%d: Unsupported type %s.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same types expected.\n"
 msgstr ""
-"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de ser del "
-"mateix tipus.\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"

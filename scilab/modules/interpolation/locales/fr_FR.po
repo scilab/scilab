@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-07-17 11:42+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Mickael Albertus <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -77,11 +77,9 @@ msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
 msgstr ""
 "%s : Nombre erroné de(s) argument(s) de sortie : %d, %d ou %d attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
-"%s : Dimension erronée des arguments d'entrée n°%d et n°%d : Mêmes "
-"dimensions attendues.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
@@ -333,15 +331,13 @@ msgstr "%s : Problème avec 'flag' = %d\n"
 msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : Doit être entre %d et %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real numbers expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Deux lignes attendues.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Vector expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur attendu.\n"
 
 #
 # File: modules/interpolation/macros/interp1.sci, line: 53
@@ -349,44 +345,33 @@ msgstr ""
 msgid "%s: Argument #%d: Nan value forbidden.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: At least 2 elements expected.\n"
 msgstr ""
-"%s : Dimension erronée pour l'argument d'entrée n°%d : Une dimension d'au "
-"moins 2 attendue.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: vector or at least 2 rows expected.\n"
 msgstr ""
-"%s : Dimension erronée pour l'argument d'entrée n°%d : Un vecteur de "
-"dimension au moins 2 attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal or complex numbers expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur ou une "
-"matrice attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s : Dimension erronée des arguments d'entrée n°%d et n°%d : Mêmes "
-"dimensions attendues.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
 msgstr ""
-"%s : Dimension erronée des arguments d'entrée n°%d et n°%d : Mêmes "
-"dimensions attendues.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
+msgstr ""
 
 #
 # File: modules/interpolation/macros/interp1.sci, line: 138

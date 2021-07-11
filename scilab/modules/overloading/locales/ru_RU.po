@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-24 15:23+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -185,9 +185,8 @@ msgstr "[%s %s] из %s"
 msgid "cell"
 msgstr "ячейка"
 
-#, fuzzy
 msgid "empty list()"
-msgstr " пустой список list()"
+msgstr ""
 
 #, c-format
 msgid "[%s] %s without field."
@@ -438,9 +437,9 @@ msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась матрица целочисленных "
 "значений.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
-msgstr "%s: Аргументы №%d и №%d: ожидалось одинаковое количество строк.\n"
+msgstr ""
 
 #
 # File: modules/overloading/macros/%sp_r_sp.sci, line: 36
@@ -473,9 +472,9 @@ msgstr "%s: Несовместимые аргументы №%d и №%d: ожи
 msgid "%s: Wrong number of output argument: %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #1(1): string expected.\n"
-msgstr "%s: Аргумент №%d: ожидалась квадратная матрица.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Not implemented.\n"

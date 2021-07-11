@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-05-18 15:13+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "Language: ru\n"
@@ -539,12 +539,11 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось неотрицательное целое "
 "число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s is obsolete. It will be removed from Scilab %s.\n"
 "Please use %s instead.\n"
 msgstr ""
-"свойство '%s' устарело и будет удалено, используйте вместо него '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -852,9 +851,9 @@ msgstr "%s должен быть строковым вектором.\n"
 msgid "Unknown property: %s.\n"
 msgstr "Неизвестное свойство: %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Read-only property: %s.\n"
-msgstr "Неизвестное свойство: %s.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
@@ -1933,29 +1932,34 @@ msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась вещественная матрица.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle or vector of decimal numbers expected.\n"
-msgstr "%s: Аргумент №%d: ожидалось десятичное число.\n"
+msgstr ""
+"%s : Аргумент #%d : ожидаемый идентификатор графического репозитория или "
+"вектор десятичных чисел.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle expected.\n"
-msgstr "%s: Аргумент №%d: ожидался вещественный вектор.\n"
+msgstr ""
+"%s : Аргумент #%d : идентификатор ожидаемого графического репозитория.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: incomplete {'name', value} pair.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось не менее %d.\n"
+msgstr ""
+"%s : неправильное количество входных аргументов : пара {'name', value} "
+"неполная.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: 'x' or 'y' expected.\n"
-msgstr "%s: Аргумент №%d: ожидалось 'on' или 'off'.\n"
+msgstr "%s : аргумент #%d: 'x' или 'y' ожидается.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: one word among {%s} expected.\n"
-msgstr "%s: Аргумент №%d: ожидалось 'on' или 'off'.\n"
+msgstr "%s : Аргумент #%d : ожидается одно слово из {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: widths vector: %d components expected.\n"
-msgstr "%s: Аргумент №%d: ожидалось по меньшей мере %d компонентов.\n"
+msgstr "%s : вектор ширины: %d ожидаемых элемента.\n"
 
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: найдено пустое выпадающее меню."
@@ -2100,9 +2104,8 @@ msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалось вещественное число.\n"
 
-#, fuzzy
 msgid "Current colormap"
-msgstr "Цветовая карта"
+msgstr ""
 
 #
 # File: modules/graphics/macros/getcolor.sci, line: 72
@@ -2362,66 +2365,62 @@ msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидался дескриптор '%s'.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong type of graphic handle: '%s' expected.\n"
-msgstr "%s: Аргумент №%d: ожидался графический дескриптор типа '%s'.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s: Несовместимые входные параметры №%d и №%d: ожидалось одинаковое число "
-"строк.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Argument #%d: Wrong value. Please check allowed syntaxes and values.\n"
 msgstr ""
-"%s: Аргумент №%d: неверный тип. Пожалуйста, проверьте имеющийся синтаксис.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: должно быть в интервале %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number(s) or text expected.\n"
-msgstr "%s: Аргумент №%d: ожидались числа или текст.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong size: one or %d colors expected.\n"
-msgstr "%s: Аргумент №%d: ожидалась матрица с 4 или 6 столбцами.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number or text expected.\n"
-msgstr "%s: Аргумент №%d: ожидались числа или текст.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong marker id.\n"
-msgstr "%s: Аргумент №%d: неверная спецификация цвета.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: keyword or property name expected.\n"
-msgstr "%s: Аргумент №%d: ожидались числа или текст.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Unknown property name '%s'.\n"
-msgstr "%s: Аргумент №%d: ожидалось 'on' или 'off'.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Value missing for the given property.\n"
-msgstr "%s: Аргумент №%d: ожидались числа или текст.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong marker specification.\n"
-msgstr "%s: Аргумент №%d: неверная спецификация цвета.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Non-negative integers expected.\n"
-msgstr "%s: Аргумент №%d: ожидались неотрицательные значения.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in %s expected.\n"
-msgstr "%s: Аргумент №%d: ожидались символы в {a.#1}.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"

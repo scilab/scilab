@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-24 15:29+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -209,55 +209,53 @@ msgstr ""
 "%s: Неверный размер входных аргументов №%d и №%d: ожидается один и тот же "
 "размер.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in [1,12] expected.\n"
-msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d missing: Integers in [1,31] expected.\n"
-msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in [1,31] expected.\n"
-msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d to #%d: Same sizes expected.\n"
 msgstr ""
-"%s: Неверный размер входных аргументов №%d и №%d: Ожидался одинаковый "
-"размер.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Numbers or texts expected.\n"
-msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: All dates must have the same format.\n"
-msgstr "%s: Аргумент №%d: скаляр должен быть положительным.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong dates format.\n"
-msgstr "%s: Аргумент №%d: скаляр должен быть положительным.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Month indices expected in [1,12].\n"
-msgstr "%s: Аргумент №%d: должен быть в интервале [%d, %d].\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Day indices expected in [1,31].\n"
-msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Single text word expected.\n"
-msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong langage code.\n"
-msgstr "%s: Аргумент №%d: скаляр должен быть положительным.\n"
+msgstr ""
 
 #
 # File: modules/time/macros/weekday.sci, line: 204

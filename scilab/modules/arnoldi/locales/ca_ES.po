@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2009-10-22 08:35+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
@@ -50,38 +50,28 @@ msgstr ""
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
 msgstr ""
-"%s: La mida de l'argument d'entrada %s és incorrecta: Ha de ser una matriu "
-"de mida %dx%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
 "square matrix expected.\n"
 msgstr ""
-"%s: La mida de l'argument d'entrada %s és incorrecta: Ha de ser una matriu "
-"de mida %dx%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
 msgstr ""
-"%s: La mida de l'argument d'entrada %s és incorrecta: Ha de ser una matriu "
-"de mida %dx%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: La mida de l'argument d'entrada %s és incorrecta: Ha de ser un vector de "
-"mida %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr ""
-"%s: La mida de l'argument d'entrada %s és incorrecta: Ha de ser un vector de "
-"mida %d.\n"
 
 #, c-format
 msgid ""
@@ -119,45 +109,33 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
 msgstr ""
-"%s: La mida de l'argument d'entrada %s és incorrecta: Ha de ser una matriu "
-"de mida %dx%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer positive "
 "value.\n"
 msgstr ""
-"%s: La mida de l'argument d'entrada %s és incorrecta: Ha de ser una matriu "
-"de mida %dx%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
 msgstr ""
-"%s: La mida de l'argument d'entrada %s és incorrecta: Ha de ser una matriu "
-"de mida %dx%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
-"%s: La mida de l'argument d'entrada %s és incorrecta: Ha de ser una matriu "
-"de mida %dx%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
 "boolean.\n"
 msgstr ""
-"%s: La mida de l'argument d'entrada %s és incorrecta: Ha de ser una matriu "
-"de mida %dx%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
 msgstr ""
-"%s: La mida de l'argument d'entrada %s és incorrecta: Ha de ser una matriu "
-"de mida %dx%d.\n"
 
 #, c-format
 msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
@@ -167,27 +145,21 @@ msgstr ""
 msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
 msgstr ""
-"%s: La mida de l'argument d'entrada %s és incorrecta: Ha de ser un vector de "
-"mida %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
 msgstr ""
-"%s: La mida de l'argument d'entrada %s és incorrecta: Ha de ser un vector de "
-"mida %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be real for real "
 "problems.\n"
 msgstr ""
-"%s: La mida de l'argument d'entrada %s és incorrecta: Ha de ser un vector de "
-"mida %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"

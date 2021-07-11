@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-08-13 15:55+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
@@ -46,42 +46,39 @@ msgstr "%s：内部错误，info=%d。\n"
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s：无法读取第%d个输入参数。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
-msgstr "%s：第#%d个输入参数类型错误：应当是一个标量。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
 "square matrix expected.\n"
 msgstr ""
-"%s：第#%d个输入参数类型错误：应当是一个完整矩阵，或稀疏矩阵，或函数类型"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
-msgstr "%s：第%d个输入参数的维度错误：%s应该为1*1维。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s：第#%d个输入参数类型错误：应当是一个标量。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
-msgstr "%s：第%d参数的类型错误：n必须为正整数。\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: k must be in the range 1 to N.\n"
 msgstr "%s：第%d个输入参数的值错误：k必须在1~N之间。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
-"%s：第%d个输入参数的值错误：无法识别的sigma值。\n"
-" sigma必须为%s、%s、%s、%s、%s、%s中一值。\n"
 
 #, c-format
 msgid ""
@@ -109,33 +106,33 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
 msgstr "%s：第%d个输入参数的类型错误：sigma必须为实数。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
-msgstr "%s：第%d个输入参数的类型错误：sigma必须为实数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer positive "
 "value.\n"
-msgstr "%s：第%d参数的类型错误：n必须为正整数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
-msgstr "%s：第%d个输入参数的类型错误：sigma必须为实数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
-msgstr "%s：第#%d个输入参数维度错误：%s必须是一个整数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
 "boolean.\n"
-msgstr "%s：第#%d个输入参数维度错误：%s必须是一个整数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
-msgstr "%s：第%d个输入参数的类型错误：sigma必须为实数。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
@@ -145,37 +142,31 @@ msgstr "%s：B不是正定的。尝试令sigma='SM'或sigma=纯实数。\n"
 msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
 msgstr "%s：如果opts.cholB为真，B应该为上三角。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
-msgstr "%s：第#%d个输入参数类型错误：应当是一个实数或者字符串类型。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
 msgstr ""
-"%s：第#%d个输入参数维度错误：起始向量参数opts的成员变量resid的维度必须为"
-"Nx1。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be real for real "
 "problems.\n"
 msgstr ""
-"%s：第#%d个输入参数类型错误：对于实数问题，起始向量参数opts的成员变量resid必"
-"须为实数类型。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为整数。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
 "must be k < NCV <= N.\n"
 msgstr ""
-"%s ：第#%d输入参数错误： 对于实际的非对称问题，NCV的取值必须为 k+2 <NCV <= "
-"N。\n"
 
 #, c-format
 msgid ""
@@ -185,28 +176,23 @@ msgstr ""
 "%s ：第#%d输入参数错误： 对于实际的非对称问题，NCV的取值必须为 k+2 <NCV <= "
 "N。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
 "+ 1 < NCV <= N.\n"
 msgstr ""
-"%s ：第#%d输入参数错误： 对于实际的非对称问题，NCV的取值必须为 k+2 <NCV <= "
-"N。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be an integer in the range 1 to N - 1.\n"
 msgstr ""
-"%s：第#%d个输入参数的值错误：对于实对称问题，k的取值必须在1到N-1的范围内。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be an integer in the range 1 to N - 2.\n"
 msgstr ""
-"%s：第#%d个输入参数值错误：对于非实对称或复杂问题，k的取值必须在1到N-2的范围"
-"内。\n"
 
 #, c-format
 msgid ""
@@ -219,9 +205,9 @@ msgstr ""
 msgid "%s: Error with %s: info = %d \n"
 msgstr "%s：由于%s产生的错误：信息代码为%d \n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Error with %s: unknown mode returned.\n"
-msgstr "%s：由于%s导致的错误：错误信息为%d。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"

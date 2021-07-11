@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:04+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Roberto Coelho de Berredo <rcberredo@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "Language: pt_BR\n"
@@ -160,13 +160,13 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Valor incorreto para o argumento de entrada #%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
-msgstr "%s: Quantidade incorreta de argumentos de saída: esperava-se %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
-msgstr "%s: Quantidade incorreta de argumentos de saída: esperava-se %d.\n"
+msgstr ""
 
 #
 # File: modules/fileio/sci_gateway/cpp/sci_get_absolute_file_path.cpp, line: 81
@@ -211,16 +211,13 @@ msgstr ""
 msgid "%s: File not found: '%s'.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Cannot close file %ls: File is not active.\n"
 msgstr ""
-"%s: Não é possível fechar o arquivo cujo descritor é %d: o arquivo não está "
-"ativo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
 #, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
@@ -280,13 +277,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Incorrect conversion code; c, s, i "
 "or l expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s',  '%s' "
-"ou '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -346,10 +341,9 @@ msgstr ""
 msgid "%s: invalid filename.\n"
 msgstr "%s: O nome de arquivo é inválido.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: a single string expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
 #, c-format
 msgid "%s: Data mismatch.\n"

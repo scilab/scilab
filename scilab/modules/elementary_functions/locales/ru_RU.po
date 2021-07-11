@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-03-10 15:57+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -219,18 +219,18 @@ msgid "%s: Wrong size for input argument #%d : A square matrix expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d : ожидалась квадратная матрица.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось не менее %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Argument #%d: Must be in the set {%s} or integer in range [%d, %d].\n"
-msgstr "%s: Аргумент №%d: должен быть в интервале [%s, %s].\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
@@ -349,10 +349,9 @@ msgstr "%s: Неверный размер аргумента %d: ожидалс�
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr "%s: Аргумент №%d: ожидался текст.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
 msgstr ""
-"%s: Неверное значение входного аргумента №%d: должно быть в интервале %s.\n"
 
 #, c-format
 msgid "%s: Argument #%d: List expected.\n"
@@ -391,9 +390,9 @@ msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось целое число >= %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Complex sparse not yet supported in %s mode.\n"
-msgstr "%s: Аргумент №%d: комплексные числа не поддерживаются.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size of input argument: %d expected.\n"
@@ -490,25 +489,25 @@ msgstr "%s: Аргумент №%d: ожидалось целое число >=0
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal or encoded integers expected.\n"
-msgstr "%s: Аргумент №%d: ожидалось десятичное целое число.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Positive decimal integers expected.\n"
-msgstr "%s: Аргумент №%d: ожидалось десятичное целое число.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong size.\n"
-msgstr "%s: Аргумент №%d: ожидался столбец.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real or encoded integer expected.\n"
-msgstr "%s: Аргумент №%d: ожидалось десятичное целое число.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
-msgstr "%s: Аргумент №%d: должен быть в интервале [%s, %s].\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Non-negative integers expected.\n"
@@ -918,55 +917,45 @@ msgstr "%s: преобразование полиномов не поддерж�
 msgid "%s: conversion into %s is not supported\n"
 msgstr "%s: преобразование в %s не поддерживается\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', %d or %d "
 "expected.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s», «%s», "
-"«%s» или «%s».\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
-"%s: Неверное значение входного аргумента №%d: ожидалось целочисленное "
-"значение.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same number of rows of the second "
 "input argument expected.\n"
 msgstr ""
-"%s: Неверный размер входного аргумента №%d%s: ожидался тот же размер, что и "
-"у входного аргумента №%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same number of columns of the second "
 "input argument expected.\n"
 msgstr ""
-"%s: Неверный размер входного аргумента №%d%s: ожидался тот же размер, что и "
-"у входного аргумента №%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value of input argument #%d: Lower than or equal to size of input "
 "argument #%d expected.\n"
 msgstr ""
-"%s: Неверный размер входного аргумента №%d%s: ожидался тот же размер, что и "
-"у входного аргумента №%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Unsupported type %s.\n"
-msgstr "%s: Аргумент №%d: %s не поддерживается.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same types expected.\n"
-msgstr "%s: Аргументы №%d и №%d: ожидались одинаковые размеры.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
@@ -1002,9 +991,9 @@ msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось %d,«%s»,%d или «%s»\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: '%s' not allowed for an hypermatrix.\n"
-msgstr "%s: Аргумент №%d: ориентация не поддерживается для гиперматриц.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"

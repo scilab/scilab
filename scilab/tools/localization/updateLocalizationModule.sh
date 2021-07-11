@@ -90,7 +90,7 @@ function generate_find_command() {
 #
 # Retrieve all the sources files
     FILESCMD="find $PATHS -type f "
-####### GENERATES THE FIND COMMAND
+####### GENERATES THE FIND COMMAND
     i=0
     NB_ELEMENT=${#EXT[@]}
 
@@ -199,6 +199,7 @@ function upgrade_po() {
         if test -f $f; then
             msguniq --use-first -o $f $f &>/dev/null ;
             msgmerge -U $f $1/${MODULE}.pot &>/dev/null ;
+            msgattrib --no-fuzzy -o $f $f &>/dev/null ;
         fi
     done
 }

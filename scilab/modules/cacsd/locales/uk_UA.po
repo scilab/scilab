@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-07 15:52+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
@@ -1396,9 +1396,9 @@ msgstr ""
 "sv(D).\n"
 "Система може бути всепрохідною (all-pass)."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument '%s': type real expected.\n"
-msgstr "%s: параметр №%d: мало бути %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Wrong color specification.\n"

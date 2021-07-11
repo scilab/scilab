@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-24 13:54+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -80,9 +80,9 @@ msgstr "%s: Неверный размер входного аргумента �
 msgid "%s: Invalid library %s.\n"
 msgstr "%s: Некорректная библиотека %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -112,9 +112,9 @@ msgstr "%s: Проверьте: %s\n"
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: Файл %s не существует.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось от %d до %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"

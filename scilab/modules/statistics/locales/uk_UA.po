@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-17 14:21+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
@@ -18,21 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr "%s: помилкова кількість вихідного параметра: мало бути %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
-"значень.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong dimensions for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати дійсне "
-"число.\n"
 
 #, c-format
 msgid "%s: Answer appears to be lower than lowest search bound %g\n"
@@ -80,11 +76,9 @@ msgstr ""
 "%s: попередження: використання нецілих значень для параметра №%d може "
 "призвести до помилкових результатів.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
-"%s: параметр №%d: мало бути вказано десяткове або комплексне число або "
-"числа.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
@@ -222,21 +216,17 @@ msgstr ""
 msgid "%s: normalization boolean argument #3 is obsolete. %s option used.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: %s\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d. Значення має належати набору "
-"{%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Text expected.\n"
-msgstr "%s: параметр %d: мало бути вказано масив цілих чисел.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Data in argument #%d: Numbers or polynomials or texts expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати числовий "
-"тип.\n"
 
 #
 # File: modules/statistics/macros/histc.sci, line: 162
@@ -258,33 +248,25 @@ msgid ""
 "default bins.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: non-zero decimal integer expected.\n"
-msgstr "%s: параметр %d: мало бути вказано масив цілих чисел.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: decimal number > -Inf expected.\n"
 msgstr ""
-"%s: параметр №%d: мало бути вказано десяткове або комплексне число або "
-"числа.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same types expected.\n"
 msgstr ""
-"%s: несумісні вхідні параметри №%d і №%d: розмірності параметрів мали бути "
-"однаковими.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Elements must be sorted in increasing order.\n"
 msgstr ""
-"%s: помилкові значення вхідного параметра №%d: елементи слід вказувати у "
-"порядку зростання.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Elements must be in increasing order.\n"
 msgstr ""
-"%s: помилкові значення вхідного параметра №%d: елементи слід вказувати у "
-"порядку зростання.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"

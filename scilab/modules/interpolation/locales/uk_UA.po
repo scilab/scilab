@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-01-15 18:45+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
@@ -79,11 +79,9 @@ msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вихідних параметрів: мало бути %d, %d або %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідних параметрів №%d і №%d: розмірність мала "
-"збігатися.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
@@ -344,16 +342,13 @@ msgstr ""
 "%s: помилкова кількість вхідних параметрів. Мало бути від %d до %d "
 "параметрів.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real numbers expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути два рядки.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Vector expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"вектор.\n"
 
 #
 # File: modules/interpolation/macros/interp1.sci, line: 53
@@ -361,45 +356,33 @@ msgstr ""
 msgid "%s: Argument #%d: Nan value forbidden.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: At least 2 elements expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"розмірність вхідного параметра рівну принаймні 2.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: vector or at least 2 rows expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідних параметрів №%d: мало бути використано "
-"вектор розмірності принаймні 2.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal or complex numbers expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано вектор "
-"або матрицю.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідних параметрів №%d і №%d: розмірність мала "
-"збігатися.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідних параметрів №%d і №%d: розмірність мала "
-"збігатися.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"вектор.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+msgstr ""
 
 #
 # File: modules/interpolation/macros/interp1.sci, line: 138

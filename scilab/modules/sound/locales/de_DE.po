@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-17 16:02+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stephan Woidowski <swoidowski@t-online.de>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
@@ -148,13 +148,13 @@ msgstr "%s: Fehlerhafte Anzahl an Ausgabeargumenten.\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Falscher Typ für Ausgangsargument.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Function expected.\n"
-msgstr "%s: Falscher Typ für Argument #%d: Reelle Matrix erwartet.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: A colormap function expected.\n"
-msgstr "%s: Falscher Typ für Argument #%d: Reelle Matrix erwartet.\n"
+msgstr ""
 
 #
 # File: modules/sound/macros/mapsound.sci, line: 126
@@ -298,9 +298,8 @@ msgstr ""
 "%s: ein Fehler ist aufgetreten: Daten-Kompression-Format %s wird nicht "
 "unterstützt.\n"
 
-#, fuzzy
 msgid "Cannot read .wav file  with more than 32 bits per sample."
-msgstr "Kann keine .wav Datei mit mehr als 16 pro Abtastwert lesen"
+msgstr ""
 
 msgid "Sample limit vector must have 2 entries."
 msgstr "Abtast-Grenz-Vektor muß 2 Einträge haben."

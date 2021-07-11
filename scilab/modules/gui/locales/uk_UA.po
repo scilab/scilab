@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-24 18:11+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
@@ -1055,9 +1055,8 @@ msgstr "З&меншити розмір шрифту"
 msgid "&Language"
 msgstr ""
 
-#, fuzzy
 msgid "en"
-msgstr "Меню"
+msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 83
@@ -1089,9 +1088,8 @@ msgstr ""
 msgid "&Online"
 msgstr ""
 
-#, fuzzy
 msgid "See this page online"
-msgstr "Вилучити цю точку"
+msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 89
@@ -1267,9 +1265,8 @@ msgstr "Відкрити редактор графіки"
 msgid "Toggle curve data modification"
 msgstr "Увімкнути або вимкнути режим внесення змін до даних кривої"
 
-#, fuzzy
 msgid "Move objects (2D view)"
-msgstr "Пересунути об'єкти"
+msgstr ""
 
 msgid "Help Browser"
 msgstr "Перегляд довідки"
@@ -2852,16 +2849,13 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати %s або "
 "%s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Input argument #%d must be a valid handle.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати > %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument #%d: A string expected.\n"
 msgstr ""
-"%s: помилковий тип параметра №%d: слід використовувати рядок з одного "
-"символу.\n"
 
 #
 # File: modules/gui/macros/findobj.sci, line: 96
@@ -2870,11 +2864,10 @@ msgstr ""
 msgid "%s: Argument #%d cannot be a binary operator."
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A positive integer value expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути вказано ціле значення.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -3039,11 +3032,9 @@ msgstr "%s: помилковий тип для %s: слід використов
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: помилковий розмір для %s: слід використовувати дійсне число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Booleans, numbers, or text expected.\n"
 msgstr ""
-"%s: помилковий тип параметра %d: слід використовувати матрицю булівських "
-"значень.\n"
 
 #
 # File: modules/gui/macros/x_matrix.sci, line: 57

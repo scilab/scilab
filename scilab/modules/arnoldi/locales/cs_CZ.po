@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 21:59+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
@@ -48,32 +48,28 @@ msgstr ""
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
 "square matrix expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána úplná nebo řídká matice či "
-"funkce"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
 msgstr ""
-"%s: Špatný rozměr pro vstupní argument #%d: %s musí mít velikost 1 krát 1.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: n musí být kladné celé číslo.\n"
 
 #, c-format
 msgid ""
@@ -81,13 +77,11 @@ msgid ""
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: k musí být v rozsahu od 1 do N.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Nerozpoznaná hodnota sigma.\n"
-" Sigma musí být jedna z  '%s', '%s', '%s', '%s', '%s' nebo '%s'.\n"
 
 #, c-format
 msgid ""
@@ -115,36 +109,33 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Sigma musí být reálné číslo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Sigma musí být reálné číslo.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer positive "
 "value.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: n musí být kladné celé číslo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Sigma musí být reálné číslo.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
-"%s: Špatný rozměr vstupního rozměru #%d: %s musí být celočíselný skalár.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
 "boolean.\n"
 msgstr ""
-"%s: Špatný rozměr vstupního rozměru #%d: %s musí být celočíselný skalár.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Sigma musí být reálné číslo.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
@@ -158,39 +149,31 @@ msgstr ""
 "%s: Pokud je opts.cholB pravda, pak by B mělo být horní trojúhelníková "
 "matice.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván reálný skalár nebo "
-"řetězec.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
 msgstr ""
-"%s: Špatný rozměr vstupního argumentu #%d: Počáteční vektor opts.resid musí "
-"být N krát 1.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be real for real "
 "problems.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Počáteční vektor opts.resid musí být "
-"pro úlohy s reálnými čísly reálný.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
 "must be k < NCV <= N.\n"
 msgstr ""
-"%s: Špatná hodnota argumentu #%d: V reálných nesymetrických úlohách musí být "
-"k + 2 < NCV <= N.\n"
 
 #, c-format
 msgid ""
@@ -200,29 +183,23 @@ msgstr ""
 "%s: Špatná hodnota argumentu #%d: V reálných nesymetrických úlohách musí být "
 "k + 2 < NCV <= N.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
 "+ 1 < NCV <= N.\n"
 msgstr ""
-"%s: Špatná hodnota argumentu #%d: V reálných nesymetrických úlohách musí být "
-"k + 2 < NCV <= N.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be an integer in the range 1 to N - 1.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: V reálných symetrických úlohách "
-"musí být k v rozsahu od 1 do N - 1.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be an integer in the range 1 to N - 2.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: V reálných nesymetrických nebo "
-"komplexních úlohách musí být k v rozsahu od 1 do N - 2.\n"
 
 #, c-format
 msgid ""
@@ -236,9 +213,9 @@ msgstr ""
 msgid "%s: Error with %s: info = %d \n"
 msgstr "%s: Chyba s %s: info = %d \n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Error with %s: unknown mode returned.\n"
-msgstr "%s: Chyba s %s: info = %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"

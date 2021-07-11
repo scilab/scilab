@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-18 22:02+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "Language: zh_TW\n"
@@ -295,17 +295,17 @@ msgstr ""
 msgid "Extraction of %s from '%s' tlist is not yet implemented."
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Extraction of '%s' from '%s' tlist is not yet implemented.\n"
-msgstr "%s 尚未被實行."
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: The field '%s' does not exist.\n"
-msgstr "%s: 格式 '%s' 尚未處理.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Extraction of '%s' from '%s' tlist is not yet implemented."
-msgstr "%s 尚未被實行."
+msgstr ""
 
 #, c-format
 msgid "index must be a list instead of a: %s."
@@ -384,13 +384,12 @@ msgstr ""
 msgid "%s: out as Argument #%d must be a list instead of a '%s'.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "vtype '%s' is not yet implemented.\n"
-msgstr "%s 尚未被實行."
+msgstr ""
 
-#, fuzzy
 msgid "List of properties is not yet implemented.\n"
-msgstr "%s 尚未被實行."
+msgstr ""
 
 #
 # File: modules/m2sci/macros/kernel/Type.sci, line: 31
@@ -398,9 +397,9 @@ msgstr "%s 尚未被實行."
 msgid "Wrong property '%s' for vtype '%s'.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "m2sci.convert2double(): Type %s not yet implemented."
-msgstr "%s 尚未被實行."
+msgstr ""
 
 #, c-format
 msgid "recursive extraction with one index of type %s is not yet implemented."
@@ -479,9 +478,9 @@ msgstr ""
 msgid "unknown instruction type %s."
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong LHS '%s' operation: Insertion expected.\n"
-msgstr "%s: '%s' 之長度錯誤: 應為一向量.\n"
+msgstr ""
 
 #, c-format
 msgid "lhs cannot be a %s."
@@ -565,9 +564,9 @@ msgstr ""
 msgid "'%s' current size %s <> %s in m2scideclare:  m2scideclare IGNORED.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown datatype '%s'.\n"
-msgstr "%s: 未知型態 '%s': 忽略.\n"
+msgstr ""
 
 #
 # File: modules/m2sci/macros/kernel/m2scideclare.sci, line: 106

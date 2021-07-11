@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-01-16 01:22+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "Language: ja\n"
@@ -50,37 +50,28 @@ msgstr "%s: 内部エラー, info=%d.\n"
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実対称問題の場合, スカラーを指定してく"
-"ださい.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
 "square matrix expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 通常または疎正方行列または関数を指定し"
-"てください."
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
 msgstr ""
-"%s: 入力引数 #%d の次元が間違っています: %s には大きさ 1x1の値を指定してくだ"
-"さい.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実対称問題の場合, スカラーを指定してく"
-"ださい.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: n には正の整数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -88,14 +79,11 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: k は 1～Nの範囲で指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: シグマ値が認識できません.\n"
-" シグマには '%s', '%s', '%s', '%s', '%s' または '%s' のどれかを指定してくださ"
-"い.\n"
 
 #, c-format
 msgid ""
@@ -125,39 +113,33 @@ msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: シグマには実数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: シグマには実数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer positive "
 "value.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: n には正の整数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: シグマには実数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
-"%s: 入力引数 #%d の次元が間違っています: %s は整数スカラーとしてください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
 "boolean.\n"
 msgstr ""
-"%s: 入力引数 #%d の次元が間違っています: %s は整数スカラーとしてください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: シグマには実数を指定してください.\n"
 
 #, c-format
 msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
@@ -168,39 +150,31 @@ msgstr ""
 msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
 msgstr "%s: opts.cholB が true の場合, B は上三角行列とします.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実スカラーまたは文字列を指定してくださ"
-"い.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
 msgstr ""
-"%s: 入力引数 #%d の次元が間違っています: 開始ベクトル opts.resid は N x 1 と"
-"してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be real for real "
 "problems.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実数問題の場合, 開始ベクトル opts."
-"resid は実数としてください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
 "must be k < NCV <= N.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 実非対称問題の場合, NCV は k + 2 < "
-"NCV <= N とする必要があります.\n"
 
 #, c-format
 msgid ""
@@ -210,29 +184,23 @@ msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 実非対称問題の場合, NCV は k + 2 < "
 "NCV <= N とする必要があります.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
 "+ 1 < NCV <= N.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 実非対称問題の場合, NCV は k + 2 < "
-"NCV <= N とする必要があります.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be an integer in the range 1 to N - 1.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 実対称問題の場合, k は 1 から N - 1 の"
-"範囲としてください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be an integer in the range 1 to N - 2.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 実非対称または複素問題の場合, k は 1 "
-"から N - 2 の範囲としてください.\n"
 
 #, c-format
 msgid ""
@@ -246,9 +214,9 @@ msgstr ""
 msgid "%s: Error with %s: info = %d \n"
 msgstr "%s:  エラー %s : info = %d \n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Error with %s: unknown mode returned.\n"
-msgstr "%s: エラー %s: info = %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"

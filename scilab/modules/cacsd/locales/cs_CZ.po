@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:10+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
@@ -1235,9 +1235,9 @@ msgstr ""
 "Hinfnorm je pravděpodobně přesný max sv(D)\n"
 "Systém může být vše propustný"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument '%s': type real expected.\n"
-msgstr "%s: Špatná hodnota %s: Očekáváno %d nebo %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Wrong color specification.\n"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:13+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "Language: zh_TW\n"
@@ -179,18 +179,18 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d : A square matrix expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 輸入參數的個數錯誤: 應該至少是 %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Argument #%d: Must be in the set {%s} or integer in range [%d, %d].\n"
-msgstr "%s: 輸入參數 #%d 數值錯誤: 應該是 [%s, %s] 的區間.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
@@ -290,9 +290,9 @@ msgstr ""
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: 輸入參數 #%d 數值錯誤: 應該是 [%s, %s] 的區間.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: List expected.\n"
@@ -421,13 +421,13 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: 輸入參數之數目錯誤: 應為 %d 或 %d才對.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal or encoded integers expected.\n"
-msgstr "%s: 輸入參數有誤 #%d: 純值/矩陣中還未指定的整數才對.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Positive decimal integers expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一正整數.\n"
+msgstr ""
 
 #
 # File: modules/elementary_functions/macros/bitcmp.sci, line: 66
@@ -435,13 +435,13 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一正整數.\n"
 msgid "%s: Argument #%d: Wrong size.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real or encoded integer expected.\n"
-msgstr "%s: Wrong input argument #%d: 應為一非負整數.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
-msgstr "%s: 輸入參數 #%d 數值錯誤: 應該是 [%s, %s] 的區間.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Non-negative integers expected.\n"
@@ -818,38 +818,37 @@ msgstr ""
 msgid "%s: conversion into %s is not supported\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', %d or %d "
 "expected.\n"
 msgstr ""
-"%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' , '%s'  或 '%s' .\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為正實數.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same number of rows of the second "
 "input argument expected.\n"
-msgstr "%s: 第 %d 輸入參數的資料長度錯誤: 應該是稀疏矩陣.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same number of columns of the second "
 "input argument expected.\n"
-msgstr "%s: 第 %d 輸入參數的資料長度錯誤: 應該是稀疏矩陣.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d 或 %d才對.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value of input argument #%d: Lower than or equal to size of input "
 "argument #%d expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為正整數之純量/向量/矩陣.\n"
+msgstr ""
 
 #
 # File: modules/elementary_functions/macros/setdiff.sci, line: 33
@@ -857,9 +856,9 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為正整數之純量/向量/
 msgid "%s: Argument #%d: Unsupported type %s.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same types expected.\n"
-msgstr "%s:  第#%d個 和第 #%d個參數不相容: 型別相同才對.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-20 17:56+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stephan Woidowski <swoidowski@t-online.de>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
@@ -80,9 +80,9 @@ msgstr "%s: Falsche Größe für Eingabeargument #%d: Ein String wird erwartet.\
 msgid "%s: Invalid library %s.\n"
 msgstr "%s: ungültige Bibliothek %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -112,9 +112,9 @@ msgstr "%s: überprüfen Sie: %s\n"
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: Datei %s ist nicht vorhanden.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Falsche Anzahl an Eingabeargumenten: %d bis %d erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"

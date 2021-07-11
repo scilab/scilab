@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-10-25 20:41+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Grzegorz Szostek <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "Language: pl\n"
@@ -17,19 +17,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr "%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje wektora.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong dimensions for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwany rozmiar "
-"%s.\n"
 
 #, c-format
 msgid "%s: Answer appears to be lower than lowest search bound %g\n"
@@ -69,11 +67,9 @@ msgid ""
 "results.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje liczby skalarnej "
-"lub wektora.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
@@ -194,15 +190,13 @@ msgstr ""
 msgid "%s: Argument #%d: %s\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Text expected.\n"
-msgstr "%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje wektora.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Data in argument #%d: Numbers or polynomials or texts expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje wartości "
-"liczbowych.\n"
 
 #
 # File: modules/statistics/macros/histc.sci, line: 162
@@ -230,17 +224,13 @@ msgstr ""
 msgid "%s: Argument #%d: non-zero decimal integer expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: decimal number > -Inf expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekuje liczb "
-"rzeczywistych z przedziału %d do %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same types expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d i nr %d: Oczekuje tego "
-"samego rozmiaru.\n"
 
 #
 # File: modules/statistics/macros/histc.sci, line: 325

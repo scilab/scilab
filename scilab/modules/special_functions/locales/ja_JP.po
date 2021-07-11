@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:18+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
@@ -99,21 +99,21 @@ msgid ""
 "  Check arguments or define function %s for overloading.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
-msgstr "%s: 入力引数の値が間違っています: %d より大きい値を指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: '%s' expected .\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -169,14 +169,12 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex, sparse or full "
 "matrix or hypermatrix expected.\n"
 msgstr ""
-"%s: 引数 %d の型が間違っています:　実数または複素数の行列を指定してくださ"
-"い.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: 入力引数の値が間違っています: %d より大きい値を指定してください.\n"
+msgstr ""

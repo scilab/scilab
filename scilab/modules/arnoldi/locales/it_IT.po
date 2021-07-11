@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 21:59+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
@@ -52,38 +52,28 @@ msgstr ""
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno "
-"scalare.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
 "square matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"completa o una sparsa quadrata o una funzione."
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: %s deve avere "
-"dimensione 1 per 1.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno "
-"scalare.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr ""
-"%s: L'argomento ingresso #%d è di tipo sbagliato: n deve essere un intero "
-"positivo.\n"
 
 #, c-format
 msgid ""
@@ -92,14 +82,11 @@ msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: k deve essere "
 "nell'intervallo da 1 a N.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: valore di sigma non "
-"riconosciuto.\n"
-" Sigma deve essere uno fra '%s', '%s', '%s', '%s', '%s' o '%s'.\n"
 
 #, c-format
 msgid ""
@@ -130,45 +117,33 @@ msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: sigma deve essere un "
 "numero reale.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: sigma deve essere un "
-"numero reale.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer positive "
 "value.\n"
 msgstr ""
-"%s: L'argomento ingresso #%d è di tipo sbagliato: n deve essere un intero "
-"positivo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: sigma deve essere un "
-"numero reale.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: %s deve essere "
-"uno scalare intero.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
 "boolean.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: %s deve essere "
-"uno scalare intero.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: sigma deve essere un "
-"numero reale.\n"
 
 #, c-format
 msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
@@ -179,40 +154,32 @@ msgstr ""
 msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
 msgstr "%s: Se opts.cholB è vero, B dovrebbe essere triangolare superiore.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare "
-"reale o una stringa.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: il vettore "
-"iniziale opts.resid deve essere N per 1.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be real for real "
 "problems.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: il vettore iniziale "
-"opts.resid deve essere reale per problemi reali.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
 "must be k < NCV <= N.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: per problemi reali "
-"non simmetrici, NCV deve essere k + 2 < NCV <= N.\n"
 
 #, c-format
 msgid ""
@@ -222,29 +189,23 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: per problemi reali "
 "non simmetrici, NCV deve essere k + 2 < NCV <= N.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
 "+ 1 < NCV <= N.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: per problemi reali "
-"non simmetrici, NCV deve essere k + 2 < NCV <= N.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be an integer in the range 1 to N - 1.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: per problemi reali "
-"simmetrici, k deve essere nell'intervallo da 1 a N - 1.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be an integer in the range 1 to N - 2.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: per problemi reali "
-"non simmetrici o complessi, k deve essere nell'intervallo da 1 a N - 2.\n"
 
 #, c-format
 msgid ""
@@ -258,9 +219,9 @@ msgstr ""
 msgid "%s: Error with %s: info = %d \n"
 msgstr "%s: Errore con %s: info = %d \n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Error with %s: unknown mode returned.\n"
-msgstr "%s: Errore con %s: info = %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"

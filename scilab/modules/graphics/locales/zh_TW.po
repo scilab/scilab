@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-24 18:52+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "Language: zh_TW\n"
@@ -1708,25 +1708,25 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle or vector of decimal numbers expected.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是代碼 (handle) 或實數向量.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle expected.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一 'Text' 代碼 (handle).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: incomplete {'name', value} pair.\n"
-msgstr "%s: 多個輸入參數的個數錯誤: 應該至少有 %d 個.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: 'x' or 'y' expected.\n"
-msgstr "%s: 第  #%d 個輸入參數數值錯誤: 應該為 '%s' 或 '%s'.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: one word among {%s} expected.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是 %s 或 %s 的向量.\n"
+msgstr ""
 
 #
 # File: modules/graphics/macros/cutaxes.sci, line: 91
@@ -2090,13 +2090,13 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong type of graphic handle: '%s' expected.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是 Graphic 代碼(handle).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
-msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 應該有相同的元素數目.\n"
+msgstr ""
 
 #
 # File: modules/graphics/macros/scatter3d.sci, line: 176
@@ -2106,37 +2106,37 @@ msgid ""
 "%s: Argument #%d: Wrong value. Please check allowed syntaxes and values.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
-msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該位於區間 %s.內\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number(s) or text expected.\n"
-msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該位於區間 %s.內\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong size: one or %d colors expected.\n"
-msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為大小為 %d 或 %d 的向量.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number or text expected.\n"
-msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該位於區間 %s.內\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong marker id.\n"
-msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該位於區間 %s.內\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: keyword or property name expected.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是 %s 或 %s 的向量.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Unknown property name '%s'.\n"
-msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該位於區間 %s.內\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Value missing for the given property.\n"
-msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該位於區間 %s.內\n"
+msgstr ""
 
 #
 # File: modules/graphics/macros/scatter3d.sci, line: 344
@@ -2144,13 +2144,13 @@ msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該位於區間 %s.內\n"
 msgid "%s: Argument #%d: Wrong marker specification.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Non-negative integers expected.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是非負整數.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in %s expected.\n"
-msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該位於區間 %s.內\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"

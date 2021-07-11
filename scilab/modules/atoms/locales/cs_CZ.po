@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-07 13:13+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
@@ -824,10 +824,10 @@ msgstr "Probíhá stahování... Čekejte prosím."
 msgid "Couldn't resolve host name"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: The given path does not exist.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Toto není platná verze.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Error: the response status from the URL %s is invalid.\n"

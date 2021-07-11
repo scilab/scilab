@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-23 15:39+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
@@ -2735,16 +2735,13 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Input argument #%d must be a valid handle.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso >%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
-"di stringhe.\n"
 
 #
 # File: modules/gui/macros/findobj.sci, line: 96
@@ -2753,11 +2750,10 @@ msgstr ""
 msgid "%s: Argument #%d cannot be a binary operator."
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A positive integer value expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -2914,11 +2910,9 @@ msgstr "%s: %s è di tipo sbagliato: era atteso un numero reale.\n"
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: %s ha una dimensione sbagliata: era atteso un numero reale.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Booleans, numbers, or text expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
-"booleano.\n"
 
 #
 # File: modules/gui/macros/x_matrix.sci, line: 57

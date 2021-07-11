@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:07+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
@@ -147,13 +147,13 @@ msgstr "%s: El nombre d'arguments de sortida és incorrecte.\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: El nombre d'arguments de sortida és incorrecte.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Function expected.\n"
-msgstr "%s: L'argument d'entrada #%d és incorrecte: Ha de ser '%s' o '%s'.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: A colormap function expected.\n"
-msgstr "%s: L'argument d'entrada #%d és incorrecte: Ha de ser '%s' o '%s'.\n"
+msgstr ""
 
 #
 # File: modules/sound/macros/mapsound.sci, line: 126
@@ -299,9 +299,8 @@ msgstr ""
 "%s: Hi ha hagut un error: El format de compressió de dades %s no està "
 "suportat.\n"
 
-#, fuzzy
 msgid "Cannot read .wav file  with more than 32 bits per sample."
-msgstr "No s'ha pogut llegir el fitxer .wav amb més de 16 bits per mostra."
+msgstr ""
 
 msgid "Sample limit vector must have 2 entries."
 msgstr "El vector de límit de mostra ha de tenir 2 entrades."

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2010-06-20 00:33+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "Language: zh_TW\n"
@@ -60,9 +60,9 @@ msgstr "%s:重覆的節點是所有節點colinears (ier = %d).\n"
 msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
-msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
@@ -277,9 +277,9 @@ msgstr ""
 msgid "%s: Argument #%d: Real numbers expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Vector expected.\n"
-msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
+msgstr ""
 
 #
 # File: modules/interpolation/macros/interp1.sci, line: 53
@@ -293,9 +293,9 @@ msgstr ""
 msgid "%s: Argument #%d: At least 2 elements expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: vector or at least 2 rows expected.\n"
-msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
+msgstr ""
 
 #
 # File: modules/interpolation/macros/interp1.sci, line: 88
@@ -303,13 +303,13 @@ msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
 msgid "%s: Argument #%d: Decimal or complex numbers expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
-msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
-msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
+msgstr ""
 
 #
 # File: modules/interpolation/macros/interp1.sci, line: 110

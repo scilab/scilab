@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-08-25 14:30+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
@@ -148,13 +148,13 @@ msgstr "%s：输出参数数目错误：应该介于%d与%d之间。\n"
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s：输入参数#%d的值错误。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
-msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
-msgstr "%s：输出参数数目错误：应该介于%d到%d个之间。\n"
+msgstr ""
 
 #
 # File: modules/fileio/sci_gateway/cpp/sci_get_absolute_file_path.cpp, line: 81
@@ -197,13 +197,13 @@ msgstr "%s：无法检查描述符为%d的文件结尾：文件未激活。\n"
 msgid "%s: File not found: '%s'.\n"
 msgstr "%s：未找到文件：'%s'。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Cannot close file %ls: File is not active.\n"
-msgstr "%s：无法关闭文件描述符为%d的文件：文件不是激活状态。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr "%s：第%d个输入参数类型错误：应该为实数。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
@@ -261,11 +261,11 @@ msgstr "%s：第%d个输入参数的值错误：应该为一个正整数。\n"
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr "%s：第%d个输入参数类型错误：应该为整数。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Incorrect conversion code; c, s, i "
 "or l expected.\n"
-msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -319,9 +319,9 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个整数。\n"
 msgid "%s: invalid filename.\n"
 msgstr "%s：不正确的文件名。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: a single string expected.\n"
-msgstr "%s：第%d个参数的类型错误：应该为字符串。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Data mismatch.\n"

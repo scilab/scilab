@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-09-10 14:28+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -454,11 +454,11 @@ msgstr "%s：第%d个输入参数的大小错误：应该为标量。\n"
 msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为非负整数。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s is obsolete. It will be removed from Scilab %s.\n"
 "Please use %s instead.\n"
-msgstr "'%s'属性已弃用，即将被删除，请改用'%s'。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -732,9 +732,9 @@ msgstr "%s 应当是一个字符串向量。\n"
 msgid "Unknown property: %s.\n"
 msgstr "未知属性：%s。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Read-only property: %s.\n"
-msgstr "未知属性：%s。\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
@@ -1717,29 +1717,29 @@ msgstr "%s：输入参数数目错误：应该至少是%d个。"
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr "%s：第%d个输入参数类型错误：应该是一个实数矩阵。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle or vector of decimal numbers expected.\n"
-msgstr "%s：第%d个参数错误：应该是小数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle expected.\n"
-msgstr "%s：第%d个参数错误：应该是实数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: incomplete {'name', value} pair.\n"
-msgstr "%s：输入参数数目错误：应该至少%d个。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: 'x' or 'y' expected.\n"
-msgstr "%s：第%d个参数错误：应为'on' 或者 'off'。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: one word among {%s} expected.\n"
-msgstr "%s：第%d个参数错误：应为'on' 或者 'off'。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: widths vector: %d components expected.\n"
-msgstr "%s：第%d个参数错误：应该至少含有%d个组件。\n"
+msgstr ""
 
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems：找到一个空的级联菜单。"
@@ -1864,9 +1864,8 @@ msgstr "%s：模糊的面属性：%s。\n"
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr "%s：输入参数 #%d 的大小错误：应该为一个实数。\n"
 
-#, fuzzy
 msgid "Current colormap"
-msgstr "色彩图"
+msgstr ""
 
 #
 # File: modules/graphics/macros/getcolor.sci, line: 72
@@ -2099,62 +2098,62 @@ msgstr "%s：第%d个输入参数类型错误：应该是“%s”句柄。\n"
 msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
 msgstr "%s：第%d个输入参数大小错误：应该是“%s”句柄。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong type of graphic handle: '%s' expected.\n"
-msgstr "%s：第%d个参数错误：应该是类型为'%s'的图形句柄。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
-msgstr "%s：第%d个和第%d个输入参数不兼容：应该具有相同的行。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Argument #%d: Wrong value. Please check allowed syntaxes and values.\n"
-msgstr "%s：第%d个参数类型错误。 请检查可用的语法。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
-msgstr "%s：输入参数 #%d 的值错误：必须在区间 %s 中。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number(s) or text expected.\n"
-msgstr "%s：第%d个参数错误：应该是数字或者文本。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong size: one or %d colors expected.\n"
-msgstr "%s：第%d个参数错误：应该是有4到6列的矩阵。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number or text expected.\n"
-msgstr "%s：第%d个参数错误：应该是数字或者文本。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong marker id.\n"
-msgstr "%s：第%d个参数错误：颜色规格错误。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: keyword or property name expected.\n"
-msgstr "%s：第%d个参数错误：应该是数字或者文本。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Unknown property name '%s'.\n"
-msgstr "%s：第%d个参数错误：应为'on' 或者 'off'。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Value missing for the given property.\n"
-msgstr "%s：第%d个参数错误：应该是数字或者文本。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong marker specification.\n"
-msgstr "%s：第%d个参数错误：颜色规格错误。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Non-negative integers expected.\n"
-msgstr "%s：第%d个参数错误：应该是非负值。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in %s expected.\n"
-msgstr "%s：第%d个参数错误：应该是{a.#1}中的字符。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"

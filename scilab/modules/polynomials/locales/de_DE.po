@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-01-31 16:41+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Niko K <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
@@ -276,9 +276,9 @@ msgstr "%s: Falscher Typ des Eingangsarguments #%d: Polynom erwartet.\n"
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: Eingangsargument #%d muß reell sein.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Polynomial expected.\n"
-msgstr "%s: Falscher Typ des Eingangsarguments #%d: Polynom erwartet.\n"
+msgstr ""
 
 #
 # File: modules/polynomials/macros/polyint.sci, line: 48

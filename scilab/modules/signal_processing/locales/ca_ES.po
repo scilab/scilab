@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:04+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
@@ -545,49 +545,35 @@ msgstr ""
 "%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
 "mateixa mida.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té valors incorrectes: Han de ser nombres "
-"enters no-negatius.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a scalar with integer value "
 "expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
-"de fraccions racionals.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be odd.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té valors incorrectes: Els elements han de ser "
-"positius.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
-"de fraccions racionals.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d\n"
 msgstr ""
-"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
-"mateixa mida.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
-"alta.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for argument %d: At most %d expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
-"alta.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -611,34 +597,25 @@ msgstr ""
 msgid "Press return to display 2D examples"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un polinomi.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té valors incorrectes: ha de tenir el grau "
-"{%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
-"alta.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
-"alta.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
-"alta.\n"
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"

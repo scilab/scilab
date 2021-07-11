@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-24 18:55+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
@@ -790,9 +790,9 @@ msgstr "%s by měl být řetězcový vektor.\n"
 msgid "Unknown property: %s.\n"
 msgstr "Neznámá vlastnost: %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Read-only property: %s.\n"
-msgstr "Neznámá vlastnost: %s.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
@@ -1792,28 +1792,25 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle or vector of decimal numbers expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána obslužná rutina nebo "
-"vektor čísla s dvojitou přesností.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána obslužná rutina 'Axes'.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: incomplete {'name', value} pair.\n"
-msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: 'x' or 'y' expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván '%s' nebo '%s'.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: one word among {%s} expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor %s nebo %s.\n"
+msgstr ""
 
 #
 # File: modules/graphics/macros/cutaxes.sci, line: 91
@@ -2201,16 +2198,13 @@ msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávána obslužná rutina "
 "'%s'.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong type of graphic handle: '%s' expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole grafických obslužných "
-"rutin.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekáván stejný počet řádků\n"
 
 #
 # File: modules/graphics/macros/scatter3d.sci, line: 176
@@ -2220,38 +2214,37 @@ msgid ""
 "%s: Argument #%d: Wrong value. Please check allowed syntaxes and values.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number(s) or text expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong size: one or %d colors expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number or text expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong marker id.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: keyword or property name expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekávána platná vlastnost.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Unknown property name '%s'.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Value missing for the given property.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
+msgstr ""
 
 #
 # File: modules/graphics/macros/scatter3d.sci, line: 344
@@ -2259,14 +2252,13 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s
 msgid "%s: Argument #%d: Wrong marker specification.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Non-negative integers expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno nezáporné celé číslo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in %s expected.\n"
-msgstr "%s: Špatný typ argumentu #%d: Očekávána řetězcová matice.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"

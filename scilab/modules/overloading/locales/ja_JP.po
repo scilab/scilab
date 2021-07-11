@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-12-09 13:03+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
@@ -428,9 +428,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
-msgstr "%s: 引数 #%d と #%d: 同じ数の行を指定してください.\n"
+msgstr ""
 
 #
 # File: modules/overloading/macros/%sp_r_sp.sci, line: 36
@@ -462,9 +462,9 @@ msgstr ""
 msgid "%s: Wrong number of output argument: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #1(1): string expected.\n"
-msgstr "%s: 引数 #%d: 正方行列を指定してください.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Not implemented.\n"

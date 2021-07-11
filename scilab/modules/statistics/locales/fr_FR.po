@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-02-20 01:10+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -17,18 +17,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong dimensions for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un réel attendu.\n"
 
 #, c-format
 msgid "%s: Answer appears to be lower than lowest search bound %g\n"
@@ -74,9 +73,9 @@ msgstr ""
 "%s : Attention : Utiliser des valeurs non entières pour l'argument n°%d peut "
 "conduire à des résultats erronés.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr "%s : Argument #%d : nombre(s) réel(s) ou complexe(s) attendu(s).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
@@ -197,17 +196,17 @@ msgstr ""
 msgid "%s: normalization boolean argument #3 is obsolete. %s option used.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: %s\n"
-msgstr "%s : Argument #%d : doit être dans l'ensemble {%s}.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Text expected.\n"
-msgstr "%s : Argument #%d : Tableau de réels attendu.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Data in argument #%d: Numbers or polynomials or texts expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un numérique attendu.\n"
+msgstr ""
 
 #
 # File: modules/statistics/macros/histc.sci, line: 162
@@ -229,30 +228,25 @@ msgid ""
 "default bins.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: non-zero decimal integer expected.\n"
-msgstr "%s : Argument #%d : Tableau de réels attendu.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: decimal number > -Inf expected.\n"
-msgstr "%s : Argument #%d : nombre(s) réel(s) ou complexe(s) attendu(s).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same types expected.\n"
 msgstr ""
-"%s : Arguments d'entrée #%d et #%d incompatibles : mêmes tailles attendues.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Elements must be sorted in increasing order.\n"
 msgstr ""
-"%s : Valeurs erronées de l'argument d'entrée n°%d : Les éléments doivent "
-"être en ordre croissant.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Elements must be in increasing order.\n"
 msgstr ""
-"%s : Valeurs erronées de l'argument d'entrée n°%d : Les éléments doivent "
-"être en ordre croissant.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"

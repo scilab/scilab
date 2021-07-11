@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-19 09:13+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
@@ -166,15 +166,13 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
 msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
 msgstr ""
-"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
 #
 # File: modules/fileio/sci_gateway/cpp/sci_get_absolute_file_path.cpp, line: 81
@@ -225,15 +223,13 @@ msgstr ""
 msgid "%s: File not found: '%s'.\n"
 msgstr "%s: ファイルが見つかりません: '%s'.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Cannot close file %ls: File is not active.\n"
 msgstr ""
-"%s: 記述子が %d のファイルを閉じることができません: ファイルがアクティブでは"
-"ありません.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
@@ -299,11 +295,11 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 正の整数値を�
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Incorrect conversion code; c, s, i "
 "or l expected.\n"
-msgstr "%s: 入力引数 #%dの値が間違っています: 整数値を指定してください.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -359,9 +355,9 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 整数を指�
 msgid "%s: invalid filename.\n"
 msgstr "%s: ファイル名が無効です.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: a single string expected.\n"
-msgstr "%s: 引数 #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Data mismatch.\n"

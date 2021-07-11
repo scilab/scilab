@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-09-09 12:51+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
@@ -75,9 +75,9 @@ msgstr "%s：第%d个输入参数的维度错误：应该为字符串。\n"
 msgid "%s: Invalid library %s.\n"
 msgstr "%s：不正确的库%s。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d个。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -107,9 +107,9 @@ msgstr "%s：请检查：%s\n"
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s：文件 %s 不存在。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s：输入参数数目错误：应该介于%d到%d个之间。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"

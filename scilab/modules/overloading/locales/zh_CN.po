@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-09-10 12:05+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: zh_CN\n"
@@ -169,9 +169,8 @@ msgstr "[%s %s] 位于 %s"
 msgid "cell"
 msgstr "cell"
 
-#, fuzzy
 msgid "empty list()"
-msgstr " 空list()"
+msgstr ""
 
 #, c-format
 msgid "[%s] %s without field."
@@ -393,9 +392,9 @@ msgstr "%s：第%d个输入参数的大小错误：应该为标量。\n"
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s：第%d个输入参数类型错误：应该为整数。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
-msgstr "%s：第%d个和第%d个参数错误：其行大小应该相同。\n"
+msgstr ""
 
 #
 # File: modules/overloading/macros/%sp_r_sp.sci, line: 36
@@ -426,9 +425,9 @@ msgstr "%s：第%d个和第%d个输入参数不兼容：其大小应该相同。
 msgid "%s: Wrong number of output argument: %d expected.\n"
 msgstr "%s：输出参数数目错误：应该为%d个。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #1(1): string expected.\n"
-msgstr "%s：第%d个参数错误：应该是一个方阵。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Not implemented.\n"

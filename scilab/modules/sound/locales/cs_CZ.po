@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:03+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
@@ -145,13 +145,13 @@ msgstr "%s: Špatný počet výstupních argumentů.\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Špatný počet výstupních argumentů.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Function expected.\n"
-msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: A colormap function expected.\n"
-msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
+msgstr ""
 
 #
 # File: modules/sound/macros/mapsound.sci, line: 126
@@ -291,9 +291,8 @@ msgstr "Vyba při čtení souboru .wav."
 msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr "%s: Vyskytla se chyba: Formát komprese dat %s není podporován.\n"
 
-#, fuzzy
 msgid "Cannot read .wav file  with more than 32 bits per sample."
-msgstr "Nelze číst soubor .wav s více než 16 bity na vzorek."
+msgstr ""
 
 msgid "Sample limit vector must have 2 entries."
 msgstr "Vektor limitu vzorku musí mít 2 záznamy."

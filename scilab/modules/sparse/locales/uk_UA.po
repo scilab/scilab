@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-18 22:06+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
@@ -155,12 +155,10 @@ msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати порожню "
 "матрицю.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be less than %d.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати тип "
-"вектора-стовпчика.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
@@ -233,11 +231,9 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
 "тип.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be less than %d.\n"
 msgstr ""
-"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
-"«%s».\n"
 
 #, c-format
 msgid ""

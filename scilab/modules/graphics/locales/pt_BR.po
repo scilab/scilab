@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-24 18:54+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Roberto Coelho de Berredo <rcberredo@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "Language: pt_BR\n"
@@ -838,9 +838,9 @@ msgstr "%s deveria ser um vetor de textos.\n"
 msgid "Unknown property: %s.\n"
 msgstr "Propriedade desconhecida: %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Read-only property: %s.\n"
-msgstr "Propriedade desconhecida: %s.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
@@ -1871,46 +1871,48 @@ msgstr "%s: Mapa de cores muito pequeno"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected."
-msgstr ""
+msgstr "%s : pelo menos %d argumentos de entrada esperados."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle or vector of decimal numbers expected.\n"
-msgstr "%s: Tipo incorreto para o argumento %d: esperava-se números reais.\n"
+msgstr ""
+"%s : Argumento #%d : Identificador de um gráfico ou vetor de números "
+"decimais esperados.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle expected.\n"
-msgstr "%s: Tipo incorreto para o argumento %d: esperava-se números reais.\n"
+msgstr "%s : Argumento #%d : Identificador de um gráfico esperado.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: incomplete {'name', value} pair.\n"
 msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se pelo menos "
-"%d.\n"
+"%s : número incorreto de argumentos de entrada: par {'nome', valor} "
+"incompleto.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: 'x' or 'y' expected.\n"
-msgstr "%s: Tipo incorreto para o argumento %d: esperava-se números reais.\n"
+msgstr "%s : Argumento #%d : 'x' ou 'y' esperado.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: one word among {%s} expected.\n"
-msgstr "%s: argumento #%d: matriz não vazia esperada.\n"
+msgstr "%s : Argumento #%d : uma palavra de {%s} esperada.\n"
 
 #
 # File: modules/graphics/macros/cutaxes.sci, line: 91
 #, c-format
 msgid "%s: widths vector: %d components expected.\n"
-msgstr ""
+msgstr "%s : vetor widths : %d elementos esperados.\n"
 
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: encontrado um menu de cascata vazio."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr ""
+msgstr "%s : argument n°%d de type incorrect : handle de type '%s' attendu.\n"
 
 #, c-format
 msgid "%s: too many input arguments"
@@ -2281,15 +2283,13 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong type of graphic handle: '%s' expected.\n"
-msgstr "%s: argumento #%d: valores não negativos esperados.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s: Argumentos de entrada %dº e %dº incompatíveis: esperava-se o mesmo "
-"número de linhas.\n"
 
 #
 # File: modules/graphics/macros/scatter3d.sci, line: 176
@@ -2299,49 +2299,49 @@ msgid ""
 "%s: Argument #%d: Wrong value. Please check allowed syntaxes and values.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
-msgstr "%s: %dº argumento de entrada : tem que estar no intervalo %s.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number(s) or text expected.\n"
-msgstr "%s: Tipo incorreto para o argumento %d: esperava-se números reais.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong size: one or %d colors expected.\n"
-msgstr "%s: argumento #%d: valores não negativos esperados.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number or text expected.\n"
-msgstr "%s: Tipo incorreto para o argumento %d: esperava-se números reais.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong marker id.\n"
-msgstr "%s: argumento #%d: matriz não vazia esperada.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: keyword or property name expected.\n"
-msgstr "%s: argumento #%d: matriz não vazia esperada.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Unknown property name '%s'.\n"
-msgstr "%s: %dº argumento de entrada : tem que estar no intervalo %s.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Value missing for the given property.\n"
-msgstr "%s: %dº argumento de entrada : tem que estar no intervalo %s.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong marker specification.\n"
-msgstr "%s: argumento #%d: matriz não vazia esperada.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Non-negative integers expected.\n"
-msgstr "%s: argumento #%d: valores não negativos esperados.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in %s expected.\n"
-msgstr "%s: argumento #%d: valores não negativos esperados.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"

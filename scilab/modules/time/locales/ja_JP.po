@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-01-21 14:09+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stéphane Mottelet <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
@@ -257,36 +257,29 @@ msgstr ""
 "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさで指定してく"
 "ださい.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in [1,12] expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 整数または '%s' を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d missing: Integers in [1,31] expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 整数または '%s' を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in [1,31] expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 整数または '%s' を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d to #%d: Same sizes expected.\n"
 msgstr ""
-"%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさで指定してく"
-"ださい.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Numbers or texts expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 整数または '%s' を指定してください.\n"
 
 #
 # File: modules/time/macros/weekday.sci, line: 99
@@ -315,10 +308,9 @@ msgstr ""
 msgid "%s: Argument #%d: Day indices expected in [1,31].\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Single text word expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実数ベクトルを指定してください.\n"
 
 #
 # File: modules/time/macros/weekday.sci, line: 199

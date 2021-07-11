@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-03-25 15:09+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -576,42 +576,35 @@ msgstr ""
 "%s: Несовместимые входные параметры №%d и №%d: ожидались одинаковые "
 "размеры.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-"%s: Неверное значение входного аргумента №%d: ожидалось положительное целое "
-"значение.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a scalar with integer value "
 "expected.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось положительное целое "
-"число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be odd.\n"
 msgstr ""
-"%s:  Неверное значение входного аргумента №%d: оно должно быть нечётным.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr "%s: Неверный тип аргумента №%d: ожидался вещественный вектор.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d\n"
 msgstr ""
-"%s: Несовместимые входные параметры №%d и №%d: ожидались одинаковые "
-"размеры.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
-msgstr "%s: Неверный размер аргумента №%d: ожидался вектор.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for argument %d: At most %d expected.\n"
-msgstr "%s: Неверное значение входного аргумента №%d: ожидалось %s или %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -635,29 +628,25 @@ msgstr ""
 msgid "Press return to display 2D examples"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
-"%s: Неверные значения входного параметра №%d: степень должна принадлежать "
-"множеству {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась матрица.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
-"%s:  Неверное значение входного аргумента №%d: оно должно быть нечётным.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
-"%s:  Неверное значение входного аргумента №%d: оно должно быть нечётным.\n"
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"

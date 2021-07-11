@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-06-09 10:49+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
@@ -76,11 +76,9 @@ msgstr ""
 msgid "%s: Invalid library %s.\n"
 msgstr "%s: La llibreria %s no és vàlida.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"text.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -110,11 +108,9 @@ msgstr "%s: Comproveu: %s\n"
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: El fitxer %s no existeix.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"text.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"

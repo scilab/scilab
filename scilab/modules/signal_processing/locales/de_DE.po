@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:17+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
@@ -538,45 +538,35 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: inkomatibles Eingangsargument #%d und #%d: gleiche Größe erwartet.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: nicht-negative Integer "
-"erwartet.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a scalar with integer value "
 "expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: Matrix mit rationalen Brüchen "
-"erwartet.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be odd.\n"
 msgstr ""
-"%s: falscher Wert für Eingansgargument #%d: Elemente müssen positiv sein.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: Matrix mit rationalen Brüchen "
-"erwartet.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d\n"
 msgstr ""
-"%s: inkomatibles Eingangsargument #%d und #%d: gleiche Größe erwartet.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr ""
-"%s: falscher Größe für Eingangsargument #%d: eine Tall-Matrix erwartet.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for argument %d: At most %d expected.\n"
 msgstr ""
-"%s: falscher Größe für Eingangsargument #%d: eine Tall-Matrix erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -600,30 +590,25 @@ msgstr ""
 msgid "Press return to display 2D examples"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: ein Polynom erwartet.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: Winkelwert muß sich im Satz {%s} "
-"befinden.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: falscher Größe für Eingangsargument #%d: eine Tall-Matrix erwartet.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
-"%s: falscher Größe für Eingangsargument #%d: eine Tall-Matrix erwartet.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
-"%s: falscher Größe für Eingangsargument #%d: eine Tall-Matrix erwartet.\n"
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"

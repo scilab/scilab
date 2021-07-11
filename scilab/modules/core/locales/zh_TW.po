@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-18 22:06+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "Language: zh_TW\n"
@@ -252,14 +252,14 @@ msgstr ""
 msgid "%s : Wrong value for argument #%d: %s\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type of input argument #%d: String or File descriptor expected.\n"
-msgstr "%s: 第 %d 輸入參數型態錯誤: 應為字串.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type of input argument #%d: a single string expected.\n"
-msgstr "%s: 第 %d 輸入參數型態錯誤: 應為字串.\n"
+msgstr ""
 
 #
 # File: modules/core/sci_gateway/cpp/sci_hash.cpp, line: 102
@@ -267,9 +267,9 @@ msgstr "%s: 第 %d 輸入參數型態錯誤: 應為字串.\n"
 msgid "%s: algorithm %ls is unknown.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
-msgstr "%s: 有錯的檔 version.xml %s.\n"
+msgstr ""
 
 #
 # File: modules/core/sci_gateway/cpp/sci_hash.cpp, line: 156

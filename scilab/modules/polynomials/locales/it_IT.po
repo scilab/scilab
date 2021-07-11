@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:14+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
@@ -292,16 +292,13 @@ msgstr ""
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: L'argomento in ingresso #%d deve essere reale.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Polynomial expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un "
-"polinomio.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: numbers or list of numbers expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
 
 #
 # File: modules/polynomials/macros/polyint.sci, line: 58
@@ -309,8 +306,6 @@ msgstr ""
 msgid "%s: Argument #%d(%d): Decimal or complex number expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d(%d): Array of size [%s] expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"di interi o di polinomi\n"

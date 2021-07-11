@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-12-13 07:26+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: TzuYuan Lin <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "Language: zh_TW\n"
@@ -264,9 +264,9 @@ msgstr "%s: 第 #%d 的輸入參數的資料型態錯誤: 應該是一個多項�
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: 第 %d 輸入參數應為實數.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Polynomial expected.\n"
-msgstr "%s: 第 #%d 的輸入參數的資料型態錯誤: 應該是一個多項式.\n"
+msgstr ""
 
 #
 # File: modules/polynomials/macros/polyint.sci, line: 48

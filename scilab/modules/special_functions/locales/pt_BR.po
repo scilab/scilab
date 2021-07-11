@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:05+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "Language: pt_BR\n"
@@ -88,27 +88,21 @@ msgid ""
 "  Check arguments or define function %s for overloading.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se números "
-"reais.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
-msgstr "%s: Valor incorreto para os argumentos de entrada: deve ser > %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se números "
-"reais.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: '%s' expected .\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se números "
-"reais.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -164,14 +158,12 @@ msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
 "real.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex, sparse or full "
 "matrix or hypermatrix expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
-"real.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: Valor incorreto para os argumentos de entrada: deve ser > %d.\n"
+msgstr ""

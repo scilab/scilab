@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-03-10 15:37+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -123,9 +123,9 @@ msgstr "%s() (%d строк)"
 msgid "%s library of %d functions @ %s"
 msgstr "%s библиотека из %d функций @ %s"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"

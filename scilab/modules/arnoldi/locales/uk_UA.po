@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-09 06:44+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
@@ -53,38 +53,28 @@ msgstr "%s: внутрішня помилка, info=%d.\n"
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
-"тип.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
 "square matrix expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати заповнену "
-"або розріджену квадратну матрицю або функцію."
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: %s має бути розміром 1 на "
-"1.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
-"тип.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: n має бути додатним цілим "
-"числом.\n"
 
 #, c-format
 msgid ""
@@ -93,14 +83,11 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: k має належати діапазону від "
 "1 до N.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
-"%s: Помилкове значення вхідного параметра №%d: нерозпізнане значення σ.\n"
-" σ повинне мати одне з таких значень: «%s», «%s», «%s», «%s», «%s» або "
-"«%s».\n"
 
 #, c-format
 msgid ""
@@ -129,37 +116,33 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d: σ має бути дійсним.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: σ має бути дійсним.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer positive "
 "value.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: n має бути додатним цілим "
-"числом.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: σ має бути дійсним.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: %s має бути цілим числом.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
 "boolean.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: %s має бути цілим числом.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: σ має бути дійсним.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
@@ -170,39 +153,31 @@ msgstr ""
 msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
 msgstr "%s: якщо opts.cholB дорівнює true, B має бути верхньою трикутною.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
-"або дійсний скалярний тип.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: початковий вектор opts."
-"resid повинен мати розмірність N на 1.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be real for real "
 "problems.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: початковий вектор opts.resid має "
-"бути дійсним у дійсних задачах.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
 "must be k < NCV <= N.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: у дійсних несиметричних "
-"задачах NCV має задовольняти нерівність k + 2 < NCV <= N.\n"
 
 #, c-format
 msgid ""
@@ -212,29 +187,23 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: у дійсних несиметричних "
 "задачах NCV має задовольняти нерівність k + 2 < NCV <= N.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
 "+ 1 < NCV <= N.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: у дійсних несиметричних "
-"задачах NCV має задовольняти нерівність k + 2 < NCV <= N.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be an integer in the range 1 to N - 1.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: у дійсних симетричних задачах "
-"k має належати діапазону від 1 до N - 1.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be an integer in the range 1 to N - 2.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: у дійсних несиметричних або "
-"комплексних задачах k має належати діапазону від 1 до N - 2.\n"
 
 #, c-format
 msgid ""
@@ -248,9 +217,9 @@ msgstr ""
 msgid "%s: Error with %s: info = %d \n"
 msgstr "%s: помилка у %s: інформація = %d \n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Error with %s: unknown mode returned.\n"
-msgstr "%s: помилка у %s: інформація = %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"

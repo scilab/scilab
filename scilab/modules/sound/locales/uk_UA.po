@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-19 08:56+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
@@ -151,13 +151,13 @@ msgstr "%s: помилкова кількість вихідних параме�
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: помилкова кількість вихідних параметрів.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Function expected.\n"
-msgstr "%s: параметр №%d: мало бути %s.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: A colormap function expected.\n"
-msgstr "%s: параметр %d: мало бути використано десяткове число.\n"
+msgstr ""
 
 #
 # File: modules/sound/macros/mapsound.sci, line: 126
@@ -308,9 +308,8 @@ msgstr "Помилка читання файла wav."
 msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr "%s: сталася помилка: формат стискання даних %s не підтримується.\n"
 
-#, fuzzy
 msgid "Cannot read .wav file  with more than 32 bits per sample."
-msgstr "Читання файла .wav у форматі 16 бітів на семпл неможливе."
+msgstr ""
 
 msgid "Sample limit vector must have 2 entries."
 msgstr "Вектор обмеження семпла має складатися з двох записів 2."

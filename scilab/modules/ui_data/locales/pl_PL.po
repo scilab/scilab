@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-01-14 19:58+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "Language: pl\n"
@@ -393,27 +393,24 @@ msgstr ""
 msgid "Path = "
 msgstr ""
 
-#, fuzzy
 msgid "Functions:"
-msgstr "Biblioteka funkcji"
+msgstr ""
 
 #
 # File: modules/ui_data/macros/uiSpreadsheet.sci, line: 56
 msgid "Import data"
 msgstr ""
 
-#, fuzzy
 msgid "Select a file"
-msgstr "Wybierz folder"
+msgstr ""
 
 #
 # File: modules/ui_data/macros/uiSpreadsheet.sci, line: 112
 msgid "File has a header"
 msgstr ""
 
-#, fuzzy
 msgid "Show all columns"
-msgstr "Usuń kolumny"
+msgstr ""
 
 #
 # File: modules/ui_data/macros/uiSpreadsheet.sci, line: 120
@@ -461,9 +458,8 @@ msgstr ""
 msgid "Decimal"
 msgstr ""
 
-#, fuzzy
 msgid "Point"
-msgstr "Pointer"
+msgstr ""
 
 #
 # File: modules/ui_data/macros/uiSpreadsheet.sci, line: 157
@@ -480,19 +476,16 @@ msgstr ""
 msgid "Keep as strings"
 msgstr ""
 
-#, fuzzy
 msgid "Import as variable"
-msgstr "Utwórz nową zmienną"
+msgstr ""
 
 #
 # File: modules/ui_data/macros/uiSpreadsheet.sci, line: 193
 msgid "Quit"
 msgstr ""
 
-#, fuzzy
 msgid "Copy function to clipboard"
-msgstr "Biblioteka funkcji"
+msgstr ""
 
-#, fuzzy
 msgid "Cancel preview"
-msgstr "Anuluj"
+msgstr ""

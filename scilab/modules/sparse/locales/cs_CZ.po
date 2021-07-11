@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:05+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
@@ -126,11 +126,10 @@ msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván se prázdná matice.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be less than %d.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáván sloupcový vektor.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
@@ -188,10 +187,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be less than %d.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', nebo '%s'.\n"
 
 #, c-format
 msgid ""

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-24 18:52+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
@@ -850,9 +850,9 @@ msgstr "%s deve essere un vettore di tipo stringa.\n"
 msgid "Unknown property: %s.\n"
 msgstr "La proprietà %s non è conosciuta.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Read-only property: %s.\n"
-msgstr "La proprietà %s non è conosciuta.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
@@ -1891,35 +1891,25 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle or vector of decimal numbers expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un gestore o "
-"un vettore di double.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: Valori non negativi "
-"attesi.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: incomplete {'name', value} pair.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
-"almeno %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: 'x' or 'y' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: Valori non negativi "
-"attesi.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: one word among {%s} expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: Valori non negativi "
-"attesi.\n"
 
 #
 # File: modules/graphics/macros/cutaxes.sci, line: 91
@@ -2293,17 +2283,13 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong type of graphic handle: '%s' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: Valori non negativi "
-"attesi.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: era atteso lo "
-"stesso numero di righe.\n"
 
 #
 # File: modules/graphics/macros/scatter3d.sci, line: 176
@@ -2313,71 +2299,49 @@ msgid ""
 "%s: Argument #%d: Wrong value. Please check allowed syntaxes and values.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere nel "
-"l'intervallo %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number(s) or text expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: Valori non negativi "
-"attesi.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong size: one or %d colors expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: Valori non negativi "
-"attesi.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number or text expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: Valori non negativi "
-"attesi.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong marker id.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: Valori non negativi "
-"attesi.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: keyword or property name expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: Valori non negativi "
-"attesi.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Unknown property name '%s'.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere nel "
-"l'intervallo %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Value missing for the given property.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere nel "
-"l'intervallo %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong marker specification.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: Valori non negativi "
-"attesi.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Non-negative integers expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: Valori non negativi "
-"attesi.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in %s expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: Valori non negativi "
-"attesi.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"

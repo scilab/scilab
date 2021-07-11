@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-01-26 04:09+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
@@ -64,11 +64,9 @@ msgstr "%s: Duplicitní uzly, nebo jsou všechny uzly kolineární (ier = %d).\n
 msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupních argumentů #%d a #%d: Očekávány stejné "
-"velikosti.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
@@ -283,13 +281,13 @@ msgstr "%s: Problém s 'flag' = %d\n"
 msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Musí být mezi %d a %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real numbers expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekávány dvě řady.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Vector expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor.\n"
+msgstr ""
 
 #
 # File: modules/interpolation/macros/interp1.sci, line: 53
@@ -297,41 +295,33 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor.\n"
 msgid "%s: Argument #%d: Nan value forbidden.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: At least 2 elements expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole reálných čísel.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: vector or at least 2 rows expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor nebo matice.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal or complex numbers expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor nebo matice.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupních argumentů #%d a #%d: Očekávány stejné "
-"velikosti.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupních argumentů #%d a #%d: Očekávány stejné "
-"velikosti.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor nebo matice.\n"
 
 #
 # File: modules/interpolation/macros/interp1.sci, line: 138

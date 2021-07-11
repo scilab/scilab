@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-26 15:59+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -48,33 +48,28 @@ msgstr "%s: внутренняя ошибка, info=%d.\n"
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
 "square matrix expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась полная или разрежённая "
-"квадратная матрица, либо функция"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
 msgstr ""
-"%s: Неверный размер входного аргумента №%d: %s должен быть размером 1 на 1.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: n должно быть положительным целым "
-"числом.\n"
 
 #, c-format
 msgid ""
@@ -83,14 +78,11 @@ msgstr ""
 "%s: Неверное значение входного аргумента №%d: k должна быть в диапазоне от 1 "
 "до N.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
-"%s: Неверное значение входного аргумента №%d: Нераспознанное значение "
-"сигма.\n"
-" Значение сигма должно быть одним из '%s', '%s', '%s', '%s', '%s' или '%s'.\n"
 
 #, c-format
 msgid ""
@@ -120,42 +112,33 @@ msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: сигма должна быть вещественной.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: сигма должна быть вещественной.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer positive "
 "value.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: n должно быть положительным целым "
-"числом.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: сигма должна быть вещественной.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
-"%s: Неверный размер входного аргумента №%d: %s должно быть целочисленным "
-"скаляром.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
 "boolean.\n"
 msgstr ""
-"%s: Неверный размер входного аргумента №%d: %s должно быть целочисленным "
-"скаляром.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: сигма должна быть вещественной.\n"
 
 #, c-format
 msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
@@ -167,39 +150,31 @@ msgstr ""
 msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
 msgstr "%s: Если opts.cholB - ИСТИНА, то B должна быть верхней треугольной.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидался вещественный скаляр или "
-"строка.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
 msgstr ""
-"%s: Неверные размеры входного аргумента №%d: начальный вектор opts.resid "
-"должен быть N на 1.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be real for real "
 "problems.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: начальный вектор opts.resid должен "
-"быть вещественным для вещественных задач.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
 "must be k < NCV <= N.\n"
 msgstr ""
-"%s: Неверное значение входного аргумента №%d: Для вещественных "
-"несимметричных задач NCV должно быть k + 2 < NCV <= N.\n"
 
 #, c-format
 msgid ""
@@ -209,30 +184,23 @@ msgstr ""
 "%s: Неверное значение входного аргумента №%d: Для вещественных "
 "несимметричных задач NCV должно быть k + 2 < NCV <= N.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
 "+ 1 < NCV <= N.\n"
 msgstr ""
-"%s: Неверное значение входного аргумента №%d: Для вещественных "
-"несимметричных задач NCV должно быть k + 2 < NCV <= N.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be an integer in the range 1 to N - 1.\n"
 msgstr ""
-"%s: Неверное значение входного аргумента №%d: Для вещественных симметричных "
-"задач k должно быть в диапазоне от 1 до N - 1.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be an integer in the range 1 to N - 2.\n"
 msgstr ""
-"%s: Неверное значение входного аргумента №%d: для вещественных "
-"несимметричных или комплексных задач k должна быть в диапазоне от 1 до N - "
-"2.\n"
 
 #, c-format
 msgid ""
@@ -246,9 +214,9 @@ msgstr ""
 msgid "%s: Error with %s: info = %d \n"
 msgstr "%s: Ошибка в %s: info = %d \n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Error with %s: unknown mode returned.\n"
-msgstr "%s: Ошибка в %s: info = %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"

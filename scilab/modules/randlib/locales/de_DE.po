@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-17 15:21+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Stephan Woidowski <swoidowski@t-online.de>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
@@ -158,7 +158,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Sum of P(%d,1:%d)=%lf ~= 1.\n"
-msgstr "%s: Summe von P(%d, 1:%d)=%If ~= 1.\n"
+msgstr "%s: Summe von P(%d, 1:%d)=%lf ~= 1.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"

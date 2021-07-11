@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:17+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "Language: pl\n"
@@ -545,47 +545,35 @@ msgstr ""
 "%s: Niezgodne argumenty wejściowe nr %d oraz nr %d: Oczekiwany taki sam "
 "rozmiar.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-"%s: Nieprawidłowe wartości argumentu wejściowego nr %d: oczekiwano "
-"nieujemnych wartości całkowitych.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a scalar with integer value "
 "expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego nr %d: Oczekiwano tablicy części "
-"rzeczywistych.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be odd.\n"
 msgstr ""
-"%s: Nieprawidłowe wartości argumentu wejściowego nr %d: Elementy muszą być "
-"dodatnie.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego nr %d: Oczekiwano tablicy części "
-"rzeczywistych.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d\n"
 msgstr ""
-"%s: Niezgodne argumenty wejściowe nr %d oraz nr %d: Oczekiwany taki sam "
-"rozmiar.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego nr %d: Oczekiwano wysokiej macierzy.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for argument %d: At most %d expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego nr %d: Oczekiwano wysokiej macierzy.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -609,32 +597,25 @@ msgstr ""
 msgid "Press return to display 2D examples"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano "
-"wielomiany.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
-"%s: Nieprawidłowe wartości argumentu wejściowego nr %d: Stopień musi być w "
-"zestawie {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego nr %d: Oczekiwano wysokiej macierzy.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego nr %d: Oczekiwano wysokiej macierzy.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego nr %d: Oczekiwano wysokiej macierzy.\n"
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"

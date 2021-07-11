@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:02+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
@@ -17,22 +17,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): %d expected."
 msgstr ""
-"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un numero "
-"reale.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong dimensions for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
-"numero reale.\n"
 
 #, c-format
 msgid "%s: Answer appears to be lower than lowest search bound %g\n"
@@ -74,11 +69,9 @@ msgstr ""
 "%s: Attenzione: usare valori non interi per l'argomento #%d può portare a "
 "risultati errati.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare "
-"o un vettore.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
@@ -223,16 +216,13 @@ msgstr ""
 msgid "%s: Argument #%d: %s\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Text expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Data in argument #%d: Numbers or polynomials or texts expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: ne era atteso uno "
-"numerico.\n"
 
 #
 # File: modules/statistics/macros/histc.sci, line: 162
@@ -254,34 +244,25 @@ msgid ""
 "default bins.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: non-zero decimal integer expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: decimal number > -Inf expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un numero "
-"reale compreso tra %d e %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same types expected.\n"
 msgstr ""
-"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: erano attese le "
-"stesse dimensioni."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Elements must be sorted in increasing order.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha dei valori sbagliati: gli elementi devono "
-"essere in ordine crescente.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Elements must be in increasing order.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha dei valori sbagliati: gli elementi devono "
-"essere in ordine crescente.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"

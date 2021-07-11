@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-07 22:12+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
@@ -314,32 +314,31 @@ msgid ""
 msgstr ""
 "%s: Špatné hodnoty vstupního argumentu #%d: Očekávána nezáporná celá čísla.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s : Wrong number of input arguments : %d to %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A full or sparse square matrix or a "
 "function expected"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A positive integer expected if the "
 "first input argument is a function."
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno nezáporné celé číslo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A structure expected"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument: If A is a matrix, use opts with tol, "
 "maxiter, ncv, resid, cholB"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
+msgstr ""
 
 #
 # File: modules/linear_algebra/macros/eigs.sci, line: 163
@@ -349,57 +348,52 @@ msgid ""
 "maxiter, ncv, resid, cholB, issym"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
 "square matrix expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný skalár.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be an integer in the range 1 to N - 1.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be an integer in the range 1 to N - 2.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno nezáporné celé číslo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Musí být %d, %d, %s, '%s' nebo "
-"'%s'.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Musí být %d, %d, %s, '%s' nebo "
-"'%s'.\n"
 
 #
 # File: modules/linear_algebra/macros/eigs.sci, line: 291
@@ -415,96 +409,88 @@ msgstr ""
 msgid "%s: Invalid sigma value for real symmetric problem.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván skalár, nebo řetězec.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný skalár.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer positive "
 "value.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný skalár.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
 "must be k < NCV <= N.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
 "must be k + 2 < NCV < N.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
 "+ 1 < NCV <= N.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Musí být %d, %d, %s, '%s' nebo "
-"'%s'.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: nesmí obsahovat %s nebo %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
 "boolean.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný skalár.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván sloupcový vektor.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be real for real "
 "problems.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván skalár, nebo řetězec.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be complex for "
 "complex problems.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván skalár, nebo řetězec.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: if opts.cholB is true, B must be "
 "upper triangular.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván skalár, nebo řetězec.\n"
 
 #
 # File: modules/linear_algebra/macros/eigs.sci, line: 435
@@ -543,82 +529,74 @@ msgstr ""
 msgid "%s: Error with %s: unknown mode returned.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be in the range 1 to N - 1.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be in the range 1 to N - 2.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: a scalar expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný skalár.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of %s, %s, %s, %s or %s.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Musí být %d, %d, %s, '%s' nebo "
-"'%s'.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of %s, %s, %s, %s, %s or %s.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Musí být %d, %d, %s, '%s' nebo "
-"'%s'.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector opts.resid must be "
 "N by 1.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván sloupcový vektor.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be real "
 "for real problems.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván skalár, nebo řetězec.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be "
 "complex for complex problems.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván skalár, nebo řetězec.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: n does not match rows number of "
 "matrix A.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: nesmí obsahovat %s nebo %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type or value for input arguments.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"

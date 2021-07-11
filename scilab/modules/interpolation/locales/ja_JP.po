@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:14+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
@@ -78,11 +78,9 @@ msgstr ""
 "%s: 出力引数の数が間違っています: %d, %d または %d 個の引数を指定してくださ"
 "い.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
-"%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさで指定してく"
-"ださい.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
@@ -329,14 +327,13 @@ msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d と %d の間とする必要があります..\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Real numbers expected.\n"
-msgstr "%s: 入力引数#%d の数が間違っています : 2つの行を指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Vector expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
 #
 # File: modules/interpolation/macros/interp1.sci, line: 53
@@ -344,43 +341,33 @@ msgstr ""
 msgid "%s: Argument #%d: Nan value forbidden.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: At least 2 elements expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:  大きさ2以上で指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: vector or at least 2 rows expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 2以上の大きさのベクトルを指定して"
-"ください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal or complex numbers expected.\n"
 msgstr ""
-"%s: 入力引数 #%d　の大きさが間違っています: ベクトルまたは行列を指定してくだ"
-"さい.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさで指定してく"
-"ださい.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
 msgstr ""
-"%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさで指定してく"
-"ださい.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
+msgstr ""
 
 #
 # File: modules/interpolation/macros/interp1.sci, line: 138

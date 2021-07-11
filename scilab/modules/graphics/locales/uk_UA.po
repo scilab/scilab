@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-24 18:56+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
@@ -581,13 +581,11 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід було вказувати невід’ємне "
 "ціле число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s is obsolete. It will be removed from Scilab %s.\n"
 "Please use %s instead.\n"
 msgstr ""
-"Властивість «%s» є застарілою, її буде вилучено. Замість неї використовуйте "
-"«%s».\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -915,9 +913,9 @@ msgstr "%s має бути вектором рядків.\n"
 msgid "Unknown property: %s.\n"
 msgstr "Невідома властивість: %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Read-only property: %s.\n"
-msgstr "Невідома властивість: %s.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
@@ -2117,30 +2115,29 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути вказано матрицю з "
 "дійсними елементами.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle or vector of decimal numbers expected.\n"
-msgstr "%s: параметр %d: мало бути використано десяткове число.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Axes handle expected.\n"
-msgstr "%s: параметр %d: мало бути використано дійсне значення.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: incomplete {'name', value} pair.\n"
 msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути вказано принаймні %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: 'x' or 'y' expected.\n"
-msgstr "%s: параметр %d: мало бути «on» або «off».\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: one word among {%s} expected.\n"
-msgstr "%s: параметр %d: мало бути «on» або «off».\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: widths vector: %d components expected.\n"
-msgstr "%s: параметр %d: мало бути вказано принаймні %d компонентів.\n"
+msgstr ""
 
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: знайдено порожнє ієрархічне меню."
@@ -2291,9 +2288,8 @@ msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: очікувалося дійсне число.\n"
 
-#, fuzzy
 msgid "Current colormap"
-msgstr "Карта кольорів"
+msgstr ""
 
 #
 # File: modules/graphics/macros/getcolor.sci, line: 72
@@ -2570,70 +2566,62 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано елемент "
 "керування «%s».\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong type of graphic handle: '%s' expected.\n"
 msgstr ""
-"%s: параметр %d: мало бути використано елемент керування графікою типу "
-"«%s».\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s: несумісні вхідні параметри №%d і №%d: кількість рядків має бути "
-"однаковою.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Argument #%d: Wrong value. Please check allowed syntaxes and values.\n"
 msgstr ""
-"%s: параметр №%d: помилковий тип. Будь ласка, ознайомтеся із доступними "
-"синтаксичними конструкціями.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: значення має перебувати у "
-"інтервалі %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number(s) or text expected.\n"
-msgstr "%s: параметр %d: мало бути вказано числа або текст.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong size: one or %d colors expected.\n"
-msgstr "%s: параметр №%d: мало бути вказано матрицю із 4 або 6 стовпчиками.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number or text expected.\n"
-msgstr "%s: параметр %d: мало бути вказано числа або текст.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong marker id.\n"
-msgstr "%s: параметр %d: помилкова специфікація кольору.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: keyword or property name expected.\n"
-msgstr "%s: параметр %d: мало бути вказано числа або текст.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Unknown property name '%s'.\n"
-msgstr "%s: параметр %d: мало бути «on» або «off».\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Value missing for the given property.\n"
-msgstr "%s: параметр %d: мало бути вказано числа або текст.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Wrong marker specification.\n"
-msgstr "%s: параметр %d: помилкова специфікація кольору.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Non-negative integers expected.\n"
-msgstr "%s: параметр %d: мало бути використано невідʼємні значення.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Integers in %s expected.\n"
-msgstr "%s: параметр %d: мало бути використано символи з {a.#1}.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"

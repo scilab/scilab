@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:13+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
@@ -273,13 +273,13 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván polynom.\n"
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: Vstupní argument #%d musí být reálné číslo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Polynomial expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván polynom.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: numbers or list of numbers expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+msgstr ""
 
 #
 # File: modules/polynomials/macros/polyint.sci, line: 58
@@ -287,7 +287,6 @@ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 msgid "%s: Argument #%d(%d): Decimal or complex number expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d(%d): Array of size [%s] expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu #%d: Očekáváno pole celých čísel nebo polynom.\n"

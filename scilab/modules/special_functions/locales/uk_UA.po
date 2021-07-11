@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-02-19 07:17+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
@@ -102,23 +102,21 @@ msgstr ""
 "%s: функцію для вказаного типу параметра не визначено.\n"
 "  Змініть тип параметра або перевантажте функцію %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
-msgstr "%s: параметр %d: мало бути використано десяткове число.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d. Значення має належати набору "
-"{%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
-msgstr "%s: параметр %d: мало бути використано текст.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: '%s' expected .\n"
-msgstr "%s: параметр %d: мало бути використано текст.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -183,17 +181,15 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
 "значень.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex, sparse or full "
 "matrix or hypermatrix expected.\n"
 msgstr ""
-"%s: помилковий тип параметра №%d: слід використовувати матрицю з дійсних або "
-"комплексних значень.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: помилкове значення вхідних параметрів: значення мають бути > %d.\n"
+msgstr ""
 
 #, c-format
 #~ msgid "%s: Argument #%d: Decimal number(s) expected.\n"

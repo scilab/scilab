@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:12+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
@@ -538,37 +538,35 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekávány stejné velikosti.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno kladné celé číslo.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a scalar with integer value "
 "expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno kladné číslo.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be odd.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být liché.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr "%s: Špatný typ argumentu #%d: Očekáván reálný vektor.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d\n"
 msgstr ""
-"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekávány stejné velikosti.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
-msgstr "%s: Špatná velikost argumentu #%d: Očekáván vektor.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for argument %d: At most %d expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno %s nebo %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -590,26 +588,25 @@ msgstr ""
 msgid "Press return to display 2D examples"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-msgstr "%s: Špatný typ argumentu #%d: Očekáván reálný vektor.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
-"%s: Špatné hodnoty vstupního argumentu #%d: stupeň musí být v sadě {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno kladné číslo.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být liché.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být liché.\n"
+msgstr ""
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"

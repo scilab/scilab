@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:12+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "Language: zh_TW\n"
@@ -511,35 +511,35 @@ msgstr "%s:  輸入參數 #%d and #%d 不相容: 參數 #%d  比#%d 小才對.\n
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s: 第 %d 及 第 %d 輸入參數不相容 : 應為相同大小.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為非負整數.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a scalar with integer value "
 "expected.\n"
-msgstr "%s: 第 %d 輸入參數型別有誤: 有理數的分式陣列才對.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be odd.\n"
-msgstr "%s:第 %d 輸入參數值有誤: 元素必須是正值.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr "%s: 第 %d 輸入參數型別有誤: 有理數的分式陣列才對.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d\n"
-msgstr "%s: 第 %d 及 第 %d 輸入參數不相容 : 應為相同大小.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
-msgstr "%s: 第 %d 輸入參數長度錯誤 :  tall 矩陣才對.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for argument %d: At most %d expected.\n"
-msgstr "%s: 第 %d 輸入參數長度錯誤 :  tall 矩陣才對.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -559,25 +559,25 @@ msgstr "%s: 輸入參數大小錯誤 #%d:  %d 元素的陣列才對.\n"
 msgid "Press return to display 2D examples"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-msgstr "%s: 第 %d 輸入參數長度錯誤: 應為一多項式.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
-msgstr "%s: 第#%d個輸入參數值有誤 :度數要在集合{%s}中.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 第 %d 輸入參數長度錯誤 :  tall 矩陣才對.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
-msgstr "%s: 第 %d 輸入參數長度錯誤 :  tall 矩陣才對.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
-msgstr "%s: 第 %d 輸入參數長度錯誤 :  tall 矩陣才對.\n"
+msgstr ""
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"

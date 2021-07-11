@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-09-05 07:37+0000\n"
+"PO-Revision-Date: 2021-07-11 01:00+0000\n"
 "Last-Translator: GuoZhiqiang <763199198@qq.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
@@ -514,35 +514,35 @@ msgstr "%s：输入参数#%d和#%d不兼容：参数#%d应该小于参数#%d。\
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s：输入参数#%d和#%d不兼容：应该为同样大小。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr "%s：第%d个输入参数的值错误：应该是正整数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a scalar with integer value "
 "expected.\n"
-msgstr "%s：第%d个输入参数的值错误：应该为正整数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be odd.\n"
-msgstr "%s：第%d个输入参数的值错误：必须是奇数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr "%s：第%d个参数类型错误：应该为实数向量。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d\n"
-msgstr "%s：输入参数#%d和#%d不兼容：应该为同样大小。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
-msgstr "%s：第%d个输入参数大小错误：应该是向量。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for argument %d: At most %d expected.\n"
-msgstr "%s：第%d个输入参数的值错误：应该为 %s 或 %s 。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -562,25 +562,25 @@ msgstr "%s：第%d个输入参数大小错误：应该为一个有%d个元素的
 msgid "Press return to display 2D examples"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-msgstr "%s：第%d个输入参数类型错误：应该为标量。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
-msgstr "%s：输入参数#%d的值错误：度数必须在集合{%s}中。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s：第%d个输入参数类型错误：应该为矩阵。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
-msgstr "%s：第%d个输入参数的值错误：必须是奇数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
-msgstr "%s：第%d个输入参数的值错误：必须是奇数。\n"
+msgstr ""
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"
