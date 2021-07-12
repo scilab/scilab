@@ -44,18 +44,29 @@ char *get_full_path(const char *_Path)
     return _FullPath;
 #else // POSIX
     char* expanded = expandPathVariable(_Path);
-    std::filesystem::path relPath = std::filesystem::path(expanded);
+    std::filesystem::path p = std::filesystem::path(expanded);
     FREE(expanded);
-
-    std::filesystem::path canonPath = std::filesystem::weakly_canonical(relPath);
-    auto relPathIt = relPath.end();
-    auto canonPathIt = canonPath.end();
-    if ((--relPathIt)->string().empty() && !(--canonPathIt)->string().empty())
+    if (p.empty())
     {
-        canonPath /= "";
+        p = std::filesystem::current_path();
+    }
+    else
+    {
+        if (p.is_relative())
+        {
+            p = std::filesystem::absolute(p);
+        }
+        p = std::filesystem::weakly_canonical(p);
     }
 
-    return os_strdup(std::filesystem::absolute(canonPath).string().c_str());
+    // preserve trailing slash
+    size_t len = strlen(_Path);
+    if (len > 0 && _Path[len - 1] == std::filesystem::path::preferred_separator)
+    {
+        p /= "";
+    }
+
+    return os_strdup(p.string().c_str());
 #endif // _MSC_VER
 }
 
@@ -64,36 +75,28 @@ wchar_t *get_full_pathW(const wchar_t * _wcPath)
 {
 #ifdef _MSC_VER
     wchar_t* pwstExpand = expandPathVariableW(_wcPath);
-    std::wstring s(pwstExpand);
-
-    size_t pos = s.find_last_of(L"/\\");
-
-    //remove "file" part
-    bool bAppend = false;
-    if (pos != std::wstring::npos && s.substr(pos + 1) != L"..")
-    {
-        s = s.substr(0, pos);
-        bAppend = true;
-    }
-
-    std::filesystem::path relPath = std::filesystem::path(s);
-    std::filesystem::path canonPath = std::filesystem::weakly_canonical(relPath);
-    auto relPathIt = relPath.end();
-    auto canonPathIt = canonPath.end();
-    if ((--relPathIt)->wstring().empty() && !(--canonPathIt)->wstring().empty())
-    {
-        canonPath /= "";
-    }
-
-    std::filesystem::path p = std::filesystem::absolute(canonPath);
-
-    //add "file" part
-    if (bAppend)
-    {
-        p /= (pwstExpand + pos + 1);
-    }
-
+    std::filesystem::path p = std::filesystem::path(pwstExpand);
     FREE(pwstExpand);
+    if (p.empty())
+    {
+        p = std::filesystem::current_path();
+    }
+    else
+    {
+        if (p.is_relative())
+        {
+            p = std::filesystem::absolute(p);
+        }
+        p = std::filesystem::weakly_canonical(p);
+    }
+
+    // preserve trailing slash
+    size_t len = wcslen(_wcPath);
+    if (len > 0 && _wcPath[len - 1] == std::filesystem::path::preferred_separator)
+    {
+        p /= "";
+    }
+
     return os_wcsdup(p.wstring().c_str());
 #else // POSIX
     char *_FullPath = NULL;
