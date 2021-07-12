@@ -216,8 +216,8 @@ Feature changes and additions on 6.1.1
   - bitnum can be an array. It is now optional as well for input decimal integers.
 * The `Arnoldi` module is now internal.
 * `sgolay` and the companion `sgolayfilter` and `sgolaydiff` functions have been added to implement Savitsky-Golay filters.
-* `clock` now returns the milliseconds, the time zone, and the daylight saving time.
-* `mapsound` upgraded to have a colormap argument
+* `clock` now returns the time zone and the daylight saving time.
+* `mapsound` is rewritten and handle parameters in a different way.
 * `mprintf`, `msprintf` and `mfprintf` can now print input booleans, as `0`|`1` or as `T`|`F`.
 * `setdiff` now supports input booleans and sparse matrices (boolean or numeric).
 * `intersect` is extended to any sparse boolean or numeric arrays, in all simple, 'c' or 'r' modes.
@@ -241,17 +241,10 @@ Feature changes and additions on 6.1.1
 * polynomials can now use a greek letter as variable.
 * `int2d` can now compute direcly a double integral over a rectangle.
 * `int3d` can now compute direcly a triple integral over a cuboid.
-* `cutaxes`function added.
-
-
-Help pages:
------------
-
-* overhauled / rewritten: `bitget`, `edit`, `factorial`, `fft`, `vectorfind`, `datafit`, `mgeti`
-* fixed / improved:  `bench_run` `M_SWITCH`, `comet`, `comet3d`, `plot2d`
-* Rewritten: `getdate`, `weekday`
-* Translations added:
-  - (ru): `weekday`
+* `cutaxes` function added.
+* Integers can be concatenated with real or complex numbers (dense encoding only).
+* `complex` is extended to sparse arrays.
+* `m2sci` Matlab-to-Scilab code converter upgraded for better code conversion.
 
 
 User Interface improvements
@@ -270,6 +263,7 @@ User Interface improvements
   - The page left at exit is restored at the next startup.
   - On Preferences option, querying some Matlab terms can now redirect and display the documentation of the Scilab equivalent feature.
 * `x_matrix` can now edit matrices of booleans, integers, or text. Matrices of real or complex numbers are better displayed.
+* `importgui` is renamed `uiSpreadsheet`.
 
 
 Xcos

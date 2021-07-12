@@ -268,7 +268,6 @@ For changelogs of earlier releases, please see <a href="https://help.scilab.org/
 <li><code>circshift</code> is introduced.</li>
 <li><code>atomsGetInstalledPath</code> is no longer sensitive to the case or completeness of the names of the modules. Providing the version of the modules is now optional.</li>
 <li><code>function</code> replaces <code>mc</code> as the new overloading code for functions in Scilab language.</li>
-<li><code>mgeti</code> can now read correctly 64-bit int64 / uint64 integers bigger than 2^52.</li>
 </ul>
 <h2>Feature changes and additions on 6.1.1</h2>
 <ul>
@@ -299,8 +298,8 @@ For changelogs of earlier releases, please see <a href="https://help.scilab.org/
 </li>
 <li>The <code>Arnoldi</code> module is now internal.</li>
 <li><code>sgolay</code> and the companion <code>sgolayfilter</code> and <code>sgolaydiff</code> functions have been added to implement Savitsky-Golay filters.</li>
-<li><code>clock</code> now returns the milliseconds, the time zone, and the daylight saving time.</li>
-<li><code>mapsound</code> upgraded to have a colormap argument</li>
+<li><code>clock</code> now returns the time zone and the daylight saving time.</li>
+<li><code>mapsound</code> is rewritten and handle parameters in a different way.</li>
 <li><code>mprintf</code>, <code>msprintf</code> and <code>mfprintf</code> can now print input booleans, as <code>0</code>|<code>1</code> or as <code>T</code>|<code>F</code>.</li>
 <li><code>setdiff</code> now supports input booleans and sparse matrices (boolean or numeric).</li>
 <li><code>intersect</code> is extended to any sparse boolean or numeric arrays, in all simple, 'c' or 'r' modes.</li>
@@ -315,9 +314,10 @@ For changelogs of earlier releases, please see <a href="https://help.scilab.org/
 <li>The created function may be returned as an output argument.</li>
 <li>Providing the function headline and body concatenated in a single input text vector is possible.</li>
 <li>For a simple function, a single string input definition can be provided.</li>
-<li>For assignable calls to <code>deff</code>, the <code>@</code> symbol can be used as a function pseudo-name.</li>
+<li>For assignable calls to <code>deff</code>, the <code>@</code> symbol can be used as function pseudo-name.</li>
 </ul>
 </li>
+<li><code>mgeti</code> can now read correctly 64-bit int64 / uint64 integers bigger than 2^52.</li>
 <li><code>mopen</code> and <code>mclose</code> now handle multiple files and file descriptors.</li>
 <li><code>hash</code> function with SHA-1, SHA-2 and SHA-3 Secure Hash Algorithms has been added.</li>
 <li><code>loglog</code>, <code>semilogx</code>, <code>semilogy</code> Matlab-compatible functions added.</li>
@@ -326,17 +326,10 @@ For changelogs of earlier releases, please see <a href="https://help.scilab.org/
 <li>polynomials can now use a greek letter as variable.</li>
 <li><code>int2d</code> can now compute direcly a double integral over a rectangle.</li>
 <li><code>int3d</code> can now compute direcly a triple integral over a cuboid.</li>
-</ul>
-<h2>Help pages:</h2>
-<ul>
-<li>overhauled / rewritten: <code>bitget</code>, <code>edit</code>, <code>factorial</code>, <code>fft</code>, <code>vectorfind</code>, <code>datafit</code>, <code>mgeti</code></li>
-<li>fixed / improved:  <code>bench_run</code> <code>M_SWITCH</code>, <code>comet</code>, <code>comet3d</code>, <code>plot2d</code></li>
-<li>Rewritten: <code>getdate</code>, <code>weekday</code></li>
-<li>Translations added:
-<ul>
-<li>(ru): <code>weekday</code></li>
-</ul>
-</li>
+<li><code>cutaxes</code> function added.</li>
+<li>Integers can be concatenated with real or complex numbers (dense encoding only).</li>
+<li><code>complex</code> is extended to sparse arrays.</li>
+<li><code>m2sci</code> Matlab-to-Scilab code converter upgraded for better code conversion.</li>
 </ul>
 <h2>User Interface improvements</h2>
 <ul>
@@ -356,6 +349,7 @@ For changelogs of earlier releases, please see <a href="https://help.scilab.org/
 </ul>
 </li>
 <li><code>x_matrix</code> can now edit matrices of booleans, integers, or text. Matrices of real or complex numbers are better displayed.</li>
+<li><code>importgui</code> is renamed <code>uiSpreadsheet</code>.</li>
 </ul>
 <h2>Xcos</h2>
 <ul>
@@ -390,6 +384,7 @@ For changelogs of earlier releases, please see <a href="https://help.scilab.org/
 <li><code>saveafterncommands</code> is canceled. It will be removed from Scilab 6.1.x</li>
 <li><code>xname</code> is obsolete. It will be removed from Scilab 6.2.x. Please use <code>gcf().figure_name</code> instead.</li>
 <li><code>soundsec</code> is obsolete. It will be removed from Scilab 6.2.x. Please use <code>0 : 1/freq : t*(1-%eps)</code> instead.</li>
+<li><code>fplot2d</code> is obsolete. It will be removed from Scilab 6.2.x. Please use <code>plot(x, f)</code> instead.</li>
 </ul>
 <h2>Removed Functions</h2>
 <ul>
@@ -516,6 +511,7 @@ For changelogs of earlier releases, please see <a href="https://help.scilab.org/
 <li><a href="https://bugzilla.scilab.org/16525">#16525</a>: <code>soundsec(t,freq)</code> has the trivial equivalence <code>0 : 1/freq : t*(1-%eps)</code> and should be removed.</li>
 <li><a href="https://bugzilla.scilab.org/16529">#16529</a>: <code>deff</code> could not return the created function as output argument, preventing to create and use anonymous functions. The function's headline and body had to be provided separately. For Simple functions, a one-string input (possibly console-oriented) definition was not supported.</li>
 <li><a href="https://bugzilla.scilab.org/16530">#16530</a>: <code>mapsound</code> needed to be reforged.</li>
+<li><a href="https://bugzilla.scilab.org/16539">#16539</a>: <code>fplot2d</code> is weaker than <code>plot</code> and useless. It should be removed.</li>
 <li><a href="https://bugzilla.scilab.org/16540">#16540</a>: Uicontrol spinner did not &quot;snaptoticks&quot;</li>
 <li><a href="https://bugzilla.scilab.org/16549">#16549</a>: Simple script crashed Scilab in GUI mode.</li>
 <li><a href="https://bugzilla.scilab.org/16551">#16551</a>: <code>num2cell</code> returned {} for any input array of empty strings.</li>

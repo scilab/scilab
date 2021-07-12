@@ -36,18 +36,13 @@
         <p class="para">
             Here is a tour of the changes between Scilab 6.1.0 &amp; 6.1.1.
         </p>
-        <h2 class="title">Main new features</h2>
         <p class="para">
-            In summary, the main new features are:
+            To have a tour with the help browser, enter <code>--> help 6.1.1</code>
+            in the console, and browse related pages.
         </p>
-        <ul>
-            <li>The default Java Heap is increased to 512MB</li>
-            <li><code>http_get</code> can be used as an alternative download method for ATOMS</li>
-            <li>Atoms functions can either display or output values</li>
-            <li>Help browser allows to navigate to the web help, bugzilla and wiki</li>
-        </ul>
         <h2 class="title">Feature changes and additions</h2>
         <ul>
+            <li>The default Java Heap is increased from 256 to 512 MB. Heavier graphics can be rendered.</li>
             <li>Axes labels and title default font size had been increased for better default rendering.</li>
             <li><code>gsort</code> is upgraded:
                 <ul>
@@ -57,7 +52,8 @@
                     <li>Any hypermatrix can be sorted along a dimension &gt; 2.</li>
                 </ul>
             </li>
-            <li><code>unique</code> is enabled for any 2D sparse arrays, in simple, 'c' and 'r' modes.</li>
+            <li><code>unique</code> is enabled for any 2D sparse arrays, in simple, 'c' and 'r' modes.
+                Its 3rd output <code>ku</code> is now implemented.</li>
             <li><code>%chars</code> constant added, to easily access to some selected sets of Unicode symbols.</li>
             <li>Lists are displayed more compactly and comprehensively.</li>
             <li><code>interp1</code> is upgraded:
@@ -82,8 +78,8 @@
             <li>The <code>Arnoldi</code> module is now internal.</li>
             <li><code>sgolay</code> and the companion <code>sgolayfilter</code> and <code>sgolaydiff</code> functions
                 have been added to implement Savitsky-Golay filters.</li>
-            <li><code>clock</code> now returns the milliseconds, the time zone, and the daylight saving time.</li>
-            <li><code>mapsound</code> upgraded to have a colormap argument</li>
+            <li><code>clock</code> now returns the time zone and the daylight saving time.</li>
+            <li><code>mapsound</code> is completely reforged.</li>
             <li><code>mprintf</code>, <code>msprintf</code> and <code>mfprintf</code> can now print input booleans, as
                 <code>0</code>|<code>1</code> or as <code>T</code>|<code>F</code>.</li>
             <li><code>setdiff</code> now supports input booleans and sparse matrices (boolean or numeric).</li>
@@ -92,7 +88,7 @@
             <li><code>union</code> supports boolean, sparse boolean, and sparse numerical matrices.</li>
             <li><code>kron</code> and <code>.*.</code> are extended to boolean arrays.</li>
             <li><code>gamma</code> is extended to incomplete gamma integrals.</li>
-            <li><code>close</code> is extended to close the help browser, xcos, the variables browser, or editor GUIs.
+            <li><code>close</code> is extended to close the help browser, xcos, the variable browser or editor GUIs.
             </li>
             <li><code>polyint</code> is introduced to compute polynomial antiderivatives.</li>
             <li><code>det</code> is now actually extended to sparse matrices.</li>
@@ -108,24 +104,47 @@
             </li>
             <li><code>mopen</code> and <code>mclose</code> now handle multiple files and file descriptors.</li>
             <li><code>hash</code> function with SHA-1, SHA-2 and SHA-3 Secure Hash Algorithms has been added.</li>
+            <li><code>plot</code> can now plot polynomials and rationals.</li>
             <li><code>loglog</code>, <code>semilogx</code>, <code>semilogy</code> Matlab-compatible functions added.
             </li>
             <li><code>scatter</code> and <code>scatter3d</code> are reforged. New <code>scatter</code> options:
                 <code>&quot;smallOnTop&quot;</code> and <code>&quot;datatips&quot;</code>.</li>
             <li><code>asciimat</code> now supports input strings of different lengths or including international UTF8
                 extended characters.</li>
+            <li><code>importgui</code> is renamed <code>uiSpreadsheet</code>.</li>
             <li>polynomials can now use a greek letter as variable.</li>
             <li><code>int2d</code> can now compute direcly a double integral over a rectangle.</li>
             <li><code>int3d</code> can now compute direcly a triple integral over a cuboid.</li>
+            <li><code>cutaxes</code> function added.</li>
+            <li>Integers can be concatenated with real or complex numbers (dense encoding only).</li>
+            <li><code>complex</code> is extended to sparse arrays.</li>
+            <li><code>m2sci</code> Matlab-to-Scilab code converter: First upgrade done.</li>
+            <li><code>http_get</code> can be used as an alternative download method for ATOMS.</li>
+            <li><code>browsevar</code>: Clicking on a variable of type graphic, function, library, list, structure, cell, syslin, or any custom tlist or mlist now displays it.</li>
+            <li><code>x_matrix</code> is extended to booleans, encoded integers, and text. Editing real and complex matrices improved.</li>
+            <li>Help browser improved:
+            <ul>
+            <li>New menu &quot;Online&quot; to display the current page online.</li>
+            <li>New menu &quot;Issues&quot; to display known issues about the feature of the current page.</li>
+            <li>On user's Preferences, for Scilab beginners coming from Matlab™/Octave languages, for more than 200 Matlab™ terms, help's query now redirects to the relevant Scilab equivalent feature.</li>
+            <li>And also: The browser's language can be set independently of the session's language ; ATOMS help chapters are now automatically loaded in the browser ; the page left at exit is restored at the next startup. etc.</li>
+            </ul>
+            </li>
         </ul>
         <h2 class="title">Help pages</h2>
-        <ul>
-            <li>overhauled / rewritten: <code>bitget</code>, <code>edit</code>, <code>factorial</code>,
-                <code>fft</code>, <code>vectorfind</code>, <code>datafit</code>, <code>mgeti</code></li>
-            <li>fixed / improved: <code>bench_run</code> <code>M_SWITCH</code>, <code>comet</code>,
-                <code>comet3d</code>, <code>plot2d</code></li>
-            <li>Rewritten: <code>getdate</code>, <code>weekday</code></li>
-        </ul>
+        <p class="para">
+            In a continuous effort, more than 100 pages have been improved or even rewritten,
+            or/and better sorted in sections.
+            Clarifying short descriptions,
+            clarifying the set of syntaxes, completing and clarifying the description of arguments,
+            improving cross-referencing through the <i>See also</i> sections, illustrating results
+            of examples by showing the console's output, adding examples, updating the history
+            sections for passed undocumented changes, and of course improving the Description
+            sections, have been done.
+        </p>
+        <p class="para">
+            In parallel, many pages are actively translated in Russian.
+        </p>
 
         <h2 class="title">Bug fixes</h2>
         <p class="para">
