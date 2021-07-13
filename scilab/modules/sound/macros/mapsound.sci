@@ -143,12 +143,7 @@ function varargout = mapsound(w, dt, frange, rate, Colormap)
     lhs = argn(1)
     varargout = list()
     if lhs > 0 then
-        varargout = list(dates)
+        varargout = list(struct("times",dates,"frequencies",frequencies,"amplitudes",M))
     end
-    if lhs > 1 then
-        varargout($+1) = frequencies
-    end
-    if lhs > 2 then
-        varargout($+1) = M
-    end
+
 endfunction

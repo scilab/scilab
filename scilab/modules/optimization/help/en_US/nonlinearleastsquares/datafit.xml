@@ -26,13 +26,13 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-        [p, fmin, status] = datafit(G, Data, p0)
-        [p, fmin, status] = datafit(G, Data, Wd, p0)
-        [p, fmin, status] = datafit(G, Data, Wd, 'b', p_inf, p_sup, p0)
-        [p, fmin, status] = datafit(G, Data, 'b', p_inf, p_sup, p0)
-        [p, fmin, status] = datafit(G, Data [,Wd] [,Wg][,'b',p_inf,p_sup], p0 [,algo][,stop])
-        [p, fmin, status] = datafit(G, DG, Data, ..)
-        [p, fmin, status] = datafit(iprint, ..)
+        [p, dmin, status] = datafit(G, Data, p0)
+        [p, dmin, status] = datafit(G, Data, Wd, p0)
+        [p, dmin, status] = datafit(G, Data, Wd, 'b', p_inf, p_sup, p0)
+        [p, dmin, status] = datafit(G, Data, 'b', p_inf, p_sup, p0)
+        [p, dmin, status] = datafit(G, Data [,Wd] [,Wg][,'b',p_inf,p_sup], p0 [,algo][,stop])
+        [p, dmin, status] = datafit(G, DG, Data, ..)
+        [p, dmin, status] = datafit(iprint, ..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -345,16 +345,8 @@
         <para>
             A function <literal>G(p, Data)</literal> must be defined to compute the gaps between the
             <varname>Data</varname> points and a model whose parameters to be tuned are provided
-            through the matrix <varname>p</varname>.
-
-        </para>
-        <para>
-            <literal>datafit()</literal> checks whether <literal>G()</literal> is vectorized or not
-            over <varname>Data</varname>. If <literal>G()</literal> works only with a single
-            <literal>data</literal> point as a single column of coordinates, then <literal>datafit()</literal>
-            loops over <literal>data=Data(:,i)</literal> points. Otherwise, <literal>G(p, Data)</literal>
-            is called for the whole <varname>Data</varname> array of data coordinates, which is
-            way faster if <varname>G()</varname>'s code is truly vectorized.
+            through the matrix <varname>p</varname>. An initial guess <varname>p0</varname>
+            of <varname>p</varname> values must also be provided.
         </para>
         <para>
             Starting from initial values <varname>p0</varname> of the model parameters,
@@ -392,11 +384,25 @@ f = G(p, Data(:,1))^2 * Wd(1) + ..
             Choosing appropriately <varname>p0</varname> may improve and faster
             <literal>datafit()</literal>'s convergence to the best fit.
         </para>
+        <para>
+            <literal>datafit()</literal> checks whether <literal>G()</literal> is vectorized or not
+            over <varname>Data</varname>. If <literal>G()</literal> works only with a single
+            <literal>data</literal> point as a single column of coordinates, then <literal>datafit()</literal>
+            loops over <literal>data=Data(:,i)</literal> points. Otherwise, <literal>G(p, Data)</literal>
+            is called for the whole <varname>Data</varname> array of data coordinates, which is
+            way faster if <varname>G()</varname>'s code is truly vectorized.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <para>
-            <emphasis role="bold">Simple example: Polynomial fitting (parabola = 3 parameters)</emphasis>.
+            <emphasis role="bold">Simple example: Polynomial fitting (parabola = 3 parameters) of
+            weighted data</emphasis>.
+        </para>
+        <para>
+            Data weights prevent processing this case in a straightforward way with a Vandermonde
+            matrix and the backslash operator. An initial guess <varname>p0</varname> is then
+            required.
         </para>
         <programlisting role="example"><![CDATA[
 // Model (parabola)

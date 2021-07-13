@@ -53,35 +53,42 @@ assert_checkequal(size(gcf().color_map,1), 101);
 // ----------
 Dt = 0.04;
 clf
-[t, f] = mapsound(y, Dt);
+data = mapsound(y, Dt);
+[t, f] = (data.times, data.frequencies);
 assert_checkequal([t(2) f(2)], [Dt 25]);
 
 clf
-[t, f] = mapsound(y, -1/20);
+data = mapsound(y, -1/20);
+[t, f] = (data.times, data.frequencies);
 assert_checkequal([t(2) f(2)], [0.1 10]);
 
 
 // Setting displayed frequencies
 // -----------------------------
 clf
-[t, f] = mapsound(y, , 1300);
+data = mapsound(y, , 1300);
+[t, f] = (data.times, data.frequencies);
 assert_checkequal([t(2), f(1), f(2), f($)], [0.04 0 25 1300]);
 
 clf
-[t, f] = mapsound(y, , [500 1300]);
+data = mapsound(y, , [500 1300]);
+[t, f] = (data.times, data.frequencies);
 assert_checkequal([t(2), f(1), f(2)-f(1), f($)], [0.04 500 25 1300]);
 
-[t, f] = mapsound(y, , -1/11);
+data = mapsound(y, , -1/11);
+[t, f] = (data.times, data.frequencies);
 assert_checkequal([f(1), f(2), f($)], [0, 31.5, 1984.5]);
 assert_checkalmostequal(t(2), 0.031746032);
 
 clf
-[t, f] = mapsound(y, , [500 -1/11]);
+data = mapsound(y, , [500 -1/11]);
+[t, f] = (data.times, data.frequencies);
 assert_checkequal([f(1), f(2)-f(1), f($)], [504, 31.5, 1984.5]);
 assert_checkalmostequal([t(2) t($)], [0.031746032 1.968253968]);
 
 clf
-[t, f] = mapsound(y, , [-1/110 -1/11]);
+data = mapsound(y, , [-1/110 -1/11]);
+[t, f] = (data.times, data.frequencies);
 assert_checkequal([f(1), f(2)-f(1), f($)], [220.5, 31.5, 1984.5]);
 assert_checkalmostequal([t(2) t($)], [0.031746032 1.968253968]);
 

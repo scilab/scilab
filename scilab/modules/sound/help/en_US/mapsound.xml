@@ -17,7 +17,7 @@
     <refnamediv>
         <refname>mapsound</refname>
         <refpurpose>
-            Computes and displays an Amplitude(time, frequency) map of a sound record
+            Computes and displays an Amplitude(time, frequency) spectrogram of a sound record
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -28,7 +28,7 @@
             mapsound(signal, Dt, freqRange)
             mapsound(signal, Dt, freqRange, samplingRate)
             mapsound(signal, Dt, freqRange, samplingRate, Colormap)
-            [times, freqs, amplitudes] = mapsound(…)
+            data = mapsound(…)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -83,23 +83,21 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>times</term>
+                <term>data</term>
                 <listitem>
-                    Vector of mapped times, in seconds.
-                    <para/>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>freqs</term>
-                <listitem>
-                    Vector of mapped frequencies, in Hz.
-                    <para/>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>amplitudes</term>
-                <listitem>
-                    Matrix of mapped absolute spectral amplitudes, of size length(freqs)×length(times).
+                    Structure with 3 fields returning values of computed and plotted data:
+                    <itemizedlist>
+                        <listitem>
+                            <emphasis>times</emphasis>: Vector of mapped times, in seconds.
+                        </listitem>
+                        <listitem>
+                            <emphasis>frequencies</emphasis>: Vector of mapped frequencies, in Hz.
+                        </listitem>
+                        <listitem>
+                            <emphasis>amplitudes</emphasis>: Matrix of mapped absolute spectral
+                            amplitudes, of size length(.frequencies)×length(.times).
+                        </listitem>
+                    </itemizedlist>
                     <para/>
                 </listitem>
             </varlistentry>
@@ -295,8 +293,7 @@ title Din fontsize 3.5
                 <revnumber>6.1.1</revnumber>
                 <revdescription>
                     mapsound() rewritten: fmin and fmax merged into freqRange ;
-                    Colormap, times, frequencies, amplitudes arguments added ;
-                    simpl removed.
+                    Colormap and data arguments added ; simpl removed.
                 </revdescription>
             </revision>
         </revhistory>
