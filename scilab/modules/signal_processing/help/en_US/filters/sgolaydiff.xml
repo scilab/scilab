@@ -167,9 +167,6 @@ title("Second order differentiation")
       <member>
         <link linkend="diff">diff</link>
       </member>
-      <member>
-        <link linkend="numdiff">numdiff</link>
-      </member>
     </simplelist>
   </refsection>
     <refsection>
