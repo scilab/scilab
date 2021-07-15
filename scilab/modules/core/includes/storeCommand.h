@@ -59,7 +59,7 @@ int StoreConsoleCommand(const char *command, int iWaitFor);
  * @param command : the command
   * @return <ReturnValue>
  */
-int StoreDebuggerCommand(const char *command);
+int StoreDebuggerCommand(const char *command, int iWaitFor);
 
 /**
  * Store a prioritary and non-interruptible command

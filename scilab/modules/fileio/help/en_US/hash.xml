@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2020 - Stéphane MOTTELET
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="hash">
+    <refnamediv>
+        <refname>hash</refname>
+        <refpurpose>get checksum of file or string using various digest algorithms</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>res = hash(fd, algorithm)
+            res = hash(string, algorithm)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>hash result (a string)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fd</term>
+                <listitem>
+                    <para>a matrix of file descriptors returned by the function mopen.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>string</term>
+                <listitem>
+                    <para>a string or a matrix of strings</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>algorithm</term>
+                <listitem>
+                    <para>a string (the hashing algorithm)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>hash</function> get the checksum of a file or a string using the hashing function <term>algorithm</term>. The available functions are:
+        </para>
+        <para>
+        <informaltable border="1">
+               <tbody>
+                 <tr>
+                     <td>'crc32'</td><td>crc32 chechsum</td>
+                 </tr>
+                 <tr>
+                     <td>'md5'</td><td>Message-Digest Algorithm 5</td>
+                 </tr>
+                <tr>
+                    <td>'sha1'</td><td>Secure Hash Algorithm 1 (160 bits)</td>
+                </tr>
+                <tr>
+                    <td>'sha2', 'sha256'</td><td>Secure Hash Algorithm 2 (256 bits)</td>
+                </tr>
+                <tr>
+                    <td>'sha3-224'</td><td>Secure Hash Algorithm 3 (224 bits)</td>
+                </tr>
+                <tr>
+                    <td>'sha3-256'</td><td>Secure Hash Algorithm 3 (256 bits)</td>
+                </tr>
+                <tr>
+                    <td>'sha3-384'</td><td>Secure Hash Algorithm 3 (384 bits)</td>
+                </tr>
+                <tr>
+                    <td>'sha3-512'</td><td>Secure Hash Algorithm 3 (512 bits)</td>
+                </tr>
+            </tbody>
+        </informaltable>
+    </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+hash('hello world', 'md5')
+hash('hello world', 'sha256')
+hash(['hello';'world'], 'sha3-256')
+
+fp = mopen(SCI+'/modules/core/etc/core.start')
+hash(fp ,'sha256')
+mclose(fp)
+ ]]></programlisting>
+    </refsection>
+      <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revremark>hash() introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

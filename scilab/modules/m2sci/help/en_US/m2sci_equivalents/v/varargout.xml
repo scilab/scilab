@@ -31,22 +31,21 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 varargout
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 varargout
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            In Matlab varargout is a cell and in Scilab it is a list.
-        </para>
+        <warning>
+            <para>
+                In Matlab varargout is a cell vector, while it is a list in Scilab.
+            </para>
+        </warning>
     </refsection>
 </refentry>

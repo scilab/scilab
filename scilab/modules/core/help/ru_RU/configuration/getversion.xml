@@ -7,12 +7,11 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            version = getversion()
-            [version, opts] = getversion()
+            [version, options] = getversion()
+            [COMPILER, ARCH, RELEASE_MODE, RELEASE_DATE, RELEASE_TIME] = (options(1), opt(2), options($-2), options($-1), options($))
             version_numbers = getversion('scilab')
-            versioninfo = getversion('scilab', 'string_info')
             version_numbers = getversion('&lt;module&gt;')
-            versioninfo = getversion('&lt;module&gt;','string_info')
+            version = getversion('&lt;module&gt;','string_info')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -25,23 +24,23 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>versioninfo</term>
+                <term>version</term>
                 <listitem>
-                    <para>строка о версии</para>
+                    <para>строка о версии. Например: "scilab-6.1.0"</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>version_numbers</term>
                 <listitem>
                     <para>вектор целых чисел</para>
-                    <para>ver(1) Старший номер версии</para>
-                    <para>ver(2) Младший номер версии</para>
-                    <para>ver(3) Номер технической версии</para>
-                    <para>ver(4) метка времени GIT</para>
+                    <para>version_numbers(1) Старший номер версии</para>
+                    <para>version_numbers(2) Младший номер версии</para>
+                    <para>version_numbers(3) Номер технической версии</para>
+                    <para>version_numbers(4) Метка времени GIT</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>opts</term>
+                <term>options</term>
                 <listitem>
                     <para>
                         вектор строк:
@@ -54,8 +53,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>[version, opts] = getversion()</literal> возвращает в <literal>version</literal>
-            название версии Scilab'а, а в <literal>opts</literal> -- опции сборки, которые могут быть
+            <literal>[version, options] = getversion()</literal> возвращает в <literal>version</literal>
+            название версии Scilab'а, а в <literal>options</literal> -- опции сборки, которые могут быть
             использованы для определения: собран ли  Scilab с tk или modelicac, а также предоставляет
             дату и время релиза.
         </para>
@@ -74,21 +73,13 @@
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 getversion()
+[version, options] = getversion()
+[COMPILER, ARCH, RELEASE_MODE, RELEASE_DATE, RELEASE_TIME] = (options(1), opt(2), options($-2), options($-1), options($))
+or(options == 'modelicac')
+or(options == 'tk')
 
-[version, opts] = getversion()
-COMPILER = opts(1)
-ARCH = opts(2)
-or(opts == 'modelicac')
-or(opts == 'tk')
-RELEASE_MODE = opts($-2)
-RELEASE_DATE = opts($-1)
-RELEASE_TIME = opts($)
-
-version = getversion('scilab')
-versionstr = getversion('scilab','string_info')
-version = getversion('overloading')
-versionstr = getversion('overloading','string_info')
-
+numbers = getversion('scilab')
+version = getversion('scilab','string_info')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

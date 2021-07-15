@@ -25,29 +25,23 @@ mprintf("%s\n", m2sciTestConversionNoExe("GRID"));
   Conversion of M-tree...
   !! L.8: No minor grid in Scilab.
   L.9: Unknown variable grid is a M-file.
-  L.12: Unknown variable grid is a M-file.
-  L.13: Unknown variable grid is a M-file.
-  L.14: Unknown variable grid is a M-file.
-  !! L.14: No minor grid in Scilab.
-  L.15: Unknown variable grid is a M-file.
+  !! L.15: No minor grid in Scilab.
   Conversion of M-tree: Done
 TESTING M2SCI: creating varslist file...
   Macro to tree conversion: Done
   Translation may be wrong (see the //!! comments).
   ****** End of mfile2sci() session ******
-
 // Test file for function grid
 // Copyright INRIA
 // Matlab version: 7.0.0.19901 (R14)
 // V.C.
-
-set(gca(),"grid",[1,1])
-set(gca(),"grid",[-1,-1])
+gca().grid = [1,1];
+gca().grid = [-1,-1];
 mtlb_grid("minor")
 mtlb_grid
-
-
 ax.grid = [1,1];
 ax.grid = [-1,-1];
 mtlb_grid(ax,"minor")
 mtlb_grid(ax)
+%v0 = [ax,ax2];
+%v0.grid = [1,1];

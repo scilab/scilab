@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="syslin" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="syslin" xml:lang="fr">
     <refnamediv>
         <refname>syslin</refname>
         <refpurpose>définition d'un système dynamique linéaire</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[sl]=syslin(dom,A,B,C [,D [,x0] ])
-            [sl]=syslin(dom,N,D)
-            [sl]=syslin(dom,H)
+        <synopsis>
+            sl = syslin(dom, A, B, C)
+            sl = syslin(dom, A, B, C, D)
+            sl = syslin(dom, A, B, C, D, x0)
+            sl = syslin(dom, N, D)
+            sl = syslin(dom, H)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -84,16 +90,18 @@
         </para>
         <para>Représentation d'état :</para>
         <programlisting role=""><![CDATA[
-sl=syslin(dom,A,B,C [,D [,x0] ])
+sl = syslin(dom,A,B,C [,D [,x0] ])
  ]]></programlisting>
-        <para>représente le système :</para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../mml/syslin_equation_1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            représente le système
+        </para>
+        <para>
+            <table align="center">
+            <tr><td align="right">s.X</td><td>= A.X + B.u</td></tr>
+            <tr><td align="right">y</td><td>= C.X + D.u</td></tr>
+            <tr><td align="right">x(0)</td><td>= x0</td></tr>
+            </table>
+        </para>
         <para>
             La sortie de <literal>syslin</literal> est une liste de la forme
             suivante : <literal>

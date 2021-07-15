@@ -6,20 +6,56 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>
-            who
+        <synopsis>who
             who()
-            names = who('local')
-            [names, mem] = who('local')
-            names = who('global')
-            [names, mem] = who('global')
-            who('sorted')
-            names = who('local','sorted')
-            [names, mem] = who('local','sorted')
-            names = who('global','sorted')
-            [names, mem] = who('global','sorted')
+            [names, mem] = who(scope)
+            [names, mem] = who(scope, sorted)
+            [names, mem] = who(sorted)
         </synopsis>
     </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>scope</term>
+                <listitem>
+                    <para>
+                        <literal>"local"</literal> или <literal>"get"</literal>: список
+                        видимых переменных (не только в текущей функции).
+                    </para>
+                    <para>
+                        <literal>"scope"</literal> или <literal>"current"</literal>:
+                        список переменных в текущей области видимости/функции.
+                    </para>
+                    <para>
+                        <literal>"global"</literal>: список глобальных переменных.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sorted</term>
+                <listitem>
+                    <para>
+                        Логическое значение для определения должен ли выход быть отсортирован в алфавитном порядке.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>names</term>
+                <listitem>
+                    <para>Матрица строк с именами переменных.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mem</term>
+                <listitem>
+                    <para>
+                      Матрица чисел удвоенной точности с размером памяти, используемой переменными, в байтах.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>Описание</title>
         <para>
@@ -41,13 +77,17 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-a=1;
-b=2;
-[name, mem]=who("local");
-position=find(name=="a")
+[a, b] = (1, 2);
+[name, mem] = who("local");
+position = find(name=="a")
 mem(position) // Размер, используемый a
-position=find(name=="d") // []
- ]]></programlisting>
+position = find(name=="d") // []
+
+function foo(a, b)
+    disp(who("scope", "sorted"))
+endfunction
+foo(1,2);
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
@@ -58,6 +98,20 @@ position=find(name=="d") // []
             <member>
                 <link linkend="who_user">who_user</link>
             </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    Добавлена область видимости "scope" или "current".
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

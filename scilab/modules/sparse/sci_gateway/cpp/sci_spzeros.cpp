@@ -21,6 +21,7 @@ extern "C"
 {
 #include "charEncoding.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "localization.h"
 }
 
@@ -73,22 +74,35 @@ types::Function::ReturnValue sci_spzeros(types::typed_list &in, int _iRetCount, 
 
         double dblRows = pDblRows->get(0);
         double dblCols = pDblCols->get(0);
+        if (dblRows > (double) INT_MAX)
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: Must be less than %d.\n"), "spzeros", 1,INT_MAX);
+            return types::Function::Error;
+        }
         if (dblRows != (double) ((unsigned int) dblRows))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "spzeros", 1);
             return types::Function::Error;
         }
 
+        if (dblCols > (double) INT_MAX)
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: Must be less than %d.\n"), "spzeros", 2,INT_MAX);
+            return types::Function::Error;
+        }
         if (dblCols != (double) ((unsigned int) dblCols))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "spzeros", 2);
             return types::Function::Error;
         }
 
-        if (dblRows * dblCols > INT_MAX)
+        if (dblRows * dblCols > (double) INT_MAX)
         {
-            Scierror(999, _("%s: Wrong value for input arguments: The maximum total size expected is %d.\n"), "spzeros", INT_MAX);
-            return types::Function::Error;
+            // FIXME: should be an error. To fix we need GenericType::m_iSize huger than int
+            if (getWarningMode())
+            {
+                sciprint(_("%s: Warning: You have created a Sparse of size > %d.\nDue to a Scilab limitation, reading or writing values from/to \nthis sparse using a unique index could lead to unexpected behavior."), "sparse", INT_MAX);
+            }
         }
 
         if (pDblRows->get(0) == 0. || pDblCols->get(0) == 0.)

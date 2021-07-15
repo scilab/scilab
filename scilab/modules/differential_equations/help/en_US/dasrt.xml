@@ -21,7 +21,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[r,nn,[,hd]]=dasrt(x0,t0,t [,atol,[rtol]],res [,jac],ng, surf [,info] [,hd])</synopsis>
+        <synopsis>[r,nn,[,hd]] = dasrt(x0,t0,t [,atol,[rtol]],res [,jac],ng, surf [,info] [,hd])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -119,15 +119,15 @@
                             <para>This form allows to pass parameters other than t,y,ydot to
                                 the function. It must be as follows:
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 list(res,x1,x2,...)
- ]]></programlisting>
+]]></screen>
                             <para>where the syntax of the function
                                 <literal>res</literal> is now
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
-r=res(t,y,ydot,x1,x2,...)
- ]]></programlisting>
+                            <screen><![CDATA[
+r = res(t,y,ydot,x1,x2,...)
+]]></screen>
                             <para>
                                 <literal>res</literal> still returns
                                 <literal>r=g(t,y,ydot)</literal> as a function of
@@ -146,16 +146,16 @@ r=res(t,y,ydot,x1,x2,...)
                                 linked with Scilab.
                             </para>
                             <para>In C The syntax must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[])
- ]]></programlisting>
+]]></screen>
                             <para>In Fortran it must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)
- ]]></programlisting>
+]]></screen>
                             <para>
                                 The <literal>rpar</literal> and <literal>ipar</literal> arrays must be present but cannot be
                                 used.
@@ -185,15 +185,15 @@ integer ires,ipar(*)
                         <listitem>
                             <para>A list.</para>
                             <para>It must be as follows</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 list(jac,x1,x2,...)
- ]]></programlisting>
+]]></screen>
                             <para>where the syntax of the function
                                 <literal>jac</literal> is now
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
-r=jac(t,y,ydot,cj,x1,x2,...)
- ]]></programlisting>
+                            <screen><![CDATA[
+r = jac(t,y,ydot,cj,x1,x2,...)
+]]></screen>
                             <para>
                                 <literal>jac</literal> still returns
                                 <literal>dg/dy + cj*dg/dydot</literal> as a function of
@@ -206,16 +206,16 @@ r=jac(t,y,ydot,cj,x1,x2,...)
                                 with scilab
                             </para>
                             <para>In C The syntax must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void jac(double *t, double y[], double yd[], double pd[],
          double *cj, double rpar[], int ipar[])
- ]]></programlisting>
+]]></screen>
                             <para>In Fortran it must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine jac(t,y,yd,pd,cj,rpar,ipar)
 double precision t, y(*),yd(*),pd(*),cj,rpar(*)
 integer ipar(*)
- ]]></programlisting>
+]]></screen>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -239,15 +239,15 @@ integer ipar(*)
                         <listitem>
                             <para>A list.</para>
                             <para>It must be as follows</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 list(surf,x1,x2,...)
- ]]></programlisting>
+]]></screen>
                             <para>where the syntax of the function
                                 <literal>surf</literal> is now
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
-r=surf(t,y,x1,x2,...)
- ]]></programlisting>
+                            <screen><![CDATA[
+r = surf(t,y,x1,x2,...)
+]]></screen>
                         </listitem>
                         <listitem>
                             <para>A character string.</para>
@@ -255,15 +255,15 @@ r=surf(t,y,x1,x2,...)
                                 with scilab.
                             </para>
                             <para>In C the syntax must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 void surf(int *ny, double *t, double y[], int *ng, double gout[])
- ]]></programlisting>
+]]></screen>
                             <para>In Fortran it must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <screen><![CDATA[
 subroutine surf(ny,t,y,ng,gout)
 double precision t, y(*),gout(*)
 integer ny,ng
- ]]></programlisting>
+]]></screen>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -374,10 +374,10 @@ integer ny,ng
     <refsection>
         <title>Description</title>
         <para>Solution of the implicit differential equation.</para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-g(t,y,ydot)=0
-y(t0)=y0  and   ydot(t0)=ydot0
- ]]></programlisting>
+        <screen><![CDATA[
+g(t,y,ydot) = 0
+y(t0) = y0  and   ydot(t0) = ydot0
+]]></screen>
         <para>Returns the surface crossing instants and the number of the surface
             reached in <literal>nn</literal>.
         </para>
@@ -386,18 +386,18 @@ y(t0)=y0  and   ydot(t0)=ydot0
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-//dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1<=t<=6
-//g1 = ((2*log(y)+8)/t - 5)*y
-//g2 = log(y) - 2.2491
-y0=1;t=2:6;t0=1;y0d=3;
-atol=1.d-6;rtol=0;ng=2;
+// dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1<=t<=6
+// g1 = ((2*log(y)+8)/t - 5)*y
+// g2 = log(y) - 2.2491
+y0 = 1; t = 2:6; t0 = 1; y0d = 3;
+atol = 1.d-6; rtol = 0; ng = 2;
 
-deff('[delta,ires]=res1(t,y,ydot)','ires=0;delta=ydot-((2*log(y)+8)/t-5)*y')
-deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
+deff('[delta,ires] = res1(t,y,ydot)', 'ires=0; delta=ydot-((2*log(y)+8)/t-5)*y')
+deff('rts = gr1(t,y)', 'rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
 
-[yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,res1,ng,gr1);
+[yy,nn] = dasrt([y0,y0d],t0,t,atol,rtol,res1,ng,gr1);
 //(Should return nn=[2.4698972 2])
- ]]></programlisting>
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

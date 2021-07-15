@@ -13,7 +13,9 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_strfind">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="m2sci_strfind">
     <refnamediv>
         <refname>strfind (Matlab function)</refname>
         <refpurpose>Find one string within another</refpurpose>
@@ -31,24 +33,22 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 strfind
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 strindex
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            <note>
-                Note that <emphasis role="bold">strfind</emphasis> can be use with not string inputs, in this case Matlab returns <emphasis role="bold">1</emphasis> if inputs are equal and <emphasis role="bold">0</emphasis> else but <emphasis role="bold">strindex</emphasis> can not do such comparison.
-            </note>
-        </para>
+        <warning>
+            Note that <emphasis role="bold">strfind</emphasis> can be use with not string inputs.
+            In this case Matlab returns <emphasis role="bold">1</emphasis> if inputs are equal,
+            and <emphasis role="bold">0</emphasis> otherwise, while <emphasis role="bold">strindex</emphasis>
+            can not do such a comparison.
+        </warning>
     </refsection>
 </refentry>

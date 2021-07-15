@@ -23,14 +23,13 @@ mprintf("%s\n", m2sciTestConversionNoExe("RETURN"));
   Syntax modification: Done
   Macro to tree conversion...
   Conversion of M-tree...
+  L.6: Unknown variable resume is a M-file.
   Conversion of M-tree: Done
 TESTING M2SCI: creating varslist file...
   Macro to tree conversion: Done
   ****** End of mfile2sci() session ******
-
 // Test file for function return
 // Copyright INRIA
 // Matlab version: 6.5.0.180913a (R13)
 // V.C.
-
-return;
+return

@@ -332,4 +332,22 @@
             </Grid>
         </Title>
     </xsl:template>
+    <xsl:template match="help">
+        <Title text="help()">
+            <Grid>
+                <Checkbox
+                      gridx="1"
+                      gridy="2"
+                      listener="ActionListener"
+                      checked="{@redirectMatlab2Scilab}"
+                      text="_(Redirect Matlab terms to Scilab closest equivalent)"
+                      >
+                    <actionPerformed choose="redirectMatlab2Scilab">
+                        <xsl:call-template name="context"/>
+                    </actionPerformed>
+                </Checkbox>
+            </Grid>
+        </Title>
+    </xsl:template>
+
 </xsl:stylesheet>

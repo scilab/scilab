@@ -13,6 +13,14 @@
 
 function r=isinstring(str,pos)
     // Finds if the character pointed by pos is in a string (return %T) or not (return %F)
+    //
+    // called from lst_funcall(), m2sci_syntax(), and mfile2sci()
+    //
+    // a = "a''b"  doit être converti en  a = "a''''b" (Octave)
+    //             ou en a = "¤¤a''''b" (Matlab: étiquette pour string)
+    // a = 'a""b'  doit être converti en  a = "a""""b"
+    // Octave :
+    //   a = "lhlhl\     OK, while a='llmmj\   KO: error
 
     str=part(str,1:pos-1)
     quote="''"
@@ -28,7 +36,6 @@ function r=isinstring(str,pos)
     strcnt=0
     qcount=0 // Quote counter
     bcount=0 // Bracket counter
-    pcount=0 // Paranthesis counter
     sym=" "
 
     while %T ,
@@ -67,7 +74,7 @@ function r=isinstring(str,pos)
             end
         elseif sym==quote then
             // Check if transpose or beginning of a string
-            if ~isalphanum(psym) & psym<>")" & psym<>"]" & psym<>"." & psym<>quote then // Not a transpose
+            if ~isalphanum(psym) & and(psym<>[")" "]" "}" "." quote]) then // Not a transpose
                 strcnt=1
             elseif bcount<>0 then // Inside a matrix definition
                 if part(str,ksym-1)==" " then strcnt=1,end

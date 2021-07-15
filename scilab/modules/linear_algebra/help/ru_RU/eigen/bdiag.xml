@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="bdiag">
+    <refnamediv>
+        <refname>bdiag</refname>
+        <refpurpose>блоковая диагонализация, обобщённые собственные векторы</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            [Ab, X, bs] = bdiag(A)
+            [Ab, X, bs] = bdiag(A, rmax)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>вещественная или комплексная квадратная матрица</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rmax</term>
+                <listitem>
+                    <para>вещественное число</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ab</term>
+                <listitem>
+                    <para>вещественная или комплексная квадратная матрица</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>вещественная или комплексная невырожденная матрица</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bs</term>
+                <listitem>
+                    <para>вектор целых чисел</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <emphasis role="bold">[Ab, X, bs] = bdiag(A, rmax)</emphasis> выполняет
+            блоковую диагонализацию матрицы <varname>A</varname>.  <varname>bs</varname>
+            даёт структуру блоков (соответствующие размеры блоков).
+            <varname>X</varname> - это изменение базиса, то есть <literal>Ab = inv(X)*A*X</literal>
+            является блоковой диагональю.
+        </para>
+        <para>
+            <varname>rmax</varname> управляет обусловленностью <varname>X</varname>.
+            Значение по умолчанию - это L1-норма матрицы <varname>A</varname>.
+        </para>
+        <para>
+            Чтобы получить диагональную форму (если она существует), выберите большое
+            значение для<varname>rmax</varname> (например <literal>rmax=1/%eps</literal>).
+            В общем случае (для вещественной случайной <varname>A</varname>), блоки
+            равны (1x1) и (2x2), а <varname>X</varname> является матрицей собственных векторов.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+// случай вещественных чисел: блоки 1x1 и 2x2
+a = rand(5,5);
+[ab, x, bs] = bdiag(a);ab
+ ]]></programlisting>
+        <screen><![CDATA[
+--> [ab, x, bs] = bdiag(a);ab
+ ab  =
+   2.4777836   0.          0.          0.         0.
+   0.          0.0757087   0.4869251   0.         0.
+   0.         -0.5777956  -0.1248605   0.         0.
+   0.          0.          0.          0.069654   0.
+   0.          0.          0.          0.         0.5341598
+]]></screen>
+        <programlisting role="example"><![CDATA[
+// случай комплексных чисел: комплексные блоки 1x1
+[ab, x, bs] = bdiag(a+%i*0); ab
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="schur">schur</link>
+            </member>
+            <member>
+                <link linkend="sylv">sylv</link>
+            </member>
+            <member>
+                <link linkend="spec">spec</link>
+            </member>
+            <member>
+                <link linkend="blockdiag">blockdiag</link>
+            </member>
+            <member>
+                <link linkend="lcmdiag">lcmdiag</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-
+#include <vector>
 #include <string>
 #include <cstdio>
 #include <cwchar>
@@ -1614,7 +1614,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                     oztyp[j] = SCSUNKNOW_N;
                     oz[j] = il_state_oz->get(j);
                     ozsz[j] = 0; // rows
-                    ozsz[j + nopar] = 0; // cols
+                    ozsz[j + noz] = 0; // cols
                     break;
                 }
             }
@@ -1624,9 +1624,18 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     /****************************
     * Set opar, oparsz, opartyp
     ****************************/
+    struct UTF8AllocatedStrings : std::vector<char*> {
+        ~UTF8AllocatedStrings() {
+            for (char* ptr : *this)
+            {
+                FREE(ptr);
+            }
+        };
+    };
     void** opar = nullptr;
     int* oparsz = nullptr;
     int* opartyp = nullptr;
+    UTF8AllocatedStrings oparStrings;
     if (nopar > 0)
     {
         // Allocation of 'opar'
@@ -1811,6 +1820,20 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                     oparsz[j] = oparUInt32->getRows();
                     oparsz[j + nopar] = oparUInt32->getCols();
                     opar[j] = (SCSUINT32_COP *) oparUInt32->get();
+                    break;
+                }
+                case types::InternalType::ScilabString :
+                {
+                    types::String* oparString = il_sim_opar->get(j)->getAs<types::String>();
+                    opartyp[j] = SCSINT8_N; // int8
+                    oparsz[j] = oparString->getSize();
+                    oparsz[j + nopar] = 1;
+                    for (int i = 0; i < oparString->getSize(); ++i)
+                    {
+                        // convert string as char* buffers, owned by oparStrings
+                        oparStrings.emplace_back(wide_string_to_UTF8(oparString->get(i)));
+                        opar[j] = oparStrings.back();
+                    }
                     break;
                 }
                 default:

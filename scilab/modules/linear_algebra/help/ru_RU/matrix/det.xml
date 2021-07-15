@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON - Le Mans Université
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="det">
+    <refnamediv>
+        <refname>det</refname>
+        <refpurpose>определитель квадратной матрицы</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            d = det(X)
+            [e,m] = det(X)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    квадратная матрица вещественных или комплексных чисел, полиномов или
+                    дробно-рациональных выражений. Принимаются разрежённо-кодированные
+                    матрицы.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    Скаляр типа <varname>X</varname>: определитель <varname>X</varname>.
+                    Если <varname>X</varname> является разрежённо-кодированной, то
+                    <varname>d</varname> является плотной.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    вещественное или комплексное число: определитель мантиссы по основанию 10
+                    <literal>abs(m) ∈ [1,10)</literal>. Не поддерживается для полиномиального
+                    или дробно-рационального <varname>X</varname>.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>e</term>
+                <listitem>
+                    целое: определитель экспоненты по основанию 10, такой, что
+                    <literal>d = m * 10<superscript>e</superscript></literal>.
+                    Не поддерживается для полиномиального или дробно-рационального
+                    <varname>X</varname>.
+                    <para/>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <emphasis role="bold">d = det(X)</emphasis> выдаёт определитель матрицы
+            <varname>X</varname>.
+        </para>
+        <para>
+            Для полиномиальной или дробно-рациональной матрицы <literal>d=det(X)</literal>
+            использует <literal>determ(..)</literal>, чей алгоритм основан на БПФ.
+            Альтернативно может использоваться <literal>d=detr(X)</literal>, основанный
+            на алгоритме Леверье. Оба метода выдают одинаковые результаты. Для
+            дробно-рациональных матриц может потребоваться отключение <code>simp_mode(%f)</code>
+            для получения идентичных результатов.
+        </para>
+        <para>
+            <emphasis role="bold">[e, m] = det(X)</emphasis> может использоваться только
+            для матрицы чисел. Этот синтаксис позволяет преодолеть переполнение снизу
+            или сверху, когда <literal>abs(d)</literal> меньше, чем
+            <literal>number_properties("tiny")</literal> ≈ 2,23 10<superscript>-308</superscript>
+            либо больше, чем
+            <literal>number_properties("huge")</literal> ≈ 1,80 10<superscript>308</superscript>.
+        </para>
+        <para>
+            Для плотных матриц <literal>det(..)</literal> основан на процедуре из Lapack
+            DGETRF для вещественных матриц и ZGETRF для комплексных.
+        </para>
+        <para>
+            Для разрежённых матриц определитель получается из LU-разложения, благодаря
+            библиотеке umfpack.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+A = rand(3,3)*5;
+det(A)
+[e, m] = det(A)
+
+// Матрица комплексных чисел:
+// A = grand(3,3,"uin",0,10) + grand(3,3,"uin",0,10)*%i
+A = [3+%i, 9+%i*3, 9+%i ; 8+%i*8, 4+%i*3, 7+%i*7 ; 4, 6+%i*2, 6+%i*9]
+det(A)
+[e, m] = det(A)
+abs(m)  // in [1, 10)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> A = rand(3,3)*5;
+--> det(A)
+ ans  =
+  -10.805163
+
+--> [e, m] = det(A)
+ e  =
+   1.
+ m  =
+  -1.0805163
+
+--> // Matrix of complex numbers:
+--> A = [3+%i, 9+%i*3, 9+%i ; 8+%i*8, 4+%i*3, 7+%i*7 ; 4, 6+%i*2, 6+%i*9]
+ A  =
+   3. + i     9. + 3.i   9. + i
+   8. + 8.i   4. + 3.i   7. + 7.i
+   4. + 0.i   6. + 2.i   6. + 9.i
+
+--> det(A)
+ ans  =
+   745. - 225.i
+
+--> [e, m] = det(A)
+ e  =
+   2.
+ m  =
+   7.45 - 2.25i
+
+--> abs(m)  // in [1, 10)
+ ans  =
+   7.7823518
+]]></screen>
+        <para/>
+        <para>
+            Очень большой или маленький определители: обработка переполнения снизу и сверху:
+        </para>
+        <programlisting role="example"><![CDATA[
+// Очень большой определитель:
+n = 1000;
+A = rand(n, n);
+det(A)
+[e, m] = det(A)
+
+// Очень маленький определитель (разрежённой кодированной матрицы):
+A = (triu(sprand(n,n,1)) + diag(rand(1,n)))/1.5;
+det(A)
+prod(diag(A))
+[e, m] = det(A)
+A = A/2;
+det(A)
+[e, m] = det(A)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> // Very big determinant:
+--> A = rand(n, n);
+--> det(A)
+ ans  =
+  -Inf
+
+--> [e, m] = det(A)  // -3.1199e743
+ e  =
+   743.
+ m  =
+  -3.1198687
+
+--> // Very small determinant (of a sparse-encoded matrix):
+--> n = 1000;
+--> A = (triu(sprand(n,n,1)) + diag(rand(1,n)))/1.5;
+--> det(A)
+ ans  =
+   5.21D-236
+
+--> prod(diag(A))
+ ans  =
+   5.21D-236
+
+--> [e, m] = det(A)
+ e  =
+  -236.
+ m  =
+   5.2119757
+
+--> A = A/2;
+--> det(A)
+ ans  =
+   0.
+
+--> [e, m] = det(A)
+ e  =
+  -537.
+ m  =
+   4.8641473
+]]></screen>
+        <para/>
+        <para>
+            Определитель полиномиальной матрицы:
+        </para>
+        <programlisting role="example"><![CDATA[
+s = %s;
+det([s, 1+s ; 2-s, s^2])
+
+w = ssrand(2,2,4);
+roots(det(systmat(w))),trzeros(w)   //нули линейной системы
+     ]]></programlisting>
+        <screen><![CDATA[
+--> det([s, 1+s ; 2-s, s^2])
+ ans  =
+  -2 -s +s² +s³
+
+--> w = ssrand(2,2,4);
+--> roots(det(systmat(w))),trzeros(w)
+ ans  =
+  -3.1907522 + 0.i
+   2.3596502 + 0.i
+
+ ans  =
+   2.3596502 + 0.i
+  -3.1907522 + 0.i
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="detr">detr</link>
+            </member>
+            <member>
+                <link linkend="determ">determ</link>
+            </member>
+            <member>
+                <link linkend="simp_mode">simp_mode</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Синтаксис [e,m]=det(X) расширен до разрежённых матриц.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

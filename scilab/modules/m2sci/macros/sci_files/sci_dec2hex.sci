@@ -63,5 +63,5 @@ function [tree]=sci_dec2hex(tree)
             tree.lhs(1).dims=list(Unknown,N.value)
         end
     end
-    tree.lhs(1).type=Type(String,Real)
+    tree.lhs(1).type=Type(String, Char)
 endfunction

@@ -31,22 +31,16 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 graymon
 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-No equivalent
+gdf().color_map = [0.75,0.5,0.25]'*ones(1,3);
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            This Matlab function can be replaced in Scilab by: <emphasis role="bold">set(gdf(),"color_map",[0.75,0.5,0.25]'*ones(1,3))</emphasis>.
-        </para>
     </refsection>
 </refentry>

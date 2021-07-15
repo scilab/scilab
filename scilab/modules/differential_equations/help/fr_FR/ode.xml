@@ -6,10 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntaxe</title>
-        <synopsis>y=ode(y0,t0,t,f)
-            [y,w,iw]=ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
-            [y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
-            y=ode("discrete",y0,k0,kvect,f)
+        <synopsis>y = ode(y0,t0,t,f)
+            [y,w,iw] = ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
+            [y,rd,w,iw] = ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
+            y = ode("discrete",y0,k0,kvect,f)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -256,15 +256,15 @@
                         <para>Si c'est une subroutine Fortran, sa liste d'appel doit
                             être
                         </para>
-                        <programlisting role=""><![CDATA[
+                        <screen><![CDATA[
 subroutine fex(n,t,y,ydot)
 integer n
 double precision t,y(*),ydot(*)
- ]]></programlisting>
+]]></screen>
                         <para>Si c'est une fonction C son prototype doit être:</para>
-                        <programlisting role=""><![CDATA[
+                        <screen><![CDATA[
 void fex(int *n,double *t,double *y,double *ydot)
- ]]></programlisting>
+]]></screen>
                         <para>
                             Cet external peut être compilé par l'utilitaire <link linkend="ilib_for_link">ilib_for_link</link> et chargé
                             dynamiquement par la fonction <link linkend="link">link</link>.
@@ -341,15 +341,15 @@ void fex(int *n,double *t,double *y,double *ydot)
                 <para>En Fortran, Cette routine doit avoir la liste d'appel suivante
                     :
                 </para>
-                <programlisting role=""><![CDATA[
+                <screen><![CDATA[
 subroutine fex(n,t,y,ml,mu,J,nrpd)
 integer n,ml,mu,nrpd
 double precision t,y(*),J(*)
- ]]></programlisting>
+]]></screen>
                 <para>Si c'est une fonction C son prototype doit être:</para>
-                <programlisting role=""><![CDATA[
+                <screen><![CDATA[
 void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
- ]]></programlisting>
+]]></screen>
                 <para>Dans la plupart des cas il n'est pas nécessaire d'utiliser
                     <literal>ml</literal>, <literal>mu</literal> et
                     <literal>nrpd</literal>, qui sont relatifs à la possibilité de

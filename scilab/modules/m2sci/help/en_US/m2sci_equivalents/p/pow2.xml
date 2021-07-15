@@ -31,37 +31,18 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-pow2
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+pow2(X)
+Y = pow2(F, E)
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-No equivalent
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+2.^X
+Y = F.* 2.^E
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <variablelist>
-            <varlistentry>
-                <term>X=pow2(Y)</term>
-                <listitem>
-                    <para>
-                        There is not equivalent function for <emphasis role="bold">pow2</emphasis> in Scilab but, when called with one input argument it can be emulated by: <emphasis role="bold">2^Y</emphasis>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>X=pow2(F,E)</term>
-                <listitem>
-                    <para>
-                        In this case, Matlab <emphasis role="bold">pow2()</emphasis> ignores imaginary part of input arguments. An equivalent expression for this use of <emphasis role="bold">pow2</emphasis> is: <emphasis role="bold">F.* 2 .^ E </emphasis>(Note that 2 must be preceded and followed by a white space).
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
     </refsection>
 </refentry>

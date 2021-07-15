@@ -13,14 +13,19 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="bdiag">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="bdiag">
     <refnamediv>
         <refname>bdiag</refname>
         <refpurpose>block diagonalization, generalized eigenvectors</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[Ab [,X [,bs]]]=bdiag(A [,rmax])</synopsis>
+        <synopsis>
+            [Ab, X, bs] = bdiag(A)
+            [Ab, X, bs] = bdiag(A, rmax)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -59,34 +64,43 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <programlisting role=""><![CDATA[
-[Ab [,X [,bs]]]=bdiag(A [,rmax])
- ]]></programlisting>
         <para>
-            performs the block-diagonalization of matrix <literal>A</literal>.  bs
-            gives the structure of the blocks (respective sizes of the
-            blocks).  <literal>X</literal> is the change of basis i.e
-            <literal>Ab = inv(X)*A*X</literal>is block diagonal.
+            <emphasis role="bold">[Ab, X, bs] = bdiag(A, rmax)</emphasis> performs the
+            block-diagonalization of matrix <literal>A</literal>.  <varname>bs</varname>
+            gives the structure of the blocks (respective sizes of the blocks).
+            <varname>X</varname> is the change of basis i.e. <literal>Ab = inv(X)*A*X</literal>
+            is block diagonal.
         </para>
         <para>
-            <literal>rmax</literal> controls the conditioning of <literal>X</literal>; the
-            default value is the l1 norm of <literal>A</literal>.
+            <varname>rmax</varname> controls the conditioning of <varname>X</varname>. The
+            default value is the l1 norm of <varname>A</varname>.
         </para>
         <para>
-            To get a diagonal form (if it exists) choose a large value for
-            <literal>rmax</literal> (<literal>rmax=1/%eps</literal> for example).
+            To get a diagonal form (if it exists), choose a large value for
+            <varname>rmax</varname> (<literal>rmax=1/%eps</literal> for example).
             Generically (for real random A) the blocks are (1x1) and (2x2) and
-            <literal>X</literal> is the matrix of eigenvectors.
+            <varname>X</varname> is the matrix of eigenvectors.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-//Real case: 1x1 and 2x2 blocks
-a=rand(5,5);[ab,x,bs]=bdiag(a);ab
-
-//Complex case: complex 1x1 blocks
-[ab,x,bs]=bdiag(a+%i*0);ab
+// Real case: 1x1 and 2x2 blocks
+a = rand(5,5);
+[ab, x, bs] = bdiag(a);ab
+ ]]></programlisting>
+        <screen><![CDATA[
+--> [ab, x, bs] = bdiag(a);ab
+ ab  =
+   2.4777836   0.          0.          0.         0.
+   0.          0.0757087   0.4869251   0.         0.
+   0.         -0.5777956  -0.1248605   0.         0.
+   0.          0.          0.          0.069654   0.
+   0.          0.          0.          0.         0.5341598
+]]></screen>
+        <programlisting role="example"><![CDATA[
+// Complex case: complex 1x1 blocks
+[ab, x, bs] = bdiag(a+%i*0); ab
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -103,6 +117,9 @@ a=rand(5,5);[ab,x,bs]=bdiag(a);ab
             </member>
             <member>
                 <link linkend="blockdiag">blockdiag</link>
+            </member>
+            <member>
+                <link linkend="lcmdiag">lcmdiag</link>
             </member>
         </simplelist>
     </refsection>

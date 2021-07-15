@@ -25,28 +25,29 @@ Copyright: Albert Cahalan
 License:
 LGPL
 
-md5:
-====
+hash sub-directory:
+===================
 
 Files:
-src/c/md5.c
-includes/md5.h
+src/cpp/hash/crc32.cpp
+src/cpp/hash/crc32.hxx
+src/cpp/hash/hash.hxx
+src/cpp/hash/LICENSE.txt
+src/cpp/hash/md5.cpp
+src/cpp/hash/md5.hxx
+src/cpp/hash/readme.md
+src/cpp/hash/sha1.cpp
+src/cpp/hash/sha1.hxx
+src/cpp/hash/sha256.cpp
+src/cpp/hash/sha256.hxx
+src/cpp/hash/sha3.cpp
+src/cpp/hash/sha3.hxx
 
-Copyright: L. Peter Deutsch
+Copyright: Stephan Brumme
 
 License:
+zlib
 
-  Permission is granted to anyone to use this software for any purpose,
-  including commercial applications, and to alter it and redistribute it
-  freely, subject to the following restrictions:
-
-  1. The origin of this software must not be misrepresented; you must not
-     claim that you wrote the original software. If you use this software
-     in a product, an acknowledgment in the product documentation would be
-     appreciated but is not required.
-  2. Altered source versions must be plainly marked as such, and must not be
-     misrepresented as being the original software.
-  3. This notice may not be removed or altered from any source distribution.
 
 
 backtrace:

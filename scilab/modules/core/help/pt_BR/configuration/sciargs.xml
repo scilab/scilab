@@ -23,7 +23,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>args=sciargs()</synopsis>
+        <synopsis>args = sciargs()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Descrição</title>

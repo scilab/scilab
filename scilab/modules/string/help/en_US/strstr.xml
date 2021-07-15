@@ -20,23 +20,23 @@
     <refnamediv>
         <refname>strstr</refname>
         <refpurpose>
-          Tail of a text starting from the 1st occurrrence of a given fragment
+          Tail of a string starting from the 1st occurrrence of a given fragment
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>Tail = strstr(Text, StartingFragment)</synopsis>
+        <synopsis>Tail = strstr(Strings, StartingFragment)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>Text, StartingFragment, Tail</term>
+                <term>Strings, StartingFragment, Tail</term>
                 <listitem>
                     <para>
-                        Matrices of texts, of identical dimensions.
-                       <varname>StartingFragments</varname> can be a single text. It is then used
-                       for all <varname>Texts</varname> components.
+                        Matrices of strings, of identical dimensions.
+                       <varname>StartingFragments</varname> can be a single string. It is then used
+                       for all <varname>Strings</varname> components.
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,13 +45,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>Tail = strstr(Text, StartingFragment)</literal> builds and returns a matrix
-            of texts such that, for each element <literal>Text(i)</literal>, <literal>Tail(i)</literal>
-            is the part of <literal>Text(i)</literal> starting from the first occurrence of
-            <literal>startingFragment(i)</literal>, up to the end of <literal>Text(i)</literal>.
+            <literal>Tail = strstr(Strings, StartingFragment)</literal> builds and returns a matrix
+            of strings such that, for each element <literal>Strings(i)</literal>, <literal>Tail(i)</literal>
+            is the part of <literal>Strings(i)</literal> starting from the first occurrence of
+            <literal>startingFragment(i)</literal>, up to the end of <literal>Strings(i)</literal>.
         </para>
         <para>
-            If <varname>StartingFragment(i)</varname> is not found in <literal>Text(i)</literal>,
+            If <varname>StartingFragment(i)</varname> is not found in <literal>Strings(i)</literal>,
             <literal>Tail(i)</literal> is set to <literal>""</literal>.
         </para>
     </refsection>

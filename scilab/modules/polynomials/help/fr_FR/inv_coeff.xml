@@ -6,7 +6,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis>
+        <synopsis>
+            P = inv_coeff(C)
+            P = inv_coeff(C, d)
+            P = inv_coeff(C, d, varname)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -27,10 +31,10 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>name  </term>
+                <term>varname  </term>
                 <listitem>
                     <para>
-                        chaîne de caractères (indéterminée du polynôme, <literal>'x'</literal> par défaut).
+                        Nom de la variable du polynôme, <literal>'x'</literal> par défaut.
                     </para>
                 </listitem>
             </varlistentry>
@@ -46,12 +50,13 @@
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-A=int(10*rand(2,6))
+A = int(10*rand(2,6))
 // construction d'une matrice polynomiale de degré 1
-P=inv_coeff(A,1)
+P = inv_coeff(A, 1)
 norm(coeff(P)-A)
+
 // utilisation de la valeur par défaut du degré
-P1=inv_coeff(A)
+P1 = inv_coeff(A)
 norm(coeff(P1)-A)
  ]]></programlisting>
     </refsection>

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="uigetcolor">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="uigetcolor">
     <refnamediv>
         <refname>uigetcolor</refname>
         <refpurpose>色を選択するダイアログを開く.</refpurpose>
@@ -8,12 +11,16 @@
         <title>呼び出し手順</title>
         <synopsis>
             uigetcolor()
-            RGB = uigetcolor([title])
-            RGB = uigetcolor([title,] defaultRGB)
-            RGB = uigetcolor([title,] defaultRed, defaultGreen, defaultBlue)
-            [R, G, B] = uigetcolor([title])
-            [R, G, B] = uigetcolor([title,] defaultRGB)
-            [R, G, B] = uigetcolor([title,] defaultRed, defaultGreen, defaultBlue)
+
+            RGB = uigetcolor()
+            RGB = uigetcolor(defaultRGB)
+            RGB = uigetcolor(defaultRed, defaultGreen, defaultBlue)
+            RGB = uigetcolor(title, ..)
+
+            [R, G, B] = uigetcolor()
+            [R, G, B] = uigetcolor(defaultRGB)
+            [R, G, B] = uigetcolor(defaultRed, defaultGreen, defaultBlue)
+            [R, G, B] = uigetcolor(title, ..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -98,8 +105,18 @@
 uigetcolor()
 [R, G, B] = uigetcolor([255 128 0])
 RBG = uigetcolor(0, 128, 255)
-RBG = uigetcolor("My color chooser", 0, 128, 255)
- ]]></programlisting>
+RBG = uigetcolor("My color chooser", 250, 150, 50)
+     ]]></programlisting>
+        <para/>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../images/uigetcolor_1.png"/>
+            </imageobject>
+            <para/>
+            <imageobject>
+                <imagedata fileref="../../images/uigetcolor_RGB.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

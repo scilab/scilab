@@ -19,23 +19,23 @@
     <refnamediv>
         <refname>tokens</refname>
         <refpurpose>
-            Splits a text using separators and gives its chunks
+            Splits a string using separators and gives its chunks
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            Chunks = tokens(text)
-            Chunks = tokens(text, separators)
+            Chunks = tokens(str)
+            Chunks = tokens(str, separators)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>text</term>
+                <term>str</term>
                 <listitem>
-                    A single text to be split. It can include extended UTF-8 international characters.
+                    A single string to be split. It can include extended UTF-8 international characters.
                     <para/>
                 </listitem>
             </varlistentry>
@@ -50,7 +50,7 @@
             <varlistentry>
                 <term>Chunks</term>
                 <listitem>
-                    Column vector: Pieces of the split text.
+                    Column vector: Pieces of the split string.
                     <para/>
                 </listitem>
             </varlistentry>
@@ -59,7 +59,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>tokens(…)</literal> searches the text for given separator(s),
+            <literal>tokens(…)</literal> searches the string for given separator(s),
             and splits it into chunks. Chunks are free of separators.
             Consecutive separators are merged.
         </para>

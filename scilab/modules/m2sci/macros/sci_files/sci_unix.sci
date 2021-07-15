@@ -43,7 +43,7 @@ function [tree]=sci_unix(tree)
         end
 
         tree.lhs(1).dims=list(Unknown,Unknown)
-        tree.lhs(1).type=Type(String,Real)
+        tree.lhs(1).type=Type(String, Char)
 
         tree.lhs(2).dims=list(1,1)
         tree.lhs(2).type=Type(Double,Real)

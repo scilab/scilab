@@ -110,11 +110,10 @@
             <link linkend="uicontrol_properties">uicontrol_properties</link> for User Interface
             objects.
         </para>
-        <para/>
-        <emphasis role="bold">set(h, prop, val)</emphasis> or
-        <emphasis role="bold">h(prop) = val</emphasis> or
-        <emphasis role="bold">h.prop = val</emphasis>
         <para>
+            <emphasis role="bold">set(h, prop, val)</emphasis> or
+            <emphasis role="bold">h(prop) = val</emphasis> or
+            <emphasis role="bold">h.prop = val</emphasis>
             sets the property <varname>prop</varname> of the handle <varname>h</varname> to the
             value <varname>val.</varname>.
         </para>
@@ -146,9 +145,8 @@
             To set multiple properties with a single call to <literal>set(..)</literal>, the
             following syntax must be used.
         </para>
-        <para/>
-        <emphasis role="bold">set(h, prop1,val1, prop2,val2, ..)</emphasis>
         <para>
+            <emphasis role="bold">set(h, prop1,val1, prop2,val2, ..)</emphasis>
             sets the property <varname>prop1</varname> of the handle(s) <varname>h</varname> to the
             value <varname>val1</varname>, its or their property <varname>prop2</varname> to the
             value <varname>val2</varname>, etc. If <varname>h</varname> and some
@@ -156,34 +154,30 @@
             for the related <varname>prop#</varname> properties, as already described for the
             <literal>set(h, prop, val)</literal> syntax.
         </para>
-        <para/>
-        <emphasis role="bold">set(tagsPath, prop,val)</emphasis> or
-        <emphasis role="bold">set(tagsPath, prop,val, prop2,val2, ..)</emphasis>
         <para>
-            Identifying the targeted component(s) to be set can be done as well through their
-            .tag property instead of their handle. This is achieved through the
-            <varname>tagsPath</varname>.
+            <emphasis role="bold">set(tagsPath, prop,val)</emphasis> or
+            <emphasis role="bold">set(tagsPath, prop,val, prop2,val2, ..)</emphasis>
+            identifies the targeted component(s) through their .tag property according to
+            <varname>tagsPath</varname>, instead of through their handle,
+            and then sets its properties.
         </para>
         <para>
             In case of multiple entities matching the path, only the first one is processed.
             Conversely, finding no matching entity yields an error.
         </para>
-        <para/>
-        <emphasis role="bold">set("current_figure", fig)</emphasis>
         <para>
+            <emphasis role="bold">set("current_figure", fig)</emphasis>
             sets the figure of handle <varname>fig</varname> as the active figure. This syntax
             is equivalent to <literal>scf(fig)</literal> or <literal>scf(figure_id)</literal>,
             that are shorter and may be prefered.
         </para>
-        <para/>
-        <emphasis role="bold">set("current_axes", axes)</emphasis>
         <para>
+            <emphasis role="bold">set("current_axes", axes)</emphasis>
             sets the axes of handle <varname>axes</varname> as the active one. This syntax
             is equivalent to <literal>sca(axes)</literal> that is shorter and may be prefered.
         </para>
-        <para/>
-        <emphasis role="bold">set("current_entity", h)</emphasis>
         <para>
+            <emphasis role="bold">set("current_entity", h)</emphasis>
             sets the graphical component whose <literal>h(1)</literal> is the handle as the
             current component, as returned by <literal>gce()</literal>. If <varname>h</varname>
             is a vector of handles, other components <literal>h(2:$)</literal> are ignored.

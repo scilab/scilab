@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-    *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
-    *
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+* Copyright (C) 2020 - Samuel GOUGEON
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="Type">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="Type">
     <refnamediv>
         <refname>Type</refname>
-        <refpurpose>Créé un arbre contenant les données d'inférence de type</refpurpose>
+        <refpurpose>Crée un arbre contenant les données d'inférence de type</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>tp=Type(vtype,property)</synopsis>
+        <synopsis>tp = Type(vtype, property)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -28,13 +31,13 @@
             <varlistentry>
                 <term>vtype</term>
                 <listitem>
-                    <para>type de donnée (voir l'aide de m2scideclare)</para>
+                    <para>type principal de la donnée.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>property</term>
                 <listitem>
-                    <para>propriété de la donnée (voir l'aide de m2scideclare)</para>
+                    <para>propriété (sous-type) de la donnée.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -52,10 +55,62 @@
             on utilise M2SCI. Tous les paramètres d'entrée sont vérifiés pour être compatible avec
             les "tlists M2SCI". (Unknown=-1 dans M2SCI)
         </para>
+        <para>
+            Les valeurs possibles de <varname>vtype</varname> et de <varname>property</varname>
+            sont listées ci-dessous :
+        </para>
+        <para>
+              <table>
+                <tr>
+                  <th>vtype</th> <th>type Scilab</th> <th>property</th>
+                </tr>
+                <tr><td>Double</td>  <td>1</td>     <td>Real, Complex, Unknown</td> </tr>
+                <tr><td>Boolean</td><td>4</td>      <td>Boolean</td>                </tr>
+                <tr><td> </td>      <td>6</td>      <td>Sparse</td>                 </tr>
+                <tr><td> </td>      <td> </td>      <td>Unknown</td>                </tr>
+                <tr><td>Sparse</td>  <td>5</td>     <td>Real, Complex, Unknown</td> </tr>
+                <tr><td>Int</td>     <td>8</td>     <td>'int8', 'int16', 'int32', 'int64',
+                                           'uint8', 'uint16', 'uint32', 'uint64', Unknown</td>
+                </tr>
+                <tr><td>Handle</td>  <td>9</td>     <td>'Figure', 'Axes', Unknown</td></tr>
+                <tr><td>String</td>  <td>10</td>    <td>String, Char, Unknown</td> </tr>
+                <tr><td>Polynomial</td><td>2</td>  <td>Real, Complex, Unknown</td>  </tr>
+                <tr><td>Function</td><td>13</td>    <td>Macro</td>      </tr>
+                <tr><td> </td>       <td>130</td>   <td>Builtin</td>    </tr>
+                <tr><td> </td>       <td> </td>     <td>Unknown</td>    </tr>
+                <tr><td>Struct</td>  <td>16</td> <td>(unused)</td>      </tr>
+                <tr><td>Cell</td>    <td>17</td> <td>(unused)</td>      </tr>
+                <tr><td>Unknown</td> <td> </td>   <td>Unknown</td>      </tr>
+              </table>
+        </para>
+        <para>
+            <constant>?</constant> est équivalent à la valeur <constant>Unknown</constant>.
+            <constant>Boolean</constant>,
+            <constant>Int</constant>, <constant>Double</constant>, <constant>Sparse</constant>,
+            <constant>Real</constant>, <constant>Complex</constant>, <constant>Handle</constant>,
+            <constant>String</constant>, <constant>Char</constant>, <constant>Polynomial</constant>,
+            <constant>Function</constant>, <constant>Macro</constant>, <constant>Builtin</constant>,
+            <constant>Struct</constant>, <constant>Cell</constant>, et <constant>Unknown</constant>
+            sont des constantes prédéfinies dans m2sci.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Exemples</title>
+        <programlisting role="no-scilab-exec">
+Type(Double, Complex)
+Type(Sparse, Unknown)
+Type(Int, 'uint32')
+Type(Handle, 'Axes')
+Type(Boolean, Sparse)
+Type(String, Char)
+        </programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="m2scideclare">m2scideclare</link>
+            </member>
             <member>
                 <link linkend="Funcall">Funcall</link>
             </member>
@@ -77,9 +132,57 @@
             <member>
                 <link linkend="Equal">Equal</link>
             </member>
-            <member>
-                <link linkend="m2scideclare">m2scideclare</link>
-            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Le vtype <literal>Function</literal> est désormais générique :
+                            la propriété peut désormais avoir la valeur
+                            <literal>Builtin</literal> ou <literal>Macro</literal>,
+                            au lieu de <literal>Unknown</literal>.
+                            <literal>Builtin</literal> est supprimé en tant que vtype.
+                        </listitem>
+                        <listitem>
+                            vtype <literal>Polynomial</literal> ajouté. Les valeurs de la
+                            propriété peuvent être
+                            <literal>Real</literal>, <literal>Complex</literal>, ou <literal>Unknown</literal>.
+                        </listitem>
+                        <listitem>
+                            vtype <literal>String</literal> : valeurs de propriété ajoutées :
+                            <literal>String</literal> et <literal>Char</literal>, au lieu de
+                            <literal>Unknown</literal>.
+                        </listitem>
+                        <listitem>
+                            vtype <literal>Handle</literal> : valeurs de propriété ajoutées :
+                            <literal>'Figure'</literal> et <literal>'Axes'</literal>, au lieu de
+                            <literal>Unknown</literal>.
+                        </listitem>
+                        <listitem>
+                            vtype <literal>Int</literal> : <literal>'int8'</literal>,
+                            <literal>'int16'</literal>, <literal>'int32'</literal>,
+                            <literal>'int64'</literal>, <literal>'uint8'</literal>,
+                            <literal>'uint16'</literal>, <literal>'uint32'</literal>,
+                            <literal>'uint64'</literal> ajoutées comme valeurs de propriété
+                            possibles.
+                        </listitem>
+                        <listitem>
+                            vtype <literal>Boolean</literal> : la valeur par défaut de la propriété
+                            est désormais
+                            <literal>Boolean</literal>, au lieu de <literal>Real</literal>.
+                            Valeur de propriété <literal>Sparse</literal> ajoutée.
+                        </listitem>
+                        <listitem>
+                            vtype <literal>Void</literal> supprimé (jamais utilisé dans m2sci).
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

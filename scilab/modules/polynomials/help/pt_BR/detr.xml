@@ -16,11 +16,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="detr" xml:lang="pt">
     <refnamediv>
         <refname>detr</refname>
-        <refpurpose>determinante polinomial</refpurpose>
+        <refpurpose>determinante de uma matriz de razões de polinômios</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>d=detr(h)</synopsis>
+        <synopsis>d = detr(h)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -28,8 +28,14 @@
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>matriz quadrada de polinômios ou de razões de
-                        polinômios
+                    <para>matriz quadrada de polinômios ou de razões de polinômios.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>escalar do tipo de <varname>h</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -42,6 +48,34 @@
             <literal>d</literal> da matriz de funções polinomiais ou racionais
             <literal>h</literal>. É baseado no algoritmo de Leverrier.
         </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example">
+            <![CDATA[
+// Matrix of doubles
+A = rand(5,5);
+detr(A)
+
+A = A+%i;
+detr(A)
+
+// Matrix of polynomials
+x = poly(0, 'x')
+A = [1+x 2 5; 3 4-x 3+x; x^2 1 x];
+detr(A)
+
+// Matrix of rationals
+A = [1/x, 2, 3 ; 3, 4/x, 3/x ; 1/x^2, 1, 1/x];
+detr(A)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> detr(A)
+ ans  =
+   -2 -3x -6x² +9x³
+   ----------------
+          x³
+]]></screen>
     </refsection>
     <refsection>
         <title> Ver Também </title>

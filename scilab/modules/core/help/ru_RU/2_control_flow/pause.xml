@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="pause">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="pause">
     <refnamediv>
         <refname>pause</refname>
-        <refpurpose>режим паузы, вызов клавиатуры</refpurpose>
+        <refpurpose>
+            временно приостанавливает выполнение и разрешает инструкции в консоли.
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
@@ -13,46 +32,62 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Переключение в режим <code>pause</code>. Внесение функции <code>pause</code> в
+            Переключение в режим <function>pause</function>. Внесение функции <function>pause</function> в
             код функции прерывает исполнение функции: появляется символ командной строки, который
-            указывает уровень  <code>pause</code> (например, <literal>-1-&gt;</literal>).
+            указывает уровень  <function>pause</function> (например, <literal>-1-&gt;</literal>).
             Пользователь затем оказывается в новом рабочем окружении, в котором доступны все переменные
-            более низкого уровня (и, особенно, все переменные функции). Чтобы вернуться в вызывающее
-            рабочее окружение, введите команду <code>return</code>.
+            более низкого уровня (и, особенно, все переменные функции) и могут быть изменены вручную
+            при необходимости.
         </para>
         <para>
-            В этом режиме<literal>[...]=return(...)</literal> возвращает переменные аргумента
-            <literal>(...)</literal> в вызывающее рабочее окружение с именами на выходе <literal>
-                [...]
-            </literal>
-            .
-            Таким образом, переменные более низкого уровня защищены и не могут быть
-            изменены.
-        </para>
-        <para>
-            Команда <code>pause</code> чрезвычайно полезна в процессе отладки.
+            Чтобы продолжить выполнение, введите <literal>resume</literal>.
         </para>
         <para>
             Это режим прекращается командой <code>abort</code>.
         </para>
+        <note>
+            Команда <function>pause</function> чрезвычайно полезна в процессе отладки.
+        </note>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-    function c=foo(b)
-    a=42+b
-    disp("Благодаря инструкции pause, вы можете исследовать - имеет ли ''a'' верное значение");
+function c = foo(b)
+    a = 42 + b
+    disp("Благодаря инструкции pause, вы можете исследовать - имеет ли ''a'' верное значение.");
     disp("Значение может быть, если нужно, изменено.");
     pause
-    c=a+2
-    endfunction
+    c = a + 2
+endfunction
 
-    foo(2)
- ]]></programlisting>
+a = 3;
+foo(2)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> a = 3;
+--> foo(2)
+  "Благодаря инструкции pause, вы можете исследовать - имеет ли 'a' верное значение."
+  "Значение может быть, если нужно, изменено."
+
+  Введите «resume» или «abort» для возврата на стандартный уровень командной строки.
+
+-1-> a
+ a  =
+   44.
+
+-1-> a = 0;
+
+-1-> resume
+ ans  =
+   2.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="debug">debug</link>
+            </member>
             <member>
                 <link linkend="halt">halt</link>
             </member>
@@ -63,17 +98,26 @@
                 <link linkend="abort">abort</link>
             </member>
             <member>
-                <link linkend="quit">quit</link>
-            </member>
-            <member>
                 <link linkend="whereami">whereami</link>
-            </member>
-            <member>
-                <link linkend="where">where</link>
             </member>
             <member>
                 <link linkend="sleep">sleep</link>
             </member>
+            <member>
+                <link linkend="quit">quit</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    Новые значения локальных переменных, изменённые в течение паузы, теперь
+                    учитываются при возвращении с помощью <literal>resume</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

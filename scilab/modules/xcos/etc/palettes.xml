@@ -260,6 +260,9 @@
             <block name="EXPBLK_m">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/EXPBLK_m.png"/>
             </block>
+            <block name="EXPRESSION">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/EXPRESSION.png"/>
+            </block>
             <block name="GAINBLK_f">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/GAINBLK_f.png"/>
             </block>
@@ -837,9 +840,6 @@
             </block>
             <block name="DEBUG">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/DEBUG.png"/>
-            </block>
-            <block name="EXPRESSION">
-                <icon variable="SCI" path="/modules/xcos/images/palettes/EXPRESSION.png"/>
             </block>
             <block name="MBLOCK">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/MBLOCK.png"/>

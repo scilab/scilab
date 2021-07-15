@@ -256,8 +256,9 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
             fclose(fmdf5);
 
             wchar_t* wmd5 = to_wide_string(md5);
-            FREE(md5);
             std::wstring wide_md5(wmd5);
+
+            FREE(md5);
             FREE(wmd5);
 
             if (bForce == false)

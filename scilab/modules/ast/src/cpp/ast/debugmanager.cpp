@@ -363,7 +363,7 @@ void DebuggerManager::generateCallStack()
         row.functionLine = getExp()->getLocation().first_line - it_name->call->getFirstLine();
     }
 
-    if(callstackAddFile(&row, *it_name->m_file_name))
+    if(it_name->m_file_name && callstackAddFile(&row, *it_name->m_file_name))
     {
         row.fileLine = getExp()->getLocation().first_line;
     }
@@ -439,7 +439,7 @@ void DebuggerManager::show(int bp)
     sendShow(bp);
 }
 
-char* DebuggerManager::execute(const std::string& command)
+char* DebuggerManager::execute(const std::string& command, int iWaitForIt)
 {
     char* error = checkCommand(command.data());
     if(error)
@@ -453,9 +453,7 @@ char* DebuggerManager::execute(const std::string& command)
     // inform debuggers
     sendExecution();
     // execute command and wait
-    StoreDebuggerCommand(command.data());
-    // send execution finished and update debugger informations
-    internal_execution_released();
+    StoreDebuggerCommand(command.data(), iWaitForIt);
 
     return nullptr;
 }
@@ -473,9 +471,6 @@ void DebuggerManager::resume() //resume execution
 
         // send "SendRunMeSignal" to unlock execution then wait
         ThreadManagement::WaitForDebuggerExecDoneSignal(true);
-
-        // send execution finished and update debugger informations
-        internal_execution_released();
     }
 }
 
@@ -524,15 +519,7 @@ void DebuggerManager::abort() //abort execution
         clearCallStack();
 
         ThreadManagement::WaitForDebuggerExecDoneSignal(true);
-
-        internal_execution_released();
     }
-}
-
-void DebuggerManager::internal_execution_released()
-{
-    // send execution finished
-    sendExecutionReleased();
 }
 
 void DebuggerManager::internal_stop()
@@ -541,6 +528,7 @@ void DebuggerManager::internal_stop()
     generateCallStack();
     // release the debugger thread
     ThreadManagement::SendDebuggerExecDoneSignal();
+    sendExecutionReleased();
     // wait inside pause
     try
     {

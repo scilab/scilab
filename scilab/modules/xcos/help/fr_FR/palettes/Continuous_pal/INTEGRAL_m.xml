@@ -57,13 +57,11 @@
         <para>
             Ce bloc est un intégrateur. La sortie y est l'intégrale de l'entrée u à l'instant courant t.
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../mml/integral_m.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" alt="y(t)= y0 + ∫_t0→t u(τ)dτ">
+                y(t)=y_0 + \int_{t_0}^t\! u(\tau)\,d\tau
+            </latex>
+        </para>
         où y<subscript>0</subscript> est une condition initiale et t<subscript>0</subscript> est
         le temps correspondant à cette condition.
     </refsection>

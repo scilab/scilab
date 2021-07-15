@@ -16,7 +16,6 @@ import java.io.StringReader;
 import java.io.IOException;
 
 @javax.annotation.Generated("JFlex")
-@SuppressWarnings("fallthrough")
 %%
 
 %public
@@ -25,7 +24,6 @@ import java.io.IOException;
 %unicode
 %char
 %type void
-%switch
 
 %{
     private static Set<String> commands;

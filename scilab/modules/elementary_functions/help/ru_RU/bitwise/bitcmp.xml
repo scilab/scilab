@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- *
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Michael Baudin
- *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,51 +11,84 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitcmp" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+      xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+      xmlns:scilab="http://www.scilab.org" xml:id="bitcmp" xml:lang="ru">
     <refnamediv>
         <refname>bitcmp</refname>
-        <refpurpose>побитовое дополнение</refpurpose>
+        <refpurpose>побитовое дополнение целых чисел</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
+            y = bitcmp(x)
             y = bitcmp(x, bitnum)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Параметры</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>x :</term>
+                <term>x, y</term>
                 <listitem>
-                    <para>
-                        матрица чисел двойной точности (<literal>double</literal>) размером <literal>m</literal> на <literal>n</literal>
-                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
-                        или матрица беззнаковых целых чисел (<literal>uint8</literal>, <literal>uint16</literal> или <literal>uint32</literal>) размером <literal>m</literal> на <literal>n</literal>. Должна содержать положительные целые значения.
-                    </para>
+                    массивы знаковых и беззнаковых целых чисел (int8, .., uint64)
+                    или положительных десятичных целых чисел. Поддерживаются гиперматрицы.
+                    <varname>x</varname> и <varname>y</varname> одного типа целого
+                    числа и одинакового размера.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>bitnum :</term>
+                <term>bitnum</term>
                 <listitem>
-                    <para>
-                        матрица чисел двойной точности (<literal>double</literal>) размером <literal>m</literal> на <literal>n</literal>
-                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
-                        или матрица беззнаковых целых чисел (<literal>uint8</literal>, <literal>uint16</literal> или <literal>uint32</literal>) размером <literal>m</literal> на <literal>n</literal>. Должна содержать положительные целые значения.
-                        Входная <varname>bitnum</varname> должна быть в диапазоне 1, 2, ..., <literal>bitmax</literal>
-                        где <literal>bitmax</literal> - максимальное количество битов в <varname>x</varname>.
-                        <varname>bitnum</varname> должна содержать положительные целые значения.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y :</term>
-                <listitem>
-                    <para>
-                        матрица чисел двойной точности размером <literal>m</literal> на <literal>n</literal>
-                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
-                        или матрица беззнаковых целых чисел (<literal>uint8</literal>, <literal>uint16</literal> или <literal>uint32</literal>) размером <literal>m</literal> на <literal>n</literal>.
-                    </para>
+                    положительное кодированное иди десятичное целое число или массив
+                    положительных кодированных или десятичных целых чисел размером,
+                    равным size(x): учитываются и инвертируются биты от №1 до №bitnum
+                    в <varname>x</varname>. В соответствии с типом целого числа
+                    <varname>x</varname>, <varname>bitnum</varname> должен быть в
+                    интервале <literal>[1, bitmax]</literal>, где <literal>bitmax</literal>:
+                    <table>
+                        <tr><th>inttype :</th>
+                            <td>int8</td>
+                            <td>uint8</td>
+                            <td>int16</td>
+                            <td>uint16</td>
+                            <td>int32</td>
+                            <td>uint32</td>
+                            <td>int64</td>
+                            <td>uint64</td>
+                            <td>decimal</td>
+                        </tr>
+                        <tr><th>bitmax :</th>
+                            <td>8</td>
+                            <td>8</td>
+                            <td>16</td>
+                            <td>16</td>
+                            <td>32</td>
+                            <td>32</td>
+                            <td>64</td>
+                            <td>64</td>
+                            <td>1024</td>
+                        </tr>
+                    </table>
+                    <para/>
+                    Значение по умолчанию <varname>bitnum</varname> зависит от
+                    типа входного целого числа:
+                    <itemizedlist>
+                        <listitem>
+                            <literal>bitnum = bitmax</literal> для кодированных целых чисел
+                        </listitem>
+                        <listitem>
+                            <literal>bitnum = 53</literal> для десятичных целых чисел
+                            <literal>x ≤ 1/%eps</literal>
+                        </listitem>
+                        <listitem>
+                            <literal>bitnum = int(log2(x))+1</literal> для десятичных целых чисел
+                            <literal>x > 1/%eps</literal>.
+                        </listitem>
+                    </itemizedlist>
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -66,30 +96,245 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Для заданного беззнакового целого числа <varname>x</varname>, эта функция возвращает беззнаковое целое число <varname>y</varname>, которое является целым числом, соответствующим дополнительному коду двоичного представления <varname>x</varname>.
+            <literal>bitcmp(x)</literal> вычисляет двоичный дополнительный код каждого
+            элемента <varname>x</varname> и выдаёт его в соответствующем элементе
+            <varname>y</varname>.
         </para>
         <para>
-            Целое число <varname>bitnum</varname> устанавливает максимальное количество битов.
+            В следующем описании 2^0 соответствует биту №1. Целое число, чей наивысший
+            бит №n, находится в интервале <literal>[2^(n-1), 2^n-1]</literal>.
         </para>
         <para>
-            Если количество битов в двоичном представлении <varname>x</varname> меньше количества
-            <literal>bitmax</literal> (8, 16 или 32), то добавляются биты <literal>'1'</literal> к дополнительному коду для того чтобы у дополнительного кода количество битов было <literal>bitmax</literal> (8, 16 или 32).
+            Для <varname>x</varname> такого, что <literal>abs(x) ≥ 2^bitnum</literal>,
+            его биты от <literal>#(bitnum+1)</literal> до <literal>№(int(log2(x))+1)</literal>
+            игнорируются. Рассматриваются и инвертируются только его биты от
+            <literal>№1</literal> до <literal>№bitnum</literal>
+        </para>
+        <para>
+            Пример:
+            <screen>
+--> bitget(180, 1:8)
+ ans  =
+   0.   0.   1.   0.   1.   1.   0.   1.
+--> bitcmp(180, 4)
+ ans  =
+   11.
+--> bitget(11, 1:8)
+ ans  =
+   1.   1.   0.   1.   0.   0.   0.   0.
+</screen>
+        </para>
+        <para>
+            Для <varname>x</varname> такого, что <literal>abs(x) &lt; 2^bitnum</literal>,
+            биты от <literal>№(int(log2(x))+2)</literal> до <literal>№bitnum</literal>
+            дополняются нулями. Затем рассматриваются и инвертируются все биты от <literal>№1</literal> до
+            <literal>№bitnum</literal>.
+        </para>
+        <para>
+            Пример:
+            <screen>
+--> x = 30; int(log2(30))+2
+ ans  =
+   6.
+--> bitget(30, 1:10)
+ ans  =
+   0.   1.   1.   1.   1.   0.   0.   0.   0.   0.
+--> bitcmp(30, 7)
+ ans  =
+   97.
+--> bitget(97, 1:10)
+ ans  =
+   1.   0.   0.   0.   0.   1.   1.   0.   0.   0.
+</screen>
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-// 13 соответствует (1101)_2
-// Мы вводим нули в начало, чтобы получить 8-битовое число:
-// (00001101)_2
-// 8-битовый дополнительный код тогда (11110010)_2,
-// что соответствует 242
-bitcmp(13,8)
-expected = 242
-
-// Входной аргумент может быть беззнаковым целым числом
-bitcmp(uint8(99),8)
-expected = 156
+x = uint8(13);
+b = bitget(x, 1:8)
+c = bitcmp(x, 8)
+bitget(c, 1:8)
+1 - b
    ]]></programlisting>
+        <screen><![CDATA[
+--> b = bitget(x, 1:8)
+ b  =
+  1  0  1  1  0  0  0  0
+
+--> c = bitcmp(x, 8)
+ c  =
+  242
+
+--> bitget(c, 1:8)
+ ans  =
+  0  1  0  0  1  1  1  1
+
+--> 1 - b
+ ans  =
+  0  1  0  0  1  1  1  1
+]]></screen>
+        <para/>
+        <para>
+        Принимаются отрицательные кодированные целые числа:
+        </para>
+        <programlisting role="example"><![CDATA[
+bitcmp(int8([-71 -34 -1 0 33 70]))
+bitcmp(int8([-71 -34 -1 0 33 70]), 8)
+bitcmp(int8([-71 -34 -1 0 33 70]), 7)
+bitcmp(int8([-71 -34 -1 0 33 70]), 6)
+bitcmp(int8([-71 -34 -1 0 33 70]), 5)
+bitcmp(int8([-71 -34 -1 0 33 70]), 4)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> bitcmp(int8([-71 -34 -1 0 33 70]))
+ ans  =
+  70  33  0 -1 -34 -71
+
+--> bitcmp(int8([-71 -34 -1 0 33 70]), 8)
+ ans  =
+  70  33  0 -1 -34 -71
+
+--> bitcmp(int8([-71 -34 -1 0 33 70]), 7)
+ ans  =
+  70  33  0  127  94  57
+
+--> bitcmp(int8([-71 -34 -1 0 33 70]), 6)
+ ans  =
+  6  33  0  63  30  57
+
+--> bitcmp(int8([-71 -34 -1 0 33 70]), 5)
+ ans  =
+  6  1  0  31  30  25
+
+--> bitcmp(int8([-71 -34 -1 0 33 70]), 4)
+ ans  =
+  6  1  0  15  14  9
+]]></screen>
+        <para/>
+        <para>
+            Можно работать с 64-битными большими целыми числами:
+        </para>
+        <programlisting role="example"><![CDATA[
+b = (rand(1,62)<0.5)*1;
+x = sum(b .* (uint64(2).^(0:61)))
+r = bitcmp(x)
+bg = bitget(r, 1:62);
+[msprintf("%d ",b(:)) ; msprintf("%d ",bg(:))]
+     ]]></programlisting>
+        <screen><![CDATA[
+--> x = sum(b .* (uint64(2).^(0:61)))
+ x  =
+  4154509482123930814
+
+--> r = bitcmp(x)
+ r  =
+  14292234591585620801
+
+--> bg = bitget(r, 1:62);
+--> [msprintf("%d ",b(:)) ; msprintf("%d ",bg(:))]
+ ans  =
+  "0 1 1 1 1 1 0 1 0 0 1 1 0 1 0 0 ... 1 0 0 0 0 1 0 0 1 1 1 1 1 0 0 1 0 1 1 0 0 1 1 1 "
+  "1 0 0 0 0 0 1 0 1 1 0 0 1 0 1 1 ... 0 1 1 1 1 0 1 1 0 0 0 0 0 1 1 0 1 0 0 1 1 0 0 0 "
+]]></screen>
+        <para/>
+        <para>
+        bitnum может быть массивом:
+        </para>
+        <programlisting role="example"><![CDATA[
+bitcmp([0 0 0 0 0], 3:7)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> bitcmp([0 0 0 0 0], 3:7)
+ ans  =
+   7.   15.   31.   63.   127.
+]]></screen>
+        <para/>
+        <para>
+            bitnum может быть > 52:
+        </para>
+        <programlisting role="example"><![CDATA[
+format(22)
+bitcmp(2^70, 65)
+sum(2.^(13:64))   // 52 высшие биты
+     ]]></programlisting>
+        <screen><![CDATA[
+--> bitcmp(2^70, 65)
+ ans  =
+   36893488147419095040.
+
+--> sum(2.^(13:64))
+ ans  =
+   36893488147419095040.
+]]></screen>
+        <para/>
+        <para>
+            Могут обрабатываться огромные десятичные числа:
+        </para>
+        <programlisting role="example"><![CDATA[
+format(22)
+log2(1e100)
+r = bitcmp(1e100, 333)
+bitcmp(1e100) // bitnum = int(log2(x)) + 1 is used by default
+bitcmp(r, 333)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> log2(1e100)
+ ans  =
+   332.19280948873625903
+
+--> r = bitcmp(1e100, 333)
+ r  =
+   7.498005798264093D+99
+
+--> bitcmp(1e100)  // bitnum = int(log2(x)) + 1 is used by default
+ ans  =
+   7.498005798264093D+99
+
+--> bitcmp(r, 333)
+ ans  =
+   1.00000000000000D+100
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bitxor">bitxor</link>
+            </member>
+            <member>
+                <link linkend="bitget">bitget</link>
+            </member>
+            <member>
+                <link linkend="minus">минус</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Расширение до 64-битных целых чисел.
+                        </listitem>
+                        <listitem>
+                            Расширение до всех знаковых целых чисел.
+                        </listitem>
+                        <listitem>
+                            Десятичные положительные целые числа > 2^52 вплоть до
+                            2^1024 = number_properties("huge")
+                            теперь могут быть обработаны с bitnum вплоть до 1024 вместо 52.
+                        </listitem>
+                        <listitem>
+                            bitnum теперь необязательно как и входные десятичные целые числа.
+                            Оно на самом деле может быть массивом.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

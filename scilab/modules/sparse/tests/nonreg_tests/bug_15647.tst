@@ -16,6 +16,6 @@
 // <-- Short Description -->
 // spzeros(-1,-1) yields a corrupted result
 
-errMsg = _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n")
+errMsg = _("%s: Wrong value for input argument #%d: Scalar positive integer expected.")
 assert_checkerror("spzeros(-1,-1)", msprintf(errMsg, "spzeros", 1));
 assert_checkerror("spzeros(1,-1)", msprintf(errMsg, "spzeros", 2));

@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="splin3d" xml:lang="ja">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) R.F. Boisvert, C. De Boor (código da biblioteca FORTRAN CMLIB)
+ * Copyright (C) B. Pincon (interface Scilab)
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="splin3d" xml:lang="ja">
     <refnamediv>
         <refname>splin3d</refname>
         <refpurpose>3次元補間グリッドのスプライン</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>tl = splin3d(x, y, z, v, [order])</synopsis>
+        <synopsis>
+            tl = splin3d(x, y, z, v)
+            tl = splin3d(x, y, z, v, order)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -66,17 +85,15 @@
             <literal>order=[kx,ky,kz]</literal>を選択することにより
             計算することができます.
         </para>
-    </refsection>
-    <refsection>
-        <title>注意</title>
-        <para>この関数は以下の条件で動作します:</para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/splin3d_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            注意 : この関数は以下の条件で動作します
+            <table align="center"  style="float:center">
+                <tr><td>nx, ny, nz ≥ 3</td></tr>
+                <tr><td>2 ≤ kx &lt; nx</td></tr>
+                <tr><td>2 ≤ ky &lt; ny</td></tr>
+                <tr><td>2 ≤ kz &lt; nz</td></tr>
+            </table>
+        </para>
         <para>これらの条件が考慮されない場合にエラーが発生します.</para>
     </refsection>
     <refsection>
@@ -98,12 +115,13 @@ vp_exact = f(xp,yp,zp);
 vp_interp = interp3d(xp,yp,zp, tl);
 er = max(abs(vp_exact - vp_interp))
 // n=20で再試行し,誤差を見る
- ]]></programlisting>
+     ]]></programlisting>
+        <para/>
         <programlisting role="example"><![CDATA[
 // 例 2 (linear_interpn のヘルプを参照ください,
 //       trilinear補間に関する同じ例があります)
 // =============================================================================
-exec("SCI/modules/interpolation/demos/interp_demo.sci")
+exec("SCI/modules/interpolation/demos/interp_demo.sci", -1);
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
 n = 5;
@@ -116,29 +134,28 @@ m = 41;
 dir = ["z="  "z="  "z="  "x="  "y="];
 val = [ 0.1   0.5   0.9   0.5   0.5];
 ebox = [0 1 0 1 0 1];
-XF=[]; YF=[]; ZF=[]; VF=[];
+[XF, YF, ZF, VF] = ([], [], [], []);
 for i = 1:length(val)
-  [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
-  Vm = interp3d(Xm,Ym,Zm, tl);
-  [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
-  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
-  Vp = interp3d(Xp,Yp,Zp, tl);
-  [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
-  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
+    [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
+    Vm = interp3d(Xm,Ym,Zm, tl);
+    [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
+    XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
+    Vp = interp3d(Xp,Yp,Zp, tl);
+    [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
+    XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
 end
-nb_col = 128;
-vmin = min(VF); vmax = max(VF);
+
+clf
+[nb_col, vmin, vmax] = (128, min(VF), max(VF));
 color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
 gcf().color_map = jetcolormap(nb_col);
-clf();
 gca().hiddencolor = gca().background;
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
-xtitle("3d spline interpolation of "+func)
-show_window()
+title("3d spline interpolation of "+func, "fontsize",3)
  ]]></programlisting>
         <scilab:image localized="true">
-            exec("SCI/modules/interpolation/demos/interp_demo.sci")
+            exec("SCI/modules/interpolation/demos/interp_demo.sci", -1);
             func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
             deff("v=f(x,y,z)",func);
             n = 5;
@@ -184,14 +201,5 @@ show_window()
                 <link linkend="bsplin3val">bsplin3val</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>履歴</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>以前では, 入力引数の虚部は暗黙のうちに無視されていました.</revremark>
-            </revision>
-        </revhistory>
     </refsection>
 </refentry>

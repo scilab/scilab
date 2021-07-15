@@ -2,9 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * Copyright (C) 2018 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,38 +14,135 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-        xml:lang="ru" xml:id="deff">
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="deff">
     <refnamediv>
         <refname>deff</refname>
         <refpurpose>
-            определение функции во время выполнения программы
+            вставленное определение (анонимной) функции на языке Scilab
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>deff('[s1, s2, ...] = newfunction(e1, e2, ...)',text)</synopsis>
+        <synopsis>
+            deff(funcHeadline, funcBody)
+            deff(definition)
+            deff("[r1, r2, ...] = myFunc(in1, in2, ...)", funcBody)
+            deff "r = myFunc(x,y) r = x^2 - y"
+            deff "r = myFunc(x,y) x^2 - y"
+            deff("r = @(x,y) x^2 - y")      // в качестве элемента анонимного контейнера
+
+            myFunc = deff(funcHeadline, funcBody)
+            myFunc = deff(definition)
+            myFunc = deff("[r1, r2, ...] = fakeName(in1, in2, ...)", funcBody)
+            myFunc = deff("r = fakeName(x,y) r = x^2 - y")
+            myFunc = deff("r = fakeName(x,y) x^2 - y")
+            myFunc = deff("r = @(x,y) x^2 - y")
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>e1, e2, ...</term>
+                <term>x, y, in1, in2, ...</term>
                 <listitem>
-                    <para>входные переменные.</para>
+                    входные аргументы определяемой функции. Последняя может иметь
+                    любое количество входных аргументов, от 0 до любого N.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>s1, s2, ...</term>
+                <term>r, r1, r2, ...</term>
                 <listitem>
-                    <para>выходные переменные.</para>
+                    результаты на выходе определяемой функции. Последняя может
+                    иметь любое количество результатов на выходе, от 0 до любого
+                    M. Все выходные аргументы должны быть явными, то есть,
+                    записанными слева от имени функции.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>text</term>
+                <term>funcHeadline</term>
                 <listitem>
-                    <para>матрица символьных строк.</para>
+                    одиночная строка: заголовок функции, то есть, её первая строчка,
+                    указывающая локальное имя функции и списки её входных аргументов
+                    с правой стороны и выходных аргументов с левой стороны. Примеры:
+                    <itemizedlist>
+                        <listitem>
+                            <literal>"myFunction(x,y)"</literal> : нет аргументов на выходе
+                        </listitem>
+                        <listitem>
+                            <literal>"r = myFunction(x,y)"</literal> : один аргумент на выходе
+                        </listitem>
+                        <listitem>
+                            <literal>"[a,b] = myFunction(x,y)"</literal> : два аргумента
+                            на выходе. И т.д.
+                        </listitem>
+                    </itemizedlist>
+                    Пожалуйста, обратите внимание, что a) ключевое слово <literal>function</literal>
+                    не обязательно указывать. b) запись выходных аргументов, если они есть, на левой
+                    части заголовочной строчки является обязательной.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>funcBody</term>
+                <listitem>
+                    вектор текстов, то есть Scilab-инструкций тела функции, в том
+                    порядке, в котором они должны быть выполнены. Эти инструкции
+                    должны определять и назначать значения всех выходных аргументов.
+                    Завершающее ключевое слово "endfunction" не ожидается.
+                    <para/>
+                    Этот вектор ожидается, когда <literal>deff(…)</literal> вызывается
+                    с двумя входными аргументами.
+                    <para/>
+                    <warning>
+                        Одинарные или двойные кавычки внутри инструкций должны
+                        дублироваться для защиты.
+                    </warning>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>definition</term>
+                <listitem>
+                    Отдельный текст или вектор текстов, включая как заголовочную
+                    строчку функции, так и тело.
+                    <itemizedlist>
+                        <listitem>
+                            Если это вектор, то это эквивалентно
+                            <literal>definition = [funcHeadline ; funcBody]</literal>.
+                        </listitem>
+                        <listitem>
+                            В противном случае одностроковое определение эквивалентно
+                            <literal>funcHeadline + " " + strcat(funcBody,"; ")</literal>.
+                        </listitem>
+                    </itemizedlist>
+                    Пожалуйста, смотрите разделы "Описание" и "Примеры".
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>myFunc</term>
+                <listitem>
+                    Публичное имя и идентификатор определяемой функции, неявно
+                    возвращаемый в текущее окружение, либо явно присваиваемый
+                    переменной на выходе <literal>deff(…)</literal>.
+                    <para/>
+                    <note>
+                        Когда <literal>deff(…)</literal> вызывается без явных выходных
+                        аргументов, но в качестве элемента контейнера или в качестве
+                        входного аргумента другой функции, то она неявно присваивается
+                        этому элементу или аргументу, который является анонимным. То
+                        тогда она является
+                        <emphasis role="bold">анонимной функцией</emphasis>. Например:
+                        <para/>
+                        <literal>L = list(3, deff("r=noName(x) x.^2+1"), "Hello");</literal>.
+                        Результат <literal>deff(…)</literal> присваивается <literal>L(2)</literal>.
+                        Тогда <literal>L(2)(3.5) // ➜ 13.25</literal>.
+                    </note>
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -54,23 +150,112 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>deff</function> может быть использована для определения функций из
-            ряда инструкций, написанных в текстовых строках. Полученный объект функции имеет те же
-            свойства, что и любая другая функция, определённая в текстовом файле и загруженная
-            с помощью функции <function>exec</function>.
+            <literal>deff(…)</literal> может использоваться для определения
+            <emphasis>отдельной</emphasis> функции из инструкций Scilab, указанных
+            через матрицу текстов, вместо любого внешнего текстового файла с
+            инструкциями для исполнения, записанными в блок <literal>function … endfunction</literal>.
         </para>
+        <para>
+            Файл исходного Scilab-кода может включать в себя определение нескольких
+            публичных функций. Это не возможно сделать с помощью <literal>deff(…)</literal>:
+            только одну публичную функцию можно определить. Однако, как и в случае
+            с файлом, тело определяемой функции может включать в себя один или
+            несколько блоков <literal>function … endfunction</literal>, определяющих
+            вложенные приватные функции.
+        </para>
+        <para>
+            Независимо от синтаксиса <literal>deff(…)</literal>, используемого для
+            обеспечения исходного кода (см. ниже), если он содержит синтаксическую
+            ошибку, то <literal>deff(…)</literal> выдаст ошибку компиляции
+            и остановит работу.
+        </para>
+        <refsect3>
+            <title>Указание исходного кода</title>
+            <para>
+                <emphasis role="bold">deff(funcHeadline, funcBody)</emphasis> (2 входа) и
+                <emphasis role="bold">deff([funcHeadline ; funcBody])</emphasis>
+                (единый конкатенированный вход) эквивалентны.
+            </para>
+            <para>
+                Когда <varname>funcBody</varname> сделана только из одной (короткой)
+                строки, она может быть приклеена и передана вместе с
+                <varname>funcHeadline</varname>, как одностроковое определение функции.
+                Примеры:
+                <table cellpadding="0" cellspacing="0">
+                    <tr><td><literal>deff("[a,b] = myFunction(x,y) a = x.^2; b = x-y;")</literal></td>
+                    </tr>
+                    <tr><td>
+                            <literal>deff("r = myFunction(x,y) r = (x-y).^2")</literal>.
+                            Это можно даже упростить до
+                        </td>
+                    </tr>
+                    <tr><td>
+                            <literal>deff("r = myFunction(x,y) (x-y).^2")</literal>
+                        </td>
+                    </tr>
+                    <tr><td><literal>deff("myFunction(x,y) disp(x.^2 - b)")</literal></td>
+                    </tr>
+                </table>
+            </para>
+            <para>
+                Когда результат <literal>deff(…)</literal> присваивается или вводится
+                в любой анонимный контейнер, то оказывается, что псевдоимя
+                <varname>fakeName</varname>, определённое в <varname>funcHeadline</varname>
+                не играет роли вообще, и может совсем не использоваться для вызова
+                функции. Это имя может быть тогда заменено символом "@" в
+                <varname>funcHeadline</varname> для указания, что определяемая
+                функция становится <emphasis>анонимной</emphasis>.
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>Идентификатор определяемой функции</title>
+            <para>
+                Идентификатор - это фактическое слово (имя), которое используется
+                для вызова определяемой функции. Следующие три случая представлены
+                для примера.
+            </para>
+            <para>
+                Когда определяемая функция не предполагает присваиваемый результат,
+                то её идентификатор возвращается напрямую в вызывающее окружение.
+                Её публичное имя тогда является именем, используемым в заголовочной
+                строчке представленного исходного кода.
+            </para>
+            <para>
+                В противном случае, когда <literal>deff(…)</literal> вызывается с
+                явным выходным аргументом, то его имя становится единственным
+                фактическим  идентификатором публичной функции. В результате, имя
+                функции, используемой в исходном коде, нельзя использовать для её
+                вызова. Оно становится псевдоименем. По этой причине в заголовочной
+                строчке может быть использован символ "@" (ставящийся для "анонимок")
+                вместо какого-либо корректного имени функции, определённой в заголовочной
+                строчке. Но это не обязательно.
+            </para>
+            <para>
+                Последний случай использования <literal>deff(…)</literal> в качестве
+                элемента контейнера, например когда определяется или вводится в список,
+                либо в качестве входного аргумента другой функции. Тогда
+                <literal>deff(…)</literal> работает как присвоение. Она возвращает
+                идентификатор определяемой функции и присваивает его соответствующему
+                элементу списка или входного аргумента. Они безымянны, следовательно
+                вызов <literal>deff(…)</literal> является выражением. Определяемая
+                функция тогда становиться реально <emphasis>анонимной</emphasis>.
+            </para>
+        </refsect3>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[
-deff('x = myplus(y,z)', 'x = y+z')
-myplus(1,%i)
+        <refsect3>
+            <title>Неприсваивающие функции</title>
+            <para/>
+            <programlisting role="example"><![CDATA[
+                deff('x = myplus(y,z)', 'x = y+z')
+                myplus(1,%i)
 
-deff('[y, z] = mymacro(x)', ['y = 3*x+1'; 'z = a*x + x.^2'])
-a = 3;
-[u, v] = mymacro(2)
- ]]></programlisting>
-    <screen><![CDATA[
+                deff('[y, z] = mymacro(x)', ['y = 3*x+1'; 'z = a*x + x.^2'])
+                a = 3;
+                [u, v] = mymacro(2)
+         ]]></programlisting>
+            <screen><![CDATA[
 --> deff('x = myplus(y,z)', 'x = y+z')
 --> myplus(1,%i)
  ans  =
@@ -85,6 +270,159 @@ a = 3;
  u  =
    7.
 ]]></screen>
+            <para>
+                С единственным входным и выходным аргументом:
+            </para>
+            <programlisting role="example"><![CDATA[
+                clear myFunc
+                source = ["r = myFunc(x,y)" ; "r = x.*(x-y)"]
+                deff(source)
+                myFunc(3, -2)
+         ]]></programlisting>
+            <screen><![CDATA[
+--> source = ["r = myFunc(x,y)" ; "r = x.*(x-y)"]
+ source  =
+  "r = myFunc(x,y)"
+  "r = x.*(x-y)"
+
+--> deff(source)
+--> myFunc(3, -2)
+ ans  =
+   15.
+]]></screen>
+            <para>
+                Тот же пример с одностроковым определением, которое затем позволяет
+                синтаксис, ориентированный на командную строку (без необязательных
+                скобок deff, но с, по-прежнему, обязательными разделительными кавычками):
+            </para>
+            <programlisting role="example"><![CDATA[
+                clear myFunc
+                deff "r = myFunc(x,y) r = x.*(x-y)"
+                myFunc(1:3, -2)
+         ]]></programlisting>
+            <screen><![CDATA[
+--> deff "r = myFunc(x,y) r = x.*(x-y)"
+--> myFunc(1:3, -2)
+ ans  =
+   3.   8.   15.
+]]></screen>
+            <para>
+                Для однострокового прямого определения с единственным выходным аргументом,
+                мы можем даже опустить дубликат "r = " в теле функции:
+            </para>
+            <programlisting role="example"><![CDATA[
+                clear myFunc
+                deff "r = myFunc(x,y) x.*(x-y)"
+                myFunc(1:3, -2)
+         ]]></programlisting>
+            <screen><![CDATA[
+--> deff "r = myFunc(x,y) x.*(x-y)"
+--> myFunc(1:3, -2)
+ ans  =
+   3.   8.   15.
+]]></screen>
+            <para>
+                Функция без присваиваемого выходного аргумента: обратите также внимание
+                на использование удвоенных кавычек для защиты их в строке определения:
+            </para>
+            <programlisting role="example"><![CDATA[
+                clear myFunc
+                deff("myFunc(x, y) messagebox(prettyprint(x.*(x-y), ""html"",""""))")
+                myFunc([1 2 ; 3 4], -2)
+         ]]></programlisting>
+        </refsect3>
+        <refsect3>
+            <title>Определяемая функция, присваиваемая реципиенту</title>
+            <para>
+                Придержимся примеров, похожих на приведённые выше:
+            </para>
+            <programlisting role="example"><![CDATA[
+                clear myFunc actualName
+                actualName = deff("r = myFunc(x,y) x.*(x-y)")
+                isdef(["myFunc" "actualName"])
+                actualName(1:3, -2)
+                myFunc(1:3, -2)
+         ]]></programlisting>
+            <screen><![CDATA[
+--> actualName = deff("r = myFunc(x,y) x.*(x-y)")
+ actualName  =
+[r]=actualName(x,y)
+
+--> isdef(["myFunc" "actualName"])
+ ans  =
+  F T
+
+--> actualName(1:3, -2)
+ ans  =
+   3.   8.   15.
+
+--> myFunc(1:3, -2)
+Undefined variable: myFunc
+]]></screen>
+            <para>
+                Поскольку имя "внутренней" функции является псевдоименем, то мы
+                можем вместо него использовать "@" (символ "@" нельзя использовать
+                в фактических именах функций):
+            </para>
+            <programlisting role="example"><![CDATA[
+                clear actualName
+                actualName = deff("r = @(x,y) x.*(x-y)");
+                actualName(1:3, -2)
+         ]]></programlisting>
+            <screen><![CDATA[
+--> actualName = deff("r = @(x,y) x.*(x-y)");
+--> actualName(1:3, -2)
+ ans  =
+   3.   8.   15.
+]]></screen>
+            <para>
+                Теперь напрямую присвоим созданную функцию безымянному реципиенту.
+                Хотя функция становится анонимной, мы, по-прежнему, можем вызывать её:
+            </para>
+            <programlisting role="example"><![CDATA[
+                L = list("abc", deff("r = @(x,y) x.*(x-y)"), %z);
+                L(2)(1.1:4, -2.1)
+                // Мы можем извлекать и устанавливать имя анонимной функции:
+                Abc = L(2)
+                Abc(1.1:4, -2.1)
+         ]]></programlisting>
+            <screen><![CDATA[
+--> L = list("abc", deff("r = @(x,y) x.*(x-y)"), %z);
+--> L(2)(1.1:4, -2.1)
+ ans  =
+   3.52   8.82   16.12
+
+--> Abc = L(2)
+ Abc  =
+[r]=Abc(x,y)
+
+--> Abc(1.1:4, -2.1)
+ ans  =
+   3.52   8.82   16.12
+]]></screen>
+            <para>
+                Наконец, давайте используем <literal>deff()</literal> для прямого
+                определения и передачи функции в качестве входного элемента другой
+                функции:
+            </para>
+            <programlisting role="example"><![CDATA[
+                function r = test(txt, x, theFunc)
+                    r = x + theFunc(txt)
+                endfunction
+
+                test(rand(2,3), 0.7, deff("r = @(M) sum(size(M).^2)"))
+         ]]></programlisting>
+            <screen><![CDATA[
+--> test(rand(2,3), 0.7, deff("r = @(M) sum(size(M).^2)"))
+ ans  =
+   13.7
+]]></screen>
+        <para>
+            В этом примере передаваемая функция является анонимной в вызывающем
+            окружении, но присваивается и получает своё имя "theFunct" внутри
+            вызываемой функции.
+        </para>
+        </refsect3>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
@@ -118,12 +456,35 @@ a = 3;
                    <itemizedlist>
                      <listitem>
                        Входная опция
-                       <ulink url="https://help.scilab.org/docs/5.5.2/ru_RU/deff.html">
+                       <ulink url="https://help.scilab.org/docs/5.5.2/en_US/deff.html">
                          <varname>opt="c"|"p"|"n"</varname>
-                       </ulink> более не доступна.
+                       </ulink> больше не доступна.
                      </listitem>
                      <listitem>
-                        Определённая новая функция <varname>newfunction</varname> теперь имеет тип 13 (вместо 11).
+                        Определяемая <varname>newfunction</varname> теперь имеет
+                        тип 13 (вместо 11).
+                     </listitem>
+                  </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                   <itemizedlist>
+                     <listitem>
+                        Добавлен необязательный выходной аргумент. Могут определяться
+                        анонимные функции.
+                     </listitem>
+                     <listitem>
+                        Поддерживаются одиночные входные аргументы, конкатенирующие
+                        заголовочную строку функции и её тело.
+                     </listitem>
+                     <listitem>
+                        Поддерживается синтаксис одиночной строки, вроде
+                        <literal>deff "r = myFun(x,y) x.^2-y"</literal>
+                     </listitem>
+                     <listitem>
+                        Поддерживается псевдоимя функции "@".
                      </listitem>
                   </itemizedlist>
                 </revdescription>

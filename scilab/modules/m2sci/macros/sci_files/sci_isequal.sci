@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_isequal(tree)
+function tree = sci_isequal(tree)
     // M2SCI function
     // Conversion function for Matlab isequal()
     // Input: tree = Matlab funcall tree
@@ -20,6 +20,6 @@ function [tree]=sci_isequal(tree)
         set_infos(gettext("isequal requires fields are in the same order for structs to be equal."),2);
     end
 
-    tree.lhs(1).dims=list(1,1)
-    tree.lhs(1).type=Type(Boolean,Real)
+    tree.lhs(1).dims = list(1,1)
+    tree.lhs(1).type = Type(Boolean,Boolean)
 endfunction

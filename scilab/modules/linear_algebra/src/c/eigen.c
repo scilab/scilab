@@ -98,8 +98,9 @@ static int zheevWorkSizes(int iCols, int* optWorkSize, int* minWorkSize)
 static int zgeevWorkSizes(int iCols,  int lhs, int* optWorkSize, int* minWorkSize)
 {
     int info = 0, query = -1;
+    double rwork;
     doublecomplex opt;
-    C2F(zgeev)("N", (lhs == 1 ? "N" : "V"), &iCols, NULL, &iCols, NULL, NULL, &iCols, NULL, &iCols, &opt, &query, NULL, &info );
+    C2F(zgeev)("N", (lhs == 1 ? "N" : "V"), &iCols, NULL, &iCols, NULL, NULL, &iCols, NULL, &iCols, &opt, &query, &rwork, &info );
     *optWorkSize = (int)opt.r;
     *minWorkSize = Max(1, 2 * iCols);
     return info;
@@ -119,7 +120,7 @@ static int dgeevWorkSizes(int iCols, int lhs, int* optWorkSize, int* minWorkSize
 {
     int info = 0, query = -1;
     double opt;
-    C2F(dgeev)("N", "N", &iCols, NULL, &iCols, NULL, NULL, NULL, &iCols, NULL, &iCols, &opt, &query, &info);
+    C2F(dgeev)("N", (lhs == 1 ? "N" : "V"), &iCols, NULL, &iCols, NULL, NULL, NULL, &iCols, NULL, &iCols, &opt, &query, &info);
     *optWorkSize = (int)opt;
 
     *minWorkSize = (lhs == 2) ? Max(1, 4 * iCols) : Max(1, 3 * iCols);

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bsplin3val" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="bsplin3val" xml:lang="en">
     <refnamediv>
         <refname>bsplin3val</refname>
         <refpurpose>3d spline arbitrary derivative evaluation
@@ -8,7 +11,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[dfp]=bsplin3val(xp,yp,zp,tl,der)</synopsis>
+        <synopsis>dfp = bsplin3val(xp, yp, zp, tl, der)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -58,13 +61,13 @@
             <literal>s</literal>. The derivative to compute is specified by the
             argument <literal>der=[ox,oy,oz]</literal> :
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/bsplin3val_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" fontsize="18"
+                alt="dfp(i)=∂^{oxoyoz}/(∂^ox.∂^oy.∂^oz) s(xp(i),yp(i),zp(i))">
+                dfp(i)=\frac{\partial^{ox\,oy\,oz}}{\partial ^{ox}\,\partial ^{oy}\,\partial ^{oz}}
+                        s\left(xp(i),yp(i),zp(i)\right)
+            </latex>
+        </para>
         <para>
             So <literal>der=[0 0 0]</literal> corresponds to
             <emphasis>s</emphasis>, <literal>der=[1 0 0]</literal> to
@@ -122,14 +125,5 @@ fxxyz_i = bsplin3val(xp,yp,zp,tl,[2 1 1])
                 <link linkend="interp3d">interp3d</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>previously, imaginary part of input arguments were implicitly ignored.</revremark>
-            </revision>
-        </revhistory>
     </refsection>
 </refentry>

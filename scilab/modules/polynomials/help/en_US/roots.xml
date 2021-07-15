@@ -17,13 +17,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="roots" xml:lang="en">
     <refnamediv>
         <refname>roots</refname>
-        <refpurpose>roots of polynomials</refpurpose>
+        <refpurpose>roots of a polynomial</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            x=roots(p)
-            x=roots(p,algo)
+            x = roots(p)
+            x = roots(p, 'e')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -33,21 +33,29 @@
                 <term>p</term>
                 <listitem>
                     <para>
-                        a polynomial with real or complex coefficients, or
-                        a m-by-1 or 1-by-m matrix of doubles, the polynomial coefficients in decreasing degree order.
+                        a polynomial with real or complex coefficients, or a vector
+                        of the real or complex polynomial coefficients in
+                        decreasing power order.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>algo</term>
+                <term>'e', algo</term>
                 <listitem>
                     <para>
-                        a string, the algorithm to be used (default algo="e").
-                        If algo="e", then the eigenvalues of the companion matrix are returned.
-                        If algo="f", then the Jenkins-Traub method is used (if the polynomial is real and
-                        has degree lower than 100).
-                        If algo="f" and the polynomial is complex, then an error is generated.
-                        If algo="f" and the polynomial has degree greater than 100, then an error is generated.
+                        a character: the algorithm to be used (default "f", for "fast"):
+                        <table>
+                            <tr><th>"f":</th>
+                                <td>
+                                    The Jenkins-Traub method is used. The polynomial must be real
+                                    and of degree &lt; 100; otherwise, an error is yielded.
+                                </td>
+                            </tr>
+                            <tr><th>"e":</th>
+                                <td>eigenvalues of the companion matrix are returned.
+                                </td>
+                            </tr>
+                        </table>
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,12 +68,12 @@
             <literal>x</literal> the roots of the polynomial <literal>p</literal>.
         </para>
         <para>
-            The "e" option corresponds to method based on the eigenvalues of the
-            companion matrix.
-        </para>
-        <para>
             The "f" option corresponds to the fast RPOLY algorithm, based on
             Jenkins-Traub method.
+        </para>
+        <para>
+            The "e" option corresponds to method based on the eigenvalues of the
+            companion matrix.
         </para>
         <para>
             For real polynomials of degree &lt;=100, users may consider the "f" option,
@@ -86,17 +94,17 @@
 p = poly([1 2 3],"x")
 roots(p)
 // Roots, given the real coefficients
-p = [3 2 1]
+p = [3 2 1];
 roots(p)
 // The roots of a complex polynomial
-p=poly([0,10,1+%i,1-%i],'x');
+p = poly([0,10,1+%i,1-%i],'x');
 roots(p)
 // The roots of the polynomial of a matrix
-A=rand(3,3);
+A = rand(3,3);
 p = poly(A,'x')
 roots(p)
 spec(A)
- ]]></programlisting>
+     ]]></programlisting>
         <para>
             The polynomial representation can have a significant
             impact on the roots.
@@ -113,7 +121,7 @@ spec(A)
 A = diag(1:20);
 p = poly(A,'x')
 roots(p)
- ]]></programlisting>
+     ]]></programlisting>
         <para>
             The "f" option produces an error if the polynomial is complex or
             if the degree is greater than 100.
@@ -125,7 +133,7 @@ roots(p)
  // The following case produces an error.
  p = ones(101,1);
  roots(p,"f")
- ]]></programlisting>
+     ]]></programlisting>
         <para>
             The following script is a simple way of checking that the companion matrix gives the same result as the "e" option.
             It explicitly uses the companion matrix to compute the roots.
@@ -141,7 +149,20 @@ p = poly(v(dv:-1:1),"x","coeff"); // Reversing v's coefficients
 A = companion(p);
 r2 = spec(A); // With the companion matrix
 max(abs(r1-r2))
- ]]></programlisting>
+     ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>References</title>
+        <para>
+            The RPOLY algorithm is described in "Algorithm 493: Zeros of a Real
+            Polynomial", ACM TOMS Volume 1, Issue 2 (June 1975), pp. 178-189
+        </para>
+        <para>Jenkins, M. A. and Traub, J. F. (1970), A Three-Stage Algorithm for
+            Real Polynomials Using Quadratic Iteration, SIAM J. Numer. Anal., 7(1970), 545-566.
+        </para>
+        <para>Jenkins, M. A. and Traub, J. F. (1970), Principles for Testing Polynomial Zerofinding Programs.
+            ACM TOMS 1, 1 (March 1975), pp. 26-34
+        </para>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -156,18 +177,5 @@ max(abs(r1-r2))
                 <link linkend="companion">companion</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>References</title>
-        <para>
-            The RPOLY algorithm is described in "Algorithm 493: Zeros of a Real
-            Polynomial", ACM TOMS Volume 1, Issue 2 (June 1975), pp. 178-189
-        </para>
-        <para>Jenkins, M. A. and Traub, J. F. (1970), A Three-Stage Algorithm for
-            Real Polynomials Using Quadratic Iteration, SIAM J. Numer. Anal., 7(1970), 545-566.
-        </para>
-        <para>Jenkins, M. A. and Traub, J. F. (1970), Principles for Testing Polynomial Zerofinding Programs.
-            ACM TOMS 1, 1 (March 1975), pp. 26-34
-        </para>
     </refsection>
 </refentry>

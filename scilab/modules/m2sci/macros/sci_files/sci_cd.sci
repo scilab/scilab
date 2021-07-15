@@ -19,7 +19,7 @@ function [tree]=sci_cd(tree)
     // cd
     if rhs<=0 then
         tree.lhs(1).dims=list(1,Unknown)
-        tree.lhs(1).type=Type(String,Real)
+        tree.lhs(1).type=Type(String, Char)
         // cd(dirname)
     else
     end

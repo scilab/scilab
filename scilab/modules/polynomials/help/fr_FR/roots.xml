@@ -22,8 +22,8 @@
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>
-            x=roots(p)
-            x=roots(p,"algo")
+            x = roots(p)
+            x = roots(p, 'e')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -40,22 +40,22 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>algo</term>
+                <term>'e', algo</term>
                 <listitem>
-                    <para>un caractère désignant l'algorithme à utiliser :
-                        <itemizedlist>
-                            <listitem>"e" (par défaut) : les valeurs propres de
-                                la matrice compagnon sont utilisées.
-                            </listitem>
-                            <listitem>"f" : si isreal(p) et degree(p)&lt;100 :
-                                l'algorithme de Jenkins-Traub est utilisé.
-                            </listitem>
-                            <listitem>"f" : si isreal(p) et degree(p)>=100: une
-                                erreur est émise.
-                            </listitem>
-                            <listitem>"f" : si ~isreal(p), une erreur est émise.
-                            </listitem>
-                        </itemizedlist>
+                    <para>un caractère désignant l'algorithme à utiliser  ("f" par défaut):
+                        <table>
+                            <tr><th>"f":</th>
+                                <td>
+                                    (fast) Méthode de Jenkins-Traub. Le polynôme doit être à
+                                    coefficients réels et de degré &lt; 100 ; sinon une erreur
+                                    est produite.
+                                </td>
+                            </tr>
+                            <tr><th>"e":</th>
+                                <td>les valeurs propres de la matrice compagnon sont utilisées.
+                                </td>
+                            </tr>
+                        </table>
                     </para>
                 </listitem>
             </varlistentry>
@@ -147,6 +147,13 @@ r2 = spec(A); // Avec la matrice compagnon
 max(abs(r1-r2))
  ]]></programlisting>
     </refsection>
+    <refsection>
+        <title>Bibliographie</title>
+        <para>
+            La routine RPOLY est decrite dans "Algorithm 493: Zeros of a Real
+            Polynomial", ACM TOMS Volume 1, Issue 2 (June 1975), pp. 178-189
+        </para>
+    </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
@@ -160,12 +167,5 @@ max(abs(r1-r2))
                 <link linkend="companion">companion</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>Bibliographie</title>
-        <para>
-            La routine RPOLY est decrite dans "Algorithm 493: Zeros of a Real
-            Polynomial", ACM TOMS Volume 1, Issue 2 (June 1975), pp. 178-189
-        </para>
     </refsection>
 </refentry>

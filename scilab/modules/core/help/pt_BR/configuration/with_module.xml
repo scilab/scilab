@@ -6,21 +6,21 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>r=with_module(module_name)</synopsis>
+        <synopsis>r = with_module(module_name)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
-                <term>r</term>
-                <listitem>
-                    <para>um booleano</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>module_name</term>
                 <listitem>
                     <para>um string. Exemplo : 'core'</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>um booleano</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -28,9 +28,19 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            Retorna <literal>%t</literal> se o módulo Scilab tiver sido
-            instalado.
+            Retorna <literal>%t</literal> se o módulo Scilab tiver sido instalado.
         </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+withXML = with_module("xml");
+if withXML == %t then
+   disp("XML module enabled");
+else
+   disp("XML module disabled");
+end
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>

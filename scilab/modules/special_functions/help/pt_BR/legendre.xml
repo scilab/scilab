@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="legendre" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="legendre" xml:lang="pt">
     <refnamediv>
         <refname>legendre</refname>
         <refpurpose>funções associadas de Legendre</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>y = legendre(n,m,x [,normflag])</synopsis>
+        <synopsis>
+            y = legendre(n, m, x)
+            y = legendre(n, m, x, normflag)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -63,16 +69,13 @@
         <para>
             Quando <literal>n</literal> e <literal>m</literal> são escalares,
             <literal>legendre(n,m,x)</literal> avalia a função de Legendre associada
-            Pnm(x) em todos os elementos de <literal>x</literal>. A definição usada é
-            :
+            Pnm(x) em todos os elementos de <literal>x</literal>. A definição usada é :
         </para>
-        <programlisting role=""><![CDATA[
-                            m
-             m        m/2  d
-Pnm(x) = (-1)  (1-x^2)    --- Pn(x)
-                            m
-                          dx
- ]]></programlisting>
+        <para>
+            <latex style="display" fontsize="18" alt="Pn|m(x)=(-1)^m.(1-x^2)^{m/2}.d^m[Pn(x)]/dx^m">
+                P_n^m(x)=(-1)^m\cdot(1-x^2)^{m/2}\cdot\frac{d^mP_n(x)}{dx^m}
+            </latex>
+        </para>
         <para>
             onde <literal>Pn</literal> é o polinômio de Legendre de grau
             <literal>n</literal>. Então, <literal>legendre(n,0,x)</literal> avalia o
@@ -82,13 +85,12 @@ Pnm(x) = (-1)  (1-x^2)    --- Pn(x)
         <para>Quando normflag é igual a "norm" o resultado é uma versão
             normalizada (sem o fator <literal>(-1)^m</literal> ), precisamente :
         </para>
-        <programlisting role=""><![CDATA[
-                   _____________                m
-                  /(2n+1)(n-m)!          m/2   d
-Pnm(x,"norm") =  /--------------  (1-x^2)     --- Pn(x)
-               \/     2  (n+m)!                 m
-                                              dx
- ]]></programlisting>
+        <para>
+            <latex style="display" fontsize="18"
+                   alt="Pn|m(x,norm)=sqrt[(2n+1)/2 .(n-m)!/(n+m)!].(1-x^2)^{m/2}.d^m[Pn(x)]/dx^m">
+                P_n^m(x,norm)=\sqrt{\frac{2n+1}{2}\frac{(n-m)!}{(n+m)!}}\cdot(1-x^2)^{m/2}\cdot\frac{d^mP_n(x)}{dx^m}
+            </latex>
+        </para>
         <para>que é útil para computar funções harmônicas esféricas (ver exemplo
             3):
         </para>

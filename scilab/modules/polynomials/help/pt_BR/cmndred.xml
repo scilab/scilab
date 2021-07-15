@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>[n,d]=cmndred(num,den)</synopsis>
+        <synopsis>[n, d] = cmndred(num, den)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>

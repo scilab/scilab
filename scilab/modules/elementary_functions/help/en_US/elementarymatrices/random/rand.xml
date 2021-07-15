@@ -54,8 +54,15 @@
                 <listitem>
                     <para>
                         a string, the distribution of random numbers (default  <literal>key="uniform" </literal>).
-                        The available values are <literal>"uniform"</literal> and
-                        <literal>"normal"</literal>.
+                        The possible values are:
+                        <itemizedlist>
+                        <listitem>
+                        <literal>"uniform"</literal> or <literal>"u"</literal>
+                        </listitem>
+                        <listitem>
+                        <literal>"normal"</literal> or <literal>"n"</literal>
+                        </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
@@ -144,7 +151,7 @@
         </para>
         <variablelist>
             <varlistentry>
-                <term>rand("uniform")</term>
+                <term>rand("uniform") or rand("u")</term>
                 <listitem>
                     <para>
                         sets the generator to a uniform random number
@@ -154,7 +161,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>rand("normal")</term>
+                <term>rand("normal") or rand("n")</term>
                 <listitem>
                     <para>
                         sets the generator to a normal (Gauss-Laplace) random number generator,

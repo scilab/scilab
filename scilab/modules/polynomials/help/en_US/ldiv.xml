@@ -23,7 +23,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[x]=ldiv(n,d,k)</synopsis>
+        <synopsis>x = ldiv(n, d, k)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

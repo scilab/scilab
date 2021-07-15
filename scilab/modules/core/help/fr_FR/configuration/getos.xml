@@ -1,33 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="getos">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="getos">
     <refnamediv>
         <refname>getos</refname>
-        <refpurpose>retourne le nom et la version de
-            O.S
+        <refpurpose>
+            donne le nom et la version du système d'exploitation
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>OS=getos()
-            [OS,Version]=getos()
+        <synopsis>
+            [OS, Version] = getos()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
         <para>
-            <literal>getos </literal>retourne le nom et la version de O.S
+            <literal>getos</literal> donne le nom voire la version du système d'exploitation
+            depuis lequel la session Scilab courante est lancée.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-OS=getos()
-[OS,version] = getos()
+OS = getos()
+[OS, version] = getos()
+     ]]></programlisting>
+        <screen><![CDATA[
+--> OS = getos()
+ OS  =
+  "Windows"
+
+--> [OS, version] = getos()
+ OS  =
+  "Windows"
+
+ version  =
+  "8 x64"
+]]></screen>
+        <programlisting role="example"><![CDATA[
 if (getos() == "Windows") then disp("Scilab on Windows"); end
 if (getos() == "Linux") then disp("Scilab on Linux"); end
 if (getos() == "SunOS") then disp("Scilab on Solaris"); end
 if (getos() == "Darwin") then disp("Scilab on MacOs"); end
-
- ]]></programlisting>
+     ]]></programlisting>
     </refsection>
 </refentry>

@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,22 +31,26 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 whos
-]]></programlisting>
+whos global
+whos -file filename
+whos .. var1 .. varN
+whos .. -regexp expr1 ... exprN
+S = whos(..)
+                  ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 whos
-]]></programlisting>
+who global  // whithout s
+listvarinfile(filename)
+// No equivalent. Try: whos -name nam
+// No equivalent
+// No equivalent. Try: [names, mem] = who()
+                  ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Scilab <emphasis role="bold">whos</emphasis> is an equivalent for Matlab <emphasis role="bold">whos</emphasis> just when called as follows: <emphasis role="bold">whos</emphasis> or <emphasis role="bold">whos("global")</emphasis>
-        </para>
     </refsection>
 </refentry>

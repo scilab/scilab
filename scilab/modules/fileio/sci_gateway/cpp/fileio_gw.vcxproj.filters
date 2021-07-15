@@ -78,6 +78,9 @@
     <ClCompile Include="sci_mget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_mgeti.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="sci_mgetl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

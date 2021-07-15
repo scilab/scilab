@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 d = eig(A,'balance')
 [V,D] = eig(A,'balance')
 [V,D] = eig(A,'balance')
@@ -45,9 +45,9 @@ d = eig(A,B)
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 d = spec(A)
-[D,V]=bdiag(A)
+[D,V]= bdiag(A)
 [V,D] = spec(A)
 [al,be] = spec(A,B); d = al./be;
 d = spec(A,B)

@@ -18,23 +18,23 @@
           xmlns:db="http://docbook.org/ns/docbook" xml:lang="en" xml:id="justify">
     <refnamediv>
         <refname>justify</refname>
-        <refpurpose>aligns texts in columns to the left, center, or right</refpurpose>
+        <refpurpose>aligns strings in columns to the left, center, or right</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>Tj = justify(T, position)</synopsis>
+        <synopsis>Tj = justify(S, position)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>T</term>
+                <term>S</term>
                 <listitem>
                     <para>a matrix of character strings.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Tj</term>
+                <term>Sj</term>
                 <listitem>
                     <para>
                         a matrix of character strings. The justified result.

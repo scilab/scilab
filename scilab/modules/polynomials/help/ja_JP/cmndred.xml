@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[n,d]=cmndred(num,den)</synopsis>
+        <synopsis>[n, d] = cmndred(num, den)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>

@@ -31,14 +31,14 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 besseli
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 besseli
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
@@ -62,17 +62,17 @@ besseli
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 y = besseli(alpha,x)
 y = besseli(alpha,x,1)
 [y,ierr] = besseli(alpha,...)
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
 y = besseli(alpha,x)
 y = besseli(alpha,x,ice),ice = 1 or ice = 2
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>

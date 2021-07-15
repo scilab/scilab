@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,25 +31,28 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-reshape
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+reshape(A, Sizes)
+reshape(A, s1, s2)
+reshape(A, s1, [])
+reshape(A, s1, s2, s3, ..)
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-matrix
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+matrix(A, Sizes)
+matrix(A, s1, s2)
+matrix(A, s1, -1)
+matrix(A, s1, s2, s3, ..)
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            To get the same result for character string matrices in Scilab than in Matlab, convert Scilab character string matrices using <emphasis role="bold">mstr2sci</emphasis>.
-        </para>
-        <para>
-            All unspecified dimensions are represented by a <emphasis role="bold">[]</emphasis> input in Matlab while in Scilab they are given by a <emphasis role="bold">-1</emphasis>.
-        </para>
+        <warning>
+            <para>
+                To get the same result for character string matrices in Scilab than in Matlab,
+                convert Scilab character string matrices using <emphasis role="bold">mstr2sci</emphasis>.
+            </para>
+        </warning>
     </refsection>
 </refentry>

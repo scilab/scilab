@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- *
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Michael Baudin
- *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,10 +11,13 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitcmp" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+      xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+      xmlns:scilab="http://www.scilab.org" xml:id="bitcmp" xml:lang="en">
     <refnamediv>
         <refname>bitcmp</refname>
-        <refpurpose>bitwise complement</refpurpose>
+        <refpurpose>bitwise complement of integers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -27,40 +27,66 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x :</term>
+                <term>x, y</term>
                 <listitem>
-                    <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
-                        Must contain positive integer values.
-                    </para>
+                    arrays of signed or unsigned integers (int8, .., uint64), or of positive decimal
+                    integers. Hypermatrix supported. <varname>x</varname> and <varname>y</varname>
+                    have the same integer type and the same size.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>bitnum :</term>
+                <term>bitnum</term>
                 <listitem>
-                    <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
-                        The input <literal>n</literal> must be in the range 1, 2, ..., <literal>bitmax</literal>
-                        where <literal>bitmax</literal> is the maximum number of bits in <varname>x</varname>.
-                        <varname>bitnum</varname> must contain positive integer values. The default value for <varname>bitnum</varname> is <literal>bitmax</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y :</term>
-                <listitem>
-                    <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of  doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers.
-                    </para>
+                    positive encoded or decimal integer, or array of positive encoded or decimal
+                    integers of size equal to size(x): bits #1 to #bitnum of <varname>x</varname>
+                    are considered and inversed. According to the integer type of
+                    <varname>x</varname>, <varname>bitnum</varname> must be in the interval
+                    <literal>[1, bitmax]</literal> with bitmax as follows:
+                    <table>
+                        <tr><th>inttype :</th>
+                            <td>int8</td>
+                            <td>uint8</td>
+                            <td>int16</td>
+                            <td>uint16</td>
+                            <td>int32</td>
+                            <td>uint32</td>
+                            <td>int64</td>
+                            <td>uint64</td>
+                            <td>decimal</td>
+                        </tr>
+                        <tr><th>bitmax :</th>
+                            <td>8</td>
+                            <td>8</td>
+                            <td>16</td>
+                            <td>16</td>
+                            <td>32</td>
+                            <td>32</td>
+                            <td>64</td>
+                            <td>64</td>
+                            <td>1024</td>
+                        </tr>
+                    </table>
+                    <para/>
+                    The default <varname>bitnum</varname> value depends on the input integer
+                    type:
+                    <itemizedlist>
+                        <listitem>
+                            <literal>bitnum = bitmax</literal> for encoded integers
+                        </listitem>
+                        <listitem>
+                            <literal>bitnum = 53</literal> for decimal integers
+                            <literal>x ≤ 1/%eps</literal>
+                        </listitem>
+                        <listitem>
+                            <literal>bitnum = int(log2(x))+1</literal> for decimal integers
+                            <literal>x > 1/%eps</literal>.
+                        </listitem>
+                    </itemizedlist>
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -68,37 +94,243 @@
     <refsection>
         <title>Description</title>
         <para>
-            Given an unsigned integer <varname>x</varname>, this function returns the unsigned integer <varname>y</varname>
-            which is the integer corresponding to the complementary of the binary
-            form of <varname>x</varname>.
+            <literal>bitcmp(x)</literal> computes the binary complement of each element of
+            <varname>x</varname>, and provides it in the corresponding element of <varname>y</varname>.
         </para>
         <para>
-            The integer <varname>bitnum</varname> sets the maximum number of bits.
+            In the following description, 2^0 corresponds to the bit #1. An integer whose highest
+            bit on is #n, is in <literal>[2^(n-1), 2^n-1]</literal>.
         </para>
         <para>
-            If the bits number of the <varname>x</varname> binary representation is less than the
-            <literal>bitmax</literal> number (8,16 or 32) then the bits <literal>'1'</literal> are added to the
-            complementary in order to have <literal>bitmax</literal> number (8, 16 or 32) for the
-            complementary.
+            For <varname>x</varname> such that <literal>abs(x) ≥ 2^bitnum</literal>,
+            its bits <literal>#(bitnum+1)</literal> to <literal>#(int(log2(x))+1)</literal>
+            are ignored. Only its bits <literal>#1</literal> to <literal>#bitnum</literal>
+            are considered and inversed.
         </para>
         <para>
-            If only one input argument is given, <varname>x</varname> must be a matrix of unsigned integers.
+            Example:
+            <screen>
+--> bitget(180, 1:8)
+ ans  =
+   0.   0.   1.   0.   1.   1.   0.   1.
+--> bitcmp(180, 4)
+ ans  =
+   11.
+--> bitget(11, 1:8)
+ ans  =
+   1.   1.   0.   1.   0.   0.   0.   0.
+</screen>
+        </para>
+        <para>
+            For <varname>x</varname> such that <literal>abs(x) &lt; 2^bitnum</literal>,
+            bits <literal>#(int(log2(x))+2)</literal> to <literal>#bitnum</literal> are padded
+            with 0. Then all bits <literal>#1</literal> to <literal>#bitnum</literal> are considered
+            and inversed.
+        </para>
+        <para>
+            Example:
+            <screen>
+--> x = 30; int(log2(30))+2
+ ans  =
+   6.
+--> bitget(30, 1:10)
+ ans  =
+   0.   1.   1.   1.   1.   0.   0.   0.   0.   0.
+--> bitcmp(30, 7)
+ ans  =
+   97.
+--> bitget(97, 1:10)
+ ans  =
+   1.   0.   0.   0.   0.   1.   1.   0.   0.   0.
+</screen>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// 13 is (1101)_2
-// We insert zeros in the beginning to get a 8-bit number:
-// (00001101)_2
-// The 8-bits complement is then (11110010)_2
-// which is 242
-bitcmp(13,8)
-expected = 242
-
-// The input argument can be an unsigned int
-bitcmp(uint8(99),8)
-expected = 156
+x = uint8(13);
+b = bitget(x, 1:8)
+c = bitcmp(x, 8)
+bitget(c, 1:8)
+1 - b
    ]]></programlisting>
+        <screen><![CDATA[
+--> b = bitget(x, 1:8)
+ b  =
+  1  0  1  1  0  0  0  0
+
+--> c = bitcmp(x, 8)
+ c  =
+  242
+
+--> bitget(c, 1:8)
+ ans  =
+  0  1  0  0  1  1  1  1
+
+--> 1 - b
+ ans  =
+  0  1  0  0  1  1  1  1
+]]></screen>
+        <para/>
+        <para>
+        Negative encoded integers are accepted:
+        </para>
+        <programlisting role="example"><![CDATA[
+bitcmp(int8([-71 -34 -1 0 33 70]))
+bitcmp(int8([-71 -34 -1 0 33 70]), 8)
+bitcmp(int8([-71 -34 -1 0 33 70]), 7)
+bitcmp(int8([-71 -34 -1 0 33 70]), 6)
+bitcmp(int8([-71 -34 -1 0 33 70]), 5)
+bitcmp(int8([-71 -34 -1 0 33 70]), 4)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> bitcmp(int8([-71 -34 -1 0 33 70]))
+ ans  =
+  70  33  0 -1 -34 -71
+
+--> bitcmp(int8([-71 -34 -1 0 33 70]), 8)
+ ans  =
+  70  33  0 -1 -34 -71
+
+--> bitcmp(int8([-71 -34 -1 0 33 70]), 7)
+ ans  =
+  70  33  0  127  94  57
+
+--> bitcmp(int8([-71 -34 -1 0 33 70]), 6)
+ ans  =
+  6  33  0  63  30  57
+
+--> bitcmp(int8([-71 -34 -1 0 33 70]), 5)
+ ans  =
+  6  1  0  31  30  25
+
+--> bitcmp(int8([-71 -34 -1 0 33 70]), 4)
+ ans  =
+  6  1  0  15  14  9
+]]></screen>
+        <para/>
+        <para>
+            We can work with 64-bit big integers:
+        </para>
+        <programlisting role="example"><![CDATA[
+b = (rand(1,62)<0.5)*1;
+x = sum(b .* (uint64(2).^(0:61)))
+r = bitcmp(x)
+bg = bitget(r, 1:62);
+[msprintf("%d ",b(:)) ; msprintf("%d ",bg(:))]
+     ]]></programlisting>
+        <screen><![CDATA[
+--> x = sum(b .* (uint64(2).^(0:61)))
+ x  =
+  4154509482123930814
+
+--> r = bitcmp(x)
+ r  =
+  14292234591585620801
+
+--> bg = bitget(r, 1:62);
+--> [msprintf("%d ",b(:)) ; msprintf("%d ",bg(:))]
+ ans  =
+  "0 1 1 1 1 1 0 1 0 0 1 1 0 1 0 0 ... 1 0 0 0 0 1 0 0 1 1 1 1 1 0 0 1 0 1 1 0 0 1 1 1 "
+  "1 0 0 0 0 0 1 0 1 1 0 0 1 0 1 1 ... 0 1 1 1 1 0 1 1 0 0 0 0 0 1 1 0 1 0 0 1 1 0 0 0 "
+]]></screen>
+        <para/>
+        <para>
+        bitnum can be an array:
+        </para>
+        <programlisting role="example"><![CDATA[
+bitcmp([0 0 0 0 0], 3:7)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> bitcmp([0 0 0 0 0], 3:7)
+ ans  =
+   7.   15.   31.   63.   127.
+]]></screen>
+        <para/>
+        <para>
+            bitnum can be > 52:
+        </para>
+        <programlisting role="example"><![CDATA[
+format(22)
+bitcmp(2^70, 65)
+sum(2.^(13:64))   // 52 highest bits
+     ]]></programlisting>
+        <screen><![CDATA[
+--> bitcmp(2^70, 65)
+ ans  =
+   36893488147419095040.
+
+--> sum(2.^(13:64))
+ ans  =
+   36893488147419095040.
+]]></screen>
+        <para/>
+        <para>
+            Huge decimal numbers can be processed:
+        </para>
+        <programlisting role="example"><![CDATA[
+format(22)
+log2(1e100)
+r = bitcmp(1e100, 333)
+bitcmp(1e100) // bitnum = int(log2(x)) + 1 is used by default
+bitcmp(r, 333)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> log2(1e100)
+ ans  =
+   332.19280948873625903
+
+--> r = bitcmp(1e100, 333)
+ r  =
+   7.498005798264093D+99
+
+--> bitcmp(1e100)  // bitnum = int(log2(x)) + 1 is used by default
+ ans  =
+   7.498005798264093D+99
+
+--> bitcmp(r, 333)
+ ans  =
+   1.00000000000000D+100
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bitxor">bitxor</link>
+            </member>
+            <member>
+                <link linkend="bitget">bitget</link>
+            </member>
+            <member>
+                <link linkend="minus">minus</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Extension to 64 bit integers.
+                        </listitem>
+                        <listitem>
+                            Extension to all signed integers.
+                        </listitem>
+                        <listitem>
+                            Decimal positive integers > 2^52 up to 2^1024 = number_properties("huge")
+                            can now be processed, with bitnum up to 1024 instead of 52.
+                        </listitem>
+                        <listitem>
+                            bitnum is now optional as well for input decimal integers.
+                            It can actually be an array.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

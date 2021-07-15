@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="linear_interpn" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="linear_interpn" xml:lang="pt">
     <refnamediv>
         <refname>linear_interpn</refname>
         <refpurpose>interpolação linear n-dimensional</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</synopsis>
+        <synopsis>
+            vp = linear_interpn(xp1,xp2,..,xpn, x1,...,xn, v)
+            vp = linear_interpn(xp1,xp2,..,xpn, x1,...,xn, v, out_mode)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -61,11 +67,21 @@
                 ..., xn
             </literal>
             eos valores <literal>v</literal> de uma função (aqui
-            nomeada <emphasis>f</emphasis>) nos pontos do grid : 
+            nomeada <emphasis>f</emphasis>) nos pontos do grid :
         </para>
-        <programlisting role=""><![CDATA[
-v(i1,i2,...,in) = f(x1(i1),x2(i2), ..., xn(in))
- ]]></programlisting>
+        <para>
+            <table align="center">
+            <tr><td>
+                    v(i<subscript>1</subscript>,
+                      i<subscript>2</subscript>,…,
+                      i<subscript>n</subscript>) =
+                      <emphasis>f</emphasis>(x1(i<subscript>1</subscript>),
+                                             x2(i<subscript>2</subscript>),…,
+                                             xn(i<subscript>n</subscript>))
+                </td>
+            </tr>
+            </table>
+        </para>
         <para>
             esta função computa o interpolante linear de <emphasis>f</emphasis>
             do grid (chamado de s a partir daqui) nos pontos nos quais as coordenadas
@@ -74,20 +90,28 @@ v(i1,i2,...,in) = f(x1(i1),x2(i2), ..., xn(in))
             </literal>
             :
         </para>
-        <programlisting role=""><![CDATA[
-vp(i) = s(xp1(i),xp2(i), ..., xpn(i))
-
-or vp(i,j) = s(xp1(i,j),xp2(i,j), ..., xpn(i,j)) caso xpk sejam matrizes
- ]]></programlisting>
+        <para>
+            <table align="center">
+            <tr align="center">
+                <td>vp(i) = <emphasis>s</emphasis>(xp1(i), xp2(i), …, xpn(i))</td></tr>
+            <tr align="center"><td>or</td></tr>
+            <tr align="center">
+                <td>vp(i,j) = <emphasis>s</emphasis>(xp1(i,j), xp2(i,j), …, xpn(i,j))</td>
+            </tr>
+            </table>
+            caso xpk sejam matrizes.
+        </para>
         <para>
             O parâmetro <literal>out_mode</literal> ajusta a regra para
             extrapolação: se notarmos
             <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> , então
-            <literal>out_mode</literal> define a regra de avaliação quando: 
+            <literal>out_mode</literal> define a regra de avaliação quando:
         </para>
-        <programlisting role=""><![CDATA[ 
-P(i) está fora de  [x1(1) x1($)] x [x2(1) x2($)] x ... x [xn(1) xn($)]
- ]]></programlisting>
+        <para>
+            <table align="center">
+            <tr><td>P(i) ∉ [x1(1), x1($)] × [x2(1), x2($)] × … × [xn(1), xn($)]</td></tr>
+            </table>
+        </para>
         <para>As escolhas são: </para>
         <variablelist>
             <varlistentry>
@@ -106,8 +130,8 @@ P(i) está fora de  [x1(1) x1($)] x [x2(1) x2($)] x ... x [xn(1) xn($)]
                 <term>"C0"</term>
                 <listitem>
                     <para>a extrapolação é definida como segue: </para>
-                    <programlisting role=""><![CDATA[ 
-s(P) = s(proj(P)) onde  proj(P) é o ponto mais próximo de P 
+                    <programlisting role=""><![CDATA[
+s(P) = s(proj(P)) onde  proj(P) é o ponto mais próximo de P
                   localizado na fronteira do grid.
  ]]></programlisting>
                 </listitem>
@@ -132,7 +156,7 @@ s(P) = s(proj(P)) onde  proj(P) é o ponto mais próximo de P
     </refsection>
     <refsection>
         <title>Exemplos </title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // exemplo 1 : interpolação linear 1d
 x = linspace(0,2*%pi,11);
 y = sin(x);

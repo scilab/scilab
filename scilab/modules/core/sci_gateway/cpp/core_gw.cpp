@@ -44,6 +44,7 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"lasterror", &sci_lasterror, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"warning", &sci_warning, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getmd5", &sci_getmd5, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"hash", &sci_hash, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"error", &sci_error, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"pause", &sci_pause, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"abort", &sci_abort, MODULE_NAME));

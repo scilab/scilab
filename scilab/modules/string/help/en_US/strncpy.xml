@@ -18,7 +18,7 @@
           xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="strncpy">
     <refnamediv>
         <refname>strncpy</refname>
-        <refpurpose>gets and gives the N first characters of the given texts</refpurpose>
+        <refpurpose>gets and gives the N first characters of the given strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>

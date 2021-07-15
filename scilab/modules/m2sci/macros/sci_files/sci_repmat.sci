@@ -118,9 +118,9 @@ function [tree]=sci_repmat(tree)
 
     if vtype==String then
         tree=Funcall("asciimat",1,list(tree),tree.out);
-        tree.lhs(1).type=Type(String,Real)
+        tree.lhs(1).type=Type(String, Char)
     elseif vtype==Boolean then
-        tree.out(1).type=Type(Boolean,Real)
+        tree.out(1).type=Type(Boolean,Boolean)
     end
 
 endfunction

@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="legendre" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="legendre" xml:lang="ja">
     <refnamediv>
         <refname>legendre</refname>
         <refpurpose>随伴ルジャンドル関数</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>y = legendre(n,m,x [,normflag])</synopsis>
+        <synopsis>
+            y = legendre(n, m, x)
+            y = legendre(n, m, x, normflag)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -67,13 +73,11 @@
             随伴ルジャンドル関数Pnm(x)を計算します.
             使用される定義を以下に示します:
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/legendre_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" fontsize="18" alt="Pn|m(x)=(-1)^m.(1-x^2)^{m/2}.d^m[Pn(x)]/dx^m">
+                P_n^m(x)=(-1)^m\cdot(1-x^2)^{m/2}\cdot\frac{d^mP_n(x)}{dx^m}
+            </latex>
+        </para>
         <para>
             ただし,<literal>Pn</literal>は<literal>n</literal>次の
             ルジャンドル多項式です.
@@ -86,13 +90,12 @@
             (<literal>(-1)^m</literal>係数を付けずに)
             正規化された出力が得られます :
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/legendre_equation2.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" fontsize="18"
+                   alt="Pn|m(x,norm)=sqrt[(2n+1)/2 .(n-m)!/(n+m)!].(1-x^2)^{m/2}.d^m[Pn(x)]/dx^m">
+                P_n^m(x,norm)=\sqrt{\frac{2n+1}{2}\frac{(n-m)!}{(n+m)!}}\cdot(1-x^2)^{m/2}\cdot\frac{d^mP_n(x)}{dx^m}
+            </latex>
+        </para>
         <para>これは,球面調和関数を計算する際に有用です(例3参照):</para>
         <para>効率化のため,
             最初の2つの引数の一つをベクトルとすることができ,

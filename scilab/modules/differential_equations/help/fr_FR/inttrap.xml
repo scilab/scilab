@@ -8,7 +8,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>v = inttrap([x,] s)</synopsis>
+        <synopsis>
+            v = inttrap(s)
+            v = inttrap(x, s)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -48,7 +51,7 @@
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-t=0:0.1:%pi
+t = 0:0.1:%pi
 inttrap(t,sin(t))
  ]]></programlisting>
     </refsection>

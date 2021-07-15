@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="genlib">
+    <refnamediv>
+        <refname>genlib</refname>
+        <refpurpose>
+            строит библиотеку из набора *.sci-файлов, определяющих функции в указанной директории
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            genlib(lib_name)
+            genlib(lib_name, dir_name)
+            genlib(lib_name, dir_name, Force)
+            genlib(lib_name, dir_name, Force, verb)
+            genlib(lib_name [,path=dir_name] [,verbose=verb] [,force=Force])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>lib_name</term>
+                <listitem>
+                    Scilab-строка: идентифицирующее имя присваиваемое библиотеку,
+                    которую нужно построить.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dir_name</term>
+                <listitem>
+                    Scilab-строка: путь к директории, содержащей файлы
+                    <literal>.sci</literal>-функций, и где генерируется файл
+                    <literal>lib</literal> и определяющая, где будет храниться
+                    библиотека. По умолчанию рассматривается текущая рабочая директория.
+                    <warning>
+                        Директория <varname>dir_name</varname> directory и её <literal>lib</literal>-
+                        и <literal>.bin</literal>-файлы должны иметь право на запись.
+                    </warning>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Force</term>
+                <listitem>
+                    логическое значение (значение по умолчанию <literal>%f</literal>). Установите
+                    его в <literal>%t</literal>, чтобы принудить к рекомпиляции sci-файлов.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>verb</term>
+                <listitem>
+                    логическое значение (значение по умолчанию <literal>%f</literal>).
+                    Установите его в <literal>%t</literal>, чтобы отобразить больше
+                    информации во время сборки.
+                    <para/>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>genlib(..)</literal> выбирает все файлы, принадлежащие директории
+            <varname>dir_name</varname> и с расширением <literal>.sci</literal>.
+            Поддиректории, если они есть, никогда не рассматриваются. Если требуется,
+            они должны компилироваться отдельно в независимые библиотеки.
+        </para>
+        <para>
+            Затем создаётся редактируемый XML-файл <literal>lib</literal> в директории
+            <varname>dir_name</varname>. Имя <varname>lib_name</varname> библиотеки
+            записывается в него.
+        </para>
+        <para>
+            Далее, для каждого <literal>.sci</literal>-файла:
+            <itemizedlist>
+                <listitem>
+                    Если
+                    <itemizedlist>
+                        <listitem>
+                            нет связанного <literal>.bin</literal>-файла в <varname>dir_name</varname>
+                            с тем же базовым именем (что и для исходной сборки библиотеки), либо
+                        </listitem>
+                        <listitem>
+                            содержимое <literal>.sci</literal>-файла было изменено
+                            со времени предыдущей сборки,
+                        </listitem>
+                    </itemizedlist>
+                    <para/>
+                    <para>
+                        <literal>.sci</literal>-файл скомпилирован (<emphasis>почти</emphasis>
+                        как если бы это было с <literal>exec(..)</literal>):
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    если он содержит по крайней мере один блок
+                                    <literal>function .. endfunction</literal>, то
+                                    двоичный <literal>.bin</literal>-файл с тем же базовым именем
+                                    генерируется и хранится в <varname>dir_name</varname>.
+                                    Он содержит бинарный код ВСЕХ функций, определённых в
+                                    <literal>.sci</literal>-файле исходного кода.
+                                    <itemizedlist>
+                                        <listitem>
+                                            Если имя одной из функций, определённой в файле,
+                                            является базовым именем <literal>.sci</literal>-файла,
+                                            то эта функция записывается в <literal>lib</literal>-файл.
+                                            <para/>
+                                        </listitem>
+                                        <listitem>
+                                            В противном случае, ни одна функция из <literal>.sci</literal>-файла не записывается: всё
+                                            её содержимое рассматривается как мёртвый код.
+                                        </listitem>
+                                    </itemizedlist>
+                                </para>
+                                <para>
+                                    <warning>
+                                        Если файл <literal>test.sci</literal> определяет функцию
+                                        <literal>test()</literal> И другие функции, такие как
+                                        sub(), то функции sub() тогда рассматриваются как приватные для test(). Например,
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <screen>
+function r = sub(a)
+    r = 2*a
+endfunction
+
+function test()
+    disp("A test")
+endfunction
+
+function r = other(b)
+    r = 2^b
+endfunction
+</screen>
+                                                </td>
+                                                <td>
+                                                    эквивалентно
+                                                </td>
+                                                <td>
+                                                    <screen>
+function test()
+    function r = sub(a)
+        r = 2*a
+    endfunction
+    function r = other(b)
+        r = 2^b
+    endfunction
+
+    disp("A test")
+endfunction
+</screen>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        Следовательно, sub() и other() не существуют вне test() и
+                                        не будут записаны в библиотеку.
+                                    </warning>
+                                </para>
+                            </listitem>
+                            <listitem>
+                                В противном случае, <literal>.bin</literal>-файл не будет
+                                генерироваться: всё содержимое <literal>.sci</literal>-файла
+                                рассматривается как мёртвый код.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+                <listitem>
+                    В противном случае: если содержимое файла не изменилось и уже имеет
+                    содержимое функции в <literal>lib</literal>-файле, то это содержимое
+                    сохраняется.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            Наконец, <literal>genlib(..)</literal> загружает созданную или обновлённую
+            библиотеку и устанавливает её идентификатор в переменную, названную
+            <varname>lib_name</varname>, в текущей области просмотра. Если переменная
+            <varname>lib_name</varname> уже существует и защищена,то возникает ошибка:
+            библиотека была создана, но не может быть загружена
+            (<link linkend="predef">predef all</link> может использоваться для снятия
+            защиты с переменной, названной <varname>lib_name</varname> перед запуском
+            <literal>genlib(..)</literal>).
+        </para>
+        <para>
+            Если используется опция <literal>force=%t</literal>, то все
+            <literal>.sci</literal>-файлы компилируются, даже если их содержимое не
+            было изменено.
+        </para>
+        <para>
+            Когда из директории библиотеки некоторые старые .sci-файлы были удалены
+            и при этом оставшиеся .sci-файлы остались неизменными, то пересборка
+            библиотеки без <literal>force=%t</literal> в любом случае обновит
+            список членов библиотеки.
+        </para>
+        <para>
+            Если включена опция <literal>verbose</literal>, то во время сборки
+            отображается больше информации.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="library">library</link>
+            </member>
+            <member>
+                <link linkend="load">load</link>
+            </member>
+            <member>
+                <link linkend="getd">getd</link>
+            </member>
+            <member>
+                <link linkend="lib">lib</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Больше не требуется файл <literal>names</literal>.
+                            Опция <literal>Names</literal> удалена.
+                        </listitem>
+                        <listitem>
+                            Если .sci-файл содержит функции, названные не в соответствии с именем
+                            файла, то они теперь не являются публичными: их можно увидеть и
+                            вызвать только из главной функции.
+                        </listitem>
+                        <listitem>
+                            Если библиотека с именем <varname>lib_name</varname> уже загружена,
+                            то директорией по умолчанию <varname>dir_name</varname> теперь
+                            является не её директория (режим обновления), а текущая рабочая
+                            директория.
+                        </listitem>
+                        <listitem>
+                            Сгенерированный <literal>lib</literal>-файл теперь является
+                            XML-файлом, который может прочитать человек, а не двоичный файл.
+                        </listitem>
+                        <listitem>
+                            genlib() теперь не может записать какую-либо переменную в
+                            качестве полноправного члена библиотеки.
+                        </listitem>
+                        <listitem>
+                            По умолчанию любой .sci-файл теперь перекомпилируется,
+                            если его содержимое было изменено, а не, если дата его изменения
+                            новее, чем дата .bin-файла.
+                        </listitem>
+                        <listitem>
+                            Генерируемые <literal>.bin</literal>-файлы более не могут
+                            быть загружены независимо с помощью load().
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

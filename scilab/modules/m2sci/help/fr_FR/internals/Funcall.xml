@@ -13,14 +13,17 @@
  * along with this program.
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="Funcall">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="Funcall">
     <refnamediv>
         <refname>Funcall</refname>
-        <refpurpose>Créé un arbre représentant l'appel à une fonction</refpurpose>
+        <refpurpose>Crée le pseudo-code converti représentant l'appel à une fonction</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>fc=Funcall(name,lhsnb,rhslist,lhslist)</synopsis>
+        <synopsis>fc = Funcall(name, lhsnb, rhslist, lhslist)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -34,19 +37,20 @@
             <varlistentry>
                 <term>lhsnb</term>
                 <listitem>
-                    <para>nombre de paramètres de sortie (constante)</para>
+                    <para>nombre d'arguments de sortie de l'appel à la fonction.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rhslist</term>
                 <listitem>
-                    <para>liste des paramètres d'entrée (liste de "tlists M2SCI")</para>
+                    <para>liste des arguments d'entrée (liste de "tlists M2SCI")</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>lhslist</term>
                 <listitem>
-                    <para>liste des paramètres de sortie (liste de "tlists M2SCI")</para>
+                    <para>liste des arguments de sortie (liste de "tlists M2SCI"). Par défaut : list().
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -90,5 +94,16 @@
                 <link linkend="Equal">Equal</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <varname>lhslist</varname> devient facultative et vaut list() par défaut.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

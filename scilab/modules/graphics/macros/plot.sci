@@ -2,7 +2,7 @@
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
 // Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - 2019 - Samuel GOUGEON
+// Copyright (C) 2018 - 2020 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -93,25 +93,29 @@ function varargout = plot(varargin)
     provided_data = 2;
 
     for curArgIndex=1:nv
-        argTypes(curArgIndex,1) = type(ListArg(curArgIndex))
+        tmp = type(ListArg(curArgIndex))
+        if tmp == 16
+            if typeof(ListArg(curArgIndex))=="rational"
+                tmp = 18
+            end
+        end
+        argTypes(curArgIndex,1) = tmp
     end
 
     Ttmp=argTypes;
 
     for i=1:nv-1
-        acceptedTypes=[];
-        // double, macro function or primitive,
+        acceptedTypes = [];
+        // double, integers, polynomials, rationals (18), macro function or primitive,
         //    or list(macro|primitive, params) accepted as second argument
-        acceptedTypes=find(Ttmp(i,1)==1 & or(Ttmp(i+1,1)==[1,8,13,130,15]))
+        acceptedTypes = find(Ttmp(i,1)==1 & (or(Ttmp(i+1,1)==[1,2,8,13,130,15,18])))
         if (acceptedTypes<>[]) then
             couple=[couple i];
             Ttmp(i,1)  = 99; // Replace a known type by 99 (no meaning) to count it once only!
             Ttmp(i+1,1)= 99; // to avoid having (x1,y1,x2,y2) ->couple=[1,2,3]
             // With this trick, couple=[1,3];
         end
-
     end
-
 
     if (couple==[]) // No data couple found
         // Search for at least a single data , i.e.: plot(y)
@@ -294,6 +298,34 @@ function varargout = plot(varargin)
                 // if there is another iteration, we will have error message redefining function.
                 // we need to clear here and not before, because user must see the warning if needed.
                 clear buildFunc secondarg;
+
+            // Polynomials or rationals
+            // ------------------------
+            elseif type(ListArg(xyIndexLineSpec(i,2)))==2 | ..
+                   typeof(ListArg(xyIndexLineSpec(i,2)))=="rational"
+                x = ListArg(xyIndexLineSpec(i,1))
+                p = ListArg(xyIndexLineSpec(i,2))
+                if isvector(x)
+                    ListArg(xyIndexLineSpec(i,1)) = x(:) // without warning..
+                    ListArg(xyIndexLineSpec(i,2)) = horner(matrix(p,1,-1),x(:))
+                else
+                    if size(x,2) <> length(p)
+                        ResetFigureDDM(current_figure, cur_draw_mode);
+                        msg = _("%s: Plot #%d: Numbers of x columns and of %s must match.\n")
+                        if type(p)==2
+                            tmp = _("polynomials")
+                        else
+                            tmp = _("rationals")
+                        end
+                        error(msprintf(msg, "plot", i, tmp))
+                    end
+                    tmp = []
+                    for c = 1:size(x,2)
+                        tmp = [tmp horner(p(c), x(:,c))]
+                    end
+                    ListArg(xyIndexLineSpec(i,2)) = tmp
+                    clear tmp
+                end
             end
             [X,Y] = checkXYPair(typeOfPlot,ListArg(xyIndexLineSpec(i,1)),ListArg(xyIndexLineSpec(i,2)),current_figure,cur_draw_mode)
         else
@@ -494,7 +526,6 @@ function varargout = plot(varargin)
     if  isFirstPlot & curAxes.x_location <> "origin" & curAxes.y_location <> "origin" then
         curAxes.box = "on";
     end
-
 
 
     //postponed drawings are done now !

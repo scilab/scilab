@@ -13,14 +13,19 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="bdiag">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="bdiag">
     <refnamediv>
         <refname>bdiag</refname>
         <refpurpose>bloc-diagonalisation, vecteurs propres généralisés  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[Ab [,X [,bs]]]=bdiag(A [,rmax])</synopsis>
+        <synopsis>
+            [Ab, X, bs] = bdiag(A)
+            [Ab, X, bs] = bdiag(A, rmax)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -64,27 +69,22 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <programlisting role=""><![CDATA[
-[Ab [,X [,bs]]]=bdiag(A [,rmax])
- ]]></programlisting>
         <para>
-            <literal>[Ab [,X [,bs]]]=bdiag(A [,rmax])</literal> calcule la forme
+            <emphasis role="bold">[Ab, X, bs] = bdiag(A, rmax)</emphasis> calcule la forme
             bloc-diagonale de <literal>A</literal>.  bs précise la structure des
-            blocs (tailles respectives des blocs).  <literal>X</literal> est la
-            matrice de changement de base, c'est à dire que <literal>Ab =
-                inv(X)*A*X
-            </literal>
+            blocs (tailles respectives des blocs).  <varname>X</varname> est la
+            matrice de changement de base, c'est à dire que <literal>Ab = inv(X)*A*X</literal>
             est bloc-diagonale.
         </para>
         <para>
-            <literal>rmax</literal> contrôle le conditionnement de <literal>X</literal>;
-            la valeur par défaut est la norme l1 de <literal>A</literal>.
+            <varname>rmax</varname> contrôle le conditionnement de <varname>X</varname>.
+            La valeur par défaut est la norme l1 de <varname>A</varname>.
         </para>
         <para>
             Pour obtenir une forme diagonale (si celle-ci existe) choisissez
-            une valeur élevée de <literal>rmax</literal> (<literal>rmax=1/%eps</literal>
+            une valeur élevée de <varname>rmax</varname> (<literal>rmax=1/%eps</literal>
             par exemple).  Pour une matrice réelle quelconque, les blocs sont
-            de taille (1x1) ou (2x2) et <literal>X</literal> est la matrice des
+            de taille (1x1) ou (2x2) et <varname>X</varname> est la matrice des
             vecteurs propres.
         </para>
     </refsection>
@@ -92,9 +92,21 @@
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 // Cas réel: blocs 1x1 et 2x2
-a=rand(5,5);[ab,x,bs]=bdiag(a);ab
+a = rand(5,5);
+[ab, x, bs] = bdiag(a);ab
+ ]]></programlisting>
+        <screen><![CDATA[
+--> [ab, x, bs] = bdiag(a);ab
+ ab  =
+   2.4777836   0.          0.          0.         0.
+   0.          0.0757087   0.4869251   0.         0.
+   0.         -0.5777956  -0.1248605   0.         0.
+   0.          0.          0.          0.069654   0.
+   0.          0.          0.          0.         0.5341598
+]]></screen>
+        <programlisting role="example"><![CDATA[
 // Cas complexe : blocs complexes 1x1
-[ab,x,bs]=bdiag(a+%i*0);ab
+[ab, x, bs] = bdiag(a+%i*0); ab
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -111,6 +123,9 @@ a=rand(5,5);[ab,x,bs]=bdiag(a);ab
             </member>
             <member>
                 <link linkend="blockdiag">blockdiag</link>
+            </member>
+            <member>
+                <link linkend="lcmdiag">lcmdiag</link>
             </member>
         </simplelist>
     </refsection>

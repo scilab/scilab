@@ -21,17 +21,18 @@ function [tree]=sci_isspace(tree)
 
     if A.vtype==String then
         A = Funcall("asciimat",1,Rhs_tlist(A),list(Variable("",A.infer)))
-        tree = Operation("==",list(A,Cste(32)),tree.lhs)
-        tree.out(1).dims=A.dims
-        tree.out(1).type=Type(Boolean,Real)
+        tree = Operation("==",list(A,Cste([9:13 32])),tree.lhs)
+        tree.out(1).dims = A.dims
+        tree.out(1).type = Type(Boolean,Boolean)
+
     elseif or(A.vtype==[Double,Boolean]) then
         tree.name="zeros"
         tree.lhs(1).dims=A.dims
-        tree.lhs(1).type=Type(Boolean,Real)
+        tree.lhs(1).type=Type(Boolean,Boolean)
     else
         tree.name="mtlb_isspace"
         tree.lhs(1).dims=A.dims
-        tree.lhs(1).type=Type(Boolean,Real)
+        tree.lhs(1).type=Type(Boolean,Boolean)
     end
 
 endfunction

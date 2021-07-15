@@ -1,138 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="power">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="power">
     <refnamediv>
         <refname>power</refname>
         <refpurpose>(^,.^) power operation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>t=A^b
-            t=A**b
-            t=A.^b
+        <synopsis>
+            t = A ^ b
+            t = A ** b
+            t = A .^ b
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>A,t</term>
+                <term>A, t</term>
                 <listitem>
-                    <para>scalar, polynomial or rational matrix.</para>
+                    a scalar, vector, or matrix of encoded integers, decimal or complex numbers,
+                    polynomials, or rationals.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>b</term>
                 <listitem>
-                    <para>a scalar, a vector or a scalar matrix.</para>
+                    a scalar, vector, or matrix of encoded integers, decimal or complex numbers.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
+        <para>
+            If an operand are encoded integers, the other one can be only encoded integers or real
+            numbers.
+        </para>
+        <para>
+            If <varname>A</varname> are polynomials or rationals, <varname>b</varname> can only be
+            a single decimal (positive or negative) integer.
+        </para>
     </refsection>
     <refsection>
         <title>Description</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    If <literal>A</literal> is a square matrix and <literal>b</literal> is a scalar then  <literal>A^b</literal> is the matrix <literal>A</literal> to the power <literal>b</literal>.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    If <literal>b</literal> is a scalar and <literal>A</literal> a matrix then
-                    <literal>A.^b</literal>  is the matrix formed by the element of
-                    <literal>A</literal> to the power <literal>b</literal> (element-wise power). If
-                    <literal>A</literal> is a vector and <literal>b</literal> is a scalar then
-                    <literal>A^b</literal> and <literal>A.^b</literal> performs the same operation
-                    (i.e. element-wise power).
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    If <literal>A</literal> is a scalar and <literal>b</literal> is a square matrix <literal>A^b</literal> is the matrix <literal> expm(log(A) * b)</literal>.
-                </para>
-                <para>
-                    If <literal>A</literal> is a scalar and <literal>b</literal> is a vector <literal>A^b</literal> and <literal>A.^b</literal> are the vector formed by  <literal> a^(b(i,j))</literal>.
-                </para>
-                <para>
-                    If <literal>A</literal> is a scalar and <literal>b</literal> is a matrix <literal>A.^b</literal> is the matrix formed by  <literal> a^(b(i,j))</literal>.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    If <literal>A</literal> and <literal>b</literal> are vectors (matrices) of the same size <literal>A.^b</literal> is the  <literal>A(i)^b(i)</literal> vector (<literal>A(i,j)^b(i,j)</literal> matrix).
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection>
-        <title>Additional Remarks</title>
-        <para>
-            <note> Notes: </note>
-        </para>
-        <para>
-            1. For square matrices <literal>A^p</literal> is computed through successive matrices
-            multiplications if <literal>p</literal> is a positive integer, and by <emphasis>diagonalization</emphasis> if not (see "note 2 and 3" below for details).
-        </para>
-        <para>
-            2. If <varname>A</varname> is a square and Hermitian matrix and <varname>p</varname> is a non-integer scalar,
-            <literal>A^p</literal> is computed as:
-        </para>
-        <para>
-            <code>A^p = u*diag(diag(s).^p)*u'</code> (For real matrix <varname>A</varname>, only the real part of the answer is taken into account).
-        </para>
-        <para>
-            <varname>u</varname> and <varname>s</varname> are determined by <code>[u,s] = schur(A)</code> .
-        </para>
-        <para>
-            3. If <varname>A</varname> is not a Hermitian matrix and <varname>p</varname> is a non-integer scalar,
-            <literal>A^p</literal> is computed as:
-        </para>
-        <para>
-            <code>A^p = v*diag(diag(d).^p)*inv(v)</code> (For real matrix <varname>A</varname>, only the real part of the answer is taken into account).
-        </para>
-        <para>
-            <varname>d</varname> and <varname>v</varname> are determined by <code>[d,v] = bdiag(A+0*%i)</code> .
-        </para>
-        <para>
-            4. If <varname>A</varname> and <varname>p</varname> are real or complex numbers,
-            <literal>A^p</literal> is the <emphasis>principal value</emphasis> determined by:
-        </para>
-        <para>
-            <code>A^p = exp(p*log(A))</code> (or <code>A^p = exp(p*(log(abs(A))+ %i*atan(imag(A)/real(A))))</code> ).
-        </para>
-        <para>
-            5. If <varname>A</varname> is a square matrix and <varname>p</varname> is a real or complex number,
-            <literal>A.^p</literal> is the <emphasis>principal value</emphasis> computed as:
-        </para>
-        <para>
-            <code>A.^p = exp(p*log(A))</code> (same as case 4 above).
-        </para>
-        <para>
-            6. <literal>**</literal> and <literal>^</literal> operators are synonyms.
-        </para>
-        <para>
-            <warning>
-                Exponentiation is right-associative in Scilab contrarily to Matlab® and Octave.
-                For example 2^3^4 is equal to 2^(3^4) in Scilab but is equal to (2^3)^4 in Matlab®
-                and Octave.
-            </warning>
-        </para>
+        <refsect3>
+            <title>.^ by-element power</title>
+            <para>
+                If <varname>A</varname> or <varname>b</varname> is scalar, it is first
+                replicated to the size of the other, with A*ones(b) or b*ones(A).
+                Otherwise, <varname>A</varname> and <varname>b</varname> must have the same size.
+            </para>
+            <para>
+                Then, for each element of index i, <literal>t(i) = A(i)^b(i)</literal>
+                is computed.
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>^ matricial power</title>
+            <para>
+                The ^ operator is equivalent to the .^ by-element power in the following cases:
+                <itemizedlist>
+                    <listitem>
+                        <varname>A</varname> is scalar and <varname>b</varname> is a vector.
+                    </listitem>
+                    <listitem>
+                        <varname>A</varname> is a vector and <varname>b</varname> is scalar.
+                    </listitem>
+                </itemizedlist>
+                Otherwise, <varname>A</varname> or <varname>b</varname> must be a scalar,
+                and the other one must be a square matrix:
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            If <varname>A</varname> is scalar and <varname>b</varname> is
+                            a square matrix, then <literal>A^b</literal> is the matrix
+                            <literal>expm(log(A) * b)</literal>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            If <varname>A</varname> is a square matrix and <varname>b</varname>
+                            is scalar, then  <literal>A^b</literal> is the matrix
+                            <varname>A</varname> to the power <varname>b</varname>.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>Remarks</title>
+            <orderedlist>
+                <listitem>
+                    <para>
+                        For square matrices <literal>A^p</literal> is computed through successive
+                        matrices multiplications if <literal>p</literal> is a positive integer, and by
+                        <emphasis>diagonalization</emphasis> if not (see "note 2 and 3" below for details).
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        If <varname>A</varname> is a square and Hermitian matrix and <literal>p</literal>
+                        is a non-integer scalar, <literal>A^p</literal> is computed as:
+                    </para>
+                    <para>
+                        <code>A^p = u*diag(diag(s).^p)*u'</code> (For real matrix <varname>A</varname>,
+                        only the real part of the answer is taken into account).
+                    </para>
+                    <para>
+                        <literal>u</literal> and <literal>s</literal> are determined by
+                        <code>[u,s] = schur(A)</code> .
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        If <varname>A</varname> is not a Hermitian matrix and <literal>p</literal> is a
+                        non-integer scalar, <literal>A^p</literal> is computed as:
+                    </para>
+                    <para>
+                        <code>A^p = v*diag(diag(d).^p)*inv(v)</code> (For real matrix <varname>A</varname>,
+                        only the real part of the answer is taken into account).
+                    </para>
+                    <para>
+                        <literal>d</literal> and <literal>v</literal> are determined by
+                        <code>[d,v] = bdiag(A+0*%i)</code>.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        If <varname>A</varname> and <literal>p</literal> are real or complex numbers,
+                        <literal>A^p</literal> is the <emphasis>principal value</emphasis> determined by
+                    </para>
+                    <para>
+                        <code>A^p = exp(p*log(A))</code>
+                    </para>
+                    <para>
+                        (or <code>A^p = exp(p*(log(abs(A))+ %i*atan(imag(A)/real(A))))</code> ).
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        If <varname>A</varname> is a square matrix and <literal>p</literal> is a real or
+                        complex number, <literal>A.^p</literal> is the <emphasis>principal value</emphasis>
+                        computed as:
+                    </para>
+                    <para>
+                        <code>A.^p = exp(p*log(A))</code> (same as case 4 above).
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <literal>**</literal> and <literal>^</literal> operators are synonyms.
+                    </para>
+                </listitem>
+            </orderedlist>
+            <para>
+                <warning>
+                    Exponentiation is right-associative in Scilab, contrarily to Matlab® and Octave.
+                    For example 2^3^4 is equal to 2^(3^4) in Scilab, but to (2^3)^4 in Matlab® and Octave.
+                </warning>
+            </para>
+        </refsect3>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-A=[1 2;3 4];
-A^2.5,
-A.^2.5
-(1:10)^2
-(1:10).^2
+A = [1 2 ; 3 4];
+A ^ 2.5,
+A .^ 2.5
+(1:10) ^ 2
+(1:10) .^ 2
 
-A^%i
-A.^%i
+A ^ %i
+A .^ %i
 exp(%i*log(A))
 
-s=poly(0,'s')
-s^(1:10)
+s = poly(0,'s')
+s ^ (1:10)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -142,8 +200,27 @@ s^(1:10)
                 <link linkend="exp">exp</link>
             </member>
             <member>
+                <link linkend="expm">expm</link>
+            </member>
+            <member>
                 <link linkend="hat">hat</link>
             </member>
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    With decimal or complex numbers, <literal>scalar ^ squareMat</literal> now
+                    yields <literal>expm(log(scalar)*squareMat)</literal> instead of
+                    <literal>scalar .^ squareMat</literal>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

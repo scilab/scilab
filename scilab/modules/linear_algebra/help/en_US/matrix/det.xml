@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON - Le Mans Université
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,19 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="det">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="det">
     <refnamediv>
         <refname>det</refname>
-        <refpurpose>determinant</refpurpose>
+        <refpurpose>determinant of a square matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>det(X)
-            [e,m]=det(X)
+        <synopsis>
+            d = det(X)
+            [e,m] = det(X)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,19 +34,36 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>real or complex square matrix, polynomial or rational matrix.</para>
+                    square matrix of real or complex numbers, polynomials, or rationals.
+                    Sparse-encoded matrices accepted.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    Scalar of the <varname>X</varname>'s type: the determinant of
+                    <varname>X</varname>. If <varname>X</varname> is sparse-encoded,
+                    <varname>d</varname> is dense.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>m</term>
                 <listitem>
-                    <para>real or complex number, the determinant base 10 mantissae</para>
+                    real or complex number: the determinant base 10 mantissa, with
+                    <literal>abs(m) ∈ [1,10)</literal>. Not supported for <varname>X</varname>
+                    polynomial or rational.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>e</term>
                 <listitem>
-                    <para>integer, the determinant base 10 exponent</para>
+                    integer: the determinant base 10 exponent, such that
+                    <literal>d = m * 10<superscript>e</superscript></literal>.
+                    Not supported for <varname>X</varname> polynomial or rational.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -50,45 +71,165 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>det(X)</literal> ( <literal>m*10^e</literal> is the determinant of the square matrix <literal>X</literal>.
+            <emphasis role="bold">d = det(X)</emphasis> yields the determinant of the matrix
+            <varname>X</varname>.
         </para>
         <para>
-            For polynomial matrix <literal>det(X)</literal> is equivalent to <literal>determ(X)</literal>.
+            For a polynomial or rational matrix, <literal>d=det(X)</literal> uses <literal>determ(..)</literal>
+            whose algorithm is based on the FFT.
+            <literal>d=detr(X)</literal> can be alternatively used, based on the Leverrier algorithm.
+            Both methods yield equivalent results. For rational matrices, turning off <code>simp_mode(%f)</code>
+            might be required to get identical results.
         </para>
         <para>
-            For rational matrices <literal>det(X)</literal> is equivalent to <literal>detr(X)</literal>.
+            <emphasis role="bold">[e, m] = det(X)</emphasis> can be used only for a matrix of numbers.
+            This syntax allows to overcome computation's underflow or overflow, when <literal>abs(d)</literal>
+            is smaller than
+            <literal>number_properties("tiny")</literal> ≈ 2.23 10<superscript>-308</superscript> or
+            bigger than <literal>number_properties("huge")</literal> ≈ 1.80 10<superscript>308</superscript>.
         </para>
         <para>
-            <important>
-                The <literal>det</literal> and <literal>detr</literal> functions don't use the same algorithm.
-                For a rational fraction, <literal>det(X)</literal> is overloaded by <literal>%r_det(X)</literal> which is based on the <literal>determ</literal> function.
-                <literal>detr()</literal> uses the Leverrier method.
-            </important>
-            <warning>
-                Sometimes the <literal>det</literal> and <literal>detr</literal> functions may return different values for rational matrices.
-                In such cases you should set rational simplification mode off by using <code>simp_mode(%f)</code> to get the same result.
-            </warning>
-        </para>
-    </refsection>
-    <refsection>
-        <title>References</title>
-        <para>
-            det computations are based on the Lapack routines
-            DGETRF for  real matrices and  ZGETRF for the complex case.
+            For denses matrices, <literal>det(..)</literal> is based on the Lapack routines
+            DGETRF for real matrices and  ZGETRF for the complex case.
         </para>
         <para>
-            Concerning sparse matrices, the determinant is obtained from LU factorization of umfpack library.
+            For sparse matrices, the determinant is obtained from LU factorization thanks to the umfpack library.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-x=poly(0,'x');
-det([x,1+x;2-x,x^2])
-w=ssrand(2,2,4);roots(det(systmat(w))),trzeros(w)   //zeros of linear system
-A=rand(3,3);
-det(A), prod(spec(A))
- ]]></programlisting>
+A = rand(3,3)*5;
+det(A)
+[e, m] = det(A)
+
+// Matrix of complex numbers:
+// A = grand(3,3,"uin",0,10) + grand(3,3,"uin",0,10)*%i
+A = [3+%i, 9+%i*3, 9+%i ; 8+%i*8, 4+%i*3, 7+%i*7 ; 4, 6+%i*2, 6+%i*9]
+det(A)
+[e, m] = det(A)
+abs(m)  // in [1, 10)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> A = rand(3,3)*5;
+--> det(A)
+ ans  =
+  -10.805163
+
+--> [e, m] = det(A)
+ e  =
+   1.
+ m  =
+  -1.0805163
+
+--> // Matrix of complex numbers:
+--> A = [3+%i, 9+%i*3, 9+%i ; 8+%i*8, 4+%i*3, 7+%i*7 ; 4, 6+%i*2, 6+%i*9]
+ A  =
+   3. + i     9. + 3.i   9. + i
+   8. + 8.i   4. + 3.i   7. + 7.i
+   4. + 0.i   6. + 2.i   6. + 9.i
+
+--> det(A)
+ ans  =
+   745. - 225.i
+
+--> [e, m] = det(A)
+ e  =
+   2.
+ m  =
+   7.45 - 2.25i
+
+--> abs(m)  // in [1, 10)
+ ans  =
+   7.7823518
+]]></screen>
+        <para/>
+        <para>
+            Very big or small determinants: underflow and overflow handling:
+        </para>
+        <programlisting role="example"><![CDATA[
+// Very big determinant:
+n = 1000;
+A = rand(n, n);
+det(A)
+[e, m] = det(A)
+
+// Very small determinant (of a sparse-encoded matrix):
+A = (triu(sprand(n,n,1)) + diag(rand(1,n)))/1.5;
+det(A)
+prod(diag(A))
+[e, m] = det(A)
+A = A/2;
+det(A)
+[e, m] = det(A)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> // Very big determinant:
+--> A = rand(n, n);
+--> det(A)
+ ans  =
+  -Inf
+
+--> [e, m] = det(A)  // -3.1199e743
+ e  =
+   743.
+ m  =
+  -3.1198687
+
+--> // Very small determinant (of a sparse-encoded matrix):
+--> n = 1000;
+--> A = (triu(sprand(n,n,1)) + diag(rand(1,n)))/1.5;
+--> det(A)
+ ans  =
+   5.21D-236
+
+--> prod(diag(A))
+ ans  =
+   5.21D-236
+
+--> [e, m] = det(A)
+ e  =
+  -236.
+ m  =
+   5.2119757
+
+--> A = A/2;
+--> det(A)
+ ans  =
+   0.
+
+--> [e, m] = det(A)
+ e  =
+  -537.
+ m  =
+   4.8641473
+]]></screen>
+        <para/>
+        <para>
+            Determinant of a polynomial matrix:
+        </para>
+        <programlisting role="example"><![CDATA[
+s = %s;
+det([s, 1+s ; 2-s, s^2])
+
+w = ssrand(2,2,4);
+roots(det(systmat(w))),trzeros(w)   //zeros of linear system
+     ]]></programlisting>
+        <screen><![CDATA[
+--> det([s, 1+s ; 2-s, s^2])
+ ans  =
+  -2 -s +s² +s³
+
+--> w = ssrand(2,2,4);
+--> roots(det(systmat(w))),trzeros(w)
+ ans  =
+  -3.1907522 + 0.i
+   2.3596502 + 0.i
+
+ ans  =
+   2.3596502 + 0.i
+  -3.1907522 + 0.i
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -103,5 +244,16 @@ det(A), prod(spec(A))
                 <link linkend="simp_mode">simp_mode</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    [e,m]=det(X) syntax extended to sparse matrices.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

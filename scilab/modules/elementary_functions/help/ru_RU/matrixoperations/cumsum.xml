@@ -13,7 +13,9 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:id="cumsum" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xml:id="cumsum" xml:lang="ru">
 
     <refnamediv>
         <refname>cumsum</refname>
@@ -22,10 +24,12 @@
 
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>y=cumsum(x)</synopsis>
-        <synopsis>y=cumsum(x,orientation)</synopsis>
-        <synopsis>y=cumsum(x,outtype)</synopsis>
-        <synopsis>y=cumsum(x,orientation,outtype)</synopsis>
+        <synopsis>
+            y = cumsum(x)
+            y = cumsum(x, outtype)
+            y = cumsum(x, orientation)
+            y = cumsum(x, orientation, outtype)
+        </synopsis>
     </refsynopsisdiv>
 
     <refsection role="parameters">
@@ -37,6 +41,7 @@
                     <para>
                         массив вещественных, комплексных, логических значений, а также полиномов или
                         рациональных дробей.
+                        Гиперматрицы или разрежённые логические или числовые матрицы так же поддерживаются.
                     </para>
                 </listitem>
             </varlistentry>
@@ -49,11 +54,16 @@
                     <itemizedlist>
                         <listitem>
                             <para>
-                                строкой с возможными значениями: <literal>"*"</literal>, <literal>"r"</literal>, <literal>"c"</literal> или  <literal>"m"</literal>
+                                строкой с возможными значениями: <literal>"*"</literal>,
+                                <literal>"r"</literal>, <literal>"c"</literal> или  <literal>"m"</literal>
                             </para>
                         </listitem>
                         <listitem>
-                            <para>номером с положительным целым значением</para>
+                            <para>
+                              или положительное целое число <literal>1 ≤ orientation ≤ ndims(x)</literal>:
+                              индекс размерности, вдоль которой сумма с накоплением должна быть вычислена.
+                              1 и "r", и 2 и "c" эквивалентны.
+                            </para>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -70,7 +80,7 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>скаляр или массив</para>
+                    <para>Array of size equal to that of <varname>x</varname>.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -79,17 +89,15 @@
     <refsection role="description">
         <title>Описание</title>
         <para>
-            Для массива <term>x</term>, <literal>y=cumsum(x)</literal> возвращает скаляр
-            <term>y</term>, представляющий сумму всех элементов <term>x</term> с
-            накоплением.
+            <emphasis role="bold">y = cumsum(x)</emphasis> computes and provides the partial
+            cumulative sums <literal>y(i)=sum(x(1:i))</literal>, <emphasis role="italic">i.e.</emphasis>:
         </para>
         <para>
-            <literal>y=cumsum(x,orientation)</literal> возвращает в <term>y</term>
-            сумму элементов <term>x</term> с накоплением по заданной размерности
-            <term>orientation</term>:
+            <latex alt="y(i) = ∑u=1→i x(u)"><![CDATA[ y(i) = \sum_{u=1}^i x(u)]]></latex>
         </para>
         <para>
-            <latex><![CDATA[ y(i) = \sum_{k=1}^i x(k)]]></latex>
+            <emphasis role="bold">y = cumsum(x, orientation)</emphasis> computes and returns the partial
+            cumulative sums of <term>x</term> along the dimension given by <term>orientation</term>:
         </para>
         <itemizedlist>
             <listitem>
@@ -97,11 +105,14 @@
                     если <term>orientation</term> равна 1 или "r", то:
                 </para>
                 <para>
-                    <latex><![CDATA[ y(\mathbf{l},j) = \sum_{\mathbf{i}=1}^l x(\mathbf{i},j)]]></latex>
+                    <latex alt="y(i,j) = ∑u=1→i x(u,j)"><![CDATA[
+                        y(\mathbf{i},j) = \sum_{u=1}^{\mathbf{i}} x(\mathbf{u},j)   ]]>
+                    </latex>, или для N-мерного массива :
                 </para>
-                <para>или </para>
                 <para>
-                    <latex><![CDATA[ y(\mathbf{l},j,k,\ldots) = \sum_{\mathbf{i}=1}^l x(\mathbf{i},j,k,\ldots)]]></latex>
+                    <latex alt="y(i,j,k,…) = ∑u=1→i x(u,j,k,…)"><![CDATA[
+                        y(\mathbf{i},j,k,\ldots) = \sum_{u=1}^{\mathbf{i}} x(\mathbf{u},j,k,\ldots)  ]]>
+                    </latex>
                 </para>
             </listitem>
             <listitem>
@@ -109,11 +120,14 @@
                     если <term>orientation</term> равна 2 или "c", то:
                 </para>
                 <para>
-                    <latex><![CDATA[ y(i,\mathbf{l}) = \sum_{\mathbf{j}=1}^l x(i,{\mathbf{j})]]></latex>
+                    <latex alt="y(i,j) = ∑u=1→j x(i,u)"><![CDATA[
+                        y(i,\mathbf{j}) = \sum_{u=1}^{\mathbf{j}} x(i,{\mathbf{u})  ]]>
+                    </latex>, или для N-мерного массива :
                 </para>
-                <para> или </para>
                 <para>
-                    <latex><![CDATA[ y(i,\mathbf{l},k,\ldots) = \sum_{\mathbf{j}=1}^l x(i,\mathbf{j},k,\ldots)]]></latex>
+                    <latex alt="y(i,j,k,…) = ∑u=1→j x(i,u,k,…)"><![CDATA[
+                        y(i,\mathbf{j},k,\ldots) = \sum_{u=1}^{\mathbf{j}} x(i,\mathbf{u},k,\ldots) ]]>
+                    </latex>
                 </para>
             </listitem>
             <listitem>
@@ -121,17 +135,24 @@
                     если <term>orientation</term> равна n, то:
                 </para>
                 <para>
-                    <latex><![CDATA[ y(i_1,\ldots,i_{n-1},\mathbf{l},i_{n+1},\ldots) = \sum_{\mathbf{i_n}=1}^l x(i_1,\ldots,i_{n-1},\mathbf{i_n},i_{n+1},\ldots)]]></latex>
+                    <latex alt="y(i₁,…,iₙ₋₁, iₙ,iₙ₊₁,…) = ∑u=1…iₙ  x(i₁,…,iₙ₋₁, u,iₙ₊₁,…)"><![CDATA[
+                        y(i_1,\ldots,i_{n-1},\mathbf{i_{n}},i_{n+1},\ldots) =
+                        \sum_{u=1}^{\mathbf{i_n}} x(i_1,\ldots,i_{n-1},\mathbf{u},i_{n+1},\ldots) ]]>
+                    </latex>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <literal>y=cumsum(x,"*")</literal> эквивалентно <literal>y=cumsum(x)</literal>
+                    <emphasis role="bold">y = cumsum(x, "*")</emphasis> эквивалентно
+                    <literal>y = cumsum(x)</literal>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <literal>y=cumsum(x,"m")</literal> эквивалентно <literal>y=cumsum(x,orientation)</literal>, где <literal>orientation</literal> является индексом первой размерности <literal>x</literal>, которая больше 1. Эта опция используется для совместимости с Matlab'ом.
+                    <emphasis role="bold">y = cumsum(x, "m")</emphasis> эквивалентно
+                    <literal>y = cumsum(x, orientation)</literal>, где <literal>orientation</literal>
+                    является индексом первой размерности <literal>x</literal>, которая больше 1.
+                    Эта опция используется для совместимости с Matlab'ом.
                 </para>
             </listitem>
         </itemizedlist>
@@ -151,7 +172,9 @@
             <listitem>
                 <para>Для массивов целых чисел:</para>
                 <para>
-                    если <literal>outtype="native"</literal> ("естественное"), то вычисление делается через целочисленные вычисления (по модулю 2^b, где b - число используемых битов);
+                    если <literal>outtype="native"</literal> ("естественное"), то вычисление
+                    делается через целочисленные вычисления (по модулю 2^b, где b - число
+                    используемых битов);
                 </para>
                 <para>
                     если <literal>outtype="double"</literal>, то вычисление делается через вычисления
@@ -176,31 +199,32 @@
                 </para>
             </listitem>
         </itemizedlist>
-        <note>
-            This function applies with identical rules to <link linkend="sparse">sparse matrices</link>
-        </note>
+        <warning>
+            Когда входная переменная <varname>x</varname> является разрежённой, пожалуйста, имейте ввиду,
+            что плотность результата <varname>y</varname> будет почти всегда близка к 100%.
+        </warning>
     </refsection>
 
     <refsection role="examples">
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-A=[1,2;3,4];
+A = [1, 2 ; 3, 4];
 cumsum(A)
 cumsum(A,1)
 
-I=uint8([2 95 103;254 9 0])
-cumsum(I) //естественное вычисление
+I = uint8([2 95 103 ; 254 9 0])
+cumsum(I)   // естественное вычисление
 cumsum(I,"double")
 cumsum(I,2,"double")
 
-s=poly(0,"s");
-P=[s,%i+s;s^2,1];
+s = poly(0,"s");
+P = [s, %i+s ; s^2, 1];
 cumsum(P),
 cumsum(P,2)
 
-B=[%t %t %f %f];
-cumsum(B) //вычисление с плавающей запятой
-cumsum(B,"native") //аналогично or(B)
+B = [%t %t %f %f];
+cumsum(B)          // вычисление с плавающей запятой
+cumsum(B,"native") // аналогично or(B)
  ]]></programlisting>
     </refsection>
 

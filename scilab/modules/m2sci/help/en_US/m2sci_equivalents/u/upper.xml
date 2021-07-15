@@ -31,22 +31,18 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-upper(str)
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+upper(String)
+upper(notString)
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-convstr(str,"u")
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+convstr(String, "u")
+notString
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            If <emphasis role="bold">A</emphasis> is not a character string matrix, Scilab equivalent for <emphasis role="bold">B=upper(A)</emphasis> is <emphasis role="bold">B=A</emphasis>, else equivalent is <emphasis role="bold">B=convstr(A,"u")</emphasis>.
-        </para>
     </refsection>
 </refentry>

@@ -21,31 +21,36 @@
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>[str] = pol2str(p)</synopsis>
+        <synopsis>strP = pol2str(P)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
-                <term>p</term>
+                <term>P</term>
                 <listitem>
-                    <para>Matriz ou hipermatriz polinômios com coeficientes reais ou complexos</para>
+                    <para>
+                        Matriz ou hipermatriz de polinômios com coeficientes reais ou complexos.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>str</term>
+                <term>strP</term>
                 <listitem>
-                    <para>string</para>
+                    <para>Matriz ou hipermatriz de strings, de tamanho igual a size(P).</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Descrição</title>
-        <para> Converte um polinômio para um string (função utilitária).</para>
+        <para>
+            Converte cada polinômio de <varname>P</varname> para um string (função utilitária).
+        </para>
         <para>
             <note>
-                O formato dos coeficientes de saída é definida através <link linkend="format">format(..)</link>.
+                O formato dos coeficientes de saída é definida através
+                <link linkend="format">format(..)</link>.
             </note>
         </para>
     </refsection>
@@ -80,7 +85,10 @@ pol2str(p)
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revdescription>pol2str () estendido para polinômios com coeficientes complexos e para hipermatriz. Processamento de matriz vetorizado.</revdescription>
+                <revdescription>
+                    pol2str () estendido para polinômios com coeficientes complexos e para hipermatriz.
+                    Processamento de matriz vetorizado.
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>

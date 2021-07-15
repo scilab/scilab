@@ -21,7 +21,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])</synopsis>
+        <synopsis>y = impl([type,] y0, ydot0, t0, t [,atol [,rtol]], res, adda [,jac])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -91,9 +91,9 @@
             If <literal>res</literal> is a function, its syntax must be as
             follows:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 r = res(t,y,ydot)
- ]]></programlisting>
+]]></screen>
         <para>
             where <literal>t</literal> is a real scalar (time) and
             <literal>y</literal> and <literal>ydot</literal> are real vector (state
@@ -116,9 +116,9 @@ r = res(t,y,ydot)
             If <literal>adda</literal> is a function, its syntax must be as
             follows:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 r = adda(t,y,p)
- ]]></programlisting>
+]]></screen>
         <para>
             and it must return <literal>r=A(t,y)+p</literal> where
             <literal>p</literal> is a matrix to be added to
@@ -140,9 +140,9 @@ r = adda(t,y,p)
             If <literal>jac</literal> is a function, its syntax must be as
             follows:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 j = jac(t,y,ydot)
- ]]></programlisting>
+]]></screen>
         <para>and it must return the Jacobian of
             <literal>r=g(t,y)-A(t,y)*ydot</literal> with respect to
             <literal>y</literal>.
@@ -160,11 +160,11 @@ j = jac(t,y,ydot)
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
+y = impl([1;0;0], [-0.04;0.04;0], 0, 0.4, 'resid', 'aplusp');
 // Using hot restart
-//[x1,w,iw]=impl([1;0;0],[-0.04;0.04;0],0,0.2,'resid','aplusp');
+//[x1,w,iw] = impl([1;0;0], [-0.04;0.04;0], 0, 0.2, 'resid', 'aplusp');
 // hot start from previous call
-//[x1]=impl([1;0;0],[-0.04;0.04;0],0.2,0.4,'resid','aplusp',w,iw);
+//x1 = impl([1;0;0],[-0.04;0.04;0], 0.2, 0.4, 'resid', 'aplusp', w, iw);
 //max(abs(x1-x))
  ]]></programlisting>
     </refsection>

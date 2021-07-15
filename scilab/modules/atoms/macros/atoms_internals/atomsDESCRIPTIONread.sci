@@ -116,7 +116,13 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
         file_in));
     end
 
-    winId = atomsOpenProgressBar(_("Updating Atoms modules database..."), %t)
+    if size(lines_in,1)>1000 then
+        winId = atomsOpenProgressBar(_("Updating Atoms modules database..."), %t)
+    else
+        // No progression bar required when the DESCRIPTION file is so short that
+        // its processing will be very fast:
+        winId = []
+    end
     for i=1:(size(lines_in,"*")+1)
 
         atomsUpdateProgressBar(winId, i / size(lines_in,"*"));

@@ -1269,8 +1269,6 @@ AC_SUBST(GUI_ENABLE)
 AC_CHECK_FUNCS([dup2] [getcwd] [getpagesize] [getpass])
 AC_CHECK_FUNCS([rmdir])
 
-AC_CHECK_FUNC([getwd],AC_DEFINE([HAVE_GETWD],[1],[Define to 1 if you have the `getwd' function.]),[AC_DEFINE([getwd(x)],[getcwd(x,1024)],[Don't use getwd but getcwd])])
-
 # Provided by <regex.h>
 AC_CHECK_FUNCS([regcomp])
 
@@ -2128,15 +2126,6 @@ modules/atoms/etc/repositories
 modules/atoms/tests/unit_tests/repositories.orig
 ])
 
-# Detection of the module for the future version of Scilab 6
-# ie we detect module which ends with _yasp
-
-if test "$enable_yasp" = yes; then
-   AC_CONFIG_FILES([
-   modules/development_tools/src/fake/Makefile
-  ])
-fi
-
 # This script is used by Xcos in order to regenerate the function/block list
 AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scripts/GenBlocks.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/scicompile.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/compilerDetection.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/configure])
 
@@ -2212,7 +2201,9 @@ if test $XCOS_ENABLE = yes; then
    if test "$with_modelica" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
      echo "Ocaml Configuration (for Modelica compiler):"
      echo "  OCAMLC ............. = $OCAMLC"
+     echo "  OCAMLCFLAGS ........ = $OCAMLCFLAGS"
      echo "  OCAMLOPT ........... = $OCAMLOPT"
+     echo "  OCAMLOPTFLAGS ...... = $OCAMLOPTFLAGS"
      echo "  OCAMLDEP ........... = $OCAMLDEP"
    else
      echo "Will not build Modelica compiler"

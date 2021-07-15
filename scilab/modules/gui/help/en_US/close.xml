@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
           xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="close">
     <refnamediv>
         <refname>close</refname>
-        <refpurpose>closes graphic figures, progressionbars or waitbars</refpurpose>
+        <refpurpose>
+            Closes graphic figures, progression or wait bars, the help browser, xcos,
+            the variables browser or editor.
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
             close
             close(H)
+            close help
+            close xcos
+            close xcos!
+            close editvar
+            close browsevar
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -22,18 +43,37 @@
                     <para>Vector of graphic figures handles or ids, or of handles of progression bar
                         or wait bar.
                     </para>
-                    <para>
-                        By default, the current graphic figure is considered.
-                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection role="description">
         <title>Description</title>
-        <para>Graphic windows based on the Tk technology (such as still used by imshow() in the SIVP
-            external module) may be closed as well by providing their number that is their handle.
-        </para>
+            <para>
+                <emphasis role="bold">close</emphasis> closes the current graphic figure (if any).
+            </para>
+            <para>
+                <emphasis role="bold">close(H)</emphasis> closes the figures, waitbar or
+                progression bars whose handles or indices are in <varname>H</varname>.
+            </para>
+            <para>
+                <emphasis role="bold">close help</emphasis> closes the help browser.
+            </para>
+            <para>
+                <emphasis role="bold">close browsevar</emphasis> closes the variable browser.
+            </para>
+            <para>
+                <emphasis role="bold">close editvar</emphasis> closes the variable editor
+                (it must not be docked).
+            </para>
+            <para>
+                <emphasis role="bold">close xcos</emphasis> closes all opened xcos windows.
+                If some diagrams have unsaved changes, the user is asked for confirmation.
+            </para>
+            <para>
+                <emphasis role="bold">close xcos!</emphasis> forces closing all opened xcos windows
+                without asking for any confirmation.
+            </para>
     </refsection>
     <refsection role="examples">
         <title>Examples</title>
@@ -68,6 +108,30 @@ gcf().figure_position(1) = 700;
 sleep(5000);         // Watch at them!
 close([25 200 111])  // Finished!
  ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
+// You are reading this example in the help browser. Now, bye:
+close help
+     ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
+xcos
+sleep(5000)
+close xcos
+     ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
+browsevar
+sleep(5000)
+close browsevar
+     ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
+a = rand(3,5);
+editvar a
+sleep(5000)
+close editvar
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -76,13 +140,13 @@ close([25 200 111])  // Finished!
                 <link linkend="delete">delete</link>
             </member>
             <member>
-                <link linkend="figure">figure</link>
+                <link linkend="exit">exit</link>
             </member>
             <member>
-                <link linkend="scf">scf</link>
+                <link linkend="mclose">mclose</link>
             </member>
             <member>
-                <link linkend="gcf">gcf</link>
+                <link linkend="h5close">h5close</link>
             </member>
         </simplelist>
     </refsection>
@@ -92,7 +156,16 @@ close([25 200 111])  // Finished!
             <revision>
                 <revnumber>6.1.1</revnumber>
                 <revdescription>
-                    Vector of several figures ids now accepted.
+                    <itemizedlist>
+                        <listitem>
+                            Vector of several figures ids now accepted.
+                        </listitem>
+                        <listitem>
+                            Extension to <literal>close help</literal>, <literal>close xcos</literal>,
+                            <literal>close xcos!</literal>, <literal>close browsevar</literal>,
+                            and <literal>close editvar</literal>
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

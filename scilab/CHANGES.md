@@ -27,6 +27,7 @@ For a high-level description of the main new features of this release, please co
 [4]: modules/helptools/data/pages/homepage-en_US.html
 
 In summary, the main new features are:
+* The default Java Heap has been increased to 512MB
 * Webtools utilities added for HTTP protocol, JSON data usage
    - http_get can be used as an alternative download method for ATOMS
 * Profiled values are available as Scilab values
@@ -37,7 +38,7 @@ In summary, the main new features are:
    - numbers (IEEE 754 double) are not rounded
    - polynomials and rationals display is more compact
    - In structures, nested lists or structures are now displayed recursively compactly and more explicitly.
-* importgui function has been added to easily interface csvRead
+* `uiSpreadsheet` function has been added to easily interface csvRead
 * function calls with zero output arguments can be detected with `argn`
    - atoms functions can either display or output values
 
@@ -90,8 +91,8 @@ Packaging & Supported Operating Systems
 [5]: http://java.com/en/download/help/sysreq.xml
 [6]: https://en.wikipedia.org/wiki/SSE2
 
-Feature changes and additions
------------------------------
+Feature changes and additions on 6.1.0
+--------------------------------------
 
 * `airy` has been added: Evaluation of Airy functions of the first and second kind, and their first derivative, possibly scaled.
 * HTTP get, post, put, upload, patch, delete functions added
@@ -192,8 +193,13 @@ Feature changes and additions
 * `circshift` is introduced.
 * `atomsGetInstalledPath` is no longer sensitive to the case or completeness of the modules names. Providing the modules versions is now optional.
 * `function` replaces `mc` as the new overloading code for functions in Scilab language.
+* `mgeti` can now read correctly 64-bit int64 / uint64 integers bigger than 2^52.
 
-6.1.1
+
+Feature changes and additions on 6.1.1
+--------------------------------------
+
+* Axes labels and title default font size had been increased for better default rendering.
 * `gsort` is upgraded:
   - It can now sort any sparse 2D matrix, in all `g, r, c, lr, lc` methods, including sparse booleans and in multi-level mode. It was formerly limited to sparse real or complex vectors and only to the `g` mode.
   - Any hypermatrix can be sorted along a dimension > 2.
@@ -204,25 +210,63 @@ Feature changes and additions
   - complex numbers `y` now supported: the real and imaginary parts are interpolated separately.
   - extrapolation option extended: `edgevalue` mode added for all interpolations; `periodic` mode added for linear and spline interpolations. `linear` mode added for the spline interpolations.
 * `xlfont` did not support the documented 4th argument.
+* `bitcmp` is upgraded:
+  - Entended to 64-bit integers.
+  - Extended to all signed integers.
+  - Decimal positive integers > 2^52 up to 2^1024 = number_properties("huge") can now be processed, with bitnum up to 1024 instead of 52.
+  - bitnum can actually be an array. It is now optional as well for input decimal integers.
+* The `Arnoldi` module is now internal.
+* `sgolay` and the companion `sgolayfilter` and `sgolaydiff` functions have been added to implement Savitsky-Golay filters.
+* `clock` now returns the milliseconds, the time zone, and the daylight saving time.
+* `mapsound` upgraded to have a colormap argument
+* `mprintf`, `msprintf` and `mfprintf` can now print input booleans, as `0`|`1` or as `T`|`F`.
+* `setdiff` now supports input booleans and sparse matrices (boolean or numeric).
+* `intersect` is extended to any sparse boolean or numeric arrays, in all simple, 'c' or 'r' modes.
+* `union` now support boolean, sparse boolean, and sparse numerical matrices.
+* `kron` and `.*.` are extended to boolean arrays.
+* `gamma` is extended to incomplete gamma integrals.
+* `close` is extended to close the help browser, xcos, or the variables browser or editor GUIs.
+* `polyint` is introduced to compute polynomial antiderivatives.
+* `det` is now actually extended to sparse matrices.
+* `deff` is upgraded:
+   - The created function may be returned  as output argument.
+   - Providing the function headline and body concatenated in a single input text vector is possible.
+   - For a simple function, a single string input definition can be provided.
+   - For assignable calls to `deff`, the `@` symbol can be used as function pseudo-name.
+* `mopen` and `mclose` now handle multiple files and file descriptors.
+* `hash` function with SHA-1,SHA-2 and SHA-3 Secure Hash Algorithms has been added.
+* `loglog`, `semilogx`, `semilogy` Matlab-compatible functions added.
+* `scatter` and `scatter3d` are reforged. New `scatter` options: `"smallOnTop"` and `"datatips"`.
+* `asciimat` now supports input strings of different lengths or including international UTF8 extended characters.
+
 
 Help pages:
 -----------
 
-* overhauled / rewritten: `bitget`, `edit`, `factorial`, `fft`, `vectorfind`, `datafit`
+* overhauled / rewritten: `bitget`, `edit`, `factorial`, `fft`, `vectorfind`, `datafit`, `mgeti`
 * fixed / improved:  `bench_run` `M_SWITCH`, `comet`, `comet3d`, `plot2d`
 * Rewritten: `getdate`, `weekday`
 * Translations added:
   - (ru): `weekday`
 
 
-User Interface improvements:
-----------------------------
+User Interface improvements
+---------------------------
 
 * The `ans` variable is editable as any other variable in Editvar.
 * Commands history is saved before executing a command to have the correct history on a crash.
 * Used memory per variable is displayed by BrowserVar to give the user numbers on memory usage repartition and let the user `clear` the big ones first.
 * In browsevar, clicking on any function, library, list, cell, structure, custom tlist or mlist, or graphic handle now edits or displays their content.
 * Autoscroll of console in GUI mode is disabled when the user scrolls up until he scrolls to the bottom.
+* Help browser improved:
+  - The browser's language can be set independently of the session's language
+  - The menu "Online" allows to display in your web browser the online version of the current page
+  - The menu "Issues" allows to display bugzilla entries related to the feature of the current page
+  - ATOMS chapters are automatically loaded in the browser.
+  - The page left at exit is restored at next startup.
+  - On Preferences option, querring some Matlab term can now redirect and display the documentation of the Scilab equivalent feature.
+* `x_matrix` can now edit matrices of booleans, integers, or text. Matrices of real or complex numbers are better displayed.
+
 
 Xcos
 ----
@@ -287,30 +331,52 @@ Bug Fixes
 ### Bugs fixed in 6.1.1:
 
 * [#3188](https://bugzilla.scilab.org/3188): `part()` was slower than in Scilab 4.1.2.
-* [#7117](https://bugzilla.scilab.org/7117): `findobj()` could not search within given object.
+* [#4648](https://bugzilla.scilab.org/4648): Scilab missed more secure hashing functions (md5 is now broken)
+* [#5511](https://bugzilla.scilab.org/5511): printf_conversion page was poorly presented and had many issues: The described types of accepted value and printed result were often switched; nothing was told about the processing of complex numbers; special escaped sequences \n \r \t \\ were not described; possible numbering of placeholders was not described; in the pt_BR version, the itemized lists were wrongly unnested and characters typing placeholders (d,u,o,x,f,e,g..) were missing.
+* [#7202](https://bugzilla.scilab.org/7202): It was not possible to send string parameters via the opar structure of an xcos block to a block of type 4.
 * [#8059](https://bugzilla.scilab.org/8059): A local `.wgetrc` config file could make troubles in `atomsDownload`.
+* [#8100](https://bugzilla.scilab.org/8100): `cumsum()` on sparse documented.
 * [#8378](https://bugzilla.scilab.org/8378): Datatip `ContextMenu => Delete last datatip` was useless.
+* [#8761](https://bugzilla.scilab.org/8761): Xcos masked superblocks had invalid names.
 * [#9221](https://bugzilla.scilab.org/9221): There was no way in Scilab to easily access to sets of unicode symbols like greek letters, etc.
 * [#9909](https://bugzilla.scilab.org/9909): In the help browser, add a way to open the online version of the current page.
+* [#10046](https://bugzilla.scilab.org/10046): By default, the `MAXMIN` block did not propose 2 input ports to work in an element-wise way (unlike MIN_f and MAX_f), which is its most original working mode.
+* [#10465](https://bugzilla.scilab.org/10465): At Scilab exit, the help browser is not saved nor restored.
 * [#10476](https://bugzilla.scilab.org/10476): From `browsevar`, displaying the content of lists, structures, cells, or other custom tlists or mlists was not possible.
+* [#10490](https://bugzilla.scilab.org/10490): The `mapsound` page was poor with a single interesting example.
+* [#10964](https://bugzilla.scilab.org/10964): Scinotes coud not execute the current file in NW mode.
+* [#11600](https://bugzilla.scilab.org/11600): `rand()` was parsing its inputs incorrectly.
+* [#11677](https://bugzilla.scilab.org/11677): The original Arnoldi functions were obsolete.
+* [#11888](https://bugzilla.scilab.org/11888): The `struct` page did not document how to build an array of structures.
 * [#12418](https://bugzilla.scilab.org/12418): Using bvode() with "continuation", i.e. `ipar(9) > 1` led to an error.
 * [#12516](https://bugzilla.scilab.org/12516): From `browsevar`, clicking on any graphical handle did not edit its figure with `ged`.
 * [#12532](https://bugzilla.scilab.org/12532): From `browsevar`, clicking on any function did not edit it with `edit`. The content of libraries could not be displayed either.
 * [#12719](https://bugzilla.scilab.org/12719): `A(%s)` gave the same result as `A($)`.
 * [#12889](https://bugzilla.scilab.org/12889): In the help browser, add a menu allowing to select the language of help pages, regardless of the language of the session.
+* [#13303](https://bugzilla.scilab.org/13303): `mprintf`, `msprintf` and `mfprintf` could not print input booleans.
 * [#13417](https://bugzilla.scilab.org/13417): `csvRead` page did not document the way to use the `range` up to the last row/column.
 * [#13593](https://bugzilla.scilab.org/13593): `csvRead()` did not take the `range` into account when `header` is provided. `[]` could not be used as default `range`.
 * [#13762](https://bugzilla.scilab.org/13762): In the `fft` page, the formula for the inverse FFT missed the 1/n normalization factor.
+* [#13855](https://bugzilla.scilab.org/13855): The documentation of `pause` was not up-to-date and could be improved.
 * [#13985](https://bugzilla.scilab.org/13985): The display of lists was very loose and poor.
+* [#14033](https://bugzilla.scilab.org/14033): `x_matrix` could not edit matrices of booleans, encoded integers or text. Matrices of real or complex numbers were poorly displayed.
+* [#14098](https://bugzilla.scilab.org/14098): The `genlib` and `library` help pages were outdated with respect to Scilab 6.
+* [#14297](https://bugzilla.scilab.org/14297): Documentation of `cumsum()` improved.
 * [#14435](https://bugzilla.scilab.org/14435): Errors were not well handled in overloaded functions.
+* [#14477](https://bugzilla.scilab.org/14477): `mtlb_sparse()` removed from the documentation.
 * [#14488](https://bugzilla.scilab.org/14488): The `frameflag=9` and `strf=".9."` values of these `plot2d` options were no longer accepted. Their documentation was ambiguous.
+* [#14567](https://bugzilla.scilab.org/14567): In Scinotes, the `TODO` keyword was no longer highlighted.
 * [#14718](https://bugzilla.scilab.org/14718): `user` is removed for a while but was still documented.
 * [#14873](https://bugzilla.scilab.org/14873): `setfield` page: The output and the 6.0 history were documented only on the en_US version. The input was wrongly restricted to matrices, while any Scilab object is acceptable. The specific role of `setfield` for mlists was not really described nor illustrated. The example did not include any call to setfield.
 * [#15012](https://bugzilla.scilab.org/15012): `covStart(["isempty" ; "isscalar"])` crashed Scilab.
 * [#15163](https://bugzilla.scilab.org/15163): `getdate` page: The time referential was obscure: a) UTC for Unix Time Convention vs Coordinated Universal Time. b) unclear influence of the time zone.
+* [#15226](https://bugzilla.scilab.org/15226): The `get` page needed to be overhauled: `get(0)`, `get(0,prop)`, `get(tag)`, `get(tag,prop)` and other features were not documented.
 * [#15280](https://bugzilla.scilab.org/15280): `gsort` was unable to sort any hypermatrix along dimensions > "r"|"c".
+* [#15330](https://bugzilla.scilab.org/15330): spec.tst was crashing on Linux.
 * [#15839](https://bugzilla.scilab.org/15839): `gsort`: the only sparse possible input were real or complex vectors, and only with the `g` method.
+* [#15841](https://bugzilla.scilab.org/15841): `intersect` did not support neither sparse boolean nor sparse numeric inputs.
 * [#15842](https://bugzilla.scilab.org/15842): `unique` could not process 2D sparse matrices.
+* [#15868](https://bugzilla.scilab.org/15868): `setdiff(s,s2)` yielded an error when `s` or/and `s2` is sparse encoded.
 * [#15954](https://bugzilla.scilab.org/15954): `mfile2sci` abusively added a 6 lines `mode(0); ieee(1)` header to every converted file.
 * [#16069](https://bugzilla.scilab.org/16069): [].figure_name crashes Scilab.
 * [#16106](https://bugzilla.scilab.org/16106): Xcos sciblk4 user-defined blocks did not handle opar and odstate/oz correctly.
@@ -320,8 +386,12 @@ Bug Fixes
 * [#16193](https://bugzilla.scilab.org/16193): `covStart()` clear previous coverage information. `profileEnable()` could be use to append a macro later on.
 * [#16196](https://bugzilla.scilab.org/16196): `covStart()` help page was incomplete about the API usage.
 * [#16274](https://bugzilla.scilab.org/16274): assert_checkequal() did not considered equal matching Nan or void elements in (nested) containers.
+* [#16284](https://bugzilla.scilab.org/16284): `typename()` still considered removed uncompiled macros (11, "m"), and "mc" overloading code instead of "function".
+* [#16288](https://bugzilla.scilab.org/16288): An error message from `wavread` was wrong.
 * [#16297](https://bugzilla.scilab.org/16297): After function test(), e={}, endfunction; macr2tree(test)  crashes Scilab.
+* [#16305](https://bugzilla.scilab.org/16305): `unwrap()` failed unfolding curves with straight segments.
 * [#16337](https://bugzilla.scilab.org/16337): The 3rd output of `[U,km,ku] = unique(..)` was not implemented.
+* [#16340](https://bugzilla.scilab.org/16340): `setdiff("","")` produced `""` instead of `[]`. The `"c"` and `"r"` options yielded an error for string inputs. Input arguments were poorly checked.
 * [#16342](https://bugzilla.scilab.org/16342): `strcat()` was much slower in Scilab 6.0.2.
 * [#16350](https://bugzilla.scilab.org/16350): in if/while conditions, the empty sparse boolean was considered as TRUE.
 * [#16358](https://bugzilla.scilab.org/16358): `isdef([],..)` yielded an error instead of returning [].
@@ -332,6 +402,7 @@ Bug Fixes
 * [#16369](https://bugzilla.scilab.org/16369): Right divisions / involving one or two sparse numerical matrices were no longer supported.
 * [#16370](https://bugzilla.scilab.org/16370): `msprintf()` did not handle LaTeX dollars anymore.
 * [#16374](https://bugzilla.scilab.org/16374): Any plot with datatips saved in Scilab 5.5 could not be loaded in Scilab 6.
+* [#16385](https://bugzilla.scilab.org/16385): In Xcos without any diagram, the menu `Simulation => Modelica initialize` displayed "Undefined variable: flag" in the console.
 * [#16391](https://bugzilla.scilab.org/16391): `csvRead()` was crashing with CSV files containing empty lines.
 * [#16396](https://bugzilla.scilab.org/16396): recursive extraction `(m:n)(:)` crashed Scilab
 * [#16397](https://bugzilla.scilab.org/16397): display of long (real) column vectors was slow (regression).
@@ -341,33 +412,73 @@ Bug Fixes
 * [#16406](https://bugzilla.scilab.org/16406): `edit_curv` yielded an error when reading data.
 * [#16407](https://bugzilla.scilab.org/16407): Fec rendering was incorrect
 * [#16408](https://bugzilla.scilab.org/16408): toJSON(var, indent, filename) is the right call sequence. Documentation has been udpated.
+* [#16438](https://bugzilla.scilab.org/16438): `asciimat(text)` did not accept strings of different lengths or including some extended UTF-8 characters.
 * [#16445](https://bugzilla.scilab.org/16445): `colorbar(..)` ignored how to guess `umin` and `umax` for a Champ object (with .colored="on").
 * [#16449](https://bugzilla.scilab.org/16449): Insertion of implicit vector in Cell was crahsing Scilab
 * [#16450](https://bugzilla.scilab.org/16450): Concatenating encoded integers with decimal or complex numbers was not possible.
+* [#16451](https://bugzilla.scilab.org/16451): `setdiff(a,b,"r"|"c")` with a and b boolean yielded an error.
 * [#16452](https://bugzilla.scilab.org/16452): `setdiff(sparse([1 3 0 2]), sparse([3 7]))` missed returning 0, and wrongly returned 3.
 * [#16454](https://bugzilla.scilab.org/16454): `gsort` yielded an error when sorting any sparse vector including some NaN.
 * [#16458](https://bugzilla.scilab.org/16458): `mean()` did not handle sparse numerical matrices.
 * [#16465](https://bugzilla.scilab.org/16465): Scinotes OpenRecent menu was not updated when it should.
 * [#16473](https://bugzilla.scilab.org/16473): Deleting rows in a sparse squared the matrix with padding zeros (Scilab 6 regression).
 * [#16474](https://bugzilla.scilab.org/16474): `imult(%z)` crashed Scilab.
+* [#16476](https://bugzilla.scilab.org/16476): `issquare` was not overloaded.
 * [#16488](https://bugzilla.scilab.org/16488): Concatenations mixing boolean and double with at least one operand being sparse were not supported.
 * [#16496](https://bugzilla.scilab.org/16496): The `getdate` page should be rewritten: a) `getdate("s")` does NOT take leap seconds into account. b) `D=getdate(X)` is vectorized, accepts fractional seconds and returns them in `[0,1)` in D(10) instead of milliseconds. Moreover, the time referential of the result was unclear (time zone, daylight saving offset).
+* [#16504](https://bugzilla.scilab.org/16504): `clock` returned none of the milliseconds, time zone, and daylight saving time.
 * [#16508](https://bugzilla.scilab.org/16508): csvTextScan and csvRead did not handle well complex data.
 * [#16512](https://bugzilla.scilab.org/16512): 1 ./ uint8(0) crashes Scilab (idem with int8, uint16, int16, uint32, int32, uint64, int64).
 * [#16517](https://bugzilla.scilab.org/16517): `getdate("s")` truncated the actual time to integer seconds. `getdate(u)(10)` returned fractional seconds instead of milliseconds as `getdate()`.
 * [#16522](https://bugzilla.scilab.org/16522): `bitget(x,pos)` and `bitset(x,pos)` results could be wrong when `pos` is an encoded integer.
 * [#16525](https://bugzilla.scilab.org/16525): `soundsec(t,freq)` has the trivial equivalence `0 : 1/freq : t*(1-%eps)` and should be removed.
+* [#16529](https://bugzilla.scilab.org/16529): `deff` could not return the created function as output argument, preventing to cretae and use anonymous functions. The function's headline and body had to be provided separately. For Simple functions, a one-string input (possibly console-oriented) definition was not supported.
+* [#16530](https://bugzilla.scilab.org/16530): `mapsound` needed to be reforged.
+* [#16540](https://bugzilla.scilab.org/16540): uicontrol spinner did not "snaptoticks"
 * [#16549](https://bugzilla.scilab.org/16549): simple script crashed Scilab in GUI mode.
 * [#16551](https://bugzilla.scilab.org/16551): `num2cell` returned {} for any input array of empty strings.
+* [#16552](https://bugzilla.scilab.org/16552): `mfile2sci`: conversion of `ispc` and `isunix` still used `MSDOS` removed far ago. Conversion of `ismac` was missing. Conversion of `exist` missed using `mtlb_exist`. Conversion of `dos` yielded some "operation +" warnings. Unit tests for the conversion of `cd`, `dir` and `ferror` overwrote some Scilab reserved keywords. Conversion of `return` yielded `mtlb(resume)`.
 * [#16553](https://bugzilla.scilab.org/16553): `unique(["" ""])` returned `["" ""]`.
 * [#16557](https://bugzilla.scilab.org/16557): `macr2tree` + `tree2code` translated `e={2}` into `"e=1"` and `e={2,"ab"}` into `"e=[2,"ab"]"`.
 * [#16559](https://bugzilla.scilab.org/16553): `isempty(A)` was true for sparse matrix of dimension 2^16 or larger.
-* [#16596](https://bugzilla.scilab.org/16596): Concatenating encoded integers with sparse numeric data was not possible. 
+* [#16561](https://bugzilla.scilab.org/16561): `histplot(-10:0.2:10, 2)` yielded a warning from `histc` and an error.
+* [#16565](https://bugzilla.scilab.org/16565): `edit(user_defined_function)` corrupted the original code.
+* [#16567](https://bugzilla.scilab.org/16567): `mfile2sci` did not support Matlab block-comments %{ ..%}.
+* [#16568](https://bugzilla.scilab.org/16568): The operator `**` was undocumented.
+* [#16571](https://bugzilla.scilab.org/16571): `mfile2sci` had several issues when converting the NOT ~ operator: 1) `~(1-1)` was converted into `~1-1` instead of `~(1-1)`  2) ~ applied to an integer expression yielded an error from `convert2double`  3) `~i` was converted into `~%i` instead of `~abs(%i)`.
+* [#16573](https://bugzilla.scilab.org/16573): `mfile2sci`: Some `axis` conversions were wrong or not reliable.
+* [#16586](https://bugzilla.scilab.org/16586): `mfile2sci`: The `prettyprintoutput` flag badly managed appended comments.
+* [#16592](https://bugzilla.scilab.org/16592): %i|[], []|%i, %i&[], and []&%i were wrong. %t|%i, %t&%i, and %i&%t were not defined.
+* [#16596](https://bugzilla.scilab.org/16596): Concatenating encoded integers with sparse numeric data was not possible.
+* [#16601](https://bugzilla.scilab.org/16601): libmatio >= 1.5.18 was not supported.
+* [#16608](https://bugzilla.scilab.org/16608): `union` did not support input boolean, sparse boolean, nor sparse numerical matrices. The result of `union(complexA, complexB)` was wrongly conjugate.
+* [#16609](https://bugzilla.scilab.org/16609): `bitcmp` needed to be upgraded for Scilab 6.
+* [#16612](https://bugzilla.scilab.org/16612): Unlike the `.*.` operator, `kron()` was not defined for sparse numeric matrices.
+* [#16613](https://bugzilla.scilab.org/16613): Neither `.*.` nor `kron()` worked with boolean or sparse boolean matrices.
+* [#16614](https://bugzilla.scilab.org/16614): Out of gcf(), a figure with some xstring content could be not properly reframed to contents.
+* [#16617](https://bugzilla.scilab.org/16617): `gamma` did not support incomplete gamma integrals.
+* [#16618](https://bugzilla.scilab.org/16618): `close` could not close the help browser, xcos, nor the variable editor or browser.
+* [#16620](https://bugzilla.scilab.org/16620): `derivat` had no reciprocal `polyint` polynomial integration function.
 * [#16622](https://bugzilla.scilab.org/16622): `inv` could no longer be overloaded for hypermatrices of decimal or complex numbers.
 * [#16623](https://bugzilla.scilab.org/16623): `rand(2,2,2)^2` yielded a wrong result instead of trying to call the `%s_p_s` overload for input hypermatrices.
+* [#16624](https://bugzilla.scilab.org/16624): `fullfile` badly handled any forced final file separator when building a directory's path.
+* [#16626](https://bugzilla.scilab.org/16626): == and <> between libraries were no longer defined.
+* [#16627](https://bugzilla.scilab.org/16627): `importgui` function's name was not explicit enough. `importgui` is renamed `uiSpreadsheet`. `importgui` internals were public.
 * [#16629](https://bugzilla.scilab.org/16629): `interp1`'s documentation did not tell the spline edges conditions ; extrapolation modes were poorly explained. ; the description of the result's size was completely wrong ; x as an option was not documented. A wrong extrapolation value could silently return a wrong result. There was some dead code like `if varargin(5)==%nan`. A bugged error message yielded its own error. When x is implicit, the argument index in error messages could be wrong. `periodic` and `edgevalue` extrapolation modes were not available. `linear` extrapolation was not available for splines. When `xp` is an hypermatrix with `size(xp,1)==1`, the size of the result was irregular/wrong.
+* [#16631](https://bugzilla.scilab.org/16631): read-only handle properties were reported as unknown when trying to set them.
+* [#16632](https://bugzilla.scilab.org/16632): Scilab did not start with unsupported locale on macOS.
+* [#16636](https://bugzilla.scilab.org/16636): `det(sparse)` most often yielded `Nan`. `[e,m]=det(sparse)` was not actually implemented.
+* [#16638](https://bugzilla.scilab.org/16638): `getcolor` shew a bunch of issues.
+* [#16639](https://bugzilla.scilab.org/16639): `atomsInstall` and `atomsRemove` did not update the Toolboxes menu.
 * [#16644](https://bugzilla.scilab.org/16644): `input("message:")` yielded a wrong error message about `mprintf` in case of non-interpretable input.
 * [#16654](https://bugzilla.scilab.org/16654): `interp` was leaking memory.
+* [#16661](https://bugzilla.scilab.org/16661): `x=spzeros(1e10,1e10)` yielded an incorrect error message.
+* [#16664](https://bugzilla.scilab.org/16664): `diag(spzeros(2,2))` yielded an `Operation -[]` warning.
+* [#16665](https://bugzilla.scilab.org/16665): `help echo` could not redirect to `help mode` when preferred, for new users coming from Octave.
+* [#16677](https://bugzilla.scilab.org/16677): In offline mode, `atomsInstall` was flashing many times the console.
+* [#16679](https://bugzilla.scilab.org/16679): `get_function_path("acosh")` yielded an error (regression from Scilab 6.0.0).
+* [#16683](https://bugzilla.scilab.org/16683): The `m2sci` code converter needed a set of fix and improvements.
+* [#16685](https://bugzilla.scilab.org/16685): `asciimat("A";"";"B")` yielded a transposed matrix of codes. When processing an hypermatrix of codes, the dim#2 of the result was squeezed (unlike Matlab/Octave's behavior).
 
 
 ### Bugs fixed in 6.1.0:
@@ -416,6 +527,7 @@ Bug Fixes
 * [#13766](https://bugzilla.scilab.org/13766): Minimal values for `.figure_size` were not documented.
 * [#14015](https://bugzilla.scilab.org/14015): Nan terms added to a polynomial were ignored.
 * [#14191](https://bugzilla.scilab.org/14191): Unlike `plot2d()`, `plot()` did not accept logflags among input arguments.
+* [#14397](https://bugzilla.scilab.org/14397): `mgeti` wrongly handled `int64` or `uint64` integers bigger then 2^52. The `mget`/`mgeti` help page was unclear.
 * [#14422](https://bugzilla.scilab.org/14422): `clc(0)` did nothing, now clears last console entry. Remove leading blank after a `clc()`.
 * [#14498](https://bugzilla.scilab.org/14498): `size([],3)` returned 1 instead of 0.
 * [#14501](https://bugzilla.scilab.org/14501): `strsubst` crashed on consecutive occurrences.
@@ -459,6 +571,7 @@ Bug Fixes
 * [#15359](https://bugzilla.scilab.org/15359): `twinkle` was not able to blink several independent objects.
 * [#15360](https://bugzilla.scilab.org/15360): `numer` and `denom` were poor and duplicates of the `.num` and `.den` fields of rationals. They are removed.
 * [#15368](https://bugzilla.scilab.org/15368): `freson` silently returned frequencies not corresponding to a maximum, or returned [] instead of some still computable maxima frequencies.
+* [#15374](https://bugzilla.scilab.org/15374):  Trivial infinite loop could not be interrupted.
 * [#15392](https://bugzilla.scilab.org/15392): `comet` and `comet3d` did not allow specifying colors with colors names.
 * [#15393](https://bugzilla.scilab.org/15393): In a new figure, `nicholschart` plotted nothing. The default frame color was a flashy cyan. The position of gain labels could be puzzling. It was not possible to specify colors by their names. Postprocessing the frames and the set of labels was not easy.
 * [#15421](https://bugzilla.scilab.org/15421): A new smarter default grid_style was required since smart lines styles #7-10 are available.
@@ -466,6 +579,7 @@ Bug Fixes
 * [#15428](https://bugzilla.scilab.org/15428): `repmat` was slow. Its code did not use `kron` and was complex.
 * [#15431](https://bugzilla.scilab.org/15431): The empty matrix `[]` and its non-convertibility were poorly documented.
 * [#15451](https://bugzilla.scilab.org/15451): The code was not adapted to use `lucene 4.10` in Debian.
+* [#15481](https://bugzilla.scilab.org/15481): `scatter` and `scatter3d` failed when specifying a single data point.
 * [#15514](https://bugzilla.scilab.org/15514): The `set` documentation page needed to be overhauled.
 * [#15517](https://bugzilla.scilab.org/15517): `factorial` could be actually used up to only n=170.
 * [#15522](https://bugzilla.scilab.org/15522): `unique` was not able to consider all Nan values as the same value. A `uniqueNan` option now allows it.
@@ -482,9 +596,6 @@ Bug Fixes
 * [#15701](https://bugzilla.scilab.org/15701): `A\B` was not faster when `A` is square and triangular.
 * [#15715](https://bugzilla.scilab.org/15715): `%nan` indices crashed Scilab.
 * [#15734](https://bugzilla.scilab.org/15734): `intersect` did not support complex numbers.
-
-* [#15734](https://bugzilla.scilab.org/15734):  Trivial infinite loop could not be interrupted.
-
 * [#15737](https://bugzilla.scilab.org/15737): `setdiff` was wrong with complex numbers.
 * [#15742](https://bugzilla.scilab.org/15742): The `compatibility_functions` module should be merged in the `m2sci` one.
 * [#15744](https://bugzilla.scilab.org/15744): `sylm(a,b)` yielded an error when degree(a)==0 or degree(b)==0.
@@ -498,6 +609,7 @@ Bug Fixes
 * [#15921](https://bugzilla.scilab.org/15921): Xcos user's function `scifunc_block_m` block: any `<` in the expression was not displayed on the block's icon.
 * [#15934](https://bugzilla.scilab.org/15934): The `^ hat` page wrongly indicated that `^` applied to a rectangular matrix not being a vector is done element-wise.
 * [#15948](https://bugzilla.scilab.org/15948): `xlabel`, `ylabel`, `zlabel` and `title` needed to be upgraded.
+* [#15963](https://bugzilla.scilab.org/15963): The `EXPRESSION` block was more expected in the Mathematical palette.
 * [#15964](https://bugzilla.scilab.org/15954): A complex empty sparse matrix could be obtained after insertion.
 * [#15965](https://bugzilla.scilab.org/15965): `plot(x,y)` did not accept y as encoded integers.
 * [#15967](https://bugzilla.scilab.org/15967): `setdiff(1,[])` was [] instead of `1`. `setdiff(a,[],..)` was not enough tested.

@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lsq_splin" xml:lang="pt">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) R.F. Boisvert, C. De Boor (código da biblioteca FORTRAN CMLIB)
+ * Copyright (C) B. Pincon (interface Scilab)
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="lsq_splin" xml:lang="pt">
     <refnamediv>
         <refname>lsq_splin</refname>
         <refpurpose>ajuste ponderado por spline cúbico de mínimos
@@ -8,7 +24,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>[y, d] = lsq_splin(xd, yd [, wd], x)</synopsis>
+        <synopsis>
+            [y, d] = lsq_splin(xd, yd, x)
+            [y, d] = lsq_splin(xd, yd, wd, x)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -62,15 +81,14 @@
             pontos de interrupção <emphasis>x1 &lt; x2 &lt; ... &lt; xn</emphasis>
             então, o spline resultante s é tal que:
         </para>
-        <programlisting role=""><![CDATA[
-_m_                               _m_
-\                           2     \                           2
-/   wd(k) (s(xd(k)) - yd(k))  <=  /   wd(k) (f(xd(k)) - yd(k))
----                               ---
-k=1                               k=1
- ]]></programlisting>
         <para>
-            para todo <emphasis>fem S</emphasis>, i.e., realiza o mínimo da
+            <latex style="display" fontsize="18" alt="∑_k=1→m wd(k).[s(xd(k))-yd(k)]² ⬅ ∑_k=1→m wd(k).[f(xd(k))-yd(k)]²">
+                \sum_{k=1}^m wd(k)\left(s(xd(k))-yd(k)\right)^2 \,\leftarrow\,
+                \sum_{k=1}^m wd(k)\left(f(xd(k))-yd(k)\right)^2
+            </latex>
+        </para>
+        <para>
+            para todo <emphasis>f em S</emphasis>, i.e., realiza o mínimo da
             soma de todos os erros quadrados sobre todas as funções de
             <emphasis>S</emphasis>.
         </para>
@@ -140,19 +158,17 @@ show_window()
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
+                <link linkend="backslash">backslash</link>
+            </member>
+            <member>
+                <link linkend="datafit">datafit</link>
+            </member>
+            <member>
                 <link linkend="interp">interp</link>
             </member>
             <member>
                 <link linkend="splin">splin</link>
             </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>Autores</title>
-        <simplelist type="vert">
-            <member>C. De Boor, A.H. Morris (código da biblioteca FORTRAN NSWC)
-            </member>
-            <member>B. Pincon (interface Scilab e ligeiras modificações)</member>
         </simplelist>
     </refsection>
 </refentry>

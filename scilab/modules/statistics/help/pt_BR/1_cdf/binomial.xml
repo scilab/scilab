@@ -13,14 +13,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="binomial" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="binomial" xml:lang="pt">
     <refnamediv>
         <refname>binomial</refname>
         <refpurpose>probabilidades de distribuição binomial</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>pr=binomial(p,n)</synopsis>
+        <synopsis>pr = binomial(p, n)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -52,17 +55,14 @@
             binomial, i.e. <literal>pr(k+1)</literal> é a probabilidade de
             <literal>k</literal> successos em <literal>n</literal> tentativas
             independentes de Bernoulli com probabilidade de sucesso
-            <literal>p</literal>. Em outras palavras : <literal>pr(k+1) =
-                probability(X=k)
-            </literal>
-            ,com X uma variável aleatória, segundo a
-            distribuição B(n,p) , e numericamente :
+            <literal>p</literal>. Em outras palavras : <literal>pr(k+1) = probability(X=k)</literal>
+            ,com X uma variável aleatória, segundo a distribuição B(n,p) , e numericamente :
         </para>
-        <programlisting><![CDATA[
-            / n \  k      n-k       / n \       n!
- pr(k+1) =  |   | p  (1-p)    com  |   |  = ---------
-            \ k /                   \ k /    k! (n-k)!
- ]]></programlisting>
+        <para>
+            <latex style="display" alt="pr(k+1) = p^k (1-p)^(n-k) n!/[k!(n-k)!]">
+                pr(k+1)=\left(\frac{n!}{k!\,(n-k)!}\right)\,p^k\,(1-p)^{n-k}
+            </latex>
+        </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>

@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-    *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
-    *
-    -->
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+*
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="Funcall">
     <refnamediv>
         <refname>Funcall</refname>
-        <refpurpose>Create a tree representing a function call</refpurpose>
+        <refpurpose>Create the converted pseudo-code representing a function call</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>fc=Funcall(name,lhsnb,rhslist,lhslist)</synopsis>
+        <synopsis>fc = Funcall(name, lhsnb, rhslist, lhslist)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -34,7 +34,7 @@
             <varlistentry>
                 <term>lhsnb</term>
                 <listitem>
-                    <para>number of outputs (constant)</para>
+                    <para>number of outputs of the function call.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -46,7 +46,7 @@
             <varlistentry>
                 <term>lhslist</term>
                 <listitem>
-                    <para>list of outputs (list of "M2SCI tlists")</para>
+                    <para>list of outputs (list of "M2SCI tlists"). Default value: list().</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -89,5 +89,16 @@
                 <link linkend="Equal">Equal</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <varname>lhslist</varname> is now optional: default = list().
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -13,7 +13,9 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_elementwise_right_division">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="m2sci_elementwise_right_division">
     <refnamediv>
         <refname>./ (Matlab operator)</refname>
         <refpurpose>Elementwise right division</refpurpose>
@@ -31,24 +33,29 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 ./
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 ./
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
+        <warning>
+            <para>
+                Expressions like <emphasis role="bold">X./.23</emphasis> are interpreted in Matlab
+                as the elementwise right division of <emphasis role="bold">X</emphasis> by
+                <emphasis role="bold">0.23</emphasis>, while Scilab computes the Kronecker right
+                division of <emphasis role="bold">X</emphasis> and <emphasis role="bold">23</emphasis>.
+                To have the same result with Scilab, one must write <emphasis role="bold">X./ .23</emphasis>
+                or <emphasis role="bold">X./0.23</emphasis> instead of <emphasis role="bold">X./.23</emphasis>.
+            </para>
+        </warning>
     </refsection>
     <refsection>
         <title>Particular cases</title>
-        <para>
-            <warning>
-                WARNING: Expressions like <emphasis role="bold">X./.23</emphasis> are interpreted in Matlab as the elementwise right division of <emphasis role="bold">X</emphasis> by <emphasis role="bold">0.23</emphasis> while Scilab computes the Kronecker right division of <emphasis role="bold">X</emphasis> and <emphasis role="bold">23</emphasis>, to have the same result, insert a blank between <emphasis role="bold">/</emphasis> and <emphasis role="bold">.23</emphasis>.
-            </warning>
-        </para>
     </refsection>
 </refentry>

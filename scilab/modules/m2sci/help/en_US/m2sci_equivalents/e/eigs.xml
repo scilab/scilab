@@ -73,7 +73,7 @@ d = eigs(Afun, n, ..)
 ]]></screen>
                 </td>
                 <td>
-                    <screen role="example"><![CDATA[
+                    <screen role="no-scilab-exec"><![CDATA[
 d = eigs(A)
 d = eigs(A, [], k)
 

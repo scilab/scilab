@@ -8,17 +8,50 @@
         <title>呼出し手順</title>
         <synopsis>who
             who()
-            names = who('local')
-            [names, mem] = who('local')
-            names = who('global')
-            [names, mem] = who('global')
-            who('sorted')
-            names = who('local','sorted')
-            [names, mem] = who('local','sorted')
-            names = who('global','sorted')
-            [names, mem] = who('global','sorted')
+            [names, mem] = who(scope)
+            [names, mem] = who(scope, sorted)
+            [names, mem] = who(sorted)
         </synopsis>
     </refsynopsisdiv>
+    <refsection>
+        <title>設定</title>
+        <variablelist>
+            <varlistentry>
+                <term>scope</term>
+                <listitem>
+                    <para>
+                        <literal>"local"</literal>/<literal>"get"</literal>: list visible variables (not only in current function).
+                    </para>
+                    <para>
+                        <literal>"scope"</literal>/<literal>"current"</literal>: list variables in the current scope/function.
+                    </para>
+                    <para>
+                        <literal>"global"</literal>: list global variables.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sorted</term>
+                <listitem>
+                    <para>
+                        Boolean value to specify if output must be sort in alphabetical order.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>names</term>
+                <listitem>
+                    <para>String matrix with variable names.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mem</term>
+                <listitem>
+                    <para>Double matrix with variable used memory in bytes.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>説明</title>
         <para>
@@ -40,13 +73,17 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-a=1;
-b=2;
-[name, mem]=who("local");
-position=find(name=="a")
+[a, b] = (1, 2);
+[name, mem] = who("local");
+position = find(name=="a")
 mem(position) // aにより使用される大きさ
-position=find(name=="d") // []
- ]]></programlisting>
+position = find(name=="d") // []
+
+function foo(a, b)
+    disp(who("scope", "sorted"))
+endfunction
+foo(1,2);
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -57,6 +94,20 @@ position=find(name=="d") // []
             <member>
                 <link linkend="who_user">who_user</link>
             </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    Add "scope" or "current" scope.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

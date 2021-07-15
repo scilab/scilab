@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - 2019 - Samuel GOUGEON
+ * Copyright (C) 2020 - Stéphane MOTTELET
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="semilogy">
+    <refnamediv>
+        <refname>semilogy</refname>
+        <refpurpose>2D semilogarithmic plot</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            semilogy     // demo
+            semilogy(y)
+            semilogy(x, y)
+            semilogy(x, fun)
+            semilogy(x, list(fun, param))
+            semilogy(.., LineSpec)
+            semilogy(.., LineSpec, GlobalProperty)
+            semilogy(x1, y1, LineSpec1, x2,y2,LineSpec2,...xN, yN, LineSpecN, GlobalProperty1,.. GlobalPropertyM)
+            semilogy(x1,fun1,LineSpec1, x2,y2,LineSpec2,...xN,funN,LineSpecN, GlobalProperty1, ..GlobalPropertyM)
+            semilogy(axes_handle,...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        vector or matrix of real numbers or integers. If omitted, it is assumed
+                        to be the vector <literal>1:n</literal> where <literal>n</literal> is the
+                        number of curve points given by the <literal>y</literal> parameter.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        vector or matrix of strictly positive real numbers or integers. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fun, fun1, ..</term>
+                <listitem>
+                    <para>
+                        handle of a function, as in <literal>semilogy(x, gamma)</literal>.
+                    </para>
+                    <para>
+                        If the function to plot needs some parameters as input arguments, the
+                        function and its parameters can be specified through a list, as in
+                        <literal>semilogy(x, list(delip, -0.4))</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>LineSpec</term>
+                <listitem>
+                    <para>This optional argument must be a string that will be used as a
+                        shortcut to specify a way of drawing a line. We can have one
+                        <literal>LineSpec</literal> per <literal>y</literal> or <literal>{x,y}</literal>
+                        previously entered. <literal>LineSpec</literal> options deals with
+                        LineStyle, Marker and Color specifiers (see <link linkend="LineSpec">LineSpec</link>).
+                        Those specifiers determine the line style, mark style and color of
+                        the plotted lines.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>GlobalProperty</term>
+                <listitem>
+                    <para>This optional argument represents a sequence of couple
+                        statements <literal>{PropertyName,PropertyValue}</literal> that defines
+                        global objects' properties applied to all the curves created by this
+                        plot. For a complete view of the available properties (see
+                        <link linkend="GlobalProperty">GlobalProperty</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>axes_handle</term>
+                <listitem>
+                    <para>This optional argument forces the plot to appear inside the
+                        selected axes given by <literal>axes_handle</literal> rather than the
+                        current axes (see <link linkend="gca">gca</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para><literal>semilogy</literal> plots data using a base 10 logarithmic scale for the y-axis and a normal (linear) scale for the x-axis. The possible syntaxes and arguments are the same as the <link linkend="plot">plot</link> function besides the condition that the ordinate values in <term>y</term> argument be strictly positive.
+        </para>
+        <para>If the current axes is not empty and the y-axis has a negative lower bound then its scale will remain linear after the plot.
+        </para>
+        <para>
+            Enter the command <literal>loglog</literal> to see a demo.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+            w=logspace(-2,2,1000);
+            s=%i*w;
+            g=1../(s.^2+s+1);
+            clf("reset")
+
+            semilogy(w,abs(g));
+
+            title("$\LARGE \left|1/(s^2+s+1)\right|\mbox{ for }s=i\omega$")
+            xlabel("$\LARGE \omega$")
+    ]]></programlisting>
+        <scilab:image>
+            w=logspace(-2,2,1000);
+            s=%i*w;
+            g=1../(s.^2+s+1);
+            clf("reset")
+
+            semilogy(w,abs(g));
+
+            title("$\LARGE \left|1/(s^2+s+1)\right|\mbox{ for }s=i\omega$")
+            xlabel("$\LARGE \omega$")
+         </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="plot">plot</link>
+            </member>
+            <member>
+                <link linkend="semilogx">semilogx</link>
+            </member>
+            <member>
+                <link linkend="loglog">loglog</link>
+            </member>
+            <member>
+                <link linkend="LineSpec">LineSpec</link>
+            </member>
+            <member>
+                <link linkend="GlobalProperty">GlobalProperty</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                Function semilogy added.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

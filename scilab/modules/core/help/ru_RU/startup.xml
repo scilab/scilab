@@ -14,13 +14,12 @@
             <link linkend="SCIHOME">SCIHOME</link>/scilab.ini автоматически выполняются (если они есть)
             при запуске Scilab в дополнение к файлу <link linkend="SCI">SCI</link>/etc/scilab.start.
         </para>
-    </refsection>
-    <refsection>
-        <title>Примечания</title>
-        <para>
-            Для того, чтобы последняя строка файла начального запуска была учтена, необходимо,
-            чтобы файл заканчивался новой пустой строкой.
-        </para>
+        <warning>
+            <para>
+                Для того, чтобы последняя строка файла начального запуска была учтена, необходимо,
+                чтобы файл заканчивался новой пустой строкой.
+            </para>
+        </warning>
     </refsection>
     <refsection>
         <title>Примеры</title>

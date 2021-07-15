@@ -38,6 +38,7 @@ int FileioModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mclose", &sci_mclose, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mput", &sci_mput, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mget", &sci_mget, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mgeti", &sci_mgeti, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mputl", &sci_mputl, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mgetl", &sci_mgetl, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"pathconvert", &sci_pathconvert, MODULE_NAME));

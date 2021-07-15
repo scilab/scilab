@@ -31,14 +31,14 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 for
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 for
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
@@ -46,7 +46,8 @@ for
     <refsection>
         <title>Particular cases</title>
         <para>
-            The variable used as loop index is clear in Scilab if all iterations have been made but is not clear if loop is ended by a break. In Matlab, this variable is never cleared.
+            The variable used as loop index is cleared in Scilab if all iterations were achieved ;
+            but is not cleared if loop is escaped by a break. In Matlab, this variable is never cleared.
         </para>
     </refsection>
 </refentry>

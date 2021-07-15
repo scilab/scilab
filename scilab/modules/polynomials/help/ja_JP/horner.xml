@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,13 +28,17 @@
             <varlistentry>
                 <term>P</term>
                 <listitem>
-                    <para>多項式または有理数の行列</para>
-                </listitem>
+                    <para>
+                          多項式または多項式商の配列
+                    </para>
+               </listitem>
             </varlistentry>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>数値または多項式または有理数の配列</para>
+                    <para>
+                          数値、多項式、または多項式商の配列 
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -61,22 +65,95 @@
     </refsection>
     <refsection>
         <title>例</title>
+        <para>
+            多項式の評価：
+        </para>
         <programlisting role="example"><![CDATA[
-//数値ベクトルに関する多項式の評価
-P=poly(1:3,'x')
-horner(P,[1 2 5])
-horner(P,[1 2 5]+%i)
-//有理数の評価
-s=poly(0,'s');M=[s,1/s];
-horner(M,1)
-horner(M,%i)
-horner(M,1/s)
-//数値行列に関する多項式の評価
-X= [1 2;3 4]
-p=poly(1:3,'x','c')
-m=horner(p, X)
-1*X.^0+2*X.^1+3*X.^2
- ]]></programlisting>
+P = poly(1:3, 'x', 'coeff')
+s = %s;
+horner(P, [1 2 ; 3 4])       // for real values
+horner(P, [1 2 ; 3 4]+%i)    // for complex values
+horner(P, [1, s ; s^2, s^3]) // for polynomial values
+horner(P, [1/s, 1/s^2])      // for rational values
+     ]]></programlisting>
+        <screen><![CDATA[
+--> P = poly(1:3, 'x', 'coeff')
+ P  =
+  1 +2x +3x²
+
+--> s = %s;
+--> horner(P, [1 2 ; 3 4])       // for real values
+ ans  =
+   6.    17.
+   34.   57.
+
+--> horner(P, [1 2 ; 3 4]+%i)    // for complex values
+ ans  =
+   3.  + 8.i    14. + 14.i
+   31. + 20.i   54. + 26.i
+
+--> horner(P, [1, s ; s^2, s^3]) // for polynomial values
+ ans  =
+  6            1 +2s +3s²
+
+  1 +2s² +3s⁴  1 +2s³ +3s⁶
+
+--> horner(P, [1/s, 1/s^2])      // for rational values
+ ans  =
+   3 +2s +s²  3 +2s² +s⁴
+   ---------  ----------
+      s²          s⁴
+]]></screen>
+        <para/>
+        <para>
+            いくつかの多項式商の評価 :
+        </para>
+        <programlisting role="example"><![CDATA[
+[s,z] = (%s, %z);
+M = [1/s, (s-1)/s]
+horner(M, 1)
+horner(M, %i)
+horner(M, 2+s)
+horner(M, (2+z)/z)
+horner(M, [1, 1/z ; 2, (2+z)/z])
+     ]]></programlisting>
+        <screen><![CDATA[
+--> M = [1/s, (s-1)/s]
+ M  =
+   1  -1 +s
+   -  -----
+   s    s
+
+--> horner(M, 1)
+ ans  =
+   1.   0.
+
+--> horner(M, %i)
+ ans  =
+   0. - i     1. + i
+
+--> horner(M, 2+s)
+ ans  =
+    1    1 +s
+   ----  ----
+   2 +s  2 +s
+
+--> horner(M, (2+z)/z)
+ ans  =
+    z     2
+   ----  ----
+   2 +z  2 +z
+
+--> horner(M, [1, 1/z ; 2, (2+z)/z])
+ ans  =
+   1   z    0  1 -z
+   -   -    -  ----
+   1   1    1   1
+
+   1   z    1   2
+   -  ----  -  ----
+   2  2 +z  2  2 +z
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

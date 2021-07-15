@@ -35,5 +35,5 @@ TESTING M2SCI: creating varslist file...
 // Matlab version: 7.0.0.19901 (R14)
 // V.C.
 
-~MSDOS
-tf = ~MSDOS
+getos()=="Linux"
+tf = getos()=="Linux"

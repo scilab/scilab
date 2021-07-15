@@ -16,11 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="coeff">
     <refnamediv>
         <refname>coeff</refname>
-        <refpurpose>coefficients of matrix polynomial</refpurpose>
+        <refpurpose>polynomial coefficients</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[C]=coeff(Mp [,v])</synopsis>
+        <synopsis>
+            C = coeff(Mp)
+            C = coeff(Mp, degrees)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,13 +31,13 @@
             <varlistentry>
                 <term>Mp</term>
                 <listitem>
-                    <para>polynomial matrix</para>
+                    <para>Matrix of polynomials.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>v</term>
+                <term>degrees</term>
                 <listitem>
-                    <para>integer (row or column) vector of selected degrees</para>
+                    <para>vector (row or column) of selected degrees (positive integers).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -56,15 +59,15 @@
             <literal>k = max(degree(Mp))</literal>
         </para>
         <para>
-            <literal>C=coeff(Mp,v)</literal> returns the matrix of coefficients with
-            degree in <literal>v</literal> . (<literal>v</literal> is a row or column vector).
+            <literal>C=coeff(Mp,degrees)</literal> returns the matrix of coefficients with
+            degree in <literal>degrees</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');
-w=s*rand(10,10);
+s = %s;
+w = s*rand(10,10);
 determ(w)
 coeff(w,1)
 
@@ -73,8 +76,7 @@ coeff(r)
 
 r = poly([-1-%i -1+2*%i 0],'s',"roots");
 coeff(r)
-
- ]]></programlisting>
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

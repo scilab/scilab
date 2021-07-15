@@ -8,7 +8,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>ve = exists(name [,where])</synopsis>
+        <synopsis>
+            ve = exists(name)
+            ve = exists(name, where)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>

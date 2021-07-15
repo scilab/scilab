@@ -13,16 +13,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="syslin" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="syslin" xml:lang="pt">
     <refnamediv>
         <refname>syslin</refname>
         <refpurpose>definição de sistemas lineares</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>[sl]=syslin(dom,A,B,C [,D [,x0] ])
-            [sl]=syslin(dom,N,D)
-            [sl]=syslin(dom,H)
+        <synopsis>
+            sl = syslin(dom, A, B, C)
+            sl = syslin(dom, A, B, C, D)
+            sl = syslin(dom, A, B, C, D, x0)
+            sl = syslin(dom, N, D)
+            sl = syslin(dom, H)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -101,14 +107,18 @@
         </para>
         <para>Representação em espaço de estados:</para>
         <programlisting><![CDATA[
-sl=syslin(dom,A,B,C [,D [,x0] ])
+sl = syslin(dom,A,B,C [,D [,x0] ])
  ]]></programlisting>
-        <para>Representa o sistema :</para>
-        <programlisting><![CDATA[
-      s x  = A*x + B*u
-        y  = C*x + D*u
-      x(0) = x0
- ]]></programlisting>
+        <para>
+            Representa o sistema
+        </para>
+        <para>
+            <table align="center">
+            <tr><td align="right">s.X</td><td>= A.X + B.u</td></tr>
+            <tr><td align="right">y</td><td>= C.X + D.u</td></tr>
+            <tr><td align="right">x(0)</td><td>= x0</td></tr>
+            </table>
+        </para>
         <para>
             A saída de <literal>syslin</literal> é uma lista da seguinte forma:
             <literal>sl=tlist(['lss','A','B','C','D','X0','dt'],A,B,C,D,x0,dom)</literal>

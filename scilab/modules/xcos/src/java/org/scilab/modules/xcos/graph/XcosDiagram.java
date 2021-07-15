@@ -117,6 +117,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.VectorOfBool;
 import org.scilab.modules.xcos.VectorOfScicosID;
 import org.scilab.modules.xcos.block.SuperBlock;
@@ -2414,8 +2415,8 @@ public class XcosDiagram extends ScilabGraph {
      * @return The resulting data. Keys are variable names and Values are
      * evaluated values.
      */
-    public Map<String, String> evaluateContext() {
-        Map<String, String> result = Collections.emptyMap();
+    public Map<String, ScilabType> evaluateContext() {
+        Map<String, ScilabType> result = Collections.emptyMap();
         final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
         if (handler == null) {
             return result;
@@ -2425,8 +2426,13 @@ public class XcosDiagram extends ScilabGraph {
             // first write the context strings
             handler.writeContext(getContext());
 
-            // evaluate using script2var
-            ScilabInterpreterManagement.synchronousScilabExec(ScilabDirectHandler.CONTEXT + " = script2var(" + ScilabDirectHandler.CONTEXT + ", struct());");
+            // evaluate using script2var and convert to string keys and list of values
+            ScilabInterpreterManagement.synchronousScilabExec(ScilabDirectHandler.CONTEXT + " = script2var(" + ScilabDirectHandler.CONTEXT + ", struct()); "
+                 + ScilabDirectHandler.CONTEXT + "_names = fieldnames("+ScilabDirectHandler.CONTEXT+")'; "
+                 + ScilabDirectHandler.CONTEXT + "_values = list(); "
+                 + "for i=1:size(" + ScilabDirectHandler.CONTEXT + "_names, '*') ;"
+                 + "   " + ScilabDirectHandler.CONTEXT + "_values(i) = " + ScilabDirectHandler.CONTEXT + "(" +  ScilabDirectHandler.CONTEXT + "_names(i));"
+                 + "end");
 
             // read the structure
             result = handler.readContext();

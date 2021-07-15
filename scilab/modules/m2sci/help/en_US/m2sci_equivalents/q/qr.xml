@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,22 +31,45 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-qr
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+X = qr(A)
+[Q,R]   = qr(A)
+[Q,R,P] = qr(A)
+[..]    = qr(A,0)
+[Q,R,P] = qr(A, 'vector')
+% No equivalent
+% No equivalent
+
+[C, R]  = qr(S,B)
+[C,R,P] = qr(S,B)
+[..]    = qr(S,B,0)
+[C,R,P] = qr(S,B, 'vector')
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-qr
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+R = qr(A)
+[Q,R]   = qr(A)
+[Q,R,P] = qr(A)
+[..]    = qr(A, "e")
+// No equivalent
+[Q, R, rk, P] = qr(A)
+[Q, R, rk, P] = qr(A, tolerance)
+
+// No equivalent
+// No equivalent
+// No equivalent
+// No equivalent
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            When used with two input values and tree output values, Scilab and Matlab <emphasis role="bold">qr</emphasis> results can differ. Use <emphasis role="bold">mtlb_qr</emphasis> instead.
-        </para>
+        <warning>
+            <para>
+                When used with two input values and tree output values, Scilab and Matlab
+                <emphasis role="bold">qr</emphasis> results can differ.
+                Use <emphasis role="bold">mtlb_qr</emphasis> instead.
+            </para>
+        </warning>
     </refsection>
 </refentry>

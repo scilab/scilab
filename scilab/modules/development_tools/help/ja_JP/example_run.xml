@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="example_run" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="example_run" xml:lang="ja">
     <refnamediv>
         <refname>example_run</refname>
         <refpurpose>ヘルプページで見つかった例を実行.</refpurpose>
@@ -35,9 +38,30 @@
                 <term>moduleNames</term>
                 <listitem>
                     <para>
-                        文字列または文字列ベクトル: テストを行うモジュールの名前.
-                        デフォルト値は
-                        <link linkend="getmodules">getmodules()</link>で返された値です.
+                        a string or a vector of strings: references of the modules to test.
+                        Each reference can be either of
+                        <itemizedlist>
+                            <listitem>
+                                the technical name of a Scilab internal module, that is the name
+                                of the root directory of the module.
+                            </listitem>
+                            <listitem>
+                                the relative or absolute path of the root directory of the module.
+                                This must be used for installed ATOMS modules or other external modules.
+                            </listitem>
+                        </itemizedlist>
+                        By default, all Scilab internal modules are considered, as returned by
+                        <link linkend="getmodules">getmodules()</link>.
+                    </para>
+                    <para>
+                        The root directory of each targeted module must have a
+                        <literal>./help</literal> subdirectory containing the XML source files of
+                        help pages where examples to test are provided, gathered by languages as
+                        in the source package of any standard module.
+                        Example of the template toolbox_skeleton module:
+                        <programlisting role="example">
+unix_w("dir /b /s """ + WSCI + "/contrib/toolbox_skeleton/help""")
+                      </programlisting>
                     </para>
                 </listitem>
             </varlistentry>
@@ -80,6 +104,13 @@
             この巻数は,ヘルプページで指定した例を展開し,
             <link linkend="test_run">test_run</link>により実行します.
         </para>
+        <para>
+           <warning>
+               When testing examples of any external module, it is mandatory to autoload the module
+               at Scilab startup. This can be achieved either by setting the ATOMS module as
+               autoloaded, or by loading the module through the user's startup file.
+           </warning>
+        </para>
     </refsection>
     <refsection>
         <title>例</title>
@@ -97,6 +128,15 @@ end
         <simplelist type="inline">
             <member>
                 <link linkend="test_run">test_run</link>
+            </member>
+            <member>
+                <link linkend="bench_run">bench_run</link>
+            </member>
+            <member>
+                <link linkend="atomsAutoloadAdd">atomsAutoloadAdd</link>
+            </member>
+            <member>
+                <link linkend="startup">startup</link>
             </member>
         </simplelist>
     </refsection>

@@ -16,11 +16,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="detr">
     <refnamediv>
         <refname>detr</refname>
-        <refpurpose>polynomial determinant</refpurpose>
+        <refpurpose>determinant of a matrix of rationals</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>d=detr(h)</synopsis>
+        <synopsis>d = detr(h)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,7 +28,13 @@
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>double or polynomial or rational square matrix</para>
+                    <para>square matrix of numbers or polynomials or rationals</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>scalar of the <varname>h</varname>'s type.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -36,15 +42,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>d=detr(h)</literal> returns the determinant <literal>d</literal> of the double
-            or polynomial or rational function matrix <literal>h</literal>.
-            Based on Leverrier's algorithm.
+            <literal>d=detr(h)</literal> computes the determinant <literal>d</literal> of the
+            matrix <literal>h</literal>, according to the Leverrier's algorithm.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example">
-            <![CDATA[
+        <programlisting role="example"><![CDATA[
 // Matrix of doubles
 A = rand(5,5);
 detr(A)
@@ -58,10 +62,16 @@ A = [1+x 2 5; 3 4-x 3+x; x^2 1 x];
 detr(A)
 
 // Matrix of rationals
-A = [1/x 2 3; 3 4/x 3/x; 1/x^2 1 1/x];
+A = [1/x, 2, 3 ; 3, 4/x, 3/x ; 1/x^2, 1, 1/x];
 detr(A)
- ]]>
-        </programlisting>
+     ]]></programlisting>
+        <screen><![CDATA[
+--> detr(A)
+ ans  =
+   -2 -3x -6x² +9x³
+   ----------------
+          x³
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

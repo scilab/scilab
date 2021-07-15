@@ -8,7 +8,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>[result,err]=int3d(X,Y,Z,f [,nf[,params]])</synopsis>
+        <synopsis>
+            [result, err] = int3d(X, Y, Z, f)
+            [result, err] = int3d(X, Y, Z, f, nf)
+            [result, err] = int3d(X, Y, Z, f, nf, params)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -61,13 +65,9 @@
                 <term>params</term>
                 <listitem>
                     <para>
-                        vetor de reais <literal>[minpts, maxpts, epsabs,
-                            epsrel]
-                        </literal>
-                        .O valor padrão é <literal>[0, 1000, 0.0,
-                            1.d-5]
-                        </literal>
-                        .
+                        vetor de reais <literal>[minpts, maxpts, epsabs, epsrel]
+                        </literal>. O valor padrão é <literal>[0, 1000, 0.0, 1.d-5]
+                        </literal>.
                     </para>
                     <variablelist>
                         <varlistentry>
@@ -118,15 +118,15 @@
         <para>A função calcula uma aproximação a um dado vetor de integrais
             definidas
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
           1  2      numfun
- ]]></programlisting>
+]]></screen>
         <para>onde a região de integração são os NUMTET tetraedros e onde</para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
  J   J
- ]]></programlisting>
+]]></screen>
         <para>uma estratégia globalmente adaptativa é aplicada para se computar
             aproximações <literal>result(k)</literal> esperando-se que satisfaça, para
             cada componente de I, à seguinte precisão:

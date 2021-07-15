@@ -31,22 +31,30 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 who
-]]></programlisting>
+who a*
+who -file filename
+who global
+who .. var1 ... varN
+who .. -regexp expr1 ... exprN
+C = who()
+C = who('global')
+                  ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 who
-]]></programlisting>
+whos -name a    // with s
+listvarinfile(filename)
+who global
+// No equivalent
+// No equivalent
+C = who()
+C = who('global')
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Scilab <emphasis role="bold">who</emphasis> is an equivalent for Matlab <emphasis role="bold">who</emphasis> just when called as follows: <emphasis role="bold">who</emphasis> or <emphasis role="bold">who("global")</emphasis>
-        </para>
     </refsection>
 </refentry>

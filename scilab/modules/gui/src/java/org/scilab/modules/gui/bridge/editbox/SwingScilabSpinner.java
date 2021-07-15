@@ -3,6 +3,7 @@ package org.scilab.modules.gui.bridge.editbox;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SNAPTOTICKS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
 import java.awt.Color;
@@ -15,6 +16,10 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.NumberFormatter;
+
+
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
@@ -55,6 +60,14 @@ public class SwingScilabSpinner extends JSpinner implements SwingViewObject, Wid
         addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 Double val = (Double)getValue();
+                double userMin = (double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+                double userMax = (double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+                Double[] userStep = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__);
+                val = Math.max(Math.min(userMax,val),userMin);
+                if ((boolean)GraphicController.getController().getProperty(uid, __GO_UI_SNAPTOTICKS__)) {
+                    val = (userMin/userStep[0]+Math.round((val-userMin)/userStep[0]))*userStep[0];
+                }
+                setValue(val);
                 GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, new Double[] {val});
                 if (callback != null) {
                     callback.actionPerformed(null);
@@ -171,23 +184,20 @@ public class SwingScilabSpinner extends JSpinner implements SwingViewObject, Wid
                 Double[] step = (Double[]) controller.getProperty(getId(), __GO_UI_SLIDERSTEP__);
                 Double[] val = (Double[]) controller.getProperty(getId(), __GO_UI_VALUE__);
                 Double v = (val != null && val.length != 0) ? val[0] : 0.0;
-                if (v > max) {
-                    v = max;
-                }
 
-                if (v < min) {
-                    v = min;
-                }
-
-                //adjust value to current step
+                //adjust value to current min,max,step
                 if (step[0] != 0) {
-                    v = Math.floor((v / step[0])) * step[0];
+                    v = Math.min(max, min+Math.max(0,Math.round((v-min) / step[0])) * step[0]);
                 } else {
                     v = min;
                 }
 
                 controller.setProperty(uid, __GO_UI_VALUE__, new Double[] {v});
                 setModel(new SpinnerNumberModel(v, min, max, step[0]));
+                JFormattedTextField txt = ((JSpinner.NumberEditor) getEditor()).getTextField();
+                ((NumberFormatter) txt.getFormatter()).setAllowsInvalid(false);
+                ((NumberFormatter) txt.getFormatter()).setCommitsOnValidEdit(true);
+
                 break;
             }
             case __GO_UI_VALUE__: {

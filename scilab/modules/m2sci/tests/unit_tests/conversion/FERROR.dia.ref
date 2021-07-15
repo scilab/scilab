@@ -37,7 +37,7 @@ TESTING M2SCI: creating varslist file...
 // V.C.
 
 fid = 1
-message = merror(fid)
-message = mclearerr(fid)
-[message,errnum] = ferror(fid)
-[message,errnum] = ferror(fid)
+Message = merror(fid)
+Message = mclearerr(fid)
+[Message, errnum] = ferror(fid)
+[Message, errnum] = ferror(fid)

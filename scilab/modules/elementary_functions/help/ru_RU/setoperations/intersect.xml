@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="intersect" xml:lang="ru">
+    <refnamediv>
+        <refname>intersect</refname>
+        <refpurpose>
+            элементы, либо строки либо столбцы, имеющиеся в обоих входных массивах, без повторов
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            M = intersect(a, b)
+            M = intersect(a, b, orient)
+            [M, ka] = intersect(..)
+            [M, ka, kb] = intersect(..)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>a, b</term>
+                <listitem>
+                    векторы, матрицы или гиперматрицы логических значений,
+                    кодированных целых чисел, вещественных или комплексных чисел,
+                    или текста. <varname>a</varname> и <varname>b</varname> должны
+                    иметь одинаковый тип данных.
+                    Для текстовых входных данных принимаются символы UTF.
+                    Принимаются разреженные числовые или логические матрицы: либо
+                    <varname>a</varname> либо <varname>b</varname> либо как
+                    <varname>a</varname>, так и <varname>b</varname> могут быть
+                    разрежёнными.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orient</term>
+                <listitem>
+                    флаг с возможными значениями: 1 или "r", 2 или "c". Не может
+                    использоваться, если <varname>a</varname> или/и <varname>b</varname>
+                    являются гиперматрицами.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>M</term>
+                <listitem>
+                    <para>
+                        матрица того же типа данных, что и <varname>a</varname> и
+                        <varname>b</varname>.
+                        <itemizedlist>
+                            <listitem>
+                                Без <varname>orient</varname>: <varname>M</varname>
+                                является вектором-строкой.
+                            </listitem>
+                            <listitem>
+                                С <literal>orient="r"|1</literal>: <varname>M</varname>
+                                является матрицей, накапливающей общие строки
+                                <varname>a</varname> и <varname>b</varname>.
+                            </listitem>
+                            <listitem>
+                                С <literal>orient="c"|2</literal>: <varname>M</varname>
+                                является матрицей, накапливающей общие столбцы
+                                <varname>a</varname> и <varname>b</varname>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        <varname>M</varname> является разрежённой, если либо
+                        <varname>a</varname> или <varname>b</varname> являются
+                        разрежёнными и ни одна не является пустой.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ka</term>
+                <listitem>
+                    Плотный вектор-строка индексов в <varname>a</varname>.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>kb</term>
+                <listitem>
+                    Плотный вектор-строка индексов в <varname>b</varname>.
+                    <para/>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>intersect(a,b)</literal> возвращает вектор-строку уникальных
+            значений, присутствующих как в массиве <literal>a</literal> так и в
+            массиве <literal>b</literal>. Значения отсортированы в порядке возрастания
+            <itemizedlist>
+                <listitem>
+                    для комплексных чисел: сначала в порядке возрастания амплитуды, затем в порядке возрастания фазы;
+                </listitem>
+                <listitem>
+                    для текстов: в алфавитном порядке.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <warning>
+            Два элемента <literal>NaN</literal> всегда считаются разными. Так,
+            <literal>NaN</literal> или строки или столбцы, имеющие <literal>NaN</literal>,
+            никогда не окажутся в результирующей <literal>M</literal>.
+        </warning>
+        <para>
+            <literal>[M, ka, kb] = intersect(a,b)</literal> дополнительно возвращает
+            векторы индексов <literal>ka</literal> и <literal>kb</literal> в
+            <literal>a</literal> и в <literal>b</literal> выбранных компонентов,
+            первых попавшихся так, что <literal>M=a(ka)</literal> и
+            <literal>M=b(kb)</literal>.
+        </para>
+        <refsect3>
+            <title>Общие строки или столбцы</title>
+        <para>
+            Когда указан аргумент <varname>orient</varname>, сравнение выполняется
+            между строками <literal>a</literal> и <literal>b</literal> -- каждая
+            из которых рассматривается как целое --, или между их столбцами.
+        </para>
+        <para>
+            <literal>intersect(a,b,"r")</literal> или <literal>intersect(a,b,1)</literal>
+            будет возвращать матрицу накопленных неповторяющихся строк, встреченных
+            как в  <literal>a</literal>, так и в <literal>b</literal>, сортированных
+            в лексикографическом порядке возрастания.
+            Если <literal>a</literal> и <literal>b</literal> не имеют одинаковое
+            количество столбцов, то будет возвращено <literal>[]</literal> без
+            сравнения величин.
+        </para>
+        <para>
+            <literal>[M,ka,kb] = intersect(a,b,"r")</literal> дополнительно возвращает
+            векторы <literal>ka</literal> и <literal>kb</literal> минимальных индексов
+            общих строк, соответственно в <literal>a</literal> и <literal>b</literal>,
+            так что <literal>M=a(ka,:)</literal> и <literal>M=b(kb,:)</literal>.
+        </para>
+        <para>
+            <literal>intersect(a,b,"c")</literal> или <literal>intersect(a,b,2)</literal>
+            делает то же самое, но для столбцов.
+        </para>
+        </refsect3>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+A = grand(3, 3, "uin", 0, 9)
+B = grand(2, 4, "uin", 0, 9)
+intersect(A, B)
+[N, ka, kb] = intersect(A,B);
+ka, kb
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = grand(3, 3, "uin", 0, 9)
+ A  =
+   0.   6.   4.
+   6.   6.   6.
+   2.   7.   9.
+
+--> B = grand(2, 4, "uin", 0, 9)
+ B  =
+   1.   8.   0.   2.
+   6.   2.   2.   1.
+
+--> intersect(A, B)
+ ans  =
+   0.   2.   6.
+
+--> [N, ka, kb] = intersect(A,B);
+--> ka, kb
+ ka  =
+   1.   3.   2.
+ kb  =
+   5.   4.   2.
+]]></screen>
+    <para>
+        В вышеприведённом примере обратите внимание, что 6 встречена четыре раза
+        в <varname>A</varname> с индексами [2 4 5 8].
+        Только минимальный индекс 2 возвращается в <varname>ka</varname>. Та же
+        ситуация для 2 в <varname>B</varname>.
+    </para>
+    <para/>
+    <para>
+    Значения <literal>NaN</literal> никогда не могут быть в результате:
+    </para>
+    <programlisting role="example"><![CDATA[
+%nan == %nan
+intersect([1 -2 %nan 3 6], [%nan 1:3])
+ ]]></programlisting>
+    <screen><![CDATA[
+--> %nan == %nan
+ ans  =
+  F
+
+--> intersect([1 -2 %nan 3 6], [%nan 1:3])
+ ans  =
+   1.   3.
+]]></screen>
+    <para/>
+    <para>
+        <literal>intersect()</literal> может также обрабатывать некоторые символы
+        или тексты. Поскольку Scilab превосходно работает с символами UTF, то здесь
+        пример с некоторым арабским содержимым, получающим символы, присутствующими
+        в обоих предложениях:
+    </para>
+        <programlisting role="example"><![CDATA[
+A = strsplit("هو برنامج علمي كبير ""Scilab""")'
+B = strsplit("فهو حر ومفتوح")'
+intersect(A,B)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = strsplit("هو برنامج علمي كبير ""Scilab""")'
+ A  =
+!ه  و     ب  ر  ن  ا  م  ج     ع  ل  م  ي     ك  ب  ي  ر     "  S  c  i  l  a  b  "  !
+
+--> B = strsplit("فهو حر ومفتوح")'
+ B  =
+!ف  ه  و     ح  ر     و  م  ف  ت  و  ح  !
+
+--> intersect(A,B)
+ ans  =
+!   ر  م  ه  و  !
+]]></screen>
+    <para/>
+    <para>
+        Постолбцовая или построковая обработка двух матриц: здесь мы обрабатываем
+        2 матрицы знаковых 1-битных целых и получаем общие столбцы:
+    </para>
+    <programlisting role="example"><![CDATA[
+A = int8(grand(3,5,"uin",0,1))
+B = int8(grand(3,9,"uin",0,1))
+[M,ka,kb] = intersect(A, B, "c");
+M, ka, kb
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = int8(grand(3,5,"uin",0,1))
+ A  =
+  0  0  1  1  1
+  0  0  1  1  0
+  0  0  0  0  1
+
+--> B = int8(grand(3,9,"uin",0,1))
+ B  =
+  1  0  1  1  1  0  1  1  1
+  1  0  0  1  1  1  0  0  0
+  1  0  1  0  1  1  1  0  0
+
+--> [M,ka,kb] = intersect(A, B, "c");
+--> M, ka, kb
+ M  =
+  0  1  1
+  0  0  1
+  0  1  0
+
+ ka  =
+   1.   5.   3.
+
+ kb  =
+   2.   3.   4.
+]]></screen>
+    <para/>
+    <para>
+        <literal>intersect()</literal> для логических значений главным образом
+        полезны с опцией <literal>"r"</literal> или <literal>"c"</literal>. Здесь
+        пример с разрежённой матрицей логических значений:
+    </para>
+    <programlisting role="example"><![CDATA[
+[F, T] = (%f, %t);
+A = [F F T F T F ; T F F T T T ; T T F T F F]
+B = [F T F T F F ; T F F F T F ; F T F F T F]
+[M,ka,kb] = intersect(A, sparse(B), "c");
+issparse(M), full(M), ka, kb
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = [F F T F T F ; T F F T T T ; T T F T F F]
+ A  =
+  F F T F T F
+  T F F T T T
+  T T F T F F
+
+--> B = [F T F T F F ; T F F F T F ; F T F F T F]
+ B  =
+  F T F T F F
+  T F F F T F
+  F T F F T F
+
+--> [M,ka,kb] = intersect(A, sparse(B), "c");
+--> issparse(M), full(M), ka, kb
+ ans  =
+  T
+
+ ans  =
+  F F T
+  T T F
+  F T F
+
+ ka  =
+   6.   1.   3.
+
+ kb  =
+   1.   5.   4.
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="members">members</link>
+            </member>
+            <member>
+                <link linkend="unique">unique</link>
+            </member>
+            <member>
+                <link linkend="gsort">gsort</link>
+            </member>
+            <member>
+                <link linkend="union">union</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Теперь принимаются комплексные числа.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Теперь принимаются разрежённые матрицы (числовые или логические значения).
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

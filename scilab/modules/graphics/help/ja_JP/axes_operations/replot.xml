@@ -127,10 +127,14 @@
             objects sizes into account. This ensures not clipping any object
             that would be beyond the targeted side of the axes.
         </para>
-        <para>When the <literal>tight_limits</literal> option is provided,
+        <para>
+            When the <literal>tight_limits</literal> option is provided,
             its value is assigned to the <literal>.tight_limits</literal>
             attribute of each considered axes, in an axis-wise way.
         </para>
+        <important>
+            gca() always refers to the same axes before and after calling replot(..).
+        </important>
     </refsection>
     <refsection role="examples">
         <title>例</title>

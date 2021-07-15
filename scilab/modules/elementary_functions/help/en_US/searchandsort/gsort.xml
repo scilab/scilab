@@ -19,7 +19,7 @@
           xmlns:scilab="http://www.scilab.org" xml:id="gsort" xml:lang="en">
     <refnamediv>
         <refname>gsort</refname>
-        <refpurpose>sorts boolean, numerical and text arrays</refpurpose>
+        <refpurpose>sorts boolean, numerical and string arrays</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -38,7 +38,7 @@
                 <term>A</term>
                 <listitem>
                     Scalar, vector, matrix or hypermatrix of booleans, integers, real or
-                    complex numbers, or text. Sparse matrices of real numbers,
+                    complex numbers, or strings. Sparse matrices of real numbers,
                     of complex numbers, or of booleans can also be sorted.
                     <note>
                         Overloading for unhandled types is allowed.
@@ -151,7 +151,7 @@
                             </listitem>
                             <listitem>
                                 <literal>R</literal> must be of simple sortable type: boolean,
-                                integer, real, text.
+                                integer, real, string.
                             </listitem>
                         </itemizedlist>
                     </para>
@@ -246,8 +246,9 @@
             The multilevel mode is described with details in a dedicated subsection below.
         </para>
         <para>
-            Texts are sorted in alphabetical order, in a case-sensitive way.
-            Extended UTF characters are supported.
+            Strings are sorted in alphabetical order, in a case-sensitive way.
+            Extended UTF characters are supported. The empty string "" is considered "smaller"
+            than any other string.
         </para>
         <para>
             Sorting boolean arrays is mostly useful with the "r", "c", "lr" or "lc" methods.
@@ -316,7 +317,7 @@
                         <para/>
                     </listitem>
                     <listitem>
-                        <emphasis>Sorting the columns of a matrix T of texts,
+                        <emphasis>Sorting the columns of a matrix T of strings,
                         first: by increasing length, second: in anti-alphabetical order</emphasis>:
                         <para/>
                         <literal>gsort(T, "c", ["i" "d"], list(length, :))</literal>
@@ -509,7 +510,7 @@ c = evstr(s)
 ]]></screen>
         </para>
         <para>
-            <emphasis role="bold">With some texts:</emphasis>
+            <emphasis role="bold">With some strings:</emphasis>
             Sorting rows in columns, first by increasing lengths, second by alphabetical order
         </para>
         <para>

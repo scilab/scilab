@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[X,rk,Ac]=rowcompr(A)</synopsis>
+        <synopsis>[X, rk, Ac] = rowcompr(A)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

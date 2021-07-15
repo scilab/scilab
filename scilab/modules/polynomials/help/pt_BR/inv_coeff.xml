@@ -8,7 +8,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis>
+        <synopsis>
+            P = inv_coeff(C)
+            P = inv_coeff(C, d)
+            P = inv_coeff(C, d, varname)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -28,7 +32,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>name</term>
+                <term>varname</term>
                 <listitem>
                     <para>string fornecendo o nome da variável polinomial (valor padrão
                         <literal>'x'</literal>).
@@ -49,12 +53,14 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-A=int(10*rand(2,6))
+A = int(10*rand(2,6))
+
 // Construindo uma matriz de polinômios de grau 1
-P=inv_coeff(A,1)
+P = inv_coeff(A, 1)
 norm(coeff(P)-A)
+
 // Usando valor padrão para o grau
-P1=inv_coeff(A)
+P1 = inv_coeff(A)
 norm(coeff(P1)-A)
  ]]></programlisting>
     </refsection>

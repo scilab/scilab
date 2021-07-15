@@ -16,7 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_length">
     <refnamediv>
         <refname>length (Matlab function)</refname>
-        <refpurpose>Length of vector</refpurpose>
+        <refpurpose>Length of largest array dimension</refpurpose>
     </refnamediv>
     <refsection>
         <title>Matlab/Scilab equivalent</title>
@@ -31,13 +31,13 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 length(A)
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-No equivalent
+                    <programlisting role="no-scilab-exec"><![CDATA[
+max(size(A))
 ]]></programlisting>
                 </td>
             </tr>
@@ -46,16 +46,13 @@ No equivalent
     <refsection>
         <title>Particular cases</title>
         <para>
-            If <emphasis role="bold">A</emphasis> is a vector, Scilab equivalent for <emphasis role="bold">length(A)</emphasis> is <emphasis role="bold">size(A,"*")</emphasis>.
+            If <emphasis role="bold">A</emphasis> contains character strings, String matrix has to
+            be converted to a "character" string matrix using <emphasis role="bold">mstr2sci</emphasis>
+            (Using <emphasis role="bold">asciimat</emphasis> to convert will give the same result).
         </para>
-        <para>
-            If <emphasis role="bold">A</emphasis> is a matrix, Scilab equivalent for <emphasis role="bold">length(A)</emphasis> is <emphasis role="bold">max(size(A))</emphasis>.
-        </para>
-        <para>
-            If <emphasis role="bold">A</emphasis> contains character strings, String matrix has to be converted to a "character" string matrix using <emphasis role="bold">mstr2sci</emphasis> (Using <emphasis role="bold">asciimat</emphasis> to convert will give the same result).
-        </para>
-        <para>
-            Scilab <emphasis role="bold">length</emphasis> is different from Matlab <emphasis role="bold">length</emphasis>.
-        </para>
+        <warning>
+            Scilab <emphasis role="bold">length</emphasis>() is different from Matlab's
+            <emphasis role="bold">length</emphasis> function.
+        </warning>
     </refsection>
 </refentry>

@@ -31,22 +31,28 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-lu
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+[L,U] = lu(A)
+[L,U,P] = lu(A)
+[L,U,P] = lu(A,outputForm)
+[L,U,P,Q] = lu(S)
+[L,U,P,Q,D] = lu(S)
+[___] = lu(S,thresh)
+[___] = lu(___,outputForm)
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-lu
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+[L,U] = lu(A)
+[L,U,P] = lu(A)
+// No equivalent
+// No equivalent
+// No equivalent
+// No equivalent
+// No equivalent
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            There is no Scilab equivalent for Matlab <emphasis role="bold">lu</emphasis> when called with 1 or 4 outputs or with 2 inputs.
-        </para>
     </refsection>
 </refentry>

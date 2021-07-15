@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) ????-2006 - INRIA - Scilab
-    *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,19 +16,101 @@
           xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="mapsound">
     <refnamediv>
         <refname>mapsound</refname>
-        <refpurpose>Plots a sound map</refpurpose>
+        <refpurpose>
+            Computes and displays an Amplitude(time, frequency) map of a sound record
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>mapsound (w,dt,fmin,fmax,simpl,rate)</synopsis>
+        <synopsis>
+            mapsound(signal)
+            mapsound(signal, Dt)
+            mapsound(signal, Dt, freqRange)
+            mapsound(signal, Dt, freqRange, samplingRate)
+            mapsound(signal, Dt, freqRange, samplingRate, Colormap)
+            [times, freqs, amplitudes] = mapsound(…)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>dt,fmin,fmax,simpl,rate</term>
+                <term>signal</term>
                 <listitem>
-                    <para>scalars. default values dt=0.1,fmin=100,fmax=1500,simpl=1,rate=22050;</para>
+                    Vector or matrix of signed real numbers representing the sound signal.
+                    If it's a matrix, its smallest size is considered as the number of channels.
+                    Then, only the first channel is considered and mapped.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>samplingRate</term>
+                <listitem>
+                    Positive decimal number: Value of the sampling rate of the input
+                    <varname>signal</varname>, in Hz. 22050 Hz is the default rate.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>freqRange</term>
+                <listitem>
+                    Specifies the interval [fmin, fmax] of positive sound frequencies to be
+                    analyzed and mapped:
+                    <itemizedlist>
+                        <listitem>
+                            If it's a scalar: It specifies the upper bound <varname>fmax</varname>.
+                            Then <literal>fmin=0</literal> is used.
+                        </listitem>
+                        <listitem>
+                            If it's a vector: It specifies [fmin, fmax].
+                        </listitem>
+                    </itemizedlist>
+                    If a bound is > 0, it is specified in Hz. If it's negative, its absolute value
+                    represents a fraction of the sampling rate. For instance, fmax=-0.2 actually
+                    specifies fmax = 0.2 * samplingRate.
+                    <para/>
+                    The default bounds are <literal>[0, 0.2*samplingRate]</literal>.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Dt</term>
+                <listitem>
+                    Specifies the time step of the map. The time step is also the
+                    duration of each sound chunk considered at every time step, since the
+                    <varname>signal</varname> is sliced into contiguous chunks without overlap.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>times</term>
+                <listitem>
+                    Vector of mapped times, in seconds.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>freqs</term>
+                <listitem>
+                    Vector of mapped frequencies, in Hz.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>amplitudes</term>
+                <listitem>
+                    Matrix of mapped absolute spectral amplitudes, of size length(freqs)×length(times).
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Colormap</term>
+                <listitem>
+                    Identifier of the colormap function to use: autumncolormap, bonecolormap, etc.
+                    The actual colormap is based on and built with it, but is not equal to it.
+                    It can be inverted in order to get light colors for low amplitudes,
+                    and be extrapolated to white if it does not natively include light colors.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -38,30 +118,187 @@
     <refsection>
         <title>Description</title>
         <para>
-            Plots a sound map for a sound. It does FFT at time increments dt.
-            <literal>rate</literal> is the sampling rate. <literal>simpl</literal> points are collected for
-            speed reasons. <literal>fmin</literal> and <literal>fmax</literal> are used for graphic
-            boundaries.
+            mapsound(…) slices the input signal in consecutive chunks #0, #1,.. of equal duration
+            <varname>Dt</varname>, up to the end of the signal. Then a discrete Fourier Transform
+            is computed for each chunk. The absolute value of the spectral amplitude of the chunk
+            #i is displayed at the time i*Dt, for frequencies in the chosen interval.
+        </para>
+        <para>
+            When <varname>Dt</varname> is not specified, mapsound(…) computes it in order to have
+            (almost) the same number of frequency and time bins, with the highest possible
+            (time, frequency) resolution. We may keep in mind that both time <varname>Dt</varname>
+            and frequency Δf steps are linked together by <literal>Dt.Δf=1</literal>. Thus, improving
+            one of both automatically alters the other one.
+        </para>
+        <para>
+            The (time, frequency, amplitude) values of any pixel are relative to its lower left
+            corner. The time is at the beginning of the chunk. Amplitudes are given in the
+            same unit and scale than for the input signal.
+        </para>
+        <para>
+            When the map is drawn in a new figure or a new axes alone in the figure,
+            a smart colormap is created and assigned to the figure and used for the map.
+            A colobar is displayed anyway. The number of frequency and time bins are
+            displayed below the bar. The default grid color is extracted from the sound map
+            colormap. <literal>xgrid(0)</literal> may be used to get a more visible black grid.
+        </para>
+        <para>
+            Most of input arguments are optional. To skip an argument and use its default value,
+            just omit it before the next coma. [] used as default value works as well.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+            <emphasis role="bold">Example #1:</emphasis> A sound made of 2 pure sine waves of
+            known amplitudes and frequencies is considered:
+        </para>
         <programlisting role="example"><![CDATA[
-// At first we create a time vector of 0.5 seconds sampled at 22050 Hz:
-t = 0 : 1/22050 : 0.5*(1-%eps);
+// Let's build the sound
+// 1 s at 800 Hz @ amplitude=1.5, then 1 s at 1200 Hz @ amplitude = 1:
+fs = 22050;
+t = 0:1/fs:1*(1-%eps);
+y = 0.3 + [1.5*sin(2*%pi*800*t) sin(2*%pi*1200*t)];
 
-// Then we generate the sound.
-s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
-[nr,nc]=size(t);
-s(nc/2:nc)=sin(330*t(nc/2:nc));
-mapsound(s);
- ]]></programlisting>
+// Let's hear it:
+playsnd(y/4)
+
+// Then: build and display its map:
+clf
+mapsound(y, 0.04, 1500)
+title "0.3 + [1.5⋅sin(2π⋅800⋅t), sin(2π⋅1200⋅t)]" fontsize 3.2
+      ]]></programlisting>
         <scilab:image>
-            t = 0 : 1/22050 : 0.5*(1-%eps);
-            s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
-            [nr,nc]=size(t);
-            s(nc/2:nc)=sin(330*t(nc/2:nc));
-            mapsound(s);
+            fs = 22050;
+            t = (0:fs-1)/fs;
+            y = 0.3 + [1.5*sin(2*%pi*800*t) sin(2*%pi*1200*t)];
+            mapsound(y, 0.04, 1500)
+            title "0.3 + [1.5⋅sin(2π⋅800⋅t), sin(2π⋅1200⋅t)]" fontsize 3.2
         </scilab:image>
+        <para>
+            Both frequencies and amplitudes values are reliably mapped, as well as the
+            average level, with the 2×0.3 amplitude at the zero frequency.
+        </para>
+        <para>
+            <emphasis role="bold">Example #2:</emphasis> Amplitude modulation: A Fc=1000 Hz
+            carrier frequency is used, modulated in a Fm=100 Hz envelope.
+        </para>
+        <programlisting role="example"><![CDATA[
+fs = 22050;
+t = (0:2*fs-1)/fs;
+y = sin(2*%pi*100*t) .* sin(2*%pi*1000*t);
+
+// Let's hear it:
+playsnd(y/4)
+
+// Then: build and display its map:
+clf
+mapsound(y, 0.05, [500 1300])
+title "sin(2π⋅100⋅t) ⋅ sin(2π⋅1000⋅t)" fontsize 3.2
+      ]]></programlisting>
+        <scilab:image>
+            fs = 22050;
+            t = (0:2*fs-1)/fs;
+            y = sin(2*%pi*100*t) .* sin(2*%pi*1000*t);
+            mapsound(y, 0.05, [500 1300])
+            title "sin(2π⋅100⋅t) ⋅ sin(2π⋅1000⋅t)" fontsize 3.2
+        </scilab:image>
+        <para>
+            As a consequence of the <literal>sin(a).sin(b)=(cos(a-b)-cos(a+b))/2</literal> formula,
+            both resulting frequencies [Fc-Fm, Fc+Fm] expected from the amplitude
+            modulation are clearly visible, with a shared amplitude=0.5
+        </para>
+
+        <para>
+            <emphasis role="bold">Example #3:</emphasis> Wobbling. Here, the frequency of a
+            sine wave is linearly varied on [f0, f1]. This yields some actual higher frequencies,
+            on [f0, 2*f1-f0]:
+        </para>
+        <programlisting role="example"><![CDATA[
+fs = 22050;
+t = (0:fs-1)/fs;
+f = 500*(1-t) + 2000*t;
+y0 = sin(2*%pi*f.*t);
+y = [y0 y0($:-1:1)];
+
+playsnd(y/4)
+
+clf
+mapsound(y)
+title "Wobbling: y = sin(2π⋅f(t)⋅t), with f=500→2000→500 Hz" fontsize 3.5
+      ]]></programlisting>
+        <scilab:image>
+            fs = 22050;
+            t = (0:fs-1)/fs;
+            f = 500*(1-t) + 2000*t;
+            y0 = sin(2*%pi*f.*t);
+            y = [y0 y0($:-1:1)];
+            mapsound(y)
+            title "Wobbling: y = sin(2π⋅f(t)⋅t), with f=500→2000→500 Hz" fontsize 3.5
+        </scilab:image>
+
+        <para>
+            <emphasis role="bold">Example #4:</emphasis> Chimes.wav : a quite structured sound
+        </para>
+        <programlisting role="example"><![CDATA[
+[s1, fs1] = wavread('SCI/modules/sound/demos/chimes.wav');
+
+playsnd([]), sleep(500), playsnd(s1/2), sleep(1000)
+
+clf
+mapsound(s1,, 2300, , parulacolormap)
+title Chimes.wav fontsize 3.5
+      ]]></programlisting>
+        <scilab:image>
+            [s1, fs1] = wavread('SCI/modules/sound/demos/chimes.wav');
+            clf
+            mapsound(s1,,2300,,parulacolormap)
+            title Chimes.wav fontsize 3.5
+        </scilab:image>
+
+        <para>
+            <emphasis role="bold">Example #5:</emphasis> Another sound, longer and more noisy
+        </para>
+        <programlisting role="example"><![CDATA[
+[s2, fs2] = wavread('SCI/modules/sound/tests/nonreg_tests/bug_467.wav');
+
+playsnd([]), sleep(500), playsnd(s2/3)
+
+clf
+mapsound(s2, , 4000)
+title Din fontsize 3.5
+      ]]></programlisting>
+        <scilab:image>
+            [s2, fs2] = wavread('SCI/modules/sound/tests/nonreg_tests/bug_467.wav');
+            mapsound(s2, , 4000)
+            title Din fontsize 3.5
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fft">fft</link>
+            </member>
+            <member>
+                <link linkend="analyze">analyze</link>
+            </member>
+            <member>
+                <link linkend="intdec">intdec</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    mapsound() rewritten: fmin and fmax merged into freqRange ;
+                    Colormap, times, frequencies, amplitudes arguments added ;
+                    simpl removed.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

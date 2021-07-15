@@ -31,35 +31,35 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 zeros
-]]></programlisting>
+zeros(n)
+zeros(sz1, .., szN)
+zeros(Sizes)
+zeros(.., typename)
+zeros(.., 'like', p)
+
+% No equivalent
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-zeros
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+zeros()
+zeros(n, n)
+zeros(sz1, .., szN)
+repmat(0, Sizes)
+zeros(.., typename)
+// No equivalent
+
+zeros(A)  // only size(A) is considered
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <variablelist>
-            <varlistentry>
-                <term>B=zeros(A)</term>
-                <listitem>
-                    <para>
-                        If <emphasis role="bold">A</emphasis> is a scalar, then Matlab returns a <emphasis role="bold">A*A</emphasis> matrix of zeros but in Scilab you get a <emphasis role="bold">1</emphasis>, use <emphasis role="bold">zeros(A,A)</emphasis> to get the same matrix <emphasis role="bold">B</emphasis>. If <emphasis role="bold">A</emphasis> is a row vector, Scilab and Matlab give the same <emphasis role="bold">B</emphasis>. Finally, if <emphasis role="bold">A</emphasis> is a matrix, in Scilab, <emphasis role="bold">B</emphasis> will be a matrix having the same size as <emphasis role="bold">A</emphasis> whereas in Matlab, you get an error message.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-        <para>
-            <note>
-                Note that in Matlab, <emphasis role="bold">A</emphasis> can contain complex values (in these cases, only real part of <emphasis role="bold">A</emphasis> is taken in account), what Scilab function do not tolerate.
-            </note>
-        </para>
+        <warning>
+            With Matlab, <literal>Sizes, sz1, sz2, ..</literal> can be complex. Then, only their
+            real parts are used as actual sizes. Scilab would yield an error.
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -74,14 +74,14 @@ zeros
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 B = zeros(2)
 B = [0,;0,0]
 B = zeros(2,2)
 B = [0,0;0,0]
 B = zeros([3,3])
 B = [0,0,0;0,0,0;0,0,0]
-]]></programlisting>
+                  ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
@@ -91,7 +91,7 @@ B = zeros(2,2)
 B = [0,0;0,0]
 B = zeros([3,3])
 B = [0,0]
-]]></programlisting>
+                  ]]></programlisting>
                 </td>
             </tr>
         </informaltable>

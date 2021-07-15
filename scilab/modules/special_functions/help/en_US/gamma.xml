@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,34 +13,53 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="gamma" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="gamma" xml:lang="en">
     <refnamediv>
         <refname>gamma</refname>
-        <refpurpose>The gamma function.</refpurpose>
+        <refpurpose>gamma function, complete or incomplete normalized</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>y = gamma(x)</synopsis>
+        <synopsis>
+            y = gamma(u)
+            y = gamma(x, a)
+            y = gamma(x, a, b)
+            y = gamma(x, .., "upper")
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>u</term>
                 <listitem>
-                    <para>
-                       scalar, vector, matrix, or hypermatrix of real numbers.
-                    </para>
-                    <note>
-                      <literal>gamma</literal> can be overloaded for complex numbers or
-                      of lists, tlists or mlists.
-                    </note>
+                    array of positive or negative real numbers
+                    <para/>
+                    <literal>gamma(u)</literal> and <literal>gamma(x,…)</literal> can be overloaded
+                    for complex numbers with <literal>%s_gamma_user()</literal>, and for other
+                    <varname>a</varname> types with the usual overload naming rule.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x, a, b</term>
+                <listitem>
+                    arrays of positive real numbers.
+                    If at least one input is not scalar, scalar ones are expanded to its size.
+                    If several inputs are not scalar, they must have the same size.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>real vector or matrix with same size than x.</para>
+                    array of real numbers, with the size of <varname>u</varname>
+                    or of (the non-scalar) <varname>x</varname>, <varname>a</varname>,
+                    or <varname>b</varname>.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -48,43 +67,179 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>gamma(x)</literal> evaluates the gamma function at all the
-            elements of <literal>x</literal>. The gamma function is defined by
-            :
+            <literal>gamma(…)</literal> computes and yields the complete or incomplete gamma
+            function for each element of its input(s), in an element-wise way. The complete
+            gamma function extends the factorial one to non-integer real positive or negative
+            numbers, as <literal>gamma(u+1)=u*gamma(u)</literal>.
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/gamma_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <emphasis role="bold">gamma(u)</emphasis> computes
+            <latex style="display" fontsize="18" alt="Γ(x)= ∫_0→∞ t^{x-1}.exp(-t).dt">
+                \Gamma(x)=\int_0^\infty\! t^{x-1}e^{-t}\,dt
+            </latex>
+        </para>
         <para>and generalizes the factorial function for real numbers
             (<literal>gamma(u+1) = u*gamma(u)</literal>).
         </para>
-    </refsection>
+        <refsect3>
+            <title>Incomplete normalized integrals</title>
+            <para>
+                <emphasis role="bold">gamma(x, a)</emphasis> computes the integral
+                <latex style="display" fontsize="18" alt="P(x,a)= ∫_0→x t^{a-1}.exp(-t).dt / Γ(a)">
+                    P(x,a)=\frac{1}{\Gamma(a)}\int_0^x\! t^{a-1}e^{-t}\,dt
+                </latex>
+            </para>
+            <para>
+                <emphasis role="bold">gamma(x, a, b)</emphasis> computes the generalized integral
+                <latex style="display" fontsize="18" alt="P(x,a,b)= ∫_0→x t^{a-1}.exp(-bt).dt . b^a / Γ(a)">
+                    P(x,a,b)=\frac{b^a}{\Gamma(a)}\int_0^x\! t^{a-1}e^{-b\,t}\,dt
+                </latex>
+            </para>
+            <para>
+                <emphasis role="bold">gamma(x, a, "upper")</emphasis> computes accurately the
+                complementary integral
+                <latex style="display" fontsize="18" alt="Q(x,a)= ∫_x→∞ t^{a-1}.exp(-t).dt / Γ(a) = 1-P(x,a)">
+                    Q(x,a)=1-P(x,a)=\frac{1}{\Gamma(a)}\int_x^\infty\! t^{a-1}e^{-t}\,dt
+                </latex>
+                even for big x and P(x,a)→1. Finally,
+            </para>
+            <para>
+                <emphasis role="bold">gamma(x, a, b, "upper")</emphasis> computes the generalized
+                complementary integral
+                <latex style="display" fontsize="18" alt="Q(x,a,b)= ∫_x→∞ t^{a-1}.exp(-bt).dt . b^a / Γ(a)">
+                    Q(x,a,b)=\frac{b^a}{\Gamma(a)}\int_x^\infty\! t^{a-1}e^{-b\,t}\,dt
+                </latex>
+            </para>
+            <note>
+                <para>
+                    The inverse incomplete normalized gamma function can be computed with
+                    <emphasis role="bold">x = cdfgam("X", a, b, y, 1-y)</emphasis>,
+                    that is the <varname>x</varname> bound such that
+                    <latex alt="y=∫_0→x t^{a-1}.exp(-bt).dt . b^a / Γ(a)">
+                    y=\frac{b^a}{\Gamma(a)}\int_0^x\! t^{a-1}e^{-b\,t}\,dt
+                    </latex>
+                </para>
+                <para>
+                    Calling <emphasis role="bold">x = cdfgam("X", a, b, z-1, z)</emphasis> with
+                    <literal>z=1-y</literal> will be preferred when 0.5 &lt; y &lt; 1, to get a full
+                    accuracy on <varname>x</varname>.
+                </para>
+            </note>
+        </refsect3>
+   </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+            Gamma as the extension of the factorial function to non-integer numbers:
+        </para>
         <programlisting role="example"><![CDATA[
-// simple examples
-gamma(0.5)
-gamma(6)-prod(1:5)
- ]]></programlisting>
+[gamma(2:7) ; factorial(1:6)]
+gamma(1.5:7)
+gamma(1.5:7) ./ gamma(0.5:6)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> [gamma(2:7) ; factorial(1:6)]
+ ans  =
+   1.   2.   6.   24.   120.   720.
+   1.   2.   6.   24.   120.   720.
+
+--> gamma(1.5:7)
+ ans  =
+   0.8862269   1.3293404   3.323351   11.631728   52.342778   287.88528
+
+--> gamma(1.5:7) ./ gamma(0.5:6)
+ ans  =
+   0.5   1.5   2.5   3.5   4.5   5.5
+]]></screen>
+        <para/>
+        <para>
+            Graph of the Gamma function around 0:
+        </para>
         <programlisting role="example"><![CDATA[
-// the graph of the Gamma function on [a,b]
-a = -3; b = 5;
+[a, b] = (-3, 5);
 x = linspace(a,b,40000);
 y = gamma(x);
-clf()
-plot2d(x, y, style=0, axesflag=5, rect=[a, -10, b, 10])
-xtitle("The gamma function on ["+string(a)+","+string(b)+"]")
-show_window() ]]></programlisting>
+clf
+plot2d(x, y, style=0, axesflag=5, rect=[a,-10,b,10])
+title("$\Gamma(u)$", "fontsize",3.5)
+xgrid(color("grey60"))
+     ]]></programlisting>
         <scilab:image>
-            a = -3; b = 5;
-            x = linspace(a,b,40000)';
+            [a, b] = (-3, 5);
+            x = linspace(a,b,40000);
             y = gamma(x);
-            plot2d(x, y, style=0, axesflag=5, rect=[a, -10, b, 10])
-            xtitle("The gamma function on ["+string(a)+","+string(b)+"]")
+            clf
+            plot2d(x, y, style=0, axesflag=5, rect=[a,-10,b,10])
+            title("$\Gamma(u)$", "fontsize",3.5)
+            xgrid(color("grey60"))
+            gcf().axes_size = [550,400];
+        </scilab:image>
+        <para/>
+        <para>
+            Incomplete normalized P(x,a) gamma function:
+        </para>
+        <programlisting role="example"><![CDATA[
+x = 0.1:0.2:8;
+a = 0.1:0.2:7;
+[X, A] = ndgrid(x, a);
+P = gamma(X,A);
+clf
+gcf().color_map = coolcolormap(100);
+surf(a,x,P)
+title("$P(x,a)=\frac{1}{\Gamma(a)}\int_0^x\! t^{a-1}e^{-t}\,dt$","fontsize",3.5)
+xlabel(["" "a"], "fontsize",2)
+ylabel("x", "fontsize",2)
+zlabel("P(x,a)", "fontsize",2)
+xgrid
+     ]]></programlisting>
+        <scilab:image>
+            x = 0.1:0.2:8;
+            a = 0.1:0.2:7;
+            [X, A] = ndgrid(x, a);
+            P = gamma(X,A);
+            clf
+            gcf().color_map = coolcolormap(100);
+            surf(a,x,P)
+            title("$P(x,a)=\frac{1}{\Gamma(a)}\int_0^x\! t^{a-1}e^{-t}\,dt$","fontsize",3.5)
+            xlabel(["" "a"], "fontsize",2)
+            ylabel("x", "fontsize",2)
+            zlabel("P(x,a)", "fontsize",2)
+            xgrid
+            gca().rotation_angles = [64 18];
+        </scilab:image>
+        <para/>
+        <para>
+            Incomplete generalized normalized P(x,a,b) function:
+        </para>
+        <programlisting role="example"><![CDATA[
+a = 0.1:0.2:8;
+b = 0.1:0.2:7;
+[A, B] = ndgrid(a, b);
+P = gamma(1,A,B);
+clf
+gcf().color_map = parulacolormap(100);
+surf(b,a,P)
+title("$P(x,a,b)=\frac{b^a}{\Gamma(a)}\int_0^x\! t^{a-1}e^{-b\,t}\,dt\quad for\quad x=1$","fontsize",3.7)
+xlabel("b", "fontsize",2)
+ylabel("a", "fontsize",2)
+zlabel("")
+gca().rotation_angles = [58 75];
+xgrid
+     ]]></programlisting>
+        <scilab:image>
+            a = 0.1:0.2:8;
+            b = 0.1:0.2:7;
+            [A, B] = ndgrid(a, b);
+            P = gamma(1,A,B);
+            clf
+            gcf().color_map = parulacolormap(100);
+            surf(b,a,P)
+            title("$P(x,a,b)=\frac{b^a}{\Gamma(a)}\int_0^x\! t^{a-1}e^{-b\,t}\,dt\quad for\quad x=1$","fontsize",3.7)
+            xlabel("b", "fontsize",2)
+            ylabel("a", "fontsize",2)
+            zlabel("")
+            gca().rotation_angles = [58 75];
+            xgrid
         </scilab:image>
     </refsection>
     <refsection role="see also">
@@ -95,6 +250,9 @@ show_window() ]]></programlisting>
             </member>
             <member>
                 <link linkend="dlgamma">dlgamma</link>
+            </member>
+            <member>
+                <link linkend="cdfgam">cdfgam</link>
             </member>
             <member>
                 <link linkend="factorial">factorial</link>
@@ -120,6 +278,10 @@ show_window() ]]></programlisting>
                   </listitem>
                 </itemizedlist>
               </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revremark>gamma(x,..) incomplete versions added.</revremark>
             </revision>
         </revhistory>
     </refsection>

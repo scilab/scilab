@@ -52,13 +52,11 @@
             <literal>x</literal>の全要素についてガンマ関数を計算します.
             ガンマ関数は以下のように定義されます:
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/gamma_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" fontsize="18" alt="Γ(x)= ∫_0→∞ t^{x-1}.exp(-t).dt">
+                \Gamma(x)=\int_0^\infty\! t^{x-1}e^{-t}\,dt
+            </latex>
+        </para>
         <para>そして,階乗関数を実数に一般化します.
             (<literal>gamma(u+1) = u*gamma(u)</literal>).
         </para>

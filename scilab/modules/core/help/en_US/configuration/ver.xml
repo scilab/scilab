@@ -42,7 +42,17 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 r = ver()
- ]]></programlisting>
+     ]]></programlisting>
+	    <screen><![CDATA[
+--> r = ver()
+ r  =
+  "Scilab Version: "                    "6.1.1.0"                                                         
+  "Operating System: "                  "Windows 10 10.0"                                                 
+  "Java version: "                      "1.8.0_151"                                                       
+  "Java runtime information: "          "Java(TM) SE Runtime Environment (build 1.8.0_151-b12)"           
+  "Java Virtual Machine information: "  "Java HotSpot(TM) 64-Bit Server VM (build 25.151-b12, mixed mode)"
+  "Vendor specification: "              "Oracle Corporation"                                              
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

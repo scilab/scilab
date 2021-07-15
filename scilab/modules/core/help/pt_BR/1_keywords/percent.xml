@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percent" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="percent" xml:lang="pt">
     <refnamediv>
         <refname>percent</refname>
         <refpurpose>caractere especial (%)</refpurpose>
@@ -14,25 +17,24 @@
             booleana<literal>"true"</literal>),...
         </para>
         <para>Ainda, funções cujo nome começa com % são especiais : elas são
-            usadas para primitivas e overloading ("sobrecarga") de operadores (ver
-            <literal>overloading</literal>).
+            usadas para primitivas e overloading ("sobrecarga") de operadores.
         </para>
         <para>
-            Por exemplo, a função <literal>%rmr</literal> realiza a operação de
+            Por exemplo, a função <literal>%r_m_r</literal> realiza a operação de
             multiplicação (<literal>m</literal>) <literal>x*y</literal> para
             <literal>x</literal> e <literal>y</literal> matrizes de razões de
-            polinômios (<literal>r</literal>). As convenções de codificação são
-            fornecidas pelo arquivo "leia-me" no diretório
-            <literal>SCI/modules/overloading/macros</literal>.
+            polinômios (<literal>r</literal>).
+            As convenções de codificação são descritas na página de ajuda <link linkend="overloading">
+            overloading</link>.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-x1=tlist('x',1,2);
-x2=tlist('x',2,3);
-deff('x=%xmx(x1,x2)','x=list(''x'',x1(2)*x2(2),x2(3)*x2(3))');
-x1*x2
+x1 = tlist('x',1,2);
+x2 = tlist('x',2,3);
+deff('x = %x_m_x(x1,x2)','x = list(''x'', x1(2)*x2(2), x2(3)*x2(3))');
+x1 * x2
  ]]></programlisting>
     </refsection>
     <refsection>
@@ -40,6 +42,15 @@ x1*x2
         <simplelist type="inline">
             <member>
                 <link linkend="overloading">overloading</link>
+            </member>
+            <member>
+                <link linkend="names">names</link>
+            </member>
+            <member>
+                <link linkend="symbols">symbols</link>
+            </member>
+            <member>
+                <link linkend="printf_conversion">printf_conversion</link>
             </member>
         </simplelist>
     </refsection>

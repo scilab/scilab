@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
+// Copyright (C) 2020 - Samuel GOUGEON - Le Mans Université
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -211,3 +212,100 @@ mprintf("==>%10s : %08.4f %08.4f %08.4f<==\n\n",A,C,D);
 ==>     row 8 : 048.1851 069.7085 089.0622<==
 ==>     row 9 : 026.3956 084.1552 050.4221<==
 ==>    row 10 : 041.4810 040.6202 034.9362<==
+// Booleans
+// =============================================================================
+n = [%pi ; %e];
+b = [%T ; %F];
+for f = ["d" "i" "u" "o" "x" "X" "g" "G"]
+    mprintf("%"+f+"\n", b);
+    mprintf("%"+f+" %d\n", b, n);
+    if and(f <> ["u" "o" "x" "X"])  // http://bugzilla.scilab.org/16563
+        mprintf("%2$"+f+" %1$d\n", n, b);
+    end
+end
+1
+0
+1 3
+0 2
+1 3
+0 2
+1
+0
+1 3
+0 2
+1 3
+0 2
+1
+0
+1 3
+0 2
+1
+0
+1 3
+0 2
+1
+0
+1 3
+0 2
+1
+0
+1 3
+0 2
+1
+0
+1 3
+0 2
+1 3
+0 2
+1
+0
+1 3
+0 2
+1 3
+0 2
+// %f
+msprintf("%f\n", b);
+mprintf("%f %d\n", b, n);
+1.000000 3
+0.000000 2
+mprintf("%2$f %1$d\n", n, b);
+1.000000 3
+0.000000 2
+// %e
+mprintf("%e\n", b);
+1.000000e+00
+0.000000e+00
+mprintf("%e %d\n", b, n);
+1.000000e+00 3
+0.000000e+00 2
+mprintf("%2$e %1$d\n", n, b);
+1.000000e+00 3
+0.000000e+00 2
+// %E
+mprintf("%E\n", b);
+1.000000E+00
+0.000000E+00
+mprintf("%E %d\n", b, n);
+1.000000E+00 3
+0.000000E+00 2
+mprintf("%2$E %1$d\n", n, b);
+1.000000E+00 3
+0.000000E+00 2
+// %s, %c
+for f = ["s" "c"]
+    mprintf("%"+f+"\n", b);
+    mprintf("%"+f+" %d\n", b, n);
+    mprintf("%2$"+f+" %1$d\n", n, b);
+end
+T
+F
+T 3
+F 2
+T 3
+F 2
+T
+F
+T 3
+F 2
+T 3
+F 2

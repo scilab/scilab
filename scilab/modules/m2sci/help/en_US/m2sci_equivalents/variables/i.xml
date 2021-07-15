@@ -31,22 +31,23 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 i
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
 %i
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Only Matlab allows to change the value of this variable.
-        </para>
+        <warning>
+            <para>
+                Matlab allows to change the value of this variable. Then <literal>clear i</literal>
+                resets its value to the default one. With Scilab, <literal>%i</literal> is a
+                read-only protected constant.
+            </para>
+        </warning>
     </refsection>
 </refentry>

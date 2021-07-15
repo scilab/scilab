@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[y]=intl(a,b,z0,r,f)</synopsis>
+        <synopsis>y = intl(a, b, z0, r, f)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -66,11 +66,11 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-function y=f(z)
+function y = f(z)
   y = z^(3 + %pi * %i)
 endfunction
 
-intl(1,2,1+%i, 3, f)
+intl(1, 2, 1+%i, 3, f)
  ]]></programlisting>
     </refsection>
 

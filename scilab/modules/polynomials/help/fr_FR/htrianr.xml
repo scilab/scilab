@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[Ar,U,rk]=htrianr(A)</synopsis>
+        <synopsis>[Ar, U, rk] = htrianr(A)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>U  </term>
                 <listitem>
-                    <para>matrice unimodulaire de polynômes
+                    <para>matrice unimodulaire de polynômes.
                     </para>
                 </listitem>
             </varlistentry>
@@ -48,7 +48,7 @@
             triangularisation de la matrice de polynômes <literal>A</literal>.
         </para>
         <para>
-            <literal>A</literal> de taille <literal>[m,n]</literal>, <literal>m &lt;= n</literal>.
+            <literal>A</literal> de taille <literal>[m,n]</literal>, <literal>m ≤ n</literal>.
         </para>
         <para>
             <literal>Ar=A*U</literal>
@@ -62,12 +62,12 @@
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-x=poly(0,'x');
-M=[x;x^2;2+x^3]*[1,x-2,x^4];
-[Mu,U,rk]=htrianr(M)
+x = poly(0,'x');
+M = [x ; x^2 ; 2+x^3]*[1, x-2, x^4];
+[Mu, U, rk] = htrianr(M)
 det(U)
 M*U(:,1:2)
- ]]></programlisting>
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

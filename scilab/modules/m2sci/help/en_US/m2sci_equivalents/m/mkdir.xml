@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,22 +31,24 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-mkdir
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+mkdir(dirName)
+mkdir(parentDir, dirName)
+status = mkdir(..)
+[status, msg] = mkdir(..)
+[status, msg, msgID] = mkdir(..)
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-mkdir
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+mkdir(dirName)
+mkdir(parentDir, dirName)
+status = mkdir(..)
+[status, msg] = mkdir(..)
+// No equivalent
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Scilab <emphasis role="bold">mkdir</emphasis> returns 1 or 2 values but Matlab one can return up to three values (third output is a Matlab messageid).
-        </para>
     </refsection>
 </refentry>

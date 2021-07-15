@@ -20,23 +20,18 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>ve = isdef(name [,where])</synopsis>
+        <synopsis>
+            ve = isdef(name)
+            ve = isdef(name, where)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>ve</term>
-                <listitem>
-                    <para>
-                        a matrix with the same size as <varname>name</varname> with boolean values
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>name</term>
                 <listitem>
-                    <para>a matrix of character strings</para>
+                    <para>matrix of strings: names of queried variables.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -47,6 +42,14 @@
                         <literal>'n'</literal> (for <literal>"nolocal"</literal>) or
                         <literal>'a'</literal> (for <literal>"all"</literal>). Default value is
                         <literal>'a'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ve</term>
+                <listitem>
+                    <para>
+                        a matrix with the same size as <varname>name</varname> with boolean values
                     </para>
                 </listitem>
             </varlistentry>

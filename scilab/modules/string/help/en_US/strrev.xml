@@ -19,7 +19,7 @@
     <refnamediv>
         <refname>strrev</refname>
         <refpurpose>
-            Reverses the order of characters in the given texts
+            Reverses the order of characters in the given strings
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

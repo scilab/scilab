@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="splin2d" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="splin2d" xml:lang="pt">
     <refnamediv>
         <refname>splin2d</refname>
         <refpurpose>interpolação por spline bicúbico em grides 2d</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>C = splin2d(x, y, z, [,spline_type])</synopsis>
+        <synopsis>
+            C = splin2d(x, y, z)
+            C = splin2d(x, y, z, spline_type)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -61,15 +67,15 @@
             ,<emphasis>s</emphasis> é definido por
             :
         </para>
-        <programlisting role=""><![CDATA[
-             _4_   _4_
-             \     \                   k-1       l-1
-    s(x,y) = /     /    C (k,l) (x - xi)  (y - yj)
-             ---   ---   ij
-             k=1   l=1
- ]]></programlisting>
         <para>
-            A avaliação de s em alguns pontos deve ser feita pela função <link linkend="interp2d">interp2d</link> Vários tipos de splines podem ser
+            <latex style="display" fontsize="18"
+                   alt="s(x,y) = ∑_m=1→4 ∑_n=1→4 c_ij(m,n).(x-x_i)^{m-1}.(y-y_j)^{n-1}">
+                s(x,y)=\sum_{k=1}^4\sum_{l=1}^4 c_{ij}(k,l)\cdot(x-x_i)^{k-1}\cdot(y-y_j)^{l-1}
+            </latex>
+        </para>
+        <para>
+            A avaliação de s em alguns pontos deve ser feita pela função
+            <link linkend="interp2d">interp2d</link> Vários tipos de splines podem ser
             computados selecionando o parâmetro <literal>spline_type</literal>
             apropriado. O método usada para computar os splines (ou sub-spline)
             bicúbicos é o mesmo do antigo, i.e., computar em cada ponto do grid
@@ -127,7 +133,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // exemplo 1 : interpolação de cos(x)cos(y)
 n = 7;  // um grid regular com n x n pontos de interpolação
         // será usado
@@ -143,9 +149,11 @@ clf()
 plot3d(xx, yy, zz, flag=[2 4 4])
 [X,Y] = ndgrid(x,y);
 param3d1(X,Y,list(z,-9*ones(1,n)), flag=[0 0])
-str = msprintf(" com %d x %d pontos de interpolação. ermax = %g",n,n,emax) 
+str = msprintf(" com %d x %d pontos de interpolação. ermax = %g",n,n,emax)
 xtitle("Interpolação por spline de cos(x)cos(y)"+str)
-
+     ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
 // exemplo 2 : diferentes funções de interpolação em dados aleatórios
 n = 6;
 x = linspace(0,1,n); y = x;
@@ -171,8 +179,9 @@ xtitle("natural")
 subplot(2,2,4)
 plot3d1(xp, yp, ZP4, flag=[2 2 4])
 xtitle("monotone")
-show_window()
-
+     ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
 // exemplo 3 : spline not_a_knot e sub-spline monotone
 //             em uma função de degraus
 a = 0; b = 1; c = 0.25; d = 0.75;
@@ -196,7 +205,7 @@ xtitle("spline (not_a_knot)")
 subplot(1,2,2)
 plot3d1(xp, xp, zp2, flag=[-2 6 4])
 xtitle("subspline (monotone)")
- ]]></programlisting>
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>

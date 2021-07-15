@@ -170,6 +170,9 @@ int StaticRunner::launch()
         // send the good signal about the end of execution
         sendExecDoneSignal();
 
+        // send information about execution done to debuggers
+        manager->sendExecutionReleased();
+
         // set back the runner wich have been overwritten in StaticRunner::getRunner
         m_CurrentRunner.store(pRunSave);
         throw ia;
@@ -200,6 +203,9 @@ int StaticRunner::launch()
 
     // send the good signal about the end of execution
     sendExecDoneSignal();
+
+    // send information about execution done to debuggers
+    manager->sendExecutionReleased();
 
     //clean debugger step flag if debugger is not interrupted ( end of debug )
     manager->resetStep();

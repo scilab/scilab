@@ -1,142 +1,202 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="power">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="power">
     <refnamediv>
         <refname>power</refname>
         <refpurpose>指数演算子 (^,.^)   </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>t=A^b
-            t=A**b
-            t=A.^b
+        <synopsis>
+            t = A ^ b
+            t = A ** b
+            t = A .^ b
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
         <variablelist>
             <varlistentry>
-                <term>A,t</term>
+                <term>A, t</term>
                 <listitem>
-                    <para>スカラー, 多項式または有理行列.</para>
+                    a scalar, vector, or matrix of encoded integers, decimal or complex numbers,
+                    polynomials, or rationals.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>b</term>
                 <listitem>
-                    <para>スカラー, ベクトルまたはスカラーの行列.</para>
+                    a scalar, vector, or matrix of encoded integers, decimal or complex numbers.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
+        <para>
+            If an operand are encoded integers, the other one can be only encoded integers or real
+            numbers.
+        </para>
+        <para>
+            If <varname>A</varname> are polynomials or rationals, <varname>b</varname> can only be
+            a single decimal (positive or negative) integer.
+        </para>
     </refsection>
     <refsection>
         <title>説明</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <literal>A</literal> が正方行列で<literal>b</literal> がスカラーの場合,
-                    <literal>A^b</literal>は行列<literal>A</literal>の<literal>b</literal>乗に
-                    なります.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <literal>b</literal> がスカラーで<literal>A</literal>が行列の場合,
-                    <literal>A.^b</literal>は<literal>A</literal>の各要素を<literal>b</literal>乗
-                    (要素毎の累乗)にした行列となります.
-                    <literal>A</literal> がベクトルで <literal>b</literal> がスカラーの場合,
-                    <literal>A^b</literal> と <literal>A.^b</literal> は同じ意味となります
-                    (すなわち,要素毎の累乗).
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <literal>A</literal> がスカラーで,<literal>b</literal> が行列 (またはベクトル)の場合,
-                    <literal>A^b</literal> および <literal>A.^b</literal> は,
-                    <literal> a^(b(i,j))</literal> により構成される行列 (またはベクトル) となります.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <literal>A</literal> および <literal>b</literal>  が同じ大きさのベクトル (行列) の場合,
-                    <literal>A.^b</literal> はベクトル <literal>A(i)^b(i)</literal>
-                    (行列<literal>A(i,j)^b(i,j)</literal>)となります.
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection>
-        <title>追加の注記</title>
-        <para>
-            <note>注意:</note>
-        </para>
-        <para>
-            1.正方行列の場合, <literal>A^p</literal>は,
-            <literal>p</literal>が正のスカラーの場合は行列の逐次乗算により計算され,
-            それ以外の場合,<emphasis>対角化</emphasis>により計算されます
-            (詳細は"注記2および3"を参照).
-        </para>
-        <para>
-            2. <varname>A</varname>が正方かつエルミート行列で
-            <varname>p</varname> が整数でないスカラーの場合,
-            <literal>A^p</literal> は以下の様に計算されます:
-        </para>
-        <para>
-            <code>A^p = u*diag(diag(s).^p)*u'</code> (<varname>A</varname>が実数行列の場合,
-            答えの実部のみが考慮されます).
-        </para>
-        <para>
-            <varname>u</varname>および<varname>s</varname> は, <code>[u,s] = schur(A)</code>
-            により定義されます.
-        </para>
-        <para>
-            3. <varname>A</varname> がエルミート行列でなく,
-            <varname>p</varname> が非整数スカラーの場合,
-            <literal>A^p</literal> は以下の様に計算されます:
-        </para>
-        <para>
-            <code>A^p = v*diag(diag(d).^p)*inv(v)</code>
-            (<varname>A</varname>が実数行列の場合, 答えの実部のみが考慮されます).
-        </para>
-        <para>
-            <varname>d</varname> および <varname>v</varname> は,
-            <code>[d,v] = bdiag(A+0*%i)</code>により定義されます.
-        </para>
-        <para>
-            4. <varname>A</varname> および <varname>p</varname> が実数または複素数の場合,
-            <literal>A^p</literal> は以下のように計算される
-            <emphasis>主値</emphasis>となります:
-        </para>
-        <para>
-            <code>A^p = exp(p*log(A))</code> (または<code>A^p = exp(p*(log(abs(A))+ %i*atan(imag(A)/real(A))))</code> ).
-        </para>
-        <para>
-            5. <varname>A</varname> が正方行列で
-            <varname>p</varname> が実数または複素数の場合,
-            <literal>A.^p</literal> は以下のように計算される
-            <emphasis>主値</emphasis> となります:
-        </para>
-        <para>
-            <code>A.^p = exp(p*log(A))</code> (上記のケース4と同じ).
-        </para>
-        <para>
-            6. <literal>**</literal> および <literal>^</literal> 演算子は同義です.
-        </para>
+        <refsect3>
+            <title>.^ by-element power</title>
+            <para>
+                If <varname>A</varname> or <varname>b</varname> is scalar, it is first
+                replicated to the size of the other, with A*ones(b) or b*ones(A).
+                Otherwise, <varname>A</varname> and <varname>b</varname> must have the same size.
+            </para>
+            <para>
+                Then, for each element of index i, <literal>t(i) = A(i)^b(i)</literal>
+                is computed.
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>^ matricial power</title>
+            <para>
+                The ^ operator is equivalent to the .^ by-element power in the following cases:
+                <itemizedlist>
+                    <listitem>
+                        <varname>A</varname> is scalar and <varname>b</varname> is a vector.
+                    </listitem>
+                    <listitem>
+                        <varname>A</varname> is a vector and <varname>b</varname> is scalar.
+                    </listitem>
+                </itemizedlist>
+                Otherwise, <varname>A</varname> or <varname>b</varname> must be a scalar,
+                and the other one must be a square matrix:
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            If <varname>A</varname> is scalar and <varname>b</varname> is
+                            a square matrix, then <literal>A^b</literal> is the matrix
+                            <literal>expm(log(A) * b)</literal>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            If <varname>A</varname> is a square matrix and <varname>b</varname>
+                            is scalar, then  <literal>A^b</literal> is the matrix
+                            <varname>A</varname> to the power <varname>b</varname>.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>追加の注記</title>
+            <orderedlist>
+                <listitem> <!-- #1 -->
+                    <para>
+                        正方行列の場合, <literal>A^p</literal>は,
+                        <literal>p</literal>が正のスカラーの場合は行列の逐次乗算により計算され,
+                        それ以外の場合,<emphasis>対角化</emphasis>により計算されます
+                        (詳細は"注記2および3"を参照).
+                    </para>
+                </listitem>
+                <listitem> <!-- #2 -->
+                    <para>
+                        <varname>A</varname>が正方かつエルミート行列で
+                        <literal>p</literal> が整数でないスカラーの場合,
+                        <literal>A^p</literal> は以下の様に計算されます:
+                    </para>
+                    <para>
+                        <code>A^p = u*diag(diag(s).^p)*u'</code> (<varname>A</varname>が実数行列の場合,
+                        答えの実部のみが考慮されます).
+                    </para>
+                    <para>
+                        <literal>u</literal>および<literal>s</literal> は, <code>[u,s] = schur(A)</code>
+                        により定義されます.
+                    </para>
+                </listitem>
+                <listitem> <!-- #3 -->
+                    <para>
+                        <varname>A</varname> がエルミート行列でなく,
+                        <literal>p</literal> が非整数スカラーの場合,
+                        <literal>A^p</literal> は以下の様に計算されます:
+                    </para>
+                    <para>
+                        <code>A^p = v*diag(diag(d).^p)*inv(v)</code>
+                        (<varname>A</varname>が実数行列の場合, 答えの実部のみが考慮されます).
+                    </para>
+                    <para>
+                        <literal>d</literal> および <literal>v</literal> は,
+                        <code>[d,v] = bdiag(A+0*%i)</code>により定義されます.
+                    </para>
+                </listitem>
+                <listitem> <!-- #4 -->
+                    <para>
+                        <varname>A</varname> および <literal>p</literal> が実数または複素数の場合,
+                        <literal>A^p</literal> は以下のように計算される
+                        <emphasis>主値</emphasis>となります:
+                    </para>
+                    <para>
+                        <code>A^p = exp(p*log(A))</code>
+                    </para>
+                    <para>
+                        (または<code>A^p = exp(p*(log(abs(A))+ %i*atan(imag(A)/real(A))))</code> ).
+                    </para>
+                </listitem>
+                <listitem> <!-- #5 -->
+                    <para>
+                        <varname>A</varname> が正方行列で
+                        <literal>p</literal> が実数または複素数の場合,
+                        <literal>A.^p</literal> は以下のように計算される
+                        <emphasis>主値</emphasis> となります:
+                    </para>
+                    <para>
+                        <code>A.^p = exp(p*log(A))</code> (上記のケース4と同じ).
+                    </para>
+                </listitem>
+                <listitem> <!-- #6 -->
+                    <para>
+                        <literal>**</literal> および <literal>^</literal> 演算子は同義です.
+                    </para>
+                </listitem>
+            </orderedlist>
+            <para>
+                <warning>
+                    Exponentiation is right-associative in Scilab, contrarily to Matlab® and Octave.
+                    For example 2^3^4 is equal to 2^(3^4) in Scilab, but to (2^3)^4 in Matlab® and
+                    Octave.
+                </warning>
+            </para>
+        </refsect3>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-A=[1 2;3 4];
-A^2.5,
-A.^2.5
-(1:10)^2
-(1:10).^2
+A = [1 2 ; 3 4];
+A ^ 2.5,
+A .^ 2.5
+(1:10) ^ 2
+(1:10) .^ 2
 
-A^%i
-A.^%i
+A ^ %i
+A .^ %i
 exp(%i*log(A))
 
-s=poly(0,'s')
-s^(1:10)
+s = poly(0,'s')
+s ^ (1:10)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -146,8 +206,27 @@ s^(1:10)
                 <link linkend="exp">exp</link>
             </member>
             <member>
+                <link linkend="expm">expm</link>
+            </member>
+            <member>
                 <link linkend="hat">hat</link>
             </member>
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    With decimal or complex numbers, <literal>scalar ^ squareMat</literal> now
+                    yields <literal>expm(log(scalar)*squareMat)</literal> instead of
+                    <literal>scalar .^ squareMat</literal>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

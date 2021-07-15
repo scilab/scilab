@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,14 +14,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mfprintf" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="mfprintf" xml:lang="ru">
     <refnamediv>
         <refname>mfprintf</refname>
         <refpurpose>преобразует, форматирует и записывает данные в файл</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>mfprintf(fd, format, a1, ..., an);</synopsis>
+        <synopsis>mfprintf(fd, format, a1, ..., an)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -31,7 +34,7 @@
                 <listitem>
                     <para>
                         скаляр, файловый дескриптор, предоставленный с помощью
-                        <function>mopen</function> (это положительное число).
+                        <literal>mopen</literal> (это положительное число).
                     </para>
                     <para>
                         Если <varname>fd</varname> равен 0, то перенаправление в
@@ -51,18 +54,14 @@
                 <term>format</term>
                 <listitem>
                     <para>
-                        Scilab-строка, описывающая формат, который нужно использовать для
-                        записи оставшихся операндов. Операнд <varname>format</varname>
-                        следует как можно ближе к синтаксису операндов формата
-                        <function>printf</function> в языке C.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>str</term>
-                <listitem>
-                    <para>
-                        символьная строка: строка, которую нужно отсканировать.
+                        a string providing the format to use to write all next arguments.
+                        The <varname>format</varname> follows -- as close as possible -- the C printf
+                        format operand syntax, as described in the
+                        <link linkend="printf_conversion">printf_conversion</link> page.
+                        UTF-8 extended characters are supported.
+                        <warning>
+                            Numbered placeholders "%n$.." are not supported.
+                        </warning>
                     </para>
                 </listitem>
             </varlistentry>
@@ -70,7 +69,9 @@
                 <term>a1, ..., an</term>
                 <listitem>
                     <para>
-                        данные, которые преобразуются и распечатываются в соответствии с параметром формата.
+                        Data to be converted and written according to the <varname>format</varname>
+                        argument. Supported types: all numbers, booleans, strings. Only the real part
+                        of complex numbers is considered (current Scilab limitation).
                     </para>
                 </listitem>
             </varlistentry>
@@ -79,28 +80,30 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>mfprintf</function> является интерфейсом для версии функции <function>fprintf</function> на языке C.
+            <literal>mfprintf(fd, format, a1, a2, ..)</literal> replaces placeholders provided
+            in the <varname>format</varname> string with values of <varname>a1</varname>,
+            <varname>a2</varname>, .. converted according to each respective placeholder directive,
+            and writes the result to the file specified by its index <varname>fd</varname>.
         </para>
         <para>
-            Функция <function>mfprintf</function> записывает форматированные
-            операнды в файл, указанный файловым дескриптором <varname>fd</varname>.
-            Операнды аргумента форматируются по управлением операнда
-            <varname>format</varname>.
+            If <varname>a1</varname>, <varname>a2</varname>, .. are arrays with multiple rows,
+            they feed the format row by row: the format is used iteratively for every row of the
+            (horizontally "concatenated") arrays, until the bottom
+            of the least tall array is reached. Remaining rows of taller arrays (if any) are ignored.
+            See examples.
         </para>
         <para>
-            Эта функция может быть использована для вывода векторов-столбцов чисел и
-            строковых векторов без явных циклов по элементам. В этом случае функция
-            проводит итерации по строкам. Наиболее короткий вектор даёт количество раз, сколько формат будет повторён.
+            If the total number of columns of <varname>a1</varname>, <varname>a2</varname>, ..
+            is bigger than the number of placeholders in the <varname>format</varname>,
+            then extra columns are ignored. If it is smaller, an error is yielded.
         </para>
         <para>
-            Однородная последовательность параметров одинакового типа может быть
-            заменена матрицей.
+            Функция <literal>mfprintf</literal> является интерфейсом для версии функции <literal>fprintf</literal> на языке C.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-
 fd = mopen(TMPDIR+'/text.txt','wt');
 mfprintf(fd,'Привет, %s %d.\n','мир!',1);
 mfprintf(fd,'Привет, %s %d.\n','Scilab',2);
@@ -109,62 +112,99 @@ mfprintf(fd,'Эта строка построена с помощью векто
 A = rand(3,6);
 mfprintf(fd,'Эта строка построена с помощью матрицы %.3f.\n',A);
 mclose(fd);
-if (isdef('editor') | (funptr('editor')<>0)) then
-  editor(TMPDIR+'/text.txt')
-end
+editor(TMPDIR+'/text.txt')
+
 mfprintf(0,'stderr output.\n');
 mfprintf(6,'stdout output.\n');
- ]]></programlisting>
+     ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
+I = (1:4)';
+A = [26.93 ; 63.25 ; 40.51 ; 91.84];
+B = [ 3.62 ; 15.04 ; 25.3  ; 48.19];
+C = [ 4.37   28.06
+     48.18   %inf
+     41.48   %nan
+     26.39   77.83];
+Status = ["NOK" "NOK" "NOK" "OK"]';
+Format = "Iteration %d: Results: A= %f   B= %2d%%  Status= %3s   C(1)= %g  C(2)= %e\n";
+File = TMPDIR + "/mfprintf.txt";
+fd = mopen(File, 'wt');
+mfprintf(fd, Format, I, A, B, Status, C);
+mclose
+editor(File)
+     ]]></programlisting>
+        <screen><![CDATA[
+Iteration 1: Results: A= 26.930000   B=  3%  Status= NOK   C(1)= 4.37  C(2)= 2.806000e+01
+Iteration 2: Results: A= 63.250000   B= 15%  Status= NOK   C(1)= 48.18  C(2)= Inf
+Iteration 3: Results: A= 40.510000   B= 25%  Status= NOK   C(1)= 41.48  C(2)= Nan
+Iteration 4: Results: A= 91.840000   B= 48%  Status=  OK   C(1)= 26.39  C(2)= 7.783000e+01
+]]></screen>
+        <para/>
+        <para>
+            Supernumerary columns or rows are ignored:
+        </para>
+        <programlisting role="example"><![CDATA[
+A = [%T  %F  %T  %T  %F]';
+B = [ 4.37   28.06
+     48.18   %inf
+     41.48   %nan ];
+File = TMPDIR + "/mfprintf.txt";
+fd = mopen(File, 'wt');
+mfprintf(fd, "OK? %s  Value: %4.1f\n", A, B)
+mclose
+editor(File)
+     ]]></programlisting>
+        <screen><![CDATA[
+OK? T  Value:  4.4
+OK? F  Value: 48.2
+OK? T  Value: 41.5
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="mclose">mclose</link>
+                <link linkend="printf_conversion">printf_conversion</link>
             </member>
             <member>
-                <link linkend="meof">meof</link>
+                <link linkend="csvWrite">csvWrite</link>
             </member>
             <member>
                 <link linkend="fprintfMat">fprintfMat</link>
             </member>
             <member>
-                <link linkend="mfscanf">mfscanf</link>
+                <link linkend="write">write</link>
             </member>
             <member>
-                <link linkend="fscanfMat">fscanfMat</link>
-            </member>
-            <member>
-                <link linkend="mget">mget</link>
-            </member>
-            <member>
-                <link linkend="mgetstr">mgetstr</link>
-            </member>
-            <member>
-                <link linkend="mopen">mopen</link>
-            </member>
-            <member>
-                <link linkend="mprintf">mprintf</link>
-            </member>
-            <member>
-                <link linkend="mput">mput</link>
+                <link linkend="mputl">mputl</link>
             </member>
             <member>
                 <link linkend="mputstr">mputstr</link>
             </member>
             <member>
-                <link linkend="mseek">mseek</link>
+                <link linkend="mopen">mopen</link>
             </member>
             <member>
-                <link linkend="mtell">mtell</link>
+                <link linkend="mclose">mclose</link>
             </member>
             <member>
-                <link linkend="mdelete">mdelete</link>
+                <link linkend="mprintf">msprintf</link>
             </member>
             <member>
-                <link linkend="printf_conversion">преобразование в printf</link>
+                <link linkend="mfscanf">mfscanf</link>
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Input data can be boolean.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
-

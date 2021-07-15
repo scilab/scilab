@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,55 +13,70 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="union" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="union" xml:lang="ru">
     <refnamediv>
         <refname>union</refname>
-        <refpurpose>выделяет объединение компонентов векторов</refpurpose>
+        <refpurpose>Множество всех элементов, строк или столбцов двух массивов без дубликатов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            [v [,ka, kb] ] = union(a,b)
-            [v [,ka, kb] ] = union(a,b,orient)
+            [v, ka, kb] = union(a, b)
+            [v, ka, kb] = union(a, b, orient)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>a</term>
+                <term>a, b</term>
                 <listitem>
-                    <para>вектор или матрица чисел или строк</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>b</term>
-                <listitem>
-                    <para>вектор вещественных числе или строк</para>
+                    массивы логических значений, чисел или текста. Допускаются разрежённые логические
+                    или числовые матрицы. Типы <varname>a</varname> и <varname>b</varname> могут
+                    отличаться, но должны быть совместимыми для конкатенации.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orient</term>
                 <listitem>
-                    <para>флаг с возможными значениями: 1 или "r", 2 или "c".</para>
+                    направление обработки:
+                    <itemizedlist>
+                        <listitem>
+                            1 или "r": объединение выполняется по строкам;
+                        </listitem>
+                        <listitem>
+                            2 или "c": объеднение выполняется по столбцам.
+                        </listitem>
+                    </itemizedlist>
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>вектор-строка или матрица чисел или строк</para>
+                    вектор-строка или матрица. Тип данных <varname>v</varname> является типом
+                    результата <literal>[a(:) ; b(:)]</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ka</term>
                 <listitem>
-                    <para>вектор-строка целых чисел</para>
+                    вектор-строка целых чисел: индексы в <varname>a</varname> элементов/строк/столбцов
+                    <varname>v</varname>, пришедшие из <varname>a</varname>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>kb</term>
                 <listitem>
-                    <para>вектор-строка целых чисел</para>
+                    вектор-строка целых чисел: индексы в <varname>b</varname> оставшихся
+                    элементов/строк/столбцов <varname>v</varname>, пришедших из <varname>b</varname>.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -69,21 +84,26 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>union(a,b)</literal> возвращает отсортированный вектор-строку, который
+            <literal>union(a,b)</literal> возвращает отсортированную вектор-строку, которая
             содержит уникальные элементы <literal>[a(:);b(:)]</literal>.
         </para>
         <para>
             <literal>union(a,b,"r")</literal> или <literal>union(a,b,1)</literal>
             возвращает матрицу, сформированную объединением уникальных строк <literal>a</literal>
-            и <literal>b</literal>, отсортированную в лексикографическом порядке возрастания. В этом случае матрицы <literal>a</literal> и <literal>b</literal> должны иметь одинаковое количество столбцов.
+            и <literal>b</literal>, отсортированную в лексикографическом порядке возрастания.
+            В этом случае матрицы <literal>a</literal> и <literal>b</literal> должны иметь
+            одинаковое количество столбцов.
         </para>
         <para>
             <literal>union(a,b,"c")</literal> или <literal>union(a,b,2)</literal>
             возвращает матрицу, сформированную объединением уникальных столбцов
-            <literal>a</literal> and <literal>b</literal>, отсортированную в лексикографическом порядке возрастания. В этом случае матрицы <literal>a</literal> и <literal>b</literal> должны иметь одинаковое количество строк.
+            <literal>a</literal> и <literal>b</literal>, отсортированную в лексикографическом
+            порядке возрастания. В этом случае матрицы <literal>a</literal> и <literal>b</literal>
+            должны иметь одинаковое количество строк.
         </para>
         <para>
-            <literal>[v,ka,kb]=union(a,b)</literal> также возвращает векторы индексов     <literal>ka</literal> и <literal>kb</literal> такие, что <literal>v</literal> является
+            <literal>[v,ka,kb]=union(a,b)</literal> также возвращает векторы индексов
+            <literal>ka</literal> и <literal>kb</literal> такие, что <literal>v</literal> является
             сортированной комбинацией элементов <literal>a(ka)</literal> и
             <literal>b(kb)</literal>.
         </para>
@@ -91,24 +111,113 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-A=round(5*rand(10,1));
-B=round(5*rand(7,1));
+A = [6  7  6 ; 5  8  3 ];
+B = [1  7  1  0  6 ];
 
-union(A,B)
-[N,ka,kb]=union(A,B)
+union(A, B)
+[u, ka, kb] = union(A, B)
+     ]]></programlisting>
+     <screen><![CDATA[
+--> union(A, B)
+ ans  =
+   0.   1.   3.   5.   6.   7.   8.
 
-union('a'+string(A),'b'+string(B))
- ]]></programlisting>
+--> [u, ka, kb] = union(A, B)
+ u  =
+   0.   1.   3.   5.   6.   7.   8.
+ ka  =
+   6.   2.   1.   3.   4.
+ kb  =
+   4.   1.
+]]></screen>
+        <para/>
+        <programlisting role="example"><![CDATA[
+A = ["a" "b" "a" "c" "c" "b"
+     "b" "c" "a" "b" "c" "c" ];
+B = ["b" "a" "c" "c" "b" "a"
+     "a" "c" "b" "b" "b" "b" ];
+
+[U, ka, kb] = union(A, B, "c")
+     ]]></programlisting>
+     <screen><![CDATA[
+--> [U, ka, kb] = union(A, B, "c")
+ U  =
+  "a"  "a"  "a"  "b"  "b"  "b"  "c"  "c"
+  "a"  "b"  "c"  "a"  "b"  "c"  "b"  "c"
+
+ ka  =
+   3.   1.   2.   4.   5.
+
+ kb  =
+   2.   1.   5.
+]]></screen>
+        <para/>
+        <programlisting role="example"><![CDATA[
+[F, T] = (%f, %t);
+A = sparse([T T F T F T ; F F F F T T ; T F F F F T ]); full(A)
+B = sparse([F F T T F F ; T T T T T T ; T F T T T F ]); full(B)
+
+[U, ka, kb] = union(A, B, "c");
+issparse(U)
+full(U), ka, kb
+     ]]></programlisting>
+     <screen><![CDATA[
+--> A = sparse([T T F T F T ; F F F F T T ; T F F F F T ]); full(A)
+ ans  =
+  T T F T F T
+  F F F F T T
+  T F F F F T
+
+--> B = sparse([F F T T F F ; T T T T T T ; T F T T T F ]); full(B)
+ ans  =
+  F F T T F F
+  T T T T T T
+  T F T T T F
+
+--> [U, ka, kb] = union(A, B, "c");
+--> issparse(U)
+ ans  =
+  T
+
+--> full(U), ka, kb
+ ans  =
+  F F F T T T
+  F T T F F T
+  F F T F T T
+
+ ka  =
+   3.   5.   2.   1.   6.
+ kb  =
+   1.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="unique">unique</link>
+                <link linkend="brackets">квадратные скобки</link>
             </member>
             <member>
-                <link linkend="gsort">gsort</link>
+                <link linkend="unique">unique</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Расширение до логических матриц.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Расширение до разреженных логических, разреженных вещественных и разреженных
+                    комплексных матриц.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

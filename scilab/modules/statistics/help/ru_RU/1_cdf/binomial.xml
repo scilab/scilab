@@ -13,14 +13,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="binomial" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="binomial" xml:lang="ru">
     <refnamediv>
         <refname>binomial</refname>
         <refpurpose>вероятности по биномиальному распределению</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>pr=binomial(p,n)</synopsis>
+        <synopsis>pr = binomial(p, n)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -48,15 +51,18 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>pr=binomial(p,n)</literal> возвращает вектор вероятности по биномиальному распределению, т. е. <literal>pr(k+1)</literal> равно вероятности      <literal>k</literal> "успехов" в <literal>n</literal> независимых экспериментах с вероятностью "успеха" в каждом из них <literal>p</literal>. Другими словами: <literal>pr(k+1) = вероятности (X=k)</literal>, где X - случайное значение по распределению B(n,p), и численно:
+            <literal>pr=binomial(p,n)</literal> возвращает вектор вероятности по биномиальному
+            распределению, т. е. <literal>pr(k+1)</literal> равно вероятности <literal>k</literal>
+            "успехов" в <literal>n</literal> независимых экспериментах с вероятностью "успеха"
+            в каждом из них <literal>p</literal>. Другими словами:
+            <literal>pr(k+1) = вероятности (X=k)</literal>, где X - случайное значение по
+            распределению B(n,p), и численно :
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../mml/binomial_equation_1_ru_RU.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" alt="pr(k+1) = p^k (1-p)^(n-k) n!/[k!(n-k)!]">
+                pr(k+1)=\left(\frac{n!}{k!\,(n-k)!}\right)\,p^k\,(1-p)^{n-k}
+            </latex>
+        </para>
     </refsection>
     <refsection>
         <title>Примеры</title>

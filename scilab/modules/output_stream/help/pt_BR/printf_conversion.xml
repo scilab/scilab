@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="printf_conversion" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="printf_conversion" xml:lang="pt">
     <refnamediv>
         <refname>printf_conversion</refname>
         <refpurpose>Especificações de conversão de mprintf, msprintf,
@@ -32,57 +35,76 @@
             </listitem>
             <listitem>
                 <para>
+                    An optional integer n ≥ 1 followed by "$". n is the index of the input data
+                    to substitute to the placeholder, in the msprintf, mprintf .. list of input data.
+                    In a format string, placeholders are either all numbered or all non-numbered.
+                    A given numbered placeholder can be used only once in its C-format string
+                    (Scilab limitation).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
                     Zero ou mais <literal>options</literal> (opções), que modificam
                     o significado da especificação de conversão. A lista seguinte contem
                     os caracteres <literal>option</literal> e seus significados:
                 </para>
-            </listitem>
-            <listitem>
-                <para>Alinhe à esquerda, dentro do campo, o resultado da
-                    conversão.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Comece o resultado de uma conversão com sinal com um sinal (+ ou
-                    -).
-                </para>
-            </listitem>
-            <listitem>
-                <para>Prefixe um caractere de espaço ao resultado se o primeiro
-                    caractere de uma conversão com sinal não for um sinal. Se ambas as
-                    opções (espaço) e + aparecerem, a opção (space) é ignorada.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Converta o valor para uma forma alternativa. Para as conversões
-                    <literal>c</literal>, <literal>d</literal>, <literal>i</literal>,
-                    <literal>s</literal>, e <literal>u</literal>, a opção
-                    <literal>#</literal> não possui efeito. Para a conversão
-                    <literal>o</literal>, <literal>#</literal> aumenta a precisão para
-                    forçar o primeiro dígito do resultado a ser 0 (zero). Para as
-                    conversões <literal>x</literal> e <literal>X</literal>, um valor
-                    não-nulo possui 0x ou 0X prefixado a ele. Para as conversões
-                    <literal>e, E, f, g,</literal> e <literal>G</literal>, o resultado
-                    sempre contém ponto decimal, Mesmo que nenhum dígito o siga. Para as
-                    conversões <literal>g</literal> e <literal>G</literal>, zeros por
-                    último não são removidos.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Aumente a largura do campo utilizando zeros à esquerda (seguindo
-                    qualquer indicação de sinal ou base) para as conversões
-                    <literal>d</literal>, <literal>i</literal>, <literal>o</literal>,
-                    <literal>u</literal>, <literal>x</literal>, <literal>X</literal>,
-                    <literal>e</literal>, <literal>E</literal>, <literal>f</literal>,
-                    <literal>g</literal>, e <literal>G</literal>; nenhum aumento de espaço
-                    é realizado. Se ambos os indicadores <literal>0</literal> e
-                    <literal>\-</literal> (barra) aparecerem, o indicador
-                    <literal>0</literal> é ignorado. Para as conversões
-                    <literal>d</literal>, <literal>i</literal>, <literal>o</literal>
-                    <literal>u</literal>, <literal>x</literal>, e <literal>X</literal>, se
-                    uma precisão for especificada, o indicador <literal>0</literal> também
-                    é ignorado.
-                </para>
+                <table>
+                    <tr>
+                        <th>- :</th>
+                        <td>
+                            Alinhe à esquerda, dentro do campo, o resultado da conversão.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>+ :</th>
+                        <td>
+                            Comece o resultado de uma conversão com sinal com um sinal (+ ou -).
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="white-space:nowrap"><emphasis role="bold">' ' :</emphasis></td>
+                        <td>
+                            (space) Prefixe um caractere de espaço ao resultado se o primeiro
+                            caractere de uma conversão com sinal não for um sinal. Se ambas as
+                            opções (espaço) e + aparecerem, a opção (space) é ignorada.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th># :</th>
+                        <td>
+                            Converta o valor para uma forma alternativa. Para as conversões
+                            <literal>c</literal>, <literal>d</literal>, <literal>i</literal>,
+                            <literal>s</literal>, e <literal>u</literal>, a opção
+                            <literal>#</literal> não possui efeito. Para a conversão
+                            <literal>o</literal>, <literal>#</literal> aumenta a precisão para
+                            forçar o primeiro dígito do resultado a ser 0 (zero). Para as
+                            conversões <literal>x</literal> e <literal>X</literal>, um valor
+                            não-nulo possui 0x ou 0X prefixado a ele. Para as conversões
+                            <literal>e, E, f, g,</literal> e <literal>G</literal>, o resultado
+                            sempre contém ponto decimal, Mesmo que nenhum dígito o siga. Para as
+                            conversões <literal>g</literal> e <literal>G</literal>, zeros por
+                            último não são removidos.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>0 :</th>
+                        <td>
+                            Aumente a largura do campo utilizando zeros à esquerda (seguindo
+                            qualquer indicação de sinal ou base) para as conversões
+                            <literal>d</literal>, <literal>i</literal>, <literal>o</literal>,
+                            <literal>u</literal>, <literal>x</literal>, <literal>X</literal>,
+                            <literal>e</literal>, <literal>E</literal>, <literal>f</literal>,
+                            <literal>g</literal>, e <literal>G</literal>; nenhum aumento de espaço
+                            é realizado. Se ambos os indicadores <literal>0</literal> e
+                            <literal>\-</literal> (barra) aparecerem, o indicador
+                            <literal>0</literal> é ignorado. Para as conversões
+                            <literal>d</literal>, <literal>i</literal>, <literal>o</literal>
+                            <literal>u</literal>, <literal>x</literal>, e <literal>X</literal>, se
+                            uma precisão for especificada, o indicador <literal>0</literal> também
+                            é ignorado.
+                        </td>
+                    </tr>
+                </table>
             </listitem>
             <listitem>
                 <para>Um string de dígitos decimais opcional que especifica a largura
@@ -101,26 +123,22 @@
                 </para>
                 <itemizedlist>
                     <listitem>
-                        <para>O número mínimo de dígitos a aparecerem nas conversões
-                            <literal>d</literal>, <literal>u</literal>, <literal>o</literal>,
-                            <literal>x</literal>, ou <literal>X</literal>
-                        </para>
+                        O número mínimo de dígitos a aparecerem nas conversões
+                        <literal>d</literal>, <literal>u</literal>, <literal>o</literal>,
+                        <literal>x</literal>, ou <literal>X</literal>.
                     </listitem>
                     <listitem>
-                        <para>O número de dígitos a aparecerem após o ponto decimal nas
-                            conversões <literal>e</literal>, <literal>E</literal>, e
-                            <literal>f</literal>
-                        </para>
+                        O número de dígitos a aparecerem após o ponto decimal nas
+                        conversões <literal>e</literal>, <literal>E</literal>, e
+                        <literal>f</literal>.
                     </listitem>
                     <listitem>
-                        <para>O número máximo de dígitos significativos para as conversões
-                            <literal>g</literal> e <literal>G</literal>
-                        </para>
+                        O número máximo de dígitos significativos para as conversões
+                        <literal>g</literal> e <literal>G</literal>.
                     </listitem>
                     <listitem>
-                        <para>O número máximo de caracteres a serem impressos a partir de um
-                            string em uma convesão <literal>s</literal>
-                        </para>
+                        O número máximo de caracteres a serem impressos a partir de um
+                        string em uma convesão <literal>s</literal>.
                     </listitem>
                 </itemizedlist>
             </listitem>
@@ -128,126 +146,163 @@
                 <para>O caractere que indica o tipo de conversão a ser
                     aplicada:
                 </para>
-            </listitem>
-            <listitem>
-                <para>Não realiza conversão. Exibe %.</para>
-            </listitem>
-            <listitem>
-                <para>Aceita um valor inteiro e o converte para notação decimal com
-                    sinal. A precisão especifica o número mínimo de dígitos a aparecer. Se
-                    o valor sendo convertido puder ser representado em menos dígitos, ele
-                    é expandido com zeros à esquerda. A precisão padrão é 1. O resultado
-                    de se converter um valor zero com uma precisão de zero é um string
-                    nulo. A especificação de uma largura de campo com zero como caractere
-                    mais à esquerda faz com que o valor da largura do campo seja
-                    preenchido com zeros à esquerda.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Aceita um valor inteiro e o converte para a notação decimal sem
-                    sinal. A precisão especifica o número mínimo de dígitos a aparecer. Se
-                    o valor sendo convertido puder ser representado em menos dígitos, ele
-                    é expandido com zeros à esquerda. A precisão padrão é 1. O resultado
-                    de se converter um valor zero com uma precisão de zero é um string
-                    nulo. A especificação de uma largura de campo com zero como caractere
-                    mais à esquerda faz com que o valor da largura do campo seja
-                    preenchido com zeros à esquerda.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Aceita um valor inteiro e o converte para a sua notação octal
-                    sem sinal. A precisão especifica o número mínimo de dígitos a
-                    aparecer. Se o valor sendo convertido puder ser representado em menos
-                    dígitos, ele é expandido com zeros à esquerda. A precisão padrão é 1.
-                    O resultado de se converter um valor zero com uma precisão de zero é
-                    um string nulo. A especificação de uma largura de campo com zero como
-                    caractere mais à esquerda faz com que o valor da largura do campo seja
-                    preenchido com zeros à esquerda. Não é implicado um valor octal para a
-                    largura do campo.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Aceita um valor inteiro e o converte para a sua notação
-                    hexadecimal sem sinal. As letras ``abcdef'' são utilizadas para a
-                    conversão <literal>x</literal>; as letras ``ABCDEF'' são utilizadas
-                    para a conversão <literal>X</literal>. A precisão especifica o número
-                    mínimo de dígitos a aparecer. Se o valor sendo convertido puder ser
-                    representado em menos dígitos, ele é expandido com zeros à esquerda. A
-                    precisão padrão é 1. O resultado de se converter um valor zero com uma
-                    precisão de zero é um string nulo. A especificação de uma largura de
-                    campo com zero como caractere mais à esquerda faz com que o valor da
-                    largura do campo seja preenchido com zeros à esquerda.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Aceita um valor float ou double e o converte para a sua notação
-                    decimal no formato %[\-]<literal>ddd.ddd</literal>. O número de
-                    dígitos após o ponto decimal é igual à especificação de
-                    precisão.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Se nenhuma precisão for especificada, a saída possui seis
-                    dígitos
-                </para>
-            </listitem>
-            <listitem>
-                <para>Se a precisão for zero, nenhum ponto decimal aparece e o sistema
-                    imprime na saída o valor inteiro mais próximo de
-                    <literal>value</literal>.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Se a saída possui um ponto decimal, pelo menos um dígito é posto
-                    antes dele.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Aceita um real e o converte para a sua forma exponencial
-                    %[\-]<literal>d.ddde</literal>+/\-<literal>dd</literal>. Há um dígito
-                    antes do ponto decimal, e o número de dígitos após o ponto decimal é
-                    igual à especificação de precisão.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Se nenhuma precisão for especificada, a saída são seis
-                    dígitos
-                </para>
-            </listitem>
-            <listitem>
-                <para>Se a precisão for zero, nenhum ponto decimal aparece.</para>
-            </listitem>
-            <listitem>
-                <para>
-                    A caractere de conversão <literal>E</literal> produz um número
-                    com o caractere 'E', ao invés de 'e' antes do expoente. O expoente
-                    sempre contém pelo menos dois dígitos. Se o valor for zero, o expoente
-                    é zero.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Aceita um real e o converte no estilo dos caracteres de
-                    conversão <literal>e</literal>, <literal>E</literal>, ou
-                    <literal>f</literal>, com a precisão especificando o número de dígitos
-                    significativos. Zeros por último são removidos. Um ponto decimal
-                    aparece apenas se for seguido de um dígito. O estilo depende do valor
-                    convertido. O resultado é o estilo <literal>e</literal>
-                    (<literal>E</literal>, se <literal>G</literal> é o indicador
-                    utilizado) apenas se o expoente resultante da conversão for menor do
-                    que -4, ou se for maior do que ou igual à precisão.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Aceita e exibe um valor inteiro convertido em um
-                    caractere.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Aceita um valor string e exibe caracteres do string até o fim
-                    ou até que o número de caracteres indicados pela precisão seja
-                    alcançado. Se nenhuma precisão for especificada, todos os caracteres
-                    até o fim são exibidos.
-                </para>
+                <table>
+                    <tr>
+                        <th>% :</th>
+                        <td>
+                            Não realiza conversão. Exibe %..
+                            <note>
+                                This may be useful for instance to print percentages, or
+                                to process some LaTeX expression including LaTeX comments
+                                starting with "%", etc.
+                            </note>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>s :</th>
+                        <td>
+                            Accepts a string or boolean <literal>value</literal> e exibe caracteres
+                            do string até o fim ou até que o número de caracteres indicados pela
+                            precisão seja alcançado. Se nenhuma precisão for especificada, todos os
+                            caracteres até o fim são exibidos.
+                            UTF-8 extended characters are supported in input strings.
+                            Booleans are converted into 'T' or 'F'.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>c :</th>
+                        <td>Not supported.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            All following conversions accept any decimal numerical or boolean
+                            input <literal>value</literal>. Only the real part of any input
+                            complex number is considered. Booleans are implicitly converted
+                            into 0 and 1.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>d,i :</th>
+                        <td>
+                            Converts the input <literal>value</literal> to a signed integer int32
+                            notation. Conversions for input |Numbers| ≥ 2^31 are not reliable.
+                            A precisão especifica o número mínimo de dígitos a aparecer. Se
+                            o valor sendo convertido puder ser representado em menos dígitos, ele
+                            é expandido com zeros à esquerda. A precisão padrão é 1. O resultado
+                            de se converter um valor zero com uma precisão de zero é um string
+                            nulo. A especificação de uma largura de campo com zero como caractere
+                            mais à esquerda faz com que o valor da largura do campo seja
+                            preenchido com zeros à esquerda.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>u :</th>
+                        <td>
+                            Converts the input <literal>value</literal> to an unsigned integer
+                            uint32 notation. Conversions for input |Numbers| ≥ 2^32 are not reliable.
+                            A precisão especifica o número mínimo de dígitos a aparecer. Se
+                            o valor sendo convertido puder ser representado em menos dígitos, ele
+                            é expandido com zeros à esquerda. A precisão padrão é 1. O resultado
+                            de se converter um valor zero com uma precisão de zero é um string
+                            nulo. A especificação de uma largura de campo com zero como caractere
+                            mais à esquerda faz com que o valor da largura do campo seja
+                            preenchido com zeros à esquerda.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>o :</th>
+                        <td>
+                            Converts the input <literal>value</literal> to an unsigned octal notation.
+                            Conversions for input |Numbers| ≥ 2^32 are not reliable.
+                            A precisão especifica o número mínimo de dígitos a
+                            aparecer. Se o valor sendo convertido puder ser representado em menos
+                            dígitos, ele é expandido com zeros à esquerda. A precisão padrão é 1.
+                            O resultado de se converter um valor zero com uma precisão de zero é
+                            um string nulo. A especificação de uma largura de campo com zero como
+                            caractere mais à esquerda faz com que o valor da largura do campo seja
+                            preenchido com zeros à esquerda. Não é implicado um valor octal para a
+                            largura do campo.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>x, X :</th>
+                        <td>
+                            Converts the input <literal>value</literal> to an unsigned hexadecimal
+                            notation. Conversions for input |Numbers| ≥ 2^32 are not reliable.
+                            As letras ``abcdef'' são utilizadas para a
+                            conversão <literal>x</literal>; as letras ``ABCDEF'' são utilizadas
+                            para a conversão <literal>X</literal>. A precisão especifica o número
+                            mínimo de dígitos a aparecer. Se o valor sendo convertido puder ser
+                            representado em menos dígitos, ele é expandido com zeros à esquerda. A
+                            precisão padrão é 1. O resultado de se converter um valor zero com uma
+                            precisão de zero é um string nulo. A especificação de uma largura de
+                            campo com zero como caractere mais à esquerda faz com que o valor da
+                            largura do campo seja preenchido com zeros à esquerda.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>f :</th>
+                        <td>
+                            Converte o <literal>value</literal> de entrada para a sua notação decimal
+                            no formato% [\-]<literal>ddd.ddd</literal>.
+                            O número de dígitos após o ponto decimal é igual à especificação de
+                            precisão.
+                            <itemizedlist>
+                                <listitem>
+                                    Se nenhuma precisão for especificada, a saída possui seis dígitos
+                                </listitem>
+                                <listitem>
+                                    Se a precisão for zero, nenhum ponto decimal aparece e o sistema
+                                    imprime na saída o valor inteiro mais próximo de
+                                    <literal>value</literal>.
+                                </listitem>
+                                <listitem>
+                                    Se a saída possui um ponto decimal, pelo menos um dígito é posto
+                                    antes dele.
+                                </listitem>
+                            </itemizedlist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>e, E :</th>
+                        <td>
+                            Converte o <literal>value</literal> de entrada para a sua forma exponencial
+                            %[\-]<literal>d.ddde</literal>+/\-<literal>dd</literal>.
+                            Há um dígito antes do ponto decimal, e o número de dígitos após o
+                            ponto decimal é igual à especificação de precisão.
+                            <itemizedlist>
+                                <listitem>
+                                    Se nenhuma precisão for especificada, a saída são seis dígitos.
+                                </listitem>
+                                <listitem>
+                                    Se a precisão for zero, nenhum ponto decimal aparece.
+                                </listitem>
+                                <listitem>
+                                    A caractere de conversão <literal>E</literal> produz um
+                                    número com o caractere 'E', ao invés de 'e' antes do expoente.
+                                    O expoente sempre contém pelo menos dois dígitos. Se o valor
+                                    for zero, o expoente é zero.
+                                </listitem>
+                            </itemizedlist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="white-space:nowrap"><emphasis role="bold">g, G :</emphasis></td>
+                        <td>
+                            Converte o <literal>value</literal> de entrada no estilo dos caracteres
+                            de conversão <literal>e</literal>, <literal>E</literal>, ou
+                            <literal>f</literal>, com a precisão especificando o número de dígitos
+                            significativos.
+                            Zeros por último são removidos. Um ponto decimal
+                            aparece apenas se for seguido de um dígito. O estilo depende do valor
+                            convertido. O resultado é o estilo <literal>e</literal>
+                            (<literal>E</literal>, se <literal>G</literal> é o indicador
+                            utilizado) apenas se o expoente resultante da conversão for menor do
+                            que -4, ou se for maior do que ou igual à precisão.
+                        </td>
+                    </tr>
+                </table>
             </listitem>
         </itemizedlist>
         <para>Uma largura de campo ou uma precisão podem ser indicadas por
@@ -264,6 +319,106 @@
         <para>A representação do sinal de mais depende da opção de formatação
             especificada, se <literal>+</literal> ou (espaço).
         </para>
+        <para>
+            Display of exponential form %e is platform dependent with a different number of digits
+            in exponent.
+            <informaltable border="1">
+                <tr>
+                    <td>Platform</td>
+                    <td>Example: msprintf("%e",1.23e4)</td>
+                </tr>
+                <tr>
+                    <td>Windows</td>
+                    <td>1.23000e+004</td>
+                </tr>
+                <tr>
+                    <td>Linux/Mac OS</td>
+                    <td>1.23000e+04</td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>
+            <emphasis role="bold">Special escaped sequences</emphasis> are supported in Scilab
+            C-format strings:
+            <table>
+                <tr>
+                    <th>\n :</th>
+                    <td>Go to Next line (line feed)</td>
+                </tr>
+                <tr>
+                    <th>\r :</th>
+                    <td>Return: go to the head of current line (for overprinting)</td>
+                </tr>
+                <tr>
+                    <th>\t :</th>
+                    <td>horizontal Tab</td>
+                </tr>
+                <tr>
+                    <th>\\ :</th>
+                    <td>print a backslash \</td>
+                </tr>
+            </table>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+mprintf('a string: %s\n', 'Scilab');
+mprintf('an integer: %d\n', 10);
+mprintf('an integer: %4d\n', 10);
+mprintf('a left justified integer: %-4d\n', 10);
+mprintf('an integer converted to float: %#fd\n',10);
+mprintf('an integer with a sign: %+4d\n', 10);
+mprintf('an integer with a sign: %+4d\n', -10);
+mprintf('an integer padded with zeros: %04d\n', 10);
+mprintf('an unsigned integer: %u\n', 10);
+mprintf('an unsigned integer: %4u\n', -10);
+mprintf('an integer converted to hexadecimal: %x\n', 10);
+mprintf('a float: %d\n', %pi);
+mprintf('a float: %3.2d\n', %pi);
+mprintf('a float (exponential form): %3.2e\n', %pi);
+mprintf('a float (exponential form): %3.2g\n', %pi);
+mprintf('a character: %c\n', 'a');
+mprintf('a character: %c\n', 'aaa');
+ ]]></programlisting>
+        <para/>
+        <para>
+            With input booleans:
+        </para>
+        <programlisting role="example"><![CDATA[
+mprintf("\n%%d: %d,  %%u: %u,  %%o: %o,  %%f: %f,  %%e: %e,  %%s: %s\n" + ..
+          "%%d: %d,  %%u: %u,  %%o: %o,  %%f: %f,  %%e: %e,  %%s: %s\n", ..
+        %T, %T, %T, %T, %T, %T, %F, %F, %F, %F, %F, %F);
+     ]]></programlisting>
+        <screen><![CDATA[
+%d: 1,  %u: 1,  %o: 1,  %f: 1.000000,  %e: 1.000000e+00,  %s: T
+%d: 0,  %u: 0,  %o: 0,  %f: 0.000000,  %e: 0.000000e+00,  %s: F
+]]></screen>
+        <para/>
+        <para>
+            With numbered placeholders:
+        </para>
+        <programlisting role="example"><![CDATA[
+mprintf("%2$s is %1$d-year old.\n", 32, "Peter");
+     ]]></programlisting>
+        <screen><![CDATA[
+Peter is 32-year old.
+]]></screen>
+        <para/>
+        <para>
+            With escaped sequences and UTF-8 extended characters:
+        </para>
+        <programlisting role="example"><![CDATA[
+mprintf("The path T:\\abc does not exist.\n");
+mprintf("abcdefghijk\tαβδ\tεϵ\tζηθικλ\rABCDE\n");
+     ]]></programlisting>
+        <screen><![CDATA[
+--> mprintf("The path T:\\abc does not exist.\n");
+The path T:\abc does not exist
+
+--> mprintf("abcdefghijk\tαβδ\tεϵ\tζηθικλ\rABCDE\n");
+ABCDEfghijk αβδ εϵ  ζηθικλ
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
@@ -278,5 +433,22 @@
                 <link linkend="msprintf">msprintf</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Numbered placeholders "%n$.." are supported.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Input boolean data can be converted.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

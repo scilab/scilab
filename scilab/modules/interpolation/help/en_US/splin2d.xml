@@ -1,50 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="splin2d" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+         xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+         xmlns:scilab="http://www.scilab.org" xml:id="splin2d" xml:lang="en">
     <refnamediv>
         <refname>splin2d</refname>
         <refpurpose>bicubic spline gridded 2d interpolation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>C = splin2d(x, y, z, [,spline_type])</synopsis>
+        <synopsis>
+            C = splin2d(x, y, z)
+            C = splin2d(x, y, z, spline_type)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>x, y</term>
                 <listitem>
-                    <para> a 1-by-nx matrix of doubles, the x coordinate of the interpolation points. We must have x(i)&lt;x(i+1), for i=1,2,...,nx-1.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y</term>
-                <listitem>
-                    <para>a 1-by-ny matrix of doubles, the y coordinate of the interpolation points.
-                        We must have y(i)&lt;y(i+1), for i=1,2,...,ny-1.
+                    <para>
+                        rows of nx and ny real numbers, in strictly increasing order: the
+                        <varname>x</varname> and <varname>y</varname> coordinates building
+                        the grid of the interpolation points (nodes).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>z</term>
                 <listitem>
-                    <para>a nx-by-ny matrix of doubles, the function values.
+                    <para>a nx-by-ny matrix of real numbers: the function values.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>spline_type</term>
                 <listitem>
-                    <para>a 1-by-1 matrix of strings, the typof of spline to compute.
-                        Available values are spline_type="not_a_knot" and spline_type="periodic".
+                    <para>"not_a_knot" or "periodic" string: the type of spline to compute.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>C</term>
                 <listitem>
-                    <para>the coefficients of the bicubic patches. This output argument of splin2d is the input argument of the interp2d function.
+                    <para>
+                        the coefficients of the bicubic patches. This output argument of splin2d
+                        is the input argument of the interp2d function.
                     </para>
                 </listitem>
             </varlistentry>
@@ -54,37 +56,38 @@
         <title>Description</title>
         <para>This function computes a bicubic spline or sub-spline
             <emphasis>s</emphasis> which interpolates the
-            <emphasis>(xi,yj,zij)</emphasis> points, ie, we have
-            <emphasis>s(xi,yj)=zij</emphasis> for all <emphasis>i=1,..,nx</emphasis>
+            <emphasis>(x<subscript>i </subscript>,y<subscript>j </subscript>,z<subscript>ij </subscript>)</emphasis>
+            points, ie, we have
+            <emphasis>s(x<subscript>i </subscript>,y<subscript>j </subscript>)=z<subscript>ij </subscript></emphasis>
+            for all <emphasis>i=1,..,nx</emphasis>
             and <emphasis>j=1,..,ny</emphasis>. The resulting spline
             <emphasis>s</emphasis> is defined by the triplet
-            <literal>(x,y,C)</literal> where <literal>C</literal> is the vector (of
+            <literal>(x,y,C)</literal> where <varname>C</varname> is the vector (of
             length 16(nx-1)(ny-1)) with the coefficients of each of the (nx-1)(ny-1)
-            bicubic patches : on <emphasis>[x(i) x(i+1)]x[y(j) y(j+1)]</emphasis>,
-            <emphasis>s</emphasis> is defined by :
+            bicubic patches : on <emphasis>[x(i),x(i+1)] × [y(j),y(j+1)]</emphasis>,
+            <emphasis>s</emphasis> is defined by
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/splin2d_equation_1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <latex style="display" fontsize="18"
+              alt="s(x,y) = ∑_m=1→4 ∑_n=1→4 c_ij(m,n).(x-x_i)^{m-1}.(y-y_j)^{n-1}">
+                s(x,y)=\sum_{k=1}^4\sum_{l=1}^4 c_{ij}(k,l)\cdot(x-x_i)^{k-1}\cdot(y-y_j)^{l-1}
+        </latex>
         <para>
-            The evaluation of <emphasis>s</emphasis> at some points must be done
-            by the <link linkend="interp2d">interp2d</link> function. Several kind of
-            splines may be computed by selecting the appropriate
-            <literal>spline_type</literal> parameter. The method used to compute the
-            bicubic spline (or sub-spline) is the old fashioned one 's, i.e. to
-            compute on each grid point <emphasis>(xi,yj)</emphasis> an approximation
-            of the first derivatives <emphasis>ds/dx(xi,yj)</emphasis> and
-            <emphasis>ds/dy(xi,yj)</emphasis> and of the cross derivative
-            <emphasis>d2s/dxdy(xi,yj)</emphasis>. Those derivatives are computed by
-            the mean of 1d spline schemes leading to a C2 function
-            (<emphasis>s</emphasis> is twice continuously differentiable) or by the
-            mean of a local approximation scheme leading to a C1 function only. This
-            scheme is selected with the <literal>spline_type</literal> parameter (see
-            <link linkend="splin">splin</link> for details) :
+            The evaluation of <emphasis>s</emphasis> at some points must be done by the
+            <link linkend="interp2d">interp2d</link> function. Several kind of splines may be
+            computed by selecting the appropriate <varname>spline_type</varname> parameter.
+            The method used to compute the bicubic spline (or sub-spline) is the old fashioned
+            one's, i.e. to compute on each grid point
+            <emphasis>(x<subscript>i </subscript>,y<subscript>j </subscript>)</emphasis>
+            an approximation of the first derivatives
+            <emphasis>ds/dx(x<subscript>i </subscript>,y<subscript>j </subscript>)</emphasis> and
+            <emphasis>ds/dy(x<subscript>i </subscript>,y<subscript>j </subscript>)</emphasis> and
+            of the cross derivative
+            <emphasis>d2s/dxdy(x<subscript>i </subscript>,y<subscript>j </subscript>)</emphasis>.
+            Those derivatives are computed by the mean of 1d spline schemes leading to a C2 function
+            (<emphasis>s</emphasis> is twice continuously differentiable) or by the  mean of a local
+            approximation scheme leading to a C1 function only. This scheme is selected with the
+            <varname>spline_type</varname> parameter (see <link linkend="splin">splin</link> for
+            details) :
         </para>
         <variablelist>
             <varlistentry>
@@ -110,21 +113,24 @@
     <refsection>
         <title>Remarks</title>
         <para>
-            From an accuracy point of view use essentially the <emphasis role="bold">not_a_knot</emphasis> type or <emphasis role="bold">periodic</emphasis> type if the underlying interpolated
-            function is periodic.
+            From an accuracy point of view use essentially the
+            <emphasis role="bold">not_a_knot</emphasis> type or
+            <emphasis role="bold">periodic</emphasis> type if the underlying interpolated function
+            is periodic.
         </para>
         <para>
-            The <emphasis role="bold">natural</emphasis>, <emphasis role="bold">monotone</emphasis>, <emphasis role="bold">fast</emphasis> (or
-            <emphasis role="bold">fast_periodic</emphasis>) type may be useful in some
-            cases, for instance to limit oscillations (<emphasis role="bold">monotone</emphasis> being the most powerful for that).
+            The <emphasis role="bold">natural</emphasis>, <emphasis role="bold">monotone</emphasis>,
+            <emphasis role="bold">fast</emphasis> (or <emphasis role="bold">fast_periodic</emphasis>)
+            type may be useful in some cases, for instance to limit oscillations
+            (<emphasis role="bold">monotone</emphasis> being the most powerful for that).
         </para>
         <para>To get the coefficients of the bi-cubic patches in a more friendly
             way you can use <literal>c = matrix(C, [4,4,nx-1,ny-1])</literal> then
             the coefficient <emphasis>(k,l)</emphasis> of the patch
             <emphasis>(i,j)</emphasis> (see equation here before) is stored at
-            <literal>c(k,l,i,j)</literal>. Nevertheless the <link linkend="interp2d">interp2d</link> function wait for the big vector
-            <literal>C</literal> and not for the hypermatrix <literal>c</literal>
-            (note that one can easily retrieve <literal>C</literal> from
+            <literal>c(k,l,i,j)</literal>. Nevertheless the <link linkend="interp2d">interp2d</link>
+            function wait for the big vector <varname>C</varname> and not for the hypermatrix
+            <literal>c</literal> (note that one can easily retrieve <varname>C</varname> from
             <literal>c</literal> with <literal>C=c(:)</literal>).
         </para>
     </refsection>
@@ -194,7 +200,6 @@ xtitle("natural")
 subplot(2,2,4)
 plot3d1(xp, yp, ZP4, flag=[2 2 4])
 xtitle("monotone")
-show_window()
  ]]></programlisting>
         <scilab:image>
             // example 2 : different interpolation functions on random data
@@ -264,14 +269,5 @@ xtitle("subspline (monotone)")
                 <link linkend="interp2d">interp2d</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>previously, imaginary part of input arguments were implicitly ignored.</revremark>
-            </revision>
-        </revhistory>
     </refsection>
 </refentry>

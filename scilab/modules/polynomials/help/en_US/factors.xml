@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,13 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="factors">
     <refnamediv>
         <refname>factors</refname>
-        <refpurpose>numeric real factorization</refpurpose>
+        <refpurpose>factorization in ℝ of a polynomial or a rational fraction</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[lnum,g]=factors(pol [,'flag'])
-            [lnum,lden,g]=factors(rat [,'flag'])
-            rat=factors(rat,'flag')
+        <synopsis>
+            [lnum, gain] = factors(pol)
+            [lnum, gain] = factors(pol, flag)
+            [lnum, lden, gain] = factors(rat)
+            [lnum, lden, gain] = factors(rat, flag)
+            rat = factors(rat, flag)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -31,41 +34,36 @@
             <varlistentry>
                 <term>pol</term>
                 <listitem>
-                    <para>real polynomial</para>
+                    real polynomial.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rat</term>
                 <listitem>
-                    <para>
-                        real rational polynomial (<literal>rat=pol1/pol2</literal>)
-                    </para>
+                    real rational (<literal>rat=pol1/pol2</literal>).
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>lnum</term>
+                <term>lnum, lden</term>
                 <listitem>
-                    <para>list of polynomials (of degrees 1 or 2)</para>
+                    lists of polynomials (of degrees 1 or 2).
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>lden</term>
+                <term>gain</term>
                 <listitem>
-                    <para>list of polynomials (of degrees 1 or 2)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>g</term>
-                <listitem>
-                    <para>real number</para>
+                    real number.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flag</term>
                 <listitem>
-                    <para>
-                        character string <literal>'c'</literal> or <literal>'d'</literal>
-                    </para>
+                    character string: <literal>'c'</literal>, or <literal>'d'</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -73,25 +71,26 @@
     <refsection>
         <title>Description</title>
         <para>
-            returns the factors of polynomial <literal>pol</literal> in the list <literal>lnum</literal>
-            and the "gain" g.
+            returns the factors of polynomial <literal>pol</literal> in the list <literal>lnum</literal>,
+            and the "<varname>gain</varname>".
         </para>
         <para>
-            One has pol= g times product of entries of the list <literal>lnum</literal>
+            One has pol = gain times product of entries of the list <literal>lnum</literal>
             (if <literal>flag</literal> is not given). If <literal>flag='c'</literal> is given, then
-            one has <literal>|pol(i omega)|</literal> = <literal>|g*prod(lnum_j(i omega)|</literal>.
+            one has <literal>|pol(i omega)|</literal> = <literal>|gain*prod(lnum_j(i omega)|</literal>.
             If <literal>flag='d'</literal> is given, then
-            one has <literal>|pol(exp(i omega))|</literal> = <literal>|g*prod(lnum_i(exp(i omega))|</literal>.
+            one has <literal>|pol(exp(i omega))|</literal> = <literal>|gain*prod(lnum_i(exp(i omega))|</literal>.
             If argument of <literal>factors</literal> is a 1x1 rational <literal>rat=pol1/pol2</literal>,
             the factors of the numerator <literal>pol1</literal> and the denominator <literal>pol2</literal>
             are returned in the lists <literal>lnum</literal> and <literal>lden</literal> respectively.
         </para>
         <para>
-            The "gain" is returned as <literal>g</literal>,i.e. one has:
-            rat= g times (product entries in lnum) / (product entries in lden).
+            The "gain" is returned as <literal>gain</literal>,i.e. one has:
+            rat= gain times (product entries in lnum) / (product entries in lden).
         </para>
         <para>
-            If <literal>flag</literal> is <literal>'c'</literal> (resp. <literal>'d'</literal>), the roots of <literal>pol</literal>
+            If <literal>flag</literal> is <literal>'c'</literal> (resp. <literal>'d'</literal>),
+            the roots of <literal>pol</literal>
             are reflected wrt the imaginary axis (resp. the unit circle), i.e.
             the factors in <literal>lnum</literal> are stable polynomials.
         </para>
@@ -108,19 +107,28 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-n=poly([0.2,2,5],'z');
-d=poly([0.1,0.3,7],'z');
-R=syslin('d',n,d);
-R1=factors(R,'d')
+n = poly([0.2,2,5],'z');
+d = poly([0.1,0.3,7],'z');
+R = syslin('d',n,d);
+R1 = factors(R,'d')
 roots(R1('num'))
 roots(R1('den'))
-w=exp(2*%i*%pi*[0:0.1:1]);
-norm(abs(horner(R1,w))-abs(horner(R,w)))
- ]]></programlisting>
+w = exp(2*%i*%pi*[0:0.1:1]);
+norm(abs(horner(R1,w)) - abs(horner(R,w)))
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="polfact">polfact</link>
+            </member>
+            <member>
+                <link linkend="roots">roots</link>
+            </member>
+            <member>
+                <link linkend="pfss">pfss</link>
+            </member>
             <member>
                 <link linkend="simp">simp</link>
             </member>

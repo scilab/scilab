@@ -48,6 +48,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
     wchar_t* pstMsg     = NULL;
     ast::Exp* pExp      = NULL;
     wchar_t *pstCommand = NULL;
+    bool bSilentError   = ConfigVariable::isSilentError();
     Parser parser;
 
     if (in.size() < 1 || in.size() > 3)
@@ -206,6 +207,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
 
     ast::SeqExp* pSeqExp = pExp->getAs<ast::SeqExp>();
     std::unique_ptr<ast::ConstVisitor> run(ConfigVariable::getDefaultVisitor());
+    ConfigVariable::setSilentError(bErrCatch);
     try
     {
         symbol::Context* pCtx = symbol::Context::getInstance();
@@ -217,6 +219,8 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
         }
         catch (const ast::RecursionException& /* re */)
         {
+            ConfigVariable::setSilentError(bSilentError);
+
             //close opened scope during try
             while (pCtx->getScopeLevel() > scope)
             {
@@ -243,6 +247,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
             delete pExp;
             ConfigVariable::macroFirstLine_end();
             ConfigVariable::setPromptMode(iPromptMode);
+            ConfigVariable::setSilentError(bSilentError);
             throw ie;
         }
 
@@ -266,6 +271,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
 
     ConfigVariable::macroFirstLine_end();
     ConfigVariable::setPromptMode(iPromptMode);
+    ConfigVariable::setSilentError(bSilentError);
 
     delete pExp;
     return types::Function::OK;

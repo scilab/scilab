@@ -24,10 +24,10 @@ A = [ 1 8 4 5 2 1];
 B = [ 9 7 4 2 1 4];
 
 [v,ka,kb] = intersect(A,B);
-if or(A(ka) <> B(kb)) then pause,end
-if or(A(ka) <> v) then pause,end
-if or(v<>intersect(A,B))  then pause,end
-if (or(v<>[1,2,4])) then pause,end
+assert_checkequal(A(ka), B(kb));
+assert_checkequal(A(ka), v);
+assert_checkequal(intersect(A,B), v);
+assert_checkequal(v, [1 2 4]);
 
 // With texts
 // ----------
@@ -43,44 +43,75 @@ if v <> [] then pause,end
 A = [ "elt1" "elt3" "elt4"];
 B = [ "elt5" "elt1" "elt3"];
 [v, ka, kb] = intersect(A,B);
-if or(A(ka) <> B(kb)) then pause,end
-if or(A(ka) <> v) then pause,end
-if or(v<>intersect(A,B))  then pause,end
-if (or(v<>["elt1","elt3"])) then pause,end
+assert_checkequal(A(ka), B(kb));
+assert_checkequal(A(ka), v);
+assert_checkequal(intersect(A,B), v);
+assert_checkequal(v, ["elt1","elt3"]);
+
 
 A = [ "elt1" "elt3" "elt4"];
 B = [ "elt5" "elt6" "elt2" "elt1" "elt3"];
 
 [v, ka, kb] = intersect(A,B);
-if or(A(ka) <> B(kb)) then pause,end
-if or(A(ka) <> v) then pause,end
-if or(v<>intersect(A,B))  then pause,end
-if (or(v<>["elt1","elt3"])) then pause,end
+assert_checkequal(A(ka), B(kb));
+assert_checkequal(A(ka), v);
+assert_checkequal(intersect(A,B), v);
+assert_checkequal(v, ["elt1","elt3"]);
 
 // UTF-8
 A = strsplit("هو برنامج علمي كبير ""Scilab""")'
 B = strsplit("فهو حر ومفتوح")'
 assert_checkequal(intersect(A,B),[" "  "ر"  "م"  "ه"  "و"]);
 
+// With booleans
+// -------------
+[T, F] = (%t, %f);
+assert_checkequal(intersect([F F],F), F);
+assert_checkequal(intersect([T T],T), T);
+assert_checkequal(intersect(T,F), []);
+assert_checkequal(intersect(F,T), []);
+A = [F F T F T F
+     T F F T T T
+     T T F T F F ];
+B = [F T F T F F
+     T F F F T F
+     F T F F T F ];
+ref = [F F T
+       T T F
+       F T F ];
+assert_checkequal(intersect(A,B), [F T]);
+assert_checkequal(intersect(A,B,"c"), ref);
+[v,ka,kb] = intersect(A,B,"c");
+assert_checkequal(v, ref);
+assert_checkequal(A(:,ka), v);
+assert_checkequal(A(:,ka), B(:,kb));
+
+assert_checkequal(intersect(A',B',"r"), ref');
+[v,ka,kb] = intersect(A',B',"r");
+assert_checkequal(v, ref');
+assert_checkequal(A(:,ka)', v);
+assert_checkequal(A(:,ka)', B(:,kb)');
+
+
 // with integers
 // ------------
-A = int16([ 1 8 4 5 2 1]);
-B = int16([ 9 7 4 2 1 4]);
+A = int16([1 8 4 5 2 1]);
+B = int16([9 7 4 2 1 4]);
 
 [v, ka, kb]=intersect(A,B);
-if or(A(ka) <> B(kb)) then pause,end
-if or(A(ka) <> v) then pause,end
-if or(v<>intersect(A,B))  then pause,end
-if (or(v<>int16([1,2,4]))) then pause,end
+assert_checkequal(A(ka), B(kb));
+assert_checkequal(A(ka), v);
+assert_checkequal(intersect(A,B), v);
+assert_checkequal(v, int16([1,2,4]));
 
-A = uint8([ 1 8 4 5 2 1]);
-B = uint8([ 9 7 4 2 1 4]);
+A = uint8([1 8 4 5 2 1]);
+B = uint8([9 7 4 2 1 4]);
 
 [v, ka, kb]=intersect(A,B);
-if or(A(ka) <> B(kb)) then pause,end
-if or(A(ka) <> v) then pause,end
-if or(v<>intersect(A,B))  then pause,end
-if (or(v<>uint8([1,2,4]))) then pause,end
+assert_checkequal(A(ka), B(kb));
+assert_checkequal(A(ka), v);
+assert_checkequal(intersect(A,B), v);
+assert_checkequal(v, uint8([1,2,4]));
 
 // With orientation: Common rows or columns
 // ----------------------------------------

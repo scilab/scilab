@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=%s2sci(tree)
+function tree = %s2sci(tree)
     // M2SCI function
     // Conversion function for Matlab subtraction
     // Input: tree = Matlab operation tree
@@ -30,52 +30,47 @@ function [tree]=%s2sci(tree)
 
     // Binary operator: A-B
     if size(tree.operands)==2 then
-        [A,B]=getoperands(tree)
+        [A, B] = getoperands(tree)
 
         // Matlab and Scilab subtraction do not match for Strings
         if or(A.vtype==[String,Unknown]) then
-            A=convert2double(A)
+            A = convert2double(A)
         end
         if or(B.vtype==[String,Unknown]) then
-            B=convert2double(B)
+            B = convert2double(B)
         end
 
-        // %b_s_b is not defined in Scilab
-        if A.vtype==Boolean & B.vtype==Boolean
-            A=convert2double(A)
-        end
-
-        tree.operands=list(A,B)
+        tree.operands = list(A,B);
 
         // Type inference
         if (is_complex(A) & is_real(B)) | (is_complex(B) & is_real(A)) then
-            tree.out(1).type=Type(Double,Complex)
+            tree.out(1).type = Type(Double,Complex)
         elseif is_real(A) & is_real(B) then
-            tree.out(1).type=Type(Double,Real)
+            tree.out(1).type = Type(Double,Real)
         else
-            tree.out(1).type=Type(Double,Unknown)
+            tree.out(1).type = Type(Double,Unknown)
         end
 
         // When both operands are not [] Scilab and Matlab give the same results
         if not_empty(A) & not_empty(B) then
             if is_a_scalar(A) then
-                tree.out(1).dims=B.dims
+                tree.out(1).dims = B.dims
             else
-                tree.out(1).dims=A.dims
+                tree.out(1).dims = A.dims
             end
             // If at least one operand is [] then Matlab result is [] but not Scilab one
         elseif is_empty(A) | is_empty(B) then
             set_infos(msprintf(gettext("At least one operand of %s is an empty matrix, Scilab equivalent is []."),expression2code(tree)),0)
-            tree=Cste([])
+            tree = Cste([])
         else
-            tree.out(1).dims=allunknown(A.dims);
-            tree=Funcall("mtlb_s",1,list(A,B),tree.out);
+            tree.out(1).dims = allunknown(A.dims);
+            tree = Funcall("mtlb_s", 1, list(A,B), tree.out);
         end
     else
-        A=getoperands(tree)
+        A = getoperands(tree)
         //A=convert2double(A)
-        tree.operands=list(A)
-        tree.out(1).dims=A.dims
-        tree.out(1).type=A.type
+        tree.operands = list(A)
+        tree.out(1).dims = A.dims
+        tree.out(1).type = A.type
     end
 endfunction

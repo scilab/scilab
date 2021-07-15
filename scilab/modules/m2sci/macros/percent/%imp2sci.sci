@@ -39,7 +39,7 @@ function [tree]=%imp2sci(tree)
             tree.out(1).type=Type(Double,Real)
             if and([A.vtype,B.vtype]==String) then
                 tree.out(1).dims=list(1,size(asciimat(A.value):asciimat(B.value),"*"))
-                tree.out(1).type=Type(String,Real)
+                tree.out(1).type=Type(String, Char)
             elseif and([typeof(A),typeof(B)]=="cste") then
                 tree.out(1).dims=list(1,size(A.value:B.value,"*"))
             else
@@ -79,7 +79,7 @@ function [tree]=%imp2sci(tree)
             tree.lhs(1).type=Type(Double,Real)
         end
         if and([A.vtype,B.vtype]==String) then
-            tree.out(1).type=Type(String,Real)
+            tree.out(1).type=Type(String, Char)
         end
     end
 endfunction

@@ -52,5 +52,5 @@ function [tree]=sci_char(tree)
         tree.lhs(1).dims(1)=lhs_dims1;
         tree.lhs(1).dims(2)=lhs_dims2;
     end
-    tree.lhs(1).type=Type(String,Real);
+    tree.lhs(1).type=Type(String, Char);
 endfunction

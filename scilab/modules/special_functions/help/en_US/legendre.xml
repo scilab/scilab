@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="legendre" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="legendre" xml:lang="en">
     <refnamediv>
         <refname>legendre</refname>
         <refpurpose>associated Legendre functions</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>y = legendre(n,m,x [,normflag])</synopsis>
+        <synopsis>
+            y = legendre(n, m, x)
+            y = legendre(n, m, x, normflag)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -66,13 +72,11 @@
             function Pnm(x) at all the elements of <literal>x</literal>. The
             definition used is :
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/legendre_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" fontsize="18" alt="Pn|m(x)=(-1)^m.(1-x^2)^{m/2}.d^m[Pn(x)]/dx^m">
+                P_n^m(x)=(-1)^m\cdot(1-x^2)^{m/2}\cdot\frac{d^mP_n(x)}{dx^m}
+            </latex>
+        </para>
         <para>
             where <literal>Pn</literal> is the Legendre polynomial of degree
             <literal>n</literal>. So <literal>legendre(n,0,x)</literal> evaluates the
@@ -82,13 +86,12 @@
         <para>When the normflag is equal to "norm" you get a normalized version
             (without the <literal>(-1)^m</literal> factor), precisely :
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/legendre_equation2.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" fontsize="18"
+                   alt="Pn|m(x,norm)=sqrt[(2n+1)/2 .(n-m)!/(n+m)!].(1-x^2)^{m/2}.d^m[Pn(x)]/dx^m">
+                P_n^m(x,norm)=\sqrt{\frac{2n+1}{2}\frac{(n-m)!}{(n+m)!}}\cdot(1-x^2)^{m/2}\cdot\frac{d^mP_n(x)}{dx^m}
+            </latex>
+        </para>
         <para>which is useful to compute spherical harmonic functions (see Example
             3):
         </para>

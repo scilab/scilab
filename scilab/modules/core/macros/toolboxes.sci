@@ -1,9 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2009 - Allan CORNET
-// Copyright (C) 2012 - 2015 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2012, 2015, 2021 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -54,11 +53,11 @@ function [y] = toolboxes(path)
         end
     end
 
-    // ATOMS modules without autoloading
+    // ATOMS modules not yet loaded (e.g. just after atomsInstall)
     installed   = atomsGetInstalled()
-    autoloading = atomsAutoloadList()
+    loaded = atomsGetLoaded()
     for i = 1:size(installed,1)
-        if and(installed(i,1)~=autoloading(:,1)) then
+        if and(installed(i,1)~=loaded(:,1)) then
             contribs = [contribs ; "!"+installed(i,1)+","+installed(i,2)]
         end
     end

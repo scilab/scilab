@@ -21,7 +21,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>strs = pol2str(p)</synopsis>
+        <synopsis>strP = pol2str(P)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -29,14 +29,14 @@
             <varlistentry>
                 <term>p  </term>
                 <listitem>
-                    <para>matrice ou hypermatrice de polynômes à coefficients réels ou complexes
+                    <para>Tableau de polynômes à coefficients réels ou complexes.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>str  </term>
+                <term>strP  </term>
                 <listitem>
-                    <para>matrice ou hypermatrice texte
+                    <para>Tableau de textes, de taille égale à <literal>size(P)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,7 +45,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            convertit les polynômes p en textes les représentant (fonction utilitaire).
+            convertit les polynômes P en textes les représentant (fonction utilitaire).
         </para>
         <para>
             <note>
@@ -86,7 +86,10 @@ pol2str(p)
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revdescription>Extension aux polynômes à coefficients complexes et aux hypermatrices. Vectorisation du traitement du tableau de polynômes</revdescription>
+                <revdescription>
+                    Extension aux polynômes à coefficients complexes et aux hypermatrices.
+                    Vectorisation du traitement du tableau de polynômes.
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>

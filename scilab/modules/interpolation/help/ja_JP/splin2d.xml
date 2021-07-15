@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="splin2d" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="splin2d" xml:lang="ja">
     <refnamediv>
         <refname>splin2d</refname>
         <refpurpose>双3次スプラインのグリッド2次元補間</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>C = splin2d(x, y, z, [,spline_type])</synopsis>
+        <synopsis>
+            C = splin2d(x, y, z)
+            C = splin2d(x, y, z, spline_type)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -71,13 +77,11 @@
             （長さ16(nx-1)(ny-1)の)ベクトルです,
             <emphasis>s</emphasis>は次のように定義されます :
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/splin2d_equation_1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+        <latex style="display" fontsize="18"  alt="s(x,y) = ∑_m=1→4 ∑_n=1→4 c_ij(m,n).(x-x_i)^{m-1}.(y-y_j)^{n-1}">
+                s(x,y)=\sum_{k=1}^4\sum_{l=1}^4 c_{ij}(k,l)\cdot(x-x_i)^{k-1}\cdot(y-y_j)^{l-1}
+        </latex>
+        </para>
         <para>
             いくつかの点で<link linkend="interp2d">interp2d</link>関数により
             <emphasis>s</emphasis>の評価を行う必要があります.
@@ -125,7 +129,8 @@
             基本となる補間関数に周期性がある場合には<emphasis role="bold">periodic</emphasis>型を使用してください.
         </para>
         <para>
-            <emphasis role="bold">natural</emphasis>, <emphasis role="bold">monotone</emphasis>, <emphasis role="bold">fast</emphasis> (または
+            <emphasis role="bold">natural</emphasis>, <emphasis role="bold">monotone</emphasis>,
+            <emphasis role="bold">fast</emphasis> (または
             <emphasis role="bold">fast_periodic</emphasis>) 型は,
             例えば発振を防止したい場合(<emphasis role="bold">monotone</emphasis>
             がこの用途には最も強力です)に有用です.
@@ -207,7 +212,6 @@ xtitle("natural")
 subplot(2,2,4)
 plot3d1(xp, yp, ZP4, flag=[2 2 4])
 xtitle("monotone")
-show_window()
  ]]></programlisting>
         <scilab:image>
             // example 2 : different interpolation functions on random data
@@ -276,14 +280,5 @@ xtitle("subspline (monotone)")
                 <link linkend="interp2d">interp2d</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>履歴</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>以前では, 入力引数の虚部は暗黙のうちに無視されていました.</revremark>
-            </revision>
-        </revhistory>
     </refsection>
 </refentry>

@@ -13,7 +13,9 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_size">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+		  xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+		  xmlns:scilab="http://www.scilab.org" xml:id="m2sci_size">
     <refnamediv>
         <refname>size (Matlab function)</refname>
         <refpurpose>Array dimension</refpurpose>
@@ -31,12 +33,12 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 size
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 size
 ]]></programlisting>
                 </td>
@@ -46,7 +48,7 @@ size
     <refsection>
         <title>Particular cases</title>
         <para>
-            Due to the fact that strings or not considered in the same way in Matlab and in Scilab, results are not equal for string matrices, convert it using <emphasis role="bold">m2scistr</emphasis> to have the same result.
+            Due to the fact that strings are not considered in the same way in Matlab and in Scilab, results are not equal for string matrices, convert it using <emphasis role="bold">m2scistr</emphasis> to have the same result.
         </para>
         <variablelist>
             <varlistentry>

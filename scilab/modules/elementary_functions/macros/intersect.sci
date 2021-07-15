@@ -14,21 +14,23 @@
 function [x_out, ka_out, kb_out] = intersect(a_in, b_in, orient)
     // returns the vector of common values of two vectors
 
-    [lhs, rhs] = argn();
-    x_out = []
-    ka_out = []
-    kb_out = []
+    [lhs, rhs] = argn()
+    [x_out, ka_out, kb_out] = ([], [], [])
 
     if rhs < 2 then
         msg = gettext("%s: Wrong number of input arguments: %d or %d expected.\n")
         error(msprintf(msg, "intersect", 2, 3))
     end
 
-    if a_in == [] | b_in == [] then
+    // Special empty cases
+    [esp, espb] = (sparse([]), sparse(%f)); espb(1) = []
+    if a_in == [] || b_in == [] | isequal(a_in, esp) || isequal(b_in, esp) | ..
+        isequal(a_in, espb) | isequal(b_in, espb)
         return
     end
-    aIsComplex = type(a_in)==1 && ~isreal(a_in);
-    bIsComplex = type(b_in)==1 && ~isreal(b_in);
+    //
+    aIsComplex = or(type(a_in)==[1 5]) && ~isreal(a_in);
+    bIsComplex = or(type(b_in)==[1 5]) && ~isreal(b_in);
 
     // Without orientation
     // -------------------

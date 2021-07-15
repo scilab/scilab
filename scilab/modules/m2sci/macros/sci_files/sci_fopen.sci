@@ -56,7 +56,7 @@ function [tree]=sci_fopen(tree)
         tree.lhs(1).dims=list(1,1)
         tree.lhs(1).type=Type(Double,Real)
         tree.lhs(2).dims=list(1,Unknown)
-        tree.lhs(2).type=Type(String,Real)
+        tree.lhs(2).type=Type(String, Char)
         // [fid,mess,machineformat]=fopen(filename) and so on
     else
         no_equiv(gettext("fopen used with three outputs."))

@@ -27,7 +27,7 @@
         xml:id="MAXMIN" xml:lang="en_US">
     <refnamediv>
         <refname>MAXMIN</refname>
-        <refpurpose>Maximum or minimum value of vectors's elements</refpurpose>
+        <refpurpose>Max or min value of a vector, or element-wise for N vectors</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
@@ -104,9 +104,10 @@
                 </td>
                 <td align="left">Vector</td>
                 <td align="left">
-                    The input vectors must have the same size. The block output is a vector with the same size as
-                    inputs.The elements of the output vector are the minimum/maximum elements of the corresponding
-                    elements of the inputs.
+                    All p input vectors must have the same length N. The block output is a vector with
+                    the same length N. The element output(i) of the output vector is
+                    min(input_1(i), input_2(i),..,input_p(i)) or
+                    max(input_1(i), input_2(i),..,input_p(i)), for <literal>i=1..N</literal>.
                 </td>
             </tr>
         </informaltable>

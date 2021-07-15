@@ -62,9 +62,6 @@
     <ClCompile Include="loadversion.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="md5.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="returnanan.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -144,6 +141,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\pause.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\hash\crc32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

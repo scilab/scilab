@@ -65,7 +65,11 @@ matvar_t* GetSparseMatVar(types::Sparse* pSparse, const char *name)
     int* itemsRow = new int[pSparse->getRows()];
     pSparse->getNbItemByRow(itemsRow);
 
-    int* colIndexes = (int*)MALLOC(sizeof(int) *  (pSparse->getRows() + 1));
+#if MATIO_RELEASE_LEVEL < 18
+    mat_int32_t* colIndexes = (mat_int32_t*)MALLOC(sizeof(mat_int32_t) *  (pSparse->getRows() + 1));
+#else
+    mat_uint32_t* colIndexes = (mat_uint32_t*)MALLOC(sizeof(mat_uint32_t) *  (pSparse->getRows() + 1));
+#endif
     if (colIndexes == NULL)
     {
         FREE(sparseData);
@@ -82,7 +86,11 @@ matvar_t* GetSparseMatVar(types::Sparse* pSparse, const char *name)
         colIndexes[K + 1] = colIndexes[K] + itemsRow[K];
     }
 
-    int* rowIndexes = (int*)MALLOC(sizeof(int) *  nonZeros);
+#if MATIO_RELEASE_LEVEL < 18
+    mat_int32_t* rowIndexes = (mat_int32_t*)MALLOC(sizeof(mat_int32_t) *  nonZeros);
+#else
+    mat_uint32_t* rowIndexes = (mat_uint32_t*)MALLOC(sizeof(mat_uint32_t) *  nonZeros);
+#endif
     if (rowIndexes == NULL)
     {
         FREE(sparseData);

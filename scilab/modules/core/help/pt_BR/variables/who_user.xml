@@ -11,9 +11,22 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            <literal>who_user</literal> exibe os nomes das variáveis do
-            usuário.
+            <literal>who_user</literal> exibe os nomes das variáveis do usuário.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="code_scilab"><![CDATA[
+clear
+who_user()
+who_user(%t)
+who_user(%f)
+a = 1;
+b = 2;
+who_user()
+who_user(%t)
+who_user(%f)
+      ]]></programlisting>
     </refsection>
     <refsection>
         <title> Ver Também </title>
@@ -25,5 +38,17 @@
                 <link linkend="who">who</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <function>who_user</function> can now return user's
+                    variable names in a column vector of character strings.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

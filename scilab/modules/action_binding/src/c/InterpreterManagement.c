@@ -26,7 +26,8 @@ int putCommandInScilabQueue(char *command)
             return 1;
         }
 
-        return debuggerManagerExecute(command);
+        // 0 : don't pause the thread
+        return debuggerManagerExecute(command, 0);
     }
     else
     {
@@ -49,7 +50,8 @@ int requestScilabExec(char *command)
             return 1;
         }
 
-        return debuggerManagerExecute(command);
+        // 0 : don't pause the thread
+        return debuggerManagerExecute(command, 0);
     }
     else
     {

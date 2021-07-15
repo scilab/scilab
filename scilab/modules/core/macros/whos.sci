@@ -21,7 +21,7 @@ function whos(%_opt,%_sel)
     // Gathering locals + globals
     %_nams_all = [%_nams ; %_nams_global];
     %_vol_all  = [%_vol ; %_vol_global];
-    %_LG_all   = [asciimat(76*ones(%_vol(:))) ; asciimat(71*ones(%_vol_global(:)))];
+    %_LG_all   = [emptystr(%_vol(:))+"L" ; emptystr(%_vol_global(:))+"G"];
 
     // Sorting the whole set w/o.r.t. the case
     [trash, k] = gsort(convstr(%_nams_all,"l"),"g","i");

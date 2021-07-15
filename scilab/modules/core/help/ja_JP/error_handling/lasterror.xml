@@ -6,14 +6,21 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>str=lasterror( [opt] )
-            [str,n]=lasterror([opt])
-            [str,n,line,func]=lasterror([opt])
+        <synopsis>
+            [str,n,line,func] = lasterror()
+            [str,n,line,func] = lasterror(opt)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
         <variablelist>
+            <varlistentry>
+                <term>opt</term>
+                <listitem>
+                    <para>論理値, %f の場合, 記録されたメッセージはクリアされる. デフォルトは %t.
+                    </para>
+                </listitem>
+            </varlistentry>
             <varlistentry>
                 <term>str</term>
                 <listitem>
@@ -39,14 +46,6 @@
                 <term>func</term>
                 <listitem>
                     <para>文字列, 直近に記録された関数名</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>opt</term>
-                <listitem>
-                    <para>論理値, %f の場合, 記録されたメッセージはクリアされる. デフォルトは
-                        %t.
-                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>

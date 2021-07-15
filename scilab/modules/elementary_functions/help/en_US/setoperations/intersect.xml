@@ -2,9 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2018 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,7 +20,7 @@
     <refnamediv>
         <refname>intersect</refname>
         <refpurpose>
-            returns the unduplicated elements or rows or columns met in both input arrays
+            elements or rows or columns met in both input arrays, without duplicates
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -39,10 +38,13 @@
             <varlistentry>
                 <term>a, b</term>
                 <listitem>
-                    vectors, matrices or hypermatrices of encoded integers, real or complex
-                    numbers, or text. <varname>a</varname> and <varname>b</varname> must have
-                    the same datatype, but have independent sizes.
+                    vectors, matrices or hypermatrices of booleans, encoded integers, real or
+                    complex numbers, or text. <varname>a</varname> and <varname>b</varname> must
+                    have the same datatype.
                     For text inputs, UTF characters are accepted.
+                    Sparse numeric or boolean matrices are accepted : Either <varname>a</varname> or
+                    <varname>b</varname> or both <varname>a</varname> and <varname>b</varname> may
+                    be sparse.
                     <para/>
                 </listitem>
             </varlistentry>
@@ -75,19 +77,23 @@
                             </listitem>
                         </itemizedlist>
                     </para>
+                    <para>
+                        <varname>M</varname> is sparse as soon as either <varname>a</varname> or
+                        <varname>b</varname> is sparse and none is empty.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ka</term>
                 <listitem>
-                    row vector of indices in <varname>a</varname>.
+                    Dense row vector of indices in <varname>a</varname>.
                     <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>kb</term>
                 <listitem>
-                    row vector of indices in <varname>b</varname>.
+                    Dense row vector of indices in <varname>b</varname>.
                     <para/>
                 </listitem>
             </varlistentry>
@@ -96,7 +102,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>intersect(a,b)</literal> returns a row vector of unduplicated values
+            <literal>intersect(a,b)</literal> returns a row vector of unique values
             present in both <literal>a</literal> and <literal>b</literal> arrays. Values are
             sorted in increasing order
             <itemizedlist>
@@ -258,6 +264,47 @@ M, ka, kb
  kb  =
    2.   3.   4.
 ]]></screen>
+    <para/>
+    <para>
+        <literal>intersect()</literal> for booleans is mainly useful with the "r" or "c" option.
+        Here is an example with a sparse boolean matrix:
+    </para>
+    <programlisting role="example"><![CDATA[
+[F, T] = (%f, %t);
+A = [F F T F T F ; T F F T T T ; T T F T F F]
+B = [F T F T F F ; T F F F T F ; F T F F T F]
+[M,ka,kb] = intersect(A, sparse(B), "c");
+issparse(M), full(M), ka, kb
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = [F F T F T F ; T F F T T T ; T T F T F F]
+ A  =
+  F F T F T F
+  T F F T T T
+  T T F T F F
+
+--> B = [F T F T F F ; T F F F T F ; F T F F T F]
+ B  =
+  F T F T F F
+  T F F F T F
+  F T F F T F
+
+--> [M,ka,kb] = intersect(A, sparse(B), "c");
+--> issparse(M), full(M), ka, kb
+ ans  =
+  T
+
+ ans  =
+  F F T
+  T T F
+  F T F
+
+ ka  =
+   6.   1.   3.
+
+ kb  =
+   1.   5.   4.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -282,7 +329,13 @@ M, ka, kb
             <revision>
                 <revnumber>6.1.0</revnumber>
                 <revdescription>
-                    complex numbers are now accepted.
+                    Complex numbers are now accepted.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Sparse matrices are now accepted (numbers or booleans).
                 </revdescription>
             </revision>
         </revhistory>

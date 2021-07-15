@@ -27,7 +27,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example">
+        <programlisting role="example"><![CDATA[
 a = 1;
 try, b = undefinedvariable + a; end
 [m,n0] = lasterror();
@@ -43,8 +43,8 @@ errclear(100)
 try, b = undefinedvariable + a; end
 errclear(999)
 [m,n] = lasterror(); n
-        </programlisting>
-      <screen><![CDATA[
+      ]]></programlisting>
+        <screen><![CDATA[
 --> try, b = undefinedvariable + a; end
 --> [m,n0] = lasterror();
 --> n0

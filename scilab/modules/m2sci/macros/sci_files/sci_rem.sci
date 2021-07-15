@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_rem(tree)
+function tree = sci_rem(tree)
     // M2SCI function
     // Conversion function for Matlab rem()
     // Input: tree = Matlab funcall tree
@@ -22,27 +22,17 @@ function [tree]=sci_rem(tree)
     Y = convert2double(Y)
     tree.rhs=Rhs_tlist(X,Y)
 
-    // X./Y
-    drd=Operation("./",tree.rhs,list())
-    // fix(X./Y)
-    fix_funcall=Funcall("fix",1,list(drd),list())
-    // fix(X./Y).*Y
-    drm=Operation(".*",list(fix_funcall,tree.rhs(2)),list())
-    // X-fix(X./Y).*Y
-    tree=Operation("-",list(tree.rhs(1),drm),tree.lhs)
+    tree.name = "modulo"
 
     if is_a_scalar(X) then
-        tree.out(1).dims=Y.dims
+        tree.lhs(1).dims = Y.dims
     elseif is_a_scalar(Y) then
-        tree.out(1).dims=X.dims
-    elseif is_a_vector(X) then
-        tree.out(1).dims=X.dims
-    elseif is_a_vector(Y) then
-        tree.out(1).dims=Y.dims
+        tree.lhs(1).dims = X.dims
+    elseif X.dims==Y.dims then
+        tree.lhs(1).dims = X.dims
     else
-        tree.out(1).dims=X.dims
+        tree.lhs(1).dims = allunknown(X.dims)
     end
 
-    tree.out(1).type=Type(Double,Real)
-
+    tree.lhs(1).type = Type(Double,Real)
 endfunction

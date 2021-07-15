@@ -55,6 +55,17 @@ int getScilabVersionMaintenance();
 int getScilabVersionTimestamp();
 
 /**
+* get Scilab version revision
+* @return scilab version revision
+*/
+char* getScilabVersionRevision();
+
+/**
+* get Scilab version number as string
+* @return scilab version number as string
+*/
+char* getScilabVersionNumberAsString();
+    /**
 * get Scilab version as a string
 * @return scilab version
 */

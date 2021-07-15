@@ -35,22 +35,10 @@ types::Function::ReturnValue sci_gamma(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    if (in[0]->isList() || in[0]->isTList() || in[0]->isMList())
+    if (in.size() > 1 || in[0]->isDouble() == false)
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gamma";
         return Overload::call(wstFuncName, in, _iRetCount, out);
-    }
-
-    if (in.size() > 1)
-    {
-        Scierror(77, _("%s: Wrong number of input argument: %d expected.\n"), "gamma", 1);
-        return types::Function::Error;
-    }
-
-    if (in[0]->isDouble() == false)
-    {
-        Scierror(999, _("%s: Argument #%d: Decimal number(s) expected.\n"), "gamma", 1);
-        return types::Function::Error;
     }
 
     /***** get data *****/

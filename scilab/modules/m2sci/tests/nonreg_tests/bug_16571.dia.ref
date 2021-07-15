@@ -1,0 +1,47 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2020 - Samuel GOUGEON
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
+//
+// <-- Non-regression test for bug 16571 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/16571
+//
+// <-- Short Description -->
+// 1) ~true(2,3) was converted into ~ones(2,3)==1 instead of ~(ones(2,3)==1)
+// 2) ~ applied to integer contents yielded an error from convert2double()
+// 3) ~ applied to complex contents forgot applying abs() before ~
+mfile = SCI+"/modules/m2sci/tests/nonreg_tests/bug_16571.m";
+mfile2sci(mfile, TMPDIR);
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/nonreg_tests/bug_16571.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 3
+  Generate formatted code: NO
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+mprintf("%s\n", mgetl(TMPDIR + "/bug_16571.sci"));
+~%t// constant
+~(ones(2,3)==1)// function''s result
+A = %t;
+~(A | %f)// operation''s result
+~asciimat("ABC")// string negation
+~double(B)// integer negation
+~%pi// real negation
+~abs(%i)// complex negation
+~abs(%i-1.234)// complex negation

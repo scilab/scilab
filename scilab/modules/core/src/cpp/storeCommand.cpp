@@ -116,7 +116,7 @@ int StoreConsoleCommand(const char *command, int iWaitFor)
     return 0;
 }
 
-int StoreDebuggerCommand(const char *command)
+int StoreDebuggerCommand(const char *command, int iWaitFor)
 {
     ThreadManagement::LockStoreCommand();
     commandQueuePrioritary.emplace_back(os_strdup(command),
@@ -129,10 +129,17 @@ int StoreDebuggerCommand(const char *command)
     // Awake Runner to execute this prioritary command
     ThreadManagement::SendAwakeRunnerSignal();
 
-    // make this wait before unlock the Store Command will prevent
-    // dead lock in case where another thread get this command
-    // and execute it before this thread is waiting for.
-    ThreadManagement::WaitForDebuggerExecDoneSignal(false);
+    if (iWaitFor)
+    {
+        // make this wait before unlock the Store Command will prevent
+        // dead lock in case where another thread get this command
+        // and execute it before this thread is waiting for.
+        ThreadManagement::WaitForDebuggerExecDoneSignal(false);
+    }
+    else
+    {
+        ThreadManagement::UnlockStoreCommand();
+    }
 
     return 0;
 }

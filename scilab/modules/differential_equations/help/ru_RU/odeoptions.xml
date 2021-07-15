@@ -130,12 +130,12 @@
             требуя , чтобы решение хранилось в каждом значении сетки.
         </para>
         <programlisting role="example"><![CDATA[
-function ydot=f(t,y)
-    ydot=y^2-y*sin(t)+cos(t)
+function ydot = f(t,y)
+    ydot = y^2 - y*sin(t) + cos(t)
 endfunction
-%ODEOPTIONS=[2,0,0,%inf,0,2,500,12,5,0,-1,-1];
-y=ode(0,0,%pi,f);
-plot(y(1,:),y(2,:))
+%ODEOPTIONS = [2,0,0,%inf,0,2,500,12,5,0,-1,-1];
+y = ode(0, 0, %pi, f);
+plot(y(1,:), y(2,:))
 clear %ODEOPTIONS
  ]]></programlisting>
     </refsection>

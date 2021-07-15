@@ -20,6 +20,7 @@
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include "SetHashTable.h"
+#include "GetHashTable.h"
 #include "setHandleProperty.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -39,6 +40,11 @@ static BOOL setHashTableCreated = FALSE;
 static SetPropertyHashTable *setHashTable = NULL;
 
 /**
+ * the get hashtable
+ */
+extern GetPropertyHashTable *getHashTable;
+/**
+
 * a couple of key (property name) and associated value
 * (accessor name)
 */
@@ -303,7 +309,14 @@ int callSetProperty(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int
 
     if (accessor == NULL)
     {
-        Scierror(999, _("Unknown property: %s.\n"), propertyName);
+        if (searchGetHashtable(getHashTable, (char*)propertyName) == NULL)
+        {
+            Scierror(999, _("Unknown property: %s.\n"), propertyName);            
+        }
+        else
+        {
+            Scierror(999, _("Read-only property: %s.\n"), propertyName);                        
+        }
         return NULL;
     }
     return accessor(_pvCtx, iObjUID, _pvData, valueType, nbRow, nbCol);

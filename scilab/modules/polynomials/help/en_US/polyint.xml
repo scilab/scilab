@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2020 - Samuel GOUGEON - Le Mans Université
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="polyint">
+    <refnamediv>
+        <refname>polyint</refname>
+        <refpurpose>
+            Polynomial integration
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            polyint  // example
+            Q = polyint(P)
+            Q = polyint(P, Const)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P, Q</term>
+                <listitem>
+                    arrays (from scalars to hypermatrices) of polynomials with real or complex
+                    coefficients, of same size.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Const</term>
+                <listitem>
+                    Set of real or complex constants of integration.
+                    <literal>length(Const)</literal> sets the number of consecutive integrations
+                    to perform. By default, 0 is used.
+                    <varname>Const</varname> can be one of the following:
+                    <itemizedlist>
+                        <listitem>
+                            a scalar: then only the first antiderivatives are computed, and all use
+                            the same <varname>Const</varname> value.
+                        </listitem>
+                        <listitem>
+                            an array of size size(P): then only the first antiderivatives are computed,
+                            with the respective <literal>Const(i)</literal> for <literal>Q(i)</literal>.
+                        </listitem>
+                        <listitem>
+                            a list that can mix scalars, arrays of size size(P), or undefined elements.
+                            Then <literal>Const(i)</literal> is used for the i<superscript>th</superscript>
+                            antiderivatives. Undefined elements are equivalent to 0.
+                        </listitem>
+                    </itemizedlist>
+                    <para/>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            polyint(..) computes the first or any n<superscript>th</superscript> antiderivative
+            of each polynomial of the input array.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            Single integration (first order):
+        </para>
+        <programlisting role="example"><![CDATA[
+s = %s;
+P = [-2, s ; s^2-3, s-2*s^3]
+polyint(P)
+polyint(P, 1)
+polyint(P, [1 2 ; 3 4])
+     ]]></programlisting>
+        <screen><![CDATA[
+--> P = [-2, s ; s^2-3, s-2*s^3]
+ P  =
+  -2      s
+  -3 +s²  s -2s³
+
+--> polyint(P)
+ ans  =
+  -2s               0.5s²
+  -3s +0.3333333s³  0.5s² -0.5s⁴
+
+--> polyint(P, 1)
+ ans  =
+  1 -2s               1 +0.5s²
+  1 -3s +0.3333333s³  1 +0.5s² -0.5s⁴
+
+--> polyint(P, [1 2 ; 3 4])
+ ans  =
+  1 -2s               2 +0.5s²
+  3 -3s +0.3333333s³  4 +0.5s² -0.5s⁴
+]]></screen>
+        <para/>
+        <para>
+            Multiple integrations:
+        </para>
+        <programlisting role="example"><![CDATA[
+s = %s;
+polyint(1-3*s, list(-1,1))
+P = [3 ; 1-s ; 6*s^2-2]
+polyint(P, list(2, [-2 1 0]))
+polyint(P, list(, [-2 1 0]))
+
+k = list(); k(5) = 0;
+polyint(1+0*s, k)
+1 / factorial(5)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> polyint(1-3*s, list(-1,1))
+ ans  =
+  1 -s +0.5s² -0.5s³
+
+--> P = [3 ; 1-s ; 6*s^2-2]
+ P  =
+  3
+  1 -s
+  -2 +6s²
+
+--> polyint(P, list(2, [-2 1 0]))
+ ans  =
+  -2 +2s +1.5s²
+  1 +2s +0.5s² -0.1666667s³
+  2s -s² +0.5s⁴
+
+--> polyint(P, list(, [-2 1 0]))
+ ans  =
+  -2 +1.5s²
+  1 +0.5s² -0.1666667s³
+  -s² +0.5s⁴
+
+
+--> k = list(); k(5) = 0;
+--> polyint(1+0*s, k)
+ ans  =
+  0.0083333s⁵
+
+--> 1 / factorial(5)
+ ans  =
+   0.0083333
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="derivat">derivat</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    polyint() introduced.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

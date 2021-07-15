@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 any
 ]]></programlisting>
                 </td>
@@ -84,7 +84,7 @@ or
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 y = any([1,1,0;1,0,1])
 y = [1,1,1]
 y = any([1,1,0;1,0,1],1)

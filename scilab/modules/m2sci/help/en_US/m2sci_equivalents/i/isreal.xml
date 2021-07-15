@@ -62,7 +62,7 @@ isreal
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 tf = isreal(1+0i)
 tf = 1
 ]]></programlisting>

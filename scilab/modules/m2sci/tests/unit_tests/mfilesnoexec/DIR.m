@@ -3,14 +3,14 @@
 % Matlab version: 6.5.0.180913a (R13)
 % V.C.
 
-dirname='~';
+dirName = '~';
 dir
 dir dirname
-dir(dirname)
+dir(dirName)
 dir 'dirname'
 dir('dirname')
 files = dir
-files1 = dir(dirname)
+files1 = dir(dirName)
 files2 = dir('dirname')
 
 

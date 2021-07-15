@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,14 +31,28 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 ones
-]]></programlisting>
+ones(n)
+ones(sz1, .., szN)
+ones(Sizes)
+ones(.., typename)
+ones(.., 'like', p)
+
+% No equivalent
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-ones
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+ones()
+ones(n, n)
+ones(sz1, .., szN)
+repmat(1, Sizes)
+ones(.., typename)
+// No equivalent
+
+ones(A)  // only size(A) is considered
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
@@ -51,7 +65,7 @@ ones
                 <emphasis role="strong">A</emphasis> is taken in account), what Scilab function do not tolerate.
             </note>
         </para>
-        <programlisting role="example"><![CDATA[
+        <programlisting role="no-scilab-exec"><![CDATA[
 // Scilab version
 B=ones(A)
     ]]></programlisting>
@@ -59,17 +73,17 @@ B=ones(A)
             Most differences stem from the use of <emphasis role="strong">ones</emphasis> in conjunction with
             <emphasis role="strong">size</emphasis>. In Scilab you do not need to use size:
         </para>
-        <programlisting role="example"><![CDATA[
+        <programlisting role="no-scilab-exec"><![CDATA[
 % Matlab version
-A = [1 2; 3 4];
+A = [1 2 ; 3 4];
 B = ones(size(A))
 B  = [ 1. 1. ; 1. 1.]
  ]]></programlisting>
         <programlisting role="example"><![CDATA[
 // Scilab version
-A = [1 2; 3 4];
+A = [1 2 ; 3 4];
 B = ones(A)
-B  =[ 1 1; 1 1]
+B  =[ 1 1 ; 1 1]
  ]]></programlisting>
         <para>
             As a result, if A is a scalar, then Matlab will return a <emphasis role="strong">A*A</emphasis> matrix of ones but in Scilab you get a
@@ -93,7 +107,7 @@ B  =[ 1 1; 1 1]
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 B = ones(2)
 B = [1,1;1,1]
 B = ones(2,2)

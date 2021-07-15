@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-// 
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -10,17 +10,17 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [tree]=sci_MFUN(tree)
-// Prototype for functions with same syntax and output property unknown
-// M2SCI function
-// Conversion function for Matlab MFUN()
-// Input: tree = Matlab funcall tree
-// Output: tree = Scilab equivalent for tree
+function tree = sci_MFUN(tree)
+    // Prototype for functions with same syntax and output property unknown
+    // M2SCI function
+    // Conversion function for Matlab MFUN()
+    // Input: tree = Matlab funcall tree
+    // Output: tree = Scilab equivalent for tree
 
-A=getrhs(tree)
-A=convert2double(A)
-tree.rhs=Rhs_tlist(A)
+    A = getrhs(tree)
+    A = convert2double(A)
+    tree.rhs = Rhs_tlist(A)
 
-tree.lhs(1).dims=A.dims
-tree.lhs(1).type=Type(Double,Unknown)
+    tree.lhs(1).dims = A.dims
+    tree.lhs(1).type = Type(Double,Unknown)
 endfunction

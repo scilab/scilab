@@ -24,7 +24,7 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            [Ns,d] = coffg(Fs)
+            [Ns, d] = coffg(Fs)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

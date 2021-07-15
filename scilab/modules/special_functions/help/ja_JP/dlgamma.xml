@@ -46,13 +46,11 @@
             の全ての要素について,ガンマ関数の対数微分を計算します.
             この値はgammaln関数の微分に一致します:
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/dlgamma_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" alt="d(ln(Γ(x))/dx = dΓ(x)/dx . 1/Γ(x)">
+                \frac{d\,\ln\left(\Gamma(x)\right)}{dx}=\frac{d\Gamma(x)}{dx\,\Gamma(x)}
+            </latex>
+        </para>
         <para>
             <literal>x</literal> は実数である必要があります.
             psi 関数としても知られています.

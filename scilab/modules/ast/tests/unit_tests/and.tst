@@ -1,11 +1,18 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
+// Copyright (C) 2020 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+//
+// <-- Short Description -->
+// Unitary tests of the & operator
+//
+// See also: or_and.tst
 
 empty = [];
 r = 2;
@@ -50,6 +57,8 @@ B = [%t %f;%f %t];
 assert_checkequal(empty & empty, []);
 assert_checkequal(empty & r, []);
 assert_checkequal(empty & R, []);
+assert_checkequal(empty & c, []);
+assert_checkequal(empty & C, []);
 assert_checkequal(empty & e, []);
 assert_checkequal(empty & b, %f);
 assert_checkequal(empty & B, [%t,%f;%f,%t]);
@@ -57,6 +66,8 @@ assert_checkequal(empty & B, [%t,%f;%f,%t]);
 assert_checkequal(r & empty, []);
 assert_checkequal(r & r, %t);
 assert_checkequal(r & R, [%t,%t;%t,%t]);
+assert_checkequal(r & c, %t);
+assert_checkequal(r & C, [%t,%t;%t,%t]);
 assert_checkequal(r & e, %t);
 assert_checkequal(r & b, %f);
 assert_checkequal(r & B, [%t,%f;%f,%t]);
@@ -64,19 +75,43 @@ assert_checkequal(r & B, [%t,%f;%f,%t]);
 assert_checkequal(R & empty, []);
 assert_checkequal(R & r, [%t,%t;%t,%t]);
 assert_checkequal(R & R, [%t,%t;%t,%t]);
+assert_checkequal(R & c, [%t,%t;%t,%t]);
+assert_checkequal(R & C, [%t,%t;%t,%t]);
 assert_checkequal(R & e, [%t,%t;%t,%t]);
 assert_checkequal(R & b, [%f,%f;%f,%f]);
 assert_checkequal(R & B, [%t,%f;%f,%t]);
 
+assert_checkequal(c & empty, []);
+assert_checkequal(c & r, %t);
+assert_checkequal(c & R, [%t,%t;%t,%t]);
+assert_checkequal(c & c, %t);
+assert_checkequal(c & C, [%t,%t;%t,%t]);
+assert_checkequal(c & e, %t);
+assert_checkequal(c & b, %f);
+assert_checkequal(c & B, [%t,%f;%f,%t]);
+
+assert_checkequal(C & empty, []);
+assert_checkequal(C & r, [%t,%t;%t,%t]);
+assert_checkequal(C & R, [%t,%t;%t,%t]);
+assert_checkequal(C & c, [%t,%t;%t,%t]);
+assert_checkequal(C & C, [%t,%t;%t,%t]);
+assert_checkequal(C & e, [%t,%t;%t,%t]);
+assert_checkequal(C & b, [%f,%f;%f,%f]);
+assert_checkequal(C & B, [%t,%f;%f,%t]);
+
 assert_checkequal(e & empty, []);
 assert_checkequal(e & r, %t);
 assert_checkequal(e & R, [%t,%t;%t,%t]);
+assert_checkequal(e & c, %t);
+assert_checkequal(e & C, [%t,%t;%t,%t]);
 assert_checkequal(e & b, %f);
 assert_checkequal(e & B, [%t,%f;%f,%t]);
 
 assert_checkequal(b & empty, %f);
 assert_checkequal(b & r, %f);
 assert_checkequal(b & R, [%f,%f;%f,%f]);
+assert_checkequal(b & c, %f);
+assert_checkequal(b & C, [%f,%f;%f,%f]);
 assert_checkequal(b & e, %f);
 assert_checkequal(b & b, %f);
 assert_checkequal(b & B, [%f,%f;%f,%f]);
@@ -85,6 +120,8 @@ assert_checkequal(b & SPB, sparse([1,1], [%f], [2, 2]));
 assert_checkequal(B & empty, [%t,%f;%f,%t]);
 assert_checkequal(B & r, [%t,%f;%f,%t]);
 assert_checkequal(B & R, [%t,%f;%f,%t]);
+assert_checkequal(B & c, [%t,%f;%f,%t]);
+assert_checkequal(B & C, [%t,%f;%f,%t]);
 assert_checkequal(B & e, [%t,%f;%f,%t]);
 assert_checkequal(B & b, [%f,%f;%f,%f]);
 assert_checkequal(B & B, [%t,%f;%f,%t]);

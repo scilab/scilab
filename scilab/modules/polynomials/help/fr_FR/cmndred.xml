@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[n,d]=cmndred(num,den)</synopsis>
+        <synopsis>[n, d] = cmndred(num, den)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>

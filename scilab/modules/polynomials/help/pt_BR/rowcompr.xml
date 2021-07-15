@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>[X,rk,Ac]=rowcompr(A)</synopsis>
+        <synopsis>[X, rk, Ac] = rowcompr(A)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -66,9 +66,9 @@
             comprime as linhas de <literal>A</literal>. <literal>rk</literal> é o
             posto normal de A.
         </para>
-        <para> Aviso: há eliminação de termos "pequenos" (utilize com
-            cuidado!).
-        </para>
+        <warning>
+            Há eliminação de termos "pequenos" (utilize com cuidado!).
+        </warning>
     </refsection>
     <refsection>
         <title> Ver Também </title>

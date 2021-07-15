@@ -21,7 +21,7 @@ function [tree]=sci_mkdir(tree)
 
     if lhs>=2 then
         tree.lhs(2).dims=list(1,Unknown);
-        tree.lhs(2).type=Type(String,Real);
+        tree.lhs(2).type=Type(String, Char);
     end
 
     if lhs==3 then

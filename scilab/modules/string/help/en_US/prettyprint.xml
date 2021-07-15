@@ -43,7 +43,7 @@
                         <itemizedlist>
                             <listitem>
                                 Supported types: booleans, encoded integers, real or complex numbers,
-                                polynomials and rationals with real or complex coefficients, texts,
+                                polynomials and rationals with real or complex coefficients, strings,
                                 cells, linear dynamical systems (as generated with syslin()),
                                 other Tlists.
                             </listitem>
@@ -467,7 +467,7 @@ winopen(File)  // Display the page in your browser
  ]]></programlisting>
     <para/>
     <para>
-        Please note that for text input, the protection needed for some special LaTeX characters
+        Please note that for string input, the protection needed for some special LaTeX characters
         is displayed as is by MathJax:
     </para>
     <inlinemediaobject>

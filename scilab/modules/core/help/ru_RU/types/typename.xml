@@ -6,20 +6,23 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>[types [ [,names]]=typename()
+        <synopsis>[indices, onames] = typename()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>types</term>
+                <term>indices</term>
                 <listitem>
-                    <para>вектор-столбец целочисленных значений: коды типов каждого из определённых типов данных.</para>
+                    <para>
+                        вектор-столбец целочисленных значений: коды типов каждого из определённых
+                        типов данных.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>names</term>
+                <term>onames</term>
                 <listitem>
                     <para>вектор-столбец строк: имена, связанные с кодами типов.</para>
                 </listitem>
@@ -29,7 +32,13 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Перегрузка функции и оператора позволяет использовать формальное имя, связанное с типами данных для того, чтобы формировать имя функции перегрузки (см. <link linkend="overloading">перегрузку</link>). Функция <function>typename</function> может быть использована для управления этими формальными именами для жёстко запрограммированных типов данных (типы данных, запрограммированных с помощью <literal>tlist</literal> или <literal>mlist</literal>, определяются по-другому, см. <link linkend="overloading">перегрузку</link>).
+            Перегрузка функции и оператора позволяет использовать формальное имя, связанное с
+            типами данных для того, чтобы формировать имя функции перегрузки
+            (см. <link linkend="overloading">перегрузку</link>). Функция
+            <function>typename</function> может быть использована для управления этими формальными
+            именами для жёстко запрограммированных типов данных (типы данных, запрограммированных
+            с помощью <literal>tlist</literal> или <literal>mlist</literal>,
+            определяются по-другому, см. <link linkend="overloading">перегрузку</link>).
         </para>
         <para>
             функция <function>typename</function> вернёт информацию по определённым типам данных.
@@ -38,9 +47,29 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-[typs,nams]=typename();
-disp("Первый тип (double) : " + string(typs(1)) + " / " + nams(1));
-]]></programlisting>
+[ind, onames] = typename();
+mprintf("Type index: %3d  overloading code: ""%s""\n", ind, onames)
+    ]]></programlisting>
+       <screen><![CDATA[
+--> mprintf("Type index: %3d  overloading code: ""%s""\n", ind, onames)
+Type index:   1  overloading code: "s"
+Type index:   2  overloading code: "p"
+Type index:   4  overloading code: "b"
+Type index:   5  overloading code: "sp"
+Type index:   6  overloading code: "spb"
+Type index:   7  overloading code: "msp"
+Type index:   8  overloading code: "i"
+Type index:   9  overloading code: "h"
+Type index:  10  overloading code: "c"
+Type index:  13  overloading code: "function"
+Type index:  14  overloading code: "f"
+Type index:  15  overloading code: "l"
+Type index:  16  overloading code: "tl"
+Type index:  17  overloading code: "ml"
+Type index: 128  overloading code: "ptr"
+Type index: 129  overloading code: "ip"
+Type index: 130  overloading code: "fptr"
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

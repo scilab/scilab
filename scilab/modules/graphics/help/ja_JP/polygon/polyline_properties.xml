@@ -117,7 +117,7 @@
                         a.children.children.thickness = 2;
                         set(a, "axes_visible",["off" "on" "off"], "sub_ticks",[1 0]);
                         a.margins(1) = 0.15;
-                        a.y_ticks=tlist(["ticks"  "locations"  "labels"],1:10,msprintf("%d\n",(1:10)')')
+                        a.y_ticks=tlist(["ticks"  "locations"  "labels"],1:10,msprintf("%d\n",(10:-1:1)')')
                         ylabel("line_style value", "fontsize", 3)
                         gcf().axes_size = [300 185];
                     </scilab:image>

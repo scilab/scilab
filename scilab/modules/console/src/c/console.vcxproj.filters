@@ -23,6 +23,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\jni\AdvCLIManagement_wrap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\jni\CallScilabBridge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

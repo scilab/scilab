@@ -34,13 +34,19 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-grid
+                    <programlisting role="no-scilab-exec"><![CDATA[
+grid on
+grid off
+grid(target, 'on')
+grid(target, 'off')
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-No equivalent
+                    <programlisting role="no-scilab-exec"><![CDATA[
+xgrid
+gca().grid =  -[1 1 1];
+target.grid =  [1 1 1];
+target.grid = -[1 1 1];
 ]]></programlisting>
                 </td>
             </tr>
@@ -56,22 +62,6 @@ No equivalent
         </para>
         <variablelist>
             <varlistentry>
-                <term>grid on</term>
-                <listitem>
-                    <para>
-                        may be replaced by <emphasis role="bold">gca().grid=[1 1 1]</emphasis>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>grid off</term>
-                <listitem>
-                    <para>
-                        may be replaced by <emphasis role="bold">gca().grid=-[1 1 1]</emphasis>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>grid minor</term>
                 <listitem>
                     <para>
@@ -84,22 +74,6 @@ No equivalent
                 <listitem>
                     <para>
                         can be emulated in Scilab by <emphasis role="bold">mtlb_hold</emphasis>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>grid(axes_handle,"on")</term>
-                <listitem>
-                    <para>
-                        may be replaced by <emphasis role="bold">axes_handle.grid=[1 1 1]</emphasis>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>grid(axes_handle,"off")</term>
-                <listitem>
-                    <para>
-                        may be replaced by <emphasis role="bold">axes_handle.grid=-[1 1 1]</emphasis>
                     </para>
                 </listitem>
             </varlistentry>

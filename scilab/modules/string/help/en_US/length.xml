@@ -19,7 +19,7 @@
           xml:id="length" xml:lang="en">
     <refnamediv>
         <refname>length</refname>
-        <refpurpose>Number of characters of a text. Number of elements of an array or list.</refpurpose>
+        <refpurpose>Number of characters of a string. Number of elements of an array or list.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>

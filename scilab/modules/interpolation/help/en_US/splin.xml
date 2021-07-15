@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="splin" xml:lang="en">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) F. N. Fritsch (pchim.f Slatec routine is used for monotonous interpolation)
+ * Copyright (C) B. Pincon (interface Scilab)
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="splin" xml:lang="en">
     <refnamediv>
         <refname>splin</refname>
         <refpurpose>cubic spline interpolation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>d = splin(x, y [,spline_type [, der]])</synopsis>
+        <synopsis>
+            d = splin(x, y)
+            d = splin(x, y, spline_type)
+            d = splin(x, y, spline_type, der)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -77,13 +97,12 @@
                         using the following conditions (considering n points
                         x1,...,xn):
                     </para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/splin_equation1.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <para>
+                        <latex fontsize="18" alt="s′′′(x₂⁻)=s′′′(x₂⁺), s′′′(x{n-1}⁻)=s′′′(x{n-1}⁺)">
+                            s'''(x_2^-) = s'''(x_2^+) \\
+                            s'''(x_{n-1}^-) = s'''(x_{n-1}^+)
+                        </latex>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -93,26 +112,24 @@
                         points derivatives which must be provided as the last argument
                         <literal>der</literal>:
                     </para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/splin_equation2.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <para>
+                        <table align="center">
+                        <tr align="center"><td><emphasis>s'(x<subscript>1</subscript>) = der(1)</emphasis></td></tr>
+                        <tr align="center"><td><emphasis>s'(x<subscript>n</subscript>) = der(2)</emphasis></td></tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"natural"</term>
                 <listitem>
                     <para>the cubic spline is computed by using the conditions:</para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/splin_equation3.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <para>
+                        <table align="center">
+                        <tr align="center"><td><emphasis>s''(x<subscript>1</subscript>) = 0</emphasis></td></tr>
+                        <tr align="center"><td><emphasis>s''(x<subscript>n</subscript>) = 0</emphasis></td></tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -122,13 +139,20 @@
                         a periodic cubic spline is computed (<literal>y</literal> must
                         verify <emphasis>y1=yn</emphasis>) by using the conditions:
                     </para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/splin_equation4.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <para>
+                        <table align="center">
+                        <tr align="center">
+                            <td>
+                            <emphasis>s'(x<subscript>1</subscript>) = s'(x<subscript>n</subscript>)</emphasis>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td>
+                            <emphasis>s''(x<subscript>1</subscript>) = s''(x<subscript>n</subscript>)</emphasis>
+                            </td>
+                        </tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -140,13 +164,16 @@
                         the <emphasis>di</emphasis> such that <emphasis>s</emphasis> is
                         monotone on each interval:
                     </para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/splin_equation5.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <para>
+                        <itemizedlist>
+                            <listitem>
+                                If y(i) ≤ y(i+1), s is increasing on <literal>[x(i), x(i+1)]</literal>.
+                            </listitem>
+                            <listitem>
+                                If y(i) ≥ y(i+1), s is increasing on <literal>[x(i), x(i+1)]</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -176,16 +203,18 @@
     <refsection>
         <title>Remarks</title>
         <para>
-            From an accuracy point of view use essentially the <emphasis role="bold">clamped</emphasis> type if you know the end point derivatives,
-            else use <emphasis role="bold">not_a_knot</emphasis>. But if the
-            underlying approximated function is periodic use the <emphasis role="bold">periodic</emphasis> type. Under the good assumptions these
+            From an accuracy point of view use essentially the <emphasis role="bold">clamped</emphasis>
+            type if you know the end point derivatives, else use <emphasis role="bold">not_a_knot</emphasis>.
+            But if the underlying approximated function is periodic use the
+            <emphasis role="bold">periodic</emphasis> type. Under the good assumptions these
             kind of splines got an <literal>O(h^4)</literal> asymptotic behavior of
             the error. Don't use the <emphasis role="bold">natural</emphasis> type
             unless the underlying function have zero second end points
             derivatives.
         </para>
         <para>
-            The <emphasis role="bold">monotone</emphasis>, <emphasis role="bold">fast</emphasis> (or <emphasis role="bold">fast_periodic</emphasis>) type may be useful in some cases,
+            The <emphasis role="bold">monotone</emphasis>, <emphasis role="bold">fast</emphasis>
+            (or <emphasis role="bold">fast_periodic</emphasis>) type may be useful in some cases,
             for instance to limit oscillations (these kind of sub-splines have an
             <literal>O(h^3)</literal> asymptotic behavior of the error).
         </para>
@@ -193,7 +222,8 @@
             If <emphasis>n=2</emphasis> (and <literal>spline_type</literal> is
             not <emphasis role="bold">clamped</emphasis>) linear interpolation is
             used. If <emphasis>n=3</emphasis> and <literal>spline_type</literal> is
-            <emphasis role="bold">not_a_knot</emphasis>, then a <emphasis role="bold">fast</emphasis> sub-spline type is in fact computed.
+            <emphasis role="bold">not_a_knot</emphasis>, then a <emphasis role="bold">fast</emphasis>
+            sub-spline type is in fact computed.
         </para>
     </refsection>
     <refsection>
@@ -273,14 +303,5 @@ show_window()
                 <link linkend="lsq_splin">lsq_splin</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>previously, imaginary part of input arguments were implicitly ignored.</revremark>
-            </revision>
-        </revhistory>
     </refsection>
 </refentry>

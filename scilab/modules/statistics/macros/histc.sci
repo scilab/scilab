@@ -70,8 +70,9 @@ function [heights, jokers, binsOut, ind] = histc(data, bins, options)
     // -------------------------
     mode55 = %f
     // Check for Scilab 5.5 back-compatibility
-    if (isdef("data","l") & isdef("bins", "l") & type(bins)>0) & ..
-        size(data,"*")< size(bins,"*") & or(type(data)==[1 8]) & type(bins)~=10
+    if ~isdef("from_histplot") & isdef("data","l") & isdef("bins", "l") & ..
+        type(bins)>0 & size(data,"*")< size(bins,"*") & ..
+        or(type(data)==[1 8]) & type(bins)~=10
         msg = _("%s: data are now expected in argument #1 => arguments #1 and #2 switched\n")
         warning(msprintf(msg, fname))
         mode55 = %t

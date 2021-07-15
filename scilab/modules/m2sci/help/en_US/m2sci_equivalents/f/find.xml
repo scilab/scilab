@@ -31,12 +31,12 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 find
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 find
 ]]></programlisting>
                 </td>
@@ -57,7 +57,7 @@ find
             For example, in <emphasis role="bold">[i,j,v]=find(X)</emphasis>, <emphasis role="bold">v</emphasis> is equal to: <emphasis role="bold">X(i+(j-1))*size(X,1)</emphasis>.
         </para>
         <para>
-            Another great difference between Scilab and Matlab is that Matlab returns column vectors of indices when X is a column vector or a matrix but Scilab always returns row vectors. For this kind of input, use matrix to get the same output value...what is done mtlb_find()
+            Another difference between Scilab and Matlab is that Matlab returns column vectors of indices when X is a column vector or a matrix but Scilab always returns row vectors. For this kind of input, use matrix to get the same output value...what is done mtlb_find()
         </para>
     </refsection>
 </refentry>

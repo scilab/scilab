@@ -145,9 +145,9 @@ public class Scilab {
          * (needed when building the documentation under *ux)
          */
         if (mode != 1 && System.getenv("SCI_JAVA_ENABLE_HEADLESS") == null) {
+
             /* http://java.sun.com/docs/books/tutorial/uiswing/lookandfeel/plaf.html */
             try {
-
                 String scilabLookAndFeel = "javax.swing.plaf.metal.MetalLookAndFeel";
 
                 if (OS.get() == OS.WINDOWS) {
@@ -209,6 +209,9 @@ public class Scilab {
 
             mainView = SwingScilabWindow.allScilabWindows.get(consoleTab.getParentWindowId());
         } else {
+            if (mode == 3) { //NW
+                ConfigManager.createUserCopy();
+            }
             GraphicController.getController().askObject(Type.CONSOLE);
         }
     }

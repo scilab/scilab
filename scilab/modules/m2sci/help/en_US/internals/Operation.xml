@@ -1,52 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-    *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
-    *
-    -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="Operation">
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+* Copyright (C) 2020 - Samuel GOUGEON
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="Operation">
     <refnamediv>
         <refname>Operation</refname>
-        <refpurpose>Create a tree representing an operation</refpurpose>
+        <refpurpose>
+            Generates the Scilab pseudo-code representing an operation
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>op=Operation(operator,operands,out)</synopsis>
+        <synopsis>op = Operation(operator, operands, out)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
+                <term>op</term>
+                <listitem>
+                    Tlist of type "operation", with fields <literal>operator</literal>,
+					<literal>operands</literal>, and <literal>out</literal>.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>operator</term>
                 <listitem>
-                    <para>operator symbol (character string)</para>
+                    operator symbol (character string). Supported codes are:
+                    <literal>"''", ".''", "~", ":",
+                    "+", "-", "*", ".*", ".*.", ".^", "/", "./", "\",
+                    "==", "&lt;>", "&lt;", "&lt;=", ">", ">=", "|", "||", "&amp;", "&amp;&amp;",
+                    "cc"</literal> (Columns horizontal Concatenation [,]), <literal>"rc"</literal>
+                    (Rows vertical concatenation [;]),
+                    <literal>"ccc"</literal> (Cells horizontal concatenation {,}),
+                    <literal>"crc"</literal> (Cells vertical concatenation {;}),
+                    <literal>"ins"</literal> (insertion), <literal>"ext"</literal> (extraction).
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>operands</term>
                 <listitem>
-                    <para>list of operands (list of "M2SCI tlists")</para>
+                    List of Tlists representing operands, of type "cste" (ex: 1.23),
+                    "variable" (ex: A), "funcall" (ex: gcf()), or "operation"
+                    (ex: (1+3)).
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>out</term>
                 <listitem>
-                    <para>list of outputs (list of "M2SCI tlists")</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>op</term>
-                <listitem>
-                    <para>an "operation" tlist</para>
+                    List of TLists representing the operation result(s) (most often
+                    unique). Each result is represented as a M2SCI tlist.
+                    Default value: list().
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -54,8 +75,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function create a <literal>tlist</literal> representing an operation when using M2SCI.
-            All input parameters values are verified to be compatible with "M2SCI tlists".
+            This function creates a <literal>tlist</literal> representing an operation when using
+            M2SCI. All input parameters values are verified to be compatible with "M2SCI tlists".
         </para>
     </refsection>
     <refsection role="see also">
@@ -83,5 +104,16 @@
                 <link linkend="Equal">Equal</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <varname>out</varname> is now optional: default = list().
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

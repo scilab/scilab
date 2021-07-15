@@ -571,6 +571,7 @@ pfactors
 pol2des
 pol2str
 polfact
+polyint
 rowcompr
 sylm
 systmat

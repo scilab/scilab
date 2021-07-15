@@ -20,7 +20,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>res=determ(W [,k])</synopsis>
+        <synopsis>
+            res = determ(W)
+            res = determ(W, k)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -28,7 +31,7 @@
             <varlistentry>
                 <term>W</term>
                 <listitem>
-                    <para>実数正方多項式行列</para>
+                    <para>実数または複素数の多項式の正方行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -42,7 +45,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            実数多項式行列の行列式を返します
+            多項式行列の行列式を返します
             (Wの大きさが2*2より大きい場合,FFTにより計算されます).
         </para>
         <para>
@@ -63,11 +66,23 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');
-w=s*rand(10,10);
-determ(w)
-det(coeff(w,1))*s^10
- ]]></programlisting>
+s = %s;
+P = [5+3*s, 1-5*s, -4+6*s ; -3+5*s, -3*s, -9 ; 8*s, -6-2*s, 4-6*s]
+determ(P)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> P = [5+3*s, 1-5*s, -4+6*s ; -3+5*s, -3*s, -9 ; 8*s, -6-2*s, 4-6*s]
+ P  =
+  5 +3s   1 -5s   -4 +6s
+
+  -3 +5s  -3s     -9
+
+  8s      -6 -2s  4 -6s
+
+--> determ(P)
+ ans  =
+  -330 -278s +380s² -12s³
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

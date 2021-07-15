@@ -2,11 +2,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="detr">
     <refnamediv>
         <refname>detr</refname>
-        <refpurpose>déterminant d'un polynôme   </refpurpose>
+        <refpurpose>déterminant d'une matrice de fractions rationnelles ou de polynômes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>d=detr(h)</synopsis>
+        <synopsis>d = detr(h)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -15,7 +15,15 @@
                 <term>h  </term>
                 <listitem>
                     <para>
-                        matrice carrée de doubles ou de polynômes ou de fractions rationnelles.
+                        matrice carrée de fractions rationnelles, ou de polynômes, ou de nombres.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d  </term>
+                <listitem>
+                    <para>
+                        scalaire du type de <varname>h</varname> : son déterminant.
                     </para>
                 </listitem>
             </varlistentry>
@@ -24,8 +32,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>d=detr(h)</literal> renvoie le déterminant <literal>d</literal> de la
-            matrice <literal>h</literal>. Basé sur l'algorithme de Leverrier.
+            <literal>d=detr(h)</literal> calcule et fournit le déterminant <literal>d</literal>
+            de la matrice <literal>h</literal>, selon l'algorithme de Leverrier.
         </para>
     </refsection>
     <refsection>
@@ -45,10 +53,16 @@ A = [1+x 2 5; 3 4-x 3+x; x^2 1 x];
 detr(A)
 
 // Matrice de fractions rationnelles
-A = [1/x 2 3; 3 4/x 3/x; 1/x^2 1 1/x];
+A = [1/x, 2, 3 ; 3, 4/x, 3/x ; 1/x^2, 1, 1/x];
 detr(A)
- ]]>
-        </programlisting>
+     ]]></programlisting>
+        <screen><![CDATA[
+--> detr(A)
+ ans  =
+   -2 -3x -6x² +9x³
+   ----------------
+          x³
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

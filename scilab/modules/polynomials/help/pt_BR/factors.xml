@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,13 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="factors" xml:lang="pt">
     <refnamediv>
         <refname>factors</refname>
-        <refpurpose>fatoração numérica real</refpurpose>
+        <refpurpose>fatoração em ℝ de um polinômio ou uma fração racional</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>[lnum,g]=factors(pol [,'flag'])
-            [lnum,lden,g]=factors(rat [,'flag'])
-            rat=factors(rat,'flag')
+        <synopsis>
+            [lnum, gain] = factors(pol)
+            [lnum, gain] = factors(pol, flag)
+            [lnum, lden, gain] = factors(rat)
+            [lnum, lden, gain] = factors(rat, flag)
+            rat = factors(rat, flag)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -31,41 +34,36 @@
             <varlistentry>
                 <term>pol</term>
                 <listitem>
-                    <para>polinômio real</para>
+                    polinômio real
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rat</term>
                 <listitem>
-                    <para>razão de polinômios reais
-                        (<literal>rat=pol1/pol2</literal>)
-                    </para>
+                    razão de polinômios reais (<literal>rat=pol1/pol2</literal>).
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>lnum</term>
+                <term>lnum, lden</term>
                 <listitem>
-                    <para>lista de polinômios (de graus 1 ou 2) </para>
+                    listas de polinômios (de graus 1 ou 2).
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>lden</term>
+                <term>gain</term>
                 <listitem>
-                    <para>lista de polinômios (de graus 1 ou 2) </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>g</term>
-                <listitem>
-                    <para>número real </para>
+                    número real
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flag</term>
                 <listitem>
-                    <para>
-                        string <literal>'c'</literal> ou <literal>'d'</literal>
-                    </para>
+                    string <literal>'c'</literal> ou <literal>'d'</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -74,28 +72,23 @@
         <title>Descrição</title>
         <para>
             Retorna os fatores do polinômio <literal>pol</literal> na lista
-            <literal>lnum</literal> e o "ganho" g.
+            <literal>lnum</literal> e o "ganho" <varname>gain</varname>.
         </para>
-        <para>Tem-se pol= g vezes o produto das entradas da lista
+        <para>Tem-se pol = gain vezes o produto das entradas da lista
             <literal>lnum</literal> (se <literal>flag</literal> não for fornecido). Se
-            <literal>flag='c'</literal> for dado, então tem-se <literal>|pol(i
-                omega)|
-            </literal>
-            =<literal>|g*prod(lnum_j(i omega)|</literal>. Se
-            <literal>flag='d'</literal> for dado, então tem-se <literal>|pol(exp(i
-                omega))|
-            </literal>
-            =<literal>|g*prod(lnum_i(exp(i omega))|</literal>. Se
-            o argumento de <literal>factors</literal> for uma razão
+            <literal>flag='c'</literal> for dado, então tem-se
+            <literal>|pol(i omega)|</literal>=<literal>|gain*prod(lnum_j(i omega)|</literal>.
+            Se <literal>flag='d'</literal> for dado, então tem-se
+            <literal>|pol(exp(i omega))|</literal>=<literal>|gain*prod(lnum_i(exp(i omega))|</literal>.
+            Se o argumento de <literal>factors</literal> for uma razão
             <literal>rat=pol1/pol2</literal>, os fatores do numerador
             <literal>pol1</literal> e do denominador <literal>pol2</literal> são
             retornados nas listas <literal>lnum</literal> e <literal>lden</literal>
             respectivamente.
         </para>
         <para>
-            O "ganho" é retornado como <literal>g</literal>, i.e. tem-se: rat= g
-            vezes (produto das entradas de lnum) / (produto das entradas de
-            lden).
+            O "ganho" é retornado como <literal>gain</literal>, i.e. tem-se:
+            rat= gain vezes (produto das entradas de lnum) / (produto das entradas de lden).
         </para>
         <para>
             Se <literal>flag</literal> for <literal>'c'</literal>
@@ -120,19 +113,28 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-n=poly([0.2,2,5],'z');
-d=poly([0.1,0.3,7],'z');
-R=syslin('d',n,d);
-R1=factors(R,'d')
+n = poly([0.2,2,5],'z');
+d = poly([0.1,0.3,7],'z');
+R = syslin('d',n,d);
+R1 = factors(R,'d')
 roots(R1('num'))
 roots(R1('den'))
-w=exp(2*%i*%pi*[0:0.1:1]);
-norm(abs(horner(R1,w))-abs(horner(R,w)))
+w = exp(2*%i*%pi*[0:0.1:1]);
+norm(abs(horner(R1,w)) - abs(horner(R,w)))
  ]]></programlisting>
     </refsection>
     <refsection>
         <title> Ver Também </title>
         <simplelist type="inline">
+            <member>
+                <link linkend="polfact">polfact</link>
+            </member>
+            <member>
+                <link linkend="roots">roots</link>
+            </member>
+            <member>
+                <link linkend="pfss">pfss</link>
+            </member>
             <member>
                 <link linkend="simp">simp</link>
             </member>

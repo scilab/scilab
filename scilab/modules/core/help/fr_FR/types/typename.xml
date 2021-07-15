@@ -6,23 +6,26 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[types [ [,names]]=typename()
+        <synopsis>
+            [indices, onames] = typename()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>types  </term>
+                <term>indices</term>
                 <listitem>
                     <para>vecteur colonne d'entiers, les codes des types de variables
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>names  </term>
+                <term>onames</term>
                 <listitem>
-                    <para>vecteur colonne de chaînes de caractères, les noms associés à chaque code
+                    <para>
+                        vecteur colonne de chaînes de caractères : nom des codes de surcharge
+                        associés aux différents types de données.
                     </para>
                 </listitem>
             </varlistentry>
@@ -31,20 +34,43 @@
     <refsection>
         <title>Description</title>
         <para>
-            La surcharge des opérateurs et primitives utilise des noms formels associés à
-            chaque type de variable pour former les noms des fonctions de surcharge
-            (voir <literal>overloading</literal>). <literal>typename</literal> peut être utilisé pour gérer ces noms pour les types natifs de variables (les noms formels pour les types <literal>tlist</literal> ou <literal>mlist</literal> sont définis autrement, pour ceci voir <literal>overloading</literal>).
+            <literal>typename</literal> renvoie les informations associées aux types de données déjà définis.
         </para>
         <para>
-            <literal>typename</literal> renvoie les informations associées aux types de données déjà définis.
+            La surcharge des opérateurs et primitives utilise des noms formels associés à
+            chaque type de variable pour former les noms des fonctions de surcharge
+            (voir <literal>overloading</literal>). <literal>typename</literal> peut être utilisé
+            pour gérer ces noms pour les types natifs de variables (les noms formels pour les types
+            <literal>tlist</literal> ou <literal>mlist</literal> sont définis autrement.
+            Pour ceci, voir <link linkend="overloading">overloading</link>).
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-[typs,nams]=typename();
-disp("First type (double) : " + string(typs(1)) + " / " + nams(1));
-]]></programlisting>
+[ind, onames] = typename();
+mprintf("Type index: %3d  overloading code: ""%s""\n", ind, onames)
+    ]]></programlisting>
+       <screen><![CDATA[
+--> mprintf("Type index: %3d  overloading code: ""%s""\n", ind, onames)
+Type index:   1  overloading code: "s"
+Type index:   2  overloading code: "p"
+Type index:   4  overloading code: "b"
+Type index:   5  overloading code: "sp"
+Type index:   6  overloading code: "spb"
+Type index:   7  overloading code: "msp"
+Type index:   8  overloading code: "i"
+Type index:   9  overloading code: "h"
+Type index:  10  overloading code: "c"
+Type index:  13  overloading code: "function"
+Type index:  14  overloading code: "f"
+Type index:  15  overloading code: "l"
+Type index:  16  overloading code: "tl"
+Type index:  17  overloading code: "ml"
+Type index: 128  overloading code: "ptr"
+Type index: 129  overloading code: "ip"
+Type index: 130  overloading code: "fptr"
+]]></screen>
     </refsection>
 
     <refsection role="see also">

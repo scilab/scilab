@@ -31,48 +31,14 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-unix
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+[status, cmdOut] = unix(command)
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-unix_g
-]]></programlisting>
-                </td>
-            </tr>
-        </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Output values order is inversed in Scilab and in Matlab.
-        </para>
-        <para>
-            In Scilab use <emphasis role="bold">disp</emphasis> to emulate Matlab <emphasis role="bold">-echo</emphasis> option.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <informaltable border="1" width="100%">
-            <tr>
-                <td align="center">
-                    <emphasis role="bold">Matlab</emphasis>
-                </td>
-                <td align="center">
-                    <emphasis role="bold">Scilab</emphasis>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <programlisting role="example"><![CDATA[
-[status,result] = unix(...)
-]]></programlisting>
-                </td>
-                <td>
-                    <programlisting role="example"><![CDATA[
-[result,status] = unix_g(...)
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+[cmdOut, status] = unix_g(command)
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>

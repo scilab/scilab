@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>[y]=intl(a,b,z0,r,f)</synopsis>
+        <synopsis>y = intl(a, b, z0, r, f)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>

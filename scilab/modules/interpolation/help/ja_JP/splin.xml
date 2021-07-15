@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="splin" xml:lang="ja">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) F. N. Fritsch (pchim.f Slatec routine is used for monotonous interpolation)
+ * Copyright (C) B. Pincon (interface Scilab)
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="splin" xml:lang="ja">
     <refnamediv>
         <refname>splin</refname>
         <refpurpose>3次スプライン補間</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>d = splin(x, y [,spline_type [, der]])</synopsis>
+        <synopsis>
+            d = splin(x, y)
+            d = splin(x, y, spline_type)
+            d = splin(x, y, spline_type, der)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -79,13 +99,12 @@
                     <para>これはデフォルトで,
                         3次スプラインが以下の条件 (n個の点 x1,...,xnを考慮)により計算されます:
                     </para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/splin_equation1.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <para>
+                        <latex fontsize="18" alt="s′′′(x₂⁻)=s′′′(x₂⁺), s′′′(x{n-1}⁻)=s′′′(x{n-1}⁺)">
+                            s'''(x_2^-) = s'''(x_2^+) \\
+                            s'''(x_{n-1}^-) = s'''(x_{n-1}^+)
+                        </latex>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -95,26 +114,24 @@
                         を用いて計算されます.この微係数は最後の引数<literal>der</literal>
                         で指定されます:
                     </para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/splin_equation2.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <para>
+                        <table align="center">
+                        <tr align="center"><td><emphasis>s'(x<subscript>1</subscript>) = der(1)</emphasis></td></tr>
+                        <tr align="center"><td><emphasis>s'(x<subscript>n</subscript>) = der(2)</emphasis></td></tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"natural"</term>
                 <listitem>
                     <para>3次スプラインは次の条件により計算されます:</para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/splin_equation3.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <para>
+                        <table align="center">
+                        <tr align="center"><td><emphasis>s''(x<subscript>1</subscript>) = 0</emphasis></td></tr>
+                        <tr align="center"><td><emphasis>s''(x<subscript>n</subscript>) = 0</emphasis></td></tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -123,13 +140,20 @@
                     <para>周期的3次スプラインは次の条件により計算されます
                         (<literal>y</literal>は<emphasis>y1=yn</emphasis>を確認する必要があります):
                     </para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/splin_equation4.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <para>
+                        <table align="center">
+                        <tr align="center">
+                            <td>
+                            <emphasis>s'(x<subscript>1</subscript>) = s'(x<subscript>n</subscript>)</emphasis>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td>
+                            <emphasis>s''(x<subscript>1</subscript>) = s''(x<subscript>n</subscript>)</emphasis>
+                            </td>
+                        </tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -141,13 +165,16 @@
                         各区間で単調となるような<emphasis>di</emphasis>
                         に関するローカルなスキームにより計算されます:
                     </para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/splin_equation5.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <para>
+                        <itemizedlist>
+                            <listitem>
+                                If y(i) ≤ y(i+1), s is increasing on <literal>[x(i), x(i+1)]</literal>.
+                            </listitem>
+                            <listitem>
+                                If y(i) ≥ y(i+1), s is increasing on <literal>[x(i), x(i+1)]</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -280,14 +307,5 @@ show_window()
                 <link linkend="lsq_splin">lsq_splin</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>履歴</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>以前では, 入力引数の虚部は暗黙のうちに無視されていました.</revremark>
-            </revision>
-        </revhistory>
     </refsection>
 </refentry>

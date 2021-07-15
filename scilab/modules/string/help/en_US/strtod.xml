@@ -24,8 +24,8 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            [d, tails] = strtod(str)
-            [d, tails] = strtod(str, decimalseparator)
+            d =  strtod(str [,decimalseparator])
+            [d, tails] = strtod(str [,decimalseparator])
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -35,7 +35,7 @@
                 <term>str</term>
                 <listitem>
                     <para>
-                        single component, vector, or matrix of text (strings).
+                        single component, vector, or matrix of strings.
                     </para>
                 </listitem>
             </varlistentry>

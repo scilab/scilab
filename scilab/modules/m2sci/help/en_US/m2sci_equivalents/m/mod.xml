@@ -31,14 +31,14 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 mod
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 pmodulo
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
@@ -46,7 +46,8 @@ pmodulo
     <refsection>
         <title>Particular cases</title>
         <para>
-            Scilab <emphasis role="bold">pmodulo</emphasis> can work with Complex values what Matlab <emphasis role="bold">mod</emphasis> can not.
+            Scilab <emphasis role="bold">pmodulo</emphasis> can work with Complex values,
+            while Matlab's <emphasis role="bold">mod</emphasis> can not.
         </para>
     </refsection>
 </refentry>

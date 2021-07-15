@@ -31,22 +31,16 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 isnumeric(A)
 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-No equivalent
+or(type(A)==[1 5 8])
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            There is no equivalent function for Matlab <emphasis role="bold">isnumeric</emphasis> function in Scilab but it can be emulated by: <emphasis role="bold">or(type(A)==[1 5 8])</emphasis>.
-        </para>
     </refsection>
 </refentry>

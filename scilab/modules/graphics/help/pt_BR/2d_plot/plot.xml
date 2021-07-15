@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - 2019 - Samuel GOUGEON
+ * Copyright (C) 2018 - 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,12 +27,14 @@
             plot     // demo
             plot(y)
             plot(x, y)
-            plot(x, fun)
-            plot(x, list(fun, param))
+            plot(x, func)
+            plot(x, list(func, params))
+            plot(x, polynomial)
+            plot(x, rational)
             plot(.., LineSpec)
             plot(.., LineSpec, GlobalProperty)
             plot(x1, y1, LineSpec1, x2,y2,LineSpec2,...xN, yN, LineSpecN, GlobalProperty1,.. GlobalPropertyM)
-            plot(x1,fun1,LineSpec1, x2,y2,LineSpec2,...xN,funN,LineSpecN, GlobalProperty1, ..GlobalPropertyM)
+            plot(x1,func1,LineSpec1, x2,y2,LineSpec2,...xN,funcN,LineSpecN, GlobalProperty1, ..GlobalPropertyM)
             plot(logflag,...)
             plot(axes_handle,...)
         </synopsis>
@@ -53,22 +55,55 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
+                    um vetor ou matriz de reais.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>func</term>
+                <listitem>
                     <para>
-                        uma matriz de reais ou um vetor.
+                        função definida como um macro ou uma primitiva, como em
+                        <literal>plot(x, sin)</literal>.
+                        If the function to plot needs some parameters as input arguments, the
+                        function and its parameters can be specified through a list, as in
+                        <literal>plot(x, list(delip,-0.4))</literal>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>fun, fun1</term>
+                <term>polynomial</term>
+                <listitem>
+                    Single polynomial or array of polynomials.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rational</term>
+                <listitem>
+                    Single rational or array of rationals.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y1, y2, y3,..</term>
                 <listitem>
                     <para>
-                        função definida como um macro ou uma primitiva, como em
-                        <literal>plot(x, sin)</literal>
-                    </para>
-                    <para>
-                        If the function to plot needs some parameters as input arguments, the
-                        function and its parameters can be specified through a list, as in
-                        <literal>plot(x, list(delip, -0.4))</literal>
+                        Can be any of the possible input types described above:
+                        <itemizedlist>
+                            <listitem>
+                                vectors or matrices of real numbers or of integers
+                            </listitem>
+                            <listitem>
+                                handle of a function (possibly in a list with its parameters).
+                            </listitem>
+                            <listitem>
+                                polynomials
+                            </listitem>
+                            <listitem>
+                                rationals
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
@@ -111,7 +146,7 @@
                     <para>
                         <literal>logflag</literal> must be used after <literal>axes_handle</literal>
                         (if any) and before the first curve's data <literal>x</literal> or
-                        <literal>y</literal> or <literal>fun</literal>.
+                        <literal>y</literal> or <literal>func</literal>.
                         It applies to all curves drawn by the <literal>plot(…)</literal> instruction.
                     </para>
                 </listitem>
@@ -378,6 +413,7 @@ plot(x, [sin(x) sin(2*x) sin(3*x)])
                 Specifying a macro or a builtin instead of explicit ordinates:
             </emphasis>
         </para>
+        <para>
         <programlisting role="example"><![CDATA[
 clf
 subplot(2,2,1)         // sin() is a builtin
@@ -439,8 +475,74 @@ title("plot(x, list(myPow,1:5))", "fontsize",3)
 
             gcf().axes_size = [730 500];
         ]]></scilab:image>
+        </para>
+        <para/>
         <para>
-        <emphasis role="bold">Setting curves simple styles when calling plot():</emphasis>
+            <emphasis role="bold">
+                Plotting the graph of polynomials or rationals:
+            </emphasis>
+        </para>
+        <para>
+        <programlisting role="example"><![CDATA[
+clf
+s = %s;
+
+// Polynomials
+x = -0.5:0.02:3;
+p = s*[2 ; (s-2) ; (s-1)*(s-2)]
+subplot(1,2,1)
+plot(x, p)
+legend(prettyprint(p,"latex","",%t), 2);
+
+// Rationals
+x = -0.5:0.02:2;
+r = (s-1)*s/(s-7)./[s+1, s-4]
+subplot(1,2,2)
+plot(x, r)
+legend(prettyprint(r,"latex","",%t), 2);
+
+gcf().children.grid = color("grey70")*[1 1]; // grids
+gcf().children.children([1 3]).font_size=3;  // legends
+ ]]></programlisting>
+        <screen><![CDATA[
+--> p = s*[2 ; (s-2) ; (s-1)*(s-2)]
+ p  =
+  2s
+  -2s +s²
+  2s -3s² +s³
+
+../..
+--> r = (s-1)*s/(s-7)./[s+1, s-4]
+ r  =
+     -s +s²      -s +s²
+   ----------  -----------
+   -7 -6s +s²  28 -11s +s²
+]]></screen>
+        <scilab:image><![CDATA[
+            s = %s;
+
+            // Polynomials
+            x = -0.5:0.02:3;
+            p = s*[2 ; (s-2) ; (s-1)*(s-2)]
+            subplot(1,2,1)
+            plot(x, p)
+            legend(prettyprint(p,"latex","",%t), 2);
+
+            // Rationals
+            x = -0.5:0.02:2;
+            r = (s-1)*s/(s-7)./[s+1, s-4]
+            subplot(1,2,2)
+            plot(x, r)
+            legend(prettyprint(r,"latex","",%t), 2);
+
+            gcf().children.grid = color("grey70")*[1 1]; // grids
+            gcf().children.children([1 3]).font_size=3;  // legends
+            gcf().axes_size = [650 400];
+        ]]></scilab:image>
+        </para>
+        <para/>
+        <para>
+            <emphasis role="bold">Setting curves simple styles when calling plot():</emphasis>
         </para>
         <programlisting role="example"><![CDATA[
 clf
@@ -702,14 +804,20 @@ isoview off
             <revision>
                 <revnumber>6.0.2</revnumber>
                 <revdescription>
-                    Plotting a function fun(x, params) with input parameters is now possible with
-                    plot(x, list(fun, params)).
+                    Plotting a function func(x, params) with input parameters is now possible with
+                    plot(x, list(func, params)).
                 </revdescription>
             </revision>
             <revision>
                 <revnumber>6.1.0</revnumber>
                 <revdescription>
                     logflag option added.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Polynomials and rationals can be plotted.
                 </revdescription>
             </revision>
         </revhistory>

@@ -17,12 +17,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="mclose">
     <refnamediv>
         <refname>mclose</refname>
-        <refpurpose>closes an opened file</refpurpose>
+        <refpurpose>closes opened files</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            err = mclose([fd])
+            err = mclose(fd)
+            err = mclose(paths)
             mclose('all')
         </synopsis>
     </refsynopsisdiv>
@@ -33,14 +34,22 @@
                 <term>fd</term>
                 <listitem>
                     <para>
-                        a scalar: the <varname>fd</varname> parameter returned by the function <function>mopen</function> is used as a file descriptor.
+                        a matrix of integers: the <varname>fd</varname> matrix returned by the function <function>mopen</function> is used as a matrix of file descriptors.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>paths</term>
+                <listitem>
+                    <para>
+                        a matrix of strings: the absolute paths of files to be closed.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>err</term>
                 <listitem>
-                    <para>a scalar: an error indicator.</para>
+                    <para>a matrix of integers: error indicators.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -48,9 +57,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>mclose</function> must be used to close a file opened by
+            <function>mclose</function> must be used to close files opened by
             <function>mopen</function>. If <varname>fd</varname> is omitted
-            <function>mclose</function> closes the last opend file.
+            <function>mclose</function> closes the last opened file.
         </para>
         <para>
             <code>mclose('all')</code> closes all files opened by

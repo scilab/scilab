@@ -6,7 +6,6 @@ import java.io.IOException;
 import javax.swing.text.Element;
 
 @javax.annotation.Generated("JFlex")
-@SuppressWarnings("fallthrough")
 %%
 
 %public
@@ -30,6 +29,10 @@ import javax.swing.text.Element;
         this.doc = doc;
         this.elem = doc.getDefaultRootElement();
         this.scilabLexer = new ScilabLexer(doc, null, false);
+    }
+
+    public int yychar() {
+        return (int) yychar;
     }
 
     public MatchingPositions getNextBlock(int pos, boolean lr) {
@@ -59,9 +62,9 @@ import javax.swing.text.Element;
         }
         if (s == 0) {
             if (lr) {
-                return new MatchingPositions(pos, pos, pos + yychar, pos + yychar + (transp?(yylength()-1):yylength()));
+                return new MatchingPositions(pos, pos, pos + yychar(), pos + yychar() + (transp?(yylength()-1):yylength()));
             } else {
-                return new MatchingPositions(pos, pos, pos - yychar - yylength(), pos - yychar);
+                return new MatchingPositions(pos, pos, pos - yychar() - yylength(), pos - yychar());
             }
         }
 
@@ -107,9 +110,9 @@ import javax.swing.text.Element;
         }
         if (s == 0) {
             if (lr) {
-                return new MatchingPositions(pos, p1, pos + yychar, pos + yychar + (transp?(yylength()-1):yylength()));
+                return new MatchingPositions(pos, p1, pos + yychar(), pos + yychar() + (transp?(yylength()-1):yylength()));
             } else {
-                return new MatchingPositions(p1, pos, pos - yychar - yylength(), pos - yychar);
+                return new MatchingPositions(p1, pos, pos - yychar() - yylength(), pos - yychar());
             }
         }
 
@@ -232,8 +235,8 @@ nepoKx = {spec}{nepoK}
 
 <PSNART> {
   \'                             {
-                                   if (scilabLexer.getKeyword(start - yychar, false) == ScilabLexerConstants.STRING) {
-                                      savePos = start - yychar - scilabLexer.beginString - scilabLexer.start;
+                                   if (scilabLexer.getKeyword(start - yychar(), false) == ScilabLexerConstants.STRING) {
+                                      savePos = start - yychar() - scilabLexer.beginString - scilabLexer.start;
                                       yybegin(SPEC);
                                    } else {
                                       yybegin(RL);

@@ -38,19 +38,21 @@
                     <screen><![CDATA[
 randperm(n)
 randperm(n, m)
+randperm(randStreem, ..)
 ]]></screen>
                 </td>
                 <td>
                     <screen><![CDATA[
 grand(1, "prm", 1:n)
 grand(1, "prm", 1:n)(1:m)
+// No equivalent
 ]]></screen>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
 grand(1, "prm", 1:10)
 grand(1, "prm", 1:10)(1:6)
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>

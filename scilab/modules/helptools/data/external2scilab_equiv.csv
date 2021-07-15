@@ -1,0 +1,257 @@
+all;and;
+angle;atan;
+any;or;
+argv;sciargs;// Octave
+arrayfun;feval;
+atan2;atan;
+axes;newaxes;
+axis;replot;
+balance;balanc;
+bicg;conjgrad;
+bicgstab;conjgrad;
+blkdiag;blockdiag;
+box;gca;
+caxis;colorbar;
+celldisp;disp;
+cgs;conjgrad;
+charpoly;poly;
+chebwin;window;
+cla;delete;
+class;typeof;
+clear global;clearglobal;
+closereq;xdel;
+colormap;jetcolormap;
+columns;size;// Octave
+commandhistory;browsehistory;
+compan;companion;
+completion_matches;completion;// Octave
+computer;getos;
+contains;grep;
+contourc;contour2di;
+contour3;contour;
+cot;cotg;
+copyobj;copy;
+cputime;timer;
+csvread;csvRead;
+dbclear;debug;
+dbcont;resume;
+dbquit;abort;
+dbstack;where;
+dbstatus;debug;
+dbstop;debug;
+dbup;return;
+deal;brackets;
+deblank;stripblanks;
+demo;demo_gui;
+dlmwrite;fprintfMat;
+echo;mode;
+eig;eigs;
+ellipj;amell;
+ellipke;percentk;
+endsWith;grep;
+eps;percenteps;
+erase;strsubst;
+errorbar;errbar;
+errordlg;messagebox;
+exist;exists;
+extractAfter;regexp;
+extractBefore;regexp;
+false;percentf;
+fclose;mclose;
+feof;meof;
+fftn;fft;
+fgetl;mgetl;
+fgets;mgetl;
+fill;xfpolys;
+flintmax;number_properties;
+flip;flipdim;
+flipud;flipdim;
+fliplr;flipdim;
+fopen;mopen;
+fplot;plot;
+fputs;mputstr;// Octave
+fread;mget;
+frewind;mseek;
+func2str;macr2tree;
+fwrite;mput;
+fzero;fsolve;
+gallery;testmatrix;
+gammainc;cdfgam;
+get_home_directory;home;// Octave
+getpref;xmlGetValues;
+ginput;locate;
+grid;xgrid;
+gtext;legends;
+help;uman;// Octave
+helpdlg;messagebox;
+helpwin;help;
+hggroup;glue;
+hgload;load;
+hgsave;save;
+hist;histplot;
+histcounts;histc;
+hold;axes_properties;
+housh;householder;// Octave
+horzcat;cat;
+i;percenti;
+ifft2;ifft;
+ifftn;ifft;
+image;Matplot;
+imagesc;Matplot1;
+index;strindex;// Octave
+inf;percentinf;
+int2str;string;
+intmin;int8;
+intmax;int8;
+invfeqz;frfit;
+is_absolute_filename;is_absolute_path;// Octave
+isa;m2sci_isa;
+isalnum;isalphanum;// Octave
+iscell;typeof;
+iscellstr;typeof;
+isfolder;isdir;
+isgraphics;is_handle_valid;// Octave
+isguirunning;getscilabmode;// Octave
+ishghandle;is_handle_valid;
+isinteger;type;
+isjava;typeof;
+iskeyword;getscilabkeywords;
+ismac;getos;
+ismember;members;
+ispc;getos;
+isunix;getos;
+is_valid_file_id;file;// Octave
+j;percenti;
+join;strcat;
+kaiser;window;
+keyboard;pause;
+listdlg;x_choose;
+loglog;plot;
+lookfor;apropos;
+lower;convstr;
+lstat;fileinfo;// Octave
+magic;testmatrix;
+mat2str;sci2exp;
+matlabroot;SCI;
+msgbox;messagebox;
+mfilename;get_absolute_file_path;
+mod;pmodulo;
+more;lines;
+nan;percentnan;
+nanmin;min;
+nanmax;max;
+nargin;argn;
+nargout;argn;
+newline;ascii;
+nonzeros;spget;
+num2str;string;
+numel;size;
+OCTAVE_HOME;SCIHOME;// Octave
+ode23;ode;
+ode45;ode;
+ode113;ode;
+ode15s;ode;
+odeget;odeoptions;
+openvar;editvar;
+paddarray;resize_matrix;
+patch;xfpolys;
+pcg;conjgrad;
+pi;percentpi;
+pkg;atoms;// Octave
+planerot;givens;
+plot3;param3d;
+plottools;ged;
+polar;polarplot;
+polyarea;polygonmetrics;
+polyder;derivat;
+polygcd;gcd;// Octave
+polyval;horner;
+prctile;perctl;
+printdlg;toprint;
+psi;dlgamma;
+puts;mprintf;
+questdlg;messagebox;
+quiver;champ;
+rande;grand;// Octave
+randg;grand;
+randi;grand;
+randn;rand;
+randp;grand;// Octave
+randperm;grand;
+range;strange;
+residue;pfss;
+rbbox;rubberbox;
+realmax;number_properties;
+realmin;number_properties;
+regexprep;strsubst;
+rem;modulo;
+replace;strsubst;
+reshape;matrix;
+reverse;strrev;
+rmfield;null;
+rot90;flipdim;
+rows;size;// Octave
+run;exec;
+semilogx;plot;
+semilogy;plot;
+shg;show_window;
+skrewness;cmoment;// Octave
+sort;gsort;
+sortrows;gsort;
+source;exec;// Octave
+spalloc;spzeros;
+spdiags;diag;
+splitlines;strsplit;
+sprandn;sprand;
+sprandsym;sprand;
+spy;PlotSparse;
+stairs;plot2d2;
+startsWith;grep;
+stat;fileinfo;// Octave
+std;stdev;
+stdin;percentio;// Octave
+stdout;percentio;// Octave
+stderr;percentio;// Octave
+stem;plot2d3;
+str2func;execstr;
+strfind;strindex;
+strings;emptystr;
+strjoin;strcat;
+strjust;justify;
+strlength;length;
+strread;msscanf;
+strrep;strsubst;
+strtrim;stripblanks;
+strtrunc;strncpy;// Octave
+surf2patch;genfac3d;
+switch;select;
+tempdir;TMPDIR;
+terminal_size;lines;// Octave
+texlabel;math_rendering_features_in_graphic;
+text;xstring;
+textscan;msprintf;
+time;getdate;// Octave
+tolower;convstr;// Octave
+toupper;convstr;// Octave
+trapz;inttrap;
+true;percentt;
+tukeywin;window;
+typeinfo;typeof;// Octave
+uisetcolor;uigetcolor;
+uitable;uicontrol;
+unix;unix_g;
+upper;convstr;
+urlread;getURL;
+var;variance;
+version;getversion;
+vertcat;cat;
+waitforbuttonpress;xclick;
+warndlg;messagebox;
+webread;getURL;
+which;get_function_path;
+whos -file;listvarinfile;
+xlim;axes_properties;
+ylim;axes_properties;
+yyaxis;newaxes;
+zlim;axes_properties;
+zoom;zoom_rect;

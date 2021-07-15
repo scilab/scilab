@@ -79,19 +79,19 @@ function [x,y,typ]=MAXMIN(job,arg1,arg2)
                 break
             end
         end
+
     case "define" then
         model=scicos_model()
         model.sim=list("minmax",4)
         model.out=1
-        model.in=-1
+        model.in=[-1 -1]
         model.blocktype="c"
         model.dep_ut=[%t %f]
         model.ipar=0;
-        exprs=[string([2,1,1]')]
+        exprs=[string([2,2,1]')]
         gr_i=[]
 
         x=standard_define([2 2],model,exprs,gr_i)
         x.graphics.style = "MAXMIN;displayedLabel=MAX"
     end
 endfunction
-

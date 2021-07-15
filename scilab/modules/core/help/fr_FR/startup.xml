@@ -15,12 +15,11 @@
             (s'ils existent) au démarrage de Scilab, ainsi que le fichier
             <link linkend="SCI">SCI</link>/etc/scilab.start.
         </para>
-    </refsection>
-    <refsection>
-        <title>Remark</title>
-        <para>les fichiers de démarrage doivent obligatoirement comporter une
-            nouvelle ligne en fin de fichier pour être pris en compte.
-        </para>
+        <warning>
+            <para>la dernière ligne utile d'un fichier de démarrage doit obligatoirement être
+                suivie d'une ligne vide pour être prise en compte.
+            </para>
+        </warning>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

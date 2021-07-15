@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Scilab Enterprises - 2015 - 2012 - Juergen Koch
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,8 +24,16 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            polyline = scatter(x, y, msizes, mcolors, "fill", marker, &lt;marker_property, value&gt;)
-            polyline = scatter(axes_handle,...)
+            scatter()   // Example
+            scatter(x, y)
+            scatter(x, y, msizes)
+            scatter(x, y, msizes, mcolors)
+            scatter(.., "fill")
+            scatter(.., "smallOnTop")
+            scatter(.., marker)
+            scatter(..., &lt;marker_property, value>)
+            scatter(axes, ..)
+            polyline = scatter(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -41,17 +49,28 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>axes</term>
+                <listitem>
+                    Handle of the graphical axes in which the scatter plot must be drawn.
+                    By default, the current axes is targeted.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>polyline</term>
+                <listitem>
+                    Handle of the created polyline.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>msizes</term>
                 <listitem>
                     <para>
-                        Specifying the sizes of the markers. To plot each marker with equal sizes,
-                        specify <varname>msizes</varname> as a scalar.
-                        To plot each marker with a different size, specify <varname>msizes</varname>
-                        as a vector with length equal to the length of <varname>x</varname> and
-                        <varname>x</varname>.
-                        The units for <varname>msizes</varname> is points squared with a default
-                        value of 36 points squared.
-                        The size equals the area of the circle surrounding the marker.
+                        Sizes of the markers, as of the area of the circle surrounding the marker,
+                        in point-square. Default value = 36. If it is scalar,
+                        the same size is used for all markers. Otherwise <varname>msizes</varname>
+                        and <varname>x</varname> must have the same number of elements.
                     </para>
                 </listitem>
             </varlistentry>
@@ -59,18 +78,35 @@
                 <term>mcolors</term>
                 <listitem>
                     <para>
-                        Specifying the colors of the markers.
-                        To plot each marker with the same color, specify <varname>mcolors</varname>
-                        as a string representing a known color, see <link linkend="color_list">color_list</link>.
-                        A color can also be specified by a vector of 3 RGB values between 0 and 1.
-                        To plot each marker with a different color, specify <varname>mcolors</varname>
-                        as a vector with length equal to the length of <varname>x</varname>.
+                        Colors of markers. If it is scalar, the same color is used for all markers.
+                        Otherwise, <varname>mcolors</varname> and <varname>x</varname> must have
+                        the same number of elements.
+                    </para>
+                    <para>
+                        The same color is used for filling the body and drawing the edge of markers.
+                    </para>
+                    <para>
                         The values of <varname>mcolors</varname> are linearly mapped to the colors
                         in the current colormap.
-                        Colors can also by specified by a matrix of RGB values or a vector of
-                        strings representing known colors.
-                        A matrix of RGB values has 3 columns and the number of rows equals the
-                        length of <varname>x</varname>.
+                    </para>
+                    <para>
+                        A color can be specified by one of the following:
+                        <itemizedlist>
+                            <listitem>
+                                Its name, among the predefined names colors
+                                (see the <link linkend="color_list">color_list</link>).
+                            </listitem>
+                            <listitem>
+                                Its standard hexadecimal RGB code as a string, like "#A532FB".
+                            </listitem>
+                            <listitem>
+                                A matrix of RGB values with 3 columns and n rows, with Red Green and
+                                Blue intensities in [0,1].
+                            </listitem>
+                            <listitem>
+                                Its index in the current color map
+                            </listitem>
+                        </itemizedlist>
                         The default color is "blue".
                     </para>
                 </listitem>
@@ -79,11 +115,21 @@
                 <term>"fill"</term>
                 <listitem>
                     <para>
-                        This string indicates that the markers are filled with some colors.
-                        By default, the filling colors are the same as the patterns ones.
-                        Both sets of colors can be defined independently by using the properties
+                        By default, only the edge of markers is drawn, unless this keyword or the
                         <varname>"markerFaceColor"</varname> or
-                        <varname>"markerBackgroundColor"</varname>.
+                        <varname>"markerBackgroundColor"</varname> properties are set.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"smallOnTop"</term>
+                <listitem>
+                    <para>
+                        When markers have not all the same size and the population of points becomes
+                        crowdy, big markers can hide smaller ones located around the same place.
+                        This option can be used to avoid such masking effects. Then points are
+                        priorly sorted by decreasing sizes, in order to plot the smallest points
+                        at the end, on top of bigger ones.
                     </para>
                 </listitem>
             </varlistentry>
@@ -91,8 +137,8 @@
                 <term>marker</term>
                 <listitem>
                     <para>
-                        Select the type of the marker. The same marker shape is used for all
-                        specified points. The figure below shows the 15 different marker types.
+                        Selects the shape of the markers. The same shape is used for all
+                        specified points. The figure below shows the 15 different marker shapes.
                     </para>
                     <para>
                         <inlinemediaobject>
@@ -102,181 +148,154 @@
                         </inlinemediaobject>
                     </para>
                     <para>
-                        Marker types are specified by strings, see the table below.
+                        Each marker shape is specified either by its index (list above) or by
+                        its string symbol (table below).
                     </para>
                     <para>
                         <informaltable border="1">
-                            <tr>
-                                <td>
-                                    String
-                                </td>
-                                <td>
-                                    Marker type
-                                </td>
+                            <tr><td>Index</td>
+                                <td>String</td>
+                                <td>Marker type</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"."</literal>
-                                </td>
+                                <td>0</td>
+                                <td><literal>"."</literal></td>
                                 <td>Point</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"+"</literal>
-                                </td>
+                                <td>1</td>
+                                <td><literal>"+"</literal></td>
                                 <td>Plus sign</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"x"</literal>
-                                </td>
+                                <td>2</td>
+                                <td><literal>"x"</literal></td>
                                 <td>Cross</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"circle plus"</literal>
-                                </td>
+                                <td>3</td>
+                                <td><literal>"circle plus"</literal></td>
                                 <td>Circle with plus</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"filled diamond"</literal>
-                                </td>
+                                <td>4</td>
+                                <td><literal>"filled diamond"</literal></td>
                                 <td>Filled diamond</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"d"</literal> or
-                                    <literal>"diamond"</literal>
-                                </td>
+                                <td>5</td>
+                                <td><literal>"d"</literal> or <literal>"diamond"</literal></td>
                                 <td>Diamond</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"^"</literal>
-                                </td>
+                                <td>6</td>
+                                <td><literal>"^"</literal></td>
                                 <td>Upward-pointing triangle</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"v"</literal>
-                                </td>
+                                <td>7</td>
+                                <td><literal>"v"</literal></td>
                                 <td>Downward-pointing triangle</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"diamond plus"</literal>
-                                </td>
+                                <td>8</td>
+                                <td><literal>"diamond plus"</literal></td>
                                 <td>Diamond with plus</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"o"</literal>
-                                </td>
+                                <td>9</td>
+                                <td><literal>"o"</literal></td>
                                 <td>Circle (default)</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"*"</literal>
-                                </td>
+                                <td>10</td>
+                                <td><literal>"*"</literal></td>
                                 <td>Asterisk</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"s"</literal> or
-                                    <literal>"square"</literal>
-                                </td>
+                                <td>11</td>
+                                <td><literal>"s"</literal> or <literal>"square"</literal></td>
                                 <td>Square</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"&gt;"</literal>
-                                </td>
+                                <td>12</td>
+                                <td><literal>">"</literal></td>
                                 <td>Right-pointing triangle</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"&lt;"</literal>
-                                </td>
+                                <td>13</td>
+                                <td><literal>"&lt;"</literal></td>
                                 <td>Left-pointing triangle</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <literal>"pentagram"</literal> or
-                                    <literal>"p"</literal>
-                                </td>
+                                <td>14</td>
+                                <td><literal>"pentagram"</literal> or <literal>"p"</literal></td>
                                 <td>Five-pointed star</td>
                             </tr>
                         </informaltable>
                     </para>
                 </listitem>
             </varlistentry>
+        </variablelist>
+        <refsect3>
+            <title>Property Name, Value pairs</title>
+            <para>
+                A series of property &lt;Name,Value> pairs can be used to specify
+                the filling color of markers body, the color and thickness of the markers edges,
+                or the points on which a datatip must be created.
+            </para>
+        </refsect3>
+        <variablelist>
             <varlistentry>
-                <term>&lt;marker_property, value&gt;</term>
+                <term>"marker",value  or  "markerStyle",value</term>
                 <listitem>
                     <para>
-                        A sequence of property value pairs can be used to specify type, color and
-                        line width of the markers.
+                        Shape of the marker (index or string keyword). See the table above.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>&lt;"marker", value&gt; or &lt;"markerStyle", value&gt;</term>
+                <term>"markerEdgeColor",value  or  "markerForeground",value</term>
                 <listitem>
                     <para>
-                        Specify the type of the marker, see the table above.
+                        Color of the edge of markers. Colors can be specified as for
+                        <varname>mcolors</varname>.
+                        This option supersedes <varname>mcolors</varname>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>&lt;"markerEdgeColor", value&gt; or &lt;"markerForeground", value&gt;</term>
+                <term>"markerFaceColor",value  or  "markerBackground",value</term>
                 <listitem>
                     <para>
-                        Specify the foreground color of the marker.
-                        A color can be specified by a string representing a known color,
-                        see <link linkend="color_list">color_list</link>.
-                        A color can also be specified by a vector of 3 RGB values.
-                        RGB values correspond to red, green and blue intensity between 0 and 1.
-                        This option is superseded by argument <varname>mcolors</varname>.
+                        Color filling the body of markers. Colors can be specified as for
+                        <varname>mcolors</varname>.
+                        This option supersedes <varname>mcolors</varname>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>&lt;"markerFaceColor",value&gt; or &lt;"markerBackground",value&gt;</term>
+                <term>"linewidth",value  or  "thickness",value</term>
                 <listitem>
                     <para>
-                        Specify the background color of the marker.
-                        A color can be specified by a string representing a known color
-                        see <link linkend="color_list">color_list</link>.
-                        A color can also be specified by a vector of 3 RGB values.
-                        RGB values correspond to red, green and blue intensity between 0 and 1.
-                        This option is superseded by argument <varname>mcolors</varname>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>&lt;"linewidth",value&gt; or &lt;"thickness",value&gt;</term>
-                <listitem>
-                    <para>
-                        Specify the thickness of the edge of the marker.
+                        Specify the thickness of the edge for all markers.
                         The unit for the value is one point.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>&lt;axes_handle&gt;</term>
-                <listitem>
-                    <para>This optional argument forces the scatter plot to appear inside the
-                        selected axes given by <literal>axes_handle</literal> rather than inside the
-                        current axes, see <link linkend="gca">gca</link>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>polyline</term>
+                <term>"datatips", k</term>
                 <listitem>
                     <para>
-                        Handle of the created polyline.
+                        Creates a datatip for all (X,Y) points whose indices are in the vector
+                        <varname>k</varname>.
+                    </para>
+                    <para>
+                        The <literal>datatip_display_mode</literal> is set to
+                        <literal>"mouseover"</literal>. The datatip anchor is reduced to a point
+                        set at the middle of the marker. The default datatips display the
+                        (x,y) coordinates of the point. If <varname>msizes</varname> is a vector,
+                        the size of each marker is also displayed.
                     </para>
                 </listitem>
             </varlistentry>
@@ -298,181 +317,229 @@
             For more details see the description of the arguments and the examples.
         </para>
         <note>
-          To skip an argument, just replace it with <literal>[]</literal> like in
-          <literal>scatter3d(x,y,z,[],mcolors)</literal>.
+          To skip an argument, just .. skip it, or replace it with <literal>[]</literal>, like in
+          <literal>scatter3d(x,y, , mcolors)</literal> or <literal>scatter3d(x,y,[], mcolors)</literal>.
         </note>
     </refsection>
     <refsection>
         <title>Examples</title>
         <para>
-            Create 2D scatter plot
+            With the default circle shape, and the same color for all points:
         </para>
         <programlisting role="example"><![CDATA[
-// x and y initialisation
-x = linspace(0,2,200);
-y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x));
-// create 2D scatter plot
-scatter(x,y);
+n = 130;
+x = rand(1,n);
+y = rand(1,n);
+
+clf
+subplot(2,3,1)
+scatter(x, y)
+title("scatter(x, y)", "fontsize",3)
+
+subplot(2,3,2)
+scatter(x, y, 100)
+title("scatter(x, y, 100)", "fontsize",3)
+
+subplot(2,3,3)
+mAreas = 10.^grand(1,n,"unf",1,2.4);
+scatter(x, y, mAreas)
+title("scatter(x, y, mAreas)", "fontsize",3)
+
+subplot(2,3,4)
+scatter(x, y, , "orange")
+tit = "scatter(x, y, ,""orange"")";
+title(tit, "fontsize",3)
+
+subplot(2,3,5)
+scatter(x, y, "fill")
+tit = "scatter(x, y, ""fill"")";
+title(tit, "fontsize",3)
+
+subplot(2,3,6)
+scatter(x, y, mAreas, "markerBackground", "yellow")
+tit = "scatter(x, y, mAreas,""markerBackground"", ""yellow"")";
+title(tit, "fontsize",1)
  ]]></programlisting>
         <scilab:image>
-            x = linspace(0,2,200)
-            y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
-            scatter(x,y)
+            n = 130;
+            x = rand(1,n);
+            y = rand(1,n);
+
+            clf
+            subplot(2,3,1)
+            scatter(x, y)
+            title("scatter(x, y)", "fontsize",3)
+
+            subplot(2,3,2)
+            scatter(x, y, 100)
+            title("scatter(x, y, 100)", "fontsize",3)
+
+            subplot(2,3,3)
+            mAreas = 10.^grand(1,n,"unf",1,2.4);
+            scatter(x, y, mAreas)
+            title("scatter(x, y, mAreas)", "fontsize",3)
+
+            subplot(2,3,4)
+            scatter(x, y, , "orange")
+            tit = "scatter(x, y, ,""orange"")";
+            title(tit, "fontsize",3)
+
+            subplot(2,3,5)
+            scatter(x, y, "fill")
+            tit = "scatter(x, y, ""fill"")";
+            title(tit, "fontsize",3)
+
+            subplot(2,3,6)
+            scatter(x, y, mAreas, "markerBackground", "yellow")
+            tit = "scatter(x, y, mAreas,""markerBackground"", ""yellow"")";
+            title(tit, "fontsize",1)
+
+            gcf().axes_size = [750 500];
         </scilab:image>
         <para>
-            Vary marker size
+            <emphasis role="bold">Option "smallOnTop"</emphasis>, avoiding intermasking effects:
         </para>
         <programlisting role="example"><![CDATA[
-// x and y initialisation
-x = linspace(0,2,200);
-y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x));
-// specify different sizes
-s = linspace(1,30,length(x));
-// create 2D scatter plot
-scatter(x, y, s);
+n = 170;
+x = rand(1,n);
+y = rand(1,n);
+mAreas = 10.^grand(1,n,"unf",1,2.8);
+
+clf
+subplot(1,2,1)
+scatter(x, y, mAreas, "wheat", "fill", "markerEdgeColor", "red")
+title("Raw display", "fontsize",3)
+
+subplot(1,2,2)
+scatter(x, y, mAreas, "wheat", "fill", "smallOnTop", "markerEdgeColor", "red")
+title("""SmallOnTop"" option", "fontsize",3)
  ]]></programlisting>
         <scilab:image>
-            x = linspace(0,2,200)
-            y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
-            s = linspace(1,30,length(x))
-            scatter(x,y,s)
+            n = 170;
+            x = rand(1,n);
+            y = rand(1,n);
+            mAreas = 10.^grand(1,n,"unf",1,2.8);
+
+            clf
+            subplot(1,2,1)
+            scatter(x, y, mAreas, "wheat", "fill", "markerEdgeColor", "red")
+            title("Raw display", "fontsize",3)
+
+            subplot(1,2,2)
+            scatter(x, y, mAreas, "wheat", "fill", "SmallOnTop", "markerEdgeColor", "red")
+            title("""SmallOnTop"" option", "fontsize",3)
+
+            gcf().axes_size = [600 270];
         </scilab:image>
+
         <para>
             Vary marker size and color
         </para>
         <programlisting role="example"><![CDATA[
-// x and y initialisation
 x = linspace(0, 2, 200);
 y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x));
-// specify different sizes
-s = linspace(1, 30, length(x));
-// set color map
-gcf().color_map = coolcolormap(64);
-// colors according to x values
-c = x;
-// create 2D scatter plot
-scatter(x,y,s,c);
- ]]></programlisting>
-        <scilab:image>
-            x = linspace(0,2,200)
-            y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
-            s = linspace(1,30,length(x))
-            gcf().color_map = coolcolormap(64)
-            c = x
-            scatter(x,y,s,c)
-        </scilab:image>
-        <para>
-            Fill the markers
-        </para>
-        <programlisting role="example"><![CDATA[
-// x and y initialisation
-x = linspace(0, 2, 200);
-y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x));
-// specify different sizes
-s = linspace(1, 30, length(x));
-// set color map
-gcf().color_map = coolcolormap(64);
-// colors according to y values
-c = y;
-// create 2D scatter plot
+
+s = linspace(1, 30, length(x));     // specify different sizes
+gcf().color_map = coolcolormap(64); // set color map
+c = x;                  // colors according to x values
+subplot(1,2,1)
+scatter(x, y, s, c);    // create 2D scatter plot
+
+// Fill the markers
+subplot(1,2,2)
 scatter(x, y, s, c, "fill");
  ]]></programlisting>
         <scilab:image>
-            x = linspace(0,2,200)
-            y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
-            s = linspace(1,30,length(x))
-            gcf().color_map = coolcolormap(64);
-            c = y
-            scatter(x,y,s,c,"fill")
+            x = linspace(0, 2, 200);
+            y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x));
+
+            s = linspace(1, 30, length(x));     // specify different sizes
+            gcf().color_map = coolcolormap(64); // set color map
+            c = x;                  // colors according to x values
+            subplot(1,2,1)
+            scatter(x, y, s, c);    // create 2D scatter plot
+
+            // Fill the markers
+            subplot(1,2,2)
+            scatter(x, y, s, c, "fill");
+            gcf().axes_size = [700 350];
         </scilab:image>
         <para>
-            Specify marker symbol
+            Specify the marker
         </para>
         <programlisting role="example"><![CDATA[
-// x and y initialisation
 x = rand(1, 200);
 y = rand(1, 200);
-// create 2D scatter plot
+
+subplot(2,2,1)
 scatter(x, y, "d");
- ]]></programlisting>
-        <scilab:image>
-            x = rand(1,200)
-            y = rand(1,200)
-            scatter(x,y,"d")
-        </scilab:image>
-        <para>
-            Change marker color and line width
-        </para>
-        <programlisting role="example"><![CDATA[
-// x and y initialisation
-x = rand(1, 200);
-y = rand(1, 200);
-// create 2D scatter plot
+
+subplot(2,2,2)
 scatter(x, y, "markerEdgeColor",[0 .4 .4],...
-              "markerFaceColor",[0 .8 .8],...
+              "markerFaceColor","magenta",...
               "linewidth",1.5);
+
+subplot(2,2,3)
+scatter(x, y, 60, "red", "+");  // Marker's symbol
+
+subplot(2,2,4)
+scatter(x, y, 60, "green", 14); // Marker's index
  ]]></programlisting>
         <scilab:image>
-            x = rand(1,200)
-            y = rand(1,200)
-            scatter(x,y,"markerEdgeColor",[0 .4 .4],...
-            "markerFaceColor",[0 .8 .8],...
-            "linewidth",1.5)
+            x = rand(1, 200);
+            y = rand(1, 200);
+
+            subplot(2,2,1)
+            scatter(x, y, "d");
+
+            subplot(2,2,2)
+            scatter(x, y, "markerEdgeColor",[0 .4 .4],...
+                          "markerFaceColor","magenta",...
+                          "linewidth",1.5);
+
+            subplot(2,2,3)
+            scatter(x, y, 60, "red", "+");  // Marker's symbol
+
+            subplot(2,2,4)
+            scatter(x, y, 60, "green", 14); // Marker's index
+
+            gcf().axes_size = [600 500];
         </scilab:image>
         <para>
-            Specify subplot for scatter plot
+            Post-processing a scatter plot:
         </para>
         <programlisting role="example"><![CDATA[
-// x and y initialisation
-x = linspace(0, 2, 100);
-y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x));
-// create 2D scatter subplot
-subplot(2, 1, 1)
-scatter(gca(), x, y);
-// create 2D scatter subplot
-subplot(2, 1, 2)
-scatter(gca(), x, y, "fill", "s");
- ]]></programlisting>
-        <scilab:image>
-            x = linspace(0,2,100)
-            y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
-            subplot(2,1,1)
-            scatter(gca(),x,y)
-            subplot(2,1,2)
-            scatter(gca(),x,y,"fill","s")
-        </scilab:image>
-        <para>
-            Modify scatter plot after creation
-        </para>
-        <programlisting role="example"><![CDATA[
-// x and y initialisation
-t = linspace(0,1,200);
-x = t .* cos(10*%pi*t);
-y = t .* sin(10*%pi*t);
-// create 2D scatter plot
-p = scatter(x, y);
- ]]></programlisting>
-        <scilab:image>
-            t = linspace(0,25,200)
-            x = t.*cos(t)
-            y = t.*sin(t)
-            p = scatter(x,y,t)
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-// modify polyline
-p.thickness = 0.5;
-p.mark_foreground = color("darkblue");
-p.mark_background = color("darkcyan");
- ]]></programlisting>
-        <scilab:image>
-            t = linspace(0,25,200)
-            x = t.*cos(t)
-            y = t.*sin(t)
-            p = scatter(x,y,t)
-            p.thickness = 0.5
-            p.mark_foreground = color("darkblue")
-            p.mark_background = color("darkcyan")
-        </scilab:image>
+n = 150;
+x = rand(1,n);
+y = rand(1,n);
+mAreas = 10.^grand(1,n,"unf",1,2.8);
+
+clf
+p = scatter(x, y, mAreas, "yel", "fill", "markerEdgeColor", "red")
+
+// Post-processing
+k = mAreas<median(mAreas)*2;
+bg = ones(1,n) * p.mark_background;
+bg(k) = color("orange");
+p.mark_background = bg;
+     ]]></programlisting>
+        <scilab:image><![CDATA[
+            n = 150;
+            x = rand(1,n);
+            y = rand(1,n);
+            mAreas = 10.^grand(1,n,"unf",1,2.8);
+
+            clf
+            p = scatter(x, y, mAreas, "yel", "fill", "markerEdgeColor", "red")
+
+            // Post-processing
+            k = mAreas<median(mAreas)*2;
+            bg = ones(1,n) * p.mark_background;
+            bg(k) = color("orange");
+            p.mark_background = bg;
+
+            gcf().axes_size = [450 300];
+        ]]></scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -503,7 +570,22 @@ p.mark_background = color("darkcyan");
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revremark>
-                    Function <function>scatter</function> introduced.
+                    Function scatter() introduced.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revremark>
+                    <itemizedlist>
+                        <listitem>
+                            Colors can be specified as well with their "#RRGGBB" hexadecimal
+                            standard code, or their index in the color map.
+                        </listitem>
+                        <listitem>
+                            Options <emphasis>SmallOnTop</emphasis> and
+                            <emphasis>"datatips"</emphasis> added.
+                        </listitem>
+                    </itemizedlist>
                 </revremark>
             </revision>
         </revhistory>

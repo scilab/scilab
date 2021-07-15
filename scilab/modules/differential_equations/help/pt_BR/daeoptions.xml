@@ -44,13 +44,13 @@
         <para>
             A variável <literal>%DAEOPTIONS</literal> é uma lista <link linkend="list">list</link> com os seguintes elementos:
         </para>
-        <programlisting role=""><![CDATA[
+        <screen><![CDATA[
 list(tstop,imode,band,maxstep,stepin,nonneg,isest)
- ]]></programlisting>
+]]></screen>
         <para>O valor padrão é:</para>
-        <programlisting role=""><![CDATA[
+        <screen><![CDATA[
 list([],0,[],[],[],0,0)
- ]]></programlisting>
+]]></screen>
         <para>Os siginificados destes elementos são listados abaixo.</para>
         <variablelist>
             <varlistentry>

@@ -46,9 +46,11 @@
             <literal>x</literal> a derivada logarítmica da função gama (gamma), que
             corresponde também à derivada da função ln(gama) (gammaln):
         </para>
-        <programlisting role=""><![CDATA[
-d/dx (gamma(x)) / gamma(x) = d/dx (ln gamma(x))
- ]]></programlisting>
+        <para>
+            <latex style="display" alt="d(ln(Γ(x))/dx = dΓ(x)/dx . 1/Γ(x)">
+                \frac{d\,\ln\left(\Gamma(x)\right)}{dx}=\frac{d\Gamma(x)}{dx\,\Gamma(x)}
+            </latex>
+        </para>
         <para>
             <literal>x</literal> deve ser real. Também é conhecida como a função
             psi.

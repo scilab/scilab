@@ -14,6 +14,7 @@
 //
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // sparse function
 
@@ -141,7 +142,7 @@ a=[0,0,3+%i*23,0,2+%i*22,1+%i*21
 8+%i*28,0,0,0,0,0
 0,0,0,0,0,9+%i*29];
 assert_checkequal(full(sp), a);
-sp=sparse([1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6],(1:9)+%i*(21:29),[8 6]);
+sp(8,6)=0;
 a(8,6)=0;
 assert_checkequal(full(sp), a);
 v=sparse([2 1;3 1;4 1;6 1],[10-3*%i;11;12+5*%i;13+0.5*%i],[6,1]);

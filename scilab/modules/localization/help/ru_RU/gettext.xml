@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Allan CORNET
+ * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - 2021 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ru" xml:id="gettext">
+    <refnamediv>
+        <refname>gettext</refname>
+        <refpurpose>индексирует или/и переводит некоторые индексированные сообщения на английском языке</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="_">
+        <refname>_</refname>
+        <refpurpose>
+            Псевдоним gettext().
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            gettext("The literal reference message")
+            gettext(["item #1" ; "item#2"])
+            translated = gettext("The literal reference message")
+            translated = gettext(["item #1" ; "item#2"])
+            translated = gettext(msgid)
+            .. gettext(domain, ..)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>"The literal reference message"</term>
+                <listitem>
+                    <para>
+                        Единый с учетом регистра символьный текст сообщения на английском языке, которое
+                        требуется индексировать или/и перевести. Может быть также
+                        указан столбец символьных текстов явно разделённых точкой с запятой.
+                        Messages can include some
+                        <link linkend="printf_conversion">C-like placeholders</link> starting with "%".
+                    </para>
+                    <warning>
+                        Могут использоваться только стандартные символы ASCII.
+                        Любые иные расширенные символы ASCII или UTF-8 приведут к ошибке
+                        в работе <literal>gettext()</literal>.
+                    </warning>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>msgid</term>
+                <listitem>
+                    <para>
+                        один или массив идентификаторов сообщений с учетом регистра (на английском)
+                        для перевода, в переменной.
+                    </para>
+                    <warning>
+                        Могут использоваться только стандартные символы ASCII.
+                    </warning>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>translated</term>
+                <listitem>
+                    <para>
+                        Сообщения на входе переводятся на текущий язык сессии Scilab. Если
+                        для входного сообщения не доступна версия перевода, то возвращается входная версия
+                        на английском. Входные и выходные массивы имеют одинаковые размеры.
+                    </para>
+                    <note>
+                        Эти сообщения определены в файлах ./locales/*.po. Они могут включать в себя
+                        расширенные символы ASCII или UTF-8.
+                    </note>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>domain</term>
+                <listitem>
+                    <para>
+                        слово или текст: имя домена. При локализации внешнего модуля
+                        <varname>domain</varname> обычно может быть установлен на
+                        техническое имя модуля.
+                    </para>
+                    <para>
+                        <varname>domain</varname> может быть как литералом, так и
+                        переменной. Он нечувствителен к регистру.
+                    </para>
+                    <para>
+                        <varname>domain</varname> требуется в <literal>tbx_generate_pofile()</literal>
+                        для того, чтобы сделать индексированную литеральную строку
+                        <literal>msgid</literal> (этап сбора. См. ниже.).
+                    </para>
+                    <para>
+                        Когда <literal>gettext(domain, msgid)</literal> используется для получения
+                        переведённой версии, то <varname>domain</varname>
+                        используется для получения пути к директории, где хранятся
+                        переводы,  как это заранее записано с помощью
+                        <literal>addlocalizationdomain(domain, path)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <refsect3>
+        <title>Сбор сообщений и общая обработка</title>
+        <para>
+            <emphasis role="italic">gettext</emphasis> является свободным и открытым
+            внешним приложением, поставляемым вместе с Scilab для поддержки
+            мультилингвизма для сообщений. Эта поддержка состоит из 4 главных этапов:
+            <orderedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Сбор</emphasis> сообщений внутри кода и
+                        <emphasis role="bold">индексирование</emphasis> их для перевода.
+                        Для внешнего модуля это явным образом выполняется с помощью
+                        внешней бинарной программы <literal>xgettext</literal>, которая
+                        является частью внешнего приложения <literal>gettext</literal>,
+                        и которая вызывается Scilab-функцией <link linkend="tbx_generate_pofile">tbx_generate_pofile</link>.
+                        В Scilab также можно использовать <literal>tbx_build_localization(..)</literal>
+                        или <literal>tbx_make . localization</literal>, которые обе вызывают
+                        <literal>tbx_generate_pofile(..)</literal>.
+                    </para>
+                    <para>
+                        Каждое собранное сообщение рассматривается в качестве идентификатора
+                        (msgid) для всех его последующих переводов. В Scilab опорным языком
+                        для идентификаторов является <emphasis role="italic">английский</emphasis>.
+                        Следовательно идентификаторы сообщений для индексации должны
+                        быть записаны на английском.
+                    </para>
+                    <para>
+                        В качестве входного аргумента <literal>gettext</literal> собираются
+                        только <emphasis role="bold">одиночные литеральные сообщения и сообщения
+                        одним куском</emphasis>. Следовательно следующие синтаксисы и случае не
+                        будут индексировать рассматриваемые сообщения и в дальнейшем не будут
+                        доступны версии перевода:
+                    </para>
+                    <para>
+                        <table>
+                            <tr>
+                                <th>#</th><th>Синтаксис</th><th>Статус</th>
+                                <th align="left">Результаты сбора</th>
+                            </tr>
+                            <tr valign="top">
+                                <th>1</th>
+                                <td style="white-space:nowrap">
+                                    <literal>gettext("To be translated")</literal>
+                                </td>
+                                <td>OK</td>
+                                <td>стандартный синтаксис</td>
+                            </tr>
+                            <tr valign="top">
+                                <th>2</th>
+                                <td style="white-space:pre"><screen><![CDATA[
+msg = "To be translated";
+gettext(msg)]]></screen>
+                                </td>
+                                <td>NOK</td>
+                                <td>
+                                    Текст внутри переменной. Он не символьный. Он не будет
+                                    индексирован. Тем не менее, этот синтаксис будет работать
+                                    для  <emphasis>получения</emphasis> версии перевода,
+                                    <emphasis>в случае, если сообщение было собрано где-нибудь
+                                    правильным образом</emphasis>.
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th>3</th>
+                                <td style="white-space:nowrap">
+                                    <literal>gettext("To be" + " translated")</literal>
+                                </td>
+                                <td>NOK</td>
+                                <td>
+                                    "To be" и " translated" индексируются как 2 отдельных <literal>msgid</literal>.
+                                    Тогда, следовательно, конкатенированного <literal>msgid</literal>
+                                    "To be translated" не существует, получение его перевода не удастся.
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th>4</th>
+                                <td style="white-space:pre"><screen><![CDATA[
+gettext("To be" + ..
+        " translated")]]></screen>
+                                </td>
+                                <td>NOK</td>
+                                <td>Также как и #3</td>
+                            </tr>
+                            <tr valign="top">
+                                <th>5</th>
+                                <td style="white-space:nowrap">
+                                    <literal>gettext(["item#1", "item#2"])</literal>
+                                </td>
+                                <td>NOK</td>
+                                <td>Только "item#1" собирается. "item#2" игнорируется.</td>
+                            </tr>
+                            <tr valign="top">
+                                <th>6</th>
+                                <td style="white-space:nowrap">
+                                    <literal>gettext(["item#1"  "item#2"])</literal>
+                                </td>
+                                <td>NOK</td>
+                                <td>
+                                    "item#1item#2" индексируется. Тогда, поскольку "item#1" и
+                                    "item#2" неизвестные отдельные <literal>msgid</literal>, то
+                                    получение их соответствующего перевода не удастся.
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th>7</th>
+                                <td style="white-space:pre"><screen><![CDATA[
+gettext(["item#1"
+         "item#2"])]]></screen>
+                                </td>
+                                <td>NOK</td>
+                                <td>Также как и #6</td>
+                            </tr>
+                            <tr valign="top">
+                                <th>8</th>
+                                <td style="white-space:nowrap">
+                                    <literal>gettext(["item#1" ; "item#2"])</literal>
+                                </td>
+                                <td>OK</td>
+                                <td>"item#1" и "item#2" индексируются в качестве отдельных <literal>msgid</literal>.</td>
+                            </tr>
+                            <tr valign="top">
+                                <th>9</th>
+                                <td style="white-space:pre"><screen><![CDATA[
+gettext(["item#1" ;
+         "item#2"])]]></screen>
+                                </td>
+                                <td>OK</td>
+                                <td>
+                                    Также как и #8. Обратите внимание на точку с запятой. Без неё это будет случай ошибки #7.
+                                </td>
+                            </tr>
+                        </table>
+                    </para>
+                    <important>
+                        Для внешнего модуля
+                        <link linkend="tbx_generate_pofile">tbx_generate_pofile()</link>
+                        собирает только то, что встречает <literal>gettext</literal> с указанием
+                        домена <varname>domain</varname>. Он игнорирует любой вызов
+                        <literal>gettext</literal> только с одним входным аргументом.
+                        <para>
+                            Сбору не нужно предварительно указывать домен
+                            <varname>domain</varname> в <literal>addlocalizationdomain()</literal>
+                        </para>
+                    </important>
+                    <para/>
+                </listitem>
+                <listitem>
+                    <para>
+                        Все индексированные тексты затем переводятся автором кода или
+                        помощниками. В любом случае кем-то из людей.
+                        Хорошие инструменты перевода также доступны онлайн.
+                    </para>
+                    <para/>
+                </listitem>
+                <listitem>
+                    <para>
+                        Все переведённые версии собираются таким образом, что
+                        <literal>gettext(..)</literal> становится эффективным для получения
+                        версии на текущем языке сессии. Это сделано запуском
+                        <literal>tbx_generate_pofile()</literal> в другой раз.
+                    </para>
+                    <para/>
+                </listitem>
+                <listitem>
+                    <para>
+                        Наконец, некоторые вызовы, такие как <literal>gettext(message)</literal>
+                        или <literal>gettext("The message content")</literal>, используются
+                        для получения и выдачи переведённой версии.
+                    </para>
+                    <para>
+                        Когда сообщение не является естественным для Scilab (например, оно
+                        специфично для внешнего модуля), домен <varname>domain</varname> где
+                        сообщения и его переводы могут быть найдены, должен быть определён,
+                        как в <literal>gettext(domain, message)</literal>
+                        или <literal>gettext(domain, "The message content")</literal>.
+                        В это случае <literal>addlocalizationdomain(domain, path)</literal>
+                        должен быть запущен первым для того, чтобы указать Scilab директорию,
+                        в которой хранятся переведённые сообщения указанного домена
+                        <varname>domain</varname>.
+                    </para>
+                </listitem>
+            </orderedlist>
+        </para>
+        <para>
+            Чаще всего сообщения указываются для сбора и используются для получения их
+            переведённых версий через одинаковый вызов <literal>gettext("The literal message")</literal>.
+            Однако, это не обязательно. Следовательно, кусок кода, такой как
+            <literal>if %F, gettext("The literal message"), end</literal> никогда не
+            будет исполнен вызов <literal>gettext</literal>, но тем не менее имеет
+            смысл: оно здесь только для того, чтобы сделать сообщение видимым для
+            сканера/сборщика <literal>xgettext</literal>. Тогда где-то ещё в коде
+            можно использовать
+            <literal>msg = "The literal message"; gettext(msg)</literal> для возврата
+            переведённой версии.
+        </para>
+        <para>
+            Также многократное использование одного и того же литерального вызова
+            <literal>gettext("The literal message")</literal> не будет редким, например,
+            для получения перевода в нескольких файлах. В этом случае сборщик
+            <literal>xgettext</literal> будет собирать сообщение только один раз,
+            и одинаковый перевод будет получен во всех вызовах.
+        </para>
+        <warning>
+            Ограничения: Нет способа перевести сообщение
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        на языке, отличном от языка текущей сессии. Если это действительно
+                        требуется, то язык сессии следует временно переключить на желаемый
+                        язык, затем вызвать <literal>gettext()</literal>, и, наконец,
+                        восстановить язык сессии.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        из переведённой версии, а не из идентификатора сообщения на английском.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </warning>
+        </refsect3>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <refsect3>
+            <title>msgid сообщения</title>
+            <para>
+                Для корректной обработки сообщения на английском должны соответствовать
+                нескольким правилам:
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            Идентификаторы сообщений не чувствительны к регистру.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Литеральные собираемые сообщения могут быть разделены
+                            одиночными или двойными кавычками.
+                        </para>
+                        <warning>
+                            Когда <literal>gettext()</literal> или <literal>_()</literal>
+                            используется в XML или XSL файлах, таких, как файлы настроек
+                            внешнего модуля, литеральная строка домена и литеральный
+                            идентификатор сообщения более не должны быть разделены.
+                            <para/>
+                            Например, <literal>_(my_domain, My message)</literal>
+                            будет использоваться вместо <literal>_("my_domain", "My message")</literal>.
+                            <para>
+                                К тому же, пробелы до и после идентификатора сообщений тогда
+                                никогда не будут приниматься во внимание и никогда не будет
+                                принадлежать сообщению. Например, фактический идентификатор
+                                сообщения, соответствующий
+                                <literal>_(my_domain, My message:  )</literal> это
+                                <literal>"My message:"</literal>, а не
+                                <literal>" My message:  "</literal>.
+                            </para>
+                        </warning>
+                    </listitem>
+                    <listitem>
+                        <para>
+                        Двойные кавычки следует избегать внутри тела сообщения. Пожалуйста,
+                        используйте одинарные кавычки.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                        Внутренние эскейп-последовательности, такие как "\t", "\n" и т.д.,
+                        не интерпретируются ни сканером <literal>xgettext</literal> ни функцией
+                        <literal>gettext</literal>. Они собираются и сохраняются как есть в сообщениях.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Некоторые шаблонные сообщения могут часто включать в себя некоторые C-подобные
+                            директивы "%" с целью замены некоторыми входными данными через <literal>msprintf()</literal>
+                            во время запуска. Например,
+                            <literal>msprintf("Hi %s, could you come at %s today?", "John", "12:30")</literal>
+                            вернёт <literal>"Hi John, could you come at 12:30 today?"</literal>.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </refsect3>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <refsect3>
+            <title>msgstr translated messages</title>
+            <para>
+                This section will be more useful for translaters than for actual users.
+            </para>
+            <para>
+                When an english msgid message includes some C-like placeholders,
+                this always means that in the code the <varname>translated</varname> message
+                is processed with msprintf() to replace placeholders with actual values.
+                Hence, <emphasis>the order and type of placeholders indicate the order and
+                types of actual input values when calling msprintf</emphasis>.
+                </para>
+                <para>
+                This is of first importance for translaters, when writing the corresponding
+                <varname>translated</varname> message:
+                <itemizedlist>
+                    <listitem>
+                        If placeholders are not numbered: they must be in the same order and
+                        types in the <varname>translated</varname> <literal>msgstr</literal>
+                        message than in the <varname>msgid</varname> message. Example (english to french):
+                        <screen>
+msgid  "%s is %d year old.\n"
+msgstr "%s a %d ans.\n"
+// first %s (a string), second %d (a decimal number), in both strings.
+
+Then, from a Scilab session set to french, we will get
+gettext("%s is %d year old.\n") // => "%s a %d ans.\n"
+// and                                     first v      v second
+t = msprintf(gettext("%s is %d year old.\n"), "Peter", 18)
+// => "Peter a 18 ans."
+</screen>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Otherwise, <emphasis>All</emphasis> placeholders must be numbered in the
+                            <varname>translated</varname> message. Each numbered placeholder can
+							be used only once in the format (Scilab limitation).
+                            Example (english to japanese):
+                            <screen>
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
+
+Then,
+msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"), "myFun", 2, 5)
+
+will return in a Scilab session set to english
+"myFun: Wrong number of input argument: 2 to 5 expected."
+
+while, in a Scilab session set to japanese
+"myFun: 入力引数で不正な数: 5 への 2 を想定します。"
+</screen>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </refsect3>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+setlanguage("fr");
+
+// Идентификаторы сообщений чувствительны к регистру:
+// "monday" не является индексируемым msgid, в отличие от "Monday":
+gettext(["monday" ; "Monday"])
+
+//_() является псевдонимом gettext():
+_("Sunday")
+
+// В Scilab идентификаторы сообщений английские:
+setlanguage("ru");
+_("Dimanche")       // Французская версия не может использоваться в качестве msgid
+_("Sunday")
+ ]]></programlisting>
+    <screen><![CDATA[
+--> gettext(["monday" ; "Monday"])
+ ans  =
+!monday  !
+!Lundi   !
+
+--> _("Sunday")
+ ans  =
+ Dimanche
+
+--> setlanguage("ru");
+--> _("Dimanche")
+ ans  =
+ Dimanche
+
+--> _("Sunday")
+ ans  =
+ Воскресенье
+]]></screen>
+    <para>
+        Использование домена: Здесь "tbx" это предопределённый домен, используемый для
+        проверки возможности перевода:
+    </para>
+        <programlisting role="example"><![CDATA[
+setlanguage("fr");
+msg = "%s: something not in Scilab.\n";  // неизвестный в главном домене для Scilab:
+gettext(msg)          // поэтому он выдаётся как есть.
+
+//  Если мы используем домен без предварительного его декларирования, то
+//  Scilab не знает ещё где найти перевод:
+gettext("tbx", msg)   // входное сообщение возвращается как есть.
+
+// Теперь задекларируем домен:
+addlocalizationdomain("tbx", "SCI/modules/localization/tests/unit_tests/locale");
+gettext("tbx", msg)   // теперь работает
+
+// Ответом является шутка: здесь она остаётся на английском (хотя ожидалась на французском).
+// Дело в том, что она была установлена как французский перевод входного msgid.
+
+// Тот же msgid может использоваться в качестве идентификатора, естественного для Scilab с его переводами,
+// и в одном или в нескольких доменах с другими переводами:
+msg = "%s: No more memory.\n";
+[_(msg) ; _("tbx", msg)]
+ ]]></programlisting>
+    <screen><![CDATA[
+--> msg = "%s: something not in Scilab.\n"; // неизвестный в главном домене для Scilab:
+--> gettext(msg)
+ ans  =
+ %s: something not in Scilab.\n
+
+--> //  Scilab не знает ещё где найти перевод:
+--> gettext("tbx", msg)
+ ans  =
+ %s: something not in Scilab.\n
+
+--> // Теперь задекларируем домен:
+--> addlocalizationdomain("tbx", "SCI/modules/localization/tests/unit_tests/locale");
+--> gettext("tbx", msg)   // теперь работает
+ ans  =
+ %s : it is true, that is not in Scilab.\n
+
+--> msg = "%s: No more memory.\n";
+--> [_(msg) ; _("tbx", msg)]
+ ans  =
+!%s : Plus de mémoire disponible.\n    !
+!%s : Overwrite Scilab translation.\n  !
+]]></screen>
+    <para/>
+    <para>
+        Messages with numbered C-like placeholders:
+    </para>
+        <programlisting role="example"><![CDATA[
+in = getlanguage();
+msg = "%s: Unknown value %s for %s option"; // has already some translations
+setlanguage("en");
+t = gettext(msg)
+msprintf(t, "setdiff", "''f''", "''direction''")
+
+setlanguage("ja");
+t = gettext(msg)
+msprintf(t, "setdiff", "''f''", "''direction''")
+
+setlanguage(in);
+ ]]></programlisting>
+    <screen><![CDATA[
+--> setlanguage("en");
+--> t = gettext(msg)
+ t  =
+  "%s: Unknown value %s for %s option"
+
+--> msprintf(t, "setdiff", "''f''", "''direction''")
+ ans  =
+  "setdiff: Unknown value 'f' for 'direction' option"
+
+
+--> setlanguage("ja");
+--> t = gettext(msg)
+ t  =
+  "%1$s: %3$s オプション の未知の値 %2$s"
+
+--> msprintf(t, "setdiff", "''f''", "''direction''")
+ ans  =
+  "setdiff: 'direction' オプション の未知の値 'f'"
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="msprintf">msprintf</link>
+            </member>
+            <member>
+                <link linkend="setlanguage">setlanguage</link>
+            </member>
+            <member>
+                <link linkend="addlocalizationdomain">addlocalizationdomain</link>
+            </member>
+            <member>
+                <link linkend="tbx_generate_pofile">tbx_generate_pofile</link>
+            </member>
+            <member>
+                <link linkend="tbx_make">tbx_make . localization</link>
+            </member>
+            <member>
+                <link linkend="tbx_build_localization">tbx_build_localization</link>
+            </member>
+            <member>
+                <ulink url="https://www.gnu.org/software/gettext/">GNU gettext website</ulink>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>Добавлено управление доменом.</revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    C-like placeholders in messages can now be numbered.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

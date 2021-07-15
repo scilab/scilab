@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="pause">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="pause">
     <refnamediv>
         <refname>pause</refname>
-        <refpurpose>中断モード, キーボード入力を待つ</refpurpose>
+        <refpurpose>
+            は実行中の実行を一時的に一時停止し、コンソールでの指示を許可します
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
@@ -13,44 +32,62 @@
     <refsection>
         <title>説明</title>
         <para>
-            <code>pause</code>モードに切り替えます;
-            関数のコードに挿入すると,<code>pause</code>は関数の実行を中断し,
-            <code>pause</code>のレベル (例: <literal>-1-&gt;</literal>)を
+            <function>pause</function>モードに切り替えます;
+            関数のコードに挿入すると,<function>pause</function>は関数の実行を中断し,
+            <function>pause</function>のレベル (例: <literal>-1-&gt;</literal>)を
             示すプロンプト記号が表示がされます.
             この時,ユーザは新しいワークスペースにおり，
-            より低いレベルの変数(特にその関数内の全ての変数)が全て利用可能となっています.
-            コールしたワークスペースに戻るには<code>return</code>を入力します.
+            より低いレベルの変数(特にその関数内の全ての変数)が全て利用可能となっています 意図的に変更できます.
         </para>
         <para>
-            このモードでは, <literal>[...]=return(...) </literal>は
-            引数の変数 <literal>(...)</literal> をコールしたワークスペースに
-            <literal> [...]</literal>という名前の出力として返します.
-            一方, より低いレベルの変数は保護され, 修正することはできません.
+            To resume the execution, enter <code>resume</code>.
         </para>
         <para>
-            <literal>pause</literal> はデバッグの際に非常に有用です.
+            このモードはコマンド <literal>abort</literal>により破棄することができます.
         </para>
-        <para>
-            このモードはコマンド <literal>"abort"</literal>により破棄することができます.
-        </para>
+        <note>
+            <function>pause</function> はデバッグの際に非常に有用です.
+        </note>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-    function c=foo(b)
-    a=42+b
+function c = foo(b)
+    a = 42 + b
     disp("Thanks to the pause, you can investigate if ''a'' has the right value");
-    disp("Value can be changed too if needed.");
+    disp("Values of local variables can be changed too if required.");
     pause
-    c=a+2
-    endfunction
+    c = a + 2
+endfunction
 
-    foo(2)
- ]]></programlisting>
+a = 3;
+foo(2)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> a = 3;
+--> foo(2)
+  "Thanks to the pause, you can investigate if 'a' has the right value"
+  "Values of local variables can be changed too if required."
+
+Type 'resume' or 'abort' to return to standard level prompt.
+
+-1-> a
+ a  = 
+   44.
+
+-1-> a = 0;
+
+-1-> resume
+ ans  =
+   2.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="debug">debug</link>
+            </member>
             <member>
                 <link linkend="halt">halt</link>
             </member>
@@ -61,17 +98,26 @@
                 <link linkend="abort">abort</link>
             </member>
             <member>
-                <link linkend="quit">quit</link>
-            </member>
-            <member>
                 <link linkend="whereami">whereami</link>
-            </member>
-            <member>
-                <link linkend="where">where</link>
             </member>
             <member>
                 <link linkend="sleep">sleep</link>
             </member>
+            <member>
+                <link linkend="quit">quit</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    The new values of local variables changed during a pause are now taken
+                    into account when resuming the execution with <literal>resume</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

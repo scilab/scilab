@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[Ar,U]=hermit(A)</synopsis>
+        <synopsis>[Ar, U] = hermit(A)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -62,11 +62,25 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');
-p=[s, s*(s+1)^2, 2*s^2+s^3];
-[Ar,U]=hermit(p'*p);
-clean(p'*p*U), det(U)
- ]]></programlisting>
+s = %s;
+p = [s, s*(s+1)^2, 2*s^2+s^3];
+[Ar,U] = hermit(p'*p);
+clean(p'*p*U)
+det(U)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> clean(p'*p*U)
+ ans  =
+  0  0  s²         
+
+  0  0  s² +2s³ +s⁴
+
+  0  0  2s³ +s⁴    
+
+--> det(U)
+ ans  =
+  1
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

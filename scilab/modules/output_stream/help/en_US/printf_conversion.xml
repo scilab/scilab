@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,11 +13,13 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="printf_conversion" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="printf_conversion" xml:lang="en">
     <refnamediv>
         <refname>printf_conversion</refname>
-        <refpurpose>mprintf, msprintf, mfprintf conversion
-            specifications
+        <refpurpose>mprintf, msprintf, mfprintf C-format specifications
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -25,7 +27,7 @@
         <para>
             Each conversion specification in the <literal>mprintf</literal> ,
             <literal>msprintf</literal> , <literal>mfprintf</literal>
-            <literal>format</literal> parameter has the following syntax:
+            <literal>format</literal> string has the following syntax:
         </para>
         <itemizedlist>
             <listitem>
@@ -33,29 +35,43 @@
             </listitem>
             <listitem>
                 <para>
+                    An optional integer n ≥ 1 followed by "$". n is the index of the input data
+                    to substitute to the placeholder, in the msprintf, mprintf .. list of input data.
+                    In a format string, placeholders are either all numbered or all non-numbered.
+                    A given numbered placeholder can be used only once in its C-format string
+                    (Scilab limitation).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
                     Zero or more <literal>options</literal>, which modify the
                     meaning of the conversion specification. The following list contains
                     the <literal>option</literal> characters and their meanings:
                 </para>
-                <itemizedlist>
-                    <listitem>
-                        <para>- : Left align, within the field, the result of the
-                            conversion.
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>+ : Begin the result of a signed conversion with a sign (+
-                            or -).
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>'space' : Prefix a space character to the result if the
+                <table>
+                    <tr>
+                        <th>- :</th>
+                        <td>
+                            Left align, within the field, the result of the conversion.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>+ :</th>
+                        <td>
+                            Begin the result of a signed conversion with a sign (+ or -).
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="white-space:nowrap"><emphasis role="bold">' ' :</emphasis></td>
+                        <td>(space) Prefix a space character to the result if the
                             first character of a signed conversion is not a sign. If both the
-                            (space) and + options appear, the (space) option is ignored
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para># : Convert the value to an alternate form. For
+                            (space) and + options appear, the (space) option is ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th># :</th>
+                        <td>
+                            Convert the value to an alternate form. For
                             <literal>c</literal>, <literal>d</literal>, <literal>i</literal>,
                             <literal>s</literal>, and <literal>u</literal> conversions, the
                             <literal>#</literal> option has no effect. For
@@ -68,10 +84,12 @@
                             no digits follow it. For <literal>g</literal> and
                             <literal>G</literal> conversions, trailing zeros are not removed
                             from the result.
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>0 : Pad to the field width, using leading zeros (following
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>0 :</th>
+                        <td>
+                            Pad to the field width, using leading zeros (following
                             any indication of sign or base) for <literal>d</literal>,
                             <literal>i</literal>, <literal>o</literal>, <literal>u</literal>,
                             <literal>x</literal>, <literal>X</literal>, <literal>e</literal>,
@@ -83,12 +101,13 @@
                             <literal>o</literal> <literal>u</literal>, <literal>x</literal>,
                             and <literal>X</literal> conversions, if a precision is specified,
                             the <literal>0</literal> flag is also ignored.
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                        </td>
+                    </tr>
+                </table>
             </listitem>
             <listitem>
-                <para>An optional decimal digit string that specifies the minimum field
+                <para>
+                    An optional decimal digit string that specifies the minimum field
                     width. If the converted value has fewer characters than the field width,
                     the field is padded on the left to the length specified by the field
                     width. If the left-adjustment option is specified, the field is padded on
@@ -103,66 +122,99 @@
                 </para>
                 <itemizedlist>
                     <listitem>
-                        <para>
-                            The minimum number of digits to appear for <literal>d</literal>,
-                            <literal>u</literal>, <literal>o</literal>, <literal>x</literal>, or
-                            <literal>X</literal> conversions
-                        </para>
+                        The minimum number of digits to appear for <literal>d</literal>,
+                        <literal>u</literal>, <literal>o</literal>, <literal>x</literal>, or
+                        <literal>X</literal> conversions.
                     </listitem>
                     <listitem>
-                        <para>The number of digits to appear after the decimal point for
-                            <literal>e</literal>, <literal>E</literal>, and <literal>f</literal>
-                            conversions
-                        </para>
+                        The number of digits to appear after the decimal point for
+                        <literal>e</literal>, <literal>E</literal>, and <literal>f</literal>
+                        conversions.
                     </listitem>
                     <listitem>
-                        <para>The maximum number of significant digits for
-                            <literal>g</literal> and <literal>G</literal> conversions
-                        </para>
+                        The maximum number of significant digits for
+                        <literal>g</literal> and <literal>G</literal> conversions.
                     </listitem>
                     <listitem>
-                        <para>The maximum number of characters to be printed from a string in
-                            an <literal>s</literal> conversion
-                        </para>
+                        The maximum number of characters to be printed from a string in
+                        an <literal>s</literal> conversion.
                     </listitem>
                 </itemizedlist>
             </listitem>
             <listitem>
-                <para>A character that indicates the type of conversion to be
-                    applied:
+                <para>A character that indicates the type of conversion to be applied:
                 </para>
-                <itemizedlist>
-                    <listitem>
-                        <para>% : Performs no conversion. Displays %.</para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            d,i: Accepts an integer <literal>value</literal> and
-                            converts it to signed decimal notation. The precision specifies
+                <table>
+                    <tr>
+                        <th>% :</th>
+                        <td>
+                            Performs no conversion. Prints %.
+                            <note>
+                                This may be useful for instance to print percentages, or
+                                to process some LaTeX expression including LaTeX comments
+                                starting with "%", etc.
+                            </note>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>s :</th>
+                        <td>
+                            Accepts a string or boolean <literal>value</literal> and displays
+                            characters from the string to the end or the number of characters
+                            indicated by the precision is reached. If no precision is
+                            specified, all characters up to the end are displayed.
+                            UTF-8 extended characters are supported in input strings.
+                            Booleans are converted into 'T' or 'F'.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>c :</th>
+                        <td>
+                            Not supported.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            All following conversions accept any decimal numerical or boolean
+                            input <literal>value</literal>. Only the real part of any input
+                            complex number is considered. Booleans are implicitly converted
+                            into 0 and 1.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>d,i :</th>
+                        <td>
+                            Converts the input <literal>value</literal> to a signed integer int32
+                            notation. Conversions for input |Numbers| ≥ 2^31 are not reliable.
+                            The precision specifies
                             the minimum number of digits to appear. If the value being
                             converted can be represented in fewer digits, it is expanded with
                             leading zeros. The default precision is 1. The result of
                             converting a zero value with a precision of zero is a null string.
                             Specifying a field width with a zero as a leading character causes
                             the field width value to be padded with leading zeros.
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            u : Accepts an integer <literal>value</literal> and converts
-                            it to unsigned decimal notation. The precision specifies the
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>u :</th>
+                        <td>
+                            Converts the input <literal>value</literal> to an unsigned integer
+                            uint32 notation. Conversions for input |Numbers| ≥ 2^32 are not reliable.
+                            The precision specifies the
                             minimum number of digits to appear. If the value being converted
                             can be represented in fewer digits, it is expanded with leading
                             zeros. The default precision is 1. The result of converting a zero
                             value with a precision of zero is a null string. Specifying a
                             field width with a zero as the leading character causes the field
                             width value to be padded with leading zeros.
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            o : Accepts an integer <literal>value</literal> and converts
-                            it to unsigned octal notation. The precision specifies the minimum
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>o :</th>
+                        <td>
+                            Converts the input <literal>value</literal> to an unsigned octal notation.
+                            Conversions for input |Numbers| ≥ 2^32 are not reliable.
+                            The precision specifies the minimum
                             number of digits to appear. If the value being converted can be
                             represented in fewer digits, it is expanded with leading zeros.
                             The default precision is 1. The result of converting a zero value
@@ -170,14 +222,15 @@
                             width with a zero as the leading character causes the field width
                             value to be padded with leading zeros. An octal value for field
                             width is not implied.
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            x, X : Accepts an integer <literal>value</literal> and
-                            converts it to unsigned hexadecimal notation. The letters
-                            ``abcdef'' are used for the <literal>x</literal> conversion; the
-                            letters ``ABCDEF'' are used for the <literal>X</literal>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>x, X :</th>
+                        <td>
+                            Converts the input <literal>value</literal> to an unsigned hexadecimal
+                            notation. Conversions for input |Numbers| ≥ 2^32 are not reliable.
+                            The letters ``abcdef'' are used for the <literal>x</literal> conversion;
+                            the letters ``ABCDEF'' are used for the <literal>X</literal>
                             conversion. The precision specifies the minimum number of digits
                             to appear. If the value being converted can be represented in
                             fewer digits, it is expanded with leading zeros. The default
@@ -185,89 +238,71 @@
                             precision of zero is a null string. Specifying a field width with
                             a zero as the leading character causes the field width value to be
                             padded with leading zeros.
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            f : Accepts a float or double <literal>value</literal> and
-                            converts it to decimal notation in the format
-                            %[\-]<literal>ddd.ddd</literal>. The number of digits after the
-                            decimal point is equal to the precision specification.
-                        </para>
-                        <itemizedlist>
-                            <listitem>
-                                <para>If no precision is specified, six digits are
-                                    output.
-                                </para>
-                            </listitem>
-                            <listitem>
-                                <para>If the precision is zero, no decimal point appears and
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>f :</th>
+                        <td>
+                            Converts the input <literal>value</literal> to a decimal notation in
+                            the format %[\-]<literal>ddd.ddd</literal>.
+                            The number of digits after the decimal point is equal to the precision
+                            specification.
+                            <itemizedlist>
+                                <listitem>
+                                    If no precision is specified, six digits are output.
+                                </listitem>
+                                <listitem>
+                                    If the precision is zero, no decimal point appears and
                                     the system outputs a number rounded to the integer nearest to
                                     <literal>value</literal>.
-                                </para>
-                            </listitem>
-                            <listitem>
-                                <para>If a decimal point is output, at least one digit is
-                                    output before it.
-                                </para>
-                            </listitem>
-                        </itemizedlist>
-                    </listitem>
-                    <listitem>
-                        <para>e, E : Accepts a real and converts it to the exponential
+                                </listitem>
+                                <listitem>
+                                    If a decimal point is output, at least one digit is output before it.
+                                </listitem>
+                            </itemizedlist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>e, E :</th>
+                        <td>
+                            Converts the input <literal>value</literal> to the exponential
                             form %[\-]<literal>d.ddde</literal>+/\-<literal>dd</literal>.
                             There is one digit before the decimal point, and the number of
                             digits after the decimal point is equal to the precision
                             specification.
-                        </para>
-                        <itemizedlist>
-                            <listitem>
-                                <para>If no precision is specified, six digits are
-                                    output.
-                                </para>
-                            </listitem>
-                            <listitem>
-                                <para>If the precision is zero, , no decimal point
-                                    appears.
-                                </para>
-                            </listitem>
-                            <listitem>
-                                <para>
+                            <itemizedlist>
+                                <listitem>
+                                    If no precision is specified, six digits are output.
+                                </listitem>
+                                <listitem>
+                                    If the precision is zero, no decimal point appears.
+                                </listitem>
+                                <listitem>
                                     The <literal>E</literal> conversion character produces a
                                     number with E instead of e before the exponent. The exponent
                                     always contains at least two digits. If the value is zero, the
                                     exponent is zero.
-                                </para>
-                            </listitem>
-                        </itemizedlist>
-                    </listitem>
-                    <listitem>
-                        <para>g, G : Accepts a real and converts it in the style of the
+                                </listitem>
+                            </itemizedlist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="white-space:nowrap"><emphasis role="bold">g, G :</emphasis></td>
+                        <td>
+                            Converts the input <literal>value</literal> in the style of the
                             <literal>e</literal>, <literal>E</literal>, or
                             <literal>f</literal> conversion characters, with the precision
-                            specifying the number of significant digits. Trailing zeros are
-                            removed from the result. A decimal point appears only if it is
-                            followed by a digit. The style used depends on the value
+                            specifying the number of significant digits.
+                            Trailing zeros are removed from the result.
+                            A decimal point appears only if it is followed by a digit.
+                            The style used depends on the value
                             converted. Style <literal>e</literal> (<literal>E</literal>, if
                             <literal>G</literal> is the flag used) results only if the
                             exponent resulting from the conversion is less than -4, or if it
                             is greater or equal to the precision.
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>c : Accepts and displays an integer value converted to a
-                            character.
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            s : Accepts a string <literal>value</literal> and displays
-                            characters from the string to the end or the number of characters
-                            indicated by the precision is reached. If no precision is
-                            specified, all characters up to the end are displayed.
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                        </td>
+                    </tr>
+                </table>
             </listitem>
         </itemizedlist>
         <para>A field width or precision can be indicated by an
@@ -284,21 +319,46 @@
         <para>The representation of the plus sign depends on whether the
             <literal>+</literal> or (space) formatting option is specified.
         </para>
-        <para>display of exponential form %e is platform dependent with a different number of digits in exponent.</para>
-        <informaltable border="1">
-            <tr>
-                <td>Platform</td>
-                <td>Example: msprintf("%e",1.23e4)</td>
-            </tr>
-            <tr>
-                <td>Windows</td>
-                <td>1.23000e+004</td>
-            </tr>
-            <tr>
-                <td>Linux/Mac OS</td>
-                <td>1.23000e+04</td>
-            </tr>
-        </informaltable>
+        <para>
+            The display of exponential form %e is platform dependent with a different
+            number of digits in exponent.
+            <informaltable border="1">
+                <tr>
+                    <td>Platform</td>
+                    <td>Example: msprintf("%e",1.23e4)</td>
+                </tr>
+                <tr>
+                    <td>Windows</td>
+                    <td>1.23000e+004</td>
+                </tr>
+                <tr>
+                    <td>Linux/Mac OS</td>
+                    <td>1.23000e+04</td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>
+            <emphasis role="bold">Special escaped sequences</emphasis> are supported in Scilab
+            C-format strings:
+            <table>
+                <tr>
+                    <th>\n :</th>
+                    <td>Go to Next line (line feed)</td>
+                </tr>
+                <tr>
+                    <th>\r :</th>
+                    <td>Return: go to the head of current line (for overprinting)</td>
+                </tr>
+                <tr>
+                    <th>\t :</th>
+                    <td>horizontal Tab</td>
+                </tr>
+                <tr>
+                    <th>\\ :</th>
+                    <td>print a backslash \</td>
+                </tr>
+            </table>
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -320,7 +380,45 @@ mprintf('a float (exponential form): %3.2e\n', %pi);
 mprintf('a float (exponential form): %3.2g\n', %pi);
 mprintf('a character: %c\n', 'a');
 mprintf('a character: %c\n', 'aaa');
- ]]></programlisting>
+     ]]></programlisting>
+        <para/>
+        <para>
+            With input booleans:
+        </para>
+        <programlisting role="example"><![CDATA[
+mprintf("\n%%d: %d,  %%u: %u,  %%o: %o,  %%f: %f,  %%e: %e,  %%s: %s\n" + ..
+          "%%d: %d,  %%u: %u,  %%o: %o,  %%f: %f,  %%e: %e,  %%s: %s\n", ..
+        %T, %T, %T, %T, %T, %T, %F, %F, %F, %F, %F, %F);
+     ]]></programlisting>
+        <screen><![CDATA[
+%d: 1,  %u: 1,  %o: 1,  %f: 1.000000,  %e: 1.000000e+00,  %s: T
+%d: 0,  %u: 0,  %o: 0,  %f: 0.000000,  %e: 0.000000e+00,  %s: F
+]]></screen>
+        <para/>
+        <para>
+            With numbered placeholders:
+        </para>
+        <programlisting role="example"><![CDATA[
+mprintf("%2$s is %1$d-year old.\n", 32, "Peter");
+     ]]></programlisting>
+        <screen><![CDATA[
+Peter is 32-year old.
+]]></screen>
+        <para/>
+        <para>
+            With escaped sequences and UTF-8 extended characters:
+        </para>
+        <programlisting role="example"><![CDATA[
+mprintf("The path T:\\abc does not exist.\n");
+mprintf("abcdefghijk\tαβδ\tεϵ\tζηθικλ\rABCDE\n");
+     ]]></programlisting>
+        <screen><![CDATA[
+--> mprintf("The path T:\\abc does not exist.\n");
+The path T:\abc does not exist
+
+--> mprintf("abcdefghijk\tαβδ\tεϵ\tζηθικλ\rABCDE\n");
+ABCDEfghijk αβδ εϵ  ζηθικλ
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -335,5 +433,22 @@ mprintf('a character: %c\n', 'aaa');
                 <link linkend="msprintf">msprintf</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Numbered placeholders "%n$.." are supported.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Input boolean data can be converted.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

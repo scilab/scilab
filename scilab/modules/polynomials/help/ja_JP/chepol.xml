@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[Tn]=chepol(n,var)</synopsis>
+        <synopsis>Tn = chepol(n, var)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -44,7 +44,29 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-chepol(4,'x')
- ]]></programlisting>
+for i = 1:10, p = chepol(i, "x"); disp(p), end
+     ]]></programlisting>
+        <screen><![CDATA[
+--> for i = 1:10, p = chepol(i, "x"); disp(p), end
+  x
+
+  -1 +2x²
+
+  -3x +4x³
+
+  1 -8x² +8x⁴
+
+  5x -20x³ +16x⁵
+
+  -1 +18x² -48x⁴ +32x⁶
+
+  -7x +56x³ -112x⁵ +64x⁷
+
+  1 -32x² +160x⁴ -256x⁶ +128x⁸
+
+  9x -120x³ +432x⁵ -576x⁷ +256x⁹
+
+  -1 +50x² -400x⁴ +1120x⁶ -1280x⁸ +512x¹⁰
+]]></screen>
     </refsection>
 </refentry>

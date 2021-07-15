@@ -20,8 +20,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[N,D]=lcmdiag(H)
-            [N,D]=lcmdiag(H,flag)
+        <synopsis>
+            [N,D] = lcmdiag(H)
+            [N,D] = lcmdiag(H, 'row')
+            [N,D] = lcmdiag(H, 'col')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -46,10 +48,10 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>'row'|'col'</term>
                 <listitem>
                     <para>
-                        character string: <literal>'row'</literal> or <literal>'col'</literal> (default)
+                        character string: Default is <literal>'col'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -70,10 +72,10 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');
-H=[1/s,(s+2)/s/(s+1)^2;1/(s^2*(s+2)),2/(s+2)];
-[N,D]=lcmdiag(H);
-N/D-H
+s = poly(0,'s');
+H = [1/s,(s+2)/s/(s+1)^2;1/(s^2*(s+2)),2/(s+2)];
+[N,D] = lcmdiag(H);
+N/D - H
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

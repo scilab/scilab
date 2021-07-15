@@ -6,7 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>varList = who_user([bPrint])</synopsis>
+        <synopsis>
+            varList = who_user()
+            varList = who_user(bPrint)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>

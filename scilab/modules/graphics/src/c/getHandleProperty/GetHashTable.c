@@ -32,7 +32,7 @@ static BOOL getHashTableCreated = FALSE;
 /**
  * the get hashtable
  */
-static GetPropertyHashTable *getHashTable = NULL;
+GetPropertyHashTable *getHashTable = NULL;
 
 /**
  * a couple of key (property name) and associated value

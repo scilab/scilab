@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
-    *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,37 +11,45 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-    *
-    -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="asciimat">
+ *
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="asciimat">
     <refnamediv>
         <refname>asciimat</refname>
-        <refpurpose>преобразование матрицы строк в ASCII-коды и обратно</refpurpose>
+        <refpurpose>
+            Преобразует массив текста в коды ASCII/UTF8 и обратно
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            a = asciimat(txt)
-            txt = asciimat(a)
+            unicodes = asciimat(text)
+            text = asciimat(unicodes)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>txt</term>
+                <term>text</term>
                 <listitem>
-                    <para>
-                        символьная строка или матрица строк.
-                    </para>
+                    отдельный текст, или вектор, матрица или гиперматрица текстов.
+                    Элементы текста могут иметь разную длину и могут включать в
+                    себя расширенные символы UTF-8.
+                    <para/>
+                    <literal>asciimat(…)</literal> всегда конкатенирует столбцы текста
+                    <varname>text</varname> вдоль строк, как входной или выходной аргумент.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>a</term>
+                <term>unicodes</term>
                 <listitem>
-                    <para>
-                        вектор или матрица целочисленных ASCII-кодов.
-                    </para>
+                    отдельный целочисленный ASCII-код, вектор, матрица или гиперматрица
+                    1-байтных чисел ASCII или юникода.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -49,19 +57,319 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Эта функция преобразует Scilab-строку в ASCII-код или
-            матрицу ASCII-кодов в Scilab-строку. Аргумент на выходе
-            является матрицей, у которой то же количество строк, что и у
-            матрицы на входе, что является отличием от функции
-            <function>ascii</function>.
+            <literal>asciimat(…)</literal> преобразует массив текста <varname>text</varname>
+            в массив соответствующих 1-байтных кодов ascii или UTF-8 <varname>unicodes</varname>,
+            и наоборот.
         </para>
+        <para>
+            <literal>asciimat(…)</literal> является функцией совместимости с Octave/Matlab,
+            с целью обеспечить в преобразователе кода Matlab-в-Scilab m2sci
+            эквивалентность для суммирования и вычитания некоторых
+            строковых символов или с числами. Таким образом,
+            <screen><![CDATA[
+>> ['ab' 'c' ; 'd' 'ef'] + 4
+ans =
+   101   102   103
+   104   105   106
+
+>> ['ab';'cd'] + ['ef';'gh']
+ans =
+   198   200
+   202   204
+
+>> ['ab';'cd'] - ['ef';'gh']
+ans =
+  -4  -4
+  -4  -4
+]]></screen>
+        </para>
+        <para>
+           может быть преобразовано преобразователем Matlab-в-Scilab с
+        </para>
+        <para>
+           <programlisting role="example"><![CDATA[
+asciimat(['ab' 'c' ; 'd' 'ef']) + 4
+asciimat(['ab';'cd']) + asciimat(['ef';'gh'])
+asciimat(['ab';'cd']) - asciimat(['ef';'gh'])
+        ]]></programlisting>
+        </para>
+        <para>
+            <warning>
+                <literal>asciimat(…)</literal> не следует использовать без преобразователя.
+            </warning>
+        </para>
+        <refsect3>
+            <title>unicodes = asciimat(text)</title>
+            <para>
+                <emphasis role="bold">Для скаляра или строки</emphasis> <varname>text</varname>,
+                <literal>asciimat(text)</literal> эквивалентно <literal>ascii(text)</literal>.
+                Все строчки склеиваются друг с другом перед построением вектора-строки
+                кодов их символов.
+            </para>
+            <para>
+                <warning>
+                <emphasis role="bold">Для любого массива <varname>text</varname> любых
+                размеров, сделанных только из пустых строк <literal>""</literal></emphasis>,
+                <literal>asciimat(text)</literal> возвращает <literal>[]</literal>.
+                Действительно, <literal>asciimat(…)</literal> считает <literal>""</literal>
+                как пустой вектор (индексированных) символов как в Octave/Matlab, а не
+                как текстовый объект Scilab.
+                </warning>
+            </para>
+            <para>
+                <emphasis role="bold">Для двумерных матриц</emphasis> <varname>text</varname>,
+                <literal>asciimat(text)</literal> строит уникальный столбец текста,
+                склеивая столбцы <varname>text</varname> вдоль строк.
+            </para>
+            <para>
+                Затем для каждой строки/строчки столбца вычисляется вектор-строка
+                кодов ASCII или UTF-8 всех её символов.
+            </para>
+            <para>
+                Наконец, все результирующие вектор-строки кодов конкатенируются
+                по вертикали для построения матрицы <varname>unicodes</varname>.
+                Слишком короткие векторы кодов предварительно дополняются кодом
+                ascii(" ")==32.
+            </para>
+            <para>
+                <emphasis role="bold">Для гиперматрицы</emphasis> <varname>text</varname>,
+                обработка, в основном, та же самая, как если бы все строки
+                <varname>text</varname> по всем размерностям больше двух были предварительно
+                составлены в двумерную матрицу. Результирующая двумерная матрица
+                <varname>unicodes</varname>, наконец, преобразуется в гиперматрицу.
+            </para>
+            <para>
+                Размеры массивов <varname>unicodes</varname> и <varname>text</varname> 
+                отличаются только по количеству их столбцов.
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>text = asciimat(unicodes)</title>
+            <para>
+                <emphasis role="bold">Для скаляра или строки</emphasis>
+                <varname>unicodes</varname>,
+                <literal>asciimat(unicodes)</literal> эквивалентна
+                <literal>ascii(unicodes)</literal>.
+                Она возвращает символьные строки, чьи символы имеют указанные коды.
+                <warning>
+                    Нули стоят для кода пустого символа <literal>""</literal>, поскольку
+                    настоящий символ <literal>ascii(0)</literal> пока что не поддерживается
+                    в Scilab 6.
+                </warning>
+            </para>
+            <para>
+                <emphasis role="bold">Для столбца, матрицы или гиперматрицы</emphasis>
+                <varname>unicodes</varname>, каждая строка <varname>unicodes</varname>
+                обрабатывается отдельно и строит отдельную символьную строку Scilab.
+            </para>
+            <para>
+                Все завершающие пробелы <literal>ascii(32)</literal> построенных
+                символьных строк отсекаются.
+            </para>
+            <para>
+                Наконец, <varname>text</varname> имеет размер <varname>unicodes</varname>,
+                за исключением <literal>size(text,2)==1</literal>.
+            </para>
+        </refsect3>
     </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+asciimat([])
+asciimat("")
+asciimat(0)
+
+r = asciimat("A")
+asciimat(r)
+
+// Со СТРОКОЙ на входе:
+r = asciimat(["A" "BC"])
+asciimat(r)
+
+r = asciimat(["A" "" "BC"])      // "" в строках игнорируются
+asciimat(r)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> asciimat([])
+ ans  =
+    []
+--> asciimat("")
+ ans  =
+    []
+--> asciimat(0)
+ ans  =
+  ""
+
+--> r = asciimat("A")
+ r  =
+   65.
+--> asciimat(r)
+ ans  =
+  "A"
+
+--> // With an input ROW:
+--> r = asciimat(["A" "BC"])
+ r  =
+   65.   66.   67.
+
+--> asciimat(r)
+ ans  =
+  "ABC"
+
+--> r = asciimat(["A" "" "BC"])      // "" in rows are ignored
+ r  =
+   65.   66.   67.
+
+--> asciimat(r)
+ ans  =
+  "ABC"
+]]></screen>
+        <para>
+            Со столбцом на входе:
+        </para>
+        <programlisting role="example"><![CDATA[
+asciimat(["" ; ""])
+asciimat((97:110)')'
+strsplit("a":"n")'
+
+r = asciimat(["ABC" ; "" ; "D"]) // Дополнение коротких строк с помощью 32
+asciimat(r)
+r = asciimat(["AB" ; "αβ"])      // используется 1-байтный код UTF-8
+asciimat(r)                      // завершающие пробелы ascii(32) отсекаются
+     ]]></programlisting>
+        <screen><![CDATA[
+--> asciimat(["" ; ""])
+ ans  =
+    []
+
+--> asciimat((97:110)')'
+ ans  =
+  "a"  "b"  "c"  "d"  "e"  "f"  "g"  "h"  "i"  "j"  "k"  "l"  "m"  "n"
+
+--> strsplit("a":"n")'
+ ans  =
+  "a"  "b"  "c"  "d"  "e"  "f"  "g"  "h"  "i"  "j"  "k"  "l"  "m"  "n"
+
+--> r = asciimat(["ABC" ; "" ; "D"]) // Padding short rows with 32
+ r  =
+   65.   66.   67.
+   32.   32.   32.
+   68.   32.   32.
+
+--> asciimat(r)
+ ans  =
+  "ABC"
+  ""
+  "D"
+
+--> r = asciimat(["AB" ; "αβ"])      // 1-byte UTF-8 coding is used
+ r  =
+   65.    66.    32.    32.
+   206.   177.   206.   178.
+
+--> asciimat(r)                      // Trailing ascii(32) spaces are trimmed
+ ans  =
+  "AB"
+  "αβ"
+]]></screen>
+        <para>
+            С двумерной матрицей на входе:
+        </para>
+        <programlisting role="example"><![CDATA[
+r = asciimat([" AB", " ", "CD " ; "α", "βγ", " "])
+asciimat(r)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> r = asciimat([" AB", " ", "CD " ; "α", "βγ", " "])
+ r  =
+   32.    65.    66.    32.    67.    68.    32.
+   206.   177.   206.   178.   206.   179.   32.
+
+--> asciimat(r)
+ ans  =
+  " AB CD"
+  "αβγ"
+]]></screen>
+        <para>
+            С трёхмерной гиперматрицей на входе:
+        </para>
+        <programlisting role="example"><![CDATA[
+x = ["a €" "bδ " ; "" "" ;  "" "" ];
+x2 = [" α" "βδc" ; "" "" ; "ε4" ""];
+h = cat(3, x, x2)
+r = asciimat(h)
+asciimat(r)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> h = cat(3, x, x2)
+ h  =
+(:,:,1)
+  "a €"  "bδ "
+  ""     ""
+  ""     ""
+(:,:,2)
+  " α"  "βδc"
+  ""    ""
+  "ε4"  ""
+
+--> r = asciimat(h)
+ r  =
+(:,:,1)
+   97.   32.   226.   130.   172.   98.   206.   180.   32.
+   32.   32.   32.    32.    32.    32.   32.    32.    32.
+   32.   32.   32.    32.    32.    32.   32.    32.    32.
+(:,:,2)
+   32.    206.   177.   206.   178.   206.   180.   99.   32.
+   32.    32.    32.    32.    32.    32.    32.    32.   32.
+   206.   181.   52.    32.    32.    32.    32.    32.   32.
+
+--> asciimat(r)
+ ans  =
+(:,:,1)
+  "a €bδ"
+  ""
+  ""
+(:,:,2)
+  " αβδc"
+  ""
+  "ε4"
+]]></screen>
+    </refsection>
+
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ascii">ascii</link>
             </member>
+            <member>
+                <link linkend="char">char</link>
+            </member>
         </simplelist>
+    </refsection>
+
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Принимаются текстовые компоненты различной длины или/и
+                            включая символы UTF-8. Реализовано дополнение кодами
+                            ascii(" ")==32.
+                        </listitem>
+                        <listitem>
+                            asciimat(unicodes) отсекает все завершающие пробелы.
+                        </listitem>
+                        <listitem>
+                            Для любых гиперматрицы unicodes, r = asciimat(unicodes)
+                            больше не сжимает size(r,2).
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

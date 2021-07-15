@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function []=no_equiv(expr)
+function no_equiv(expr)
 
     set_infos(msprintf(gettext("No Scilab equivalent for: %s"),expr),2)
 

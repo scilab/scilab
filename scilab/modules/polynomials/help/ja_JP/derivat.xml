@@ -20,13 +20,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>pd=derivat(p)</synopsis>
+        <synopsis>pd = derivat(p)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
         <variablelist>
             <varlistentry>
-                <term>p</term>
+                <term>p, pd</term>
                 <listitem>
                     <para>多項式または有理行列</para>
                 </listitem>
@@ -42,7 +42,7 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');
+s = poly(0,'s');
 derivat(1/s)  // -1/s^2;
  ]]></programlisting>
         <programlisting role="example"><![CDATA[
@@ -65,5 +65,13 @@ derivat(p4)
 s = %s; p5 = s^(-1) + 2 + 3*s
 derivat(p5)
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="polyint">polyint</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

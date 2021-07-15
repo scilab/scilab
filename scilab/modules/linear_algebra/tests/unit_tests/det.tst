@@ -1,12 +1,13 @@
-// <-- CLI SHELL MODE -->
-// <-- NO CHECK REF -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA Michael Baudin
 // Copyright (C) 2015 - Scilab Enterprises - John Gliksberg
+// Copyright (C) 2021 - Le Mans Université - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //==========================================================================
 //==============================   det        ==============================
@@ -116,5 +117,79 @@ b
 b
 b
 b];
-assert_checkalmostequal(det(A), 0);
+assert_checkalmostequal(det(A), 0, %eps, norm(A)*%eps);
 
+a = sprand(1000,1000,0.1); a(:,1:2) = 1;
+assert_checkequal(det(a), 0);
+
+// Underflow and overflow management for sparse matrices. [e, m] = det(s)  syntax
+// -------------------------------------------------------------------------------
+// http://bugzilla.scilab.org/16636 :
+// With a real matrix
+// ..................
+// Underflow:
+n = 75;
+while n < 3000
+    s = sparse(triu(rand(n,n)));
+    ref = prod(diag(s));
+    if n < 1000
+        assert_checkalmostequal(det(s), ref, 10*n*%eps);
+    else
+        assert_checkequal(det(s), 0);
+    end
+    [e, m] = det(s);
+    ref = sum(log10(full(diag(s))));
+    assert_checkequal(e, int(ref)-1);
+    assert_checkalmostequal(m, 10^(ref-int(ref)+1), 10*n*%eps);
+    n = n*2;
+end
+// Overflow:
+n = 75;
+while n < 3000
+    s = sparse(triu(rand(n,n)))*6;
+    ref = prod(diag(s));
+    if n < 1000
+        assert_checkalmostequal(det(s), ref, 10*n*%eps);
+    else
+        assert_checkequal(det(s), %inf);
+    end
+    [e, m] = det(s);
+    ref = sum(log10(full(diag(s))));
+    assert_checkequal(e, int(ref));
+    assert_checkalmostequal(m, 10^(ref-int(ref)), 10*n*%eps);
+    n = n*2;
+end
+// With a complex matrix
+// .....................
+// Underflow:
+n = 75;
+while n < 3000
+    s = sparse(triu(complex(rand(n,n),rand(n,n))));
+    ref = prod(diag(s));
+    if n < 2000
+        assert_checkalmostequal(det(s), ref, 100*n*%eps);
+    else
+        assert_checkequal(det(s), 0*%i);
+    end
+    [e, m] = det(s);
+    [eref, mref] = det(full(s));
+    assert_checkequal(e, eref);
+    assert_checkalmostequal(m, mref, 100*n*%eps);
+    n = n*2;
+end
+// Overflow:
+n = 75;
+while n < 3000
+    s = sparse(triu(complex(rand(n,n),rand(n,n))))*6;
+    ref = prod(diag(s));
+    if n < 600
+        assert_checkalmostequal(det(s), ref, 100*n*%eps);
+    else
+        assert_checkequal(abs(real(det(s))), %inf);
+    end
+    [e, m] = det(s);
+    [eref, mref] = det(full(s));
+    assert_checkequal(e, eref);
+    assert_checkalmostequal(m, mref, 200*n*%eps);
+    n = n*2;
+end

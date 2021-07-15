@@ -7,7 +7,6 @@ import java.io.StringReader;
 import java.io.IOException;
 
 @javax.annotation.Generated("JFlex")
-@SuppressWarnings("fallthrough")
 %%
 
 %public
@@ -16,7 +15,6 @@ import java.io.IOException;
 %unicode
 %char
 %type void
-%switch
 
 %{
 
@@ -108,7 +106,7 @@ preprocessor = "#define" | "#elif" | "#else" | "#endif" | "#error" | "#if" | "#i
 
 openclose = [(){}\[\]]
 
-operator = [=;,.><!~?:+-*/%&|\^] | ">>" | "<<" | "and" | "and_eq" | "bitand" | "bitor" | "compl" | "not" | "not_eq" | "operator" | "or" | "or_eq" | "typeid" | "xor" | "xor_eq"
+operator = [!%&*+,-./:;<=>?~|\^] | ">>" | "<<" | "and" | "and_eq" | "bitand" | "bitor" | "compl" | "not" | "not_eq" | "operator" | "or" | "or_eq" | "typeid" | "xor" | "xor_eq"
 
 %%
 

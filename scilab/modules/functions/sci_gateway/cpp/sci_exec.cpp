@@ -76,6 +76,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     ast::Exp* pExp      = NULL;
     int iID             = 0;
     types::Macro* pMacro = NULL;
+    bool bSilentError   = ConfigVariable::isSilentError();
     Parser parser;
 
     wchar_t* pwstFile = NULL;
@@ -293,6 +294,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     pSeqExp->setExecFrom(ast::SeqExp::EXEC);
     pSeqExp->setReturnable();
     std::unique_ptr<ast::ConstVisitor> exec(ConfigVariable::getDefaultVisitor());
+    ConfigVariable::setSilentError(bErrCatch);
 
     try
     {
@@ -305,6 +307,8 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         }
         catch (const ast::RecursionException& /* re */)
         {
+            ConfigVariable::setSilentError(bSilentError);
+
             //close opened scope during try
             while (pCtx->getScopeLevel() > scope)
             {
@@ -328,6 +332,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     {
         closeFile(file, iID, wstFile, pExp);
         ConfigVariable::setPromptMode(oldVal);
+        ConfigVariable::setSilentError(bSilentError);
         throw ia;
     }
     catch (const ast::InternalError& ie)
@@ -342,6 +347,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             closeFile(file, iID, wstFile, pExp);
             ConfigVariable::setPromptMode(oldVal);
             ConfigVariable::setExecutedFile(L"");
+            ConfigVariable::setSilentError(bSilentError);
             throw ie;
         }
 
@@ -351,6 +357,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
     //restore previous prompt mode
     ConfigVariable::setPromptMode(oldVal);
+    ConfigVariable::setSilentError(bSilentError);
     if (bErrCatch)
     {
         out.push_back(new types::Double(iErr));

@@ -31,22 +31,23 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 eps
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
 %eps
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Only Matlab allows to change the value of this variable and clear eps allows to set the value of eps to its initial value.
-        </para>
+        <warning>
+            <para>
+                Matlab allows to change the value of this variable. Then <literal>clear eps</literal>
+                resets its value to the default one. With Scilab, <literal>%eps</literal> is a
+                read-only protected constant.
+            </para>
+        </warning>
     </refsection>
 </refentry>

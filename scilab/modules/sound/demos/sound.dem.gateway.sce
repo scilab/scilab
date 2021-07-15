@@ -9,7 +9,8 @@ function subdemolist = demo_gateway()
     gettext("Sound file handling");   // Lets gettext() harvesting it
     add_demo("Sound file handling", demopath + "sound.dem.gateway.sce");
 
-    subdemolist = [_("FFT on a wav file")  ,"sound.dem.sce"]
+    subdemolist = [_("FFT on a wav file")  , "sound.dem.sce"
+                     "mapsound"            , "mapsound.dem.sce"]
 
     subdemolist(:,2) = demopath + subdemolist(:,2);
 

@@ -16,11 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="determ">
     <refnamediv>
         <refname>determ</refname>
-        <refpurpose>determinant of polynomial matrix</refpurpose>
+        <refpurpose>determinant of a matrix of polynomials</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>res=determ(W [,k])</synopsis>
+        <synopsis>
+            res = determ(W)
+            res = determ(W, k)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,7 +31,7 @@
             <varlistentry>
                 <term>W</term>
                 <listitem>
-                    <para>real square polynomial matrix</para>
+                    <para>square matrix of real or complex polynomials</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -42,30 +45,42 @@
     <refsection>
         <title>Description</title>
         <para>
-            returns the determinant of a real polynomial matrix
-            (computation made by FFT if W size is greater than 2*2).
+            returns the determinant of a matrix of polynomials.
         </para>
         <para>
-            <literal>res=determ(W [,k])</literal><literal>k</literal> is an integer larger than the actual degree of the determinant
-            of <literal>W</literal>.
+            <literal>res=determ(W [,k])</literal> where <literal>k</literal> is an integer larger
+            than the actual degree of the determinant of <literal>W</literal>.
         </para>
         <para>
             The default value of <literal>k</literal> is the smallest power of 2 which is larger
             than <literal>n*max(degree(W))</literal>.
         </para>
         <para>
-            Method (Only if W size is greater than 2*2) : evaluate the determinant of <literal>W</literal> for the Fourier frequencies
+            Method (Only if W size is greater than 2*2) : evaluate the determinant of
+            <literal>W</literal> for the Fourier frequencies
             and apply inverse FFT to the coefficients of the determinant.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');
-w=s*rand(10,10);
-determ(w)
-det(coeff(w,1))*s^10
- ]]></programlisting>
+s = %s;
+P = [5+3*s, 1-5*s, -4+6*s ; -3+5*s, -3*s, -9 ; 8*s, -6-2*s, 4-6*s]
+determ(P)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> P = [5+3*s, 1-5*s, -4+6*s ; -3+5*s, -3*s, -9 ; 8*s, -6-2*s, 4-6*s]
+ P  =
+  5 +3s   1 -5s   -4 +6s
+
+  -3 +5s  -3s     -9
+
+  8s      -6 -2s  4 -6s
+
+--> determ(P)
+ ans  =
+  -330 -278s +380s² -12s³
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

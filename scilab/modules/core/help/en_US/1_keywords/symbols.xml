@@ -203,14 +203,12 @@
             </tr>
         </informaltable>
         <warning>
-          <para>For historical reasons, different symbols may represent the same operator:</para>
-          <para>
-              <literal>@</literal> as the same meaning as <literal>~</literal>
+          <para>For historical reasons, different symbols may represent the same operator:
           </para>
-          <para>
-              <literal>`</literal> as the same meaning as &lt;
-          </para>
-          <para> It is highly recommended not to use these features because they will be removed in
+          <para><literal>@</literal> is equivalent to <literal>~</literal></para>
+          <para><literal>`</literal> is equivalent to <literal>&lt;</literal></para>
+          <para><literal>**</literal> is equivalent to <literal>^</literal>.</para>
+          <para> It is highly recommended not to use these features, because they will be removed in
             the future.
           </para>
         </warning>

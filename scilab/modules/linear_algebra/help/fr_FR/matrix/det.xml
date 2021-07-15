@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON - Le Mans Université
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,39 +13,58 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="det">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="det">
     <refnamediv>
         <refname>det </refname>
         <refpurpose>déterminant  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>det(X)
-            [e,m]=det(X)
+        <synopsis>
+            d = det(X)
+            [e,m] = det(X)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>X  </term>
+                <term>X</term>
                 <listitem>
-                    <para>matrice carrée réelle ou complexe (creuse ou pleine), polynomiale ou rationnelle
-                    </para>
+                    matrice carrée de nombres ou polynômes ou fractions rationnelles (à coefficients)
+                    réels ou complexes. Matrices creuses acceptées.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>m  </term>
+                <term>d</term>
                 <listitem>
-                    <para>nombre réel ou complexe, mantisse du déterminant en base 10
-                    </para>
+                    Scalaire du type de <varname>X</varname> : le déterminant de la matrice
+                    <varname>X</varname>. Si <varname>X</varname> est creuse,
+                    <varname>d</varname> est toujours dense.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>e  </term>
+                <term>m</term>
                 <listitem>
-                    <para>entier, exposant du déterminant en base 10
-                    </para>
+                    nombre réel ou complexe : mantisse du déterminant en base 10, telle que
+                    <literal>abs(m) ∈ [1,10)</literal>. Argument non supporté lorsque <varname>X</varname>
+                    est polynômiale ou en fractions rationnelles.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>e</term>
+                <listitem>
+                    entier : la puissance de 10 du déterminant, telle que
+                    <literal>d = m * 10<superscript>e</superscript></literal>.
+                    Argument non supporté lorsque <varname>X</varname> est polynômiale ou
+                    en fractions rationnelles.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -53,24 +72,168 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>det(X)</literal> ( <literal>m*10^e</literal> ) est le déterminant de la matrice carrée <literal>X</literal>.
+            <emphasis role="bold">d = det(X)</emphasis> calcule et donne le déterminant de la matrice
+            <varname>X</varname>.
         </para>
         <para>
-            Pour les matrices polynomiales <literal>det(X)</literal> est équivalent à <literal>determ(X)</literal>.
+            Pour une matrice de polynômes ou de fractions rationelles, <literal>d=det(X)</literal>
+            utilise <literal>determ(..)</literal> dont l'algorithme est basé sur la transformée de
+            Fourier.
+            <literal>d=detr(X)</literal> peut être utilisée de manière alternative, utilisant
+            l'algorithme de Leverrier. Les deux méthodes produisent des résultats équivalents.
+            Pour une matrice de fractions rationnelles, neutraliser la simplification avec
+            <code>simp_mode(%f)</code> peut être requis pour obtenir deux résultats identiques.
         </para>
         <para>
-            Pour les matrices rationnelles <literal>det(X)</literal> est équivalent à <literal>detr(X)</literal>.
+            <emphasis role="bold">[e, m] = det(X)</emphasis> peut être utilisé uniquement pour des
+            matrices de nombres. Cette syntaxe permet de remédier aux débordements numériques vers 0
+            ou vers l'infini, lorsque <literal>abs(d)</literal> est plus petit que
+            <literal>number_properties("tiny")</literal> ≈ 2.23 10<superscript>-308</superscript> ou
+            plus grand que <literal>number_properties("huge")</literal> ≈ 1.80 10<superscript>308</superscript>.
+        </para>
+        <para>
+            Pour les matrices numériques denses, <literal>det(..)</literal> est basée sur les routines LAPACK
+            DGETRF pour les matrices réelles et  ZGETRF pour les matrices de nombres complexes.
+        </para>
+        <para>
+            Pour les matrices numériques creuses, le déterminant est calculé d'après la factorisation
+            LU  de <varname>X</varname>, réalisée à l'aide de la bibliothèque UMFPACK.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-x=poly(0,'x');
-det([x,1+x;2-x,x^2])
-w=ssrand(2,2,4);roots(det(systmat(w))),trzeros(w)   // zéros du système linéaire
-A=rand(3,3);
-det(A), prod(spec(A))
- ]]></programlisting>
+A = rand(3,3)*5;
+det(A)
+[e, m] = det(A)
+
+// Matrice de nombres complexes :
+// A = grand(3,3,"uin",0,10) + grand(3,3,"uin",0,10)*%i
+A = [3+%i, 9+%i*3, 9+%i ; 8+%i*8, 4+%i*3, 7+%i*7 ; 4, 6+%i*2, 6+%i*9]
+det(A)
+[e, m] = det(A)
+abs(m)  // dans [1, 10)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> A = rand(3,3)*5;
+--> det(A)
+ ans  =
+  -10.805163
+
+--> [e, m] = det(A)
+ e  =
+   1.
+ m  =
+  -1.0805163
+
+--> // Matrice de nombres complexes :
+--> A = [3+%i,9+%i*3,9+%i;8+%i*8,4+%i*3,7+%i*7;4,6+%i*2,6+%i*9]
+ A  =
+   3. + i     9. + 3.i   9. + i
+   8. + 8.i   4. + 3.i   7. + 7.i
+   4. + 0.i   6. + 2.i   6. + 9.i
+
+--> det(A)
+ ans  =
+   745. - 225.i
+
+--> [e, m] = det(A)
+ e  =
+   2.
+ m  =
+   7.45 - 2.25i
+
+--> abs(m)  // dans [1, 10)
+ ans  =
+   7.7823518
+]]></screen>
+        <para/>
+        <para>
+            Déterminants très grands ou très petits : gestion des débordements numériques :
+        </para>
+        <programlisting role="example"><![CDATA[
+// Très grand déterminant :
+n = 1000;
+A = rand(n, n);
+det(A)
+[e, m] = det(A)
+
+// Très petit déterminant (d'une matrice encodée creuse) :
+A = (triu(sprand(n,n,1)) + diag(rand(1,n)))/1.5;
+det(A)
+prod(diag(A))
+[e, m] = det(A)
+A = A/2;
+det(A)
+[e, m] = det(A)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> // Très grand déterminant :
+--> A = rand(n, n);
+--> det(A)
+ ans  =
+  -Inf
+
+--> [e, m] = det(A)  // -3.1199e743
+ e  =
+   743.
+ m  =
+  -3.1198687
+
+--> // Très petit déterminant (d'une matrice encodée creuse) :
+--> n = 1000;
+--> A = (triu(sprand(n,n,1)) + diag(rand(1,n)))/1.5;
+--> det(A)
+ ans  =
+   5.21D-236
+
+--> prod(diag(A))
+ ans  =
+   5.21D-236
+
+--> [e, m] = det(A)
+ e  =
+  -236.
+ m  =
+   5.2119757
+
+--> A = A/2;
+--> det(A)
+ ans  =
+   0.
+
+--> [e, m] = det(A)
+ e  =
+  -537.
+ m  =
+   4.8641473
+]]></screen>
+        <para/>
+        <para>
+            Déterminant de matrices polynômiales :
+        </para>
+        <programlisting role="example"><![CDATA[
+s = %s;
+det([s, 1+s ; 2-s, s^2])
+
+w = ssrand(2,2,4);
+roots(det(systmat(w))),trzeros(w)   //zeros of linear system
+     ]]></programlisting>
+        <screen><![CDATA[
+--> det([s, 1+s ; 2-s, s^2])
+ ans  =
+  -2 -s +s² +s³
+
+--> w = ssrand(2,2,4);
+--> roots(det(systmat(w))),trzeros(w)
+ ans  =
+  -3.1907522 + 0.i
+   2.3596502 + 0.i
+
+ ans  =
+   2.3596502 + 0.i
+  -3.1907522 + 0.i
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
@@ -80,6 +243,9 @@ det(A), prod(spec(A))
             </member>
             <member>
                 <link linkend="determ">determ</link>
+            </member>
+            <member>
+                <link linkend="simp_mode">simp_mode</link>
             </member>
         </simplelist>
     </refsection>
@@ -93,5 +259,16 @@ det(A), prod(spec(A))
             Concernant le cas des matrices creuses, le calcul du déterminant est effectué
             à partir de la décomposition LU de la librairie umfpack.
         </para>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    [e,m]=det(X) syntax extended to sparse matrices.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

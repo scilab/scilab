@@ -170,10 +170,13 @@
               opérateur:
           </para>
           <para>
-              <literal>@</literal> a la même signification que <literal>~</literal>
+              <literal>@</literal> est équivalent à <literal>~</literal>
           </para>
           <para>
-              <literal>`</literal> a la même signification que  &lt;
+              <literal>`</literal> est équivalent à  <literal>&lt;</literal>.
+          </para>
+          <para>
+            <literal>**</literal> est équivalent à  <literal>^</literal>.
           </para>
           <para>
               Il est fortement déconseillé d'utiliser ces opérateurs alternatifs, car il seront

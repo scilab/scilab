@@ -31,22 +31,22 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 false
 F = false(n)
-F = false(sz)
-F = false(sz1,...,szN)
+F = false(Sizes)
+F = false(sz1, .., szN)
 F = false(___,'like',p)
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-%F
+                    <programlisting role="no-scilab-exec"><![CDATA[
+%F, %t
 F = zeros(n, n)>1
-F = zeros(sz(1), sz(2), ..)>1
-F = zeros(sz1,...,szN)>1
+F = repmat(%F, Sizes)
+F = zeros(sz1, .., szN)>1
 // no equivalent
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>

@@ -72,7 +72,6 @@ private:
     DebugAction action;
     int level;
 
-    void internal_execution_released();
     void internal_stop();
     bool callstackAddFile(StackRow* _row, const std::wstring& _fileName);
 
@@ -275,7 +274,7 @@ public:
         }
     }
 
-    char* execute(const std::string& command); //execute a command
+    char* execute(const std::string& command, int iWaitForIt = 1); //execute a command
     void print(const std::string& variable); //print a variable
     void show(int bp); //print the breakpoint bp or all breakpoints (bp = -1)
     void resume(); //resume execution

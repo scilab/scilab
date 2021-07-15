@@ -33,7 +33,8 @@ function f=%p_a_r(m,f)
     else
         //at leat one matrix is eye*x
         if size(szf,"*")>2 | size(szm,"*")>2 then
-            error(msprintf(_("%s: Inconsistent addition.\n"), "%p_a_r"))
+            msg = gettext("%s: Eye variable undefined in this context.\n")
+            error(msprintf(msg, "%p_a_r"));
         end
         if or(szf<0)&or(szm<0) then
             [num,den]=simp(num+m.*den,den)

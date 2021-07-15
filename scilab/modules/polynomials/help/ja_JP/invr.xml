@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -34,7 +34,7 @@
             <varlistentry>
                 <term>F</term>
                 <listitem>
-                    <para>多項式または有理行列</para>
+                    <para>有理行列 </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -42,30 +42,65 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>H</literal> が多項式または有理関数行列の場合, <literal>invr</literal>
-            はLeverrierのアルゴリズムにより <literal>H^(-1)</literal>を計算します  (関数コード参照)
+            <literal>invr</literal> はLeverrierのアルゴリズムにより
+            <literal>H<superscript>-1</superscript></literal>を計算します  (関数コード参照).
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s')
-H=[s,s*s+2;1-s,1+s]; invr(H)
-[Num,den]=coffg(H);Num/den
-H=[1/s,(s+1);1/(s+2),(s+3)/s];invr(H)
- ]]></programlisting>
+s = %s;
+H = [s, s*s+2 ; 1-s, 1+s], iH = invr(H), H * iH
+
+[Num,den] = coffg(H); Num/den
+H = [1/s, (s+1) ; 1/(s+2), (s+3)/s]; invr(H)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> H = [s, s*s+2 ; 1-s, 1+s], iH = invr(H), H * iH
+ H  =
+  s     2 +s²
+  1 -s  1 +s
+
+ iH  =
+      1 +s       -2 -s²
+   ----------  ----------
+   -2 +3s +s³  -2 +3s +s³
+
+     -1 +s         s
+   ----------  ----------
+   -2 +3s +s³  -2 +3s +s³
+
+ ans  =
+   1  0
+   -  -
+   1  1
+
+   0  1
+   -  -
+   1  1
+
+--> [Num,den] = coffg(H); Num / den
+ ans  =
+      1 +s       -2 -s²
+   ----------  ----------
+   -2 +3s +s³  -2 +3s +s³
+
+     -1 +s         s
+   ----------  ----------
+   -2 +3s +s³  -2 +3s +s³
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="inv">inv</link>
+            </member>
+            <member>
                 <link linkend="glever">glever</link>
             </member>
             <member>
                 <link linkend="coffg">coffg</link>
-            </member>
-            <member>
-                <link linkend="inv">inv</link>
             </member>
         </simplelist>
     </refsection>

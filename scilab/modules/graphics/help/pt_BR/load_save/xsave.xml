@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,14 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xsave" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="xsave" xml:lang="pt">
     <refnamediv>
         <refname>xsave</refname>
         <refpurpose>salva gráficos em um arquivo</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>xsave(filename,[win_num])</synopsis>
+        <synopsis>
+            xsave(filename)
+            xsave(filename, win_num)
+            xsave(filename, win_handle)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -39,6 +46,13 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>win_handle</term>
+                <listitem>
+                    handle of the figure to save. By default, gcf() is used.
+                    <para/>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -49,26 +63,25 @@
             <literal>file_name</literal> e pode ser carregado com
             <literal>xload</literal>.
         </para>
-        <para>
-            Desde o Scilab 5.0, todos os manipuladores <link linkend="uimenu">uimenu</link> ou <link linkend="uicontrol">uicontrol</link> também são salvos.
-        </para>
-        <para>
-            Para novos gráficos <literal>xsave(file_name,win_num)</literal>use
-            preferivelmente <literal>save(file_name,scf(win_num)</literal>.
-        </para>
+        <note>
+            <literal>xsave(file_name, win_num)</literal> and
+            <literal>xsave(file_name, win_handle)</literal> are just shortcuts respectively for
+            <literal>h=findobj("figure_id", win_num); save(file_name, "h")</literal> and
+            <literal>save(file_name, "win_handle")</literal>, that can be used directly.
+        </note>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-t=0:0.01:10;
-subplot(211),plot2d(t,sin(t))
-subplot(212),plot2d(t,sin(3*t))
+t = 0:0.01:10;
+subplot(211), plot2d(t,sin(t))
+subplot(212), plot2d(t,sin(3*t))
 xsave(TMPDIR + "/foo.scg", gcf())
 clf()
 xload(TMPDIR + "/foo.scg")
 
-a=gca();
-curve=a.children.children; //handle on the curve
+a = gca();
+curve = a.children.children; // handle on the curve
 save(TMPDIR + "/foo.scg", "curve")
 delete(curve)
 load(TMPDIR + "/foo.scg")
@@ -88,4 +101,18 @@ load(TMPDIR + "/foo.scg")
             </member>
         </simplelist>
     </refsection>
+
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.0</revnumber>
+                <revdescription>
+                    Todos os manipuladores <link linkend="uimenu">uimenu</link> ou
+                    <link linkend="uicontrol">uicontrol</link> também são salvos.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+
 </refentry>

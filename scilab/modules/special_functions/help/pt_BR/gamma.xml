@@ -53,12 +53,11 @@
             <literal>gamma(x)</literal> avalia a função gama em todos os
             elementos de <literal>x</literal>. A função gama é defininda por :
         </para>
-        <programlisting role=""><![CDATA[
-            /+oo
-            |   x-1  -t
-gamma(x) =  |  t    e    dt
-            /0
- ]]></programlisting>
+        <para>
+            <latex style="display" fontsize="18" alt="Γ(x)= ∫_0→∞ t^{x-1}.exp(-t).dt">
+                \Gamma(x)=\int_0^\infty\! t^{x-1}e^{-t}\,dt
+            </latex>
+        </para>
         <para>e generaliza a função fatorial para os números reais
             (<literal>gamma(u+1) = u*gamma(u)</literal>).
         </para>

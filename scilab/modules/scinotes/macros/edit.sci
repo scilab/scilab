@@ -3,7 +3,7 @@
 // Copyright (C) 2008 - INRIA - Allan CORNET
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2018 - 2020 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -67,7 +67,25 @@ function edit(macroname, linenumber)
                             // priority = from library:
                             fname = pathconvert(path) + macroname + ".sci"
                         else
-                            txt = tree2code(tree, %t);
+                            // txt = tree2code(tree, %t);
+                            // http://bugzilla.scilab.org/16565 : no actual workaround
+                            // http://bugzilla.scilab.org/16576 : workaround
+                            // http://bugzilla.scilab.org/16595 : no workaround
+                            [o,i,txt] = string(object)
+                            if size(o,"*")==1
+                                o = o + " = "
+                            elseif size(o,"*") > 1
+                                o = "[" + strcat(o,", ") + "] = "
+                            else
+                                o = ""
+                            end
+                            if txt(1)==" ", txt(1)=[], end
+                            if txt($)==" ", txt($)=[], end
+                            if i<>[], i = strcat(i, ", "), else i = "", end
+                            txt = ["function " + o + macroname + "(" + i + ")"
+                                  "    " + txt
+                                  "endfunction"
+                                  ];
                             fname = tmpdir + macroname + ".sci";
                             mputl(txt, fname);
                         end

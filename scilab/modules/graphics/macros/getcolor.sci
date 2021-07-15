@@ -1,8 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// Copyright (C) 2017 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2017, 2021 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -57,32 +56,33 @@ function [c] = getcolor(Title,cini)
     else
         cmap = []
         curwin = []
-    end;
+    end
 
     // create the window for getcolor
-    fig = scf();
-    fig.visible = "off";
+    fig = figure("visible","off","background",-2); //scf();
     win = fig.figure_id;
 
     sdf;    // quite agressive. Not sure it is actually useful
     sda;    // same remark
     if cmap~=[] then
         fig.color_map = cmap;
+        fig.figure_name = gettext("Current colormap")
     else
         cmap = fig.color_map;
+        fig.figure_name = gettext("Default colormap")
     end;
 
     N = size(cmap,1);
     wdim = [1,1];
-    r = wdim(1)/wdim(2);
-    n = round(sqrt(N/r));
-    m = int(n*r);
-    H = m*45; // These numbers set the size of the getcolor window
-    W = n*45;
-    fig.figure_size = [H,W];
+    m = ceil(sqrt(N));
+    n = ceil(N/m);
+    [W, H] = (max(m*35,320), n*40)  // minW=320 for infos in status bar
+    fig.axes_size = [W,H];
+    // position = center of screen:
+    c = get(0,"screensize_px")
+    fig.figure_position = [c(3)-W, c(4)-fig.figure_size(2)]/2
 
     toolbar(win, "off")
-
     delmenu(win, gettext("&File"))
     delmenu(win, gettext("&Tools"))
     delmenu(win, gettext("&Edit"))
@@ -101,32 +101,31 @@ function [c] = getcolor(Title,cini)
         end;
         rects = [rects,R+[x;y;0;0]];
         y = y-dy;
-    end;
+    end
 
     if Title~="" then
         xsetech([-1/8,0,1+1/6,1+1/6-1/8],[0,0,wdim(1),wdim(2)]);
     else
         xsetech([-1/8,-1/8,1+1/6,1+1/6],[0,0,wdim(1),wdim(2)]);
-    end;
+    end
     // rectangles with the colors
     xrects(rects,1:N);
+
     // frame around the colors
     r = m*n-N;
     ddx = 0.05*dx;
     ddy = 0.05*dy;
-    if r==0 then
+    if abs(r)<0.1 then
         xpoly([-ddx,1,1,-ddx],[0,0,1+ddy,1+ddy],"lines",1);
     else
-        xpoly([-ddx,1-1/n,1-1/n,1,1,-ddx],[0,0,r/m,r/m,1+ddy,1+ddy],"lines",1);
-    end;
+        xpoly([-ddx, 1-dx, 1-dx, 1   ,   1  ,-ddx],..
+              [  0 ,   0 , r*dy, r*dy, 1+ddy,1+ddy], "lines",1);
+    end
 
     // title
     if Title~="" then
-        xtitle(Title);
-        t = gce();
-        t.font_size = 4;
-        t.font_style = 6;
-    end;
+        title(Title, "fontsize",3, "font_style",6)
+    end
 
     k1 = min(max(cini,1),N);
     xrects(rects(eye(),k1),-k1);
@@ -142,6 +141,7 @@ function [c] = getcolor(Title,cini)
 
     addmenu(win, gettext("Ok"));
     addmenu(win, gettext("Cancel"));
+    set(gca(),"tight_limits","on","axes_bounds",[0 0 1 1],"margins",[.05 .05 .15 .05]);
     fig.visible = "on";
 
     c_i = 0;
@@ -158,7 +158,7 @@ function [c] = getcolor(Title,cini)
         elseif (c_i== -2) then
             if str==Ok then k = k1; c = k; break;end;
             if str==Cancel then k = []; c = []; break;end;
-        end;
+        end
 
         mc = int(cx/dx)+1;
         nc = n-int(cy/dy);
@@ -184,8 +184,6 @@ function [c] = getcolor(Title,cini)
 
     if curwin~=[] then
         scf(curwin);
-    end;
-
-
+    end
 endfunction
 

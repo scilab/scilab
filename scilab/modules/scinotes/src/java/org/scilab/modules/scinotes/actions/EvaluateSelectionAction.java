@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010 - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Stéphane MOTTELET
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,6 +28,9 @@ import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 
 import org.scilab.modules.history_manager.HistoryManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.console.SciPromptView;
+import org.scilab.modules.console.AdvCLIManagement;
 
 /**
  * EvaluateSelectionAction class
@@ -64,8 +67,25 @@ public final class EvaluateSelectionAction extends DefaultAction {
             while (tokens.hasMoreTokens()) {
                 lines[i++] = tokens.nextToken();
             }
-            HistoryManagement.appendLinesToScilabHistory(lines, lines.length);
-            ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, false);
+            if (ScilabConsole.isExistingConsole())
+            {
+                HistoryManagement.appendLinesToScilabHistory(lines, lines.length);
+                ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, false);
+            } else {
+                /* This happens when SciNotes is launched as standalone (ie without
+                 * Scilab) or Scilab launched in -nw mode */
+                new Thread(() -> {
+                    try {
+                        System.out.println(selection);
+                        ScilabInterpreterManagement.synchronousScilabExec(selection);
+                        System.out.println();
+                        System.out.print(AdvCLIManagement.GetCurrentPrompt());
+                    }
+                    catch (ScilabInterpreterManagement.InterpreterException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }).start();
+            }
         }
     }
 

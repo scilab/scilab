@@ -6,9 +6,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>str=lasterror( [opt] )
-            [str,n]=lasterror([opt])
-            [str,n,line,func]=lasterror([opt])
+        <synopsis>
+            [str,n,line,func] = lasterror()
+            [str,n,line,func] = lasterror(opt)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -31,12 +31,12 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 cumsum
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 cumsum
 ]]></programlisting>
                 </td>
@@ -77,7 +77,7 @@ cumsum
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 B = cumsum([1,2,3;4,5,6])
 B=[1,2,3;5,7,9]
 B = cumsum([1,2,3;4,5,6],1)

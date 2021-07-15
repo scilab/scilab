@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="getcolor">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="getcolor">
     <refnamediv>
         <refname>getcolor</refname>
-        <refpurpose>opens a dialog to show colors in the current colormap</refpurpose>
+        <refpurpose>opens a dialog to show colors of the current or default colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>c=getcolor(title,[cini])
-            c=getcolor()
+        <synopsis>
+            c = getcolor()
+            c = getcolor(title)
+            c = getcolor(title, cini)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -36,13 +41,13 @@
             <varlistentry>
                 <term>cini</term>
                 <listitem>
-                    <para>initial selected color id. Default value is 1.</para>
+                    <para>initial selected color index. Default value is 1.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>c</term>
                 <listitem>
-                    <para>selected color id or [] if the selection is cancelled.</para>
+                    <para>index of the selected color, or [] if the selection is canceled.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -50,25 +55,46 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>getcolor</literal> opens a window displaying the palette of the current colormap.
-            The user can click on a color to show its id and RGB values.
-            <literal>getcolor</literal> returns the id of the selected color or [] if the "Cancel" button has been clicked or the window closed.
+            <literal>getcolor</literal> opens a window displaying the palette of the current
+            colormap, or of the default one if no graphical figure exists.
+            The user can click on a color to show its index and its RGB values
+            in the bottom bar.
+            <literal>getcolor</literal> returns the index of the selected color, or [] if the "Cancel"
+            button has been clicked or the window has been closed.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-getcolor();
+c = getcolor();
 
-getcolor("Title foo");
+c = getcolor("Title foo", color("red")); // preselects the red
 
-getcolor("foo",21); // Select the red
- ]]></programlisting>
+c = getcolor("Please choose a color");
+     ]]></programlisting>
+        <para/>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../images/getcolor.png"/>
+            </imageobject>
+        </inlinemediaobject>
+        <para/>
+        <screen><![CDATA[
+--> c = getcolor("Please choose a color")
+ c  =
+   28.
+]]></screen>
     </refsection>
 
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="uigetcolor">uigetcolor</link>
+            </member>
+            <member>
+                <link linkend="color_list">color_list</link>
+            </member>
             <member>
                 <link linkend="color">color</link>
             </member>

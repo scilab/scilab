@@ -384,7 +384,15 @@ public class ScilabTypeCoder {
         }
 
         ScilabType var = decodeHeader(vec);
-        decode(vec, var);
+        try
+        {
+            decode(vec, var);
+        } catch (IllegalArgumentException e)
+        {
+            e.printStackTrace();
+            LOG.log(Level.SEVERE, "Unable to decode {0}", toString(vec));
+        }
+            
 
         // System.err.println("vec2var:" + toString(vec) + ":" + var.toString());
         if (LOG.isLoggable(Level.FINE)) {
@@ -485,7 +493,7 @@ public class ScilabTypeCoder {
                 throw new IllegalArgumentException();
         }
 
-        final int doubleLen = (sizeof * var.getHeight() * var.getWidth()) / Double.BYTES + 1;
+        final int doubleLen = requiredLength(sizeof, var.getHeight(), var.getWidth());
         ByteBuffer view = vec.asByteBuffer(position, doubleLen);
 
         for (int i = 0; i < var.getHeight(); i++) {
@@ -595,7 +603,7 @@ public class ScilabTypeCoder {
         int listLen = 0;
 
         final ScilabTypeEnum type = ScilabTypeEnum.swigToEnum(nativeScilabType);
-        switch (type) {
+        switch (type) { 
             case sci_ints:
                 // special case for integer precision
                 precision = (int) vec.get(position++);
@@ -697,6 +705,15 @@ public class ScilabTypeCoder {
         decodeToJava(vec, arguments);
         return String.format(format, arguments.toArray());
     }
+    
+    private int requiredLength(int sizeof, int height, int width)
+    {
+        if (sizeof == Double.BYTES) {
+            return height * width * sizeof / Double.BYTES;
+        } else {
+            return (height * width * sizeof + (Double.BYTES - 1)) / Double.BYTES;
+        }
+    }
 
     private void decodeToJava(VectorOfDouble vec, ArrayList<Object> arguments) {
         int nativeScilabType = (int) vec.get(position++);
@@ -761,7 +778,8 @@ public class ScilabTypeCoder {
                 }
                 break;
             case sci_boolean: {
-                final int doubleLen = (Integer.BYTES * height * width) / Double.BYTES + 1;
+                final int sizeof = Integer.BYTES;
+                final int doubleLen = requiredLength(sizeof, height, width);
                 ByteBuffer view = vec.asByteBuffer(position, doubleLen);
                 for (int i = 0; i < height; i++) {
                     for (int j = 0; j < width; j++) {
@@ -776,7 +794,7 @@ public class ScilabTypeCoder {
                     case sci_int8:
                     case sci_uint8: {
                         final int sizeof = Byte.BYTES;
-                        final int doubleLen = (sizeof * height * width) / Double.BYTES + 1;
+                        final int doubleLen = requiredLength(sizeof, height, width);
                         ByteBuffer view = vec.asByteBuffer(position, doubleLen);
                         for (int i = 0; i < height; i++) {
                             for (int j = 0; j < width; j++) {
@@ -788,7 +806,7 @@ public class ScilabTypeCoder {
                     case sci_int16:
                     case sci_uint16: {
                         final int sizeof = Short.BYTES;
-                        final int doubleLen = (sizeof * height * width) / Double.BYTES + 1;
+                        final int doubleLen = requiredLength(sizeof, height, width);
                         ByteBuffer view = vec.asByteBuffer(position, doubleLen);
                         for (int i = 0; i < height; i++) {
                             for (int j = 0; j < width; j++) {
@@ -800,7 +818,7 @@ public class ScilabTypeCoder {
                     case sci_int32:
                     case sci_uint32: {
                         final int sizeof = Integer.BYTES;
-                        final int doubleLen = (sizeof * height * width) / Double.BYTES + 1;
+                        final int doubleLen = requiredLength(sizeof, height, width);
                         ByteBuffer view = vec.asByteBuffer(position, doubleLen);
                         for (int i = 0; i < height; i++) {
                             for (int j = 0; j < width; j++) {
@@ -812,7 +830,7 @@ public class ScilabTypeCoder {
                     case sci_int64:
                     case sci_uint64: {
                         final int sizeof = Long.BYTES;
-                        final int doubleLen = (sizeof * height * width) / Double.BYTES + 1;
+                        final int doubleLen = requiredLength(sizeof, height, width);
                         ByteBuffer view = vec.asByteBuffer(position, doubleLen);
                         for (int i = 0; i < height; i++) {
                             for (int j = 0; j < width; j++) {

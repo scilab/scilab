@@ -133,6 +133,9 @@
             <member>
                 <link linkend="ltitr">ltitr</link>
             </member>
+            <member>
+                <link linkend="sgolayfilt">sgolayfilt</link>
+            </member>
         </simplelist>
     </refsection>
 </refentry>

@@ -1077,16 +1077,6 @@ assert_checkequal(["a" "b"] <> ["a" ; "b"],%t);
 assert_checkequal(["a" "b" "c"] <> ["a" "b"],%t);
 assert_checkequal(["a" "b"; "a" "b"] <> ["a" "b"],%t);
 
-//macro
-deff("[x]=myplus(y,z)","x=y+z");
-
-deff("[x]=mymacro(y,z)",["a=3*y+1"; "x=a*z+y"]);
-
-assert_checkequal(myplus <> myplus,%f);
-assert_checkequal(myplus <> mymacro,%t);
-assert_checkequal(myplus <> [],%t);
-assert_checkequal(myplus <> 2,%t);
-
 //struct
 test_st=struct("double",1,"string","test","int8",int8(2),"struct",struct("valeur",0));
 test_st2=struct("double",1,"string","test","int16",int8(2),"struct",1);
@@ -1098,11 +1088,6 @@ assert_checkequal(test_st <> test_st2, %t);
 assert_checkequal([test_st4 test_st8] <> [test_st test_st], [%t,%t]);
 assert_checkequal([test_st, test_st4;test_st4,test_st8] <> [test_st, test_st; test_st,test_st], [%f,%t;%t,%t]);
 assert_checkequal(test_st <> [], %t);
-
-//function
-assert_checkequal(acosd <> acosd, %f);
-assert_checkequal(acosd <> [], %t);
-assert_checkequal(acosd <> 2, %t);
 
 //polynom
 res = horner(1/(1-%s),1/(1-%s));
@@ -1137,3 +1122,21 @@ h5close(h5);
 ludel(ptr);
 xmlDelete(xml);
 mdelete(h5File);
+
+//macro
+deff("[x]=myplus(y,z)","x=y+z");
+
+deff("[x]=mymacro(y,z)",["a=3*y+1"; "x=a*z+y"]);
+
+assert_checkequal(myplus <> myplus,%f);
+assert_checkequal(myplus <> mymacro,%t);
+assert_checkequal(myplus <> [],%t);
+assert_checkequal(myplus <> 2,%t);
+
+//function
+assert_checkequal(acosd <> acosd, %f);
+assert_checkequal(acosd <> [], %t);
+assert_checkequal(acosd <> 2, %t);
+
+// libraries
+assert_checktrue(iolib <> corelib);

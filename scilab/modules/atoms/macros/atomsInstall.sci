@@ -528,6 +528,13 @@ function result = atomsInstall(packages,section)
 
     end
 
+    // Update the tooloxes menu
+    // =========================================================================
+    if getscilabmode()=="STD" then
+        toolboxes(SCI+"/contrib")
+        setmenu(gettext("&Toolboxes"))
+    end
+
     // Go to the initial location
     // =========================================================================
     chdir(ATOMSINITIALPATH);

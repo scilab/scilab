@@ -16,6 +16,7 @@
 package org.scilab.modules.xcos.io.scicos;
 
 import java.util.Map;
+import org.scilab.modules.types.ScilabType;
 
 public interface Handler {
 
@@ -24,7 +25,7 @@ public interface Handler {
      *
      * @return the decoded context
      */
-    public abstract Map<String, String> readContext();
+    public abstract Map<String, ScilabType> readContext();
 
     /**
      * Encode an Xcos context

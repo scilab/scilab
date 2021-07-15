@@ -6,7 +6,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis>
+        <synopsis>
+            P = inv_coeff(C)
+            P = inv_coeff(C, d)
+            P = inv_coeff(C, d, varname)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -26,7 +30,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>name</term>
+                <term>varname</term>
                 <listitem>
                     <para>
                         多項式の変数名を指定する文字列  (デフォルト値: <literal>'x'</literal>).
@@ -47,13 +51,14 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-A=int(10*rand(2,6))
+A = int(10*rand(2,6))
 // 1次の多項式行列を作成
-P=inv_coeff(A,1)
+P = inv_coeff(A, 1)
 norm(coeff(P)-A)
+
 // 次数にデフォルト値を使用
-P1=inv_coeff(A)
-norm(coeff(P1)-A)
+P1 = inv_coeff(A)
+norm(coeff(P1) - A)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

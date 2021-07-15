@@ -12,13 +12,24 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>banner</literal> shows Scilab banner.
+            <literal>banner</literal> shows Scilab's banner.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-clc();banner()
- ]]></programlisting>
+clc, banner()
+     ]]></programlisting>
+        <screen><![CDATA[
+        ___________________________________________
+                     scilab-6.1.0
+
+                        ESI Group
+           Copyright (c) 2017-2021 (ESI Group)
+       Copyright (c) 2011-2017 (Scilab Enterprises)
+             Copyright (c) 1989-2012 (INRIA)
+              Copyright (c) 1989-2007 (ENPC)
+        ___________________________________________
+]]></screen>
     </refsection>
 </refentry>

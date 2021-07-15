@@ -67,6 +67,15 @@
             </inlinemediaobject>
             </link>.
 
+            <link linkend="EXPRESSION">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="EXPRESSION" fileref="../../../../images/palettes/EXPRESSION.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                </imageobject>
+            </inlinemediaobject>
+            </link>.
+
             <link linkend="GAINBLK_f">
             <inlinemediaobject>
                 <imageobject>
@@ -250,6 +259,9 @@
             </listitem>
             <listitem>
                 <link linkend="EXPBLK_m">EXPBLK_m</link>
+            </listitem>
+            <listitem>
+                <link linkend="EXPRESSION">EXPRESSION</link>
             </listitem>
             <listitem>
                 <link linkend="GAINBLK_f">GAINBLK_f</link>

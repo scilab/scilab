@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,49 +31,28 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-more
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+more off
+more on
+more(30)
+pageSize = more('on')
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-lines
-]]></programlisting>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+lines(0)
+lines(60)
+lines(30)
+pageSize = line()(2)
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
     </refsection>
     <refsection>
         <title>Particular cases</title>
-        <para>See examples.</para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <informaltable border="1" width="100%">
-            <tr>
-                <td align="center">
-                    <emphasis role="bold">Matlab</emphasis>
-                </td>
-                <td align="center">
-                    <emphasis role="bold">Scilab</emphasis>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <programlisting role="example"><![CDATA[
-more off
-more on
-more(30)
-]]></programlisting>
-                </td>
-                <td>
-                    <programlisting role="example"><![CDATA[
-lines(0)
-lines(60)
-lines(30)
-]]></programlisting>
-                </td>
-            </tr>
-        </informaltable>
+        <para>
+            Scilab does not allow to switch the paging off without clearing the paging's length.
+        </para>
     </refsection>
 </refentry>

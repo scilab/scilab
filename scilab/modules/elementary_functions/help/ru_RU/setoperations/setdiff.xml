@@ -39,12 +39,14 @@
                 <listitem>
                     <para>
                         векторы, матрицы или гиперматрицы действительных или комплексных чисел,
-                        или закодированные целые числа, или строки.
-                        Оба должны иметь одинаковые типы данных (или типы целых чисел).
+                        закодированные целые числа, логические значения или строки.
+                        Допускаются закодированные разрежённые входные данные.
+                        Как <varname>a</varname> так и <varname>b</varname> должны иметь одинаковые
+                        типы данных (или типы целых чисел), но можно смешивать плотные и разрежённые.
                     </para>
                     <para>
                         Если используется опция <literal>orien="r"</literal>, то
-                        <literal>a</literal> и <literal>b</literal> должны иметь одинаковое
+                        <varname>a</varname> и <varname>b</varname> должны иметь одинаковое
                         количество столбцов. Если используется <literal>orien="c"</literal>, то
                         они должны иметь одинаковое количество строк.
                     </para>
@@ -56,16 +58,16 @@
                     направленная обработка:
                     <itemizedlist>
                         <listitem>
-                            <literal>"r"</literal>: строки из <literal>a</literal> ищутся среди
-                            строк в <literal>b</literal>.
+                            <literal>"r"</literal>: строки из <varname>a</varname> ищутся среди
+                            строк в <varname>b</varname>.
                         </listitem>
                         <listitem>
-                            <literal>"c"</literal>: столбцы из <literal>a</literal> ищутся среди
-                            столбцов в <literal>b</literal>.
+                            <literal>"c"</literal>: столбцы из <varname>a</varname> ищутся среди
+                            столбцов в <varname>b</varname>.
                         </listitem>
                         <listitem>
-                            <varname>orien</varname> не указано: элементы из <literal>a</literal>
-                            ищутся среди элементов <literal>b</literal>.
+                            <varname>orien</varname> не указано: элементы из <varname>a</varname>
+                            ищутся среди элементов <varname>b</varname>.
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -73,19 +75,20 @@
             <varlistentry>
                 <term>v</term>
                 <listitem>
+                    Массив с типом данных как у <varname>a</varname> и кодированный:
                     <itemizedlist>
                         <listitem>
-                            сортированный вектор из компонентов <literal>a</literal>, которые
-                            отсутствуют в <literal>b</literal>.
+                            сортированный вектор из компонентов <varname>a</varname>, которые
+                            отсутствуют в <varname>b</varname>.
                         </listitem>
                         <listitem>
-                            <literal>orien="r"</literal>: матрица строк из <literal>a</literal>,
-                            которые отсутствуют в <literal>b</literal>, отсортированный в
+                            <literal>orien="r"</literal>: матрица строк из <varname>a</varname>,
+                            которые отсутствуют в <varname>b</varname>, отсортированный в
                             лексикографическом порядке.
                         </listitem>
                         <listitem>
                             <literal>orien="c"</literal>: матрица столбцов из
-                            <literal>a</literal>, которые отсутствуют в <literal>b</literal>,
+                            <varname>a</varname>, которые отсутствуют в <varname>b</varname>,
                             отсортированный в лексикографическом порядке.
                         </listitem>
                     </itemizedlist>
@@ -96,7 +99,7 @@
                 <listitem>
                     <para>
                         вектор линейный индексов выбранных элементов, строк, столбцов из
-                        <literal>a</literal> таких, что
+                        <varname>a</varname> таких, что
                         <itemizedlist>
                             <listitem>
                                 <literal>v = a(ka)</literal> либо
@@ -117,25 +120,25 @@
         <title>Описание</title>
         <para>
             <literal>setdiff(a, b,..)</literal> вычисляет и возвращает элементы либо строк либо
-            столбцов из <literal>a</literal> которые ОТСУТСТВУЮТ в <literal>b</literal>.
+            столбцов из <varname>a</varname>, которые ОТСУТСТВУЮТ в <varname>b</varname>.
         </para>
         <para>
-            Все дупликаты (элементы или строк или столбцов) удаляются из <literal>a</literal> и
-            из <literal>b</literal> перед обработкой.
+            Все дупликаты (элементы или строк или столбцов) удаляются из <varname>a</varname> и
+            из <varname>b</varname> перед обработкой.
         </para>
         <para>
-            Если <literal>a</literal> - гиперматрица и используется опция <literal>"r"</literal>,
-            то перед обработкой <literal>a</literal> заменяется матрицей, состоящией из строк по
+            Если <varname>a</varname> - гиперматрица и используется опция <literal>"r"</literal>,
+            то перед обработкой <varname>a</varname> заменяется матрицей, состоящией из строк по
             всем своим более высоким размерностям. То же самое и в случае, если
-            <literal>b</literal> является гиперматрицей. Если исползуется опция
-            <literal>"c"</literal>, то <literal>a</literal> или/и <literal>"b"</literal>
+            <varname>b</varname> является гиперматрицей. Если исползуется опция
+            <literal>"c"</literal>, то <varname>a</varname> или/и <literal>"b"</literal>
             заменяются соответствующими матрицами, состоящими из всех своих столбцов.
         </para>
         <para>
             Формат результатов представлен в следующей таблице, в соответствии с формой
-            <literal>a</literal> и опцией <literal>orien</literal>. Во всех случаях, если все
-            элементы <literal>a</literal> находятся в <literal>b</literal>, возвращается
-            <literal>[]</literal> для <literal>v</literal> как для <literal>ka</literal>:
+            <varname>a</varname> и опцией <varname>orien</varname>. Во всех случаях, если все
+            элементы <varname>a</varname> находятся в <varname>b</varname>, возвращается
+            <literal>[]</literal> для <varname>v</varname> как для <varname>ka</varname>:
             <table>
                 <tr>
                     <th align="right">orien →</th>
@@ -195,9 +198,13 @@
             </table>
         </para>
         <para>
-            <literal>v</literal> и <literal>ka</literal> становятся пустыми
-            <literal>[]</literal>, если <literal>a</literal> пуста (либо <literal>b</literal>),
-            или все элементы <literal>a</literal> находятся в <literal>b</literal>.
+            <varname>v</varname> и <varname>ka</varname> становятся пустыми
+            <literal>[]</literal>, если <varname>a</varname> пуста (либо <varname>b</varname>),
+            или все элементы <varname>a</varname> находятся в <varname>b</varname>.
+        </para>
+        <para>
+            Для логических значений, <literal>setdiff(…)</literal> полезна главным образом с опциями
+            <literal>"r"</literal> или <literal>"c"</literal>.
         </para>
     </refsection>
     <refsection>
@@ -312,6 +319,12 @@ r, k
                 <revnumber>6.1.0</revnumber>
                 <revdescription>
                     Теперь допускаются комплексные числа.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Теперь допускаются логические и разрежённые (логические или числовые) входные данные.
                 </revdescription>
             </revision>
         </revhistory>

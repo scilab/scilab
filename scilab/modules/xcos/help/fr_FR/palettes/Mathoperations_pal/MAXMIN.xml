@@ -19,7 +19,10 @@
           xmlns:scilab="http://www.scilab.org" xml:id="MAXMIN" xml:lang="fr_FR">
     <refnamediv>
         <refname>MAXMIN</refname>
-        <refpurpose>Valeur maximale ou minimale des éléments de vecteurs</refpurpose>
+        <refpurpose>
+            Minimum ou maximun des éléments d'un vecteur, ou des éléments de même numéro
+            d'une série de vecteurs.
+        </refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
@@ -92,9 +95,10 @@
                 </td>
                 <td align="left">Vecteur</td>
                 <td align="left">
-                    Les vecteurs doivent avoir les mêmes dimensions et la sortie du bloc est un vecteur de même dimension
-                    que les entrées, dont les éléments sont les éléments minimaux ou maximaux des éléments correspondants
-                    des vecteurs d'entrée.
+                    Les p vecteurs d'entrées doivent avoir la même longueur N, qui est aussi la
+                    longueur du vecteur de sortie. L'élément output(i) du vecteur de sortie vaut
+                    min(input_1(i), input_2(i),..,input_p(i)) ou
+                    max(input_1(i), input_2(i),..,input_p(i)), pour <literal>i=1..N</literal>.
                 </td>
             </tr>
         </informaltable>

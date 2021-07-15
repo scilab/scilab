@@ -13,7 +13,9 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_strrep">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="m2sci_strrep">
     <refnamediv>
         <refname>strrep (Matlab function)</refname>
         <refpurpose>String search and replace</refpurpose>
@@ -31,24 +33,21 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 strrep
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 strsubst
-]]></programlisting>
+                  ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            <note>
-                Note that Matlab <emphasis role="bold">strrep</emphasis> can be use with not string inputs, what Scilab <emphasis role="bold">strsubst</emphasis> can not. In this case use <emphasis role="bold">mtlb_strrep</emphasis> instead.
-            </note>
-        </para>
+        <warning>
+           Note that Matlab <emphasis role="bold">strrep</emphasis> can be use with not string inputs,
+           what Scilab <emphasis role="bold">strsubst</emphasis> can not. In this case, use
+           <emphasis role="bold">mtlb_strrep</emphasis> instead.
+    </warning>
     </refsection>
 </refentry>

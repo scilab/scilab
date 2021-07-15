@@ -6,23 +6,14 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>ve = exists(name [,where])</synopsis>
+        <synopsis>
+            ve = exists(name)
+            ve = exists(name, where)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
-            <varlistentry>
-                <term>ve</term>
-                <listitem>
-                    <para>
-                        результат с возможными значениями:
-                        <literal>1</literal>, если "истина";
-                    </para>
-                    <para>
-                        <literal>0</literal>, если "ложь";
-                    </para>
-                </listitem>
-            </varlistentry>
             <varlistentry>
                 <term>name</term>
                 <listitem>
@@ -36,6 +27,18 @@
                         необязательный символ с возможными значениями
                         <literal>'l'</literal> (локальный), <literal>'n'</literal>
                         (нелокальный) и <literal>'a'</literal> (все). Значение по умолчанию <literal>'a'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ve</term>
+                <listitem>
+                    <para>
+                        результат с возможными значениями:
+                        <literal>1</literal>, если "истина";
+                    </para>
+                    <para>
+                        <literal>0</literal>, если "ложь";
                     </para>
                 </listitem>
             </varlistentry>
