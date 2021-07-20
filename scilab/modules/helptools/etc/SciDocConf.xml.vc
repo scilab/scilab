@@ -24,5 +24,5 @@
   </builtins>
 
   <!-- Useful to make link on Scilab's official documentation -->
-  <website url="http://help.scilab.org/docs/6.0.0/" />
+  <website url="http://help.scilab.org/docs/6.1.2/" />
 </scidoc>
