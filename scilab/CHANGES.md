@@ -324,6 +324,11 @@ Known issues
 Bug Fixes
 ---------
 
+### Bugs fixed in 6.1.2:
+* [#16717](https://bugzilla.scilab.org/16717): An error occured in findobj when no objects existed. 
+* [#16734](https://bugzilla.scilab.org/16734): `findobj()` was slower than before.
+
+
 ### Bugs fixed in 6.1.1:
 * [#3188](https://bugzilla.scilab.org/3188): `part()` was slower than in Scilab 4.1.2.
 * [#4648](https://bugzilla.scilab.org/4648): Scilab missed more secure hashing functions (md5 is now broken)

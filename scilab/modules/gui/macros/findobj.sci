@@ -2,7 +2,7 @@
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
 // Copyright (C) 2008 - DIGITEO - Vincent COUVERT
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2020 - Stéphane MOTTELET
+// Copyright (C) 2020 - 2021 - Stéphane MOTTELET
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,6 +15,7 @@ function h =  findobj(varargin)
 
     rhs = argn(2);
 
+    h = [];
     searchHandles= [];
     iPos = 1;
     if rhs >= 1
@@ -33,15 +34,24 @@ function h =  findobj(varargin)
     end
 
     if isempty(searchHandles)
+        if rhs == 2 then
+            if strcmp(varargin(1), "tag", "i") == 0 then
+                h = get(varargin(2));
+                return
+            end
+        end
+
         // Get all opened figures
         figureIds = winsid();
         if isempty(figureIds) then
             return
         end
         // Iterate over all figures
+        currFigure = gcf();
         for figureindex = 1:size(figureIds,2)
             searchHandles(figureindex) = scf(figureIds(figureindex));
         end
+        scf(currFigure);
     end
 
     try
