@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "linear_algebra module"
             VALUE "FileVersion", "6, 1, 1, 0"
             VALUE "InternalName", "linear_algebra module"
-            VALUE "LegalCopyright", "Copyright (C) 2021"
+            VALUE "LegalCopyright", "Copyright (C) 2022"
             VALUE "OriginalFilename", "linear_algebra.dll"
             VALUE "ProductName", "linear_algebra module"
             VALUE "ProductVersion", "6, 1, 1, 0"

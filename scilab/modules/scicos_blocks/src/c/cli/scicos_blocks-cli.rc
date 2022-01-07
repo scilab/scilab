@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "scicos_blocks-cli module"
             VALUE "FileVersion", "6, 1, 1, 0"
             VALUE "InternalName", "scicos_blocks-cli module"
-            VALUE "LegalCopyright", "Copyright (C) 2021"
+            VALUE "LegalCopyright", "Copyright (C) 2022"
             VALUE "OriginalFilename", "scicos_blocks-cli.dll"
             VALUE "ProductName", "scicos_blocks-cli module"
             VALUE "ProductVersion", "6, 1, 1, 0"

@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "parameters module"
             VALUE "FileVersion", "6, 1, 1, 0"
             VALUE "InternalName", "parameters module"
-            VALUE "LegalCopyright", "Copyright (C) 2021"
+            VALUE "LegalCopyright", "Copyright (C) 2022"
             VALUE "OriginalFilename", "parameters.dll"
             VALUE "ProductName", " parameters"
             VALUE "ProductVersion", "6, 1, 1, 0"

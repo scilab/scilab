@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "nographics module"
             VALUE "FileVersion", "6, 1, 1, 0"
             VALUE "InternalName", "nographics module"
-            VALUE "LegalCopyright", "Copyright (C) 2021"
+            VALUE "LegalCopyright", "Copyright (C) 2022"
             VALUE "OriginalFilename", "nographics.dll"
             VALUE "ProductName", " nographics"
             VALUE "ProductVersion", "6, 1, 1, 0"

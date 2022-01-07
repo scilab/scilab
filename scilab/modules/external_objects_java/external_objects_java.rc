@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "external_objects_java module"
             VALUE "FileVersion", "6, 0, 1, 0"
             VALUE "InternalName", "external_objects_java module"
-            VALUE "LegalCopyright", "Copyright (C) 2021"
+            VALUE "LegalCopyright", "Copyright (C) 2022"
             VALUE "OriginalFilename", "external_objects_java.dll"
             VALUE "ProductName", " external_objects_java"
             VALUE "ProductVersion", "6, 0, 1, 0"

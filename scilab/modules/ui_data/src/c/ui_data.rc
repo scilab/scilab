@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "ui_data module"
             VALUE "FileVersion", "6, 0, 1, 0"
             VALUE "InternalName", "ui_data module"
-            VALUE "LegalCopyright", "Copyright (C) 2021"
+            VALUE "LegalCopyright", "Copyright (C) 2022"
             VALUE "OriginalFilename", "ui_data.dll"
             VALUE "ProductName", "ui_data module"
             VALUE "ProductVersion", "6, 0, 1, 0"
