@@ -281,6 +281,7 @@ API/ABI modification
  - on APIv5 C `getNbOutputArgument(ctx)` the return value could be `0`
  - on APIv6 C++ the `_iRetCount` argument value could be `0`.
 * On APIv6 C++, a virtual method has been added on internal types which break the ABI. Toolboxes need to be recompiled.
+* C `pause` symbol was conflicting with POSIX one, it was renamed to `pause_interpreter`.
 
 Obsolete functions or features
 ------------------------------

@@ -19,7 +19,7 @@ extern "C" {
 #include "pause.h"
 }
 
-void pause(void)
+void pause_interpreter(void)
 {
     ConfigVariable::IncreasePauseLevel();
 
@@ -35,7 +35,7 @@ void pause(void)
     {
         ThreadManagement::SendAwakeRunnerSignal();
         ThreadManagement::WaitForRunMeSignal();
-        if(StaticRunner::isRunnerAvailable())
+        if (StaticRunner::isRunnerAvailable())
         {
             StaticRunner::launch();
         }

@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, ty
     ConfigVariable::macroFirstLine_begin(2);
 
     // do pause
-    pause();
+    pause_interpreter();
 
     return types::Function::OK;
 }

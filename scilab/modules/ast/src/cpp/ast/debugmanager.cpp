@@ -53,7 +53,7 @@ void DebuggerManager::addDebugger(const std::string& _name, AbstractDebugger* _d
 
 void DebuggerManager::removeDebugger(const std::string& _name)
 {
-    if(getDebugger(_name))
+    if (getDebugger(_name))
     {
         debuggers.erase(_name);
     }
@@ -62,7 +62,7 @@ void DebuggerManager::removeDebugger(const std::string& _name)
 AbstractDebugger* DebuggerManager::getDebugger(const std::string& _name)
 {
     const auto& d = debuggers.find(_name);
-    if(d != debuggers.end())
+    if (d != debuggers.end())
     {
         return debuggers[_name];
     }
@@ -189,7 +189,8 @@ void DebuggerManager::setAllBreakPoints(Breakpoints& _bps)
 Breakpoints::iterator DebuggerManager::findBreakPoint(Breakpoint* bp)
 {
     Breakpoints::iterator found = std::find_if(breakpoints.begin(), breakpoints.end(),
-    [&](Breakpoint* b) {
+                                  [&](Breakpoint * b)
+    {
         bool isMacro = b->getFunctioName() != "" &&
                        b->getFunctioName() == bp->getFunctioName() &&
                        b->getMacroLine() == bp->getMacroLine();
@@ -208,7 +209,7 @@ bool DebuggerManager::addBreakPoint(Breakpoint* bp)
 {
     //check if breakpoint does not exist
     Breakpoints::iterator iter = findBreakPoint(bp);
-    if(iter == breakpoints.end())
+    if (iter == breakpoints.end())
     {
         breakpoints.push_back(bp);
         sendUpdate();
@@ -221,7 +222,7 @@ bool DebuggerManager::addBreakPoint(Breakpoint* bp)
 bool DebuggerManager::updateBreakPoint(Breakpoint* bp)
 {
     Breakpoints::iterator iter = findBreakPoint(bp);
-    if(iter != breakpoints.end())
+    if (iter != breakpoints.end())
     {
         std::swap(*iter, bp);
         delete bp;
@@ -234,7 +235,7 @@ bool DebuggerManager::updateBreakPoint(Breakpoint* bp)
 bool DebuggerManager::removeBreakPoint(Breakpoint* bp)
 {
     Breakpoints::iterator iter = findBreakPoint(bp);
-    if(iter != breakpoints.end())
+    if (iter != breakpoints.end())
     {
         delete *iter;
         breakpoints.erase(iter);
@@ -358,12 +359,12 @@ void DebuggerManager::generateCallStack()
     FREE(tmp);
 
     row.functionLine = -1;
-    if(it_name->call->getFirstLine())
+    if (it_name->call->getFirstLine())
     {
         row.functionLine = getExp()->getLocation().first_line - it_name->call->getFirstLine();
     }
 
-    if(it_name->m_file_name && callstackAddFile(&row, *it_name->m_file_name))
+    if (it_name->m_file_name && callstackAddFile(&row, *it_name->m_file_name))
     {
         row.fileLine = getExp()->getLocation().first_line;
     }
@@ -381,11 +382,11 @@ void DebuggerManager::generateCallStack()
         row.functionName = tmp;
         FREE(tmp);
         row.functionLine = it_line->m_line - 1;
-        if(it_name->m_file_name && callstackAddFile(&row, *it_name->m_file_name))
+        if (it_name->m_file_name && callstackAddFile(&row, *it_name->m_file_name))
         {
             row.fileLine = it_line->m_line;
             row.functionLine = -1;
-            if(it_name->call->getFirstLine())
+            if (it_name->call->getFirstLine())
             {
                 row.fileLine = it_name->call->getFirstLine() + it_line->m_line - 1;
                 row.functionLine = it_line->m_line - 1;
@@ -402,13 +403,13 @@ void DebuggerManager::generateCallStack()
 bool DebuggerManager::callstackAddFile(StackRow* _row, const std::wstring& _fileName)
 {
     _row->hasFile = false;
-    if(_fileName.length())
+    if (_fileName.length())
     {
         std::string pstrFileName = scilab::UTF8::toUTF8(_fileName);
         _row->hasFile = true;
         // replace .bin by .sci
         size_t pos = pstrFileName.rfind(".bin");
-        if(pos != std::string::npos)
+        if (pos != std::string::npos)
         {
             pstrFileName.replace(pos, 4, ".sci");
             // do not add the file in the callstack if the associeted .sci is not available
@@ -418,7 +419,7 @@ bool DebuggerManager::callstackAddFile(StackRow* _row, const std::wstring& _file
             }
         }
 
-        if(_row->hasFile)
+        if (_row->hasFile)
         {
             _row->fileName = pstrFileName;
         }
@@ -442,7 +443,7 @@ void DebuggerManager::show(int bp)
 char* DebuggerManager::execute(const std::string& command, int iWaitForIt)
 {
     char* error = checkCommand(command.data());
-    if(error)
+    if (error)
     {
         return error;
     }
@@ -477,7 +478,8 @@ void DebuggerManager::resume() //resume execution
 void DebuggerManager::requestPause() //ask for pause
 {
     // pause on execution only if a command is running
-    if(interrupted == false) {
+    if (interrupted == false)
+    {
         request_pause = true;
     }
 }
@@ -504,7 +506,7 @@ void DebuggerManager::abort() //abort execution
     resetPauseRequest();
 
     // abort in a pause
-    if(isInterrupted())
+    if (isInterrupted())
     {
         if (ConfigVariable::getPauseLevel() != 0)
         {
@@ -532,7 +534,7 @@ void DebuggerManager::internal_stop()
     // wait inside pause
     try
     {
-        pause();
+        pause_interpreter();
     }
     catch (const ast::InternalAbort& ia)
     {

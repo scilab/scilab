@@ -15,4 +15,4 @@ parseCommand
 checkCommand
 parseFile
 checkFile
-pause
+pause_interpreter

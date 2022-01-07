@@ -15,6 +15,6 @@
 #define __PAUSE_H__
 
 #include "dynlib_core.h"
-CORE_IMPEXP void pause(void);
+CORE_IMPEXP void pause_interpreter(void);
 
 #endif /* !__PAUSE_H__ */
