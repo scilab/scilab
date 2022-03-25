@@ -325,8 +325,9 @@ Bug Fixes
 ---------
 
 ### Bugs fixed in 6.1.2:
-* [#16717](https://bugzilla.scilab.org/16717): An error occured in findobj when no objects existed. 
+* [#16717](https://bugzilla.scilab.org/16717): An error occured in findobj when no objects existed.
 * [#16734](https://bugzilla.scilab.org/16734): `findobj()` was slower than before.
+* [#16841](https://bugzilla.scilab.org/16841): Zoom on multiaxes could desynchronize axes.
 
 
 ### Bugs fixed in 6.1.1:

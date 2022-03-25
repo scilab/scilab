@@ -196,8 +196,8 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                 allAxes = getAllUnderlyingAxes(e.getPoint());
             }
             double scale = Math.pow(ZOOM_FACTOR, e.getUnitsToScroll());
-            double[] position = null;
             for (Axes axes : allAxes) {
+	            double[] position = null;
                 // beware: components of axes.getDisplayedBounds() are log10 of bounds
                 // when axes.get[X,Y or Z]AxisLogFlag() is true
                 Double[] bounds = axes.getDisplayedBounds();
