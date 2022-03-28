@@ -32,6 +32,7 @@ OutputBaseFilename={#ScilabBaseFilename}-nojre
 #endif
 AppName={#ScilabName}
 AppVerName={#ScilabName}
+AppVersion={#ScilabVersion}
 ;always shown welcome page
 DisableWelcomePage=no
 ;always shown destination path page
