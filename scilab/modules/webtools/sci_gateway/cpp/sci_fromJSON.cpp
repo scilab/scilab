@@ -80,6 +80,13 @@ int sci_fromJSON(scilabEnv env, int nin, scilabVar *in, int nopt, scilabOpt opt,
         }
 
         std::ifstream infile(_filename);
+        if (infile.fail())
+        {
+            Scierror(999, _("%s: Cannot open file %s.\n"), name.data(), _filename);
+            FREE(_filename);
+            return STATUS_ERROR;
+        }
+
         FREE(_filename);
 
         json.reserve(infile.tellg());

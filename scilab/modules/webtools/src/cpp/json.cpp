@@ -8,14 +8,13 @@
 
 #include "json.hxx"
 
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <iomanip>
-#include <vector>
-#include <regex>
 #include <chrono>
-
+#include <fstream>
+#include <iomanip>
+#include <regex>
+#include <sstream>
+#include <string>
+#include <vector>
 
 extern "C"
 {
@@ -23,6 +22,7 @@ extern "C"
 #include "api_scilab.h"
 #include "jsmn.h"
 #include "os_string.h"
+#include "sciprint.h"
 }
 
 //
@@ -33,7 +33,7 @@ static bool export_data(scilabEnv env, scilabVar var, int indent, std::wostrings
 
 int level = -1;
 
-template <typename T>
+template<typename T>
 static T printType(T dbl)
 {
     return dbl;
@@ -52,13 +52,18 @@ static unsigned int printType(unsigned char c)
 
 static void string_replace(std::wstring& str, const std::wstring& f, const std::wstring& r)
 {
-    size_t pos = str.find(f);
-    if (pos == std::wstring::npos)
+    size_t index = 0;
+    while (true)
     {
-        return;
-    }
+        index = str.find(f, index);
+        if (index == std::string::npos)
+        {
+            break;
+        }
 
-    str.replace(pos, f.length(), r);
+        str.replace(index, f.size(), r);
+        index += r.size();
+    }
 }
 
 static std::wstring printType(wchar_t* s)
@@ -74,6 +79,17 @@ static std::wstring printType(wchar_t* s)
 static std::wstring printType(bool b)
 {
     return b ? L"true" : L"false";
+}
+
+static wchar_t* unescape(const char* str)
+{
+    wchar_t* wc = to_wide_string(str);
+    std::wstring w(wc);
+    FREE(wc);
+    string_replace(w, L"\\\t", L"\t");
+    string_replace(w, L"\\\"", L"\"");
+    string_replace(w, L"\\\\", L"\\");
+    return os_wcsdup(w.data());
 }
 
 template<typename T>
@@ -297,7 +313,6 @@ static bool export_struct_array(scilabEnv env, int indent, const std::vector<wch
     return true;
 }
 
-
 static bool export_data(scilabEnv env, scilabVar var, int indent, std::wostringstream& os)
 {
     ++level;
@@ -435,7 +450,6 @@ static bool export_data(scilabEnv env, scilabVar var, int indent, std::wostrings
                 indentStr = L"\n" + std::wstring(indent * level, L' ');
                 indentStr2 = L"\n" + std::wstring(indent * (level + 1), L' ');
             }
-
 
             os << L"[";
             os << indentStr2;
@@ -595,7 +609,7 @@ scilabVar createScilabVar(scilabEnv env, const JSONVar* v)
         {
             switch (v->dims.size())
             {
-                case 0://scalar
+                case 0: //scalar
                     ret = scilab_createDouble(env, v->d1);
                     break;
 
@@ -621,7 +635,7 @@ scilabVar createScilabVar(scilabEnv env, const JSONVar* v)
         {
             switch (v->dims.size())
             {
-                case 0://scalar
+                case 0: //scalar
 
                     ret = scilab_createBoolean(env, v->b1);
                     break;
@@ -658,18 +672,17 @@ scilabVar createScilabVar(scilabEnv env, const JSONVar* v)
                 w.resize(size);
                 for (int i = 0; i < size; ++i)
                 {
-                    w[i] = to_wide_string(v->s[i]);
+                    w[i] = unescape(v->s[i]);
                 }
             }
             else
             {
-                w.push_back(to_wide_string(v->s1));
+                w.push_back(unescape(v->s1));
             }
-
 
             switch (v->dims.size())
             {
-                case 0://scalar
+                case 0: //scalar
                 {
                     ret = scilab_createString(env, w[0]);
                     break;
@@ -838,7 +851,7 @@ JSONVar* getJSONVar(const jsmntok_t& t)
             v->d1 = val;
             return v;
         }
-        catch (const std::invalid_argument& e)
+        catch (const std::invalid_argument& /*e*/)
         {
             JSONVar* v = new JSONVar();
             v->kind = JSON_STRING;
@@ -993,10 +1006,9 @@ JSONVar* import_data(const jsmntok_t* t)
                             {
                                 v->d.resize(totalSize * v->a.size());
                                 std::transform(v->a.begin(), v->a.end(), v->d.begin(),
-                                               [](JSONVar * val)
-                                {
-                                    return val->d1;
-                                });
+                                               [](JSONVar* val) {
+                                                   return val->d1;
+                                               });
                                 break;
                             }
 
@@ -1048,10 +1060,9 @@ JSONVar* import_data(const jsmntok_t* t)
                             {
                                 v->b.resize(totalSize * v->a.size());
                                 std::transform(v->a.begin(), v->a.end(), v->b.begin(),
-                                               [](JSONVar * val)
-                                {
-                                    return val->b1;
-                                });
+                                               [](JSONVar* val) {
+                                                   return val->b1;
+                                               });
                                 break;
                             }
 
@@ -1104,10 +1115,9 @@ JSONVar* import_data(const jsmntok_t* t)
                             {
                                 v->s.resize(totalSize * v->a.size());
                                 std::transform(v->a.begin(), v->a.end(), v->s.begin(),
-                                               [](JSONVar * val)
-                                {
-                                    return os_strdup(val->s1);
-                                });
+                                               [](JSONVar* val) {
+                                                   return os_strdup(val->s1);
+                                               });
                                 break;
                             }
 
@@ -1288,7 +1298,7 @@ types::InternalType* fromJSON(const std::string& s)
 
     //reset parser
     jsmn_init(&p);
-    jsmntok_t *t = new jsmntok_t[r];
+    jsmntok_t* t = new jsmntok_t[r];
     jsmn_parse(&p, json.data(), (int)json.size(), t, r);
 
     if (r > 1 && t[0].type != JSMN_ARRAY && t[0].type != JSMN_OBJECT)
