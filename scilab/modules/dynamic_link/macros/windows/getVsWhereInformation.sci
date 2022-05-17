@@ -35,7 +35,7 @@ function vs = getVsWhereInformation()
                 t = "pro";
             end
 
-            vs(sprintf("msvc%d%s", vers, t)) = sprintf(xi.installationPath);
+            vs(sprintf("msvc%d%s", vers, t)) = xi.installationPath;
         end
     end
 endfunction
