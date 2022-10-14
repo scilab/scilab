@@ -633,6 +633,22 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
                 fi
             fi
         fi
+
+        # Alpine JDK 9
+        F=jre/lib/libjava.so
+        if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
+            if test -f $ac_java_jvm_dir/$F ; then
+                AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
+                D=`dirname $ac_java_jvm_dir/$F`
+                ac_java_jvm_jni_lib_runtime_path=$D
+                ac_java_jvm_jni_lib_flags="-L$D -ljava -lverify"
+                D=$ac_java_jvm_dir/jre/lib/server
+                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
+            fi
+        fi
+
     fi
 
         # Under GNU/Debian on a mipsel CPU, uname -m is still returning mips
