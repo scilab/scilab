@@ -11,8 +11,7 @@ License (GPL) v2.0. Scilab was originally licensed under the terms of
 the CeCILL v2.1 and continues to be available under such terms.
 For more information, see the COPYING file.
 
-Scilab is also using some codes with other licenses. Please see
-SCI/modules/*/license.txt for details.
+Scilab also uses some code under other licenses. Please see SCI/modules/*/license.txt for details.
 
 
 TO INSTALL SCILAB
@@ -41,8 +40,7 @@ OTHER RESOURCES
      [Archives](http://mailinglists.scilab.org) ,
      [Inscription](http://www.scilab.org/communities/developer_zone/tools/mailing_list)
 
- 3. Exchange files, script, data, experiences, etc can be posted on our
-    [File Exchange](http://fileexchange.scilab.org)
+ 3. Exchange files, scripts, data, experiences, etc. can be posted on our [File Exchange](http://fileexchange.scilab.org)
 
  4. Browse our packages available through [ATOMS](http://atoms.scilab.org)
 
