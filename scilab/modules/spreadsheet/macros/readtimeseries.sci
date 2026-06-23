@@ -165,6 +165,8 @@ function tt = readtimeseries(varargin)
     if variableNames == [] then
         if names <> "" then
             variableNames = names;
+        elseif nodate then
+            variableNames = ["Var" + string(1:size(variableTypes, "*"))];
         else
             variableNames = ["Time", "Var" + string(1:size(variableTypes, "*")-1)];
         end
@@ -252,14 +254,7 @@ function tt = readtimeseries(varargin)
     end
 
     if nodate then
-        idx = grep(variableNames, "/^Time$/", "r");
-        if idx <> [] then
-            variableNames = ["Time_" + string(length(idx)), variableNames];
-        else
-            variableNames = ["Time", variableNames];
-        end
         tt = timeseries(l(:), "VariableNames", variableNames, listArgs(:));
-
     else
         m = mat(:,1);
         select variableTypes(1)
@@ -278,5 +273,5 @@ function tt = readtimeseries(varargin)
 
         tt = timeseries(d, l(:), "VariableNames", variableNames)
     end
-    tt.props.variableDescriptions = variableNames;
+    tt.props.variableDescriptions = tt.props.variableNames;
 endfunction

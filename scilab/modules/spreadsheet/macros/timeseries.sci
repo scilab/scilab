@@ -34,6 +34,7 @@ function ts = timeseries(varargin)
     timeStep = [];
     startTime = duration(0);
     hasStartTime = %f;
+    hasRowTimes = %f;
     fname = "timeseries";
 
     rhs = nargin;
@@ -56,15 +57,17 @@ function ts = timeseries(varargin)
     if nargin > 2 then
 
         for i = nargin-1:-2:1
-            if type(varargin(i)) <> 10 || (type(varargin(i)) == 10 && ~isscalar(varargin(i))) then
+            key = varargin(i);
+
+            if type(key) <> 10 || (type(key) == 10 && ~isscalar(key)) then
                 break;
             end
-
-            select convstr(varargin(i), "l")
+         
+            select convstr(key, "l")
             case "samplerate"
                 sampleRate = varargin(i + 1);
                 if type(sampleRate) <> 1 then
-                    error(msprintf(_("%s: Wrong type for %s argument #%d: a real value expected"), fname, "SampleRate", i+1));
+                    error(msprintf(_("%s: Wrong type for %s argument #%d: a real value expected"), fname, key, i+1));
                 end
                 step = duration(0, 0, 1 / sampleRate);
                 timeStep = step;
@@ -72,7 +75,7 @@ function ts = timeseries(varargin)
             case "timestep"
                 timeStep = varargin(i + 1);
                 if ~isduration(timeStep) && ~iscalendarDuration(timeStep) then
-                    error(msprintf(_("%s: Wrong type for %s argument #%d: duration or calendarDuration expected"), fname, "TimeStep", i+1));
+                    error(msprintf(_("%s: Wrong type for %s argument #%d: duration or calendarDuration expected"), fname, key, i+1));
                 end
                 step = timeStep;
                 if isduration(timeStep) then
@@ -85,41 +88,42 @@ function ts = timeseries(varargin)
                 hasStartTime = %t;
                 startTime = varargin(i + 1);
                 if ~isduration(startTime) && ~isdatetime(startTime) then
-                    error(msprintf(_("%s: Wrong type for %s argument #%d: duration or datetime expected"), fname, "StartTime", i+1));
+                    error(msprintf(_("%s: Wrong type for %s argument #%d: duration or datetime expected"), fname, key, i+1));
                 end
             case "variablenames"
                 names = varargin(i + 1);
                 if type(names) <> 10 then
-                    error(msprintf(_("%s: Wrong type for %s argument #%d: string vector expected"), fname, "VariableNames", i+1));
+                    error(msprintf(_("%s: Wrong type for %s argument #%d: string vector expected"), fname, key, i+1));
                 end
 
                 if or(names == "") then
-                    error(msprintf(_("%s: Wrong value for %s argument #%d: no empty strings expected"), fname, "VariableNames", i+1));
+                    error(msprintf(_("%s: Wrong value for %s argument #%d: no empty strings expected"), fname, key, i+1));
                 end
             case "variableunits"
                 variableUnits = varargin(i + 1);
                 if type(variableUnits) <> 10 then
-                    error(msprintf(_("%s: Wrong type for %s argument #%d: string vector expected"), fname, "VariableUnits", i+1));
+                    error(msprintf(_("%s: Wrong type for %s argument #%d: string vector expected"), fname, key, i+1));
                 end
 
             case "variablecontinuity"
                 variableContinuity = varargin(i + 1);
                 if type(variableContinuity) <> 10 then
-                    error(msprintf(_("%s: Wrong type for %s argument #%d: string vector expected"), fname, "VariableContinuity", i+1));
+                    error(msprintf(_("%s: Wrong type for %s argument #%d: string vector expected"), fname, key, i+1));
                 end
 
                 defaultVariableContinuity = ["", "unset", "continuous", "event", "step"];
                 for k = 1:size(variableContinuity, "*")
                     if and(variableContinuity(k) <> defaultVariableContinuity) then
-                        error(msprintf(_("%s: Wrong type for %s argument #%d: %s, %s, %s or %s expected"), fname, "VariableContinuity", i+1, "unset", "continuous", "step", "event"));
+                        error(msprintf(_("%s: Wrong type for %s argument #%d: %s, %s, %s or %s expected"), fname, key, i+1, "unset", "continuous", "step", "event"));
                     end
                 end
 
             case "rowtimes"
                 t.data = varargin(i + 1);
                 if ~isdatetime(t.data) && ~isduration(t.data) then
-                    error(msprintf(_("%s: Wrong type for %s option: duration or datetime vector expected.\n"), fname, "RowTimes"));
+                    error(msprintf(_("%s: Wrong type for %s option: duration or datetime vector expected.\n"), fname, key));
                 end
+                hasRowTimes = %t;
             else
                 break;
             end
@@ -248,10 +252,26 @@ function ts = timeseries(varargin)
             names(1, i) = sprintf("Var%d", i - 1);
         end
     else
+        if ~isvector(names) then
+            error(msprintf(_("%s: Wrong size for ""%s"" property: Row vector expected.\n"), fname, "VariableNames"));
+        end
+
         nbVars = size(t, "c");
-        if ~isvector(names) || (size(names, "*") <> nbVars) then
+        if hasRowTimes || step <> [] then
+            if (size(names, "*") == nbVars - 1)
+                idx = grep(names, "/^Time$/", "r");
+                if idx <> [] then
+                    error(msprintf(_("%s: Wrong value for ""%s"" property: ""%s"" can not duplicate.\n"), fname, "VariableNames", "Time"));
+                else
+                    names = ["Time", names];
+                end
+            end
+        end
+
+        if size(names, "*") <> nbVars then
             error(msprintf(_("%s: Wrong size for ""%s"" property: Row vector of size %d expected.\n"), fname, "VariableNames", nbVars));
         end
+
         if iscolumn(names) then
             names = names';
         end

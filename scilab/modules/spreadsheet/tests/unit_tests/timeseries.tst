@@ -256,14 +256,39 @@ for i = inttyp
     assert_checktrue(b);
 end
 
+AmbientTemperature = [18; 18.5; 20; 20.2; 20.5];
+FlowRate = [50; 52; 53; 55; 60];
+ts = timeseries(AmbientTemperature, FlowRate, "RowTimes", hours(1:5)', "VariableNames", ["Temp", "FlowRate"]);
+expected = [string(hours(1:5)'), string(AmbientTemperature), string(FlowRate)];
+checkstring(ts, expected);
+assert_checkequal(ts.Properties.VariableNames, ["Time", "Temp", "FlowRate"]);
+
+ts = timeseries(AmbientTemperature, FlowRate, "TimeStep", hours(1), "VariableNames", ["Temp", "FlowRate"]);
+expected = [string(hours(0:4)'), string(AmbientTemperature), string(FlowRate)];
+checkstring(ts, expected);
+assert_checkequal(ts.Properties.VariableNames, ["Time", "Temp", "FlowRate"]);
+
+ts = timeseries(AmbientTemperature, FlowRate, "SampleRate", 1/3600, "VariableNames", ["Temp", "FlowRate"]);
+checkstring(ts, expected);
+assert_checkequal(ts.Properties.VariableNames, ["Time", "Temp", "FlowRate"]);
+
+ts = timeseries(AmbientTemperature, FlowRate, "TimeStep", caldays(1), "StartTime", datetime(2026, 6, 1), "VariableNames", ["Temp", "FlowRate"]);
+expected = [string(datetime(2026,6,1):caldays(1):datetime(2026,6,5))', string(AmbientTemperature), string(FlowRate)];
+checkstring(ts, expected);
+assert_checkequal(ts.Properties.VariableNames, ["Time", "Temp", "FlowRate"]);
+
+ts = timeseries(AmbientTemperature, FlowRate, "SampleRate", 1/3600, "StartTime", datetime(2026, 6, 1),  "VariableNames", ["Temp", "FlowRate"]);
+expected = [string(datetime(2026,6,1)+hours(0:4))', string(AmbientTemperature), string(FlowRate)];
+checkstring(ts, expected);
+assert_checkequal(ts.Properties.VariableNames, ["Time", "Temp", "FlowRate"]);
+
 // -----------------------------------------------------------------------
 // Errors
 // -----------------------------------------------------------------------
 msg = msprintf(_("%s: Wrong number of input argument: At least %d expected.\n"), "timeseries", 1);
 assert_checkerror("timeseries()", msg);
 
-AmbientTemperature = [18; 18.5; 20; 20.2; 20.5];
-FlowRate = [50; 52; 53; 55; 60];
+
 msg = msprintf(_("%s: Wrong type for %s argument #%d: duration or calendarDuration expected"), "timeseries", "TimeStep", 4);
 assert_checkerror("timeseries(AmbientTemperature, FlowRate, ""TimeStep"", datetime(2022, 1, 1))", msg);
 msg = msprintf(_("%s: Wrong type for %s option: StarTime must be a datetime when TimeStep is a calendarDuration.\n"), "timeseries", "TimeStep");
@@ -278,7 +303,7 @@ assert_checkerror("timeseries(AmbientTemperature, FlowRate, ""TimeStep"", hours(
 msg = msprintf(_("%s: Wrong type for %s argument #%d: string vector expected"), "timeseries", "VariableNames", 6);
 assert_checkerror("timeseries(AmbientTemperature, FlowRate, ""TimeStep"", hours(1), ""VariableNames"", 1)", msg);
 
-msg = msprintf(_("%s: Wrong size for ""%s"" property: Row vector of size %d expected.\n"), "timeseries", "VariableNames", 3);
+msg = msprintf(_("%s: Wrong value for ""%s"" property: ""%s"" can not duplicate.\n"), "timeseries", "VariableNames", "Time");
 assert_checkerror("timeseries(AmbientTemperature, FlowRate, ""TimeStep"", hours(1), ""VariableNames"", [""Time"", ""Temp""])", msg);
 
 msg = msprintf(_("%s: Wrong type for %s argument #%d: string vector expected"), "timeseries", "VariableUnits", 6);
