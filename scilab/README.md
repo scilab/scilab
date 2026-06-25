@@ -29,6 +29,9 @@ Command line interpreter:
 
 [Further information](http://wiki.scilab.org/howto/install/linux)
 
+Note: If you encounter permission issues when running the scripts, ensure that execution rights are properly set using:
+
+`chmod +x ./bin/scilab`
 
 OTHER RESOURCES
 ---------------
