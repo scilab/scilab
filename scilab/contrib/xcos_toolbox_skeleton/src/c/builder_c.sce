@@ -24,7 +24,6 @@ function builder_c()
         // Getting symbols
         if findmsvccompiler() <> "unknown" & haveacompiler() then
             LDFLAGS = LDFLAGS + " """ + SCI + "/bin/scicos.lib""";
-            LDFLAGS = LDFLAGS + " """ + SCI + "/bin/scicos_f.lib""";
         end
     end
 

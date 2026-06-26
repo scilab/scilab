@@ -59,19 +59,7 @@
     <ClCompile Include="ddaskr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ftree2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ftree3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ftree4.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_loadScicos.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_sctree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="scicos.c">
@@ -448,9 +436,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Scicos_blocks_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="scicos_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Scicos_Export.def">

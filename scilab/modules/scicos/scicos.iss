@@ -23,9 +23,6 @@
 
 Source: bin\no{#SCICOS}.lib; DestDir: {app}\bin; DestName: {#SCICOS}.lib; Components: not ({#COMPN_XCOS})
 ;
-Source: bin\{#SCICOS}_f.lib; DestDir: {app}\bin; Components: {#COMPN_XCOS}
-Source: bin\{#SCICOS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
-;
 Source: bin\{#SCICOS}.lib; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 Source: bin\{#SCICOS}.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 ;

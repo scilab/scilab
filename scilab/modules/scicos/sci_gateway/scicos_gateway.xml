@@ -22,10 +22,6 @@
             Don't touch if you do not know what you are doing !
         -->
 <module name="scicos">
-    <gateway type="0" name="sci_sctree" function="sctree"/>
-    <gateway type="0" name="sci_tree2" function="sci_tree2"/>
-    <gateway type="0" name="sci_tree3" function="sci_tree3"/>
-    <gateway type="0" name="sci_tree4" function="sci_tree4"/>
     <gateway type="0" name="sci_model2blk" function="model2blk"/>
     <gateway type="0" name="sci_loadScicos" function="loadScicos"/>
     <!-- C++ Gateways -->

@@ -64,13 +64,6 @@ src/c/MlistGetFieldNumber.c \
 src/c/lsodar.c \
 src/c/ddaskr.c
 
-SCICOS_FORTRAN_SOURCES = \
-src/fortran/sctree.f \
-src/fortran/ftree2.f \
-src/fortran/ftree3.f \
-src/fortran/ftree4.f \
-src/fortran/scifunc.f
-
 NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 
 GATEWAY_CXX_SOURCES = \
@@ -105,16 +98,7 @@ sci_gateway/cpp/sci_model2blk.cpp \
 sci_gateway/cpp/sci_scicosDiagramToScilab.cpp
 
 GATEWAY_C_SOURCES = \
-sci_gateway/c/sci_ftree2.c \
-sci_gateway/c/sci_ftree3.c \
-sci_gateway/c/sci_ftree4.c \
-sci_gateway/c/sci_loadScicos.c \
-sci_gateway/c/sci_sctree.c
-
-GATEWAY_FORTRAN_SOURCES = \
-sci_gateway/fortran/sci_f_tree2.f \
-sci_gateway/fortran/sci_f_tree3.f \
-sci_gateway/fortran/sci_f_tree4.f
+sci_gateway/c/sci_loadScicos.c
 
 #### Multi-libraries handling ######
 
@@ -172,9 +156,9 @@ libsciscicos_cli_la_CPPFLAGS = $(libsciscicos_algo_la_CPPFLAGS)
 libsciscicos_la_CPPFLAGS = $(libsciscicos_algo_la_CPPFLAGS)
 
 if XCOS
-libsciscicos_algo_la_SOURCES = $(SCICOS_CXX_SOURCES) $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES)
-libsciscicos_cli_la_SOURCES = $(GATEWAY_CXX_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libsciscicos_la_SOURCES = $(GATEWAY_CXX_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciscicos_algo_la_SOURCES = $(SCICOS_CXX_SOURCES) $(SCICOS_C_SOURCES)
+libsciscicos_cli_la_SOURCES = $(GATEWAY_CXX_SOURCES) $(GATEWAY_C_SOURCES)
+libsciscicos_la_SOURCES = $(GATEWAY_CXX_SOURCES) $(GATEWAY_C_SOURCES)
 else
 libsciscicos_algo_la_SOURCES = $(NO_SCICOS_C_SOURCES)
 libsciscicos_cli_la_SOURCES =

@@ -48,7 +48,6 @@ src/translator/exceptionHandling/*.obj
 #
 src/c/noscicos/noscicos.def
 src/c/scicos.def
-src/fortran/scicos_f.def
 #
 #generated help files
 #

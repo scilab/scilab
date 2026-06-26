@@ -126,11 +126,10 @@
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/archive.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;scicos_blocks_f.lib;scicos_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/archive.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;scicos_blocks_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -165,11 +164,10 @@ lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/archive.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;scicos_blocks_f.lib;scicos_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/archive.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;scicos_blocks_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -203,11 +201,10 @@ lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/archive.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;scicos_blocks_f.lib;scicos_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/archive.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;scicos_blocks_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -241,11 +238,10 @@ lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/archive.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;scicos_blocks_f.lib;scicos_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/archive.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;scicos_blocks_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -285,11 +281,10 @@ lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/archive.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;scicos_blocks_f.lib;scicos_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/archive.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;scicos_blocks_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -328,11 +323,10 @@ lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/archive.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;scicos_blocks_f.lib;scicos_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/archive.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;scicos_blocks_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -416,11 +410,7 @@ lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="MlistGetFieldNumber.c" />
     <ClCompile Include="lsodar.c" />
     <ClCompile Include="ddaskr.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_ftree2.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_ftree3.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_ftree4.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_loadScicos.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_sctree.c" />
     <ClCompile Include="scicos.c" />
     <ClCompile Include="scicos_free.c" />
     <ClCompile Include="scicos_malloc.c" />
@@ -489,7 +479,6 @@ lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <None Include="differential_equations_f_Import.def" />
     <None Include="elementary_functions_f_Import.def" />
     <None Include="Scicos_blocks_f_Import.def" />
-    <None Include="scicos_f_Import.def" />
     <None Include="Scicos_Export.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\scicos.iss" />
