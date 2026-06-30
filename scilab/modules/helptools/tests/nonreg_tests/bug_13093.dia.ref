@@ -17,5 +17,6 @@
 // <-- Short Description -->
 // head_comments displayed a trailing "\n" when the argument had no head comments.
 head_comments("demo_gui");
-function [] = demo_gui()
-No comment available.
+function [] = demo_gui(category)
+ category (optional): name of the category to open directly, or a
+ string vector for a nested path (e.g. ["Xcos" "Standard demos"]).
