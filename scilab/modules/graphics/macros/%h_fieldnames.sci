@@ -369,20 +369,6 @@ function fields = %h_fieldnames(h)
             "user_data"
             "tag"
             ]
-        case "Title"
-            fields=[
-            "parent"
-            "children"
-            "visible"
-            "text"
-            "interpreter"
-            "foreground"
-            "font_style"
-            "font_size"
-            "fractional_font"
-            "font_angle"
-            "tag"
-            ]
         case "Label"
             fields=[
             "parent"
