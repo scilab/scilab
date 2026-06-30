@@ -117,9 +117,7 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
             MarksStyleVal=[1 9 10 0 2 11 5 6 7 12 13 14 15 16 17 18 19 20 -99];
             //    MarksSizeVal =[4 3 7  1 3  3 4 3 3  3  3  3 -99];
 
-            opt1=[];
-
-            k=find(part(Table,1:length(str))==str);
+            k=find(part(Table,1:length(str))==str, 1);
 
             if (k == [])
                 warning(msprintf(gettext("%s: Wrong value for input argument #%d: A marker style expected.\n"),"setPlotProperty", 2));
@@ -133,27 +131,9 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
                 return;
             end
 
-            opt = Table(k);
-            for i=1:length(str)
-                if part(opt,i) <> part(str,i)
-                    break;
-                end
-            end
-
-            opt1 = [opt1 k];
-
-            str = part(str,i:length(str));
-
-            if (size(opt1,"*") > 1)
-                warning(msprintf(gettext("%s: Wrong value for input argument #%d: A marker style expected.\n"),"setPlotproperty",2));
-                ResetFigureDDM(current_figure, cur_draw_mode);
-                return;
-            end
-
-            if (opt1 > 0)
-                Curves.mark_style = MarksStyleVal(opt1);
+            if (k > 0)
+                Curves.mark_style = MarksStyleVal(k);
                 Curves.mark_size  = 6;
-                //MarksSizeVal(opt1);
             else
                 // 'none' is selected
                 Curves.mark_mode="off"
