@@ -23,7 +23,7 @@ imageHeight = 144;
 h = uicontrol("Parent", f, ..
 "Style", "image", ..
 "Position", [(figSize(1)-imageWidth)/2 (figSize(2)-imageHeight)/2 imageWidth imageHeight], ..
-"String", SCI + "/modules/demo_tools/images/logo_scilab.png");
+"String", SCI + "/modules/gui/images/icons/logo_scilab.png");
 
 demo_viewCode(SCI+ "/modules/gui/demos/uicontrol_image.dem.sce");
 

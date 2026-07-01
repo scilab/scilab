@@ -137,7 +137,6 @@ windows_intermediate:
           - cacsd
           - console
           - coverage
-          - demo_tools
           - differential_equations
           - dynamic_link
           - helptools

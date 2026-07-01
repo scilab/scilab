@@ -376,3 +376,17 @@ msgstr "%s: 2 mlist nesmí mít žádné pole společné.\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno nejvíce %d.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr ""
+"%s: Špatný vstupní argument #%d: Očekávána cesta souboru skriptu scilab.\n"
+
+msgid "Demonstrations"
+msgstr ""
+
+msgid " -- View Code -- "
+msgstr " -- Zobrazit Kód -- "
+
+msgid "Open in Editor"
+msgstr "Otevřít v Editoru"

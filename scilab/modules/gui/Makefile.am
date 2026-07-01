@@ -444,6 +444,7 @@ images/icons/doc-icon-black.png \
 images/icons/doc-icon-white.png \
 images/icons/dock_help_active.png \
 images/icons/dock_help_default.png \
+images/icons/logo_scilab.png \
 images/icons/puff.png \
 images/icons/rotate.png \
 images/icons/scilab_close_active.png \

@@ -54,7 +54,6 @@
 <module name="sound" activate="yes"/>
 <module name="randlib" activate="yes"/>
 <module name="development_tools" activate="yes"/>
-<module name="demo_tools" activate="@DEMOTOOLS_ENABLE@"/>
 <module name="spreadsheet" activate="yes"/>
 <module name="call_scilab" activate="yes"/>
 <!-- comments -->

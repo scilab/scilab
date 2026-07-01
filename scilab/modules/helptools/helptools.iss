@@ -20,12 +20,12 @@
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define HELPTOOLS "helptools"
+#define DEMOTOOLS "demotools"
 
 Source: bin\{#HELPTOOLS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#HELPTOOLS}\jar\org.scilab.modules.helptools.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#HELPTOOLS}\jar\scilab_*_*_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#HELPTOOLS}\jar\scilab_images.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-
 ;
 Source: modules\{#HELPTOOLS}\sci_gateway\{#HELPTOOLS}_gateway.xml; DestDir: {app}\modules\{#HELPTOOLS}\sci_gateway; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
@@ -74,7 +74,14 @@ Source: modules\{#HELPTOOLS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#HE
 Source: modules\{#HELPTOOLS}\macros\lib; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#HELPTOOLS}\macros\*.sci; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#HELPTOOLS}\macros\*.bin; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#HELPTOOLS}\macros\{#DEMOTOOLS}\lib; DestDir: {app}\modules\{#HELPTOOLS}\macros\{#DEMOTOOLS}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#HELPTOOLS}\macros\{#DEMOTOOLS}\*.sci; DestDir: {app}\modules\{#HELPTOOLS}\macros\{#DEMOTOOLS}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#HELPTOOLS}\macros\{#DEMOTOOLS}\*.bin; DestDir: {app}\modules\{#HELPTOOLS}\macros\{#DEMOTOOLS}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
+Source: modules\{#HELPTOOLS}\gui\*.html; DestDir: {app}\modules\{#HELPTOOLS}\gui; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#HELPTOOLS}\gui\*.css; DestDir: {app}\modules\{#HELPTOOLS}\gui; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#HELPTOOLS}\gui\*.js; DestDir: {app}\modules\{#HELPTOOLS}\gui; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;;
 Source: modules\{#HELPTOOLS}\examples\*.*; DestDir: {app}\modules\{#HELPTOOLS}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#HELPTOOLS}\tests\*.*; DestDir: {app}\modules\{#HELPTOOLS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS} and {#COMPN_JVM_MODULE}

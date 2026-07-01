@@ -1,6 +1,5 @@
-
 // Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+// Copyright (C) 2009 - DIGITEO
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -11,8 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-if (isdef("genlib") == %f) then
-    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
-end
+add_help_chapter("Demo Tools",SCI+"/modules/helptools/help/ru_RU/demotools",%T);
 
-genlib("demo_toolslib","SCI/modules/demo_tools/macros",%f,%t);

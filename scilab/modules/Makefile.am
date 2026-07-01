@@ -76,7 +76,6 @@ m2sci \
 development_tools \
 helptools \
 umfpack \
-demo_tools \
 parameters \
 matio \
 atoms \

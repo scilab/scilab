@@ -83,6 +83,13 @@ libscihelptools_la_root_DATA =  license.txt
 libscihelptools_la_etcdir = $(mydatadir)/etc
 libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start etc/MAIN_CHAPTERS etc/fopconf.xml etc/SciDocConf.xml
 
+#### helptools : XML gui ####
+libhelptools_la_guidir = $(mydatadir)/gui
+libhelptools_la_gui_DATA = \
+gui/demo_browser.html \
+gui/demo_browser.css \
+gui/demo_browser.js
+
 #### helptools : gateway declaration ####
 libscihelptools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihelptools_la_sci_gateway_DATA = sci_gateway/helptools_gateway.xml
@@ -132,6 +139,9 @@ data/pages/CHANGES.html \
 data/pages/error.html \
 data/pages/homepage-en_US.html \
 data/pages/ban-en_US.png
+
+#### helptools : demos functions ####
+MACROSDIRSEXT = macros/demotools
 
 mostlyclean-local:
 	rm -rf web javaHelp html pdf inline

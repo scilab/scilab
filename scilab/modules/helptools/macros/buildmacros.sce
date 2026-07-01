@@ -16,3 +16,4 @@ if (isdef("genlib") == %f) then
 end
 
 genlib("helptoolslib","SCI/modules/helptools/macros",%f,%t);
+genlib("demotoolslib","SCI/modules/helptools/macros/demotools",%f,%t);

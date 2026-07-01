@@ -55,7 +55,6 @@
     <module name="sound" activate="yes"/>
     <module name="randlib" activate="yes"/>
     <module name="development_tools" activate="yes"/>
-    <module name="demo_tools" activate="yes"/>
     <module name="spreadsheet" activate="yes"/>
     <module name="call_scilab" activate="yes"/>
     <module name="scicos" activate="yes"/>

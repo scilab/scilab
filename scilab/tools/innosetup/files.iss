@@ -28,7 +28,6 @@
 #include BinariesSourcePath + "\contrib\toolbox_skeleton.iss"
 #include BinariesSourcePath + "\modules\core\core.iss"
 #include BinariesSourcePath + "\modules\helptools\helptools.iss"
-#include BinariesSourcePath + "\modules\demo_tools\demo_tools.iss"
 #include BinariesSourcePath + "\modules\fileio\fileio.iss"
 #include BinariesSourcePath + "\modules\output_stream\output_stream.iss"
 #include BinariesSourcePath + "\modules\string\string.iss"

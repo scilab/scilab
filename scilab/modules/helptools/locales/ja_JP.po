@@ -461,3 +461,18 @@ msgstr "%s: 2 mlistは、共通のフィールドを持てません。\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 msgstr "%s: 入力引数(s)で不正な値: すくなくとも %d を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr ""
+"%s: 入力引数 #%dが間違っています: scilabスクリプトファイルのパスを指定してく"
+"ださい.\n"
+
+msgid "Demonstrations"
+msgstr "デモンストレーション"
+
+msgid " -- View Code -- "
+msgstr " -- コードを表示 -- "
+
+msgid "Open in Editor"
+msgstr "エディタで開く"

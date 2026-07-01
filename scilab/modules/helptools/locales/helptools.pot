@@ -569,3 +569,26 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 msgstr ""
+
+#
+# File: modules/helptools/macros/demotools/add_demo.sci, line: 45
+#, c-format
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr ""
+
+#
+# File: modules/helptools/macros/demotools/demo_gui.sci, line: 73
+# File: modules/helptools/macros/demotools/demo_gui.sci, line: 96
+msgid "Demonstrations"
+msgstr ""
+
+#
+# File: modules/helptools/macros/demotools/demo_viewCode.sci, line: 34
+# File: modules/helptools/macros/demotools/demo_viewCode.sci, line: 42
+msgid " -- View Code -- "
+msgstr ""
+
+#
+# File: modules/helptools/macros/demotools/demo_viewCode.sci, line: 36
+msgid "Open in Editor"
+msgstr ""

@@ -2120,18 +2120,6 @@ fi
 AM_CONDITIONAL(FORCE_LINK, test "$FORCE_FULL_LINK" == "yes")
 
 ##############################################################
-## demo_tools module
-##############################################################
-
-DEMOTOOLS_ENABLE=yes
-
-if test "$GUI_ENABLE" = no; then
-   DEMOTOOLS_ENABLE=no
-fi
-
-AC_SUBST(DEMOTOOLS_ENABLE)
-
-##############################################################
 ## graphics/renderer/graphic_export module
 ##############################################################
 
@@ -2370,7 +2358,6 @@ modules/m2sci/Makefile
 modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile
-modules/demo_tools/Makefile
 modules/parameters/Makefile
 modules/matio/Makefile
 modules/atoms/Makefile

@@ -387,3 +387,18 @@ msgstr "%s : Les 2 mlist ne doivent pas avoir de champs en commun.\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au plus %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr ""
+"%s : Argument d'entrée n°%d faux : Un chemin vers un fichier de script "
+"Scilab attendu.\n"
+
+msgid "Demonstrations"
+msgstr "Démonstrations"
+
+msgid " -- View Code -- "
+msgstr " -- Voir le code -- "
+
+msgid "Open in Editor"
+msgstr "Ouvrir dans l'éditeur"

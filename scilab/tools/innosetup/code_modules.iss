@@ -81,7 +81,6 @@ begin
     ModulesXmlFileLines[i] := '<module name="sound" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="external_objects" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="randlib" activate="yes"/>'; i := i + 1;
-    ModulesXmlFileLines[i] := '<module name="demo_tools" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="spreadsheet" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="call_scilab" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="umfpack" activate="yes"/>'; i := i + 1;

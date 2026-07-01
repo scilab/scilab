@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Demo Tools",SCI+"/modules/demo_tools/help/ja_JP",%T);
+add_help_chapter("Outils pour les démonstrations",SCI+"/modules/helptools/help/fr_FR/demotools",%T);
 

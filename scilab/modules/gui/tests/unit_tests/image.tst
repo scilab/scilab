@@ -16,7 +16,7 @@ exec("SCI/modules/gui/tests/unit_tests/uicontrol_generic_test.sci");
 if uicontrol_generic_test("image") <> 0 then pause; end
 
 // Regular testing of image in uicontrol
-h = uicontrol("Style", "image", "String", SCI + "/modules/demo_tools/images/logo_scilab.png", "position", [0 0 181 144]);
+h = uicontrol("Style", "image", "String", SCI + "/modules/gui/images/icons/logo_scilab.png", "position", [0 0 181 144]);
 defaultValue = get(h, "value");
 if or(defaultValue<>[1 1 0 0 0]) then pause; end
 set(h, "value", [0.3 2 0 0 0]); // Change scale
@@ -30,21 +30,21 @@ set(h, "value", [1])
 
 // Test set functions for uicontrol
 h = uicontrol("style", "image");
-set(h, "string", SCI + "/modules/demo_tools/images/logo_scilab.png");
+set(h, "string", SCI + "/modules/gui/images/icons/logo_scilab.png");
 set(h, "position", [0 0 300 300]);
 set(h, "value", [0.3 2 0 0 0]);
 set(h, "value", [0.3 2 0.1 2 0]);
 set(h, "value", [0.3 2 0.1 2 30]);
 
 h = uicontrol(gcf(), "style", "image");
-set(h, "string", SCI + "/modules/demo_tools/images/logo_scilab.png");
+set(h, "string", SCI + "/modules/gui/images/icons/logo_scilab.png");
 set(h, "position", [10 0 400 300]);
 set(h, "value", [0.63 0.9 0 0 0]);
 set(h, "value", [0.63 0.9 1 0.5 0]);
 set(h, "value", [0.63 0.9 1 0.5 45]);
 
 h = uicontrol("parent", gcf(), "style", "image");
-set(h, "string", SCI + "/modules/demo_tools/images/logo_scilab.png");
+set(h, "string", SCI + "/modules/gui/images/icons/logo_scilab.png");
 set(h, "position", [0 20 200 200]);
 set(h, "value", [1.2 1.3 0 0 0]);
 set(h, "value", [1.2 1.3 0.1 0.6 0]);

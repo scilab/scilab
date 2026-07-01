@@ -365,3 +365,16 @@ msgstr "%s：两个mlist类型必须有相同的域（field）。\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 msgstr "%s：输入参数的数目错误：最多应该%d个。\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr "%s：第%d个输入参数错误：应该是Scilab脚本文件的路径。\n"
+
+msgid "Demonstrations"
+msgstr "演示"
+
+msgid " -- View Code -- "
+msgstr " -- 浏览代码 -- "
+
+msgid "Open in Editor"
+msgstr "用编辑器打开"
