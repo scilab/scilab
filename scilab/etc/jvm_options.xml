@@ -33,10 +33,6 @@ $SCILAB : scilab path (SCI in Scilab)
     <!-- Needed by org.scilab.modules.external_objects_java to be able to invoke non-public "java.lang.VersionProps#print" method by reflexion -->
     <option value="--add-opens=java.base/java.lang=ALL-UNNAMED"/>
 
-    <!-- Needed by org.scilab.modules.jvm to be able to modify FINAL fields by reflexion -->
-    <option value="--add-opens=java.base/jdk.internal.loader=ALL-UNNAMED"/>
-    <option value="--add-opens=java.base/java.lang.reflect=ALL-UNNAMED"/>
-
     <!-- Needed by JCEF on macOS -->
     <option value="--add-opens=java.desktop/sun.awt=ALL-UNNAMED" os="macosx"/>
     <option value="--add-opens=java.desktop/sun.lwawt=ALL-UNNAMED" os="macosx"/>

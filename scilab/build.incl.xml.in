@@ -127,9 +127,6 @@
             <compilerarg value="-Xlint:-serial" />
             <!--  Silent warning about the serializable -->
             <compilerarg value="-Xlint:-options" />
-            <compilerarg value="--add-exports=java.base/jdk.internal.loader=ALL-UNNAMED"/>
-            <compilerarg value="--add-opens=java.base/jdk.internal.loader=ALL-UNNAMED"/>
-            <compilerarg value="--add-opens=java.base/java.lang.reflect=ALL-UNNAMED"/>
         </javac>
     </target>
 
