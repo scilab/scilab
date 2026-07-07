@@ -98,8 +98,8 @@
          or if there is a mistake in the build system
          Note: all class names are the same as in m4/java.m4
         -->
-        <available property="jdk17+" classname="java.util.random.RandomGenerator"/>
-        <fail message="Require JDK 17 or higher. Found ${ant.java.version}" unless="jdk17+"/>
+        <available property="jdk21+" classname="java.util.SequencedSet"/>
+        <fail message="Require JDK 21 or higher. Found ${ant.java.version}" unless="jdk21+"/>
         <mkdir dir="${classes.dir}"/>
         <mkdir dir="${classes.test.dir}"/>
         <mkdir dir="${build.jar.dir}"/>

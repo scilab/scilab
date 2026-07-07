@@ -34,9 +34,9 @@ Source: thirdparty\flexdock-1.2.5.jar; DestDir: {app}\thirdparty; Components: {#
 Source: thirdparty\commons-logging-1.1.1.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: thirdparty\jgoodies-looks-2.7.0.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: thirdparty\skinlf-1.2.3.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: thirdparty\javafx.base.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: thirdparty\javafx.graphics.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: thirdparty\javafx.swing.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: thirdparty\javafx.base-21.0.11.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: thirdparty\javafx.graphics-21.0.11.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: thirdparty\javafx.swing-21.0.11.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#GUI}\license.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2024 - Dassault Systèmes S.E. - Vincent COUVERT
+ * Copyright (C) 2024-2026 - Dassault Systèmes S.E. - Vincent COUVERT
  * 
  * For more information, see the COPYING file which you should have received
  * along with this program.
@@ -12,6 +12,13 @@
         <!-- Use no conf when no useless dependencies are downloaded -->
         <!-- Else use "default" conf when no useless dependencies are downloaded -->
         <!-- Else use "master" conf -->
+
+        <!-- Java Chromium Embedded Framework and its dependencies -->
+        <dependency org="me.friwi" name="jcef-api" rev="jcef-ca49ada+cef-135.0.20+ge7de5c3+chromium-135.0.7049.85" conf="*->default">
+            <exclude module="gluegen-rt" />
+            <exclude module="jogl-all" />
+        </dependency>
+        <!--dependency org="me.friwi" name="jcef-natives-linux-amd64" rev="jcef-ca49ada+cef-135.0.20+ge7de5c3+chromium-135.0.7049.85" conf="*->default"/-->
 
         <!-- batik-all added as dependency (to replace batik-*.jar dependencies of fop) -->
         <!-- rev imposed by fop -->
@@ -34,6 +41,7 @@
         <!-- COPY --><!--<dependency org="" name="gluegen-rt" rev="2.5.0"/>-->
         <!-- COPY --><!--<dependency org="" name="jhall" rev="2.0"/>-->
         <!-- COPY --><!--<dependency org="" name="jrosetta-api" rev="1.0.4"/>-->
+        <!-- COPY --><!--<dependency org="" name="jrosetta-engine" rev="1.0.4"/>-->
         <dependency org="org.apache.lucene" name="lucene-core" rev="9.10.0" conf="*->default"/>
         <dependency org="org.apache.lucene" name="lucene-queryparser" rev="9.10.0" conf="*->master"/>
         <dependency org="org.apache.lucene" name="lucene-analysis-common" rev="9.10.0" conf="*->master"/>

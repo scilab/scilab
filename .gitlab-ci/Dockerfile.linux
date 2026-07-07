@@ -133,7 +133,7 @@ RUN apt-get update && apt-get install -y \
         curl rsync git \
         make binutils libc-dev \
         gettext ccache \
-        openjdk-17-jdk \
+        openjdk-21-jdk \
         libgl1-mesa-dev \
         dumb-init \
     && apt-get clean

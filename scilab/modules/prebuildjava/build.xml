@@ -3,6 +3,7 @@
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Sylvestre LEDRU
  * Copyright (C) 2012 - Scilab Enterprises - Clément DAVID
+ * Copyright (C) 2024-2026 - Dassault Systèmes - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -112,22 +113,18 @@ The main idea is to build at once all the var files
         <delete dir="${thirdparty.dir}"/>
         <mkdir dir="${thirdparty.dir}"/>
 
-        <property name="thirdparty-main.dir" value="../../thirdparty-main/"/>
-        <delete dir="${thirdparty-main.dir}"/>
-        <mkdir dir="${thirdparty-main.dir}"/>
-        <get src="https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/thirdparty-scilab-branch-main.zip" dest="../../"/>
-        <unzip src="../../thirdparty-jar-main.zip" dest="${thirdparty-main.dir}" />
-
-        <copy file="${thirdparty-main.dir}/jgraphx.jar" tofile="${thirdparty.dir}/jgraphx-2.1.0.7.jar"/>
-        <copy file="${thirdparty-main.dir}/flexdock-1.2.5.jar" tofile="${thirdparty.dir}/flexdock-1.2.5.jar"/>
-        <copy file="${thirdparty-main.dir}/jogl-all.jar" tofile="${thirdparty.dir}/jogl-all-2.5.0.jar"/>
-        <copy file="${thirdparty-main.dir}/gluegen-rt.jar" tofile="${thirdparty.dir}/gluegen-rt-2.5.0.jar"/>
-        <copy file="${thirdparty-main.dir}/jhall.jar" tofile="${thirdparty.dir}/jhall-2.0.jar"/>
-        <copy file="${thirdparty-main.dir}/jrosetta-API.jar" tofile="${thirdparty.dir}/jrosetta-API-1.0.4.jar"/>
-        <copy file="${thirdparty-main.dir}/jrosetta-engine.jar" tofile="${thirdparty.dir}/jrosetta-engine-1.0.4.jar"/>
-        <copy file="${thirdparty-main.dir}/javafx.base.jar" tofile="${thirdparty.dir}/javafx.base.jar"/>
-        <copy file="${thirdparty-main.dir}/javafx.swing.jar" tofile="${thirdparty.dir}/javafx.swing.jar"/>
-        <copy file="${thirdparty-main.dir}/javafx.graphics.jar" tofile="${thirdparty.dir}/javafx.graphics.jar"/>
+        <!-- JARs not provided by Maven Central -->
+        <property name="thirdparty-src.dir" value="../../thirdparty-src/"/>
+        <copy file="${thirdparty-src.dir}/jgraphx-2.1.0.7.jar" tofile="${thirdparty.dir}/jgraphx-2.1.0.7.jar"/>
+        <copy file="${thirdparty-src.dir}/flexdock-1.2.5.jar" tofile="${thirdparty.dir}/flexdock-1.2.5.jar"/>
+        <copy file="${thirdparty-src.dir}/jogl-all-2.5.0.jar" tofile="${thirdparty.dir}/jogl-all-2.5.0.jar"/>
+        <copy file="${thirdparty-src.dir}/gluegen-rt-2.5.0.jar" tofile="${thirdparty.dir}/gluegen-rt-2.5.0.jar"/>
+        <copy file="${thirdparty-src.dir}/jhall-2.0.jar" tofile="${thirdparty.dir}/jhall-2.0.jar"/>
+        <copy file="${thirdparty-src.dir}/jrosetta-API-1.0.4.jar" tofile="${thirdparty.dir}/jrosetta-API-1.0.4.jar"/>
+        <copy file="${thirdparty-src.dir}/jrosetta-engine-1.0.4.jar" tofile="${thirdparty.dir}/jrosetta-engine-1.0.4.jar"/>
+        <copy file="${thirdparty-src.dir}/javafx.base-21.0.11.jar" tofile="${thirdparty.dir}/javafx.base-21.0.11.jar"/>
+        <copy file="${thirdparty-src.dir}/javafx.swing-21.0.11.jar" tofile="${thirdparty.dir}/javafx.swing-21.0.11.jar"/>
+        <copy file="${thirdparty-src.dir}/javafx.graphics-21.0.11.jar" tofile="${thirdparty.dir}/javafx.graphics-21.0.11.jar"/>
 
         <ivy:retrieve pattern="${thirdparty.dir}[originalname].[ext]"/>
 
@@ -147,9 +144,6 @@ The main idea is to build at once all the var files
             </fileset>
         </delete>
 
-        <zip destfile="thirdparty-scilab-branch-main-new.zip" basedir="${thirdparty.dir}"/>
-
     </target>
 
 </project>
-

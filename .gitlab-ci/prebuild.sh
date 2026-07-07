@@ -81,9 +81,9 @@ export PATH="/usr/local/bin:$INSTALLUSRDIR/bin:$PATH"
 ################################
 ##### DEPENDENCIES VERSION #####
 ################################
-JDK_VERSION=17.0.7+7
-JRE_VERSION=17.0.7_7
-ANT_VERSION=1.10.5
+JDK_VERSION=21.0.11+10
+JRE_VERSION=21.0.11_10
+ANT_VERSION=1.10.17
 OPENBLAS_VERSION=0.3.28
 ARPACK_VERSION=3.9.1
 CURL_VERSION=8.10.1
@@ -175,8 +175,8 @@ make_versions() {
 download_dependencies() {
     cd "$DOWNLOADDIR" || exit 1
 
-    [ ! -f jre-$JRE_VERSION.tar.gz ] && curl -L -o jre-$JRE_VERSION.tar.gz "https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/OpenJDK17U-jre_x64_linux_hotspot_$(echo ${JRE_VERSION} |sed 's/-//g').tar.gz"
-    [ ! -f jdk-$JDK_VERSION.tar.gz ] && curl -L -o jdk-$JDK_VERSION.tar.gz "https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/ibm-semeru-open-jdk_x64_linux_$(echo ${JDK_VERSION} |sed 's/+/_/g')_openj9-0.38.0.tar.gz"
+    [ ! -f jre-$JRE_VERSION.tar.gz ] && curl -L -o jre-$JRE_VERSION.tar.gz "https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/OpenJDK21U-jre_x64_linux_hotspot_$(echo ${JRE_VERSION} |sed 's/-//g').tar.gz"
+    [ ! -f jdk-$JDK_VERSION.tar.gz ] && curl -L -o jdk-$JDK_VERSION.tar.gz "https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/ibm-semeru-open-jdk_x64_linux_$(echo ${JDK_VERSION} |sed 's/+/_/g')_openj9-0.59.0.tar.gz"
 
     [ ! -f OpenBLAS-$OPENBLAS_VERSION.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/OpenBLAS-$OPENBLAS_VERSION.tar.gz
     [ ! -f apache-ant-$ANT_VERSION-bin.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/apache-ant-$ANT_VERSION-bin.tar.gz
@@ -543,9 +543,9 @@ make_jar() {
         istack-commons-runtime-4.2.0.jar    \
         jakarta.activation-2.0.1.jar        \
         jakarta.activation-api-2.1.3.jar    \
-        javafx.base.jar                     \
-        javafx.graphics.jar                 \
-        javafx.swing.jar                    \
+        javafx.base-21.0.11.jar             \
+        javafx.graphics-21.0.11.jar         \
+        javafx.swing-21.0.11.jar            \
         javax.activation-api-1.2.0.jar      \
         javax.annotation-api-1.3.2.jar      \
         jaxb-api-2.3.1.jar                  \

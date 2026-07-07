@@ -337,6 +337,17 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
     # The class java.util.random.RandomGenerator is new in Java 17
     AC_JAVA_TRY_COMPILE([import java.util.random.RandomGenerator;], , "no", ac_java_jvm_version=17)
 
+    # The class com.sun.net.httpserver.SimpleFileServer is new in Java 18
+    AC_JAVA_TRY_COMPILE([import com.sun.net.httpserver.SimpleFileServer;], , "no", ac_java_jvm_version=18)
+    # The class jdk.incubator.concurrent.StructuredTaskScope is new in Java 19 incubator
+    AC_JAVA_TRY_COMPILE([import jdk.incubator.concurrent.StructuredTaskScope;], , "no", ac_java_jvm_version=19)
+
+    # The class jdk.incubator.concurrent.ScopedValue is new in Java 20 incubator
+    AC_JAVA_TRY_COMPILE([import jdk.incubator.concurrent.ScopedValue;], , "no", ac_java_jvm_version=20)
+
+    # The class java.util.SequencedSet is new in Java 21
+    AC_JAVA_TRY_COMPILE([import java.util.SequencedSet;], , "no", ac_java_jvm_version=21)
+
     if test "x$ac_java_jvm_version" = "x" ; then
         AC_MSG_ERROR([Could not detect Java version, 1.4 or newer is required])
     fi
