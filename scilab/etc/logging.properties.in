@@ -11,3 +11,8 @@ org.scilab.modules.xcos.level = @LOGGING_LEVEL@
 # Release level
 # org.scilab.level = SEVERE
 
+# Console logging level
+org.scilab.modules.core.level = @LOGGING_LEVEL@
+org.scilab.modules.console.level = @LOGGING_LEVEL@
+org.scilab.modules.gui.level = @LOGGING_LEVEL@
+org.scilab.modules.commons.gui.level = @LOGGING_LEVEL@

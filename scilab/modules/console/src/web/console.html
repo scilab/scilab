@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="css/console.css" rel="stylesheet">
+    </head>
+    <body spellcheck="false" onresize="updateSize()">
+        <div tabindex="0" class="console">
+            <div class="output"></div>
+            <div class="input-group">
+              <pre class="prompt">--&gt; </pre>
+              <textarea class="input" tabindex="0" cols="1" oninput="adjustInputSize()" onpaste="return false;" autofocus contentEditable="plaintext-only"></textarea>
+            </div>
+<div class="completion" style="display: none;">
+                <div class="window">
+                    <ul class="listbox"></ul>
+                </div>
+            </div>
+
+            <div class="empty" onclick="focus()"></div>
+        </div>
+        <div class="ghost"></div>
+        <div class="search-container" style="display: none;">
+            <div class="search-field">
+                <input type="text" class="search-input" placeholder="Search" autocomplete="off">
+                <label class="search-toggle" title="Match case"><input type="checkbox" class="search-case-sensitive"><span>Aa</span></label>
+                <label class="search-toggle" title="Match whole word"><input type="checkbox" class="search-whole-word"><span class="search-toggle-ww">ab</span></label>
+                <label class="search-toggle" title="Use regular expression"><input type="checkbox" class="search-regex"><span>.*</span></label>
+            </div>
+            <span class="search-result-count"></span>
+            <button class="search-prev" title="Previous match"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M3.5 10l4.5 -4.5 4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button>
+            <button class="search-next" title="Next match"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M3.5 6l4.5 4.5 4.5 -4.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button>
+            <button class="search-close" title="Close"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M4 4l8 8m0 -8l-8 8" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button>
+        </div>
+
+        <!--div class="controls">
+            <button class="reload">Reload</button>
+            <button class="remove">Clear</button>
+            <button class="test">Test</button>
+        </div-->
+
+        <script src="../../../../thirdparty/web/jquery/jquery.min.js"></script>
+        <script src="../../../../thirdparty/web/mathjax/tex-mml-svg.js"></script>
+
+        <script src="js/console.js"></script>
+    </body>
+</html>

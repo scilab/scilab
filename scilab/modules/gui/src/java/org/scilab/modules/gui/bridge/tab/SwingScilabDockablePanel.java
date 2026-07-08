@@ -43,6 +43,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -113,6 +115,8 @@ import org.scilab.modules.gui.widget.Widget;
  */
 
 public class SwingScilabDockablePanel extends View implements SimpleTab, FocusListener, KeyListener, SwingScilabPanel {
+
+    private static final Logger log = Logger.getLogger("org.scilab.modules.gui.SwingScilabDockablePanel");
 
     private static final Image SCILAB_ICON = new ImageIcon(FindIconHelper.findIcon("scilab", "256x256")).getImage();
 
@@ -379,10 +383,19 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     public void focusGained(FocusEvent e) {
         //ActiveDockableTracker.requestDockableActivation(this);
         if (contentPane != null) {
+            if (log.isLoggable(Level.FINE)) {
+                log.fine("SwingScilabDockablePanel focus redirect to contentPane " + contentPane);
+            }
             contentPane.requestFocus();
         } else if (getContentPane() != null) {
+            if (log.isLoggable(Level.FINE)) {
+                log.fine("SwingScilabDockablePanel focus redirected to getContentPane() " + getContentPane());
+            }
             getContentPane().requestFocus();
         } else {
+            if (log.isLoggable(Level.FINE)) {
+                log.fine("SwingScilabDockablePanel focus redirected to this " + SwingScilabDockablePanel.this);
+            }
             SwingScilabDockablePanel.this.requestFocusInWindow();
         }
     }
@@ -1129,6 +1142,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     }
 
     public void keyTyped(KeyEvent e) {
+        /*
         if (ScilabConstants.isGUI() && (eventHandler == null || !eventEnabled) && !GlobalEventWatcher.isActivated() && !editorEventHandler.isDatatipEnable()
                 && Character.isLetterOrDigit(e.getKeyChar())) {
             SwingScilabConsole console = (SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole();
@@ -1138,6 +1152,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
             win.toFront();
             input.dispatchEvent(new KeyEvent(input, KeyEvent.KEY_TYPED, System.currentTimeMillis(), e.getModifiers(), e.getKeyCode(), e.getKeyChar(), e.getKeyLocation()));
         }
+        */
     }
 
     public JLayeredPane getWidgetPane() {

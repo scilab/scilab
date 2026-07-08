@@ -118,7 +118,6 @@ public class ScilabConsole extends ScilabDockable implements Console {
      * @see org.scilab.modules.gui.UIElement#draw()
      */
     public void draw() {
-        ScilabBridge.draw(this);
     }
 
     /**
@@ -188,13 +187,6 @@ public class ScilabConsole extends ScilabDockable implements Console {
      */
     public void clear(int nbLines) {
         ScilabBridge.clear(this, nbLines);
-    }
-
-    /**
-     * Puts the prompt in the top left corner of the console
-     */
-    public void toHome() {
-        ScilabBridge.toHome(this);
     }
 
     /**

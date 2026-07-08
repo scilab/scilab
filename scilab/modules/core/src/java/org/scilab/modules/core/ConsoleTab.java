@@ -15,9 +15,11 @@
 
 package org.scilab.modules.core;
 
+import java.awt.Container;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import javax.swing.JTextArea;
 
@@ -25,6 +27,7 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.ScilabTermination;
 import org.scilab.modules.gui.bridge.CallScilabBridge;
+import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -52,6 +55,8 @@ public class ConsoleTab {
     private static final String NOCONSOLE = Messages.gettext("No available console !\nPlease use STD mode.");
     private static final String EMPTYTAB = Messages.gettext("Empty tab");
     private static final String MAINTOOLBARXMLFILE = ScilabConstants.SCI + "/modules/gui/etc/main_toolbar.xml";
+
+    private static final Logger log = Logger.getLogger("org.scilab.modules.core.ConsoleTab");
 
     /**
      * Create a console tab
@@ -107,12 +112,16 @@ public class ConsoleTab {
             ClosingOperationsManager.registerClosingOperation(consoleTab, new ClosingOperationsManager.ClosingOperation() {
 
                 public int canClose() {
+                    log.info("ConsoleTab canClose");
                     CallScilabBridge.unblockConsole();
-
                     return 1;
                 }
 
                 public void destroy() {
+                    log.info("ConsoleTab destroy");
+                    SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
+                    sciConsole.close();
+
                     if (!Scilab.getExitCalled()) {
                         ScilabTermination.ScilabExit();
                     }
@@ -130,7 +139,7 @@ public class ConsoleTab {
 
             ClosingOperationsManager.setRoot(consoleTab);
 
-            ScilabConsole.createConsole();
+            ((SwingScilabDockablePanel) consoleTab.getAsSimpleTab()).setContentPane(((SwingScilabConsole) ScilabConsole.createConsole().getAsSimpleConsole()).getUIComponent());
         } catch (NoClassDefFoundError exception) {
             System.err.println("Cannot create Scilab Console.\nCheck if the thirdparties are available (JoGL/JRosetta...).\n"
                                + SEE_DEFAULT_PATHS);

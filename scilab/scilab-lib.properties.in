@@ -67,6 +67,11 @@ avalon-framework.jar=@AVALON_FRAMEWORK@
 jcef.jar=@JCEF@
 gson.jar=@GSON@
 
+; sikuli tests (and its dependecies)
+sikuli.jar=@SIKULI@
+jna.jar=@JNA@
+jna-platform.jar=@JNA_PLATFORM@
+opencv.jar=@OPENCV@
 
 library.src.path=src/java/
 

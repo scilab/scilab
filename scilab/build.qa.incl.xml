@@ -28,6 +28,12 @@
 
     <path id="unittest.classpath">
         <pathelement location="${junit4.jar}"/>
+        <!-- sikuli and its dependencies -->
+        <pathelement location="${sikuli.jar}"/>
+        <pathelement location="${jna.jar}"/>
+        <pathelement location="${jna-platform.jar}"/>
+        <pathelement location="${opencv.jar}"/>
+        <pathelement location="${commons-io.jar}"/>
     </path>
     <path id="cobertura_classpath">
         <pathelement location="${cobertura.jar}"/>
@@ -156,6 +162,21 @@
         <property name="junit.forkMode" value="perBatch"/>
     </target>
 
+    <!-- Define the library path for native libraries -->
+    <property name="library_path" value="${base.dir}/modules/.libs/"/>
+    <property name="library_path" value="${library_path}:${base.dir}/modules/javasci/.libs/"/>
+    <property name="library_path" value="${library_path}:${base.dir}/modules/types/.libs/"/>
+    <property name="library_path" value="${library_path}:${base.dir}/modules/localization/.libs/"/>
+    <property name="library_path" value="${library_path}:${base.dir}/modules/commons/.libs/"/>
+    <property name="library_path" value="${library_path}:${base.dir}/modules/action_binding/.libs/"/>
+    <property name="library_path" value="${library_path}:${base.dir}/thirdparty/"/>
+    <property name="library_path" value="${library_path}:${base.dir}/bin/"/>
+    <property name="library_path" value="${library_path}:${base.dir}/tools/tesseract"/>
+    <property name="library_path" value="${library_path}:/usr/lib/jni/"/>
+    <property name="library_path" value="${library_path}:/usr/lib64/jni"/>
+    <property name="library_path" value="${library_path}:/usr/lib/java/"/>
+    <property name="library_path" value="${library_path}:/usr/lib64/java"/>
+
     <target name="test" depends="existing-tests, compile-test, validate, detectForkMode" if="test-present">
         <mkdir dir="${report.xml.test.dir}" />
         <mkdir dir="${report.html.test.dir}" />
@@ -163,7 +184,7 @@
         <junit fork="yes" forkmode="${junit.forkMode}" failureproperty="junit.failure">
             <sysproperty key="net.sourceforge.cobertura.datafile"
                  file="${report.test.dir}/${library.name}.ser" />
-
+            <sysproperty key="user.language" value="en_US" />
 
             <classpath location="${instrumented.classes.test.dir}"/>
             <classpath location="${classes.test.dir}"/>
@@ -180,12 +201,12 @@
             <!-- Where ${basedir} is the module base directory -->
             <env key="SCI" value="${basedir}/../.."/>
             <jvmarg value="-DtestngTests=1"/>
-            <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:${base.dir}/modules/types/.libs/:${base.dir}/modules/localization/.libs/:${base.dir}/modules/commons/.libs/:${base.dir}/modules/action_binding/.libs/:${base.dir}/thirdparty/:${base.dir}/bin/:/usr/lib/jni/:/usr/lib64/jni:/usr/lib/java/:/usr/lib64/java:"/>
+            <jvmarg value="-Djava.library.path=${library_path}"/>
 
-            <formatter type="brief" useFile="no" />
+            <formatter type="plain" useFile="no" />
             <formatter type="xml" />
 
-            <batchtest fork="yes" todir="${report.xml.test.dir}" >
+            <batchtest fork="yes" todir="${report.xml.test.dir}" > 
                 <fileset dir="tests/java/">
                     <include name="**/*.java"/>
                 </fileset>

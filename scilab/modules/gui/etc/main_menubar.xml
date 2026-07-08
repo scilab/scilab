@@ -184,7 +184,7 @@
             <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.open3DS" type="3"/>
         </submenu>
         <separator/>
-        <submenu label="&amp;About Scilab..." accelerator="shift F1" macosx="false">
+        <submenu label="&amp;About Scilab..." macosx="false">
             <callback instruction="about()" type="0"/>
         </submenu>
     </menu>

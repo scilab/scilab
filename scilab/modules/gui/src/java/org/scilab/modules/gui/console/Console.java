@@ -59,11 +59,6 @@ public interface Console extends Dockable {
     void clear(int nbLines);
 
     /**
-     * Puts the prompt in the top left corner of the console
-     */
-    void toHome();
-
-    /**
      * Sets the prompt displayed in the console
      * @param prompt the prompt to be displayed in the console
      */

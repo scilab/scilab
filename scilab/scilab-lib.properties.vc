@@ -20,9 +20,9 @@ jgraphx.jar=${thirdparty.dir}/jgraphx-2.1.0.7.jar
 
 jogl2.jar=${thirdparty.dir}/jogl-all-2.5.0.jar
 
-javafx.base.jar=${thirdparty.dir}/javafx.base.jar
-javafx.swing.jar=${thirdparty.dir}/javafx.swing.jar
-javafx.graphics.jar=${thirdparty.dir}/javafx.graphics.jar
+javafx.base.jar=${thirdparty.dir}/javafx.base-21.0.11.jar
+javafx.swing.jar=${thirdparty.dir}/javafx.swing-21.0.11.jar
+javafx.graphics.jar=${thirdparty.dir}/javafx.graphics-21.0.11.jar
 
 jhall.jar=${thirdparty.dir}/jhall-2.0.jar
 
@@ -66,6 +66,15 @@ avalon-framework.jar=${thirdparty.dir}/avalon-framework-4.1.4.jar
 ; webview jcef
 jcef.jar=${thirdparty.dir}/jcef-135.0.20.jar
 gson.jar=${thirdparty.dir}/gson-2.10.1.jar
+
+; sikuli tests (and its dependencies)
+sikuli.jar=${thirdparty.dir}/sikulixapi-2.0.5.jar
+jna.jar=${thirdparty.dir}/jna-5.6.0.jar
+jna-platform.jar=${thirdparty.dir}/jna-platform-5.6.0.jar
+opencv.jar=${thirdparty.dir}/opencv-4.3.0-3.jar
+
+; Apache Commons IO (SikuliX dependency)
+commons-io.jar=${thirdparty.dir}/commons-io-2.11.0.jar
 
 library.scirenderer.dir=${modules.dir}/scirenderer/${build.jar.dir}/
 library.scirenderer.src.dir=${modules.dir}/scirenderer/${library.src.path}

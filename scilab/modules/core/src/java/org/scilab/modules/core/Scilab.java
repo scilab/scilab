@@ -24,6 +24,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
@@ -90,6 +92,7 @@ public class Scilab {
     /** Scilab without JVM, plots, desktop */
     public static final int SCILAB_NWNI             = 4;
 
+    private static final Logger log = Logger.getLogger("org.scilab.modules.core.Scilab");
     private static List<Runnable> finalhooks = new ArrayList<Runnable>();
     private static List<Runnable> initialhooks = new ArrayList<Runnable>();
 
@@ -273,6 +276,8 @@ public class Scilab {
         final Object lock = new Object();
         finish = false;
 
+        log.info("canClose");
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -307,30 +312,39 @@ public class Scilab {
         final Object lock = new Object();
         finish = false;
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                exitCalled = true;
-                ClosingOperationsManager.forceClosingOperationOnRoot();
-                exitCalled = false;
+        if (log.isLoggable(Level.INFO))
+        {
+            log.info("forceClose " + Thread.currentThread());
+        }
 
-                SwingScilabWindow.forceClose();
+        Runnable r = () -> {
+            exitCalled = true;
+            ClosingOperationsManager.forceClosingOperationOnRoot();
+            exitCalled = false;
 
-                finish = true;
-                synchronized (lock) {
-                    lock.notify();
-                }
-            }
-        });
+            SwingScilabWindow.forceClose();
 
-        try {
+            finish = true;
             synchronized (lock) {
-                while (!finish) {
-                    lock.wait();
-                }
+                lock.notify();
             }
-        } catch (InterruptedException e) {
-            System.err.println(e);
+        };
+        if (SwingUtilities.isEventDispatchThread())
+        {
+            r.run();
+        }
+        else
+        {
+            try {
+                synchronized (lock) {
+                    SwingUtilities.invokeLater(r);
+                    while (!finish) {
+                        lock.wait();
+                    }
+                }
+            } catch (InterruptedException e) {
+                System.err.println(e);
+            }
         }
         finish = false;
 

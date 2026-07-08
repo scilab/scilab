@@ -188,8 +188,11 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
+	"$(DESTDIR)$(libsciconsole_la_cssdir)" \
 	"$(DESTDIR)$(libsciconsole_la_etcdir)" \
+	"$(DESTDIR)$(libsciconsole_la_jsdir)" \
 	"$(DESTDIR)$(libsciconsole_la_rootdir)" \
+	"$(DESTDIR)$(libsciconsole_la_webdir)" \
 	"$(DESTDIR)$(libsciconsole_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
@@ -361,7 +364,9 @@ am__can_run_installinfo = \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
-DATA = $(libsciconsole_la_etc_DATA) $(libsciconsole_la_root_DATA)
+DATA = $(libsciconsole_la_css_DATA) $(libsciconsole_la_etc_DATA) \
+	$(libsciconsole_la_js_DATA) $(libsciconsole_la_root_DATA) \
+	$(libsciconsole_la_web_DATA)
 HEADERS = $(libsciconsole_la_include_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
@@ -515,6 +520,8 @@ JLATEXMATH = @JLATEXMATH@
 JLATEXMATH_FONT_CYRILLIC = @JLATEXMATH_FONT_CYRILLIC@
 JLATEXMATH_FONT_GREEK = @JLATEXMATH_FONT_GREEK@
 JLATEXMATH_FOP = @JLATEXMATH_FOP@
+JNA = @JNA@
+JNA_PLATFORM = @JNA_PLATFORM@
 JOGL2 = @JOGL2@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -578,6 +585,7 @@ OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLOPTFLAGS = @OCAMLOPTFLAGS@
 OCAMLYACC = @OCAMLYACC@
+OPENCV = @OPENCV@
 OPENMPI_CC = @OPENMPI_CC@
 OPENMPI_CFLAGS = @OPENMPI_CFLAGS@
 OPENMPI_CXX = @OPENMPI_CXX@
@@ -627,6 +635,7 @@ SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
+SIKULI = @SIKULI@
 SKINLF = @SKINLF@
 SPLINT = @SPLINT@
 STRIP = @STRIP@
@@ -742,6 +751,14 @@ libsciconsole_la_etc_DATA = \
 	etc/XConfiguration-general.xsl \
 	etc/Actions-Configuration.xml
 
+
+#### console : web files ####
+libsciconsole_la_webdir = $(mydatadir)/src/web
+libsciconsole_la_web_DATA = src/web/console.html
+libsciconsole_la_cssdir = $(mydatadir)/src/web/css
+libsciconsole_la_css_DATA = src/web/css/console.css
+libsciconsole_la_jsdir = $(mydatadir)/src/web/js
+libsciconsole_la_js_DATA = src/web/js/console.js
 
 #### console : List of the cpp files ####
 CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp
@@ -1623,6 +1640,27 @@ clean-libtool:
 	-rm -rf src/cpp/.libs src/cpp/_libs
 	-rm -rf src/jni/.libs src/jni/_libs
 	-rm -rf src/noconsole/.libs src/noconsole/_libs
+install-libsciconsole_la_cssDATA: $(libsciconsole_la_css_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciconsole_la_css_DATA)'; test -n "$(libsciconsole_la_cssdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciconsole_la_cssdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciconsole_la_cssdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciconsole_la_cssdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciconsole_la_cssdir)" || exit $$?; \
+	done
+
+uninstall-libsciconsole_la_cssDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciconsole_la_css_DATA)'; test -n "$(libsciconsole_la_cssdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciconsole_la_cssdir)'; $(am__uninstall_files_from_dir)
 install-libsciconsole_la_etcDATA: $(libsciconsole_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libsciconsole_la_etc_DATA)'; test -n "$(libsciconsole_la_etcdir)" || list=; \
@@ -1644,6 +1682,27 @@ uninstall-libsciconsole_la_etcDATA:
 	@list='$(libsciconsole_la_etc_DATA)'; test -n "$(libsciconsole_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libsciconsole_la_etcdir)'; $(am__uninstall_files_from_dir)
+install-libsciconsole_la_jsDATA: $(libsciconsole_la_js_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciconsole_la_js_DATA)'; test -n "$(libsciconsole_la_jsdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciconsole_la_jsdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciconsole_la_jsdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciconsole_la_jsdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciconsole_la_jsdir)" || exit $$?; \
+	done
+
+uninstall-libsciconsole_la_jsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciconsole_la_js_DATA)'; test -n "$(libsciconsole_la_jsdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciconsole_la_jsdir)'; $(am__uninstall_files_from_dir)
 install-libsciconsole_la_rootDATA: $(libsciconsole_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libsciconsole_la_root_DATA)'; test -n "$(libsciconsole_la_rootdir)" || list=; \
@@ -1665,6 +1724,27 @@ uninstall-libsciconsole_la_rootDATA:
 	@list='$(libsciconsole_la_root_DATA)'; test -n "$(libsciconsole_la_rootdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libsciconsole_la_rootdir)'; $(am__uninstall_files_from_dir)
+install-libsciconsole_la_webDATA: $(libsciconsole_la_web_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciconsole_la_web_DATA)'; test -n "$(libsciconsole_la_webdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciconsole_la_webdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciconsole_la_webdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciconsole_la_webdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciconsole_la_webdir)" || exit $$?; \
+	done
+
+uninstall-libsciconsole_la_webDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciconsole_la_web_DATA)'; test -n "$(libsciconsole_la_webdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciconsole_la_webdir)'; $(am__uninstall_files_from_dir)
 install-libsciconsole_la_includeHEADERS: $(libsciconsole_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(libsciconsole_la_include_HEADERS)'; test -n "$(libsciconsole_la_includedir)" || list=; \
@@ -1777,7 +1857,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciconsole_la_etcdir)" "$(DESTDIR)$(libsciconsole_la_rootdir)" "$(DESTDIR)$(libsciconsole_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciconsole_la_cssdir)" "$(DESTDIR)$(libsciconsole_la_etcdir)" "$(DESTDIR)$(libsciconsole_la_jsdir)" "$(DESTDIR)$(libsciconsole_la_rootdir)" "$(DESTDIR)$(libsciconsole_la_webdir)" "$(DESTDIR)$(libsciconsole_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1891,9 +1971,12 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libsciconsole_la_etcDATA \
+install-data-am: install-data-local install-libsciconsole_la_cssDATA \
+	install-libsciconsole_la_etcDATA \
 	install-libsciconsole_la_includeHEADERS \
-	install-libsciconsole_la_rootDATA
+	install-libsciconsole_la_jsDATA \
+	install-libsciconsole_la_rootDATA \
+	install-libsciconsole_la_webDATA
 
 install-dvi: install-dvi-am
 
@@ -1980,10 +2063,12 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libsciconsole_la_etcDATA \
+uninstall-am: uninstall-libsciconsole_la_cssDATA \
+	uninstall-libsciconsole_la_etcDATA \
 	uninstall-libsciconsole_la_includeHEADERS \
+	uninstall-libsciconsole_la_jsDATA \
 	uninstall-libsciconsole_la_rootDATA \
-	uninstall-pkglibLTLIBRARIES
+	uninstall-libsciconsole_la_webDATA uninstall-pkglibLTLIBRARIES
 
 .MAKE: all check check-am install install-am install-exec \
 	install-strip
@@ -1997,18 +2082,23 @@ uninstall-am: uninstall-libsciconsole_la_etcDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libsciconsole_la_etcDATA \
+	install-info-am install-libsciconsole_la_cssDATA \
+	install-libsciconsole_la_etcDATA \
 	install-libsciconsole_la_includeHEADERS \
-	install-libsciconsole_la_rootDATA install-man install-pdf \
+	install-libsciconsole_la_jsDATA \
+	install-libsciconsole_la_rootDATA \
+	install-libsciconsole_la_webDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-am uninstall-libsciconsole_la_etcDATA \
+	uninstall-am uninstall-libsciconsole_la_cssDATA \
+	uninstall-libsciconsole_la_etcDATA \
 	uninstall-libsciconsole_la_includeHEADERS \
+	uninstall-libsciconsole_la_jsDATA \
 	uninstall-libsciconsole_la_rootDATA \
-	uninstall-pkglibLTLIBRARIES
+	uninstall-libsciconsole_la_webDATA uninstall-pkglibLTLIBRARIES
 
 .PRECIOUS: Makefile
 

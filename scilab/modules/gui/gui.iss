@@ -37,6 +37,7 @@ Source: thirdparty\skinlf-1.2.3.jar; DestDir: {app}\thirdparty; Components: {#CO
 Source: thirdparty\javafx.base-21.0.11.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: thirdparty\javafx.graphics-21.0.11.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: thirdparty\javafx.swing-21.0.11.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: thirdparty\web\*.*; DestDir: {app}\thirdparty\web; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#GUI}\license.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;

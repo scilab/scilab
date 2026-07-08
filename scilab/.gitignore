@@ -29,6 +29,7 @@ modules/*/inline
 modules/*/jar
 modules/*/test-output
 junit-report
+/ivy.jar
 
 #
 # Documentation generation output files

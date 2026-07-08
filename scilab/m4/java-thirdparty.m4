@@ -31,6 +31,7 @@ AC_DEFUN([AC_JAVA_COMPILE_CHECKER_CLASS], [
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -70,30 +71,35 @@ public class conftestSharedChecker {
             }
         }
         
-        URLClassLoader localClassLoader = new URLClassLoader(found.toArray(new URL[[found.size()]]));
-        URL klassURL = null;
-        Class<?> klass = null;
-        try {
-            String resourceName = className.replace(".", "/") + ".class";
-            klassURL = localClassLoader.getResource(resourceName);
-            klass = localClassLoader.loadClass(className);
-        } catch (ClassNotFoundException ex) {
-            System.err.println(className + " not found");
-            System.exit(-1);
+        try(URLClassLoader localClassLoader = new URLClassLoader(found.toArray(new URL[[found.size()]])))
+        {
+            URL klassURL = null;
+            Class<?> klass = null;
+            try {
+                String resourceName = className.replace(".", "/") + ".class";
+                klassURL = localClassLoader.getResource(resourceName);
+                klass = localClassLoader.loadClass(className);
+            } catch (ClassNotFoundException ex) {
+                System.err.println(className + " not found");
+                System.exit(-1);
+            }
+            
+            String pathURL = klassURL.getPath().substring(0, klassURL.getPath().indexOf('!'));
+            String path = pathURL.substring(pathURL.indexOf(':') + 1);
+            System.err.println("found: " + path);
+            
+            String version;
+            if (!"".equals(argv[[3]])) {
+                version = checkVersion(klass, argv);
+            } else {
+                version = klass.getPackage().getSpecificationVersion();
+            }
+            
+            System.out.println(path + " " + version);
+        } catch (IOException ex) {
+            System.err.println(ex);
+            System.exit(-2);
         }
-        
-        String pathURL = klassURL.getPath().substring(0, klassURL.getPath().indexOf('!'));
-        String path = pathURL.substring(pathURL.indexOf(':') + 1);
-        System.err.println("found: " + path);
-        
-        String version;
-        if (!"".equals(argv[[3]])) {
-            version = checkVersion(klass, argv);
-        } else {
-            version = klass.getPackage().getSpecificationVersion();
-        }
-        
-        System.out.println(path + " " + version);
     }
 
     private static String checkVersion(Class<?> klass, String[[]] argv) throws SecurityException, IllegalArgumentException {
@@ -131,10 +137,14 @@ public class conftestSharedChecker {
                     value = String.valueOf(method.invoke(null));
                     compareAndDisplay(atLeastOrEqual, expected, value);
                 } catch (NullPointerException ex) {
-                    value = String.valueOf(method.invoke(klass.newInstance()));
+                    Constructor cstr = klass.getConstructor();
+                    value = String.valueOf(method.invoke(cstr.newInstance()));
                     compareAndDisplay(atLeastOrEqual, expected, value);
                 }
             }
+        } catch (NoSuchMethodException ex) {
+            System.err.println(ex);
+            System.exit(-2);
         } catch (IllegalAccessException ex) {
             System.err.println(ex);
             System.exit(-2);

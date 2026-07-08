@@ -13,7 +13,7 @@
  *
  */
 
-package org.scilab.modules.gui.utils;
+package org.scilab.modules.commons.utils;
 
 import java.awt.Desktop;
 import java.net.URI;

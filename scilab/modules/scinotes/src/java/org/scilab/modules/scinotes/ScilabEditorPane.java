@@ -67,6 +67,7 @@ import javax.swing.text.View;
 
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.gui.ScilabCaret;
+import org.scilab.modules.commons.utils.WebBrowser;
 import org.scilab.modules.console.utils.ScilabLaTeXViewer;
 import org.scilab.modules.gui.messagebox.MessageBox;
 import org.scilab.modules.gui.messagebox.ScilabMessageBox;
@@ -74,7 +75,6 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.scinotes.actions.CopyAsHTMLAction;
 import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;

@@ -17,6 +17,7 @@ jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-1.0.7.jar
 ; A complete MathML rendering solution
 jeuclid-core.jar=${thirdparty.dir}/jeuclid-core-3.1.14.jar
 
+; Apache XML Graphics Commons
 xmlgraphics-commons.jar=${thirdparty.dir}/xmlgraphics-commons-2.9.jar
 
 library.helptools.dir=${modules.dir}/helptools/${build.jar.dir}/

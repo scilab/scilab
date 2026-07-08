@@ -681,15 +681,6 @@ public class ScilabBridge {
     }
 
     /**
-     * Draw a console
-     * @param console the console to draw
-     * @see org.scilab.modules.ihm.UIElement#draw()
-     */
-    public static void draw(Console console) {
-        ScilabConsoleBridge.draw(console);
-    }
-
-    /**
      * Gets the dimensions (width and height) of a Scilab console
      * @param console the console which we want to get the dimensions of
      * @return the size of the console
@@ -774,14 +765,6 @@ public class ScilabBridge {
      */
     public static void clear(Console console, int nbLines) {
         ScilabConsoleBridge.clear(console, nbLines);
-    }
-
-    /**
-     * Puts the prompt in the top left corner of the console
-     * @param console the console used
-     */
-    public static void toHome(Console console) {
-        ScilabConsoleBridge.toHome(console);
     }
 
     /**

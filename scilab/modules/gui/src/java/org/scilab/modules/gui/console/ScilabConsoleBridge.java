@@ -64,14 +64,6 @@ public class ScilabConsoleBridge {
     }
 
     /**
-     * Draw a console
-     * @param console the console to draw
-     */
-    public static void draw(Console console) {
-        console.getAsSimpleConsole().draw();
-    }
-
-    /**
      * Gets the dimensions (width and height) of a Scilab console
      * @param console the console which we want to get the dimensions of
      * @return the size of the console
@@ -141,15 +133,6 @@ public class ScilabConsoleBridge {
     public static void clear(Console console, int nbLines) {
         console.getAsSimpleConsole().clear(nbLines);
     }
-
-    /**
-     * Puts the prompt in the top left corner of the console
-     * @param console the console used
-     */
-    public static void toHome(Console console) {
-        console.getAsSimpleConsole().toHome();
-    }
-
 
     /**
      * Reads one user input char

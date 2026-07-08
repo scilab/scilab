@@ -18,7 +18,7 @@
             <exclude module="gluegen-rt" />
             <exclude module="jogl-all" />
         </dependency>
-        <!--dependency org="me.friwi" name="jcef-natives-linux-amd64" rev="jcef-ca49ada+cef-135.0.20+ge7de5c3+chromium-135.0.7049.85" conf="*->default"/-->
+        <dependency org="me.friwi" name="jcef-natives-linux-amd64" rev="jcef-ca49ada+cef-135.0.20+ge7de5c3+chromium-135.0.7049.85" conf="*->default"/>
 
         <!-- batik-all added as dependency (to replace batik-*.jar dependencies of fop) -->
         <!-- rev imposed by fop -->
@@ -78,5 +78,10 @@
         <dependency org="org.antlr" name="antlr4-runtime" rev="4.13.1" conf="*->master"/>
         <dependency org="net.sourceforge.cobertura" name="cobertura" rev="2.1.1" conf="*->master"/>
         <dependency org="asm" name="asm" rev="3.3.1" conf="*->default"/>
+        <dependency org="junit" name="junit" rev="4.10" conf="*->default"/>
+        <dependency org="com.sikulix" name="sikulixapi" rev="2.0.5" conf="*->master"/>
+        <dependency org="net.java.dev.jna" name="jna" rev="5.6.0" conf="*->master"/>
+        <dependency org="net.java.dev.jna" name="jna-platform" rev="5.6.0" conf="*->master"/>
+        <dependency org="org.openpnp" name="opencv" rev="4.3.0-3" conf="*->master"/>
     </dependencies>
 </ivy-module>

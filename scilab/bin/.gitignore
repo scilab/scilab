@@ -37,3 +37,4 @@ libintertest.c
 *.so.*
 *.so
 libmatio*
+jcef/

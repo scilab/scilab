@@ -47,14 +47,9 @@ import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttribute;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
-import javax.swing.JEditorPane;
-import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-
 import org.scilab.modules.commons.ScilabCommons;
-import org.scilab.modules.console.SciConsole;
+import org.scilab.modules.commons.utils.WebBrowser;
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.figure.Figure;
@@ -62,7 +57,6 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.browser.SwingScilabBrowser;
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
@@ -88,7 +82,6 @@ import org.scilab.modules.gui.utils.PrinterHelper;
 import org.scilab.modules.gui.utils.ScilabAboutBox;
 import org.scilab.modules.gui.utils.ScilabPrint;
 import org.scilab.modules.gui.utils.UIElementMapper;
-import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.gui.widget.Widget;
 import org.scilab.modules.localization.Messages;
 
@@ -169,13 +162,6 @@ public class CallScilabBridge {
      */
     public static int getCharWithoutOutput() {
         return ScilabConsole.getConsole().getAsSimpleConsole().getCharWithoutOutput();
-    }
-
-    /**
-     * Put the prompt on the top left corner
-     */
-    public static void toHome() {
-        ScilabConsole.getConsole().toHome();
     }
 
     /**
@@ -823,34 +809,6 @@ public class CallScilabBridge {
 
             /* Save new settings */
             ConfigManager.saveConsoleBackground(selectedColor);
-        }
-    }
-
-    /**
-     * Display a dialog to print the console text contents
-     */
-    public static void printConsoleContents() {
-
-        SciConsole scilabConsole = ((SciConsole) ScilabConsole.getConsole().getAsSimpleConsole());
-        Document doc = ((JEditorPane) scilabConsole.getConfiguration().getOutputView()).getDocument();
-        String textToPrint = null;
-
-        /* Text selected in the input */
-        String strInputSelected = ((JTextPane) scilabConsole.getConfiguration().getInputCommandView()).getSelectedText();
-        /* Text selected in the output */
-        String strOutputSelected = ((JEditorPane) scilabConsole.getConfiguration().getOutputView()).getSelectedText();
-
-        try {
-            textToPrint = doc.getText(0, doc.getLength());
-        } catch (BadLocationException e) {
-            e.printStackTrace();
-        }
-        if (strInputSelected != null) {
-            printString(strInputSelected, new String(CONSOLE));
-        } else if (strOutputSelected != null) {
-            printString(strOutputSelected, new String(CONSOLE));
-        } else {
-            printString(textToPrint, new String(CONSOLE));
         }
     }
 

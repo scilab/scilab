@@ -43,6 +43,8 @@ Source: modules\{#CONSOLE}\etc\{#CONSOLE}.start; DestDir: {app}\modules\{#CONSOL
 Source: modules\{#CONSOLE}\etc\*.xml; DestDir: {app}\modules\{#CONSOLE}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#CONSOLE}\etc\*.xsl; DestDir: {app}\modules\{#CONSOLE}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
+Source: modules\{#CONSOLE}\src\web\*.*; DestDir: {app}\modules\{#CONSOLE}\src\web; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#CONSOLE}\macros\buildmacros.sce; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#CONSOLE}\macros\buildmacros.bat; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#CONSOLE}\macros\cleanmacros.bat; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}

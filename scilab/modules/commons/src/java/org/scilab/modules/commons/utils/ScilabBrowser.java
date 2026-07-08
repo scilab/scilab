@@ -7,7 +7,7 @@
  *
  */
 
-package org.scilab.modules.gui.utils;
+package org.scilab.modules.commons.utils;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -17,13 +17,12 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.scilab.modules.commons.OS;
-import org.scilab.modules.commons.ScilabCommons;
-import org.scilab.modules.commons.ScilabConstants;
-
 import org.cef.CefApp;
 import org.cef.CefClient;
 import org.cef.CefSettings;
+import org.scilab.modules.commons.OS;
+import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.ScilabConstants;
 import org.cef.CefApp.CefAppState;
 
 public final class ScilabBrowser {

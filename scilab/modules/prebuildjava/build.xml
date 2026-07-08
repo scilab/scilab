@@ -108,13 +108,16 @@ The main idea is to build at once all the var files
         <ant antfile="../external_objects_java/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
     </target>
 
-    <target name="download" description="Download Java dependencies in thirdparty/ directory">
-        <property name="thirdparty.dir" value="../../thirdparty/"/>
-        <delete dir="${thirdparty.dir}"/>
-        <mkdir dir="${thirdparty.dir}"/>
+    <property name="thirdparty.dir" value="../../thirdparty/"/>
+    <property name="thirdparty-src.dir" value="../../thirdparty-src/"/>
+    <target name="download" description="Download Java dependencies in thirdparty/ directory" depends="init-ivy">
+
+        <delete dir="${thirdparty-src.dir}"/>
+        <mkdir dir="${thirdparty-src.dir}"/>
+        <get src="https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/thirdparty-scilab-branch-main.zip" dest="../../"  usetimestamp="true"/>
+        <unzip src="../../thirdparty-scilab-branch-main.zip" dest="${thirdparty-src.dir}" />
 
         <!-- JARs not provided by Maven Central -->
-        <property name="thirdparty-src.dir" value="../../thirdparty-src/"/>
         <copy file="${thirdparty-src.dir}/jgraphx-2.1.0.7.jar" tofile="${thirdparty.dir}/jgraphx-2.1.0.7.jar"/>
         <copy file="${thirdparty-src.dir}/flexdock-1.2.5.jar" tofile="${thirdparty.dir}/flexdock-1.2.5.jar"/>
         <copy file="${thirdparty-src.dir}/jogl-all-2.5.0.jar" tofile="${thirdparty.dir}/jogl-all-2.5.0.jar"/>
@@ -144,6 +147,60 @@ The main idea is to build at once all the var files
             </fileset>
         </delete>
 
+        <!-- JCEF specific setup:
+                * extract native libs from JARs
+                * rename jar to jcef version
+         -->
+        <unzip dest="${thirdparty-main.dir}/../lib/thirdparty/jcef/">
+            <fileset dir="${thirdparty.dir}" >
+                <include name="jcef-natives-*.jar"/>
+            </fileset>
+        </unzip>
+        <untar dest="${thirdparty-main.dir}/../lib/thirdparty/jcef/" compression="gzip">
+            <fileset dir="${thirdparty-main.dir}/../lib/thirdparty/jcef/" >
+                <include name="jcef-natives-*.tar.gz"/>
+            </fileset>
+        </untar>
+        <delete>
+            <fileset dir="${thirdparty.dir}">
+                <include name="jcef-natives-*.jar"/>
+            </fileset>
+            <fileset dir="${thirdparty-main.dir}/../lib/thirdparty/jcef/">
+                <include name="jcef-natives-*.jar"/>
+                <include name="jcef-natives-*.tar.gz"/>
+            </fileset>
+        </delete>
+        <move todir="${thirdparty.dir}" verbose="true">
+            <fileset dir="${thirdparty.dir}" includes="jcef-api-*.jar" />
+            <mapper type="regexp" from ="^.*\+cef-([0-9]+\.[0-9]+\.[0-9]+)\+.*\.jar$" to="jcef-\1.jar"/>
+        </move>
+
+        <zip destfile="thirdparty-scilab-branch-main-new.zip" basedir="${thirdparty.dir}"/>
     </target>
 
+    <!-- from https://ant.apache.org/ivy/history/latest-milestone/install.html -->
+    <property name="ivy.install.version" value="2.5.2"/>
+    <condition property="ivy.home" value="${env.IVY_HOME}">
+      <isset property="env.IVY_HOME"/>
+    </condition>
+    <property name="ivy.jar.dir" value="../.."/>
+    <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
+    <target name="download-ivy" unless="offline">
+        <!-- download Ivy from web site so that it can be used even without any special installation -->
+        <get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+             dest="${ivy.jar.file}" usetimestamp="true"/>
+    </target>
+
+    <target name="init-ivy" depends="download-ivy">
+      <!-- try to load Ivy here from Ivy home, in case the user has not already dropped
+              it into Ant's lib dir (note that the latter copy will always take precedence).
+              We will not fail as long as local lib dir exists (it may be empty) and
+              Ivy is in at least one of Ant's lib dir or the local lib dir. -->
+        <path id="ivy.lib.path">
+            <fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+
+        </path>
+        <taskdef resource="org/apache/ivy/ant/antlib.xml"
+                 uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+    </target>
 </project>

@@ -559,15 +559,20 @@ make_jar() {
         jlatexmath-font-cyrillic-1.0.7.jar  \
         jlatexmath-font-greek-1.0.7.jar     \
         jlatexmath-fop-1.0.7.jar            \
+        jna-5.6.0.jar                       \
+        jna-platform-5.6.0.jar              \
         jrosetta-API-1.0.4.jar              \
         jrosetta-engine-1.0.4.jar           \
         junit-4.10.jar                      \
         lucene-analysis-common-9.10.0.jar   \
         lucene-core-9.10.0.jar              \
         lucene-queryparser-9.10.0.jar       \
+        opencv-4.3.0-3.jar                  \
         qdox-1.12.jar                       \
+        sikulixapi-2.0.5.jar                \
         skinlf-1.2.3.jar                    \
         slf4j-api-1.7.25.jar                \
+        web/                                \
         xml-apis-1.4.01.jar                 \
         xml-apis-ext-1.3.04.jar             \
         xmlgraphics-commons-2.9.jar         \

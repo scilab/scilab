@@ -61,7 +61,6 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.Widget;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.utils.PositionConverter;
-import org.scilab.modules.gui.utils.ScilabBrowser;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
@@ -70,6 +69,8 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.gui.ScilabCefPanel;
+import org.scilab.modules.commons.utils.ScilabBrowser;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_DEBUG__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
@@ -82,18 +83,17 @@ public class SwingScilabBrowser extends JPanel implements SwingViewObject, Widge
     private String callback;
     private Integer callbackType;
     private Integer uid;
-    private CefClient client_;
+    private ScilabCefPanel cefPanel;
     private CefBrowser browser_;
-    private boolean devToolsOpened = false;
     private Boolean debug = false;
     private String url = "";
     private String helpers;
 
     public SwingScilabBrowser() {
-        client_ = ScilabBrowser.get();
-        browser_ = client_.createBrowser(url, false, false);
+        cefPanel = new ScilabCefPanel(url);
+        browser_ = cefPanel.getBrowser();
 
-        client_.addMessageRouter(CefMessageRouter.create(new CefMessageRouterConfig("Scilab", "ScilabAbort"), new CefMessageRouterHandlerAdapter() {
+        cefPanel.getClient().addMessageRouter(CefMessageRouter.create(new CefMessageRouterConfig("Scilab", "ScilabAbort"), new CefMessageRouterHandlerAdapter() {
             public boolean onQuery(CefBrowser browser, CefFrame frame, long queryId, String request, boolean persistent, CefQueryCallback callback) {
                 if (browser_ == browser) {
                     callback.success(String.valueOf(queryId));
@@ -104,35 +104,7 @@ public class SwingScilabBrowser extends JPanel implements SwingViewObject, Widge
             }
         }));
 
-        client_.addKeyboardHandler(new CefKeyboardHandlerAdapter() {
-            @Override
-            public boolean onKeyEvent(CefBrowser browser, CefKeyEvent event) {
-                if (browser == browser_) {
-                    boolean isMac = OS.get() == OS.MAC;
-                    boolean isCTRL = isMac == false && (event.modifiers & EventFlags.EVENTFLAG_CONTROL_DOWN) == EventFlags.EVENTFLAG_CONTROL_DOWN;
-                    boolean isCOMMAND = isMac && (event.modifiers & EventFlags.EVENTFLAG_COMMAND_DOWN) == EventFlags.EVENTFLAG_COMMAND_DOWN;
-                    boolean isSHIFT = (event.modifiers & EventFlags.EVENTFLAG_SHIFT_DOWN) == EventFlags.EVENTFLAG_SHIFT_DOWN;
-
-                    if (event.type == CefKeyEvent.EventType.KEYEVENT_RAWKEYDOWN)
-                    {
-                        switch (event.windows_key_code) {
-                            case KeyEvent.VK_I: {
-                                if ((isCTRL || isCOMMAND) && isSHIFT) {
-                                    if (debug) {
-                                        openDebug(true);
-                                    }
-                                    return true;
-                                }
-                                break;
-                            }
-                        }
-                    }
-                }
-                return false;
-            }
-        });
-
-        client_.addLifeSpanHandler(new CefLifeSpanHandlerAdapter() {
+        cefPanel.getClient().addLifeSpanHandler(new CefLifeSpanHandlerAdapter() {
             @Override
             public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name) {
                 // Open external links in the user's default system browser
@@ -156,7 +128,7 @@ public class SwingScilabBrowser extends JPanel implements SwingViewObject, Widge
             }
         });
 
-        client_.addLoadHandler(new CefLoadHandlerAdapter() {
+        cefPanel.getClient().addLoadHandler(new CefLoadHandlerAdapter() {
             @Override
             public void onLoadStart(CefBrowser browser, CefFrame frame, TransitionType transitionType) {
                 if (browser == browser_) {
@@ -201,18 +173,6 @@ public class SwingScilabBrowser extends JPanel implements SwingViewObject, Widge
             }
         });
 
-        client_.addContextMenuHandler(new CefContextMenuHandlerAdapter() {
-            @Override
-            public void onBeforeContextMenu(CefBrowser browser, CefFrame frame, CefContextMenuParams params, CefMenuModel model) {
-                //disable default JCEF contextmenu but allows user to set own in JS
-                if (model.getCount() == 5
-                    && model.getLabel(model.getCommandIdAt(0)).equals("&Back")
-                    && model.getLabel(model.getCommandIdAt(1)).equals("&Forward")) {
-                    model.clear();
-                }
-            }
-        });
-
         try {
             helpers = new String(Files.readAllBytes(Paths.get(ScilabConstants.SCI.getCanonicalPath(), "/modules/gui/etc/ScilabBrowser.js")));
         } catch (IOException e) {
@@ -223,7 +183,7 @@ public class SwingScilabBrowser extends JPanel implements SwingViewObject, Widge
 
         setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         setLayout(new BorderLayout(0, 0));
-        add(browser_.getUIComponent(), BorderLayout.CENTER);
+        add(cefPanel, BorderLayout.CENTER);
 
         validate();
     }
@@ -331,17 +291,8 @@ public class SwingScilabBrowser extends JPanel implements SwingViewObject, Widge
 
     @Override
     public void destroy() {
+        // will call removeNotify() on ScilabCefPanel
         ScilabSwingUtilities.removeFromParent(this);
-
-        if (devToolsOpened == true) {
-            browser_.closeDevTools();
-            devToolsOpened = false;
-        }
-        if (browser_ != null) {
-            browser_.close(true); // Must use true here to avoid issues with docked instances
-        }
-
-        ScilabBrowser.release(client_);
     }
 
     @Override
@@ -422,19 +373,11 @@ public class SwingScilabBrowser extends JPanel implements SwingViewObject, Widge
     public void openDebug(boolean toggle) {
         if (toggle)
         {
-            if (devToolsOpened == true) {
-                browser_.closeDevTools();
-            } else {
-                browser_.openDevTools();
-            }
-            devToolsOpened = !devToolsOpened;
+            cefPanel.toggleDevTools();
         }
         else
         {
-            if (devToolsOpened == false) {
-                browser_.openDevTools();
-                devToolsOpened = true;
-            }
+            cefPanel.openDevTools();
         }
     }
 

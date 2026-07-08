@@ -1010,7 +1010,6 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
    if test "$ac_java_jvm_name" = "jdk"; then
         JAVA_HOME=$ac_java_jvm_dir
         JAVA_VERSION=$ac_java_jvm_version
-#     AC_JAVA_TOOLS
 
         AC_JAVA_JNI_INCLUDE
         JAVA_JNI_INCLUDE=$ac_java_jvm_jni_include_flags
@@ -1401,6 +1400,20 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
         fi
         ASM3=$PACKAGE_JAR_FILE
         AC_SUBST(ASM3)
+
+        # SikuliX (optional: for GUI tests and its dependencies)
+        AC_JAVA_CHECK_JAR([sikuli],[org.sikuli.script.App],[SikuliX - Visual Automation and Testing],"yes")
+        SIKULI=$PACKAGE_JAR_FILE
+        AC_SUBST(SIKULI)
+        AC_JAVA_CHECK_JAR([jna],[com.sun.jna.Native],[SikuliX dependency - Java Native Access],"yes")
+        JNA=$PACKAGE_JAR_FILE
+        AC_SUBST(JNA)
+        AC_JAVA_CHECK_JAR([jna-platform],[com.sun.jna.platform.unix.LibC],[SikuliX dependency - Java Native Access Platform],"yes")
+        JNA_PLATFORM=$PACKAGE_JAR_FILE
+        AC_SUBST(JNA_PLATFORM)
+        AC_JAVA_CHECK_JAR([opencv],[org.opencv.core.Core],[SikuliX dependency - OpenCV for Java],"yes")
+        OPENCV=$PACKAGE_JAR_FILE
+        AC_SUBST(OPENCV)
 
         AC_JAVA_CHECK_JAR([ecj],[org.eclipse.jdt.core.compiler.batch.BatchCompiler],[Eclipse Java compiler],"yes")
         ECJ=$PACKAGE_JAR_FILE

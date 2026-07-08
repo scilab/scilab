@@ -64,12 +64,12 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.utils.WebBrowser;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.messagebox.SimpleMessageBox;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
-import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.localization.Messages;
 
 /**

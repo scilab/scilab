@@ -15,40 +15,24 @@
 
 package org.scilab.modules.gui.bridge.console;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.KeyboardFocusManager;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.IOException;
 import java.util.StringTokenizer;
+import java.util.logging.Logger;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JCheckBox;
-import javax.swing.JEditorPane;
-import javax.swing.JPanel;
-import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.StyleContext;
-import javax.swing.text.StyledDocument;
-
 import org.scilab.modules.action_binding.InterpreterManagement;
-import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
-import org.scilab.modules.console.SciHistoryManager;
-import org.scilab.modules.console.SciInputCommandView;
-import org.scilab.modules.console.SciOutputView;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
+import org.scilab.modules.gui.bridge.CallScilabBridge;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.console.SimpleConsole;
@@ -57,17 +41,14 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.history_manager.HistoryManagement;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.commons.xml.XConfiguration;
+import org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
-
-import com.artenum.rosetta.interfaces.ui.InputCommandView;
-import com.artenum.rosetta.util.StringConstants;
 
 /**
  * Swing implementation for Scilab Console in GUIs
@@ -83,11 +64,14 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
     private static final String CLEAR_CONFIRM = Messages.gettext("Are you sure you want to clear the console ?");
     private static final String DONT_SHOW = Messages.gettext("Do not show this message again");
 
+    private static final Logger log = Logger.getLogger("org.scilab.modules.gui.bridge.console.SwingScilabConsole");
+    
     /**
      * Constructor
      */
     public SwingScilabConsole() {
-        super(ConfigManager.getUserConfigFile());
+        //super(ConfigManager.getUserConfigFile());
+        super();
 
         SwingScilabContextMenu menu = new SwingScilabContextMenu();
 
@@ -203,19 +187,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         menu.add(evalWithEchoMenu);
         menu.add(evalWithNoEchoMenu);
 
-        ((JEditorPane) getConfiguration().getOutputView()).setComponentPopupMenu(menu);
-        ((JTextPane) getConfiguration().getInputCommandView()).setComponentPopupMenu(menu);
-        ((JPanel) getConfiguration().getPromptView()).setComponentPopupMenu(menu);
-
-        ((JTextPane) getConfiguration().getInputCommandView()).requestFocus();
-
-        addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                ((JTextPane) getConfiguration().getInputCommandView()).requestFocus();
-            }
-
-            public void focusLost(FocusEvent e) { }
-        });
+        setComponentPopupMenu(menu);
     }
 
     /**
@@ -224,107 +196,17 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
      * @see fr.scilab.console.HelpBrowser#display(java.lang.String)
      */
     public void display(String dataToDisplay) {
-        this.getConfiguration().getOutputView().append(dataToDisplay);
+        append(dataToDisplay);
     }
 
-    /**
-     * This method is used to display the prompt
-     */
-    public void displayPrompt() {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                InputCommandView inputCmdView = SwingScilabConsole.this.getConfiguration().getInputCommandView();
-
-                // Show the prompt
-                SwingScilabConsole.this.getConfiguration().getPromptView().setVisible(true);
-
-                // Show the input command view and its hidden components
-                inputCmdView.setEditable(true);
-                JTextPane tp = (JTextPane) inputCmdView;
-                if (tp.isFocusOwner()) {
-                    tp.getCaret().setVisible(true);
-                }
-                setToHome();
-            }
-        });
-
-        ((SciOutputView) this.getConfiguration().getOutputView()).resetLastEOL();
-
-        updateScrollPosition();
-    }
-
-    /**
-     * Unblock the console if needed
-     */
-    public void unblock() {
-        if (getCanReadUserInputValue().availablePermits() == 0) {
-            setUserInputValue((int) 'n');
-        }
-
-        // interrupt any mscanf call (input, halt and so on)
-        ((SciInputCommandView) this.getConfiguration().getInputCommandView()).interruptAndDisable();
-    }
-
-    /**
-     * Reads one user input char
-     * @return the data entered by the user
-     * @see fr.scilab.console.HelpBrowser#getCharWithoutOutput()
-     */
+    @Override
     public int getCharWithoutOutput() {
-        int retChar;
-
-        updateScrollPosition();
-
-        // Avoids reading of an empty buffer
-        try {
-            ((SciConsole) this).getCanReadUserInputValue().acquire();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        this.getConfiguration().getPromptView().setVisible(false);
-        this.getConfiguration().getInputCommandView().setEditable(false);
-
-        // Add a keylistener which will set the returned char
-        OneCharKeyEventListener keyListener = new OneCharKeyEventListener(this);
-        ((JTextPane) this.getConfiguration().getInputCommandView()).addKeyListener(keyListener);
-        ((JEditorPane) this.getConfiguration().getOutputView()).addKeyListener(keyListener);
-
-        // Reads the buffer
-        retChar = this.getUserInputValue();
-        ((SciConsole) this).getCanReadUserInputValue().release();
-
+        int retChar = this.getUserInputValue();
+        
         // Remove the "more" message and replace it by an empty line
-        this.clear(-1);
-        this.display(StringConstants.NEW_LINE);
-
-        // Remove the key listener
-        ((JTextPane) this.getConfiguration().getInputCommandView()).removeKeyListener(keyListener);
-        ((JEditorPane) this.getConfiguration().getOutputView()).removeKeyListener(keyListener);
-
-        this.getConfiguration().getPromptView().setVisible(true);
-        this.getConfiguration().getInputCommandView().setEditable(true);
-
-        // Send back the focus of the input view
-        this.getConfiguration().getInputCommandView().reset();
-        this.getConfiguration().getInputCommandView().requestFocus();
-
-        final JTextPane cmdView = (JTextPane) this.getConfiguration().getInputCommandView();
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                cmdView.getCaret().setVisible(true);
-            }
-        });
+        this.clear(1);
 
         return retChar;
-    }
-
-    /**
-     * Draw a console
-     */
-    public void draw() {
-        super.setVisible(true);
-        super.doLayout();
     }
 
     /**
@@ -356,6 +238,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
      * @param newSize the size we want to set to the console
      */
     public void setDims(Size newSize) {
+        log.info("setDims: " + newSize.getWidth() + " " + newSize.getHeight());
         this.setPreferredSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
     }
 
@@ -364,6 +247,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
      * @param newPosition the position we want to set to the console
      */
     public void setPosition(Position newPosition) {
+        log.info("setPosition: " + newPosition.getX() + " " + newPosition.getY());
         this.setLocation(newPosition.getX(), newPosition.getY());
     }
 
@@ -375,140 +259,50 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         super.setVisible(newVisibleState);
     }
 
+    public void close() {
+        closeConsole();
+    }
+
     /**
      * Clears the Console
      */
     public void clear() {
-        CheckClearConfirmation ccc = XConfiguration.get(CheckClearConfirmation.class, XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH)[0];
-        if (ccc.checked) {
-            final Component focused = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
-            final boolean[] checked = new boolean[1];
-            final Action action = new AbstractAction() {
-                public void actionPerformed(ActionEvent e) {
-                    checked[0] = ((JCheckBox) e.getSource()).isSelected();
-                }
-            };
-
-            boolean isNo = ScilabModalDialog.show(this, new String[] { CLEAR_CONFIRM }, CLEAR, IconType.WARNING_ICON, ButtonType.YES_NO, DONT_SHOW, action) == AnswerOption.NO_OPTION;
-            if (focused != null) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        focused.requestFocus();
+        SwingUtilities.invokeLater(() -> {
+            CheckClearConfirmation ccc = XConfiguration.get(CheckClearConfirmation.class, XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH)[0];
+            if (ccc.checked) {
+                final boolean[] checked = new boolean[1];
+                final Action action = new AbstractAction() {
+                    public void actionPerformed(ActionEvent e) {
+                        checked[0] = ((JCheckBox) e.getSource()).isSelected();
                     }
-                });
-            }
+                };
 
-            if (isNo) {
+                AnswerOption ans = ScilabModalDialog.show(SwingScilabConsole.this, new String[] { CLEAR_CONFIRM }, CLEAR, IconType.WARNING_ICON, ButtonType.YES_NO, DONT_SHOW, action);
                 if (checked[0]) {
                     XConfiguration.set(XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH + "/@state", "unchecked");
                 }
-                return;
+
+                if (ans == AnswerOption.YES_OPTION)
+                {
+                    SwingScilabConsole.super.clear();
+                }
+            } else {
+                SwingScilabConsole.super.clear();
             }
-
-            if (checked[0]) {
-                XConfiguration.set(XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH + "/@state", "unchecked");
-            }
-        }
-
-        super.clear();
-    }
-
-    /**
-     * Sets the prompt displayed in the console
-     * @param prompt the prompt to be displayed in the console
-     */
-    public void setPrompt(String prompt) {
-        this.getConfiguration().getPromptView().setDefaultPrompt(prompt);
-    }
-
-    /**
-     * Clear the commands history
-     */
-    public void clearHistory() {
-        ((SciHistoryManager) this.getConfiguration().getHistoryManager()).reset();
+        });
     }
 
     /**
      * Paste clipboard contents in Console input line
      */
     public void pasteClipboard() {
-        // Gets the contents of the clipboard
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Clipboard systemClipboard = toolkit.getSystemClipboard();
-
-        // Verify that clibpboard data is of text type
-        boolean dataAvailable;
         try {
-            dataAvailable = systemClipboard.isDataFlavorAvailable(DataFlavor.stringFlavor);
-        } catch (IllegalStateException exception) {
-            return;
-        }
-
-        // Exit if text data not available
-        if (!dataAvailable) {
-            return;
-        }
-
-        // Read data
-        String clipboardContents = null;
-        try {
-            clipboardContents = (String) systemClipboard.getData(DataFlavor.stringFlavor);
-        } catch (UnsupportedFlavorException e1) {
-            // Should never be here
-            e1.printStackTrace();
-        } catch (IOException e1) {
-            // Should never be here
-            e1.printStackTrace();
-        }
-
-        JTextPane input = ((JTextPane) this.getConfiguration().getInputCommandView());
-        StyledDocument doc = input.getStyledDocument();
-
-        // If some text selected then it is replaced
-        if (input.getSelectedText() != null) {
-            try {
-                doc.remove(input.getSelectionStart(), input.getSelectionEnd() - input.getSelectionStart());
-            } catch (BadLocationException e) {
-                e.printStackTrace();
-            }
-        }
-        // Insert clipboard contents
-        try {
-            doc.insertString(((JTextPane) this.getConfiguration().getInputCommandView()).getCaretPosition(),
-                             clipboardContents, doc.getStyle(StyleContext.DEFAULT_STYLE));
-        } catch (BadLocationException e) {
+            Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
+            Object data = t.getTransferData(DataFlavor.stringFlavor);
+            sendToHTML("paste", data.toString());
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Select all the console contents
-     */
-    public void selectAll() {
-        JEditorPane output = (JEditorPane) this.getConfiguration().getOutputView();
-        output.setSelectionStart(0);
-        output.setSelectionEnd(output.getText().length());
-        // TODO should also select the prompt and the input
-    }
-
-    /**
-     * Return the selected text in the console
-     * @return The selected text in the console
-     */
-    private String getSelectedText() {
-        JEditorPane output = (JEditorPane) this.getConfiguration().getOutputView();
-        JTextPane input = (JTextPane) this.getConfiguration().getInputCommandView();
-
-        String selection = "";
-        if (output.getSelectedText() != null) {
-            selection += output.getSelectedText();
-        }
-        // TODO should also copy the prompt
-        if (input.getSelectedText() != null) {
-            selection += input.getSelectedText();
-        }
-        return selection;
-
     }
 
     /**
@@ -522,11 +316,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         keyword = keyword.replaceAll("'", "''");
         keyword = keyword.replaceAll("\"", "\"\"");
 
-        /* @TODO: Check if it is possible to call directly
-         * from the Java engine the help
-         * Last time I check, we needed some information
-         * provided by the Scilab native engine
-         */
         InterpreterManagement.requestScilabExec("doc('" + keyword + "')");
     }
 
@@ -558,28 +347,14 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
      * Put the console selected text in the clipboard
      */
     public void copyToClipboard() {
-        String selection = getSelectedText();
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(selection), null);
+        sendToHTML("copy");
     }
 
     /**
      * Cut selected text in the Console input line
      */
     public void cutSelection() {
-        JTextPane input = (JTextPane) this.getConfiguration().getInputCommandView();
-        StyledDocument doc = input.getStyledDocument();
-
-        // If some text selected then it is replaced
-        if (input.getSelectedText() != null) {
-            try {
-                /* Put the selection in the clipboard */
-                Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(input.getSelectedText()), null);
-                /* Remove selected text */
-                doc.remove(input.getSelectionStart(), input.getSelectionEnd() - input.getSelectionStart());
-            } catch (BadLocationException e) {
-                e.printStackTrace();
-            }
-        }
+        sendToHTML("cut");
     }
 
     /**
@@ -587,7 +362,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
      * @param nbLines the number of lines
      */
     public void setMaxOutputSize(int nbLines) {
-        ((SciOutputView) this.getConfiguration().getOutputView()).setMaxSize(nbLines);
+        setMaxSize(nbLines);
     }
 
     @XConfAttribute
@@ -601,5 +376,9 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         private void set(String checked) {
             this.checked = checked.equals("checked");
         }
+    }
+
+    public String getClipboardContents() {
+        return CallScilabBridge.getClipboardContents();
     }
 }

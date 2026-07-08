@@ -18,7 +18,7 @@ package org.scilab.modules.ui_data.newsfeed;
 
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.FindIconHelper;
-import org.scilab.modules.gui.utils.WebBrowser;
+import org.scilab.modules.commons.utils.WebBrowser;
 
 import javax.swing.JPanel;
 import javax.swing.JEditorPane;

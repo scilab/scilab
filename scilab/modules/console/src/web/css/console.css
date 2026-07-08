@@ -1,0 +1,407 @@
+/*
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2024-2026 - Dassault Systèmes S.E. - Antoine ELIAS
+ *
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ */
+ 
+/*
+@font-face {
+    font-family: "Monospaced";
+    src: local("Courier New");
+}
+*/
+
+@font-face {
+    font-family: "scilab-font";
+    src:local("3ds-SemiBold");
+}
+
+@font-face {
+    font-family: "3DS";
+    src: local("3ds");
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: scilab-font;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+body {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    caret-color: rgb(0, 0, 0);
+}
+
+.progress {
+    cursor: progress;
+}
+
+.console {
+    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    overflow-anchor: none;
+    /* .console grabs the focus while a command runs (disableInput):
+       hide the browser focus ring that would flash around the whole console */
+    outline: none;
+}
+
+.console::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+
+.console::-webkit-scrollbar-track {
+    background: #F0F0F0;
+}
+
+.console::-webkit-scrollbar-thumb {
+    background: #858585;
+    border: 7px solid transparent;
+    border-radius: 9px;
+    background-clip: content-box;
+    transition: border-width 0.6s linear;
+    min-height: 20px;
+    min-width: 20px;
+}
+
+.console::-webkit-scrollbar-thumb:hover {
+    border-width: 5px;
+    transition: border-width 0.6s linear;
+}
+
+.console::-webkit-scrollbar-corner {
+    background: #85858540;
+}
+
+.console pre {
+    /* no vertical margin: output lines are merged in a single pre, any margin
+       here makes the live input line sit lower than the echoed line will be */
+    margin: 0;
+}
+
+.output > * {
+    display: block;
+    min-height: 15px;
+    width: 100%;
+    color: inherit;
+    background-color: inherit;
+    caret-color: inherit;
+}
+
+.output {
+    flex: 0 1 auto;
+    cursor: default;
+    color: inherit;
+    background-color: inherit;
+    caret-color: inherit;
+}
+
+pre.monospace {
+    display: inline;
+    white-space: pre;
+    font-family: inherit;
+    font-size: inherit;
+    position: relative;
+}
+
+.input-group {
+    flex: 0 0 auto;
+    width: 100%;
+    display: flex;
+}
+
+.prompt {
+    user-select: none;
+    flex: 0 0 auto;
+    display: inline;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: inherit;
+    caret-color: inherit;
+}
+
+.input {
+    flex: 1 0 auto;
+    font-family: inherit;
+    font-size: inherit;
+    resize: none;
+    border: none;
+    overflow: hidden;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    color: inherit;
+    background-color: inherit;
+    caret-color: inherit;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.ghost {
+    font-family: inherit;
+    font-size: inherit;
+    border: none;
+    overflow: hidden;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    visibility: hidden;
+    position: fixed;
+    left: -1000px;
+    top: -1000px;
+}
+
+.hide-input {
+    visibility: hidden;
+}
+
+.output-prompt {
+    user-select: none;
+    display: inline;
+}
+
+.completion {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 45px;
+    background-color: #ddd;
+}
+
+.completion {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 97px;
+    background-color: #00000000;
+    user-select: none;
+}
+
+.window {
+    position: relative;
+    outline: 1px solid black;
+    left: 50px;
+    background-color: inherit;
+    max-height: 90px;
+    min-height: 15px;
+    min-width: 150px;
+    width: fit-content;
+    overflow: auto;
+}
+
+.listbox {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.listbox:focus {
+    outline: none;
+}
+
+.listitem {
+    display: flex;
+    font-family: monospace;
+    color: inherit;
+    background-color: inherit;
+}
+
+.listitem.selected {
+    background: #3367D1;
+    color: #fff;
+}
+
+.listitem:hover {
+    background: #ccc;
+}
+
+.listitem .listpad {
+    width: 50px;
+}
+
+.listitem .listtype {
+    margin-left: auto;
+    margin-right: 5px;
+    font-style: italic;
+}
+
+.empty {
+    flex: 1 1 auto;
+    background-color: #ffffff00;
+}
+
+
+
+/* LaTeX hover */
+.latex-expression {
+    display: inline;
+    position: absolute;
+    text-decoration: none;
+}
+.latex-expression:hover {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+.latex-preview {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 10000;
+    max-width: 300px;
+    font-size: 14px;
+    font-family: inherit;
+    display: none;
+}
+
+.controls {
+    display: flex;
+}
+
+/* Search widget, VS Code style: a compact bar docked below the top edge.
+   Colors are mixed from currentColor so the widget follows the console
+   foreground/background colors sent by Scilab (light or dark). */
+.search-container {
+    position: absolute;
+    top: 0;
+    right: 28px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 4px 5px;
+    background-color: inherit;
+    border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    font-family: system-ui, sans-serif;
+    font-size: 12px;
+    user-select: none;
+}
+
+.search-field {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    padding: 1px;
+    border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+    border-radius: 2px;
+    background-color: color-mix(in srgb, currentColor 6%, transparent);
+}
+
+.search-field:focus-within {
+    border-color: #3367D1;
+}
+
+.search-container.no-results .search-field {
+    border-color: #E51400;
+}
+
+.search-input {
+    width: 170px;
+    padding: 2px 4px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.search-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 2px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 11px;
+    line-height: 1;
+}
+
+.search-toggle:hover {
+    background-color: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.search-toggle input {
+    display: none;
+}
+
+.search-toggle:has(input:checked) {
+    background-color: color-mix(in srgb, #3367D1 30%, transparent);
+    box-shadow: inset 0 0 0 1px #3367D1;
+}
+
+.search-toggle-ww {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.search-result-count {
+    min-width: 52px;
+    padding: 0 4px;
+    text-align: center;
+    white-space: nowrap;
+    opacity: 0.7;
+}
+
+.search-container.no-results .search-result-count {
+    color: #E51400;
+    opacity: 1;
+}
+
+.search-prev, .search-next, .search-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: none;
+    border-radius: 3px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.search-prev:hover, .search-next:hover, .search-close:hover {
+    background-color: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.search-prev:active, .search-next:active, .search-close:active {
+    background-color: color-mix(in srgb, currentColor 20%, transparent);
+}
+
+/* all matches, translucent so it reads on light and dark consoles */
+.search-highlight {
+    background-color: rgba(255, 196, 0, 0.35);
+    border-radius: 2px;
+}
+
+/* the match the navigation is on, VS Code style */
+.search-highlight-current {
+    background-color: #FF9632;
+    color: #000000;
+}

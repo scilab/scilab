@@ -48,6 +48,5 @@ public class SelectAllAction extends AbstractConsoleAction {
 
         inputPane.setSelectionStart(0);
         inputPane.setSelectionEnd(inputPane.getText().length());
-
     }
 }

@@ -62,12 +62,12 @@ import javax.swing.text.html.HTMLDocument;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.commons.utils.WebBrowser;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.utils.ConfigManager;
-import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.localization.Messages;
 
 /**

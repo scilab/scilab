@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ * Copyright (C) 2025-2026 - Dassault Systèmes S.E. - Antoine ELIAS
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -16,52 +17,52 @@
 package org.scilab.modules.console;
 
 import java.awt.BorderLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.Color;
-import java.awt.Cursor;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.AdjustmentListener;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
-import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.awt.KeyboardFocusManager;
+import java.awt.MouseInfo;
+import java.awt.Toolkit;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.Semaphore;
 
-import javax.swing.BoundedRangeModel;
-import javax.swing.DefaultBoundedRangeModel;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JEditorPane;
-import javax.swing.JTextPane;
-import javax.swing.SwingUtilities;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.JTextComponent;
 import javax.swing.KeyStroke;
-import javax.xml.parsers.ParserConfigurationException;
-import org.scilab.modules.localization.Messages;
+import javax.swing.SwingUtilities;
 
-import org.xml.sax.SAXException;
-
-import com.artenum.rosetta.interfaces.core.ConsoleAction;
-import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
-import com.artenum.rosetta.interfaces.core.InputParsingManager;
-import com.artenum.rosetta.interfaces.ui.InputCommandView;
-import com.artenum.rosetta.interfaces.ui.OutputView;
-import com.artenum.rosetta.interfaces.ui.PromptView;
-import com.artenum.rosetta.ui.Console;
-import com.artenum.rosetta.util.ConfigurationBuilder;
-import com.artenum.rosetta.util.ConsoleBuilder;
-import com.artenum.rosetta.util.StringConstants;
-
-import org.scilab.modules.commons.xml.ScilabXMLUtilities;
+import org.cef.browser.CefBrowser;
+import org.cef.browser.CefFrame;
+import org.cef.browser.CefMessageRouter;
+import org.cef.browser.CefMessageRouter.CefMessageRouterConfig;
+import org.cef.callback.CefQueryCallback;
+import org.cef.handler.CefKeyboardHandlerAdapter;
+import org.cef.handler.CefMessageRouterHandlerAdapter;
+import org.cef.misc.EventFlags;
+import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.commons.OS;
+import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.gui.ScilabCefPanel;
+import org.scilab.modules.commons.utils.ScilabBrowser;
 import org.scilab.modules.commons.xml.XConfiguration;
+import org.scilab.modules.completion.Completion;
+import org.scilab.modules.history_manager.HistoryManagement;
+import org.scilab.modules.localization.Messages;
 
 /**
  * Main class for Scilab Console based on Generic Console from Artenum
@@ -69,185 +70,344 @@ import org.scilab.modules.commons.xml.XConfiguration;
  */
 public abstract class SciConsole extends JPanel {
 
-    private static final long serialVersionUID = 1L;
+    private static final Logger log = Logger.getLogger("org.scilab.modules.console.SciConsole");
 
-    private static final int LINE_NUMBER_IN_PROMPT = 2;
-
-    private static final String BACKSLASH_R = "\r";
+    private static final String CRLF = "\r\n";
+    private static final String CR = "\r";
+    private static final String LF = "\n";
 
     private static final String XPATH_CONSOLE_KEY = "//general/shortcuts/body/actions/action-folder[@name='Console']/action";
-    private static final String XPATH_CONSOLE_ACTION = "/map/console/entry";
-
-    /**
-     * Maximum length of a command send to Scilab
-     */
-    private static final int MAX_CMD_LENGTH = 4096;
 
     private static Map<KeyStroke, String> actionKeys;
-    private static final Map<String, String> actionToName;
-
-    static {
-        org.w3c.dom.Document doc = ScilabXMLUtilities.readDocument(System.getenv("SCI") + "/modules/console/etc/Actions-Configuration.xml");
-        actionToName = XConfiguration.get(doc, "name", String.class, "action", String.class, XPATH_CONSOLE_ACTION);
-    }
-
-    /**
-     * Configuration associated to the console oject
-     */
-    private ConsoleConfiguration config;
-
-    /**
-     * Scroll Pane used in Scilab Console
-     */
-    private JScrollPane jSP;
-
-    /**
-     * Generic console object
-     */
-    private Console sciConsole;
 
     /**
      * Value used to get one char from user input (when using [more y or n ?])
      */
-    private int userInputValue;
+    private int userInputValue = (int) 'n';
 
     /**
      * Protection for userInputValue variable R/W
      */
-    private Semaphore canReadUserInputValue = new Semaphore(1);
+    private Semaphore canReadUserInputValue = new Semaphore(0);
 
-    /**
-     * Boolean flag used to store the state of Scilab (true is all works done)
-     */
-    private boolean workDone;
+    private int maxNumberOfLines;
 
-    private boolean atBottom;
+    private static List<String> waitingQueue = new ArrayList<String>();
+    private static BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
+    private static BlockingQueue<Boolean> displayQueue = new LinkedBlockingQueue<Boolean>();
 
-    private boolean isToHome;
+    // JCEF
+    private final ScilabCefPanel cefPanel;
+    public boolean ready;
 
-    private Object searchField;
+    //Input
+    private boolean disableLock = false;
+    private Thread concurrentThread = null;
+    private String defaultPrompt;
+
+    private String selectedText;
+
+    private Color background = null;
+    private Color foreground = null;
+
+    private int linesRow = 0;
+    private int linesCol = 80;
 
     /**
      * Constructor
-     * @param configFilePath the configuration file to use
      */
-    public SciConsole(String configFilePath) {
-        super(new BorderLayout());
+    public SciConsole() {
+        super(new BorderLayout(0, 0));
 
-        try {
-            config = ConfigurationBuilder.buildConfiguration(configFilePath);
-            config.setActiveProfile("scilab");
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
+        ready = false;
 
-        sciConsole = ConsoleBuilder.buildConsole(config, this);
+        String url = "file://" + ScilabConstants.SCI.getPath() + "/modules/console/src/web/console.html";
+        cefPanel = new ScilabCefPanel(url);
 
-        try {
-            Class hsf = Class.forName("org.scilab.modules.gui.utils.HelpSearchField");
-            Constructor constructor = hsf.getConstructor(JPanel.class, JTextComponent.class);
-            searchField = constructor.newInstance(this, (SciOutputView) config.getOutputView());
-        } catch (Exception e) { }
+        addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (e.isTemporary())
+                {
+                    return;
+                }
+                log.info(() -> "SciConsole focusGained " + Thread.currentThread());
 
-        XConfiguration.addXConfigurationListener(new org.scilab.modules.console.ConsoleConfiguration(this));
-        sciConsole.setForeground(ConsoleOptions.getConsoleColor().foreground);
-        sciConsole.setBackground(ConsoleOptions.getConsoleColor().background);
-        setCaretColor(ConsoleOptions.getConsoleColor().cursor);
-        sciConsole.setFont(ConsoleOptions.getConsoleFont().font);
-        setKeyStrokeAction();
+                sendToHTML("focus");
+            }
 
-        jSP = new JScrollPane(sciConsole);
+            public void focusLost(FocusEvent e) {
+                if (e.isTemporary())
+                {
+                    return;
+                }
+                log.info(() -> "SciConsole focusLost " + Thread.currentThread());
+            }
+        });
 
-        BoundedRangeModel model = jSP.getVerticalScrollBar().getModel();
-        jSP.getVerticalScrollBar().setModel(new DefaultBoundedRangeModel(model.getValue(), model.getExtent(), model.getMinimum(), model.getMaximum()) {
-            public void setRangeProperties(int newValue, int newExtent, int newMin, int newMax, boolean adjusting) {
-                // This method is overriden to keep the knob at the bottom during viewport resize
-                // and to keep the knob at another place if the user decided it.
-                if (newMax != getMaximum()) {
-                    if (!adjusting) {
-                        if (atBottom) {
-                            super.setRangeProperties(newMax - newExtent, newExtent, newMin, newMax, false);
-                        } else {
-                            super.setRangeProperties(newValue, newExtent, newMin, newMax, false);
-                        }
-                    } else {
-                        double percent = (double) Math.abs(newMax - newValue - newExtent) / (double) newMax;
-                        if (atBottom && percent <= 0.03) {
-                            super.setRangeProperties(newMax - newExtent, newExtent, newMin, newMax, true);
-                        } else {
-                            super.setRangeProperties(newValue, newExtent, newMin, newMax, true);
-                            atBottom = percent <= 0.01;
-                        }
+        cefPanel.addKeyboardHandler(new CefKeyboardHandlerAdapter() {
+            @Override
+            public boolean onKeyEvent(CefBrowser browser, final CefKeyEvent event) {
+                boolean isMac = OS.get() == OS.MAC;
+                boolean isCTRL = isMac == false && event.modifiers == EventFlags.EVENTFLAG_CONTROL_DOWN;
+                boolean isCOMMAND = isMac && event.modifiers == EventFlags.EVENTFLAG_COMMAND_DOWN;
+                
+                log.info("CefKeyboardHandlerAdapter " + event);
+                
+                if (event.type == CefKeyEvent.EventType.KEYEVENT_RAWKEYDOWN && (isCTRL || isCOMMAND))
+                {
+                    SwingUtilities.invokeLater(() -> {
+                        KeyEvent ke = new KeyEvent(getMe(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), isMac ? InputEvent.META_DOWN_MASK : InputEvent.CTRL_DOWN_MASK , event.windows_key_code, event.unmodified_character);
+                        KeyboardFocusManager.getCurrentKeyboardFocusManager().dispatchKeyEvent(ke);
+                    });
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
+        // add listener from javascript
+        cefPanel.getClient().addMessageRouter(CefMessageRouter.create(new CefMessageRouterConfig("Scilab", "ScilabAbort"), new CefMessageRouterHandlerAdapter() {
+            @Override
+            public boolean onQuery(CefBrowser browser_, CefFrame frame, long queryId, String request, boolean persistent, CefQueryCallback callback) {
+                if (log.isLoggable(Level.INFO))
+                {
+                    log.info("onQuery: " + request);
+                }
+                String[] req = request.split("::", -1);
+                switch(req[0]) {
+                    case "ready": {
+                        ready = true;
+                        // UNCOMMENT FOR DEBUGGING PURPOSES
+                        // openDevTools();
+                        updateKeys();
+                        background = Color.getColor(req[1]);
+                        foreground = Color.getColor(req[1]);
+                        sendQueue();
+                        
+                        // Ensure the CefBrowser gets focus when console is ready
+                        SwingUtilities.invokeLater(() -> {
+                            cefPanel.getBrowser().getUIComponent().requestFocusInWindow();
+                        });
+                        return true;
                     }
-                } else {
-                    super.setRangeProperties(newValue, newExtent, newMin, newMax, adjusting);
+                    case "contextmenu":
+                        SwingUtilities.invokeLater(() -> {
+                            browser_.getUIComponent().requestFocusInWindow();
+                            getComponentPopupMenu().setLocation(MouseInfo.getPointerInfo().getLocation());
+                            getComponentPopupMenu().setVisible(true);
+                        });
+                        return true;
+                    case "reload":
+                        browser_.reloadIgnoreCache();
+                        return true;
+                    case "focus":
+                        SwingUtilities.invokeLater(() -> browser_.getUIComponent().requestFocusInWindow());
+                        return true;
+                    case "copy":
+                        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(req[1]), null);
+                        return true;
+                    case "paste":
+                        return pasteAction();
+                    case "devtools":
+                        cefPanel.openDevTools();
+                        return true;
+                    case "size":
+                        SwingUtilities.invokeLater(() -> {
+                            int w = Integer.parseInt(req[1]);
+                            int h = Integer.parseInt(req[2]);
+                            setPreferredSize(new Dimension(w, h));
+                            linesCol = Integer.parseInt(req[3]);
+                            linesRow = Integer.parseInt(req[4]);
+                            scilabLinesUpdate();
+                        });
+                        return true;
+                    case "input": {
+                        String command = null;
+                        if (req.length > 2) {
+                            command = String.join("::", Arrays.copyOfRange(req, 1, req.length));
+                        } else {
+                            command = req[1];
+                        }
+                        // If we are waiting for a Y/N char
+                        if (command.length() > 0 && setUserInputValue(command.charAt(0))) {
+                            return true;
+                        }
+
+                        sendCommandsToScilab(command, true, true);
+                        return true;
+                    }
+                    case "previous": {
+                        String res = historyPrevious(req[1], Boolean.parseBoolean(req[2]));
+                        callback.success(res);
+                        return true;
+                    }
+                    case "next": {
+                        String res = historyNext(req[1], Boolean.parseBoolean(req[2]));
+                        callback.success(res);
+                        return true;
+                    }
+                    case "completion": {
+                        String res = completion(req[1], Integer.parseInt(req[2]));
+                        callback.success(res);
+                        return true;
+                    }
+                    case "completeline" : {
+                        boolean isFile = req[3].equals(Messages.gettext("File")) || req[3].equals(Messages.gettext("Directory"));
+                        String newLine = Completion.completelineforjava(req[1], req[2], isFile, req[4]);
+                        callback.success(newLine);
+                        return true;
+                    }
+                    case "file": {
+                        DropFiles.dropFiles(new String[] { req[1] });
+                        return true;
+                    }
+                    case "interrupt": {
+                        InterpreterManagement.requestScilabExec("pause;");
+                        return true;
+                    }
+                    case "interruptcommand": {
+                        InterpreterManagement.interruptScilab();
+
+                        String command = null;
+                        if (req.length > 2) {
+                            command = String.join("::", Arrays.copyOfRange(req, 1, req.length));
+                        } else {
+                            command = req[1];
+                        }
+
+                        append(defaultPrompt + command + LF);
+                        sendCommandsToScilab("", false, false);
+                        return true;
+                    }
+                    case "select": {
+                        selectedText = req[1];
+                        return true;
+                    }
+                    case "clear": {
+                        clear();
+                        return true;
+                    }
+                    case "cleared": {
+                        lockOutput--;
+                        if (lockOutput == 0) {
+                            for (String s : outputList) {
+                                append(s);
+                            }
+                            outputList.clear();
+                        }
+                        return true;
+                    }
+                    case "help": {
+                        selectedText = req[1];
+                        helpOnTheKeyword();
+                        return false;
+                    }
+                    case "version": {
+                        String version = String.format("chrome: %s\njcef  : %s\ncef   : %s", ScilabBrowser.getChromeVersion(), ScilabBrowser.getJcefVersion(), ScilabBrowser.getCefVersion());
+                        callback.success(version);
+                        return true;
+                    }
+                    case "log": {
+                        Level level = Level.INFO;
+                        if (req.length > 1) {
+                            // with a level prefix
+                            try {
+                                level = Level.parse(req[1]);
+                            } catch (IllegalArgumentException e) {
+                                log.warning("Invalid log level: " + req[1]);
+                            }
+                        } 
+                        String msg = String.join("::", Arrays.copyOfRange(req, 2, req.length));
+                        if (log.isLoggable(level))
+                        {
+                            log.log(level, msg);
+                        }
+                        return true;
+                    }
+                    case "consolebox": {
+                        InterpreterManagement.requestScilabExec("consolebox " + req[1]);
+                        return true;
+                    }
+                    default:
+                        System.err.println("not managed: " + request);
+                        return false;
                 }
             }
-        });
+        }));
 
-        this.add(jSP, BorderLayout.CENTER);
+        setMaxSize(10000);
+        setPreferredSize(new Dimension(100, 10));
+        
+        setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        add(cefPanel, BorderLayout.CENTER);
 
-        // The console is given to the outputView so that updateScrollPosition is is accessible
-        ((SciOutputView) config.getOutputView()).setConsole(this);
+        XConfiguration.addXConfigurationListener(new org.scilab.modules.console.ConsoleConfiguration(this));
 
-        // The console is given to the outputView so that Drag&Drop can work
-        ((SciInputCommandView) config.getInputCommandView()).setConsole(this);
+        setForeground(ConsoleOptions.getConsoleColor().foreground);
+        setBackground(ConsoleOptions.getConsoleColor().background);
+        setFont(ConsoleOptions.getConsoleFont().font);
+        setCaretColor(ConsoleOptions.getConsoleColor().cursor);
+    }
 
-        // The console is given to the CompletionWindow
-        ((SciCompletionWindow) config.getCompletionWindow()).setConsole(this);
-        ((SciCompletionWindow) config.getCompletionWindow()).setGraphicalContext(this);
+    public SciConsole getMe() {
+        return this;
+    }
 
-        // The promptview is given to the Parsing Manager
-        // Used to get the position of the CompletionWindow
-        ((SciInputParsingManager) config.getInputParsingManager()).setPromptView(this.getConfiguration().getPromptView());
-
-        // Reset history settings - bug 3612
-        ((SciHistoryManager)config.getHistoryManager()).setInHistory(false);
-
-        // Bug 8055 : update the lines/columns only when the console is resized
-        addComponentListener(new ComponentAdapter() {
-            public void componentResized(ComponentEvent evt) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        scilabLinesUpdate();
-                        jSP.getVerticalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().height);
-                        jSP.getHorizontalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().width);
-                    }
-                });
-            }
-        });
-
-        // Allows to disable autoscrolling of console when scrollbar has been moved up, and re-enable it when
-        // scrollbar is moved down to the end again.
-        new SmartScroller(jSP);
-
-        sciConsole.invalidate();
-        sciConsole.doLayout();
+    public Container getUIComponent() {
+        // Safely cast, this is only a wrapper around the Canvas of the CefBrowser
+        return this;
     }
 
     public void configurationChanged(org.scilab.modules.console.ConsoleConfiguration.Conf conf) {
         if (conf.color) {
-            sciConsole.setForeground(ConsoleOptions.getConsoleColor().foreground);
-            sciConsole.setBackground(ConsoleOptions.getConsoleColor().background);
+            log.info("configurationChanged color");
+            setForeground(ConsoleOptions.getConsoleColor().foreground);
+            setBackground(ConsoleOptions.getConsoleColor().background);
             setCaretColor(ConsoleOptions.getConsoleColor().cursor);
         }
         if (conf.font) {
-            sciConsole.setFont(ConsoleOptions.getConsoleFont().font);
+            log.info("configurationChanged font");
+            setFont(ConsoleOptions.getConsoleFont().font);
         }
+
         if (conf.display) {
-            ((SciOutputView) config.getOutputView()).setMaxSize(ConsoleOptions.getConsoleDisplay().maxOutputLines);
+            log.info("configurationChanged lines");
+            setMaxSize(ConsoleOptions.getConsoleDisplay().maxOutputLines);
             scilabLinesUpdate();
         }
+
         if (conf.keymap) {
-            actionKeys = null;
-            setKeyStrokeAction();
+            log.info("configurationChanged keymap");
+            updateKeys();
         }
+    }
+
+    public void updateKeys() {
+
+        //clear all shorctuts
+        sendToHTML("clear-shortcut");
+        for (Map.Entry<KeyStroke, String> entry : getActionKeys().entrySet()) {
+            if (entry.getKey() == null) {
+                //action declared without default binding (key="")
+                continue;
+            }
+
+            if (log.isLoggable(Level.INFO))
+            {
+                log.info(entry.getKey().toString() + " -> " + entry.getValue());
+            }
+
+            int keyCode = entry.getKey().getKeyCode();
+            boolean isCTRL = (entry.getKey().getModifiers() & InputEvent.CTRL_DOWN_MASK) == InputEvent.CTRL_DOWN_MASK;
+            isCTRL |= (entry.getKey().getModifiers() & InputEvent.META_DOWN_MASK) == InputEvent.META_DOWN_MASK;
+
+            boolean isALT  = (entry.getKey().getModifiers() & InputEvent.ALT_DOWN_MASK) == InputEvent.ALT_DOWN_MASK;
+            String action = entry.getValue();
+
+            sendToHTML("shortcut", action, keyCode, isCTRL, isALT);
+        }
+        sendToHTML("sort-shortcut");
     }
 
     public static Map<KeyStroke, String> getActionKeys() {
@@ -259,10 +419,6 @@ public abstract class SciConsole extends JPanel {
         return actionKeys;
     }
 
-    public static Map<String, String> getActionName() {
-        return actionToName;
-    }
-
     /**
      * Set the shortcuts in the pane relatively to the file
      * keysConfiguration.xml
@@ -272,232 +428,49 @@ public abstract class SciConsole extends JPanel {
      * @param ed
      *            the SciNotes editor
      */
-    private void setKeyStrokeAction() {
-        Map<KeyStroke, String> map = getActionKeys();
-        ClassLoader loader = ClassLoader.getSystemClassLoader();
-
-        for (Map.Entry<KeyStroke, String> entry : map.entrySet()) {
-            KeyStroke key = entry.getKey();
-            String actionName = entry.getValue();
-            if (actionName.equals("console-search-field") && searchField != null) {
-                try {
-                    Method sks = searchField.getClass().getMethod("setKeyStroke", KeyStroke.class);
-                    sks.invoke(searchField, key);
-                } catch (Exception e) { }
-            }
-            String action = actionToName.get(actionName);
-            if (action != null) {
-                try {
-                    Class clazz = loader.loadClass(action);
-                    Constructor constructor = clazz.getConstructor(new Class[0]);
-                    Object act = constructor.newInstance(new Object[0]);
-                    ((ConsoleAction) act).setConfiguration(config);
-                    ((SciInputCommandView) config.getInputCommandView()).getInputMap().put(key, act);
-                } catch (ClassNotFoundException e) {
-                    System.err.println("No action: " + action);
-                } catch (InstantiationException e) {
-                    System.err.println("Problem to instantiate in action: " + action);
-                } catch (NoSuchMethodException e) {
-                    System.err.println("No valid constructor in action: " + action);
-                } catch (IllegalAccessException e) {
-                    System.err.println("The constructor must be public: " + action);
-                } catch (InvocationTargetException e) {
-                    System.err.println("The constructor in " + action + " threw an exception :");
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    /**
-     * Gets the configuration associated to the console
-     * @return the configuration
-     */
-    public ConsoleConfiguration getConfiguration() {
-        return config;
-    }
-
-    /**
-     * Sets the configuration associated to the console
-     * @param newConfig the new config to set
-     */
-    public void setConfiguration(ConsoleConfiguration newConfig) {
-        config = newConfig;
-    }
-
     /**
      * Updates Scilab internal variables containing the size of the console
      * These variables are used to format data before displaying it
      */
     public void scilabLinesUpdate() {
         if (ConsoleOptions.getConsoleDisplay().adaptToDisplay) {
-            // Size of the console
-            int outputViewWidth = jSP.getViewport().getExtentSize().width;
-
-            // Size of a char
-            OutputView outputView = this.getConfiguration().getOutputView();
-            int[] charsWidth = ((JEditorPane) outputView).getFontMetrics(((JEditorPane) outputView).getFont()).getWidths();
-
-            // This loop is not needed for monospaced fonts !
-            int maxCharWidth = charsWidth[33];
-            // The range 33--126 corresponds to the usual characters in ASCII
-            for (int i = 34; i < 126; i++) {
-                if (charsWidth[i] > maxCharWidth) {
-                    maxCharWidth = charsWidth[i];
-                }
-            }
-
-            int numberOfLines = getNumberOfLines();
-            int promptWidth = ((JPanel) this.getConfiguration().getPromptView()).getPreferredSize().width;
-
-            int numberOfColumns = (outputViewWidth - promptWidth) / maxCharWidth - 1;
-            /* -1 because of the margin between text prompt and command line text */
-
-            if (numberOfLines > 0 && numberOfColumns > 0) {
-                GuiManagement.setScilabLines(Math.max(1, numberOfLines), numberOfColumns);
-            }
+            GuiManagement.setScilabLines(Math.max(1, linesRow), linesCol);
         } else {
             GuiManagement.forceScilabLines(ConsoleOptions.getConsoleDisplay().nbLines, ConsoleOptions.getConsoleDisplay().nbColumns);
         }
     }
 
-    /**
+    /*
      * Get the number of lines that can be displayed in the visible part of the console
      * @return the number of lines
      */
     public int getNumberOfLines() {
-        // Size of the console
-        int outputViewHeight = jSP.getViewport().getExtentSize().height;
-
-        // Size of a char
-        OutputView outputView = this.getConfiguration().getOutputView();
-        int charHeight = ((JEditorPane) outputView).getFontMetrics(((JEditorPane) outputView).getFont()).getHeight();
-        int[] charsWidth = ((JEditorPane) outputView).getFontMetrics(((JEditorPane) outputView).getFont()).getWidths();
-
-        // This loop is not needed for monospaced fonts !
-        int maxCharWidth = charsWidth[0];
-        for (int i = 1; i < charsWidth.length; i++) {
-            if (charsWidth[i] > maxCharWidth) {
-                maxCharWidth = charsWidth[i];
-            }
-        }
-
-        return outputViewHeight / charHeight - 1; /* -1 because of the size of the InputCommandLine */
+        return 0;
     }
 
-    /**
-     * Updates the scroll bars according to the contents
-     */
-    public void updateScrollPosition() {
-        // Update the scrollbar properties
-        jSP.getVerticalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().height);
-        jSP.getHorizontalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().width);
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                jSP.getVerticalScrollBar().getModel().setValue(jSP.getVerticalScrollBar().getModel().getMaximum() - jSP.getVerticalScrollBar().getModel().getExtent());
-            }
-        });
-    }
-
+    private int lockOutput = 0;
     /**
      * Clears the console and the output view
      */
     public void clear() {
-        if (sciConsole.isPreferredSizeSet()) {
-            sciConsole.setPreferredSize(null);
-            sciConsole.invalidate();
-            sciConsole.doLayout();
-        }
-
-        try {
-            config.getInputCommandViewStyledDocument().remove(0, config.getInputCommandViewStyledDocument().getLength());
-        } catch (BadLocationException e) {
-            e.printStackTrace();
-        }
-        config.getOutputView().reset();
-
+        lockOutput++;
+        outputList.clear();
+        sendToHTML("clear");
     }
 
     /**
-     * Clears lines from the end of the output view
-     * If nbLines == -1 ==> Called from SwingScilabConsole.getCharWithoutOutput() ([more y or n ?])
-     * If nbLines == 0 ==> Clear the InputCommandLine
-     * @param nbLines the number of lines to be deleted
+     * Clears lines from the end of the output view or input command line based on the specified count.
+     * <ul>
+     * <li><code>nbLines == 0</code>: Clear</li>
+     * <li><code>nbLines == 1</code>: Called from SwingScilabConsole.getCharWithoutOutput() (continue Y/N prompt)</li>
+     * <li><code>nbLines > 0</code>: Clears the specified number of lines from the output view</li>
+     * </ul>
+     * @param nbLines the number of lines to be deleted, or special values: -1 for more prompt, 0 for input line
      */
     public void clear(int nbLines) {
-        if (sciConsole.isPreferredSizeSet()) {
-            sciConsole.setPreferredSize(null);
-            sciConsole.invalidate();
-            sciConsole.doLayout();
-        }
-
-        // Clear lines in output command view
-        try {
-            // We have to remove the command entered by the user
-            int totalNumberOfLines = nbLines + LINE_NUMBER_IN_PROMPT;
-
-            //  We add a space to add a line to make it consistent clc for all mode
-            config.getOutputView().append(" ");
-
-            Document outputDoc = ((JEditorPane) config.getOutputView()).getDocument();
-            String outputTxt =  outputDoc.getText(0, outputDoc.getLength());
-
-            // Are there enough lines in the output view ?
-            String[] allLines = outputTxt.split(StringConstants.NEW_LINE);
-            if (allLines.length < totalNumberOfLines) {
-                // Delete lines
-                config.getOutputView().reset();
-                config.getOutputView().append(Messages.gettext("Out of Screen"));
-            } else {
-                // Delete lines
-                int lastEOL;
-                for (int i = 0; i < totalNumberOfLines; i++) {
-                    outputTxt = outputDoc.getText(0, outputDoc.getLength());
-                    lastEOL = outputTxt.lastIndexOf(StringConstants.NEW_LINE);
-                    if (lastEOL != -1) {
-                        outputDoc.remove(lastEOL, outputDoc.getLength() - lastEOL);
-                    }
-                }
-            }
-
-            // Bring the prompt back to the left
-            config.getOutputView().append("\r");
-
-        } catch (BadLocationException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Puts the prompt in the top left corner of the console
-     */
-    public void toHome() {
-        isToHome = true;
-    }
-
-    public void setToHome() {
-        if (isToHome) {
-            Dimension jSPExtSize = jSP.getViewport().getExtentSize();
-            int caretH = ((SciInputCommandView) config.getInputCommandView()).getCaretHeight();
-            int height = jSPExtSize.height + ((SciPromptView) config.getPromptView()).getParent().getBounds().y - caretH;
-            Dimension newDim = new Dimension(sciConsole.getSize().width, height);
-            sciConsole.setPreferredSize(newDim);
-            sciConsole.invalidate();
-            sciConsole.doLayout();
-            ((SciOutputView) config.getOutputView()).addComponentListener(new ComponentAdapter() {
-                public void componentResized(ComponentEvent evt) {
-                    if (evt.getComponent().getSize().height >= sciConsole.getSize().height) {
-                        evt.getComponent().removeComponentListener(this);
-                        sciConsole.setPreferredSize(null);
-                        sciConsole.invalidate();
-                        sciConsole.doLayout();
-                    }
-                }
-            });
-
-            isToHome = false;
-            jSP.getVerticalScrollBar().getModel().setValue(jSP.getVerticalScrollBar().getModel().getMaximum() - jSP.getVerticalScrollBar().getModel().getExtent());
-        }
+        lockOutput++;
+        outputList.clear();
+        sendToHTML("clear", nbLines);
     }
 
     /**
@@ -508,6 +481,7 @@ public abstract class SciConsole extends JPanel {
         try {
             canReadUserInputValue.acquire();
         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             e.printStackTrace();
         }
         return userInputValue;
@@ -516,18 +490,40 @@ public abstract class SciConsole extends JPanel {
     /**
      * Sets the value entered by the user
      * @param userInputValue new value
+     * @return true if the console was waiting for a user input value, false otherwise
      */
-    public void setUserInputValue(int userInputValue) {
+    public boolean setUserInputValue(int userInputValue) {
         this.userInputValue = userInputValue;
+
+        // be safe: if not waiting, execute a regular scilab command
+        if (!canReadUserInputValue.hasQueuedThreads()) {
+            return false;
+        }
+
         canReadUserInputValue.release();
+        return true;    
     }
 
     /**
-     * Gets the semaphore protection so that it can be acquired
-     * @return the semaphore
+     * @return true if the console is waiting for a user input value, false otherwise
      */
-    public Semaphore getCanReadUserInputValue() {
-        return canReadUserInputValue;
+    public boolean canReadUserInputValue() {
+        return canReadUserInputValue.hasQueuedThreads();
+    }
+    
+    /**
+     * Unblock the console if needed
+     */
+    public void unblock() {
+        if (canReadUserInputValue()) {
+            setUserInputValue(Messages.gettext("nN").codePointAt(0));
+        }
+        canReadUserInputValue.release(Integer.MAX_VALUE);
+        
+
+        log.info("unblock");
+        // interrupt any mscanf call (input, halt and so on)
+        interruptAndDisable();
     }
 
     /**
@@ -537,65 +533,29 @@ public abstract class SciConsole extends JPanel {
      * @param storeInHistory flag indicating if the input command has to be stored in the history
      */
     public void sendCommandsToScilab(String textToExec, boolean displayCmdInOutput, boolean storeInHistory) {
-        String[] linesToExec = textToExec.split(StringConstants.NEW_LINE);
-        int nbStatements = 0;
 
-        atBottom = true;
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        sendToHTML("lock-input");
+        String[] linesToExec = textToExec.split("\n");
 
-        while (nbStatements < linesToExec.length) {
-            // This loop contains code very similar to the code of ValidationAction.java
-            InputParsingManager inputParsingManager = config.getInputParsingManager();
-            PromptView promptView = config.getPromptView();
+        for (int i = 0; i < linesToExec.length; ++i) {
+            String line = linesToExec[i];
 
-            // Reset command line
-            inputParsingManager.reset();
-
-            // Reset history settings
-            config.getHistoryManager().setInHistory(false);
-
-            // Hide the prompt and command line
-            config.getInputCommandView().setEditable(false);
-            ((SciInputCommandView) config.getInputCommandView()).getCaret().setVisible(false);
-
-            config.getPromptView().setVisible(false);
-
-            // Remove the prompt if present at the beginning of the text to execute
-            // Bug 3002 fix: this "functionality" has been removed because:
-            // - Remove the --> even if not from paste action
-            // - Does not remove pause prompts
-
-            // Store the command in the buffer so that Scilab can read it
-            if (linesToExec[nbStatements].length() > MAX_CMD_LENGTH) {
-                config.getOutputView().append(String.format(Messages.gettext("Command is too long (more than %d characters long): could not send it to Scilab\n"), MAX_CMD_LENGTH));
-                ((SciInputCommandView) config.getInputCommandView()).setCmdBuffer("", false);
-                return;
-            }
-
-            ((SciInputCommandView) config.getInputCommandView())
-            .setCmdBuffer(linesToExec[nbStatements].replace(BACKSLASH_R, ""), displayCmdInOutput);
+            setInHistory(false);
             if (storeInHistory) {
-                ((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
+                HistoryManagement.appendLineToScilabHistory(line);
             }
-            nbStatements++;
+
+            setCmdBuffer(linesToExec[i].replace(CR, ""), displayCmdInOutput);
         }
-
     }
 
-    /**
-     * Get the JScrollPane associated to the console
-     * @return the JScrollPane associated to the console
-     */
-    public JScrollPane getJScrollPane() {
-        return jSP;
-    }
-
-    /**
-     * Get the Console object associated to the console
-     * @return the Console object associated to the console
-     */
-    public Console getSciConsole() {
-        return sciConsole;
+    public void setCmdBuffer(String command, boolean displayFlag) {
+        try {
+            queue.put(command);
+            displayQueue.put(displayFlag);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -604,7 +564,19 @@ public abstract class SciConsole extends JPanel {
      * @return true is Scilab is waiting for commands
      */
     public boolean isWaitingForInput() {
-        return ((JTextPane) config.getInputCommandView()).isEditable();
+        return queue.isEmpty() && !canReadUserInputValue();
+    }
+
+    public boolean pasteAction() {
+        try {
+            Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
+            Object data = t.getTransferData(DataFlavor.stringFlavor);
+            sendToHTML("paste", data.toString());
+        } catch (Exception e) {
+            log.warning("Failed to paste from clipboard: " + e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -612,31 +584,53 @@ public abstract class SciConsole extends JPanel {
      * @return the command to execute
      */
     public String readLine() {
+        sendToHTML("unlock-input");
+        
+        String command = null;
+        synchronized(this)
+        {
+            if (disableLock)
+            {
+                return "";
+            }
+        }
 
-        InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
+        try {
+            if (concurrentThread == null) {
+                concurrentThread = Thread.currentThread();
+            } else {
+                concurrentThread.interrupt();
+            }
 
-        getConfiguration().getOutputView().setCaretPositionToEnd();
-
-        displayPrompt();
-
-        // Display Cursor to show Scilab is available.
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
-        // Reads the buffer
-        return ((SciInputCommandView) inputCmdView).getCmdBuffer();
+            command = queue.take();
+            if (displayQueue.take()) {
+                append(defaultPrompt + command + LF);
+            }
+        } catch (InterruptedException e) {
+            /*
+             * If we have concurrent access let's interrupt the first one, then allow
+             * the second to return the command.
+             */
+            concurrentThread = null;
+            return "";
+        }
+        concurrentThread = null;
+        if (log.isLoggable(Level.INFO))
+        {
+            log.info(String.format("command: |%s|", command));
+        }
+        return command;
     }
 
-    /**
-     * This method is used to display the prompt
-     */
-    public abstract void displayPrompt();
+    final public void interruptAndDisable() {
+        synchronized(this)
+        {
+            disableLock = true;
+        }
 
-    /**
-     * Does Scilab have finished its work ?
-     * @return true if Scilab is waiting for new commands
-     */
-    public boolean isWorkDone() {
-        return workDone;
+        if (concurrentThread != null) {
+            concurrentThread.interrupt();
+        }
     }
 
     /**
@@ -644,25 +638,13 @@ public abstract class SciConsole extends JPanel {
      * @param font the font to set
      */
     public void setFont(Font font) {
-        if (sciConsole != null && !font.equals(getFont())) {
-            sciConsole.setFont(font);
+        sendToHTML("font", font.getFontName(), font.getFamily(), font.getSize(), font.isBold());
 
-            /* Have to update the output view contents with new font */
-            String txt;
-            try {
-                Document outputDoc = ((JEditorPane) config.getOutputView()).getDocument();
-                txt = outputDoc.getText(0, outputDoc.getLength());
-                outputDoc.remove(0, outputDoc.getLength());
-                config.getOutputView().append(txt);
-            } catch (BadLocationException e) {
-                System.err.println(Messages.gettext("Could not change the Console Font."));
-                return;
-            }
-
-            /* Update the prompt */
-            ((SciPromptView) config.getPromptView()).getPromptUI().setFont(font);
-            config.getPromptView().updatePrompt();
-            scilabLinesUpdate();
+        if (log.isLoggable(Level.INFO))
+        {
+            log.info(font.getFontName());
+            log.info(font.getFamily());
+            log.info(font.getPSName());
         }
     }
 
@@ -671,11 +653,7 @@ public abstract class SciConsole extends JPanel {
      * @return the font
      */
     public Font getFont() {
-        if (sciConsole != null) {
-            return ((SciPromptView) config.getPromptView()).getPromptUI().getFont();
-        } else {
-            return null;
-        }
+        return null;
     }
 
     /**
@@ -683,11 +661,7 @@ public abstract class SciConsole extends JPanel {
      * @return the Foreground Color
      */
     public Color getForeground() {
-        if (sciConsole != null) {
-            return sciConsole.getForeground();
-        } else {
-            return null;
-        }
+        return foreground;
     }
 
     /**
@@ -695,11 +669,7 @@ public abstract class SciConsole extends JPanel {
      * @return the Background Color
      */
     public Color getBackground() {
-        if (sciConsole != null) {
-            return sciConsole.getBackground();
-        } else {
-            return null;
-        }
+        return background;
     }
 
     /**
@@ -707,25 +677,13 @@ public abstract class SciConsole extends JPanel {
      * @param color the Foreground Color
      */
     public void setForeground(Color color) {
-        if (sciConsole != null) {
-            sciConsole.setForeground(color);
-
-            /* Have to update the output view contents with new Foreground */
-            String txt;
-            try {
-                Document outputDoc = ((JEditorPane) config.getOutputView()).getDocument();
-                txt = outputDoc.getText(0, outputDoc.getLength());
-                outputDoc.remove(0, outputDoc.getLength());
-                config.getOutputView().append(txt);
-            } catch (BadLocationException e) {
-                System.out.println(Messages.gettext("Could not change the Console Foreground."));
-                return;
-            }
-
-            /* Update the prompt */
-            ((SciPromptView) config.getPromptView()).getPromptUI().setForeground(color);
-            config.getPromptView().updatePrompt();
+        if (log.isLoggable(Level.INFO))
+        {
+            log.info("setForeground: " + color);
         }
+
+        String hexColor = String.format("#%06x", Integer.valueOf(color.getRGB() & 0x00FFFFFF));
+        sendToHTML("fgcolor", hexColor);
     }
 
     /**
@@ -733,9 +691,14 @@ public abstract class SciConsole extends JPanel {
      * @param color the Background Color
      */
     public void setBackground(Color color) {
-        if (sciConsole != null) {
-            sciConsole.setBackground(color);
+        if (log.isLoggable(Level.INFO))
+        {
+            log.info("setBackground: " + color);
         }
+
+        String hexColor = String.format("#%06x", Integer.valueOf(color.getRGB() & 0x00FFFFFF));
+        sendToHTML("bgcolor", hexColor);
+        super.setBackground(Color.CYAN);
     }
 
     /**
@@ -743,8 +706,261 @@ public abstract class SciConsole extends JPanel {
      * @param color the Background Color
      */
     public void setCaretColor(Color color) {
-        if (sciConsole != null) {
-            ((SciInputCommandView) config.getInputCommandView()).setCaretColor(color);
+        if (log.isLoggable(Level.INFO))
+        {
+            log.info("setCaretColor: " + color);
+        }
+        String hexColor = String.format("#%06x", Integer.valueOf(color.getRGB() & 0x00FFFFFF));
+        sendToHTML("caret", hexColor);
+    }
+
+    public void closeConsole() {
+        interruptAndDisable();
+    }
+
+    private List<String> outputList = new ArrayList<String>();
+    public void append(String data) {
+        if (lockOutput != 0) {
+            outputList.add(data);
+        } else {
+            data = data.replaceAll(CRLF, LF);
+            sendToHTML("output", data, "monospace");
         }
     }
+
+    public void setInputEditable(boolean status) {
+        log.info("setInputEditable");
+    }
+
+    public void setPromptVisible(boolean status) {
+        log.info("setPromptVisible");
+    }
+
+    public void setPrompt(String prompt) {
+        defaultPrompt = prompt;
+        sendToHTML("prompt", prompt);
+    }
+
+    public String getSelectedText() {
+        return selectedText;
+    }
+
+    public void selectAll() {
+        sendToHTML("selectall");
+    }
+    
+    public void clearHistory() {
+        HistoryManagement.resetScilabHistory();
+    }
+
+    public void setMaxSize(int number) {
+        maxNumberOfLines = Math.max(1, number);
+        if (log.isLoggable(Level.INFO))
+        {
+            log.info("maxNumberOfLines: " + maxNumberOfLines);
+        }
+    }
+
+    private void sendQueue() {
+        for (int i = 0; i < waitingQueue.size(); ++i) {
+            cefPanel.executeJS(waitingQueue.get(i), null);
+        }
+
+        waitingQueue.clear();
+    }
+
+    //history manager
+    public String getTmpEntry() {
+        return HistoryManagement.getSearchedTokenInScilabHistory();
+    }
+
+    public void setTmpEntry(String currentCommandLine) {
+        if (currentCommandLine != null && currentCommandLine.trim().equals("")) {
+            HistoryManagement.resetSearchedTokenInScilabHistory();
+            HistoryManagement.setSearchedTokenInScilabHistory("");
+        } else {
+            HistoryManagement.resetSearchedTokenInScilabHistory();
+            HistoryManagement.setSearchedTokenInScilabHistory(currentCommandLine);
+        }
+    }
+
+    private boolean isInHistory = false;
+    public boolean isInHistory() {
+        /* Nothing to do in because Scilab core does the work */
+        return isInHistory;
+    }
+
+    public void setInHistory(boolean status) {
+        /* Nothing to do in because Scilab core does the work */
+        isInHistory = status;
+    }
+
+    public String getNextEntry(String beg) {
+        if (beg != null && !beg.equals(HistoryManagement.getSearchedTokenInScilabHistory())) {
+            HistoryManagement.setSearchedTokenInScilabHistory(beg);
+        }
+        return HistoryManagement.getNextLineInScilabHistory();
+    }
+
+    private String getPreviousEntry(String beg) {
+        if (beg != null && !beg.equals(HistoryManagement.getSearchedTokenInScilabHistory())) {
+            HistoryManagement.setSearchedTokenInScilabHistory(beg);
+        }
+
+        return HistoryManagement.getPreviousLineInScilabHistory();
+    }
+
+    private String historyNext(String beg, boolean forceReset) {
+
+        if (forceReset) {
+            setInHistory(false);
+        }
+
+        if (isInHistory() == false) {
+            setInHistory(true);
+            setTmpEntry(beg);
+        }
+
+        String history = getNextEntry(getTmpEntry());
+        if (history == null) {
+            history = getTmpEntry();
+            setTmpEntry(null);
+            setInHistory(false);
+        }
+
+        return history;
+    }
+
+    private String historyPrevious(String beg, boolean forceReset) {
+
+        if (forceReset) {
+            setInHistory(false);
+        }
+
+        if (isInHistory() == false) {
+            setInHistory(true);
+            setTmpEntry(beg);
+        }
+
+        String history = getPreviousEntry(getTmpEntry());
+        if (history == null) {
+            history = getTmpEntry();
+            setTmpEntry(null);
+            setInHistory(false);
+        }
+
+        return history;
+    }
+
+    public String completion(String entry, int caret) {
+        CompletionEntries entries = null;
+
+        String filePart = getFilePart(entry, caret);
+        String[] scilabFilesDictionary = Completion.searchFilesDictionary(filePart);
+        if (scilabFilesDictionary != null) {
+            entries = new CompletionEntries(filePart);
+            ArrayList<String> files = new ArrayList<String>();
+            ArrayList<String> directories = new ArrayList<String>();
+            separateFilesDirectories(scilabFilesDictionary, files, directories);
+            entries.add(Messages.gettext("File"), files);
+            entries.add(Messages.gettext("Directory"), directories);
+        } else {
+            String searchedPattern = getPart(entry, caret);
+            entries = new CompletionEntries(searchedPattern);
+            String[] scilabFieldsDictionary = Completion.searchFieldsDictionary(entry, searchedPattern);
+            if (scilabFieldsDictionary != null) {
+                entries.add("field", scilabFieldsDictionary);
+            } else {
+                entries.add(Messages.gettext("command"), Completion.searchCommandsDictionary(searchedPattern));
+                entries.add(Messages.gettext("function"), Completion.searchFunctionsDictionary(searchedPattern));
+                entries.add(Messages.gettext("handle property"), Completion.searchHandleGraphicsPropertiesDictionary(searchedPattern));
+                entries.add(Messages.gettext("macro"), Completion.searchMacrosDictionary(searchedPattern));
+                entries.add(Messages.gettext("variable"), Completion.searchVariablesDictionary(searchedPattern));
+                entries.add(Messages.gettext("arguments validator"), Completion.searchMustBeDictionary(searchedPattern));
+            }
+        }
+
+        return entries.toJson();
+    }
+
+    public void separateFilesDirectories(String[] scilabFilesDictionary, ArrayList<String> filesDictionary, ArrayList<String> directoriesDictionary) {
+        String fileSep = System.getProperty("file.separator");
+        for (String word : scilabFilesDictionary) {
+            if (word.endsWith(fileSep)) {
+                directoriesDictionary.add(new String(word));
+            } else {
+                filesDictionary.add(new String(word));
+            }
+        }
+    }
+
+    public String getFilePart(String command, int caret) {
+        String returnLine = null;
+
+        String lineToParse = command.substring(0, caret);
+        if (lineToParse.length() > 0) {
+            returnLine = Completion.getFilePartLevel(lineToParse);
+        }
+
+        return returnLine;
+    }
+
+    public String getPart(String command, int caret) {
+        String returnLine = "";
+
+        String lineToParse = command.substring(0, caret);
+        if (lineToParse.length() > 0) {
+            returnLine = Completion.getPartLevel(lineToParse);
+        }
+
+        return returnLine;
+    }
+
+    public <T, U, V, W> void sendToHTML(String type) {
+        if (log.isLoggable(Level.FINE))
+        {
+            log.fine("sendToHTML: " + type);
+        }
+        sendToHTML(type, null, null, null, null);
+    }
+
+    public <T, U, V, W> void sendToHTML(String type, T data1) {
+        if (log.isLoggable(Level.FINE))
+        {
+            log.fine("sendToHTML: " + type + " " + data1);
+        }
+        sendToHTML(type, data1, null, null, null);
+    }
+
+    public <T, U, V, W> void sendToHTML(String type, T data1, U data2) {
+        if (log.isLoggable(Level.FINE))
+        {
+            log.fine("sendToHTML: " + type + " " + data1 + " " + data2);
+        }
+        sendToHTML(type, data1, data2, null, null);
+    }
+
+    public <T, U, V, W> void sendToHTML(String type, T data1, U data2, V data3) {
+        if (log.isLoggable(Level.FINE))
+        {
+            log.fine("sendToHTML: " + type + " " + data1 + " " + data2 + " " + data3);
+        }
+        sendToHTML(type, data1, data2, data3, null);
+    }
+
+    public <T, U, V, W> void sendToHTML(String type, T data1, U data2, V data3, W data4) {
+        if (log.isLoggable(Level.FINE))
+        {
+            log.fine("sendToHTML: " + type + " " + data1 + " " + data2 + " " + data3 + " " + data4);
+        }
+        ConsoleMessage<T, U, V, W> msg = new ConsoleMessage<T, U, V, W>(type, data1, data2, data3, data4);
+        String code = String.format("fromJava(%s)", msg.toJson());
+        if (ready) {
+            cefPanel.executeJS(code, null);
+        } else {
+            waitingQueue.add(code);
+        }
+    }
+
+    public abstract void helpOnTheKeyword();
 }

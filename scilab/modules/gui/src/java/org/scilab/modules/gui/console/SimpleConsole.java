@@ -45,17 +45,12 @@ public interface SimpleConsole {
      * Clears the console (no more scroll history and prompt on top left corner)
      */
     void clear();
-
+    
     /**
      * Clears lines from the end of the output view
      * @param nbLines the number of lines to be deleted
      */
     void clear(int nbLines);
-
-    /**
-     * Puts the prompt in the top left corner of the console
-     */
-    void toHome();
 
     /**
      * Gets the size of an Console (width and height)
@@ -100,11 +95,6 @@ public interface SimpleConsole {
      * @see fr.scilab.console.HelpBrowser#getCharWithoutOutput()
      */
     int getCharWithoutOutput();
-
-    /**
-     * Draws a Console
-     */
-    void draw();
 
     /**
      * Sets the prompt displayed in the console
