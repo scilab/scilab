@@ -288,24 +288,11 @@ public class ScilabJavaObject {
      * @return version
      */
     public static final String[] getInfos() {
-        try {
-            Class c = Class.forName("java.lang.VersionProps");
-            Method m = c.getMethod("print", boolean.class);
-            m.setAccessible(true);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            PrintStream out = new PrintStream(baos);
-            System.setOut(out);
-            m.invoke(null, false);
-            out.flush();
-            System.setOut(System.out);
-            String[] ret = baos.toString().split("\n");
-            out.close();
-            baos.close();
-
-            return ret;
-        } catch (Exception e) {
-            return null;
-        }
+        return new String[] {
+            "Java version \"" + System.getProperty("java.version") + "\"",
+            System.getProperty("java.runtime.name") + " (build " + System.getProperty("java.runtime.version") + ")",
+            System.getProperty("java.vm.name") + " (build " + System.getProperty("java.vm.version") + ", " + System.getProperty("java.vm.info") + ")"
+        };
     }
 
     /**

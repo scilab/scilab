@@ -16,9 +16,9 @@
 package org.scilab.modules.external_objects_java;
 
 import java.lang.reflect.Array;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -935,19 +935,7 @@ public final class ScilabJavaArray {
             if (ScilabJavaObject.primTypes.containsKey(base)) {
                 obj = fromPrimitive(obj);
             }
-            ArrayList list = new ArrayList();
-            try {
-                Field _elementData = ArrayList.class.getDeclaredField("elementData");
-                Field _size = ArrayList.class.getDeclaredField("size");
-                _elementData.setAccessible(true);
-                _size.setAccessible(true);
-                _elementData.set(list, obj);
-                _size.set(list, ((Object[]) obj).length);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return list;
+            return new ArrayList(Arrays.asList((Object[]) obj));
         }
 
         List l = new LinkedList();

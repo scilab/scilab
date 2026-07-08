@@ -27,11 +27,10 @@ $SCILAB : scilab path (SCI in Scilab)
     <option value="--add-opens=java.desktop/sun.awt.X11=ALL-UNNAMED" os="linux"/>
     <option value="-Djdk.lang.processReaperUseDefaultStackSize=true" os="linux"/>
 
-    <!-- Needed by org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable to be able to invoke non-public "isLocationInExpandControl" method by reflexion -->
+    <!-- Needed to access non-public members of javax.swing.plaf.basic by reflection: -->
+    <!--   - org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable ("isLocationInExpandControl" in BasicTreeUI) -->
+    <!--   - org.scilab.modules.scinotes.utils.ScilabScrollPane ("trackRect"/"thumbRect" in BasicScrollBarUI) -->
     <option value="--add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED"/>
-
-    <!-- Needed by org.scilab.modules.external_objects_java to be able to invoke non-public "java.lang.VersionProps#print" method by reflexion -->
-    <option value="--add-opens=java.base/java.lang=ALL-UNNAMED"/>
 
     <!-- Needed by JCEF on macOS -->
     <option value="--add-opens=java.desktop/sun.awt=ALL-UNNAMED" os="macosx"/>
