@@ -98,9 +98,8 @@ docker_display_env:
 
 # on problem, the user can kill all running Scilab manually
 # /!\ This will also kill other pipeline jobs, use with care.
-windows_cleanup_kill_all:
+.windows_cleanup_kill_all:
   stage: docker_setup
-  tags: [x64_windows, shell, scilab]
   variables:
     GIT_STRATEGY: none
   script:
@@ -109,3 +108,9 @@ windows_cleanup_kill_all:
     - taskkill.exe /f /im cl.exe; echo done
     - taskkill.exe /f /im javac.exe; echo done
   when: manual
+windows_x64_cleanup_kill_all:
+  extends: .windows_cleanup_kill_all
+  tags: [x64_windows, shell, scilab]
+windows_arm64_cleanup_kill_all:
+  extends: .windows_cleanup_kill_all
+  tags: [arm64_windows, shell, scilab]
