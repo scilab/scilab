@@ -293,6 +293,9 @@
   <ItemGroup>
     <ResourceCompile Include="WScilex-cli.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="WScilex.manifest" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

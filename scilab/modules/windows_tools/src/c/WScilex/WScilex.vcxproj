@@ -271,6 +271,9 @@
     <ResourceCompile Include="WScilex.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Manifest Include="WScilex.manifest" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\..\..\ast\ast.vcxproj">
       <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
