@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javax.swing.JPanel;
+import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
 import org.cef.CefClient;
@@ -76,6 +77,8 @@ public class ScilabCefPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger("org.scilab.modules.commons.gui.ScilabCefPanel");
+    public static final String DOCKABLE_FOCUS_FROM_BROWSER_PROPERTY = ScilabCefPanel.class.getName() + ".dockableFocusFromBrowser";
+    public static final String CEF_NATIVE_FOCUS_PROPERTY = ScilabCefPanel.class.getName() + ".cefNativeFocus";
 
     private CefClient client;
     private CefBrowser browser;
@@ -83,6 +86,18 @@ public class ScilabCefPanel extends JPanel {
     
     /** True when Chromium has native focus. */
     private volatile boolean browserHasFocus = false;
+
+    /** Incremented whenever a pending Swing focus transfer must be cancelled. */
+    private volatile int focusTransferGeneration = 0;
+
+    /** True while waiting for CEF to acknowledge a browser focus request. */
+    private volatile boolean browserFocusRequested = false;
+
+    /** FlexDock view currently marked as holding native CEF focus for this panel. */
+    private View cefNativeFocusView = null;
+
+    /** Single FlexDock view marked as holding native CEF focus across all CEF panels. */
+    private static View currentCefNativeFocusView = null;
 
     /** >0 when a dock operation is in-progress */
     private static volatile int isDocking = 0;
@@ -149,10 +164,22 @@ public class ScilabCefPanel extends JPanel {
         public void onGotFocus(CefBrowser b) {
             if (b != browser) return;
             browserHasFocus = true;
+            browserFocusRequested = false;
+            final int focusTransfer = ++focusTransferGeneration;
             // Notify FlexDock so it updates title bars, menus, etc.
             SwingUtilities.invokeLater(() -> {
+                if (!browserHasFocus || focusTransfer != focusTransferGeneration) {
+                    return;
+                }
+
                 Component ancestor = SwingUtilities.getAncestorOfClass(View.class, ScilabCefPanel.this);
                 if (ancestor != null) {
+                    if (ancestor instanceof JComponent) {
+                        ((JComponent) ancestor).putClientProperty(DOCKABLE_FOCUS_FROM_BROWSER_PROPERTY, Boolean.TRUE);
+                    }
+                    if (ancestor instanceof View) {
+                        setCefNativeFocusView((View) ancestor);
+                    }
                     ActiveDockableTracker.requestDockableActivation(ancestor);
                 }
             });
@@ -162,6 +189,8 @@ public class ScilabCefPanel extends JPanel {
         public void onTakeFocus(CefBrowser b, boolean next) {
             if (b != browser) return;
             browserHasFocus = false;
+            browserFocusRequested = false;
+            clearCefNativeFocusView();
             // Tab traversal out of the browser
             SwingUtilities.invokeLater(() -> {
                 KeyboardFocusManager mgr = KeyboardFocusManager.getCurrentKeyboardFocusManager();
@@ -249,6 +278,9 @@ public class ScilabCefPanel extends JPanel {
             if (target == null || target instanceof java.awt.Window) return;
 
             browserHasFocus = false;
+            browserFocusRequested = false;
+            final int focusTransfer = ++focusTransferGeneration;
+            clearCefNativeFocusView();
             browser.setFocus(false);
             // Only steal native focus when both components are in the
             // same window.  For separate windows the OS handles it.
@@ -258,6 +290,9 @@ public class ScilabCefPanel extends JPanel {
                     private int attempts = 0;
                     @Override
                     public void run() {
+                        if (browserHasFocus || focusTransfer != focusTransferGeneration) {
+                            return;
+                        }
                         if (nativeFocusSink.hasFocus()) {
                             focusTarget.requestFocusInWindow();
                         } else if (++attempts < 10) {
@@ -273,6 +308,59 @@ public class ScilabCefPanel extends JPanel {
         };
         java.awt.Toolkit.getDefaultToolkit().addAWTEventListener(
             clickOutsideListener, java.awt.AWTEvent.MOUSE_EVENT_MASK);
+    }
+
+    private void setCefNativeFocusView(View view) {
+        if (!SwingUtilities.isEventDispatchThread()) {
+            SwingUtilities.invokeLater(() -> setCefNativeFocusView(view));
+            return;
+        }
+
+        cefNativeFocusView = view;
+
+        synchronized (ScilabCefPanel.class) {
+            if (currentCefNativeFocusView == view) {
+                repaintTitlebar(view);
+                return;
+            }
+
+            clearCefNativeFocusView(currentCefNativeFocusView);
+            currentCefNativeFocusView = view;
+            view.putClientProperty(CEF_NATIVE_FOCUS_PROPERTY, Boolean.TRUE);
+            repaintTitlebar(view);
+        }
+    }
+
+    private void clearCefNativeFocusView() {
+        if (!SwingUtilities.isEventDispatchThread()) {
+            SwingUtilities.invokeLater(() -> clearCefNativeFocusView());
+            return;
+        }
+
+        View view = cefNativeFocusView;
+        cefNativeFocusView = null;
+
+        synchronized (ScilabCefPanel.class) {
+            if (currentCefNativeFocusView == view) {
+                clearCefNativeFocusView(view);
+                currentCefNativeFocusView = null;
+            }
+        }
+    }
+
+    private static void clearCefNativeFocusView(View view) {
+        if (view == null) {
+            return;
+        }
+
+        view.putClientProperty(CEF_NATIVE_FOCUS_PROPERTY, null);
+        repaintTitlebar(view);
+    }
+
+    private static void repaintTitlebar(View view) {
+        if (view != null && view.getTitlebar() != null) {
+            view.getTitlebar().repaint();
+        }
     }
 
     // ====================================================================
@@ -298,6 +386,21 @@ public class ScilabCefPanel extends JPanel {
     public void executeJS(String code, String sourceUrl) {
         if (browser != null) {
             browser.executeJavaScript(code, sourceUrl, 0);
+        }
+    }
+
+    /**
+     * Give native keyboard focus back to Chromium after a focus request coming
+     * from the web page itself. This also cancels any pending delayed transfer
+     * to a Swing component scheduled by the click-outside handler.
+     */
+    public void requestBrowserFocus() {
+        focusTransferGeneration++;
+        browser.getUIComponent().requestFocusInWindow();
+
+        if (!browserHasFocus && !browserFocusRequested) {
+            browserFocusRequested = true;
+            browser.setFocus(true);
         }
     }
 
@@ -539,6 +642,8 @@ public class ScilabCefPanel extends JPanel {
             java.awt.Toolkit.getDefaultToolkit().removeAWTEventListener(clickOutsideListener);
             clickOutsideListener = null;
         }
+
+        clearCefNativeFocusView();
 
         if (browser != null) {
             browser.closeDevTools();

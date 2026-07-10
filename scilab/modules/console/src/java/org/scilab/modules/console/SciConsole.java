@@ -187,7 +187,7 @@ public abstract class SciConsole extends JPanel {
                         
                         // Ensure the CefBrowser gets focus when console is ready
                         SwingUtilities.invokeLater(() -> {
-                            cefPanel.getBrowser().getUIComponent().requestFocusInWindow();
+                            cefPanel.requestBrowserFocus();
                         });
                         return true;
                     }
@@ -202,7 +202,9 @@ public abstract class SciConsole extends JPanel {
                         browser_.reloadIgnoreCache();
                         return true;
                     case "focus":
-                        SwingUtilities.invokeLater(() -> browser_.getUIComponent().requestFocusInWindow());
+                        SwingUtilities.invokeLater(() -> {
+                            cefPanel.requestBrowserFocus();
+                        });
                         return true;
                     case "copy":
                         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(req[1]), null);

@@ -16,8 +16,14 @@
 
         <!-- List the various titlebars that are available -->
         <titlebar-ui name="scilab" extends="default">
+            <property name="classname" value="org.scilab.modules.gui.bridge.tab.ScilabTitlebarUI" />
+            <property name="button-ui" value="scilab" />
             <property name="icon-map" value="scilab" />
         </titlebar-ui>
+
+        <button-ui name="scilab" extends="default">
+            <property name="classname" value="org.scilab.modules.gui.bridge.tab.ScilabButtonUI" />
+        </button-ui>
 
         <icon-resource name="scilab.undock">
             <property name="default" value="undock-icon-black.png" />

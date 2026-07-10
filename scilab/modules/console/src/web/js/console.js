@@ -77,11 +77,15 @@ $(document).ready(async () => {
         }
     });
 
+    $(".console").on("mousedown", (_e) => {
+        focus();
+        Scilab({request: "focus"});
+    });
+
     $(".console").on("click", (_e) => {
         hideCompletionWindow();
         focus();
-        Scilab({request: "focus"});
-    })
+    });
 
     $("body").on("mouseup", function(_e) {
         if (window.getSelection) {

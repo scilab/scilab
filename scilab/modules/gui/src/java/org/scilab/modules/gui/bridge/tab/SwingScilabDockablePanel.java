@@ -31,6 +31,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.FocusEvent;
@@ -64,6 +65,7 @@ import org.flexdock.view.View;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabCefPanel;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -382,6 +384,17 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     @Override
     public void focusGained(FocusEvent e) {
         //ActiveDockableTracker.requestDockableActivation(this);
+        if (Boolean.TRUE.equals(getClientProperty(ScilabCefPanel.DOCKABLE_FOCUS_FROM_BROWSER_PROPERTY))) {
+            putClientProperty(ScilabCefPanel.DOCKABLE_FOCUS_FROM_BROWSER_PROPERTY, null);
+            return;
+        }
+
+        Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+        if (focusOwner != null && ((contentPane != null && SwingUtilities.isDescendingFrom(focusOwner, contentPane))
+                || (getContentPane() != null && SwingUtilities.isDescendingFrom(focusOwner, getContentPane())))) {
+            return;
+        }
+
         if (contentPane != null) {
             if (log.isLoggable(Level.FINE)) {
                 log.fine("SwingScilabDockablePanel focus redirect to contentPane " + contentPane);
