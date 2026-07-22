@@ -175,23 +175,18 @@ template<typename T> std::wstring toString(T const& m, int precision)
     // }
     // ostr << " " << p.typeName<typename Eigen::internal::traits<T>::Scalar>() << L" matrix\n\n";
 
-    auto * pIColPos      = m.innerIndexPtr();
-    auto * pINbItemByRow = m.outerIndexPtr();
-
-    int iPos = 0;
-
-    int size = static_cast<int>(m.rows() + 1);
-    for (size_t j = 1; j < size; j++)
+    // NB: use InnerIterator rather than raw outerIndexPtr()/innerIndexPtr() walking:
+    // the latter only reflects real (as opposed to reserved-but-unused) entries when
+    // the matrix isCompressed(), which is not guaranteed here.
+    for (Eigen::Index j = 0; j < m.rows(); ++j)
     {
-        for (size_t i = pINbItemByRow[j - 1]; i < pINbItemByRow[j]; i++)
+        for (typename T::InnerIterator it(m, j); it; ++it)
         {
             ostr << L"(";
-            addIntValue<unsigned long long>(&ostr, (int)j, iWidthRows);
+            addIntValue<unsigned long long>(&ostr, (int)(j + 1), iWidthRows);
             ostr << L",";
-            addIntValue<unsigned long long>(&ostr, pIColPos[iPos] + 1, iWidthCols);
-            ostr << L")\t" << p(m.valuePtr()[iPos]) << std::endl;
-
-            iPos++;
+            addIntValue<unsigned long long>(&ostr, it.col() + 1, iWidthCols);
+            ostr << L")\t" << p(it.value()) << std::endl;
         }
     }
 
@@ -758,12 +753,12 @@ void Sparse::finalize()
     if (isComplex())
     {
         matrixCplx->prune(&keepForSparse<std::complex<double> >);
-        matrixCplx->finalize();
+        matrixCplx->makeCompressed();
     }
     else
     {
         matrixReal->prune(&keepForSparse<double>);
-        matrixReal->finalize();
+        matrixReal->makeCompressed();
     }
 
 }
@@ -2033,6 +2028,7 @@ GenericType* Sparse::extract(typed_list* _pArgs)
                     }
                 }
             }
+            pOut->finalize();
         }
         return pOut;
     }
@@ -4560,7 +4556,7 @@ bool SparseBool::operator!=(const InternalType& it) SPARSE_CONST
 void SparseBool::finalize()
 {
     matrixBool->prune(&keepForSparse<bool>);
-    matrixBool->finalize();
+    matrixBool->makeCompressed();
 }
 
 bool SparseBool::get(int r, int c) SPARSE_CONST

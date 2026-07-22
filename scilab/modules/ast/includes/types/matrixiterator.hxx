@@ -461,7 +461,7 @@ struct RowWiseSparseIterator : Coords2DIterator
     }
 private:
     Sp const& sp;
-    typename Eigen::internal::traits<Sp>::Index outerIdx;
+    Eigen::Index outerIdx;
     typename Sp::InnerIterator innerIt;
 };
 
