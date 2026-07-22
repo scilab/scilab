@@ -226,11 +226,11 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-result = http_get("www.google.com")
+result = http_get("https://www.google.com")
 
-file = http_get("www.google.com", TMPDIR+"/result");
+file = http_get("https://www.google.com", TMPDIR+"/result");
 mgetl(file)
-file = http_get("www.google.com", TMPDIR+"/result.html", follow=%t);
+file = http_get("https://www.google.com", TMPDIR+"/result.html", follow=%t);
 // then open the file in your browser
 
 result = http_get("https://jsonplaceholder.typicode.com/posts?userId=1")
