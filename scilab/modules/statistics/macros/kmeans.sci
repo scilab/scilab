@@ -16,36 +16,40 @@ function [C, centers] = kmeans(X, k)
 	end
 
 	maxiter = 100;
-	eps = 10^-6;
-	t = 0;
+	tol = 10^-6;
 
-	// init classe centers
+	// init class centers (sampling without replacement)
 	n = size(X, 1);
-	index = ceil(n * rand(1, k, "uniform"));
-	u = unique(index);
-	while length(u) <> length(index) then
-		index = ceil(n * rand(1, k, "uniform"));
-		u = unique(index);
-	end
+	index = grand(1, "prm", 1:n);
+	index = index(1:k);
+	centers = X(index, :);
 
-	centers  = X(index, :);
-	cv = 1;	
+	// initial assignment
+	D = pdist2(X, centers);
+	[tmp, C] = min(D, "c");
 
-	while (cv > eps && t <= maxiter)
+	for t = 1:maxiter
+		// update step: re-computation of centers
+		newcenters = centers;
+		for kk = 1:k
+			idx_kk = find(C == kk);
+			if ~isempty(idx_kk) then
+				newcenters(kk, :) = mean(X(idx_kk, :), 1);
+			end
+		end
+
+		// convergence check
+		cv = sum((newcenters - centers).^2);
+		centers = newcenters;
+		if cv <= tol then
+			break
+		end
+
 		// assignment step
 		D = pdist2(X, centers);
 		[tmp, C] = min(D, "c");
-
-		// step "recalage" (re-computation of centers)
-		for kk = 1:k
-			newcenters(kk, :) = mean(X(C == kk, :), 1);
-		end
-
-		D = pdist2(X, newcenters);
-		[tmp, C] = min(D, "c");
-
-		t = t + 1;
-		cv = sum((newcenters-centers).^2);
-		centers = newcenters;
 	end
+
+	D = pdist2(X, centers);
+	[tmp, C] = min(D, "c");
 end

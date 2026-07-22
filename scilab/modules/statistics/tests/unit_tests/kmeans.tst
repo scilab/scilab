@@ -11,14 +11,14 @@
 // unit tests for kmeans function
 // =============================================================================
 
-rand("seed", 0)
+grand("setsd", 0)
 x = [2 3; 4 4; 1 4; 2 1; 4 3; 4 2; 5 2; 1 2; 5 1; 3 4];
 [index, c] = kmeans(x, 2);
 
-assert_checkequal(index, [1 1 1 2 2 2 2 1 2 1]');
-assert_checkequal(c, [2.2 3.4; 4 1.8]);
+assert_checkequal(index, [2 2 2 1 1 1 1 2 1 2]');
+assert_checkequal(c, [4 1.8; 2.2 3.4]);
 
-rand("seed", 0)
+grand("setsd", 0)
 n = 10;
 x1 = rand(n, 2, "normal") + 3 * ones(n, 2);
 x2 = rand(n, 2, "normal") - 3 * ones(n, 2);
