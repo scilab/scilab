@@ -2261,8 +2261,6 @@ if test "$enable_stop_on_warning" = yes; then
     WARNING_CXXFLAGS="$WARNING_CXXFLAGS -Wno-error=unused-function"
     # FIXME: swig generated code break strict-aliasing rules
     WARNING_CXXFLAGS="$WARNING_CXXFLAGS -Wno-error=strict-aliasing"
-    # FIXME: Eigen/src/Core/AssignEvaluator.h:86:63: error: enum constant in boolean context
-    WARNING_CXXFLAGS="$WARNING_CXXFLAGS -Wno-error=int-in-bool-context"
 fi
 
 # SCI_*FLAGS contains all defaults values detected on configure

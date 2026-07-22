@@ -57,18 +57,18 @@ else
 fi
 CPPFLAGS="$save_CPPFLAGS"
 
-CHK_EIGEN_WORLD=3
-CHK_EIGEN_MAJOR=3
-CHK_EIGEN_MINOR=2
+CHK_EIGEN_MAJOR=5
+CHK_EIGEN_MINOR=0
+CHK_EIGEN_PATCH=1
 
-AC_MSG_CHECKING([if Eigen is version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR or later])
+AC_MSG_CHECKING([if Eigen is version $CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR.$CHK_EIGEN_PATCH or later])
 ac_saved_cxxflags=$CXXFLAGS
 CXXFLAGS="$CXXFLAGS $EIGEN_CPPFLAGS"
 AC_RUN_IFELSE([AC_LANG_PROGRAM([
-#include "$PATH_TO_EIGEN/Eigen/Sparse"
-], [if (EIGEN_VERSION_AT_LEAST(3,3,2)) {return 0;}; return 1;])],
+#include "$PATH_TO_EIGEN/Eigen/Core"
+], [if (EIGEN_VERSION_AT_LEAST(5,0,1)) {return 0;}; return 1;])],
     AC_MSG_RESULT([yes]),
-    AC_MSG_ERROR([Version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR of Eigen expected (at least)]))
+    AC_MSG_ERROR([Version $CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR.$CHK_EIGEN_PATCH of Eigen expected (at least)]))
 CXXFLAGS=$ac_saved_cxxflags
 
 AC_SUBST(EIGEN_CPPFLAGS)
