@@ -57,11 +57,11 @@ assert_checkalmostequal(sum(explained), 100);
 [comprinc, scores, l, tsquare, explained, mu] = pca(x, "Economy", %t, "NumComponents", 2);
 assert_checkequal(size(comprinc), [4 2]);
 assert_checkequal(size(scores), [9 2]);
-assert_checkequal(size(l), [4 1]);
+assert_checkequal(size(l), [2 1]);
 assert_checkequal(size(tsquare), [9 1]);
-assert_checkequal(size(explained), [4 1]);
+assert_checkequal(size(explained), [2 1]);
 assert_checkequal(size(mu), [1 4]);
-assert_checkalmostequal(sum(explained), 100);
+assert_checkalmostequal(sum(explained), 99.361711);
 
 x = [1 2 1; 2 3 1; 0 2 1; 2 3 9;5 -2 7; -1 2 1];
 w = [0.5 0.25 0.25 0.5 0.25 0.25];
@@ -96,3 +96,46 @@ assert_checkalmostequal(scores * comprinc' + repmat(mu, 6, 1), x, [], 1e-15);
 
 [comprinc, scores, l, tsquare, explained, mu] = pca(x, "Weights", w, "VariableWeights", [0.3 0.8 0.5]);
 assert_checkalmostequal(scores * comprinc' + repmat(mu, 6, 1), x, [], 1e-15);
+
+X = [-1 -1; -2 -1; -3 -2; 1  1; 2  1; 3  2];
+
+// svd and eig - same results
+[c1,s1,l1,t1,e1] = pca(X,"Algorithm","svd");
+[c2,s2,l2,t2,e2] = pca(X,"Algorithm","eig");
+
+assert_checkalmostequal(abs(c1),abs(c2),1d-12);
+assert_checkalmostequal(abs(s1),abs(s2),1d-12);
+
+assert_checkalmostequal(l1,l2,1d-12);
+assert_checkalmostequal(e1,e2,1d-12);
+assert_checkalmostequal(t1,t2,1d-12);
+
+// NumComponents
+[c,s,l,t,e] = pca(X,"NumComponents",1);
+
+assert_checkequal(size(c),[2 1]);
+assert_checkequal(size(s),[6 1]);
+assert_checkequal(size(l),[1 1]);
+assert_checkequal(size(e),[1 1]);
+
+// NumComponents + eig
+[c,s,l,t,e] = pca(X,"Algorithm","eig","NumComponents",1);
+
+assert_checkequal(size(c),[2 1]);
+assert_checkequal(size(s),[6 1]);
+assert_checkequal(size(l),[1 1]);
+
+[c,s]=pca(X);
+X0=X-ones(size(X,1),1)*mean(X,1);
+assert_checkalmostequal(X0,s*c');
+
+// svd and eigs with NumComponents
+[c1,s1,l1,t1,e1]=pca(X,"Algorithm","svd","NumComponents",1);
+
+[c2,s2,l2,t2,e2]=pca(X,"Algorithm","eig","NumComponents",1);
+
+assert_checkalmostequal(abs(c1),abs(c2),1d-12);
+assert_checkalmostequal(abs(s1),abs(s2),1d-12);
+assert_checkalmostequal(l1,l2,1d-12);
+assert_checkalmostequal(e1,e2,1d-12);
+assert_checkalmostequal(t1,t2,1d-12);

@@ -25,6 +25,7 @@ function [comprinc, score, lambda, tsquare, explainedvar, mu] = pca(x, varargin)
         return;
     end
 
+    algorithm = "svd";
     eco = %t;
     centered = %t;
     numcomp = size(x, 2);
@@ -39,6 +40,16 @@ function [comprinc, score, lambda, tsquare, explainedvar, mu] = pca(x, varargin)
             end
 
             select convstr(varargin(i), "l")
+            case "algorithm"
+                algorithm = varargin(i + 1);
+
+                if typeof(algorithm) <> "string" || ~isscalar(algorithm) then
+                    error(msprintf(_("%s: Wrong type for ""%s"" argument: A string expected.\n"), "pca", "Algorithm"));
+                end
+
+                if and(algorithm <> ["svd", "eig"]) then
+                    error(msprintf(_("%s: Wrong value for ""%s"" argument: ""svd"" or ""eig"" expected.\n"), "pca", "Algorithm"));
+                end
             case "centered"
                 centered = varargin(i + 1);
 
@@ -136,6 +147,7 @@ function [comprinc, score, lambda, tsquare, explainedvar, mu] = pca(x, varargin)
         r = rowx;
     end
 
+    c = [];
     if isweights then
         c = sqrt(weights) * ones(1, colx);
         y = y .* c;
@@ -146,9 +158,9 @@ function [comprinc, score, lambda, tsquare, explainedvar, mu] = pca(x, varargin)
             if isweights then
                 // weighted standard deviation from variance computation
                 // https://stats.stackexchange.com/questions/47325/bias-correction-in-weighted-variance
-                mw = meanf(x, w(:) * ones(1,colx), 1);
-                s = sum((w(:) * ones(1, colx) .* (abs(x - ones(rowx, 1) * mw)) .^2), 1) ./ sum(w);
-                sw = sqrt(s* (sum(w)^2)/(sum(w)^2 - sum(w.^2)));
+                mw = meanf(x, weights(:) * ones(1,colx), 1);
+                s = sum((weights(:) * ones(1, colx) .* (abs(x - ones(rowx, 1) * mw)) .^2), 1) ./ sum(weights);
+                sw = sqrt(s* (sum(weights)^2)/(sum(weights)^2 - sum(weights.^2)));
                 varweights = 1./sw;
             else
                 varweights = 1./stdev(x, 1);
@@ -159,25 +171,57 @@ function [comprinc, score, lambda, tsquare, explainedvar, mu] = pca(x, varargin)
         y = y .* (ones(rowx, 1) * varweights);
     end
 
-    //compute eigenvectors of  y'*y using svd
-    if eco then
-        [U, lambda, comprinc] = svd(y, "e");
-    else
-        [U, lambda, comprinc] = svd(y);
+    select algorithm
+    case "svd"
+        [lambda, comprinc, score, totalvar] = pcaSVD(y, r, colx, c, eco, isweights)
+    case "eig"
+        [lambda, comprinc, score, totalvar] = pcaEIG(y, r, colx, c, numcomp, isweights)
     end
-
-    if isweights then
-        U = U ./ c;
-        y = y ./ c;
-    end
-
-    score = y * comprinc;
-    lambda = diag(lambda).^2 / r;
 
     if varweights <> [] then
         comprinc = comprinc ./ (varweights' * ones(1, colx));
     end
-    
+
+    [tmp, k] = max(abs(comprinc), "r");
+    changesign = sign(diag(comprinc(k,:))');
+    comprinc = changesign.*. ones(colx, 1) .* comprinc;
+    score = changesign.*. ones(rowx, 1) .* score;
+
+    if numcomp < size(comprinc,2) then
+        comprinc = comprinc(:, 1: numcomp);
+        score = score(:, 1:numcomp);
+        lambda = lambda(1:numcomp);
+    end
+
+    if lambda <> [] then
+        tsquare = sum(score.^2 ./ ...
+                (ones(rowx,1) * lambda'), 2);
+    else
+        tsquare = zeros(rowx,1);
+    end
+
+    if nargout > 4 then
+        // percentage of variance explained by each principal component
+        explainedvar = 100 * lambda / totalvar;
+    end
+
+endfunction
+
+function [lambda, comprinc, score, totalvar] = pcaSVD(y, r, colx, c, eco, isweights)
+    if eco then
+        [U, lambdaMat, comprinc] = svd(y, "e");
+    else
+        [U, lambdaMat, comprinc] = svd(y);
+    end
+
+    lambda = diag(lambdaMat).^2 / r;
+
+    if isweights then
+        y = y ./ c;
+    end
+
+    score = y * comprinc;
+
     if r < colx then
         if eco then
             comprinc(:,r+1:$)=[];
@@ -188,26 +232,32 @@ function [comprinc, score, lambda, tsquare, explainedvar, mu] = pca(x, varargin)
             score(:, r+1:$) = 0;
         end
     end
-    q=find(lambda<=max(r,colx)*%eps*lambda(1),1)
-    if q==[] then q=size(lambda,"*"),end
-    tsquare = r * sum(U(:,1:q).^2,2)
 
-    if nargout > 4 then
-        // percentage of variance explained by each principal component
-        explainedvar = 100 * lambda / sum(lambda);
+    totalvar = sum(lambda);
+
+endfunction
+
+function [lambda, comprinc, score, totalvar] = pcaEIG(y, r, colx, c, numcomp, isweights)
+    // covariance matrix
+    C = y' * y / r;
+
+    if numcomp < colx then
+        [D, comprinc] = eigs(C, [], numcomp);
+    else
+        [comprinc, D] = spec(C);
     end
 
-    [tmp, k] = max(abs(comprinc), "r");
-    changesign = sign(diag(comprinc(k,:))');
-    comprinc = changesign.*. ones(colx, 1) .* comprinc;
-    score = changesign.*. ones(rowx, 1) .* score;
+    lambda = diag(D);
 
-    if numcomp < rowx then
-        comprinc = comprinc(:, 1: numcomp);
-        score = score(:, 1:numcomp);
+    [lambda, ind] = gsort(lambda, "g", "d");
+    comprinc = comprinc(:, ind);
+
+    if isweights then
+        y = y ./ c;
     end
 
-    if nargout < 4 then
-        warning(msprintf(_("Potential incompatibility with previous versions: the order of first three output arguments have changed. Please see pca documentation for more information.\n"), "pca"));
-    end
+    // principal component scores
+    score = y * comprinc;
+
+    totalvar = trace(C);
 endfunction

@@ -33,7 +33,7 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para> is a nxp (n individuals, p variables) real
+                    <para> is a nxp (n observations, p variables) real
                         matrix.
                     </para>
                 </listitem>
@@ -41,41 +41,66 @@
             <varlistentry>
                 <term>Name, Value</term>
                 <listitem>
-                    <para><emphasis role="bold">'Centered'</emphasis>: boolean indicator for centering the columns. Default value: %t.</para>
-                    <para><emphasis role="bold">'Economy'</emphasis>: boolean indicator, use to allow economy size singular value decomposition. Default value: %t.</para>
-                    <para><emphasis role="bold">'NumComponents'</emphasis>: integer value, number of components returned. Default value: size(X, 2).</para>
-                    <para><emphasis role="bold">'Weights'</emphasis>: row vector of doubles of length size(X, 1) containing observation weights. Default value: ones(1, size(X, 1)).</para>
-                    <para><emphasis role="bold">'VariableWeights'</emphasis>: "variance" value or row vector of doubles of length size(X, 2) containing variable weights. Default value: [].</para>
+                    <para><emphasis role="bold">'Algorithm'</emphasis>: Algorithm used to compute the principal components.
+                        Possible values are: <literal>"svd"</literal> (default) and <literal>"eig"</literal>
+                    </para>
+                    <para><emphasis role="bold">'Centered'</emphasis>: Boolean specifying whether variables are centered before
+                        computing the PCA. Default value: %t.
+                    </para>
+                    <para><emphasis role="bold">'Economy'</emphasis>: Boolean, use to allow economy size singular value decomposition. This option is only used when
+                        <literal>Algorithm="svd"</literal>. Default value: %t.
+                    </para>
+                    <para><emphasis role="bold">'NumComponents'</emphasis>: Positive integer specifying the number of principal components
+                        to return. The outputs <literal>coeff</literal>, <literal>score</literal>, <literal>latent</literal>, 
+                        <literal>explained</literal> and the Hotelling's T² statistic are computed using only these returned 
+                        principal components. Default value: size(X, 2).
+                    </para>
+                    <para><emphasis role="bold">'Weights'</emphasis>: Row vector of doubles of length size(X, 1) containing observation weights. Default value: ones(1, size(X, 1)).</para>
+                    <para><emphasis role="bold">'VariableWeights'</emphasis>: A row positive vector of length size(X, 2) containing variable weights or the string
+                        <literal>"variance"</literal>. Default value: [].
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>comprinc</term>
                 <listitem>
-                    <para>are the  principal component coefficients, p-by-p matrix where p is equal to size(X,2).
+                    <para>
+                        Matrix of size p x p (p is equal to size(X, 2)) whose columns are the principal component coefficients
+                        (principal directions).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>score</term>
                 <listitem>
-                    <para>n-by-p matrix or n-by-NumComponents matrix if 'NumComponents' is specified.</para>
-                    <para>are the principal component scores.
+                    <para>
+                        Principal component scores.
+                    </para>
+                    <para>
+                        n-by-p matrix or n-by-NumComponents matrix if 'NumComponents' is specified.
+                    </para>
+                    <para>Each row corresponds to the
+                        projection of an observation onto the selected principal
+                        components.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>lambda</term>
                 <listitem>
-                    <para>is a p-by-1 or NumComponents-by-1 (if 'NumComponents' is specified) vector.</para>
-                    <para>contains the eignevalues of the covariance X</para>
+                    <para>
+                        Variance explained by each principal component (eigenvalues
+                        of the covariance matrix).
+                    </para>
+                    <para>p-by-1 or NumComponents-by-1 (if 'NumComponents' is specified) vector.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>tsquare</term>
                 <listitem>
                     <para>
-                        a <literal>n</literal> column vector. It contains the Hotelling's
-                        T^2 statistic for each data point.
+                        a <literal>n</literal> column vector. Hotelling's T² statistic computed from the returned principal
+                        component scores.
                     </para>
                 </listitem>
             </varlistentry>
@@ -101,19 +126,54 @@
     </refsection>
     <refsection role="description">
         <title>Description</title>
-        <para>This function performs several computations known as
-            "principal component analysis".
+        <para>
+            <literal>pca</literal> performs Principal Component Analysis (PCA)
+            on the observations stored in the rows of <literal>X</literal>.
+            The variables are assumed to be stored in the columns.
         </para>
-        <para>The idea behind this method is to represent in an
-            approximative manner a cluster of n individuals in a smaller
-            dimensional subspace.  In order to do that, it projects the
-            cluster onto a subspace.  The choice of the k-dimensional
-            projection subspace is made in such a way that the distances in
-            the projection have a minimal deformation: we are looking for a
-            k-dimensional subspace such that the squares of the distances in
-            the projection is as big as possible (in fact in a projection,
-            distances can only stretch).  In other words, inertia of the
-            projection onto the k dimensional subspace must be maximal.
+        <para>
+            By default, the variables are centered before computing the principal
+            components. The coefficients are returned as orthonormal vectors ordered
+            according to decreasing explained variance.
+        </para>
+        <para>
+            The principal component scores are obtained by projecting the centered
+            observations onto the principal component directions.
+        </para>
+        <para>
+            The Hotelling's T² statistic is computed from the principal component
+            scores returned by the function. Consequently, when the
+            <literal>"NumComponents"</literal> option is used, the T² statistic is
+            evaluated in the reduced principal component subspace defined by the
+            returned components.
+        </para>
+        <para>
+            Two numerical algorithms are available:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>"svd"</literal> (default): computes the principal
+                    components using the Singular Value Decomposition of the data
+                    matrix.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>"eig"</literal>: computes the principal components from
+                    the eigenvalue decomposition of the covariance matrix. When
+                    <literal>"NumComponents"</literal> is smaller than the number of
+                    variables, only the requested dominant eigenpairs are computed
+                    using <literal>eigs</literal>, which can significantly reduce the
+                    computation time for large data sets.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            The <literal>"svd"</literal> and <literal>"eig"</literal> algorithms
+            produce equivalent principal components up to numerical round-off
+            errors. The <literal>"eig"</literal> algorithm can be advantageous when
+            only a small number of principal components is requested.
         </para>
         <para>To obtain the pca graph, use the <link linkend="show_pca">show_pca</link>
             function.
@@ -177,6 +237,109 @@ show_pca(lambda, comprinc)
     scf();
     show_pca(lambda, newcomprinc)
         ]]></programlisting>
+<programlisting role="example"><![CDATA[
+X = [-1 -1;
+     -2 -1;
+     -3 -2;
+      1  1;
+      2  1;
+      3  2];
+
+// PCA using SVD
+[coefs, score, l, tsquare, explained] = pca(X)
+
+// coefs = [2x2 double]
+// 
+//    0.8384922  -0.5449135
+//    0.5449135   0.8384922
+// 
+//  score = [6x2 double]
+// 
+//   -1.3834058  -0.2935787
+//   -2.221898    0.2513348
+//   -3.6053038  -0.0422439
+//    1.3834058   0.2935787
+//    2.221898   -0.2513348
+//    3.6053038   0.0422439
+// 
+//  l = [2x1 double]
+// 
+//    7.9395431
+//    0.0604569
+// 
+//  tsquare = [6x1 double]
+// 
+//    1.6666667
+//    1.6666667
+//    1.6666667
+//    1.6666667
+//    1.6666667
+//    1.6666667
+// 
+//  explained = [2x1 double]
+// 
+//    99.244289
+//    0.7557110
+
+score * coefs' == X
+
+// PCA using eigenvalue decomposition
+[coefs, score, l, tsquare, explained] = pca(X, "Algorithm", "eig")
+
+// coefs = [2x2 double]
+//
+//   0.8384922  -0.5449135
+//   0.5449135   0.8384922
+//
+// score = [6x2 double]
+//
+//  -1.3834058  -0.2935787
+//  -2.221898    0.2513348
+//  -3.6053038  -0.0422439
+//   1.3834058   0.2935787
+//   2.221898   -0.2513348
+//   3.6053038   0.0422439
+//
+// l = [2x1 double]
+//
+//   7.9395431
+//   0.0604569
+//
+// tsquare = [6x1 double]
+//
+//   1.6666667
+//   1.6666667
+//   1.6666667
+//   1.6666667
+//   1.6666667
+//   1.6666667
+//
+// explained = [2x1 double]
+//
+//   99.244289
+//   0.7557110
+
+// Keep only the first principal component
+[coefs, score, l] = pca(X, "Algorithm", "eig", "NumComponents", 1)
+
+// coefs = [2x1 double]
+//
+//   0.8384922
+//   0.5449135
+//
+// score = [6x1 double]
+//
+//  -1.3834058
+//  -2.2218980
+//  -3.6053038
+//   1.3834058
+//   2.2218980
+//   3.6053038
+//
+// l = 
+//
+//   7.9395431
+]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -184,13 +347,9 @@ show_pca(lambda, comprinc)
             <member>
                 <link linkend="show_pca">show_pca</link>
             </member>
+            <member><link linkend="svd">svd</link></member>
+            <member><link linkend="eigs">eigs</link></member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>Bibliography</title>
-        <para>Saporta, Gilbert, Probabilites,  Analyse des
-            Donnees et Statistique, Editions Technip, Paris, 1990.
-        </para>
     </refsection>
     <refsection role="history">
         <title>History</title>
@@ -231,6 +390,14 @@ show_pca(lambda, comprinc)
                                 </para>
                             </listitem>
                         </itemizedlist>
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        Algorithm option added. Possible values are <literal>"svd"</literal> and <literal>"eigs"</literal>.
                     </para>
                 </revdescription>
             </revision>
