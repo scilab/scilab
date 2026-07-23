@@ -15,8 +15,12 @@
  */
 package org.scilab.modules.ui_data;
 
+import java.lang.reflect.InvocationTargetException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
+
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.types.ScilabTypeEnum;
@@ -133,7 +137,11 @@ public class BrowseVar {
 
     /** Open Variable Browser */
     public static void openVariableBrowser() {
-        ScilabVariableBrowser.openVariableBrowser();
+        try {
+            SwingUtilities.invokeAndWait(() -> ScilabVariableBrowser.openVariableBrowser());
+        } catch (InvocationTargetException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

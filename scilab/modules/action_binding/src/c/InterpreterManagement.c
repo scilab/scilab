@@ -1,7 +1,8 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
- *
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Clément DAVID
+ * 
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -15,6 +16,7 @@
 
 #include "InterpreterManagement.h"
 #include "storeCommand.h"
+#include "callCommand.h"
 #include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 int putCommandInScilabQueue(char *command)
@@ -57,6 +59,11 @@ int requestScilabExec(char *command)
     {
         return StorePrioritaryCommand(command);
     }
+}
+/*--------------------------------------------------------------------------*/
+int callScilabExecstr(const char *command)
+{
+    return callCommandFromGateway(command);
 }
 /*--------------------------------------------------------------------------*/
 int interruptScilab(void)

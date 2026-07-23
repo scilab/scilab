@@ -207,7 +207,8 @@ libsciaction_binding_disable_la_LIBADD =
 am_libsciaction_binding_disable_la_OBJECTS = src/noaction_binding/libsciaction_binding_disable_la-noaction_binding.lo
 libsciaction_binding_disable_la_OBJECTS =  \
 	$(am_libsciaction_binding_disable_la_OBJECTS)
-libsciaction_binding_la_DEPENDENCIES = libsciaction_binding-algo.la
+libsciaction_binding_la_DEPENDENCIES = libsciaction_binding-algo.la \
+	$(top_builddir)/modules/core/libscicore.la
 am__libsciaction_binding_la_SOURCES_DIST =  \
 	sci_gateway/cpp/action_binding_gw.cpp \
 	sci_gateway/cpp/sci_notify.cpp
@@ -703,6 +704,7 @@ libsciaction_binding_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/symbol/ \
     -I$(top_srcdir)/modules/ast/includes/system_env/ \
     -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/core/includes/ \
     -I$(top_srcdir)/modules/jvm/includes/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/modules/commons/src/jni/ \
@@ -727,7 +729,9 @@ libsciaction_binding_algo_la_CPPFLAGS = $(libsciaction_binding_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(ACTION_BINDING_CPP_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libsciaction_binding_la_CPPFLAGS)
-libsciaction_binding_la_LIBADD = libsciaction_binding-algo.la
+libsciaction_binding_la_LIBADD = libsciaction_binding-algo.la \
+	$(top_builddir)/modules/core/libscicore.la
+
 
 #### Name of the module and the path ######
 modulename = action_binding

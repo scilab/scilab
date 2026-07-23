@@ -73,6 +73,7 @@ libsciaction_binding_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/symbol/ \
     -I$(top_srcdir)/modules/ast/includes/system_env/ \
     -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/core/includes/ \
     -I$(top_srcdir)/modules/jvm/includes/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/modules/commons/src/jni/ \
@@ -104,7 +105,8 @@ CHECK_SRC= $(ACTION_BINDING_CPP_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libsciaction_binding_la_CPPFLAGS)
 
 ## Libraries necessary
-libsciaction_binding_la_LIBADD = libsciaction_binding-algo.la
+libsciaction_binding_la_LIBADD = libsciaction_binding-algo.la \
+	$(top_builddir)/modules/core/libscicore.la
 
 #### Name of the module and the path ######
 modulename=action_binding

@@ -372,6 +372,7 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\cpp\banner.cpp" />
+    <ClCompile Include="..\cpp\callCommand.cpp" />
     <ClCompile Include="..\cpp\getfunctionsname.cpp" />
     <ClCompile Include="..\cpp\getdeprecated.cpp" />
     <ClCompile Include="..\cpp\getmacrosname.cpp" />
@@ -440,6 +441,7 @@ cd ..
     <ClInclude Include="..\..\includes\backtrace_print.h" />
     <ClInclude Include="..\..\includes\banner.hxx" />
     <ClInclude Include="..\..\includes\BOOL.h" />
+    <ClInclude Include="..\..\includes\callCommand.h" />
     <ClInclude Include="..\..\includes\commandwords.h" />
     <ClInclude Include="..\..\includes\core_gw.hxx" />
     <ClInclude Include="..\..\includes\core_math.h" />

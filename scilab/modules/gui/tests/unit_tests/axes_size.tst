@@ -4,8 +4,12 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- TEST WITH GRAPHIC -->
+//
+
+// helper to execute a Scilab command after all pending AWT events have been processed
+jimport org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement
 
 function f = createFigure(num, flags)
     g = gdf();
@@ -15,15 +19,15 @@ function f = createFigure(num, flags)
         assert_checkequal(f.toolbar_visible == "on", flags(3));
         assert_checkequal(f.infobar_visible == "on", flags(4));
         assert_checkequal(f.axes_size, g.axes_size);
-        f.axes_size = [800 800];
-        assert_checkequal(f.axes_size, [800 800]);
+        ScilabInterpreterManagement.executeAndWaitForEDT("f.axes_size = [480 480]");
+        assert_checkequal(f.axes_size, [480 480]);
     else
-        f = figure("figure_id", num, "dockable", flags(1), "menubar_visible", flags(2), "toolbar_visible", flags(3), "infobar_visible", flags(4), "axes_size", [800, 800]);
+        f = figure("figure_id", num, "dockable", flags(1), "menubar_visible", flags(2), "toolbar_visible", flags(3), "infobar_visible", flags(4), "axes_size", [480, 480]);
         assert_checkequal(f.menubar_visible == "on", flags(2));
         assert_checkequal(f.toolbar_visible == "on", flags(3));
         assert_checkequal(f.infobar_visible == "on", flags(4));
-        assert_checkequal(f.axes_size, [800 800]);
-        f.axes_size = g.axes_size;
+        assert_checkequal(f.axes_size, [480 480]);
+        ScilabInterpreterManagement.executeAndWaitForEDT("f.axes_size = g.axes_size");
         assert_checkequal(f.axes_size, g.axes_size);
     end
     delete(f);
@@ -52,12 +56,12 @@ function createFigureXML(num, flags)
         assert_checkequal(f.toolbar_visible == "on", flags(3));
         assert_checkequal(f.infobar_visible == "on", flags(4));
         assert_checkequal(f.axes_size, g.axes_size);
-        f.axes_size = [800 800];
-        assert_checkequal(f.axes_size, [800 800]);
+        ScilabInterpreterManagement.executeAndWaitForEDT("f.axes_size = [480 480]");
+        assert_checkequal(f.axes_size, [480 480]);
     else
         str = [ ...
         "<scilabgui usedeprecatedskin=""off"" version=""1.0"">";
-        "<figure dockable=""" + flagsStr(1) + """ menubar_visible=""" + flagsStr(2) + """ toolbar_visible=""" + flagsStr(3) + """ infobar_visible=""" + flagsStr(4) + """ axes_size=""800,800""/>";
+        "<figure dockable=""" + flagsStr(1) + """ menubar_visible=""" + flagsStr(2) + """ toolbar_visible=""" + flagsStr(3) + """ infobar_visible=""" + flagsStr(4) + """ axes_size=""480,480""/>";
         "</scilabgui>"];
 
         doc = xmlReadStr(str);
@@ -66,8 +70,8 @@ function createFigureXML(num, flags)
         assert_checkequal(f.menubar_visible == "on", flags(2));
         assert_checkequal(f.toolbar_visible == "on", flags(3));
         assert_checkequal(f.infobar_visible == "on", flags(4));
-        assert_checkequal(f.axes_size, [800 800]);
-        f.axes_size = g.axes_size;
+        assert_checkequal(f.axes_size, [480 480]);
+        ScilabInterpreterManagement.executeAndWaitForEDT("f.axes_size = g.axes_size");
         assert_checkequal(f.axes_size, g.axes_size);
     end
     delete(f);

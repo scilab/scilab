@@ -230,6 +230,7 @@ am__objects_2 = src/cpp/libscicore_algo_la-demangle.lo \
 	src/cpp/libscicore_algo_la-backtrace_print.lo \
 	src/cpp/libscicore_algo_la-storeCommand.lo \
 	src/cpp/libscicore_algo_la-banner.lo \
+	src/cpp/libscicore_algo_la-callCommand.lo \
 	src/cpp/libscicore_algo_la-with_module.lo \
 	src/cpp/libscicore_algo_la-runner.lo \
 	src/cpp/libscicore_algo_la-getvariablesname.lo \
@@ -527,6 +528,7 @@ am__depfiles_remade =  \
 	src/cpp/$(DEPDIR)/libscicore_algo_la-InitScilab.Plo \
 	src/cpp/$(DEPDIR)/libscicore_algo_la-backtrace_print.Plo \
 	src/cpp/$(DEPDIR)/libscicore_algo_la-banner.Plo \
+	src/cpp/$(DEPDIR)/libscicore_algo_la-callCommand.Plo \
 	src/cpp/$(DEPDIR)/libscicore_algo_la-demangle.Plo \
 	src/cpp/$(DEPDIR)/libscicore_algo_la-getdeprecated.Plo \
 	src/cpp/$(DEPDIR)/libscicore_algo_la-getfunctionsname.Plo \
@@ -1005,6 +1007,7 @@ CORE_CPP_SOURCES = \
     src/cpp/backtrace_print.cpp \
     src/cpp/storeCommand.cpp \
     src/cpp/banner.cpp \
+    src/cpp/callCommand.cpp \
     src/cpp/with_module.cpp \
     src/cpp/runner.cpp \
     src/cpp/getvariablesname.cpp \
@@ -1167,6 +1170,7 @@ libscicore_la_includedir = $(pkgincludedir)
 libscicore_la_include_HEADERS = \
 includes/backtrace_print.h \
 includes/BOOL.h \
+includes/callCommand.h \
 includes/core_math.h \
 includes/existfunction.h \
 includes/exit_status.hxx \
@@ -1418,6 +1422,8 @@ src/cpp/libscicore_algo_la-backtrace_print.lo:  \
 src/cpp/libscicore_algo_la-storeCommand.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscicore_algo_la-banner.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicore_algo_la-callCommand.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscicore_algo_la-with_module.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1852,6 +1858,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-InitScilab.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-backtrace_print.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-banner.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-callCommand.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-demangle.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-getdeprecated.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-getfunctionsname.Plo@am__quote@ # am--include-marker
@@ -2148,6 +2155,13 @@ src/cpp/libscicore_algo_la-banner.lo: src/cpp/banner.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/banner.cpp' object='src/cpp/libscicore_algo_la-banner.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicore_algo_la-banner.lo `test -f 'src/cpp/banner.cpp' || echo '$(srcdir)/'`src/cpp/banner.cpp
+
+src/cpp/libscicore_algo_la-callCommand.lo: src/cpp/callCommand.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicore_algo_la-callCommand.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicore_algo_la-callCommand.Tpo -c -o src/cpp/libscicore_algo_la-callCommand.lo `test -f 'src/cpp/callCommand.cpp' || echo '$(srcdir)/'`src/cpp/callCommand.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicore_algo_la-callCommand.Tpo src/cpp/$(DEPDIR)/libscicore_algo_la-callCommand.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/callCommand.cpp' object='src/cpp/libscicore_algo_la-callCommand.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicore_algo_la-callCommand.lo `test -f 'src/cpp/callCommand.cpp' || echo '$(srcdir)/'`src/cpp/callCommand.cpp
 
 src/cpp/libscicore_algo_la-with_module.lo: src/cpp/with_module.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicore_algo_la-with_module.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicore_algo_la-with_module.Tpo -c -o src/cpp/libscicore_algo_la-with_module.lo `test -f 'src/cpp/with_module.cpp' || echo '$(srcdir)/'`src/cpp/with_module.cpp
@@ -3157,6 +3171,7 @@ distclean: distclean-am
 	-rm -f src/cpp/$(DEPDIR)/libscicore_algo_la-InitScilab.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscicore_algo_la-backtrace_print.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscicore_algo_la-banner.Plo
+	-rm -f src/cpp/$(DEPDIR)/libscicore_algo_la-callCommand.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscicore_algo_la-demangle.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscicore_algo_la-getdeprecated.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscicore_algo_la-getfunctionsname.Plo
@@ -3328,6 +3343,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/cpp/$(DEPDIR)/libscicore_algo_la-InitScilab.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscicore_algo_la-backtrace_print.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscicore_algo_la-banner.Plo
+	-rm -f src/cpp/$(DEPDIR)/libscicore_algo_la-callCommand.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscicore_algo_la-demangle.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscicore_algo_la-getdeprecated.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscicore_algo_la-getfunctionsname.Plo

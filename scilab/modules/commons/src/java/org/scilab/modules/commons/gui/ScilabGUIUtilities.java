@@ -54,14 +54,16 @@ public class ScilabGUIUtilities {
             window.setExtendedState(state - JFrame.ICONIFIED);
         }
 
-        /* not sure to understand the goal of that Oo*/
-        //window.addWindowFocusListener(listener);
         window.toFront();
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                window.requestFocus();
-            }
-        });
+        if (SwingUtilities.isEventDispatchThread()) {
+            window.requestFocus();
+        } else {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    window.requestFocus();
+                }
+            });
+        }
     }
 
     public static void toFront(final View panel, final String panelName) {
@@ -82,11 +84,15 @@ public class ScilabGUIUtilities {
         JFrame window = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, panel);
         toFront(window);
         /* give focus to the panel */
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                panel.requestFocus();
-            }
-        });
+        if (SwingUtilities.isEventDispatchThread()) {
+            panel.requestFocus();
+        } else {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    panel.requestFocus();
+                }
+            });
+        }
     }
 
 }

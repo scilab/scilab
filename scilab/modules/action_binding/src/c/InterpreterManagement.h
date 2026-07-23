@@ -43,6 +43,15 @@ int putCommandInScilabQueue(char *command);
  * @return execution status
  */
 int requestScilabExec(char *command);
+
+/** 
+ * Call a Scilab command (in the currrent interpreter) and wait for its execution to end before returning.
+ *
+ * @param command the command to execute
+ * @return execution status (0 if the command is valid and has been executed to its end)
+ */
+int callScilabExecstr(const char *command);
+
 /*
 * Stops Scilab current work
 * @return execution status

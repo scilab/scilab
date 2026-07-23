@@ -814,19 +814,25 @@ public final class Xcos {
         instance.lastError = null;
 
         /* load scicos libraries (macros) */
-        InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
+        InterpreterManagement.callScilabExecstr(LOAD_XCOS_LIBS_LOAD_SCICOS);
 
         synchronized (instance) {
             /*
              * Open the file
              */
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    // open on EDT
-                    instance.open(file, diagramId);
-                }
-            });
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    @Override
+                    public void run() {
+                        // open on EDT
+                        instance.open(file, diagramId);
+                    }
+                });
+            } catch (InvocationTargetException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
         if (instance.lastError != null && !instance.lastError.isEmpty()) {
             throw new RuntimeException(instance.lastError);
@@ -968,15 +974,17 @@ public final class Xcos {
     @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
     public static void closeXcosFromScilab() {
         try {
-            SwingUtilities.invokeAndWait(new Runnable() {
-                @Override
-                public void run() {
-                    closeSession(false);
-                    clearInstance();
+            Runnable closeTask = () -> {
+                closeSession(false);
+                clearInstance();
 
-                    AfficheBlock.forceClose();
-                }
-            });
+                AfficheBlock.forceClose();
+            };
+            if (SwingUtilities.isEventDispatchThread()) {
+                closeTask.run();
+            } else {
+                SwingUtilities.invokeAndWait(closeTask);
+            }
         } catch (final InterruptedException e) {
             e.printStackTrace();
         } catch (final InvocationTargetException e) {

@@ -45,6 +45,7 @@ CORE_CPP_SOURCES = \
     src/cpp/backtrace_print.cpp \
     src/cpp/storeCommand.cpp \
     src/cpp/banner.cpp \
+    src/cpp/callCommand.cpp \
     src/cpp/with_module.cpp \
     src/cpp/runner.cpp \
     src/cpp/getvariablesname.cpp \
@@ -255,6 +256,7 @@ libscicore_la_includedir=$(pkgincludedir)
 libscicore_la_include_HEADERS = \
 includes/backtrace_print.h \
 includes/BOOL.h \
+includes/callCommand.h \
 includes/core_math.h \
 includes/existfunction.h \
 includes/exit_status.hxx \

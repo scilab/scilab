@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2020 - Samuel GOUGEON
+// Copyright (C) 2026 - Dassault Systèmes S.E. - Clément DAVID
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -10,6 +11,9 @@
 //
 // <-- Short Description -->
 // Unitary tests for close()
+
+// helper to execute a Scilab command after all pending AWT events have been processed
+jimport org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement
 
 // Figures
 // -------
@@ -27,47 +31,47 @@ assert_checkequal(winsid(), []);
 
 // Help
 // ----
-doc
-sleep(200)
-close doc
 jimport org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser
+
+doc
+ScilabInterpreterManagement.executeAndWaitForEDT("close doc")
 hb = ScilabHelpBrowser.getHelpBrowserWithoutCreation()
-sleep(100)
 assert_checkequal(hb, [])
 
 // Editvar
 // -------
+jimport org.scilab.modules.ui_data.variableeditor.ScilabVariableEditor
+
 a = 1;
 editvar a
-sleep(200)
-close editvar
-jimport org.scilab.modules.ui_data.variableeditor.ScilabVariableEditor
+ScilabInterpreterManagement.executeAndWaitForEDT("close editvar")
 ve = ScilabVariableEditor.getVariableEditor();
 assert_checkequal(ve, []);
 
 // Browsevar
 // ---------
-browsevar
-sleep(200)
-close browsevar
 jimport org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser
+
+browsevar
+ScilabInterpreterManagement.executeAndWaitForEDT("close browsevar")
 assert_checkfalse(ScilabVariableBrowser.isBrowseVarOpened())
 
 // Xcos
 // ----
-xcos
-sleep(600)
-close xcos
-// 
 javaclasspath(SCI + "/modules/xcos/jar/org.scilab.modules.xcos.jar");
 jimport org.scilab.modules.xcos.Xcos
-inst = Xcos.getInstance();
-od = inst.openedDiagrams();
-assert_checkequal(od.size(), int32(0));
+
+// // this is INTERACTIVE, as it requires user confirmation on canClose()
+// xcos
+// ScilabInterpreterManagement.executeAndWaitForEDT("close xcos")
+// 
+// inst = Xcos.getInstance();
+// od = inst.openedDiagrams();
+// assert_checkequal(od.size(), int32(0));
 
 xcos
-sleep(600)
-close xcos!
+ScilabInterpreterManagement.executeAndWaitForEDT("close xcos!")
+
 //
 inst = Xcos.getInstance();
 od = inst.openedDiagrams();

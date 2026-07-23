@@ -46,6 +46,7 @@ import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabXPathFactory;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.XConfiguration;
+import org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 import org.scilab.modules.commons.xml.XConfigurationEvent;
 import org.scilab.modules.commons.xml.XConfigurationListener;
 
@@ -556,46 +557,48 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             }
 
             if (requestFocus) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        final Thread t = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                synchronized (currentlyRestored) {
-                                    while (currentlyRestored.size() > 0) {
-                                        try {
-                                            currentlyRestored.wait();
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
+                Runnable afterRestoration = () -> {
+                    window.setVisible(true);
+                    window.requestFocus();
+                    window.toFront();
+                    window.setIsRestoring(false);
+
+                    ActiveDockableTracker.requestDockableActivation(mainTab);
+                };
+
+                if (SwingUtilities.isEventDispatchThread()) {
+                    afterRestoration.run();
+                }
+                else
+                {
+                    final Thread t = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            synchronized (currentlyRestored) {
+                                while (currentlyRestored.size() > 0) {
+                                    try {
+                                        currentlyRestored.wait();
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
                                     }
                                 }
-
-                                SwingUtilities.invokeLater(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        window.setVisible(true);
-                                        window.requestFocus();
-                                        window.toFront();
-                                        window.setIsRestoring(false);
-
-                                        ActiveDockableTracker.requestDockableActivation(mainTab);
-                                    }
-                                });
                             }
-                        });
-                        t.start();
-                    }
-                });
+
+                            SwingUtilities.invokeLater(afterRestoration);
+                        }
+                    });
+                    t.start();
+                }
             } else {
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        window.setIsRestoring(false);
-                        window.setVisible(true);
-                    }
-                });
+                Runnable afterRestoration = () -> {
+                    window.setIsRestoring(false);
+                    window.setVisible(true);
+                };
+                if (SwingUtilities.isEventDispatchThread()) {
+                    afterRestoration.run();
+                } else {
+                    SwingUtilities.invokeLater(afterRestoration);
+                }
             }
         }
 

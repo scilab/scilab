@@ -107,6 +107,17 @@ public ";
 int requestScilabExec(char *command);
 
 /* JavaDoc */
+%javamethodmodifiers callScilabExecstr(const char *command) "
+ /**
+   * call the command, directly in the interpreter. This only works if the Scilab execution thread is running.
+   *
+   * @param command the command to execute
+   * @return execution status (0 if the command is valid and has been executed to its end)
+   */
+public ";
+int callScilabExecstr(const char *command);
+
+/* JavaDoc */
 %javamethodmodifiers interruptScilab(void) "
  /**
   * Stop Scilab current work

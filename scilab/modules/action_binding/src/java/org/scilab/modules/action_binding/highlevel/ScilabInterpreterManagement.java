@@ -24,10 +24,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
 
 import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.action_binding.utils.ActionBindingMessages;
@@ -274,6 +278,31 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
     public static void asynchronousScilabExec(final ActionListener callback,
             String function, Object... args) throws InterpreterException {
         asynchronousScilabExec(callback, buildCall(function, args));
+    }
+
+    /**
+     * Execute the command, waiting for all pending AWT events before and processing all AWT events before returning.
+     * @param command the Scilab command
+     * @return the execution status (0 if the command has been executed)
+     */
+    public static int executeAndWaitForEDT(final String command) throws InterruptedException, ExecutionException {
+        final FutureTask<Integer> execstr = new FutureTask<>(() -> {
+            if (command != null && command.length() > 0)
+                return callScilabExecstr(command);
+            else
+                return 0;
+        });
+        final FutureTask<Integer> waiter = new FutureTask<>(() -> execstr.get());
+
+        // execute after all EDT events before and after the command
+        SwingUtilities.invokeLater(() -> {
+            execstr.run();
+            SwingUtilities.invokeLater(() -> {
+                waiter.run();
+            });
+        });
+        // block until the command is executed, and after the ending EDT cycle is done
+        return waiter.get();
     }
 
     /**

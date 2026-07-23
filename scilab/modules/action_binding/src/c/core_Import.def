@@ -1,12 +1,10 @@
 LIBRARY    core.dll
 
-
 EXPORTS
 ;core
-callFunctionFromGateway
-com_
 StoreCommand
 StorePrioritaryCommand
+callCommandFromGateway
 freeArrayOfString
 MyHeapAlloc
 MyHeapFree
