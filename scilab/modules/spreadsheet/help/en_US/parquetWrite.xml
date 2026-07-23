@@ -12,7 +12,7 @@
     <refnamediv>
         <refname>parquetWrite</refname>
         <refpurpose>
-            Write an Parquet file from a table.
+            Write table or timeseries to a Parquet or Arrow file
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -27,20 +27,24 @@
             <varlistentry>
                 <term>filename</term>
                 <listitem>
-                    <para>A string specifying the path to the file to write to.</para>
+                    <para>Scalar string specifying the output file. Supported extensions are <literal>.parquet</literal> and 
+                        <literal>.arrow</literal>.
+                    </para>
                 </listitem>
 			</varlistentry>
             <varlistentry>
                 <term>data</term>
                 <listitem>
-                    <para>A table containing the data to write to the Parquet file.</para>
+                    <para>A <link linkend="table">table</link> or <link linkend="timeseries">timeseries</link>
+                        containing the data to write.</para>
                 </listitem>
             </varlistentry>    
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Write a .parquet or .arrow file from a table.</para>
+        <para><literal>parquetWrite</literal> writes the contents of a table or timeseries to a Parquet
+            (<literal>.parquet</literal>) or Arrow (<literal>.arrow</literal>) file.</para>
         <para>Each column of the file corresponds to a column of the table.</para>
         <para>The name of the column are the same as in the table.</para>
     </refsection>
@@ -64,11 +68,33 @@
             //    C        05:00:00   0.0002211
         ]]>
         </programlisting>
+        <programlisting role="example"><![CDATA[
+            a = ["A"; "B"; "C"];
+            b = hours([1;3;5]);
+            c = rand(3,1);
+            ts = timeseries(b, a, c, "VariableNames", ["hours", "string", "double"]);
+            parquetWrite(fullfile(TMPDIR, "data.parquet"), ts)
+            ts2 = parquetRead(fullfile(TMPDIR, "data.parquet"), "OutputType", "timeseries")
+
+            // ts2 = [3x2 timeseries]
+            //
+            //    hours     string    double  
+            //   ________   ______   _________
+            //                                
+            //   01:00:00   A        0.2113249
+            //   03:00:00   B        0.7560439
+            //   05:00:00   C        0.0002211
+        ]]>
+        </programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
 			<member><link linkend="parquetRead">parquetRead</link></member>
+            <member><link linkend="table">table</link></member>
+            <member><link linkend="timeseries">timeseries</link></member>
+            <member><link linkend="datetime">datetime</link></member>
+            <member><link linkend="duration">duration</link></member>
         </simplelist>
     </refsection>
     <refsection role="history">

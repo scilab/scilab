@@ -8,7 +8,7 @@
 function parquetWrite(filename, t)
     arguments
         filename {mustBeA(filename, "string"), mustBeScalar}
-        t {mustBeA(t, "table")}
+        t {mustBeA(t, ["table", "timeseries"])}
     end
 
     ext = fileext(filename);
@@ -16,8 +16,8 @@ function parquetWrite(filename, t)
         error(msprintf(_("%s: Wrong extension for input argument #%d: Supported extensions are %s.\n"), "parquetWrite", 1, sci2exp(["parquet", "arrow"])));
     end
 
-    [row, cols] = size(t);
     columnNames = t.props.variableNames;
+    cols = size(columnNames, "*");
     data = t.vars.data;
     if typeof(data) <> "list" then
         // if table has one column

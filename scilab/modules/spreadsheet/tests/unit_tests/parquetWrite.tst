@@ -60,6 +60,12 @@ for extension = [".parquet", ".arrow"]
     expected = parquetRead(path);
     assert_checkequal(expected, t);
 
+    ts = timeseries([datetime(); datetime("today"); datetime("tomorrow")], [-1; 0; 1], "VariableNames", ["date", "double"]);
+    parquetWrite(path, ts);
+
+    expected = parquetRead(path, "OutputType", "timeseries");
+    assert_checktrue(istimeseries(expected));
+
     // duration
     path = fullfile(TMPDIR, "duration" + extension);
     t = table([datetime(); datetime("today"); datetime("tomorrow"); datetime("yesterday")], [hours(1); minutes(1); seconds(1); milliseconds(1)], "VariableNames", ["date", "duration"]);
@@ -67,6 +73,15 @@ for extension = [".parquet", ".arrow"]
 
     expected = parquetRead(path);
     assert_checkequal(expected, t);
+
+    ts = timeseries([datetime(); datetime("today"); datetime("tomorrow"); datetime("yesterday")], [hours(1); minutes(1); seconds(1); milliseconds(1)], "VariableNames", ["date", "duration"]);
+    parquetWrite(path, ts);
+
+    expected = parquetRead(path, "OutputType", "timeseries");
+    assert_checktrue(istimeseries(expected));
+
+    expected = parquetRead(path, "RowTimes", "duration");
+    assert_checkequal(expected.Properties.variableNames, ["duration", "date"]);
 end
 
 // errors
@@ -74,7 +89,7 @@ msg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "parq
 assert_checkerror("parquetWrite()", msg);
 msg = msprintf(_("%s: Wrong type for input argument #%d: Must be in %s.\n"), "parquetWrite", 1, sci2exp("string"));
 assert_checkerror("parquetWrite(1,1)", msg);
-msg = msprintf(_("%s: Wrong type for input argument #%d: Must be in %s.\n"), "parquetWrite", 2, sci2exp("table"));
+msg = msprintf(_("%s: Wrong type for input argument #%d: Must be in %s.\n"), "parquetWrite", 2, sci2exp(["table", "timeseries"]));
 assert_checkerror("parquetWrite(""1"",1)", msg);
-msg = msprintf(_("%s: Wrong extension for input argument #%d: Supported extensions are %s.\n"), "parquetWrite", 1, sci2exp(["parquet", "arrow"]))
+msg = msprintf(_("%s: Wrong extension for input argument #%d: Supported extensions are %s.\n"), "parquetWrite", 1, sci2exp(["parquet", "arrow"]));
 assert_checkerror("parquetWrite(fullfile(TMPDIR, ""test.csv""), t)", msg);

@@ -7,13 +7,14 @@
     <refnamediv>
         <refname>parquetRead</refname>
         <refpurpose>
-            Read an Parquet or Arrow file and return a table.
+            Read a Parquet or Arrow file and return a table/timeseries.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            result = parquetRead(filename)
+            t = parquetRead(filename)
+            t = parquetRead(filename, Name, Value)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -22,16 +23,109 @@
             <varlistentry>
                 <term>filename</term>
                 <listitem>
-                    <para>A string specifying the path to the file to read.</para>
+                    <para>Path to a Parquet or Arrow file.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>output argument - table/timeseries object.</para>
+                    <para/>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            Optional pairs <emphasis role="bold">Name, Value</emphasis> are:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term><emphasis role="bold">"RowTimes"</emphasis>, string/datetime/duration</term>
+                <listitem>
+                    <para> 
+                        Time values used to define the row times of the resulting timeseries.
+                    </para>
+                    <para>
+                        Accepted values are:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                a scalar string containing the name of a variable in the file,
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                a <literal>datetime</literal> vector,
+                            </para>
+                        </listitem>
+
+                        <listitem>
+                            <para>
+                                a <literal>duration</literal> vector.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        If a variable name is specified, the selected variable must contain datetime or duration values.
+                        It becomes the time vector of the timeseries and is removed from the data variables.
+                    </para>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><emphasis role="bold">"StartTime"</emphasis>, scalar datetime/duration</term>
+                <listitem>
+                    <para>
+                        defines the starting time of the timeseries.
+                    </para>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><emphasis role="bold">"SampleRate"</emphasis>, scalar double</term>
+                <listitem>
+                    <para>
+                        Scalar sampling rate used to build a regularly sampled timeseries.
+                    </para>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><emphasis role="bold">"TimeStep"</emphasis>, scalar duration/calendarDuration</term>
+                <listitem>
+                    <para>
+                        specifies the interval between samples.
+                    </para>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><emphasis role="bold">"OutputType"</emphasis>, "auto" (default value) / "table" / "timseries"</term>
+                <listitem>
+                    <para>
+                        specifies the returned object. If "auto" mode, <literal>parquetRead</literal> returns a table 
+                         unless time-related options are specified.
+                    </para>
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Read a .parquet or .arrow file and return a table containing the data.</para>
-        <para>Each column of the table correspond to a column of the file.</para>
-        <para>The name of the column are the same as in the file.</para>
+        <para><literal>parquetRead</literal> reads data stored in a Parquet (<literal>.parquet</literal>) or Arrow (<literal>.arrow</literal>) file.</para>
+        <para>The imported data are returned as a <link linkend="table">table</link> by default.</para>
+        <para>When time-related options are specified, or when <literal>"OutputType"</literal> is set to 
+            <literal>"timeseries"</literal>, the data are returned as a <link linkend="timeseries">timeseries</link>.</para>
+        <para>Columns stored as Parquet datetime values are automatically converted to <link linkend="datetime">datetime</link>
+            arrays. Columns stored as Parquet duration values are converted to <link linkend="duration">duration</link> arrays.
+        </para>
+        <para> When <literal>"OutputType"</literal> is set to <literal>"timeseries"</literal> and no explicit time 
+            information is provided, <literal>parquetRead</literal> automatically searches for datetime and duration variables 
+            in the imported file.
+        </para>
+        <para>The first datetime or duration variable encountered is used as the row time vector of the resulting timeseries.
+        </para>
     </refsection>
 
     <refsection>
@@ -55,6 +149,66 @@
         //   c     -0.5   -3.5
         //   a     1.5    0.5 
         </programlisting>
+        <programlisting role="example">
+        rand("seed", 0)
+        x = ["a"; "b"; "b"; "c"; "a"];
+        h = hours([1:5]');
+        x1 = floor(rand(5,1)*5)-1.5;
+        x2 = -floor(rand(5,1)*5)+0.5;
+        t = table(x, h, x1, x2, "VariableNames", ["x", "hours", "x1", "x2"]);
+        parquetWrite(fullfile(TMPDIR, "timeseries.parquet"), t);
+        t2 = parquetRead(fullfile(TMPDIR, "timeseries.parquet"), "OutputType", "timeseries")
+        // t2 = [5x3 timeseries]
+        //
+        //    hours      x     x1     x2 
+        //   ________   ___   ____   ____
+        //                               
+        //   01:00:00   a     -0.5   -2.5
+        //   02:00:00   b     1.5    -3.5
+        //   03:00:00   b     -1.5   -2.5
+        //   04:00:00   c     -0.5   -3.5
+        //   05:00:00   a     1.5    0.5 
+
+        t3 = parquetRead(fullfile(TMPDIR, "timeseries.parquet"), "RowTimes", "hours")
+        // t3 = [5x3 timeseries]
+        //
+        //    hours      x     x1     x2 
+        //   ________   ___   ____   ____
+        //                               
+        //   01:00:00   a     -0.5   -2.5
+        //   02:00:00   b     1.5    -3.5
+        //   03:00:00   b     -1.5   -2.5
+        //   04:00:00   c     -0.5   -3.5
+        //   05:00:00   a     1.5    0.5 
+        </programlisting>
+        <programlisting role="example">
+        dt = datetime(2026, 1, 1, 9, 30, 45):calmonths(1):datetime(2026, 12, 31);
+        dt = dt';
+        d = [1:12]';
+        i = int32(d);
+        str = "A" + string(d);
+        b = [%f; %t; %t; %f; %f; %t; %f; %f; %f; %t; %t; %f];
+        t = table(dt, d, i, str, b, "VariableNames", ["date", "double", "int32", "string", "bool"]);
+        parquetWrite(fullfile(TMPDIR, "table3.parquet"), t);
+        t2 = parquetRead(fullfile(TMPDIR, "table3.parquet"), "StartTime", datetime(2026, 6, 1), "SampleRate", 1/3600)
+        // t2 = [12x5 timeseries]
+        //
+        //          Time                  date           double   int32   string   bool
+        //   ___________________   ___________________   ______   _____   ______   ____
+        //                                                                             
+        //   2026-06-01 00:00:00   2026-01-01 09:30:45   1        1       A1       F   
+        //   2026-06-01 01:00:00   2026-02-01 09:30:45   2        2       A2       T   
+        //   2026-06-01 02:00:00   2026-03-01 09:30:45   3        3       A3       T   
+        //   2026-06-01 03:00:00   2026-04-01 09:30:45   4        4       A4       F   
+        //   2026-06-01 04:00:00   2026-05-01 09:30:45   5        5       A5       F   
+        //   2026-06-01 05:00:00   2026-06-01 09:30:45   6        6       A6       T   
+        //   2026-06-01 06:00:00   2026-07-01 09:30:45   7        7       A7       F   
+        //   2026-06-01 07:00:00   2026-08-01 09:30:45   8        8       A8       F   
+        //   2026-06-01 08:00:00   2026-09-01 09:30:45   9        9       A9       F   
+        //   2026-06-01 09:00:00   2026-10-01 09:30:45   10       10      A10      T   
+        //   2026-06-01 10:00:00   2026-11-01 09:30:45   11       11      A11      T   
+        //   2026-06-01 11:00:00   2026-12-01 09:30:45   12       12      A12      F 
+        </programlisting>
     </refsection>
     <refsection role="caution">
         <title>Caution</title>
@@ -71,6 +225,10 @@
         <title>See also</title>
         <simplelist type="inline">
             <member><link linkend="parquetWrite">parquetWrite</link></member>
+            <member><link linkend="table">table</link></member>
+            <member><link linkend="timeseries">timeseries</link></member>
+            <member><link linkend="datetime">datetime</link></member>
+            <member><link linkend="duration">duration</link></member>
         </simplelist>
     </refsection>
     <refsection role="history">
