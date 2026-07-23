@@ -272,14 +272,14 @@ char * getPrefAttributeValue(const char * xpath, const char * attribute)
         return NULL;
     }
 
+    xlen = (unsigned int) strlen(xpath);
+    alen = (unsigned int) strlen(attribute);
+
     query = (char *)MALLOC((xlen + alen + 2 + 1) * sizeof(char));
     if (!query)
     {
         return NULL;
     }
-
-    xlen = (unsigned int) strlen(xpath);
-    alen = (unsigned int) strlen(attribute);
 
     getDocAndCtxt(&doc, &xpathCtxt);
     if (doc == NULL)
@@ -345,7 +345,7 @@ char ** getPrefAttributesValues(const char * xpath, const char ** attributes, co
                 unsigned int j;
                 for (j = 0; j < i; j++)
                 {
-                    free(ret[j]);
+                    FREE(ret[j]);
                 }
                 FREE(ret);
                 ret = NULL;
