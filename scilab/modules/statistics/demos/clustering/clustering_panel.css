@@ -23,18 +23,47 @@ body {
     color: #333;
 }
 
-h3 {
-    margin: 18px 0 10px; 
-    font-size: 14px; 
-    font-weight: 700;
-    color: #2c3e50; 
-    border-bottom: 2px solid #3498db; 
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 18px 0 10px;
     padding-bottom: 6px;
+    border-bottom: 2px solid #3498db;
 }
 
-h3:first-of-type { 
-    margin-top: 0; 
+.title-bar:first-of-type {
+    margin-top: 0;
 }
+
+.title-bar h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #2c3e50;
+    border: none;
+}
+
+.title-bar button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.title-bar button img {
+    width: 16px;
+    height: 16px;
+}
+
+.title-bar button:hover {
+    background-color: #eef6fc;
+    border-radius: 3px;
+}
+.title-bar button:hover img {
+    opacity: 0.7;
+}
+
 
 .card {
     background: #fff; 

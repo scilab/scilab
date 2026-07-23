@@ -168,6 +168,11 @@ function cbClustering(msg, cb)
         return;
     end
 
+    if parts(1) == "help" then
+        doc(parts(2));
+        return
+    end
+
 endfunction
 
 function colors = colorList()
@@ -199,15 +204,22 @@ function data = regenerate_data(n_pts)
 
     n_cl = min(5, max(2, round(sqrt(n_pts / 20))));
     n_noise = max(5, round(n_pts * 0.12));
-    n_per = round((n_pts - n_noise) / n_cl);
+    n_per = floor((n_pts - n_noise) / n_cl);
+    rem = (n_pts - n_noise) - n_cl * n_per;
+
+    size_cl = n_per * ones(1, n_cl);
+    if rem > 0 then
+        size_cl(1:rem) = size_cl(1:rem) + 1;
+    end
 
     all_cx = [1.0, 4.0, 2.5, 4.0, 1.0];
     all_cy = [1.0, 1.0, 4.0, 4.0, 3.0];
 
     data_pts = [];
     for k = 1:n_cl
-        ck = [grand(n_per,1,"nor",all_cx(k),0.25), ...
-              grand(n_per,1,"nor",all_cy(k),0.25)];
+        nk = size_cl(k);
+        ck = [grand(nk,1,"nor",all_cx(k),0.25), ...
+              grand(nk,1,"nor",all_cy(k),0.25)];
         data_pts = [data_pts; ck];
     end
 

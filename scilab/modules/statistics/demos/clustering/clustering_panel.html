@@ -13,7 +13,9 @@
 <link href="clustering_panel.css" rel="stylesheet">
 </head>
 <body>
-    <h3>Dataset</h3>
+    <div class="title-bar">
+        <h3>Dataset</h3>
+    </div>
     <div class="card">
         <div class="row">
             <label>Total points (N)</label>
@@ -26,8 +28,12 @@
         </div>
     </div>
 
-    <h3>DBSCAN</h3>
-
+    <div class="title-bar">
+        <h3>DBSCAN</h3>
+        <button id="dbscan-help" title="doc dbscan">
+            <img src="../../../gui/demos/images/help.png">
+        </button>
+    </div>    
     <div class="card">
         <div class="row">
             <label>eps</label>
@@ -61,7 +67,12 @@
         </select>
     </div>
 
-    <h3>Mean Shift</h3>
+    <div class="title-bar">
+        <h3>MeanShift</h3>
+        <button id="meanshift-help" title="doc meanshift">
+            <img src="../../../gui/demos/images/help.png">
+        </button>
+    </div>
 
     <div class="card">
         <div class="row">
@@ -75,8 +86,12 @@
         </div>
     </div>
 
-    <h3>K-Means</h3>
-
+    <div class="title-bar">
+        <h3>K-means</h3>
+        <button id="kmeans-help" title="doc kmeans">
+            <img src="../../../gui/demos/images/help.png">
+        </button>
+    </div>
     <div class="card">
         <div class="row">
             <label>Clusters (k)</label>

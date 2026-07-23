@@ -4,6 +4,18 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 $(document).ready(() => {
+    $("#dbscan-help").click(() => {
+        toScilab('help|dbscan');
+    });
+
+    $("#meanshift-help").click(() => {
+        toScilab('help|meanshift');
+    });
+
+    $("#kmeans-help").click(() => {
+        toScilab('help|kmeans');
+    });
+
     $("#n-pts").on("input", function() {
         $("#n-val").text(parseInt($("#n-pts").val()));
         regenerate();
