@@ -10,7 +10,7 @@
 // table with only doubles
 t = table([1 2 3; 4 5 6; 7 8 9]);
 summary(t)
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      Var1: double
      Var2: double
@@ -68,7 +68,7 @@ assert_checkequal(s.Var2.Type, "double");
 assert_checkequal(s.Var3.Type, "double");
 t.Properties.VariableNames = ["a", "b", "c"];
 summary(t)
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      a: double
      b: double
@@ -127,7 +127,7 @@ assert_checkequal(s.b.Type, "double");
 assert_checkequal(s.c.Type, "double");
 t.Properties.VariableDescriptions = ["field a", "", "field c"];
 summary(t)
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      a: double
         Description: field a
@@ -184,7 +184,7 @@ assert_checkequal(s.b.Description, "");
 assert_checkequal(s.c.Description, "field c");
 t.Properties.VariableUnits = ["h", "mm", "ss"];
 summary(t)
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      a: double
         Description: field a
@@ -243,7 +243,7 @@ assert_checkequal(s.a.Units, "h");
 assert_checkequal(s.b.Units, "mm");
 assert_checkequal(s.c.Units, "ss");
 summary(t, ["min", "max", "var"])
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      a: double
         Description: field a
@@ -259,7 +259,7 @@ summary(t, ["min", "max", "var"])
                         
    Min   1     2     3  
    Max   7     8     9  
-   Var                  
+   Var   9     9     9  
 s = summary(t, ["min", "max", "var"])
  s = [struct] with fields:
   a: [struct] with fields:
@@ -269,6 +269,7 @@ s = summary(t, ["min", "max", "var"])
       Units = "h"
       Min = 1
       Max = 7
+      Var = 9
   b: [struct] with fields:
       Size = [3,1]
       Type = "double"
@@ -276,6 +277,7 @@ s = summary(t, ["min", "max", "var"])
       Units = "mm"
       Min = 2
       Max = 8
+      Var = 9
   c: [struct] with fields:
       Size = [3,1]
       Type = "double"
@@ -283,8 +285,9 @@ s = summary(t, ["min", "max", "var"])
       Units = "ss"
       Min = 3
       Max = 9
+      Var = 9
 summary(t, "q3")
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      a: double
         Description: field a
@@ -295,10 +298,10 @@ summary(t, "q3")
         Description: field c
         Units: ss
  Statistics for numeric data:
-          a     b     c 
-         ___   ___   ___
-                        
-    Q3   7     8     9  
+          a      b      c  
+         ____   ____   ____
+                           
+    Q3   6.25   7.25   8.25
 s = summary(t, "q3")
  s = [struct] with fields:
   a: [struct] with fields:
@@ -306,23 +309,23 @@ s = summary(t, "q3")
       Type = "double"
       Description = "field a"
       Units = "h"
-      Q3 = 7
+      Q3 = 6.25
   b: [struct] with fields:
       Size = [3,1]
       Type = "double"
       Description = ""
       Units = "mm"
-      Q3 = 8
+      Q3 = 7.25
   c: [struct] with fields:
       Size = [3,1]
       Type = "double"
       Description = "field c"
       Units = "ss"
-      Q3 = 9
+      Q3 = 8.25
 // table containing doubles, datetimes, durations
 t = table([1;2;3], datetime(2025, 12, [10; 11; 12]), hours([1;2;3]));
 summary(t)
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      Var1: double
      Var2: datetime
@@ -380,7 +383,7 @@ assert_checkequal(s.Var2.Type, "datetime");
 assert_checkequal(s.Var3.Type, "duration");
 t.Properties.VariableNames = ["a", "b", "c"];
 summary(t)
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      a: double
      b: datetime
@@ -439,7 +442,7 @@ assert_checkequal(s.b.Type, "datetime");
 assert_checkequal(s.c.Type, "duration");
 t.Properties.VariableDescriptions = ["", "date time", "hours"];
 summary(t)
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      a: double
      b: datetime
@@ -496,7 +499,7 @@ assert_checkequal(s.b.Description, "date time");
 assert_checkequal(s.c.Description, "hours");
 t.Properties.VariableUnits = ["", "days", "h"];
 summary(t)
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      a: double
      b: datetime
@@ -554,7 +557,7 @@ assert_checkequal(s.a.Units, "");
 assert_checkequal(s.b.Units, "days");
 assert_checkequal(s.c.Units, "h");
 summary(t, ["min", "max"])
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      a: double
      b: datetime
@@ -571,7 +574,7 @@ summary(t, ["min", "max"])
    Max   3     2025-12-12   03:00:00
 t = table([%nan; 1; 2; 3], [datetime(2025, 12, [10; 11; 12]); NaT()], hours([1;%nan;2;3]));
 summary(t)
- table: [4x3 table]
+ [Size type]: [4x3 table]
  Variables:
      Var1: double
      Var2: datetime
@@ -624,7 +627,7 @@ s = summary(t)
 // table containing doubles and int
 t = table([1; 2; 3], int8([1; 2; 3]), uint8([1; 2; 3]));
 summary(t)
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      Var1: double
      Var2: int8
@@ -680,7 +683,7 @@ assert_checkequal(s.Var2.Type, "int8");
 assert_checkequal(s.Var3.Type, "uint8");
 t.Properties.VariableNames = ["a", "b", "c"];
 summary(t)
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      a: double
      b: int8
@@ -737,7 +740,7 @@ assert_checkequal(s.b.Type, "int8");
 assert_checkequal(s.c.Type, "uint8");
 t.Properties.VariableDescriptions = ["double", "integer", "unsigned integer"];
 summary(t)
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      a: double
         Description: double
@@ -792,7 +795,7 @@ assert_checkequal(s.a.Description, "double");
 assert_checkequal(s.b.Description, "integer");
 assert_checkequal(s.c.Description, "unsigned integer");
 summary(t, ["min", "max"])
- table: [3x3 table]
+ [Size type]: [3x3 table]
  Variables:
      a: double
         Description: double
@@ -809,7 +812,7 @@ summary(t, ["min", "max"])
 // table containing booleans and strings
 t = table([%t; %f; %t], [%f; %t; %f], ["a"; "b"; "a"], ["b"; "b"; "bb"]);
 summary(t)
- table: [3x4 table]
+ [Size type]: [3x4 table]
  Variables:
      Var1: boolean
      Var2: boolean
@@ -882,7 +885,7 @@ ts = timeseries(T, AmbientTemperature, FlowRate)
    2022-12-04   20.2   55  
    2022-12-05   20.5   60  
 summary(ts)
- timeseries: [5x2 timeseries]
+ [Size type]: [5x2 timeseries]
  RowTimes:
     Time: datetime
         StartTime: 2022-12-01
@@ -951,7 +954,7 @@ assert_checkequal(s.Var1.Type, "double");
 assert_checkequal(s.Var2.Type, "double");
 ts.Properties.VariableNames = ["T", "AmbientTemperature", "FlowRate"];
 summary(ts)
- timeseries: [5x2 timeseries]
+ [Size type]: [5x2 timeseries]
  RowTimes:
     T: datetime
         StartTime: 2022-12-01
@@ -1019,3 +1022,228 @@ assert_checkequal(s.FlowRate.Size, [5 1]);
 assert_checkequal(s.T.Type, "datetime");
 assert_checkequal(s.AmbientTemperature.Type, "double");
 assert_checkequal(s.FlowRate.Type, "double");
+// double
+x = [1 2 3; 4 5 %nan];
+summary(x)
+ [Size type]: [2x3 constant]
+                  Col1        Col2      Col3
+                _________   _________   ____
+                                            
+   NumMissing   0           0           1   
+          Min   1           2           3   
+       Median   1           2           3   
+          Max   4           5           3   
+         Mean   2.5         3.5         3   
+          Std   2.1213203   2.1213203   0   
+s = summary(x);
+assert_checkequal(s.NumMissing, [0 0 1]);
+assert_checkequal(s.Min, [1 2 3]);
+assert_checkequal(s.Max, [4 5 3]);
+assert_checkalmostequal(s.Mean, [2.5 3.5 3]);
+summary(x, 1, ["NumMissing", "Min", "Median", "Max", "Mean", "Std"])
+ [Size type]: [2x3 constant]
+                  Col1        Col2      Col3
+                _________   _________   ____
+                                            
+   NumMissing   0           0           1   
+          Min   1           2           3   
+       Median   1           2           3   
+          Max   4           5           3   
+         Mean   2.5         3.5         3   
+          Std   2.1213203   2.1213203   0   
+s = summary(x, 1, ["NumMissing", "Min", "Median", "Max", "Mean", "Std"]);
+assert_checkequal(s.NumMissing, [0 0 1]);
+assert_checkequal(s.Min, [1 2 3]);
+assert_checkequal(s.Max, [4 5 3]);
+assert_checkalmostequal(s.Mean, [2.5 3.5 3]);
+summary(x, 2, "Mean")
+ [Size type]: [2x3 constant]
+          Mean
+          ____
+              
+   Row1   2   
+   Row2   4.5 
+s = summary(x, 2, "Mean");
+assert_checkalmostequal(s.Mean, [2 ; 4.5]);
+// integers
+x = int32([1 2 3 ; 4 5 6]);
+summary(x, 1, ["Min", "Max", "Mean"])
+ [Size type]: [2x3 int32]
+          Col1   Col2   Col3
+          ____   ____   ____
+                            
+    Min   1      2      3   
+    Max   4      5      6   
+   Mean   2      3      4   
+s = summary(x, 1, ["Min", "Max", "Mean"]);
+assert_checkequal(s.Min, int32([1 2 3]));
+assert_checkequal(s.Max, int32([4 5 6]));
+assert_checkequal(s.Mean, int32([2 3 4]));
+// booleans
+x = [%t %f %t ;
+     %t %t %f];
+summary(x)
+ [Size type]: [2x3 boolean]
+           Col1   Col2   Col3
+           ____   ____   ____
+                             
+    True   2      1      1   
+   False   0      1      1   
+s = summary(x, 1);
+assert_checkequal(s.True, [2 1 1]);
+assert_checkequal(s.False, [0 1 1]);
+summary(x, 2)
+ [Size type]: [2x3 boolean]
+          True   False
+          ____   _____
+                      
+   Row1   2      1    
+   Row2   2      1    
+s = summary(x, 2);
+assert_checkequal(s.True, [2; 2]);
+assert_checkequal(s.False, [1; 1]);
+// strings
+x = ["a" "b" "a" ;
+     "b" "b" "c"];
+summary(x)
+ [Size type]: [2x3 string]
+                 Col1   Col2   Col3
+                 ____   ____   ____
+                                   
+             a   1      0      1   
+             b   1      2      0   
+             c   0      0      1   
+   <undefined>   0      0      0   
+s = summary(x);
+assert_checkequal(s.Values, ["a" ; "b" ; "c"]);
+x = ["red" "red";
+     "blue" "red";
+     "red" "green"];
+summary(x)
+ [Size type]: [3x2 string]
+                 Col1   Col2
+                 ____   ____
+                            
+          blue   1      0   
+         green   0      1   
+           red   2      2   
+   <undefined>   0      0   
+s = summary(x, 1)
+ s = [struct] with fields:
+  Values = ["blue";"green";"red"]
+  Counts = [1,0;0,1;2,2]
+  NumMissing = [0,0]
+assert_checkequal(s.Values, ["blue"; "green"; "red"]);
+assert_checkequal(s.Counts, [1 0; 0 1; 2 2]);
+summary(x, 2)
+ [Size type]: [3x2 string]
+          blue   green   red   <undefined>
+          ____   _____   ___   ___________
+                                          
+   Row1   0      0       2     0          
+   Row2   1      0       1     0          
+   Row3   0      1       1     0          
+s = summary(x, 2)
+ s = [struct] with fields:
+  Values = ["blue";"green";"red"]
+  Counts = [0,0,2;1,0,1;0,1,1]
+  NumMissing = [0;0;0]
+assert_checkequal(s.Counts, [0 0 2; 1 0 1; 0 1 1]);
+// datetime
+d = datetime([2025 1 1 ;
+              2025 1 2 ;
+              2025 1 3]);
+summary(d, 1, ["Min", "Median", "Max"])
+ [Size type]: [3x1 datetime]
+               Col1   
+            __________
+                      
+      Min   2025-01-01
+   Median   2025-01-02
+      Max   2025-01-03
+s = summary(d, 1, ["Min", "Median", "Max"]);
+assert_checkequal(s.Min, d(1));
+assert_checkequal(s.Median, d(2));
+assert_checkequal(s.Max, d(3));
+d = [datetime(2025,1,1)
+     NaT()
+     datetime(2025,1,3)];
+summary(d, 1, "NumMissing")
+ [Size type]: [3x1 datetime]
+                Col1
+                ____
+                    
+   NumMissing   1   
+s = summary(d, 1, "NumMissing");
+assert_checkequal(s.NumMissing, 1);
+// duration
+d = hours([1 2 3 4])';
+summary(d, 1, "Mean")
+ [Size type]: [4x1 duration]
+            Col1  
+          ________
+                  
+   Mean   02:30:00
+s = summary(d, 1, "Mean");
+assert_checkequal(hours(s.Mean), 2.5);
+d = hours([1 %nan 3]);
+summary(d, 1, "NumMissing")
+ [Size type]: [1x3 duration]
+                Col1   Col2   Col3
+                ____   ____   ____
+                                  
+   NumMissing   0      1      0   
+s = summary(d, 1, "NumMissing");
+assert_checkequal(s.NumMissing, [0 1 0]);
+summary(d, 2, "NumMissing")
+ [Size type]: [1x3 duration]
+          NumMissing
+          __________
+                    
+   Row1   1         
+s = summary(d, 2, "NumMissing");
+assert_checkequal(s.NumMissing, 1);
+// mode
+x = [1 1 2 3 3 3];
+summary(x, 1, "Mode")
+ [Size type]: [1x6 constant]
+          Col1   Col2   Col3   Col4   Col5   Col6
+          ____   ____   ____   ____   ____   ____
+                                                 
+   Mode   1      1      2      3      3      3   
+s = summary(x, 1, "Mode");
+assert_checkequal(s.Mode, x);
+summary(x, 2, "Mode")
+ [Size type]: [1x6 constant]
+          Mode
+          ____
+              
+   Row1   3   
+s = summary(x, 2, "Mode");
+assert_checkequal(s.Mode, 3);
+// NumUnique
+x = [1 1 2 3 3];
+summary(x, 2, "NumUnique")
+ [Size type]: [1x5 constant]
+          NumUnique
+          _________
+                   
+   Row1   3        
+s = summary(x, 2, "NumUnique");
+assert_checkequal(s.NumUnique, 3);
+// Nnz
+x = [0 1 0 ;
+     2 0 3];
+summary(x, 1, "Nnz")
+ [Size type]: [2x3 constant]
+         Col1   Col2   Col3
+         ____   ____   ____
+                           
+   Nnz   1      1      1   
+s = summary(x, 1, "Nnz");
+assert_checkequal(s.Nnz, [1 1 1]);
+// Range
+x = [1 2 3 ;
+     5 8 7];
+s = summary(x, 1, ["Range"]);
+assert_checkequal(s.Range, [4 6 4]);

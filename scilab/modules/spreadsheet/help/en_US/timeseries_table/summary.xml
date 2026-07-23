@@ -10,11 +10,16 @@
  <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="summary">
     <refnamediv>
         <refname>summary</refname>
-        <refpurpose>Summary of table or timeseries variables</refpurpose>
+        <refpurpose>Summary statistics for matrices, tables or timeseries</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
+            summary(X)
+            summary(X, dim)
+            summary(X, dim, statistics)
+            S = summary(X [, dim, statistics])
+
             summary(t)
             summary(t, statistics)
             summary(t, statistics, datavars)
@@ -24,6 +29,42 @@
     <refsection role="arguments">
         <title>Arguments</title>
         <variablelist>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>
+                        matrix of doubles, integers, booleans, strings, <link linkend="duration">durations</link> or <link linkend="datetime">datetimes</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dim</term>
+                <listitem>
+                    <para>
+                        dimension along which statistics are computed.
+                    </para>
+                    <para>
+                        Accepted values are:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>1</literal> or <literal>"r"</literal>:
+                                compute statistics by column.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>2</literal> or <literal>"c"</literal>:
+                                compute statistics by row.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        Default value is <literal>1</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
@@ -50,13 +91,15 @@
                             <para><literal>"allstats"</literal>: computes all available statistics</para>
                         </listitem>
                     </itemizedlist>
+                    <para>Statistics may also be a string vector containing individual statistics names.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>datavars</term>
                 <listitem>
                     <para>
-                        string (optional). Names of variables to include in the summary. 
+                        string (optional). Only for tables and timeseries. 
+                        Names of variables to include in the summary. 
                         Default is "all", meaning all variables are summarized.
                     </para>
                 </listitem>
@@ -74,33 +117,78 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            The <literal>summary</literal> function displays or returns a structure containing a summary of the variables of 
-            in a <link linkend="table">table</link> or <link linkend="timeseries">timeseries</link>.
+            <literal>summary()</literal> provides a concise overview of the contents of an
+            array, table or timeseries.
+            Depending on the data type, it reports descriptive
+            statistics, metadata and missing value information. 
+            summary is intended as a quick exploratory tool for
+            inspecting data before further analysis.
         </para>
         <para>
-            For each variable, summary reports:
-            <itemizedlist>
-                <listitem>
-                    <para>Size and data type</para>
-                </listitem>
-                <listitem>
-                    <para>Variable description and units (if available)</para>
-                </listitem>
-                <listitem>
-                    <para>Statistical information depending on the variable type</para>
-                </listitem>
-            </itemizedlist>
+            For numeric, datetime and duration data,
+            summary computes descriptive statistics such as
+            minimum, maximum, median, mean and standard deviation.
         </para>
         <para>
-            If no output argument is specified, the summary is displayed in the console.
+            For boolean and string data,
+            summary reports value distributions and occurrence counts.
         </para>
         <para>
-            When an output argument is requested, summary returns a structure where 
-            each field corresponds to a variable name which contains a sub-structure with 
-            metadata (Size, Type, Description and Units) and statistics (depending on variable type).
+            For tables and timeseries,
+            summary processes each variable independently and also
+            reports variable metadata such as descriptions and units.
         </para>
         <para>
-            For timeseries, row time information (start time, sample rate, time step) is also summarized.
+            If no output argument is specified, the summary is displayed in the console. 
+            When an output argument is requested, summary returns a structure. 
+            For arrays, statistics are stored at the first level of the
+            returned structure. For tables and timeseries, statistics are
+            stored inside the structure associated with each variable.
+             (see Output Structure section)
+        </para>
+    </refsection>
+    <refsection>
+        <title>Output Structure</title>
+        <para>
+            When an output argument is provided,
+            <literal>summary()</literal> returns a structure containing the
+            computed information.
+        </para>
+
+        <para>
+            The organization of the returned structure depends on the
+            input data type.
+        </para>
+        <para>
+            <emphasis role="bold">Matrices</emphasis>
+        </para>
+        <para>
+            For matrices, each field of the structure corresponds to a
+            computed statistic.
+        </para>
+
+        <programlisting role="no-scilab-exec"><![CDATA[
+            x = [1 2 3 ; 4 5 %nan];
+            S = summary(x, 1, ["Mean","Std"]);
+            fieldnames(S)
+            // Mean
+            // Std 
+        ]]></programlisting>
+
+        <para>
+            The value stored in each field contains one element per
+            summarized row or column.
+        </para>
+        <para>
+            <emphasis role="bold">Tables and Timeseries</emphasis>
+        </para>
+        <para>
+            For tables and timeseries, the returned structure contains
+            one field per summarized variable.
+        </para>
+        <para>
+            Each variable field contains metadata and the requested
+            statistics.
         </para>
     </refsection>
     <refsection>
@@ -153,7 +241,7 @@
             </itemizedlist>
         </para>
         <para>
-            Numeric types include: double, integer types, duration and datetime.
+            Supported numeric-like types include double, integer, duration and datetime values.
         </para>
     </refsection>
     <refsection>
@@ -182,13 +270,45 @@
                     <para><literal>Values</literal>: unique string values</para>
                 </listitem>
                 <listitem>
-                    <para><literal>Counts</literal>: occurence count of each value</para>
+                    <para><literal>Counts</literal>: occurrence count of each value</para>
                 </listitem>
             </itemizedlist>
         </para>
     </refsection>
+    <refsection>
+    <title>Missing Values</title>
+        <para>
+            Missing values (%nan and NaT) are ignored when computing
+            descriptive statistics. Their number is reported by the
+            NumMissing statistic.
+        </para>
+</refsection>
     <refsection role="example">
         <title>Examples</title>
+        <para>
+            <programlisting role="example"><![CDATA[
+x = [1 2 3;
+    4 5 %nan];
+summary(x)
+// [Size type]: [2x3 constant]
+// 
+//                   Col1        Col2      Col3
+//                 _________   _________   ____
+//                                             
+//    NumMissing   0           0           1   
+//           Min   1           2           3   
+//        Median   1           2           3   
+//           Max   4           5           3   
+//          Mean   2.5         3.5         3   
+//           Std   2.1213203   2.1213203   0   
+
+S = summary(x, 1, ["Mean","Std"])
+// S = [struct] with fields:
+//
+//  Mean = [2.5,3.5,3]
+//  Std = [2.1213203,2.1213203,0]
+            ]]></programlisting>
+        </para>
         <para>
         <programlisting role="example"><![CDATA[
             // Create a table
@@ -284,12 +404,12 @@ disp(S.A.Mean)
           Max   2           30 
            Q1   1           10 
          Mean   1.5         20 
-           Q3   Nan         30 
+           Q3   2           30 
           Std   0.7071068   10 
           Var   0.5         100
          Mode   1           10 
         Range   1           20 
-          Sum   Nan         60 
+          Sum   3           60 
     NumUnique   2           3  
           Nnz   2           3  
 

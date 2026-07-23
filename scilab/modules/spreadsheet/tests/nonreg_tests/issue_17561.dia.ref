@@ -16,31 +16,31 @@
 // In summary(), sum of values in table did not skip NaN.
 t = table([%nan; 1; 2; 3], [datetime(2025, 12, [10; 11; 12]); NaT()], hours([1; %nan; 2; 3]));
 summary(t, "allstats")
- table: [4x3 table]
+ [Size type]: [4x3 table]
  Variables:
      Var1: double
      Var2: datetime
      Var3: duration
  Statistics for numeric data:
-                Var1      Var2        Var3  
-                ____   __________   ________
-                                            
-   NumMissing   1      1            1       
-          Min   1      2025-12-10   01:00:00
-       Median   2      2025-12-11   02:00:00
-          Max   3      2025-12-12   03:00:00
-           Q1   1      2025-12-10   01:00:00
-         Mean   2      2025-12-11   02:00:00
-           Q3   3      2025-12-12   03:00:00
-          Std   1      24:00:00     01:00:00
-          Var   1                           
-         Mode   1      2025-12-10   01:00:00
-        Range   2                   02:00:00
-          Sum   6                   06:00:00
-    NumUnique   3      3            3       
-          Nnz   3      3            3       
+                Var1          Var2             Var3  
+                ____   ___________________   ________
+                                                     
+   NumMissing   1      1                     1       
+          Min   1      2025-12-10            01:00:00
+       Median   2      2025-12-11            02:00:00
+          Max   3      2025-12-12            03:00:00
+           Q1   1.25   2025-12-10 06:00:00   01:15:00
+         Mean   2      2025-12-11            02:00:00
+           Q3   2.75   2025-12-11 18:00:00   02:45:00
+          Std   1      24:00:00              01:00:00
+          Var   1                                    
+         Mode   1      2025-12-10            01:00:00
+        Range   2                            02:00:00
+          Sum   6                            06:00:00
+    NumUnique   3      3                     3       
+          Nnz   3      3                     3       
 summary(t, "sum")
- table: [4x3 table]
+ [Size type]: [4x3 table]
  Variables:
      Var1: double
      Var2: datetime

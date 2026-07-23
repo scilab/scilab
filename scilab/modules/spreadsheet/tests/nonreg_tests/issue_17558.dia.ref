@@ -31,7 +31,7 @@ tb = table(rand(10,5))
    0.8782165   0.8833888   0.3321719   0.2639556   0.8415518
    0.068374    0.6525135   0.5935095   0.4148104   0.4062025
 summary(tb(:,4:5))
- table: [10x2 table]
+ [Size type]: [10x2 table]
  Variables:
      Var4: double
      Var5: double
@@ -46,7 +46,7 @@ summary(tb(:,4:5))
          Mean   0.4368296   0.4294658
           Std   0.2334441   0.2918796
 summary(tb,"default",["Var4","Var5"])
- table: [10x5 table]
+ [Size type]: [10x5 table]
  Variables:
      Var4: double
      Var5: double
@@ -61,7 +61,7 @@ summary(tb,"default",["Var4","Var5"])
          Mean   0.4368296   0.4294658
           Std   0.2334441   0.2918796
 summary(tb)
- table: [10x5 table]
+ [Size type]: [10x5 table]
  Variables:
      Var1: double
      Var2: double
