@@ -672,9 +672,9 @@ xstar = [-2;1;3];
             </latex>
         </para>
         <para>
-            The following output function plots the current point
-            and prints the iteration number, the value of the objective
-            function.
+          The following script defines the output function (which plots the current point, the iteration number and
+          the value of the objective function), then defines the optimization problem and
+          runs the optimization.
         </para>
         <programlisting role="example"><![CDATA[
 function stop = myoutputfunction ( xopt , optimValues , state )
@@ -685,25 +685,20 @@ function stop = myoutputfunction ( xopt , optimValues , state )
     plot(xopt(1),xopt(2),"bo")
     stop = %f
 endfunction
-]]></programlisting>
-        <para>
-            The following script defines the optimization problem and
-            runs the optimization.
-        </para>
-        <programlisting role="example"><![CDATA[
-  n=11;
-  A = [2*linspace(0,1,n)',ones(n,1)];
-  b = 1 + linspace(0,1,n)'.^2;
-  c=[-1;-1];
-  // Plot the constraints
-  scf();
-  for i = 1 : n
-    plot(linspace(0,1,100),b(i)-A(i,1)*linspace(0,1,100),"b-")
-  end
-  // Run the optimization
-  xopt=karmarkar([],[],c,[],[],[],[],myoutputfunction,A,b);
-  // Plot the starting and ending points
-  plot(xopt(1),xopt(2),"k*")
+
+n=11;
+A = [2*linspace(0,1,n)',ones(n,1)];
+b = 1 + linspace(0,1,n)'.^2;
+c=[-1;-1];
+// Plot the constraints
+scf();
+for i = 1 : n
+  plot(linspace(0,1,100),b(i)-A(i,1)*linspace(0,1,100),"b-")
+end
+// Run the optimization
+xopt=karmarkar([],[],c,[],[],[],[],myoutputfunction,A,b);
+// Plot the starting and ending points
+plot(xopt(1),xopt(2),"k*")
   ]]></programlisting>
         <scilab:image>
             function stop = myoutputfunction ( xopt , optimValues , state )
