@@ -4,6 +4,7 @@
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2026 - UTC - Stéphane MOTTELET
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,14 +17,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="Sgrayplot">
     <refnamediv>
         <refname>Sgrayplot</refname>
-        <refpurpose>smooth 2D plot of a surface using
-            colors
-        </refpurpose>
+        <refpurpose>smooth 2D plot of a surface using colors</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>Sgrayplot(x,y,z,&lt;opt_args&gt;)
-            Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])
+        <synopsis>
+            Sgrayplot(x, y, z, &lt;opt_args&gt;)
+            Sgrayplot(x, y, z [,strf, rect, nax, zminmax, colminmax, mesh, colout])
             h = Sgrayplot(...)
         </synopsis>
     </refsynopsisdiv>
@@ -31,17 +31,13 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x,y</term>
-                <listitem>
-                    <para>real row vectors of size n1 and n2.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>z</term>
+                <term>x, y, z</term>
                 <listitem>
                     <para>
-                        real matrix of size (n1,n2). <literal>z(i,j)</literal> is the value
-                        of the surface at the point (x(i),y(j)).
+                      Real matrices defining the grid and the surface values : 
+                      <literal>x</literal> and <literal>y</literal> can be row vectors of sizes n1 and n2 
+                      and <literal>z</literal> a real matrix of size (n1,n2) (rectangular grid) 
+                      or the 3 matrices can have the same size (n1,n2) (curvilinear grid).
                     </para>
                 </listitem>
             </varlistentry>
@@ -49,8 +45,12 @@
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
                     <para>This represents a sequence of statements
-                        <literal>key1=value1,key2=value2</literal>,... where <literal>key1</literal>,
-                        <literal>key2,...</literal> can be one of the following: strf, rect, nax, zminmax, colminmax, mesh, colout.
+                        <literal>key1=value1, key2=value2</literal>, ... where
+                        <literal>key1</literal>, <literal>key2</literal>, ... can be one of
+                        the following: <varname>strf</varname>, <varname>rect</varname>,
+                        <varname>nax</varname>, <varname>zminmax</varname>,
+                        <varname>colminmax</varname>, <varname>mesh</varname>,
+                        <varname>colout</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -59,7 +59,7 @@
                 <listitem>
                     <para>
                         is a string of length 3 <literal>"xyz"</literal> (by default
-                        <literal>strf= "081"</literal>)
+                        <literal>strf="081"</literal>)
                     </para>
                     <variablelist>
                         <varlistentry>
@@ -95,7 +95,7 @@
                                     <varlistentry>
                                         <term>y=0</term>
                                         <listitem>
-                                            <para>no computation, the plot use the previous (or
+                                            <para>no computation, the plot uses the previous (or
                                                 default) scale
                                             </para>
                                         </listitem>
@@ -178,7 +178,7 @@
                                     <varlistentry>
                                         <term>z=1</term>
                                         <listitem>
-                                            <para>axes are drawn, the y=axis is displayed on the
+                                            <para>axes are drawn, the y-axis is displayed on the
                                                 left.
                                             </para>
                                         </listitem>
@@ -192,7 +192,7 @@
                                     <varlistentry>
                                         <term>z=3</term>
                                         <listitem>
-                                            <para>axes are drawn, the y=axis is displayed on the
+                                            <para>axes are drawn, the y-axis is displayed on the
                                                 right.
                                             </para>
                                         </listitem>
@@ -225,7 +225,7 @@
                     <para>This argument is used when the second character y of argument
                         <literal>strf</literal> is 1, 3 or 5. It is a row vector of size 4 and
                         gives the dimension of the frame:
-                        <literal>rect=[xmin,ymin,xmax,ymax]</literal>.
+                        <literal>rect=[xmin, ymin, xmax, ymax]</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -234,10 +234,10 @@
                 <listitem>
                     <para>This argument is used when the third character z of argument
                         <literal>strf</literal> is 1. It is a row vector with four entries
-                        <literal>[nx,Nx,ny,Ny]</literal> where <literal>nx</literal> (<literal>ny</literal>)
-                        is the number of subgraduations on the x (y) axis and
-                        <literal>Nx</literal> (<literal>Ny</literal>) is the number of graduations on
-                        the x (y) axis.
+                        <literal>[nx, Nx, ny, Ny]</literal> where <literal>nx</literal>
+                        (<literal>ny</literal>) is the number of subgraduations on the x (y)
+                        axis and <literal>Nx</literal> (<literal>Ny</literal>) is the number of
+                        graduations on the x (y) axis.
                     </para>
                 </listitem>
             </varlistentry>
@@ -252,8 +252,10 @@
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                  <para>This optional output contains a handle to a <literal>Fec</literal> entity. For a list of
-                      properties, see <link linkend="fec_properties">fec_properties</link>.
+                    <para>
+                        Optional output handle to the created <literal>Fec</literal> entity.
+                        For a list of properties, see
+                        <link linkend="fec_properties">fec_properties</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -275,12 +277,48 @@ _____________
 |/_|/_|/_|/_|
  ]]></programlisting>
         <para>
+            Two calling modes are available:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Rectangular grid</emphasis>:
+                    <literal>Sgrayplot(x, y, z)</literal> where <literal>x</literal> and
+                    <literal>y</literal> are vectors of respective lengths <literal>n1</literal>
+                    and <literal>n2</literal>, and <literal>z</literal> is a matrix of size
+                    <literal>(n1, n2)</literal> satisfying <literal>z(i,j) = F(x(i), y(j))</literal>.
+                    The full node-coordinate matrices are built internally via
+                    <literal>ndgrid(x, y)</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Non-rectangular (curvilinear) grid</emphasis>:
+                    <literal>Sgrayplot(X, Y, Z)</literal> where <literal>X</literal>,
+                    <literal>Y</literal>, and <literal>Z</literal> are matrices of the same
+                    size <literal>(n, m)</literal>, satisfying
+                    <literal>Z(i,j) = F(X(i,j), Y(i,j))</literal>.
+                    This form is selected automatically when at least one of the first two
+                    arguments has more than one row <emphasis>and</emphasis> more than one
+                    column.  The matrices <literal>X</literal> and <literal>Y</literal> are
+                    used directly as the node coordinates for <literal>fec</literal>, allowing
+                    any curvilinear or distorted mesh topology.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            In both modes the grid is triangulated the same way: each quad
+            <literal>(i,j)-(i+1,j)-(i,j+1)-(i+1,j+1)</literal> is split into two
+            triangles along the diagonal, and <literal>fec</literal> interpolates the
+            <literal>Z</literal> values linearly inside each triangle.
+        </para>
+        <para>
             The function <link linkend="colorbar">colorbar</link> may be used to see the color scale.
         </para>
         <para>
-            The parameter <literal>zminmax</literal> is useful for animation purpose (see an
-            example after) and the parameter <literal>colminmax</literal> lets the user choose a part
-            of the current colormap (see the <link linkend="fec">fec</link> help page).
+            The parameter <literal>zminmax</literal> is useful for animation (see example 3)
+            and the parameter <literal>colminmax</literal> lets the user choose a sub-range of
+            the current colormap (see the <link linkend="fec">fec</link> help page).
         </para>
         <para>
             Enter the command <literal>Sgrayplot()</literal> to see a demo.
@@ -289,11 +327,11 @@ _____________
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// example #1
-x=-10:10; y=-10:10;m =rand(21,21);
+// example #1: rectangular grid
+x = -10:10; y = -10:10; m = rand(21,21);
 clf()
 gcf().color_map = hot(64);
-Sgrayplot(x,y,m, strf="011", rect=[-20,-20,20,20])
+Sgrayplot(x, y, m, strf="011", rect=[-20,-20,20,20])
  ]]></programlisting>
         <scilab:image>
             x=-10:10; y=-10:10;m =rand(21,21);
@@ -302,12 +340,12 @@ Sgrayplot(x,y,m, strf="011", rect=[-20,-20,20,20])
             Sgrayplot(x,y,m, strf="011", rect=[-20,-20,20,20])
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// example #2
-t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
+// example #2: rectangular grid with colorbar
+t = -%pi:0.1:%pi; m = sin(t)'*cos(t);
 clf()
 gcf().color_map = jet(64);
 colorbar(-1,1)
-Sgrayplot(t,t,m, strf="041")
+Sgrayplot(t, t, m, strf="041")
 ]]></programlisting>
         <scilab:image>
             t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
@@ -317,21 +355,21 @@ Sgrayplot(t,t,m, strf="041")
             Sgrayplot(t,t,m, strf="041")
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// example #3: an animation display cos(t)*sin(x)sin(y).
+// example #3: animation — cos(t)*sin(x)*sin(y) on a rectangular grid
 n = 30;
 nt = 100;
-x = linspace(0,2*%pi,n);
-y = linspace(0,%pi,n/2);
+x = linspace(0, 2*%pi, n);
+y = linspace(0, %pi, n/2);
 z = sin(x')*sin(y);
-t = linspace(0,4*%pi,nt);
+t = linspace(0, 4*%pi, nt);
 show_window(); clf()
-f=gcf();
-f.color_map=jet(64);
+f = gcf();
+f.color_map = jet(64);
 colorbar(-1,1)
-e = Sgrayplot(x,y,cos(t(1))*z, strf="042", zminmax=[-1,1])
+e = Sgrayplot(x, y, cos(t(1))*z, strf="042", zminmax=[-1,1])
 xtitle("Kaa''s eyes")
 for i = 1:nt
-  e.data(:,3)=matrix(cos(t(i))*z,-1,1);
+    e.data(:,3) = matrix(cos(t(i))*z, -1, 1);
 end
  ]]></programlisting>
         <scilab:image>
@@ -351,6 +389,38 @@ end
             e.data(:,3)=matrix(cos(t(i))*z,-1,1);
             end
         </scilab:image>
+        <programlisting role="example"><![CDATA[
+// example #4: non-rectangular (polar) grid
+nr = 40; ntheta = 60;
+r     = linspace(0.2, 1, nr);
+theta = linspace(0, 2*%pi, ntheta);
+[R, T] = ndgrid(r, theta);
+X = R .* cos(T);
+Y = R .* sin(T);
+Z = sin(3*T) .* R;          // Z(i,j) = F(X(i,j), Y(i,j))
+clf()
+gcf().color_map = jet(128);
+colorbar(-1,1)
+Sgrayplot(X, Y, Z, strf="041")
+xtitle("Non-rectangular polar grid: sin(3θ)·r")
+ ]]></programlisting>
+ <scilab:image>
+   <![CDATA[
+   // example #4: non-rectangular (polar) grid
+   nr = 40; ntheta = 60;
+   r     = linspace(0.2, 1, nr);
+   theta = linspace(0, 2*%pi, ntheta);
+   [R, T] = ndgrid(r, theta);
+   X = R .* cos(T);
+   Y = R .* sin(T);
+   Z = sin(3*T) .* R;          // Z(i,j) = F(X(i,j), Y(i,j))
+   clf()
+   gcf().color_map = jet(128);
+   colorbar(-1,1)
+   Sgrayplot(X, Y, Z, strf="041")
+   xtitle("Non-rectangular polar grid: sin(3θ)·r")
+    ]]>
+</scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -359,13 +429,13 @@ end
                 <link linkend="fec">fec</link>
             </member>
             <member>
+                <link linkend="Sfgrayplot">Sfgrayplot</link>
+            </member>
+            <member>
                 <link linkend="fgrayplot">fgrayplot</link>
             </member>
             <member>
                 <link linkend="grayplot">grayplot</link>
-            </member>
-            <member>
-                <link linkend="Sfgrayplot">Sfgrayplot</link>
             </member>
             <member>
                 <link linkend="colorbar">colorbar</link>
@@ -379,6 +449,12 @@ end
                 <revnumber>2025.0.0</revnumber>
                 <revremark>
                     Function returns the created handle(s).
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revremark>
+                    Non-rectangular (curvilinear) grid support: X,Y,Z can now be matrices of the same size.
                 </revremark>
             </revision>
         </revhistory>

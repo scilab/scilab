@@ -2,6 +2,7 @@
 // Copyright (C) Bruno Pincon
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2026 - UTC - Stéphane MOTTELET
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,6 +22,18 @@ function varargout = Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, me
     //             |/_|/_|/_|/_|
     //             | /| /| /| /|
     //             |/_|/_|/_|/_|
+    //
+    //    Two calling syntaxes are supported:
+    //
+    //    Rectangular domain (vectors x, y):
+    //      Sfgrayplot(x, y, f) where x is a vector of length n, y of length m,
+    //      and f is a function with z(i,j) = f(x(i), y(j)).
+    //      The function is evaluated via feval(x, y, f).
+    //
+    //    Non-rectangular domain (matrices X, Y):
+    //      Sfgrayplot(X, Y, f) where X, Y are matrices of the same size (n,m)
+    //      and f is a vectorized function such that Z = f(X, Y) returns a
+    //      matrix of the same size with Z(i,j) = f(X(i,j), Y(i,j)).
     //
     // Copyright INRIA
     // rewritten by Bruno Pincon (17 april 05) (based of my modifs of Sgrayplot)
@@ -45,7 +58,7 @@ function varargout = Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, me
         error(msprintf(msg, "Sfgrayplot", 1));
     end
 
-    // some checks
+    // type checks
     if ~(type(x)==1 & isreal(x)) then
         error(msprintf(gettext("%s: Input argument #%d must be real.\n"), "Sfgrayplot", 1))
     end
@@ -56,9 +69,31 @@ function varargout = Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, me
         error(msprintf(gettext("%s: Wrong type for input argument #%d: function expected.\n"), "Sfgrayplot", 3));
     end
 
-    p = length(x);
-    q = length(y);
-    z = feval(x,y,f);
+    if min(size(x)) > 1 | min(size(y)) > 1 then
+        // ---- Non-rectangular domain: X, Y are matrices of the same size (p,q) ----
+        [p, q] = size(x);
+        if ~isequal(size(y), [p q]) then
+            msg = gettext("%s: Wrong size for input arguments: Arguments #%d and #%d must have the same size.\n")
+            error(msprintf(msg, "Sfgrayplot", 1, 2));
+        end
+        // Evaluate f element-wise: f must accept and return matrices of size (p,q)
+        z = f(x, y);
+        if ~isequal(size(z), [p q]) then
+            msg = gettext("%s: The function #%d must return a matrix of the same size as arguments #%d and #%d.\n")
+            error(msprintf(msg, "Sfgrayplot", 3, 1, 2));
+        end
+        // Use the X, Y matrices directly as node coordinates
+        noe_x = x;
+        noe_y = y;
+    else
+        // ---- Rectangular domain: x, y are vectors ----
+        p = length(x);
+        q = length(y);
+        // Evaluate f on the full rectangular grid
+        z = feval(x,y,f);
+        // Build the full node coordinate arrays from the 1-D axis vectors
+        [noe_x,noe_y] = ndgrid(x,y)
+    end
 
     // https://gitlab.com/scilab/scilab/-/issues/15638 :
     if ~isdef("colminmax","l")
@@ -78,8 +113,13 @@ function varargout = Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, me
         end
     end
 
-    // build the data for fec
-    [noe_x,noe_y] = ndgrid(x,y)
+    // Build the triangulation for fec.
+    // For a (p x q) grid of nodes stored column-major, the node at position
+    // (i,j) has linear index  i + (j-1)*p  (1-based).
+    // Each quad (i,j)-(i+1,j)-(i,j+1)-(i+1,j+1) is split into two triangles:
+    //   T1 : (i,j), (i+1,j), (i,j+1)   → indices  num, num1, num+p
+    //   T2 : (i+1,j), (i+1,j+1), (i,j+1) → indices num1, num1+p, num+p
+    // This is the same formula for both rectangular and non-rectangular grids.
     nbtri = 2*(p-1)*(q-1)
     num = (1:p*(q-1))'; num(p*(1:q-1)) = []; num1 = num+1
     connect =[(1:nbtri)' , [num   num1   num+p;...
