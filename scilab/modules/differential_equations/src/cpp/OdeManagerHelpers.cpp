@@ -387,7 +387,7 @@ types::Double *OdeManager::getArrayFromVectors(types::Double *m_pDblYtempl, std:
 {
     types::Double *pDblY = createYOut(m_pDblYtempl, m_iNbEq, (int) iTSpanSize);
     int iSize = m_vecY[0].size();
-    for (int i = 0; i < m_vecY.size(); i++)
+    for (auto i = 0; i < m_vecY.size(); i++)
     {
         copyComplexVectorToRealImg(m_vecY[i].data(), pDblY, i, iSize);
     }

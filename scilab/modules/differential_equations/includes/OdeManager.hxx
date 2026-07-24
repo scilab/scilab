@@ -67,7 +67,7 @@ class DIFFERENTIAL_EQUATIONS_IMPEXP OdeManager : public SUNDIALSManager
         else
         {
             types::Double *pDbl = new types::Double(m_iNbEvents, m_dblVecIndexEvent.size());
-            for (int i = 0; i < m_dblVecIndexEvent.size(); i++)
+            for (auto i = 0; i < m_dblVecIndexEvent.size(); i++)
             {
                 std::copy(m_dblVecIndexEvent[i].begin(), m_dblVecIndexEvent[i].end(), pDbl->get() + i*m_iNbEvents);
             }
@@ -162,7 +162,7 @@ class DIFFERENTIAL_EQUATIONS_IMPEXP OdeManager : public SUNDIALSManager
     void parseOptions(types::optional_list &opt);
     void init();
     void solve();
-    types::Double *parseInitialCondition(types::typed_list &in, bool bIsDerivative);
+    types::Double *parseInitialCondition(types::typed_list &in, int iStart);
 
     // New OdeManager specific methods
     int intermediateCallback(sunrealtype t, int iFlag, N_Vector N_VectorY, N_Vector N_VectorYp);
@@ -191,6 +191,10 @@ class DIFFERENTIAL_EQUATIONS_IMPEXP OdeManager : public SUNDIALSManager
 
     // virtual methods
     virtual int getMaxNargin()
+    {
+        return 3;
+    }
+    virtual int getMinNargin()
     {
         return 3;
     }
@@ -302,7 +306,6 @@ class DIFFERENTIAL_EQUATIONS_IMPEXP OdeManager : public SUNDIALSManager
  
     bool m_bSuppressAlg = false;
     bool m_odeIsExtension = false;
-    bool m_odeIsImEx = false;
     bool m_bErrProj = false;
     bool m_bStabLimDet = false;
     bool m_bSensErrCon = false;

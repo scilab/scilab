@@ -50,11 +50,12 @@ void OdeManager::parseMatrices(types::typed_list &in)
 {
     char errorMsg[256];
     types::Double *pDblTSpan = NULL;
+    int iTspan = m_odeIsExtension ? 1 :  in.size() - (isDAE() ? 3 : 2);
 
-    // Parse second argument "tspan"
-    if (in[1]->isDouble() && !in[1]->getAs<types::Double>()->isComplex())
+    // Parse second (or third) argument "tspan"
+    if (in[iTspan]->isDouble() && !in[iTspan]->getAs<types::Double>()->isComplex())
     {
-        pDblTSpan = in[1]->getAs<types::Double>();
+        pDblTSpan = in[iTspan]->getAs<types::Double>();
 
         // Check if we are extending a previously computed solution
         if (m_odeIsExtension)
@@ -62,13 +63,13 @@ void OdeManager::parseMatrices(types::typed_list &in)
             OdeManager *prevManager = getPreviousManager();
             if (pDblTSpan->getSize() > 1)
             {
-                sprintf(errorMsg, _("%s: Wrong size for input argument #%d: expecting %d.\n"), getSolverName().c_str(),1, 1);
+                sprintf(errorMsg, _("%s: Wrong size for input argument #%d: expecting %d.\n"), getSolverName().c_str(),iTspan+1, 1);
                 throw ast::InternalError(errorMsg);
             }
             double dblTFinal = prevManager->m_dblVecTOut.back();
             if ( ((pDblTSpan->get(0)-dblTFinal)*(dblTFinal-prevManager->m_dblT0)) < 0)
             {
-                sprintf(errorMsg, _("%s: parameter #%d must be greater than %g.\n"), getSolverName().c_str(),2, dblTFinal);
+                sprintf(errorMsg, _("%s: parameter #%d must be greater than %g.\n"), getSolverName().c_str(),iTspan+1, dblTFinal);
                 throw ast::InternalError(errorMsg);
             }
             // Simulate option t0 = tFinal
@@ -82,7 +83,7 @@ void OdeManager::parseMatrices(types::typed_list &in)
             {
                 if ( (m_pDblTSpan->get(i)-m_pDblTSpan->get(i-1)) * (m_pDblTSpan->get(i-1)-m_pDblTSpan->get(i-2)) < 0)
                 {
-                    sprintf(errorMsg, _("%s: values in parameter #%d should be monotone.\n"), getSolverName().c_str(),2);
+                    sprintf(errorMsg, _("%s: values in parameter #%d should be monotone.\n"), getSolverName().c_str(),iTspan+1);
                     throw ast::InternalError(errorMsg);
                 }
             }
@@ -90,20 +91,38 @@ void OdeManager::parseMatrices(types::typed_list &in)
     }
     else
     {
-        sprintf(errorMsg, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), getSolverName().c_str(),2);
+        sprintf(errorMsg, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), getSolverName().c_str(),iTspan+1);
         throw ast::InternalError(errorMsg);
     }
 
-    // parse initial conditions. Uses final conditions of previous solution if extending
-    m_pDblY0 = parseInitialCondition(in, false);
-    if (isDAE())
+    // parse initial conditions. Use final conditions of previous solution if extending
+    if (m_odeIsExtension == false)
     {
-        m_pDblYp0 = parseInitialCondition(in, true);
-        if (m_pDblYp0->getSize() != m_pDblY0->getSize())
+        m_pDblY0 = parseInitialCondition(in, iTspan+1);
+        if (isDAE())
         {
-            sprintf(errorMsg, _("%s: y0 and yp0 must have the same size.\n"), getSolverName().c_str());
-            throw ast::InternalError(errorMsg);
+            m_pDblYp0 = parseInitialCondition(in, iTspan+2);
+            if (m_pDblYp0->getSize() != m_pDblY0->getSize())
+            {
+                sprintf(errorMsg, _("%s: y0 and yp0 must have the same size.\n"), getSolverName().c_str());
+                throw ast::InternalError(errorMsg);
+            }
+        }        
+    }
+    else
+    {
+        OdeManager *prevManager = getPreviousManager();
+        // by default, extend solution with Y0/Yp0 = final value of previous Y/Yp
+
+        m_pDblY0 = prevManager->m_pDblY0->clone(); // Just for the size and dimensions
+        copyComplexVectorToDouble(N_VGetArrayPointer(prevManager->m_N_VectorY), m_pDblY0->get(), m_pDblY0->getImg(), prevManager->m_iNbEq, prevManager->m_odeIsComplex);
+        if (isDAE())
+        {
+            m_pDblYp0 = prevManager->m_pDblY0->clone(); // Just for the size and dimensions
+            copyComplexVectorToDouble(N_VGetArrayPointer(prevManager->m_N_VectorYp), m_pDblYp0->get(), m_pDblYp0->getImg(), prevManager->m_iNbEq, prevManager->m_odeIsComplex);
         }
+
+        m_odeIsComplex = prevManager->m_odeIsComplex;
     }
 
     m_iNbEq = m_pDblY0->getSize();
@@ -118,52 +137,34 @@ void OdeManager::parseMatrices(types::typed_list &in)
     m_iSizeOfInput[MASS] = m_iNbEq*m_iNbEq;
 }
 
-types::Double *OdeManager::parseInitialCondition(types::typed_list &in, bool bIsDerivative)
+types::Double *OdeManager::parseInitialCondition(types::typed_list &in, int iPos)
 {
     char errorMsg[256];
     types::Double *pDblY = NULL;
-    double *pdblPrevYFinal = NULL;
-    int iPos = bIsDerivative ? 3 : 2;
 
     // Parse argument "y0" or "yp0"
-    // They are parsed as options when extending solution
-    if (m_odeIsExtension == false)
+    // They can be parsed as options when extending solution (otherwise final values are used)
+    if (in[iPos]->isDouble())
     {
-        if (in[iPos]->isDouble())
+        types::Double *pDbl =  in[iPos]->getAs<types::Double>();
+        if (pDbl->isVector() && pDbl->getRows() == 1)
         {
-            types::Double *pDbl =  in[iPos]->getAs<types::Double>();
-            if (pDbl->isVector() && pDbl->getRows() == 1)
-            {
-                types::InternalType* pIT = pDblY;
-                pDbl->transpose(pIT);
-                pDblY = static_cast<decltype(pDblY)>(pIT);
-            }
-            else
-            {
-                pDblY = pDbl->clone();
-            }
+            types::InternalType* pIT = pDblY;
+            pDbl->transpose(pIT);
+            pDblY = static_cast<decltype(pDblY)>(pIT);
         }
         else
         {
-            sprintf(errorMsg, _("%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"), getSolverName().c_str(),iPos+1);
-            throw ast::InternalError(errorMsg);
+            pDblY = pDbl->clone();
         }
-        m_odeIsComplex |= pDblY->isComplex();
     }
     else
     {
-        OdeManager *prevManager = getPreviousManager();
-        // by default, extend solution with Y0 resp. Yp0 = final value of previous Y resp. Yp
-        
-        pdblPrevYFinal = bIsDerivative ? N_VGetArrayPointer(prevManager->m_N_VectorYp) : N_VGetArrayPointer(prevManager->m_N_VectorY);
-
-        pDblY = prevManager->m_pDblY0->clone(); // Just for the size and dimensions
-        pDblY->setComplex(prevManager->m_odeIsComplex);
-
-        copyComplexVectorToDouble(pdblPrevYFinal, pDblY->get(), pDblY->getImg(), prevManager->m_iNbEq, prevManager->m_odeIsComplex);
-
-        m_odeIsComplex = prevManager->m_odeIsComplex;
+        sprintf(errorMsg, _("%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"), getSolverName().c_str(),iPos+1);
+        throw ast::InternalError(errorMsg);
     }
+    m_odeIsComplex |= pDblY->isComplex();
+
     return pDblY;
 }
 
@@ -585,6 +586,7 @@ void OdeManager::parseOptions(types::optional_list &opt)
         // rhs or residual function can be overriden by "rhs" and "res" options
         functionKind what = isDAE() ? RES : RHS;
         parseFunctionFromOption(opt, isDAE() ? L"res" : L"rhs", what);
+        parseFunctionFromOption(opt, L"secRhs", SRHS);
 
         // below call is made to detect complex extended ode
         if (m_pCallFunction[what] != NULL)

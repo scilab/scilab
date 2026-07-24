@@ -260,11 +260,9 @@ void SUNDIALSManager::callClosing(functionKind what, types::typed_list &in, std:
     }
 }
 
-void SUNDIALSManager::parseFunction(types::InternalType* pIn, functionKind what)
+void SUNDIALSManager::parseFunction(types::InternalType* pIn, functionKind what, int iStart)
 {
     char errorMsg[256];
-
-    m_bHas[what] = true;
 
     if (pIn->isCallable())
     {
@@ -410,9 +408,13 @@ void SUNDIALSManager::parseFunction(types::InternalType* pIn, functionKind what)
         {
             sprintf(errorMsg, _("%s: parameter %s should be a matrix, a cell, a string, a function or a list.\n"), getSolverName().c_str(), pstrArgName[what]);
         }
+        else if (iStart >= 0)
+        {
+            sprintf(errorMsg, _("%s: Wrong type for input argument %d: a string, a function or a list is expected.\n"), getSolverName().c_str(), iStart+1);
+        }
         else
         {
-            sprintf(errorMsg, _("%s: parameter %s should be a matrix, a string, a function or a list.\n"), getSolverName().c_str(), pstrArgName[what]);
+            sprintf(errorMsg, _("%s: parameter %s should be a string, a function or a list.\n"), getSolverName().c_str(), pstrArgName[what]);            
         }
         throw ast::InternalError(errorMsg);
     }
@@ -421,6 +423,9 @@ void SUNDIALSManager::parseFunction(types::InternalType* pIn, functionKind what)
     {
         m_pCallFunctionName[what] = wide_string_to_UTF8(m_pCallFunction[what]->getName().c_str());
     }
+    
+    // must be set only if no exception has occured (they can be catched in gateway)
+    m_bHas[what] = true;
 }
 
 std::wstring SUNDIALSManager::setLinearSolver(functionKind what, N_Vector NV_work, SUNMatrix & SUN_A, SUNLinearSolver & SUN_LS)

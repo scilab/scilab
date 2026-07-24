@@ -34,6 +34,7 @@ int DifferentialEquationsModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"feval", &sci_feval, NULL, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"bvode", &sci_bvode, NULL, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"arkode", &sci_arkode, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"sprkode", &sci_sprkode, NULL, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"cvode", &sci_cvode, NULL, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ida", &sci_ida, NULL, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"kinsol", &sci_kinsol, NULL, MODULE_NAME));

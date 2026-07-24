@@ -16,10 +16,12 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            [t,y] = arkode(f,tspan,y0,options)
-            [t,y,info] = arkode(f,tspan,y0,options)
+            [t,y] = arkode(f,tspan,y0,&lt;opt_args&gt;)
+            [t,y,info] = arkode(f,tspan,y0,&lt;opt_args&gt;)
+            [t,y,info] = arkode(f_E,f_I,tspan,y0,&lt;opt_args&gt;)
+            [t,y,info] = arkode(f_E,f_I,tspan,y0,&lt;opt_args&gt;)
             sol = arkode(...)
-            solext = arkode(sol,tfinal,options)
+            solext = arkode(sol,tfinal,&lt;opt_args&gt;)
             arkode(...)
     </synopsis>
     </refsynopsisdiv>
@@ -28,9 +30,9 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>f</term>
+                <term>f, f_E, f_I</term>
                 <listitem>    
-                    <para>a function, a string or a list, the right hand side of the differential equation</para>
+                    <para>a function, a string or a list, the right hand side(s) of the differential equation</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -46,7 +48,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>options</term>
+                <term>&lt;opt_args&gt;</term>
                 <listitem>
                     <para>a sequence of optional named arguments, see the <link linkend="sundials_options">solvers options</link></para>
                 </listitem>
@@ -192,21 +194,20 @@
         </para>
         <para>
             and solve the differential equation with the default order 4 implicit/explicit method. The solver just needs the information about the splitting, 
-            which is given by the <literal>stiffRhs</literal> option:
+            which is given by specifying <literal>f_E</literal> and <literal>f_I</literal>:
         </para>
         <para>
         <programlisting role="example"><![CDATA[
             u0 = 3.9; v0 = 1.1; w0 = 2.8; a  = 1.2; b  = 2.5; ep = 1.0e-5;
             jacI = [0 0 0;0 0 0;0 0 -1/ep];
-            [t,y] = arkode(list(%SUN_brussE,a), [0 10], [u0; v0; w0], stiffRhs = list(%SUN_brussI,b,ep), ... 
-                           jacobian = jacI);
+            [t,y] = arkode(list(%SUN_brussE,a), list(%SUN_brussI,b,ep), [0 10], [u0; v0; w0], jacobian = jacI);
             plot(t,y)
             ]]>
         </programlisting>
         </para>
         <para>This small example exhibits the interest of the splitting because here the stiff component is linear and we can specify its constant Jacobian
             to improve the performance of the inner implicit method. 
-            Note that when using an ImEx method with a user-provided Jacobian, the latter is the Jacobian of the stiff component only.
+            Note that when using an ImEx method with a user-provided Jacobian, the latter is the Jacobian of the stiff component <literal>f_I</literal> only.
         </para>
     </refsection>
 
@@ -279,7 +280,7 @@
         <para>When there is no additive splitting of the right hand side the default method is the order 4 explicit Zonneveld method (identifiers ERK, ERK_4 or ZONNEVELD_5_3_4). An implicit method can be chosen by using the <literal>method</literal> option. Note that adding a user Jacobian automatically selects the default implicit method.
         </para>
         <para>  
-            If splitting of the right hand side is necessary and the stiff component is given with the <literal>stiffRhs</literal> option, the default method is a combined order 4 implicit/explicit method (ARK436L2SA_DIRK_6_3_4 and ARK436L2SA_ERK_6_3_4) with identifier ARK or ARK_4.
+            If splitting of the right hand side is used, the default method is a combined order 4 implicit/explicit method (ARK436L2SA_DIRK_6_3_4 and ARK436L2SA_ERK_6_3_4) with identifier ARK or ARK_4.
         </para>
         <para>
             If you need a custom ERK, DIRK or ARK method see the next section.
@@ -565,9 +566,12 @@
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="cvode">cvode</link>
-            </member>
+          <member>
+              <link linkend="sprkode">sprkode</link>
+          </member>
+          <member>
+              <link linkend="cvode">cvode</link>
+          </member>
             <member>
                 <link linkend="ida">ida</link>
             </member>

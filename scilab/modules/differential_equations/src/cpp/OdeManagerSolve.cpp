@@ -189,7 +189,7 @@ void OdeManager::solve()
             // can occur when no special basis vectors are used other than solution itself (Lagrange interpolation)
             m_pDblInterpBasisVectors = new types::Double(m_iNbRealEq, m_vecYOut.size());
             double *pdblBasis = m_pDblInterpBasisVectors->get();
-            for (int i = 0; i < m_vecYOut.size(); i++)
+            for (auto i = 0; i < m_vecYOut.size(); i++)
             {
                  double *pdbl = m_vecYOut[i].data();   
                  std::copy(pdbl, pdbl+m_iNbRealEq, pdblBasis);

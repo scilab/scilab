@@ -74,8 +74,8 @@
             without specifying a method automatically selects the default one needing a Jacobian. For example
             specifying a Jacobian selects the BDF method in a cvode call and the inexact Newton method in a kinsol call. 
             In addition, note that when using arkode with an implicit/explicit method
-           <literal>jacFn</literal> denotes the Jacobian of the stiff right hand side only, which is set by the <literal>stiffRhs</literal> option
-           (see the <link linkend="arkode">arkode</link> help page). Below we consider nonlinear equations, ODEs and DAEs in three different
+           <literal>jacFn</literal> denotes the Jacobian of the stiff right hand side only (second input argument, see the
+           <link linkend="arkode">arkode</link> help page). Below we consider nonlinear equations, ODEs and DAEs in three different
            sections as the Jacobian is defined differently, but in all situations:
        </para>
        <para>
@@ -241,8 +241,8 @@
                     end
                     A = [0 1;-1 0];
                     [t1,y1] = cvode(list(f,A), [0 10], [1;0], jacobian = A)
-                    [t2,y2] = arkode(fE,[0 10],[1;0], stiffRhs=list(f,A), jacobian = A)
-                    [t3,y3] = arkode(fE,[0 10],[1;0], stiffRhs=list(f,A), jacobian = sparse(A))
+                    [t2,y2] = arkode(fE,list(f,A),[0 10],[1;0], jacobian = A)
+                    [t3,y3] = arkode(fE,list(f,A),[0 10],[1;0], jacobian = sparse(A))
                     ]]>
                 </programlisting>
                 </para>

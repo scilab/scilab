@@ -16,8 +16,8 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            sol = solver(..., options)
-            solext = solver(sol, tfinal, options)
+            sol = solver(..., &lt;opt_args&gt;)
+            solext = solver(sol, tfinal, &lt;opt_args&gt;)
             y = sol(t)
             [y,yd] = sol(t)
             ... = sol(t,i)
@@ -39,7 +39,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>options</term>
+                <term>&lt;opt_args&gt;</term>
                 <listitem>    
                     <para>a sequence of optional named arguments (see <link linkend="sundials_options">sundials options</link>)</para>
                 </listitem>

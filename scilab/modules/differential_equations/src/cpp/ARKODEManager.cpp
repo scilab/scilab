@@ -29,7 +29,7 @@ extern "C"
 
 bool ARKODEManager::create()
 {
-    if (m_odeIsImEx)
+    if (m_bHas[SRHS])
     {
         m_prob_mem = ARKStepCreate(rhsFunction, rhsFunctionStiff, m_dblT0, m_N_VectorY, m_sunctx);
     }
@@ -78,18 +78,6 @@ void ARKODEManager::parseMethodAndOrder(types::optional_list &opt)
 
     // specific ARKODe options
 
-    // stiff RHS for ImEx method
-    if (m_odeIsExtension)
-    {
-        parseFunctionFromOption(opt, L"stiffRhs",SRHS);
-        m_odeIsImEx = m_prevManager->m_odeIsImEx;
-    }
-    else if (opt.find(L"stiffRhs") != opt.end())
-    {
-        parseFunctionFromOption(opt, L"stiffRhs", SRHS);
-        m_odeIsImEx = true;
-    }
-
     // Parse Mass first (as it restricts the possible methods and other stuff)
     getIntVectorInPlist(getSolverName().c_str(), opt, L"massBand", m_iVecBand[MASS],
         m_odeIsExtension ? m_prevManager->m_iVecBand[MASS] : emptyVect, {0, m_iNbEq-1}, {2});
@@ -136,11 +124,11 @@ void ARKODEManager::parseMethodAndOrder(types::optional_list &opt)
 
     if (m_ERKButcherTable != NULL || m_DIRKButcherTable != NULL)
     {
-        if (m_odeIsImEx)
+        if (m_bHas[SRHS])
         {
             if (m_ERKButcherTable == NULL || m_DIRKButcherTable == NULL)
             {
-                sprintf(errorMsg, _("arkode: both ERKButcherTab and DIRKButcherTab must be set in imEx mode.\n"));
+                sprintf(errorMsg, _("arkode: both ERKButcherTab and DIRKButcherTab must be set when two rhs are given.\n"));
                 throw ast::InternalError(errorMsg);
             }
             ARKodeButcherTable_CheckARKOrder(m_DIRKButcherTable, m_ERKButcherTable, &m_iEmbeddedMethodOrder, &m_iMethodOrder, NULL);
@@ -155,7 +143,7 @@ void ARKODEManager::parseMethodAndOrder(types::optional_list &opt)
         }
         else if (m_ERKButcherTable != NULL && m_DIRKButcherTable != NULL)
         {
-            sprintf(errorMsg, _("arkode: ""stiffRhs"" must be set in imEx mode.\n"));
+            sprintf(errorMsg, _("arkode: a secondary rhs is needed when both ERKButcherTab and DIRKButcherTab are given.\n"));
             throw ast::InternalError(errorMsg);
         }
         std::wstringstream wss;
@@ -185,10 +173,10 @@ void ARKODEManager::parseMethodAndOrder(types::optional_list &opt)
     }
     else
     {
-        // parse eventual "method" option
-        std::wstring wStrDefaultMethod = m_odeIsExtension ? m_prevManager->m_wstrMethod : (m_odeIsImEx ? L"ARK" : hasJacobian() ? L"DIRK" : L"ERK");
+        // parse "method" option or set default method
+        std::wstring wStrDefaultMethod = m_odeIsExtension ? m_prevManager->m_wstrMethod : (m_bHas[SRHS] ? L"ARK" : hasJacobian() ? L"DIRK" : L"ERK");
         getStringInPlist(getSolverName().c_str(), opt, L"method", m_wstrMethod, wStrDefaultMethod, getAvailableMethods());        
-        
+    
         m_iMethodOrder = ARKODEMethods[m_wstrMethod].order;
         m_iEmbeddedMethodOrder = ARKODEMethods[m_wstrMethod].embeddedOrder;
         // get standard SUNDIALS tableaux
@@ -199,7 +187,7 @@ void ARKODEManager::parseMethodAndOrder(types::optional_list &opt)
         if (ARKODEMethods[m_wstrMethod].erkID >= ARKODE_MIN_ERK_NUM)
         {
             m_ERKButcherTable = ARKodeButcherTable_LoadERK(ARKODEMethods[m_wstrMethod].erkID);                
-        }        
+        }            
     }
 
     // linearity of implicit part
@@ -208,6 +196,10 @@ void ARKODEManager::parseMethodAndOrder(types::optional_list &opt)
         std::wstring wStrDefaultLinear = m_odeIsExtension ? m_prevManager->m_wstrIsLinear : L"no";
         getStringInPlist(getSolverName().c_str(), opt, L"linear", m_wstrIsLinear, wStrDefaultLinear, {L"no",L"constant",L"timeDepend"});
     }
+
+    // Absolute tolerance for the residual norm in nonlinear solver iterations
+    getDoubleVectorInPlist(getSolverName().c_str(), opt, L"ratol", m_dblVecRAtol,
+        m_odeIsExtension ? m_prevManager->m_dblVecRAtol : defaultRAtolVect, {1e-15, std::numeric_limits<double>::infinity()}, m_iNbEq);
 
     // interpolation (cannot be changed when extending solution)
     if (m_odeIsExtension)
@@ -223,10 +215,6 @@ void ARKODEManager::parseMethodAndOrder(types::optional_list &opt)
         getIntInPlist(getSolverName().c_str(), opt, L"degree", &m_iInterpolationDegree, iMaxInterpolationDegree, {0,iMaxInterpolationDegree});
         m_iInterpolationMethod = m_wstrInterpolationMethod == L"Hermite" ? ARK_INTERP_HERMITE : ARK_INTERP_LAGRANGE;
     }
-
-    // Absolute tolerance for the residual norm in nonlinear solver iterations
-    getDoubleVectorInPlist(getSolverName().c_str(), opt, L"ratol", m_dblVecRAtol,
-        m_odeIsExtension ? m_prevManager->m_dblVecRAtol : defaultRAtolVect, {1e-15, std::numeric_limits<double>::infinity()}, m_iNbEq);
 }
 
 void ARKODEManager::getButcherTabInPlist(types::optional_list &opt, const wchar_t * _pwstLabel, ARKodeButcherTable &ButcherTab)
@@ -327,6 +315,7 @@ bool ARKODEManager::initialize(char *errorMsg)
         sprintf(errorMsg, "ARKStepSetFixedStep error");
         return true;                
     };
+
     if (ARKStepSetTables(m_prob_mem, m_iMethodOrder, m_iEmbeddedMethodOrder, m_DIRKButcherTable, m_ERKButcherTable) != ARK_SUCCESS)
     {
         sprintf(errorMsg, "ARKStepSetTables error");
@@ -346,7 +335,7 @@ bool ARKODEManager::initialize(char *errorMsg)
     // ratol=1e-6 while atol may be much tighter (e.g. 1e-9), making the
     // finite-difference Jacobian step 1000× too small at y=0 and causing NaN
     // columns -> Newton divergence -> random integration failure on Linux.
-    if (m_dblVecRAtol.size() > 0 && m_bHas[MASS] == true)
+    if (m_dblFixedStep == 0 && m_dblVecRAtol.size() > 0 && m_bHas[MASS] == true)
     {
         m_N_VectorRAtol = N_VClone(m_N_VectorY);
         if (m_odeIsComplex)
@@ -354,7 +343,7 @@ bool ARKODEManager::initialize(char *errorMsg)
             m_dblVecRAtol.resize(m_iNbRealEq);
             for (int i=0; i<m_iNbEq; i++)
             {
-               m_dblVecRAtol[i+m_iNbEq] = m_dblVecRAtol[i];
+                m_dblVecRAtol[i+m_iNbEq] = m_dblVecRAtol[i];
             }
         }
         std::copy(m_dblVecRAtol.begin(), m_dblVecRAtol.end(), N_VGetArrayPointer(m_N_VectorRAtol));
@@ -714,7 +703,7 @@ types::Struct *ARKODEManager::getStats()
 {
     double dblStat[7] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0};
 
-    std::wstring fieldNames[16] = {L"nSteps", L"nRhsExplEvals", L"nRhsImplEvals", L"nRhsEvalsFD", L"nJacEvals", L"nEventEvals",
+    std::wstring fieldNames[15] = {L"nSteps", L"nRhsEvals", L"nRhsEvalsFD", L"nJacEvals", L"nEventEvals",
     L"nLinSolve", L"nRejSteps", L"nNonLiniters", L"nNonLinCVFails", L"order",
     L"hIni", L"hLast", L"hCur", L"tCur", L"eTime"};
 
@@ -750,21 +739,42 @@ types::Struct *ARKODEManager::getStats()
     }
 
     types::Struct *pSt = new types::Struct(1,1);
-    for (int i=0; i<10; i++)
+
+    // nSteps
+    pSt->addField(fieldNames[0].c_str());
+    pSt->get(0)->set(fieldNames[0].c_str(),new types::Double((double)m_incStat[0]));
+
+    // nRhsEvals (first and second rhs)
+    types::Double *pDblNRhsEvals = NULL;
+    if (m_incStat[1] == 0 || m_incStat[2] == 0)
+    {
+        pDblNRhsEvals = new types::Double(m_incStat[1]+ m_incStat[2]);
+    }
+    else
+    {
+        pDblNRhsEvals = new types::Double(1, 2);
+        pDblNRhsEvals->set(0,(double)m_incStat[1]);
+        pDblNRhsEvals->set(1,(double)m_incStat[2]);
+    }
+    pSt->addField(fieldNames[1].c_str());
+    pSt->get(0)->set(fieldNames[1].c_str(),pDblNRhsEvals);
+
+    // nRhsEvalsFD, nJacEvals, nEventEvals, nLinSolve, nRejSteps, nNonLiniters, nNonLinCVFails
+    for (int i=2; i<9; i++)
     {
         pSt->addField(fieldNames[i].c_str());
-        pSt->get(0)->set(fieldNames[i].c_str(),new types::Double((double)m_incStat[i]));
+        pSt->get(0)->set(fieldNames[i].c_str(),new types::Double((double)m_incStat[i+1]));
     }
 
     // order of method for each step
     types::Double *pDblOrder = new types::Double(m_iMethodOrder);
-    pSt->addField(fieldNames[10].c_str());
-    pSt->get(0)->set(fieldNames[10].c_str(), pDblOrder);
+    pSt->addField(fieldNames[9].c_str());
+    pSt->get(0)->set(fieldNames[9].c_str(), pDblOrder);
 
-    for (int i=11; i<16; i++)
+    for (int i=10; i<15; i++)
     {
         pSt->addField(fieldNames[i].c_str());
-        pSt->get(0)->set(fieldNames[i].c_str(), new types::Double(dblStat[i-11]));
+        pSt->get(0)->set(fieldNames[i].c_str(), new types::Double(dblStat[i-10]));
     }
     return pSt;
 }

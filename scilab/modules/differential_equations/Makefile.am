@@ -13,6 +13,7 @@ DIFFERENTIAL_EQUATIONS_CPP_SOURCES = \
     src/cpp/KINSOLManager.cpp \
     src/cpp/IDAManager.cpp \
     src/cpp/ARKODEManager.cpp \
+    src/cpp/SPRKODEManager.cpp \
     src/cpp/OdeManagerInit.cpp \
     src/cpp/OdeManagerCompute.cpp \
     src/cpp/OdeManagerParse.cpp \
@@ -119,6 +120,7 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_cvode.cpp \
     sci_gateway/cpp/sci_ida.cpp \
     sci_gateway/cpp/sci_arkode.cpp \
+    sci_gateway/cpp/sci_sprkode.cpp \
     sci_gateway/cpp/sci_kinsol.cpp \
     sci_gateway/cpp/sci_percent_odeSolution.cpp
 

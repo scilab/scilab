@@ -16,31 +16,18 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            ... = arkode( ... , options)
-            ... = cvode( ... , options)
-            ... = ida( ... , options)
+            ... = arkode( ... , &lt;opt_args&gt;)
+            ... = cvode( ... , &lt;opt_args&gt;)
+            ... = ida( ... , &lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="description">
         <title>Common options</title>
-        <para>The default behavior of the solver can be tuned by specifying a sequence of named parameter values. These parameters are the following:
+        <para>The default behavior of the solver can be tuned by specifying a sequence &lt;opt_args&gt; of named parameter values <code>key1=value1, key2=value2, ...</code> These parameters are the following:
         </para>
         <para>
             <informaltable border='1'>
                 <tbody>
-                    <tr>
-                        <td>options</td>
-                        <td>    
-                            <para>A struct with options field names and corresponding values. Specifying the options with a struct allows to use the same
-                                options set in different solver calls. Values are overriden by separately setting individual options.</para>
-                                <programlisting role="example"><![CDATA[
-                                    OPT = struct();
-                                    OPT.rtol = 1e-6;
-                                    OPT.atol = 1e-8;
-                                    [t,y] = cvode(%SUN_vdp1,[0 1],[0 2], options = OPT);
-                                ]]></programlisting>
-                        </td>
-                    </tr>
                     <tr>
                         <td>method</td>
                         <td>    
@@ -246,6 +233,19 @@
                     </para>
                     </td>
                 </tr>
+                <tr>
+                    <td>options</td>
+                    <td>    
+                        <para>A struct with options field names and corresponding values. Specifying the options with a struct allows to use the same
+                            options set in different solver calls. Values are overriden by separately setting individual options.</para>
+                            <programlisting role="example"><![CDATA[
+                                OPT = struct();
+                                OPT.rtol = 1e-6;
+                                OPT.atol = 1e-8;
+                                [t,y] = cvode(%SUN_vdp1,[0 1],[0 2], options = OPT);
+                            ]]></programlisting>
+                    </td>
+                </tr>
                 </tbody>
             </informaltable>
         </para>
@@ -347,13 +347,6 @@
         <para>
             <informaltable border='1'>
                 <tbody>
-                    <tr>
-                        <td>stiffRhs</td>
-                        <td>    
-                            <para>A function, a string or a list, the stiff right hand side of the differential equation when implicit/explicit integration
-                                is to be performed. See the paragraph about implicit/explicit solver splitting in the <link linkend="arkode_imex">arkode help page</link>.</para>
-                        </td>
-                    </tr>
                     <tr>
                         <td>ERKButcherTab, DIRKButcherTab</td>
                         <td>    

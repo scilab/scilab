@@ -129,7 +129,7 @@ public:
     enum functionKind
     {
         RHS = 0, // basic rhs (ode)
-        SRHS, // stiff rhs for IMEX method (arkode)
+        SRHS, // secondary rhs for IMEX method or Hamiltonian ode (arkode)
         QRHS, // quadrature variables rhs (ode), 
         SENSRHS, // sensitivity equation rhs (ode)
         JACY, // jacobian (ode)
@@ -154,7 +154,7 @@ public:
         NBAPI
     };
 
-    char pstrArgName[NBKIND][16] = {"\"f\"", "\"stiffRhs\"", "\"quadRhs\"", "\"sensRhs\"", "\"jacobian\"", "\"jacTimes\"", "\"res\"", "\"sensRes\"",
+    char pstrArgName[NBKIND][16] = {"\"rhs\"", "\"secRhs\"", "\"quadRhs\"", "\"sensRhs\"", "\"jacobian\"", "\"jacTimes\"", "\"res\"", "\"sensRes\"",
                                     "\"jacobian\"", "\"jacTimes\"", "\"mass\"", "\"massTimes\"", "\"events\"", "\"callback\"", "\"projection\""};
 
     std::map<std::wstring, dynlibFunPtr> m_staticFunctionMap;
@@ -168,6 +168,17 @@ public:
     {
         return m_strSolver;
     }
+
+    void setLastErrorMessage(std::wstring _wstMessage)
+    {
+        m_wstrLastErrorMessage = _wstMessage;
+    }
+
+    std::wstring getLastErrorMessage()
+    {
+        return m_wstrLastErrorMessage;
+    }
+
 
     std::wstring getNonLinSol()
     {
@@ -210,6 +221,11 @@ public:
     void setIretCount(int iRetCount)
     {
         m_iRetCount = iRetCount;
+    }
+
+    int getNbRhs()
+    {
+        return m_iNbRhs;
     }
 
     int getNEq()
@@ -326,10 +342,11 @@ public:
         return availableSolvers;
     }
 
-    void parseFunction(types::InternalType* pIn, functionKind what);
-    void parseFunction(types::InternalType* pIn)
+    void parseFunction(types::InternalType* pIn, functionKind what, int iStart = -1);
+
+    void parseFunction(types::InternalType* pIn, int iStart = -1)
     {
-        parseFunction(pIn, m_defaultFunctionKind);
+        parseFunction(pIn, m_defaultFunctionKind, iStart);
     }   
     void parseMatrixPattern(types::optional_list &opt, const wchar_t * _pwstLabel, functionKind what);
     void callOpening(functionKind what, types::typed_list& in, double* pdblY = NULL);
@@ -398,6 +415,8 @@ public:
     std::string m_strSolver;
     std::wstring m_wstrSolver;
 
+    std::wstring m_wstrLastErrorMessage;
+
     std::wstring m_wstrNonLinSolver;
     std::wstring m_wstrLinSolver;
     std::wstring m_wstrPrecondType;
@@ -458,6 +477,7 @@ public:
     double m_dblElapsedTime;
 
     int m_iRetCount;
+    int m_iNbRhs = 1;
     int m_iNbEq;
     int m_iNbRealEq;
     int m_iNonLinSolAccel;

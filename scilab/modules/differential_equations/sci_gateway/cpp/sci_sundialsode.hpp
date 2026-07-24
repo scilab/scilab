@@ -35,9 +35,16 @@ types::Function::ReturnValue sci_sundialsode(types::typed_list &in, types::optio
 
     manager = new ODEManagerType();
 
-    if (in.size() != 2 && in.size() != manager->getMaxNargin())
+    if (in.size() != 2 && in.size() != manager->getMaxNargin() && in.size() != manager->getMinNargin())
     {
-        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d or %d expected.\n"), manager->getSolverName().c_str(), 2, manager->getMaxNargin());
+        if (manager->getMaxNargin() == manager->getMinNargin())
+        {
+            sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d or %d expected.\n"), manager->getSolverName().c_str(), 2, manager->getMaxNargin());
+        }
+        else
+        {
+            sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d, %d or %d expected.\n"), manager->getSolverName().c_str(), 2, manager->getMinNargin(), manager->getMaxNargin());
+        }
         delete manager;
         throw ast::InternalError(errorMsg);
     }
@@ -80,12 +87,19 @@ types::Function::ReturnValue sci_sundialsode(types::typed_list &in, types::optio
         {
             sprintf(errorMsg, _("%s: missing manager field in argument 1.\n"), manager->getSolverName().c_str());
             delete manager;
-            throw ast::InternalError(errorMsg);            
+            throw ast::InternalError(errorMsg);
         }
     }
-    else if (in.size() != manager->getMaxNargin())
+    else if (in.size() < manager->getMinNargin() || in.size() > manager->getMaxNargin())
     {
-        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), manager->getSolverName().c_str(), manager->getMaxNargin());        
+        if (manager->getMaxNargin() == manager->getMinNargin())
+        {
+            sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), manager->getSolverName().c_str(), manager->getMaxNargin());
+        }
+        else
+        {
+            sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d or %d expected.\n"), manager->getSolverName().c_str(), manager->getMinNargin(), manager->getMaxNargin());
+        }
         delete manager;
         throw ast::InternalError(errorMsg);
     }
@@ -96,7 +110,16 @@ types::Function::ReturnValue sci_sundialsode(types::typed_list &in, types::optio
         manager->parseMatrices(in);
         if (bIsExtension == false)
         {
-            manager->parseFunction(in[iStart]);
+            manager->parseFunction(in[iStart], iStart);
+            try
+            {
+                // some steppers require a secondary rhs
+                manager->parseFunction(in[iStart+1], OdeManager::SRHS, iStart+1);
+            }
+            catch (ast::InternalError& ie)
+            {
+                manager->setLastErrorMessage(ie.GetErrorMessage());
+            }
         }
         manager->parseOptions(opt);
         manager->init();

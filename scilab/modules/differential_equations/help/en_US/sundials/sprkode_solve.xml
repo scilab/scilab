@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2026 - UTC - Stéphane MOTTELET
+* Copyright (C) 2026 - UTC - Nicolas Micheletti
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sprkode" xml:lang="en" xmlns:m="http://www.w3.org/1998/Math/MathML">
+    <refnamediv>
+        <refname>sprkode</refname>
+        <refpurpose>SUNDIALS ordinary differential equation symplectic Runge-Kutta solver</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+          [t,y] = sprkode(f1,f2,tspan,y0,&lt;opt_args&gt;)
+          [t,y,info] = sprkode(f1,f2,tspan,y0,&lt;opt_args&gt;)
+          sol = sprkode(...)
+          solext = sprkode(sol,tfinal,&lt;opt_args&gt;)
+          sprkode(...)
+    </synopsis>
+    </refsynopsisdiv>
+
+    <refsection role="parameters">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>f1, f2</term>
+                <listitem>    
+                    <para>a function, a string or a list, the right hand side(s) of the differential equation</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tspan</term>
+                <listitem>    
+                    <para>double vector, time interval or time points</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y0</term>
+                <listitem>    
+                    <para>a double array: initial state of the ode</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;opt_args&gt;</term>
+                <listitem>
+                    <para>a sequence of optional named arguments, see the <link linkend="sundials_options">solvers options</link></para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>vector of time points used by the solver</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>array of solution at time values in <literal>t</literal></para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sol, solext</term>
+                <listitem>    
+                    <para>MList of <literal>_odeSolution</literal> type, see the <link linkend="sundials_solution">solution output</link> help page</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>info</term>
+                <listitem>    
+                    <para>MList of <literal>_odeSolution</literal> type with solver information,
+                    user events information (if applicable) and statistics</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tfinal</term>
+                <listitem>    
+                    <para>final time of extended solution</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            <literal>sprk</literal> computes the solution of Hamiltonian systems posed under the form
+        </para>
+        <para>
+                <latex style="display">H(t,p,q)=T(t,p)+V(t,q)</latex>
+        </para>
+        <para>
+                <latex style="display">p' = f_1(t,q)=\frac{\partial V(t,q)}{\partial q},~q'=f_2(t,p)=\frac{\partial T(t,p)}{\partial p}.</latex>
+        </para>
+        <para>
+          allowing for conservation of quadratic invariants (sprkode uses a symplectic integrator).
+        </para>
+        <para>
+          At the user level, when the dimension of the generalized momentum <latex>p</latex> and coordinates <latex>q</latex> is n then
+          the right hand side functions <literal>f1(t,y)</literal> and <literal>f2(t,y)</literal> are called with a vector
+          of size 2*n and the partition of <literal>y</literal> is arbitrary chosen by the user when defining the initial conditions. 
+          Then in the output of <literal>f1</literal> the components of <latex>q'</latex> must be set to zero, as well as the
+           the components of <latex>p'</latex> output of <literal>f2</literal> (see the example below).
+        </para>
+        <para>
+          As time adaptivity destroys the conservation properties, this solver must be used with a fixed step, hence the sequence of options
+          must set the <literal>fixedStep</literal> option.
+        </para>
+        
+        <para>
+            As sprkode shares with arkode most of its features (syntax, specification of user functions) please refer to the Description section of 
+            <link linkend="arkode">arkode help page</link> for basic usage (events handling, solution output, callback).             
+        </para>
+</refsection>
+
+<refsection role="example">
+    <title>Example</title>
+    <para>
+        In the following example, we solve the harmonic oscilator Hamiltonian system.
+    </para>
+    <para>
+        <latex>
+            p'=-q,~q'=p.
+        </latex>
+    </para> 
+    <para>
+        <programlisting role="example"><![CDATA[
+          function dpdt = f1(t,pq)
+            q = pq(2);
+            dpdt = [-q; 0];
+          end
+          function dqdt = f2(t,pq)
+            p = pq(1);
+            dqdt = [0; p]
+          end
+
+          [t,pq] = sprkode(f1,f2, [0 20], [1;0], fixedStep = 0.1)
+
+          subplot(1,2,1)
+          plot(pq(1,:),pq(2,:))
+          xlabel("$p$")
+          ylabel("$q$")
+          isoview("on")
+          subplot(1,2,2)
+          plot(t,sum(pq.^2,1))
+          gca().data_bounds(3:4) = [0.9,1.1];
+          xlabel("t")
+          ylabel("$p^2+q^2$")
+          title("energy")
+            ]]></programlisting>
+            <scilab:image>
+              function dpdt = f1(t,pq)
+                q = pq(2);
+                dpdt = [-q; 0];
+              end
+              function dqdt = f2(t,pq)
+                p = pq(1);
+                dqdt = [0; p]
+              end
+
+              [t,pq] = sprkode(f1,f2, [0 20], [1;0], fixedStep = 0.1)
+
+              subplot(1,2,1)
+              plot(pq(1,:),pq(2,:))
+              xlabel("$p$")
+              ylabel("$q$")
+              isoview("on")
+              subplot(1,2,2)
+              plot(t,sum(pq.^2,1))
+              gca().data_bounds(3:4) = [0.9,1.1];
+              xlabel("t")
+              ylabel("$p^2+q^2$")
+              title("energy")
+              gcf().figure_size=[640 410]
+            </scilab:image>
+        </para>
+    </refsection>
+
+    <refsection role="example">
+        <title>Example</title>
+        <para>
+            This second example solves a 3 body gravitationnal system (Sun, Supiter and Saturn)
+        </para>
+        <para>
+            <programlisting role="example"><![CDATA[
+              function V = Ep(q)
+                  V(1) = - G*m0*m1/norm(q(sun)-q(jupiter)) - G*m0*m2/norm(q(sun)-q(saturn));
+                  V(2) = - G*m0*m1/norm(q(jupiter)-q(sun)) - G*m1*m2/norm(q(jupiter)-q(saturn));
+                  V(3) = - G*m0*m2/norm(q(saturn)-q(sun)) - G*m1*m2/norm(q(saturn)-q(jupiter));     
+              endfunction
+
+              function K = Ec(p)
+                  K=[norm(p(sun))^2/(2*m0)
+                     norm(p(jupiter))^2/(2*m1)
+                     norm(p(saturn))^2/(2*m2)];
+              endfunction
+
+              function out = H(pq)
+                  nt = size(pq)(2)
+                  out = zeros(nt, 1)
+                  for i = 1:nt
+                      out(i) = sum(Ep(pq(10:$, i)) + Ec(pq(1:9, i)))
+                  end
+              endfunction
+
+              function dpdt=f1(t, pq)
+                 // Compute derivative of potentiel energy wrt. general position coordinates
+                 q = pq(10:$);
+                 dVdq(sun)     = -G*m0*m1*vecf(q(sun)-q(jupiter))..
+                                 -G*m0*m2*vecf(q(sun)-q(saturn));
+                 dVdq(jupiter) = -G*m1*m0*vecf(q(jupiter)-q(sun))..
+                                 -G*m1*m2*vecf(q(jupiter)-q(saturn));
+                 dVdq(saturn)  = -G*m2*m0*vecf(q(saturn)-q(sun))..
+                                 -G*m2*m1*vecf(q(saturn)-q(jupiter));    
+                  dpdt = [dVdq; zeros(9,1)]
+              endfunction
+
+              function dqdt=f2(t, pq)
+                  p = pq(1:9);
+                  dTdp = [p(sun)/m0; p(jupiter)/m1; p(saturn)/m2];
+                  dqdt = [zeros(9,1); dTdp]
+              endfunction
+
+              vecf = #(v)->(v/norm(v).^3);
+
+              //  Initial positions and masses of three bodies relative to the sun 
+              sun = 1:3;
+              jupiter = 4:6;
+              saturn = 7:9;
+              m0=1.00000597682;m1=9.54786104043e-4;m2=2.85583733151e-4;   // Relative masses to the sun
+              G=2.95912208286e-4;                                         // Gravitationnal constant
+              q0=[0;0;0; -3.5023653; -3.8169847; -1.5507963;..            // Positions expressed in Astronomical units
+                  9.0755314; -3.0458353; -1.6483708];        
+              p0=[0;0;0;0.00565429*m1;-0.00412490*m1;-0.00190589*m1;..    // Initial impulse
+                  0.00168318*m2;0.00483525*m2;0.00192462*m2];
+
+              // Initial hamiltonian
+              H0 = sum(Ec(p0) + Ep(q0))
+
+              pq0 = [p0; q0]
+              h = 50;
+              tspan = 0:h:50000;
+
+              [_,pq] = sprkode(f1, f2, tspan, pq0, fixedStep = h)
+
+              Htot = H(pq)
+
+              q = pq(10:$, :)
+              q(jupiter,:) = q(jupiter,:)-q(sun,:);    // Frame reference shift to Solar frame
+              q(saturn,:) = q(saturn,:)-q(sun,:);
+              q(sun,:) = 0;
+
+              clf
+              subplot(1, 2, 2)
+              plot(tspan, Htot)
+              gca().data_bounds(3:4) = [-1e-6, 1e-6]
+              xlabel("Time (days)")
+              ylabel("Total Energy (hamiltonian)")
+              title("Hamiltonian conservation")
+              subplot(1, 2, 1)
+              title("Computed trajectory")
+
+              isoview on
+              comet3d(q([1 4 7],:)',q([2 5 8],:)',q([3 6 9],:)');
+              legend(gca().children([6 4 2]),["Sun"; "Jupiter"; "Saturn"],%f);
+              xlabel("x")
+              ylabel("y")
+              zlabel("z")
+                ]]></programlisting>
+                <scilab:image>
+                  function V = Ep(q)
+                      V(1) = - G*m0*m1/norm(q(sun)-q(jupiter)) - G*m0*m2/norm(q(sun)-q(saturn));
+                      V(2) = - G*m0*m1/norm(q(jupiter)-q(sun)) - G*m1*m2/norm(q(jupiter)-q(saturn));
+                      V(3) = - G*m0*m2/norm(q(saturn)-q(sun)) - G*m1*m2/norm(q(saturn)-q(jupiter));     
+                  endfunction
+
+                  function K = Ec(p)
+                      K=[norm(p(sun))^2/(2*m0)
+                         norm(p(jupiter))^2/(2*m1)
+                         norm(p(saturn))^2/(2*m2)];
+                  endfunction
+
+                  function out = H(pq)
+                      nt = size(pq)(2)
+                      out = zeros(nt, 1)
+                      for i = 1:nt
+                          out(i) = sum(Ep(pq(10:$, i)) + Ec(pq(1:9, i)))
+                      end
+                  endfunction
+
+                  function dpdt=f1(t, pq)
+                     // Compute derivative of potentiel energy wrt. general position coordinates
+                     q = pq(10:$);
+                     dVdq(sun)     = -G*m0*m1*vecf(q(sun)-q(jupiter))..
+                                     -G*m0*m2*vecf(q(sun)-q(saturn));
+                     dVdq(jupiter) = -G*m1*m0*vecf(q(jupiter)-q(sun))..
+                                     -G*m1*m2*vecf(q(jupiter)-q(saturn));
+                     dVdq(saturn)  = -G*m2*m0*vecf(q(saturn)-q(sun))..
+                                     -G*m2*m1*vecf(q(saturn)-q(jupiter));    
+                      dpdt = [dVdq; zeros(9,1)]
+                  endfunction
+
+                  function dqdt=f2(t, pq)
+                      p = pq(1:9);
+                      dTdp = [p(sun)/m0; p(jupiter)/m1; p(saturn)/m2];
+                      dqdt = [zeros(9,1); dTdp]
+                  endfunction
+
+                  vecf = #(v)->(v/norm(v).^3);
+
+                  //  Initial positions and masses of three bodies relative to the sun 
+                  sun = 1:3;
+                  jupiter = 4:6;
+                  saturn = 7:9;
+                  m0=1.00000597682;m1=9.54786104043e-4;m2=2.85583733151e-4;   // Relative masses to the sun
+                  G=2.95912208286e-4;                                         // Gravitationnal constant
+                  q0=[0;0;0; -3.5023653; -3.8169847; -1.5507963;..            // Positions expressed in Astronomical units
+                      9.0755314; -3.0458353; -1.6483708];        
+                  p0=[0;0;0;0.00565429*m1;-0.00412490*m1;-0.00190589*m1;..    // Initial impulse
+                      0.00168318*m2;0.00483525*m2;0.00192462*m2];
+
+                  // Initial hamiltonian
+                  H0 = sum(Ec(p0) + Ep(q0))
+
+                  pq0 = [p0; q0]
+                  h = 50;
+                  tspan = 0:h:50000;
+
+                  [_,pq] = sprkode(f1, f2, tspan, pq0, fixedStep = h)
+
+                  Htot = H(pq)
+
+                  q = pq(10:$, :)
+                  q(jupiter,:) = q(jupiter,:)-q(sun,:);    // Frame reference shift to Solar frame
+                  q(saturn,:) = q(saturn,:)-q(sun,:);
+                  q(sun,:) = 0;
+
+                  clf
+                  subplot(1, 2, 2)
+                  plot(tspan, Htot)
+                  gca().data_bounds(3:4) = [-1e-6, 1e-6]
+                  xlabel("Time (days)")
+                  ylabel("Total Energy (hamiltonian)")
+                  title("Hamiltonian conservation")
+                  subplot(1, 2, 1)
+                  title("Computed trajectory")
+
+                  isoview on
+                  comet3d(q([1 4 7],:)',q([2 5 8],:)',q([3 6 9],:)');
+                  legend(gca().children([6 4 2]),["Sun"; "Jupiter"; "Saturn"],%f);
+                  xlabel("x")
+                  ylabel("y")
+                  zlabel("z")
+                  gcf().figure_size(1:2)=[800; 500];
+                </scilab:image>
+            </para>
+        </refsection>
+
+    <refsection role="description" xml:id="sprkode_methods">
+        <title>Available sprkode methods</title>
+        <para>
+            <informaltable border='1'>
+              <tbody>
+                  <tr>
+                      <td>Method identifier</td> <td>Order</td> <td>Aliases</td>
+                  </tr>
+                  <tr><td/><td/></tr>
+                <tr>
+                  <td>EULER_1_1</td> <td align="center">1</td> <td>SPRK_1</td>
+                </tr>
+                <tr>
+                  <td>LEAPFROG_2_2</td> <td align="center">2</td> <td>SPRK_2</td>
+                </tr>
+                <tr>
+                  <td>PSEUDO_LEAPFROG_2_2</td> <td align="center">2</td> <td></td>
+                </tr>
+                <tr>
+                  <td>MCLACHLAN_2_2</td> <td align="center">2</td> <td></td>
+                </tr>
+                <tr>
+                  <td>RUTH_3_3</td> <td align="center">3</td> <td></td>
+                </tr>
+                <tr>
+                  <td>MCLACHLAN_3_3</td> <td align="center">3</td> <td>SPRK_3</td>
+                </tr>
+                <tr>
+                  <td>MCLACHLAN_4_4</td> <td align="center">4</td> <td>SPRK_4</td>
+                </tr>
+                <tr>
+                  <td>CANDY_ROZMUS_4_4</td> <td align="center">4</td> <td></td>
+                </tr>
+                <tr>
+                  <td>MCLACHLAN_5_6</td> <td align="center">5</td> <td>SPRK_5</td>
+                </tr>
+                <tr>
+                  <td>YOSHIDA_6_8</td> <td align="center">6</td> <td>SPRK_6</td>
+                </tr>
+                <tr>
+                  <td>SUZUKI_UMENO_8_16</td> <td align="center">8</td> <td>SPRK_8</td>
+                </tr>
+                <tr>
+                  <td>SOFRONIOU_10_36</td> <td align="center">10</td> <td>SPRK_10</td>
+                </tr>                
+            </tbody>
+        </informaltable>
+        </para>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+          <member>
+              <link linkend="arkode">arkode</link>
+          </member>
+            <member>
+                <link linkend="cvode">cvode</link>
+            </member>
+            <member>
+                <link linkend="ida">ida</link>
+            </member>
+            <member>
+                <link linkend="sundials_user_functions">User functions</link>
+            </member>
+            <member>
+                <link linkend="sundials_options">Options (ODE and DAE solvers)</link>
+            </member>
+        </simplelist>
+    </refsection>
+
+    <refsection role="bibliography">
+        <title>Bibliography</title>
+        <para>
+E. Hairer, C. Lubich, G. Wanner, "Structure-Preserving Algorithms for
+Ordinary Differential Equations", Springer Series in Computational Mathematics, 2006, <link xlink:href="https://doi.org/10.1007/3-540-30666-8">https://doi.org/10.1007/3-540-30666-8</link>
+ </para>
+ <para>D. R. Reynolds, D. J. Gardner, C. S. Woodward and C. J. Balos, "User Documentation for arkode", 2026, v6.7.0, available online at <link xlink:href="https://sundials.readthedocs.io/en/latest/arkode/index.html">https://sundials.readthedocs.io/en/latest/arkode</link>.
+ </para>
+    </refsection>
+</refentry>

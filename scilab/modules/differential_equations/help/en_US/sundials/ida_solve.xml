@@ -16,10 +16,10 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            [t,y] = ida(F,tspan,y0,yp0,options)
-            [t,y,info] = ida(F,tspan,y0,yp0,options)
+            [t,y] = ida(F,tspan,y0,yp0,&lt;opt_args&gt;)
+            [t,y,info] = ida(F,tspan,y0,yp0,&lt;opt_args&gt;)
             sol = ida(...)
-            solext = ida(sol,tfinal,options)
+            solext = ida(sol,tfinal,&lt;opt_args&gt;)
             ida(...)
         </synopsis>
     </refsynopsisdiv>
@@ -45,7 +45,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>options</term>
+                <term>&lt;opt_args&gt;</term>
                 <listitem>
                     <para>a sequence of optional named arguments, see the <link linkend="sundials_options">solvers options</link></para>
                 </listitem>

@@ -46,7 +46,7 @@ void OdeManager::setupEvents(types::optional_list &opt)
         callOpening(EVENTS, in, m_dblT0, NULL, NULL);
         callClosing(EVENTS, in, {1,3}, out);
 
-        for (int i=0; i < out.size(); i++)
+        for (auto i=0; i < out.size(); i++)
         {
             if (out[i]->isDouble() && out[i]->getAs<types::Double>()->isComplex() == false)
             {

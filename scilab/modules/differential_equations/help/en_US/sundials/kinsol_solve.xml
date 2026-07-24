@@ -16,7 +16,7 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            [y,val,info,extra] = kinsol(f,y0,options)
+            [y,val,info,extra] = kinsol(f,y0,&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
 
@@ -36,7 +36,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>options</term>
+                <term>&lt;opt_args&gt;</term>
                 <listitem>    
                     <para>a sequence of optional named arguments, see the <link linkend="sundials_kinsol_options">solvers options</link></para>
                 </listitem>

@@ -16,12 +16,12 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            ... = kinsol( ... , options)
+            ... = kinsol( ... , &lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="description">
         <title>Common options</title>
-        <para>The default behavior of the solver can be tuned by specifying a sequence of named parameter values. These parameters are the following:
+        <para>The default behavior of the solver can be tuned by specifying a sequence &lt;opt_args&gt; of named parameter values <code>key1=value1, key2=value2, ...</code> These parameters are the following:
         </para>
         <para>
             <informaltable border='1'>

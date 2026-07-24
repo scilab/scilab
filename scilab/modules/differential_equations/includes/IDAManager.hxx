@@ -175,6 +175,10 @@ class DIFFERENTIAL_EQUATIONS_IMPEXP IDAManager final : public OdeManager
     {
         return 4;
     }
+    int getMinNargin()
+    {
+        return 4;
+    }
     void parseMethodAndOrder(types::optional_list &opt);
     bool create();
     bool initialize(char *errorMsg);
