@@ -531,6 +531,100 @@ public class ArrowDrawer {
     }
 
     /**
+     * Draws vback (open V-shape) arrow heads for a set of segments.
+     * Arrow head vertices are written into the same vertex buffer as the segments (same as drawArrows),
+     * and a temporary wire index buffer selects the two V-shape segments per arrow (apex→left, apex→right).
+     * This mirrors the colored-segment pattern so per-vertex colors work correctly.
+     * @param parentAxesId the identifier of the parent Axes.
+     * @param identifier the object's identifier.
+     * @param arrowSize the arrow size.
+     * @param lineThickness the line thickness.
+     * @param isSegs specifies whether the object is a Segs object.
+     * @param isColored specifies whether the object is drawn with per-arrow colors.
+     * @param lineColor the line color used for all arrows (used if isColored is false).
+     * @param isStripped specifies whether segment indices are stripped.
+     * @throws SciRendererException if drawing fails.
+     * @throws ObjectRemovedException if the object was removed.
+     * @throws OutOfMemoryException if out of memory.
+     */
+    public void drawVbackArrows(Integer parentAxesId, Integer identifier, double arrowSize, double lineThickness,
+                                boolean isSegs, boolean isColored, int lineColor, boolean isStripped)
+            throws SciRendererException, ObjectRemovedException, OutOfMemoryException {
+
+        DataManager dataManager = visitor.getDataManager();
+
+        ElementsBuffer vertices = dataManager.getVertexBuffer(identifier);
+        IndicesBuffer segmentIndices = dataManager.getWireIndexBuffer(identifier);
+        IndicesBuffer triangleIndices = dataManager.getIndexBuffer(identifier);
+
+        int numSegments;
+        if (isStripped) {
+            numSegments = segmentIndices.getData().capacity() - 1;
+        } else {
+            numSegments = segmentIndices.getData().capacity() / 2;
+        }
+        if (numSegments == 0) {
+            return;
+        }
+
+        int offset = vertices.getElementsSize();
+
+        Transformation projection = visitor.getDrawingTools().getTransformationManager().getCanvasProjection();
+        Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
+
+        arrowSize = computeArrowPixelSize(parentAxes, vertices, segmentIndices, numSegments, arrowSize, lineThickness, isSegs);
+
+        /* Fill arrowhead vertices (apex, left, right) into the original vertex buffer, same as drawArrows. */
+        fillArrowVertexData(projection, vertices, segmentIndices, numSegments, triangleIndices, arrowSize, isStripped);
+        vertices.setData(vertices.getData(), offset);
+
+        /*
+         * Build vback wire indices: for each valid arrow m, the triangle index buffer holds
+         * [apex, left, right] at positions 3*m, 3*m+1, 3*m+2. Draw two line segments per arrow:
+         * apex→left and apex→right (4 wire index entries per arrow).
+         */
+        IntBuffer triIndexData = triangleIndices.getData();
+        IntBuffer vbackWireData = IntBuffer.allocate(4 * numSegments);
+        for (int m = 0; m < numSegments; m++) {
+            int apex  = triIndexData.get(3 * m);
+            int left  = triIndexData.get(3 * m + 1);
+            int right = triIndexData.get(3 * m + 2);
+            vbackWireData.put(4 * m,     apex);
+            vbackWireData.put(4 * m + 1, left);
+            vbackWireData.put(4 * m + 2, apex);
+            vbackWireData.put(4 * m + 3, right);
+        }
+
+        IndicesBuffer vbackWireIndices = visitor.getCanvas().getBuffersManager().createIndicesBuffer();
+        vbackWireIndices.setData(vbackWireData);
+
+        DefaultGeometry vbackGeom = new DefaultGeometry();
+        vbackGeom.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
+        vbackGeom.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+        vbackGeom.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+        vbackGeom.setVertices(vertices);
+        vbackGeom.setWireIndices(vbackWireIndices);
+
+        Appearance vbackAppearance = new Appearance();
+        vbackAppearance.setLineWidth((float) lineThickness);
+
+        if (isColored) {
+            /* The color buffer has arrowhead colors at the same positions as the triangle indices,
+             * so setting it with the vback wire indices gives the correct per-arrow color. */
+            vbackGeom.setColors(dataManager.getColorBuffer(identifier));
+            vbackAppearance.setLineColor(null);
+        } else {
+            vbackAppearance.setLineColor(ColorFactory.createColor(visitor.getColorMap(), lineColor));
+        }
+
+        visitor.getDrawingTools().getTransformationManager().useWindowCoordinate();
+        visitor.getDrawingTools().draw(vbackGeom, vbackAppearance);
+        visitor.getDrawingTools().getTransformationManager().useSceneCoordinate();
+
+        visitor.getCanvas().getBuffersManager().dispose(vbackWireIndices);
+    }
+
+    /**
      * Disposes all the ArrowDrawer resources.
      */
     public void disposeAll() {

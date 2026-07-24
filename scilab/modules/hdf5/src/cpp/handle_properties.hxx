@@ -304,6 +304,7 @@ struct ChampHandle
 
         //@ don't care
         m.emplace_back("arrow_size", std::vector<int>({SAVE_LOAD, __GO_ARROW_SIZE__, jni_double}));
+        m.emplace_back("arrow_style", std::vector<int>({SAVE_LOAD, __GO_ARROW_STYLE__, jni_int}));
         m.emplace_back("line_style", std::vector<int>({SAVE_LOAD, __GO_LINE_STYLE__, jni_int}));
         m.emplace_back("thickness", std::vector<int>({SAVE_LOAD, __GO_LINE_THICKNESS__, jni_double}));
         m.emplace_back("colored", std::vector<int>({SAVE_LOAD, __GO_COLORED__, jni_bool}));

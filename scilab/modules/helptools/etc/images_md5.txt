@@ -629,6 +629,7 @@ cepstrum_1.png=455b8e394db80f8bb6fb8c656a069af3
 champ_1.png=20f1fbca515b7f2054fe3ac89b20ce6f
 champ_2.png=39088f5be06bd5f78d41eb208c0e4876
 champ_properties_1.png=8a6861d91f4c15fa76bc6c438e14e57b
+champ_properties_2.png=1ff1d4f9bb35f8e4245971a1942c35fc
 cheb1mag_1.png=3b26f5856ff8a2bcfbcf78e2d77cb5c1
 cheb2mag_1.png=d53206e41bccd28401ab6309ce2f941a
 color_1.png=8830e19df0fc96b7b6cb6c9f79e6ee90

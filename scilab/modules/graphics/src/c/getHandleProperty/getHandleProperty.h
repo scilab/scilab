@@ -132,6 +132,7 @@ GRAPHICS_IMPEXP void* get_hidden_color_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_isoview_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_cube_scaling_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_arrow_size_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_arrow_style_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_segs_color_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_colored_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_data_mapping_property(void* _pvCtx, int iObjUID);

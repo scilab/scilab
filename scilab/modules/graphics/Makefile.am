@@ -154,6 +154,7 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/get_tics_segment_property.c \
     src/c/getHandleProperty/get_cdata_mapping_property.c \
     src/c/getHandleProperty/get_cdata_bounds_property.c \
+    src/c/getHandleProperty/get_arrow_style_property.c \
     src/c/getHandleProperty/get_colored_property.c \
     src/c/getHandleProperty/get_triangles_property.c \
     src/c/getHandleProperty/get_viewport_property.c \
@@ -285,6 +286,7 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/set_grid_style_property.c \
     src/c/getHandleProperty/set_log_flags_property.c \
     src/c/getHandleProperty/set_cube_scaling_property.c \
+    src/c/getHandleProperty/set_arrow_style_property.c \
     src/c/getHandleProperty/set_colored_property.c \
     src/c/getHandleProperty/set_margins_property.c \
     src/c/getHandleProperty/set_auto_ticks_property.c \

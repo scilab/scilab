@@ -306,6 +306,7 @@ function fields = %h_fieldnames(h)
             "thickness"
             "colored"
             "arrow_size"
+            "arrow_style"
             "clip_state"
             "clip_box"
             "user_data"

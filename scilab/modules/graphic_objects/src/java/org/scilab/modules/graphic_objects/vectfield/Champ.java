@@ -31,7 +31,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public class Champ extends VectField {
     /** Champ properties names */
-    private enum ChampProperty { DIMENSIONS, COLORED, BOUNDINGBOX, MAXLENGTH, MAXUSABLELENGTH };
+    private enum ChampProperty { DIMENSIONS, COLORED, BOUNDINGBOX, MAXLENGTH, MAXUSABLELENGTH, ARROWSTYLE };
 
     /** Dimensions: 2-element array (number of columns Ni, number of rows Nj) */
     private int[] dimensions;
@@ -39,10 +39,14 @@ public class Champ extends VectField {
     /** Specifies whether vectors are colored or not */
     private boolean colored;
 
+    /** Arrow head style: 0 = filled triangle (default), 1 = vback (two-line V-shape) */
+    private int arrowStyle;
+
     /** Constructor */
     public Champ() {
         super();
         colored = false;
+        arrowStyle = 0;
         dimensions = new int[2];
         dimensions[0] = 0;
         dimensions[1] = 0;
@@ -74,6 +78,8 @@ public class Champ extends VectField {
                 return ChampProperty.MAXLENGTH;
             case __GO_MAX_USABLE_LENGTH__ :
                 return ChampProperty.MAXUSABLELENGTH;
+            case __GO_ARROW_STYLE__ :
+                return ChampProperty.ARROWSTYLE;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -99,6 +105,8 @@ public class Champ extends VectField {
             return getMaxLength();
         } else if (property == ChampProperty.MAXUSABLELENGTH) {
             return getMaxUsableLength();
+        } else if (property == ChampProperty.ARROWSTYLE) {
+            return getArrowStyle();
         } else {
             return super.getProperty(property);
         }
@@ -119,6 +127,8 @@ public class Champ extends VectField {
             setBaseY((Double[]) value);
         } else if (property == ChampProperty.COLORED) {
             setColored((Boolean) value);
+        } else if (property == ChampProperty.ARROWSTYLE) {
+            return setArrowStyle((Integer) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -228,6 +238,24 @@ public class Champ extends VectField {
      */
     public UpdateStatus setColored(Boolean colored) {
         this.colored = colored;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return the arrow style (0 = filled, 1 = vback)
+     */
+    public Integer getArrowStyle() {
+        return arrowStyle;
+    }
+
+    /**
+     * @param style the arrow style to set (0 = filled, 1 = vback)
+     */
+    public UpdateStatus setArrowStyle(Integer style) {
+        if (style != 0 && style != 1) {
+            return UpdateStatus.Fail;
+        }
+        this.arrowStyle = style;
         return UpdateStatus.Success;
     }
 

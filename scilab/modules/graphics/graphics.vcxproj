@@ -462,6 +462,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_arc_drawing_method_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_arrow_size_factor_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_arrow_size_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_arrow_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_auto_clear_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_auto_dimensionning_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_auto_position_property.c" />
@@ -734,6 +735,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_arc_drawing_method_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_arrow_size_factor_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_arrow_size_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_arrow_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_auto_clear_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_auto_dimensionning_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_auto_position_property.c" />

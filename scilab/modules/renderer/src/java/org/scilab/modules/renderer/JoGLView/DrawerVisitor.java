@@ -961,8 +961,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                 /* Draw the arrows */
                 if (champ.getArrowSize() != 0.0) {
-                    arrowDrawer.drawArrows(champ.getParentAxes(), champ.getIdentifier(), champ.getArrowSize(), champ.getLineThickness(), false,
-                                           champ.getColored(), champ.getLineColor(), false);
+                    if (champ.getArrowStyle() == 1) {
+                        arrowDrawer.drawVbackArrows(champ.getParentAxes(), champ.getIdentifier(), champ.getArrowSize(),
+                                                    champ.getLineThickness(), false, champ.getColored(), champ.getLineColor(), false);
+                    } else {
+                        arrowDrawer.drawArrows(champ.getParentAxes(), champ.getIdentifier(), champ.getArrowSize(), champ.getLineThickness(), false,
+                                               champ.getColored(), champ.getLineColor(), false);
+                    }
                 }
             } catch (OutOfMemoryException e) {
                 invalidate(champ, e);

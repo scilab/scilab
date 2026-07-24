@@ -436,4 +436,6 @@
 #define __GO_UI_DATA__ 413
 #define __GO_UI_DEBUG__ 414
 
+#define __GO_ARROW_STYLE__ 415
+
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

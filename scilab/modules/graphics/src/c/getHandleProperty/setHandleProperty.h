@@ -133,6 +133,7 @@ int set_isoview_property(void* _pvCtx, int iObj, void* _pvData, int valueType, i
 int set_cube_scaling_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_log_flags_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_arrow_size_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_arrow_style_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_segs_color_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_colored_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_data_mapping_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);

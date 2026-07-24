@@ -437,4 +437,6 @@ public class GraphicObjectProperties {
     public static final int __GO_UI_BROWSER__ = 412;
     public static final int __GO_UI_DATA__ = 413;
     public static final int __GO_UI_DEBUG__ = 414;
+
+    public static final int __GO_ARROW_STYLE__ = 415;
 }

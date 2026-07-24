@@ -116,6 +116,30 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>arrow_style: </term>
+                <listitem>
+                    <para>
+                        This property selects the style of the arrowhead drawn at the tip
+                        of each vector.  It accepts two string values:
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <literal>"filled"</literal> (default): each arrowhead is
+                                    a filled isosceles triangle.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"vback"</literal>: each arrowhead is drawn as two
+                                    line segments forming an open V-shape pointing backward from
+                                    the tip.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>clip_state: </term>
                 <listitem>
                     <para>
@@ -187,6 +211,35 @@ a.data_bounds = [-5,-5 ; 5,5];
         c.arrow_size=-1;
         a.data_bounds=[-5,-5;5,5];
         ]]></scilab:image>
+        <programlisting role="example"><![CDATA[
+// Compare filled (default) and vback arrow styles
+x = -2:2;  y = -2:2;
+[fx, fy] = meshgrid(x, y);
+
+subplot(1,2,1)
+c1 = champ(x, y, fy, -fx);
+c1.thickness = 2;
+title("arrow_style = ""filled"" (default)")
+
+subplot(1,2,2)
+c2 = champ(x, y, fy, -fx);
+c2.thickness = 2;
+c2.arrow_style = "vback";
+title("arrow_style = ""vback""")
+ ]]></programlisting>
+        <scilab:image><![CDATA[
+        x = -2:2; y = -2:2;
+        [fx, fy] = meshgrid(x, y);
+        subplot(1,2,1)
+        c1 = champ(x, y, fy, -fx);
+        c1.thickness = 2;
+        title("arrow_style = ""filled"" (default)")
+        subplot(1,2,2)
+        c2 = champ(x, y, fy, -fx);
+        c2.thickness = 2;
+        c2.arrow_style = "vback";
+        title("arrow_style = ""vback""")
+        ]]></scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -214,6 +267,12 @@ a.data_bounds = [-5,-5 ; 5,5];
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revremark>
+                    New property arrow_style added.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

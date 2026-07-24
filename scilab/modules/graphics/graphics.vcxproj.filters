@@ -80,6 +80,9 @@
     <ClCompile Include="src\c\getHandleProperty\get_arrow_size_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_arrow_style_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_auto_clear_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -690,6 +693,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_arrow_size_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_arrow_style_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_auto_clear_property.c">
