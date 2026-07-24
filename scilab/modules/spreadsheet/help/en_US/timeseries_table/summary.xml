@@ -488,6 +488,12 @@ disp(S.A.Mean)
                 <revnumber>2026.1.0</revnumber>
                 <revremark>Function added.</revremark>
             </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>Support for matrices of doubles, integers, booleans, strings, <link linkend="duration">durations</link> and <link linkend="datetime">datetimes</link> added.</para>
+                </revdescription>
+            </revision>
         </revhistory>
     </refsection>
 </refentry>
