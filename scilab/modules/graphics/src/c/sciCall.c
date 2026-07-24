@@ -479,13 +479,14 @@ void Objgrayplot (double    x[]      ,
                   double    z[]      ,
                   int * n1       ,
                   int * n2       ,
+                  int       isMatrixMode,
                   char      strflag[],
                   double    brect[]  ,
                   int   aaint[]  ,
                   BOOL      flagNax,
                   char logflag[])
 {
-    C2F(xgray)(x, y, z, n1, n2, strflag, brect, aaint, flagNax, logflag, bsiz);
+    C2F(xgray)(x, y, z, n1, n2, isMatrixMode, strflag, brect, aaint, flagNax, logflag, bsiz);
 }
 
 /*------------------------------------------------

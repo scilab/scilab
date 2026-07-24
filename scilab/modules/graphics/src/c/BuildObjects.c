@@ -424,7 +424,7 @@ int ConstructSurface(int iParentsubwinUID, sciTypeOf3D typeof3d,
  * on the type parameter. This is done so because Matplot objects were previously
  * internally represented by sciGrayplot structures.
  */
-int ConstructGrayplot(int iParentsubwinUID, double *pvecx, double *pvecy, double *pvecz, int n1, int n2, int type)
+int ConstructGrayplot(int iParentsubwinUID, double *pvecx, double *pvecy, double *pvecz, int n1, int m1, int n2, int m2, int type)
 {
     int iObj = 0;
 
@@ -437,8 +437,18 @@ int ConstructGrayplot(int iParentsubwinUID, double *pvecx, double *pvecy, double
     int result = 0;
     int dataMapping = 0;
     int gridSize[4];
-
     int numElements = 0;
+
+    /*
+     * Matrix mode: pvecx and pvecy are full (n1 x m1) coordinate matrices.
+     * Only possible for type==0 (Grayplot). Detected when m1 > 1.
+     * Matrix mode is encoded in the gridSize: [numX, numY, numY, numX]
+     * so that xDimensions[1] = numY > 1 signals matrix mode to all consumers.
+     */
+    int isMatrixMode = (type == 0 && m1 > 1);
+    /* numX and numY define the grid node counts */
+    int numX = n1;
+    int numY = isMatrixMode ? m1 : n2;
 
     getGraphicObjectProperty(iParentsubwinUID, __GO_TYPE__, jni_int, (void **)&piTypeParent);
     if (typeParent != __GO_AXES__)
@@ -447,7 +457,7 @@ int ConstructGrayplot(int iParentsubwinUID, double *pvecx, double *pvecy, double
         return 0;
     }
 
-    iObj = createGrayplot(iParentsubwinUID, type, pvecx, 2, n1, n2);
+    iObj = createGrayplot(iParentsubwinUID, type, pvecx, 2, numX, numY);
     iGrayplotID = createDataObject(iObj, objectTypes[type]);
 
     if (iGrayplotID == 0)
@@ -463,19 +473,34 @@ int ConstructGrayplot(int iParentsubwinUID, double *pvecx, double *pvecy, double
         setGraphicObjectProperty(iObj, __GO_DATA_MAPPING__, &dataMapping, jni_int, 1);
     }
 
-    /* The x and y vectors are column ones */
-
     /*
      * For the Grayplot object, the number of rows and columns respectively
      * correspond to the grid's x and y dimensions whereas for Matplot objects,
      * they respectively correspond to the grid's y and x dimensions.
+     *
+     * Matrix mode uses gridSize = [numX, numY, numY, numX] so that:
+     *   - X buffer holds numX*numY elements  (xDimensions = [numX, numY])
+     *   - Y buffer holds numX*numY elements  (yDimensions = [numY, numX])
+     *   - Z buffer holds numX*numY elements  (g0*g2 = numX*numY)
+     *   - getNumX() = xDimensions[0] = numX, getNumY() = yDimensions[0] = numY
+     *   - isMatrixMode detected as xDimensions[1] > 1
      */
     if (type == 0)
     {
-        gridSize[0] = n1;
-        gridSize[1] = 1;
-        gridSize[2] = n2;
-        gridSize[3] = 1;
+        if (isMatrixMode)
+        {
+            gridSize[0] = numX;
+            gridSize[1] = numY;
+            gridSize[2] = numY;
+            gridSize[3] = numX;
+        }
+        else
+        {
+            gridSize[0] = numX;
+            gridSize[1] = 1;
+            gridSize[2] = numY;
+            gridSize[3] = 1;
+        }
     }
     else
     {
@@ -495,23 +520,28 @@ int ConstructGrayplot(int iParentsubwinUID, double *pvecx, double *pvecy, double
         return 0;
     }
 
-    /* Only for Grayplot objects, for Matplot objects, x and y coordinates are automatically computed */
+    /*
+     * Only for Grayplot objects; Matplot x and y coordinates are auto-computed.
+     * n1*m1 is the total number of pvecx elements (numX in vector mode, numX*numY
+     * in matrix mode). setDataX/Y accept up to xSize elements, which equals
+     * numX*numY in matrix mode (since gridSize was set to [numX,numY,numY,numX]).
+     */
     if (type == 0)
     {
-        setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, n1);
-        setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, n2);
+        setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, n1 * m1);
+        setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, n2 * m2);
     }
 
     if (type == 0)
     {
-        numElements = n1 * n2;
+        numElements = numX * numY;
     }
     else
     {
         numElements = (n1 - 1) * (n2 - 1);
     }
 
-    setGraphicObjectProperty(iObj, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, numElements);
+    setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, numElements);
 
     setGraphicObjectRelationship(iParentsubwinUID, iObj);
     return iObj;

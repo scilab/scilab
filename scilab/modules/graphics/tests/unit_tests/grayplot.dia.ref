@@ -13,35 +13,38 @@ z = rand(21,21);
 grayplot(x,y,z);
 e = gce();
 assert_checkequal(e.type, "Grayplot")
- ans  =
+ ans = 
   T
 assert_checkequal(e.parent.type, "Axes")
- ans  =
+ ans = 
   T
 assert_checkequal(e.children, [])
- ans  =
+ ans = 
   T
 assert_checkequal(e.visible, "on")
- ans  =
+ ans = 
   T
 assert_checkequal(e.data.x, x')
- ans  =
+ ans = 
   T
 assert_checkequal(e.data.y, y')
- ans  =
+ ans = 
   T
 assert_checkequal(e.data.z, z)
- ans  =
+ ans = 
   T
 assert_checkequal(e.data_mapping, "scaled")
- ans  =
+ ans = 
   T
 assert_checkequal(e.clip_state, "clipgrf")
- ans  =
+ ans = 
   T
 assert_checkequal(e.clip_box, [])
- ans  =
+ ans = 
   T
 assert_checkequal(e.user_data, [])
- ans  =
+ ans = 
   T
+// Non-rectangular grid
+[R,T] = ndgrid(linspace(0.1,1,100), linspace(0,%pi/4,50));
+grayplot(R.*cos(T), R.*sin(T), rand(T));

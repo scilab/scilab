@@ -31,18 +31,14 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x,y</term>
-                <listitem>
-                    <para>real row vectors of size n1 and n2.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>z</term>
+                <term>x, y, z</term>
                 <listitem>
                     <para>
-                        real matrix of size (n1,n2). <literal>z(i,j)</literal> is the value
-                        of the surface at the point (x(i),y(j)).
-                    </para>
+                        Real matrices defining the grid and the surface values : 
+                                <literal>x</literal> and 
+                                <literal>y</literal> can be row vectors of sizes n1 and n2 and <literal>z</literal> a real matrix of size (n1,n2)
+                                (rectangular grid) or the 3 matrices can have the same size (n1,n2) (curvilinear grid).
+                            </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -69,7 +65,7 @@
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>This optional output contains a handle to a Grayplot entity. Use <literal>h</literal> to modify its properties
+                    <para>This optional output contains a handle to a Grayplot entity. Use <literal>h</literal> to modify its properties.
                       For a list of properties, see <link linkend="grayplot_properties">grayplot_properties</link>.
                     </para>
                 </listitem>
@@ -79,11 +75,15 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>grayplot</literal> makes a 2D plot of the surface given by
-            <literal>z</literal> on a grid defined by <literal>x</literal> and <literal>y</literal>.
-            Each rectangle on the grid is filled with a gray or color level depending
-            on the average value of <literal>z</literal> on the corners of the
-            rectangle. If z contains %nan values, the surrounding rectangles are not displayed.
+            <literal>grayplot</literal> makes a 2D pseudo-color plot of the surface <literal>z</literal>
+            on the grid defined by <literal>x</literal> and <literal>y</literal>. Each cell of the grid
+            is filled with a gray or color level depending on the average value of <literal>z</literal>
+            at its corners. If <literal>z</literal> contains <literal>%nan</literal> values, the
+            surrounding cells are not displayed.
+            When <literal>x</literal> and <literal>y</literal> are vectors the grid is rectangular;
+            when <literal>x</literal>, <literal>y</literal> and <literal>z</literal> are all matrices
+            of the same size the grid is non-rectangular, with node (i,j) located at
+            <literal>(x(i,j), y(i,j))</literal> — useful for curvilinear or polar coordinates.
         </para>
         <para>
             Enter the command <literal>grayplot()</literal> to see a demo.
@@ -115,6 +115,15 @@ grayplot(t,t,m)
             clf()
             grayplot(t,t,m)
 
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// Non-rectangular grid: sector of an annulus in polar coordinates
+[R,T] = ndgrid(linspace(0.1,1,100), linspace(0,%pi/4,50));
+grayplot(R.*cos(T), R.*sin(T), rand(T))
+ ]]></programlisting>
+        <scilab:image>
+            [R,T] = ndgrid(linspace(0.1,1,100), linspace(0,%pi/4,50));
+            grayplot(R.*cos(T), R.*sin(T), rand(T))
         </scilab:image>
     </refsection>
     <refsection role="see also">
@@ -150,6 +159,15 @@ grayplot(t,t,m)
                 <revremark>
                     Function returns the created handle(s).
                 </revremark>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        Non-rectangular grid mode added: <literal>grayplot(X,Y,Z)</literal> now
+                        accepts three matrices of the same size for plotting on arbitrary grids.
+                    </para>
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>

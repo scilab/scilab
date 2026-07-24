@@ -38,7 +38,13 @@
  *  values of colors in the current colormap
  *  the color associated to zmoy is used for filling a specific rectangle
  */
-GRAPHICS_IMPEXP int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, char * logflags, long int l1);
+/**
+ * When isMatrixMode == 0, x is a (1,n1) vector and y is a (1,n2) vector
+ * (standard rectangular-grid grayplot).
+ * When isMatrixMode == 1, x and y are full (n1,n2) matrices of node coordinates
+ * stored column-major, enabling non-rectangular grids.
+ */
+GRAPHICS_IMPEXP int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, int isMatrixMode, char *strflag, double *brect, int *aaint, BOOL flagNax, char * logflags, long int l1);
 
 
 /**

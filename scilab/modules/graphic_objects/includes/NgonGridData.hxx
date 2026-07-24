@@ -56,14 +56,18 @@ protected :
     int ySize;
 
     /**
-     * The grid x vector dimensions (rows, columns)
-     * One of them must be equal to 1 and the other one to xSize.
+     * The grid x vector dimensions (rows, columns): xDimensions = [g0, g1]
+     * where gridSize = [g0, g1, g2, g3].
+     * xDimensions[0] is the primary x dimension (numX = number of x grid lines).
+     * xDimensions[1] > 1 signals matrix (non-rectangular) grid mode.
+     * The X coordinate buffer holds g0*g1 elements.
      */
     int xDimensions[2];
 
     /**
-     * The grid y vector dimensions (rows, colums)
-     * One of them must be equal to 1 and the other one to ySize.
+     * The grid y vector dimensions (rows, columns): yDimensions = [g2, g3].
+     * yDimensions[0] is the primary y dimension (numY = number of y grid lines).
+     * The Y coordinate buffer holds g2*g3 elements.
      */
     int yDimensions[2];
 

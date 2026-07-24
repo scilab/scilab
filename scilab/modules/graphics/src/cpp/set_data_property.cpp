@@ -458,20 +458,39 @@ int setgrayplotdata(void* _pvCtx, int iObjUID, AssignedList * tlist)
     double* pvecy = NULL;
     double* pvecz = NULL;
 
+    int isMatrixMode = 0;
+
     pvecx = getDoubleMatrixFromList(_pvCtx, tlist, 2, &nbRow[0], &nbCol[0]);
     pvecy = getDoubleMatrixFromList(_pvCtx, tlist, 3, &nbRow[1], &nbCol[1]);
     pvecz = getDoubleMatrixFromList(_pvCtx, tlist, 4, &nbRow[2], &nbCol[2]);
 
-    if (nbCol[0] != 1 || nbCol[1] != 1)
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Column vector expected.\n"), "Tlist", 1);
-        return SET_PROPERTY_ERROR;
-    }
+    /* Detect matrix mode: x (and y) are matrices, not column vectors */
+    isMatrixMode = (nbCol[0] > 1);
 
-    if (nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1])
+    if (isMatrixMode)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Incompatible length.\n"), "Tlist", 3);
-        return 0;
+        /* Matrix mode: x, y and z must all be the same size (numX x numY) */
+        if (nbRow[0] != nbRow[1] || nbCol[0] != nbCol[1] ||
+            nbRow[0] != nbRow[2] || nbCol[0] != nbCol[2])
+        {
+            Scierror(999, _("%s: Wrong size for input arguments: x, y and z must have the same size in matrix mode.\n"), "Tlist");
+            return SET_PROPERTY_ERROR;
+        }
+    }
+    else
+    {
+        /* Vector mode: x and y must be column vectors; z must be (numX x numY) */
+        if (nbCol[0] != 1 || nbCol[1] != 1)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: Column vector expected.\n"), "Tlist", 1);
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1])
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: Incompatible length.\n"), "Tlist", 3);
+            return 0;
+        }
     }
 
     if (nbRow[0] * nbCol[0] == 0 || nbRow[1] * nbCol[1] == 0 || nbRow[2] * nbCol[2] == 0)
@@ -479,14 +498,29 @@ int setgrayplotdata(void* _pvCtx, int iObjUID, AssignedList * tlist)
         return SET_PROPERTY_ERROR; //sciReturnEmptyMatrix()
     }
 
-    /*
-    * Update the x and y vectors dimensions
-    * These vectors are column ones
-    */
-    gridSize[0] = nbRow[0];
-    gridSize[1] = 1;
-    gridSize[2] = nbRow[1];
-    gridSize[3] = 1;
+    if (isMatrixMode)
+    {
+        /*
+         * Matrix mode: numX = nbRow[0], numY = nbCol[0].
+         * gridSize = [numX, numY, numY, numX] encodes matrix mode:
+         *   X buffer = numX*numY elements, Y buffer = numX*numY elements,
+         *   Z buffer = numX*numY elements, isMatrixMode detected as gridSize[1]>1.
+         */
+        gridSize[0] = nbRow[0];
+        gridSize[1] = nbCol[0];
+        gridSize[2] = nbCol[0];
+        gridSize[3] = nbRow[0];
+    }
+    else
+    {
+        /*
+         * Vector mode: numX = nbRow[0], numY = nbRow[1]; column vectors.
+         */
+        gridSize[0] = nbRow[0];
+        gridSize[1] = 1;
+        gridSize[2] = nbRow[1];
+        gridSize[3] = 1;
+    }
 
     /* Resizes the coordinates arrays if required */
     result = setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
@@ -497,8 +531,8 @@ int setgrayplotdata(void* _pvCtx, int iObjUID, AssignedList * tlist)
         return SET_PROPERTY_ERROR;
     }
 
-    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, nbRow[0]);
-    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, nbRow[1]);
+    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, nbRow[0] * nbCol[0]);
+    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, nbRow[1] * nbCol[1]);
     setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, nbRow[2] * nbCol[2]);
 
     return SET_PROPERTY_SUCCEED;

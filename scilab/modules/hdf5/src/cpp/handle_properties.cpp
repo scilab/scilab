@@ -1193,27 +1193,46 @@ static int import_handle_grayplot(hid_t dataset, int parent, int version)
     //import "standards" properties
     import_handle_generic(dataset, plot, parent, GrayplotHandle::getPropertyList(), true, version);
 
-    int row = 0;
-    int col = 0;
+    int xR = 0, xC = 0;
+    int yR = 0, yC = 0;
+    int row = 0, col = 0;
     double* dataX = nullptr;
     double* dataY = nullptr;
     double* dataZ = nullptr;
-    getHandleDoubleVector(dataset, "data_x", &row, &col, &dataX);
-    getHandleDoubleVector(dataset, "data_y", &row, &col, &dataY);
+    getHandleDoubleVector(dataset, "data_x", &xR, &xC, &dataX);
+    getHandleDoubleVector(dataset, "data_y", &yR, &yC, &dataY);
     getHandleDoubleVector(dataset, "data_z", &row, &col, &dataZ);
 
+    /*
+     * Matrix mode: data_x was saved as a (numX x numY) matrix (xR > 1).
+     * Vector mode: data_x was saved as a (1 x numX) vector (xR == 1).
+     * Reconstruct gridSize encoding:
+     *   matrix: [numX, numY, numY, numX]  (xDimensions[1]=numY > 1)
+     *   vector: [numX, 1,    numY, 1   ]
+     */
     int grid[4];
-    grid[0] = row;
-    grid[1] = 1;
-    grid[2] = col;
-    grid[3] = 1;
+    if (xR > 1)
+    {
+        /* Matrix mode: xR=numX, xC=numY */
+        grid[0] = xR;
+        grid[1] = xC;
+        grid[2] = xC;
+        grid[3] = xR;
+    }
+    else
+    {
+        /* Vector mode */
+        grid[0] = row;
+        grid[1] = 1;
+        grid[2] = col;
+        grid[3] = 1;
+    }
 
     //set dimensions
     setGraphicObjectPropertyAndNoWarn(plot, __GO_DATA_MODEL_GRID_SIZE__, grid, jni_int_vector, 4);
 
-    //set data
-    setGraphicObjectPropertyAndNoWarn(plot, __GO_DATA_MODEL_X__, dataX, jni_double_vector, row);
-    setGraphicObjectPropertyAndNoWarn(plot, __GO_DATA_MODEL_Y__, dataY, jni_double_vector, col);
+    setGraphicObjectPropertyAndNoWarn(plot, __GO_DATA_MODEL_X__, dataX, jni_double_vector, xR * xC);
+    setGraphicObjectPropertyAndNoWarn(plot, __GO_DATA_MODEL_Y__, dataY, jni_double_vector, yR * yC);
     setGraphicObjectProperty(plot, __GO_DATA_MODEL_Z__, dataZ, jni_double_vector, row * col);
 
     closeList6(dataset);
@@ -2972,6 +2991,15 @@ static bool export_handle_grayplot(hid_t parent, int uid, hid_t xfer_plist_id)
     int col = 0;
     getHandleIntProperty(uid, __GO_DATA_MODEL_NUM_Y__, &col);
 
+    /*
+     * Detect matrix mode from xDimensions[1] > 1.
+     * xDimensions is a 2-element array: [numX, numY] in matrix mode,
+     * [numX, 1] in vector mode.
+     */
+    int* xDims = NULL;
+    getGraphicObjectProperty(uid, __GO_DATA_MODEL_X_DIMENSIONS__, jni_int_vector, (void**)&xDims);
+    int isMatrixMode = (xDims != NULL && xDims[1] > 1);
+
     double* dataX = nullptr;
     double* dataY = nullptr;
     double* dataZ = nullptr;
@@ -2981,13 +3009,28 @@ static bool export_handle_grayplot(hid_t parent, int uid, hid_t xfer_plist_id)
     getHandleDoubleVectorProperty(uid, __GO_DATA_MODEL_Z__, &dataZ);
 
     int dims[2];
-    dims[0] = 1;
-    dims[1] = row;
-    writeDoubleMatrix6(parent, "data_x", 2, dims, dataX, xfer_plist_id);
+    if (isMatrixMode)
+    {
+        /* Matrix mode: save x and y as (numX x numY) matrices */
+        dims[0] = row;
+        dims[1] = col;
+        writeDoubleMatrix6(parent, "data_x", 2, dims, dataX, xfer_plist_id);
 
-    dims[0] = 1;
-    dims[1] = col;
-    writeDoubleMatrix6(parent, "data_y", 2, dims, dataY, xfer_plist_id);
+        dims[0] = row;
+        dims[1] = col;
+        writeDoubleMatrix6(parent, "data_y", 2, dims, dataY, xfer_plist_id);
+    }
+    else
+    {
+        /* Vector mode: x as (1 x numX), y as (1 x numY) */
+        dims[0] = 1;
+        dims[1] = row;
+        writeDoubleMatrix6(parent, "data_x", 2, dims, dataX, xfer_plist_id);
+
+        dims[0] = 1;
+        dims[1] = col;
+        writeDoubleMatrix6(parent, "data_y", 2, dims, dataY, xfer_plist_id);
+    }
 
     dims[0] = row;
     dims[1] = col;

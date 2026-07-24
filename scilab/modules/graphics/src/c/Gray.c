@@ -44,7 +44,7 @@
 #include "CurrentObject.h"
 #include "Sciwarning.h"
 
-int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, char *logflags, long int l1)
+int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, int isMatrixMode, char *strflag, double *brect, int *aaint, BOOL flagNax, char *logflags, long int l1)
 {
     int iSubwinUID = 0;
     int iGrayplotUID = 0;
@@ -64,10 +64,21 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     int iTmp = 0;
     int* piTmp = &iTmp;
 
-    xx[0] = Mini(x, *n1);
-    xx[1] = Maxi(x, *n1);
-    yy[0] = Mini(y, *n2);
-    yy[1] = Maxi(y, *n2);
+    if (isMatrixMode)
+    {
+        /* Bounds from the full n1*n2 coordinate matrices */
+        xx[0] = Mini(x, *n1 * *n2);
+        xx[1] = Maxi(x, *n1 * *n2);
+        yy[0] = Mini(y, *n1 * *n2);
+        yy[1] = Maxi(y, *n1 * *n2);
+    }
+    else
+    {
+        xx[0] = Mini(x, *n1);
+        xx[1] = Maxi(x, *n1);
+        yy[0] = Mini(y, *n2);
+        yy[1] = Maxi(y, *n2);
+    }
 
     /* Adding F.Leray 22.04.04 */
     iSubwinUID = getCurrentSubWin();
@@ -192,8 +203,14 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
         }
     }
 
-    /* Constructs the object */
-    iGrayplotUID = ConstructGrayplot(getCurrentSubWin(), x, y, z, *n1, *n2, 0);
+    /* Constructs the object.
+     * Matrix mode: pass m1=*n2 (second dimension) so ConstructGrayplot detects
+     * it as a matrix grid and stores the full coordinate matrices.
+     * Vector mode: pass m1=1, m2=1 to indicate 1D vectors. */
+    iGrayplotUID = ConstructGrayplot(getCurrentSubWin(), x, y, z,
+                                     *n1, isMatrixMode ? *n2 : 1,
+                                     *n2, isMatrixMode ? *n1 : 1,
+                                     0);
 
     /* Failed allocation */
     if (iGrayplotUID == 0)
@@ -493,7 +510,7 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
     }
 
     /* Construct the grayplot object */
-    iGrayplotUID = ConstructGrayplot(iSubwinUID, NULL, NULL, z, *n1 + 1, *n2 + 1, 1);
+    iGrayplotUID = ConstructGrayplot(iSubwinUID, NULL, NULL, z, *n1 + 1, 1, *n2 + 1, 1, 1);
 
     if (iGrayplotUID == 0)
     {
@@ -532,7 +549,7 @@ int C2F(xgray2)(double *z, int *n1, int *n2, double *xrect)
     clipState = 1;
     setGraphicObjectProperty(iSubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-    iGrayplotUID = ConstructGrayplot(iSubwinUID, xrect, &y, z, *n1 + 1, *n2 + 1, 2);
+    iGrayplotUID = ConstructGrayplot(iSubwinUID, xrect, &y, z, *n1 + 1, 1, *n2 + 1, 1, 2);
 
     if (iGrayplotUID == 0)
     {

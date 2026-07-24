@@ -67,6 +67,8 @@ int sci_grayplot(char *fname, void *pvApiCtx)
     double* l2 = NULL;
     double* l3 = NULL;
 
+    int isMatrixMode = 0;
+
     if (nbInputArgument(pvApiCtx) <= 0)
     {
         sci_demo(fname, pvApiCtx);
@@ -105,12 +107,8 @@ int sci_grayplot(char *fname, void *pvApiCtx)
         return 1;
     }
 
-    //CheckVector
-    if (m1 != 1 && n1 != 1)
-    {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Vector expected.\n"), fname, 1);
-        return 1;
-    }
+    /* Detect matrix mode: if arg1 is a matrix (both dims > 1), use non-rectangular mode */
+    isMatrixMode = (m1 > 1 && n1 > 1);
 
     //get variable address
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
@@ -129,11 +127,14 @@ int sci_grayplot(char *fname, void *pvApiCtx)
         return 1;
     }
 
-    //CheckVector
-    if (m2 != 1 && n2 != 1)
+    if (!isMatrixMode)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Vector expected.\n"), fname, 2);
-        return 1;
+        /* Vector mode: y must be a vector */
+        if (m2 != 1 && n2 != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: Vector expected.\n"), fname, 2);
+            return 1;
+        }
     }
 
     //get variable address
@@ -160,18 +161,41 @@ int sci_grayplot(char *fname, void *pvApiCtx)
         return 0;
     }
 
-    //CheckDimProp
-    if (m2 * n2 != n3)
+    if (isMatrixMode)
     {
-        Scierror(999, _("%s: Wrong size for input arguments: Incompatible sizes.\n"), fname);
-        return 1;
+        /* Matrix mode: x, y, z must all have the same size */
+        if (m1 != m3 || n1 != n3)
+        {
+            Scierror(999, _("%s: Wrong size for input arguments: Arguments #%d, #%d and #%d must have the same size.\n"), fname, 1, 2, 3);
+            return 1;
+        }
+        if (m2 != m3 || n2 != n3)
+        {
+            Scierror(999, _("%s: Wrong size for input arguments: Arguments #%d, #%d and #%d must have the same size.\n"), fname, 1, 2, 3);
+            return 1;
+        }
+        if (m2 == 1 || n2 == 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: Matrix expected.\n"), fname, 2);
+            return 1;
+        }
     }
-
-    //CheckDimProp
-    if (m1 * n1 != m3)
+    else
     {
-        Scierror(999, _("%s: Wrong size for input arguments: Incompatible sizes.\n"), fname);
-        return 1;
+        /* Vector mode: check dimension compatibility */
+        //CheckDimProp
+        if (m2 * n2 != n3)
+        {
+            Scierror(999, _("%s: Wrong size for input arguments: Incompatible sizes.\n"), fname);
+            return 1;
+        }
+
+        //CheckDimProp
+        if (m1 * n1 != m3)
+        {
+            Scierror(999, _("%s: Wrong size for input arguments: Incompatible sizes.\n"), fname);
+            return 1;
+        }
     }
 
 
@@ -235,7 +259,7 @@ int sci_grayplot(char *fname, void *pvApiCtx)
         }
     }
 
-    Objgrayplot ((l1), (l2), (l3), &m3, &n3, strf, rect, nax, flagNax, logFlags);
+    Objgrayplot((l1), (l2), (l3), &m3, &n3, isMatrixMode, strf, rect, nax, flagNax, logFlags);
 
     if (freeStrf)
     {

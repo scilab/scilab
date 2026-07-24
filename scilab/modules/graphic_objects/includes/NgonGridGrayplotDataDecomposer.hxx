@@ -78,6 +78,17 @@ protected :
      */
     virtual int isFacetEdgeValid(double* z, double* values, int perNodeValues, int numX, int numY, int i, int j, int logUsed);
 
+protected :
+
+    /**
+     * Fills a buffer with vertex data from a non-rectangular (matrix) grid.
+     * x and y are full n1*n2 matrices of node coordinates stored column-major.
+     * x[i + j*numX] and y[i + j*numX] are the coordinates of node (i,j).
+     */
+    void fillGridVerticesMatrix(float* buffer, int bufferLength, int elementsSize,
+                                int coordinateMask, double* scale, double* translation, int logMask,
+                                double* x, double* y, double* z, int numX, int numY);
+
 public :
 
     /**
@@ -93,6 +104,13 @@ public :
 
         return decomposer;
     }
+
+    /**
+     * Fills the given buffer with vertex data from the given object.
+     * Handles both vector (rectangular) and matrix (non-rectangular) grid modes.
+     */
+    static void fillVertices(int id, float* buffer, int bufferLength, int elementsSize,
+                             int coordinateMask, double* scale, double* translation, int logMask);
 
     /**
      * Fills the given buffer with color data from the given object.

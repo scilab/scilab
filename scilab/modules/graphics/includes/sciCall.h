@@ -40,7 +40,12 @@ GRAPHICS_IMPEXP void Objstring(char** fname, int nbRow, int nbCol, double  x, do
 
 GRAPHICS_IMPEXP void Objplot2d(int ptype, char logflags[], double x[], double y[], int* n1, int* n2, int style[], char strflag[], char legend[], double brect[], int aaint[], BOOL flagNax);
 
-GRAPHICS_IMPEXP void Objgrayplot(double x[], double y[], double z[], int* n1, int* n2, char strflag[], double brect[], int aaint[], BOOL flagNax, char logflag[]);
+/**
+ * When isMatrixMode == 0, x is a vector of size n1 and y is a vector of size n2.
+ * When isMatrixMode == 1, x and y are full (n1,n2) matrices of node coordinates
+ * (non-rectangular grid support).
+ */
+GRAPHICS_IMPEXP void Objgrayplot(double x[], double y[], double z[], int* n1, int* n2, int isMatrixMode, char strflag[], double brect[], int aaint[], BOOL flagNax, char logflag[]);
 
 GRAPHICS_IMPEXP void Objmatplot(double z[], int* n1, int* n2, char strflag[], double brect[], int aaint[], BOOL flagNax);
 

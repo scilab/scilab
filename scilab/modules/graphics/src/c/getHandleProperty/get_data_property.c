@@ -179,10 +179,7 @@ void* getmatplotdata(int iObjUID)
 void* getgrayplotdata(int iObjUID)
 {
     char * variable_tlist[] = {"grayplotdata", "x", "y", "z"};
-    int numX = 0;
-    int *piNumX = &numX;
-    int numY = 0;
-    int *piNumY = &numY;
+    int* xDims = NULL;
     double* dataX = NULL;
     double* dataY = NULL;
     double* dataZ = NULL;
@@ -195,16 +192,33 @@ void* getgrayplotdata(int iObjUID)
         return NULL;
     }
 
-    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void **)&piNumX);
-    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void **)&piNumY);
+    /* Matrix mode is signalled by xDimensions[1] > 1 */
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_X_DIMENSIONS__, jni_int_vector, (void **)&xDims);
 
     getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
     getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
     getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z__, jni_double_vector, (void **)&dataZ);
 
-    addColVectorToReturnedList(tList, dataX, numX);
-    addColVectorToReturnedList(tList, dataY, numY);
-    addMatrixToReturnedList(tList, dataZ, numX, numY);
+    if (xDims != NULL && xDims[1] > 1)
+    {
+        /* Matrix mode: x, y and z are all (numX x numY) matrices */
+        int numX = xDims[0];
+        int numY = xDims[1];
+        addMatrixToReturnedList(tList, dataX, numX, numY);
+        addMatrixToReturnedList(tList, dataY, numX, numY);
+        addMatrixToReturnedList(tList, dataZ, numX, numY);
+    }
+    else
+    {
+        /* Vector mode: x and y are column vectors, z is a (numX x numY) matrix */
+        int numX = (xDims != NULL) ? xDims[0] : 0;
+        int numY = 0;
+        int* piNumY = &numY;
+        getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void **)&piNumY);
+        addColVectorToReturnedList(tList, dataX, numX);
+        addColVectorToReturnedList(tList, dataY, numY);
+        addMatrixToReturnedList(tList, dataZ, numX, numY);
+    }
 
     //destroyReturnedList(tList);
 

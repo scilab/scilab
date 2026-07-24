@@ -27,3 +27,7 @@ assert_checkequal(e.data_mapping, "scaled")
 assert_checkequal(e.clip_state, "clipgrf")
 assert_checkequal(e.clip_box, [])
 assert_checkequal(e.user_data, [])
+
+// Non-rectangular grid
+[R,T] = ndgrid(linspace(0.1,1,100), linspace(0,%pi/4,50));
+grayplot(R.*cos(T), R.*sin(T), rand(T));

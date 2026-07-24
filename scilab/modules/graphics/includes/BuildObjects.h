@@ -69,7 +69,15 @@ GRAPHICS_IMPEXP int ConstructText(int iParentsubwinUID, char **text, int nbRow, 
 GRAPHICS_IMPEXP int ConstructLegend(int iParentsubwinUID, char *text[], int* tabofhandles, int nblegends);   /* BUILD */
 GRAPHICS_IMPEXP int ConstructPolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double *pvecz, int closed, int n1, int plot, int *foreground, int *background, int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded);    /* BUILD */
 GRAPHICS_IMPEXP int ConstructSurface(int iParentsubwinUID, sciTypeOf3D typeof3d, double *pvecx, double *pvecy, double *pvecz, double *zcol, int izcol, int dimzx, int dimzy, int *flag, double *ebox, int flagcolor, int *isfac, int *m1, int *n1, int *m2, int *n2, int *m3, int *n3, int *m3n, int *n3n); /* BUILD */
-GRAPHICS_IMPEXP int ConstructGrayplot(int iParentsubwinUID, double *vx, double *vy, double *vz, int nx, int ny, int type);  /* BUILD */
+/**
+ * Construct a Grayplot (type==0) or Matplot (type==1,2) object.
+ * For Grayplot objects (type==0):
+ *   - Vector mode (mx==1): vx has nx elements, vy has ny elements.
+ *   - Matrix mode (mx>1):  vx and vy are full (nx x mx) coordinate matrices;
+ *     the grid has numX=nx nodes along x and numY=mx nodes along y.
+ * For Matplot objects pass mx=1, my=1 (mx/my are ignored).
+ */
+GRAPHICS_IMPEXP int ConstructGrayplot(int iParentsubwinUID, double *vx, double *vy, double *vz, int nx, int mx, int ny, int my, int type);  /* BUILD */
 GRAPHICS_IMPEXP int ConstructImplot(int iParentsubwinUID, double * rect, unsigned char *vz, int nx, int ny, int plottype);  /* BUILD */
 GRAPHICS_IMPEXP int ConstructFec(int iParentsubwinUID, double *pvecx, double *pvecy, double *pnoeud, double *pfun, int Nnode, int Ntr, int Nvertex, double *zminmax, int *colminmax, int *colout, BOOL with_mesh);   /* BUILD */
 GRAPHICS_IMPEXP int ConstructLight(const char* fname, int iSubwin, int type, BOOL visible, double * position, double * direction, double * ambient_color, double * diffuse_color, double * specular_color);
