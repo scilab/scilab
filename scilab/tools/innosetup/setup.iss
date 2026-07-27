@@ -47,7 +47,7 @@ SetupIconFile=tools\innosetup\scilab.ico
 LicenseFile=COPYING
 ChangesAssociations=yes
 WindowVisible=false
-AppPublisher=Dassault Systmes
+AppPublisher=Dassault Systèmes S.E.
 AppPublisherURL=https://www.scilab.org/
 AppSupportURL=https://gitlab.com/scilab/scilab/-/issues
 AppUpdatesURL=https://www.scilab.org/download/
@@ -58,11 +58,11 @@ WizardSmallImageFile=tools\innosetup\ScilabLogoSmall.bmp
 BackColor=clGray
 BackColor2=clBlack
 BackColorDirection=lefttoright
-AppCopyright=Dassault Systmes - Copyright  {#CurrentYear}
+AppCopyright=Dassault Systèmes S.E. - Copyright (C) {#CurrentYear}
 UninstallDisplayIcon={app}\bin\wscilex.exe
 SolidCompression=true
 VersionInfoVersion={#ScilabVersion}
-VersionInfoCompany=Dassault Systmes
+VersionInfoCompany=Dassault Systèmes S.E.
 ; minimum right to install Scilab
 PrivilegesRequired=none
 
