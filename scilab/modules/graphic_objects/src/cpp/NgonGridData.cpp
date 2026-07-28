@@ -176,19 +176,28 @@ int NgonGridData::setGridSize(int const* gridSize)
 
     /*
      * gridSize = [g0, g1, g2, g3]:
-     *   X buffer size: g0 * g1  (= numX in vector mode [numX,1,...],
-     *                              = numX*numY in matrix mode [numX,numY,...])
-     *   Y buffer size: g2 * g3  (= numY in vector mode [...,numY,1],
-     *                              = numX*numY in matrix mode [...,numY,numX])
-     *   Z buffer size: g0 * g2  (= numX*numY in both modes)
-     *   getNumX() returns g0, getNumY() returns g2 (the primary dimensions).
-     *   isMatrixMode is detected externally as (xDimensions[1] > 1), i.e. g1 > 1.
+     *   X buffer size: g0 * g1
+     *   Y buffer size: g2 * g3
+     *   Matrix mode (g0>1 && g1>1): numX=g0, numY=g2, Z buffer = g0*g2
+     *   Vector mode (one dim is 1):
+     *     - [1, numX, 1, numY]: numX=g1, numY=g3, Z = g1*g3 = xSize*ySize
+     *     - OR [numX, 1, numY, 1]: numX=g0, numY=g2, Z = g0*g2 = xSize*ySize
+     *   In vector mode: Z buffer size = xSize * ySize.
+     *   In matrix mode: Z buffer size = g0 * g2.
      */
     newXSize = gridSize[0] * gridSize[1];
     newYSize = gridSize[2] * gridSize[3];
 
-    /* Z buffer = primary-dimension product, not the full xSize*ySize product */
-    int newZSize = gridSize[0] * gridSize[2];
+    bool matrixMode = (gridSize[0] > 1 && gridSize[1] > 1);
+    int newZSize = 0;
+    if (matrixMode == true)
+    {
+        newZSize = gridSize[0] * gridSize[2];
+    }
+    else
+    {
+        newZSize = newXSize * newYSize;
+    }
 
     if (newXSize != xSize)
     {
@@ -220,10 +229,17 @@ int NgonGridData::setGridSize(int const* gridSize)
         }
     }
 
-    if (newZSize != xDimensions[0] * yDimensions[0])
+    if ((matrixMode == false) && (newZSize != xSize * ySize))
     {
         zModified = 1;
+    }
+    else if ((matrixMode == true) && (newZSize != xDimensions[0] * yDimensions[0]))
+    {
+        zModified = 1;
+    }
 
+    if (zModified)
+    {
         try
         {
             newZCoordinates = new double[newZSize];
@@ -274,8 +290,38 @@ int NgonGridData::setGridSize(int const* gridSize)
 
             zCoordinates = newZCoordinates;
 
-            /* numGons depends on the primary dimensions (g0 and g2), not on xSize/ySize */
-            numGons = (gridSize[0] - 1) * (gridSize[2] - 1);
+            /* numGons uses primary dimensions:
+             *  - in matrix mode from gridSize[0]/[2],
+             *  - in vector mode:
+             *    - [numX,1,numY,1] from gridSize[0]/[2].
+             *    - [1,numX,1,numY] from gridSize[1]/[3].
+             */
+            if (matrixMode == true)
+            {
+                numGons = (gridSize[0] - 1) * (gridSize[2] - 1);
+            }
+            else
+            {
+                int primaryX = 0;
+                if (gridSize[0] > 1)
+                {
+                    primaryX = gridSize[0];
+                }
+                else
+                {
+                    primaryX = gridSize[1];
+                }
+                int primaryY = 0;
+                if (gridSize[2] > 1)
+                {
+                    primaryY = gridSize[2];
+                }
+                else
+                {
+                    primaryY = gridSize[3];
+                }
+                numGons = (primaryX - 1) * (primaryY - 1);
+            }
         }
 
     }
@@ -305,20 +351,36 @@ int NgonGridData::setGridSize(int const* gridSize)
 
 int NgonGridData::getNumX(void)
 {
-    /* Primary x dimension: xDimensions[0] = gridSize[0] = numX */
-    return xDimensions[0];
+    if (xDimensions[0] > 1 && xDimensions[1] > 1)
+    {
+        /* Matrix mode: primary is xDimensions[0] */
+        return xDimensions[0];
+    }
+    else
+    {
+        /* Vector mode: primary is xSize */
+        return xSize;
+    }
 }
 
 int NgonGridData::getNumY(void)
 {
-    /* Primary y dimension: yDimensions[0] = gridSize[2] = numY */
-    return yDimensions[0];
+    if (yDimensions[0] > 1 && yDimensions[1] > 1)
+    {
+        /* Matrix mode: primary is yDimensions[0] */
+        return yDimensions[0];
+    }
+    else
+    {
+        /* Vector mode: primary is xSize */
+        return ySize;
+    }
 }
 
 int NgonGridData::getNumZ(void)
 {
     /* Z grid size = numX * numY (primary dimensions product) */
-    return xDimensions[0] * yDimensions[0];
+    return getNumX() * getNumY();
 }
 
 int* NgonGridData::getXDimensions(void)
@@ -368,8 +430,8 @@ void NgonGridData::setDataY(double const* data, int numElements)
 
 void NgonGridData::setDataZ(double const* data, int numElements)
 {
-    /* Z buffer holds numX * numY = xDimensions[0] * yDimensions[0] values */
-    if (numElements > xDimensions[0] * yDimensions[0])
+    /* getNumX() * getNumY() > Z buffer size */
+    if (numElements > getNumX() * getNumY())
     {
         return;
     }
