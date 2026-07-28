@@ -1070,18 +1070,28 @@ function moveForwardOneWord() {
 function updateLatexML() {
     let c = $(".input")[0];
 
-    let idx1 = c.value.indexOf(`"$`);
-    let idx2 = c.value.indexOf(`'$`);
-    let idx = Math.max(idx1, idx2);
+    let caret = c.selectionStart;
 
-    if (idx != -1) { //latex
-        let start = idx + 2;
+    // Find the LaTeX opening ("$ or '$) closest before the caret, i.e. the
+    // expression the caret is currently in. Scanning every opening (instead of
+    // only the first one) lets the preview follow the caret across several
+    // expressions, e.g. ["$\LaTeX$" "$\alpha$"].
+    let start = -1;
+    for (const m of c.value.matchAll(/["']\$/g)) {
+        if (m.index + 2 <= caret) {
+            start = m.index + 2;
+        } else {
+            break;
+        }
+    }
+
+    if (start != -1) { //latex
         let end = c.value.indexOf(`$`, start);
         if (end == -1) {
             end = c.value.length;
         }
 
-        if (c.selectionStart >= start && c.selectionStart <= end) {
+        if (caret >= start && caret <= end) {
             let latex = c.value.substring(start, end);
             // Get or create the latex-preview container
             let previewContainer = $(".latex-preview");

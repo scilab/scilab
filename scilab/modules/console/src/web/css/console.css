@@ -251,7 +251,6 @@ pre.monospace {
 /* LaTeX hover */
 .latex-expression {
     display: inline;
-    position: absolute;
     text-decoration: none;
 }
 .latex-expression:hover {
