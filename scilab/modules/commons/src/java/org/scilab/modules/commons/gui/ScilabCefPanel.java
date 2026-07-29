@@ -13,6 +13,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.KeyboardFocusManager;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -41,12 +42,14 @@ import org.cef.handler.CefMessageRouterHandlerAdapter;
 import org.cef.handler.CefRequestHandler;
 import org.cef.handler.CefRequestHandlerAdapter;
 import org.cef.handler.CefResourceRequestHandler;
+import org.cef.handler.CefResourceRequestHandlerAdapter;
 import org.cef.misc.BoolRef;
 import org.cef.misc.EventFlags;
 import org.cef.network.CefRequest;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.view.View;
 import org.scilab.modules.commons.OS;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.utils.ScilabBrowser;
 import org.scilab.modules.commons.utils.WebBrowser;
 
@@ -204,18 +207,41 @@ public class ScilabCefPanel extends JPanel {
     };
 
     // ---- External Request management ----
+    // Open the default system browser for external links (http/https)
+    // Resolve SCI paths to real files on disk (file://)
+    public final static class ScilabResourceHandler extends CefResourceRequestHandlerAdapter {
+        @Override
+        public boolean onBeforeResourceLoad(CefBrowser browser, CefFrame frame, CefRequest request) {
+            String url = request.getURL();
+
+            if (url != null && url.startsWith("file:///SCI/")) {
+                String relativePath = url.substring("file:///SCI/".length());
+
+                File targetFile = new File(ScilabConstants.SCI.getPath(), relativePath);
+                String realFileUrl = targetFile.toURI().toString();
+
+                if (log.isLoggable(java.util.logging.Level.FINE)) {
+                    log.fine("Redirecting SCI path: " + url + " -> " + realFileUrl);
+                }
+
+                // JCEF / CEF internal redirect
+                request.setURL(realFileUrl);
+            }
+
+            // continue with modified URL
+            return false;
+        }
+    }
     final CefRequestHandler requestHandler = new CefRequestHandlerAdapter() {
         @Override
         public CefResourceRequestHandler getResourceRequestHandler(CefBrowser browser, CefFrame frame, CefRequest request, boolean isNavigation, boolean isDownload, String requestInitiator, BoolRef disableDefaultHandling) {
-            final String url = request.getURL();
-            log.info(url);
-            
+            String url = request.getURL();
             // Open external links in the default browser
             if (isNavigation && (url.startsWith("https://") || url.startsWith("http://"))) {
                 WebBrowser.openUrl(request.getURL());
                 disableDefaultHandling.set(true); // Prevent JCEF from handling the URL
             }
-            return null;
+            return new ScilabResourceHandler();
         }
     };
 
@@ -231,7 +257,6 @@ public class ScilabCefPanel extends JPanel {
      */
     public ScilabCefPanel(String url) {
         super(new BorderLayout(0, 0));
-
         client = ScilabBrowser.get();
         browser = client.createBrowser(url, false, false);
 
@@ -239,7 +264,7 @@ public class ScilabCefPanel extends JPanel {
         client.addContextMenuHandler(contextMenuHandler);
         client.addFocusHandler(focusHandler);
         client.addRequestHandler(requestHandler);
-
+        
         // ---- Layout ----
         setBackground(Color.WHITE);
         add(browser.getUIComponent(), BorderLayout.CENTER);

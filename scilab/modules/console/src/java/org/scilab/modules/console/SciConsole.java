@@ -121,7 +121,7 @@ public abstract class SciConsole extends JPanel {
 
         ready = false;
 
-        String url = "file://" + ScilabConstants.SCI.getPath() + "/modules/console/src/web/console.html";
+        String url = "file:///SCI/modules/console/src/web/console.html";
         cefPanel = new ScilabCefPanel(url);
 
         addFocusListener(new FocusListener() {
