@@ -229,8 +229,8 @@ am__objects_1 = src/fortran/slatec/zwrsk.lo \
 	src/fortran/slatec/zuni1.lo src/fortran/slatec/zuni2.lo \
 	src/fortran/slatec/zunik.lo src/fortran/slatec/zunk1.lo \
 	src/fortran/slatec/zunk2.lo src/fortran/slatec/zuoik.lo \
-	src/fortran/slatec/dlngam.lo src/fortran/slatec/balanc.lo \
-	src/fortran/slatec/dtensbs.lo src/fortran/slatec/pchim.lo
+	src/fortran/slatec/dlngam.lo src/fortran/slatec/dtensbs.lo \
+	src/fortran/slatec/pchim.lo
 am__objects_2 = src/fortran/linpack/dgesl.lo \
 	src/fortran/linpack/wpade.lo src/fortran/linpack/util.lo \
 	src/fortran/linpack/dgefa.lo src/fortran/linpack/dgbfa.lo \
@@ -239,8 +239,7 @@ am__objects_2 = src/fortran/linpack/dgesl.lo \
 	src/fortran/linpack/dqrsm.lo src/fortran/linpack/hhdml.lo \
 	src/fortran/linpack/wgeco.lo src/fortran/linpack/wgefa.lo \
 	src/fortran/linpack/wgesl.lo src/fortran/linpack/dpofa.lo
-am__objects_3 = src/fortran/eispack/balbak.lo
-am__objects_4 = src/c/libscielementary_functions_algo_la-finite.lo \
+am__objects_3 = src/c/libscielementary_functions_algo_la-finite.lo \
 	src/c/libscielementary_functions_algo_la-vfinite.lo \
 	src/c/libscielementary_functions_algo_la-cmp.lo \
 	src/c/libscielementary_functions_algo_la-vceil.lo \
@@ -276,7 +275,7 @@ am__objects_4 = src/c/libscielementary_functions_algo_la-finite.lo \
 	src/c/libscielementary_functions_algo_la-add_vector.lo \
 	src/c/libscielementary_functions_algo_la-sub_vector.lo \
 	src/c/libscielementary_functions_algo_la-issymmetric.lo
-am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
+am__objects_4 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/wwdiv.lo src/fortran/wdotcr.lo src/fortran/iset.lo \
 	src/fortran/franck.lo src/fortran/dwpowe.lo \
 	src/fortran/rcsort.lo src/fortran/wddiv.lo \
@@ -324,7 +323,7 @@ am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/bdiag.lo src/fortran/wvmul.lo src/fortran/dmmul.lo \
 	src/fortran/wsqrt.lo src/fortran/rat.lo \
 	src/fortran/old_pythag.lo src/fortran/danints.lo
-am__objects_6 = src/cpp/libscielementary_functions_algo_la-getmode.lo \
+am__objects_5 = src/cpp/libscielementary_functions_algo_la-getmode.lo \
 	src/cpp/libscielementary_functions_algo_la-cumsum.lo \
 	src/cpp/libscielementary_functions_algo_la-cumprod.lo \
 	src/cpp/libscielementary_functions_algo_la-diag.lo \
@@ -337,7 +336,7 @@ am__objects_6 = src/cpp/libscielementary_functions_algo_la-getmode.lo \
 	src/cpp/libscielementary_functions_algo_la-vander.lo
 am_libscielementary_functions_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
-	$(am__objects_5) $(am__objects_6)
+	$(am__objects_5)
 libscielementary_functions_algo_la_OBJECTS =  \
 	$(am_libscielementary_functions_algo_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscielementary_functions_algo_la_rpath =
@@ -346,9 +345,9 @@ am__DEPENDENCIES_1 =
 libscielementary_functions_la_DEPENDENCIES =  \
 	libdummy-elementary_functions.la \
 	libscielementary_functions-algo.la $(am__DEPENDENCIES_1)
-am__objects_7 = sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo \
+am__objects_6 = sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_isequalbitwise.lo
-am__objects_8 =  \
+am__objects_7 =  \
 	sci_gateway/cpp/libscielementary_functions_la-sci_isequal.lo \
 	sci_gateway/cpp/libscielementary_functions_la-elem_func_gw.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_size.lo \
@@ -413,8 +412,8 @@ am__objects_8 =  \
 	sci_gateway/cpp/libscielementary_functions_la-sci_percent_gallery.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_ishermitian.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_issymmetric.lo
-am_libscielementary_functions_la_OBJECTS = $(am__objects_7) \
-	$(am__objects_8)
+am_libscielementary_functions_la_OBJECTS = $(am__objects_6) \
+	$(am__objects_7)
 libscielementary_functions_la_OBJECTS =  \
 	$(am_libscielementary_functions_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscielementary_functions_la_rpath =
@@ -1115,7 +1114,6 @@ SLATEC_SOURCES = \
     src/fortran/slatec/zunk2.f \
     src/fortran/slatec/zuoik.f \
     src/fortran/slatec/dlngam.f \
-    src/fortran/slatec/balanc.f \
     src/fortran/slatec/dtensbs.f \
     src/fortran/slatec/pchim.f
 
@@ -1316,7 +1314,6 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_ishermitian.cpp \
     sci_gateway/cpp/sci_issymmetric.cpp
 
-EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
 # FIXME: why disabling optimisation ? Any bug reference ?
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
@@ -1357,7 +1354,7 @@ libscielementary_functions_la_CPPFLAGS = \
 	$(AM_CPPFLAGS)
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscielementary_functions.la
-libscielementary_functions_algo_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CXX_SOURCES)
+libscielementary_functions_algo_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CXX_SOURCES)
 libscielementary_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscielementary_functions_algo_la_CPPFLAGS = $(libscielementary_functions_la_CPPFLAGS)
 
@@ -1741,8 +1738,6 @@ src/fortran/slatec/zuoik.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dlngam.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
-src/fortran/slatec/balanc.lo: src/fortran/slatec/$(am__dirstamp) \
-	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dtensbs.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/pchim.lo: src/fortran/slatec/$(am__dirstamp) \
@@ -1777,8 +1772,6 @@ src/fortran/linpack/wgesl.lo: src/fortran/linpack/$(am__dirstamp) \
 	src/fortran/linpack/$(DEPDIR)/$(am__dirstamp)
 src/fortran/linpack/dpofa.lo: src/fortran/linpack/$(am__dirstamp) \
 	src/fortran/linpack/$(DEPDIR)/$(am__dirstamp)
-src/fortran/eispack/balbak.lo: src/fortran/eispack/$(am__dirstamp) \
-	src/fortran/eispack/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-finite.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-vfinite.lo:  \

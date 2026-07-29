@@ -701,8 +701,5 @@
     <None Include="eispack_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="slatec_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
   </ItemGroup>
 </Project>

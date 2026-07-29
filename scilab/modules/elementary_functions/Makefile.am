@@ -140,7 +140,6 @@ SLATEC_SOURCES = \
     src/fortran/slatec/zunk2.f \
     src/fortran/slatec/zuoik.f \
     src/fortran/slatec/dlngam.f \
-    src/fortran/slatec/balanc.f \
     src/fortran/slatec/dtensbs.f \
     src/fortran/slatec/pchim.f
 
@@ -341,8 +340,6 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_ishermitian.cpp \
     sci_gateway/cpp/sci_issymmetric.cpp
 
-EISPACK_SOURCES = src/fortran/eispack/balbak.f
-
 # FIXME: why disabling optimisation ? Any bug reference ?
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
 noinst_LTLIBRARIES = libdummy-elementary_functions.la
@@ -388,7 +385,7 @@ noinst_LTLIBRARIES += libscielementary_functions-algo.la libscielementary_functi
 endif
 
 
-libscielementary_functions_algo_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CXX_SOURCES)
+libscielementary_functions_algo_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CXX_SOURCES)
 libscielementary_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscielementary_functions_algo_la_CPPFLAGS = $(libscielementary_functions_la_CPPFLAGS)
 

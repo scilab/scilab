@@ -62,7 +62,6 @@
 			<File RelativePath=".\slatec_f.rc"/>
 		</Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-			<File RelativePath=".\balanc.f"/>
 			<File RelativePath="d9b0mp.f"/>
 			<File RelativePath="d9b1mp.f"/>
 			<File RelativePath="d9knus.f"/>

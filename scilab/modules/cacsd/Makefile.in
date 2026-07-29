@@ -180,9 +180,8 @@ am__objects_1 = src/fortran/jacl2.lo src/fortran/onface.lo \
 	src/fortran/rtitr.lo src/fortran/watfac.lo \
 	src/fortran/sszer.lo src/fortran/mzdivq.lo \
 	src/fortran/expan.lo src/fortran/optml2.lo \
-	src/fortran/wdegre.lo src/fortran/phi.lo src/fortran/ricd.lo \
-	src/fortran/shrslv.lo src/fortran/qhesz.lo \
-	src/fortran/rilac.lo src/fortran/arl2.lo src/fortran/wesidu.lo \
+	src/fortran/wdegre.lo src/fortran/phi.lo src/fortran/shrslv.lo \
+	src/fortran/qhesz.lo src/fortran/arl2.lo src/fortran/wesidu.lo \
 	src/fortran/dzdivq.lo src/fortran/arl2a.lo src/fortran/lq.lo \
 	src/fortran/outl2.lo src/fortran/dhetr.lo \
 	src/fortran/domout.lo src/fortran/rootgp.lo src/fortran/feq.lo \
@@ -862,10 +861,8 @@ CACSD_FORTRAN_SOURCES = \
     src/fortran/optml2.f \
     src/fortran/wdegre.f \
     src/fortran/phi.f \
-    src/fortran/ricd.f \
     src/fortran/shrslv.f \
     src/fortran/qhesz.f \
-    src/fortran/rilac.f \
     src/fortran/arl2.f \
     src/fortran/wesidu.f \
     src/fortran/dzdivq.f \
@@ -1151,13 +1148,9 @@ src/fortran/wdegre.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/phi.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/ricd.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/shrslv.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/qhesz.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/rilac.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/arl2.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

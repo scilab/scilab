@@ -379,11 +379,9 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="balbak.c" />
     <ClCompile Include="hqror2.c" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="balbak.f" />
     <f2c_rule Include="hqror2.f" />
   </ItemGroup>
   <ItemGroup>

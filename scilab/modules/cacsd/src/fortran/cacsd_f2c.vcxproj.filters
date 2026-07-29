@@ -99,12 +99,6 @@
     <ClCompile Include="qvalz.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ricd.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rilac.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="rootgp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -215,12 +209,6 @@
     <f2c_rule Include="qvalz.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="ricd.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="rilac.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="rootgp.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -272,9 +260,6 @@
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="Polynomials_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="Slatec_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="Slicot_f_Import.def">

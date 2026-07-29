@@ -89,7 +89,7 @@ c            true if there is any error in wbdiag.
 c
 c
 c!auxiliary routines
-c     corth cortr comqr3 cbal balbak (eispack)
+c     corth cortr comqr3 cbal degbak
 c     wexchn  (eispack.extensions)
 c     dset ddot (blas)
 c     wshrsl dad
@@ -103,7 +103,7 @@ c
       double precision c,cav,d,rav,temp,zero,one,mone,ddot,eps
       double precision dlamch
       integer da11,da22,i,j,k,km1,l11,l22,l22m1,err
-      integer low,igh
+      integer low,igh,info
 c      character*100 cw
 c      integer iw(200)
       data zero, one, mone /0.0d+0,1.0d+0,-1.0d+0/
@@ -382,8 +382,10 @@ c compute right transformation
       goto 460
 c
   480 continue
-      call balbak( lda, n, low, igh, scale, n, xr)
-      call balbak( lda, n, low, igh, scale, n, xi)
+      call dgebak('B', 'R', n, low, igh, scale, n, xr, lda, info)
+      if (info.ne.0) goto 600
+      call dgebak('B', 'R', n, low, igh, scale, n, xi, lda, info)
+      if (info.ne.0) goto 600
       goto 550
 c
 c extract non orthogonal tranformation from a

@@ -78,22 +78,22 @@ c     alan j. laub, university of southern california.
 c     
 c     subroutines and functions called:
 c     
-c     balanc(eispack) ,checo,chefa,chesl,hqr(eispack),shetr
+c     dgebal,checo,chefa,chesl,shetr
 c     
 c     internal variables:
 c     
-      integer i,igh,j,k,kk,kp,low
+      integer i,igh,j,k,kk,kp,low,info
       double precision t
 c     
 c     fortran functions called:
 c     
 c     
       if(job.ne.0) goto 150
-      call balanc (na,n,a,low,igh,w)
-c     
+      call dgebal ('B',n,a,na,low,igh,w,info)
+c
 c     adjust b and c matrices based on information in the vector
 c     w which describes the balancing of a and is defined in the
-c     subroutine balanc
+c     subroutine dgebal
 c     
       do 40 k = 1,n
          kk = n-k+1

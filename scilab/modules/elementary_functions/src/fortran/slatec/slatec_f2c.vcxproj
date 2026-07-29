@@ -397,7 +397,6 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="balanc.c" />
     <ClCompile Include="common_f2c.c" />
     <ClCompile Include="d9b0mp.c" />
     <ClCompile Include="d9b1mp.c" />
@@ -487,7 +486,6 @@ cd ..
     <ClCompile Include="zwrsk.c" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="balanc.f" />
     <f2c_rule Include="d9b0mp.f" />
     <f2c_rule Include="d9b1mp.f" />
     <f2c_rule Include="d9knus.f" />

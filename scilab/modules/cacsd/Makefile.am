@@ -129,10 +129,8 @@ CACSD_FORTRAN_SOURCES = \
     src/fortran/optml2.f \
     src/fortran/wdegre.f \
     src/fortran/phi.f \
-    src/fortran/ricd.f \
     src/fortran/shrslv.f \
     src/fortran/qhesz.f \
-    src/fortran/rilac.f \
     src/fortran/arl2.f \
     src/fortran/wesidu.f \
     src/fortran/dzdivq.f \

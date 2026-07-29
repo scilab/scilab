@@ -102,7 +102,6 @@ ELEMENTARY_FUNCTIONS_IMPEXP int zexpms2(double *_pdblReal, double *_pdblImg,
 //extern int C2F(split)();
 extern int C2F(exch)();
 extern int C2F(shrslv)(double* a, double* b, double* c, int* m, int* n, int* na, int* nb, int* nc, double* eps, double* cond, double* rmax, int* fail);
-extern int C2F(balbak)(int* nm, int* n, int* low, int* igh, double* scale, int* m, double* z);
 //extern double C2F(ddot)();
 extern int C2F(pade)();
 //extern int C2F(dcopy)();

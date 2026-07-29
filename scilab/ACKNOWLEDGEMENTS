@@ -215,7 +215,6 @@ control: LINPACK + EISPACK + INRIA routines.
                 (M. Denham).
          sszer: Emami-naeini, A. and van Dooren, P. (Automatica paper).
          syhsc: G.Golub, S.Nash, C.van Loan, Stanford University.
-         rilac, ricd: A. Laub.
          dexpm1, pade, dclmat, coef, cerr, wexpm1, wpade, wclmat: J. Roche.
          polmc: adapted from P.Hr. Petkov, Sofia, Bulgaria.
          bdiag: adapted from Bavely and Stewart.

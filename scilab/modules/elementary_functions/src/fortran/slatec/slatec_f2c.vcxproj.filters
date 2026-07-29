@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="balanc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="common_f2c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -287,9 +284,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="balanc.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="d9b0mp.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>

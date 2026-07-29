@@ -43,7 +43,7 @@ Misc:
 =====
 
 Files:
-src/fortran/{dfrmg.f,ricd.f,dhetr.f,rilac.f}
+src/fortran/{dfrmg.f,dhetr.f}
 
 Copyright:
 Alan j. Laub

@@ -21,17 +21,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="balbak.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="hqror2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="balbak.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="hqror2.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>

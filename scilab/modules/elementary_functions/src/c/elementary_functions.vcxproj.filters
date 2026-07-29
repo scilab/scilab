@@ -323,9 +323,6 @@
     <None Include="..\..\locales\elementary_functions.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="eispack_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="cacsd_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

@@ -92,7 +92,7 @@ c
       double precision c,cav,d,e1,e2,rav,temp,zero,one,mone,ddot,eps
       double precision dlamch
       integer da11,da22,i,j,k,km1,km2,l11,l22,l22m1,nk,ino
-      integer low,igh
+      integer low,igh,info
       data zero, one, mone /0.0d+0,1.0d+0,-1.0d+0/
 c
 c
@@ -117,7 +117,9 @@ c
 c
 c     convert a to upper hessenberg form.
 c
-      call balanc(lda, n,   a, low, igh, scale)
+      call dgebal('B', n, a, lda, low, igh, scale, info)
+      if (info.ne.0) goto 600
+
       call orthes(lda, n, low, igh,   a, er)
       call ortran(lda, n, low, igh,   a, er, x)
 c
@@ -472,7 +474,8 @@ c compute right transformation
       goto 460
 c
   480 continue
-      call balbak( lda, n, low, igh, scale, n, x)
+      call dgebak('B', 'R', n, low, igh, scale, n, x, lda, info)
+      if (info.ne.0) goto 600
       goto 550
 c
 c extract non orthogonal tranformation from a
