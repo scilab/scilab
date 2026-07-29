@@ -81,9 +81,18 @@ windows_basic:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all$/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all_windows/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS !~ /.*test::.*/
-      changes:
+      changes: &CHANGES
+        paths:
+          - scilab/modules/$TEST/src/**/*
+          - scilab/modules/$TEST/includes/**/*
+          - scilab/modules/$TEST/sci_gateway/**/*
+          - scilab/modules/$TEST/macros/**/*
+          - scilab/modules/$TEST/tests/**/*
+    - if: $CI_PIPELINE_SOURCE == "push"
+      changes: &CHANGES_PUSH
         paths:
           - scilab/modules/$TEST/**/*
+        compare_to: ${CI_DEFAULT_BRANCH}
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS !~ /.*test::.*/
       changes:
         - .gitlab-ci.yml
@@ -124,13 +133,9 @@ windows_intermediate:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all$/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all_windows/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS !~ /.*test::.*/
-      changes:
-        - scilab/modules/$TEST/**/*
+      changes: *CHANGES
     - if: $CI_PIPELINE_SOURCE == "push"
-      changes:
-        paths:
-          - scilab/modules/$TEST/**/*
-        compare_to: ${CI_DEFAULT_BRANCH}
+      changes: *CHANGES_PUSH
   parallel:
     matrix: &INTERMEDIATE_TEST_ANCHOR
       - TEST:
@@ -173,13 +178,9 @@ windows_advanced:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all$/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all_windows/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS !~ /.*test::.*/
-      changes:
-        - scilab/modules/$TEST/**/*
+      changes: *CHANGES
     - if: $CI_PIPELINE_SOURCE == "push"
-      changes:
-        paths:
-          - scilab/modules/$TEST/**/*
-        compare_to: ${CI_DEFAULT_BRANCH}
+      changes: *CHANGES_PUSH
   parallel:
     matrix: &ADVANCED_TEST_ANCHOR
       - TEST:
@@ -207,13 +208,9 @@ windows_only:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all$/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all_windows/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS !~ /.*test::.*/
-      changes:
-        - scilab/modules/$TEST/**/*
+      changes: *CHANGES
     - if: $CI_PIPELINE_SOURCE == "push"
-      changes:
-        paths:
-          - scilab/modules/$TEST/**/*
-        compare_to: ${CI_DEFAULT_BRANCH}
+      changes: *CHANGES_PUSH
   parallel:
     matrix:
       - TEST:
@@ -257,17 +254,13 @@ linux_basic:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all$/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all_linux/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS !~ /.*test::.*/
-      changes:
-        - scilab/modules/$TEST/**/*
+      changes: *CHANGES
+    - if: $CI_PIPELINE_SOURCE == "push"
+      changes: *CHANGES_PUSH
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS !~ /.*test::.*/
       changes:
         - .gitlab-ci.yml
         - .gitlab-ci/*
-    - if: $CI_PIPELINE_SOURCE == "push"
-      changes:
-        paths:
-          - scilab/modules/$TEST/**/*
-        compare_to: ${CI_DEFAULT_BRANCH}
     - if: $CI_PIPELINE_SOURCE == "push"
       changes:
         paths:
@@ -286,13 +279,9 @@ linux_intermediate:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all$/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all_linux/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS !~ /.*test::.*/
-      changes:
-        - scilab/modules/$TEST/**/*
+      changes: *CHANGES
     - if: $CI_PIPELINE_SOURCE == "push"
-      changes:
-        paths:
-          - scilab/modules/$TEST/**/*
-        compare_to: ${CI_DEFAULT_BRANCH}
+      changes: *CHANGES_PUSH
   parallel:
     matrix: *INTERMEDIATE_TEST_ANCHOR
 
@@ -305,13 +294,9 @@ linux_advanced:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all$/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all_linux/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS !~ /.*test::.*/
-      changes:
-        - scilab/modules/$TEST/**/*
+      changes: *CHANGES
     - if: $CI_PIPELINE_SOURCE == "push"
-      changes:
-        paths:
-          - scilab/modules/$TEST/**/*
-        compare_to: ${CI_DEFAULT_BRANCH}
+      changes: *CHANGES_PUSH
   parallel:
     matrix: *ADVANCED_TEST_ANCHOR
 
@@ -329,13 +314,9 @@ windows_atoms:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all$/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all_windows/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS !~ /.*test::.*/
-      changes:
-        - scilab/modules/$TEST/**/*
+      changes: *CHANGES
     - if: $CI_PIPELINE_SOURCE == "push"
-      changes:
-        paths:
-          - scilab/modules/$TEST/**/*
-        compare_to: ${CI_DEFAULT_BRANCH}
+      changes: *CHANGES_PUSH
   parallel:
     matrix:
       - TEST: [atoms]
@@ -350,13 +331,9 @@ linux_atoms:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all$/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /test::all_linux/
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS !~ /.*test::.*/
-      changes:
-        - scilab/modules/$TEST/**/*
+      changes: *CHANGES
     - if: $CI_PIPELINE_SOURCE == "push"
-      changes:
-        paths:
-          - scilab/modules/$TEST/**/*
-        compare_to: ${CI_DEFAULT_BRANCH}
+      changes: *CHANGES_PUSH
   parallel:
     matrix:
       - TEST: [atoms]
