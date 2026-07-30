@@ -36,6 +36,12 @@ $(document).ready(async () => {
             return;
          }
     });
+    document.addEventListener('wheel', function (event) {
+        if (event.ctrlKey) {
+            event.preventDefault();
+        }
+    }, { passive: false });
+
 
     $("body").on( "contextmenu", function() {
         Scilab({request: "contextmenu"});
