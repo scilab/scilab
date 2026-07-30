@@ -126,7 +126,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>linpack_f.lib;cacsd_f.lib;eispack_f.lib;core.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>linpack_f.lib;cacsd_f.lib;core.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -156,7 +156,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>linpack_f.lib;cacsd_f.lib;eispack_f.lib;core.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>linpack_f.lib;cacsd_f.lib;core.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -186,7 +186,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>linpack_f.lib;cacsd_f.lib;eispack_f.lib;core.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>linpack_f.lib;cacsd_f.lib;core.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -216,7 +216,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>linpack_f.lib;cacsd_f.lib;eispack_f.lib;core.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>linpack_f.lib;cacsd_f.lib;core.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -251,7 +251,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>linpack_f.lib;cacsd_f.lib;eispack_f.lib;core.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>linpack_f.lib;cacsd_f.lib;core.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -286,7 +286,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>linpack_f.lib;cacsd_f.lib;eispack_f.lib;core.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>linpack_f.lib;cacsd_f.lib;core.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

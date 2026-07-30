@@ -145,7 +145,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>slatec_f.lib;eispack_f.lib;polynomials_f.lib;cacsd_f.lib;core.lib;elementary_functions.lib;linpack_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
+      <AdditionalDependencies>eispack_f.lib;polynomials_f.lib;cacsd_f.lib;core.lib;elementary_functions.lib;linpack_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>elementary_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -194,7 +194,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>slatec_f.lib;eispack_f.lib;polynomials_f.lib;cacsd_f.lib;core.lib;elementary_functions.lib;linpack_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
+      <AdditionalDependencies>eispack_f.lib;polynomials_f.lib;cacsd_f.lib;core.lib;elementary_functions.lib;linpack_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>elementary_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -243,7 +243,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>slatec_f.lib;eispack_f.lib;polynomials_f.lib;cacsd_f.lib;core.lib;elementary_functions.lib;linpack_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
+      <AdditionalDependencies>eispack_f.lib;polynomials_f.lib;cacsd_f.lib;core.lib;elementary_functions.lib;linpack_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>elementary_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -290,7 +290,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>slatec_f.lib;eispack_f.lib;polynomials_f.lib;cacsd_f.lib;core.lib;elementary_functions.lib;linpack_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
+      <AdditionalDependencies>eispack_f.lib;polynomials_f.lib;cacsd_f.lib;core.lib;elementary_functions.lib;linpack_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>elementary_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -342,7 +342,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>slatec_f.lib;eispack_f.lib;polynomials_f.lib;cacsd_f.lib;core.lib;elementary_functions.lib;linpack_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
+      <AdditionalDependencies>eispack_f.lib;polynomials_f.lib;cacsd_f.lib;core.lib;elementary_functions.lib;linpack_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>elementary_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -394,7 +394,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>slatec_f.lib;eispack_f.lib;polynomials_f.lib;cacsd_f.lib;core.lib;elementary_functions.lib;linpack_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
+      <AdditionalDependencies>eispack_f.lib;polynomials_f.lib;cacsd_f.lib;core.lib;elementary_functions.lib;linpack_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>elementary_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>

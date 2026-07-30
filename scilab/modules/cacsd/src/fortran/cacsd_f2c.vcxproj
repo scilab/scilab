@@ -151,7 +151,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -206,7 +206,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -261,7 +261,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -314,7 +314,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -372,7 +372,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -430,7 +430,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
