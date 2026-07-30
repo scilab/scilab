@@ -583,6 +583,7 @@ Hello world
   thickness = 1
   colored = "off"
   arrow_size = 1
+  arrow_style = "filled"
   clip_state = "clipgrf"
   clip_box = []
   user_data = []
@@ -600,6 +601,7 @@ Hello world
   thickness = 1
   colored = "off"
   arrow_size = 1
+  arrow_style = "filled"
   clip_state = "clipgrf"
   clip_box = []
   user_data = []
