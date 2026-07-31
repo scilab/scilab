@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -15,8 +16,11 @@
 
 package org.scilab.modules.graphic_objects.vectfield;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_COLOR_ALPHA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_BACKGROUND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_BACKGROUND_ALPHA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_FOREGROUND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_FOREGROUND_ALPHA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_MODE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_SIZE_UNIT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_SIZE__;
@@ -27,7 +31,6 @@ import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.Mark;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * Segs class
@@ -35,7 +38,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStat
  */
 public class Segs extends VectField {
     /** Sets properties names */
-    private enum SegsProperty { COLORS };
+    private enum SegsProperty { COLORS, COLORSALPHA };
 
     /** Constructor */
     public Segs() {
@@ -52,6 +55,8 @@ public class Segs extends VectField {
         switch (propertyName) {
             case __GO_SEGS_COLORS__ :
                 return SegsProperty.COLORS;
+            case __GO_LINE_COLOR_ALPHA__ :
+                return SegsProperty.COLORSALPHA;
             case __GO_MARK_MODE__ :
                 return Mark.MarkPropertyType.MODE;
             case __GO_MARK_STYLE__ :
@@ -64,6 +69,10 @@ public class Segs extends VectField {
                 return Mark.MarkPropertyType.FOREGROUND;
             case __GO_MARK_BACKGROUND__ :
                 return Mark.MarkPropertyType.BACKGROUND;
+            case __GO_MARK_FOREGROUND_ALPHA__ :
+                return Mark.MarkPropertyType.FOREGROUNDALPHA;
+            case __GO_MARK_BACKGROUND_ALPHA__ :
+                return Mark.MarkPropertyType.BACKGROUNDALPHA;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -77,6 +86,8 @@ public class Segs extends VectField {
     public Object getProperty(Object property) {
         if (property == SegsProperty.COLORS) {
             return getColors();
+        } else if (property == SegsProperty.COLORSALPHA) {
+            return getColorAlphas();
         } else if (property == Mark.MarkPropertyType.MODE) {
             return getMarkMode();
         } else if (property == Mark.MarkPropertyType.STYLE) {
@@ -89,6 +100,10 @@ public class Segs extends VectField {
             return getMarkForeground();
         } else if (property == Mark.MarkPropertyType.BACKGROUND) {
             return getMarkBackground();
+        } else if (property == Mark.MarkPropertyType.FOREGROUNDALPHA) {
+            return getMarkForegroundAlpha();
+        } else if (property == Mark.MarkPropertyType.BACKGROUNDALPHA) {
+            return getMarkBackgroundAlpha();
         } else {
             return super.getProperty(property);
         }
@@ -103,6 +118,8 @@ public class Segs extends VectField {
     public UpdateStatus setProperty(Object property, Object value) {
         if (property == SegsProperty.COLORS) {
             setColors((Integer[]) value);
+        } else if (property == SegsProperty.COLORSALPHA) {
+            setColorAlphas((Double[]) value);
         } else if (property == Mark.MarkPropertyType.MODE) {
             setMarkMode((Boolean) value);
         } else if (property == Mark.MarkPropertyType.STYLE) {
@@ -115,6 +132,10 @@ public class Segs extends VectField {
             setMarkForeground((Integer) value);
         } else if (property == Mark.MarkPropertyType.BACKGROUND) {
             setMarkBackground((Integer) value);
+        } else if (property == Mark.MarkPropertyType.FOREGROUNDALPHA) {
+            setMarkForegroundAlpha((Double) value);
+        } else if (property == Mark.MarkPropertyType.BACKGROUNDALPHA) {
+            setMarkBackgroundAlpha((Double) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -178,6 +199,37 @@ public class Segs extends VectField {
         } else {
             for (int i = 0; i < arrows.size(); i++) {
                 arrows.get(i).setLineColor(colors[i]);
+            }
+        }
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return the per-segment line color transparencies
+     */
+    public Double[] getColorAlphas() {
+        Double[] retSegsColorAlphas = new Double[arrows.size()];
+
+        for (int i = 0; i < arrows.size(); i++) {
+            retSegsColorAlphas[i] = arrows.get(i).getLineColorAlpha();
+        }
+
+        return retSegsColorAlphas;
+    }
+
+    /**
+     * Sets the segment line color transparencies.
+     * If the input array contains only one element, each arrow's alpha is set to the latter.
+     * @param alphas the per-segment alphas to set (number of elements either 1 or equal to the number of arrows)
+     */
+    public UpdateStatus setColorAlphas(Double[] alphas) {
+        if (alphas.length == 1) {
+            for (int i = 0; i < arrows.size(); i++) {
+                arrows.get(i).setLineColorAlpha(alphas[0]);
+            }
+        } else {
+            for (int i = 0; i < arrows.size(); i++) {
+                arrows.get(i).setLineColorAlpha(alphas[i]);
             }
         }
         return UpdateStatus.Success;
@@ -305,6 +357,44 @@ public class Segs extends VectField {
     public UpdateStatus setMarkBackground(Integer background) {
         for (int i = 0; i < arrows.size(); i++) {
             arrows.get(i).setMarkBackground(background);
+        }
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * All segments are supposed to have the same mark background (face) transparency.
+     * @return the mark background (face) transparency
+     */
+    public Double getMarkBackgroundAlpha() {
+        return arrows.get(0).getMarkBackgroundAlpha();
+    }
+
+    /**
+     * All segments are supposed to have the same mark background (face) transparency.
+     * @param backgroundAlpha the mark background (face) transparency to set
+     */
+    public UpdateStatus setMarkBackgroundAlpha(Double backgroundAlpha) {
+        for (int i = 0; i < arrows.size(); i++) {
+            arrows.get(i).setMarkBackgroundAlpha(backgroundAlpha);
+        }
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * All segments are supposed to have the same mark foreground (edge) transparency.
+     * @return the mark foreground (edge) transparency
+     */
+    public Double getMarkForegroundAlpha() {
+        return arrows.get(0).getMarkForegroundAlpha();
+    }
+
+    /**
+     * All segments are supposed to have the same mark foreground (edge) transparency.
+     * @param foregroundAlpha the mark foreground (edge) transparency to set
+     */
+    public UpdateStatus setMarkForegroundAlpha(Double foregroundAlpha) {
+        for (int i = 0; i < arrows.size(); i++) {
+            arrows.get(i).setMarkForegroundAlpha(foregroundAlpha);
         }
         return UpdateStatus.Success;
     }

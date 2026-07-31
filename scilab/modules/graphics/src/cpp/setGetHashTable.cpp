@@ -259,7 +259,16 @@ static const GetPropertyEntry getEntries[] =
     {"ticks_format", get_ticks_format_property},
     {"ticks_st", get_ticks_st_property},
     {"colors", get_colors_property},
-    {"debug", GetUicontrolDebug}
+    {"debug", GetUicontrolDebug},
+    {"face_alpha", get_face_alpha_property},
+    {"background_alpha", get_background_alpha_property},
+    {"foreground_alpha", get_foreground_alpha_property},
+    {"mark_background_alpha", get_mark_background_alpha_property},
+    {"mark_foreground_alpha", get_mark_foreground_alpha_property},
+    {"segs_color_alpha", get_segs_color_alpha_property},
+    {"color_alpha", get_color_alpha_property},
+    {"font_color_alpha", get_font_color_alpha_property},
+    {"font_foreground_alpha", get_font_foreground_alpha_property}
 };
 
 static const size_t getEntriesCount = sizeof(getEntries) / sizeof(getEntries[0]);
@@ -491,7 +500,16 @@ static const SetPropertyEntry setEntries[] =
     {"ticks_format", set_ticks_format_property},
     {"ticks_st", set_ticks_st_property},
     {"colors", set_colors_property},
-    {"debug", SetUicontrolDebug}
+    {"debug", SetUicontrolDebug},
+    {"face_alpha", set_face_alpha_property},
+    {"background_alpha", set_background_alpha_property},
+    {"foreground_alpha", set_foreground_alpha_property},
+    {"mark_background_alpha", set_mark_background_alpha_property},
+    {"mark_foreground_alpha", set_mark_foreground_alpha_property},
+    {"segs_color_alpha", set_segs_color_alpha_property},
+    {"color_alpha", set_color_alpha_property},
+    {"font_color_alpha", set_font_color_alpha_property},
+    {"font_foreground_alpha", set_font_foreground_alpha_property}
 };
 
 static const size_t setEntriesCount = sizeof(setEntries) / sizeof(setEntries[0]);

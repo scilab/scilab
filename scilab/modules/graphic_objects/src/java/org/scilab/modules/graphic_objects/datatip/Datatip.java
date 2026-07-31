@@ -32,8 +32,6 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
-import org.scilab.forge.scirenderer.ruler.graduations.UserDefinedFormat;
-
 import org.scilab.modules.action_binding.InterpreterManagement;
 import static org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
 import org.scilab.modules.graphic_objects.PolylineData;

@@ -117,6 +117,8 @@ public class MarkSpriteManager {
                 || property == GraphicObjectProperties.__GO_MARK_SIZE__
                 || property == GraphicObjectProperties.__GO_MARK_FOREGROUND__
                 || property == GraphicObjectProperties.__GO_MARK_BACKGROUND__
+                || property == GraphicObjectProperties.__GO_MARK_BACKGROUND_ALPHA__
+                || property == GraphicObjectProperties.__GO_MARK_FOREGROUND_ALPHA__
                 || property == GraphicObjectProperties.__GO_LINE_THICKNESS__
                 || property == GraphicObjectProperties.__GO_SELECTED__
                 || property == GraphicObjectProperties.__GO_COLOR_SET__

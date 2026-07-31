@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -16,6 +17,7 @@
 package org.scilab.modules.graphic_objects.textObject;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_COLOR_ALPHA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_FRACTIONAL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_STYLE__;
@@ -28,7 +30,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStat
  */
 public class Font {
     /** Font properties names */
-    public enum FontProperty { STYLE, SIZE, COLOR, FRACTIONAL, UNKNOWNPROPERTY };
+    public enum FontProperty { STYLE, SIZE, COLOR, COLORALPHA, FRACTIONAL, UNKNOWNPROPERTY };
 
     /** Font style */
     private int style;
@@ -39,6 +41,9 @@ public class Font {
     /** Font color */
     private int color;
 
+    /** Font color transparency (0.0 = fully transparent, 1.0 = fully opaque) */
+    private double colorAlpha;
+
     /** Specifies whether fractional font sizes are used or not */
     private boolean fractional;
 
@@ -47,6 +52,7 @@ public class Font {
         this.style = 6;
         this.size = 1.0;
         this.color = -1;
+        this.colorAlpha = 1.0;
         this.fractional = true;
     }
 
@@ -58,6 +64,7 @@ public class Font {
         style = font.style;
         size = font.size;
         color = font.color;
+        colorAlpha = font.colorAlpha;
         fractional = font.fractional;
     }
 
@@ -73,6 +80,8 @@ public class Font {
             return FontProperty.SIZE;
         } else if (propertyName.equals(__GO_FONT_COLOR__)) {
             return FontProperty.COLOR;
+        } else if (propertyName.equals(__GO_FONT_COLOR_ALPHA__)) {
+            return FontProperty.COLORALPHA;
         } else if (propertyName.equals(__GO_FONT_FRACTIONAL__)) {
             return FontProperty.FRACTIONAL;
         } else {
@@ -92,6 +101,8 @@ public class Font {
             return getSize();
         } else if (property == FontProperty.COLOR) {
             return getColor();
+        } else if (property == FontProperty.COLORALPHA) {
+            return getColorAlpha();
         } else if (property == FontProperty.FRACTIONAL) {
             return getFractional();
         } else {
@@ -112,6 +123,8 @@ public class Font {
             setSize((Double) value);
         } else if (property == FontProperty.COLOR) {
             setColor((Integer) value);
+        } else if (property == FontProperty.COLORALPHA) {
+            setColorAlpha((Double) value);
         } else if (property == FontProperty.FRACTIONAL) {
             setFractional((Boolean) value);
         }
@@ -131,6 +144,21 @@ public class Font {
      */
     public UpdateStatus setColor(Integer color) {
         this.color = color;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return the color transparency
+     */
+    public Double getColorAlpha() {
+        return colorAlpha;
+    }
+
+    /**
+     * @param colorAlpha the color transparency to set
+     */
+    public UpdateStatus setColorAlpha(Double colorAlpha) {
+        this.colorAlpha = colorAlpha;
         return UpdateStatus.Success;
     }
 

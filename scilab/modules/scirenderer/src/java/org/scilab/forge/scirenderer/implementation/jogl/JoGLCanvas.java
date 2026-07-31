@@ -2,6 +2,7 @@
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2011 - DIGITEO - Pierre Lando
  * Copyright (C) 2019 - UTC - Stéphane MOTTELET
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -364,6 +365,20 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
                     gl.glLoadIdentity();
                     gl.glClear(GL2.GL_DEPTH_BUFFER_BIT);
                     mainDrawer.draw(drawingTools);
+                }
+
+                if (!isOffscreen) {
+                    /* Transparent surfaces blend with GL_ONE_MINUS_SRC_ALPHA, leaving alpha < 1
+                     * in the framebuffer. On screen, GLJPanel reads the framebuffer back and
+                     * composites it (using that alpha) over the previously painted frame, so the
+                     * old content ghosts through and the figure appears not to refresh until a
+                     * resize recreates the backing. Reset the alpha channel to 1 (RGB untouched)
+                     * so GLJPanel composites opaquely and each frame fully replaces the last.
+                     * Offscreen rendering is left alone to preserve transparent PNG export. */
+                    gl.glColorMask(false, false, false, true);
+                    gl.glClearColor(0f, 0f, 0f, 1f);
+                    gl.glClear(GL2.GL_COLOR_BUFFER_BIT);
+                    gl.glColorMask(true, true, true, true);
                 }
             }
 

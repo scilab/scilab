@@ -127,6 +127,16 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>face_alpha:</term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the fec
+                        filled triangles. A value of <literal>1</literal> (default) means fully
+                        opaque; <literal>0</literal> means fully transparent.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>line_mode:</term>
                 <listitem>
                     <para>
@@ -141,6 +151,17 @@
                     <para>This color index specifies the color of the mesh.
                         If <literal>line_mode</literal> property is <literal>"on"</literal>,
                         the wireframe is drawn using this color.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>foreground_alpha:</term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the fec mesh
+                        (used when <literal>line_mode="on"</literal>). A value of
+                        <literal>1</literal> (default) means fully opaque mesh; <literal>0</literal>
+                        means fully transparent.
                     </para>
                 </listitem>
             </varlistentry>
@@ -229,5 +250,18 @@
                 <link linkend="graphics_entities">graphics_entities</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.face_alpha</literal> and <literal>.foreground_alpha</literal> properties introduced.
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

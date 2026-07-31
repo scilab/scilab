@@ -142,15 +142,8 @@ function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,ax
     end
     e.fill_mode = "on";
     e.data(:,3) = -0.1;  // unmask the x-axis
-    c = e.foreground;
 
-    f = gcf();
-    a = gca();
-    if ~isempty(a.color_map)
-        cmap = a.color_map;
-    else
-        cmap = f.color_map;
-    end
-    c = cmap(max(1,c),:);
-    e.background = addcolor(1-(1-c)/20); // default filling color = edges one but fainter
+    // default filling color = edges one but fainter
+    e.background = e.foreground;
+    e.background_alpha = 0.05;
 endfunction

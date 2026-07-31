@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011-2012 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -73,6 +74,7 @@ public class LegendDrawer {
     private static final Set<Integer> SPRITE_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                 GraphicObjectProperties.__GO_FONT_SIZE__,
                 GraphicObjectProperties.__GO_FONT_COLOR__,
+                GraphicObjectProperties.__GO_FONT_COLOR_ALPHA__,
                 GraphicObjectProperties.__GO_FONT_STYLE__,
                 GraphicObjectProperties.__GO_FONT_FRACTIONAL__,
                 GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__,
@@ -390,7 +392,7 @@ public class LegendDrawer {
 
         if (legend.getFillMode()) {
             legendRectangle.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
-            appearance.setFillColor(ColorFactory.createColor(colorMap, legend.getBackground()));
+            appearance.setFillColor(ColorFactory.createColor(colorMap, legend.getBackground(), legend.getBackgroundAlpha().floatValue()));
         } else {
             legendRectangle.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
         }
@@ -400,7 +402,7 @@ public class LegendDrawer {
             legendRectangle.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
             legendRectangle.setWireIndices(rectangleOutlineIndices);
 
-            appearance.setLineColor(ColorFactory.createColor(colorMap, legend.getLineColor()));
+            appearance.setLineColor(ColorFactory.createColor(colorMap, legend.getLineColor(), legend.getLineColorAlpha().floatValue()));
             appearance.setLineWidth(legend.getLineThickness().floatValue());
             appearance.setLinePattern(legend.getLineStyleAsEnum().asPattern());
         } else {
@@ -537,7 +539,7 @@ public class LegendDrawer {
             bar.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
 
             Appearance barAppearance = new Appearance();
-            barAppearance.setFillColor(ColorFactory.createColor(colorMap, polyline.getBackground()));
+            barAppearance.setFillColor(ColorFactory.createColor(colorMap, polyline.getBackground(), polyline.getBackgroundAlpha().floatValue()));
             bar.setVertices(barVertices);
             bar.setIndices(rectangleIndices);
 
@@ -546,7 +548,7 @@ public class LegendDrawer {
                 bar.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                 bar.setWireIndices(rectangleOutlineIndices);
 
-                barAppearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
+                barAppearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor(), polyline.getLineColorAlpha().floatValue()));
                 barAppearance.setLineWidth((float) lineThickness);
                 barAppearance.setLinePattern(linePattern);
             } else {
@@ -567,7 +569,7 @@ public class LegendDrawer {
                 line.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_STRIP);
                 line.setVertices(lineVertices);
                 Appearance lineAppearance = new Appearance();
-                lineAppearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
+                lineAppearance.setLineColor(ColorFactory.createColor(colorMap, lineColor, polyline.getLineColorAlpha().floatValue()));
                 lineAppearance.setLineWidth((float) lineThickness);
                 lineAppearance.setLinePattern(linePattern);
 
@@ -583,10 +585,10 @@ public class LegendDrawer {
                  * To do: adjust arrow size to correct this.
                  */
                 visitor.getArrowDrawer().drawArrows(polyline.getParentAxes(), barVertices, rectangleOutlineIndices,
-                                                    polyline.getArrowSizeFactor(), lineThickness, lineColor, false);
+                                                    polyline.getArrowSizeFactor(), lineThickness, lineColor, polyline.getLineColorAlpha(), false);
             } else {
                 visitor.getArrowDrawer().drawArrows(polyline.getParentAxes(), lineVertices, lineIndices,
-                                                    polyline.getArrowSizeFactor(), lineThickness, lineColor, false);
+                                                    polyline.getArrowSizeFactor(), lineThickness, lineColor, polyline.getLineColorAlpha(), false);
             }
         }
 

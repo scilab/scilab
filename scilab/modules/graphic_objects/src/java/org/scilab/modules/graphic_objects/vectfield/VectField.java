@@ -25,6 +25,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION_Y__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION_Z__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_COLOR_ALPHA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_MODE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_THICKNESS__;
@@ -35,7 +36,6 @@ import java.util.ArrayList;
 import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.contouredObject.Line.LineType;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicClippableObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * VectField class
@@ -89,6 +89,8 @@ public abstract class VectField extends GraphicClippableObject {
                 return Line.LinePropertyType.LINESTYLE;
             case __GO_LINE_THICKNESS__ :
                 return Line.LinePropertyType.THICKNESS;
+            case __GO_LINE_COLOR_ALPHA__:
+                return Line.LinePropertyType.COLORALPHA;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -128,6 +130,8 @@ public abstract class VectField extends GraphicClippableObject {
             return getLineStyle();
         } else if (property == Line.LinePropertyType.THICKNESS) {
             return getLineThickness();
+        } else if (property == Line.LinePropertyType.COLORALPHA) {
+            return getLineColorAlpha();
         } else {
             return super.getProperty(property);
         }
@@ -168,6 +172,8 @@ public abstract class VectField extends GraphicClippableObject {
             setLineStyle((Integer) value);
         } else if (property == Line.LinePropertyType.THICKNESS) {
             setLineThickness((Double) value);
+        } else if (property == Line.LinePropertyType.COLORALPHA) {
+            setLineColorAlpha((Double) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -606,6 +612,26 @@ public abstract class VectField extends GraphicClippableObject {
     public UpdateStatus setLineColor(Integer lineColor) {
         for (int i = 0; i < arrows.size(); i++) {
             arrows.get(i).setLineColor(lineColor);
+        }
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return the line transparency
+     */
+    public Double getLineColorAlpha() {
+        Double retLineColorAlpha;
+
+        retLineColorAlpha = arrows.get(0).getLineColorAlpha();
+        return retLineColorAlpha;
+    }
+
+    /**
+     * @param lineAlpha the line transparency to set
+     */
+    public UpdateStatus setLineColorAlpha(Double lineColorAlpha) {
+        for (int i = 0; i < arrows.size(); i++) {
+            arrows.get(i).setLineColorAlpha(lineColorAlpha);
         }
         return UpdateStatus.Success;
     }

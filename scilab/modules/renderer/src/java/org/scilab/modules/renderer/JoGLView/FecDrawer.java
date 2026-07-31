@@ -9,6 +9,7 @@ import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.fec.Fec;
+import org.scilab.forge.scirenderer.shapes.appearance.Color;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
@@ -32,7 +33,8 @@ class FecDrawer {
                 GraphicObjectProperties.__GO_Z_BOUNDS__,
                 GraphicObjectProperties.__GO_DATA_MODEL__,
                 GraphicObjectProperties.__GO_COLOR_RANGE__,
-                GraphicObjectProperties.__GO_OUTSIDE_COLOR__
+                GraphicObjectProperties.__GO_OUTSIDE_COLOR__,
+                GraphicObjectProperties.__GO_FACE_ALPHA__
             ));
 
     /** The parent drawer visitor. */
@@ -77,9 +79,17 @@ class FecDrawer {
                 if (fec.getLineMode()) {
                     geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                     geometry.setWireIndices(dataManager.getWireIndexBuffer(fec.getIdentifier()));
-                    appearance.setLineColor(ColorFactory.createColor(colorMap, fec.getLineColor()));
+                    appearance.setLineColor(ColorFactory.createColor(colorMap, fec.getLineColor(), fec.getLineColorAlpha().floatValue()));
                 }
                 appearance.setTexture(getTexture(fec));
+
+                /* face_alpha < 1: set a translucent fill color so isTransparent triggers in the
+                 * renderer (glDepthMask(false) + blending). Per-pixel alpha actually comes from
+                 * the texture, where face_alpha is baked in getData. */
+                float faceAlpha = fec.getFaceAlpha().floatValue();
+                if (faceAlpha < 1.0f) {
+                    appearance.setFillColor(new Color(1.0f, 1.0f, 1.0f, faceAlpha));
+                }
 
                 drawingTools.draw(geometry, appearance);
             } catch (SciRendererException e) {
@@ -195,6 +205,7 @@ class FecDrawer {
         public ByteBuffer getData() {
             ColorMap colorMap = drawerVisitor.getColorMap();
             Integer[] outsideColor = fec.getOutsideColor();
+            float alpha = fec.getFaceAlpha().floatValue();
 
             ByteBuffer buffer = ByteBuffer.allocate(4 * getTextureLength());
 
@@ -211,25 +222,25 @@ class FecDrawer {
 
 
             if (outsideColor[0] == 0) {
-                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, min)));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, min, alpha)));
             } else if (outsideColor[0] > 0) {
-                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, outsideColor[0])));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, outsideColor[0], alpha)));
             } else {
                 // TODO: transparency.
-                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, -2)));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, -2, alpha)));
             }
 
             for (int i = min; i <= max; i++) {
-                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, i)));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, i, alpha)));
             }
 
             if (outsideColor[1] == 0) {
-                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, max)));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, max, alpha)));
             } else if (outsideColor[1] > 0) {
-                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, outsideColor[1])));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, outsideColor[1], alpha)));
             } else {
                 // TODO: transparency.
-                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, -2)));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, -2, alpha)));
             }
 
             buffer.rewind();

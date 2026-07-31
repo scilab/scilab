@@ -135,6 +135,10 @@ int set_log_flags_property(void* _pvCtx, int iObj, void* _pvData, int valueType,
 int set_arrow_size_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_arrow_style_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_segs_color_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_segs_color_alpha_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_color_alpha_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_font_color_alpha_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_font_foreground_alpha_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_colored_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_data_mapping_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_rotation_angles_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
@@ -212,5 +216,10 @@ int set_auto_margins_property(void* _pvCtx, int iObj, void* _pvData, int valueTy
 int set_ticks_format_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_ticks_st_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_colors_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_face_alpha_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_background_alpha_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_foreground_alpha_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_mark_background_alpha_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_mark_foreground_alpha_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */

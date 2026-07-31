@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2012 - DIGITEO - Pierre Lando
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -19,7 +20,10 @@ import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.modules.graphic_objects.MainDataLoader;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
+import org.scilab.modules.graphic_objects.imageplot.Imageplot;
 import org.scilab.modules.renderer.JoGLView.util.BufferAllocation;
 import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 
@@ -149,14 +153,33 @@ public class ScilabTextureManager {
             if (buffer == null) {
                 buffer = MainDataLoader.getTextureData(identifier);
                 updateData();
+                applyFaceAlpha();
             }
 
             if (iType == 3) {
                 // Indexed colors, so we need to recalculate the color (if needed)
                 MainDataLoader.fillTextureData(identifier, buffer, buffer.capacity());
+                applyFaceAlpha();
             }
 
             return buffer;
+        }
+
+        /**
+         * Scale each pixel's alpha channel by the Imageplot face_alpha value.
+         * Called after loading or refilling the texture buffer.
+         */
+        private void applyFaceAlpha() {
+            GraphicObject obj = GraphicController.getController().getObjectFromId(identifier);
+            if (obj instanceof Imageplot) {
+                float alpha = ((Imageplot) obj).getFaceAlpha().floatValue();
+                if (alpha < 1.0f) {
+                    // RGBA_BYTE: 4 bytes per pixel, alpha is at index 3
+                    for (int i = 3; i < buffer.limit(); i += 4) {
+                        buffer.put(i, (byte) ((buffer.get(i) & 0xFF) * alpha));
+                    }
+                }
+            }
         }
 
         @Override
@@ -182,7 +205,10 @@ public class ScilabTextureManager {
         @Override
         public void updateObject(Integer id, int property) {
             if (isValid() && identifier.equals(id)) {
-                // TODO check Property.
+                if (property == GraphicObjectProperties.__GO_FACE_ALPHA__) {
+                    /* Force texture reload so applyFaceAlpha() runs with the new value. */
+                    buffer = null;
+                }
                 updateData();
             }
         }

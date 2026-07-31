@@ -15,11 +15,11 @@
 
 package org.scilab.modules.graphic_objects.imageplot;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FACE_ALPHA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MATPLOT_SCALE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MATPLOT_TRANSLATE__;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * ImagePlot class
@@ -29,11 +29,13 @@ public abstract class Imageplot extends ClippableContouredObject {
     // TBD
     // Data -> Data Model
     /** Grayplot properties names */
-    private enum ImageplotProperty { SCALE, TRANSLATE };
-    // Methods: to be done
+    private enum ImageplotProperty { SCALE, TRANSLATE, FACE_ALPHA };
 
     private Double[] scale = {1.0, 1.0};
     private Double[] translate = {0.5, 0.5};
+
+    /** Face transparency (0.0 = fully transparent, 1.0 = fully opaque) */
+    private double faceAlpha = 1.0;
 
     /** Constructor */
     public Imageplot() {
@@ -51,6 +53,8 @@ public abstract class Imageplot extends ClippableContouredObject {
                 return ImageplotProperty.SCALE;
             case __GO_MATPLOT_TRANSLATE__ :
                 return ImageplotProperty.TRANSLATE;
+            case __GO_FACE_ALPHA__ :
+                return ImageplotProperty.FACE_ALPHA;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -66,6 +70,8 @@ public abstract class Imageplot extends ClippableContouredObject {
             return getTranslate();
         } else if (property == ImageplotProperty.SCALE) {
             return getScale();
+        } else if (property == ImageplotProperty.FACE_ALPHA) {
+            return getFaceAlpha();
         } else {
             return super.getProperty(property);
         }
@@ -82,10 +88,21 @@ public abstract class Imageplot extends ClippableContouredObject {
             setTranslate((Double[]) value);
         } else if (property == ImageplotProperty.SCALE) {
             setScale((Double[]) value);
+        } else if (property == ImageplotProperty.FACE_ALPHA) {
+            return setFaceAlpha((Double) value);
         } else {
             return super.setProperty(property, value);
         }
 
+        return UpdateStatus.Success;
+    }
+
+    public Double getFaceAlpha() {
+        return faceAlpha;
+    }
+
+    public UpdateStatus setFaceAlpha(Double faceAlpha) {
+        this.faceAlpha = faceAlpha;
         return UpdateStatus.Success;
     }
 

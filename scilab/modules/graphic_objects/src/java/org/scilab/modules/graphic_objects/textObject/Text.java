@@ -17,7 +17,6 @@ package org.scilab.modules.graphic_objects.textObject;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 

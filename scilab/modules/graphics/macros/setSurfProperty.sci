@@ -261,6 +261,24 @@ function fail = setSurfProperty(PropertyName, PropertyValue, Surface, X, Y, Z, C
             Surface(markmodeON).mark_foreground = co;
         end
 
+        /////////////////////////
+    case "markforegroundalpha"        // <=> MarkForegroundAlpha
+        /////////////////////////
+        if (type(PropertyValue)==1 & size(PropertyValue,"*")==1)
+
+            if PropertyValue < 0 | PropertyValue > 1 then
+                warning(msprintf(gettext("%s: Wrong value for input argument #%d: A double value in [0 1] expected.\n"),"setPlotProperty",2));
+                ResetFigureDDM(current_figure, cur_draw_mode);
+                return;
+            end
+
+            Surface.mark_foreground_alpha = PropertyValue;
+
+        else
+            warning(msprintf(gettext("%s: Wrong type for input argument #%d: A double value expected.\n"),"setPlotProperty",2));
+            ResetFigureDDM(current_figure, cur_draw_mode);
+            return;
+        end
 
         /////////////////////////
     case "markbackground"        // <=> MarkerFaceColor
@@ -276,6 +294,25 @@ function fail = setSurfProperty(PropertyName, PropertyValue, Surface, X, Y, Z, C
             end
             co = getColorIndFromProp(PropertyValue, current_figure, cur_draw_mode);
             Surface(markmodeON).mark_background = co;
+        end
+
+        /////////////////////////
+    case "markbackgroundalpha"        // <=> MarkBackgroundAlpha
+        /////////////////////////
+        if (type(PropertyValue)==1 & size(PropertyValue,"*")==1)
+
+            if PropertyValue < 0 | PropertyValue > 1 then
+                warning(msprintf(gettext("%s: Wrong value for input argument #%d: A double value in [0 1] expected.\n"),"setPlotProperty",2));
+                ResetFigureDDM(current_figure, cur_draw_mode);
+                return;
+            end
+
+            Surface.mark_background_alpha = PropertyValue;
+
+        else
+            warning(msprintf(gettext("%s: Wrong type for input argument #%d: A double value expected.\n"),"setPlotProperty",2));
+            ResetFigureDDM(current_figure, cur_draw_mode);
+            return;
         end
 
         /////////////////////////
@@ -295,6 +332,43 @@ function fail = setSurfProperty(PropertyName, PropertyValue, Surface, X, Y, Z, C
             return;
         end
 
+        /////////////////////////
+    case "foregroundalpha"        // <=> EdgeAlpha
+        /////////////////////////
+        if (type(PropertyValue)==1 & size(PropertyValue,"*")==1)
+
+            if PropertyValue < 0 | PropertyValue > 1 then
+                warning(msprintf(gettext("%s: Wrong value for input argument #%d: A double value in [0 1] expected.\n"),"setPlotProperty",2));
+                ResetFigureDDM(current_figure, cur_draw_mode);
+                return;
+            end
+
+            Surface.foreground_alpha = PropertyValue;
+
+        else
+            warning(msprintf(gettext("%s: Wrong type for input argument #%d: A double value expected.\n"),"setPlotProperty",2));
+            ResetFigureDDM(current_figure, cur_draw_mode);
+            return;
+        end
+
+        /////////////////////////
+    case "facealpha"        // <=> FaceAlpha
+        /////////////////////////
+        if (type(PropertyValue)==1 & size(PropertyValue,"*")==1)
+
+            if PropertyValue < 0 | PropertyValue > 1 then
+                warning(msprintf(gettext("%s: Wrong value for input argument #%d: A double value in [0 1] expected.\n"),"setPlotProperty",2));
+                ResetFigureDDM(current_figure, cur_draw_mode);
+                return;
+            end
+
+            Surface.face_alpha = PropertyValue;
+
+        else
+            warning(msprintf(gettext("%s: Wrong type for input argument #%d: A double value expected.\n"),"setPlotProperty",2));
+            ResetFigureDDM(current_figure, cur_draw_mode);
+            return;
+        end
         /////////////////////////
     case "visible"        // <=> Visible
         /////////////////////////

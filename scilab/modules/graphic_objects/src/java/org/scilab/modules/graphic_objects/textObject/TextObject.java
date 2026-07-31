@@ -1,9 +1,11 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Manuel JULIACHS
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2024 - UTC - Stéphane MOTTELET
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -16,9 +18,9 @@
 package org.scilab.modules.graphic_objects.textObject;
 
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_COLOR_ALPHA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_FRACTIONAL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_STYLE__;
@@ -110,6 +112,8 @@ public abstract class TextObject extends ContouredObject {
                 return Font.FontProperty.SIZE;
             case __GO_FONT_COLOR__ :
                 return Font.FontProperty.COLOR;
+            case __GO_FONT_COLOR_ALPHA__ :
+                return Font.FontProperty.COLORALPHA;
             case __GO_FONT_FRACTIONAL__ :
                 return Font.FontProperty.FRACTIONAL;
             default :
@@ -137,6 +141,8 @@ public abstract class TextObject extends ContouredObject {
             return getFontSize();
         } else if (property == Font.FontProperty.COLOR) {
             return getFontColor();
+        } else if (property == Font.FontProperty.COLORALPHA) {
+            return getFontColorAlpha();
         } else if (property == Font.FontProperty.FRACTIONAL) {
             return getFontFractional();
         } else {
@@ -165,6 +171,8 @@ public abstract class TextObject extends ContouredObject {
             setFontSize((Double) value);
         } else if (property == Font.FontProperty.COLOR) {
             setFontColor((Integer) value);
+        } else if (property == Font.FontProperty.COLORALPHA) {
+            setFontColorAlpha((Double) value);
         } else if (property == Font.FontProperty.FRACTIONAL) {
             setFontFractional((Boolean) value);
         } else {
@@ -333,6 +341,23 @@ public abstract class TextObject extends ContouredObject {
     public UpdateStatus setFontColor(Integer color) {
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
             text[i].getFont().setColor(color);
+        }
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return the font color transparency
+     */
+    public Double getFontColorAlpha() {
+        return text[0].getFont().getColorAlpha();
+    }
+
+    /**
+     * @param colorAlpha the font color transparency to set
+     */
+    public UpdateStatus setFontColorAlpha(Double colorAlpha) {
+        for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
+            text[i].getFont().setColorAlpha(colorAlpha);
         }
         return UpdateStatus.Success;
     }

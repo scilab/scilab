@@ -2,6 +2,7 @@
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -74,14 +75,14 @@ class TextSpriteDrawer extends TextObjectSpriteDrawer implements TextureDrawer {
         Appearance a = new Appearance();
 
         if (text.getBox() && text.getFillMode()) {
-            Color fillColor = ColorFactory.createColor(colorMap, text.getBackground());
+            Color fillColor = ColorFactory.createColor(colorMap, text.getBackground(), text.getBackgroundAlpha().floatValue());
             a.setFillColor(fillColor);
         } else {
             a.setFillColor(new Color(0, 0, 0, 0));
         }
 
         if (text.getBox() && text.getLineMode()) {
-            Color lineColor = ColorFactory.createColor(colorMap, text.getLineColor());
+            Color lineColor = ColorFactory.createColor(colorMap, text.getLineColor(), text.getLineColorAlpha().floatValue());
             a.setLineColor(lineColor);
             a.setLineWidth(1);
         } else {

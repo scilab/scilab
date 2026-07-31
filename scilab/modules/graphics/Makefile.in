@@ -524,6 +524,24 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_line_width_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_colors_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_colors_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_face_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-set_face_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_background_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-set_background_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_foreground_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-set_foreground_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_mark_background_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-set_mark_background_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_mark_foreground_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-set_mark_foreground_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_segs_color_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-set_segs_color_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_color_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-set_color_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_font_color_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-set_font_color_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_font_foreground_alpha_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-set_font_foreground_alpha_property.lo \
 	src/c/libscigraphics_algo_la-DefaultCommandArg.lo \
 	src/c/libscigraphics_algo_la-Axes.lo \
 	src/c/libscigraphics_algo_la-sciMatrix.lo \
@@ -785,6 +803,7 @@ am__depfiles_remade =  \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_axes_reverse_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_axes_size_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_axes_visible_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_background_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_background_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_bar_layout_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_bar_width_property.Plo \
@@ -798,6 +817,7 @@ am__depfiles_remade =  \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_clip_box_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_clip_state_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_closed_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_flag_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_map_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_mode_property.Plo \
@@ -822,6 +842,7 @@ am__depfiles_remade =  \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_dockable_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_event_handler_enable_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_event_handler_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_face_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_figure_closerequestfcn_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_figure_id_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_figure_name_property.Plo \
@@ -832,10 +853,13 @@ am__depfiles_remade =  \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_fill_mode_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_filled_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_angle_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_color_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_color_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_foreground_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_foreground_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_size_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_style_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_foreground_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_foreground_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_format_n_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_fractional_font_property.Plo \
@@ -868,7 +892,9 @@ am__depfiles_remade =  \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_links_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_log_flags_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_margins_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_background_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_background_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_foreground_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_foreground_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_mode_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_offset_property.Plo \
@@ -891,6 +917,7 @@ am__depfiles_remade =  \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rotation_style_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screen_position_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_scrollable_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_specular_color_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_sub_tics_property.Plo \
@@ -955,6 +982,7 @@ am__depfiles_remade =  \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_axes_reverse_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_axes_size_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_axes_visible_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_background_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_background_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_bar_layout_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_bar_width_property.Plo \
@@ -968,6 +996,7 @@ am__depfiles_remade =  \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_clip_box_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_clip_state_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_closed_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_flag_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_map_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_mode_property.Plo \
@@ -991,6 +1020,7 @@ am__depfiles_remade =  \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_dockable_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_event_handler_enable_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_event_handler_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_face_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_figure_closerequestfcn_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_figure_id_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_figure_name_property.Plo \
@@ -1000,10 +1030,13 @@ am__depfiles_remade =  \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_fill_mode_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_filled_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_angle_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_color_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_color_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_foreground_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_foreground_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_size_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_style_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_foreground_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_foreground_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_format_n_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_fractional_font_property.Plo \
@@ -1036,7 +1069,9 @@ am__depfiles_remade =  \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_links_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_log_flags_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_margins_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_background_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_background_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_foreground_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_foreground_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_mode_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_offset_property.Plo \
@@ -1059,6 +1094,7 @@ am__depfiles_remade =  \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_rotation_style_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_screen_position_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_scrollable_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_segs_color_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_segs_color_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_specular_color_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_sub_tics_property.Plo \
@@ -1874,6 +1910,24 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/set_line_width_property.c \
     src/c/getHandleProperty/get_colors_property.c \
     src/c/getHandleProperty/set_colors_property.c \
+    src/c/getHandleProperty/get_face_alpha_property.c \
+    src/c/getHandleProperty/set_face_alpha_property.c \
+    src/c/getHandleProperty/get_background_alpha_property.c \
+    src/c/getHandleProperty/set_background_alpha_property.c \
+    src/c/getHandleProperty/get_foreground_alpha_property.c \
+    src/c/getHandleProperty/set_foreground_alpha_property.c \
+    src/c/getHandleProperty/get_mark_background_alpha_property.c \
+    src/c/getHandleProperty/set_mark_background_alpha_property.c \
+    src/c/getHandleProperty/get_mark_foreground_alpha_property.c \
+    src/c/getHandleProperty/set_mark_foreground_alpha_property.c \
+    src/c/getHandleProperty/get_segs_color_alpha_property.c \
+    src/c/getHandleProperty/set_segs_color_alpha_property.c \
+    src/c/getHandleProperty/get_color_alpha_property.c \
+    src/c/getHandleProperty/set_color_alpha_property.c \
+    src/c/getHandleProperty/get_font_color_alpha_property.c \
+    src/c/getHandleProperty/set_font_color_alpha_property.c \
+    src/c/getHandleProperty/get_font_foreground_alpha_property.c \
+    src/c/getHandleProperty/set_font_foreground_alpha_property.c \
     src/c/DefaultCommandArg.c \
     src/c/Axes.c \
     src/c/sciMatrix.c \
@@ -3259,6 +3313,60 @@ src/c/getHandleProperty/libscigraphics_algo_la-get_colors_property.lo:  \
 src/c/getHandleProperty/libscigraphics_algo_la-set_colors_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_face_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-set_face_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_background_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-set_background_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_foreground_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-set_foreground_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_mark_background_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-set_mark_background_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_mark_foreground_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-set_mark_foreground_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_segs_color_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-set_segs_color_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_color_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-set_color_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_font_color_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-set_font_color_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_font_foreground_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-set_font_foreground_alpha_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigraphics_algo_la-DefaultCommandArg.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigraphics_algo_la-Axes.lo: src/c/$(am__dirstamp) \
@@ -3729,6 +3837,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_axes_reverse_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_axes_size_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_axes_visible_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_background_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_background_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_bar_layout_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_bar_width_property.Plo@am__quote@ # am--include-marker
@@ -3742,6 +3851,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_clip_box_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_clip_state_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_closed_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_flag_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_map_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_mode_property.Plo@am__quote@ # am--include-marker
@@ -3766,6 +3876,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_dockable_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_event_handler_enable_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_event_handler_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_face_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_figure_closerequestfcn_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_figure_id_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_figure_name_property.Plo@am__quote@ # am--include-marker
@@ -3776,10 +3887,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_fill_mode_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_filled_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_angle_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_color_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_color_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_foreground_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_foreground_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_size_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_style_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_foreground_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_foreground_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_format_n_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_fractional_font_property.Plo@am__quote@ # am--include-marker
@@ -3812,7 +3926,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_links_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_log_flags_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_margins_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_background_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_background_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_foreground_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_foreground_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_mode_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_offset_property.Plo@am__quote@ # am--include-marker
@@ -3835,6 +3951,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rotation_style_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screen_position_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_scrollable_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_specular_color_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_sub_tics_property.Plo@am__quote@ # am--include-marker
@@ -3899,6 +4016,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_axes_reverse_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_axes_size_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_axes_visible_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_background_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_background_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_bar_layout_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_bar_width_property.Plo@am__quote@ # am--include-marker
@@ -3912,6 +4030,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_clip_box_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_clip_state_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_closed_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_flag_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_map_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_mode_property.Plo@am__quote@ # am--include-marker
@@ -3935,6 +4054,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_dockable_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_event_handler_enable_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_event_handler_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_face_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_figure_closerequestfcn_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_figure_id_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_figure_name_property.Plo@am__quote@ # am--include-marker
@@ -3944,10 +4064,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_fill_mode_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_filled_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_angle_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_color_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_color_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_foreground_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_foreground_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_size_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_style_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_foreground_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_foreground_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_format_n_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_fractional_font_property.Plo@am__quote@ # am--include-marker
@@ -3980,7 +4103,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_links_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_log_flags_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_margins_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_background_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_background_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_foreground_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_foreground_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_mode_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_offset_property.Plo@am__quote@ # am--include-marker
@@ -4003,6 +4128,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_rotation_style_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_screen_position_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_scrollable_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_segs_color_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_segs_color_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_specular_color_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_sub_tics_property.Plo@am__quote@ # am--include-marker
@@ -6387,6 +6513,132 @@ src/c/getHandleProperty/libscigraphics_algo_la-set_colors_property.lo: src/c/get
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_colors_property.lo `test -f 'src/c/getHandleProperty/set_colors_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_colors_property.c
 
+src/c/getHandleProperty/libscigraphics_algo_la-get_face_alpha_property.lo: src/c/getHandleProperty/get_face_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_face_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_face_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_face_alpha_property.lo `test -f 'src/c/getHandleProperty/get_face_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_face_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_face_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_face_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_face_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_face_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_face_alpha_property.lo `test -f 'src/c/getHandleProperty/get_face_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_face_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-set_face_alpha_property.lo: src/c/getHandleProperty/set_face_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_face_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_face_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_face_alpha_property.lo `test -f 'src/c/getHandleProperty/set_face_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_face_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_face_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_face_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_face_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_face_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_face_alpha_property.lo `test -f 'src/c/getHandleProperty/set_face_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_face_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_background_alpha_property.lo: src/c/getHandleProperty/get_background_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_background_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_background_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_background_alpha_property.lo `test -f 'src/c/getHandleProperty/get_background_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_background_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_background_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_background_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_background_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_background_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_background_alpha_property.lo `test -f 'src/c/getHandleProperty/get_background_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_background_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-set_background_alpha_property.lo: src/c/getHandleProperty/set_background_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_background_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_background_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_background_alpha_property.lo `test -f 'src/c/getHandleProperty/set_background_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_background_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_background_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_background_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_background_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_background_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_background_alpha_property.lo `test -f 'src/c/getHandleProperty/set_background_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_background_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_foreground_alpha_property.lo: src/c/getHandleProperty/get_foreground_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_foreground_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_foreground_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_foreground_alpha_property.lo `test -f 'src/c/getHandleProperty/get_foreground_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_foreground_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_foreground_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_foreground_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_foreground_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_foreground_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_foreground_alpha_property.lo `test -f 'src/c/getHandleProperty/get_foreground_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_foreground_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-set_foreground_alpha_property.lo: src/c/getHandleProperty/set_foreground_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_foreground_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_foreground_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_foreground_alpha_property.lo `test -f 'src/c/getHandleProperty/set_foreground_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_foreground_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_foreground_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_foreground_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_foreground_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_foreground_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_foreground_alpha_property.lo `test -f 'src/c/getHandleProperty/set_foreground_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_foreground_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_mark_background_alpha_property.lo: src/c/getHandleProperty/get_mark_background_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_mark_background_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_background_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_mark_background_alpha_property.lo `test -f 'src/c/getHandleProperty/get_mark_background_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_mark_background_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_background_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_background_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_mark_background_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_mark_background_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_mark_background_alpha_property.lo `test -f 'src/c/getHandleProperty/get_mark_background_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_mark_background_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-set_mark_background_alpha_property.lo: src/c/getHandleProperty/set_mark_background_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_mark_background_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_background_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_mark_background_alpha_property.lo `test -f 'src/c/getHandleProperty/set_mark_background_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_mark_background_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_background_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_background_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_mark_background_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_mark_background_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_mark_background_alpha_property.lo `test -f 'src/c/getHandleProperty/set_mark_background_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_mark_background_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_mark_foreground_alpha_property.lo: src/c/getHandleProperty/get_mark_foreground_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_mark_foreground_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_foreground_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_mark_foreground_alpha_property.lo `test -f 'src/c/getHandleProperty/get_mark_foreground_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_mark_foreground_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_foreground_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_foreground_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_mark_foreground_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_mark_foreground_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_mark_foreground_alpha_property.lo `test -f 'src/c/getHandleProperty/get_mark_foreground_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_mark_foreground_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-set_mark_foreground_alpha_property.lo: src/c/getHandleProperty/set_mark_foreground_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_mark_foreground_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_foreground_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_mark_foreground_alpha_property.lo `test -f 'src/c/getHandleProperty/set_mark_foreground_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_mark_foreground_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_foreground_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_foreground_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_mark_foreground_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_mark_foreground_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_mark_foreground_alpha_property.lo `test -f 'src/c/getHandleProperty/set_mark_foreground_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_mark_foreground_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_segs_color_alpha_property.lo: src/c/getHandleProperty/get_segs_color_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_segs_color_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_segs_color_alpha_property.lo `test -f 'src/c/getHandleProperty/get_segs_color_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_segs_color_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_segs_color_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_segs_color_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_segs_color_alpha_property.lo `test -f 'src/c/getHandleProperty/get_segs_color_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_segs_color_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-set_segs_color_alpha_property.lo: src/c/getHandleProperty/set_segs_color_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_segs_color_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_segs_color_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_segs_color_alpha_property.lo `test -f 'src/c/getHandleProperty/set_segs_color_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_segs_color_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_segs_color_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_segs_color_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_segs_color_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_segs_color_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_segs_color_alpha_property.lo `test -f 'src/c/getHandleProperty/set_segs_color_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_segs_color_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_color_alpha_property.lo: src/c/getHandleProperty/get_color_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_color_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_color_alpha_property.lo `test -f 'src/c/getHandleProperty/get_color_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_color_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_color_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_color_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_color_alpha_property.lo `test -f 'src/c/getHandleProperty/get_color_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_color_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-set_color_alpha_property.lo: src/c/getHandleProperty/set_color_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_color_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_color_alpha_property.lo `test -f 'src/c/getHandleProperty/set_color_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_color_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_color_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_color_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_color_alpha_property.lo `test -f 'src/c/getHandleProperty/set_color_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_color_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_font_color_alpha_property.lo: src/c/getHandleProperty/get_font_color_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_font_color_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_color_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_font_color_alpha_property.lo `test -f 'src/c/getHandleProperty/get_font_color_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_font_color_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_color_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_color_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_font_color_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_font_color_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_font_color_alpha_property.lo `test -f 'src/c/getHandleProperty/get_font_color_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_font_color_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-set_font_color_alpha_property.lo: src/c/getHandleProperty/set_font_color_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_font_color_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_color_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_font_color_alpha_property.lo `test -f 'src/c/getHandleProperty/set_font_color_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_font_color_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_color_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_color_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_font_color_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_font_color_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_font_color_alpha_property.lo `test -f 'src/c/getHandleProperty/set_font_color_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_font_color_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_font_foreground_alpha_property.lo: src/c/getHandleProperty/get_font_foreground_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_font_foreground_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_foreground_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_font_foreground_alpha_property.lo `test -f 'src/c/getHandleProperty/get_font_foreground_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_font_foreground_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_foreground_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_foreground_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_font_foreground_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_font_foreground_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_font_foreground_alpha_property.lo `test -f 'src/c/getHandleProperty/get_font_foreground_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_font_foreground_alpha_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-set_font_foreground_alpha_property.lo: src/c/getHandleProperty/set_font_foreground_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_font_foreground_alpha_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_foreground_alpha_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_font_foreground_alpha_property.lo `test -f 'src/c/getHandleProperty/set_font_foreground_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_font_foreground_alpha_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_foreground_alpha_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_foreground_alpha_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_font_foreground_alpha_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_font_foreground_alpha_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_font_foreground_alpha_property.lo `test -f 'src/c/getHandleProperty/set_font_foreground_alpha_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_font_foreground_alpha_property.c
+
 src/c/libscigraphics_algo_la-DefaultCommandArg.lo: src/c/DefaultCommandArg.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscigraphics_algo_la-DefaultCommandArg.lo -MD -MP -MF src/c/$(DEPDIR)/libscigraphics_algo_la-DefaultCommandArg.Tpo -c -o src/c/libscigraphics_algo_la-DefaultCommandArg.lo `test -f 'src/c/DefaultCommandArg.c' || echo '$(srcdir)/'`src/c/DefaultCommandArg.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscigraphics_algo_la-DefaultCommandArg.Tpo src/c/$(DEPDIR)/libscigraphics_algo_la-DefaultCommandArg.Plo
@@ -7580,6 +7832,7 @@ distclean: distclean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_axes_reverse_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_axes_size_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_axes_visible_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_background_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_background_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_bar_layout_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_bar_width_property.Plo
@@ -7593,6 +7846,7 @@ distclean: distclean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_clip_box_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_clip_state_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_closed_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_flag_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_map_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_mode_property.Plo
@@ -7617,6 +7871,7 @@ distclean: distclean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_dockable_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_event_handler_enable_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_event_handler_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_face_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_figure_closerequestfcn_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_figure_id_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_figure_name_property.Plo
@@ -7627,10 +7882,13 @@ distclean: distclean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_fill_mode_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_filled_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_angle_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_color_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_color_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_foreground_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_foreground_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_size_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_style_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_foreground_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_foreground_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_format_n_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_fractional_font_property.Plo
@@ -7663,7 +7921,9 @@ distclean: distclean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_links_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_log_flags_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_margins_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_background_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_background_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_foreground_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_foreground_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_mode_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_offset_property.Plo
@@ -7686,6 +7946,7 @@ distclean: distclean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rotation_style_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screen_position_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_scrollable_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_specular_color_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_sub_tics_property.Plo
@@ -7750,6 +8011,7 @@ distclean: distclean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_axes_reverse_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_axes_size_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_axes_visible_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_background_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_background_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_bar_layout_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_bar_width_property.Plo
@@ -7763,6 +8025,7 @@ distclean: distclean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_clip_box_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_clip_state_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_closed_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_flag_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_map_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_mode_property.Plo
@@ -7786,6 +8049,7 @@ distclean: distclean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_dockable_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_event_handler_enable_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_event_handler_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_face_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_figure_closerequestfcn_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_figure_id_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_figure_name_property.Plo
@@ -7795,10 +8059,13 @@ distclean: distclean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_fill_mode_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_filled_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_angle_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_color_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_color_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_foreground_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_foreground_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_size_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_style_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_foreground_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_foreground_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_format_n_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_fractional_font_property.Plo
@@ -7831,7 +8098,9 @@ distclean: distclean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_links_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_log_flags_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_margins_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_background_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_background_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_foreground_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_foreground_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_mode_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_offset_property.Plo
@@ -7854,6 +8123,7 @@ distclean: distclean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_rotation_style_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_screen_position_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_scrollable_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_segs_color_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_segs_color_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_specular_color_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_sub_tics_property.Plo
@@ -8071,6 +8341,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_axes_reverse_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_axes_size_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_axes_visible_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_background_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_background_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_bar_layout_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_bar_width_property.Plo
@@ -8084,6 +8355,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_clip_box_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_clip_state_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_closed_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_flag_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_map_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_color_mode_property.Plo
@@ -8108,6 +8380,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_dockable_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_event_handler_enable_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_event_handler_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_face_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_figure_closerequestfcn_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_figure_id_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_figure_name_property.Plo
@@ -8118,10 +8391,13 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_fill_mode_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_filled_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_angle_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_color_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_color_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_foreground_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_foreground_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_size_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_font_style_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_foreground_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_foreground_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_format_n_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_fractional_font_property.Plo
@@ -8154,7 +8430,9 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_links_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_log_flags_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_margins_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_background_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_background_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_foreground_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_foreground_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_mode_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_mark_offset_property.Plo
@@ -8177,6 +8455,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rotation_style_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screen_position_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_scrollable_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_specular_color_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_sub_tics_property.Plo
@@ -8241,6 +8520,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_axes_reverse_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_axes_size_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_axes_visible_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_background_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_background_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_bar_layout_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_bar_width_property.Plo
@@ -8254,6 +8534,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_clip_box_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_clip_state_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_closed_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_flag_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_map_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_color_mode_property.Plo
@@ -8277,6 +8558,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_dockable_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_event_handler_enable_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_event_handler_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_face_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_figure_closerequestfcn_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_figure_id_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_figure_name_property.Plo
@@ -8286,10 +8568,13 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_fill_mode_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_filled_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_angle_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_color_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_color_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_foreground_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_foreground_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_size_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_font_style_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_foreground_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_foreground_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_format_n_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_fractional_font_property.Plo
@@ -8322,7 +8607,9 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_links_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_log_flags_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_margins_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_background_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_background_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_foreground_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_foreground_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_mode_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_mark_offset_property.Plo
@@ -8345,6 +8632,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_rotation_style_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_screen_position_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_scrollable_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_segs_color_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_segs_color_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_specular_color_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_sub_tics_property.Plo

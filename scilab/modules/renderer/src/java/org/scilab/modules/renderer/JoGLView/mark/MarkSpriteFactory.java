@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -90,6 +91,18 @@ public class MarkSpriteFactory {
         } else {
             backgroundColor = new Color(1f, 1f, 1f, 1f);
             foregroundColor = new Color(0f, 0f, 0f, 1f);
+        }
+
+        /* Apply the mark face (background) transparency. */
+        if (mark.getBackgroundAlpha() < 1.0f) {
+            backgroundColor = new Color(backgroundColor.getRedAsFloat(), backgroundColor.getGreenAsFloat(),
+                                        backgroundColor.getBlueAsFloat(), mark.getBackgroundAlpha().floatValue());
+        }
+
+        /* Apply the mark edge (foreground) transparency. */
+        if (mark.getForegroundAlpha() < 1.0f) {
+            foregroundColor = new Color(foregroundColor.getRedAsFloat(), foregroundColor.getGreenAsFloat(),
+                                        foregroundColor.getBlueAsFloat(), mark.getForegroundAlpha().floatValue());
         }
 
         if (mark.getBackground() != 0) {

@@ -29,7 +29,9 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,7);
 assert_checkequal(p.mark_foreground,2);
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,1);
 //
 // Test #2 Vary marker size
 clf reset
@@ -42,7 +44,9 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,ceil(sqrt(4*s/%pi)));
 assert_checkequal(p.mark_foreground,2);
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,1);
 //
 // Test #3 Vary marker size and color
 clf reset
@@ -56,7 +60,9 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,ceil(sqrt(4*s/%pi)));  //
 assert_checkequal(p.mark_foreground, round((64-1)*(t-min(t))/(max(t)-min(t))+1)); //
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,1);
 set(gca(),"rotation_angles",[60,45]);
 
 //
@@ -77,7 +83,9 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,7);
 assert_checkequal(p.mark_foreground,2);
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,2);
+assert_checkequal(p.mark_background_alpha,1);
 
 //
 // Test #5 Specify marker symbol
@@ -91,7 +99,9 @@ assert_checkequal(p.mark_style,10);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,7);
 assert_checkequal(p.mark_foreground,2);
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,1);
 
 //
 // Test #6 Change marker edge and face color
@@ -107,7 +117,9 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,7);
 assert_checkequal(p.mark_foreground,color("black"));
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,color(0,.8*255,.8*255));
+assert_checkequal(p.mark_background_alpha,1);
 
 //
 // Test #7 Specify subplot for scatter plot
@@ -124,7 +136,9 @@ assert_checkequal(p1.mark_style,9);
 assert_checkequal(p1.mark_size_unit,"point");
 assert_checkequal(p1.mark_size,7);
 assert_checkequal(p1.mark_foreground,2);
+assert_checkequal(p1.mark_foreground_alpha,1);
 assert_checkequal(p1.mark_background,0);
+assert_checkequal(p1.mark_background_alpha,1);
 
 subplot(2,1,2);
 p2 = scatter3d(gca(),x(:),y(:),z(:),"markerFaceColor",[0 .8 .8]);
@@ -136,7 +150,9 @@ assert_checkequal(p2.mark_style,9);
 assert_checkequal(p2.mark_size_unit,"point");
 assert_checkequal(p2.mark_size,7);
 assert_checkequal(p2.mark_foreground,2);
+assert_checkequal(p2.mark_foreground_alpha,1);
 assert_checkequal(p2.mark_background,color(0,.8*255,.8*255));
+assert_checkequal(p2.mark_background_alpha,1);
 
 //
 // Test data
@@ -160,7 +176,44 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,ceil(sqrt(4*s/%pi)));
 assert_checkequal(p.mark_foreground,color(0.5*255,0,0));
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,color(0.5*255,0.5*255,0));
+assert_checkequal(p.mark_background_alpha,1);
+
+//
+// Test #9 Transparency (Scilab properties)
+clf reset
+t = 1:200;
+x = t.*cos(t).*sin(t);
+y = t.*sin(t).*sin(t);
+z = t.*cos(t);
+p = scatter3d(x,y,z, "MarkerForegroundAlpha", 0.1, "MarkerBackgroundAlpha", 0.2);
+assert_checkequal(p.line_mode,"off");
+assert_checkequal(p.fill_mode,"off");
+assert_checkequal(p.thickness,1);
+assert_checkequal(p.mark_mode,"on");
+assert_checkequal(p.mark_style,9);
+assert_checkequal(p.mark_size_unit,"point");
+assert_checkequal(p.mark_size,7);
+assert_checkequal(p.mark_foreground,2);
+assert_checkequal(p.mark_foreground_alpha,0.1);
+assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,0.2);
+//
+// Test #10 Transparency (Matlab properties)
+clf reset
+p = scatter3d(x,y,z, "MarkerEdgeAlpha", 0.1, "MarkerfaceAlpha", 0.2);
+assert_checkequal(p.line_mode,"off");
+assert_checkequal(p.fill_mode,"off");
+assert_checkequal(p.thickness,1);
+assert_checkequal(p.mark_mode,"on");
+assert_checkequal(p.mark_style,9);
+assert_checkequal(p.mark_size_unit,"point");
+assert_checkequal(p.mark_size,7);
+assert_checkequal(p.mark_foreground,2);
+assert_checkequal(p.mark_foreground_alpha,0.1);
+assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,0.2);
 
 
 // ==============
@@ -233,6 +286,11 @@ assert_checkerror("scatter3d(1,2,3,""linewidth"", %i)", msg);
 assert_checkerror("scatter3d(1,2,3,""thickness"", %i)", msg);
 assert_checkerror("scatter3d(1,2,3,""linewidth"", %z)", msg);
 assert_checkerror("scatter3d(1,2,3,""thickness"", %z)", msg);
+
+msg = "scatter3d: Argument #5: Double value in [0 1] expected.";
+assert_checkerror("scatter3d(1,2,3,""MarkerFaceAlpha"",12)", msg);
+msg = "scatter3d: Argument #5: Scalar (1 element) expected.";
+assert_checkerror("scatter3d(1,2,3,""MarkerFaceAlpha"",[1 2])", msg);
 
 prop = ["markeredgecolor" "markerforeground" ..
         "markerfacecolor" "markerbackground"];

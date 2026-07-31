@@ -21,12 +21,14 @@ function [PName] = getPlotPropertyName(PropertyName,current_figure,cur_draw_mode
         return;
     end
 
-    Table    = ["clipping" "color"      "foreground" "linestyle" "linewidth" "thickness" "marker" ..
+    Table    = ["clipping" "color" "foreground" "background" "linestyle" "linewidth" "thickness" "marker" ..
     "markstyle" "markeredgecolor" "markforeground" "markerfacecolor"  "markbackground" ..
-    "markersize" "marksize" "visible" "xdata" "ydata" "zdata"];
-    TableEQ =  ["clipping" "foreground" "foreground" "linestyle" "thickness" "thickness" "markstyle"..
+    "markersize" "marksize" "visible" "xdata" "ydata" "zdata" ..
+    "foregroundalpha" "backgroundalpha" "markforegroundalpha" "markbackgroundalpha"];
+    TableEQ =  ["clipping" "foreground" "foreground" "background" "linestyle" "thickness" "thickness" "markstyle"..
     "markstyle"  "markforeground" "markforeground" "markbackground" "markbackground" ..
-    "marksize"   "marksize" "visible" "xdata" "ydata" "zdata"]; // equivalent Table
+    "marksize"   "marksize" "visible" "xdata" "ydata" "zdata" ..
+    "foregroundalpha" "backgroundalpha" "markforegroundalpha" "markbackgroundalpha"]; // equivalent Table
 
     opt1=[];
 
@@ -38,8 +40,16 @@ function [PName] = getPlotPropertyName(PropertyName,current_figure,cur_draw_mode
         ResetFigureDDM(current_figure, cur_draw_mode);
         return;
     elseif ( size(k,"*") > 1)
-        if or(find(k==7)) // case PropertyName == 'marker'
-            k=7; // set to PropertyName == 'marker' only
+        if or(find(k==3)) // case PropertyName == 'foreground'
+            k=3; // set to PropertyName == 'foreground' only: for compatibility with versions < 2027.0.0 (addition of 'foregroundalpha')
+        elseif or(find(k==4)) // case PropertyName == 'background'
+            k=4; // set to PropertyName == 'background' only
+        elseif or(find(k==8)) // case PropertyName == 'marker'
+            k=8; // set to PropertyName == 'marker' only
+        elseif or(find(k==11)) // case PropertyName == 'markforeground'
+            k=11; // set to PropertyName == 'markforeground' only: for compatibility with versions < 2027.0.0 (addition of 'markforegroundalpha')
+        elseif or(find(k==13)) // case PropertyName == 'markbackground'
+            k=11; // set to PropertyName == 'markbackground' only: for compatibility with versions < 2027.0.0 (addition of 'markbackgroundalpha')
         else
             warning(msprintf(gettext("%s: Ambiguous line property.\n"),"getPlotPropertyName"));
             PName=[];

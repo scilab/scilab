@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -20,6 +21,10 @@ import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
 import org.scilab.modules.graphic_objects.MainDataLoader;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.imageplot.Imageplot;
+import org.scilab.modules.graphic_objects.surface.Surface;
+import org.scilab.modules.graphic_objects.vectfield.Segs;
+import org.scilab.modules.graphic_objects.vectfield.VectField;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -67,14 +72,16 @@ public class DataManager {
      */
     private static final Set<Integer> GRAYPLOT_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                 GraphicObjectProperties.__GO_DATA_MODEL__,
-                GraphicObjectProperties.__GO_DATA_MAPPING__
+                GraphicObjectProperties.__GO_DATA_MAPPING__,
+                GraphicObjectProperties.__GO_FACE_ALPHA__
             ));
 
     /**
      * Set of properties that affect Matplot data.
      */
     private static final Set<Integer> MATPLOT_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-                GraphicObjectProperties.__GO_DATA_MODEL__
+                GraphicObjectProperties.__GO_DATA_MODEL__,
+                GraphicObjectProperties.__GO_FACE_ALPHA__
             ));
 
     /**
@@ -95,7 +102,8 @@ public class DataManager {
      * Set of properties that affect Plot3d data.
      */
     private static final Set<Integer> PLOT3D_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-                GraphicObjectProperties.__GO_DATA_MODEL__
+                GraphicObjectProperties.__GO_DATA_MODEL__,
+                GraphicObjectProperties.__GO_FACE_ALPHA__
             ));
 
     /**
@@ -119,7 +127,8 @@ public class DataManager {
                 GraphicObjectProperties.__GO_DIRECTION_X__,
                 GraphicObjectProperties.__GO_DIRECTION_Y__,
                 GraphicObjectProperties.__GO_DIRECTION_Z__,
-                GraphicObjectProperties.__GO_COLORED__
+                GraphicObjectProperties.__GO_COLORED__,
+                GraphicObjectProperties.__GO_LINE_COLOR_ALPHA__
             ));
 
     /**
@@ -137,7 +146,8 @@ public class DataManager {
     private static final Set<Integer> SEGS_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                 GraphicObjectProperties.__GO_BASE__,
                 GraphicObjectProperties.__GO_DIRECTION__,
-                GraphicObjectProperties.__GO_SEGS_COLORS__
+                GraphicObjectProperties.__GO_SEGS_COLORS__,
+                GraphicObjectProperties.__GO_LINE_COLOR_ALPHA__
             ));
 
     private static final double[] DEFAULT_SCALE     = new double[] {1, 1, 1};
@@ -499,6 +509,57 @@ public class DataManager {
         int length = MainDataLoader.getDataSize(id);
         FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
         MainDataLoader.fillColors(id, data, 4);
+        /* Apply face_alpha for transparent Imageplot (Matplot log-scale and Grayplot paths). */
+        GraphicObject obj = GraphicController.getController().getObjectFromId(id);
+        if (obj instanceof Imageplot) {
+            float alpha = ((Imageplot) obj).getFaceAlpha().floatValue();
+            if (alpha < 1.0f) {
+                for (int i = 3; i < data.limit(); i += 4) {
+                    data.put(i, data.get(i) * alpha);
+                }
+            }
+        } else if (obj instanceof Segs) {
+            /* Apply per-arrow color alpha for transparent Segs.
+             * Vertex layout (5 vertices per arrow, RGBA each):
+             *   [0 .. 2*N): segment endpoints, 2 per arrow
+             *   [2*N .. 5*N): arrow-tip triangles, 3 per arrow */
+            Segs segs = (Segs) obj;
+            Double[] alphas = segs.getColorAlphas();
+            int n = segs.getNumberArrows();
+            for (int i = 0; i < n; i++) {
+                float a = alphas[i].floatValue();
+                if (a >= 1.0f) {
+                    continue;
+                }
+                int segIdx = 8 * i + 3;          // segment v0 alpha
+                data.put(segIdx, data.get(segIdx) * a);
+                data.put(segIdx + 4, data.get(segIdx + 4) * a);
+                int tipIdx = 8 * n + 12 * i + 3; // tip v0 alpha
+                data.put(tipIdx, data.get(tipIdx) * a);
+                data.put(tipIdx + 4, data.get(tipIdx + 4) * a);
+                data.put(tipIdx + 8, data.get(tipIdx + 8) * a);
+            }
+        } else if (obj instanceof VectField) {
+            /* Apply color alpha for transparent Champ colored path
+             * (per-vertex colors otherwise have alpha = 1 and ignore the
+             * scalar appearance fill color). */
+            float alpha = ((VectField) obj).getLineColorAlpha().floatValue();
+            if (alpha < 1.0f) {
+                for (int i = 3; i < data.limit(); i += 4) {
+                    data.put(i, data.get(i) * alpha);
+                }
+            }
+        } else if (obj instanceof Surface) {
+            /* Apply face_alpha for Plot3d colorFlag == 1 (interpolated per-vertex colors):
+             * the buffer drives the fragment alpha; the scalar appearance fill color is
+             * ignored when per-vertex colors are set. */
+            float alpha = ((Surface) obj).getFaceAlpha().floatValue();
+            if (alpha < 1.0f) {
+                for (int i = 3; i < data.limit(); i += 4) {
+                    data.put(i, data.get(i) * alpha);
+                }
+            }
+        }
         colorBuffer.setData(data, 4);
     }
 

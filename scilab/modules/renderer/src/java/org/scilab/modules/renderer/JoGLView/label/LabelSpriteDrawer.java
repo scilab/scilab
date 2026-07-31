@@ -3,6 +3,7 @@
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -58,7 +59,7 @@ public class LabelSpriteDrawer extends TextObjectSpriteDrawer implements Texture
         Appearance a = new Appearance();
 
         if (label.getFillMode()) {
-            Color fillColor = ColorFactory.createColor(colorMap, label.getBackground());
+            Color fillColor = ColorFactory.createColor(colorMap, label.getBackground(), label.getBackgroundAlpha().floatValue());
             a.setFillColor(fillColor);
         } else {
             a.setFillColor(new Color(0, 0, 0, 0));
@@ -66,7 +67,7 @@ public class LabelSpriteDrawer extends TextObjectSpriteDrawer implements Texture
 
         /* Fill mode must be set to on */
         if (label.getLineMode() && label.getFillMode()) {
-            Color lineColor = ColorFactory.createColor(colorMap, label.getLineColor());
+            Color lineColor = ColorFactory.createColor(colorMap, label.getLineColor(), label.getLineColorAlpha().floatValue());
             a.setLineColor(lineColor);
             a.setLineWidth(1);
         } else {

@@ -36,6 +36,9 @@ assert_checkequal(e.data.z, z)
 assert_checkequal(e.data_mapping, "scaled")
  ans = 
   T
+assert_checkequal(e.face_alpha, 1)
+ ans = 
+  T
 assert_checkequal(e.clip_state, "clipgrf")
  ans = 
   T

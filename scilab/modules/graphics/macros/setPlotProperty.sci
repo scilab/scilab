@@ -59,6 +59,25 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
         end
 
         /////////////////////////
+    case "foregroundalpha"        // <=> ForegroundAlpha
+        /////////////////////////
+        if (type(PropertyValue)==1 & size(PropertyValue,"*")==1)
+
+            if PropertyValue < 0 | PropertyValue > 1 then
+                warning(msprintf(gettext("%s: Wrong value for input argument #%d: A double value in [0 1] expected.\n"),"setPlotProperty",2));
+                ResetFigureDDM(current_figure, cur_draw_mode);
+                return;
+            end
+            Curves.line_mode = "on";
+            Curves.foreground_alpha = PropertyValue;
+
+        else
+            warning(msprintf(gettext("%s: Wrong type for input argument #%d: A double value expected.\n"),"setPlotProperty",2));
+            ResetFigureDDM(current_figure, cur_draw_mode);
+            return;
+        end
+
+        /////////////////////////
     case "clipping"           // Clipping
         /////////////////////////
         if (type(PropertyValue)==10 & (PropertyValue=="on" | PropertyValue=="off"))
@@ -69,6 +88,51 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
             return;
         end
 
+        /////////////////////////
+    case "background"         // <=> Background
+        /////////////////////////
+        c = iscolor(PropertyValue);
+        if or(isnan(c(:,1)))
+            msg = _("%s: Argument #%d: Wrong color specification.\n")
+            warning(msprintf(msg, "setPlotProperty", 2));
+            ResetFigureDDM(current_figure, cur_draw_mode);
+            return
+        end
+        if size(c,"r")<length(Curves)
+            msg = _("%s: Arguments #%d and #%d: Incompatible sizes.\n")
+            warning(msprintf(msg, "setPlotProperty", 2, 3));
+            ResetFigureDDM(current_figure, cur_draw_mode);
+            return
+        end
+        Curves.fill_mode = "on";
+        if size(c,2) > 1    // c is RGB
+            ind = addcolor(c(1:length(Curves),:));
+        else
+            ind = c
+        end
+        for i = 1:length(ind)
+            Curves($-i+1).background = ind(i);
+            Curves($-i+1).mark_background = ind(i);
+        end
+
+        /////////////////////////
+    case "backgroundalpha"        // <=> BackgroundAlpha
+        /////////////////////////
+        if (type(PropertyValue)==1 & size(PropertyValue,"*")==1)
+
+            if PropertyValue < 0 | PropertyValue > 1 then
+                warning(msprintf(gettext("%s: Wrong value for input argument #%d: A double value in [0 1] expected.\n"),"setPlotProperty",2));
+                ResetFigureDDM(current_figure, cur_draw_mode);
+                return;
+            end
+            Curves.fill_mode = "on";
+            Curves.background_alpha = PropertyValue;
+
+        else
+            warning(msprintf(gettext("%s: Wrong type for input argument #%d: A double value expected.\n"),"setPlotProperty",2));
+            ResetFigureDDM(current_figure, cur_draw_mode);
+            return;
+        end
 
         /////////////////////////
     case "linestyle"          // LineStyle
@@ -180,6 +244,27 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
         end
 
         /////////////////////////
+    case "markforegroundalpha"        // <=> MarkForegroundAlpha
+        /////////////////////////
+        markmodeON = find(Curves.mark_mode=="on");
+        if (type(PropertyValue)==1 & size(PropertyValue,"*")==1)
+
+            if PropertyValue < 0 | PropertyValue > 1 then
+                warning(msprintf(gettext("%s: Wrong value for input argument #%d: A double value in [0 1] expected.\n"),"setPlotProperty",2));
+                ResetFigureDDM(current_figure, cur_draw_mode);
+                return;
+            end
+
+            if markmodeON <> []
+                Curves(markmodeON).mark_foreground_alpha = PropertyValue;
+            end
+        else
+            warning(msprintf(gettext("%s: Wrong type for input argument #%d: A double value expected.\n"),"setPlotProperty",2));
+            ResetFigureDDM(current_figure, cur_draw_mode);
+            return;
+        end
+
+        /////////////////////////
     case "markbackground"        // <=> MarkerFaceColor
         /////////////////////////
 
@@ -204,6 +289,27 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
                     Curves(markmodeON).mark_background = addcolor(co);
                 end
             end
+        end
+
+        /////////////////////////
+    case "markbackgroundalpha"        // <=> MarkBackgroundAlpha
+        /////////////////////////
+        markmodeON = find(Curves.mark_mode=="on");
+        if (type(PropertyValue)==1 & size(PropertyValue,"*")==1)
+
+            if PropertyValue < 0 | PropertyValue > 1 then
+                warning(msprintf(gettext("%s: Wrong value for input argument #%d: A double value in [0 1] expected.\n"),"setPlotProperty",2));
+                ResetFigureDDM(current_figure, cur_draw_mode);
+                return;
+            end
+
+            if markmodeON <> []
+                Curves(markmodeON).mark_background_alpha = PropertyValue;
+            end
+        else
+            warning(msprintf(gettext("%s: Wrong type for input argument #%d: A double value expected.\n"),"setPlotProperty",2));
+            ResetFigureDDM(current_figure, cur_draw_mode);
+            return;
         end
 
         /////////////////////////

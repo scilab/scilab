@@ -272,8 +272,11 @@ struct LabelHandle
         //@ don't care
         m.emplace_back("position", std::vector<int>({SAVE_LOAD, __GO_POSITION__, jni_double_vector, -1, -3}));
         m.emplace_back("font_foreground", std::vector<int>({SAVE_LOAD, __GO_FONT_COLOR__, jni_int}));
+        m.emplace_back("font_foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_FONT_COLOR_ALPHA__, jni_double}));
         m.emplace_back("foreground", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR__, jni_int}));
+        m.emplace_back("foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR_ALPHA__, jni_double}));
         m.emplace_back("background", std::vector<int>({SAVE_LOAD, __GO_BACKGROUND__, jni_int}));
+        m.emplace_back("background_alpha", std::vector<int>({SAVE_LOAD, __GO_BACKGROUND_ALPHA__, jni_double}));
         m.emplace_back("fill_mode", std::vector<int>({SAVE_LOAD, __GO_FILL_MODE__, jni_bool}));
         m.emplace_back("font_style", std::vector<int>({SAVE_LOAD, __GO_FONT_STYLE__, jni_int}));
         m.emplace_back("font_size", std::vector<int>({SAVE_LOAD, __GO_FONT_SIZE__, jni_double}));
@@ -308,6 +311,7 @@ struct ChampHandle
         m.emplace_back("line_style", std::vector<int>({SAVE_LOAD, __GO_LINE_STYLE__, jni_int}));
         m.emplace_back("thickness", std::vector<int>({SAVE_LOAD, __GO_LINE_THICKNESS__, jni_double}));
         m.emplace_back("colored", std::vector<int>({SAVE_LOAD, __GO_COLORED__, jni_bool}));
+        m.emplace_back("color_alpha", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR_ALPHA__, jni_double}));
 
         //@end
         m.emplace_back("visible", std::vector<int>({SAVE_LOAD, __GO_VISIBLE__, jni_bool}));
@@ -329,13 +333,17 @@ struct SurfaceHandle
         //@ don't care
         m.emplace_back("surface_mode", std::vector<int>({SAVE_LOAD, __GO_SURFACE_MODE__, jni_bool}));
         m.emplace_back("foreground", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR__, jni_int}));
+        m.emplace_back("foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR_ALPHA__, jni_double}));
+        m.emplace_back("face_alpha", std::vector<int>({SAVE_LOAD, __GO_FACE_ALPHA__, jni_double}));
         m.emplace_back("thickness", std::vector<int>({SAVE_LOAD, __GO_LINE_THICKNESS__, jni_double}));
         m.emplace_back("mark_mode", std::vector<int>({SAVE_LOAD, __GO_MARK_MODE__, jni_bool}));
         m.emplace_back("mark_style", std::vector<int>({SAVE_LOAD, __GO_MARK_STYLE__, jni_int}));
         m.emplace_back("mark_size", std::vector<int>({SAVE_LOAD, __GO_MARK_SIZE__, jni_int}));
         m.emplace_back("mark_size_unit", std::vector<int>({SAVE_LOAD, __GO_MARK_SIZE_UNIT__, jni_int}));
         m.emplace_back("mark_foreground", std::vector<int>({SAVE_LOAD, __GO_MARK_FOREGROUND__, jni_int}));
+        m.emplace_back("mark_foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_MARK_FOREGROUND_ALPHA__, jni_double}));
         m.emplace_back("mark_background", std::vector<int>({SAVE_LOAD, __GO_MARK_BACKGROUND__, jni_int}));
+        m.emplace_back("mark_background_alpha", std::vector<int>({SAVE_LOAD, __GO_MARK_BACKGROUND_ALPHA__, jni_double}));
         m.emplace_back("color_mode", std::vector<int>({SAVE_LOAD, __GO_COLOR_MODE__, jni_int}));
         m.emplace_back("color_flag", std::vector<int>({SAVE_LOAD, __GO_COLOR_FLAG__, jni_int}));
         m.emplace_back("ambient_color", std::vector<int>({SAVE_LOAD, __GO_AMBIENTCOLOR__, jni_double_vector, -1, -3}));
@@ -383,9 +391,13 @@ struct PolylineHandle
         m.emplace_back("mark_size", std::vector<int>({SAVE_LOAD, __GO_MARK_SIZE__, jni_int}));
         m.emplace_back("mark_size_unit", std::vector<int>({SAVE_LOAD, __GO_MARK_SIZE_UNIT__, jni_int}));
         m.emplace_back("foreground", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR__, jni_int}));
+        m.emplace_back("foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR_ALPHA__, jni_double}));
         m.emplace_back("background", std::vector<int>({SAVE_LOAD, __GO_BACKGROUND__, jni_int}));
+        m.emplace_back("background_alpha", std::vector<int>({SAVE_LOAD, __GO_BACKGROUND_ALPHA__, jni_double}));
         m.emplace_back("mark_foreground", std::vector<int>({SAVE_LOAD, __GO_MARK_FOREGROUND__, jni_int}));
+        m.emplace_back("mark_foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_MARK_FOREGROUND_ALPHA__, jni_double}));
         m.emplace_back("mark_background", std::vector<int>({SAVE_LOAD, __GO_MARK_BACKGROUND__, jni_int}));
+        m.emplace_back("mark_background_alpha", std::vector<int>({SAVE_LOAD, __GO_MARK_BACKGROUND_ALPHA__, jni_double}));
         m.emplace_back("mark_offset", std::vector<int>({SAVE_LOAD, __GO_MARK_OFFSET__, jni_int}));
         m.emplace_back("mark_stride", std::vector<int>({SAVE_LOAD, __GO_MARK_STRIDE__, jni_int}));
         m.emplace_back("bar_width", std::vector<int>({SAVE_LOAD, __GO_BAR_WIDTH__, jni_double}));
@@ -435,14 +447,19 @@ struct DatatipHandle
         m.emplace_back("interp_mode", std::vector<int>({SAVE_LOAD, __GO_DATATIP_INTERP_MODE__, jni_bool}));
         m.emplace_back("display_function", std::vector<int>({SAVE_LOAD, __GO_DATATIP_DISPLAY_FNC__, jni_string}));
         m.emplace_back("font_foreground", std::vector<int>({SAVE_LOAD, __GO_FONT_COLOR__, jni_int}));
+        m.emplace_back("font_foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_FONT_COLOR_ALPHA__, jni_double}));
         m.emplace_back("foreground", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR__, jni_int}));
+        m.emplace_back("foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR_ALPHA__, jni_double}));
         m.emplace_back("background", std::vector<int>({SAVE_LOAD, __GO_BACKGROUND__, jni_int}));
+        m.emplace_back("background_alpha", std::vector<int>({SAVE_LOAD, __GO_BACKGROUND_ALPHA__, jni_double}));
         m.emplace_back("mark_mode", std::vector<int>({SAVE_LOAD, __GO_MARK_MODE__, jni_bool}));
         m.emplace_back("mark_style", std::vector<int>({SAVE_LOAD, __GO_MARK_STYLE__, jni_int}));
         m.emplace_back("mark_size", std::vector<int>({SAVE_LOAD, __GO_MARK_SIZE__, jni_int}));
         m.emplace_back("mark_size_unit", std::vector<int>({SAVE_LOAD, __GO_MARK_SIZE_UNIT__, jni_int}));
         m.emplace_back("mark_foreground", std::vector<int>({SAVE_LOAD, __GO_MARK_FOREGROUND__, jni_int}));
+        m.emplace_back("mark_foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_MARK_FOREGROUND_ALPHA__, jni_double}));
         m.emplace_back("mark_background", std::vector<int>({SAVE_LOAD, __GO_MARK_BACKGROUND__, jni_int}));
+        m.emplace_back("mark_background_alpha", std::vector<int>({SAVE_LOAD, __GO_MARK_BACKGROUND_ALPHA__, jni_double}));
         m.emplace_back("detached_position", std::vector<int>({SAVE_LOAD, __GO_DATATIP_DETACHED_POSITION__, jni_double_vector, -1, -3}));
         m.emplace_back("detached_mode", std::vector<int>({SAVE_LOAD, __GO_DATATIP_DETACHED_MODE__, jni_bool}));
         m.emplace_back("line_style", std::vector<int>({SAVE_LOAD, __GO_LINE_STYLE__, jni_int}));
@@ -473,12 +490,16 @@ struct RectangleHandle
         m.emplace_back("mark_size", std::vector<int>({SAVE_LOAD, __GO_MARK_SIZE__, jni_int}));
         m.emplace_back("mark_size_unit", std::vector<int>({SAVE_LOAD, __GO_MARK_SIZE_UNIT__, jni_int}));
         m.emplace_back("mark_foreground", std::vector<int>({SAVE_LOAD, __GO_MARK_FOREGROUND__, jni_int}));
+        m.emplace_back("mark_foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_MARK_FOREGROUND_ALPHA__, jni_double}));
         m.emplace_back("mark_background", std::vector<int>({SAVE_LOAD, __GO_MARK_BACKGROUND__, jni_int}));
+        m.emplace_back("mark_background_alpha", std::vector<int>({SAVE_LOAD, __GO_MARK_BACKGROUND_ALPHA__, jni_double}));
         m.emplace_back("line_mode", std::vector<int>({SAVE_LOAD, __GO_LINE_MODE__, jni_bool}));
         m.emplace_back("line_style", std::vector<int>({SAVE_LOAD, __GO_LINE_STYLE__, jni_int}));
         m.emplace_back("fill_mode", std::vector<int>({SAVE_LOAD, __GO_FILL_MODE__, jni_bool}));
         m.emplace_back("foreground", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR__, jni_int}));
+        m.emplace_back("foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR_ALPHA__, jni_double}));
         m.emplace_back("background", std::vector<int>({SAVE_LOAD, __GO_BACKGROUND__, jni_int}));
+        m.emplace_back("background_alpha", std::vector<int>({SAVE_LOAD, __GO_BACKGROUND_ALPHA__, jni_double}));
         m.emplace_back("upper_left_point", std::vector<int>({SAVE_LOAD, __GO_UPPER_LEFT_POINT__, jni_double_vector, -1, -3}));
         m.emplace_back("width", std::vector<int>({SAVE_LOAD, __GO_WIDTH__, jni_double}));
         m.emplace_back("height", std::vector<int>({SAVE_LOAD, __GO_HEIGHT__, jni_double}));
@@ -508,7 +529,9 @@ struct ArcHandle
         m.emplace_back("line_style", std::vector<int>({SAVE_LOAD, __GO_LINE_STYLE__, jni_int}));
         m.emplace_back("fill_mode", std::vector<int>({SAVE_LOAD, __GO_FILL_MODE__, jni_bool}));
         m.emplace_back("foreground", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR__, jni_int}));
+        m.emplace_back("foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR_ALPHA__, jni_double}));
         m.emplace_back("background", std::vector<int>({SAVE_LOAD, __GO_BACKGROUND__, jni_int}));
+        m.emplace_back("background_alpha", std::vector<int>({SAVE_LOAD, __GO_BACKGROUND_ALPHA__, jni_double}));
         m.emplace_back("upper_left_point", std::vector<int>({SAVE_LOAD, __GO_UPPER_LEFT_POINT__, jni_double_vector, -1, -3}));
         m.emplace_back("width", std::vector<int>({SAVE_LOAD, __GO_WIDTH__, jni_double}));
         m.emplace_back("height", std::vector<int>({SAVE_LOAD, __GO_HEIGHT__, jni_double}));
@@ -538,6 +561,7 @@ struct SegsHandle
         //@ don't care
         m.emplace_back("number_arrows", std::vector<int>({SAVE_LOAD, __GO_NUMBER_ARROWS__, jni_int}));
         m.emplace_back("segs_color", std::vector<int>({SAVE_LOAD, __GO_SEGS_COLORS__, jni_int_vector, -1, __GO_NUMBER_ARROWS__}));
+        m.emplace_back("segs_color_alpha", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR_ALPHA__, jni_double_vector, -1, __GO_NUMBER_ARROWS__}));
         m.emplace_back("base", std::vector<int>({SAVE_LOAD, __GO_BASE__, jni_double_vector, -3, __GO_NUMBER_ARROWS__}));
         m.emplace_back("direction", std::vector<int>({SAVE_LOAD, __GO_DIRECTION__, jni_double_vector, -3, __GO_NUMBER_ARROWS__}));
         m.emplace_back("arrow_size", std::vector<int>({SAVE_LOAD, __GO_ARROW_SIZE__, jni_double}));
@@ -549,7 +573,9 @@ struct SegsHandle
         m.emplace_back("mark_size", std::vector<int>({SAVE_LOAD, __GO_MARK_SIZE__, jni_int}));
         m.emplace_back("mark_size_unit", std::vector<int>({SAVE_LOAD, __GO_MARK_SIZE_UNIT__, jni_int}));
         m.emplace_back("mark_foreground", std::vector<int>({SAVE_LOAD, __GO_MARK_FOREGROUND__, jni_int}));
+        m.emplace_back("mark_foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_MARK_FOREGROUND_ALPHA__, jni_double}));
         m.emplace_back("mark_background", std::vector<int>({SAVE_LOAD, __GO_MARK_BACKGROUND__, jni_int}));
+        m.emplace_back("mark_background_alpha", std::vector<int>({SAVE_LOAD, __GO_MARK_BACKGROUND_ALPHA__, jni_double}));
         m.emplace_back("clip_box", std::vector<int>({SAVE_LOAD, __GO_CLIP_BOX__, jni_double_vector, -1, -4}));
         m.emplace_back("clip_state", std::vector<int>({SAVE_LOAD, __GO_CLIP_STATE__, jni_int}));
         //@end
@@ -571,6 +597,7 @@ struct GrayplotHandle
 
         //@ don't care
         m.emplace_back("data_mapping", std::vector<int>({SAVE_LOAD, __GO_DATA_MAPPING__, jni_int}));
+        m.emplace_back("face_alpha", std::vector<int>({SAVE_LOAD, __GO_FACE_ALPHA__, jni_double}));
         m.emplace_back("clip_box", std::vector<int>({SAVE_LOAD, __GO_CLIP_BOX__, jni_double_vector, -1, -4}));
         m.emplace_back("clip_state", std::vector<int>({SAVE_LOAD, __GO_CLIP_STATE__, jni_int}));
 
@@ -598,6 +625,7 @@ struct MatplotHandle
         m.emplace_back("data_order", std::vector<int>({SAVE_LOAD, __GO_DATA_MODEL_MATPLOT_DATA_ORDER__, jni_int}));
         m.emplace_back("num_x", std::vector<int>({SAVE_LOAD, __GO_DATA_MODEL_NUM_X__, jni_int}));
         m.emplace_back("num_y", std::vector<int>({SAVE_LOAD, __GO_DATA_MODEL_NUM_Y__, jni_int}));
+        m.emplace_back("face_alpha", std::vector<int>({SAVE_LOAD, __GO_FACE_ALPHA__, jni_double}));
         m.emplace_back("clip_box", std::vector<int>({SAVE_LOAD, __GO_CLIP_BOX__, jni_double_vector, -1, -4}));
         m.emplace_back("clip_state", std::vector<int>({SAVE_LOAD, __GO_CLIP_STATE__, jni_int}));
 
@@ -626,6 +654,8 @@ struct FecHandle
         m.emplace_back("outside_colors", std::vector<int>({SAVE_LOAD, __GO_OUTSIDE_COLOR__, jni_int_vector, -1, -2}));
         m.emplace_back("line_mode", std::vector<int>({SAVE_LOAD, __GO_LINE_MODE__, jni_bool}));
         m.emplace_back("foreground", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR__, jni_int}));
+        m.emplace_back("foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR_ALPHA__, jni_double}));
+        m.emplace_back("face_alpha", std::vector<int>({SAVE_LOAD, __GO_FACE_ALPHA__, jni_double}));
         m.emplace_back("clip_box", std::vector<int>({SAVE_LOAD, __GO_CLIP_BOX__, jni_double_vector, -1, -4}));
         m.emplace_back("clip_state", std::vector<int>({SAVE_LOAD, __GO_CLIP_STATE__, jni_int}));
 
@@ -650,6 +680,7 @@ struct LegendHandle
         m.emplace_back("font_style", std::vector<int>({SAVE_LOAD, __GO_FONT_STYLE__, jni_int}));
         m.emplace_back("font_size", std::vector<int>({SAVE_LOAD, __GO_FONT_SIZE__, jni_double}));
         m.emplace_back("font_color", std::vector<int>({SAVE_LOAD, __GO_FONT_COLOR__, jni_int}));
+        m.emplace_back("font_color_alpha", std::vector<int>({SAVE_LOAD, __GO_FONT_COLOR_ALPHA__, jni_double}));
         m.emplace_back("fractional_font", std::vector<int>({SAVE_LOAD, __GO_FONT_FRACTIONAL__, jni_bool}));
 
         //links recurtion to find axes
@@ -659,8 +690,10 @@ struct LegendHandle
         m.emplace_back("line_mode", std::vector<int>({SAVE_LOAD, __GO_LINE_MODE__, jni_bool}));
         m.emplace_back("thickness", std::vector<int>({SAVE_LOAD, __GO_LINE_THICKNESS__, jni_double}));
         m.emplace_back("foreground", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR__, jni_int}));
+        m.emplace_back("foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR_ALPHA__, jni_double}));
         m.emplace_back("fill_mode", std::vector<int>({SAVE_LOAD, __GO_FILL_MODE__, jni_bool}));
         m.emplace_back("background", std::vector<int>({SAVE_LOAD, __GO_BACKGROUND__, jni_int}));
+        m.emplace_back("background_alpha", std::vector<int>({SAVE_LOAD, __GO_BACKGROUND_ALPHA__, jni_double}));
         m.emplace_back("marks_count", std::vector<int>({SAVE_LOAD, __GO_MARKS_COUNT__, jni_int}));
         m.emplace_back("clip_box", std::vector<int>({SAVE_LOAD, __GO_CLIP_BOX__, jni_double_vector, -1, -4}));
         m.emplace_back("clip_state", std::vector<int>({SAVE_LOAD, __GO_CLIP_STATE__, jni_int}));
@@ -687,6 +720,7 @@ struct TextHandle
         m.emplace_back("text_box", std::vector<int>({SAVE_LOAD, __GO_TEXT_BOX__, jni_double_vector, -1, -2}));
         m.emplace_back("text_box_mode", std::vector<int>({SAVE_LOAD, __GO_TEXT_BOX_MODE__, jni_int}));
         m.emplace_back("foreground", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR__, jni_int}));
+        m.emplace_back("foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_LINE_COLOR_ALPHA__, jni_double}));
         m.emplace_back("font_style", std::vector<int>({SAVE_LOAD, __GO_FONT_STYLE__, jni_int}));
         m.emplace_back("font_size", std::vector<int>({SAVE_LOAD, __GO_FONT_SIZE__, jni_double}));
         m.emplace_back("font_angle", std::vector<int>({SAVE_LOAD, __GO_FONT_ANGLE__, jni_double}));
@@ -694,7 +728,9 @@ struct TextHandle
         m.emplace_back("line_mode", std::vector<int>({SAVE_LOAD, __GO_LINE_MODE__, jni_bool}));
         m.emplace_back("fill_mode", std::vector<int>({SAVE_LOAD, __GO_FILL_MODE__, jni_bool}));
         m.emplace_back("font_foreground", std::vector<int>({SAVE_LOAD, __GO_FONT_COLOR__, jni_int}));
+        m.emplace_back("font_foreground_alpha", std::vector<int>({SAVE_LOAD, __GO_FONT_COLOR_ALPHA__, jni_double}));
         m.emplace_back("background", std::vector<int>({SAVE_LOAD, __GO_BACKGROUND__, jni_int}));
+        m.emplace_back("background_alpha", std::vector<int>({SAVE_LOAD, __GO_BACKGROUND_ALPHA__, jni_double}));
         m.emplace_back("alignment", std::vector<int>({SAVE_LOAD, __GO_ALIGNMENT__, jni_int}));
         m.emplace_back("fractional_font", std::vector<int>({SAVE_LOAD, __GO_FONT_FRACTIONAL__, jni_bool}));
         m.emplace_back("clip_box", std::vector<int>({SAVE_LOAD, __GO_CLIP_BOX__, jni_double_vector, -1, -4}));

@@ -229,7 +229,9 @@ end
   arrow_size_factor = 1
   polyline_style = 1
   foreground = 2
+  foreground_alpha = 1
   background = -2
+  background_alpha = 1
   interp_color_vector = []
   interp_color_mode = "off"
   colors = []
@@ -238,7 +240,9 @@ end
   mark_size_unit = "point"
   mark_size = 0
   mark_foreground = -1
+  mark_foreground_alpha = 1
   mark_background = -2
+  mark_background_alpha = 1
   mark_offset = 0
   mark_stride = 1
   x_shift = []
@@ -266,7 +270,9 @@ end
   arrow_size_factor = 1
   polyline_style = 1
   foreground = 2
+  foreground_alpha = 1
   background = -2
+  background_alpha = 1
   interp_color_vector = []
   interp_color_mode = "off"
   colors = []
@@ -275,7 +281,9 @@ end
   mark_size_unit = "point"
   mark_size = 0
   mark_foreground = -1
+  mark_foreground_alpha = 1
   mark_background = -2
+  mark_background_alpha = 1
   mark_offset = 0
   mark_stride = 1
   x_shift = []
@@ -553,6 +561,7 @@ Hello world
       y = [1;2;3;4;5;6;7;8;9;10]
       z: [10x10 double]
   data_mapping = "scaled"
+  face_alpha = 1
   clip_state = "clipgrf"
   clip_box = []
   user_data = []
@@ -566,6 +575,7 @@ Hello world
       y = [1;2;3;4;5;6;7;8;9;10]
       z: [10x10 double]
   data_mapping = "scaled"
+  face_alpha = 1
   clip_state = "clipgrf"
   clip_box = []
   user_data = []
@@ -581,6 +591,7 @@ Hello world
       fy: [10x10 double]
   line_style = 1
   thickness = 1
+  color_alpha = 1
   colored = "off"
   arrow_size = 1
   arrow_style = "filled"
@@ -599,6 +610,7 @@ Hello world
       fy: [10x10 double]
   line_style = 1
   thickness = 1
+  color_alpha = 1
   colored = "off"
   arrow_size = 1
   arrow_style = "filled"

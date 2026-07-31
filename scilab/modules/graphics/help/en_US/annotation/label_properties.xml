@@ -92,6 +92,16 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>font_foreground_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the
+                        label text. <literal>1</literal> (default) means fully opaque;
+                        <literal>0</literal> means fully transparent.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>foreground: </term>
                 <listitem>
                     <para>
@@ -103,6 +113,17 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>foreground_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the label box
+                        border (used when <literal>.fill_mode="on"</literal>). A value of
+                        <literal>1</literal> (default) means fully opaque; <literal>0</literal>
+                        means fully transparent.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>background: </term>
                 <listitem>
                     <para>
@@ -110,6 +131,17 @@
                         if any. It is specified by its index in the current colormap, or -1 for
                         black or -2 for white.
                         It is ignored if <literal>.fill_mode="off"</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>background_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the label box
+                        fill (used when <literal>.fill_mode="on"</literal>). A value of
+                        <literal>1</literal> (default) means fully opaque; <literal>0</literal>
+                        means fully transparent.
                     </para>
                 </listitem>
             </varlistentry>
@@ -268,6 +300,14 @@ x_label.text="<mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac
     <refsection role="history">
         <title>History</title>
         <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.foreground_alpha</literal>, <literal>.background_alpha</literal> and <literal>.font_foreground_alpha</literal> properties introduced.
+                    </para>
+                </revdescription>
+            </revision>
             <revision>
                 <revnumber>5.2</revnumber>
                 <revremark>

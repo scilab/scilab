@@ -136,6 +136,16 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>font_foreground_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the
+                        text characters. <literal>1</literal> (default) means fully opaque;
+                        <literal>0</literal> means fully transparent.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>font_size: </term>
                 <listitem>
                     <para>It is a scalar specifying the displayed characters size.
@@ -206,6 +216,18 @@
                     </listitem>
                 </varlistentry>
                 <varlistentry>
+                    <term>foreground_alpha: </term>
+                    <listitem>
+                        <para>
+                            Scalar in the range [0, 1] controlling the transparency of the text
+                            box border (used when <literal>.box="on"</literal> and
+                            <literal>.line_mode="on"</literal>). A value of <literal>1</literal>
+                            (default) means fully opaque; <literal>0</literal> means fully
+                            transparent.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
                     <term>fill_mode: </term>
                     <listitem>
                         <para>
@@ -229,6 +251,18 @@
                             to the current colormap. Whatever is the colormap,
                             <literal>-1</literal> is black (default) and <literal>-2</literal>
                             is white.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>background_alpha: </term>
+                    <listitem>
+                        <para>
+                            Scalar in the range [0, 1] controlling the transparency of the text
+                            box fill (used when <literal>.box="on"</literal> and
+                            <literal>.fill_mode="on"</literal>). A value of <literal>1</literal>
+                            (default) means fully opaque; <literal>0</literal> means fully
+                            transparent.
                         </para>
                     </listitem>
                 </varlistentry>
@@ -400,12 +434,10 @@
             <title>History</title>
             <revhistory>
                 <revision>
-                    <revnumber>5.0</revnumber>
+                    <revnumber>2027.0.0</revnumber>
                     <revdescription>
                         <para>
-                            <literal>.text_box</literal>, <literal>.text_box_mode</literal>,
-                            <literal>.alignment</literal>, and <literal>.auto_dimensionning</literal>
-                            properties added.
+                            <literal>.foreground_alpha</literal>, <literal>.background_alpha</literal> and <literal>.font_foreground_alpha</literal> properties introduced.
                         </para>
                     </revdescription>
                 </revision>
@@ -414,6 +446,16 @@
                     <revremark>
                         LaTeX and MathML expressions are now supported.
                     </revremark>
+                </revision>
+                <revision>
+                    <revnumber>5.0</revnumber>
+                    <revdescription>
+                        <para>
+                            <literal>.text_box</literal>, <literal>.text_box_mode</literal>,
+                            <literal>.alignment</literal>, and <literal>.auto_dimensionning</literal>
+                            properties added.
+                        </para>
+                    </revdescription>
                 </revision>
             </revhistory>
         </refsection>

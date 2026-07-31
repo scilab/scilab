@@ -12,86 +12,98 @@ y=cos(2*%pi*(0:4)/5);
 xpoly(x,y);
 e = gce();
 assert_checkequal(e.parent.type, "Axes")
- ans  =
+ ans = 
   T
 assert_checkequal(e.children, [])
- ans  =
+ ans = 
   T
 assert_checkequal(e.visible, "on")
- ans  =
+ ans = 
   T
 assert_checkequal(e.data, [x; y]')
- ans  =
+ ans = 
   T
 assert_checkequal(e.closed, "off")
- ans  =
+ ans = 
   T
 assert_checkequal(e.line_mode, "on")
- ans  =
+ ans = 
   T
 assert_checkequal(e.fill_mode, "off")
- ans  =
+ ans = 
   T
 assert_checkequal(e.line_style, 1)
- ans  =
+ ans = 
   T
 assert_checkequal(e.thickness, 1)
- ans  =
+ ans = 
   T
 assert_checkequal(e.arrow_size_factor, 1)
- ans  =
+ ans = 
   T
 assert_checkequal(e.polyline_style, 1)
- ans  =
+ ans = 
   T
 assert_checkequal(e.foreground, -1)
- ans  =
+ ans = 
+  T
+assert_checkequal(e.foreground_alpha, 1)
+ ans = 
   T
 assert_checkequal(e.background, -2)
- ans  =
+ ans = 
+  T
+assert_checkequal(e.background_alpha, 1)
+ ans = 
   T
 assert_checkequal(e.interp_color_vector, [])
- ans  =
+ ans = 
   T
 assert_checkequal(e.interp_color_mode, "off")
- ans  =
+ ans = 
   T
 assert_checkequal(e.mark_mode, "off")
- ans  =
+ ans = 
   T
 assert_checkequal(e.mark_style, 0)
- ans  =
+ ans = 
   T
 assert_checkequal(e.mark_size_unit, "tabulated")
- ans  =
+ ans = 
   T
 assert_checkequal(e.mark_size, 0)
- ans  =
+ ans = 
   T
 assert_checkequal(e.mark_foreground, -1)
- ans  =
+ ans = 
+  T
+assert_checkequal(e.mark_foreground_alpha, 1)
+ ans = 
   T
 assert_checkequal(e.mark_background, -2)
- ans  =
+ ans = 
+  T
+assert_checkequal(e.mark_background_alpha, 1)
+ ans = 
   T
 assert_checkequal(e.x_shift, [])
- ans  =
+ ans = 
   T
 assert_checkequal(e.y_shift, [])
- ans  =
+ ans = 
   T
 assert_checkequal(e.z_shift, [])
- ans  =
+ ans = 
   T
 assert_checkequal(e.bar_width, 0)
- ans  =
+ ans = 
   T
 assert_checkequal(e.clip_state, "off")
- ans  =
+ ans = 
   T
 assert_checkequal(e.clip_box, [])
- ans  =
+ ans = 
   T
 assert_checkequal(e.user_data, [])
- ans  =
+ ans = 
   T

@@ -142,6 +142,37 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>"ForegroundAlpha": </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the polyline
+                        line or the surface mesh edges. A value of <literal>1</literal> (default) means a fully opaque line/mesh;
+                        a value of <literal>0</literal> means a fully transparent line/mesh. Intermediate
+                        values produce a semi-transparent line/mesh.
+                    </para>
+                    <para>
+                        This property is linked to the polyline's <literal>foreground_alpha</literal> property
+                        (see <link linkend="polyline_properties">polyline properties</link>) or
+                        <link linkend="surface_properties">surface properties</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"EdgeAlpha" or "ForegroundAlpha" (surfaces only): </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the surface mesh edges.
+                        A value of <literal>1</literal> (default) means fully opaque edges; a value of
+                        <literal>0</literal> means fully transparent edges. Intermediate values produce
+                        semi-transparent wireframe.
+                    </para>
+                    <para>
+                        This property is linked to the object's <literal>foreground</literal> property
+                        (see <link linkend="surface_properties">surface properties</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>"EdgeColor" or "Foreground" (surfaces only): </term>
                 <listitem>
                     <para>
@@ -158,7 +189,36 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"FaceColor": </term>
+                <term>"Background" (polylines only): </term>
+                <listitem>
+                    <para>
+                        This field contains the color used to fill the background of the
+                        polyline. Its value should be a color index (relative to the current
+                        colormap).
+                    </para>
+                    <para>
+                        This property is linked to the polyline's <literal>background</literal> property
+                        (see <link linkend="polyline_properties">polyline properties</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"BackgroundAlpha" (polylines only): </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the filled area of a polyline.
+                        A value of <literal>1</literal> (default) means fully opaque; a value of
+                        <literal>0</literal> means fully transparent. Intermediate values produce
+                        semi-transparent rendering.
+                    </para>
+                    <para>
+                        This property is linked to the polyline's <literal>background_alpha</literal> property
+                        (see <link linkend="polyline_properties">polyline properties</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"FaceColor" (surfaces only): </term>
                 <listitem>
                     <para>
                         a string with value <literal>'none'</literal>,
@@ -181,6 +241,21 @@
                                 </para>
                             </listitem>
                         </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"FaceAlpha" (surfaces only): </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the surface faces.
+                        A value of <literal>1</literal> (default) means fully opaque; a value of
+                        <literal>0</literal> means fully transparent. Intermediate values produce
+                        semi-transparent rendering.
+                    </para>
+                    <para>
+                        This property is linked to the surface's <literal>face_alpha</literal> property
+                        (see <link linkend="surface_properties">surface properties</link>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -273,6 +348,22 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>"MarkForegroundAlpha": </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the object's marks edges.
+                        A value of <literal>1</literal> (default) means fully opaque edges; a value of
+                        <literal>0</literal> means fully transparent edges. Intermediate values produce
+                        semi-transparent edges. Only meaningful when <literal>mark_mode = "on"</literal>.
+                    </para>
+                    <para>
+                        This property is linked to the object's <literal>mark_foreground_alpha</literal>
+                        property (see <link linkend="polyline_properties">polyline properties</link> or
+                        <link linkend="surface_properties">surface properties</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>"MarkerEdgeColor" or "MarkForeground": </term>
                 <listitem>
                     <para>
@@ -284,6 +375,22 @@
                     </para>
                     <para>
                         This property is linked to the object's <literal>mark_foreground</literal>
+                        property (see <link linkend="polyline_properties">polyline properties</link> or
+                        <link linkend="surface_properties">surface properties</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"MarkBackgroundAlpha": </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the marks faces.
+                        A value of <literal>1</literal> (default) means fully opaque; a value of
+                        <literal>0</literal> means fully transparent. Intermediate values produce
+                        semi-transparent marks.
+                    </para>
+                    <para>
+                        This property is linked to the object's <literal>mark_background_alpha</literal>
                         property (see <link linkend="polyline_properties">polyline properties</link> or
                         <link linkend="surface_properties">surface properties</link>).
                     </para>
@@ -496,9 +603,23 @@ surf(Z,'edgeco','b','marker','d','markersiz',9,'markerfac','k','xdata',-50:-41)
         <title>History</title>
         <revhistory>
             <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>"EdgeAlpha"</literal>, <literal>"FaceAlpha"</literal> and <literal>"ForegroundAlpha"</literal> properties added for surfaces.
+                    </para>
+                    <para>
+                        <literal>"BackgroundAlpha"</literal> and <literal>"ForegroundAlpha"</literal> properties added for polylines.
+                    </para>
+                    <para>
+                        <literal>"MarkBackgroundAlpha"</literal> and <literal>"MarkForegroundAlpha"</literal> properties added for polylines and surfaces.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
                 <revnumber>6.0.2</revnumber>
                 <revremark>
-                    The "Foreground", "markForeground", and "markBackground" colors can now be
+                    The "Foreground", "MarkForeground", and "MarkBackground" colors can now be
                     specified as named colors chosen in the full predefined colors list, or by
                     their "#RRGGBB" hexadecimal codes, or by their indices in the colormap.
                 </revremark>

@@ -29,7 +29,9 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,7);
 assert_checkequal(p.mark_foreground,2);
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,1);
 //
 // Test #2 Vary marker size
 clf
@@ -42,7 +44,9 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,ceil(sqrt(4*s/%pi)));
 assert_checkequal(p.mark_foreground,2);
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,1);
 //
 // Test #3 Vary marker size and color
 clf
@@ -56,7 +60,9 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,ceil(sqrt(4*s/%pi)));
 assert_checkequal(p.mark_foreground, round((64-1)*(x-min(x))/(max(x)-min(x))+1));
-assert_checkequal(p.mark_background, 0);
+assert_checkequal(p.mark_foreground_alpha,1);
+assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,1);
 //
 // Test #4 Fill the markers
 clf reset
@@ -69,7 +75,9 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,ceil(sqrt(4*s/%pi)));
 assert_checkequal(p.mark_foreground, round((32-1)*(y-min(y))/(max(y)-min(y))+1));
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background, round((32-1)*(y-min(y))/(max(y)-min(y))+1));
+assert_checkequal(p.mark_background_alpha,1);
 //
 // Test #5 Specify subplot for scatter plot
 clf
@@ -83,7 +91,9 @@ assert_checkequal(p1.mark_style,9);
 assert_checkequal(p1.mark_size_unit,"point");
 assert_checkequal(p1.mark_size,7);
 assert_checkequal(p1.mark_foreground,2);
+assert_checkequal(p1.mark_foreground_alpha,1);
 assert_checkequal(p1.mark_background,0);
+assert_checkequal(p1.mark_background_alpha,1);
 subplot(2,1,2);
 p2 = scatter(gca(),x,y,"fill","s");  // msizes & mcolors are implicitly skipped !
 assert_checkequal(p2.line_mode,"off");
@@ -94,7 +104,9 @@ assert_checkequal(p2.mark_style,11);
 assert_checkequal(p2.mark_size_unit,"point");
 assert_checkequal(p2.mark_size,7);
 assert_checkequal(p2.mark_foreground,2);
+assert_checkequal(p2.mark_foreground_alpha,1);
 assert_checkequal(p2.mark_background,2);
+assert_checkequal(p2.mark_background_alpha,1);
 
 //
 // test data
@@ -114,7 +126,9 @@ assert_checkequal(p.mark_style,5);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,7);
 assert_checkequal(p.mark_foreground,2);
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,1);
 //
 // Test #7 Change marker color and line width
 clf
@@ -129,7 +143,9 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,7);
 assert_checkequal(p.mark_foreground,color(0,.4*255,.4*255));
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,color(0,.8*255,.8*255));
+assert_checkequal(p.mark_background_alpha,1);
 
 //
 // Test data
@@ -152,7 +168,9 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,ceil(sqrt(4*t/%pi)));
 assert_checkequal(p.mark_foreground,color("darkblue"));
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,color("darkcyan"));
+assert_checkequal(p.mark_background_alpha,1);
 //
 // Test #9 Testing graphics handle
 clf
@@ -165,7 +183,9 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,ceil(sqrt(4*t/%pi)));
 assert_checkequal(p.mark_foreground,2);
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,1);
 
 //
 // Test data
@@ -183,7 +203,9 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,7);
 assert_checkequal(p.mark_foreground,color("red"));
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,1);
 //
 // Test #11 Testing color vector of strings specification
 clf
@@ -196,7 +218,9 @@ assert_checkequal(p.mark_style,9);
 assert_checkequal(p.mark_size_unit,"point");
 assert_checkequal(p.mark_size,7);
 assert_checkequal(p.mark_foreground,[color("red") color("green") color("blue") color("grey") color("black")]);
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,1);
 //
 // Test #12 Testing color RGB matrix specification
 clf
@@ -219,7 +243,41 @@ assert_checkequal(p.mark_foreground,...
  color(RGB(3,1),RGB(3,2),RGB(3,3))...
  color(RGB(4,1),RGB(4,2),RGB(4,3))...
  color(RGB(5,1),RGB(5,2),RGB(5,3))]);
+assert_checkequal(p.mark_foreground_alpha,1);
 assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,1);
+//
+// Test #13 Transparency (Scilab properties)
+x = linspace(0,2,200);
+y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x));
+p = scatter(x,y, "MarkerForegroundAlpha", 0.1, "MarkerBackgroundAlpha", 0.2);
+assert_checkequal(p.line_mode,"off");
+assert_checkequal(p.fill_mode,"off");
+assert_checkequal(p.thickness,1);
+assert_checkequal(p.mark_mode,"on");
+assert_checkequal(p.mark_style,9);
+assert_checkequal(p.mark_size_unit,"point");
+assert_checkequal(p.mark_size,7);
+assert_checkequal(p.mark_foreground,2);
+assert_checkequal(p.mark_foreground_alpha,0.1);
+assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,0.2);
+//
+// Test #14 Transparency (Matlab properties)
+x = linspace(0,2,200);
+y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x));
+p = scatter(x,y, "MarkerEdgeAlpha", 0.1, "MarkerfaceAlpha", 0.2);
+assert_checkequal(p.line_mode,"off");
+assert_checkequal(p.fill_mode,"off");
+assert_checkequal(p.thickness,1);
+assert_checkequal(p.mark_mode,"on");
+assert_checkequal(p.mark_style,9);
+assert_checkequal(p.mark_size_unit,"point");
+assert_checkequal(p.mark_size,7);
+assert_checkequal(p.mark_foreground,2);
+assert_checkequal(p.mark_foreground_alpha,0.1);
+assert_checkequal(p.mark_background,0);
+assert_checkequal(p.mark_background_alpha,0.2);
 
 // ==============
 // Error messages
@@ -295,6 +353,11 @@ assert_checkerror("scatter(1,2,""linewidth"", %i)", msg);
 assert_checkerror("scatter(1,2,""thickness"", %i)", msg);
 assert_checkerror("scatter(1,2,""linewidth"", %z)", msg);
 assert_checkerror("scatter(1,2,""thickness"", %z)", msg);
+
+msg = "scatter: Argument #4: Double value in [0 1] expected.";
+assert_checkerror("scatter(1,2,""MarkerFaceAlpha"",12)", msg);
+msg = "scatter: Argument #4: Scalar (1 element) expected.";
+assert_checkerror("scatter(1,2,""MarkerFaceAlpha"",[1 2])", msg);
 
 prop = ["markeredgecolor" "markerforeground" ..
         "markerfacecolor" "markerbackground"];

@@ -198,11 +198,35 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>foreground_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the polyline
+                        line. A value of <literal>1</literal> (default) means a fully opaque line;
+                        a value of <literal>0</literal> means a fully transparent line. Intermediate
+                        values produce a semi-transparent line.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>background: </term>
                 <listitem>
-                    <para>This field contains the color used to fill the background of the
+                    <para>
+                        This field contains the color used to fill the background of the
                         polyline. Its value should be a color index (relative to the current
                         colormap).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>background_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the polyline
+                        fill (used when <literal>fill_mode</literal> is <literal>"on"</literal>).
+                        A value of <literal>1</literal> (default) means fully opaque; a value of
+                        <literal>0</literal> means fully transparent. Intermediate values produce a
+                        semi-transparent fill.
                     </para>
                 </listitem>
             </varlistentry>
@@ -337,6 +361,17 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>mark_foreground_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the mark edges (foreground).
+                        A value of <literal>1</literal> (default) means fully opaque edges; a value of
+                        <literal>0</literal> means fully transparent edges. Intermediate values produce
+                        semi-transparent edges.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>mark_background: </term>
                 <listitem>
                     <para>
@@ -345,6 +380,17 @@
                         -1 for black, or 0 for transparent edges. If its value is scalar, the same
                         specified color is used for the marks of all points of the curve.
                         Otherwise it must be a row with as many elements as there are points in the curve.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_background_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the mark edges (background).
+                        A value of <literal>1</literal> (default) means fully opaque; a value of
+                        <literal>0</literal> means fully transparent. Intermediate values produce
+                        semi-transparent markers. Not used for "point" and "filled diamond" markers.
                     </para>
                 </listitem>
             </varlistentry>
@@ -661,6 +707,15 @@ p.line_style=4;
                 <revremark>
                   line_style value 0 is no more available.
                 </revremark>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.background_alpha</literal>, <literal>.foreground_alpha</literal>,
+                        <literal>.mark_background_alpha</literal> and <literal>.mark_foreground_alpha</literal> properties introduced.
+                    </para>
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>

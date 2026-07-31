@@ -1,13 +1,30 @@
+/*
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ */
+
 package org.scilab.modules.renderer.JoGLView;
 
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
+import org.scilab.forge.scirenderer.shapes.appearance.Color;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
+import org.scilab.forge.scirenderer.texture.TextureDataProvider;
 import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.axes.Axes;
@@ -38,7 +55,8 @@ class Fac3dDrawer {
                 GraphicObjectProperties.__GO_DATA_MAPPING__,
                 GraphicObjectProperties.__GO_CDATA_BOUNDS__,
                 GraphicObjectProperties.__GO_DATA_MODEL__,
-                GraphicObjectProperties.__GO_COLOR_RANGE__
+                GraphicObjectProperties.__GO_COLOR_RANGE__,
+                GraphicObjectProperties.__GO_FACE_ALPHA__
             ));
     /** The parent drawer visitor. */
     private final DrawerVisitor drawerVisitor;
@@ -70,7 +88,24 @@ class Fac3dDrawer {
                     DefaultGeometry geometry = new DefaultGeometry();
                     geometry.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
                     geometry.setNormals(dataManager.getNormalBuffer(fac3d.getIdentifier()));
-                    geometry.setIndices(dataManager.getIndexBuffer(fac3d.getIdentifier()));
+
+                    /* When the surface is transparent (face_alpha < 1), the depth buffer is
+                     * not written (glDepthMask(false) in JoGLShapeDrawer), so blending order
+                     * is determined by the index buffer order alone. The grid-order index
+                     * buffer then blends facets in an arbitrary depth order, making near
+                     * facets disappear behind far ones. To apply the painter's algorithm we
+                     * feed a depth-sorted (back-to-front) index buffer instead. */
+                    boolean transparentFill = (fac3d.getColorMode() != 0) && (fac3d.getFaceAlpha() < 1.0);
+                    if (transparentFill) {
+                        geometry.setIndices(drawerVisitor.getTransparentFaceSorter().getSortedIndexBuffer(
+                                                fac3d.getIdentifier(),
+                                                dataManager.getIndexBuffer(fac3d.getIdentifier()),
+                                                dataManager.getVertexBuffer(fac3d.getIdentifier()),
+                                                drawingTools.getTransformationManager().getTransformation(),
+                                                drawerVisitor.getCanvas().getBuffersManager()));
+                    } else {
+                        geometry.setIndices(dataManager.getIndexBuffer(fac3d.getIdentifier()));
+                    }
 
                     geometry.setPolygonOffsetMode(true);
 
@@ -85,20 +120,23 @@ class Fac3dDrawer {
                         if (fac3d.getHiddenColor() > 0) {
                             geometry.setFaceCullingMode(axesDrawer.getBackFaceCullingMode());
                             Appearance backTrianglesAppearance = new Appearance();
-                            backTrianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, fac3d.getHiddenColor()));
+                            backTrianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, Math.abs(fac3d.getHiddenColor()), fac3d.getFaceAlpha().floatValue()));
                             drawingTools.draw(geometry, backTrianglesAppearance);
-
-                            // Now we will draw front face.
                             geometry.setFaceCullingMode(axesDrawer.getFrontFaceCullingMode());
                         } else {
                             geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
                         }
 
                         if (fac3d.getColorFlag() == 0) {
-                            appearance.setFillColor(ColorFactory.createColor(colorMap, Math.abs(fac3d.getColorMode())));
+                            appearance.setFillColor(ColorFactory.createColor(colorMap, Math.abs(fac3d.getColorMode()), fac3d.getFaceAlpha().floatValue()));
                         } else if (fac3d.getColorFlag() > 0) {
                             geometry.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(fac3d.getIdentifier()));
                             appearance.setTexture(getTexture(fac3d));
+                            if (fac3d.getFaceAlpha() < 1.0) {
+                                // Trigger isTransparent → glDepthMask(false).
+                                // GL_REPLACE means glColor alpha is ignored; texture alpha (baked in getData) drives blending.
+                                appearance.setFillColor(new Color(1.0f, 1.0f, 1.0f, fac3d.getFaceAlpha().floatValue()));
+                            }
                         } else {
                             geometry.setColors(null);
                         }
@@ -106,15 +144,33 @@ class Fac3dDrawer {
                         geometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
                     }
 
-                    if ((fac3d.getColorMode() >= 0) && (fac3d.getLineThickness() > 0.0)) {
+                    if ((fac3d.getColorMode() >= 0) && (fac3d.getLineThickness() > 0.0) && (fac3d.getLineColorAlpha() > 0.0)) {
                         geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                         geometry.setWireIndices(dataManager.getWireIndexBuffer(fac3d.getIdentifier()));
                         Integer lineColor = fac3d.getSelected() ? fac3d.getSelectedColor() : fac3d.getLineColor();
-                        appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
+                        appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor, fac3d.getLineColorAlpha().floatValue()));
                         appearance.setLineWidth(fac3d.getLineThickness().floatValue());
                     }
 
-                    drawingTools.draw(geometry, appearance);
+                    if ((fac3d.getHiddenColor() <= 0) && (fac3d.getFaceAlpha() < 1.0) && (fac3d.getColorMode() != 0)) {
+                        /* Two-pass transparent rendering (no hiddenColor):
+                         * Pass 1: back faces (far wall), no wireframe → interior visible.
+                         * Pass 2: front faces (near wall) + wireframe.
+                         * Front wireframe writes depth (glDepthMask restored before wireframe
+                         * in vboDrawing), occluding back-face wireframe at same pixels →
+                         * no doubled bars. Both walls rendered → no white interior. */
+                        Geometry.LineDrawingMode savedLineMode = geometry.getLineDrawingMode();
+                        // Pass 1: back faces, fill only
+                        geometry.setFaceCullingMode(axesDrawer.getBackFaceCullingMode());
+                        geometry.setLineDrawingMode(Geometry.LineDrawingMode.NONE);
+                        drawingTools.draw(geometry, appearance);
+                        // Pass 2: front faces, fill + wireframe
+                        geometry.setFaceCullingMode(axesDrawer.getFrontFaceCullingMode());
+                        geometry.setLineDrawingMode(savedLineMode);
+                        drawingTools.draw(geometry, appearance);
+                    } else {
+                        drawingTools.draw(geometry, appearance);
+                    }
                     LightingUtils.setLightingEnable(drawingTools.getLightManager(), false);
                 }
 
@@ -241,9 +297,9 @@ class Fac3dDrawer {
         @Override
         public ByteBuffer getData() {
             ColorMap colorMap = drawerVisitor.getColorMap();
-//            Integer[] outsideColor = fac3d.getOutsideColor();
 
             ByteBuffer buffer = ByteBuffer.allocate(4 * getTextureLength());
+            float alpha = fac3d.getFaceAlpha().floatValue();
 
             int min;
             int max;
@@ -256,27 +312,13 @@ class Fac3dDrawer {
                 max = colorMap.getSize();
             }
 
-            // if (outsideColor[0] == 0) {
-                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, min)));
-            // } else if (outsideColor[0] > 0) {
-            //     buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, outsideColor[0])));
-            // } else {
-            //     // TODO: transparency.
-            //     buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, -2)));
-            // }
+            buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, min, alpha)));
 
             for (int i = min; i <= max; i++) {
-                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, i)));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, i, alpha)));
             }
 
-            // if (outsideColor[1] == 0) {
-                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, max)));
-            // } else if (outsideColor[1] > 0) {
-            //     buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, outsideColor[1])));
-            // } else {
-            //     // TODO: transparency.
-            //     buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, -2)));
-            // }
+            buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, max, alpha)));
 
             buffer.rewind();
             return buffer;

@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2011 - DIGITEO - Pierre Lando
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -75,6 +76,12 @@ public final class Appearance {
      * The material used for lighting.
      */
     private Material material;
+
+    /**
+     * Flag for depth-only rendering: writes to depth buffer only, not to color buffer.
+     * Used for transparent surface rendering to establish correct depth before drawing wireframe.
+     */
+    private boolean depthOnly = false;
 
     /**
      * Default constructor.
@@ -188,6 +195,26 @@ public final class Appearance {
      */
     public void setMaterial(Material m) {
         material = m;
+    }
+
+    /**
+     * Returns whether this appearance requests depth-only rendering.
+     * When true, the renderer writes to the depth buffer only, not to the color buffer.
+     * @return true if depth-only rendering is requested.
+     */
+    public boolean isDepthOnly() {
+        return depthOnly;
+    }
+
+    /**
+     * Sets depth-only rendering mode.
+     * When true, the renderer writes depth but suppresses color output.
+     * Used to establish front-face depth before drawing transparent wireframe,
+     * so that back-face wires are correctly occluded.
+     * @param depthOnly true to enable depth-only rendering.
+     */
+    public void setDepthOnly(boolean depthOnly) {
+        this.depthOnly = depthOnly;
     }
 }
 

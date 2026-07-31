@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -20,7 +21,6 @@ import org.scilab.modules.graphic_objects.contouredObject.Line.LineType;
 import org.scilab.modules.graphic_objects.contouredObject.Mark.MarkPropertyType;
 import org.scilab.modules.graphic_objects.contouredObject.Mark.MarkSizeUnitType;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -30,7 +30,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public abstract class ContouredObject extends GraphicObject {
     /** ContouredObject properties */
-    public enum ContouredObjectPropertyType { LINE, FILLMODE, BACKGROUND, MARK, MARK_OFFSET, MARK_STRIDE, MARK_SIZES, NUM_MARK_SIZES, MARK_FOREGROUNDS, NUM_MARK_FOREGROUNDS, MARK_BACKGROUNDS, NUM_MARK_BACKGROUNDS, SELECTED };
+    public enum ContouredObjectPropertyType { LINE, FILLMODE, BACKGROUND, BACKGROUND_ALPHA, MARK, MARK_OFFSET, MARK_STRIDE, MARK_SIZES, NUM_MARK_SIZES, MARK_FOREGROUNDS, NUM_MARK_FOREGROUNDS, MARK_BACKGROUNDS, NUM_MARK_BACKGROUNDS, SELECTED };
 
     /** Line property */
     private Line line;
@@ -40,6 +40,9 @@ public abstract class ContouredObject extends GraphicObject {
 
     /** Background (fill) color */
     private int background;
+
+    /** Background transparency (0.0 = fully transparent, 1.0 = fully opaque) */
+    private double backgroundAlpha;
 
     /** Mark property */
     private Mark mark;
@@ -76,6 +79,7 @@ public abstract class ContouredObject extends GraphicObject {
         line = new Line();
         fillMode = false;
         background = 0;
+        backgroundAlpha = 1.0;
         mark = new Mark();
         offset = 0;
         stride = 1;
@@ -114,10 +118,14 @@ public abstract class ContouredObject extends GraphicObject {
                 return LinePropertyType.THICKNESS;
             case __GO_LINE_COLOR__ :
                 return LinePropertyType.COLOR;
+            case __GO_LINE_COLOR_ALPHA__ :
+                return LinePropertyType.COLORALPHA;
             case __GO_FILL_MODE__ :
                 return ContouredObjectPropertyType.FILLMODE;
             case __GO_BACKGROUND__ :
                 return ContouredObjectPropertyType.BACKGROUND;
+            case __GO_BACKGROUND_ALPHA__ :
+                return ContouredObjectPropertyType.BACKGROUND_ALPHA;
             case __GO_MARK__ :
                 return ContouredObjectPropertyType.MARK;
             case __GO_MARK_MODE__ :
@@ -140,6 +148,10 @@ public abstract class ContouredObject extends GraphicObject {
                 return ContouredObjectPropertyType.NUM_MARK_FOREGROUNDS;
             case __GO_MARK_BACKGROUND__ :
                 return MarkPropertyType.BACKGROUND;
+            case __GO_MARK_FOREGROUND_ALPHA__ :
+                return MarkPropertyType.FOREGROUNDALPHA;
+            case __GO_MARK_BACKGROUND_ALPHA__ :
+                return MarkPropertyType.BACKGROUNDALPHA;
             case __GO_MARK_BACKGROUNDS__ :
                 return ContouredObjectPropertyType.MARK_BACKGROUNDS;
             case __GO_NUM_MARK_BACKGROUNDS__ :
@@ -171,10 +183,14 @@ public abstract class ContouredObject extends GraphicObject {
             return getLineThickness();
         } else if (property == LinePropertyType.COLOR) {
             return getLineColor();
+        } else if (property == LinePropertyType.COLORALPHA) {
+            return getLineColorAlpha();
         } else if (property == ContouredObjectPropertyType.FILLMODE) {
             return getFillMode();
         } else if (property == ContouredObjectPropertyType.BACKGROUND) {
             return getBackground();
+        } else if (property == ContouredObjectPropertyType.BACKGROUND_ALPHA) {
+            return getBackgroundAlpha();
         } else if (property == ContouredObjectPropertyType.MARK) {
             return getMark();
         } else if (property == MarkPropertyType.MODE) {
@@ -191,12 +207,16 @@ public abstract class ContouredObject extends GraphicObject {
             return getNumMarkSizes();
         } else if (property == MarkPropertyType.FOREGROUND) {
             return getMarkForeground();
+        } else if (property == MarkPropertyType.FOREGROUNDALPHA) {
+            return getMarkForegroundAlpha();
         } else if (property == ContouredObjectPropertyType.MARK_FOREGROUNDS) {
             return getMarkForegrounds();
         } else if (property == ContouredObjectPropertyType.NUM_MARK_FOREGROUNDS) {
             return getNumMarkForegrounds();
         } else if (property == MarkPropertyType.BACKGROUND) {
             return getMarkBackground();
+        } else if (property == MarkPropertyType.BACKGROUNDALPHA) {
+            return getMarkBackgroundAlpha();
         } else if (property == ContouredObjectPropertyType.MARK_BACKGROUNDS) {
             return getMarkBackgrounds();
         } else if (property == ContouredObjectPropertyType.NUM_MARK_BACKGROUNDS) {
@@ -229,10 +249,14 @@ public abstract class ContouredObject extends GraphicObject {
             setLineThickness((Double) value);
         } else if (property == LinePropertyType.COLOR) {
             return setLineColor((Integer) value);
+        } else if (property == LinePropertyType.COLORALPHA) {
+            return setLineColorAlpha((Double) value);
         } else if (property == ContouredObjectPropertyType.FILLMODE) {
             return setFillMode((Boolean) value);
         } else if (property == ContouredObjectPropertyType.BACKGROUND) {
             setBackground((Integer) value);
+        } else if (property == ContouredObjectPropertyType.BACKGROUND_ALPHA) {
+            setBackgroundAlpha((Double) value);
         } else if (property == ContouredObjectPropertyType.MARK) {
             setMark((Mark) value);
         } else if (property == MarkPropertyType.MODE) {
@@ -247,10 +271,14 @@ public abstract class ContouredObject extends GraphicObject {
             return setMarkSizes((Integer []) value);
         } else if (property == MarkPropertyType.FOREGROUND) {
             this.setMarkForeground((Integer) value);
+        } else if (property == MarkPropertyType.FOREGROUNDALPHA) {
+            return setMarkForegroundAlpha((Double) value);
         } else if (property == ContouredObjectPropertyType.MARK_FOREGROUNDS) {
             return setMarkForegrounds((Integer []) value);
         } else if (property == MarkPropertyType.BACKGROUND) {
             this.setMarkBackground((Integer) value);
+        } else if (property == MarkPropertyType.BACKGROUNDALPHA) {
+            return setMarkBackgroundAlpha((Double) value);
         } else if (property == ContouredObjectPropertyType.MARK_BACKGROUNDS) {
             return setMarkBackgrounds((Integer []) value);
         } else if (property == ContouredObjectPropertyType.MARK_OFFSET) {
@@ -331,6 +359,21 @@ public abstract class ContouredObject extends GraphicObject {
     }
 
     /**
+     * @return the background transparency
+     */
+    public Double getBackgroundAlpha() {
+        return backgroundAlpha;
+    }
+
+    /**
+     * @param background the background transparency to set
+     */
+    public UpdateStatus setBackgroundAlpha(Double backgroundAlpha) {
+        this.backgroundAlpha = backgroundAlpha;
+        return UpdateStatus.Success;
+    }
+
+    /**
      * @return the background
      */
     public Integer getBackground() {
@@ -342,6 +385,21 @@ public abstract class ContouredObject extends GraphicObject {
      */
     public UpdateStatus setBackground(Integer background) {
         this.background = background;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return the line transparency
+     */
+    public Double getLineColorAlpha() {
+        return line.getColorAlpha();
+    }
+
+    /**
+     * @param lineAlpha the line transparency to set
+     */
+    public UpdateStatus setLineColorAlpha(Double lineAlpha) {
+        line.setColorAlpha(lineAlpha);
         return UpdateStatus.Success;
     }
 
@@ -565,6 +623,38 @@ public abstract class ContouredObject extends GraphicObject {
         mark_foregrounds = foregrounds;
         mark.setForeground(-3);
         return UpdateStatus.Success;
+    }
+
+    /**
+     * Get the mark background (face) transparency
+     * @return the face transparency
+     */
+    public Double getMarkBackgroundAlpha() {
+        return mark.getBackgroundAlpha();
+    }
+
+    /**
+     * Set the mark background (face) transparency
+     * @param backgroundAlpha the face transparency to set
+     */
+    public UpdateStatus setMarkBackgroundAlpha(Double backgroundAlpha) {
+        return mark.setBackgroundAlpha(backgroundAlpha);
+    }
+
+    /**
+     * Get the mark foreground (edge) transparency
+     * @return the edge transparency
+     */
+    public Double getMarkForegroundAlpha() {
+        return mark.getForegroundAlpha();
+    }
+
+    /**
+     * Set the mark foreground (edge) transparency
+     * @param foregroundAlpha the edge transparency to set
+     */
+    public UpdateStatus setMarkForegroundAlpha(Double foregroundAlpha) {
+        return mark.setForegroundAlpha(foregroundAlpha);
     }
 
     /**

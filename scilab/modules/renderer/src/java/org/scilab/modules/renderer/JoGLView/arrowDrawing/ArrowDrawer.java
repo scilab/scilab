@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -24,7 +25,6 @@ import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.renderer.JoGLView.DataManager;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
@@ -73,6 +73,16 @@ public class ArrowDrawer {
 
     /** The vertex buffer used to draw arrow vertices for non-preallocated vertex data. */
     ElementsBuffer drawerArrowVertices;
+
+    /**
+     * Backup of segment-end vertices (v1) modified by {@link #shortenSegmentEndpoints}, restored
+     * by {@link #restoreSegmentEndpoints}. Cache lives only for the duration of a single segment
+     * draw within a frame.
+     */
+    private float[] backupV1Data;
+    private int[] backupV1Offsets;
+    private int backupV1Count;
+    private int backupV1ElementSize;
 
     /**
      * Constructor.
@@ -143,20 +153,20 @@ public class ArrowDrawer {
      * @param isSegs specifies whether the object is a Segs object.
      * @param isColored specifies whether the object is drawn with per-arrow colors.
      * @param lineColor the line color used for all the arrows (used if isColored is equal to false).
+     * @param foregroundAlpha the line (edge) transparency.
      * @throws org.scilab.forge.scirenderer.SciRendererException if drawing fails.
      * @throws ObjectRemovedException
      */
     public void drawArrows(Integer parentAxesId, Integer identifier, double arrowSize, double lineThickness, boolean isSegs,
-                           boolean isColored, int lineColor, boolean isStripped) throws SciRendererException, ObjectRemovedException, OutOfMemoryException {
+                           boolean isColored, int lineColor, Double foregroundAlpha, boolean isStripped) throws SciRendererException, ObjectRemovedException, OutOfMemoryException {
 
         DataManager dataManager = visitor.getDataManager();
-        ColorMap colorMap = visitor.getColorMap();
 
         ElementsBuffer vertices = dataManager.getVertexBuffer(identifier);
         IndicesBuffer segmentIndices = dataManager.getWireIndexBuffer(identifier);
         IndicesBuffer triangleIndices = dataManager.getIndexBuffer(identifier);
 
-        drawArrows(parentAxesId, vertices, dataManager.getColorBuffer(identifier), segmentIndices, triangleIndices, arrowSize, lineThickness, isSegs, isColored, lineColor, isStripped);
+        drawArrows(parentAxesId, vertices, dataManager.getColorBuffer(identifier), segmentIndices, triangleIndices, arrowSize, lineThickness, isSegs, isColored, lineColor, foregroundAlpha, isStripped);
     }
 
     /**
@@ -169,17 +179,18 @@ public class ArrowDrawer {
      * @param arrowSize the arrow size.
      * @param lineThickness the arrow segment thickness.
      * @param lineColor the line color used for all the arrows.
+     * @param foregroundAlpha the line (edge) transparency.
      * @throws org.scilab.forge.scirenderer.SciRendererException if drawing fails.
      */
     public void drawArrows(Integer parentAxesId, ElementsBuffer vertices, IndicesBuffer segmentIndices,
-                           double arrowSize, double lineThickness, int lineColor, boolean isStripped) throws SciRendererException {
+                           double arrowSize, double lineThickness, int lineColor, Double foregroundAlpha, boolean isStripped) throws SciRendererException {
 
         /*
          * No colors are specified as a unique color is used for all the segments.
          * As arrow tip vertices are written to the drawer's vertex buffer, triangle indices
          * are also set to null.
          */
-        drawArrows(parentAxesId, vertices, null, segmentIndices, null, arrowSize, lineThickness, false, false, lineColor, isStripped);
+        drawArrows(parentAxesId, vertices, null, segmentIndices, null, arrowSize, lineThickness, false, false, lineColor, foregroundAlpha, isStripped);
     }
 
     /**
@@ -197,10 +208,11 @@ public class ArrowDrawer {
      * @param isSegs specifies whether arrows are drawn for a Segs object.
      * @param isColored specifies whether per-arrow colors are used.
      * @param lineColor the line color used for all the arrows (used if isColored is equal to false).
+     * @param foregroundAlpha the line (edge) transparency.
      * @throws org.scilab.forge.scirenderer.SciRendererException if drawing fails.
      */
     private void drawArrows(Integer parentAxesId, ElementsBuffer vertices, ElementsBuffer colors, IndicesBuffer segmentIndices, IndicesBuffer triangleIndices,
-                            double arrowSize, double lineThickness, boolean isSegs, boolean isColored, int lineColor, boolean isStripped) throws SciRendererException {
+                            double arrowSize, double lineThickness, boolean isSegs, boolean isColored, int lineColor, Double foregroundAlpha, boolean isStripped) throws SciRendererException {
 
         int offset = vertices.getElementsSize();
 
@@ -259,7 +271,7 @@ public class ArrowDrawer {
         if (isColored) {
             arrowTips.setColors(colors);
         } else {
-            arrowAppearance.setFillColor(ColorFactory.createColor(visitor.getColorMap(), lineColor));
+            arrowAppearance.setFillColor(ColorFactory.createColor(visitor.getColorMap(), lineColor, foregroundAlpha.floatValue()));
         }
 
         /* Draws in window coordinates */
@@ -542,13 +554,14 @@ public class ArrowDrawer {
      * @param isSegs specifies whether the object is a Segs object.
      * @param isColored specifies whether the object is drawn with per-arrow colors.
      * @param lineColor the line color used for all arrows (used if isColored is false).
+     * @param foregroundAlpha the line (edge) transparency.
      * @param isStripped specifies whether segment indices are stripped.
      * @throws SciRendererException if drawing fails.
      * @throws ObjectRemovedException if the object was removed.
      * @throws OutOfMemoryException if out of memory.
      */
     public void drawVbackArrows(Integer parentAxesId, Integer identifier, double arrowSize, double lineThickness,
-                                boolean isSegs, boolean isColored, int lineColor, boolean isStripped)
+                                boolean isSegs, boolean isColored, int lineColor, Double foregroundAlpha, boolean isStripped)
             throws SciRendererException, ObjectRemovedException, OutOfMemoryException {
 
         DataManager dataManager = visitor.getDataManager();
@@ -614,7 +627,7 @@ public class ArrowDrawer {
             vbackGeom.setColors(dataManager.getColorBuffer(identifier));
             vbackAppearance.setLineColor(null);
         } else {
-            vbackAppearance.setLineColor(ColorFactory.createColor(visitor.getColorMap(), lineColor));
+            vbackAppearance.setLineColor(ColorFactory.createColor(visitor.getColorMap(), lineColor, foregroundAlpha.floatValue()));
         }
 
         visitor.getDrawingTools().getTransformationManager().useWindowCoordinate();
@@ -622,6 +635,110 @@ public class ArrowDrawer {
         visitor.getDrawingTools().getTransformationManager().useSceneCoordinate();
 
         visitor.getCanvas().getBuffersManager().dispose(vbackWireIndices);
+    }
+
+    /**
+     * Move each segment's v1 endpoint backward (toward v0) so that the line stops at the base
+     * of the arrow head instead of extending all the way to the apex. Without this the line
+     * is visible through transparent arrow heads. The original v1 values are saved so that
+     * {@link #restoreSegmentEndpoints} can restore them before the arrow head triangles are
+     * drawn (they need the original apex position).
+     *
+     * @param parentAxesId the identifier of the object's parent Axes.
+     * @param identifier the object's identifier.
+     * @param arrowSize the arrow size.
+     * @param lineThickness the arrow segment thickness.
+     * @param isSegs specifies whether the object is a Segs object.
+     * @param isStripped specifies whether the wire indices form a strip.
+     */
+    public void shortenSegmentEndpoints(Integer parentAxesId, Integer identifier, double arrowSize, double lineThickness,
+                                        boolean isSegs, boolean isStripped) throws ObjectRemovedException, OutOfMemoryException {
+        DataManager dataManager = visitor.getDataManager();
+        ElementsBuffer vertices = dataManager.getVertexBuffer(identifier);
+        IndicesBuffer segmentIndices = dataManager.getWireIndexBuffer(identifier);
+
+        int offset = vertices.getElementsSize();
+        int numSegments;
+        if (isStripped) {
+            numSegments = segmentIndices.getData().capacity() - 1;
+        } else {
+            numSegments = segmentIndices.getData().capacity() / 2;
+        }
+        if (numSegments == 0) {
+            backupV1Count = 0;
+            return;
+        }
+
+        Transformation projection = visitor.getDrawingTools().getTransformationManager().getCanvasProjection();
+        Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
+        double pixelSize = computeArrowPixelSize(parentAxes, vertices, segmentIndices, numSegments, arrowSize, lineThickness, isSegs);
+        double heightWindow = pixelSize * COS_HALF_ANGLE;
+
+        if (backupV1Data == null || backupV1Data.length < numSegments * offset) {
+            backupV1Data = new float[numSegments * offset];
+            backupV1Offsets = new int[numSegments];
+        }
+        backupV1Count = numSegments;
+        backupV1ElementSize = offset;
+
+        FloatBuffer vertexData = vertices.getData();
+        IntBuffer segmentIndexData = segmentIndices.getData();
+
+        for (int i = 0; i < numSegments; i++) {
+            int v0Off;
+            int v1Off;
+            if (isStripped) {
+                v0Off = offset * segmentIndexData.get(i);
+                v1Off = offset * segmentIndexData.get(i + 1);
+            } else {
+                v0Off = offset * segmentIndexData.get(2 * i);
+                v1Off = offset * segmentIndexData.get(2 * i + 1);
+            }
+            backupV1Offsets[i] = v1Off;
+            for (int k = 0; k < offset; k++) {
+                backupV1Data[i * offset + k] = vertexData.get(v1Off + k);
+            }
+
+            Vector3d v0Scene = new Vector3d(vertexData.get(v0Off), vertexData.get(v0Off + 1), vertexData.get(v0Off + 2));
+            Vector3d v1Scene = new Vector3d(backupV1Data[i * offset], backupV1Data[i * offset + 1], backupV1Data[i * offset + 2]);
+            Vector3d v0Window = projection.project(v0Scene);
+            Vector3d v1Window = projection.project(v1Scene);
+            double windowLen = v1Window.minus(v0Window).getNorm();
+            if (windowLen > 0) {
+                double t = Math.min(1.0, heightWindow / windowLen);
+                vertexData.put(v1Off,     (float) (v1Scene.getX() - (v1Scene.getX() - v0Scene.getX()) * t));
+                vertexData.put(v1Off + 1, (float) (v1Scene.getY() - (v1Scene.getY() - v0Scene.getY()) * t));
+                vertexData.put(v1Off + 2, (float) (v1Scene.getZ() - (v1Scene.getZ() - v0Scene.getZ()) * t));
+            }
+        }
+
+        vertices.setData(vertexData, offset);
+    }
+
+    /**
+     * Restore segment-end vertices saved by {@link #shortenSegmentEndpoints} so that subsequent
+     * arrow-tip computation and mark drawing see the original positions.
+     *
+     * @param identifier the object's identifier.
+     */
+    public void restoreSegmentEndpoints(Integer identifier) throws ObjectRemovedException, OutOfMemoryException {
+        if (backupV1Count == 0) {
+            return;
+        }
+
+        ElementsBuffer vertices = visitor.getDataManager().getVertexBuffer(identifier);
+        FloatBuffer vertexData = vertices.getData();
+        int offset = backupV1ElementSize;
+
+        for (int i = 0; i < backupV1Count; i++) {
+            int v1Off = backupV1Offsets[i];
+            for (int k = 0; k < offset; k++) {
+                vertexData.put(v1Off + k, backupV1Data[i * offset + k]);
+            }
+        }
+
+        vertices.setData(vertexData, offset);
+        backupV1Count = 0;
     }
 
     /**

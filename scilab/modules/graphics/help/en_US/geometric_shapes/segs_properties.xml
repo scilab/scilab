@@ -138,6 +138,18 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>segs_color_alpha: </term>
+                <listitem>
+                    <para>
+                        Transparency of each segment (line and arrow head). Either a scalar
+                        applied to all segments, or a row vector with one value per segment.
+                        Each value is in the range [0, 1]. A value of <literal>1</literal>
+                        (default) means fully opaque; <literal>0</literal> means fully
+                        transparent.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>mark_mode: </term>
                 <listitem>
                     <para>
@@ -216,11 +228,33 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>mark_foreground_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the mark edges (foreground).
+                        A value of <literal>1</literal> (default) means fully opaque edges; a value of
+                        <literal>0</literal> means fully transparent edges. Intermediate values produce
+                        semi-transparent edges.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>mark_background: </term>
                 <listitem>
                     <para>
                         This field contains the <literal>mark_background</literal>
                         property value which is the marks' face color. Its value should be a color index (relative to the current <literal>color_map</literal>) or 0 for transparent face.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_background_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the mark edges (background).
+                        A value of <literal>1</literal> (default) means fully opaque; a value of
+                        <literal>0</literal> means fully transparent. Intermediate values produce
+                        semi-transparent markers. Not used for "point" and "filled diamond" markers.
                     </para>
                 </listitem>
             </varlistentry>
@@ -331,6 +365,15 @@ xrect(s.clip_box);
     <refsection role="history">
         <title>History</title>
         <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.segs_color_alpha</literal>, <literal>.mark_background_alpha</literal>
+                        and <literal>.mark_foreground_alpha</literal> properties introduced.
+                    </para>
+                </revdescription>
+            </revision>
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>

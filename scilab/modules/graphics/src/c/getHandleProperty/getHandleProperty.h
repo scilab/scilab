@@ -134,6 +134,10 @@ GRAPHICS_IMPEXP void* get_cube_scaling_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_arrow_size_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_arrow_style_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_segs_color_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_segs_color_alpha_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_color_alpha_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_font_color_alpha_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_font_foreground_alpha_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_colored_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_data_mapping_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_rotation_angles_property(void* _pvCtx, int iObjUID);
@@ -210,5 +214,10 @@ GRAPHICS_IMPEXP void* get_ticks_format_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_ticks_st_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_colors_property(void* _pvCtx, int pobjUID);
 GRAPHICS_IMPEXP void* get_colors_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_face_alpha_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_background_alpha_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_foreground_alpha_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_mark_background_alpha_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_mark_foreground_alpha_property(void* _pvCtx, int iObjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

@@ -2,8 +2,10 @@
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2024 - UTC - Stéphane MOTTELET
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -81,7 +83,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         this.entities = new Object[columnNumber][lineNumber];
 
         boolean fractionalFont = textObject.getFontFractional();
-        Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor());
+        Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor(), textObject.getFont().getColorAlpha().floatValue());
         Font font = computeFont(textObject);
 
         loadDeps(textObject);
@@ -109,7 +111,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         this.entities = new Object[columnNumber][lineNumber];
 
         boolean fractionalFont = textObject.getFontFractional();
-        Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor());
+        Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor(), textObject.getFont().getColorAlpha().floatValue());
         Font font = computeFont(textObject, scaleFactor);
 
         /* Fill the entity matrix */

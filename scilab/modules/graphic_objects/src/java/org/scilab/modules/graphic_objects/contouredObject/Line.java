@@ -2,6 +2,7 @@
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
  * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -24,7 +25,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStat
  */
 public class Line {
     /** Line properties */
-    public enum LinePropertyType { MODE, LINESTYLE, THICKNESS, COLOR };
+    public enum LinePropertyType { MODE, LINESTYLE, THICKNESS, COLOR, COLORALPHA };
 
     /** Line style */
     public enum LineType { SOLID, DASH, DASH_DOT, LONG_DASH_DOT, BIG_DASH_DOT, BIG_DASH_LONG_DASH, DOT, DOUBLE_DOT, LONG_BLANK_DOT, BIG_BLANK_DOT;
@@ -112,12 +113,16 @@ public class Line {
     /** Line color */
     private int color;
 
+    /** Line transparency (0.0 = fully transparent, 1.0 = fully opaque) */
+    private double colorAlpha;
+
     /** Constructor */
     public Line() {
         mode = false;
         lineStyle = LineType.SOLID;
         thickness = 1.0;
         color = -1;
+        colorAlpha = 1.0;
     }
 
     /**
@@ -129,6 +134,7 @@ public class Line {
         lineStyle = line.lineStyle;
         thickness = line.thickness;
         color = line.color;
+        colorAlpha = line.colorAlpha;
     }
 
     /**
@@ -146,6 +152,24 @@ public class Line {
             return UpdateStatus.NoChange;
         }
         this.color = color;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return the color transparency
+     */
+    public Double getColorAlpha() {
+        return colorAlpha;
+    }
+
+    /**
+     * @param color the color transparencyto set
+     */
+    public UpdateStatus setColorAlpha(Double colorAlpha) {
+        if (this.colorAlpha == colorAlpha) {
+            return UpdateStatus.NoChange;
+        }
+        this.colorAlpha = colorAlpha;
         return UpdateStatus.Success;
     }
 

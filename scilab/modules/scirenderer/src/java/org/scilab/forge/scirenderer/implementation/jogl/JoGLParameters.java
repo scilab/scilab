@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2011 - DIGITEO - Pierre Lando
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -48,11 +49,12 @@ public class JoGLParameters {
     public boolean useVBO() {
         if (USE_VBO == null) {
             GL gl = GLU.getCurrentGL();
-            USE_VBO = gl.isExtensionAvailable("GL_ARB_vertex_buffer_object")
-                      && gl.isFunctionAvailable("glBindBufferARB")
-                      && gl.isFunctionAvailable("glGenBuffersARB")
-                      && gl.isFunctionAvailable("glBufferDataARB")
-                      && gl.isFunctionAvailable("glDeleteBuffersARB");
+            // Check ARB extension names first, then fall back to OpenGL 1.5+ core names
+            boolean bindBuffer   = gl.isFunctionAvailable("glBindBufferARB")   || gl.isFunctionAvailable("glBindBuffer");
+            boolean genBuffers   = gl.isFunctionAvailable("glGenBuffersARB")   || gl.isFunctionAvailable("glGenBuffers");
+            boolean bufferData   = gl.isFunctionAvailable("glBufferDataARB")   || gl.isFunctionAvailable("glBufferData");
+            boolean deleteBuffers = gl.isFunctionAvailable("glDeleteBuffersARB") || gl.isFunctionAvailable("glDeleteBuffers");
+            USE_VBO = bindBuffer && genBuffers && bufferData && deleteBuffers;
         }
 
         return USE_VBO;

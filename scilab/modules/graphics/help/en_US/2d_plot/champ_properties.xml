@@ -83,6 +83,17 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>color_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the arrows
+                        (segments and heads). A value of <literal>1</literal> (default) means
+                        fully opaque arrows; a value of <literal>0</literal> means fully
+                        transparent arrows.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>colored: </term>
                 <listitem>
                     <para>
@@ -264,6 +275,14 @@ title("arrow_style = ""vback""")
     <refsection role="history">
         <title>History</title>
         <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.color_alpha</literal> property introduced.
+                    </para>
+                </revdescription>
+            </revision>
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>

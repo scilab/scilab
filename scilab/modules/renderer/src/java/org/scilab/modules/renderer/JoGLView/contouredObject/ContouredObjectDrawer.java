@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -83,14 +84,14 @@ public class ContouredObjectDrawer {
 
         if (contouredObject.getFillMode()) {
             geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
-            appearance.setFillColor(ColorFactory.createColor(colorMap, contouredObject.getBackground()));
+            appearance.setFillColor(ColorFactory.createColor(colorMap, contouredObject.getBackground(), contouredObject.getBackgroundAlpha().floatValue()));
         } else {
             geometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
         }
 
         if (contouredObject.getLineMode()) {
             geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
-            appearance.setLineColor(ColorFactory.createColor(colorMap, contouredObject.getLineColor()));
+            appearance.setLineColor(ColorFactory.createColor(colorMap, contouredObject.getLineColor(), contouredObject.getLineColorAlpha().floatValue()));
             appearance.setLinePattern(contouredObject.getLineStyleAsEnum().asPattern());
             appearance.setLineWidth(contouredObject.getLineThickness().floatValue());
         } else {

@@ -31,6 +31,8 @@ assert_checkequal(f.children(1).children.line_mode , "on");
 assert_checkequal(f.children(1).children.z_bounds, [0 0]);
 assert_checkequal(f.children(1).children.color_range, [0 0]);
 assert_checkequal(f.children(1).children.outside_colors, [0 0]);
+assert_checkequal(f.children(1).children.face_alpha, 1);
+assert_checkequal(f.children(1).children.foreground_alpha, 1);
 
 // Second test: quadrangles without mesh
 clf();
@@ -44,6 +46,8 @@ assert_checkequal(f.children(1).children.line_mode , "off");
 assert_checkequal(f.children(1).children.z_bounds, [0 0]);
 assert_checkequal(f.children(1).children.color_range, [0 0]);
 assert_checkequal(f.children(1).children.outside_colors, [0 0]);
+assert_checkequal(f.children(1).children.face_alpha, 1);
+assert_checkequal(f.children(1).children.foreground_alpha, 1);
 
 // Third test: quadrangles+[zmin zmax]
 clf();
@@ -57,6 +61,8 @@ assert_checkequal(f.children(1).children.line_mode , "off");
 assert_checkequal(f.children(1).children.z_bounds, [0.25 0.5]);
 assert_checkequal(f.children(1).children.color_range, [0 0]);
 assert_checkequal(f.children(1).children.outside_colors, [0 0]);
+assert_checkequal(f.children(1).children.face_alpha, 1);
+assert_checkequal(f.children(1).children.foreground_alpha, 1);
 
 // Forth test: quadrangles+colminmax
 clf();
@@ -70,6 +76,8 @@ assert_checkequal(f.children(1).children.line_mode , "off");
 assert_checkequal(f.children(1).children.z_bounds, [0 0]);
 assert_checkequal(f.children(1).children.color_range, [1 6]);
 assert_checkequal(f.children(1).children.outside_colors, [0 0]);
+assert_checkequal(f.children(1).children.face_alpha, 1);
+assert_checkequal(f.children(1).children.foreground_alpha, 1);
 
 // Fifth test: quadrangles+zminmax+colout
 clf();
@@ -83,4 +91,7 @@ assert_checkequal(f.children(1).children.line_mode , "off");
 assert_checkequal(f.children(1).children.z_bounds, [0.25 0.75]);
 assert_checkequal(f.children(1).children.color_range, [0 0]);
 assert_checkequal(f.children(1).children.outside_colors, [-1 -1]);
+assert_checkequal(f.children(1).children.face_alpha, 1);
+assert_checkequal(f.children(1).children.foreground_alpha, 1);
+
 close();

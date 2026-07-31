@@ -382,6 +382,17 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>face_alpha</term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the Matplot faces.
+                        A value of <literal>1</literal> (default) means fully opaque; a value of
+                        <literal>0</literal> means fully transparent. Intermediate values produce
+                        semi-transparent rendering.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>user_data</term>
                 <listitem>
                     <para>
@@ -441,6 +452,20 @@ h.data = h.data($:-1:1) // reverse order
         <title>History</title>
         <revhistory>
             <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.face_alpha</literal> property introduced.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>2025.0.0</revnumber>
+                <revremark>
+                    Function returns the created handle(s).
+                </revremark>
+            </revision>
+            <revision>
                 <revnumber>5.5.0</revnumber>
                 <revdescription>
                     <para>
@@ -458,12 +483,6 @@ h.data = h.data($:-1:1) // reverse order
                         </itemizedlist>
                     </para>
                 </revdescription>
-            </revision>
-            <revision>
-                <revnumber>2025.0.0</revnumber>
-                <revremark>
-                    Function returns the created handle(s).
-                </revremark>
             </revision>
         </revhistory>
     </refsection>

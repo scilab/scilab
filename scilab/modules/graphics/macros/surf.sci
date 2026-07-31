@@ -31,7 +31,7 @@ function varargout = surf(varargin)
             f.color_map = jet(64);
          end
         s = gca().axes_bounds; delete(gca()); xsetech(s)  // clears the current axes
-        h = surf(Z,"edgeco","b","marker","d","markersiz",9,"markeredg","red","markerfac","k");
+        h = surf(Z,"edgeco","b","marker","d","markersiz",9,"markeredgecol","red","markerfacecol","k");
         if lhs
             varargout(1) = h;
         end

@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -19,7 +20,6 @@ import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -32,7 +32,7 @@ public class Fec extends ClippableContouredObject {
     // + triangles	-> Data Model
     // TBD properties relative to the data model
     /** Fec properties names */
-    private enum FecProperty { ZBOUNDS, OUTSIDECOLOR, COLORRANGE  };
+    private enum FecProperty { ZBOUNDS, OUTSIDECOLOR, COLORRANGE, FACEALPHA };
 
     /** Z Bounds: 2-element array */
     private double[] zBounds;
@@ -43,12 +43,16 @@ public class Fec extends ClippableContouredObject {
     /** 2-element array */
     private int[] colorRange;
 
+    /** Fill (face) transparency (0.0 = fully transparent, 1.0 = fully opaque) */
+    private double faceAlpha;
+
     /** Constructor */
     public Fec() {
         super();
         zBounds = new double[2];
         outsideColor = new int[2];
         colorRange = new int[2];
+        faceAlpha = 1.0;
     }
 
     @Override
@@ -69,6 +73,8 @@ public class Fec extends ClippableContouredObject {
                 return FecProperty.OUTSIDECOLOR;
             case __GO_COLOR_RANGE__ :
                 return FecProperty.COLORRANGE;
+            case __GO_FACE_ALPHA__ :
+                return FecProperty.FACEALPHA;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -86,6 +92,8 @@ public class Fec extends ClippableContouredObject {
             return getOutsideColor();
         } else if (property == FecProperty.COLORRANGE) {
             return getColorRange();
+        } else if (property == FecProperty.FACEALPHA) {
+            return getFaceAlpha();
         } else {
             return super.getProperty(property);
         }
@@ -104,6 +112,8 @@ public class Fec extends ClippableContouredObject {
             setOutsideColor((Integer[]) value);
         } else if (property == FecProperty.COLORRANGE) {
             setColorRange((Integer[]) value);
+        } else if (property == FecProperty.FACEALPHA) {
+            setFaceAlpha((Double) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -128,6 +138,24 @@ public class Fec extends ClippableContouredObject {
     public UpdateStatus setColorRange(Integer[] colorRange) {
         this.colorRange[0] = colorRange[0];
         this.colorRange[1] = colorRange[1];
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return the fill (face) transparency
+     */
+    public Double getFaceAlpha() {
+        return faceAlpha;
+    }
+
+    /**
+     * @param faceAlpha the fill (face) transparency to set
+     */
+    public UpdateStatus setFaceAlpha(Double faceAlpha) {
+        if (this.faceAlpha == faceAlpha) {
+            return UpdateStatus.NoChange;
+        }
+        this.faceAlpha = faceAlpha;
         return UpdateStatus.Success;
     }
 

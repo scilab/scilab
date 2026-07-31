@@ -17,7 +17,7 @@ wh = color("white");
 ma = color("magenta");
 orange = color("orange");
 
-// Testing already supported global propeties => Back-compatibility
+// Testing already supported global properties => Back-compatibility
 // ----------------------------------------------------------------
 // Foreground
 surf(X, Y, Z, "foreground", "magenta");
@@ -123,3 +123,23 @@ clf
 surf(X, Y, Z, "marker","*", "markbackground", ma);
 assert_checkequal(gce().mark_background, ma);
 
+// Transparency
+clf
+// Default values
+surf(X, Y, Z);
+assert_checkequal(gce().face_alpha, 1);
+assert_checkequal(gce().foreground_alpha, 1);
+assert_checkequal(gce().mark_foreground_alpha, 1);
+assert_checkequal(gce().mark_background_alpha, 1);
+// Property/Value changes (Scilab properties)
+surf(X, Y, Z, ..
+    "FaceAlpha", 0.2, ..
+    "ForegroundAlpha", 0.3, ..
+    "MarkForegroundAlpha", 0.4, "MarkBackgroundAlpha", 0.5);
+assert_checkequal(gce().face_alpha, 0.2);
+assert_checkequal(gce().foreground_alpha, 0.3);
+assert_checkequal(gce().mark_foreground_alpha, 0.4);
+assert_checkequal(gce().mark_background_alpha, 0.5);
+// Property/Value changes (Matlab properties)
+surf(X, Y, Z, "EdgeAlpha", 0.1);
+assert_checkequal(gce().foreground_alpha, 0.1);

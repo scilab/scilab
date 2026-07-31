@@ -13,56 +13,65 @@ y1=[cos(x);9*cos(x)];
 xarrows(x1,y1);
 e = gce();
 assert_checkequal(e.parent.type, "Axes")
- ans  =
+ ans = 
   T
 assert_checkequal(e.children, [])
- ans  =
+ ans = 
   T
 assert_checkequal(e.visible, "on")
- ans  =
+ ans = 
   T
 assert_checkequal(e.data, [x1(:), y1(:)])
- ans  =
+ ans = 
   T
 assert_checkequal(e.line_mode, "on")
- ans  =
+ ans = 
   T
 assert_checkequal(e.line_style, 1)
- ans  =
+ ans = 
   T
 assert_checkequal(e.thickness, 1)
- ans  =
+ ans = 
   T
 assert_checkequal(e.arrow_size, -1)
- ans  =
+ ans = 
   T
 assert_checkequal(e.segs_color, -1 * ones(1, 10))
- ans  =
+ ans = 
+  T
+assert_checkequal(e.segs_color_alpha, ones(1, 10))
+ ans = 
   T
 assert_checkequal(e.mark_mode, "off")
- ans  =
+ ans = 
   T
 assert_checkequal(e.mark_style, 0)
- ans  =
+ ans = 
   T
 assert_checkequal(e.mark_size_unit, "tabulated")
- ans  =
+ ans = 
   T
 assert_checkequal(e.mark_size, 0)
- ans  =
+ ans = 
   T
 assert_checkequal(e.mark_foreground, -1)
- ans  =
+ ans = 
+  T
+assert_checkequal(e.mark_foreground_alpha, 1)
+ ans = 
   T
 assert_checkequal(e.mark_background, -2)
- ans  =
+ ans = 
+  T
+assert_checkequal(e.mark_background_alpha, 1)
+ ans = 
   T
 assert_checkequal(e.clip_state, "off")
- ans  =
+ ans = 
   T
 assert_checkequal(e.clip_box, [])
- ans  =
+ ans = 
   T
 assert_checkequal(e.user_data, [])
- ans  =
+ ans = 
   T

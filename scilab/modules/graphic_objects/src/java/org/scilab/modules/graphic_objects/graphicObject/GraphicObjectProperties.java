@@ -432,11 +432,15 @@ public class GraphicObjectProperties {
     public static final int __GO_MARK_BACKGROUNDS__ = 409;
     public static final int __GO_NUM_MARK_BACKGROUNDS__ = 410;
     public static final int __GO_UI_FOCUS__ = 411;
-
-    /* UI BROWSER */
     public static final int __GO_UI_BROWSER__ = 412;
     public static final int __GO_UI_DATA__ = 413;
     public static final int __GO_UI_DEBUG__ = 414;
-
     public static final int __GO_ARROW_STYLE__ = 415;
+    public static final int __GO_FACE_ALPHA__ = 416;
+    public static final int __GO_LINE_COLOR_ALPHA__ = 417;
+    public static final int __GO_BACKGROUND_ALPHA__ = 418;
+    public static final int __GO_MARK_BACKGROUND_ALPHA__ = 419;
+    public static final int __GO_MARK_FOREGROUND_ALPHA__ = 420;
+    public static final int __GO_FONT_COLOR_ALPHA__ = 421;
+
 }

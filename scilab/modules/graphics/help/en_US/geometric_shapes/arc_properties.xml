@@ -95,10 +95,31 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>foreground_alpha:</term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the arc line.
+                        A value of <literal>1</literal> (default) means a fully opaque line; a value
+                        of <literal>0</literal> means a fully transparent line.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>background:</term>
                 <listitem>
                     <para>This field contains the color used to fill the arc. It should
                         be a color index (relative to the current colormap).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>background_alpha:</term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the arc fill
+                        (used when <literal>fill_mode</literal> is <literal>"on"</literal>).
+                        A value of <literal>1</literal> (default) means fully opaque; a value of
+                        <literal>0</literal> means fully transparent.
                     </para>
                 </listitem>
             </varlistentry>
@@ -249,6 +270,14 @@ arc.visible="off";
     <refsection role="history">
         <title>History</title>
         <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.background_alpha</literal> and <literal>.foreground_alpha</literal> properties introduced.
+                    </para>
+                </revdescription>
+            </revision>
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>

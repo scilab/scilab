@@ -303,12 +303,34 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>"markerEdgeAlpha",value  or  "markerForegroundAlpha",value</term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the mark edges (foreground).
+                        A value of <literal>1</literal> (default) means fully opaque edges; a value of
+                        <literal>0</literal> means fully transparent edges. Intermediate values produce
+                        semi-transparent edges.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>"markerFaceColor",value  or  "markerBackground",value</term>
                 <listitem>
                     <para>
                         Color filling the body of markers. Colors can be specified as for
                         <varname>mcolors</varname>.
                         This option supersedes <varname>mcolors</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"markerFaceAlpha",value  or  "markerBackgroundAlpha",value</term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the mark edges (background).
+                        A value of <literal>1</literal> (default) means fully opaque; a value of
+                        <literal>0</literal> means fully transparent. Intermediate values produce
+                        semi-transparent markers. Not used for "point" and "filled diamond" markers.
                     </para>
                 </listitem>
             </varlistentry>
@@ -666,6 +688,15 @@ p.mark_background = bg;
                                 </para>
                             </listitem>
                         </itemizedlist>
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>"markerEdgeAlpha"</literal>, <literal>"markerForegroundAlpha"</literal>, 
+                        <literal>"markerFaceAlpha"</literal> and <literal>"markerBackgroundAlpha"</literal> properties introduced.
                     </para>
                 </revdescription>
             </revision>

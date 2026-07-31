@@ -107,6 +107,16 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>font_color_alpha:</term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of
+                        the text. <literal>1</literal> (default) means fully opaque;
+                        <literal>0</literal> means fully transparent.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>fractional_font:</term>
                 <listitem>
                     <para>This property specify whether text is displayed using
@@ -275,6 +285,17 @@ position=[(x1-as(1)*bnds(1))/(as(1)*bnds(3)),...
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>foreground_alpha</term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the legend
+                        box border (used when <literal>line_mode="on"</literal>). A value of
+                        <literal>1</literal> (default) means fully opaque; <literal>0</literal>
+                        means fully transparent.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>fill_mode</term>
                 <listitem>
                     <para>This field specifies if the legend background is painted or
@@ -290,6 +311,17 @@ position=[(x1-as(1)*bnds(1))/(as(1)*bnds(3)),...
                 <listitem>
                     <para>This field gives the color index of the line used to paint the
                         rectangle area.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>background_alpha</term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the legend
+                        box fill (used when <literal>fill_mode="on"</literal>). A value of
+                        <literal>1</literal> (default) means fully opaque; <literal>0</literal>
+                        means fully transparent.
                     </para>
                 </listitem>
             </varlistentry>
@@ -386,6 +418,14 @@ l.text=["$\sin(x)$";"$\sin(2*x)$";"$\sin(3*x)$"];
     <refsection role="history">
         <title>History</title>
         <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.foreground_alpha</literal>, <literal>.background_alpha</literal> and <literal>.font_color_alpha</literal> properties introduced.
+                    </para>
+                </revdescription>
+            </revision>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>line_width and marks_count properties added.</revremark>

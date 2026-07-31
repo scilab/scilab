@@ -124,6 +124,8 @@ function varargout = scatter3d(varargin)
     properties = ["marker" "markerstyle" "markstyle" ..
                   "markerfacecolor" "markerbackground" ..
                   "markeredgecolor" "markerforeground" ..
+                  "markeredgealpha" "markerforegroundalpha" ..
+                  "markerfacealpha" "markerbackgroundalpha" ..
                   "thickness" "linewidth" "datatips"];
     markersT = ["." "+" "x" "o" "o+" "circle plus" "d" "fd" "filled diamond" ..
     "d+" "diamond plus" "^" "v" ">" "<" "*" "*5" "p" "pentagram" "s" "square" ...
@@ -313,6 +315,8 @@ function varargout = scatter3d(varargin)
     mBGcolors = [];
     mFGcolors = [];
     datatips = [];
+    mForegroundAlpha = 1.0;
+    mBackgroundAlpha = 1.0;
 
     while length(varargin) > 0
         v = varargin(1)
@@ -336,7 +340,21 @@ function varargout = scatter3d(varargin)
         end
         val = varargin(1);
         iarg = iarg+1;
-        if or(v==["marker" "markerstyle" "markstyle"]) then
+        if or(v==["markeredgealpha" "markerforegroundalpha" "markerfacealpha" "markerbackgroundalpha"]) then
+            if size(val,"*")~=1
+                msg = _("%s: Argument #%d: Scalar (1 element) expected.\n")
+                error(msprintf(msg, fname, iarg))
+            end
+            if val < 0 | val > 1 then
+                msg = _("%s: Argument #%d: Double value in [0 1] expected.\n")
+                error(msprintf(msg, fname, iarg))
+            end
+            if or(v == ["markeredgealpha"  "markerforegroundalpha"]) then
+                mForegroundAlpha = val;
+            else
+                mBackgroundAlpha = val;
+            end
+        elseif or(v==["marker" "markerstyle" "markstyle"]) then
             if size(val,"*")~=1
                 msg = _("%s: Argument #%d: Scalar (1 element) expected.\n")
                 error(msprintf(msg, fname, iarg))
@@ -479,6 +497,8 @@ function varargout = scatter3d(varargin)
         polyLine.mark_foreground = matrix(mFGcolors, 1, -1);
         polyLine.mark_background = matrix(mBGcolors, 1, -1);
         polyLine.mark_size = matrix(ceil(2*sqrt(msizes/%pi)),1,-1);
+        polyLine.mark_foreground_alpha = mForegroundAlpha;
+        polyLine.mark_background_alpha = mBackgroundAlpha;
 
         if datatips <> []
             polyLine.datatip_display_mode = "mouseover";

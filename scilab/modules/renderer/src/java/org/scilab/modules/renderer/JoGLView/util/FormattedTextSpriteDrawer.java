@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2012 - DIGITEO - Pierre Lando
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -49,7 +50,7 @@ public class FormattedTextSpriteDrawer implements TextureDrawer {
                 LoadClassPath.loadOnUse("graphics_latex_textrendering");
                 try {
                     TeXFormula formula = new TeXFormula(formatLaTeXString(text));
-                    formula.setColor(ColorFactory.createColor(colorMap, font.getColor()));
+                    formula.setColor(ColorFactory.createColor(colorMap, font.getColor(), font.getColorAlpha().floatValue()));
                     icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, FontManager.scilabSizeToAwtSize(font.getSize()));
                     descent = ((TeXIcon) icon).getIconDepth();                    
                 } catch (Exception e) {
@@ -59,7 +60,7 @@ public class FormattedTextSpriteDrawer implements TextureDrawer {
                 LoadClassPath.loadOnUse("graphics_mathml_textrendering");
                 try {
                     icon = ScilabSpecialTextUtilities.compileMathMLExpression(text, ((int) FontManager.scilabSizeToAwtSize(font.getSize() + .5)), 
-                            ColorFactory.createColor(colorMap, font.getColor()));
+                            ColorFactory.createColor(colorMap, font.getColor(), font.getColorAlpha().floatValue()));
                     descent = 0;
                 } catch (Exception e) {
                     success = false;                    
@@ -76,7 +77,7 @@ public class FormattedTextSpriteDrawer implements TextureDrawer {
                 textEntity.setFont(FontManager.getSciFontManager().getFontFromIndex(font.getStyle(), font.getSize()));
                 textEntity.setText(text);
                 if (success) {
-                    textEntity.setTextColor(ColorFactory.createColor(colorMap, font.getColor()));
+                    textEntity.setTextColor(ColorFactory.createColor(colorMap, font.getColor(), font.getColorAlpha().floatValue()));
                 } else {
                     textEntity.setTextColor(new Color(1.0f, 0.f, 0.f));
                 }

@@ -156,12 +156,32 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>font_foreground_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the datatip
+                        text. <literal>1</literal> (default) means fully opaque;
+                        <literal>0</literal> means fully transparent.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>foreground: </term>
                 <listitem>
                     <para>
                         This field contains the default <literal>foreground</literal> property
                         used to draw the box. Its value should be a color index (relative
                         to the current colormap).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>foreground_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the datatip
+                        callout box border. A value of <literal>1</literal> (default) means a
+                        fully opaque border; <literal>0</literal> means fully transparent.
                     </para>
                 </listitem>
             </varlistentry>
@@ -173,6 +193,16 @@
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
                         help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>background_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the datatip
+                        callout box fill. A value of <literal>1</literal> (default) means a fully
+                        opaque fill; <literal>0</literal> means fully transparent.
                     </para>
                 </listitem>
             </varlistentry>
@@ -248,6 +278,17 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>mark_foreground_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the mark edges (foreground).
+                        A value of <literal>1</literal> (default) means fully opaque edges; a value of
+                        <literal>0</literal> means fully transparent edges. Intermediate values produce
+                        semi-transparent edges.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>mark_background: </term>
                 <listitem>
                     <para>See
@@ -255,6 +296,17 @@
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
                         help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_background_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the mark edges (background).
+                        A value of <literal>1</literal> (default) means fully opaque; a value of
+                        <literal>0</literal> means fully transparent. Intermediate values produce
+                        semi-transparent markers. Not used for "point" and "filled diamond" markers.
                     </para>
                 </listitem>
             </varlistentry>
@@ -321,6 +373,16 @@
                                 </para>
                             </listitem>
                         </itemizedlist>
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.foreground_alpha</literal>, <literal>.background_alpha</literal>,
+                        <literal>.mark_background_alpha</literal>, <literal>.mark_foreground_alpha</literal> 
+                        and <literal>.font_foreground_alpha</literal> properties introduced.
                     </para>
                 </revdescription>
             </revision>

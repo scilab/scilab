@@ -93,7 +93,7 @@ public final class GLShortCuts {
      */
     public static void useColor(GL2 gl, Color color) {
         if (color != null) {
-            gl.glColor3f(color.getRedAsFloat(), color.getGreenAsFloat(), color.getBlueAsFloat());
+            gl.glColor4f(color.getRedAsFloat(), color.getGreenAsFloat(), color.getBlueAsFloat(), color.getAlphaAsFloat());
         }
     }
 

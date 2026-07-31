@@ -133,6 +133,17 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>face_alpha: </term>
+                <listitem>
+                    <para>
+                        Scalar in the range [0, 1] controlling the transparency of the grayplot faces.
+                        A value of <literal>1</literal> (default) means fully opaque; a value of
+                        <literal>0</literal> means fully transparent. Intermediate values produce
+                        semi-transparent rendering.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>user_data: </term>
                 <listitem>
                     <para>This field can be use to store any scilab variable in the grayplot
@@ -198,5 +209,18 @@ end
                 <link linkend="Matplot_properties">Matplot_properties</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.face_alpha</literal> property introduced.
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

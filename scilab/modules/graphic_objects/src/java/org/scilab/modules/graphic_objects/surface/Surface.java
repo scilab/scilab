@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -16,7 +17,6 @@
 package org.scilab.modules.graphic_objects.surface;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 import org.scilab.modules.graphic_objects.lighting.ColorTriplet;
@@ -30,7 +30,7 @@ public abstract class Surface extends ClippableContouredObject {
     // TBD Data -> Data Model
     /* TBD: properties relative to the data model */
     /** Surface properties names */
-    private enum SurfaceProperty { SURFACEMODE, COLORMODE, COLORFLAG, HIDDENCOLOR };
+    private enum SurfaceProperty { SURFACEMODE, COLORMODE, COLORFLAG, HIDDENCOLOR, FACEALPHA };
 
     /** Specifies whether the surface is drawn or not */
     private boolean surfaceMode;
@@ -44,6 +44,9 @@ public abstract class Surface extends ClippableContouredObject {
     /** Back-facing facets color */
     private int hiddenColor;
 
+    /** Fill (face) transparency (0.0 = fully transparent, 1.0 = fully opaque) */
+    private double faceAlpha;
+
     /** material properties used for lighting */
     private Material material;
 
@@ -54,6 +57,7 @@ public abstract class Surface extends ClippableContouredObject {
         colorMode = 0;
         colorFlag = 0;
         hiddenColor = 0;
+        faceAlpha = 1.0;
         material = new Material();
     }
 
@@ -82,6 +86,8 @@ public abstract class Surface extends ClippableContouredObject {
                 return Material.MaterialProperty.COLOR_MATERIAL;
             case __GO_MATERIAL_SHININESS__ :
                 return Material.MaterialProperty.SHININESS;
+            case __GO_FACE_ALPHA__ :
+                return SurfaceProperty.FACEALPHA;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -104,6 +110,8 @@ public abstract class Surface extends ClippableContouredObject {
                     return getColorFlag();
                 case HIDDENCOLOR:
                     return getHiddenColor();
+                case FACEALPHA:
+                    return getFaceAlpha();
             }
         } else if (property instanceof Material.MaterialProperty) {
             Material.MaterialProperty mp = (Material.MaterialProperty)property;
@@ -148,6 +156,9 @@ public abstract class Surface extends ClippableContouredObject {
                     break;
                 case HIDDENCOLOR:
                     setHiddenColor((Integer) value);
+                    break;
+                case FACEALPHA:
+                    setFaceAlpha((Double) value);
                     break;
             }
         } else if (property instanceof Material.MaterialProperty) {
@@ -232,6 +243,24 @@ public abstract class Surface extends ClippableContouredObject {
      */
     public UpdateStatus setHiddenColor(Integer hiddenColor) {
         this.hiddenColor = hiddenColor;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return the fill (face) transparency
+     */
+    public Double getFaceAlpha() {
+        return faceAlpha;
+    }
+
+    /**
+     * @param faceAlpha the fill (face) transparency to set
+     */
+    public UpdateStatus setFaceAlpha(Double faceAlpha) {
+        if (this.faceAlpha == faceAlpha) {
+            return UpdateStatus.NoChange;
+        }
+        this.faceAlpha = faceAlpha;
         return UpdateStatus.Success;
     }
 

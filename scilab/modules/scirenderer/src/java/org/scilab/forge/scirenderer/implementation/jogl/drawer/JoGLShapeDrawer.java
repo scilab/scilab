@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2011 - DIGITEO - Pierre Lando
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -35,7 +36,7 @@ import java.nio.IntBuffer;
  * @author Pierre Lando
  */
 public final class JoGLShapeDrawer {
-    
+
     public enum AntiAliasing {
         OFF,
         ON
@@ -97,14 +98,20 @@ public final class JoGLShapeDrawer {
                 gl.glDisable(GL2.GL_CULL_FACE);
                 break;
         }
-        gl.glEnable(GL2.GL_COLOR_LOGIC_OP);
-        gl.glLogicOp(drawingTools.getGLPixelDrawingMode());
-        if (drawingTools.getCanvas().getJoGLParameters().useVBO()) {
+        int pixelMode = drawingTools.getGLPixelDrawingMode();
+        if (pixelMode != GL2.GL_COPY) {
+            gl.glEnable(GL2.GL_COLOR_LOGIC_OP);
+            gl.glLogicOp(pixelMode);
+        }
+        boolean vbo = drawingTools.getCanvas().getJoGLParameters().useVBO();
+        if (vbo) {
             vboDrawing(drawingTools, geometry, appearance, eAntiAliasing);
         } else {
             directDrawing(drawingTools, geometry, appearance);
         }
-        gl.glDisable(GL2.GL_COLOR_LOGIC_OP);
+        if (pixelMode != GL2.GL_COPY) {
+            gl.glDisable(GL2.GL_COLOR_LOGIC_OP);
+        }
         GLShortCuts.useLineAppearance(gl, null);
         gl.glDisable(GL2.GL_CULL_FACE);
     }
@@ -186,6 +193,17 @@ public final class JoGLShapeDrawer {
             gl.glEnable(GL2.GL_NORMALIZE);
         }
 
+        boolean isTransparent = (appearance.getFillColor() != null && appearance.getFillColor().getAlphaAsFloat() < 1.0f);
+        boolean depthOnly = appearance.isDepthOnly();
+        if (depthOnly) {
+            /* Depth-only pass: write front-face depth without writing color.
+             * Used to occlude back-face wireframe on transparent surfaces. */
+            gl.glDepthMask(true);
+            gl.glColorMask(false, false, false, false);
+        } else if (isTransparent) {
+            gl.glDisable(GL2.GL_COLOR_LOGIC_OP);
+            gl.glDepthMask(false);
+        }
         IndicesBuffer indices = geometry.getIndices();
         if (geometry.getFillDrawingMode() != Geometry.FillDrawingMode.NONE) {
             if (indices != null) {
@@ -201,7 +219,11 @@ public final class JoGLShapeDrawer {
                 }
             }
         }
-
+        if (depthOnly) {
+            gl.glColorMask(true, true, true, true);
+        } else if (isTransparent) {
+            gl.glDepthMask(true);
+        }
         if (geometry.getPolygonOffsetMode()) {
             gl.glDisable(GL2.GL_POLYGON_OFFSET_FILL);
         }
@@ -214,7 +236,7 @@ public final class JoGLShapeDrawer {
         lm.setLightningEnable(false);
         gl.glDisable(GL2.GL_NORMALIZE);
 
-        if (geometry.getLineDrawingMode() != Geometry.LineDrawingMode.NONE) {
+        if (!depthOnly && geometry.getLineDrawingMode() != Geometry.LineDrawingMode.NONE) {
             // to avoid color smoothing between edge
             // TODO: add an option in Appearance
             gl.glShadeModel(GL2.GL_FLAT);

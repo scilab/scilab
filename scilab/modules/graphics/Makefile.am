@@ -362,6 +362,24 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/set_line_width_property.c \
     src/c/getHandleProperty/get_colors_property.c \
     src/c/getHandleProperty/set_colors_property.c \
+    src/c/getHandleProperty/get_face_alpha_property.c \
+    src/c/getHandleProperty/set_face_alpha_property.c \
+    src/c/getHandleProperty/get_background_alpha_property.c \
+    src/c/getHandleProperty/set_background_alpha_property.c \
+    src/c/getHandleProperty/get_foreground_alpha_property.c \
+    src/c/getHandleProperty/set_foreground_alpha_property.c \
+    src/c/getHandleProperty/get_mark_background_alpha_property.c \
+    src/c/getHandleProperty/set_mark_background_alpha_property.c \
+    src/c/getHandleProperty/get_mark_foreground_alpha_property.c \
+    src/c/getHandleProperty/set_mark_foreground_alpha_property.c \
+    src/c/getHandleProperty/get_segs_color_alpha_property.c \
+    src/c/getHandleProperty/set_segs_color_alpha_property.c \
+    src/c/getHandleProperty/get_color_alpha_property.c \
+    src/c/getHandleProperty/set_color_alpha_property.c \
+    src/c/getHandleProperty/get_font_color_alpha_property.c \
+    src/c/getHandleProperty/set_font_color_alpha_property.c \
+    src/c/getHandleProperty/get_font_foreground_alpha_property.c \
+    src/c/getHandleProperty/set_font_foreground_alpha_property.c \
     src/c/DefaultCommandArg.c \
     src/c/Axes.c \
     src/c/sciMatrix.c \

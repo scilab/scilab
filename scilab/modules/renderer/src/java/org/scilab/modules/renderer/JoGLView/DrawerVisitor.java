@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Pierre Lando
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -70,8 +71,10 @@ import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.legend.Legend;
 import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.graphic_objects.rectangle.Rectangle;
+import org.scilab.modules.graphic_objects.imageplot.Imageplot;
 import org.scilab.modules.graphic_objects.surface.Fac3d;
 import org.scilab.modules.graphic_objects.surface.Plot3d;
+import org.scilab.modules.graphic_objects.surface.Surface;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.uicontrol.frame.Frame;
 import org.scilab.modules.graphic_objects.vectfield.Arrow;
@@ -151,6 +154,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private final ArrowDrawer arrowDrawer;
     private final FecDrawer fecDrawer;
     private final Fac3dDrawer fac3dDrawer;
+    private final TransparentFaceSorter transparentFaceSorter;
     private final DatatipTextDrawer datatipTextDrawer;
     private DatatipDisplayModeManager datatipDisplayModeManager;
 
@@ -194,6 +198,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.legendDrawer = new LegendDrawer(this);
         this.fecDrawer = new FecDrawer(this);
         this.fac3dDrawer = new Fac3dDrawer(this);
+        this.transparentFaceSorter = new TransparentFaceSorter();
         this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
         this.datatipTextDrawer = new DatatipTextDrawer(canvas);
         this.datatipDisplayModeManager = new DatatipDisplayModeManager(component);
@@ -223,6 +228,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     public void setCanvas(Canvas canvas) {
         this.canvas = canvas;
+    }
+
+    /**
+     * @return the depth sorter shared by transparent 3D surfaces (fac3d, plot3d).
+     */
+    TransparentFaceSorter getTransparentFaceSorter() {
+        return transparentFaceSorter;
     }
 
     /**
@@ -324,10 +336,20 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      */
     public void askAcceptVisitor(Integer[] childrenId) {
         if (childrenId != null) {
+            List<GraphicObject> transparentSurfaces = new ArrayList<GraphicObject>();
 
+            /* First pass: draw all non-transparent objects.
+             * Transparent surfaces (face_alpha < 1) are deferred so that opaque
+             * geometry already populates the depth buffer before they blend.
+             * This ensures the depth test correctly occludes transparent faces. */
             for (int i = childrenId.length - 1; i >= 0; --i) {
                 GraphicObject child = GraphicController.getController().getObjectFromId(childrenId[i]);
                 if (child != null) {
+                    if ((child instanceof Surface && ((Surface) child).getFaceAlpha() < 1.0)
+                            || (child instanceof Imageplot && ((Imageplot) child).getFaceAlpha() < 1.0)) {
+                        transparentSurfaces.add(child);
+                        continue;
+                    }
                     try {
                         child.accept(this);
                     } catch (ObjectRemovedException e) {
@@ -336,6 +358,21 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                             System.err.println("[DEBUG] " + e);
                             System.err.println("[DEBUG] Skipped...");
                         }
+                    }
+                }
+            }
+
+            /* Second pass: draw deferred transparent surfaces.
+             * Opaque objects are now in the depth buffer, so their depth values
+             * correctly occlude transparent fragments behind them. */
+            for (GraphicObject child : transparentSurfaces) {
+                try {
+                    child.accept(this);
+                } catch (ObjectRemovedException e) {
+                    if (DEBUG_MODE) {
+                        System.err.println("[DEBUG] Try to draw an already removed object");
+                        System.err.println("[DEBUG] " + e);
+                        System.err.println("[DEBUG] Skipped...");
                     }
                 }
             }
@@ -473,6 +510,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 triangles.setIndices(dataManager.getIndexBuffer(grayplot.getIdentifier()));
                 triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
                 Appearance trianglesAppearance = new Appearance();
+                if (grayplot.getFaceAlpha() < 1.0) {
+                    /* Set fill color with alpha to trigger glDepthMask(false) in vboDrawing.
+                     * The actual per-vertex alpha comes from the color buffer (already scaled). */
+                    trianglesAppearance.setFillColor(new Color(1f, 1f, 1f, grayplot.getFaceAlpha().floatValue()));
+                }
                 drawingTools.draw(triangles, trianglesAppearance);
                 /*} catch (ObjectRemovedException e) {
                   invalidate(grayplot, e);
@@ -502,6 +544,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     geometry.setIndices(dataManager.getIndexBuffer(matplot.getIdentifier()));
                     geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
                     Appearance appearance = new Appearance();
+                    if (matplot.getFaceAlpha() < 1.0) {
+                        /* Set fill color with alpha to trigger glDepthMask(false) in vboDrawing.
+                         * The actual per-vertex alpha comes from the color buffer (already scaled). */
+                        appearance.setFillColor(new Color(1f, 1f, 1f, matplot.getFaceAlpha().floatValue()));
+                    }
                     drawingTools.draw(geometry, appearance);
                 } else {
                     TransformationStack modelViewStack = drawingTools.getTransformationManager().getModelViewStack();
@@ -598,7 +645,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     }
 
                     Integer lineColor = polyline.getSelected() ? polyline.getSelectedColor() : polyline.getLineColor();
-                    appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
+                    appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor, polyline.getLineColorAlpha().floatValue()));
                     appearance.setLineWidth(polyline.getLineThickness().floatValue());
                     appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
 
@@ -615,14 +662,25 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                             fillColor = polyline.getBackground();
                         }
 
-                        appearance.setFillColor(ColorFactory.createColor(colorMap, fillColor));
+                        appearance.setFillColor(ColorFactory.createColor(colorMap, fillColor, polyline.getBackgroundAlpha().floatValue()));
                     }
 
+                    /* Style 4 draws an arrow at each segment tip; shorten the strip endpoints
+                     * to the arrow base in transparent mode so the line doesn't bleed through
+                     * the arrow heads. Restore before drawArrows so the apex is at the true v1. */
+                    boolean polylineArrowShortened = style == 4 && polyline.getArrowSizeFactor() != 0.0 && polyline.getLineColorAlpha() < 1.0;
+                    if (polylineArrowShortened) {
+                        arrowDrawer.shortenSegmentEndpoints(polyline.getParentAxes(), polyline.getIdentifier(),
+                                                            polyline.getArrowSizeFactor(), polyline.getLineThickness(), false, true);
+                    }
                     drawingTools.draw(geometry, appearance);
+                    if (polylineArrowShortened) {
+                        arrowDrawer.restoreSegmentEndpoints(polyline.getIdentifier());
+                    }
 
                     if (style == 4) {
                         arrowDrawer.drawArrows(polyline.getParentAxes(), polyline.getIdentifier(), polyline.getArrowSizeFactor(),
-                                               polyline.getLineThickness(), false, false, lineColor, true);
+                                               polyline.getLineThickness(), false, false, lineColor, polyline.getLineColorAlpha(), true);
                     }
 
                     if (polyline.getMarkMode()) {
@@ -801,12 +859,26 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                     geometry.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
                     geometry.setNormals(dataManager.getNormalBuffer(plot3d.getIdentifier()));
-                    geometry.setIndices(dataManager.getIndexBuffer(plot3d.getIdentifier()));
+
+                    /* Transparent surfaces do not write the depth buffer, so the blending
+                     * order is set by the fill index buffer. Feed a back-to-front depth-sorted
+                     * index buffer (painter's algorithm) instead of the grid-order one. */
+                    boolean transparentFill = (plot3d.getColorMode() != 0) && (plot3d.getFaceAlpha() < 1.0);
+                    if (transparentFill) {
+                        geometry.setIndices(transparentFaceSorter.getSortedIndexBuffer(
+                                                plot3d.getIdentifier(),
+                                                dataManager.getIndexBuffer(plot3d.getIdentifier()),
+                                                dataManager.getVertexBuffer(plot3d.getIdentifier()),
+                                                drawingTools.getTransformationManager().getTransformation(),
+                                                canvas.getBuffersManager()));
+                    } else {
+                        geometry.setIndices(dataManager.getIndexBuffer(plot3d.getIdentifier()));
+                    }
                     /* Back-facing triangles */
                     if (plot3d.getHiddenColor() > 0) {
                         geometry.setFaceCullingMode(axesDrawer.getBackFaceCullingMode());
                         Appearance backTrianglesAppearance = new Appearance();
-                        backTrianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, plot3d.getHiddenColor()));
+                        backTrianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, plot3d.getHiddenColor(), plot3d.getFaceAlpha().floatValue()));
                         drawingTools.draw(geometry, backTrianglesAppearance);
                     }
 
@@ -817,6 +889,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                     if (plot3d.getColorFlag() == 1) {
                         geometry.setColors(dataManager.getColorBuffer(plot3d.getIdentifier()));
+                        if (plot3d.getFaceAlpha() < 1.0) {
+                            appearance.setFillColor(new Color(1.0f, 1.0f, 1.0f, plot3d.getFaceAlpha().floatValue()));
+                        }
                     } else {
                         geometry.setColors(null);
                     }
@@ -828,19 +903,38 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     }
 
                     if (plot3d.getColorFlag() == 0) {
-                        appearance.setFillColor(ColorFactory.createColor(colorMap, Math.abs(plot3d.getColorMode())));
+                        appearance.setFillColor(ColorFactory.createColor(colorMap, Math.abs(plot3d.getColorMode()), plot3d.getFaceAlpha().floatValue()));
                     }
 
-                    if ((plot3d.getColorMode() >= 0) && (plot3d.getLineThickness() > 0.0)) {
+                    if ((plot3d.getColorMode() >= 0) && (plot3d.getLineThickness() > 0.0) && (plot3d.getLineColorAlpha() > 0.0)) {
                         geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                         geometry.setWireIndices(dataManager.getWireIndexBuffer(plot3d.getIdentifier()));
 
                         appearance.setLinePattern(plot3d.getLineStyleAsEnum().asPattern());
                         Integer lineColor = plot3d.getSelected() ? plot3d.getSelectedColor() : plot3d.getLineColor();
-                        appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
+                        appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor, plot3d.getLineColorAlpha().floatValue()));
                         appearance.setLineWidth(plot3d.getLineThickness().floatValue());
                     }
-                    drawingTools.draw(geometry, appearance);
+
+                    if ((plot3d.getHiddenColor() <= 0) && (plot3d.getFaceAlpha() < 1.0) && (plot3d.getColorMode() != 0)) {
+                        /* Two-pass transparent rendering (no hiddenColor):
+                         * Pass 1: back faces (far wall), no wireframe → interior visible.
+                         * Pass 2: front faces (near wall) + wireframe.
+                         * Front wireframe writes depth (glDepthMask restored before wireframe
+                         * in vboDrawing), occluding back-face wireframe at same pixels →
+                         * no doubled bars. Both walls rendered → no white interior. */
+                        Geometry.LineDrawingMode savedLineMode = geometry.getLineDrawingMode();
+                        // Pass 1: back faces, fill only
+                        geometry.setFaceCullingMode(axesDrawer.getBackFaceCullingMode());
+                        geometry.setLineDrawingMode(Geometry.LineDrawingMode.NONE);
+                        drawingTools.draw(geometry, appearance);
+                        // Pass 2: front faces, fill + wireframe
+                        geometry.setFaceCullingMode(axesDrawer.getFrontFaceCullingMode());
+                        geometry.setLineDrawingMode(savedLineMode);
+                        drawingTools.draw(geometry, appearance);
+                    } else {
+                        drawingTools.draw(geometry, appearance);
+                    }
                     LightingUtils.setLightingEnable(drawingTools.getLightManager(), false);
                 }
 
@@ -951,22 +1045,37 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     if (champ.getColored()) {
                         segmentAppearance.setLineColor(null);
                     } else {
-                        segmentAppearance.setLineColor(ColorFactory.createColor(colorMap, champ.getLineColor()));
+                        segmentAppearance.setLineColor(ColorFactory.createColor(colorMap, champ.getLineColor(), champ.getLineColorAlpha().floatValue()));
                     }
 
                     segmentAppearance.setLineWidth(champ.getLineThickness().floatValue());
                     segmentAppearance.setLinePattern(champ.getLineStyleAsEnum().asPattern());
+
+                    /* Shorten segments to the arrow base so the line doesn't show through a
+                     * transparent arrow head. Restore originals before drawArrows so it can
+                     * recompute the arrow apex from the true v1. Vback heads are open, so the
+                     * line must reach the apex: no shortening in that case. */
+                    boolean shortened = champ.getArrowSize() != 0.0 && champ.getLineColorAlpha() < 1.0
+                                        && champ.getArrowStyle() != 1;
+                    if (shortened) {
+                        arrowDrawer.shortenSegmentEndpoints(champ.getParentAxes(), champ.getIdentifier(),
+                                                            champ.getArrowSize(), champ.getLineThickness(), false, false);
+                    }
                     drawingTools.draw(segments, segmentAppearance);
+                    if (shortened) {
+                        arrowDrawer.restoreSegmentEndpoints(champ.getIdentifier());
+                    }
                 }
 
                 /* Draw the arrows */
                 if (champ.getArrowSize() != 0.0) {
                     if (champ.getArrowStyle() == 1) {
                         arrowDrawer.drawVbackArrows(champ.getParentAxes(), champ.getIdentifier(), champ.getArrowSize(),
-                                                    champ.getLineThickness(), false, champ.getColored(), champ.getLineColor(), false);
+                                                    champ.getLineThickness(), false, champ.getColored(), champ.getLineColor(),
+                                                    champ.getLineColorAlpha(), false);
                     } else {
                         arrowDrawer.drawArrows(champ.getParentAxes(), champ.getIdentifier(), champ.getArrowSize(), champ.getLineThickness(), false,
-                                               champ.getColored(), champ.getLineColor(), false);
+                                               champ.getColored(), champ.getLineColor(), champ.getLineColorAlpha(), false);
                     }
                 }
             } catch (OutOfMemoryException e) {
@@ -998,7 +1107,19 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     segmentAppearance.setLineColor(null);
                     segmentAppearance.setLineWidth(segs.getLineThickness().floatValue());
                     segmentAppearance.setLinePattern(segs.getLineStyleAsEnum().asPattern());
+
+                    /* Shorten segments to the arrow base so the line doesn't show through a
+                     * transparent arrow head. Restore originals so marks and arrows below
+                     * see the true endpoints. */
+                    boolean shortened = segs.getArrowSize() != 0.0 && segs.getLineColorAlpha() < 1.0;
+                    if (shortened) {
+                        arrowDrawer.shortenSegmentEndpoints(segs.getParentAxes(), segs.getIdentifier(),
+                                                            segs.getArrowSize(), segs.getLineThickness(), true, false);
+                    }
                     drawingTools.draw(segments, segmentAppearance);
+                    if (shortened) {
+                        arrowDrawer.restoreSegmentEndpoints(segs.getIdentifier());
+                    }
                 }
 
                 /*
@@ -1031,7 +1152,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 /* Draw the arrows */
                 if (segs.getArrowSize() != 0.0) {
                     arrowDrawer.drawArrows(segs.getParentAxes(), segs.getIdentifier(), segs.getArrowSize(), segs.getLineThickness(), true,
-                                           true, segs.getLineColor(), false);
+                                           true, segs.getLineColor(), segs.getLineColorAlpha(), false);
                 }
             } catch (OutOfMemoryException e) {
                 invalidate(segs, e);
@@ -1107,6 +1228,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     legendDrawer.update(id, property);
                     fecDrawer.update(id, property);
                     fac3dDrawer.update(id, property);
+                    /* A geometry change invalidates the cached depth sort of transparent surfaces. */
+                    transparentFaceSorter.invalidate(id);
                     datatipTextDrawer.update(id, property);
                 }
 
@@ -1282,6 +1405,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         legendDrawer.dispose(id);
         fecDrawer.dispose(id);
         fac3dDrawer.dispose(id);
+        transparentFaceSorter.dispose(id);
         textureManager.dispose(id);
         /*
          * Check we are deleting Figure managed by DrawerVisitor(this)

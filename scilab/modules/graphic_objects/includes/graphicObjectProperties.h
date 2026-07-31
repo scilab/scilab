@@ -431,11 +431,15 @@
 #define __GO_MARK_BACKGROUNDS__ 409
 #define __GO_NUM_MARK_BACKGROUNDS__ 410
 #define __GO_UI_FOCUS__ 411
-
 #define __GO_UI_BROWSER__ 412
 #define __GO_UI_DATA__ 413
 #define __GO_UI_DEBUG__ 414
-
 #define __GO_ARROW_STYLE__ 415
+#define __GO_FACE_ALPHA__ 416
+#define __GO_LINE_COLOR_ALPHA__ 417
+#define __GO_BACKGROUND_ALPHA__ 418
+#define __GO_MARK_BACKGROUND_ALPHA__ 419
+#define __GO_MARK_FOREGROUND_ALPHA__ 420
+#define __GO_FONT_COLOR_ALPHA__ 421
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

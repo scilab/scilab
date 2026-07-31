@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -31,25 +32,47 @@ public final class ColorFactory {
      * @return a {@see Color} object representing the given scilab color.
      */
     public static Color createColor(ColorMap colorMap, int colorIndex) {
+        return createColor(colorMap, colorIndex, 1f);
+    }
+
+    /**
+     * Create a {@see Color} object representing the given scilab color with a given alpha.
+     * @param colorMap the scilab colormap to use.
+     * @param colorIndex the given scilab color.
+     * @param alpha the alpha value (0.0 = fully transparent, 1.0 = fully opaque).
+     * @return a {@see Color} object representing the given scilab color.
+     */
+    public static Color createColor(ColorMap colorMap, int colorIndex, float alpha) {
         if (colorMap != null) {
             float[] colorData = colorMap.getScilabColor(colorIndex);
-            return new Color(colorData[0], colorData[1], colorData[2]);
+            return new Color(colorData[0], colorData[1], colorData[2], alpha);
         } else {
-            return new Color(0, 0, 0);
+            return new Color(0, 0, 0, alpha);
         }
     }
 
     /**
-     * Create a float array filled with the RGBA data of the given scilab color.
+     * Create a float array filled with the RGBA data of the given scilab color (fully opaque).
      * @param colorMap the scilab colormap to use.
      * @param colorIndex the given scilab color.
      * @return a float array filled with the RGBA data of the given scilab color.
      */
     public static float[] createRGBAColor(ColorMap colorMap, int colorIndex) {
+        return createRGBAColor(colorMap, colorIndex, 1f);
+    }
+
+    /**
+     * Create a float array filled with the RGBA data of the given scilab color with a given alpha.
+     * @param colorMap the scilab colormap to use.
+     * @param colorIndex the given scilab color.
+     * @param alpha the alpha value (0.0 = fully transparent, 1.0 = fully opaque).
+     * @return a float array filled with the RGBA data of the given scilab color.
+     */
+    public static float[] createRGBAColor(ColorMap colorMap, int colorIndex, float alpha) {
         float[] rgbData = colorMap.getScilabColor(colorIndex);
         float[] rgbaData = new float[4];
         System.arraycopy(rgbData, 0, rgbaData, 0, 3);
-        rgbaData[3] = 1f;
+        rgbaData[3] = alpha;
         return rgbaData;
     }
 }

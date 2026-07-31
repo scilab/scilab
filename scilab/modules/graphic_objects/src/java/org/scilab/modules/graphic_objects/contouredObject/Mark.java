@@ -2,6 +2,7 @@
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
  * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Vincent COUVERT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -24,7 +25,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStat
  */
 public class Mark {
     /** Mark properties */
-    public enum MarkPropertyType { MODE, STYLE, SIZEUNIT, SIZE, FOREGROUND, BACKGROUND };
+    public enum MarkPropertyType { MODE, STYLE, SIZEUNIT, SIZE, FOREGROUND, BACKGROUND, FOREGROUNDALPHA, BACKGROUNDALPHA };
 
     /** Mark size unit type */
     public enum MarkSizeUnitType { POINT, TABULATED;
@@ -65,6 +66,12 @@ public class Mark {
     /** Background color */
     private int background;
 
+    /** Background (face) transparency (0.0 = fully transparent, 1.0 = fully opaque) */
+    private double backgroundAlpha;
+
+    /** Foreground (edge) transparency (0.0 = fully transparent, 1.0 = fully opaque) */
+    private double foregroundAlpha;
+
     /** Constructor */
     public Mark() {
         super();
@@ -74,6 +81,8 @@ public class Mark {
         size = 0;
         foreground = 0;
         background = 0;
+        foregroundAlpha = 1.0;
+        backgroundAlpha = 1.0;
     }
 
     /**
@@ -87,6 +96,8 @@ public class Mark {
         markSizeUnit = mark.markSizeUnit;
         foreground = mark.foreground;
         background = mark.background;
+        foregroundAlpha = mark.foregroundAlpha;
+        backgroundAlpha = mark.backgroundAlpha;
     }
 
     /**
@@ -179,6 +190,42 @@ public class Mark {
             return UpdateStatus.NoChange;
         }
         this.mode = mode;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return the background (face) transparency
+     */
+    public Double getBackgroundAlpha() {
+        return backgroundAlpha;
+    }
+
+    /**
+     * @param backgroundAlpha the background (face) transparency to set
+     */
+    public UpdateStatus setBackgroundAlpha(Double backgroundAlpha) {
+        if (this.backgroundAlpha == backgroundAlpha) {
+            return UpdateStatus.NoChange;
+        }
+        this.backgroundAlpha = backgroundAlpha;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return the foreground (edge) transparency
+     */
+    public Double getForegroundAlpha() {
+        return foregroundAlpha;
+    }
+
+    /**
+     * @param foregroundAlpha the foreground (edge) transparency to set
+     */
+    public UpdateStatus setForegroundAlpha(Double foregroundAlpha) {
+        if (this.foregroundAlpha == foregroundAlpha) {
+            return UpdateStatus.NoChange;
+        }
+        this.foregroundAlpha = foregroundAlpha;
         return UpdateStatus.Success;
     }
 

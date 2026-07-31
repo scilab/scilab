@@ -27,6 +27,7 @@ function subdemolist = demo_gateway()
     _("Lighting")                    , "lighting/lighting.dem.gateway.sce"
     _("Colormap")                    , "colormap/colormap.dem.gateway.sce"
     _("Matplot")                     , "matplot/matplot.dem.gateway.sce"
+    _("Transparency")                , "transparency/transparency.dem.gateway.sce"
     ];
     subdemolist(:,2) = demopath + subdemolist(:,2);
 endfunction
