@@ -183,6 +183,9 @@
                 <link linkend="pdist2">pdist2</link>
             </member>
             <member>
+                <link linkend="squareform">squareform</link>
+            </member>
+            <member>
                 <link linkend="dbscan">dbscan</link>
             </member>
             <member>

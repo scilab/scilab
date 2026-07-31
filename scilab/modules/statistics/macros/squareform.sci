@@ -33,7 +33,7 @@ function out = squareform(in, str)
             error(msprintf(_("%s: Wrong length for input argument #%d: Cannot form a square matrix from %d elements.\n"), "squareform", 1, length(in)));
         end
         out = zeros(N,N);
-        out(triu(ones(N, N), 1) == 1) = in;
+        out(tril(ones(N, N), -1) == 1) = in;
         out = out + out.';
 
     case "tovector"
@@ -50,7 +50,7 @@ function out = squareform(in, str)
         end
 
         out = zeros(1, (n * (n - 1))/2);
-        out = in(triu(ones(n,n), 1) == 1).';
+        out = in(tril(ones(n,n), -1) == 1).';
     end
     
 endfunction

@@ -158,6 +158,15 @@
                 //  1.   1.4142136   0.  
                 v = squareform(D, "tovector")
                 // 1.   1.   1.4142136
+
+                d = [1 2 10 3 9 8];
+                D = squareform(d)
+                // 0.    1.   2.   10.
+                // 1.    0.   3.   9. 
+                // 2.    3.   0.   8. 
+                // 10.   9.   8.   0. 
+                squareform(D, "tovector")
+                // 1 2 10 3 9 8
             ]]></programlisting>
         </para>
     </refsection>

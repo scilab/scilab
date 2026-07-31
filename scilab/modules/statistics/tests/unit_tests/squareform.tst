@@ -38,6 +38,12 @@ v = squareform(D);
 D2 = squareform(v);
 assert_checkequal(D2, D);
 
+X = [1 2 10 3 9 8];
+s = squareform(X);
+assert_checkequal(s, [0 1 2 10; 1 0 3 9; 2 3 0 8; 10 9 8 0]);
+X2 = squareform(s);
+assert_checkequal(X2, X);
+
 n = 10;
 X = rand(n, 3);
 
