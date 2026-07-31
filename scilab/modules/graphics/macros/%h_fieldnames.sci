@@ -449,28 +449,6 @@ function fields = %h_fieldnames(h)
             "user_data"
             "tag"
             ]
-        case "Param3d"
-            fields=[
-            "parent"
-            "children"
-            "visible"
-            "line_mode"
-            "foreground"
-            "thickness"
-            "mark_mode"
-            "mark_style"
-            "mark_size_unit"
-            "mark_size"
-            "mark_foreground"
-            "mark_background"
-            "data"
-            "clip_state"
-            "clip_box"
-            "color_mode"
-            "surface_color"
-            "user_data"
-            "tag"
-            ]
         case "Axis"
             fields=[
             "parent"

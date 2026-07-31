@@ -578,9 +578,6 @@ p.line_style=4;
                 <link linkend="champ_properties">champ_properties</link>
             </member>
             <member>
-                <link linkend="param3d_properties">param3d_properties</link>
-            </member>
-            <member>
                 <link linkend="plot">plot</link>
             </member>
             <member>
