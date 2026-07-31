@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2025 - Dassault Systèmes S.E. - Antoine ELIAS
@@ -53,7 +53,11 @@
             <literal>+</literal> (addition), <literal>-</literal> (subtraction),
             <literal>.*</literal> (element-wise multiplication),
             <literal>./</literal> (element-wise right division),
-            and <literal>.^</literal> (element-wise power).
+            <literal>.^</literal> (element-wise power),
+            the order comparison operators <literal>&lt;</literal>,
+            <literal>&lt;=</literal>, <literal>&gt;</literal> and <literal>&gt;=</literal>,
+            and the element-wise logical operators <literal>&amp;</literal> and
+            <literal>|</literal>.
         </para>
     </refsection>
     <refsection>
@@ -128,6 +132,36 @@ a .^ b
    3.   9.   27.
 ]]></screen>
     <programlisting role="example"><![CDATA[
+// Comparison with expand: one threshold per column
+x = [1 5 3; 4 2 6];
+th = [2 3 4];
+x >= th
+ ]]></programlisting>
+    <screen><![CDATA[
+--> x = [1 5 3; 4 2 6];
+--> th = [2 3 4];
+--> x >= th
+ ans  =
+  F T F
+  T F T
+]]></screen>
+    <programlisting role="example"><![CDATA[
+// Expanded comparisons combined with & : interval membership
+t = 1:5;
+starts = [1; 3];
+ends = [2; 5];
+(t >= starts) & (t <= ends)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> t = 1:5;
+--> starts = [1; 3];
+--> ends = [2; 5];
+--> (t >= starts) & (t <= ends)
+ ans  =
+  T T F F F
+  F F T T T
+]]></screen>
+    <programlisting role="example"><![CDATA[
 // Complex doubles
 ca = [1+%i; -2+2*%i];
 cb = [%i, 2-%i, -1+3*%i];
@@ -182,6 +216,9 @@ Operator +: Wrong dimensions for operation [2x2] + [3x2], same dimensions expect
             </member>
             <member>
                 <link linkend="hat">power</link>
+            </member>
+            <member>
+                <link linkend="comparison">comparison</link>
             </member>
             <member>
                 <link linkend="symbols">operators</link>

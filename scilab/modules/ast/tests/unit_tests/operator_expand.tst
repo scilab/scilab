@@ -146,6 +146,126 @@ assert_checkequal(a2*%s - a3, (2*%s - 1) * ones(2,2,2));
 assert_checkequal(a3 - a2 * %s, (1 - 2*%s) * ones(2,2,2));
 assert_checkequal(a2 - a3*%s, (2 - 1 * %s) * ones(2,2,2));
 
+// --- comparisons ---
+// double < <= > >= double
+a = rand(3, 1); b = rand(1, 4);
+tgt = max([size(a); size(b)], "r");
+assert_checkequal(a < b, broadcast_to(a, tgt) < broadcast_to(b, tgt));
+assert_checkequal(a <= b, broadcast_to(a, tgt) <= broadcast_to(b, tgt));
+assert_checkequal(a > b, broadcast_to(a, tgt) > broadcast_to(b, tgt));
+assert_checkequal(a >= b, broadcast_to(a, tgt) >= broadcast_to(b, tgt));
+
+// with hypermatrix
+a = rand(2, 1, 3); b = rand(1, 4, 3);
+tgt = max([size(a); size(b)], "r");
+assert_checkequal(a < b, broadcast_to(a, tgt) < broadcast_to(b, tgt));
+assert_checkequal(a <= b, broadcast_to(a, tgt) <= broadcast_to(b, tgt));
+assert_checkequal(a > b, broadcast_to(a, tgt) > broadcast_to(b, tgt));
+assert_checkequal(a >= b, broadcast_to(a, tgt) >= broadcast_to(b, tgt));
+
+A(:,:,2)=[1;1;1];
+B(:,:,2)=[1,1,1];
+tgt = max([size(A); size(B)], "r");
+assert_checkequal(A < B, broadcast_to(A, tgt) < broadcast_to(B, tgt));
+assert_checkequal(A <= B, broadcast_to(A, tgt) <= broadcast_to(B, tgt));
+assert_checkequal(A > B, broadcast_to(A, tgt) > broadcast_to(B, tgt));
+assert_checkequal(A >= B, broadcast_to(A, tgt) >= broadcast_to(B, tgt));
+C = [1 1];
+tgt = max([size(A); [size(C) 1]], "r");
+assert_checkequal(A < C, broadcast_to(A, tgt) < broadcast_to(C, tgt));
+assert_checkequal(A <= C, broadcast_to(A, tgt) <= broadcast_to(C, tgt));
+assert_checkequal(A > C, broadcast_to(A, tgt) > broadcast_to(C, tgt));
+assert_checkequal(A >= C, broadcast_to(A, tgt) >= broadcast_to(C, tgt));
+
+// integer types
+i8 = int8([1; 2]); j8 = int8([1 2 3]);
+tgt = max([size(i8); size(j8)], "r");
+assert_checkequal(i8 < j8, broadcast_to(i8, tgt) < broadcast_to(j8, tgt));
+assert_checkequal(i8 <= j8, broadcast_to(i8, tgt) <= broadcast_to(j8, tgt));
+assert_checkequal(i8 > j8, broadcast_to(i8, tgt) > broadcast_to(j8, tgt));
+assert_checkequal(i8 >= j8, broadcast_to(i8, tgt) >= broadcast_to(j8, tgt));
+
+ui32 = uint32([10; 20; 30]); vi32 = uint32([15 25]);
+tgt = max([size(ui32); size(vi32)], "r");
+assert_checkequal(ui32 < vi32, broadcast_to(ui32, tgt) < broadcast_to(vi32, tgt));
+assert_checkequal(ui32 >= vi32, broadcast_to(ui32, tgt) >= broadcast_to(vi32, tgt));
+
+// mixed integer/double (through %i_1_s overload)
+i8 = int8([1; 2]); d = [0.5 1.5 2.5];
+tgt = max([size(i8); size(d)], "r");
+assert_checkequal(i8 < d, broadcast_to(i8, tgt) < broadcast_to(d, tgt));
+assert_checkequal(d <= i8, broadcast_to(d, tgt) <= broadcast_to(i8, tgt));
+
+// mixed integer widths (through %i_1_i overload)
+i8 = int8([1; 2]); i16 = int16([0 1 2]);
+tgt = max([size(i8); size(i16)], "r");
+assert_checkequal(i8 < i16, broadcast_to(i8, tgt) < broadcast_to(i16, tgt));
+assert_checkequal(i8 >= i16, broadcast_to(i8, tgt) >= broadcast_to(i16, tgt));
+
+// per-column threshold use case
+x = [1 5 3; 4 2 6]; th = [2 3 4];
+assert_checkequal(x >= th, x >= repmat(th, 2, 1));
+
+// interval membership use case
+t = 1:5;
+starts = [1; 3]; ends = [2; 5];
+assert_checkequal(t >= starts & t <= ends, [%t %t %f %f %f; %f %f %t %t %t]);
+
+// --- logical operators & | ---
+// bool & | bool
+b1 = [%t; %f]; b2 = [%t %f %t];
+tgt = max([size(b1); size(b2)], "r");
+assert_checkequal(b1 & b2, broadcast_to(b1, tgt) & broadcast_to(b2, tgt));
+assert_checkequal(b1 | b2, broadcast_to(b1, tgt) | broadcast_to(b2, tgt));
+
+// double & | bool mix
+d = [1; 0]; b = [%t %f %t];
+tgt = max([size(d); size(b)], "r");
+assert_checkequal(d & b, broadcast_to(d, tgt) & broadcast_to(b, tgt));
+assert_checkequal(b | d, broadcast_to(b, tgt) | broadcast_to(d, tgt));
+
+// integers (bitwise), including mixed types
+i8 = int8([1; 2]); j8 = int8([1 2 3]);
+tgt = max([size(i8); size(j8)], "r");
+assert_checkequal(i8 & j8, broadcast_to(i8, tgt) & broadcast_to(j8, tgt));
+assert_checkequal(i8 | j8, broadcast_to(i8, tgt) | broadcast_to(j8, tgt));
+
+u16 = uint16([1 2 3]); i8 = int8([1; 2]);
+tgt = max([size(u16); size(i8)], "r");
+assert_checkequal(u16 & i8, broadcast_to(u16, tgt) & broadcast_to(i8, tgt));
+assert_checkequal(u16 | i8, broadcast_to(u16, tgt) | broadcast_to(i8, tgt));
+
+// with hypermatrix
+b1 = rand(2, 1, 3) > 0.5; b2 = rand(1, 4, 3) > 0.5;
+tgt = max([size(b1); size(b2)], "r");
+assert_checkequal(b1 & b2, broadcast_to(b1, tgt) & broadcast_to(b2, tgt));
+assert_checkequal(b1 | b2, broadcast_to(b1, tgt) | broadcast_to(b2, tgt));
+
+a3 = rand(2, 2, 2);
+a2 = rand(2, 2);
+tgt = max([size(a3); [size(a2) 1]], "r");
+assert_checkequal(a3 & a2, broadcast_to(a3, tgt) & broadcast_to(a2, tgt));
+assert_checkequal(a2 & a3, broadcast_to(a2, tgt) & broadcast_to(a3, tgt));
+assert_checkequal(a3 | a2, broadcast_to(a3, tgt) | broadcast_to(a2, tgt));
+assert_checkequal(a2 | a3, broadcast_to(a2, tgt) | broadcast_to(a3, tgt));
+
+assert_checkequal(int8(a3) & int8(a2), broadcast_to(int8(a3), tgt) & broadcast_to(int8(a2), tgt));
+assert_checkequal(int8(a2) & int8(a3), broadcast_to(int8(a2), tgt) & broadcast_to(int8(a3), tgt));
+assert_checkequal(int8(a3) | int8(a2), broadcast_to(int8(a3), tgt) | broadcast_to(int8(a2), tgt));
+assert_checkequal(int8(a2) | int8(a3), broadcast_to(int8(a2), tgt) | broadcast_to(int8(a3), tgt));
+
 // Incompatibility (raise an error)
 msg = sprintf(_("Operator %ls: Wrong dimensions for operation [%ls] %ls [%ls], same dimensions expected.\n"), "+", "2x3", "+", "4x1");
 assert_checkerror("rand(2,3) + rand(4,1)", msg);
+
+msg = sprintf(_("Operator %ls: Wrong dimensions for operation [%ls] %ls [%ls], same dimensions expected.\n"), "&", "2x3", "&", "4x1");
+assert_checkerror("rand(2,3) & rand(4,1)", msg);
+
+msg = sprintf(_("Operator %ls: Wrong dimensions for operation [%ls] %ls [%ls], same dimensions expected.\n"), "|", "2x3", "|", "4x1");
+assert_checkerror("rand(2,3) | rand(4,1)", msg);
+
+msg = sprintf(_("Operator %ls: Wrong dimensions for operation [%ls] %ls [%ls], same dimensions expected.\n"), "<", "2x3", "<", "4x1");
+assert_checkerror("rand(2,3) < rand(4,1)", msg);
+
+msg = sprintf(_("Operator %ls: Wrong dimensions for operation [%ls] %ls [%ls], same dimensions expected.\n"), "<=", "2x3", "<=", "4x1");
+assert_checkerror("rand(2,3) <= rand(4,1)", msg);

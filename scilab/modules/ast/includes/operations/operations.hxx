@@ -37,6 +37,28 @@ inline auto makeStrides = [](const std::vector<int>& dims)
     return strides;
 };
 
+//check if sizes allow expansion : for each dimension, sizes must be equal or one of them must be 1
+inline bool canExpandSize(types::GenericType* l, types::GenericType* r)
+{
+    int iDimsL = l->getDims();
+    int iDimsR = r->getDims();
+    int* piDimsL = l->getDimsArray();
+    int* piDimsR = r->getDimsArray();
+
+    int iDims = std::max(iDimsL, iDimsR);
+    for (int i = 0; i < iDims; ++i)
+    {
+        int iL = i < iDimsL ? piDimsL[i] : 1;
+        int iR = i < iDimsR ? piDimsR[i] : 1;
+        if (iL != iR && iL != 1 && iR != 1)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 struct ExpandPlan
 {
     std::vector<int> dimsO;

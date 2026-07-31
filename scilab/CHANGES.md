@@ -59,6 +59,7 @@ For a high-level description of the main new features in this release, please co
 #### Language evolutions
 
 - Arithmetic operators now perform **automatic expansion** with no memory overhead: a singleton dimension is automatically replicated to match the other operand, making manual expansion (using `.*.` or `repmat()`) unnecessary for most case. See `doc operator_expand`.
+- Comparison operators `<`, `<=`, `>` and `>=` and element-wise logical operators `&` and `|` now perform the same **automatic expansion** as arithmetic operators.
 
 ### Scilab 2026.0.0
 

@@ -542,21 +542,34 @@ InternalType* GenericLogicalOr(InternalType* _pL, InternalType* _pR)
 template<class T, class U, class O>
 InternalType* or_M_M(T *_pL, U *_pR)
 {
-    int iDimsL = _pL->getDims();
-    int iDimsR = _pR->getDims();
-
-    if (iDimsL != iDimsR)
-    {
-        // call overload
-        return nullptr;
-    }
-
     if (checkSameSize(_pL, _pR) == false)
     {
-        throw ast::InternalError(errorSameSize(_pL, _pR, op));
+        if (canExpandSize(_pL, _pR) == false)
+        {
+            if (_pL->getDims() != _pR->getDims())
+            {
+                // call overload
+                return nullptr;
+            }
+
+            throw ast::InternalError(errorSameSize(_pL, _pR, op));
+        }
+
+        O* pOut = nullptr;
+        auto plan = makeExpandPlan(_pL, _pR, pOut, op);
+
+        auto l = _pL->get();
+        auto r = _pR->get();
+        auto o = pOut->get();
+
+        expandApply(plan, [&](int iL, int iR, int iO) {
+            bit_or(l[iL], r[iR], o + iO);
+        });
+
+        return pOut;
     }
 
-    O* pOut = new O(iDimsL, _pL->getDimsArray());
+    O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
 
     bit_or(_pL->get(), (long long)_pL->getSize(), _pR->get(), pOut->get());
     return pOut;
@@ -630,21 +643,34 @@ InternalType* or_I_M(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* or_int_M_M(T *_pL, U *_pR)
 {
-    int iDimsL = _pL->getDims();
-    int iDimsR = _pR->getDims();
-
-    if (iDimsL != iDimsR)
-    {
-        // call overload
-        return nullptr;
-    }
-
     if (checkSameSize(_pL, _pR) == false)
     {
-        throw ast::InternalError(errorSameSize(_pL, _pR, op));
+        if (canExpandSize(_pL, _pR) == false)
+        {
+            if (_pL->getDims() != _pR->getDims())
+            {
+                // call overload
+                return nullptr;
+            }
+
+            throw ast::InternalError(errorSameSize(_pL, _pR, op));
+        }
+
+        O* pOut = nullptr;
+        auto plan = makeExpandPlan(_pL, _pR, pOut, op);
+
+        auto l = _pL->get();
+        auto r = _pR->get();
+        auto o = pOut->get();
+
+        expandApply(plan, [&](int iL, int iR, int iO) {
+            int_or(l[iL], r[iR], o + iO);
+        });
+
+        return pOut;
     }
 
-    O* pOut = new O(iDimsL, _pL->getDimsArray());
+    O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
 
     int_or(_pL->get(), (long long)_pL->getSize(), _pR->get(), pOut->get());
     return pOut;

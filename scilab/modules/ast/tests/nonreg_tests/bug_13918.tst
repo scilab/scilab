@@ -31,16 +31,6 @@ a2 = rand(2, 2);
 assert_checkerror("sparse(a2) + a3", msprintf(msg1 + "%s", msprintf(msg2, "%sp_a_s")));
 assert_checkerror("a3 + sparse(a2)", msprintf(msg1 + "%s", msprintf(msg2, "%s_a_sp")));
 
-// and
-//double & double
-// Converted first to boolean before & operation after https://codereview.scilab.org/#/c/18387/
-assert_checkerror("a3 & a2", msprintf(msg1 + "%s", msprintf(msg2, "%b_h_b")));
-assert_checkerror("a2 & a3", msprintf(msg1 + "%s", msprintf(msg2, "%b_h_b")));
-
-//int & int
-assert_checkerror("int8(a3) & int8(a2)", msprintf(msg1 + "%s", msprintf(msg2, "%i_h_i")));
-assert_checkerror("int8(a2) & int8(a3)", msprintf(msg1 + "%s", msprintf(msg2, "%i_h_i")));
-
 // divide
 //double / double
 assert_checkerror("a2 / a3", msprintf(msg1 + "%s", msprintf(msg2, "%s_r_s")));
@@ -81,17 +71,6 @@ assert_checkerror("sparse(a2) * a3", msprintf(msg1 + "%s", msprintf(msg2, "%sp_m
 
 //double * sparse
 assert_checkerror("a3 * sparse(a2)", msprintf(msg1 + "%s", msprintf(msg2, "%s_m_sp")));
-
-// or
-//double | double
-// Converted first to boolean before | operation after https://codereview.scilab.org/#/c/18387/
-assert_checkerror("a3 | a2", msprintf(msg1 + "%s", msprintf(msg2, "%b_g_b")));
-assert_checkerror("a2 | a3", msprintf(msg1 + "%s", msprintf(msg2, "%b_g_b")));
-
-//int | int
-// Converted first to boolean before | operation after https://codereview.scilab.org/#/c/18387/
-assert_checkerror("int8(a3) | int8(a2)", msprintf(msg1 + "%s", msprintf(msg2, "%i_g_i")));
-assert_checkerror("int8(a2) | int8(a3)", msprintf(msg1 + "%s", msprintf(msg2, "%i_g_i")));
 
 // substraction
 //double - sparse

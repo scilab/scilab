@@ -179,7 +179,18 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
     //D < D
     if (checkSameSize(_pDouble1, _pDouble2) == false)
     {
-        throw ast::InternalError(errorSameSize(_pDouble1, _pDouble2, L"<"));
+        auto plan = makeExpandPlan(_pDouble1, _pDouble2, pB, L"<");
+
+        auto l = _pDouble1->get();
+        auto r = _pDouble2->get();
+        auto o = pB->get();
+
+        expandApply(plan, [&](int iL, int iR, int iO) {
+            o[iO] = l[iL] < r[iR];
+        });
+
+        *_pOut = pB;
+        return 0;
     }
 
     pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
@@ -377,21 +388,26 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
         return 0;
     }
 
-    if (_pDouble1->getDims() != _pDouble2->getDims())
-    {
-        return 1;
-    }
-
     //D <= D
-    int* piDims1 = _pDouble1->getDimsArray();
-    int* piDims2 = _pDouble2->getDimsArray();
-
-    for (int i = 0 ; i < _pDouble1->getDims() ; i++)
+    if (checkSameSize(_pDouble1, _pDouble2) == false)
     {
-        if (piDims1[i] != piDims2[i])
+        if (canExpandSize(_pDouble1, _pDouble2) == false)
         {
             return 1;
         }
+
+        auto plan = makeExpandPlan(_pDouble1, _pDouble2, pB, L"<=");
+
+        auto l = _pDouble1->get();
+        auto r = _pDouble2->get();
+        auto o = pB->get();
+
+        expandApply(plan, [&](int iL, int iR, int iO) {
+            o[iO] = l[iL] <= r[iR];
+        });
+
+        *_pOut = pB;
+        return 0;
     }
 
     pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
@@ -495,20 +511,26 @@ static int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
         return 0;
     }
 
-    if (_pL->getDims() != _pR->getDims())
+    if (checkSameSize(_pL, _pR) == false)
     {
-        return 1;
-    }
-
-    int* piDimsL = _pL->getDimsArray();
-    int* piDimsR = _pR->getDimsArray();
-
-    for (int i = 0 ; i < _pL->getDims() ; i++)
-    {
-        if (piDimsL[i] != piDimsR[i])
+        if (canExpandSize(_pL, _pR) == false)
         {
             return 1;
         }
+
+        Bool* pB = nullptr;
+        auto plan = makeExpandPlan(_pL, _pR, pB, L"<");
+
+        auto l = _pL->get();
+        auto r = _pR->get();
+        auto o = pB->get();
+
+        expandApply(plan, [&](int iL, int iR, int iO) {
+            o[iO] = l[iL] < r[iR];
+        });
+
+        *_pOut = pB;
+        return 0;
     }
 
     Bool* pB = new Bool(_pR->getDims(), _pR->getDimsArray());
@@ -599,20 +621,26 @@ static int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
         return 0;
     }
 
-    if (_pL->getDims() != _pR->getDims())
+    if (checkSameSize(_pL, _pR) == false)
     {
-        return 1;
-    }
-
-    int* piDimsL = _pL->getDimsArray();
-    int* piDimsR = _pR->getDimsArray();
-
-    for (int i = 0 ; i < _pL->getDims() ; i++)
-    {
-        if (piDimsL[i] != piDimsR[i])
+        if (canExpandSize(_pL, _pR) == false)
         {
             return 1;
         }
+
+        Bool* pB = nullptr;
+        auto plan = makeExpandPlan(_pL, _pR, pB, L"<=");
+
+        auto l = _pL->get();
+        auto r = _pR->get();
+        auto o = pB->get();
+
+        expandApply(plan, [&](int iL, int iR, int iO) {
+            o[iO] = l[iL] <= r[iR];
+        });
+
+        *_pOut = pB;
+        return 0;
     }
 
     Bool* pB = new Bool(_pR->getDims(), _pR->getDimsArray());
