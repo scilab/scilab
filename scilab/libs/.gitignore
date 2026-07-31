@@ -23,3 +23,5 @@ rapidjson
 libxslt
 xlnt
 arrow
+cppserver
+openssl
