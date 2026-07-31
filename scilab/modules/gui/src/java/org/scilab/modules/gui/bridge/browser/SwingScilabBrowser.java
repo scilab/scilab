@@ -104,7 +104,9 @@ public class SwingScilabBrowser extends JPanel implements SwingViewObject, Widge
             }
         }));
 
-        cefPanel.getClient().addLifeSpanHandler(new CefLifeSpanHandlerAdapter() {
+        // Through the panel, not the client: CefClient.addLifeSpanHandler is a
+        // no-op once one is registered, and the panel registers its own
+        cefPanel.addLifeSpanHandler(new CefLifeSpanHandlerAdapter() {
             @Override
             public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name) {
                 // Open external links in the user's default system browser
@@ -362,6 +364,7 @@ public class SwingScilabBrowser extends JPanel implements SwingViewObject, Widge
                 break;
             case __GO_UI_DEBUG__:
                 debug = (Boolean)value;
+                cefPanel.setDebug(debug);
                 break;
             default : {
                 SwingViewWidget.update(this, property, value);
@@ -370,15 +373,8 @@ public class SwingScilabBrowser extends JPanel implements SwingViewObject, Widge
         }
     }
 
-    public void openDebug(boolean toggle) {
-        if (toggle)
-        {
-            cefPanel.toggleDevTools();
-        }
-        else
-        {
-            cefPanel.openDevTools();
-        }
+    public void openDebug() {
+        cefPanel.openDevTools();
     }
 
     private int ExecuteCallBack(String msg, long queryId) {

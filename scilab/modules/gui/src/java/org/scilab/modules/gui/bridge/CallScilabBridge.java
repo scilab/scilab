@@ -1339,7 +1339,7 @@ public class CallScilabBridge {
     public static void browserDebug(int uicontrolUID) {
         SwingViewObject uicontrol = SwingView.getFromId(uicontrolUID);
         if (uicontrol instanceof SwingScilabBrowser) {
-            ((SwingScilabBrowser) uicontrol).openDebug(false);
+            ((SwingScilabBrowser) uicontrol).openDebug();
         }
     }
 

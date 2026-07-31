@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.KeyboardFocusManager;
 import java.io.File;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -23,7 +24,6 @@ import javax.swing.SwingUtilities;
 
 import org.cef.CefClient;
 import org.cef.browser.CefBrowser;
-import org.cef.browser.CefDevToolsClient;
 import org.cef.browser.CefMessageRouter;
 import org.cef.browser.CefMessageRouter.CefMessageRouterConfig;
 import org.cef.handler.CefContextMenuHandler;
@@ -32,6 +32,8 @@ import org.cef.handler.CefFocusHandler;
 import org.cef.handler.CefFocusHandlerAdapter;
 import org.cef.handler.CefKeyboardHandler;
 import org.cef.handler.CefKeyboardHandlerAdapter;
+import org.cef.handler.CefLifeSpanHandler;
+import org.cef.handler.CefLifeSpanHandlerAdapter;
 import org.cef.handler.CefLoadHandler.ErrorCode;
 import org.cef.browser.CefFrame;
 import org.cef.callback.CefAuthCallback;
@@ -86,7 +88,18 @@ public class ScilabCefPanel extends JPanel {
     private CefClient client;
     private CefBrowser browser;
     private boolean debug = false;
-    
+
+    /**
+     * Browser backing the DevTools window, non-null only once CEF reported it
+     * created and until it reports it closed. This is the only trustworthy
+     * "DevTools are open" state: JCEF exposes none, and getDevToolsClient()
+     * creates a CDP client on demand, so it always answers "open".
+     */
+    private volatile CefBrowser devToolsBrowser = null;
+
+    /** Set between an open request and the DevTools browser showing up. */
+    private volatile boolean devToolsRequested = false;
+
     /** True when Chromium has native focus. */
     private volatile boolean browserHasFocus = false;
 
@@ -127,9 +140,12 @@ public class ScilabCefPanel extends JPanel {
             boolean isCTRL = !isMac && (event.modifiers & EventFlags.EVENTFLAG_CONTROL_DOWN) != 0;
             boolean isCOMMAND = isMac && (event.modifiers & EventFlags.EVENTFLAG_COMMAND_DOWN) != 0;
             boolean isSHIFT = (event.modifiers & EventFlags.EVENTFLAG_SHIFT_DOWN) != 0;
+            // Compare the virtual key code: on a RAWKEYDOWN, Chromium fills the
+            // character fields with the key code itself ('I'), not with the
+            // typed character
             if (event.type == CefKeyEvent.EventType.KEYEVENT_RAWKEYDOWN
                     && (isCTRL || isCOMMAND) && isSHIFT
-                    && event.unmodified_character == 'i') {
+                    && event.windows_key_code == KeyEvent.VK_I) {
                 if (debug) {
                     toggleDevTools();
                 }
@@ -245,11 +261,37 @@ public class ScilabCefPanel extends JPanel {
         }
     };
 
+    // ---- Life span: track the DevTools window ----
+    final CefLifeSpanHandler lifeSpanHandler = new CefLifeSpanHandlerAdapter() {
+        @Override
+        public void onAfterCreated(CefBrowser b) {
+            // The DevTools browser is created on this very client, so its
+            // life span events land here. Claim the first browser created
+            // while an open is pending: this is what makes the toggle able
+            // to tell an open DevTools window from a failed open.
+            if (b != browser && devToolsRequested && devToolsBrowser == null) {
+                devToolsRequested = false;
+                devToolsBrowser = b;
+            }
+        }
+
+        @Override
+        public void onBeforeClose(CefBrowser b) {
+            // Closing the window from its own UI comes through here too, so
+            // the toggle stays in sync with what the user sees
+            if (b == devToolsBrowser) {
+                devToolsBrowser = null;
+                devToolsRequested = false;
+            }
+        }
+    };
+
     /* Handler lists, to let the user add them */
     ArrayList<CefKeyboardHandler> keyboardHandlers = null;
     ArrayList<CefContextMenuHandler> contextMenuHandlers = null;
     ArrayList<CefFocusHandler> focusHandlers = null;
     ArrayList<CefRequestHandler> requestHandlers = null;
+    ArrayList<CefLifeSpanHandler> lifeSpanHandlers = null;
 
     /**
      * Create a new panel embedding a JCEF browser.
@@ -264,7 +306,8 @@ public class ScilabCefPanel extends JPanel {
         client.addContextMenuHandler(contextMenuHandler);
         client.addFocusHandler(focusHandler);
         client.addRequestHandler(requestHandler);
-        
+        client.addLifeSpanHandler(lifeSpanHandler);
+
         // ---- Layout ----
         setBackground(Color.WHITE);
         add(browser.getUIComponent(), BorderLayout.CENTER);
@@ -625,19 +668,76 @@ public class ScilabCefPanel extends JPanel {
         requestHandlers.add(h);
     }
 
+    public void addLifeSpanHandler(CefLifeSpanHandler h)
+    {
+        if (lifeSpanHandlers == null) {
+            lifeSpanHandlers = new ArrayList<>();
+            lifeSpanHandlers.add(lifeSpanHandler);
+            client.removeLifeSpanHandler();
+            client.addLifeSpanHandler(new CefLifeSpanHandler() {
+                @Override
+                public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url,
+                        String target_frame_name) {
+                    for (CefLifeSpanHandler h : lifeSpanHandlers) {
+                        if (h.onBeforePopup(browser, frame, target_url, target_frame_name))
+                            return true;
+                    }
+                    return false;
+                }
+                @Override
+                public void onAfterCreated(CefBrowser browser) {
+                    for (CefLifeSpanHandler h : lifeSpanHandlers) {
+                        h.onAfterCreated(browser);
+                    }
+                }
+                @Override
+                public void onAfterParentChanged(CefBrowser browser) {
+                    for (CefLifeSpanHandler h : lifeSpanHandlers) {
+                        h.onAfterParentChanged(browser);
+                    }
+                }
+                @Override
+                public boolean doClose(CefBrowser browser) {
+                    for (CefLifeSpanHandler h : lifeSpanHandlers) {
+                        if (h.doClose(browser))
+                            return true;
+                    }
+                    return false;
+                }
+                @Override
+                public void onBeforeClose(CefBrowser browser) {
+                    for (CefLifeSpanHandler h : lifeSpanHandlers) {
+                        h.onBeforeClose(browser);
+                    }
+                }
+            });
+        }
+        lifeSpanHandlers.add(h);
+    }
+
     /** Toggle DevTools window */
     public void toggleDevTools() {
-        CefDevToolsClient dev = browser.getDevToolsClient();
-        if (dev == null || dev.isClosed()) {
-            browser.openDevTools();
+        // Decide on the browser CEF actually created, never on a request we
+        // merely sent: an open that silently failed would otherwise leave the
+        // toggle inverted, and the next keystroke would close nothing
+        if (devToolsBrowser != null) {
+            closeDevTools();
         } else {
-            browser.closeDevTools();
+            openDevTools();
         }
     }
 
     /** Open DevTools (if not already open) */
     public void openDevTools() {
+        devToolsRequested = true;
         browser.openDevTools();
+    }
+
+    /** Close DevTools (if open) */
+    public void closeDevTools() {
+        devToolsRequested = false;
+        devToolsBrowser = null;
+        browser.closeDevTools();
     }
 
     public static void setDockInProgress(boolean inProgress)
@@ -671,7 +771,7 @@ public class ScilabCefPanel extends JPanel {
         clearCefNativeFocusView();
 
         if (browser != null) {
-            browser.closeDevTools();
+            closeDevTools();
             browser.close(true);
             browser = null;
         }
