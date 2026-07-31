@@ -21,7 +21,6 @@ function opts = detectImportOptions(filename, varargin)
         error(msprintf(_("%s: Wrong value for input argument #%d: File ""%s"" does not exist.\n"), fname, 1, filename));
     end
 
-
     if fileext(filename) == ".xlsx" then
         sheet = 1;
         rangevalue = "";
@@ -37,7 +36,7 @@ function opts = detectImportOptions(filename, varargin)
                     error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, i));
                 end
                 value = varargin(i+1);
-                
+
                 select convstr(key, "l")
                 case "sheet"
                     if type(value) == 10 then
@@ -66,7 +65,7 @@ function opts = detectImportOptions(filename, varargin)
                 else
                     error(msprintf(_("%s: Unknown option ""%s"". Valid options to xlsx format are %s.\n"), fname, key, sci2exp(["sheet", "range"])));
                 end
-            end 
+            end
         end
 
         s = xlsxInfo(filename);
@@ -77,7 +76,8 @@ function opts = detectImportOptions(filename, varargin)
         else
             opts.sheet = s.sheet_names(sheet);
         end
-        opts.range = rangevalue;
+        opts.range = rangevalue;    
+        
     else
         delim = "";
         decimal = [];
@@ -120,7 +120,7 @@ function opts = detectImportOptions(filename, varargin)
                         error(msprintf(_("%s: Wrong size for %s argument #%d: A non-empty value expected.\n"), fname, "NumHeaderLines", i+1));
                     end
                 end
-            end 
+            end
         end
 
         f = mgetl(filename);

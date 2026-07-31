@@ -92,15 +92,21 @@ function tt = readtable(varargin)
         end
     end
 
+    variableTypes = opts.variableTypes;
+    onlyDouble = %f;
+
     if ~isxlsx then
-        mat = csvTextScan(f(opts.datalines, :), opts.delimiter, opts.decimal, "string");//(:,_kk);
+        if and(variableTypes == "double") then
+            mat = csvTextScan(f(opts.datalines), opts.delimiter, opts.decimal);
+            onlyDouble = %t;
+        else
+            mat = csvTextScan(f(opts.datalines), opts.delimiter, opts.decimal, "string");//(:,_kk);
+        end
     else
         mat = f(opts.datalines, :);
     end
 
     variableNames = opts.variableNames;
-    variableTypes = opts.variableTypes;
-
     if variableNames == [] then
         variableNames = ["Var" + string(1:size(variableTypes, "*"))];
     end
@@ -126,36 +132,36 @@ function tt = readtable(varargin)
 
     mat = mat(:, _kk);
 
-    l = list();
-    for j = 1:size(mat, 2)
-        m = mat(:,j)
-        select variableTypes(j)
-        case "duration"
-            d = duration(0) .* ones(m);
-            d(m <> "") = duration(mat(m <> "", j), "InputFormat", fmt(j));
-            d(m == "") = duration(%nan);
-            l($+1) = d;
-        case "datetime"
-            d = NaT(m);
-            d(m <> "") = datetime(mat(m <> "", j), "InputFormat", fmt(j));
-            l($+1) = d;
-        case "double"
-            l($+1) = strtod(m)
-        case "boolean"
-            idx = find(m == "");
-            if idx <> [] then
-                m(idx) = "%nan";
+    if onlyDouble then
+        tt = table(mat, "VariableNames", variableNames);
+    else
+        l = list();
+        for j = 1:size(mat, 2)
+            m = mat(:,j)
+            select variableTypes(j)
+            case "duration"
+                d = duration(%nan) * ones(m);
+                idx = m <> "";
+                d(idx) = duration(m(idx), "InputFormat", fmt(j));
+                l($+1) = d;
+            case "datetime"
+                d = NaT(m);
+                idx = m <> "";
+                d(idx) = datetime(m(idx), "InputFormat", fmt(j));
+                l($+1) = d;
+            case "double"
+                l($+1) = strtod(m)
+            case "boolean"
+                m = convstr(m, "l");
+                d = members(m, ["t", "true"]) == 1;
+                l($+1) = d
+            else
+                l($+1) = m
             end
-            m(members(m, ["F", "false"]) ==1) = "%f";
-            m(members(m,["T", "true"]) ==1) = "%t";
-            execstr("d = [" +strcat(m, ",") +"]")
-            l($+1) = d'
-        else
-            l($+1) = m
         end
-    end
 
-    tt = table(l(:), "VariableNames", variableNames);
+        tt = table(l(:), "VariableNames", variableNames);
+    end
     tt.props.variableDescriptions = variableNames;
 
     if readrownames then

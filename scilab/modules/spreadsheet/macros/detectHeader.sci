@@ -14,7 +14,11 @@ function [header, c, nblines] = detectHeader(str)
     header = [];
     c = [];
     nblines = [];
-    s = part(str, 1);
+
+    // headers are always at the top, only check first 20 lines
+    checkr = min(r, 20);
+    s = part(str(1:checkr), 1);
+
     split = strsubst(s, "/[""a-zA-Z0-9\.,;:|\s\-\+]+/", "", "r");
     j = split <> "";
     if or(j) then

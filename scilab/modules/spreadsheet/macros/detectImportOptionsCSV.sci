@@ -6,10 +6,14 @@ function opts = detectImportOptionsCSV(f, delim, decimal, numHeaderLines)
     end
 
     opts = struct();
-    
-    while f($) == ""
-        f($) = [];
+
+    // trim trailing empty lines (find last non-empty)
+    totalLines = size(f, "r");
+    lastNonEmpty = totalLines;
+    while lastNonEmpty > 0 && f(lastNonEmpty) == ""
+        lastNonEmpty = lastNonEmpty - 1;
     end
+    totalLines = lastNonEmpty;
 
     if numHeaderLines <> [] then
         l = 1:numHeaderLines;
@@ -19,50 +23,59 @@ function opts = detectImportOptionsCSV(f, delim, decimal, numHeaderLines)
         [header, c , l] = detectHeader(f);
     end
 
-    // detect delimiter
-    datalines = [1:size(f, "r")];
+    // build datalines without copying the full vector
+    nbheader = size(l, "*");
     if l <> [] then
-        v = 1:size(f, "r");
-        v(l) = [];
-        f(l) = [];
-        datalines = v;
+        // datalines = all line indices except header lines
+        datalines = setdiff(1:totalLines, l);
+    else
+        datalines = 1:totalLines;
     end
-    headlines = [1 size(f, "r")];
+
+    // use a small sample for delimiter/type detection (avoid passing full f)
+    dataStart = datalines(1);
+    sampleEnd = min(dataStart + 49, totalLines);
+    fsample = f(dataStart:sampleEnd);
 
     if delim == "" then
         if decimal == [] then
-            [delim, decimal] = detectDelimiter(f);
+            [delim, decimal] = detectDelimiter(fsample);
         else
-            delim = detectDelimiter(f);
+            delim = detectDelimiter(fsample);
         end
     else
         if decimal == [] then
-            [a, decimal] = detectDelimiter(f, delim);
+            [a, decimal] = detectDelimiter(fsample, delim);
         end
     end
 
     // detect variable names and type
-    test = csvTextScan(f(1), delim, decimal);
+    test = csvTextScan(f(dataStart), delim, decimal);
     variableNames = [];
     index = [];
+    hasheader = %f;
 
-    if size(f, "*") > 1 then
+    if totalLines > 1 then
         if and(isnan(test)) then
-            h = csvTextScan(f(1), delim, decimal, "string");
+            h = csvTextScan(f(dataStart), delim, decimal, "string");
             variableNames = h;
             index = find(variableNames == "");
             if index <> [] then
                 variableNames(index) = "Var" + string(index);
             end
             datalines(1) = [];
-            headlines(1) = [];
             hasheader = %t;
         end
-        f(1) = [];
     end
 
-    // csvTextScan on all the file
-    h = csvTextScan(f, delim, decimal, "string");
+    // csvTextScan on sample for type detection
+    if hasheader then
+        sampleStart = datalines(1);
+    else
+        sampleStart = dataStart;
+    end
+    sampleEnd2 = min(sampleStart + 49, totalLines);
+    h = csvTextScan(f(sampleStart:sampleEnd2), delim, decimal, "string");
 
     variableTypes = emptystr(variableNames);
     inputFormat = [];

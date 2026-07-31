@@ -1,0 +1,192 @@
+<!--
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2024 - Dassault Systèmes S.E. - Adeline CARNIS
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Antoine ELIAS
+ *
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="uiimport.css" rel="stylesheet">
+</head>
+<body>
+    <div class="d-flex flex-column vh-100">
+        <!-- Toolbar -->
+        <div class="toolbar d-flex align-items-center px-2 py-1 border-bottom">
+            <button class="btn btn-sm btn-outline-secondary me-1" id="btn-open" title="Select a file">
+                <i class="bi bi-folder2-open"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-primary me-1" id="btn-import" title="Import as variable" disabled>
+                <i class="bi bi-play-fill"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-secondary me-1" id="btn-function" title="Create a function" disabled>
+                <i class="bi bi-file-earmark-code"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-secondary" id="btn-help" title="Help">
+                <i class="bi bi-question-circle"></i>
+            </button>
+
+            <!-- Separator -->
+            <div class="vr mx-3 d-none" id="toolbar-separator"></div>
+
+            <!-- Variable info -->
+            <div class="d-none d-flex align-items-center" id="toolbar-variable-info">
+                <span class="small fw-semibold me-2 text-nowrap">Variable name:</span>
+                <input type="text" class="form-control form-control-sm me-3" id="input-varname" placeholder="variable_name" style="width: 160px; height: 28px;">
+                <span class="small fw-semibold me-2 text-nowrap">Variable type:</span>
+                <select class="form-select form-select-sm me-3" id="info-vartype" style="font-size: .95em; width: 160px; height: 28px;">
+                    <option value="table">Table</option>
+                    <option value="timeseries">Timeseries</option>
+                    <option value="column_vectors">Column vectors</option>
+                    <option value="double_matrix">Double matrix</option>
+                    <option value="string_matrix">String matrix</option>
+                    <option value="cell">Cell</option>
+                </select>
+                <div id="toolbar-time-group" class="d-none align-items-center">
+                    <span class="small fw-semibold me-2 text-nowrap">Time reference:</span>
+                    <select class="form-select form-select-sm" id="select-timevar" style="font-size: .95em; height: 28px; width: 160px;">
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-grow-1 overflow-hidden">
+            <!-- Left panel -->
+            <div class="left-panel border-end d-flex flex-column" style="width: 280px; min-width: 280px;">
+                <!-- File info -->
+                <div class="p-2 border-bottom">
+                    <h6 class="fw-bold mb-2">File information</h6>
+                    <div class="row mb-1 small">
+                        <div class="col-7">Number of Rows</div>
+                        <div class="col-5" id="info-rows">-</div>
+                    </div>
+                    <div class="row mb-1 small">
+                        <div class="col-7">Number of Columns</div>
+                        <div class="col-5" id="info-cols">-</div>
+                    </div>
+                    <div class="row mb-1 small align-items-center">
+                        <div class="col-7">Header size</div>
+                        <div class="col-5 d-flex align-items-center">
+                            <input type="number" class="form-control form-control-sm me-1" id="input-header" value="0" min="0" style="width: 60px; font-size: .95em;">
+                            <span>lines</span>
+                        </div>
+                    </div>
+                    <div class="row mb-1 small align-items-center">
+                        <div class="col-7">Delimiter</div>
+                        <div class="col-5">
+                            <select class="form-select form-select-sm" id="select-delimiter" style="font-size: .95em;">
+                                <option value=",">Comma</option>
+                                <option value=" ">Space</option>
+                                <option value="&#9;">Tab</option>
+                                <option value=";">Semicolon</option>
+                                <option value="|">Pipe</option>
+                                <option value=":">Colon</option>
+                                <option value="custom">Custom</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-1 small align-items-center d-none" id="row-custom-delim">
+                        <div class="col-7">Symbol</div>
+                        <div class="col-5">
+                            <input type="text" class="form-control form-control-sm" id="input-custom-delim" maxlength="5">
+                        </div>
+                    </div>
+                    <div class="row mb-1 small align-items-center">
+                        <div class="col-7">Decimal</div>
+                        <div class="col-5">
+                            <select class="form-select form-select-sm" id="select-decimal" style="font-size: .95em;">
+                                <option value=".">Point</option>
+                                <option value=",">Comma</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-check form-switch small mt-1">
+                        <input class="form-check-input" type="checkbox" id="toggle-rownum" checked>
+                        <label class="form-check-label" for="toggle-rownum">Show row numbers</label>
+                    </div>
+                </div>
+
+                <!-- Import columns -->
+                <div class="d-flex flex-column flex-grow-1 overflow-hidden d-none" id="panel-columns">
+                    <div class="d-flex align-items-center px-2 pt-2 pb-1">
+                        <h6 class="fw-bold mb-0 flex-grow-1">Import Columns</h6>
+                        <button class="btn btn-sm btn-link p-0 me-2" id="btn-selectall" title="Select all">
+                            <i class="bi bi-check-all"></i>
+                        </button>
+                        <button class="btn btn-sm btn-link p-0" id="btn-selectnone" title="Select none">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                    <div class="flex-grow-1 overflow-auto px-2" id="columns-list">
+                    </div>
+
+                    <!-- Time reference -->
+                    <div class="p-2 border-top">
+                        <h6 class="fw-bold mb-2">Data Conversion</h6>
+                        <select class="form-select form-select-sm mb-1" id="select-data-conversion" style="font-size: .95em;">
+                            <option value="No">No</option>
+                        </select>
+                        <div class="d-none" id="panel-format">
+                            <div class="mb-1 small">
+                                <label class="form-label mb-0">Input Format</label>
+                                <div class="d-flex">
+                                    <input type="text" class="form-control form-control-sm me-1" id="input-inputformat" style="font-size: .95em;">
+                                    <button class="btn btn-sm btn-outline-secondary" id="btn-resetinput" title="Reset"><i class="bi bi-arrow-counterclockwise"></i></button>
+                                </div>
+                            </div>
+                            <div class="mb-1 small">
+                                <label class="form-label mb-0">Output Format</label>
+                                <div class="d-flex">
+                                    <input type="text" class="form-control form-control-sm me-1" id="input-outputformat" style="font-size: .95em;">
+                                    <button class="btn btn-sm btn-outline-secondary" id="btn-resetoutput" title="Reset"><i class="bi bi-arrow-counterclockwise"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-none" id="panel-convert">
+                            <div class="row small align-items-center">
+                                <div class="col-5">Convert to</div>
+                                <div class="col-7">
+                                    <select class="form-select form-select-sm" id="select-convert">
+                                        <option value="">No</option>
+                                        <option value="seconds">seconds</option>
+                                        <option value="minutes">minutes</option>
+                                        <option value="hours">hours</option>
+                                        <option value="days">days</option>
+                                        <option value="years">years</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview area: single table with sticky header -->
+            <div class="flex-grow-1 d-flex flex-column overflow-hidden" id="preview-container">
+                <div class="d-flex align-items-center justify-content-center h-100 text-muted" id="preview-empty">
+                    <span>Open a CSV or TXT file to preview data</span>
+                </div>
+                <div class="d-none flex-grow-1 overflow-auto" id="preview-scroll">
+                    <table class="table table-sm table-bordered table-hover mb-0" id="preview-table">
+                        <thead><tr id="preview-thead-row"></tr></thead>
+                        <tbody id="preview-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="progress" style="height: 4px; border-radius: 0;">
+            <div class="progress-bar" id="progressbar" style="width: 0%;"></div>
+        </div>
+    </div>
+
+    <script src="uiimport.js"></script>
+</body>
+</html>

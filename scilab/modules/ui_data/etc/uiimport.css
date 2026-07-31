@@ -1,0 +1,160 @@
+/* Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Antoine ELIAS
+ *
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ */
+
+body {
+    font-size: 13px;
+    overflow: hidden;
+    user-select: none;
+}
+
+.toolbar {
+    background-color: #f8f9fa;
+}
+
+.left-panel {
+    background-color: #fff;
+}
+
+#columns-list .column-item {
+    display: flex;
+    align-items: center;
+    padding: 2px 0;
+}
+
+#columns-list .column-item .form-check-input {
+    margin-right: 6px;
+    flex-shrink: 0;
+}
+
+#columns-list .column-item .col-name-input {
+    flex-grow: 1;
+    font-size: 12px;
+    padding: 1px 4px;
+    border: 1px solid transparent;
+    background: transparent;
+    outline: none;
+}
+
+#columns-list .column-item .col-name-input:focus {
+    border-color: #86b7fe;
+    background: #fff;
+}
+
+#columns-list .column-item .col-name-input:disabled {
+    color: #999;
+}
+
+/* --- Single table virtual scroll --- */
+
+#preview-scroll {
+    overflow: auto;
+}
+
+#preview-table {
+    font-size: 12px;
+    white-space: nowrap;
+    border-collapse: separate !important;
+    border-spacing: 0;
+}
+
+#preview-table thead {
+    position: sticky;
+    top: -1px;
+    z-index: 10;
+}
+
+#preview-table thead th {
+    background-color: #e9ecef;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    border-bottom: 1px solid #dee2e6 !important;
+    border-right: 1px solid #dee2e6 !important;
+}
+
+#preview-table tbody td {
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 0;
+}
+
+/* Spacer rows */
+#spacer-top td,
+#spacer-bottom td {
+    padding: 0 !important;
+    border: none !important;
+    line-height: 0;
+    font-size: 0;
+}
+
+/* Row number column - sticky left like a spreadsheet */
+.row-number {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    color: #999;
+    background-color: #f8f9fa !important;
+    text-align: right !important;
+    font-size: 11px;
+    padding-right: 8px !important;
+    user-select: none;
+    width: 55px;
+    min-width: 55px;
+    box-shadow: 2px 0 2px rgba(0, 0, 0, 0.07);
+}
+
+/* Row number in header: sticky both directions */
+thead .row-number {
+    z-index: 12;
+}
+
+.hide-rownum .row-number {
+    display: none;
+}
+
+.col-hidden {
+    display: none;
+}
+
+.small {
+    font-size: .95em;
+}
+
+h6 {
+    font-size: 13px;
+}
+
+/* Variable Name & Type styles in Toolbar */
+#input-varname {
+    font-size: 12px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    padding: 0.2rem 0.4rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+#input-varname:focus {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+#info-vartype {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}

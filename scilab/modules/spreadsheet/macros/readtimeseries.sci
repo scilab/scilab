@@ -229,25 +229,21 @@ function tt = readtimeseries(varargin)
         m = mat(:,j)
         select variableTypes(j)
         case "duration"
-            d = duration(0) .* ones(m);
-            d(m <> "") = duration(mat(m <> "", j));
-            d(m == "") = duration(%nan);
+            d = duration(%nan) * ones(m);
+            idx = m <> "";
+            d(idx) = duration(m(idx), "InputFormat", fmt(j));
             l($+1) = d;
         case "datetime"
             d = NaT(m);
-            d(m <> "") = datetime(mat(m <> "", j), "InputFormat", fmt(j));
+            idx = m <> "";
+            d(idx) = datetime(m(idx), "InputFormat", fmt(j));
             l($+1) = d;
         case "double"
             l($+1) = strtod(m)
         case "boolean"
-            idx = find(m == "");
-            if idx <> [] then
-                m(idx) = "%nan";
-            end
-            m(members(m, ["F", "false"]) ==1) = "%f";
-            m(members(m,["T", "true"]) ==1) = "%t";
-            execstr("d = [" +strcat(m, ",") +"]")
-            l($+1) = d'
+            m = convstr(m, "l");
+            d = members(m, ["t", "true"]) == 1;
+            l($+1) = d
         else
             l($+1) = m
         end
@@ -259,12 +255,13 @@ function tt = readtimeseries(varargin)
         m = mat(:,1);
         select variableTypes(1)
         case "duration"
-            d = duration(0) .* ones(m);
-            d(m <> "") = duration(mat(m <> "", 1));
-            d(m == "") = duration(%nan);
+            d = duration(%nan) * ones(m);
+            idx = m <> "";
+            d(idx) = duration(m(idx));
         case "datetime"
             d = NaT(m);
-            d(m<>"") = datetime(mat(m <> "", 1), "InputFormat", fmt(1));
+            idx = m <> "";
+            d(idx) = datetime(m(idx), "InputFormat", fmt(1));
         case "double"
             d = method(strtod(m));
         else

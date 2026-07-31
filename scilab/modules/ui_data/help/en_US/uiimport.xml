@@ -41,9 +41,6 @@
             <literal>uiimport(filename)</literal> directly imports data in the application from filename.
         </para>
         <para>
-            From this function, the user will be able to import data either in a <link linkend="table">table</link> or in a <link linkend="timeseries">timeseries</link>
-        </para>
-        <para>
             This application is also available in Scilab console menu: Applications > Import Data.
         </para>
         <para>It is divided into two parts: preview (center panel) and options management (left panel). 
@@ -55,10 +52,6 @@
                     <imagedata fileref="../images/uiimport.png"/>
                 </imageobject>
             </inlinemediaobject>
-        </para>
-        <para>
-            The preview panel displays a part of data if the number of lines exceeds 29 (the first 14 lines (excluding header and column names) and 
-            the last 14 lines of the file). In this case, "..." is added for each column.
         </para>
         <para>
             <literal>uiimport</literal> has several features:
@@ -91,9 +84,69 @@
                     </para>
                     <para/>
                     <para>
-                        <emphasis role="bold">Help page</emphasis> button opens this page
+                        <emphasis role="bold">Help page</emphasis> button opens this page.
                     </para>
                     <para/>
+                </listitem>
+                <listitem>
+                    <para>
+                        From this function, the user will be able to import data as:
+                    </para>
+                    <para>
+                        <inlinemediaobject>
+                            <imageobject>
+                                <imagedata fileref="../images/uiimport_variable.png"/>
+                            </imageobject>
+                        </inlinemediaobject>
+                    </para>
+                    <para/>
+                    <itemizedlist>
+                    <listitem>
+                        <para>
+                            a <link linkend="table">table</link>,
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            a <link linkend="timeseries">timeseries</link>,
+                        </para>
+                    </listitem>
+                    <listitem>
+                    <para>
+                        column vectors.
+                    </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            a double matrix created from variables of type double,
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            a string matrix (converts all types to string)
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            a <link linkend="cell">cell</link>.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                <para>
+                    It will be able to specify the output variable name.
+                </para>
+                <para>
+                    For timeseries, the user must define the time reference. This popupmenu contains only the names of columns with the 
+                    datetime and duration type.
+                </para>
+                <para>
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../images/uiimport_timeref.png"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </para>
+                <para/>
                 </listitem>
                 <listitem>
                     <para>
@@ -139,16 +192,17 @@
                     </para>
                     <para/>
                     <para>
-                        Each column can be selected/deselected and renamed. Each change update the preview panel. The empty column in file will not be taken into account.
+                        Each column can be selected/deselected and renamed. Each change update the preview panel.
                     </para>
                     <para/>
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">Time reference and columns format. </emphasis>
+                        <emphasis role="bold">Data Conversion. </emphasis>
                     </para>
                     <para>
-                        The drop-down list contains all column names of double, datetime and duration type. By default, no column is selected. 
+                        The drop-down list contains all column names of double, <link linkend="datetime">datetime</link> and <link linkend="duration">duration</link> type. 
+                        By default, no column is selected. 
                         Depending on the column type, the user will be able to
                         <itemizedlist>
                             <listitem>
@@ -179,9 +233,6 @@
                                 </para>
                             </listitem>
                         </itemizedlist>
-                    </para>
-                    <para>
-                        There is also a checkbox to select the reference time column needed to create a timeseries.
                     </para>
                 </listitem>
             </itemizedlist>
@@ -218,9 +269,19 @@ uiimport(fullfile(SCI, "modules", "spreadsheet", "tests", "unit_tests","meteo_da
         <revhistory>
             <revision>
                 <revnumber>2024.1.0</revnumber>
-                <revremark>
-                    Introduction in Scilab.
-                </revremark>
+                <revdescription>
+                    <para>
+                        Introduction in Scilab.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>uiimport</literal> has been rewritten with the <link linkend="browser">uicontrol browser</link>.
+                    </para>
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>
