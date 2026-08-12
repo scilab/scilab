@@ -112,7 +112,7 @@ $(document).ready(async () => {
                     let pattern = $(".completion").data("pattern");
                     updateInput(pattern, $(".listitem.selected").data("entry"));
                     hideCompletionWindow();
-                } else {
+                } else if (isInputEnabled()) {
                     sendCommand($(".input").val());
                 }
                 //the command is already handled, avoid inserting a newline in
@@ -124,8 +124,8 @@ $(document).ready(async () => {
                 break;
         }
         // waiting for Y/N char, send it immediately without waiting for enter
-        if (isInputDisabled()) {
-            sendCommand(e.key);
+        if (isInputDisabled() && e.key != "Enter") {
+            setUserInputValue(e.key);
         }
     });
 
@@ -301,7 +301,14 @@ $(document).ready(async () => {
 
 function sendCommand(cmd) {
     Scilab({request: `input::${cmd}`});
-    
+
+    adjustInputSize();
+    resetHisto = true;
+}
+
+function setUserInputValue(inputChar) {
+    Scilab({request: `input_char::${inputChar}`});
+
     adjustInputSize();
     resetHisto = true;
 }
@@ -413,6 +420,9 @@ function adjustInputSize() {
 function isInputDisabled() {
     return $(".input-group").hasClass("hide-input");
 }
+function isInputEnabled() {
+    return $(".input-group").hasClass("hide-input") === false;
+}
 
 function disableInput() {
     $(".input-group").addClass("hide-input");
@@ -477,7 +487,7 @@ function clearConsole(nbLines) {
                 {
                     last.text(txt);
                 }
-            
+
                 focus();
             }
 
@@ -519,7 +529,7 @@ async function fromJava(msg) {
             if (refreshTO == null) {
                 refreshTO = setTimeout(() => {
                     let last = $(".output").children(":last-child");
-                    
+
                     output.forEach(o => {
                         if (o.style == "monospace" && last.hasClass("monospace")) {
                             appendMonospaceText(last, processTextForLatex(processTextCRtoNL(o.text)));
@@ -654,7 +664,7 @@ function processTextForLatex(txt) {
         processed += `<span class="monospace latex-expression" data-latex="${escapeHtml(match[1])}">${escapeHtml(match[0])}</span>`;
         // next
         idx = match.index + match[0].length;
-        
+
         isHTML = true;
     }
     // last text
@@ -842,12 +852,12 @@ function updateInputCols() {
 
 function focus() {
     let inputEl = $(".input")[0];
-    
+
     // Only focus if not already focused
     if (document.activeElement != inputEl) {
         inputEl.focus();
     }
-    
+
     if (inputEl.selectionStart === inputEl.selectionEnd) {
         // If caret position is invalid or at the very end, ensure it's visible
         let currentPos = inputEl.selectionStart;
@@ -1021,7 +1031,7 @@ function deleteLastWord() {
         c.selectionStart = c.selectionEnd = start;
     } else if (start > 0) {
         let res = text.substring(0, start - 1).replace(/\S+$/, "");
-        res += text.substring(end); 
+        res += text.substring(end);
         setInputVal(res);
         c.selectionStart = c.selectionEnd = res.length - text.substring(end).length;
     }
@@ -1105,25 +1115,25 @@ function updateLatexML() {
                 previewContainer = $('<div>').addClass('latex-preview');
                 $('body').append(previewContainer);
             }
-            
+
             // Clear previous content
             previewContainer.empty();
-            
+
             // Add loading indicator
             previewContainer.html('<div style="text-align:center;padding:8px;">Rendering LaTeX...</div>');
-            
+
             // Calculate position based on caret
             let width = getStringRect($(".input").val().substring(0, start)).width;
             let inputRect = $(".input")[0].getBoundingClientRect();
             let left = inputRect.x + width;
             let top = inputRect.y + inputRect.height;
-            
+
             previewContainer.css({
                 'left': left + 'px',
                 'top': top + 'px',
                 'display': 'block'
             });
-            
+
             // Render the LaTeX
             try {
                 MathJax.texReset();
@@ -1156,13 +1166,13 @@ function updateLatexML() {
                     previewContainer = $('<div>').addClass('latex-preview');
                     $('body').append(previewContainer);
                 }
-                
+
                 // Clear previous content
                 previewContainer.empty();
-                
+
                 // Add loading indicator
                 previewContainer.html('<div style="text-align:center;padding:8px;">Rendering MathML...</div>');
-                
+
                 // Position MathML preview below the input (similar to LaTeX but without caret tracking)
                 let inputRect = $(".input")[0].getBoundingClientRect();
                 previewContainer.css({
@@ -1316,7 +1326,7 @@ function updateSearchResultDisplay() {
 function performSearch(searchTerm, caseSensitive, useRegex, wholeWord) {
     const results = [];
     const outputElements = $(".output").find("*");
-    
+
     //only for the plain-text path: lowercasing a regex pattern would corrupt
     //escapes like \W, \S or \D into their opposite class, regex uses the i flag
     if (!caseSensitive && !useRegex) {
@@ -1354,11 +1364,11 @@ function performSearch(searchTerm, caseSensitive, useRegex, wholeWord) {
                 while (true) {
                     let foundIndex = searchText.indexOf(searchTerm, startIndex);
                     if (foundIndex === -1) break;
-                    
+
                     if (wholeWord) {
                         // Check if it's a whole word match
                         const before = foundIndex === 0 || !searchText[foundIndex - 1].match(/\w/);
-                        const after = foundIndex + searchTerm.length === searchText.length || 
+                        const after = foundIndex + searchTerm.length === searchText.length ||
                                       !searchText[foundIndex + searchTerm.length].match(/\w/);
                         if (!(before && after)) {
                             startIndex = foundIndex + 1;
@@ -1372,7 +1382,7 @@ function performSearch(searchTerm, caseSensitive, useRegex, wholeWord) {
                         end: foundIndex + searchTerm.length,
                         text: originalText.substring(foundIndex, foundIndex + searchTerm.length)
                     });
-                    
+
                     startIndex = foundIndex + searchTerm.length;
                 }
             }
@@ -1437,15 +1447,15 @@ function setCurrentSearchResult() {
 
 function scrollToSearchResult($highlightSpan) {
     const $scrollContainer = $(".console")
-    
+
     // Get the position of the highlighted span relative to the scroll container
     const spanPosition = $highlightSpan.position().top;
     const containerHeight = $scrollContainer.height();
     const currentScroll = $scrollContainer.scrollTop();
-    
+
     // Calculate target scroll position to center the span
     const targetScroll = currentScroll + spanPosition - (containerHeight / 2) + ($highlightSpan.outerHeight() / 2);
-    
+
     // Animate scroll to center the span
     $scrollContainer.animate({
         scrollTop: targetScroll
@@ -1459,7 +1469,7 @@ function clearSearchHighlights() {
     if (searchHighlightTimeout) {
         clearTimeout(searchHighlightTimeout);
     }
-    
+
     const parents = new Set();
     $(".search-highlight").each(function() {
         const $span = $(this);
@@ -1472,22 +1482,22 @@ function clearSearchHighlights() {
 
 function navigateSearchResults(direction) {
     if (searchResults.length === 0) return;
-    
+
     currentSearchIndex += direction;
-    
+
     if (currentSearchIndex >= searchResults.length) {
         currentSearchIndex = 0;
     } else if (currentSearchIndex < 0) {
         currentSearchIndex = searchResults.length - 1;
     }
-    
+
     setCurrentSearchResult();
     updateSearchResultDisplay();
 }
 
 /* LaTeX Preview Functions */
 function showLatexPreview(x, y, element) {
-    
+
     // Get the LaTeX expression directly from the element's data attribute
     const latex = element.getAttribute('data-latex');
     if (!latex) {

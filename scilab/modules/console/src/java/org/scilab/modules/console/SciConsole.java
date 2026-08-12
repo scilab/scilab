@@ -150,9 +150,9 @@ public abstract class SciConsole extends JPanel {
                 boolean isMac = OS.get() == OS.MAC;
                 boolean isCTRL = isMac == false && event.modifiers == EventFlags.EVENTFLAG_CONTROL_DOWN;
                 boolean isCOMMAND = isMac && event.modifiers == EventFlags.EVENTFLAG_COMMAND_DOWN;
-                
+
                 log.info("CefKeyboardHandlerAdapter " + event);
-                
+
                 if (event.type == CefKeyEvent.EventType.KEYEVENT_RAWKEYDOWN && (isCTRL || isCOMMAND))
                 {
                     SwingUtilities.invokeLater(() -> {
@@ -184,7 +184,7 @@ public abstract class SciConsole extends JPanel {
                         background = Color.getColor(req[1]);
                         foreground = Color.getColor(req[1]);
                         sendQueue();
-                        
+
                         // Ensure the CefBrowser gets focus when console is ready
                         SwingUtilities.invokeLater(() -> {
                             cefPanel.requestBrowserFocus();
@@ -238,6 +238,19 @@ public abstract class SciConsole extends JPanel {
 
                         sendCommandsToScilab(command, true, true);
                         return true;
+                    }
+                    case "input_char": {
+                        String inputChar = null;
+                        if (req.length > 2) {
+                            return false;
+                        } else {
+                            inputChar = req[1];
+                        }
+                        // If we are waiting for a Y/N char
+                        if (inputChar.length() > 0 && setUserInputValue(inputChar.charAt(0))) {
+                            return true;
+                        }
+                        return false;
                     }
                     case "previous": {
                         String res = historyPrevious(req[1], Boolean.parseBoolean(req[2]));
@@ -319,7 +332,7 @@ public abstract class SciConsole extends JPanel {
                             } catch (IllegalArgumentException e) {
                                 log.warning("Invalid log level: " + req[1]);
                             }
-                        } 
+                        }
                         String msg = String.join("::", Arrays.copyOfRange(req, 2, req.length));
                         if (log.isLoggable(level))
                         {
@@ -340,7 +353,7 @@ public abstract class SciConsole extends JPanel {
 
         setMaxSize(10000);
         setPreferredSize(new Dimension(100, 10));
-        
+
         setBorder(BorderFactory.createLineBorder(Color.GRAY));
         add(cefPanel, BorderLayout.CENTER);
 
@@ -503,7 +516,7 @@ public abstract class SciConsole extends JPanel {
         }
 
         canReadUserInputValue.release();
-        return true;    
+        return true;
     }
 
     /**
@@ -512,7 +525,7 @@ public abstract class SciConsole extends JPanel {
     public boolean canReadUserInputValue() {
         return canReadUserInputValue.hasQueuedThreads();
     }
-    
+
     /**
      * Unblock the console if needed
      */
@@ -521,7 +534,7 @@ public abstract class SciConsole extends JPanel {
             setUserInputValue(Messages.gettext("nN").codePointAt(0));
         }
         canReadUserInputValue.release(Integer.MAX_VALUE);
-        
+
 
         log.info("unblock");
         // interrupt any mscanf call (input, halt and so on)
@@ -587,7 +600,7 @@ public abstract class SciConsole extends JPanel {
      */
     public String readLine() {
         sendToHTML("unlock-input");
-        
+
         String command = null;
         synchronized(this)
         {
@@ -750,7 +763,7 @@ public abstract class SciConsole extends JPanel {
     public void selectAll() {
         sendToHTML("selectall");
     }
-    
+
     public void clearHistory() {
         HistoryManagement.resetScilabHistory();
     }
