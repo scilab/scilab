@@ -25,7 +25,7 @@
 #include <string>
 #include <string_view>
 #include <vector>
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(__FreeBSD__)
 #include "fast_float/fast_float.h"
 #endif
 #ifdef max
