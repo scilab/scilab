@@ -33,12 +33,10 @@ extern "C"
 }
 
 //generate_inline_links
-std::unordered_map<std::string, types::Struct*> g_linksByLanguage;
+static std::unordered_map<std::string, types::Struct*> g_linksByLanguage;
 
-std::once_flag g_xmlInitFlag;
 std::once_flag g_xmlInitOnce;
 xsltStylesheetPtr g_stylesheet = nullptr;
-std::string g_stylesheetError;
 
 //used in initscilab
 void ensureLibxmlInitialized()
