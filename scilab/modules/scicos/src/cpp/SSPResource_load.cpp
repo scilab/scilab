@@ -647,6 +647,10 @@ int SSPResource::updateSystem(model::BaseObject* o)
     //
     // relocate the IOBlock according to the Geometry
     //
+    if (bounds.empty() || references.empty())
+    {
+        return 0; // skip processing if no bounds or references
+    }
     auto [x1, y1, x2, y2] = bounds.back();
 
     // helper lambda function
@@ -655,7 +659,7 @@ int SSPResource::updateSystem(model::BaseObject* o)
         controller.getObjectProperty(ioBlock.block, GEOMETRY, _vecDblShared);
 
         // has been set by xcos:geometry
-        if (_vecDblShared[0] != 0. && _vecDblShared[1] != 0)
+        if (_vecDblShared.size() >= 2 && _vecDblShared[0] != 0. && _vecDblShared[1] != 0)
         {
             return 0;
         }
@@ -1749,6 +1753,10 @@ int SSPResource::loadSystemGeometry(xmlTextReaderPtr reader, model::BaseObject* 
     assert(o->kind() == DIAGRAM || o->kind() == BLOCK);
 
     // update in place, will be processed at system exit
+    if (bounds.empty())
+    {
+        return 0; // skip processing if no bounds
+    }
     auto& systemGeom = bounds.back();
 
     // iterate on attributes
@@ -2102,7 +2110,7 @@ int SSPResource::loadConnectionGeometry(xmlTextReaderPtr reader, model::BaseObje
     }
 
     // duplicate start and end points
-    if (!points.empty())
+    if (!points.empty() && points.size() >= 2)
     {
         points.insert(points.begin(), {points[0], points[1]});
         points.insert(points.end(), {points[points.size() - 2], points[points.size() - 1]});
@@ -2620,7 +2628,12 @@ int SSPResource::loadComponent(xmlTextReaderPtr reader, model::BaseObject* o)
                 std::string source = to_string(xmlTextReaderConstValue(reader));
 
                 const std::string fullPathname = std::string("TMPDIR/") + source;
-                const std::string resourcesPathname = source.substr(strlen("resources/"));
+                static constexpr const char prefix[] = "resources/";
+                std::string resourcesPathname = source;
+                if (source.compare(0, sizeof(prefix) - 1, prefix) == 0)
+                {
+                    resourcesPathname = source.substr(sizeof(prefix) - 1);
+                }
 
                 auto pFullPathname = std::filesystem::path(fullPathname);
                 std::string workdir = pFullPathname.replace_filename(pFullPathname.stem()).string();
@@ -3105,6 +3118,11 @@ int SSPResource::processElement(xmlTextReaderPtr reader, const xmlChar* nsURI)
     enum xcosNames current = static_cast<enum xcosNames>(std::distance(readerConstInterned.begin(), found));
     if (nsURI == xmlnsXCOS)
     {
+        if (processed.empty())
+        {
+            sciprint("Unexpected XCOS element without processed context\n");
+            return -1;
+        }
         model::BaseObject* component = processed.back();
 
         switch (current)
@@ -3515,6 +3533,12 @@ int SSPResource::processEndElement(xmlTextReaderPtr reader)
     const xmlChar* xmlns = xmlTextReaderConstNamespaceUri(reader);
     const xmlChar* name = xmlTextReaderConstLocalName(reader);
     
+    // Check if processed is empty - this can happen with unknown namespaces
+    if (processed.empty())
+    {
+        return 1; // skip processing
+    }
+    
     model::BaseObject* o = processed.back();
 
     // verbose for debugging
@@ -3603,7 +3627,13 @@ int SSPResource::processEndElement(xmlTextReaderPtr reader)
         }
     }
 
-    processed.pop_back();
+    // Only pop if this is a namespace we actually processed
+    bool shouldPop = (xmlns == xmlnsXCOS || xmlns == xmlnsSSC || xmlns == xmlnsSSB || 
+                     xmlns == xmlnsSSD || xmlns == xmlnsSSV || xmlns == xmlnsSSM || xmlns == nullptr);
+    if (shouldPop && !processed.empty())
+    {
+        processed.pop_back();
+    }
     return 1;
 }
 

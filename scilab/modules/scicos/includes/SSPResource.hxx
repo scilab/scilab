@@ -699,7 +699,7 @@ private:
     inline
     void processed_push(xmlTextReaderPtr reader)
     {
-        if (!xmlTextReaderIsEmptyElement(reader))
+        if (!xmlTextReaderIsEmptyElement(reader) && !processed.empty())
             processed.push_back(processed.back());
     }
 
