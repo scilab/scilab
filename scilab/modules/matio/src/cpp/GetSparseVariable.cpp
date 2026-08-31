@@ -64,7 +64,7 @@ matvar_t* GetSparseMatVar(types::Sparse* pSparse, const char *name)
     int* itemsRow = new int[pSparse->getRows()];
     pSparse->getNbItemByRow(itemsRow);
 
-#if MATIO_RELEASE_LEVEL < 18
+#if MATIO_VERSION < 1518
     mat_int32_t* colIndexes = (mat_int32_t*)MALLOC(sizeof(mat_int32_t) *  (pSparse->getRows() + 1));
 #else
     mat_uint32_t* colIndexes = (mat_uint32_t*)MALLOC(sizeof(mat_uint32_t) *  (pSparse->getRows() + 1));
