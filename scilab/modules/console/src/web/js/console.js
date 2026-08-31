@@ -1113,7 +1113,7 @@ function updateLatexML() {
             let previewContainer = $(".latex-preview");
             if (previewContainer.length === 0) {
                 previewContainer = $('<div>').addClass('latex-preview');
-                $('body').append(previewContainer);
+                $('.console').append(previewContainer);
             }
 
             // Clear previous content
@@ -1164,7 +1164,7 @@ function updateLatexML() {
                 let previewContainer = $(".latex-preview");
                 if (previewContainer.length === 0) {
                     previewContainer = $('<div>').addClass('latex-preview');
-                    $('body').append(previewContainer);
+                    $('.console').append(previewContainer);
                 }
 
                 // Clear previous content
@@ -1514,7 +1514,7 @@ function renderLatexPreview(latex, x, y) {
     let previewContainer = $(".latex-preview");
     if (previewContainer.length === 0) {
         previewContainer = $('<div>').addClass('latex-preview');
-        $('body').append(previewContainer);
+        $('.console').append(previewContainer);
     }
 
     // Clear previous content

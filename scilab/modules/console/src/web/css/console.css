@@ -5,7 +5,7 @@
  * For more information, see the COPYING file which you should have received
  * along with this program.
  */
- 
+
 /*
 @font-face {
     font-family: "Monospaced";
@@ -32,6 +32,7 @@ html, body {
     font-family: scilab-font;
     font-size: 13px;
     font-weight: normal;
+    overflow: hidden;
 }
 
 body {
@@ -265,7 +266,6 @@ pre.monospace {
     padding: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     z-index: 10000;
-    max-width: 300px;
     font-size: 14px;
     font-family: inherit;
     display: none;
