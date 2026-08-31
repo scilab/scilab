@@ -23,10 +23,6 @@
 #include "dynlib_scicos_blocks.h"
 #include "scicos_block.h"
 /*--------------------------------------------------------------------------*/
-#if _MSC_VER
-extern double asinh(double x);
-#endif
-/*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void asinh_blk(scicos_block *block, int flag)
 {
     int j = 0;
