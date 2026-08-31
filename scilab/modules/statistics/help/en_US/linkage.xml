@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Adeline CARNIS
+ *
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="linkage">
+    <refnamediv>
+        <refname>linkage</refname>
+        <refpurpose>Agglomerative hierarchical clustering</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            z = linkage(x)
+            z = linkage(x, method)
+            z = linkage(x, method, metric)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>A double observation matrix or a condensed distance vector.</para>
+                    <para>If <literal>x</literal> is a matrix, each row represents an observation. 
+                        Distances are computed with <link linkend="pdist">pdist</link> 
+                        and then transformed with <link linkend="squareform">squareform</link>.</para>
+                    <para>If <literal>x</literal> is a vector, it is interpreted as a condensed distance vector.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>method</term>
+                <listitem>
+                    <para>Linkage method. The default value is <literal>"single"</literal>.</para>
+                    <itemizedlist>
+                        <listitem><para><literal>"single"</literal>: single linkage.</para></listitem>
+                        <listitem><para><literal>"complete"</literal>: complete linkage.</para></listitem>
+                        <listitem><para><literal>"average"</literal>: average linkage unweighted by cluster sizes (UPGMA).</para></listitem>
+                        <listitem><para><literal>"weighted"</literal>: weighted average linkage (WPGMA).</para></listitem>
+                        <listitem><para><literal>"centroid"</literal>: centroid method (UPGMC).</para></listitem>
+                        <listitem><para><literal>"median"</literal>: median method (WPGMC).</para></listitem>
+                        <listitem><para><literal>"ward"</literal>: Ward method.</para></listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>metric</term>
+                <listitem>
+                    <para>Metric used by <link linkend="pdist">pdist</link> when <literal>x</literal> is a matrix. 
+                        Default value: <literal>"euclidean"</literal>.</para>
+                    <para>A cell can be used to pass additional arguments to <literal>pdist</literal>, 
+                        for example, to set the Minkowski metric.</para>
+                    <para>The methods <literal>"centroid"</literal>, <literal>"median"</literal> et <literal>"ward"</literal> 
+                        require the Euclidean metric.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>A <literal>(n-1) x 3</literal> matrix.</para>
+                    <para>Each row contains the identifiers of the two merged clusters and the corresponding distance.</para>
+                    <para>Initial observations are identified from <literal>1</literal> to <literal>n</literal>. 
+                        The new clusters are numbered starting from <literal>n+1</literal>.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para><literal>linkage</literal> performs agglomerative hierarchical clustering.</para>
+        <para>Each observation initially constitutes a cluster. At each step, the two closest clusters are merged, and the distances are updated according to the chosen method.</para>
+        <para>For <literal>n</literal> observations, <literal>linkage</literal> performs <literal>n-1</literal> merges and returns a matrix <literal>(n-1) x 3</literal>.</para>
+    </refsection>
+    <refsection>
+        <title>Methods</title>
+        <variablelist>
+            <varlistentry>
+                <term>single</term>
+                <listitem><para><literal>d(U,k) = min(d(r,k), d(c,k))</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>complete</term>
+                <listitem><para><literal>d(U,k) = max(d(r,k), d(c,k))</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>average</term>
+                <listitem><para><literal>d(U,k) = (nr*d(r,k) + nc*d(c,k)) / (nr+nc)</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>weighted</term>
+                <listitem><para><literal>d(U,k) = (d(r,k) + d(c,k)) / 2</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>centroid</term>
+                <listitem>
+                    <para><literal>d(U,k)^2 = nr/(nr+nc)*d(r,k)^2 + nc/(nr+nc)*d(c,k)^2 - nr*nc/(nr+nc)^2*d(r,c)^2</literal></para>
+                    <para>Requires the Euclidean metric.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>median</term>
+                <listitem>
+                    <para><literal>d(U,k)^2 = 1/2*d(r,k)^2 + 1/2*d(c,k)^2 - 1/4*d(r,c)^2</literal></para>
+                    <para>Requires the Euclidean metric.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ward</term>
+                <listitem>
+                    <para><literal>d(U,k)^2 = ((nr+nk)*d(r,k)^2 + (nc+nk)*d(c,k)^2 - nk*d(r,c)^2) / (nr+nc+nk)</literal></para>
+                    <para>Requires the Euclidean metric.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            Where:
+        </para>
+        <itemizedlist>
+            <listitem><para><literal>r</literal>: index of the first cluster being merged.</para></listitem>
+            <listitem><para><literal>c</literal>: index of the second cluster being merged.</para></listitem>
+            <listitem><para><literal>U</literal>: the new cluster created by merging r and c.</para></listitem>
+            <listitem><para><literal>k</literal>: index of any other active cluster, different from r and c.</para></listitem>
+            <listitem><para><literal>nr</literal>: number of original observations contained in cluster r.</para></listitem>
+            <listitem><para><literal>nc</literal>: number of original observations contained in cluster c.</para></listitem>
+            <listitem><para><literal>nk</literal>: number of original observations contained in cluster k.</para></listitem>
+            <listitem><para><literal>d(r,k)</literal>: distance between clusters r and k.</para></listitem>
+            <listitem><para><literal>d(c,k)</literal>: distance between clusters c and k.</para></listitem>
+            <listitem><para><literal>d(r,c)</literal>: distance between the two clusters being merged..</para></listitem>
+            <listitem><para><literal>d(U,k)</literal>: distance between the newly created cluster U and cluster k.</para></listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection role="example">
+    <title>Examples</title>
+        <para>
+            <programlisting role="example"><![CDATA[
+            X = [2  8  0
+                1  9  9
+                3  4  2
+                8  1  6
+                5  5  5
+                7  2  1];
+
+            Z = linkage(X)
+            ]]></programlisting>
+            <screen><![CDATA[ 
+--> X = [2  8  0
+    1  9  9
+    3  4  2
+    8  1  6
+    5  5  5
+    7  2  1];
+
+--> Z = linkage(X)
+Z = [5x3 double]
+
+   3.   5.    3.7416574
+   1.   7.    4.5825757
+   6.   8.    4.5825757
+   4.   9.    5.0990195
+   2.   10.   6.9282032
+   ]]></screen>
+        </para>
+        <para>
+            <programlisting role="example"><![CDATA[
+                X = [2  8  0
+                1  9  9
+                3  4  2
+                8  1  6
+                5  5  5
+                7  2  1];
+                methods = ["single", "complete", "average", "weighted", "centroid", "median", "ward"];
+
+                for method = methods
+                    Z = linkage(X, method);
+                    disp(method + ":", Z);
+                end
+            ]]></programlisting>
+        </para>
+        <para>
+            <programlisting role="example"><![CDATA[
+                X = [2  8  0
+                    1  9  9
+                    3  4  2
+                    8  1  6
+                    5  5  5
+                    7  2  1];
+                Z = linkage(X, "average", "cityblock");
+            ]]></programlisting>
+            <screen><![CDATA[ 
+--> X = [2  8  0
+    1  9  9
+    3  4  2
+    8  1  6
+    5  5  5
+    7  2  1];
+
+--> Z = linkage(X, "average", "cityblock")
+ Z = [5x3 double]
+
+   3.   5.    6.       
+   4.   6.    7.       
+   1.   7.    9.       
+   8.   9.    11.166667
+   2.   10.   15.2
+   ]]></screen>
+        </para>
+        <para>
+            <programlisting role="example"><![CDATA[
+                X = [2  8  0
+                    1  9  9
+                    3  4  2
+                    8  1  6
+                    5  5  5
+                    7  2  1];
+                p = 3;
+                Z = linkage(X, "average", {"minkowski", p})
+            ]]></programlisting>
+        
+            <screen><![CDATA[ 
+--> X = [2  8  0
+    1  9  9
+    3  4  2
+    8  1  6
+    5  5  5
+    7  2  1];
+
+--> p = 3;
+--> Z = linkage(X, "average", {"minkowski", p})
+ Z = [5x3 double]
+
+   3.   5.    3.3019272
+   6.   7.    4.4027021
+   4.   8.    5.1802944
+   1.   9.    6.4984308
+   2.   10.   8.4813034
+            ]]></screen>
+        </para>
+        <para>
+            <programlisting role="example"><![CDATA[
+                Y = [3 4 10 12 5 11 13 6 8 2];
+                Z = linkage(Y, "average")
+            ]]></programlisting>
+            <screen><![CDATA[ 
+--> Y = [3 4 10 12 5 11 13 6 8 2];
+--> Z = linkage(Y, "average")
+ Z = [4x3 double]
+
+   4.   5.   2. 
+   1.   2.   3. 
+   3.   7.   4.5
+   6.   8.   10.
+            ]]></screen>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member><link linkend="pdist">pdist</link></member>
+            <member><link linkend="squareform">squareform</link></member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revremark>Function added.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
