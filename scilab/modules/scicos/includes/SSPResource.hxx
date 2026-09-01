@@ -171,7 +171,7 @@ struct SystemCanvas {
     static inline
     SystemCanvas default_xcos_ccordinates()
     {
-        return {std::numeric_limits<double>::max(), std::numeric_limits<double>::lowest(), std::numeric_limits<double>::lowest(), std::numeric_limits<double>::lowest()};
+        return {std::numeric_limits<double>::max(), std::numeric_limits<double>::max(), std::numeric_limits<double>::lowest(), std::numeric_limits<double>::lowest()};
     }
 
     static inline
