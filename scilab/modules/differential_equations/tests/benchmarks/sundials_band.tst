@@ -11,6 +11,15 @@
 // <-- BENCH START -->
 exec(fullfile("SCI", "modules", "differential_equations", "tests", "unit_tests", "sundials_band.tst"));
 
+// Dense reference runs
+timer();
+[t,v] = cvode(HEAT,tspan,v0,method="BDF");
+t1cvode=timer();
+
+timer();
+[t,v] = arkode(HEAT,tspan,v0,method="DIRK",atol=1e-9);
+t1arkode=timer();
+
 assert_checktrue(t1cvode/t2cvode>10);
 assert_checktrue(t1cvode/t3cvode>10);
 assert_checktrue(t1cvode/t4cvode>10);

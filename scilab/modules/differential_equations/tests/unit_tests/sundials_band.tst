@@ -35,39 +35,36 @@ tspan=[0 logspace(0,3,19)]// vecteur des temps
 JCONSTBAND = -lambda/c/rhoLin/dx/dx*[0 -ones(1,N-2); 2*ones(1,N-1); -ones(1,N-2) 0];
 JCONSTSPARSE = -lambda/c/rhoLin/dx/dx*(diag(sparse(2*ones(1,N-1)))-diag(sparse(ones(1,N-2)),-1)-diag(sparse(ones(1,N-2)),1));
 
+// Problem definition, also used by tests/benchmarks/sundials_band.tst
+HEAT = list(f_chaleur,dx,lambda,c,rhoLin,f);
+
 // CVODE
 
 timer();
-[t,v] = cvode(list(f_chaleur,dx,lambda,c,rhoLin,f),tspan,v0,method="BDF");
-t1cvode=timer()
-
-[t,v] = cvode(list(f_chaleur,dx,lambda,c,rhoLin,f),tspan,v0,jacBand=[1,1]);
+[t,v] = cvode(HEAT,tspan,v0,jacBand=[1,1]);
 t2cvode=timer()
 
-[t,v] = cvode(list(f_chaleur,dx,lambda,c,rhoLin,f),tspan,v0,jacBand=[1,1],jacobian=jac_f_chaleur);
+[t,v] = cvode(HEAT,tspan,v0,jacBand=[1,1],jacobian=jac_f_chaleur);
 t3cvode=timer()
 
-[tb,vb] = cvode(list(f_chaleur,dx,lambda,c,rhoLin,f),tspan,v0,jacBand=[1,1],jacobian=JCONSTBAND);
+[tb,vb] = cvode(HEAT,tspan,v0,jacBand=[1,1],jacobian=JCONSTBAND);
 t4cvode=timer()
-[ts,vs] = cvode(list(f_chaleur,dx,lambda,c,rhoLin,f),tspan,v0,jacobian=JCONSTSPARSE);
+[ts,vs] = cvode(HEAT,tspan,v0,jacobian=JCONSTSPARSE);
 
 assert_checkalmostequal(vb,vs)
 
 // ARKODE
 
 timer();
-[t,v] = arkode(list(f_chaleur,dx,lambda,c,rhoLin,f),tspan,v0,method="DIRK",atol=1e-9);
-t1arkode=timer()
-
-[t,v] = arkode(list(f_chaleur,dx,lambda,c,rhoLin,f),tspan,v0,jacBand=[1,1],atol=1e-9);
+[t,v] = arkode(HEAT,tspan,v0,jacBand=[1,1],atol=1e-9);
 t2arkode=timer()
 
-[t,v] = arkode(list(f_chaleur,dx,lambda,c,rhoLin,f),tspan,v0,jacBand=[1,1],jacobian=jac_f_chaleur,atol=1e-9);
+[t,v] = arkode(HEAT,tspan,v0,jacBand=[1,1],jacobian=jac_f_chaleur,atol=1e-9);
 t3arkode=timer()
 
-[tb,vb] = arkode(list(f_chaleur,dx,lambda,c,rhoLin,f),tspan,v0,jacBand=[1,1],jacobian=JCONSTBAND,atol=1e-9);
+[tb,vb] = arkode(HEAT,tspan,v0,jacBand=[1,1],jacobian=JCONSTBAND,atol=1e-9);
 t4arkode=timer()
-[ts,vs] = arkode(list(f_chaleur,dx,lambda,c,rhoLin,f),tspan,v0,jacobian=JCONSTSPARSE,atol=1e-9);
+[ts,vs] = arkode(HEAT,tspan,v0,jacobian=JCONSTSPARSE,atol=1e-9);
 
 assert_checkalmostequal(vb,vs,1e-6)
 
@@ -121,12 +118,12 @@ mputl(heatcode,TMPDIR+"/heat.c")
 SUN_Clink(["heatRhs";"heatJac"],TMPDIR+"/heat.c",load=%t);
 
 [t,v,info] = cvode(list("heatRhs",[dx,lambda,c,rhoLin]),tspan,v0,jacBand=[1 1]);
-[t1,v1,info1] = cvode(list(f_chaleur,dx,lambda,c,rhoLin,f),tspan,v0,jacBand=[1,1]);
+[t1,v1,info1] = cvode(HEAT,tspan,v0,jacBand=[1,1]);
 assert_checkalmostequal(v,v1)
 
 [t,v,info] = cvode(list("heatRhs",[dx,lambda,c,rhoLin]),tspan,v0,jacBand=[1 1],jacobian=list("heatJac",[dx,lambda,c,rhoLin]));
 [t1,v1,info1] = cvode(list("heatRhs",[dx,lambda,c,rhoLin]),tspan,v0,jacBand=[1 1],jacobian=JCONSTBAND);
-[t2,v2,info2] = cvode(list(f_chaleur,dx,lambda,c,rhoLin,f),tspan,v0,jacBand=[1,1],jacobian=JCONSTBAND);
+[t2,v2,info2] = cvode(HEAT,tspan,v0,jacBand=[1,1],jacobian=JCONSTBAND);
 assert_checkalmostequal(v,v1)
 assert_checkalmostequal(v,v2)
 

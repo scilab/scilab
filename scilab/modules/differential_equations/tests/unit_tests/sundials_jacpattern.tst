@@ -54,17 +54,14 @@ LAP = lap .*. speye(n,n) + speye(n,n) .*. lap;
 
 f0 = ones(n*n,1);
 
-[t,y0,info0cvode]=cvode(fun,tspan,f0,method="BDF");
-[t,y1,info1cvode]=cvode(fun,tspan,f0,jacBand=[n n]);
-[t,y2,info2cvode]=cvode(fun,tspan,f0,jacPattern=LAP);
-[t,y3,info3cvode]=cvode(fun,tspan,f0,jacobian=jac);
+// The dense reference run lives in tests/benchmarks/sundials_jacpattern.tst
+[t,y1cvode,info1cvode]=cvode(fun,tspan,f0,jacBand=[n n]);
+[t,y2cvode,info2cvode]=cvode(fun,tspan,f0,jacPattern=LAP);
+[t,y3cvode,info3cvode]=cvode(fun,tspan,f0,jacobian=jac);
 
-assert_checkalmostequal(y0,y1,1e-7);
-assert_checkalmostequal(y0,y2,1e-7);
-assert_checkalmostequal(y0,y3,1e-7);
-assert_checkalmostequal(y1,y2,1e-7);
-assert_checkalmostequal(y1,y3,1e-7);
-assert_checkalmostequal(y2,y3,1e-7);
+assert_checkalmostequal(y1cvode,y2cvode,1e-7);
+assert_checkalmostequal(y1cvode,y3cvode,1e-7);
+assert_checkalmostequal(y2cvode,y3cvode,1e-7);
 
 assert_checkequal(info1cvode.stats.nRhsEvalsFD,303);
 assert_checkequal(info2cvode.stats.nRhsEvalsFD,15);
@@ -73,17 +70,14 @@ assert_checkequal(info3cvode.stats.nRhsEvalsFD,0);
 OPT.method="ARK548L2SA_DIRK_8_4_5";
 OPT.rtol=1e-8;
 OPT.atol=1e-10;
-[t,y0,info0arkode]=arkode(fun,tspan,f0,options=OPT);
-[t,y1,info1arkode]=arkode(fun,tspan,f0,jacBand=[n n],options=OPT);
-[t,y2,info2arkode]=arkode(fun,tspan,f0,jacPattern=LAP,options=OPT);
-[t,y3,info3arkode]=arkode(fun,tspan,f0,jacobian=jac,options=OPT);
+// The dense reference run lives in tests/benchmarks/sundials_jacpattern.tst
+[t,y1arkode,info1arkode]=arkode(fun,tspan,f0,jacBand=[n n],options=OPT);
+[t,y2arkode,info2arkode]=arkode(fun,tspan,f0,jacPattern=LAP,options=OPT);
+[t,y3arkode,info3arkode]=arkode(fun,tspan,f0,jacobian=jac,options=OPT);
 
-assert_checkalmostequal(y0,y1,1e-6);
-assert_checkalmostequal(y0,y2,1e-6);
-assert_checkalmostequal(y0,y3,1e-6);
-assert_checkalmostequal(y1,y2,1e-6);
-assert_checkalmostequal(y1,y3,1e-6);
-assert_checkalmostequal(y2,y3,1e-6);
+assert_checkalmostequal(y1arkode,y2arkode,1e-6);
+assert_checkalmostequal(y1arkode,y3arkode,1e-6);
+assert_checkalmostequal(y2arkode,y3arkode,1e-6);
 
 assert_checkequal(info1arkode.stats.nRhsEvalsFD,5656);
 assert_checkequal(info2arkode.stats.nRhsEvalsFD,280);
