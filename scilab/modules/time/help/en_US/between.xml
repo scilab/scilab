@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Adeline CARNIS
+ *
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="between" xml:lang="en">
+    <refnamediv>
+        <refname>between</refname>
+        <refpurpose>Calendar difference between two datetime values</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            b = between(d1, d2)
+            b = between(d1, d2, c)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>d1</term>
+                <listitem>
+                    <para>A datetime value or array of datetime values.</para>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d2</term>
+                <listitem>
+                    <para>A datetime value or array of datetime values.
+                    <literal>d1</literal> and <literal>d2</literal> must
+                    have compatible dimensions, or one of them must be scalar.</para>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>A string specifying the requested calendar unit.
+                    Valid values are <literal>"Years"</literal>,
+                    <literal>"Months"</literal>,
+                    <literal>"Days"</literal>,
+                    <literal>"Time"</literal>, and
+                    <literal>"default"</literal>.
+                    The default value is <literal>"default"</literal>.</para>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>A calendarDuration containing the difference between
+                    <literal>d1</literal> and <literal>d2</literal>.</para>
+                    <para/>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>between(d1,d2)</literal> computes the calendar
+            difference between two datetime values.
+        </para>
+        <para>
+            When the default mode is used, the result is decomposed into
+            calendar years, calendar months, calendar days, and a time
+            component.
+        </para>
+        <para>
+            The direction of the difference is preserved. If
+            <literal>d2</literal> is earlier than <literal>d1</literal>,
+            the resulting calendarDuration contains negative components.
+        </para>
+        <para>
+            The decomposition is designed so that adding the result to
+            <literal>d1</literal> reconstructs <literal>d2</literal>: 
+            <literal>d1 + b == d2</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Unit selection</title>
+        <para>
+            The third input argument selects the unit returned by
+            <literal>between</literal>.
+        </para>
+        <informaltable border="1">
+            <tr>
+                <td><emphasis role="bold">Value</emphasis></td>
+                <td><emphasis role="bold">Description</emphasis></td>
+            </tr>
+            <tr>
+                <td>"Years"</td>
+                <td>returns the difference expressed in calendar years.</td>
+            </tr>
+            <tr>
+                <td>"Months"</td>
+                <td>returns the difference expressed in total calendar months.</td>
+            </tr>
+            <tr>
+                <td>"Days"</td>
+                <td>returns the elapsed difference expressed in days.</td>
+            </tr>
+            <tr>
+                <td>"Time"</td>
+                <td>returns the elapsed difference as a time duration, whitout calendar years, months, or days.</td>
+            </tr>
+            <tr>
+                <td>"default"</td>
+                <td>returns a calendarDuration decomposed into years, months, days, and time.</td>
+            </tr>
+        </informaltable>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para><emphasis role="bold">Calendar difference</emphasis></para>
+        <para>
+        <programlisting role="example"><![CDATA[
+        d1 = datetime(2026,1,31);
+        d2 = datetime(2026,3,31);
+
+        res = between(d1,d2)
+        ]]></programlisting>
+        <screen><![CDATA[
+--> d1 = datetime(2026,1,31);
+
+--> d2 = datetime(2026,3,31);
+
+--> res = between(d1,d2)
+
+res = [calendarDuration]
+
+    2mo]]></screen>
+        </para>
+        <para><emphasis role="bold">Difference in months</emphasis></para>
+        <para>
+        <programlisting role="example"><![CDATA[
+        d1 = datetime(2024,1,15);
+        d2 = datetime(2025,4,15);
+
+        res = between(d1,d2,"Months")
+        ]]></programlisting>
+        <screen><![CDATA[
+--> d1 = datetime(2024,1,15);
+
+--> d2 = datetime(2025,4,15);
+
+--> res = between(d1,d2,"Months")
+
+res = [calendarDuration]
+
+    15mo]]></screen>
+        </para>
+        <para><emphasis role="bold">Difference in days</emphasis></para>
+        <para>
+        <programlisting role="example"><![CDATA[
+        d1 = datetime(2026,1,1);
+        d2 = datetime(2026,2,1);
+        res = between(d1,d2,"Days")
+        ]]></programlisting>
+        <screen><![CDATA[
+--> d1 = datetime(2026,1,1);
+
+--> d2 = datetime(2026,2,1);
+
+--> res = between(d1,d2,"Days")
+
+res = [calendarDuration]
+
+    31d]]></screen>
+        </para>
+        <para><emphasis role="bold">Difference in time</emphasis></para>
+        <para>
+        <programlisting role="example"><![CDATA[
+        d1 = datetime(2026,1,1,10,30,0);
+        d2 = datetime(2026,1,1,15,45,0);
+        res = between(d1,d2,"Time")
+        ]]></programlisting>
+        <screen><![CDATA[
+--> d1 = datetime(2026,1,1,10,30,0);
+
+--> d2 = datetime(2026,1,1,15,45,0);
+
+--> res = between(d1,d2,"Time")
+
+res = [calendarDuration]
+
+    5h 15m 0s]]></screen>
+        </para>
+        <para><emphasis role="bold">Negative calendar difference</emphasis></para>
+        <para>
+        <programlisting role="example"><![CDATA[
+        d1 = datetime(2026,3,30)
+        d2 = datetime(2026,1,31)
+        res = between(d1,d2)
+        d1 + res == d2
+        ]]></programlisting>
+        <screen><![CDATA[
+--> d1 = datetime(2026,3,30)
+
+    d1 = [datetime]
+
+        2026-03-30
+
+--> d2 = datetime(2026,1,31)
+
+    d2 = [datetime]
+
+        2026-01-31
+
+--> res = between(d1,d2)
+
+    res = [calendarDuration]
+
+        -1mo -28d
+
+--> d1 + res == d2
+
+    ans = 
+
+        T]]></screen>
+        </para>
+        <para><emphasis role="bold">Leap year</emphasis></para>
+        <para>
+        <programlisting role="example"><![CDATA[
+        d1 = datetime(2020,2,29)
+        d2 = datetime(2021,2,28)
+        res = between(d1,d2)
+        d1 + res == d2
+        ]]></programlisting>
+        <screen><![CDATA[
+--> d1 = datetime(2020,2,29)
+
+    d1 = [datetime]
+
+        2020-02-29
+
+--> d2 = datetime(2021,2,28)
+
+    d2 = [datetime]
+
+        2021-02-28
+
+--> res = between(d1,d2)
+
+    res = [calendarDuration]
+
+        1y
+
+--> d1 + res == d2
+
+    ans = 
+
+        T]]></screen>
+        </para>
+        <para><emphasis role="bold">Scalar expansion</emphasis></para>
+        <para>
+        <programlisting role="example"><![CDATA[
+        d1 = datetime(2026,1,1)
+        d2 = [datetime(2026,2,1), datetime(2026,3,1)]
+        res = between(d1,d2)
+        ]]></programlisting>
+        <screen><![CDATA[
+--> d1 = datetime(2026,1,1)
+
+    d1 = [datetime]
+
+        2026-01-01
+
+--> d2 = [datetime(2026,2,1), datetime(2026,3,1)]
+
+    d2 = [1x2 datetime]
+
+        2026-02-01   2026-03-01
+
+--> res = between(d1,d2)
+
+    res = [1x2 calendarDuration]
+
+        1mo    2mo]]></screen>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="calendarDuration">calendarDuration</link>
+            </member>
+            <member>
+                <link linkend="caldays">caldays</link>
+            </member>
+            <member>
+                <link linkend="datetime">datetime</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revremark>
+                    Function added.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
