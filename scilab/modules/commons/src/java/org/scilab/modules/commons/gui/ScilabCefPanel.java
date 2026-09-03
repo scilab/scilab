@@ -234,6 +234,10 @@ public class ScilabCefPanel extends JPanel {
                 String relativePath = url.substring("file:///SCI/".length());
 
                 File targetFile = new File(ScilabConstants.SCI.getPath(), relativePath);
+                if ((OS.get() != OS.WINDOWS) && (targetFile.exists() == false) && url.startsWith("file:///SCI/thirdparty/")) {
+                        // Probably an installed Linux or macOS version where thirdparty/ is in SCI/../../
+                        targetFile = new File(ScilabConstants.SCI.getPath(), "/../../" + relativePath);
+                    }
                 String realFileUrl = targetFile.toURI().toString();
 
                 if (log.isLoggable(java.util.logging.Level.FINE)) {
