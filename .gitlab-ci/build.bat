@@ -56,11 +56,9 @@ del /f /q /a scilab\svn-info.txt scilab\version.txt
 unzip -o prereq.zip -d scilab > %LOG_PATH%\build_prereq_%CI_COMMIT_SHORT_SHA%.log
 IF %ERRORLEVEL% NEQ 0 exit 1
 
-REM display svn revision for x64 version (arm64 prereqs not managed using SVN)
-if "%ARCH%"=="x64" (
-    type scilab\svn-info.txt
-    IF %ERRORLEVEL% NEQ 0 exit 1
-)
+REM display svn revision
+type scilab\svn-info.txt
+IF %ERRORLEVEL% NEQ 0 exit 1
 
 REM patch thirdparty JARs on WIP Merge-Request
 if %OVERRIDE_THIRDPARTY% NEQ 0 (

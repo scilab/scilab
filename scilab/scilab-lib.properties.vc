@@ -64,7 +64,7 @@ antlr.jar=${thirdparty.dir}/antlr4-runtime-4.13.1.jar
 avalon-framework.jar=${thirdparty.dir}/avalon-framework-4.1.4.jar
 
 ; webview jcef
-jcef.jar=${thirdparty.dir}/jcef-135.0.20.jar
+jcef.jar=${thirdparty.dir}/jcef-146.0.10.jar
 gson.jar=${thirdparty.dir}/gson-2.10.1.jar
 
 ; sikuli tests (and its dependencies)

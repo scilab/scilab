@@ -102,8 +102,7 @@ BWIDGET_VERSION=1.9.16
 ZLIB_VERSION=1.2.11
 XZ_VERSION=5.4.4
 JOGL_VERSION=2.5.0
-JCEF_VERSION=ca49ada5c7e3 # jcef-ca49ada5c7e3+cef-135.0.20+ge7de5c3+chromium-135.0.7049.85
-CEF_VERSION=135.0.20+ge7de5c3+chromium-135.0.7049.85	
+JCEF_VERSION=d3de827+cef-146.0.10+g8219561+chromium-146.0.7680.179
 OPENXLSX_VERSION=0.3.2
 LIBARCHIVE_VERSION=3.7.1
 RAPIDJSON_VERSION=24b5e7a
@@ -122,7 +121,7 @@ ARROW_XSIMD_VERSION=13.0.0
 # CPPSERVER_FMT_VERSION=10.2.1
 # CPPSERVER_CMAKE_VERSION=1.0.0.0
 
-# Variables used by ant to build Java deps in Java 8
+# Variables used by ant to build Java deps in Java 21
 export JAVA_HOME="$BUILDDIR/java/jdk-$JDK_VERSION/"
 export ANT_HOME="$INSTALLROOTDIR/java/ant"
 export SOURCE_LEVEL=1.8
@@ -152,7 +151,6 @@ make_versions() {
     echo "XZ_VERSION             = $XZ_VERSION"
     echo "JOGL_VERSION           = $JOGL_VERSION"
     echo "JCEF_VERSION           = $JCEF_VERSION"
-    echo "CEF_VERSION            = $CEF_VERSION"
     echo "OPENXLSX_VERSION       = $OPENXLSX_VERSION"
     echo "LIBARCHIVE_VERSION     = $LIBARCHIVE_VERSION"
     echo "RAPIDJSON_VERSION      = $RAPIDJSON_VERSION"
@@ -196,19 +194,16 @@ download_dependencies() {
     [ ! -f bwidget-$BWIDGET_VERSION.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/bwidget-$BWIDGET_VERSION.tar.gz
     [ ! -f zlib-$ZLIB_VERSION.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/zlib-$ZLIB_VERSION.tar.gz
     [ ! -f xz-$XZ_VERSION.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/xz-$XZ_VERSION.tar.gz
-    
+
     [ ! -f gluegen-v$JOGL_VERSION.tar.xz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/gluegen-v$JOGL_VERSION.tar.xz
     [ ! -f jcpp-v$JOGL_VERSION.tar.xz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/jcpp-v$JOGL_VERSION.tar.xz
     [ ! -f jogl-v$JOGL_VERSION.tar.xz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/jogl-v$JOGL_VERSION.tar.xz
-
-    [ ! -f chromiumembedded-java-cef-$JCEF_VERSION.zip ] && curl -L -o chromiumembedded-java-cef-$JCEF_VERSION.zip https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/chromiumembedded-java-cef-$JCEF_VERSION.zip
-    [ ! -f cef_binary_${CEF_VERSION}_linux64.tar.bz2 ] && curl -L -o cef_binary_${CEF_VERSION}_linux64.tar.bz2 https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/cef_binary_${CEF_VERSION//\+/%2B}_linux64.tar.bz2
 
     [ ! -f OpenXLSX-$OPENXLSX_VERSION.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/OpenXLSX-$OPENXLSX_VERSION.tar.gz
 
     # This archive contains .jar and directories that have been copied from Scilab prerequirements
     # JavaFX/openjfx is only shipped as JARs, no rebuild is needed for now
-    curl -L --time-cond -o thirdparty.zip "https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/thirdparty-scilab-branch-${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}.zip"
+    curl -L --time-cond thirdparty.zip -o thirdparty.zip "https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/thirdparty-scilab-branch-${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}.zip"
     if ! unzip -qt "thirdparty.zip"; then
         # use thirdparty from the target branch
         curl -L -o thirdparty.zip "https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/thirdparty-scilab-branch-${BRANCH}.zip"
@@ -324,7 +319,7 @@ make_binary_directory() {
     ln -fs libopenblas.so.$OPENBLAS_VERSION "$LIBTHIRDPARTYDIR/libopenblas.so.0"
     ln -fs libopenblas.so.$OPENBLAS_VERSION "$LIBTHIRDPARTYDIR/libblas.so.3"
     ln -fs libopenblas.so.$OPENBLAS_VERSION "$LIBTHIRDPARTYDIR/liblapack.so.3"
-    
+
     rm -f "$LIBTHIRDPARTYDIR"/libarpack.*
     cp -d "$INSTALLUSRDIR"/lib/libarpack.* "$LIBTHIRDPARTYDIR/"
 
@@ -400,7 +395,7 @@ make_binary_directory() {
 
     # Scilab dependencies where the system ones are not recent enough to be used.
     #
-    # The system dependencies are supposed to be conformant to the latest 
+    # The system dependencies are supposed to be conformant to the latest
     # Linux Standard Base 5.0.0 ; Scilab requires more recent versions.
 
     rm -fr "$LIBTHIRDPARTYDIR/redist" && mkdir "$LIBTHIRDPARTYDIR/redist/"
@@ -416,7 +411,7 @@ make_binary_directory() {
     rm -f "$LIBTHIRDPARTYDIR"/libxml2.* "$LIBTHIRDPARTYDIR"/libscixml2.*
     rm -f "$LIBTHIRDPARTYDIR"/redist/libxml2.* "$LIBTHIRDPARTYDIR"/redist/libscixml2.*
     cp -d "$INSTALLUSRDIR"/lib/libscixml2.* "$LIBTHIRDPARTYDIR/redist/"
-    
+
     rm -f "$LIBTHIRDPARTYDIR"/libncurses.* "$LIBTHIRDPARTYDIR"/libscincurses.*
     rm -f "$LIBTHIRDPARTYDIR"/redist/libncurses.* "$LIBTHIRDPARTYDIR"/redist/libscincurses.*
     cp -d "$INSTALLUSRDIR"/lib/libscincurses.so* "$LIBTHIRDPARTYDIR/redist/"
@@ -458,7 +453,7 @@ make_binary_directory() {
 
     #
     # use patchelf to cleanup and setup easy way to link against Scilab
-    # 
+    #
 
     # 1. strip libraries (exporting the debuginfo to another file) to
     # reduce file size and thus startup time
@@ -490,8 +485,8 @@ make_binary_directory() {
 
 make_jar() {
     # JAR management
-    # we usually do not need to recompile JARs and we also re-use major jar 
-    # dependencies (shipped into the binary zip)
+    # we do not need to recompile JARs and re-use some of them, only copy them
+    # into the expected directory (shipped into the binary zip)
 
     JAVATHIRDPARTYDIR=$INSTALLROOTDIR/thirdparty
     mkdir -p "$JAVATHIRDPARTYDIR"
@@ -502,8 +497,6 @@ make_jar() {
     mkdir thirdparty
     cd thirdparty || exit 1
     unzip -o "$DOWNLOADDIR/thirdparty.zip"
-    # remove .jar already managed
-    rm gluegen*.jar jogl*.jar jcef*.jar
     # Copy all JARs from thirdparty.zip
     # JAR versions are enforced to trigger a prerequirement rebuild on upgrade
     cp -a -t "$JAVATHIRDPARTYDIR"           \
@@ -514,19 +507,19 @@ make_jar() {
         avalon-framework-4.1.4.jar          \
         batik-all-1.17.jar                  \
         checkstyle-10.17.0.jar              \
+        checkstyle/                         \
         cobertura-2.1.1.jar                 \
         commons-beanutils-1.9.4.jar         \
         commons-codec-1.15.jar              \
         commons-collections-3.2.2.jar       \
         commons-io-2.11.0.jar               \
         commons-logging-1.1.1.jar           \
-        checkstyle/                         \
         docbook/                            \
         ecj-3.37.0.jar                      \
         flatlaf-3.4.1.jar                   \
         flexdock-1.2.5.jar                  \
         fontbox-2.0.27.jar                  \
-        fonts/scilabsymbols.ttf             \
+        fonts/                              \
         fop-2.9.jar                         \
         fop-core-2.9.jar                    \
         fop-events-2.9.jar                  \
@@ -537,6 +530,8 @@ make_jar() {
         freehep-graphicsio-emf-2.4.jar      \
         freehep-io-2.2.2.jar                \
         gson-2.10.1.jar                     \
+        jogl-all-2.5.0.jar                  \
+        gluegen-rt-2.5.0.jar                \
         guava-33.2.0-jre.jar                \
         httpclient5-5.1.3.jar               \
         httpcore5-5.1.3.jar                 \
@@ -552,6 +547,7 @@ make_jar() {
         jaxb-impl-2.3.1.jar                 \
         jaxb-runtime-2.3.1.jar              \
         jeuclid-core-3.1.14.jar             \
+        jcef-146.0.10.jar                   \
         jgoodies-looks-2.7.0.jar            \
         jgraphx-2.1.0.7.jar                 \
         jhall-2.0.jar                       \
@@ -577,6 +573,16 @@ make_jar() {
         xml-apis-ext-1.3.04.jar             \
         xmlgraphics-commons-2.9.jar         \
         xmlresolver-6.0.4.jar               \
+        || exit 1
+
+    # Copy native libs embedded in JARs from thirdparty.zip
+    LIBTHIRDPARTYDIR=$INSTALLROOTDIR/lib/thirdparty
+    mkdir -p "$LIBTHIRDPARTYDIR"
+
+    # JCEF
+    mkdir -p "$LIBTHIRDPARTYDIR/jcef"
+    unzip -p "jcef-natives-linux-amd64-jcef-$JCEF_VERSION.jar" "jcef-natives-linux-amd64-jcef-$JCEF_VERSION.tar.gz" \
+        | tar -xzf - -C "$LIBTHIRDPARTYDIR/jcef" \
         || exit 1
 }
 
@@ -604,12 +610,12 @@ build_openblas() {
 
     # install openblas for runtime usage
     cp libopenblas.so "$INSTALLUSRDIR/lib/libopenblas.so.$OPENBLAS_VERSION"
-    
+
     # Provides BLAS
     cp "$INSTALLUSRDIR/lib/libopenblas.so.$OPENBLAS_VERSION" "$INSTALLUSRDIR/lib/libblas.so.3"
     patchelf --set-soname libblas.so.3 "$INSTALLUSRDIR/lib/libblas.so.3"
     ln -fs libblas.so.3 "$INSTALLUSRDIR/lib/libblas.so"
-    
+
     # Provides LAPACK
     cp "$INSTALLUSRDIR/lib/libopenblas.so.$OPENBLAS_VERSION" "$INSTALLUSRDIR/lib/liblapack.so.3"
     patchelf --set-soname liblapack.so.3 "$INSTALLUSRDIR/lib/liblapack.so.3"
@@ -625,7 +631,7 @@ build_openjdk() {
     cd "$BUILDDIR/java/" || exit 1
     tar -xzf "$DOWNLOADDIR/jdk-$JDK_VERSION.tar.gz" # Needed to build other dependencies such as JoGL
     tar -xzf "$DOWNLOADDIR/jre-$JRE_VERSION.tar.gz"
-    
+
     cp -a "jdk-$JDK_VERSION-jre" "$INSTALLROOTDIR/java/jdk-$JRE_VERSION-jre"
     ln -s "jdk-$JRE_VERSION-jre" "$INSTALLROOTDIR/java/jre"
 }
@@ -957,7 +963,7 @@ build_libarchive() {
 
     tar -xf "$DOWNLOADDIR/libarchive-$LIBARCHIVE_VERSION.tar.xz"
     cd libarchive-$LIBARCHIVE_VERSION || exit 1
-    
+
     # this configure does not support passing path, overwrite variables
     saved_CFLAGS="$CFLAGS"
     saved_LDFLAGS="$LDFLAGS"
@@ -985,7 +991,7 @@ build_xlnt() {
     cd "$BUILDDIR" || exit 1
 
     INSTALL_DIR=$BUILDDIR/xlnt-$XLNT_VERSION/install_dir
-    
+
     tar -xzf "$DOWNLOADDIR/xlnt-${XLNT_VERSION}_with_submodules.tar.gz"
     cd xlnt-$XLNT_VERSION || exit 1
 
@@ -1008,7 +1014,7 @@ build_arrow() {
     cd "$BUILDDIR" || exit 1
 
     INSTALL_DIR=$BUILDDIR/apache-arrow-$ARROW_VERSION/install_dir
-    
+
     tar -xzf "$DOWNLOADDIR/apache-arrow-${ARROW_VERSION}.tar.gz"
     cd apache-arrow-$ARROW_VERSION/cpp/ || exit 1
 
@@ -1229,36 +1235,6 @@ build_jogl() {
     cp -a build/jar/jogl-all.jar "$INSTALLROOTDIR/thirdparty"
 }
 
-build_jcef() {
-    # Java Chromium Embedded Framework
-    #  - ship prebuild CEF libraries
-    #  - build its Java JNI lib and JARs
-
-    cd "$BUILDDIR" || exit 1
-
-    unzip -o "$DOWNLOADDIR/chromiumembedded-java-cef-$JCEF_VERSION.zip"
-    tar -xjf "$DOWNLOADDIR/cef_binary_${CEF_VERSION}_linux64.tar.bz2" -C "chromiumembedded-java-cef-$JCEF_VERSION/third_party/cef/"
-    cd chromiumembedded-java-cef-$JCEF_VERSION || exit 1
-
-    # compile C JNI
-    mkdir -p build || exit 1
-    cd build || exit 1
-    cmake .. -DCMAKE_INSTALL_PREFIX="$INSTALL_DIR" \
-        -D CMAKE_BUILD_TYPE=Release \
-        -G "Unix Makefiles"
-    cmake --build . --parallel --config Release
-    cd .. || exit 1
-
-    # compile Java
-    sh tools/compile.sh linux64
-    sh tools/make_jar.sh linux64
-
-    # package to prerequirements
-    mkdir -p "$INSTALLROOTDIR/lib/thirdparty/jcef/"
-    cp -a build/native/Release/* "$INSTALLROOTDIR/lib/thirdparty/jcef/"
-    cp -a out/linux64/jcef.jar "$INSTALLROOTDIR/thirdparty/jcef-$JCEF_VERSION.jar"
-}
-
 build_openxlsx() {
     cd "$BUILDDIR" || exit 1
 
@@ -1397,10 +1373,10 @@ do
         download_dependencies > "$LOGDIR/prebuild_downloads.log" 2>&1 || (tail --lines=100 "$LOGDIR/prebuild_downloads.log"; exit 1)
         echo "Build prerequirements"
         make_all > "$LOGDIR/prebuild_build_all.log" 2>&1 || (tail --lines=100 "$LOGDIR/prebuild_build_all.log"; exit 1)
-        echo "Create binary"
-        make_binary_directory > "$LOGDIR/prebuild_binary.log" 2>&1 || (tail --lines=100 "$LOGDIR/prebuild_binary.log"; exit 1)
         echo "Make jar"
         make_jar > "$LOGDIR/prebuild_jar.log" 2>&1 || (tail --lines=100 "$LOGDIR/prebuild_jar.log"; exit 1)
+        echo "Create binary"
+        make_binary_directory > "$LOGDIR/prebuild_binary.log" 2>&1 || (tail --lines=100 "$LOGDIR/prebuild_binary.log"; exit 1)
         make_archive
         shift
         ;;
