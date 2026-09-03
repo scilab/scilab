@@ -1,3 +1,16 @@
+# java.util.logging configuration for Scilab.
+#
+# This file is loaded once at JVM startup through
+# -Djava.util.logging.config.file (set in etc/jvm_options.xml).
+# Any change requires a Scilab restart to take effect.
+#
+# This is a configure template: @LOGGING_LEVEL@ is substituted at build time.
+#
+# To enable console output, uncomment the handlers line below. On Windows
+# desktop, the console handler writes to the hidden OS terminal; use
+# consolebox("on") (or press F12) in Scilab to reveal it.
+# handlers = java.util.logging.ConsoleHandler
+
 # FOP logging level
 org.apache.fop.level = SEVERE
 org.apache.fop.render.level = SEVERE
