@@ -24,7 +24,7 @@ function out = %calendarDuration_string(dura)
     withY = %f;
     if dura.format == [] || dura.format == "ymdt" then
         withY = %t;
-        y = dura.y + floor(dura.m / 12)
+        y = dura.y + int(dura.m / 12)
         m = modulo(dura.m, 12)
     else
         out_y = "";
@@ -32,9 +32,9 @@ function out = %calendarDuration_string(dura)
     end
 
     d = dura.t.duration;
-    hh = floor(d / hour1);
-    mm = modulo(floor(d / min1), 60);
-    ss = modulo(floor(d / sec1), 60);
+    hh = int(d / hour1);
+    mm = modulo(int(d / min1), 60);
+    ss = modulo(int(d / sec1), 60);
     ms = modulo(d, 1000);
     hasTime = dura.t.duration <> 0 | (dura.y == 0 && dura.m == 0 && dura.d == 0);
 
@@ -46,7 +46,7 @@ function out = %calendarDuration_string(dura)
                 out_y = print_val(y(r, c), "y");
             end
 
-            out_m = print_val(m(r, c), "m");
+            out_m = print_val(m(r, c), "mo");
             out_d = print_val(dura.d(r, c), "d");
 
             out_t = "";

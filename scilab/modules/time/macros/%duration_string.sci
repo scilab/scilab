@@ -55,20 +55,20 @@ function out = %duration_string(dura)
             d = dura.duration;
             select form
             case "dd:hh:mm:ss"
-                dd = floor(d / day1);
-                hh = modulo(floor(d / hour1), 24);
-                mm = modulo(floor(d / min1), 60);
-                ss = modulo(floor(d / sec1), 60);
+                dd = int(d / day1);
+                hh = modulo(int(d / hour1), 24);
+                mm = modulo(int(d / min1), 60);
+                ss = modulo(int(d / sec1), 60);
             case "hh:mm:ss"
-                hh = floor(d / hour1);
-                mm = modulo(floor(d / min1), 60);
-                ss = modulo(floor(d / sec1), 60);
+                hh = int(d / hour1);
+                mm = modulo(int(d / min1), 60);
+                ss = modulo(int(d / sec1), 60);
             case "mm:ss"
-                mm = floor(d / min1);
-                ss = modulo(floor(d / sec1), 60);
+                mm = int(d / min1);
+                ss = modulo(int(d / sec1), 60);
             case "hh:mm"
-                hh = floor(d / hour1);
-                mm = modulo(floor(d / min1), 60);
+                hh = int(d / hour1);
+                mm = modulo(int(d / min1), 60);
             end
             
             for c = 1:size(d, 2)
@@ -92,9 +92,9 @@ function out = %duration_string(dura)
         end
     else
         d = dura.duration;
-        h = floor(d / hour1);
-        m = floor((d - h * hour1) / min1);
-        s = floor((d - h * hour1 - m * min1) / sec1);
+        h = int(d / hour1);
+        m = int((d - h * hour1) / min1);
+        s = int((d - h * hour1 - m * min1) / sec1);
         S = modulo(d, 1000);
 
         for c = 1:size(d, 2)

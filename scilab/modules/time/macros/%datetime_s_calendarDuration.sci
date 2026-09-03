@@ -34,7 +34,22 @@ function out = %datetime_s_calendarDuration(dt, cd1)
 
     out_y = dt.Year - cd1.y;
     out_m = dt.Month - cd1.m;
-    out_d = dt.Day - cd1.d;
+
+    idx = find(out_m > 12);
+    while and(idx <> [])
+        out_y(idx) = out_y(idx) + 1;
+        out_m(idx) = out_m(idx) - 12;
+        idx = find(out_m > 12);
+    end
+
+    idx = find(out_m < 1);
+    while and(idx <> [])
+        out_y(idx) = out_y(idx) - 1;
+        out_m(idx) = 12 + out_m(idx);
+        idx = find(out_m < 0);
+    end
+
+    out_d = min(dt.Day, eomday(out_y, out_m)) - cd1.d;
     out_t = dt.time*1000 - cd1.t.duration;
 
     d = datenum(out_y, out_m, out_d);

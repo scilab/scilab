@@ -495,6 +495,14 @@ assert_checkequal(d.Month, [%nan; 5; 6]);
 d = datetime(["Apr", "May", "January"], "InputFormat", "MMM");
 assert_checkequal(d.Month, [4 5 %nan]);
 
+d = datetime(2024,1,31);
+c = calmonths([1:12]');
+expected = datetime([2024*ones(11,1); 2025], [2:12 1]', [29 31 30 31 30 31 31 30 31 30 31 31]');
+assert_checkequal(d+c, expected);
+
+expected = datetime(2023, [12:-1:1]', [31 30 31 30 31 31 30 31 30 31 28 31]');
+assert_checkequal(d-c, expected);
+
 // check error
 msg = msprintf(_("%s: Wrong number of input argument: %d to %d expected, except %d, %d and %d.\n"), "datetime", 0, 7, 2, 4, 5);
 assert_checkerror("datetime(1, 2, 3, 4, 5, 6, 7, 8)", msg);

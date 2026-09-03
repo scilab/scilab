@@ -15,7 +15,7 @@ function out = %calendarDuration_m_s(cd1, coef)
     end
 
     out_m = (cd1.y*12 + cd1.m) * coef;
-    out_y = floor(out_m /12);
+    out_y = int(out_m /12);
     out_m = modulo(out_m, 12);
     out_d = cd1.d * coef;
 

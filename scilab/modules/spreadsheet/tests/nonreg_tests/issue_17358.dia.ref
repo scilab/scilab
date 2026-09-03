@@ -334,106 +334,106 @@ D = floor(rand(100,1)*2);
 c = calendarDuration(Y, M, D);
 lines(0,0);
 disp(c)
-     1y 7m 1d
-          10m
-        1y 1d
-       1y 11m
-        9m 1d
-           4m
-     1y 5m 1d
-        3m 1d
-        1y 2m
-          11m
-     1y 8m 1d
-        1y 2m
-        1y 9m
-           3m
-     1y 3m 1d
-           1m
-        2y 1d
-           2m
-        2y 1d
-        1y 8m
-           1m
-        5m 1d
-       1y 10m
-        1m 1d
-        5m 1d
-     1y 5m 1d
-        3m 1d
-        2y 1d
-     1y 7m 1d
-           8m
-        4m 1d
-        1y 5m
-        8m 1d
-     1y 2m 1d
-           9m
-           4m
-        5m 1d
-           9m
-           1m
-    1y 11m 1d
-        1y 9m
-     1y 7m 1d
-       10m 1d
-           4m
-          10m
-     1y 5m 1d
-        1y 1d
-           9m
-        1y 9m
-           1m
-        2y 1d
-     1y 8m 1d
-     1y 9m 1d
-        1y 4m
-        1y 7m
-    1y 10m 1d
-       1y 11m
-           7m
-        1y 2m
-        1y 7m
-     1y 8m 1d
-        4m 1d
-        8m 1d
-     1y 4m 1d
-        1y 1d
-           1y
-        1y 1d
-           3m
-        4m 1d
-     1y 8m 1d
-        8m 1d
-        1m 1d
-        7m 1d
-        4m 1d
-       1y 10m
-           1y
-        7m 1d
-       1y 11m
-       10m 1d
-        1y 9m
-           4m
-     1y 8m 1d
-     1y 5m 1d
-          10m
-          10m
-        1y 5m
-           3m
-       11m 1d
-           5m
-           4m
-          11m
-          11m
-          11m
-        1y 8m
-    1y 10m 1d
-        2y 1d
-       10m 1d
-     1y 3m 1d
-        2m 1d
-    1y 11m 1d
+     1y 7mo 1d
+          10mo
+         1y 1d
+       1y 11mo
+        9mo 1d
+           4mo
+     1y 5mo 1d
+        3mo 1d
+        1y 2mo
+          11mo
+     1y 8mo 1d
+        1y 2mo
+        1y 9mo
+           3mo
+     1y 3mo 1d
+           1mo
+         2y 1d
+           2mo
+         2y 1d
+        1y 8mo
+           1mo
+        5mo 1d
+       1y 10mo
+        1mo 1d
+        5mo 1d
+     1y 5mo 1d
+        3mo 1d
+         2y 1d
+     1y 7mo 1d
+           8mo
+        4mo 1d
+        1y 5mo
+        8mo 1d
+     1y 2mo 1d
+           9mo
+           4mo
+        5mo 1d
+           9mo
+           1mo
+    1y 11mo 1d
+        1y 9mo
+     1y 7mo 1d
+       10mo 1d
+           4mo
+          10mo
+     1y 5mo 1d
+         1y 1d
+           9mo
+        1y 9mo
+           1mo
+         2y 1d
+     1y 8mo 1d
+     1y 9mo 1d
+        1y 4mo
+        1y 7mo
+    1y 10mo 1d
+       1y 11mo
+           7mo
+        1y 2mo
+        1y 7mo
+     1y 8mo 1d
+        4mo 1d
+        8mo 1d
+     1y 4mo 1d
+         1y 1d
+            1y
+         1y 1d
+           3mo
+        4mo 1d
+     1y 8mo 1d
+        8mo 1d
+        1mo 1d
+        7mo 1d
+        4mo 1d
+       1y 10mo
+            1y
+        7mo 1d
+       1y 11mo
+       10mo 1d
+        1y 9mo
+           4mo
+     1y 8mo 1d
+     1y 5mo 1d
+          10mo
+          10mo
+        1y 5mo
+           3mo
+       11mo 1d
+           5mo
+           4mo
+          11mo
+          11mo
+          11mo
+        1y 8mo
+    1y 10mo 1d
+         2y 1d
+       10mo 1d
+     1y 3mo 1d
+        2mo 1d
+    1y 11mo 1d
 lines(l(2), l(1))
 ts = timeseries(d(1:7), NameContinent, Area, bigNames)
  ts = [7x3 timeseries]

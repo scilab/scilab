@@ -23,7 +23,7 @@ function out = %calendarDuration_a_calendarDuration(a, b)
     end
 
     out_m = (a.y*12) + a.m + ((b.y*12) + b.m);
-    out_y = floor(out_m / 12);
+    out_y = int(out_m / 12);
     out_m = modulo(out_m, 12);
     out_d = a.d + b.d;
 
