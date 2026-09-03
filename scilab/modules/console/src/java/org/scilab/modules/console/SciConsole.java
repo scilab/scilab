@@ -123,6 +123,10 @@ public abstract class SciConsole extends JPanel {
 
         String url = "file:///SCI/modules/console/src/web/console.html";
         cefPanel = new ScilabCefPanel(url);
+        if (log.isLoggable(Level.FINE))
+        {
+            cefPanel.setDebug(true);
+        }
 
         addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {

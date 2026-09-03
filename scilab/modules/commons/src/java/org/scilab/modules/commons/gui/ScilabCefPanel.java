@@ -131,24 +131,30 @@ public class ScilabCefPanel extends JPanel {
 
     /* Default implementations of handlers */
 
-    // ---- Keyboard: CtrlShiftI for DevTools ----
+    // ---- Keyboard: Ctrl+Shift+I for DevTools, Ctrl+Shift+R to reload ----
     final CefKeyboardHandler keyboardHandler = new CefKeyboardHandlerAdapter() {
         @Override
         public boolean onKeyEvent(CefBrowser b, CefKeyEvent event) {
             if (b != browser) return false;
+            // Only handle key events when setDebug(true)
+            if (!debug) return false;
+
             boolean isMac = OS.get() == OS.MAC;
             boolean isCTRL = !isMac && (event.modifiers & EventFlags.EVENTFLAG_CONTROL_DOWN) != 0;
             boolean isCOMMAND = isMac && (event.modifiers & EventFlags.EVENTFLAG_COMMAND_DOWN) != 0;
             boolean isSHIFT = (event.modifiers & EventFlags.EVENTFLAG_SHIFT_DOWN) != 0;
-            // Compare the virtual key code: on a RAWKEYDOWN, Chromium fills the
-            // character fields with the key code itself ('I'), not with the
-            // typed character
+            // CefKeyEvent windows_key_code is a cross-platform virtual key code on a U.S. keyboard layout
+            // Its value is the same as AWT KeyEvent.VK_*.
             if (event.type == CefKeyEvent.EventType.KEYEVENT_RAWKEYDOWN
                     && (isCTRL || isCOMMAND) && isSHIFT
                     && event.windows_key_code == KeyEvent.VK_I) {
-                if (debug) {
-                    toggleDevTools();
-                }
+                toggleDevTools();
+                return true;
+            }
+            if (event.type == CefKeyEvent.EventType.KEYEVENT_RAWKEYDOWN
+                    && (isCTRL || isCOMMAND) && isSHIFT
+                    && event.windows_key_code == KeyEvent.VK_R) {
+                b.reload();
                 return true;
             }
             return false;
