@@ -248,7 +248,6 @@ make_all() {
     build_ant
     build_gluegen
     build_jogl
-    build_jcef
     build_openblas
     build_eigen
     build_zlib
