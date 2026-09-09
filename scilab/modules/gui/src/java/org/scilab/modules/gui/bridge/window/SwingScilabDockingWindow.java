@@ -26,7 +26,6 @@ import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.defaults.DefaultDockingStrategy;
 import org.flexdock.docking.drag.effects.EffectsManager;
-import org.flexdock.docking.drag.preview.GhostPreview;
 import org.flexdock.docking.event.hierarchy.DockingPortTracker;
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
@@ -38,10 +37,14 @@ import org.scilab.modules.gui.utils.SciDockingListener;
 public class SwingScilabDockingWindow extends SwingScilabWindow {
 
     static {
+        // The console is a heavyweight JCEF browser: FlexDock's glasspane is
+        // lightweight and receives no mouse event over it, so without this the
+        // console cannot be a drop target.
+        System.setProperty("heavyweight.dockables", "true");
+
         DefaultDockingStrategy.setDefaultResizeWeight(0.5);
         DefaultDockingStrategy.keepConstantPercentage(true);
         SciDockingPort.initStatic();
-        SciSplitPane.initStatic();
     }
 
     private SciDockingPort sciDockingPort;
@@ -51,7 +54,7 @@ public class SwingScilabDockingWindow extends SwingScilabWindow {
         super();
         /* Create automatically a docking port associated to the window */
         sciDockingPort = new SciDockingPort();
-        EffectsManager.setPreview(new GhostPreview());
+        EffectsManager.setPreview(new ScilabGhostPreview());
 
         /* The docking port is the center of the Layout of the Window */
         super.add(sciDockingPort, java.awt.BorderLayout.CENTER);

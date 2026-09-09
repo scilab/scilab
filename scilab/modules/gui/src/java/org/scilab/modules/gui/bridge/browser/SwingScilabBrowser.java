@@ -130,7 +130,7 @@ public class SwingScilabBrowser extends JPanel implements SwingViewObject, Widge
             }
         });
 
-        cefPanel.getClient().addLoadHandler(new CefLoadHandlerAdapter() {
+        cefPanel.addLoadHandler(new CefLoadHandlerAdapter() {
             @Override
             public void onLoadStart(CefBrowser browser, CefFrame frame, TransitionType transitionType) {
                 if (browser == browser_) {

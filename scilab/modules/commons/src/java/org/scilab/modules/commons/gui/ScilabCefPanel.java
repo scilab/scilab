@@ -9,21 +9,43 @@
 
 package org.scilab.modules.commons.gui;
 
+import java.awt.AWTEvent;
 import java.awt.BorderLayout;
+import java.awt.Canvas;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.KeyboardFocusManager;
+import java.awt.Toolkit;
+import java.awt.Window;
+import java.awt.event.AWTEventListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.HierarchyBoundsListener;
+import java.awt.event.HierarchyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.logging.Logger;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.JComponent;
+import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
+import javax.swing.plaf.basic.BasicSplitPaneDivider;
 
 import org.cef.CefClient;
 import org.cef.browser.CefBrowser;
+import org.cef.browser.CefDevToolsClient;
 import org.cef.browser.CefMessageRouter;
 import org.cef.browser.CefMessageRouter.CefMessageRouterConfig;
 import org.cef.handler.CefContextMenuHandler;
@@ -34,7 +56,9 @@ import org.cef.handler.CefKeyboardHandler;
 import org.cef.handler.CefKeyboardHandlerAdapter;
 import org.cef.handler.CefLifeSpanHandler;
 import org.cef.handler.CefLifeSpanHandlerAdapter;
+import org.cef.handler.CefLoadHandler;
 import org.cef.handler.CefLoadHandler.ErrorCode;
+import org.cef.handler.CefLoadHandlerAdapter;
 import org.cef.browser.CefFrame;
 import org.cef.callback.CefAuthCallback;
 import org.cef.callback.CefCallback;
@@ -54,6 +78,9 @@ import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.utils.ScilabBrowser;
 import org.scilab.modules.commons.utils.WebBrowser;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 /**
  * Reusable JPanel embedding a JCEF browser with proper focus management
@@ -119,7 +146,7 @@ public class ScilabCefPanel extends JPanel {
     private static volatile int isDocking = 0;
 
     /** Global AWT listener to detect clicks outside the browser. */
-    private java.awt.event.AWTEventListener clickOutsideListener;
+    private AWTEventListener clickOutsideListener;
 
     /**
      * Invisible heavyweight AWT Canvas whose sole purpose is to own a
@@ -127,7 +154,41 @@ public class ScilabCefPanel extends JPanel {
      * Lightweight Swing components cannot do this because they share
      * the JFrame's native window.
      */
-    private final java.awt.Canvas nativeFocusSink = new java.awt.Canvas();
+    private final Canvas nativeFocusSink = new Canvas();
+
+    /* ---- live-resize masking (see constructor) ---- */
+    private static final String CARD_BROWSER = "browser";
+    private static final String CARD_COVER = "cover";
+    /**
+     * Delay (ms) after the last resize step that ends a window-frame resize.
+     * (longer on macOS, where the native view is only repositioned on release).
+     */
+    private static final int RESIZE_SETTLE_MS = (OS.get() == OS.MAC) ? 1500 : 150;
+    /** Min quiet time (ms) after the last resize step for a MOUSE_MOVED to mean "drag released". */
+    private static final int MOVE_END_QUIET_MS = 80;
+    /** After a mouse release, skip masking this long: a divider/dock drag's single post-release resize needs none. */
+    private static final int POST_RELEASE_NO_MASK_MS = 400;
+    /** Quiet time (ms) after the last change before the snapshot is refreshed. */
+    private static final int SNAPSHOT_REFRESH_MS = 250;
+    /** Last time the page content changed. Written from any thread, cheaply. */
+    private volatile long contentChangedMs = 0;
+    /** contentChangedMs of the last capture, so we only capture on a change. */
+    private long capturedChangeMs = 0;
+    private CardLayout cardLayout;
+    private JPanel cardPanel;
+    private final ResizeCover resizeCover = new ResizeCover();
+    private AWTEventListener resizeMouseListener;
+    private Timer resizeSettleTimer;
+    private Timer snapshotRefreshTimer;
+    private long lastResizeStepMs = 0;
+    /** Time of the last mouse release, to skip masking the single resize it triggers. */
+    private volatile long lastMouseReleaseMs = 0;
+    /** Last page snapshot, refreshed while idle so a gesture can mask instantly. */
+    private volatile BufferedImage cachedSnapshot;
+    /** True while a mouse button is held. */
+    private volatile boolean mouseDown = false;
+    /** True while the snapshot cover is masking the browser. */
+    private boolean resizing = false;
 
     /* Default implementations of handlers */
 
@@ -191,23 +252,25 @@ public class ScilabCefPanel extends JPanel {
             browserHasFocus = true;
             browserFocusRequested = false;
             final int focusTransfer = ++focusTransferGeneration;
-            // Notify FlexDock so it updates title bars, menus, etc.
-            SwingUtilities.invokeLater(() -> {
-                if (!browserHasFocus || focusTransfer != focusTransferGeneration) {
-                    return;
-                }
+            if (OS.get() != OS.MAC) { // Not needed for macOS and leads to infinite loop (StackOverflowError)
+                // Notify FlexDock so it updates title bars, menus, etc.
+                SwingUtilities.invokeLater(() -> {
+                    if (!browserHasFocus || focusTransfer != focusTransferGeneration) {
+                        return;
+                    }
 
-                Component ancestor = SwingUtilities.getAncestorOfClass(View.class, ScilabCefPanel.this);
-                if (ancestor != null) {
-                    if (ancestor instanceof JComponent) {
-                        ((JComponent) ancestor).putClientProperty(DOCKABLE_FOCUS_FROM_BROWSER_PROPERTY, Boolean.TRUE);
+                    Component ancestor = SwingUtilities.getAncestorOfClass(View.class, ScilabCefPanel.this);
+                    if (ancestor != null) {
+                        if (ancestor instanceof JComponent) {
+                            ((JComponent) ancestor).putClientProperty(DOCKABLE_FOCUS_FROM_BROWSER_PROPERTY, Boolean.TRUE);
+                        }
+                        if (ancestor instanceof View) {
+                            setCefNativeFocusView((View) ancestor);
+                        }
+                        ActiveDockableTracker.requestDockableActivation(ancestor);
                     }
-                    if (ancestor instanceof View) {
-                        setCefNativeFocusView((View) ancestor);
-                    }
-                    ActiveDockableTracker.requestDockableActivation(ancestor);
-                }
-            });
+                });
+            }
         }
 
         @Override
@@ -225,6 +288,19 @@ public class ScilabCefPanel extends JPanel {
                     mgr.focusPreviousComponent(ScilabCefPanel.this);
                 }
             });
+        }
+    };
+
+    // ---- Load state: gate resize masking until the browser has painted ----
+    /** Set once the browser's main frame finished loading. */
+    private volatile boolean browserLoaded = false;
+    final CefLoadHandler loadHandler = new CefLoadHandlerAdapter() {
+        @Override
+        public void onLoadEnd(CefBrowser b, CefFrame frame, int httpStatusCode) {
+            if (b == browser && frame != null && frame.isMain()) {
+                browserLoaded = true;
+                scheduleSnapshotRefresh();
+            }
         }
     };
 
@@ -301,6 +377,7 @@ public class ScilabCefPanel extends JPanel {
     ArrayList<CefContextMenuHandler> contextMenuHandlers = null;
     ArrayList<CefFocusHandler> focusHandlers = null;
     ArrayList<CefRequestHandler> requestHandlers = null;
+    ArrayList<CefLoadHandler> loadHandlers = null;
     ArrayList<CefLifeSpanHandler> lifeSpanHandlers = null;
 
     /**
@@ -316,17 +393,119 @@ public class ScilabCefPanel extends JPanel {
         client.addContextMenuHandler(contextMenuHandler);
         client.addFocusHandler(focusHandler);
         client.addRequestHandler(requestHandler);
+        client.addLoadHandler(loadHandler);
         client.addLifeSpanHandler(lifeSpanHandler);
 
         // ---- Layout ----
         setBackground(Color.WHITE);
-        add(browser.getUIComponent(), BorderLayout.CENTER);
+
+        // Mask JCEF's heavyweight native view on resize to avoid flickering
+        cardLayout = new CardLayout();
+        cardPanel = new JPanel(cardLayout);
+        cardPanel.add(browser.getUIComponent(), CARD_BROWSER);
+        cardPanel.add(resizeCover, CARD_COVER);
+        add(cardPanel, BorderLayout.CENTER);
+
+        // End of gesture tracker
+        resizeSettleTimer = new Timer(RESIZE_SETTLE_MS, e -> {
+            if (mouseDown) {
+                resizeSettleTimer.restart();
+            } else {
+                endResize();
+            }
+        });
+        resizeSettleTimer.setRepeats(false);
+
+        // Single periodic tick instead of re-arming a timer on every change:
+        // signalling a change must stay free (it happens on every console line).
+        snapshotRefreshTimer = new Timer(SNAPSHOT_REFRESH_MS, e -> maybeRefreshSnapshot());
+        snapshotRefreshTimer.setRepeats(true);
+        snapshotRefreshTimer.start();
+
+        resizeMouseListener = event -> {
+            MouseEvent me = (MouseEvent) event;
+            switch (me.getID()) {
+                case MouseEvent.MOUSE_PRESSED:
+                    mouseDown = true;
+                    // Capture a fresh snapshot as a press may start a drag (divider or dockable).
+                    refreshSnapshot();
+                    break;
+                case MouseEvent.MOUSE_RELEASED:
+                    mouseDown = false;
+                    lastMouseReleaseMs = System.currentTimeMillis();
+                    endResize();
+                    break;
+                case MouseEvent.MOUSE_DRAGGED:
+                    // Mask the console for the gesture; MOUSE_RELEASED ends it,
+                    // and the post-release guard keeps the drop resize unmasked.
+                    if (!resizing && isDividerDrag(me)) {
+                        lastResizeStepMs = System.currentTimeMillis();
+                        if (showCover()) {
+                            resizing = true;
+                            // Drop its CEF "focused" titlebar mark now the browser hidden
+                            clearCefNativeFocusView();
+                            resizeSettleTimer.restart();
+                        }
+                    }
+                    break;
+                case MouseEvent.MOUSE_MOVED:
+                case MouseEvent.MOUSE_ENTERED:
+                    // Cursor moving again after the steps went quiet = frame
+                    // drag released. A MOUSE_MOVED still amid fresh steps is
+                    // motion *during* the drag (Windows emits it) and is ignored
+                    // to avoid re-capture thrashing.
+                    if (resizing && !mouseDown
+                            && System.currentTimeMillis() - lastResizeStepMs > MOVE_END_QUIET_MS) {
+                        // Defer so a step queued just after this motion can
+                        // refresh lastResizeStepMs and cancel a false end.
+                        SwingUtilities.invokeLater(() -> {
+                            if (resizing && !mouseDown
+                                    && System.currentTimeMillis() - lastResizeStepMs > MOVE_END_QUIET_MS) {
+                                endResize();
+                            }
+                        });
+                    }
+                    break;
+                default:
+                    break;
+            }
+        };
+        Toolkit.getDefaultToolkit().addAWTEventListener(
+            resizeMouseListener,
+            AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                onResizeTick();
+            }
+
+            @Override
+            public void componentMoved(ComponentEvent e) {
+                onResizeTick();
+            }
+        });
+        // Our own componentResized only fires once the layout cascade has
+        // reached us - by then the stale native view has already been painted at
+        // the old spot. An ancestor's resize fires earlier in that cascade, so
+        // mask from there to catch the gesture before anything wrong shows.
+        addHierarchyBoundsListener(new HierarchyBoundsListener() {
+            @Override
+            public void ancestorMoved(HierarchyEvent e) {
+                // A move does not change our position inside the parent: the
+                // native view stays correct, nothing to mask.
+            }
+
+            @Override
+            public void ancestorResized(HierarchyEvent e) {
+                onResizeTick();
+            }
+        });
 
         // Invisible heavyweight Canvas for native focus management
         nativeFocusSink.setFocusable(true);
-        nativeFocusSink.setPreferredSize(new java.awt.Dimension(0, 0));
-        nativeFocusSink.setMinimumSize(new java.awt.Dimension(0, 0));
-        nativeFocusSink.setMaximumSize(new java.awt.Dimension(0, 0));
+        nativeFocusSink.setPreferredSize(new Dimension(0, 0));
+        nativeFocusSink.setMinimumSize(new Dimension(0, 0));
+        nativeFocusSink.setMaximumSize(new Dimension(0, 0));
         add(nativeFocusSink, BorderLayout.SOUTH);
 
         // ---- Click-outside detection ----
@@ -334,8 +513,8 @@ public class ScilabCefPanel extends JPanel {
         // component, release Chromium focus and transfer to the target.
         clickOutsideListener = event -> {
             if (!browserHasFocus) return;
-            if (event.getID() != java.awt.event.MouseEvent.MOUSE_PRESSED) return;
-            java.awt.event.MouseEvent me = (java.awt.event.MouseEvent) event;
+            if (event.getID() != MouseEvent.MOUSE_PRESSED) return;
+            MouseEvent me = (MouseEvent) event;
             Component src = me.getComponent();
             if (src == null || !isShowing()) return;
 
@@ -349,11 +528,19 @@ public class ScilabCefPanel extends JPanel {
             if (target == null) {
                 target = src;
             }
-            if (SwingUtilities.isDescendingFrom(target, ScilabCefPanel.this)) return;
-            while (target != null && !(target instanceof java.awt.Window) && !target.isFocusable()) {
+            if (SwingUtilities.isDescendingFrom(target, ScilabCefPanel.this)) {
+                return;
+            }
+            // Pressing a split divider starts a transient drag, not a real focus
+            // change: keep the original focus owner so it is still focused after the
+            // drag (the resize mask hides then restores the browser meanwhile).
+            if (target instanceof BasicSplitPaneDivider) {
+                return;
+            }
+            while (target != null && !(target instanceof Window) && !target.isFocusable()) {
                 target = target.getParent();
             }
-            if (target == null || target instanceof java.awt.Window) return;
+            if (target == null || target instanceof Window) return;
 
             browserHasFocus = false;
             browserFocusRequested = false;
@@ -384,8 +571,8 @@ public class ScilabCefPanel extends JPanel {
                 SwingUtilities.invokeLater(new Sink());
             }
         };
-        java.awt.Toolkit.getDefaultToolkit().addAWTEventListener(
-            clickOutsideListener, java.awt.AWTEvent.MOUSE_EVENT_MASK);
+        Toolkit.getDefaultToolkit().addAWTEventListener(
+            clickOutsideListener, AWTEvent.MOUSE_EVENT_MASK);
     }
 
     private void setCefNativeFocusView(View view) {
@@ -464,6 +651,24 @@ public class ScilabCefPanel extends JPanel {
     public void executeJS(String code, String sourceUrl) {
         if (browser != null) {
             browser.executeJavaScript(code, sourceUrl, 0);
+            // The page content is about to change: re-arm the snapshot used to
+            // mask resizes and dock drags, otherwise it would keep showing the
+            // page as it was.
+            scheduleSnapshotRefresh();
+        }
+    }
+
+
+    /**
+     * Make JCEF reposition its heavyweight native view right away.
+     */
+    private void refreshBrowserGeometry() {
+        if (browser == null) {
+            return;
+        }
+        Component ui = browser.getUIComponent();
+        if (ui != null) {
+            ui.repaint(); // triggers CefBrowserWr.doUpdate() with the new geometry
         }
     }
 
@@ -678,6 +883,44 @@ public class ScilabCefPanel extends JPanel {
         requestHandlers.add(h);
     }
 
+    public void addLoadHandler(CefLoadHandler h)
+    {
+        if (loadHandlers == null) {
+            loadHandlers = new ArrayList<>();
+            loadHandlers.add(loadHandler);
+            client.removeLoadHandler();
+            client.addLoadHandler(new CefLoadHandler() {
+                @Override
+                public void onLoadingStateChange(CefBrowser browser, boolean isLoading, boolean canGoBack,
+                        boolean canGoForward) {
+                    for (CefLoadHandler h : loadHandlers) {
+                        h.onLoadingStateChange(browser, isLoading, canGoBack, canGoForward);
+                    }
+                }
+                @Override
+                public void onLoadStart(CefBrowser browser, CefFrame frame, CefRequest.TransitionType transitionType) {
+                    for (CefLoadHandler h : loadHandlers) {
+                        h.onLoadStart(browser, frame, transitionType);
+                    }
+                }
+                @Override
+                public void onLoadEnd(CefBrowser browser, CefFrame frame, int httpStatusCode) {
+                    for (CefLoadHandler h : loadHandlers) {
+                        h.onLoadEnd(browser, frame, httpStatusCode);
+                    }
+                }
+                @Override
+                public void onLoadError(CefBrowser browser, CefFrame frame, ErrorCode errorCode, String errorText,
+                        String failedUrl) {
+                    for (CefLoadHandler h : loadHandlers) {
+                        h.onLoadError(browser, frame, errorCode, errorText, failedUrl);
+                    }
+                }
+            });
+        }
+        loadHandlers.add(h);
+    }
+
     public void addLifeSpanHandler(CefLifeSpanHandler h)
     {
         if (lifeSpanHandlers == null) {
@@ -723,6 +966,203 @@ public class ScilabCefPanel extends JPanel {
             });
         }
         lifeSpanHandlers.add(h);
+    }
+
+    // ====================================================================
+    // live-resize masking
+    // ====================================================================
+
+    public BufferedImage getPageSnapshot() {
+        return cachedSnapshot;
+    }
+
+    /** Swap in the cover. @return false if there is no snapshot to mask with. */
+    private boolean showCover() {
+        BufferedImage snapshot = cachedSnapshot;
+        if (snapshot == null) {
+            return false;
+        }
+        resizeCover.setSnapshot(snapshot);
+        cardPanel.setBackground(resizeCover.getBackground());
+        cardLayout.show(cardPanel, CARD_COVER);
+        resizeCover.paintImmediately(0, 0, resizeCover.getWidth(), resizeCover.getHeight());
+        return true;
+    }
+
+    /** Swap the live browser back in and let JCEF reposition its native view. */
+    private void hideCover() {
+        cardLayout.show(cardPanel, CARD_BROWSER);
+        refreshBrowserGeometry();
+        if (browserHasFocus && browser != null) {
+            Component ui = browser.getUIComponent();
+            if (ui != null) {
+                ui.requestFocusInWindow();
+            }
+        }
+        // Re-arm a snapshot for the next gesture, once the browser has settled.
+        scheduleSnapshotRefresh();
+    }
+
+    /** @return true if the event is dragging a split divider that contains this panel. */
+    private boolean isDividerDrag(MouseEvent me) {
+        Component src = me.getComponent();
+        if (!(src instanceof BasicSplitPaneDivider)) {
+            return false;
+        }
+        // A divider's parent is its JSplitPane; mask only if we live inside it.
+        Component split = src.getParent();
+        return split instanceof JSplitPane
+                && SwingUtilities.isDescendingFrom(this, split);
+    }
+
+    /** On the first resize step show the cached snapshot; on every step re-arm the fallback timer. */
+    private void onResizeTick() {
+        if (!browserLoaded) {
+            return;
+        }
+        // A divider/dock drag ends on a mouse release and, with continuous
+        // layout off, its single resize lands just after. That one-shot needs no
+        // masking: with no ongoing gesture the cover would only linger over the
+        // freshly laid-out panes until the fallback timer fires. Only a frame
+        // resize (continuous, no AWT mouse events) still needs the mask.
+        if (!resizing
+                && System.currentTimeMillis() - lastMouseReleaseMs < POST_RELEASE_NO_MASK_MS) {
+            return;
+        }
+        lastResizeStepMs = System.currentTimeMillis();
+        if (!resizing) {
+            if (!showCover()) {
+                return;
+            }
+            resizing = true;
+        }
+        resizeSettleTimer.restart();
+    }
+
+    /** End of a resize gesture: restore the live browser. */
+    private void endResize() {
+        if (!resizing) {
+            return;
+        }
+        resizing = false;
+        if (resizeSettleTimer != null) {
+            resizeSettleTimer.stop();
+        }
+        hideCover();
+    }
+
+    /**
+     * Signal that the page content changed, so the next resize/drag masks with
+     * an up-to-date image. Called on every console line, so it must stay free:
+     * it only stamps a timestamp, the periodic tick does the work. Safe to call
+     * from any thread.
+     */
+    private void scheduleSnapshotRefresh() {
+        contentChangedMs = System.currentTimeMillis();
+    }
+
+    /**
+     * Periodic tick: capture once the content has settled. Bursts of changes
+     * (a command printing thousands of lines) keep pushing contentChangedMs, so
+     * nothing is captured until they stop - a single capture per burst.
+     */
+    private void maybeRefreshSnapshot() {
+        if (resizing) {
+            return;
+        }
+        long changed = contentChangedMs;
+        if (changed == capturedChangeMs) {
+            return; // nothing new since the last capture
+        }
+        if (System.currentTimeMillis() - changed < SNAPSHOT_REFRESH_MS) {
+            return; // still changing, let it settle
+        }
+        capturedChangeMs = changed;
+        refreshSnapshot();
+    }
+
+    /**
+     * Cache a fresh screenshot of the page, taken by Chromium itself.
+     * Note: Using java.awt.Robot needs the macOS "Screen Recording" permission.
+     */
+    private void refreshSnapshot() {
+        if (browser == null || !browserLoaded || resizing) {
+            return;
+        }
+        Component ui = browser.getUIComponent();
+        if (ui == null || !ui.isShowing() || ui.getWidth() <= 0 || ui.getHeight() <= 0) {
+            return;
+        }
+        CefDevToolsClient devTools = browser.getDevToolsClient();
+        if (devTools == null || devTools.isClosed()) {
+            return;
+        }
+        devTools.executeDevToolsMethod("Page.captureScreenshot", "{\"format\":\"png\"}")
+            .thenAccept(shotJson -> {
+                BufferedImage img = decodeScreenshot(shotJson);
+                if (img != null) {
+                    cachedSnapshot = img;
+                    // A grab issued on mouse-press can land after the cover is
+                    // already up (dockable/divider drag, where the console is
+                    // not resizing). Repaint it so the fresh image shows instead
+                    // of the previous one painted by showCover().
+                    SwingUtilities.invokeLater(() -> {
+                        if (resizing) {
+                            resizeCover.setSnapshot(img);
+                            resizeCover.repaint();
+                        }
+                    });
+                }
+            });
+    }
+
+    /** Extract the base64 PNG out of a Page.captureScreenshot response. */
+    private static BufferedImage decodeScreenshot(String json) {
+        if (json == null) {
+            return null;
+        }
+        try {
+            JsonElement data = JsonParser.parseString(json).getAsJsonObject().get("data");
+            if (data == null) {
+                return null;
+            }
+            return ImageIO.read(new ByteArrayInputStream(Base64.getDecoder().decode(data.getAsString())));
+        } catch (Exception e) {
+            log.warning("Resize snapshot decode failed: " + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Lightweight stand-in shown while the browser resizes
+     * Draws the last capture at its original (logical) size.
+     */
+    private static class ResizeCover extends JPanel {
+        private static final long serialVersionUID = 1L;
+        private transient BufferedImage image;
+
+        ResizeCover() {
+            setBackground(Color.WHITE);
+        }
+
+        void setSnapshot(BufferedImage image) {
+            this.image = image;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g); // fills with the background
+            if (image == null) {
+                return;
+            }
+            double scale = (g instanceof Graphics2D) ? ((Graphics2D) g).getTransform().getScaleX() : 1.0;
+            if (scale <= 0) {
+                scale = 1.0;
+            }
+            int imageW = (int) Math.round(image.getWidth() / scale);
+            int imageH = (int) Math.round(image.getHeight() / scale);
+            g.drawImage(image, 0, 0, imageW, imageH, null);
+        }
     }
 
     /** Toggle DevTools window */
@@ -772,13 +1212,24 @@ public class ScilabCefPanel extends JPanel {
             return;
         }
 
-
         if (clickOutsideListener != null) {
-            java.awt.Toolkit.getDefaultToolkit().removeAWTEventListener(clickOutsideListener);
+            Toolkit.getDefaultToolkit().removeAWTEventListener(clickOutsideListener);
             clickOutsideListener = null;
         }
 
         clearCefNativeFocusView();
+
+        if (resizeMouseListener != null) {
+            Toolkit.getDefaultToolkit().removeAWTEventListener(resizeMouseListener);
+            resizeMouseListener = null;
+        }
+
+        if (snapshotRefreshTimer != null) {
+            snapshotRefreshTimer.stop();
+        }
+        if (resizeSettleTimer != null) {
+            resizeSettleTimer.stop();
+        }
 
         if (browser != null) {
             closeDevTools();
