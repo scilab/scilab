@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.Semaphore;
@@ -50,9 +51,11 @@ import org.cef.browser.CefBrowser;
 import org.cef.browser.CefFrame;
 import org.cef.browser.CefMessageRouter;
 import org.cef.browser.CefMessageRouter.CefMessageRouterConfig;
+import org.cef.callback.CefDragData;
 import org.cef.callback.CefQueryCallback;
 import org.cef.handler.CefKeyboardHandlerAdapter;
 import org.cef.handler.CefMessageRouterHandlerAdapter;
+import org.cef.handler.CefDragHandler;
 import org.cef.misc.EventFlags;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.OS;
@@ -106,6 +109,7 @@ public abstract class SciConsole extends JPanel {
     private String defaultPrompt;
 
     private String selectedText;
+    private final Vector<String> draggedFiles = new Vector<>();
 
     private Color background = null;
     private Color foreground = null;
@@ -167,6 +171,23 @@ public abstract class SciConsole extends JPanel {
                 }
 
                 return false;
+            }
+        });
+
+        cefPanel.getClient().addDragHandler(new CefDragHandler() {
+            @Override
+            public boolean onDragEnter(CefBrowser browser, CefDragData dragData, int mask) {
+                if (dragData != null && dragData.isFile())
+                {
+                    draggedFiles.clear();
+                    if (!dragData.getFilePaths(draggedFiles))
+                    {
+                        return true;
+                    }
+                    // accept the drag
+                    return false;
+                }
+                return true;
             }
         });
 
@@ -278,8 +299,16 @@ public abstract class SciConsole extends JPanel {
                         return true;
                     }
                     case "file": {
-                        DropFiles.dropFiles(new String[] { req[1] });
-                        return true;
+                        if (req.length == 0) {
+                            return false;
+                        }
+                        if (req.length == 1) {
+                            return DropFiles.dropFiles(draggedFiles.toArray(new String[draggedFiles.size()]));
+                        }
+                        if (req.length == 2) {
+                            return DropFiles.dropFiles(new String[] { req[1] });
+                        }
+                        return false;
                     }
                     case "interrupt": {
                         InterpreterManagement.requestScilabExec("pause;");

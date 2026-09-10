@@ -43,7 +43,7 @@
 /*--------------------------------------------------------------------------*/
 #define FORMAT_LOAD_FILES "load('%s');"
 #define FORMAT_XCOS_FILES "xcos('%s');"
-#define FORMAT_EXEC_FILES "exec('%s');"
+#define FORMAT_EXEC_FILES "edit('%s');"
 #define FORMAT_UNKNOW_EXTENSION_FILES "disp(gettext('Unknown file type : %s'));"
 #define XCOS_NOT_INSTALLED "disp(gettext('Please install xcos module.'))"
 /*--------------------------------------------------------------------------*/

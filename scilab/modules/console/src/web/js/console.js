@@ -238,7 +238,7 @@ $(document).ready(async () => {
         e.preventDefault();
     });
 
-    $(".console").on("drop", async function(e) {
+    $(".console").on("drop", function(e) {
         e.preventDefault();
         let data = e.originalEvent.dataTransfer.items;
         for (let i = 0; i < data.length; i += 1) {
@@ -257,14 +257,12 @@ $(document).ready(async () => {
                 });
                 return;
             }
-
-            if (data[i].kind === "file") {
-                Scilab({
-                    request: `file::${data[i].name}`
-                })
-                return;
-            }
         }
+
+      if (e.originalEvent.dataTransfer.files.length > 0) {
+          // full file paths have been stored before, drop them
+          Scilab({ request: `file` });
+      }
     });
 
     Scilab({request: `ready::${getBackground()}::${getForeground()}`});
