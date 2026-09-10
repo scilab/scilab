@@ -300,6 +300,7 @@ $(document).ready(async () => {
 });
 
 function sendCommand(cmd) {
+    log("INFO", "sendCommand", cmd)
     Scilab({request: `input::${cmd}`});
 
     adjustInputSize();
@@ -701,21 +702,20 @@ function deleteSelection() {
 }
 
 function pasteAction(clipText) {
-
-    if (clipText.slice(-1) == "\n") {
-        let lines = clipText.split("\n");
-        lines.forEach(l => sendCommand(l));
-        return;
-    }
+    let lines = clipText.split("\n");
+    // skip any line with non printable Control-Characters
+    let res = lines.filter(l => !/\p{C}/u.test(l)).join("\n");
 
     let c = $(".input")[0];
     let start = c.selectionStart;
     let end = c.selectionEnd;
-    var before = c.value.slice(0, start);
-    var after = c.value.slice(end);
+    let before = c.value.slice(0, start);
+    let after = c.value.slice(end);
 
-    c.value = before + clipText + after;
-    c.setSelectionRange(start + clipText.length, start + clipText.length);
+    // insert the pasted text in the current selection and re-position
+    c.value = before + res + after;
+    c.setSelectionRange(start + res.length, start + res.length);
+
     focus();
     adjustInputSize();
 
