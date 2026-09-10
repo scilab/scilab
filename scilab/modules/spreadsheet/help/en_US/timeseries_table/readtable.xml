@@ -252,11 +252,6 @@
                         Similarly, columns with a defined name but containing no data were ignored. 
                         As a result, the returned <literal>table</literal> accurately reflects the original data.
                     </para>
-                </revdescription>
-            </revision>
-            <revision>
-                <revnumber>2026.1.0</revnumber>
-                <revdescription>
                     <para><literal>readtable</literal> can now read Excel (.xlsx) files.</para>
                 </revdescription>
             </revision>

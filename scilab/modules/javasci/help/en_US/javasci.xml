@@ -85,53 +85,42 @@ class Example1 {
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>
-                    Javasci v1 is removed.
-                </revremark>
-            </revision>
-            <revision>
-                <revnumber>5.4.0</revnumber>
                 <revdescription>
+                    <para>
+                        Javasci v1 is removed.
+                    </para>
                     <para>
                         New methods added:
                         <itemizedlist>
                             <listitem>
-                                <para>Scilab.execException(String)
-                                    </para>
-                                </listitem>
+                                <para>Scilab.execException(String)</para>
+                            </listitem>
                             <listitem>
-                                <para>Scilab.execException(String[])
-                                    </para>
-                                </listitem>
+                                <para>Scilab.execException(String[])</para>
+                            </listitem>
                             <listitem>
-                                <para>Scilab.execException(File)
-                                    </para>
-                                </listitem>
+                                <para>Scilab.execException(File)</para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>Javasci supports sparse and boolean sparse datatypes.</para>
+                            </listitem>
+                            <listitem>
+                                <para>Javasci supports tlists, mlists and lists datatypes.</para>
+                            </listitem>
+                            <listitem>
+                                <para>Javasci supports polynomial datatypes.</para>
+                            </listitem>
+                            <listitem>
+                                <para>Javasci supports struct datatypes under the form of an mList.</para>
+                            </listitem>
                         </itemizedlist>
                     </para>
                 </revdescription>
             </revision>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revdescription>
-                    <para>
-                    <itemizedlist>
-                        <listitem>
-                             <para>Javasci supports sparse and boolean sparse datatypes.</para>
-                        </listitem>
-                        <listitem>
-                            <para>Javasci supports tlists, mlists and lists datatypes.</para>
-                        </listitem>
-                        <listitem>
-                            <para>Javasci supports polynomial datatypes.</para>
-                        </listitem>
-                        <listitem>
-                            <para>Javasci supports struct datatypes under the form of an mList.</para>
-                        </listitem>
-                    </itemizedlist>
-                </para>
-            </revdescription>
-        </revision>
-    </revhistory>
-</refsection>
+        </revhistory>
+    </refsection>
 </refentry>

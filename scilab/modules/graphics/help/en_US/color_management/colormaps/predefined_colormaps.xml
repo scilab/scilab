@@ -448,22 +448,14 @@
         <revhistory>
             <revision>
                 <revnumber>2024.1.0</revnumber>
-                <revremark>
-                    Default colormap size is now based on the size of the current or default figure colormap size.
-                </revremark>
-            </revision>
-            <revision>
-                <revnumber>2024.1.0</revnumber>
                 <revdescription>
+                    <para>
+                        Default colormap size is now based on the size of the current or default figure colormap size.
+                    </para>
                     <para>
                         Colormap functions renamed to <literal>autumn</literal>, <literal>bone</literal>, <literal>cool</literal>, <literal>copper</literal>, <literal>gray</literal>, <literal>hot</literal>, <literal>hsv</literal>, <literal>jet</literal>,
                         <literal>ocean</literal>, <literal>parula</literal>, <literal>pink</literal>, <literal>rainbow</literal>, <literal>spring</literal>, <literal>summer</literal>, <literal>white</literal>, <literal>winter</literal>.
                     </para>
-                </revdescription>
-            </revision>
-            <revision>
-                <revnumber>2024.1.0</revnumber>
-                <revdescription>
                     <para>
                         New colormap functions <literal>blues</literal>, <literal>BrBG</literal>, <literal>BuGn</literal>, <literal>BuPu</literal>, <literal>coolwarm</literal>, <literal>GnBu</literal>, <literal>greens</literal>, <literal>greys</literal>,
                         <literal>oranges</literal>, <literal>OrRd</literal>, <literal>PiYG</literal>, <literal>PRGn</literal>, <literal>PuBu</literal>, <literal>PuBuGn</literal>, <literal>PuOr</literal>, <literal>PuRd</literal>,

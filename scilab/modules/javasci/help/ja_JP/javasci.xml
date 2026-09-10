@@ -96,45 +96,40 @@ class Example1 {
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revdescription>
-                    Javasci v1 が削除されました.
-                </revdescription>
-            </revision>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revdescription>新規メソッド追加:
-                    <itemizedlist>
-                        <listitem>
-                             <para>Scilab.execException(String)
-                                </para>
-                            </listitem>
-                        <listitem>
-                             <para>Scilab.execException(String[])
-                                </para>
-                            </listitem>
-                        <listitem>
-                             <para>Scilab.execException(File)
-                                </para>
-                            </listitem>
-                    </itemizedlist>
-                </revdescription>
-            </revision>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revdescription>
-                    <itemizedlist>
-                        <listitem>
-                             <para>Javasci は疎行列と論理値疎行列データ型をサポートします.</para></listitem>
+                    <para>
+                        Javasci v1 が削除されました.
+                    </para>
+                    <para>新規メソッド追加:
+                        <itemizedlist>
                             <listitem>
-                                 <para>Javasci はtlists, mlists およびリストデータ型をサポートします.</para></listitem>
-                                <listitem>
-                                     <para>Javasci 多項式データ型をサポートします.</para></listitem>
-                                    <listitem>
-                                         <para>mList形式のJavasciデータ型構造体をサポートします.
-                                        </para>
-                                    </listitem>
-                                </itemizedlist>
-                            </revdescription>
-                        </revision>
-                    </revhistory>
-                </refsection>
-            </refentry>
+                                <para>Scilab.execException(String)</para>
+                            </listitem>
+                            <listitem>
+                                <para>Scilab.execException(String[])</para>
+                            </listitem>
+                            <listitem>
+                                <para>Scilab.execException(File)</para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>Javasci は疎行列と論理値疎行列データ型をサポートします.</para>
+                            </listitem>
+                            <listitem>
+                                <para>Javasci はtlists, mlists およびリストデータ型をサポートします.</para>
+                            </listitem>
+                            <listitem>
+                                <para>Javasci 多項式データ型をサポートします.</para>
+                            </listitem>
+                            <listitem>
+                                <para>mList形式のJavasciデータ型構造体をサポートします.</para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
