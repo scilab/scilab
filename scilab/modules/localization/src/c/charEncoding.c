@@ -133,6 +133,12 @@ wchar_t *to_wide_string(const char *_UTFStr)
     setlocale(LC_ALL, "");
 #endif
     cd_UTF8_to_UTF16 = iconv_open("WCHAR_T", "UTF-8");
+    if (cd_UTF8_to_UTF16 == (iconv_t)(-1))
+    {
+        /* WCHAR_T is the only locale dependent converter, so it can be refused
+           where UTF-8 alone would be accepted. */
+        return NULL;
+    }
 
     iLeftIn = strlen(_UTFStr);
     pInSave = (char*)_UTFStr;
@@ -147,6 +153,11 @@ wchar_t *to_wide_string(const char *_UTFStr)
     if (iSize == (size_t)(-1))
     {
         iconv_t cd_ISO8851_to_UTF16 = iconv_open("WCHAR_T", "ISO_8859-1");
+        if (cd_ISO8851_to_UTF16 == (iconv_t)(-1))
+        {
+            FREE(pOutSave);
+            return NULL;
+        }
 
         _UTFStr = pInSave;
         iLeftIn = strlen(_UTFStr);

@@ -14,6 +14,10 @@
 */
 
 
+#include <clocale>
+#include <cstdio>
+#include <cstdlib>
+
 #include "configvariable.hxx"
 
 #include "string.hxx"
@@ -89,6 +93,13 @@ static wchar_t* computeSCIHOMEW(const wchar_t* path)
     char* pstHome = wide_string_to_UTF8(path);
     char* pstTemp = computeSCIHOME(pstHome);
     wchar_t* pstReturn = to_wide_string(pstTemp);
+    if (pstTemp && pstReturn == NULL)
+    {
+        // to_wide_string goes through iconv, whose WCHAR_T converter is locale
+        // dependent: a valid path can still fail to convert.
+        fprintf(stderr, "Scilab: cannot convert `%s' in locale `%s'.\n", pstTemp, setlocale(LC_ALL, NULL));
+    }
+
     FREE(pstTemp);
     FREE(pstHome);
     return pstReturn;
@@ -208,6 +219,15 @@ static char* computeSCIHOME(const char* path)
     getenvc(&ierr, HOME, USERHOMESYSTEM, &buflen, &iflag);
     if (ierr)
     {
+        fprintf(stderr, "Scilab: HOME is not set.\n");
+        return NULL;
+    }
+
+    // getenvc only rejects an undefined variable, so an empty HOME would build
+    // SCIHOME under the filesystem root.
+    if (USERHOMESYSTEM[0] == '\0')
+    {
+        fprintf(stderr, "Scilab: HOME is set but empty.\n");
         return NULL;
     }
 
@@ -342,6 +362,7 @@ static bool createDirectoryRecursively(const std::string& path)
         {
             if (errno != EEXIST)
             {
+                fprintf(stderr, "Scilab: cannot create `%s': %s\n", file_path, strerror(errno));
                 *p = '/';
                 FREE(file_path);
                 return false;
@@ -355,6 +376,7 @@ static bool createDirectoryRecursively(const std::string& path)
     {
         if (errno != EEXIST)
         {
+            fprintf(stderr, "Scilab: cannot create `%s': %s\n", path.data(), strerror(errno));
             if (p != NULL)
             { 
                 *p = '/';
@@ -411,6 +433,13 @@ void defineSCIHOME()
             FREE(sci_home);
             sci_home = computeSCIHOMEW(w.data());
         }
+    }
+
+    if (sci_home == NULL)
+    {
+        // Error has already been described above
+        fprintf(stderr, "Scilab: cannot determine SCIHOME, aborting.\n");
+        exit(1);
     }
 
     setSCIHOMEW(sci_home);

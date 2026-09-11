@@ -180,6 +180,16 @@ endif
 
 LANG_DOMAIN=scilab
 
+# makes SCIHOME local on this build
+# Use a unique directory per build to avoid conflicts between concurrent builds
+# Create the directory as a Make target to ensure it's created once
+SCILAB_BUILD_HOME_FILE = $(top_builddir)/.scilab-build-home-path
+$(SCILAB_BUILD_HOME_FILE):
+	@mkdir -p $(top_builddir)
+	@unique_dir=$$(mktemp -d $(top_builddir)/.scilab-build-home-XXXXXX) && \
+	 echo "$$unique_dir" > $@
+SCILAB_BUILD_HOME = `cat $(SCILAB_BUILD_HOME_FILE)`
+
 TARGETS_ALL=macros
 
 #  The user wants to compile the localization files
@@ -192,7 +202,7 @@ TARGETS_ALL+=check-java
 endif
 
 # check is performed with scilab, so use the serial-tests on purpose
-TESTS_ENVIRONMENT = LANG=C HOME=/tmp $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -nouserstartup -f
+TESTS_ENVIRONMENT = LANG=C HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -nouserstartup -f
 TESTS = $(top_builddir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
 
 all-local: $(TARGETS_ALL)
@@ -218,10 +228,10 @@ $(top_builddir)/Version.incl
 valgrinddir=$(pkgdatadir)/tools/profiling
 valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
-macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-dep check-libstdcpp-dep
+macros: $(SCILAB_BUILD_HOME_FILE) $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-dep check-libstdcpp-dep
 	-@( cd $(top_builddir) ; \
 	echo "$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -nouserstartup -quit -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
-	HOME=/tmp $(top_builddir)/bin/scilab-cli -ns -noatomsautoload -nouserstartup -quit -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
+	HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-cli -ns -noatomsautoload -nouserstartup -quit -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
 
 strip-debug:
 	find $(top_builddir) -name '*.so.?.?.?' | while read file ; \
@@ -298,11 +308,11 @@ help: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-cli
 			echo "-- Building help ($$l) --"; \
 			COMMAND="try generate_inline_links('$$l');catch disp(lasterror()); exit(-1);end;exit(0);"; \
 			if test "$(MACOSX)" = "1"; then \
-				echo "LANG=$$l.UTF-8 HOME=/tmp $(top_builddir)/bin/scilab-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
-				LANG=$$l.UTF-8 HOME=/tmp $(top_builddir)/bin/scilab-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
+				echo "LANG=$$l.UTF-8 HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
+				LANG=$$l.UTF-8 HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 			else \
-				echo "LANG=$$l.UTF-8 LC_ALL=C HOME=/tmp $(top_builddir)/bin/scilab-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
-				LANG=$$l.UTF-8 LC_ALL=C HOME=/tmp $(top_builddir)/bin/scilab-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
+				echo "LANG=$$l.UTF-8 LC_ALL=C HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
+				LANG=$$l.UTF-8 LC_ALL=C HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 			fi; \
 		done; \
 	else \
@@ -337,8 +347,8 @@ if BUILD_HELP
 		for l in $(ALL_LINGUAS_DOC); do \
 			echo "-- Building documentation ($$l) --"; \
 			COMMAND="try xmltojar([],[],'$$l');catch disp(lasterror()); exit(-1);end;exit(0);"; \
-			echo "LANG=$$l.UTF-8 LC_ALL=C.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' HOME=/tmp $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
-			LANG=$$l.UTF-8 LC_ALL=C.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' HOME=/tmp $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
+			echo "LANG=$$l.UTF-8 LC_ALL=C.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
+			LANG=$$l.UTF-8 LC_ALL=C.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 		done; \
 	else \
 		echo "Cannot find scilab-adv-cli binary"; \
@@ -354,8 +364,8 @@ if BUILD_HELP
 		for l in $(ALL_LINGUAS_DOC); do \
 			echo "-- Building documentation ($$l) --"; \
 			COMMAND="try xmltoweb([],[],'$$l');catch exit(-1);end;exit(0);";\
-			echo "LANG=$$l.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 HOME=/tmp $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -noatomsautoload -nouserstartup -e \"$$COMMAND\"";\
-			LANG=$$l.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 HOME=/tmp $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -noatomsautoload -nouserstartup -e "$$COMMAND" || exit 1;\
+			echo "LANG=$$l.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -noatomsautoload -nouserstartup -e \"$$COMMAND\"";\
+			LANG=$$l.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -noatomsautoload -nouserstartup -e "$$COMMAND" || exit 1;\
 			JAVADOC_TARGET=$(top_builddir)/modules/helptools/web/$$l/javasci; \
 			if test ! -d $$JAVADOC_TARGET; then \
 				mkdir $$JAVADOC_TARGET; \
@@ -387,7 +397,7 @@ check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 			echo "-- Checking documentation ($$l) --"; \
 			COMMAND="try check_help();catch exit(-1);end;exit(0);";\
 			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -nouserstartup -e \"$$COMMAND\"";\
-			HOME=/tmp $(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -nouserstartup -e "$$COMMAND" || exit 1;\
+			HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -nouserstartup -e "$$COMMAND" || exit 1;\
 		done; \
 	else \
 		echo "Cannot find Scilab binary"; \
@@ -411,7 +421,7 @@ endif
 function-list:  $(top_builddir)/bin/scilab-adv-cli $(top_builddir)/scilab-bin
 	-@( cd $(top_builddir) ; \
 	echo "$(top_builddir)/bin/scilab-adv-cli -nb -noatomsautoload -nouserstartup -quit -f modules/helptools/data/configuration/regen_list.sce" ; \
-	HOME=/tmp $(top_builddir)/bin/scilab-adv-cli -nb -noatomsautoload -nouserstartup -quit -f $(top_builddir)/modules/helptools/data/configuration/regen_list.sce) || exit 1
+	HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-adv-cli -nb -noatomsautoload -nouserstartup -quit -f $(top_builddir)/modules/helptools/data/configuration/regen_list.sce) || exit 1
 
 distclean-recursive: distclean-generated clean-recursive
 
@@ -430,7 +440,7 @@ clean-help:
 		COMMAND="try clean_help();catch exit(-1);end;exit(0)"; \
 		for l in $(ALL_LINGUAS_DOC); do \
 			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -nouserstartup -e '$$COMMAND'"; \
-			HOME=/tmp $(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -nouserstartup -e "$$COMMAND" || exit 1; \
+			HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -nouserstartup -e "$$COMMAND" || exit 1; \
 		done; \
 	else \
 		echo "Cannot find Scilab binary"; \
@@ -443,7 +453,7 @@ clean-doc:
 		COMMAND="try clean_help();catch exit(-1);end;exit(0)"; \
 		for l in $(ALL_LINGUAS_DOC); do \
 			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -nouserstartup -e '$$COMMAND'"; \
-			HOME=/tmp $(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -nouserstartup -e "$$COMMAND" || exit 1; \
+			HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -nouserstartup -e "$$COMMAND" || exit 1; \
 		done; \
 	else \
 		echo "Cannot find Scilab binary"; \
@@ -463,7 +473,7 @@ clean-doc:
 
 clean-tests:
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
-		HOME=/tmp $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -nouserstartup -l fr -e 'try test_clean();catch exit(-1);end;exit(0);' || exit 1; \
+		HOME=$(SCILAB_BUILD_HOME) $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -nouserstartup -l fr -e 'try test_clean();catch exit(-1);end;exit(0);' || exit 1; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
@@ -475,6 +485,8 @@ clean-generated:
 # Deleted junit + code coverage
 	rm -rf $(top_builddir)/reports/
 	rm -rf $(top_builddir)/modules/scicos_blocks/build/ 2> /dev/null
+	rm -rf $(top_builddir)/.scilab-build-home-* 2> /dev/null
+	rm -f $(SCILAB_BUILD_HOME_FILE) 2> /dev/null
 
 distclean-generated:
 	rm -f $(top_builddir)/modules/core/includes/stack.h 2> /dev/null
