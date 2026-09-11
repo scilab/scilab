@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Adeline CARNIS
+ *
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="agglomerative">
+    <refnamediv>
+        <refname>agglomerative</refname>
+        <refpurpose>Perform agglomerative hierarchical clustering</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            labels = agglomerative(x, n_clusters)
+            labels = agglomerative(x, n_clusters, method)
+            labels = agglomerative(x, n_clusters, method, metric)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>A double observation matrix or a condensed distance vector 
+                        or a linkage matrix returned by <link linkend="linkage">linkage</link>.
+                    </para>
+                    <para>If <literal>x</literal> is a matrix, each row represents one observation and 
+                        each column represents one feature.
+                    </para>
+                    <para> When <literal>x</literal> is a condensed distance vector,
+                        it contains the pairwise distances between observations.
+                    </para>
+                    <para>
+                        When <literal>x</literal> is a linkage matrix <literal>Z</literal>, it must be a matrix with three
+                        columns produced by the <link linkend="linkage">linkage</link> function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n_clusters</term>
+                <listitem>
+                    <para>
+                        A positive integer specifying the number of clusters to obtain.
+                    </para>
+                    <para>
+                        <literal>n_clusters</literal> must be between <literal>1</literal> and <literal>n</literal>, the number of observations (number of rows of <literal>x</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>method</term>
+                <listitem>
+                    <para>Linkage method. The default value is <literal>"single"</literal>.</para>
+                    <itemizedlist>
+                        <listitem><para><literal>"single"</literal>: minimum distance linkage.</para></listitem>
+                        <listitem><para><literal>"complete"</literal>: maximum distance linkage.</para></listitem>
+                        <listitem><para><literal>"average"</literal>: average linkage unweighted by cluster sizes (UPGMA).</para></listitem>
+                        <listitem><para><literal>"weighted"</literal>: weighted average linkage (WPGMA).</para></listitem>
+                        <listitem><para><literal>"centroid"</literal>: centroid method (UPGMC).</para></listitem>
+                        <listitem><para><literal>"median"</literal>: median method (WPGMC).</para></listitem>
+                        <listitem><para><literal>"ward"</literal>: Ward minimum variance linkage.</para></listitem>
+                    </itemizedlist>
+                    <para>
+                        This argument is ignored when <literal>x</literal> is already a linkage matrix.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>metric</term>
+                <listitem>
+                    <para>Metric used by <link linkend="pdist">pdist</link> when <literal>x</literal> is a matrix. 
+                        Default value: <literal>"euclidean"</literal>.</para>
+                    <para>A cell can be used to pass additional arguments to <literal>pdist</literal>, 
+                        for example, to set the Minkowski metric.</para>
+                    <para>The methods <literal>"centroid"</literal>, <literal>"median"</literal> et <literal>"ward"</literal> 
+                        require the Euclidean metric.</para>
+                    <para>
+                        This argument is ignored when <literal>x</literal> is already a linkage matrix.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>labels</term>
+                <listitem>
+                    <para>
+                        A column vector containing the cluster label assigned to each observation.
+                    </para>
+                    <para>
+                        Labels are integers ranging from <literal>0</literal> to <literal>n_clusters - 1</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para><literal>agglomerative</literal> performs agglomerative hierarchical clustering.</para>
+        <para>Agglomerative clustering is a bottom-up hierarchical clustering
+            method. Initially, each observation belongs to its own cluster.
+            At each iteration, the two closest active clusters are merged.
+            The process continues until the requested number of clusters is
+            reached.
+        </para>
+        <para>
+            The function can be used directly with an observation matrix,
+            a condensed distance vector, or with a linkage matrix returned by
+            <link linkend="linkage">linkage</link>.
+        </para>
+        <para>
+            When a linkage matrix is provided, no new distances or merges are
+            computed. The function uses the first
+            <literal>n - n_clusters</literal> merges stored in the linkage
+            hierarchy to reconstruct the requested partition.
+        </para>
+        <para>
+            Cluster labels are arbitrary identifiers. Two clustering results
+            can represent the same partition even if their numerical labels
+            are different.
+        </para>
+        <para>
+            For example: [0 0 1 1] and [1 1 0 0] represent the same clustering partition.
+        </para>
+        <para>
+            When <literal>n_clusters</literal> is equal to the number of
+            observations, each observation receives a different label.
+        </para>
+
+        <para>
+            When <literal>n_clusters</literal> is equal to
+            <literal>1</literal>, all observations belong to the same
+            cluster.
+        </para>
+
+        <para>
+            When a linkage matrix is supplied, the
+            <literal>method</literal> and <literal>metric</literal>
+            arguments are not used because the hierarchical clustering has
+            already been computed.
+        </para>
+    </refsection>
+    <refsection role="example">
+    <title>Examples</title>
+        <para>
+            <programlisting role="example"><![CDATA[
+            data = [0.0   0.0
+                0.2   0.1
+                -0.1   0.2
+                0.1  -0.2
+                5.0   5.0
+                5.2   5.1
+                4.9   5.2
+                5.1   4.8
+                10.0   0.0
+                10.2   0.1
+                9.9  -0.2
+                10.1   0.2];
+
+            labels = agglomerative(data, 3, "ward")
+            ]]></programlisting>
+            <screen><![CDATA[ 
+--> data = [0.0   0.0
+  >                 0.2   0.1
+  >                 -0.1   0.2
+  >                 0.1  -0.2
+  >                 5.0   5.0
+  >                 5.2   5.1
+  >                 4.9   5.2
+  >                 5.1   4.8
+  >                 10.0   0.0
+  >                 10.2   0.1
+  >                 9.9  -0.2
+  >                 10.1   0.2];
+
+--> labels = agglomerative(data, 3, "ward")
+
+ labels = [12x1 double]
+
+   1.
+   1.
+   1.
+   1.
+   2.
+   2.
+   2.
+   2.
+   0.
+   0.
+   0.
+   0.
+   ]]></screen>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member><link linkend="linkage">linkage</link></member>
+            <member><link linkend="pdist">pdist</link></member>
+            <member><link linkend="squareform">squareform</link></member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revremark>Function added.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
