@@ -11,19 +11,16 @@
 package org.scilab.modules.gui.bridge.filechooser;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.StringTokenizer;
 import java.util.concurrent.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Optional;
 
 import java.awt.Toolkit;
 import java.awt.Dimension;
-import java.awt.Robot;
 
-
-import javafx.collections.ObservableList;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.stage.Stage;
@@ -32,19 +29,15 @@ import javafx.stage.StageStyle;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.StageStyle;
 
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.gui.filechooser.FileChooserInfos;
 import org.scilab.modules.gui.filechooser.SimpleFileChooser;
-import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.SciFileFilter;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
-import org.scilab.modules.localization.Messages;
 
 /**
  * JavaFX implementation of a Scilab File Chooser
@@ -53,6 +46,7 @@ import org.scilab.modules.localization.Messages;
 
 public class JFXScilabFileChooser implements SimpleFileChooser {
     private static final long serialVersionUID = 1L;
+
     public static final int OPEN_DIALOG = 0;
     public static final int SAVE_DIALOG = 1;
     private String[] selection; // Path + filenames
@@ -63,20 +57,45 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
     private String[] selectionFileNames; // Filenames
     private int selectionSize;
     private int filterIndex;
-    private int maskSize = 0;
     private boolean acceptAllFileFilterUsed = false;
     private int dialogType = 0;
     private boolean directorySelectionOnly = false;
     private boolean multipleSelection = false;
-    private JFXPanel jfxpanel = new JFXPanel();
     private DirectoryChooser directoryChooser;
     private FileChooser fileChooser;
     private Stage stage;
+    private static JFXPanel jfxpanel; // Instantiated only to start the JavaFX toolkit
 
 
     public JFXScilabFileChooser() {
+        startJavaFXToolkit();
         directoryChooser = new DirectoryChooser();
         fileChooser = new FileChooser();
+    }
+
+    /**
+     * Start the JavaFX toolkit (if not already done) by creating a JFXPanel
+     */
+    private static synchronized void startJavaFXToolkit() {
+        if (jfxpanel != null) {
+            return;
+        }
+        jfxpanel = new JFXPanel();
+        Platform.setImplicitExit(false);
+
+        // The JavaFX application thread is not a daemon one and would prevent
+        // DestroyJavaVM() from returning, so it has to be stopped when Scilab exits.
+        try {
+            Class scilab = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.core.Scilab");
+            Method registerFinalHook = scilab.getDeclaredMethod("registerFinalHook", Runnable.class);
+            registerFinalHook.invoke(null, new Runnable() {
+                public void run() {
+                    Platform.exit();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     class getChosenFile implements Callable<ArrayList<File>> {
@@ -84,25 +103,33 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
             // This method is invoked on the JavaFX thread
             ArrayList<File> theResult = new ArrayList<File>();
             
-            if (!(stage instanceof Stage)) {
-                stage = new Stage();
-                stage.setMaxHeight(0);
-                stage.setWidth(0);
-                stage.setResizable(false);
-                stage.setAlwaysOnTop(true);
-                stage.initStyle(StageStyle.UNIFIED);
-                if (xPos.isNaN()) {
-                    Dimension d = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size
-                    xPos = d.width/2-stage.getWidth()/2;
-                    yPos = (double)d.height/3;
+            if (OS.get() == OS.MAC) {
+                if (!(stage instanceof Stage)) {
+                    stage = new Stage();
+                    stage.setMaxHeight(0);
+                    stage.setWidth(0);
+                    stage.setResizable(false);
+                    stage.setAlwaysOnTop(true);
+                    stage.initStyle(StageStyle.UNIFIED);
+                    if (xPos.isNaN()) {
+                        Dimension d = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size
+                        xPos = d.width/2-stage.getWidth()/2;
+                        yPos = (double)d.height/3;
+                    }
+                    stage.setX(xPos);
+                    stage.setY(yPos);                    
                 }
-                stage.setX(xPos);
-                stage.setY(yPos);                    
+                stage.setTitle(title);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show(); //show stage because you wouldn't be able to get Height & width of the stage
+            } else {
+                fileChooser.setTitle(title);
+                directoryChooser.setTitle(title);
+                List<ExtensionFilter> allExtensionFilters = fileChooser.getExtensionFilters();
+                if (!allExtensionFilters.isEmpty()) {
+                    fileChooser.setSelectedExtensionFilter(allExtensionFilters.get(allExtensionFilters.size()-1));
+                }
             }
-            stage.setTitle(title);
-            stage.initModality(Modality.APPLICATION_MODAL); 
-            stage.show(); //show stage because you wouldn't be able to get Height & width of the stage
-                
             if (dialogType == JFXScilabFileChooser.OPEN_DIALOG) {
                 if (multipleSelection == false) {
                     if (directorySelectionOnly == false)  {
@@ -128,7 +155,6 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
                 String fileName = fileChooser.getInitialFileName();
                 if (fileName != null && fileName != "")
                 {
-                    Boolean found = false;
                     int index = fileName.lastIndexOf('.');
                     ExtensionFilter filter = null;
                     if(index > 0) {
@@ -154,10 +180,11 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
                     theResult.add(aFile);
                 }
             }
-            xPos = stage.getX();
-            yPos = stage.getY();
-            stage.close();
-            
+            if (OS.get() == OS.MAC) {
+                xPos = stage.getX();
+                yPos = stage.getY();
+                stage.close();
+            }
             return theResult;
         }
     }
@@ -176,7 +203,6 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
         FutureTask<ArrayList<File>> futureTask = new FutureTask<ArrayList<File>>(
           new getChosenFile()
         );
-        Platform.setImplicitExit(false);
         Platform.runLater(futureTask);
         try {
             ArrayList<File> result = futureTask.get();
@@ -253,15 +279,15 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
         fileChooser.setSelectedExtensionFilter(filter);
     }
 
-     public void setFileFilter(FileFilter filter) {
-         String[] ext = ((FileNameExtensionFilter) filter).getExtensions();
-         for (int i=0; i<ext.length; i++) {
-             ext[i]="*."+ext[i];
-         }
-         fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter(((FileNameExtensionFilter)filter).getDescription(),ext));
-     }
+    public void setFileFilter(FileFilter filter) {
+        String[] ext = ((FileNameExtensionFilter) filter).getExtensions();
+        for (int i=0; i<ext.length; i++) {
+            ext[i]="*."+ext[i];
+        }
+        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter(((FileNameExtensionFilter)filter).getDescription(),ext));
+    }
 
-     public ExtensionFilter getFileFilterFromExtension(String extension) {
+    public ExtensionFilter getFileFilterFromExtension(String extension) {
         for (ExtensionFilter filter : fileChooser.getExtensionFilters())   
         {
             for (String filtext : filter.getExtensions())

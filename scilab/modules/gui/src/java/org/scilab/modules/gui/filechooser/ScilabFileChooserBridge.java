@@ -19,6 +19,7 @@ package org.scilab.modules.gui.filechooser;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabExportFileChooser;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.filechooser.JFXScilabFileChooser;
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.gui.bridge.filechooser.JFXScilabExportFileChooser;
 
 /**
@@ -40,8 +41,7 @@ public class ScilabFileChooserBridge {
      * @return the created FileChooser
      */
     public static SimpleFileChooser createFileChooser() {
-        boolean ismacOS = System.getProperty("os.name").toLowerCase().contains("mac");
-        if (ismacOS == true) {
+        if (OS.get() == OS.MAC || OS.get() == OS.WINDOWS) {
             return new JFXScilabFileChooser();
         } else {
             return new SwingScilabFileChooser();
@@ -54,8 +54,7 @@ public class ScilabFileChooserBridge {
      * @return the created ExportFileChooser
      */
     public static SimpleFileChooser createExportFileChooser(Integer figureUID) {
-        boolean ismacOS = System.getProperty("os.name").toLowerCase().contains("mac");
-        if (ismacOS == true) {
+        if (OS.get() == OS.MAC || OS.get() == OS.WINDOWS) {
             return new JFXScilabExportFileChooser(figureUID);
         } else {
             return new SwingScilabExportFileChooser(figureUID);
