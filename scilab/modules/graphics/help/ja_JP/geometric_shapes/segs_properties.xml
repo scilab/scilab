@@ -309,13 +309,18 @@ xrect(s.clip_box);
         <title>履歴</title>
         <revhistory>
             <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>line_style の値 0 は廃止されました, 代わりに 1 を
-                    使用してください (両者は共に実線で等価です).
-                    値 0 は Scilab 5.4.1 でエラーとなります.
-                </revremark>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.segs_color_alpha</literal>, <literal>.mark_background_alpha</literal>
+                        and <literal>.mark_foreground_alpha</literal> properties introduced.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription><para>Setting <literal>line_style</literal> to 0 (obsolete since Scilab 5.4.0) returns an error: use 1 instead (both are equivalent for SOLID).</para></revdescription>
             </revision>
         </revhistory>
     </refsection>
 </refentry>
-

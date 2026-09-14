@@ -215,11 +215,19 @@ a.data_bounds = [-5,-5 ; 5,5];
         <title>履歴</title>
         <revhistory>
             <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>line_style 値 0 は廃止されています. 代わりに 1 を使用してください
-                    (両者は共に SOLIDを意味します).
-                    Scilab 5.4.1 以降, 値0を使用するとエラーとなります.
-                </revremark>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.color_alpha</literal> property introduced.
+                    </para>
+                    <para>
+                        New property <literal>arrow_style</literal> added.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription><para>Setting <literal>line_style</literal> to 0 (obsolete since Scilab 5.4.0) returns an error: use 1 instead (both are equivalent for SOLID).</para></revdescription>
             </revision>
         </revhistory>
     </refsection>

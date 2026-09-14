@@ -315,10 +315,17 @@ r.clip_state="off"
         <title>履歴</title>
         <revhistory>
             <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>line_style の値 0 が廃止されました. 代わりに1を使用してください
-                    (両者は共に実線です). 値 0 は Scilab 5.4.1でエラーとなります.
-                </revremark>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.background_alpha</literal>, <literal>.foreground_alpha</literal>,
+                        <literal>.mark_background_alpha</literal> and <literal>.mark_foreground_alpha</literal> properties introduced.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription><para>Setting <literal>line_style</literal> to 0 (obsolete since Scilab 5.4.0) returns an error: use 1 instead (both are equivalent for SOLID).</para></revdescription>
             </revision>
         </revhistory>
     </refsection>

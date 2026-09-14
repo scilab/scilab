@@ -276,10 +276,6 @@ title("arrow_style = ""vback""")
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>
-            </revision>
-            <revision>
                 <revnumber>2027.0.0</revnumber>
                 <revdescription>
                     <para>
@@ -289,6 +285,10 @@ title("arrow_style = ""vback""")
                         New property <literal>arrow_style</literal> added.
                     </para>
                 </revdescription>
+            </revision>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription><para>Setting <literal>line_style</literal> to 0 (obsolete since Scilab 5.4.0) returns an error: use 1 instead (both are equivalent for SOLID).</para></revdescription>
             </revision>
         </revhistory>
     </refsection>

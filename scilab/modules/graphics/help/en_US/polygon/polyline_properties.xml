@@ -653,11 +653,39 @@ p.line_style=4;
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>5.4.0</revnumber>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.background_alpha</literal>, <literal>.foreground_alpha</literal>,
+                        <literal>.mark_background_alpha</literal> and <literal>.mark_foreground_alpha</literal> properties introduced.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>2023.0.0</revnumber>
                 <revremark>
-                  line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID).
-                  New line_style values 9 and 10 added.
+                  line_style value 0 is no more available.
                 </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    New property <literal>.datatip_display_mode</literal> introduced.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para><literal>.mark_foreground</literal>, <literal>.mark_background</literal>
+                                    and <literal>.mark_size</literal> can now be row vectors: Each point
+                                    can have its own individual mark colors and size.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </revdescription>
             </revision>
             <revision>
                 <revnumber>5.5.0</revnumber>
@@ -683,38 +711,10 @@ p.line_style=4;
                 </revdescription>
             </revision>
             <revision>
-                <revnumber>6.0.0</revnumber>
+                <revnumber>5.4.1</revnumber>
                 <revdescription>
-                    <para>
-                        <itemizedlist>
-                            <listitem>
-                                <para>
-                                    New property <literal>.datatip_display_mode</literal> introduced.
-                                </para>
-                            </listitem>
-                            <listitem>
-                                <para><literal>.mark_foreground</literal>, <literal>.mark_background</literal>
-                                    and <literal>.mark_size</literal> can now be row vectors: Each point
-                                    can have its own individual mark colors and size.
-                                </para>
-                            </listitem>
-                        </itemizedlist>
-                    </para>
-                </revdescription>
-            </revision>
-            <revision>
-                <revnumber>2023.0.0</revnumber>
-                <revremark>
-                  line_style value 0 is no more available.
-                </revremark>
-            </revision>
-            <revision>
-                <revnumber>2027.0.0</revnumber>
-                <revdescription>
-                    <para>
-                        <literal>.background_alpha</literal>, <literal>.foreground_alpha</literal>,
-                        <literal>.mark_background_alpha</literal> and <literal>.mark_foreground_alpha</literal> properties introduced.
-                    </para>
+                    <para>Setting <literal>line_style</literal> to 0 (obsolete since Scilab 5.4.0) returns an error: use 1 instead (both are equivalent for SOLID).</para>
+                    <para>New line_style values 9 and 10 added.</para>
                 </revdescription>
             </revision>
         </revhistory>

@@ -243,4 +243,21 @@ arc.visible="off";
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>.background_alpha</literal> and <literal>.foreground_alpha</literal> properties introduced.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription><para>Setting <literal>line_style</literal> to 0 (obsolete since Scilab 5.4.0) returns an error: use 1 instead (both are equivalent for SOLID).</para></revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
