@@ -174,12 +174,17 @@ void Parser::disableStopOnFirstError(void)
 #include <io.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <atomic>
+#include <process.h>
 FILE* fmemopen(void* buf, size_t len, const char* type)
 {
     int fd;
     FILE* fp;
     char szFile[MAX_PATH];
-    sprintf(szFile, "%s\\command.temp", getTMPDIR());
+    static std::atomic<unsigned int> uiCounter(0);
+    char* tmpdir = getTMPDIR();
+    sprintf(szFile, "%s\\command_%u_%u.temp", tmpdir, (unsigned int)_getpid(), uiCounter++);
+    FREE(tmpdir);
 
     if (_sopen_s(&fd, szFile, _O_CREAT | _O_SHORT_LIVED | _O_TEMPORARY | _O_RDWR | _O_NOINHERIT, _SH_DENYRW, _S_IREAD | _S_IWRITE) != 0)
     {
@@ -212,14 +217,22 @@ void ParserSingleInstance::parse(const char *command)
     yylloc.first_line = yylloc.last_line = 1;
     yylloc.first_column = yylloc.last_column = 1;
 
-    yyin = fmemopen((void*)command, len, "r");
-
     ParserSingleInstance::disableStrictMode();
     ParserSingleInstance::setFileName(L"prompt");
     ParserSingleInstance::setTree(nullptr);
     ParserSingleInstance::setExitStatus(Parser::Succeded);
     ParserSingleInstance::resetControlStatus();
     ParserSingleInstance::resetErrorMessage();
+
+    yyin = fmemopen((void*)command, len, "r");
+    if (!yyin)
+    {
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("%ls: Cannot create temporary buffer to parse the command.\n").c_str(), L"parser");
+        ParserSingleInstance::appendErrorMessage(szError);
+        ParserSingleInstance::setExitStatus(Parser::Failed);
+        return;
+    }
 
     yyparse();
 
