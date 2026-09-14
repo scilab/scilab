@@ -105,7 +105,7 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "CompanyName", "Dassault SystÃ¨mes"
+            VALUE "CompanyName", "Dassault Systèmes S.E."
             VALUE "FileDescription", "Scilab 2027.0.0 (Console)"
             VALUE "FileVersion", "2027, 0, 0, 0"
             VALUE "InternalName", "WScilex"
