@@ -22,25 +22,25 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>pal:</term>
+                <term>pal</term>
                 <listitem>
                     <para> palette tlist; the palette to export</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>path:</term>
+                <term>path</term>
                 <listitem>
                     <para> string path; where to export the palette (HDF5 formatted file)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>status:</term>
+                <term>status</term>
                 <listitem>
                     <para> boolean; status of the export</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>msg:</term>
+                <term>msg</term>
                 <listitem>
                     <para> string; error message</para>
                 </listitem>

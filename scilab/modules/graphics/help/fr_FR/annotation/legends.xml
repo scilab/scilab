@@ -25,7 +25,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>style :</term>
+                <term>style</term>
                 <listitem>
                     <para>vecteur ligne entier de taille n (les styles de dessin de chaque
                         courbe, troisième paramètre de plot2d) ou une matrice d'entiers 2 x

@@ -34,13 +34,13 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>instr:</term>
+                <term>instr</term>
                 <listitem>
                     <para>a 1-by-1 matrix of strings, an expression to evaluate</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>expectedmsg :</term>
+                <term>expectedmsg</term>
                 <listitem>
                     <para>a string or a string vector, the error message to be
                         produced
@@ -48,7 +48,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>expectederrnb :</term>
+                <term>expectederrnb</term>
                 <listitem>
                     <para>a 1-by-1 matrix of doubles, integer values, the error number
                         (default expectederrnb=[]).
@@ -56,7 +56,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>a1 :</term>
+                <term>a1</term>
                 <listitem>
                     <para>an extra localization argument, passed to the
                         <literal>msprintf</literal> function.
@@ -64,7 +64,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag :</term>
+                <term>flag</term>
                 <listitem>
                     <para>a 1-by-1 matrix of boolean, %t if the correct error message
                         was produced, %f if not
@@ -72,7 +72,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>errmsg :</term>
+                <term>errmsg</term>
                 <listitem>
                     <para>a 1-by-1 matrix of strings, the error message. If flag==%t,
                         then errormsg=="". If flag==%f, then errmsg contains the error

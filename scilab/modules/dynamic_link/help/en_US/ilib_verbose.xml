@@ -31,7 +31,7 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>level :</term>
+                <term>level</term>
                 <listitem>
                     <para>level of verbose for dynamic link functions.</para>
                     <para>0 : no message</para>

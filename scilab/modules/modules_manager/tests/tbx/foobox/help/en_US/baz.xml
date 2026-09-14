@@ -32,7 +32,7 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>txt:</term>
+                <term>txt</term>
                 <listitem>
                     <para> a single string. Text to display</para>
                 </listitem>

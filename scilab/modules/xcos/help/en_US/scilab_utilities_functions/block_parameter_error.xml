@@ -30,13 +30,13 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>inform:</term>
+                <term>inform</term>
                 <listitem>
                     <para> a string, type of error</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>expected:</term>
+                <term>expected</term>
                 <listitem>
                     <para> a string, the expected value or the range of expected values.</para>
                 </listitem>

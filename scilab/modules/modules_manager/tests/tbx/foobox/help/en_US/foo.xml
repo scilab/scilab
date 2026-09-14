@@ -32,19 +32,19 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>res:</term>
+                <term>res</term>
                 <listitem>
                     <para> boolean. Return value</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>txt:</term>
+                <term>txt</term>
                 <listitem>
                     <para> a single string</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>nb:</term>
+                <term>nb</term>
                 <listitem>
                     <para> a numeric value</para>
                 </listitem>

@@ -31,25 +31,25 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>computed :</term>
+                <term>computed</term>
                 <listitem>
                     <para> a matrix of doubles, the computed value</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>expected :</term>
+                <term>expected</term>
                 <listitem>
                     <para> a matrix of doubles, the expected value</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>basis :</term>
+                <term>basis</term>
                 <listitem>
                     <para> a 1-by-1 matrix of doubles, integer values,  the basis (default basis=10)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>d :</term>
+                <term>d</term>
                 <listitem>
                     <para> a matrix of doubles, the number of significant digits.</para>
                 </listitem>

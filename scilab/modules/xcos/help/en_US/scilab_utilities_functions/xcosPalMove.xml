@@ -13,13 +13,13 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>source:</term>
+                <term>source</term>
                 <listitem>
                     <para> string array; the source category path</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>target:</term>
+                <term>target</term>
                 <listitem>
                     <para> string array; the target category path</para>
                 </listitem>

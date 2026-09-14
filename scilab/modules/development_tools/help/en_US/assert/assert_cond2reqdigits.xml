@@ -32,25 +32,25 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>condition :</term>
+                <term>condition</term>
                 <listitem>
                     <para> a matrix of doubles, the condition number. The condition number must be strictly positive.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>offset :</term>
+                <term>offset</term>
                 <listitem>
                     <para> a matrix of doubles, a shift for the number of required base-b digits (default offset=0). For example, offset=-1 produces a smaller number of required digits (reduces the required accuracy), offset=1 produces a larger number of required digits (increases the required accuracy).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>b :</term>
+                <term>b</term>
                 <listitem>
                     <para> a matrix of doubles, integer values,  the b (default b = 10).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>d :</term>
+                <term>d</term>
                 <listitem>
                     <para> a matrix of doubles, the number of required digits. This is a positive real, between 0 and 15.95, if b=10 or between 0 and 53, if b=2.</para>
                 </listitem>

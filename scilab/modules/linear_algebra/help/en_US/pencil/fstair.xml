@@ -100,31 +100,31 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>muk:  </term>
+                <term>muk</term>
                 <listitem>
                     <para>integer array of dimension (n). Contains the column dimensions mu(k)  (k=1,...,nblcks) of the submatrices having full column  rank in the pencil sE(eps)-A(eps)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>nuk:  </term>
+                <term>nuk</term>
                 <listitem>
                     <para>integer array of dimension (m+1). Contains the row dimensions nu(k)  (k=1,...,nblcks) of the submatrices having full row  rank in the pencil sE(eps)-A(eps)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>muk0:  </term>
+                <term>muk0</term>
                 <listitem>
                     <para>integer array of dimension (n). Contains the column dimensions mu(k)  (k=1,...,nblcks) of the submatrices having full column  rank in the pencil sE(eps,inf)-A(eps,inf)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>nuk:  </term>
+                <term>nuk</term>
                 <listitem>
                     <para>integer array of dimension (m+1). Contains the row dimensions nu(k)  (k=1,...,nblcks) of the submatrices having full row  rank in the pencil sE(eps,inf)-A(eps,inf)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>mnei:  </term>
+                <term>mnei</term>
                 <listitem>
                     <para>integer array of dimension (4). mnei(1) = row dimension of sE(eps)-A(eps)</para>
                 </listitem>

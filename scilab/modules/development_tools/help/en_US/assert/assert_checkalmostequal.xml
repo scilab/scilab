@@ -37,7 +37,7 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>computed:</term>
+                <term>computed</term>
                 <listitem>
                     <para>
                       matrix or hypermatrix or sparse matrix of decimal real or complex numbers;
@@ -47,7 +47,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>expected :</term>
+                <term>expected</term>
                 <listitem>
                     <para>
                       matrix or hypermatrix or sparse matrix of decimal real or complex numbers;
@@ -61,26 +61,26 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>reltol :</term>
+                <term>reltol</term>
                 <listitem>
                     <para>real number: the relative tolerance (default reltol=sqrt(%eps)).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>abstol :</term>
+                <term>abstol</term>
                 <listitem>
                     <para>real number: the absolute tolerance (default abstol=0).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>comptype :</term>
+                <term>comptype</term>
                 <listitem>
                   <para>keyword <literal>"matrix"</literal> or <literal>"element"</literal>
                     (default <literal>"element"</literal>). The comparison type.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag :</term>
+                <term>flag</term>
                 <listitem>
                   <para>
                     <literal>%t</literal> if computed is close to expected; else <literal>%f</literal>.
@@ -88,7 +88,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>errmsg :</term>
+                <term>errmsg</term>
                 <listitem>
                     <para>
                       Unique string: the error message. If flag==%t, then errormsg=="".

@@ -24,19 +24,19 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>name:</term>
+                <term>name</term>
                 <listitem>
                     <para> string; the optional palette name</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>scs_m:</term>
+                <term>scs_m</term>
                 <listitem>
                     <para> diagram mlist; the optional source diagram</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>pal:</term>
+                <term>pal</term>
                 <listitem>
                     <para> palette tlist; the palette instance</para>
                 </listitem>

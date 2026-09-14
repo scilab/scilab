@@ -68,7 +68,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>style:</term>
+                <term>style</term>
                 <listitem>
                     <para>a string, 'grouped' or 'stacked' (default: 'grouped').</para>
                 </listitem>

@@ -31,7 +31,7 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>X, Y, Z:</term>
+                <term>X, Y, Z</term>
                 <listitem>
                     <para>3 real matrices defining a data structure.</para>
                 </listitem>

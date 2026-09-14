@@ -13,10 +13,18 @@
 
   <xsl:variable name="inline-threshold" select="8"/>
 
+  <!-- The arguments section is identified by its role. Pages not tagged yet
+       fall back on the section title. Never pick any other titled section:
+       the description one usually holds a variablelist too. -->
+  <xsl:variable name="args-section"
+                select="(//d:refsection[@role='arguments'] | //d:refsection[d:title='Arguments'])[1]"/>
+
+  <xsl:variable name="args-entries" select="$args-section/d:variablelist/d:varlistentry"/>
+
   <xsl:variable name="max-inline-length">
     <xsl:choose>
-      <xsl:when test="count(//d:refsection[d:title='Arguments']/d:variablelist/d:varlistentry[string-length(normalize-space(d:term)) &lt;= $inline-threshold]) &gt; 0">
-        <xsl:for-each select="//d:refsection[d:title='Arguments']/d:variablelist/d:varlistentry[string-length(normalize-space(d:term)) &lt;= $inline-threshold]">
+      <xsl:when test="count($args-entries[string-length(normalize-space(d:term)) &lt;= $inline-threshold]) &gt; 0">
+        <xsl:for-each select="$args-entries[string-length(normalize-space(d:term)) &lt;= $inline-threshold]">
           <xsl:sort select="string-length(normalize-space(d:term))" data-type="number" order="descending"/>
           <xsl:if test="position() = 1">
             <xsl:value-of select="string-length(normalize-space(d:term))"/>
@@ -44,12 +52,17 @@
   <xsl:template match="d:refentry">
     <xsl:value-of select="normalize-space(d:refnamediv/d:refname)"/>
     <xsl:text>&#10;    </xsl:text><xsl:value-of select="normalize-space(d:refnamediv/d:refpurpose)"/>
-    <xsl:text>&#10;&#10;    Syntax:&#10;</xsl:text>
-    <xsl:call-template name="emit-lines">
-      <xsl:with-param name="text" select="string(d:refsynopsisdiv/d:synopsis)"/>
-    </xsl:call-template>
-    <xsl:text>&#10;    Arguments:&#10;</xsl:text>
-    <xsl:apply-templates select="d:refsection[d:title]/d:variablelist/d:varlistentry"/>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:if test="normalize-space(d:refsynopsisdiv/d:synopsis) != ''">
+      <xsl:text>&#10;    Syntax:&#10;</xsl:text>
+      <xsl:call-template name="emit-lines">
+        <xsl:with-param name="text" select="string(d:refsynopsisdiv/d:synopsis)"/>
+      </xsl:call-template>
+    </xsl:if>
+    <xsl:if test="count($args-entries) &gt; 0">
+      <xsl:text>&#10;    Arguments:&#10;</xsl:text>
+      <xsl:apply-templates select="$args-entries"/>
+    </xsl:if>
     <xsl:apply-templates select="d:refsection[@role='see also']"/>
     <xsl:text>&#10;Type "doc </xsl:text>
     <xsl:value-of select="normalize-space(@xml:id)"/>

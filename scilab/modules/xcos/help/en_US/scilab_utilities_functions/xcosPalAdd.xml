@@ -25,25 +25,25 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>pal:</term>
+                <term>pal</term>
                 <listitem>
                     <para> palette tlist or path string; the palette to add</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>category:</term>
+                <term>category</term>
                 <listitem>
                     <para> string array; the optional category path to use</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>status:</term>
+                <term>status</term>
                 <listitem>
                     <para> boolean; the status of the operation</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>msg:</term>
+                <term>msg</term>
                 <listitem>
                     <para> string; the error message</para>
                 </listitem>

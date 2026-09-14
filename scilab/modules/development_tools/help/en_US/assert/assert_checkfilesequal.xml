@@ -32,31 +32,31 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>filecomp :</term>
+                <term>filecomp</term>
                 <listitem>
                     <para> a 1-by-1 matrix of strings, the computed file.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>fileref :</term>
+                <term>fileref</term>
                 <listitem>
                     <para> a 1-by-1 matrix of strings, the reference file.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>compfun :</term>
+                <term>compfun</term>
                 <listitem>
                     <para> a function or a list, the comparison function (default compfun = []). If no comparison function is used, the equality operator "==" is used. See below for details.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag :</term>
+                <term>flag</term>
                 <listitem>
                     <para> a 1-by-1 matrix of boolean, %t if computed is close to expected, %f if not</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>errmsg :</term>
+                <term>errmsg</term>
                 <listitem>
                     <para> a 1-by-1 matrix of strings, the error message. If flag==%t, then errormsg=="". If flag==%f, then errmsg contains the error message.</para>
                 </listitem>

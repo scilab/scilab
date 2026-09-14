@@ -32,19 +32,19 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>condition:</term>
+                <term>condition</term>
                 <listitem>
                     <para> a matrix of booleans</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag :</term>
+                <term>flag</term>
                 <listitem>
                     <para> a 1-by-1 matrix of boolean, %t if condition is false, %f if not</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>errmsg :</term>
+                <term>errmsg</term>
                 <listitem>
                     <para> a 1-by-1 matrix of strings, the error message. If flag==%t, then errormsg=="". If flag==%f, then errmsg contains the error message.</para>
                 </listitem>

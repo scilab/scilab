@@ -32,31 +32,31 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>a :</term>
+                <term>a</term>
                 <listitem>
                     <para> a 1-by-1 matrix of doubles, the first value to be compared</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>b :</term>
+                <term>b</term>
                 <listitem>
                     <para> a 1-by-1 matrix of doubles, the second value to be compared</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>reltol :</term>
+                <term>reltol</term>
                 <listitem>
                     <para> a 1-by-1 matrix of doubles, the relative tolerance (default reltol=sqrt(%eps)).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>abstol :</term>
+                <term>abstol</term>
                 <listitem>
                     <para> a 1-by-1 matrix of doubles, the absolute tolerance (default abstol=0).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>order :</term>
+                <term>order</term>
                 <listitem>
                     <para> a 1-by-1 matrix of doubles, integer values,  the order. Returns order=0 is a is almost equal to b, order=-1 if a &lt; b, order=+1 if a &gt; b.</para>
                 </listitem>

@@ -31,13 +31,13 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>expectedmsg :</term>
+                <term>expectedmsg</term>
                 <listitem>
                     <para> a 1-by-1 matrix of strings, the error message to be produced</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>expectederrnb :</term>
+                <term>expectederrnb</term>
                 <listitem>
                     <para> a 1-by-1 matrix of doubles, integer values,  the error number (default expectederrnb=[]).</para>
                 </listitem>

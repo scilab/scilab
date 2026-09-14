@@ -20,19 +20,19 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>pal:</term>
+                <term>pal</term>
                 <listitem>
                     <para>the palette to update</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>block:</term>
+                <term>block</term>
                 <listitem>
                     <para>the block to add to the palette</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>pal_block_img:</term>
+                <term>pal_block_img</term>
                 <listitem>
                     <para>the block icon to use on the palette
                         manager (png, jpg, gif).
@@ -40,7 +40,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>style:</term>
+                <term>style</term>
                 <listitem>
                     <para>the style to apply to the block</para>
                 </listitem>

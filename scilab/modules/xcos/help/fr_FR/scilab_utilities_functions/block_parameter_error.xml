@@ -30,13 +30,13 @@
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>inform:</term>
+                <term>inform</term>
                 <listitem>
                     <para> une chaîne, le type d'erreur</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>expected:</term>
+                <term>expected</term>
                 <listitem>
                     <para> une chaîne, la valeur ou la gamme de valeurs attendues</para>
                 </listitem>

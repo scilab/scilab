@@ -13,7 +13,7 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>category:</term>
+                <term>category</term>
                 <listitem>
                     <para> string array; the category path to delete</para>
                 </listitem>

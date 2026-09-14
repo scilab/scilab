@@ -63,14 +63,14 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>x :</term>
+                <term>x</term>
                 <listitem>
                     <para>real vector (final value of function argument, estimated zero).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>v :</term>
+                <term>v</term>
                 <listitem>
                     <para>optional real vector: value of function at x.</para>
                 </listitem>

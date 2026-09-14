@@ -49,13 +49,13 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>x :</term>
+                <term>x</term>
                 <listitem>
                     <para>vecteur réel (solution estimée).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>v :</term>
+                <term>v</term>
                 <listitem>
                     <para>vecteur réel facultatif: valeur de la fonction en x.</para>
                 </listitem>

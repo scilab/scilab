@@ -31,25 +31,25 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>computed:</term>
+                <term>computed</term>
                 <listitem>
                     <para> the computed result</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>expected :</term>
+                <term>expected</term>
                 <listitem>
                     <para> the expected result</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag :</term>
+                <term>flag</term>
                 <listitem>
                     <para> a boolean, %t if computed is equal to expected, %f if not</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>errmsg :</term>
+                <term>errmsg</term>
                 <listitem>
                     <para>
                         a string, the error message. If flag==%t, then errormsg=="".

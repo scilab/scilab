@@ -28,19 +28,19 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>A:  </term>
+                <term>A</term>
                 <listitem>
                     <para>a real square matrix</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>X:  </term>
+                <term>X</term>
                 <listitem>
                     <para>a real square invertible matrix</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>E:  </term>
+                <term>E</term>
                 <listitem>
                     <para>
                         a real square matrix (same dimension as <literal>A</literal>)
@@ -48,7 +48,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Y:  </term>
+                <term>Y</term>
                 <listitem>
                     <para>a real square invertible matrix.</para>
                 </listitem>
