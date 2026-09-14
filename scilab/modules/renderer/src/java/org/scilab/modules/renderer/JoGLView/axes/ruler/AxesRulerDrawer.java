@@ -68,6 +68,13 @@ public class AxesRulerDrawer {
     /**Ticks sprites distance in pixels. */
     private static final int SPRITE_DISTANCE = 12;
 
+    /**
+     * Beyond these exponents, Math.pow(10, .) underflows to 0.0 (which leads to an
+     * infinite loop in LogarithmicGraduations.getAllValues) or overflows to Infinity.
+     */
+    private static final double MIN_LOG_EXPONENT = -307;
+    private static final double MAX_LOG_EXPONENT = 307;
+
 
     private final RulerDrawerManager rulerDrawerManager;
 
@@ -502,8 +509,10 @@ public class AxesRulerDrawer {
         }
 
         if (axis.getLogFlag()) {
-            min = Math.pow(10, min);
-            max = Math.pow(10, max);
+            // Ensure the log-scale exponents to the representable range so that
+            // Math.pow(10, .) always returns a strictly positive, finite bound.
+            min = Math.pow(10, Math.max(MIN_LOG_EXPONENT, Math.min(MAX_LOG_EXPONENT, min)));
+            max = Math.pow(10, Math.max(MIN_LOG_EXPONENT, Math.min(MAX_LOG_EXPONENT, max)));
         }
         rulerModel.setValues(min, max);
     }

@@ -81,6 +81,13 @@ public final class LogarithmicGraduations extends AbstractGraduations implements
     public List<Double> getAllValues() {
         if (allValues == null) {
             allValues = new ArrayList<Double>();
+
+            // A non-positive lower bound is meaningless on a log scale
+            // And in this case, currentValue would stay 0 in the loop below that will not exits (infinite loop)
+            if (getLowerBound() <= 0) {
+                return allValues;
+            }
+
             int currentExponent = (int) Math.ceil(Math.log10(getLowerBound()));
             double currentValue = Math.pow(10, currentExponent);
             final double step = Math.pow(10, stepExponent);
