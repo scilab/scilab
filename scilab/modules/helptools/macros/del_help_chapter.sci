@@ -98,4 +98,10 @@ function del_help_chapter(help_to_del,modulemode)
         end
     end
 
+    // Reflect the removal in the help browser (if open)
+    // -------------------------------------------------------------------------
+    if ~modulemode then
+        helpbrowser_update();
+    end
+
 endfunction

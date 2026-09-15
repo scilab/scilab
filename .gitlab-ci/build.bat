@@ -104,8 +104,9 @@ devenv %SCILAB_SOLUTION% /build "Release|%PLATFORM%" > ..\%LOG_PATH%\build_sln_%
 IF %ERRORLEVEL% NEQ 0 tail --lines=20 ..\%LOG_PATH%\build_sln_%CI_COMMIT_SHORT_SHA%.log 1>&2 & exit 1
 devenv %SCILAB_SOLUTION% /build "Release|%PLATFORM%" /project buildhelp > ..\%LOG_PATH%\build_help_%CI_COMMIT_SHORT_SHA%.log
 IF %ERRORLEVEL% NEQ 0 tail --lines=20 ..\%LOG_PATH%\build_help_%CI_COMMIT_SHORT_SHA%.log 1>&2 & exit 1
+REM check the pre-generated help images and pack help_images.zip
 devenv %SCILAB_SOLUTION% /build "Release|%PLATFORM%" /project buildDoc > ..\%LOG_PATH%\build_doc_%CI_COMMIT_SHORT_SHA%.log
-IF %ERRORLEVEL% NEQ 0 tail --lines=20 ..\%LOG_PATH%\build_doc_%CI_COMMIT_SHORT_SHA%.log 1>&2 & exit 1
+IF %ERRORLEVEL% NEQ 0 tail --lines=40 ..\%LOG_PATH%\build_doc_%CI_COMMIT_SHORT_SHA%.log 1>&2 & exit 1
 devenv %SCILAB_SOLUTION% /build "Release|%PLATFORM%" /project buildjavadoc > ..\%LOG_PATH%\build_javadoc_%CI_COMMIT_SHORT_SHA%.log
 IF %ERRORLEVEL% NEQ 0 tail --lines=20 ..\%LOG_PATH%\build_javadoc_%CI_COMMIT_SHORT_SHA%.log 1>&2 & exit 1
 

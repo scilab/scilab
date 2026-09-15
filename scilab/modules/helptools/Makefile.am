@@ -81,7 +81,7 @@ libscihelptools_la_root_DATA =  license.txt
 
 #### helptools : init scripts ####
 libscihelptools_la_etcdir = $(mydatadir)/etc
-libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start etc/MAIN_CHAPTERS etc/fopconf.xml etc/SciDocConf.xml
+libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start etc/MAIN_CHAPTERS etc/fopconf.xml etc/SciDocConf.xml etc/browser.xslt
 
 #### helptools : XML gui ####
 libhelptools_la_guidir = $(mydatadir)/gui
@@ -142,6 +142,23 @@ data/pages/ban-en_US.png
 
 #### helptools : demos functions ####
 MACROSDIRSEXT = macros/demotools
+
+#### helptools : JCEF help browser web shell (loaded at runtime) ####
+libscihelptools_la_src_webdir = $(mydatadir)/src/web
+libscihelptools_la_src_web_DATA = \
+src/web/docsearch.js \
+src/web/doczoom.js \
+src/web/index.html \
+src/web/scilab-init.js \
+src/web/scilab.min.css \
+src/web/scilab.min.js \
+src/web/shell.css \
+src/web/shell.js \
+src/web/style.css
+
+#### helptools : help images pre-generation, run by tbx_build_help() ####
+libscihelptools_la_toolsdir = $(mydatadir)/tools
+libscihelptools_la_tools_DATA = tools/generate_help_images.sce
 
 mostlyclean-local:
 	rm -rf web javaHelp html pdf inline

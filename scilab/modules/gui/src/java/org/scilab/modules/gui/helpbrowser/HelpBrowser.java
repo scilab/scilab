@@ -65,4 +65,9 @@ public interface HelpBrowser extends Dockable {
      * Decrease the font in the viewer
      */
     void decreaseFont();
+
+    /**
+     * Reset the font of the viewer to its default size
+     */
+    void resetFont();
 }

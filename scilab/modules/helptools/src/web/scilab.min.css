@@ -1,0 +1,116 @@
+/*
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Antoine ELIAS
+ *
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ */
+
+/*
+ * highlight.js theme for Scilab Help Browser
+ *
+ * Light mode follows Preferences > Colors (the SciNotes palette) through the
+ * --sci-<item>-color / -weight / -style variables set on the root element by
+ * scilab-init.js. The fallback values are the SciNotes defaults, used when
+ * the page is displayed outside Scilab. Dark mode keeps its own lightened
+ * palette: the preferences only describe a light theme.
+ */
+
+/* Light mode — Preferences > Colors, fallback = SciNotes defaults */
+.hljs {
+    background: transparent;
+    color: var(--sci-default-color, #000000);
+}
+.hljs-keyword {                                           /* structure: function, endfunction, if, for, while, end... */
+    color: var(--sci-structure-color, #A020F0);
+    font-weight: var(--sci-structure-weight, normal);
+    font-style: var(--sci-structure-style, normal);
+}
+.hljs-built_in {                                          /* primitives: sin, plot, disp, gcf */
+    color: var(--sci-primitive-color, #32B9B9);
+    font-weight: var(--sci-primitive-weight, normal);
+    font-style: var(--sci-primitive-style, normal);
+}
+.hljs-literal {                                           /* constants: %pi, %t, %f, %eps */
+    color: var(--sci-constantes-color, #DA70D6);
+    font-weight: var(--sci-constantes-weight, normal);
+    font-style: var(--sci-constantes-style, normal);
+}
+.hljs-number {                                            /* numeric literals */
+    color: var(--sci-number-color, #BC8F8F);
+    font-weight: var(--sci-number-weight, normal);
+    font-style: var(--sci-number-style, normal);
+}
+.hljs-string {                                            /* strings */
+    color: var(--sci-string-color, #BC8F8F);
+    font-weight: var(--sci-string-weight, normal);
+    font-style: var(--sci-string-style, normal);
+}
+.hljs-comment {                                           /* comments */
+    color: var(--sci-comment-color, #01A801);
+    font-weight: var(--sci-comment-weight, normal);
+    font-style: var(--sci-comment-style, italic);
+}
+.hljs-operator {                                          /* operators: +, -, *, / */
+    color: var(--sci-operator-color, #5C5C5C);
+    font-weight: var(--sci-operator-weight, normal);
+    font-style: var(--sci-operator-style, normal);
+}
+.hljs-title,                                              /* function name (MacroInFile) */
+.hljs-function .hljs-title {
+    color: var(--sci-macroinfile-color, #000000);
+    font-weight: var(--sci-macroinfile-weight, bold);
+    font-style: var(--sci-macroinfile-style, normal);
+}
+.hljs-params,                                             /* input/output args */
+.hljs-function .hljs-params {
+    color: var(--sci-ioargs-color, #834310);
+    font-weight: var(--sci-ioargs-weight, bold);
+    font-style: var(--sci-ioargs-style, normal);
+}
+.hljs-meta,                                               /* macros */
+.hljs-type {
+    color: var(--sci-macro-color, #AE5CB0);
+    font-weight: var(--sci-macro-weight, normal);
+    font-style: var(--sci-macro-style, normal);
+}
+.hljs-symbol {                                            /* special: $, : */
+    color: var(--sci-special-color, #FFAA00);
+    font-weight: var(--sci-special-weight, normal);
+    font-style: var(--sci-special-style, normal);
+}
+.hljs-punctuation {                                       /* brackets: (), [], {} */
+    color: var(--sci-openclose-color, #4A55DB);
+    font-weight: var(--sci-openclose-weight, normal);
+    font-style: var(--sci-openclose-style, normal);
+}
+.hljs-variable {                                          /* identifiers */
+    color: var(--sci-identifier-color, #000000);
+    font-weight: var(--sci-identifier-weight, normal);
+    font-style: var(--sci-identifier-style, normal);
+}
+
+/* Dark mode — lightened variants of the SciNotes palette (colors only:
+   bold / italic still follow the preferences) */
+@media (prefers-color-scheme: dark) {
+    .hljs {
+        color: #e2e8f0;
+    }
+    .hljs-keyword { color: #C898FF; }                     /* structure keywords */
+    .hljs-built_in { color: #5CD6D6; }                    /* primitives */
+    .hljs-literal { color: #E8A0E8; }                     /* constants */
+    .hljs-number { color: #D4AAAA; }                      /* numbers */
+    .hljs-string { color: #D4AAAA; }                      /* strings */
+    .hljs-comment { color: #64AE64; }                     /* comments */
+    .hljs-operator { color: #9E9E9E; }                    /* operators */
+    .hljs-function .hljs-title { color: #e2e8f0; }        /* function name */
+    .hljs-function .hljs-params { color: #C08050; }       /* function params */
+    .hljs-title { color: #e2e8f0; }
+    .hljs-params { color: #C08050; }
+    .hljs-meta { color: #C88AD0; }                        /* macros */
+    .hljs-symbol { color: #FFCC55; }                      /* special */
+    .hljs-punctuation { color: #7B85E8; }                 /* brackets */
+    .hljs-variable { color: #e2e8f0; }                    /* identifiers */
+    .hljs-type { color: #C88AD0; }
+}

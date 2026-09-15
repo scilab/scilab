@@ -1,0 +1,608 @@
+/*
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Antoine ELIAS
+ *
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ */
+
+/* ================================================================== */
+/* Scilab Help Browser - Modern CSS                                    */
+/* For use with browser.xslt JCEF help browser                        */
+/* ================================================================== */
+
+:root {
+    --color-bg: #ffffff;
+    --color-text: #1a1a2e;
+    --color-text-secondary: #555;
+    --color-accent: #e85d04;
+    --color-link: #2563eb;
+    --color-link-hover: #1d4ed8;
+    --color-term: #b91c1c;
+    --color-border: #e2e8f0;
+    --color-code-bg: #f8fafc;
+    --color-code-border: #e2e8f0;
+    --color-synopsis-bg: #f0f4ff;
+    --color-synopsis-border: #c7d2fe;
+    --color-section-title: #1e3a5f;
+    --color-note-bg: #eff6ff;
+    --color-note-border: #93c5fd;
+    --color-warning-bg: #fef3c7;
+    --color-warning-border: #fbbf24;
+    --color-revhistory-header: #e8eaf6;
+    --color-table-header: #f1f5f9;
+    --color-table-border: #cbd5e1;
+    --color-image-placeholder: #f1f5f9;
+    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+    --radius: 6px;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg: #0f172a;
+        --color-text: #e2e8f0;
+        --color-text-secondary: #94a3b8;
+        --color-accent: #fb923c;
+        --color-link: #60a5fa;
+        --color-link-hover: #93c5fd;
+        --color-term: #f87171;
+        --color-border: #334155;
+        --color-code-bg: #1e293b;
+        --color-code-border: #334155;
+        --color-synopsis-bg: #1e293b;
+        --color-synopsis-border: #4338ca;
+        --color-section-title: #93c5fd;
+        --color-note-bg: #172554;
+        --color-note-border: #1d4ed8;
+        --color-warning-bg: #451a03;
+        --color-warning-border: #d97706;
+        --color-revhistory-header: #1e293b;
+        --color-table-header: #1e293b;
+        --color-table-border: #334155;
+        --color-image-placeholder: #1e293b;
+    }
+}
+
+/* ================================================================== */
+/* BASE                                                                */
+/* ================================================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    /* Root size: every size in the page is in rem, so this single value
+       sets the overall reading scale. 15px keeps long reference pages
+       comfortable without breaking the layout. */
+    font-size: 15px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+}
+
+article.refentry {
+    margin: 0 auto;
+    padding: 1.5rem 2rem 3rem;
+}
+
+/* Code and literals must show the characters as written: the monospace
+   fonts above (JetBrains Mono, Fira Code, Cascadia Code) ship ligatures
+   that merge "<=" ">=" "->" "==" ... into a single glyph. */
+pre,
+code,
+kbd,
+samp,
+dl.variablelist dt.term,
+table.revhistory td.revnumber {
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+}
+
+/* ================================================================== */
+/* HEADER                                                              */
+/* ================================================================== */
+
+header.refnamediv {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--color-border);
+}
+
+header.refnamediv h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.refname {
+    color: var(--color-accent);
+}
+
+.refpurpose-sep {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+}
+
+.refpurpose {
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+}
+
+/* ================================================================== */
+/* SECTIONS                                                            */
+/* ================================================================== */
+
+section.refsection,
+section.refsynopsisdiv {
+    margin-bottom: 1.75rem;
+}
+
+section.refsect2 {
+    margin-bottom: 1.25rem;
+    margin-left: 0.5rem;
+}
+
+section.refsect3 {
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-section-title);
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-section-title);
+    margin: 0 0 0.5rem;
+}
+
+h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-section-title);
+    margin: 0 0 0.4rem;
+}
+
+/* ================================================================== */
+/* SYNOPSIS                                                            */
+/* ================================================================== */
+
+pre.synopsis {
+    background: var(--color-synopsis-bg);
+    border: 1px solid var(--color-synopsis-border);
+    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.87rem;
+    line-height: 1.55;
+    overflow-x: auto;
+    white-space: pre;
+    margin: 0 0 0.5rem;
+}
+
+/* ================================================================== */
+/* PARAGRAPHS                                                          */
+/* ================================================================== */
+
+p,
+div.para {
+    margin: 0 0 0.65rem;
+}
+
+/* ================================================================== */
+/* CODE BLOCKS                                                         */
+/* ================================================================== */
+
+pre.programlisting,
+pre.screen {
+    background: var(--color-code-bg);
+    border: 1px solid var(--color-code-border);
+    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    white-space: pre;
+    margin: 0.5rem 0 0.75rem;
+    direction: ltr;
+}
+
+/* Console output of an example: page background to tell it apart from
+   the example code itself */
+pre.screen {
+    background: var(--color-bg);
+}
+
+/* Example wrapper with run/edit buttons */
+.example-wrapper {
+    position: relative;
+    margin: 0.5rem 0 0.75rem;
+}
+
+.example-wrapper pre.programlisting {
+    margin: 0;
+}
+
+.example-buttons {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: flex;
+    gap: 4px;
+    z-index: 1;
+    opacity: 0.5;
+    transition: opacity 0.15s;
+}
+
+.example-wrapper:hover .example-buttons {
+    opacity: 1;
+}
+
+.example-buttons button {
+    background: var(--color-bg);
+    border: 1px solid var(--color-code-border);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sidebar-muted);
+    padding: 0;
+}
+
+.example-buttons button:hover {
+    background: var(--sidebar-hover);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* hljs adds .hljs class on highlighted <pre> elements
+   (pre.screen is never highlighted: console output stays plain text) */
+pre.programlisting.hljs {
+    background: var(--color-code-bg);
+    padding: 0.85rem 1rem;
+}
+
+/* ================================================================== */
+/* INLINE CODE                                                         */
+/* ================================================================== */
+
+code.literal,
+code.varname,
+code.command,
+code.function,
+code.constant,
+:not(pre) > code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--color-code-bg);
+    border: 1px solid var(--color-code-border);
+    border-radius: 3px;
+    padding: 0.1em 0.35em;
+}
+
+code.varname {
+    font-weight: 600;
+}
+
+code.command,
+code.function {
+    color: #0d9488;
+}
+
+code.constant {
+    color: #a855f7;
+}
+
+/* ================================================================== */
+/* LINKS                                                               */
+/* ================================================================== */
+
+a {
+    color: var(--color-link);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s;
+}
+
+a:hover {
+    color: var(--color-link-hover);
+    border-bottom-color: var(--color-link-hover);
+}
+
+/* ================================================================== */
+/* EMPHASIS                                                            */
+/* ================================================================== */
+
+em {
+    font-style: italic;
+}
+
+strong {
+    font-weight: 700;
+}
+
+/* ================================================================== */
+/* VARIABLE LISTS (Arguments)                                          */
+/* ================================================================== */
+
+dl.variablelist {
+    margin: 0 0 0.75rem;
+}
+
+dl.variablelist dt.term {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-term);
+    margin-top: 0.6rem;
+}
+
+dl.variablelist dd {
+    margin-left: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+/* ================================================================== */
+/* LISTS                                                               */
+/* ================================================================== */
+
+ul.itemizedlist,
+ol.orderedlist {
+    margin: 0.25rem 0 0.75rem;
+    padding-left: 1.5rem;
+}
+
+ul.itemizedlist li,
+ol.orderedlist li {
+    margin-bottom: 0.25rem;
+}
+
+ul.simplelist {
+    margin: 0.25rem 0 0.75rem;
+    padding-left: 1.5rem;
+}
+
+ul.simplelist li {
+    margin-bottom: 0.15rem;
+}
+
+/* ================================================================== */
+/* TABLES                                                              */
+/* ================================================================== */
+
+.table-wrapper {
+    margin: 0.5rem 0 1rem;
+    overflow-x: auto;
+}
+
+.table-title {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+table.table,
+table.informaltable {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.93rem;
+}
+
+table.table th,
+table.informaltable th {
+    background: var(--color-table-header);
+    font-weight: 600;
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-table-border);
+}
+
+table.table td,
+table.informaltable td {
+    padding: 0.45rem 0.75rem;
+    border: 1px solid var(--color-table-border);
+    vertical-align: top;
+}
+
+/* ================================================================== */
+/* ADMONITIONS                                                         */
+/* ================================================================== */
+
+.admonition {
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    margin: 0.75rem 0;
+    border-left: 4px solid;
+}
+
+/* Two levels: note/tip (information), warning/important/caution (alert) */
+.admonition.note,
+.admonition.tip {
+    background: var(--color-note-bg);
+    border-left-color: var(--color-note-border);
+}
+
+.admonition.warning {
+    background: var(--color-warning-bg);
+    border-left-color: var(--color-warning-border);
+}
+
+.admonition-title {
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+/* ================================================================== */
+/* REVISION HISTORY                                                    */
+/* ================================================================== */
+
+table.revhistory {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    border: 1px solid var(--color-table-border);
+    border-radius: var(--radius);
+}
+
+table.revhistory tr.title td {
+    background: var(--color-revhistory-header);
+    font-weight: 700;
+    padding: 0.5rem 0.75rem;
+}
+
+table.revhistory td {
+    padding: 0.4rem 0.75rem;
+    border-top: 1px solid var(--color-border);
+    vertical-align: top;
+}
+
+table.revhistory td.revnumber {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    white-space: nowrap;
+    width: 8em;
+}
+
+/* ================================================================== */
+/* SCILAB IMAGE PLACEHOLDER                                            */
+/* ================================================================== */
+
+.scilab-image-container {
+    margin: 0.75rem 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    /* Generated plots are white-background PNGs: match them in both themes */
+    background: #fff;
+    border: 1px solid var(--color-border);
+}
+
+.scilab-image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    background: var(--color-image-placeholder);
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+.scilab-image-container img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ================================================================== */
+/* XCOS DIAGRAMS                                                       */
+/* ================================================================== */
+
+.xcos-image-container {
+    margin: 0.75rem 0;
+    cursor: pointer;
+    /* Rendered diagrams are white-background PNGs: match them in both themes */
+    background: #fff;
+    border: 2px solid var(--color-synopsis-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.15s;
+}
+
+.xcos-image-container:hover {
+    border-color: var(--accent);
+}
+
+.xcos-image-container img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ================================================================== */
+/* MATH                                                                */
+/* ================================================================== */
+
+.math-tex {
+    /* MathJax will style this */
+}
+
+/* ================================================================== */
+/* MEDIA OBJECTS                                                       */
+/* ================================================================== */
+
+.mediaobject {
+    margin: 0.75rem 0;
+    text-align: center;
+}
+
+.mediaobject img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ================================================================== */
+/* FULL-TEXT SEARCH RESULTS (shell.js)                                 */
+/* ================================================================== */
+
+/* Occurrence of the query, same color as the find-in-page highlight
+   (translucent: readable in light and dark modes) */
+mark.search-hit {
+    background-color: rgba(255, 196, 0, 0.35);
+    color: inherit;
+    border-radius: 2px;
+}
+
+/* Occurrence inside a longer word ("table" in "unstable") */
+mark.search-hit.partial {
+    background-color: transparent;
+    text-decoration: underline dotted rgba(255, 150, 0, 0.9);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+}
+
+/* ================================================================== */
+/* SCROLLBAR (Webkit)                                                  */
+/* ================================================================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-secondary);
+}

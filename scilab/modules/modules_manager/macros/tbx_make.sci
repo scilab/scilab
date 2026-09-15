@@ -19,7 +19,7 @@ function tbx_make(tbx_path, sections, option)
     //     tbx_make
     //     tbx_make(tbx_path)
     //     tbx_make(tbx_path, sections)
-    //     tbx_make(tbx_path[, sections, options)
+    //     tbx_make(tbx_path, sections, option) // obsolete
     //
     // Parameters
     //     tbx_path: a single string; path to the toolbox directory
@@ -28,9 +28,9 @@ function tbx_make(tbx_path, sections, option)
     //               ["macros", "help", "src", "sci_gateway", "localization"].
     //               If sections argin is not provided or is empty, tbx_make() makes
     //               all existing sections subdirectories among the default set.
-    //      option: if "help" is among queried sections, option can be
-    //               a vector of "la_LA" language names. Then only pages
-    //               of the given languages are built (if they exist).
+    //      option: obsolete, will be removed in Scilab 2027.1.0. The images
+    //               of the help pages are generated for all languages at once
+    //               at build time, or on the fly when missing.
     //
     // Description
     //     Builds a toolbox by executing the builder script.
@@ -66,6 +66,12 @@ function tbx_make(tbx_path, sections, option)
     end
     if type(sections) <> 10 then
         error(msprintf(msg, fname, 2));
+    end
+    if isdef("option", "l") then
+        msg = msprintf(_("%s: Argument #%d is obsolete: the help images are generated for all languages at once at build time, or on the fly when missing."), fname, 3);
+        msg = [msg, msprintf(_("This feature will be permanently removed in Scilab %s."), "2027.1.0")];
+        msg = [msg, msprintf(_("Type ''%s'' for more information."), "doc " + fname)];
+        warning(msg);
     end
     if size(tbx_path, "*") <> 1 then
         msg = _("%s: Argument #%d: Scalar (1 element) expected.\n");

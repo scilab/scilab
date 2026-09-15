@@ -1,0 +1,558 @@
+/*
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Antoine ELIAS
+ *
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ */
+
+/* Scilab Help Browser Shell */
+
+:root {
+    --sidebar-width: 300px;
+    --sidebar-bg: #f8fafc;
+    --sidebar-border: #e2e8f0;
+    --sidebar-hover: #eef2ff;
+    --sidebar-active: #dbeafe;
+    --sidebar-text: #1e293b;
+    --sidebar-muted: #64748b;
+    --search-bg: #ffffff;
+    --search-border: #cbd5e1;
+    --chapter-color: #1e3a5f;
+    --section-color: #475569;
+    --page-color: #334155;
+    --accent: #2563eb;
+    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --sidebar-bg: #0f172a;
+        --sidebar-border: #1e293b;
+        --sidebar-hover: #1e293b;
+        --sidebar-active: #1e3a5f;
+        --sidebar-text: #e2e8f0;
+        --sidebar-muted: #94a3b8;
+        --search-bg: #1e293b;
+        --search-border: #334155;
+        --chapter-color: #93c5fd;
+        --section-color: #94a3b8;
+        --page-color: #cbd5e1;
+        --accent: #60a5fa;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /* Root size of the shell (sidebar tree, search box, breadcrumb): every
+       size below is in rem, so this single value sets the UI scale. Keep it
+       in step with the root size of style.css used by the doc pages. */
+    font-size: 14px;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font-sans);
+    color: var(--sidebar-text);
+}
+
+/* Layout */
+.shell {
+    display: flex;
+    height: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: var(--sidebar-width);
+    min-width: 200px;
+    max-width: 500px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--sidebar-border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.sidebar-header {
+    padding: 0.65rem;
+    border-bottom: 1px solid var(--sidebar-border);
+    flex-shrink: 0;
+}
+
+#search {
+    width: 100%;
+    padding: 0.4rem 0.65rem;
+    border: 1px solid var(--search-border);
+    border-radius: 5px;
+    background: var(--search-bg);
+    color: var(--sidebar-text);
+    font-size: 0.95rem;
+    outline: none;
+}
+
+#search:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* Completion popup of the search field (page ids), over the TOC */
+.sidebar-header {
+    position: relative;
+}
+
+.search-completion {
+    position: absolute;
+    left: 0.65rem;
+    right: 0.65rem;
+    top: calc(100% - 0.65rem + 2px);
+    z-index: 10;
+    max-height: min(20rem, 60vh);
+    overflow-y: auto;
+    list-style: none;
+    padding: 2px 0;
+    background: var(--search-bg);
+    border: 1px solid var(--search-border);
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+.search-completion[hidden] {
+    display: none;
+}
+
+.completion-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.2rem 0.6rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.completion-item.selected {
+    background: var(--sidebar-active);
+}
+
+.completion-id {
+    flex-shrink: 0;
+    max-width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: var(--font-mono);
+    font-size: 0.95em;
+}
+
+.completion-id mark {
+    background: none;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.completion-title,
+.completion-where {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--sidebar-muted);
+}
+
+.completion-where {
+    margin-left: auto;
+    font-size: 0.85em;
+}
+
+.completion-more {
+    padding: 0.2rem 0.6rem;
+    color: var(--sidebar-muted);
+    font-size: 0.85em;
+    font-style: italic;
+}
+
+/* TOC tree */
+.toc {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0.4rem 0;
+    font-size: 0.95rem;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Chapter (top level) */
+.toc-chapter > .toc-label {
+    font-weight: 600;
+    color: var(--chapter-color);
+    padding: 0.4rem 0.8rem 0.4rem 0.65rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    user-select: none;
+    border-bottom: 1px solid var(--sidebar-border);
+    margin-top: 2px;
+}
+
+.toc-chapter > .toc-label:hover {
+    background: var(--sidebar-hover);
+}
+
+/* Toggle arrow */
+.toc-toggle {
+    display: inline-block;
+    width: 1.1rem;
+    height: 1.1rem;
+    text-align: center;
+    line-height: 1.1rem;
+    font-size: 0.7rem;
+    color: var(--sidebar-muted);
+    flex-shrink: 0;
+    transition: transform 0.15s;
+}
+
+.toc-chapter.collapsed > .toc-label .toc-toggle {
+    transform: rotate(-90deg);
+}
+
+.toc-chapter.collapsed > ul {
+    display: none;
+}
+
+/* Section (sub level) */
+.toc-section > .toc-label {
+    font-weight: 500;
+    color: var(--section-color);
+    padding: 0.25rem 0.8rem 0.25rem 1.75rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    user-select: none;
+    font-size: 0.95em;
+}
+
+/* Nested sections: increase indent per level */
+.toc-section .toc-section > .toc-label {
+    padding-left: 2.65rem;
+}
+
+.toc-section .toc-section .toc-section > .toc-label {
+    padding-left: 3.6rem;
+}
+
+.toc-section > .toc-label:hover {
+    background: var(--sidebar-hover);
+}
+
+.toc-section.collapsed > ul {
+    display: none;
+}
+
+.toc-section.collapsed > .toc-label .toc-toggle {
+    transform: rotate(-90deg);
+}
+
+/* Page (leaf) */
+.toc-page {
+    padding: 0.15rem 0.8rem 0.15rem 2.8rem;
+    cursor: pointer;
+    color: var(--page-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.92em;
+    border-left: 2px solid transparent;
+}
+
+/* Nested pages: increase indent per level */
+.toc-section .toc-section .toc-page {
+    padding-left: 3.75rem;
+}
+
+.toc-section .toc-section .toc-section .toc-page {
+    padding-left: 4.65rem;
+}
+
+.toc-page:hover {
+    background: var(--sidebar-hover);
+}
+
+.toc-page.active {
+    background: var(--sidebar-active);
+    color: var(--accent);
+    font-weight: 500;
+    border-left-color: var(--accent);
+}
+
+/* Root-level pages (no section) */
+.toc-chapter > ul > .toc-page {
+    padding-left: 1.75rem;
+}
+
+/* Resize handle */
+.resizer {
+    width: 4px;
+    cursor: col-resize;
+    background: transparent;
+    flex-shrink: 0;
+}
+
+.resizer:hover,
+.resizer.active {
+    background: var(--accent);
+    opacity: 0.3;
+}
+
+/* Content */
+.content {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Breadcrumb + nav buttons */
+.breadcrumb {
+    padding: 0.25rem 0.65rem;
+    font-size: 0.95rem;
+    color: var(--sidebar-muted);
+    background: var(--sidebar-bg);
+    border-bottom: 1px solid var(--sidebar-border);
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.nav-btn {
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    width: 1.65rem;
+    height: 1.65rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sidebar-muted);
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: var(--sidebar-hover);
+    color: var(--accent);
+    border-color: var(--sidebar-border);
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.breadcrumb span {
+    cursor: pointer;
+}
+
+.breadcrumb span:hover {
+    color: var(--accent);
+}
+
+.breadcrumb .sep {
+    margin: 0 4px;
+    cursor: default;
+    color: var(--sidebar-muted);
+}
+
+.breadcrumb .sep:hover {
+    color: var(--sidebar-muted);
+}
+
+.breadcrumb .current {
+    color: var(--sidebar-text);
+    font-weight: 500;
+    cursor: default;
+}
+
+.breadcrumb .current:hover {
+    color: var(--sidebar-text);
+}
+
+.frame-wrap {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+}
+
+#content-frame {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    border: none;
+}
+
+/* Find in page: same widget as the console search (VS Code style), a
+   compact bar docked below the top edge of the content area. Kept clear of
+   the page's own section-menu button (top right corner). */
+.find-bar {
+    position: absolute;
+    top: 0;
+    right: 4.5rem;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 4px 5px;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    border: 1px solid var(--sidebar-border);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    font-size: 0.85rem;
+    user-select: none;
+}
+
+.find-bar[hidden] {
+    display: none;
+}
+
+.find-field {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    padding: 1px;
+    border: 1px solid var(--search-border);
+    border-radius: 2px;
+    background: var(--search-bg);
+}
+
+.find-field:focus-within {
+    border-color: var(--accent);
+}
+
+.find-bar.no-results .find-field {
+    border-color: #E51400;
+}
+
+#find-input {
+    width: 12rem;
+    padding: 2px 4px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.find-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 2px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    line-height: 1;
+}
+
+.find-toggle:hover {
+    background: var(--sidebar-hover);
+}
+
+.find-toggle input {
+    display: none;
+}
+
+.find-toggle:has(input:checked) {
+    background: color-mix(in srgb, var(--accent) 30%, transparent);
+    box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.find-toggle-ww {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.find-count {
+    min-width: 3.8rem;
+    padding: 0 4px;
+    text-align: center;
+    white-space: nowrap;
+    opacity: 0.7;
+}
+
+.find-bar.no-results .find-count {
+    color: #E51400;
+    opacity: 1;
+}
+
+.find-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: none;
+    border-radius: 3px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+}
+
+.find-btn:hover {
+    background: var(--sidebar-hover);
+}
+
+.find-btn:active {
+    background: var(--sidebar-active);
+}
+
+/* Scrollbar */
+.toc::-webkit-scrollbar {
+    width: 6px;
+}
+
+.toc::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.toc::-webkit-scrollbar-thumb {
+    background: var(--sidebar-border);
+    border-radius: 3px;
+}
+
+.toc::-webkit-scrollbar-thumb:hover {
+    background: var(--sidebar-muted);
+}
+
+/* Search highlight */
+.toc-hidden {
+    display: none !important;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Antoine ELIAS
+ *
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scilab Help Browser</title>
+    <link rel="stylesheet" href="shell.css">
+</head>
+<body>
+    <div class="shell">
+        <!-- Sidebar: TOC tree -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <input type="search" id="search" placeholder="Search..." autocomplete="off"
+                       role="combobox" aria-autocomplete="list" aria-controls="search-completion" aria-expanded="false">
+                <!-- Completion popup on the page ids -->
+                <ul class="search-completion" id="search-completion" role="listbox" hidden></ul>
+            </div>
+            <nav class="toc" id="toc"></nav>
+        </aside>
+
+        <!-- Resize handle -->
+        <div class="resizer" id="resizer"></div>
+
+        <!-- Content area -->
+        <main class="content">
+            <nav class="breadcrumb" id="breadcrumb">
+                <button class="nav-btn" id="btn-home" title="Home"><svg width="15" height="15" viewBox="0 0 16 16"><path d="M2 7.5l6 -5 6 5M3.75 6.5v7h3v-4h2.5v4h3v-7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button>
+                <button class="nav-btn" id="btn-back" title="Back" disabled="disabled"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M10 3.5l-4.5 4.5 4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+                <button class="nav-btn" id="btn-forward" title="Forward" disabled="disabled"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M6 3.5l4.5 4.5 -4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            </nav>
+            <div class="frame-wrap">
+                <iframe id="content-frame" name="content-frame" src="about:blank"></iframe>
+
+                <!-- Find in page (same widget as the console search) -->
+                <div class="find-bar" id="find-bar" hidden>
+                    <div class="find-field">
+                        <input type="text" id="find-input" placeholder="Find in page" autocomplete="off">
+                        <label class="find-toggle" title="Match case"><input type="checkbox" id="find-case"><span>Aa</span></label>
+                        <label class="find-toggle" title="Match whole word"><input type="checkbox" id="find-word"><span class="find-toggle-ww">ab</span></label>
+                        <label class="find-toggle" title="Use regular expression"><input type="checkbox" id="find-regex"><span>.*</span></label>
+                    </div>
+                    <span class="find-count" id="find-count"></span>
+                    <button class="find-btn" id="find-prev" title="Previous match (Shift+F3)"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M3.5 10l4.5 -4.5 4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button>
+                    <button class="find-btn" id="find-next" title="Next match (F3)"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M3.5 6l4.5 4.5 4.5 -4.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button>
+                    <button class="find-btn" id="find-close" title="Close (Esc)"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M4 4l8 8m0 -8l-8 8" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="shell.js"></script>
+</body>
+</html>

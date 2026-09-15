@@ -127,7 +127,7 @@
         <para>
             <programlisting role="example"><![CDATA[
                 rand("seed", 0)
-                n = 50;
+                n = 500;
                 X = [rand(n,2); rand(n,2)+3];
                 X = [X; 6*rand(10,2)];
                 labels = dbscan(X, 0.5, 5);
@@ -138,7 +138,7 @@
             ]]></programlisting>
             <scilab:image>
                 rand("seed", 0)
-                n = 50;
+                n = 100;
                 X = [rand(n,2); rand(n,2)+3];
                 X = [X; 6*rand(10,2)];
                 labels = dbscan(X, 0.5, 5);

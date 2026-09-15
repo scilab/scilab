@@ -14,7 +14,7 @@
  */
 package org.scilab.modules.gui.helpbrowser;
 
-import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
+import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowserJCEF;
 
 /**
  * Bridge for Scilab Help Browser in GUIs
@@ -36,7 +36,7 @@ public class ScilabHelpBrowserBridge {
      * @return the created HelpBrowser
      */
     public static SimpleHelpBrowser createHelpBrowser(String[] helps, String language) {
-        return new SwingScilabHelpBrowser(helps, language);
+        return new SwingScilabHelpBrowserJCEF(helps, language);
     }
 
     /**

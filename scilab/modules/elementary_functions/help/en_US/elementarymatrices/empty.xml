@@ -18,29 +18,6 @@
         <refpurpose>empty matrix. Array ranges destructor.</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Contents</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="empty_general_properties">General [ ] properties</link>
-            </member>
-            <member>
-                <link linkend="empty_operand_or_argument">[ ] as operand or input argument</link>
-            </member>
-            <member>
-                <link linkend="empty_assigned_as_destructor">[ ] assigned as ranges destructor</link>
-            </member>
-            <member>
-                <link linkend="empty_examples">Examples</link>
-            </member>
-            <member>
-                <link linkend="empty_seealso">See also</link>
-            </member>
-            <member>
-                <link linkend="empty_history">History</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
         <title>Description</title>
 
         <para>
@@ -166,17 +143,17 @@
                     <tr><td colspan="2">[]', [].', -[],  ~[]</td></tr>
                     <tr><td/><td/></tr>
                     <tr><td colspan="2"><emphasis role="bold">Binary numerical operators</emphasis></td></tr>
-                    <tr><td>addition:</td>      <td> [] + [1 2], [1 2] + []</td></tr>
-                    <tr><td>subtraction:</td>   <td> [] - [1 2], [1 2] - []</td></tr>
-                    <tr><td>division:</td>      <td> []/[1 2], []./[1 2], [1 2]/[], [1 2]./[]</td></tr>
-                    <tr><td>left division:</td> <td> []\[1 2], [].\[1 2], [1 2]\[], [1 2].\[]</td></tr>
-                    <tr><td>multiplication:</td><td> []*[1 2], [].*[1 2], [1 2]*[], [1 2].*[]</td></tr>
-                    <tr><td>kronecker:</td>     <td> [].*.[1 2], [1 2].*.[]</td></tr>
-                    <tr><td>power:</td>         <td> []^[1 2], [].^[1 2], [1 2]^[], [1 2].^[]</td></tr>
+                    <tr><td>addition:</td>      <td> <literal>[] + [1 2], [1 2] + []</literal></td></tr>
+                    <tr><td>subtraction:</td>   <td> <literal>[] - [1 2], [1 2] - []</literal></td></tr>
+                    <tr><td>division:</td>      <td> <literal>[]/[1 2], []./[1 2], [1 2]/[], [1 2]./[]</literal></td></tr>
+                    <tr><td>left division:</td> <td> <literal>[]\[1 2], [].\[1 2], [1 2]\[], [1 2].\[]</literal></td></tr>
+                    <tr><td>multiplication:</td><td> <literal>[]*[1 2], [].*[1 2], [1 2]*[], [1 2].*[]</literal></td></tr>
+                    <tr><td>kronecker:</td>     <td> <literal>[].*.[1 2], [1 2].*.[]</literal></td></tr>
+                    <tr><td>power:</td>         <td> <literal>[]^[1 2], [].^[1 2], [1 2]^[], [1 2].^[]</literal></td></tr>
                     <tr><td/><td/></tr>
                     <tr><td colspan="2"><emphasis role="bold">Inequality comparisons</emphasis></td></tr>
-                    <tr><td>greater:</td><td> []&gt;[1 2], []&gt;=[1 2], [1 2]&gt;[], [1 2]&gt;=[]</td></tr>
-                    <tr><td>less:</td><td> []&lt;[1 2], []&lt;=[1 2], [1 2]&lt;[], [1 2]&lt;=[]</td></tr>
+                    <tr><td>greater:</td><td> <literal>[]&gt;[1 2], []&gt;=[1 2], [1 2]&gt;[], [1 2]&gt;=[]</literal></td></tr>
+                    <tr><td>less:</td><td> <literal>[]&lt;[1 2], []&lt;=[1 2], [1 2]&lt;[], [1 2]&lt;=[]</literal></td></tr>
                 </table>
                 </para>
             </listitem>

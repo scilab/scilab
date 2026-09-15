@@ -25,7 +25,7 @@ function main_builder()
     tbx_builder_macros(toolbox_dir);
     tbx_builder_src(toolbox_dir);
     tbx_builder_gateway(toolbox_dir);
-    tbx_builder_help(toolbox_dir);
+    tbx_builder_help(toolbox_dir); // no jar: pre-generates the help images
     tbx_build_loader(toolbox_dir);
     tbx_build_cleaner(toolbox_dir);
 endfunction

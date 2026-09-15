@@ -101,6 +101,14 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
     }
 
     /**
+     * Protected no-arg constructor for subclasses (e.g. JCEF-based help browser)
+     * that don't use JavaHelp.
+     */
+    protected SwingScilabHelpBrowser() {
+        super(new BorderLayout());
+    }
+
+    /**
      * Constructor
      * @param helps help chapters and directories
      * @param language Scilab current language

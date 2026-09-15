@@ -25,3 +25,6 @@ tmp = convstr(func_list, "l");
 func_list = func_list(ij);
 
 mputl(func_list, fullfile(folder, "scilab_primitives.txt"));
+
+[_, n] = lasterror();
+exit(n);

@@ -102,27 +102,25 @@ Generating localization
 -- Building for "en_US" --
 -- Building for "fr_FR" --
 Building help...
-Start Toolbox Skeleton
-	Load macros
-	Load gateways
-	Load Java libraries
-	Load help
-	Load demos
 Building the links file [inline] in TMPDIR/toolbox_skeleton/inline/en_US.
-Building the manual file [javaHelp] in TMPDIR/toolbox_skeleton/help/en_US.
-Generate image ./c_multiplybypi_en_US_1.png from Scilab code from file c_multiplybypi.xml
-Generate image ./c_sub_1.png from Scilab code from file c_sub.xml
-Generate image ./c_sub_en_US_2.png from Scilab code from file c_sub.xml
+Pre-generating the help images of TMPDIR/toolbox_skeleton/help...
 Start Toolbox Skeleton
 	Load macros
 	Load gateways
 	Load Java libraries
 	Load help
 	Load demos
+Collecting <scilab:image> blocks (all languages)...
+5 blocks, 5 (language, snippet) pairs
+[   1/5] c_multiplybypi_1.png
+[   2/5] c_sub_1.png
+[   3/5] c_sub_2.png
+[   4/5] c_sub_fr_FR_1.png  duplicate of c_sub_1.png, not kept
+[   5/5] c_sub_fr_FR_2.png
+=== summary ===
+generated: 4, deduplicated: 1, cached: 0, failed: 0, crashed: 0, stale removed: 0
 Building the links file [inline] in TMPDIR/toolbox_skeleton/inline/fr_FR.
-Building the manual file [javaHelp] in TMPDIR/toolbox_skeleton/help/fr_FR.
-Generate image ./c_sub_1.png from Scilab code from file c_sub.xml
-Generate image ./c_sub_fr_FR_2.png from Scilab code from file c_sub.xml
+Help images of TMPDIR/toolbox_skeleton/help are up to date.
 Generating loader.sce...
 Generating unloader.sce...
 Generating cleaner.sce...

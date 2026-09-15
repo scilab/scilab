@@ -96,12 +96,10 @@ function tbx_builder_help(module, languages)
         if ~allLanguages
             la_LA = intersect(la_LA, languages)
         end
+        // The help browser renders the DocBook sources directly: what is left
+        // to build is the images, generated for every language at once.
         if ~isempty(la_LA)
-            la_LA = builder_help_dir + "/" + la_LA;
-        end
-
-        for i = 1:size(la_LA, "*")
-            tbx_build_help(name, la_LA(i))
+            tbx_build_help(name, builder_help_dir)
         end
     end
 endfunction

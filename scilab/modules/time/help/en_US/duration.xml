@@ -193,19 +193,19 @@
                 <link linkend="hours">hours</link>
             </member>
             <member>
-                <link linkend="minutes">minutes</link> — create a duration in minutes
+                <link linkend="minutes">minutes</link>
             </member>
             <member>
-                <link linkend="seconds">seconds</link> — create a duration in seconds
+                <link linkend="seconds">seconds</link>
             </member>
             <member>
-                <link linkend="milliseconds">milliseconds</link> — create a duration in milliseconds
+                <link linkend="milliseconds">milliseconds</link>
             </member>
             <member>
-                <link linkend="days">days</link> — create a duration in days
+                <link linkend="days">days</link>
             </member>
             <member>
-                <link linkend="years">years</link> — create a duration in years
+                <link linkend="years">years</link>
             </member>
             <member>
                 <link linkend="datetime">datetime</link>

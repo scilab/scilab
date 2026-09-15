@@ -609,6 +609,17 @@ public class CallScilabBridge {
         });
     }
 
+    /**
+     * Reset the font of the help viewer to its default size
+     */
+    public static void resetFontInHelpViewer() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                ScilabHelpBrowser.getHelpBrowser().resetFont();
+            }
+        });
+    }
+
     /************/
     /*          */
     /* WEBLINKS */

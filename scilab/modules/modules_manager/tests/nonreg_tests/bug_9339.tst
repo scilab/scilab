@@ -26,5 +26,8 @@ cd(DST);
 ilib_verbose(0);
 exec('builder.sce');
 
-assert_checkequal(isdir(DST + '/help/fr_FR/scilab_fr_FR_help'), %T);
-assert_checkequal(isdir(DST + '/help/en_US/scilab_en_US_help'), %T);
+assert_checktrue(isdir(DST + '/help/images'));
+assert_checktrue(isfile(DST + '/help/images/c_sub_2.png'));
+assert_checktrue(isfile(DST + '/help/images/c_sub_fr_FR_2.png'));
+assert_checktrue(isfile(DST + '/inline/en_US/links.json'));
+assert_checktrue(isfile(DST + '/inline/fr_FR/links.json'));

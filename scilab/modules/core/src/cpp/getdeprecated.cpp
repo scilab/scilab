@@ -19,6 +19,9 @@ extern "C" {
 std::unordered_map<std::wstring, std::wstring> getDeprecated()
 {
     return {
+        // Scilab 2027.0.0 => 2027.1.0
+        {L"tbx_make(tbx_path, section, languages)", L"tbx_make(tbx_path, section)"},
+
         // Scilab 2026.0.1 => 2027.0.0
         {L"read_mps", L"'quapro' toolbox"},
 

@@ -29,6 +29,16 @@
 #include "getversion.h"
 #include "configvariable_interface.h"
 #include "setformat.h"
+#include "charEncoding.h"
+
+/* getlanguage() returns a wide string: convert it to UTF-8 for NewStringUTF */
+static char *getlanguageUTF8(void)
+{
+    wchar_t *wide = getlanguage();
+    char *utf8 = wide_string_to_UTF8(wide);
+    FREE(wide);
+    return utf8;
+}
 %}
 
 /* JavaDoc for ScilabCommonsJNI class */
@@ -124,7 +134,8 @@ char *getTMPDIR(void);
    * @return language
    */
 public";
-char *getlanguage(void);
+%rename(getlanguage) getlanguageUTF8;
+char *getlanguageUTF8(void);
 
 
 /* JavaDoc */

@@ -45,8 +45,8 @@ assert_checkfalse(or(isfile(subDirs + "testbox.po")));
 // All languages
 reset_test_module(source, mytb_dir);
 tbx_make(mytb_dir, "help");
-assert_checktrue(isdir(mytb_dir + "/jar"));
-assert_checktrue(and(isfile(mytb_dir + "/jar/scilab_"+["en_US" "fr_FR"]+"_help.jar")));
+assert_checktrue(isdir(mytb_dir + "/help/images/"));
+assert_checktrue(isfile(mytb_dir + "/help/images/help_images.index"));
 
 assert_checkfalse(isfile(mytb_dir + "/macros/lib"));
 assert_checkfalse(isfile(mytb_dir + "/macros/scilab_sum.bin"));
@@ -56,21 +56,6 @@ assert_checkfalse(isfile(mytb_dir + "/sci_gateway/loader_gateway.sce"));
 subDirs = mytb_dir + "/locales/" + ["en_US" "fr_FR"] + "/LC_MESSAGES/";
 assert_checkfalse(or(isfile(subDirs + "testbox.mo")));
 assert_checkfalse(or(isfile(subDirs + "testbox.po")));
-
-// Only given languages
-reset_test_module(source, mytb_dir);
-assert_checkfalse(isfile(mytb_dir + "/jar/scilab_fr_FR_help.jar"));
-tbx_make(mytb_dir, "help", "en");
-assert_checktrue(isdir(mytb_dir + "/jar"));
-assert_checktrue(isfile(mytb_dir + "/jar/scilab_en_US_help.jar"));
-assert_checkfalse(isfile(mytb_dir + "/jar/scilab_fr_FR_help.jar"));
-
-
-reset_test_module(source, mytb_dir);
-tbx_make(mytb_dir, "help", "fr");
-assert_checktrue(isdir(mytb_dir + "/jar"));
-assert_checktrue(isfile(mytb_dir + "/jar/scilab_fr_FR_help.jar"));
-assert_checkfalse(isfile(mytb_dir + "/jar/scilab_en_US_help.jar"));
 
 // Build only locales
 // ------------------

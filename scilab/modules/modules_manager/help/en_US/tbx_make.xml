@@ -60,17 +60,22 @@
                 <term>languages</term>
                 <listitem>
                      <para>
+                        <emphasis role="bold">Obsolete</emphasis>: will be removed in Scilab 2027.1.0.
+                        The images of the help pages are generated for all languages at once
+                        at build time, or on the fly when missing.
+                        During the development of the toolbox, rebuilding the help is not needed
+                        to check a modified page: the help browser renders it again, and its images
+                        with it, as soon as it is reloaded, by clicking on its entry in the table of
+                        contents.
+                        </para>
+                     <para>
                         Vector of strings like <literal>"en_US"</literal>, specifying the subset of the
                         languages for which help pages must be built.
-                        
-                        This is useful during the module's development, in order to  avoid rebuilding
-                        pages for ALL languages when this is not yet required, that can be very time
-                        consuming.
-                        
+
                         The shortcuts <literal>"en", "fr", "pt", "ja", "ru"</literal>
                         are automatically expanded respectively into
                         <literal>"en_US", "fr_FR", "pt_BR", "ja_JP", "ru_RU"</literal>.
-                        
+
                         If there is no help section or if its build is not requested,
                         this option is ignored.
                         </para>
@@ -176,11 +181,9 @@
                                 </listitem>
                             <listitem>
                                  <para>
-                                    Otherwise: Help pages are built with the default builder for
-                                    each requested language <literal>la_LA</literal>.
-                                    A file <literal>~/jar/scilab_la_LA_help.jar</literal> gathering
-                                    all compiled pages and summaries is created for each processed
-                                    language.
+                                    Otherwise: the images of the help pages are generated with the
+                                    default builder into <literal>~/help/images</literal>, for all
+                                    languages at once.
                                     </para>
                                 </listitem>
                         </itemizedlist>
@@ -303,6 +306,14 @@ tbx_make("path/to/mytoolbox", ["macros", "help", "src"])
                 <revdescription>
                     <para>
                         <literal>languages</literal> input option added.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <literal>languages</literal> input option tagged obsolete. It will be removed in Scilab 2027.1.0.
                     </para>
                 </revdescription>
             </revision>

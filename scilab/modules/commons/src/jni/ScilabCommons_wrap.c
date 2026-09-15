@@ -234,6 +234,16 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "getversion.h"
 #include "configvariable_interface.h"
 #include "setformat.h"
+#include "charEncoding.h"
+
+/* getlanguage() returns a wide string: convert it to UTF-8 for NewStringUTF */
+static char *getlanguageUTF8(void)
+{
+    wchar_t *wide = getlanguage();
+    char *utf8 = wide_string_to_UTF8(wide);
+    FREE(wide);
+    return utf8;
+}
 
 
 #ifdef __cplusplus
@@ -278,7 +288,7 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getl
   
   (void)jenv;
   (void)jcls;
-  result = (char *)getlanguage();
+  result = (char *)getlanguageUTF8();
   if (result)
   {
     jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);

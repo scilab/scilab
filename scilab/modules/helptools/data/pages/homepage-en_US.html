@@ -1,37 +1,100 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<!DOCTYPE html>
 <html>
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta charset="utf-8"/>
     <title>Scilab Help Homepage</title>
-    <style type="text/css" media="all">
-        @import url("scilab_code.css");
-        @import url("xml_code.css");
-        @import url("c_code.css");
-        @import url("style.css");
+    <style>
+        :root {
+            --color-text: #1a1a2e;
+            --color-text-secondary: #64748b;
+            --color-link: #2563eb;
+            --color-border: #e2e8f0;
+            --color-section-title: #1e3a5f;
+            --color-code-bg: #f8fafc;
+            --color-code-border: #e2e8f0;
+            --color-nav-bg: #f0f4ff;
+            --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            --font-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+            --radius: 6px;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-text: #e2e8f0;
+                --color-text-secondary: #94a3b8;
+                --color-link: #60a5fa;
+                --color-border: #334155;
+                --color-section-title: #93c5fd;
+                --color-code-bg: #1e293b;
+                --color-code-border: #334155;
+                --color-nav-bg: #1e293b;
+            }
+            body { background: #0f172a; }
+        }
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            max-width: 52rem;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+        a { color: var(--color-link); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .navbar {
+            background: var(--color-nav-bg);
+            padding: 8px 12px;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 14px;
+        }
+        h2 {
+            font-size: 1.4rem;
+            color: var(--color-section-title);
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: 0.3rem;
+            margin: 1.5rem 0 0.75rem;
+        }
+        h3 {
+            font-size: 1.1rem;
+            color: var(--color-section-title);
+            margin: 1rem 0 0.5rem;
+        }
+        code {
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            background: var(--color-code-bg);
+            border: 1px solid var(--color-code-border);
+            border-radius: 3px;
+            padding: 0.1em 0.35em;
+        }
+        ul { line-height: 1.8; padding-left: 1.5rem; }
+        hr { border: none; border-top: 1px solid var(--color-border); margin: 1.5rem 0; }
+        .para { margin: 0 0 0.65rem; }
     </style>
+    <!-- Ctrl+wheel zooms the document only (shared with every help page) -->
+    <script src="../../src/web/doczoom.js"></script>
+    <script src="../../src/web/docsearch.js"></script>
 </head>
-
 <body>
-    <div class="manualnavbar" align="left">
-        <a href="https://www.scilab.org/" class="ulink">Scilab Website</a> |
-        <a href="https://help.scilab.org/" class="ulink">Online Help</a> |
-        <a href="https://gitlab.com/scilab/scilab">Contribute to GitLab</a> |
-        <a href="https://gitlab.com/scilab/scilab/-/wikis/home" class="ulink">Wiki</a> |
-        <a href="https://gitlab.com/scilab/scilab/-/issues" class="ulink">Issues</a> |
-        <a href="https://gitlab.com/scilab/forge/" class="ulink">Forge</a> |
-        <a href="https://scilab.discourse.group/" class="ulink">Discourse</a> |
-        <a href="https://atoms.scilab.org/" class="ulink">ATOMS</a> |
-        <a href="https://fileexchange.scilab.org/" class="ulink">File Exchange</a>
-        <hr/>
-    </div>
-    <span class="path"><a href="index.html">Scilab help</a> &gt;&gt; Homepage</span>
-    <br/>
-    <br/>
+    <nav class="navbar">
+        <a target="_blank" href="https://www.scilab.org/">Scilab Website</a>
+        <a target="_blank" href="https://help.scilab.org/">Online Help</a>
+        <a target="_blank" href="https://gitlab.com/scilab/scilab">GitLab</a>
+        <a target="_blank" href="https://gitlab.com/scilab/scilab/-/wikis/home">Wiki</a>
+        <a target="_blank" href="https://gitlab.com/scilab/scilab/-/issues">Issues</a>
+        <a target="_blank" href="https://scilab.discourse.group/">Discourse</a>
+        <a target="_blank" href="https://atoms.scilab.org/">ATOMS</a>
+        <a target="_blank" href="https://fileexchange.scilab.org/">File Exchange</a>
+    </nav>
+
     <div class="refsection">
-        <h2 class="title">Welcome to Scilab 2026.1.0</h2>
+        <h2>Welcome to Scilab 2026.0.0</h2>
         <p class="para">
-            Scilab 2026.1.0 is a new stable release of Scilab, the open-source
+            Scilab 2026.0.0 is a new stable release of Scilab, the open-source
             platform for numerical computation.
         </p>
         <p class="para">
@@ -41,7 +104,7 @@
             To view it in the documentation browser, enter <code>doc("2026.1.0")</code>
             in the console, and browse related pages.
         </p>
-        <h3 class="title">Feature changes and additions</h3>
+        <h3>Feature changes and additions</h3>
         <ul>
             <li>New functions:
                 <ul>
@@ -66,7 +129,7 @@
                     <li><code>sortrows()</code>: Sort rows of a vector, matrix, table, or timeseries.</li>
                     <li><code>spset()</code>: Set non-zero entries of a sparse matrix.</li>
                     <li><code>squareform()</code>: Conversion between a distance vector and a symmetric distance matrix.</li>
-                    <li><code>summary()</code>: Summary of <code>table</code> or <code>timeseries</code> variables (properties, statistics...).</li>             
+                    <li><code>summary()</code>: Summary of <code>table</code> or <code>timeseries</code> variables (properties, statistics...).</li>
                     <li><code>xcosDiagramExport()</code>: Export an Xcos diagram to an image.</li>
                     <li><code>xlsxInfo()</code>: Get information about an Excel file.</li>
                     <li><code>xlsxRead()</code>: Read data from an Excel file and return a matrix or cell.</li>
@@ -107,48 +170,39 @@
             </li>
             <li>Xcos:
                 <ul>
-                    <li>Diagrams are saved as <a href="https://ssp-standard.org/" class="ulink">SSP</a> (System Structure and Parametrization) files by default. This setting can be edited in user preferences.</li>
+                    <li>Diagrams are saved as <a target="_blank" href="https://ssp-standard.org/">SSP</a> (System Structure and Parametrization) files by default. This setting can be edited in user preferences.</li>
                     <li>Users are now enabled to save their diagrams as COSF files.</li>
                     <li>COS format is no longer associated with Xcos under Windows.</li>
                     <li>SSP files are associated with Scilab during installation under Windows.</li>
                 </ul>
             </li>
         </ul>
-
         <p class="para">
-            Detailed information about those improvements can be found in the <a href="CHANGES.html">CHANGES</a> file.
+            Detailed information about those improvements can be found in the <a target="_blank" href="CHANGES.html">CHANGES</a> file.
         </p>
     </div>
     <hr/>
     <div class="refsection">
-        <h3 class="title">Documentation and help</h3>
+        <h3>Documentation and help</h3>
         <p class="para">If you are new to Scilab, please use
-            the <a href="https://www.scilab.org/sites/default/files/Scilab_beginners_0.pdf">Scilab
+            the <a target="_blank" href="https://www.scilab.org/sites/default/files/Scilab_beginners_0.pdf">Scilab
                 beginners tutorial</a>
-            and <a href="https://www.scilab.org/sites/default/files/Xcos_beginners_0.pdf">Xcos
+            and <a target="_blank" href="https://www.scilab.org/sites/default/files/Xcos_beginners_0.pdf">Xcos
                 beginners tutorial</a> provided by the Scilab Team.</p>
         <p class="para">The Scilab Team also provides
-            some <a href="https://www.scilab.org/tutorials">documentation
+            some <a target="_blank" href="https://www.scilab.org/tutorials">documentation
                 and tutorials</a>.</p>
     </div>
     <hr/>
     <div class="refsection">
-        <h3 class="title">Other resources</h3>
-        <p class="para"><a href="https://www.scilab.org/" class="ulink">Scilab Website</a> - Consult Scilab official
-            website</p>
-        <p class="para"><a href="https://gitlab.com/scilab/scilab/-/wikis/home" class="ulink">Wiki</a> - Consult documentation, tricks, etc.
-        </p>
-        <p class="para"><a href="https://gitlab.com/scilab/scilab/-/issues" class="ulink">Issues</a> - Report bugs and wishes
-            about Scilab</p>
-        <p class="para"><a href="https://gitlab.com/scilab/forge/" class="ulink">Forge</a> - Browse and publish Scilab modules
-        </p>
-        <p class="para"><a href="https://scilab.discourse.group/" class="ulink">Discourse</a> -
-            Communicate and exchange with the community</p>
-        <p class="para"><a href="https://atoms.scilab.org/" class="ulink">ATOMS</a> - Browse Scilab packaged modules</p>
-        <p class="para"><a href="https://fileexchange.scilab.org/" class="ulink">File Exchange</a> - Exchange your
-            scripts, results, and files.</p>
-        <br/>
+        <h3>Other resources</h3>
+        <p class="para"><a target="_blank" href="https://www.scilab.org/">Scilab Website</a> — Consult Scilab official website</p>
+        <p class="para"><a target="_blank" href="https://gitlab.com/scilab/scilab/-/wikis/home">Wiki</a> — Consult documentation, tricks, etc.</p>
+        <p class="para"><a target="_blank" href="https://gitlab.com/scilab/scilab/-/issues">Issues</a> — Report bugs and wishes about Scilab</p>
+        <p class="para"><a target="_blank" href="https://gitlab.com/scilab/forge/">Forge</a> — Browse and publish Scilab modules</p>
+        <p class="para"><a target="_blank" href="https://scilab.discourse.group/">Discourse</a> — Communicate and exchange with the community</p>
+        <p class="para"><a target="_blank" href="https://atoms.scilab.org/">ATOMS</a> — Browse Scilab packaged modules</p>
+        <p class="para"><a target="_blank" href="https://fileexchange.scilab.org/">File Exchange</a> — Exchange your scripts, results, and files.</p>
     </div>
 </body>
-
 </html>

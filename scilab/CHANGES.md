@@ -25,6 +25,13 @@ New features
 
 For a high-level description of the main new features in this release, please consult the homepage of the embedded documentation, available by simply typing `doc` in the Scilab console.
 
+### Scilab 2027.0.0
+
+#### Features improvements
+
+- The help browser, now based on JCEF (Chromium Embedded Framework), replaces JavaHelp: it renders the XML help pages directly, with highlighted code and LaTeX & MathML equations rendered by MathJax. The images of the examples are pre-generated, or generated on demand when they are not.
+- The help of a toolbox is also rendered from its XML pages: `tbx_build_help()` no longer builds a help jar, but pre-generates the images of the pages (`<scilab:image>` blocks and Xcos diagrams) into the `help/images` directory of the toolbox, for all the languages at once. `tbx_package()` ships them with the toolbox.
+
 ### Scilab 2026.1.0
 
 #### New functions
@@ -107,6 +114,12 @@ For a high-level description of the main new features in this release, please co
 Obsolete functions or features
 ------------------------------
 
+### Scilab 2027.0.0
+
+All these functions and features will be removed in Scilab 2027.1.0 (May 2028):
+
+- `tbx_make(tbx_path, "help", languages)`: the `languages` option is obsolete, the images of the help pages are generated for all languages at once at build time, or on the fly when missing.
+
 ### Scilab 2026.1.0
 
 All these functions and features will be removed in Scilab 2027.0.0 (October 2026):
@@ -173,6 +186,10 @@ The following functions have been removed:
 
 Known incompatibilities
 -----------------------
+
+### Scilab 2027.0.0
+
+- Help jars (`scilab_<lang>_help.jar`) are no longer built, neither for Scilab nor for toolboxes. A toolbox whose `etc/*.start` registers its help chapter only when its `jar` directory exists, as the former toolbox skeleton did, must now test its `help` directory, and can give its root directory to `add_help_chapter()`.
 
 ### Scilab 2026.1.0
 

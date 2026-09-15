@@ -12,10 +12,6 @@
 
 function doc(varargin)
 
-    if findfiles("SCI/modules/helptools/jar","*_help.jar") == [] then
-        error(msprintf(gettext("%s: help file(.jar) is not installed.\n"), "doc"));
-    end
-
     if getscilabmode() == "NWNI" then
         error(msprintf(gettext("%s: The help browser is disabled in %s mode.\n"), "doc", getscilabmode()));
     end

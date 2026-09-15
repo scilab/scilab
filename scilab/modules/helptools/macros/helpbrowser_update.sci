@@ -10,12 +10,25 @@
 // along with this program.
 
 function helpbrowser_update(startup)
-    // Internal called by add_help_chapter() and atomsLoad()
+    // Internal called by add_help_chapter(), del_help_chapter() and atomsLoad()
 
   if or(getscilabmode()==["STD" "NW"])
       jimport org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser
-      hb = ScilabHelpBrowser.getHelpBrowserWithoutCreation()
       global %helps
+
+      // Hand the chapter titles (%helps(:,2)) to the browser: helpbrowser()
+      // only carries the paths. This is a static registry, so it also works
+      // before the browser is created (toolboxes loaded at startup).
+      // Columns are joined into newline-separated blobs to avoid ambiguous
+      // Scilab->Java string-matrix marshalling.
+      if size(%helps, 1) > 0 then
+          sep = ascii(10)
+          ScilabHelpBrowser.setChapterTitles(strcat(%helps(:,1), sep), strcat(%helps(:,2), sep))
+      else
+          ScilabHelpBrowser.setChapterTitles("", "")
+      end
+
+      hb = ScilabHelpBrowser.getHelpBrowserWithoutCreation()
       if ~isempty(hb)
           if isdef("startup", "l")
               // for scilab.start
@@ -24,20 +37,16 @@ function helpbrowser_update(startup)
               // different from the session's one.
               doc(id)
           else
-              // for atomsLoad and add_help_chapter
+              // for atomsLoad and add_help_chapter: a new help chapter was
+              // registered. Refresh the (already open) browser so its TOC
+              // picks up the new chapter.
               id = hb.getCurrentID()
-              // Get the current language of the browser
-              jar = hb.getCurrentURL()
-              [?,?,?,lang] = regexp(jar, "/scilab_([a-z]{2}_[A-Z]{2})_help\.jar/", "o")
-              if lang=="en_US" // it may be a default external page in en_US,
-                               // despite the browser is in another language
-                  doc("ones") // We are sure this page is translated
-                  jar = hb.getCurrentURL();
-                  [?,?,?,lang] = regexp(jar, "/scilab_([a-z]{2}_[A-Z]{2})_help\.jar/", "o")
+              if type(id) <> 10 then
+                  // No page opened yet: getCurrentID() returned null ([])
+                  id = ""
               end
-              // Update the browser
-              helpbrowser(%helps(:,1), id, lang, %f)
-              sleep(200)  // required by https://bugzilla.scilab.org/16812
+              // helpbrowser() requires scalar strings for #2 and #3.
+              helpbrowser(%helps(:,1), id, getlanguage(), %f)
           end
       end
       jremove hb ScilabHelpBrowser

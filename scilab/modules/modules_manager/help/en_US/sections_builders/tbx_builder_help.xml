@@ -5,6 +5,7 @@
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aime AGNEL
  * Copyright (C) 2021 - Samuel GOUGEON
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Antoine ELIAS
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,7 +19,7 @@
     <refnamediv>
         <refname>tbx_builder_help</refname>
         <refpurpose>
-            Builds the multilingual help pages of a toolbox, with possible subsections
+            Builds the multilingual help of a toolbox: pre-generates the images of its pages
         </refpurpose>
     </refnamediv>
 
@@ -46,9 +47,10 @@
                 <term>languages</term>
                 <listitem>
                      <para>
-                        Vector of strings like <literal>"en_US"</literal>, specifying the subset of the
-                        languages for which help pages must be built.
-                        
+                        Vector of strings like <literal>"en_US"</literal>, specifying a subset of the
+                        languages of the help. The images of all the languages being generated at
+                        once, the help is built as soon as one of the selected languages exists.
+
                         The shortcuts <literal>"en", "fr", "pt", "ja", "ru"</literal>
                         can be used. They are automatically expanded into
                         <literal>"en_US", "fr_FR", "pt_BR", "ja_JP", "ru_RU"</literal>.
@@ -61,11 +63,16 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            <literal>tbx_builder_help</literal> is used for generating the help of a toolbox.
+            <literal>tbx_builder_help</literal> is used for building the help of a toolbox.
+            The help browser renders the DocBook XML pages of the toolbox directly from its
+            <literal>help/la_LA</literal> directories: building the help consists in
+            pre-generating the images these pages display, as described in
+            <link linkend="tbx_build_help">tbx_build_help</link>.
         </para>
         <para>
             This macro is usually called from <literal>builder.sce</literal> scripts when creating
-            a toolbox.
+            a toolbox, once the libraries of the toolbox are built: the images of the examples are
+            generated with the toolbox loaded.
         </para>
         <para>
             It scans the <literal>toolbox_path</literal> directory for a <literal>help</literal>
@@ -81,11 +88,13 @@
                 </listitem>
                 <listitem>
                      <para>
-                        Otherwise: <literal>tbx_builder_help(…)</literal> generates the help pages
-                        from all <literal>la_LA</literal> subdirectories, where <literal>la_LA</literal>
+                        Otherwise: <literal>tbx_builder_help(…)</literal> calls
+                        <literal>tbx_build_help</literal> once on the <literal>~/help</literal>
+                        directory, which pre-generates the images of the pages of all its
+                        <literal>la_LA</literal> subdirectories, where <literal>la_LA</literal>
                         specifies the language and country according to ISO 15897.
-                        If the <varname>languages</varname> option is used, pages are generated only
-                        for existing and selected languages.
+                        If the <varname>languages</varname> option is used and none of the selected
+                        languages exists, nothing is done.
                     </para>
                 </listitem>
             </itemizedlist>
@@ -115,9 +124,6 @@ tbx_builder_help(get_absolute_file_path('builder.sce'))
         <simplelist type="inline">
             <member>
                 <link linkend="man">man</link>
-            </member>
-            <member>
-                <link linkend="xmltojar">xmltojar</link>
             </member>
             <member>
                 <link linkend="tbx_builder_help_lang">tbx_builder_help_lang</link>
@@ -154,6 +160,16 @@ tbx_builder_help(get_absolute_file_path('builder.sce'))
                 <revdescription>
                     <para>
                         <literal>languages</literal> input option added.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        No help file is built anymore, the help browser rendering the DocBook pages
+                        directly. Without builder script, <literal>tbx_build_help</literal> is called
+                        once, and pre-generates the images of the pages of all the languages.
                     </para>
                 </revdescription>
             </revision>

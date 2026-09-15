@@ -42,9 +42,11 @@ function toolbox_skeletonlib = startModule()
 // =============================================================================
   if or(getscilabmode() == ["NW";"STD"]) then
     mprintf("\tLoad help\n");
-    path_addchapter = pathconvert(root_tlbx+"/jar");
-    if isdir(path_addchapter) then
-      add_help_chapter(TOOLBOX_NAME, path_addchapter, %F);
+    // The help browser reads the DocBook XML sources directly (no help jar
+    // is built anymore): register the toolbox root, the browser resolves
+    // help/<lang> (with en_US fallback) by itself.
+    if isdir(root_tlbx + "/help") then
+      add_help_chapter(TOOLBOX_TITLE, root_tlbx, %F);
     end
   end
 

@@ -27,9 +27,54 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "charEncoding.h"
+#include "callCommand.h"
 }
 
 static BOOL loadedDep = FALSE;
+
+/*
+ * Dump getscilabkeywords() into TMPDIR/help/<lang>/keywords.txt for the
+ * help browser syntax highlighting (one category per line: primitives,
+ * commands, predefined variables, macros, scicos functions). Runs
+ * synchronously on the interpreter thread, so the file exists before the
+ * browser is created; a queued command would interrupt the calling script.
+ * The lists are only rebuilt when the library / primitive / predefined
+ * variable counts changed (keywords.sig), e.g. after a toolbox was loaded.
+ */
+static void generateHelpKeywords(const char* lang)
+{
+    std::string code =
+        "function __help_keywords(lang)\n"
+        "  d = TMPDIR + \"/help/\" + lang;\n"
+        "  f = d + \"/keywords.txt\";\n"
+        "  if ~isdir(d) then mkdir(d); end\n"
+        "  [p, c] = what();\n"
+        "  n = predef(\"names\");\n"
+        "  sig = msprintf(\"%d-%d-%d\", size(librarieslist(), \"*\"), size(p, \"*\"), size(n, \"*\"));\n"
+        "  if isfile(f) & isfile(f + \".sig\") then\n"
+        "    if and(mgetl(f + \".sig\") == sig) then return; end\n"
+        "  end\n"
+        "  k = getscilabkeywords();\n"
+        "  l = [];\n"
+        "  for i = 1:size(k)\n"
+        "    v = k(i);\n"
+        "    if isempty(v) then\n"
+        "      l($+1) = \"\";\n"
+        "    else\n"
+        "      l($+1) = strcat(string(v(:))', \" \");\n"
+        "    end\n"
+        "  end\n"
+        "  mputl(l, f + \".tmp\");\n"
+        "  movefile(f + \".tmp\", f);\n"
+        "  mputl(sig, f + \".sig\");\n"
+        "endfunction\n"
+        "try\n"
+        "  __help_keywords(\"" + std::string(lang) + "\");\n"
+        "catch\n"
+        "end\n"
+        "clear __help_keywords;\n";
+    callCommandFromGateway(code.c_str());
+}
 
 types::Function::ReturnValue sci_helpbrowser(types::typed_list &in, int _iRetCount, types::typed_list& out)
 {
@@ -99,6 +144,7 @@ types::Function::ReturnValue sci_helpbrowser(types::typed_list &in, int _iRetCou
     if (in.size() == 2)
     {
         pstLang = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+        generateHelpKeywords(pstLang);
         launchHelpBrowser(helpAdr, iHelpAdrSize, pstLang);
     }
 
@@ -107,6 +153,7 @@ types::Function::ReturnValue sci_helpbrowser(types::typed_list &in, int _iRetCou
         pstLang = wide_string_to_UTF8(in[2]->getAs<types::String>()->get(0));
         pstKey = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
         int iFullText = in[3]->getAs<types::Bool>()->get(0);
+        generateHelpKeywords(pstLang);
         searchKeyword(helpAdr, iHelpAdrSize, pstKey, pstLang, (BOOL) iFullText);
     }
 

@@ -47,7 +47,7 @@
         <title>Description</title>
         <para>
             Wrap a Scilab variable into a Java one. For now, only the primitive type can be wrapped:
-            <simplelist type="inline">
+            <simplelist>
                 <member>constant (real not complex) into double;</member><member>string into String;</member><member>boolean into boolean;</member><member>int8 into byte;</member><member>uint8 into short;</member><member>int16 into short;</member><member>uint16 into int;</member><member>int32 into int;</member><member>uint32 into long.</member>
             </simplelist>
             The matrices are wrapped into arrays too, e.g. an int8 matrix 3x4 is wrapped into a

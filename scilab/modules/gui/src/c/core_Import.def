@@ -5,6 +5,7 @@ EXPORTS
 ;
 StoreCommand
 StorePrioritaryCommand
+callCommandFromGateway
 freeArrayOfString
 MyHeapAlloc
 MyHeapFree

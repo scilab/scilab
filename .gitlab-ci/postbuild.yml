@@ -96,36 +96,6 @@ build_help_web:
       - public
   when: manual
 
-# extract jar content to web
-publish_help_jar:
-  stage: postbuild
-  tags: [x86_64-linux-gnu, docker, scilab]
-  image: ${SCI_REGISTRY_IMAGE}/linux-builder:${DOCKER_TAG}
-  variables:
-    GIT_STRATEGY: none
-  needs:
-    - linux_build_mr
-    - linux_set_env
-  script:
-    - echo "help from ${SCI_VERSION_STRING} ${ARCH}"
-    - "[ ! -d public ] && mkdir public"
-    - "[ ! -d public/docs ] && mkdir public/docs"
-    - cd public/docs
-    - tar --wildcards --strip-components 6 -xJf ../../${SCI_VERSION_STRING}.bin.${ARCH}.tar.xz ${SCI_VERSION_STRING}/share/scilab/modules/helptools/jar/scilab_*_help.jar
-    - for f in *.jar; do jar xf $f; done
-    - rm *.jar
-    - tar --strip-components 6 -xJf ../../${SCI_VERSION_STRING}.bin.${ARCH}.tar.xz ${SCI_VERSION_STRING}/share/scilab/modules/helptools/jar/scilab_images.jar
-    - "[ ! -d images ] && mkdir images"
-    - jar xf scilab_images.jar -d images/
-    - rm scilab_images.jar
-    - sed -i -e "s#jarsci:./#../images/#g" */*.html
-  rules: &MR_RULES
-    - if: $CI_COMMIT_TAG
-      when: never
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "push"
-  artifacts:
-    paths:
-      - public
 
 # start scilab on multiple distro 
 .linux_startup:
@@ -152,7 +122,10 @@ linux_startup_mr:
   needs:
     - linux_build_mr
     - linux_set_env
-  rules: *MR_RULES
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "push"
 
 linux_startup_nightly:
   extends: .linux_startup

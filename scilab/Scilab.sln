@@ -533,9 +533,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WScilex-cli", "modules\wind
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildHelp", "modules\helptools\src\BuildHelp.vcxproj", "{29DEA97A-B089-42C1-A19F-683C0608B897}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildDoc", "modules\helptools\src\BuildDoc.vcxproj", "{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "webtools_gw", "modules\webtools\sci_gateway\cpp\webtools_gw.vcxproj", "{E46B6B29-48E9-4953-A0AC-ED574C692B82}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildDoc", "modules\helptools\src\BuildDoc.vcxproj", "{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

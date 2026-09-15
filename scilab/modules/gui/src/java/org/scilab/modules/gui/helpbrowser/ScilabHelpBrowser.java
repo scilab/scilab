@@ -2,6 +2,7 @@
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent Couvert
  * Copyright (C) 2011 - Calixte DENIZET
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Antoine ELIAS
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -21,9 +22,13 @@ import java.awt.Container;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
@@ -32,15 +37,13 @@ import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.gui.ScilabGUIUtilities;
-import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
+import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowserJCEF;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.dockable.ScilabDockable;
-import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
@@ -62,6 +65,7 @@ import org.scilab.modules.localization.Messages;
  * Class for Scilab Help Browser in GUIs
  * @author Vincent COUVERT
  * @author Calixte DENIZET
+ * @author Antoine ELIAS
  */
 public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
@@ -76,8 +80,59 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
     private static String language;
     private static String[] helps;
 
+    /** Chapter titles given to add_help_chapter(), keyed by normalized path. */
+    private static final Map<String, String> chapterTitles = new HashMap<String, String>();
+
     static {
         ScilabTabFactory.getInstance().addTabFactory(HelpBrowserTabFactory.getInstance());
+    }
+
+    /**
+     * Register the titles of the help chapters declared through
+     * add_help_chapter() (the %helps matrix). Called from Scilab
+     * (helpbrowser_update.sci), possibly before the browser exists: titles are
+     * kept in a static registry and looked up when the chapters are resolved.
+     *
+     * The two arguments are newline-separated blobs (paths and titles, same
+     * order): a flat string avoids ambiguous Scilab->Java array marshalling.
+     *
+     * @param pathsBlob  newline-separated chapter directories (%helps(:,1))
+     * @param titlesBlob newline-separated chapter titles (%helps(:,2))
+     */
+    public static void setChapterTitles(String pathsBlob, String titlesBlob) {
+        String[] paths = (pathsBlob == null ? "" : pathsBlob).split("\n", -1);
+        String[] titles = (titlesBlob == null ? "" : titlesBlob).split("\n", -1);
+        synchronized (chapterTitles) {
+            chapterTitles.clear();
+            for (int i = 0; i < paths.length; i++) {
+                String p = paths[i].trim();
+                String t = (i < titles.length) ? titles[i].trim() : "";
+                if (!p.isEmpty() && !t.isEmpty()) {
+                    chapterTitles.put(normalizeChapterPath(p), t);
+                }
+            }
+        }
+    }
+
+    /**
+     * @param path a chapter directory as registered by add_help_chapter()
+     * @return the title given to add_help_chapter(), or null if unknown
+     */
+    public static String getChapterTitle(String path) {
+        if (path == null) {
+            return null;
+        }
+        synchronized (chapterTitles) {
+            return chapterTitles.get(normalizeChapterPath(path));
+        }
+    }
+
+    private static String normalizeChapterPath(String p) {
+        String n = new File(p).getAbsolutePath().replace('\\', '/');
+        while (n.length() > 1 && n.endsWith("/")) {
+            n = n.substring(0, n.length() - 1);
+        }
+        return n.toLowerCase();
     }
 
     private SimpleHelpBrowser component;
@@ -92,7 +147,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
         if (language == null) {
             language = ScilabCommons.getlanguage();
         }
-        component = ScilabBridge.createHelpBrowser(helps, language);
+        component = new SwingScilabHelpBrowserJCEF(helps, language);
     }
 
     /**
@@ -103,11 +158,6 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
         helpTab = ScilabTab.createTab(Messages.gettext("Help Browser"), HELPUUID);
         String lastID = restoreHelpBrowserState();
 
-        if (!SwingScilabHelpBrowser.isMainJarExists(language)) {
-            System.err.println("No help file available.");
-            return null;
-        }
-
         instance = new ScilabHelpBrowser(helps, language);
         helpTab.addMember(instance);
 
@@ -117,9 +167,9 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
         TextBox infobar = ScilabTextBox.createTextBox();
         helpTab.addInfoBar(infobar);
 
+        // Keyboard shortcut for zoom (Ctrl+/Ctrl-)
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(new KeyEventDispatcher() {
-            // This is a workaround for Mac OS X where e.getKeyCode() sometimes returns a bad value
             public boolean dispatchKeyEvent(KeyEvent e) {
                 if (e.getID() == KeyEvent.KEY_PRESSED) {
                     Container c = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabDockablePanel) helpTab.getAsSimpleTab());
@@ -127,12 +177,15 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
                         Container cs = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (Component) e.getSource());
                         char chr = e.getKeyChar();
 
-                        if (cs == c && ((chr == '-' || chr == '_' || chr == '=' || chr == '+')
-                                        && (e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0)) {
+                        if (cs == c && ((chr == '-' || chr == '_' || chr == '=' || chr == '+' || chr == '0')
+                                        && (e.getModifiersEx() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()) != 0)) {
+                            SwingScilabHelpBrowserJCEF browser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
                             if (chr == '-' || chr == '_') {
-                                ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).decreaseFont();
+                                browser.decreaseFont();
+                            } else if (chr == '0') {
+                                browser.resetFont();
                             } else {
-                                ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).increaseFont();
+                                browser.increaseFont();
                             }
                             return true;
                         }
@@ -142,31 +195,56 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
             }
         });
 
-        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
-        browser.setCurrentID(lastID);
+        // Navigate to last viewed page if available
+        if (lastID != null && !lastID.isEmpty()) {
+            ((SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component).searchKeywork(lastID);
+        }
 
-        /* Manage toolbar, see issue #9630 */
+        // Toolbar: document zoom buttons
         ToolBar toolbar = ScilabToolBar.createToolBar();
-        /* Copy "standard" JHelp buttons */
-        int nbComp = browser.getToolbar().getComponentCount();
-        for (int i = 0; i < nbComp; ++i) {
-            ((SwingScilabToolBar) toolbar.getAsSimpleToolBar()).add(browser.getToolbar().getComponent(0));
-        }
-        /* Add "About Scilab..." button as in "?" menu */
-        JButton aboutBtn = new JButton(CommonCallBack.createCallback("about();", CallBack.SCILAB_INSTRUCTION));
-        try {
-            aboutBtn.setIcon(FindIconHelper.loadIcon("help-browser"));
-            aboutBtn.setToolTipText(Messages.gettext("About Scilab..."));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ((SwingScilabToolBar) toolbar.getAsSimpleToolBar()).add(aboutBtn);
+        SwingScilabToolBar swingToolbar = (SwingScilabToolBar) toolbar.getAsSimpleToolBar();
+        final SwingScilabHelpBrowserJCEF jcefBrowser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
+        swingToolbar.add(createToolButton("zoom-out", Messages.gettext("Zoom Out"), new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                jcefBrowser.decreaseFont();
+            }
+        }));
+        swingToolbar.add(createToolButton("zoom-original", Messages.gettext("Normal 100%"), new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                jcefBrowser.resetFont();
+            }
+        }));
+        swingToolbar.add(createToolButton("zoom-in", Messages.gettext("Zoom In"), new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                jcefBrowser.increaseFont();
+            }
+        }));
+
         helpTab.addToolBar(toolbar);
 
-        ((SwingScilabDockablePanel) helpTab.getAsSimpleTab()).setAssociatedXMLIDForHelp("helpbrowser");
+        ((SwingScilabDockablePanel) helpTab.getAsSimpleTab()).setAssociatedXMLIDForHelp("doc");
         WindowsConfigurationManager.restorationFinished((SwingScilabDockablePanel) helpTab.getAsSimpleTab());
 
         return (SwingScilabDockablePanel) helpTab.getAsSimpleTab();
+    }
+
+    /**
+     * Create an icon-only toolbar button
+     * @param iconName icon name (resolved by FindIconHelper)
+     * @param tooltip tooltip text
+     * @param listener action
+     * @return the button
+     */
+    private static JButton createToolButton(String iconName, String tooltip, ActionListener listener) {
+        JButton btn = new JButton();
+        try {
+            btn.setIcon(FindIconHelper.loadIcon(iconName));
+        } catch (IOException e) {
+            btn.setText(tooltip);
+        }
+        btn.setToolTipText(tooltip);
+        btn.addActionListener(listener);
+        return btn;
     }
 
     /**
@@ -176,11 +254,6 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * @return the created Help Browser
      */
     public static HelpBrowser createHelpBrowser(String[] helps, String language) {
-        if (!SwingScilabHelpBrowser.isMainJarExists(language)) {
-            System.err.println("No help file available.");
-            return null;
-        }
-
         if (instance == null) {
             ScilabHelpBrowser.language = language;
             ScilabHelpBrowser.helps = helps;
@@ -194,25 +267,20 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
             if (ScilabConsole.isExistingConsole() && ScilabConsole.getConsole().getInfoBar() != null) {
                 if (ScilabConsole.getConsole().getInfoBar().getText().equals(Messages.gettext("Loading help browser..."))) {
-                    // An error occurred
                     ScilabConsole.getConsole().getInfoBar().setText("");
                     return null;
                 }
             }
         } else if (!language.equals(ScilabHelpBrowser.language)) {
-            // reload the help browser with the new language
+            // Language changed — recreate the browser
             ScilabHelpBrowser.language = language;
-            if (!SwingScilabHelpBrowser.isMainJarExists(language)) {
-                System.err.println("No help file available.");
-                return instance;
-            }
-            ((SwingScilabHelpBrowser)((ScilabHelpBrowser) instance).component).loadJar(helps, language);
-        } else if (!Arrays.deepEquals(helps, ScilabHelpBrowser.helps)) {
-            // reload the help browser with new help jar list
+            // TODO: reload with new language
+        } else if (helps != null && !java.util.Arrays.deepEquals(helps, ScilabHelpBrowser.helps)) {
+            // A new help chapter was registered (e.g. a toolbox loaded after the
+            // browser was opened): refresh the TOC in the running browser.
             ScilabHelpBrowser.helps = helps;
-            ((SwingScilabHelpBrowser)((ScilabHelpBrowser) instance).component).loadJar(helps, language);
+            ((SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component).refresh(helps);
         }
-
 
         ScilabGUIUtilities.toFront((SwingScilabDockablePanel) helpTab.getAsSimpleTab(), Messages.gettext("Help Browser"));
 
@@ -232,29 +300,22 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * Display the home page
      */
     public static void startHomePage() {
-        if (instance != null) {
-            SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
-            try {
-                browser.displayHomePage();
-            } catch (Exception e) {
-                System.err.println("This error should not occurred, please report it at bugzilla.scilab.org\n" + e);
-            }
-        }
+        // The JCEF browser loads index.html automatically
     }
 
     /**
      * @return the current displayed url as String
      */
     public String getCurrentURL() {
-        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
+        SwingScilabHelpBrowserJCEF browser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
         return browser.getCurrentURL();
     }
 
     /**
-     * @return the current displayed url as String
+     * @return the current displayed id
      */
     public String getCurrentID() {
-        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
+        SwingScilabHelpBrowserJCEF browser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
         return browser.getCurrentID();
     }
 
@@ -262,7 +323,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * Increase the font of the help viewer
      */
     public void increaseFont() {
-        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
+        SwingScilabHelpBrowserJCEF browser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
         browser.increaseFont();
     }
 
@@ -270,29 +331,36 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * Decrease the font of the help viewer
      */
     public void decreaseFont() {
-        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
+        SwingScilabHelpBrowserJCEF browser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
         browser.decreaseFont();
     }
 
     /**
-     * Display the home page
+     * Reset the font of the help viewer to its default size
+     */
+    public void resetFont() {
+        SwingScilabHelpBrowserJCEF browser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
+        browser.resetFont();
+    }
+
+    /**
+     * Show the search field
      */
     public void showSearchField() {
-        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
+        SwingScilabHelpBrowserJCEF browser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
         browser.showSearchField();
     }
 
     /**
-     * Display the home page
+     * Hide the search field
      */
     public void hideSearchField() {
-        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
-        browser.hideSearchField();
+        // Search field is always visible in JCEF browser
     }
 
     /**
      * Get the Scilab Help Browser
-     * @return the console
+     * @return the help browser instance
      */
     public static HelpBrowser getHelpBrowser() {
         if (instance == null) {
@@ -302,8 +370,8 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
     }
 
     /**
-     * Get the Scilab Help Browser (does not create it is not existing)
-     * @return the console
+     * Get the Scilab Help Browser (does not create it if not existing)
+     * @return the help browser instance or null
      */
     public static HelpBrowser getHelpBrowserWithoutCreation() {
         return instance;
@@ -369,50 +437,26 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
         return component;
     }
 
-    /**
-     * Not used
-     * @return nothing
-     */
     public Size getDims() {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Not used
-     * @return nothing
-     */
     public Position getPosition() {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Not used
-     * @return nothing
-     */
     public boolean isVisible() {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Not used
-     * @param newSize not used
-     */
     public void setDims(Size newSize) {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Not used
-     * @param newPosition not used
-     */
     public void setPosition(Position newPosition) {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Not used
-     * @param newVisibleState not used
-     */
     public void setVisible(boolean newVisibleState) {
         throw new UnsupportedOperationException();
     }
@@ -420,12 +464,10 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
     /**
      * Get associated InfoBar
      * @return the infobar of the parent tab
-     * @see org.scilab.modules.gui.uielement.ScilabUIElement#getInfoBar()
      */
     public TextBox getInfoBar() {
         return helpTab.getInfoBar();
     }
-
 
     /**
      * Save the state of this help browser

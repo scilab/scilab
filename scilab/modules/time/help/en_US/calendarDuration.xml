@@ -163,10 +163,10 @@
                 <link linkend="caldays">caldays</link>
             </member>
             <member>
-                <link linkend="calmonths">calmonths</link> — create a calendarDuration in months
+                <link linkend="calmonths">calmonths</link>
             </member>
             <member>
-                <link linkend="calyears">calyears</link> — create a calendarDuration in years
+                <link linkend="calyears">calyears</link>
             </member>
             <member>
                 <link linkend="duration">duration</link>

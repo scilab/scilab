@@ -48,18 +48,21 @@ reset_test_module(source, mytb_dir);
 tbx_make(mytb_dir, "help");
 Building help...
 Building the links file [inline] in TMPDIR/testbox/inline/en_US.
-Building the manual file [javaHelp] in TMPDIR/testbox/help/en_US.
-Generate image ./csub6_1.png from Scilab code from file csub6.xml
-Generate image ./csub6_en_US_2.png from Scilab code from file csub6.xml
 Building the links file [inline] in TMPDIR/testbox/inline/fr_FR.
-Building the manual file [javaHelp] in TMPDIR/testbox/help/fr_FR.
-Generate image ./csub6_1.png from Scilab code from file csub6.xml
-Generate image ./csub6_fr_FR_2.png from Scilab code from file csub6.xml
+Pre-generating the help images of TMPDIR/testbox/help...
+Collecting <scilab:image> blocks (all languages)...
+4 blocks, 4 (language, snippet) pairs
+[   1/4] csub6_1.png
+[   2/4] csub6_2.png
+[   3/4] csub6_fr_FR_1.png  duplicate of csub6_1.png, not kept
+[   4/4] csub6_fr_FR_2.png  duplicate of csub6_2.png, not kept
+=== summary ===
+generated: 2, deduplicated: 2, cached: 0, failed: 0, crashed: 0, stale removed: 0
 Generating loader.sce...
 Generating unloader.sce...
 Generating cleaner.sce...
-assert_checktrue(isdir(mytb_dir + "/jar"));
-assert_checktrue(and(isfile(mytb_dir + "/jar/scilab_"+["en_US" "fr_FR"]+"_help.jar")));
+assert_checktrue(isdir(mytb_dir + "/help/images/"));
+assert_checktrue(isfile(mytb_dir + "/help/images/help_images.index"));
 assert_checkfalse(isfile(mytb_dir + "/macros/lib"));
 assert_checkfalse(isfile(mytb_dir + "/macros/scilab_sum.bin"));
 subDirs = mytb_dir + "/src/" + ["c" "java" "fortran"];
@@ -68,34 +71,6 @@ assert_checkfalse(isfile(mytb_dir + "/sci_gateway/loader_gateway.sce"));
 subDirs = mytb_dir + "/locales/" + ["en_US" "fr_FR"] + "/LC_MESSAGES/";
 assert_checkfalse(or(isfile(subDirs + "testbox.mo")));
 assert_checkfalse(or(isfile(subDirs + "testbox.po")));
-// Only given languages
-reset_test_module(source, mytb_dir);
-assert_checkfalse(isfile(mytb_dir + "/jar/scilab_fr_FR_help.jar"));
-tbx_make(mytb_dir, "help", "en");
-Building help...
-Building the links file [inline] in TMPDIR/testbox/inline/en_US.
-Building the manual file [javaHelp] in TMPDIR/testbox/help/en_US.
-Generate image ./csub6_1.png from Scilab code from file csub6.xml
-Generate image ./csub6_en_US_2.png from Scilab code from file csub6.xml
-Generating loader.sce...
-Generating unloader.sce...
-Generating cleaner.sce...
-assert_checktrue(isdir(mytb_dir + "/jar"));
-assert_checktrue(isfile(mytb_dir + "/jar/scilab_en_US_help.jar"));
-assert_checkfalse(isfile(mytb_dir + "/jar/scilab_fr_FR_help.jar"));
-reset_test_module(source, mytb_dir);
-tbx_make(mytb_dir, "help", "fr");
-Building help...
-Building the links file [inline] in TMPDIR/testbox/inline/fr_FR.
-Building the manual file [javaHelp] in TMPDIR/testbox/help/fr_FR.
-Generate image ./csub6_1.png from Scilab code from file csub6.xml
-Generate image ./csub6_fr_FR_2.png from Scilab code from file csub6.xml
-Generating loader.sce...
-Generating unloader.sce...
-Generating cleaner.sce...
-assert_checktrue(isdir(mytb_dir + "/jar"));
-assert_checktrue(isfile(mytb_dir + "/jar/scilab_fr_FR_help.jar"));
-assert_checkfalse(isfile(mytb_dir + "/jar/scilab_en_US_help.jar"));
 // Build only locales
 // ------------------
 reset_test_module(source, mytb_dir);
