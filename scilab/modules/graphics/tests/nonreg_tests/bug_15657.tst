@@ -35,11 +35,13 @@ h1.fill_mode = "on";
 h1.closed = "on";
 h1.foreground = addcolor(cf);
 h1.background = addcolor(cb);
+h1.background_alpha = h.background_alpha;
 
 h2 = plot([5/3 5/3 2 2],[0 1.5 1.5 0],'k');
 h2.fill_mode = "on";
 h2.foreground = addcolor(cf);
 h2.background = addcolor(cb);
+h2.background_alpha = h.background_alpha;
 h2.closed = "on";
 gca().box = "off";
 
@@ -51,3 +53,4 @@ res2  =  getmd5(fullfile(TMPDIR,"bug_15657_2.png"));
 assert_checkequal(res1,res2);
 
 gdf().anti_aliasing = old_aa;
+
