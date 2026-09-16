@@ -19,6 +19,8 @@ version.txt
 .deps
 .libs
 Makefile
+/.scilab-build-home-path
+/.scilab-build-*/
 
 #
 # Java compilation output dir
