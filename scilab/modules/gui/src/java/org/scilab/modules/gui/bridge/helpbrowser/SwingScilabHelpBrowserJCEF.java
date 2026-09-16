@@ -986,7 +986,12 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
             Transformer transformer = xsltTemplates.newTransformer();
             transformer.setParameter("base-path", basePath);
             transformer.setParameter("xml-dir", xmlDir);
-            transformer.setParameter("js-dir", "file:///" + JS_DIR.replace('\\', '/'));
+            String jsDir = JS_DIR;
+            if ((OS.get() != OS.WINDOWS) && (new File(jsDir).exists() == false)) {
+                // Probably an installed Linux or macOS version where thirdparty/ is in SCI/../../
+                jsDir = SCI + "/../../thirdparty/web";
+            }
+            transformer.setParameter("js-dir", "file:///" + jsDir.replace('\\', '/'));
             StreamSource source = new StreamSource(xmlFile);
             java.io.StringWriter sw = new java.io.StringWriter();
             StreamResult result = new StreamResult(sw);
