@@ -105,8 +105,8 @@ CHECK_SRC= $(ACTION_BINDING_CPP_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libsciaction_binding_la_CPPFLAGS)
 
 ## Libraries necessary
-libsciaction_binding_la_LIBADD = libsciaction_binding-algo.la \
-	$(top_builddir)/modules/core/libscicore.la
+# Never link libscicore here to avoid core symbols duplication (resolved at load time).
+libsciaction_binding_la_LIBADD = libsciaction_binding-algo.la
 
 #### Name of the module and the path ######
 modulename=action_binding
