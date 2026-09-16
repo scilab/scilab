@@ -905,14 +905,22 @@ OCAML_TRUE
 OCAMLFIND_FALSE
 OCAMLFIND_TRUE
 XCOS_ENABLE
-WITH_OCAML
-OCAMLOPTFLAGS
-OCAMLCFLAGS
+OCAML_PKG_num
+OCAML_num_INCLUDE
 OCAMLFIND
-OCAMLLEX
 OCAMLYACC
+OCAMLLEXDOTOPT
+OCAMLLEX
+OCAMLBUILD
+OCAMLDOC
+OCAMLMKLIB
+OCAMLMKTOP
 OCAMLDEP
+OCAML
+OCAMLBEST
 OCAMLOPT
+OCAMLLIB
+OCAMLVERSION
 OCAMLC
 RT_LIB
 EXTERNAL_SCIRENDERER_FALSE
@@ -10266,11 +10274,11 @@ if test x$ac_prog_cxx_stdcxx = xno
 then :
   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $CXX option to enable C++11 features" >&5
 printf %s "checking for $CXX option to enable C++11 features... " >&6; }
-if test ${ac_cv_prog_cxx_11+y}
+if test ${ac_cv_prog_cxx_cxx11+y}
 then :
   printf %s "(cached) " >&6
 else $as_nop
-  ac_cv_prog_cxx_11=no
+  ac_cv_prog_cxx_cxx11=no
 ac_save_CXX=$CXX
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
@@ -10312,11 +10320,11 @@ if test x$ac_prog_cxx_stdcxx = xno
 then :
   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $CXX option to enable C++98 features" >&5
 printf %s "checking for $CXX option to enable C++98 features... " >&6; }
-if test ${ac_cv_prog_cxx_98+y}
+if test ${ac_cv_prog_cxx_cxx98+y}
 then :
   printf %s "(cached) " >&6
 else $as_nop
-  ac_cv_prog_cxx_98=no
+  ac_cv_prog_cxx_cxx98=no
 ac_save_CXX=$CXX
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
@@ -13363,12 +13371,11 @@ fi
 ## ocaml which only called when using Xcos
 #################
 
-   if test "$with_modelica" != no; then
-
-# checking for ocamlc
-
-	# Extract the first word of "ocamlc", so it can be a program name with args.
-set dummy ocamlc; ac_word=$2
+    if test "$with_modelica" != no; then
+          # checking for ocamlc
+  if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}ocamlc", so it can be a program name with args.
+set dummy ${ac_tool_prefix}ocamlc; ac_word=$2
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 printf %s "checking for $ac_word... " >&6; }
 if test ${ac_cv_prog_OCAMLC+y}
@@ -13389,7 +13396,7 @@ do
   esac
     for ac_exec_ext in '' $ac_executable_extensions; do
   if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
-    ac_cv_prog_OCAMLC="ocamlc"
+    ac_cv_prog_OCAMLC="${ac_tool_prefix}ocamlc"
     printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
     break 2
   fi
@@ -13397,7 +13404,6 @@ done
   done
 IFS=$as_save_IFS
 
-  test -z "$ac_cv_prog_OCAMLC" && ac_cv_prog_OCAMLC="no"
 fi
 fi
 OCAMLC=$ac_cv_prog_OCAMLC
@@ -13410,11 +13416,87 @@ printf "%s\n" "no" >&6; }
 fi
 
 
-	if test "x$OCAMLC" = "xno"; then
-		as_fn_error $? "ocamlc not found. Mandatory to build the Scicos modelica compiler (Use --without-modelica to disable the Modelica compiler)." "$LINENO" 5
-	fi
-	# Extract the first word of "ocamlopt", so it can be a program name with args.
-set dummy ocamlopt; ac_word=$2
+fi
+if test -z "$ac_cv_prog_OCAMLC"; then
+  ac_ct_OCAMLC=$OCAMLC
+  # Extract the first word of "ocamlc", so it can be a program name with args.
+set dummy ocamlc; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_ac_ct_OCAMLC+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$ac_ct_OCAMLC"; then
+  ac_cv_prog_ac_ct_OCAMLC="$ac_ct_OCAMLC" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_ac_ct_OCAMLC="ocamlc"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+ac_ct_OCAMLC=$ac_cv_prog_ac_ct_OCAMLC
+if test -n "$ac_ct_OCAMLC"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_ct_OCAMLC" >&5
+printf "%s\n" "$ac_ct_OCAMLC" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_ct_OCAMLC" = x; then
+    OCAMLC="no"
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    OCAMLC=$ac_ct_OCAMLC
+  fi
+else
+  OCAMLC="$ac_cv_prog_OCAMLC"
+fi
+
+
+  if test "$OCAMLC" != "no"; then
+     OCAMLVERSION=`$OCAMLC -v | sed -n -e 's|.*version* *\(.*\)$|\1|p'`
+     { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: OCaml version is $OCAMLVERSION" >&5
+printf "%s\n" "OCaml version is $OCAMLVERSION" >&6; }
+     # If OCAMLLIB is set, use it
+     if test "$OCAMLLIB" = ""; then
+        OCAMLLIB=`$OCAMLC -where 2>/dev/null || $OCAMLC -v|tail -1|cut -d ' ' -f 4`
+     else
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: OCAMLLIB previously set; preserving it." >&5
+printf "%s\n" "OCAMLLIB previously set; preserving it." >&6; }
+     fi
+     { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: OCaml library path is $OCAMLLIB" >&5
+printf "%s\n" "OCaml library path is $OCAMLLIB" >&6; }
+
+
+
+
+     # checking for ocamlopt
+     if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}ocamlopt", so it can be a program name with args.
+set dummy ${ac_tool_prefix}ocamlopt; ac_word=$2
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 printf %s "checking for $ac_word... " >&6; }
 if test ${ac_cv_prog_OCAMLOPT+y}
@@ -13435,7 +13517,7 @@ do
   esac
     for ac_exec_ext in '' $ac_executable_extensions; do
   if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
-    ac_cv_prog_OCAMLOPT="ocamlopt"
+    ac_cv_prog_OCAMLOPT="${ac_tool_prefix}ocamlopt"
     printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
     break 2
   fi
@@ -13443,7 +13525,6 @@ done
   done
 IFS=$as_save_IFS
 
-  test -z "$ac_cv_prog_OCAMLOPT" && ac_cv_prog_OCAMLOPT="no"
 fi
 fi
 OCAMLOPT=$ac_cv_prog_OCAMLOPT
@@ -13456,11 +13537,220 @@ printf "%s\n" "no" >&6; }
 fi
 
 
-	if test "x$OCAMLOPT" = "xno"; then
-		as_fn_error $? "ocamlopt not found. Mandatory to build the Scicos modelica compiler." "$LINENO" 5
+fi
+if test -z "$ac_cv_prog_OCAMLOPT"; then
+  ac_ct_OCAMLOPT=$OCAMLOPT
+  # Extract the first word of "ocamlopt", so it can be a program name with args.
+set dummy ocamlopt; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_ac_ct_OCAMLOPT+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$ac_ct_OCAMLOPT"; then
+  ac_cv_prog_ac_ct_OCAMLOPT="$ac_ct_OCAMLOPT" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_ac_ct_OCAMLOPT="ocamlopt"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+ac_ct_OCAMLOPT=$ac_cv_prog_ac_ct_OCAMLOPT
+if test -n "$ac_ct_OCAMLOPT"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_ct_OCAMLOPT" >&5
+printf "%s\n" "$ac_ct_OCAMLOPT" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_ct_OCAMLOPT" = x; then
+    OCAMLOPT="no"
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    OCAMLOPT=$ac_ct_OCAMLOPT
+  fi
+else
+  OCAMLOPT="$ac_cv_prog_OCAMLOPT"
+fi
+
+     OCAMLBEST=byte
+     if test "$OCAMLOPT" = "no"; then
+	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: Cannot find ocamlopt; bytecode compilation only." >&5
+printf "%s\n" "$as_me: WARNING: Cannot find ocamlopt; bytecode compilation only." >&2;}
+     else
+	TMPVERSION=`$OCAMLOPT -v | sed -n -e 's|.*version* *\(.*\)$|\1|p' `
+	if test "$TMPVERSION" != "$OCAMLVERSION" ; then
+	    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: versions differs from ocamlc; ocamlopt discarded." >&5
+printf "%s\n" "versions differs from ocamlc; ocamlopt discarded." >&6; }
+	    OCAMLOPT=no
+	else
+	    OCAMLBEST=opt
 	fi
-	# Extract the first word of "ocamldep", so it can be a program name with args.
-set dummy ocamldep; ac_word=$2
+     fi
+
+
+# broken with ocamlfind calls
+#     # checking for ocamlc.opt
+#     AC_CHECK_TOOL([OCAMLCDOTOPT],[ocamlc.opt],[no])
+#     if test "$OCAMLCDOTOPT" != "no"; then
+#	TMPVERSION=`$OCAMLCDOTOPT -v | sed -n -e 's|.*version* *\(.*\)$|\1|p' `
+#	if test "$TMPVERSION" != "$OCAMLVERSION" ; then
+#	    AC_MSG_RESULT([versions differs from ocamlc; ocamlc.opt discarded.])
+#	else
+#	    OCAMLC=$OCAMLCDOTOPT
+#	fi
+#     fi
+
+# broken with ocamlfind calls
+#     # checking for ocamlopt.opt
+#     if test "$OCAMLOPT" != "no" ; then
+#	AC_CHECK_TOOL([OCAMLOPTDOTOPT],[ocamlopt.opt],[no])
+#	if test "$OCAMLOPTDOTOPT" != "no"; then
+#	   TMPVERSION=`$OCAMLOPTDOTOPT -v | sed -n -e 's|.*version* *\(.*\)$|\1|p' `
+#	   if test "$TMPVERSION" != "$OCAMLVERSION" ; then
+#	      AC_MSG_RESULT([version differs from ocamlc; ocamlopt.opt discarded.])
+#	   else
+#	      OCAMLOPT=$OCAMLOPTDOTOPT
+#	   fi
+#        fi
+#     fi
+
+
+  fi
+
+
+
+  # checking for ocaml toplevel
+  if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}ocaml", so it can be a program name with args.
+set dummy ${ac_tool_prefix}ocaml; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_OCAML+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$OCAML"; then
+  ac_cv_prog_OCAML="$OCAML" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_OCAML="${ac_tool_prefix}ocaml"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+OCAML=$ac_cv_prog_OCAML
+if test -n "$OCAML"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $OCAML" >&5
+printf "%s\n" "$OCAML" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_prog_OCAML"; then
+  ac_ct_OCAML=$OCAML
+  # Extract the first word of "ocaml", so it can be a program name with args.
+set dummy ocaml; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_ac_ct_OCAML+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$ac_ct_OCAML"; then
+  ac_cv_prog_ac_ct_OCAML="$ac_ct_OCAML" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_ac_ct_OCAML="ocaml"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+ac_ct_OCAML=$ac_cv_prog_ac_ct_OCAML
+if test -n "$ac_ct_OCAML"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_ct_OCAML" >&5
+printf "%s\n" "$ac_ct_OCAML" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_ct_OCAML" = x; then
+    OCAML="no"
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    OCAML=$ac_ct_OCAML
+  fi
+else
+  OCAML="$ac_cv_prog_OCAML"
+fi
+
+
+  # checking for ocamldep
+  if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}ocamldep", so it can be a program name with args.
+set dummy ${ac_tool_prefix}ocamldep; ac_word=$2
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 printf %s "checking for $ac_word... " >&6; }
 if test ${ac_cv_prog_OCAMLDEP+y}
@@ -13481,7 +13771,7 @@ do
   esac
     for ac_exec_ext in '' $ac_executable_extensions; do
   if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
-    ac_cv_prog_OCAMLDEP="ocamldep"
+    ac_cv_prog_OCAMLDEP="${ac_tool_prefix}ocamldep"
     printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
     break 2
   fi
@@ -13489,7 +13779,6 @@ done
   done
 IFS=$as_save_IFS
 
-  test -z "$ac_cv_prog_OCAMLDEP" && ac_cv_prog_OCAMLDEP="no"
 fi
 fi
 OCAMLDEP=$ac_cv_prog_OCAMLDEP
@@ -13502,19 +13791,19 @@ printf "%s\n" "no" >&6; }
 fi
 
 
-	if test "x$OCAMLDEP" = "xno"; then
-		as_fn_error $? "ocamldep not found. Mandatory to build the Scicos modelica compiler." "$LINENO" 5
-	fi
-	# Extract the first word of "ocamlyacc", so it can be a program name with args.
-set dummy ocamlyacc; ac_word=$2
+fi
+if test -z "$ac_cv_prog_OCAMLDEP"; then
+  ac_ct_OCAMLDEP=$OCAMLDEP
+  # Extract the first word of "ocamldep", so it can be a program name with args.
+set dummy ocamldep; ac_word=$2
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 printf %s "checking for $ac_word... " >&6; }
-if test ${ac_cv_prog_OCAMLYACC+y}
+if test ${ac_cv_prog_ac_ct_OCAMLDEP+y}
 then :
   printf %s "(cached) " >&6
 else $as_nop
-  if test -n "$OCAMLYACC"; then
-  ac_cv_prog_OCAMLYACC="$OCAMLYACC" # Let the user override the test.
+  if test -n "$ac_ct_OCAMLDEP"; then
+  ac_cv_prog_ac_ct_OCAMLDEP="$ac_ct_OCAMLDEP" # Let the user override the test.
 else
 as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
 for as_dir in $PATH
@@ -13527,7 +13816,7 @@ do
   esac
     for ac_exec_ext in '' $ac_executable_extensions; do
   if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
-    ac_cv_prog_OCAMLYACC="ocamlyacc"
+    ac_cv_prog_ac_ct_OCAMLDEP="ocamldep"
     printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
     break 2
   fi
@@ -13535,24 +13824,453 @@ done
   done
 IFS=$as_save_IFS
 
-  test -z "$ac_cv_prog_OCAMLYACC" && ac_cv_prog_OCAMLYACC="no"
 fi
 fi
-OCAMLYACC=$ac_cv_prog_OCAMLYACC
-if test -n "$OCAMLYACC"; then
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $OCAMLYACC" >&5
-printf "%s\n" "$OCAMLYACC" >&6; }
+ac_ct_OCAMLDEP=$ac_cv_prog_ac_ct_OCAMLDEP
+if test -n "$ac_ct_OCAMLDEP"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_ct_OCAMLDEP" >&5
+printf "%s\n" "$ac_ct_OCAMLDEP" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_ct_OCAMLDEP" = x; then
+    OCAMLDEP="no"
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    OCAMLDEP=$ac_ct_OCAMLDEP
+  fi
+else
+  OCAMLDEP="$ac_cv_prog_OCAMLDEP"
+fi
+
+
+  # checking for ocamlmktop
+  if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}ocamlmktop", so it can be a program name with args.
+set dummy ${ac_tool_prefix}ocamlmktop; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_OCAMLMKTOP+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$OCAMLMKTOP"; then
+  ac_cv_prog_OCAMLMKTOP="$OCAMLMKTOP" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_OCAMLMKTOP="${ac_tool_prefix}ocamlmktop"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+OCAMLMKTOP=$ac_cv_prog_OCAMLMKTOP
+if test -n "$OCAMLMKTOP"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $OCAMLMKTOP" >&5
+printf "%s\n" "$OCAMLMKTOP" >&6; }
 else
   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
 fi
 
 
-	if test "x$OCAMLYACC" = "xno"; then
-		as_fn_error $? "ocamlyacc not found. Mandatory to build the Scicos modelica compiler." "$LINENO" 5
-	fi
-	# Extract the first word of "ocamllex", so it can be a program name with args.
-set dummy ocamllex; ac_word=$2
+fi
+if test -z "$ac_cv_prog_OCAMLMKTOP"; then
+  ac_ct_OCAMLMKTOP=$OCAMLMKTOP
+  # Extract the first word of "ocamlmktop", so it can be a program name with args.
+set dummy ocamlmktop; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_ac_ct_OCAMLMKTOP+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$ac_ct_OCAMLMKTOP"; then
+  ac_cv_prog_ac_ct_OCAMLMKTOP="$ac_ct_OCAMLMKTOP" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_ac_ct_OCAMLMKTOP="ocamlmktop"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+ac_ct_OCAMLMKTOP=$ac_cv_prog_ac_ct_OCAMLMKTOP
+if test -n "$ac_ct_OCAMLMKTOP"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_ct_OCAMLMKTOP" >&5
+printf "%s\n" "$ac_ct_OCAMLMKTOP" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_ct_OCAMLMKTOP" = x; then
+    OCAMLMKTOP="no"
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    OCAMLMKTOP=$ac_ct_OCAMLMKTOP
+  fi
+else
+  OCAMLMKTOP="$ac_cv_prog_OCAMLMKTOP"
+fi
+
+
+  # checking for ocamlmklib
+  if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}ocamlmklib", so it can be a program name with args.
+set dummy ${ac_tool_prefix}ocamlmklib; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_OCAMLMKLIB+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$OCAMLMKLIB"; then
+  ac_cv_prog_OCAMLMKLIB="$OCAMLMKLIB" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_OCAMLMKLIB="${ac_tool_prefix}ocamlmklib"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+OCAMLMKLIB=$ac_cv_prog_OCAMLMKLIB
+if test -n "$OCAMLMKLIB"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $OCAMLMKLIB" >&5
+printf "%s\n" "$OCAMLMKLIB" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_prog_OCAMLMKLIB"; then
+  ac_ct_OCAMLMKLIB=$OCAMLMKLIB
+  # Extract the first word of "ocamlmklib", so it can be a program name with args.
+set dummy ocamlmklib; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_ac_ct_OCAMLMKLIB+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$ac_ct_OCAMLMKLIB"; then
+  ac_cv_prog_ac_ct_OCAMLMKLIB="$ac_ct_OCAMLMKLIB" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_ac_ct_OCAMLMKLIB="ocamlmklib"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+ac_ct_OCAMLMKLIB=$ac_cv_prog_ac_ct_OCAMLMKLIB
+if test -n "$ac_ct_OCAMLMKLIB"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_ct_OCAMLMKLIB" >&5
+printf "%s\n" "$ac_ct_OCAMLMKLIB" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_ct_OCAMLMKLIB" = x; then
+    OCAMLMKLIB="no"
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    OCAMLMKLIB=$ac_ct_OCAMLMKLIB
+  fi
+else
+  OCAMLMKLIB="$ac_cv_prog_OCAMLMKLIB"
+fi
+
+
+  # checking for ocamldoc
+  if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}ocamldoc", so it can be a program name with args.
+set dummy ${ac_tool_prefix}ocamldoc; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_OCAMLDOC+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$OCAMLDOC"; then
+  ac_cv_prog_OCAMLDOC="$OCAMLDOC" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_OCAMLDOC="${ac_tool_prefix}ocamldoc"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+OCAMLDOC=$ac_cv_prog_OCAMLDOC
+if test -n "$OCAMLDOC"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $OCAMLDOC" >&5
+printf "%s\n" "$OCAMLDOC" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_prog_OCAMLDOC"; then
+  ac_ct_OCAMLDOC=$OCAMLDOC
+  # Extract the first word of "ocamldoc", so it can be a program name with args.
+set dummy ocamldoc; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_ac_ct_OCAMLDOC+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$ac_ct_OCAMLDOC"; then
+  ac_cv_prog_ac_ct_OCAMLDOC="$ac_ct_OCAMLDOC" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_ac_ct_OCAMLDOC="ocamldoc"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+ac_ct_OCAMLDOC=$ac_cv_prog_ac_ct_OCAMLDOC
+if test -n "$ac_ct_OCAMLDOC"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_ct_OCAMLDOC" >&5
+printf "%s\n" "$ac_ct_OCAMLDOC" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_ct_OCAMLDOC" = x; then
+    OCAMLDOC="no"
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    OCAMLDOC=$ac_ct_OCAMLDOC
+  fi
+else
+  OCAMLDOC="$ac_cv_prog_OCAMLDOC"
+fi
+
+
+  # checking for ocamlbuild
+  if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}ocamlbuild", so it can be a program name with args.
+set dummy ${ac_tool_prefix}ocamlbuild; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_OCAMLBUILD+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$OCAMLBUILD"; then
+  ac_cv_prog_OCAMLBUILD="$OCAMLBUILD" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_OCAMLBUILD="${ac_tool_prefix}ocamlbuild"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+OCAMLBUILD=$ac_cv_prog_OCAMLBUILD
+if test -n "$OCAMLBUILD"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $OCAMLBUILD" >&5
+printf "%s\n" "$OCAMLBUILD" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_prog_OCAMLBUILD"; then
+  ac_ct_OCAMLBUILD=$OCAMLBUILD
+  # Extract the first word of "ocamlbuild", so it can be a program name with args.
+set dummy ocamlbuild; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_ac_ct_OCAMLBUILD+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$ac_ct_OCAMLBUILD"; then
+  ac_cv_prog_ac_ct_OCAMLBUILD="$ac_ct_OCAMLBUILD" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_ac_ct_OCAMLBUILD="ocamlbuild"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+ac_ct_OCAMLBUILD=$ac_cv_prog_ac_ct_OCAMLBUILD
+if test -n "$ac_ct_OCAMLBUILD"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_ct_OCAMLBUILD" >&5
+printf "%s\n" "$ac_ct_OCAMLBUILD" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_ct_OCAMLBUILD" = x; then
+    OCAMLBUILD="no"
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    OCAMLBUILD=$ac_ct_OCAMLBUILD
+  fi
+else
+  OCAMLBUILD="$ac_cv_prog_OCAMLBUILD"
+fi
+
+
+          # checking for ocamllex
+  if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}ocamllex", so it can be a program name with args.
+set dummy ${ac_tool_prefix}ocamllex; ac_word=$2
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 printf %s "checking for $ac_word... " >&6; }
 if test ${ac_cv_prog_OCAMLLEX+y}
@@ -13573,7 +14291,7 @@ do
   esac
     for ac_exec_ext in '' $ac_executable_extensions; do
   if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
-    ac_cv_prog_OCAMLLEX="ocamllex"
+    ac_cv_prog_OCAMLLEX="${ac_tool_prefix}ocamllex"
     printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
     break 2
   fi
@@ -13581,7 +14299,6 @@ done
   done
 IFS=$as_save_IFS
 
-  test -z "$ac_cv_prog_OCAMLLEX" && ac_cv_prog_OCAMLLEX="no"
 fi
 fi
 OCAMLLEX=$ac_cv_prog_OCAMLLEX
@@ -13594,11 +14311,283 @@ printf "%s\n" "no" >&6; }
 fi
 
 
-	if test "x$OCAMLLEX" = "xno"; then
-		as_fn_error $? "ocamllex not found. Mandatory to build the Scicos modelica compiler." "$LINENO" 5
-	fi
-	# Extract the first word of "ocamlfind", so it can be a program name with args.
-set dummy ocamlfind; ac_word=$2
+fi
+if test -z "$ac_cv_prog_OCAMLLEX"; then
+  ac_ct_OCAMLLEX=$OCAMLLEX
+  # Extract the first word of "ocamllex", so it can be a program name with args.
+set dummy ocamllex; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_ac_ct_OCAMLLEX+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$ac_ct_OCAMLLEX"; then
+  ac_cv_prog_ac_ct_OCAMLLEX="$ac_ct_OCAMLLEX" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_ac_ct_OCAMLLEX="ocamllex"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+ac_ct_OCAMLLEX=$ac_cv_prog_ac_ct_OCAMLLEX
+if test -n "$ac_ct_OCAMLLEX"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_ct_OCAMLLEX" >&5
+printf "%s\n" "$ac_ct_OCAMLLEX" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_ct_OCAMLLEX" = x; then
+    OCAMLLEX="no"
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    OCAMLLEX=$ac_ct_OCAMLLEX
+  fi
+else
+  OCAMLLEX="$ac_cv_prog_OCAMLLEX"
+fi
+
+  if test "$OCAMLLEX" != "no"; then
+    if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}ocamllex.opt", so it can be a program name with args.
+set dummy ${ac_tool_prefix}ocamllex.opt; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_OCAMLLEXDOTOPT+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$OCAMLLEXDOTOPT"; then
+  ac_cv_prog_OCAMLLEXDOTOPT="$OCAMLLEXDOTOPT" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_OCAMLLEXDOTOPT="${ac_tool_prefix}ocamllex.opt"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+OCAMLLEXDOTOPT=$ac_cv_prog_OCAMLLEXDOTOPT
+if test -n "$OCAMLLEXDOTOPT"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $OCAMLLEXDOTOPT" >&5
+printf "%s\n" "$OCAMLLEXDOTOPT" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_prog_OCAMLLEXDOTOPT"; then
+  ac_ct_OCAMLLEXDOTOPT=$OCAMLLEXDOTOPT
+  # Extract the first word of "ocamllex.opt", so it can be a program name with args.
+set dummy ocamllex.opt; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_ac_ct_OCAMLLEXDOTOPT+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$ac_ct_OCAMLLEXDOTOPT"; then
+  ac_cv_prog_ac_ct_OCAMLLEXDOTOPT="$ac_ct_OCAMLLEXDOTOPT" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_ac_ct_OCAMLLEXDOTOPT="ocamllex.opt"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+ac_ct_OCAMLLEXDOTOPT=$ac_cv_prog_ac_ct_OCAMLLEXDOTOPT
+if test -n "$ac_ct_OCAMLLEXDOTOPT"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_ct_OCAMLLEXDOTOPT" >&5
+printf "%s\n" "$ac_ct_OCAMLLEXDOTOPT" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_ct_OCAMLLEXDOTOPT" = x; then
+    OCAMLLEXDOTOPT="no"
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    OCAMLLEXDOTOPT=$ac_ct_OCAMLLEXDOTOPT
+  fi
+else
+  OCAMLLEXDOTOPT="$ac_cv_prog_OCAMLLEXDOTOPT"
+fi
+
+    if test "$OCAMLLEXDOTOPT" != "no"; then
+	OCAMLLEX=$OCAMLLEXDOTOPT
+    fi
+  fi
+
+
+          if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}ocamlyacc", so it can be a program name with args.
+set dummy ${ac_tool_prefix}ocamlyacc; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_OCAMLYACC+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$OCAMLYACC"; then
+  ac_cv_prog_OCAMLYACC="$OCAMLYACC" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_OCAMLYACC="${ac_tool_prefix}ocamlyacc"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+OCAMLYACC=$ac_cv_prog_OCAMLYACC
+if test -n "$OCAMLYACC"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $OCAMLYACC" >&5
+printf "%s\n" "$OCAMLYACC" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_prog_OCAMLYACC"; then
+  ac_ct_OCAMLYACC=$OCAMLYACC
+  # Extract the first word of "ocamlyacc", so it can be a program name with args.
+set dummy ocamlyacc; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_ac_ct_OCAMLYACC+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$ac_ct_OCAMLYACC"; then
+  ac_cv_prog_ac_ct_OCAMLYACC="$ac_ct_OCAMLYACC" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_ac_ct_OCAMLYACC="ocamlyacc"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+ac_ct_OCAMLYACC=$ac_cv_prog_ac_ct_OCAMLYACC
+if test -n "$ac_ct_OCAMLYACC"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_ct_OCAMLYACC" >&5
+printf "%s\n" "$ac_ct_OCAMLYACC" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_ct_OCAMLYACC" = x; then
+    OCAMLYACC="no"
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    OCAMLYACC=$ac_ct_OCAMLYACC
+  fi
+else
+  OCAMLYACC="$ac_cv_prog_OCAMLYACC"
+fi
+
+
+
+
+  # checking for ocamlfind
+  if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}ocamlfind", so it can be a program name with args.
+set dummy ${ac_tool_prefix}ocamlfind; ac_word=$2
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 printf %s "checking for $ac_word... " >&6; }
 if test ${ac_cv_prog_OCAMLFIND+y}
@@ -13619,7 +14608,7 @@ do
   esac
     for ac_exec_ext in '' $ac_executable_extensions; do
   if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
-    ac_cv_prog_OCAMLFIND="ocamlfind"
+    ac_cv_prog_OCAMLFIND="${ac_tool_prefix}ocamlfind"
     printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
     break 2
   fi
@@ -13627,7 +14616,6 @@ done
   done
 IFS=$as_save_IFS
 
-  test -z "$ac_cv_prog_OCAMLFIND" && ac_cv_prog_OCAMLFIND="no"
 fi
 fi
 OCAMLFIND=$ac_cv_prog_OCAMLFIND
@@ -13640,29 +14628,124 @@ printf "%s\n" "no" >&6; }
 fi
 
 
-	if test "x$OCAMLFIND" = "xno"; then
-		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: ocamlfind not found. Dependency resolution is set to manual, build might fail (Use --without-modelica to disable the Modelica compiler)." >&5
-printf "%s\n" "$as_me: WARNING: ocamlfind not found. Dependency resolution is set to manual, build might fail (Use --without-modelica to disable the Modelica compiler)." >&2;}
-	fi
-
-printf "%s\n" "#define WITH_OCAML /**/" >>confdefs.h
-
-
-
-
-
-
-
-
-
-
-
-
-
-   fi
-   XCOS_ENABLE=yes
+fi
+if test -z "$ac_cv_prog_OCAMLFIND"; then
+  ac_ct_OCAMLFIND=$OCAMLFIND
+  # Extract the first word of "ocamlfind", so it can be a program name with args.
+set dummy ocamlfind; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_prog_ac_ct_OCAMLFIND+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if test -n "$ac_ct_OCAMLFIND"; then
+  ac_cv_prog_ac_ct_OCAMLFIND="$ac_ct_OCAMLFIND" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_prog_ac_ct_OCAMLFIND="ocamlfind"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
 
 fi
+fi
+ac_ct_OCAMLFIND=$ac_cv_prog_ac_ct_OCAMLFIND
+if test -n "$ac_ct_OCAMLFIND"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_ct_OCAMLFIND" >&5
+printf "%s\n" "$ac_ct_OCAMLFIND" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_ct_OCAMLFIND" = x; then
+    OCAMLFIND="no"
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    OCAMLFIND=$ac_ct_OCAMLFIND
+  fi
+else
+  OCAMLFIND="$ac_cv_prog_OCAMLFIND"
+fi
+
+
+
+        if test "x$OCAMLFIND" = "xno"; then
+              { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for OCaml module Num" >&5
+printf %s "checking for OCaml module Num... " >&6; }
+
+  cat > conftest.ml <<EOF
+open Num
+EOF
+  unset found
+  for OCAML_num_INCLUDE in $OCAML_num_INCLUDE /usr/lib/ocaml/ /usr/lib64/ocaml/ /usr/lib/ocaml/num/ /usr/lib64/ocaml/num/ ; do
+    if $OCAMLC -c -I "$OCAML_num_INCLUDE" conftest.ml >&5 2>&5 ; then
+      found=yes
+      break
+    fi
+  done
+
+  if test "$found" ; then
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $OCAML_num_INCLUDE" >&5
+printf "%s\n" "$OCAML_num_INCLUDE" >&6; }
+  else
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+    OCAML_num_INCLUDE=no
+  fi
+
+
+        else
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for OCaml findlib package num" >&5
+printf %s "checking for OCaml findlib package num... " >&6; }
+
+  unset found
+  unset pkg
+  found=no
+  for pkg in num  ; do
+    if $OCAMLFIND query $pkg >/dev/null 2>/dev/null; then
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: found" >&5
+printf "%s\n" "found" >&6; }
+      OCAML_PKG_num=$pkg
+      found=yes
+      break
+    fi
+  done
+  if test "$found" = "no" ; then
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+    OCAML_PKG_num=no
+  fi
+
+
+
+        fi
+    fi
+    XCOS_ENABLE=yes
+
+fi
+
+
 
 
 
@@ -13895,7 +14978,7 @@ printf "%s\n" "$ac_java_classpath" >&6; }
 printf %s "checking to see if the java compiler works... " >&6; }
 
     cat << \EOF > conftest.java
-// #line 13898 "configure"
+// #line 14981 "configure"
 import java.util.regex.Pattern;
 
 
@@ -13982,7 +15065,7 @@ printf %s "checking type of jvm... " >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 13985 "configure"
+// #line 15068 "configure"
 import java.util.regex.Pattern;
 
 import gnu.java.io.EncodingManager;
@@ -14066,7 +15149,7 @@ printf %s "checking java API version... " >&6; }
     # The class java.nio.charset.Charset is new in Java 1.4
 
     cat << \EOF > conftest.java
-// #line 14069 "configure"
+// #line 15152 "configure"
 import java.util.regex.Pattern;
 
 import java.nio.charset.Charset;
@@ -14131,7 +15214,7 @@ EOF
     # The class java.lang.StringBuilder is new in Java 1.5
 
     cat << \EOF > conftest.java
-// #line 14134 "configure"
+// #line 15217 "configure"
 import java.util.regex.Pattern;
 
 import java.lang.StringBuilder;
@@ -14196,7 +15279,7 @@ EOF
     # The class java.util.ArrayDeque is new in Java 1.6
 
     cat << \EOF > conftest.java
-// #line 14199 "configure"
+// #line 15282 "configure"
 import java.util.regex.Pattern;
 
 import java.util.ArrayDeque;
@@ -14261,7 +15344,7 @@ EOF
     # The class java.nio.file.Path is new in Java 1.7
 
     cat << \EOF > conftest.java
-// #line 14264 "configure"
+// #line 15347 "configure"
 import java.util.regex.Pattern;
 
 import java.nio.file.Path;
@@ -14326,7 +15409,7 @@ EOF
     # The class java.util.stream.DoubleStream is new in Java 1.8
 
     cat << \EOF > conftest.java
-// #line 14329 "configure"
+// #line 15412 "configure"
 import java.util.regex.Pattern;
 
 import java.util.stream.DoubleStream;
@@ -14391,7 +15474,7 @@ EOF
     # The class java.lang.ProcessHandle is new in Java 1.9
 
     cat << \EOF > conftest.java
-// #line 14394 "configure"
+// #line 15477 "configure"
 import java.util.regex.Pattern;
 
 import java.lang.ProcessHandle;
@@ -14456,7 +15539,7 @@ EOF
     # The class jdk.jfr.events.FileForceEvent is new in Java 10
 
     cat << \EOF > conftest.java
-// #line 14459 "configure"
+// #line 15542 "configure"
 import java.util.regex.Pattern;
 
 import jdk.jfr.events.FileForceEvent;
@@ -14521,7 +15604,7 @@ EOF
     # The class java.net.http.HttpClient is new in Java 11
 
     cat << \EOF > conftest.java
-// #line 14524 "configure"
+// #line 15607 "configure"
 import java.util.regex.Pattern;
 
 import java.net.http.HttpClient;
@@ -14586,7 +15669,7 @@ EOF
     # The class java.lang.constant.ClassDesc is new in Java 12
 
     cat << \EOF > conftest.java
-// #line 14589 "configure"
+// #line 15672 "configure"
 import java.util.regex.Pattern;
 
 import java.lang.constant.ClassDesc;
@@ -14651,7 +15734,7 @@ EOF
     # Method newFileSystem(Path) was added to java.nio.file.FileSystems in Java 13
 
     cat << \EOF > conftest.java
-// #line 14654 "configure"
+// #line 15737 "configure"
 import java.util.regex.Pattern;
 
 
@@ -14723,7 +15806,7 @@ EOF
     # Switch expressions are a standard feature of Java 14 (were a preview feature in 12 & 13)
 
     cat << \EOF > conftest.java
-// #line 14726 "configure"
+// #line 15809 "configure"
 import java.util.regex.Pattern;
 
 
@@ -14800,7 +15883,7 @@ EOF
     # Text blocks are a standard feature of Java 15 (were a preview feature in 13 & 14)
 
     cat << \EOF > conftest.java
-// #line 14803 "configure"
+// #line 15886 "configure"
 import java.util.regex.Pattern;
 
 
@@ -14870,7 +15953,7 @@ EOF
     # The class java.net.UnixDomainSocketAddress is new in Java 16
 
     cat << \EOF > conftest.java
-// #line 14873 "configure"
+// #line 15956 "configure"
 import java.util.regex.Pattern;
 
 import java.net.UnixDomainSocketAddress;
@@ -14935,7 +16018,7 @@ EOF
     # The class java.util.random.RandomGenerator is new in Java 17
 
     cat << \EOF > conftest.java
-// #line 14938 "configure"
+// #line 16021 "configure"
 import java.util.regex.Pattern;
 
 import java.util.random.RandomGenerator;
@@ -15000,7 +16083,7 @@ EOF
     # The class com.sun.net.httpserver.SimpleFileServer is new in Java 18
 
     cat << \EOF > conftest.java
-// #line 15003 "configure"
+// #line 16086 "configure"
 import java.util.regex.Pattern;
 
 import com.sun.net.httpserver.SimpleFileServer;
@@ -15064,7 +16147,7 @@ EOF
     # The class jdk.incubator.concurrent.StructuredTaskScope is new in Java 19 incubator
 
     cat << \EOF > conftest.java
-// #line 15067 "configure"
+// #line 16150 "configure"
 import java.util.regex.Pattern;
 
 import jdk.incubator.concurrent.StructuredTaskScope;
@@ -15129,7 +16212,7 @@ EOF
     # The class jdk.incubator.concurrent.ScopedValue is new in Java 20 incubator
 
     cat << \EOF > conftest.java
-// #line 15132 "configure"
+// #line 16215 "configure"
 import java.util.regex.Pattern;
 
 import jdk.incubator.concurrent.ScopedValue;
@@ -15194,7 +16277,7 @@ EOF
     # The class java.util.SequencedSet is new in Java 21
 
     cat << \EOF > conftest.java
-// #line 15197 "configure"
+// #line 16280 "configure"
 import java.util.regex.Pattern;
 
 import java.util.SequencedSet;
@@ -16676,7 +17759,7 @@ fi
                 # GSON (from https://github.com/google/gson)
 
     cat << \EOF > conftestSharedChecker.java
-// #line 16679 "configure"
+// #line 17762 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -16888,7 +17971,7 @@ printf %s "checking gson... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 16891 "configure"
+// #line 17974 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -17134,7 +18217,7 @@ printf %s "checking jcef... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 17137 "configure"
+// #line 18220 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -17382,7 +18465,7 @@ printf %s "checking jakarta.activation... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 17385 "configure"
+// #line 18468 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -17629,7 +18712,7 @@ printf %s "checking jgraphx... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 17632 "configure"
+// #line 18715 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -17875,7 +18958,7 @@ printf %s "checking jaxb-api... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 17878 "configure"
+// #line 18961 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -18121,7 +19204,7 @@ printf %s "checking jaxb-runtime... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 18124 "configure"
+// #line 19207 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -18367,7 +19450,7 @@ printf %s "checking jaxb-impl... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 18370 "configure"
+// #line 19453 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -18613,7 +19696,7 @@ printf %s "checking activation... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 18616 "configure"
+// #line 19699 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -18859,7 +19942,7 @@ printf %s "checking istack-commons-runtime... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 18862 "configure"
+// #line 19945 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -19107,7 +20190,7 @@ printf %s "checking scirenderer... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 19110 "configure"
+// #line 20193 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -19361,7 +20444,7 @@ printf %s "checking flexdock... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 19364 "configure"
+// #line 20447 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -19607,7 +20690,7 @@ printf %s "checking looks... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 19610 "configure"
+// #line 20693 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -19853,7 +20936,7 @@ printf %s "checking jgoodies-looks... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 19856 "configure"
+// #line 20939 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -20100,7 +21183,7 @@ printf %s "checking skinlf... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 20103 "configure"
+// #line 21186 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -20346,7 +21429,7 @@ printf %s "checking javax.annotation-api... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 20349 "configure"
+// #line 21432 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -20592,7 +21675,7 @@ printf %s "checking jakarta.activation-api... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 20595 "configure"
+// #line 21678 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -20838,7 +21921,7 @@ printf %s "checking jogl... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 20841 "configure"
+// #line 21924 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -21190,7 +22273,7 @@ printf %s "checking gluegen... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 21193 "configure"
+// #line 22276 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -21493,7 +22576,7 @@ printf %s "checking jhall... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 21496 "configure"
+// #line 22579 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -21737,7 +22820,7 @@ printf %s "checking javahelp2... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 21740 "configure"
+// #line 22823 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -21984,7 +23067,7 @@ printf %s "checking lucene-core... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 21987 "configure"
+// #line 23070 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -22230,7 +23313,7 @@ printf %s "checking lucene-analyzers-common... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 22233 "configure"
+// #line 23316 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -22476,7 +23559,7 @@ printf %s "checking lucene-queryparser... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 22479 "configure"
+// #line 23562 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -22722,7 +23805,7 @@ printf %s "checking jrosetta-API... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 22725 "configure"
+// #line 23808 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -22965,7 +24048,7 @@ printf %s "checking jrosetta-api... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 22968 "configure"
+// #line 24051 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -23212,7 +24295,7 @@ printf %s "checking jrosetta-engine... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 23215 "configure"
+// #line 24298 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -23460,7 +24543,7 @@ printf %s "checking jeuclid-core... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 23463 "configure"
+// #line 24546 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -23707,7 +24790,7 @@ printf %s "checking javafx.base... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 23710 "configure"
+// #line 24793 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -23954,7 +25037,7 @@ printf %s "checking javafx.swing... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 23957 "configure"
+// #line 25040 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -24201,7 +25284,7 @@ printf %s "checking javafx.graphics... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 24204 "configure"
+// #line 25287 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -24448,7 +25531,7 @@ printf %s "checking fop-core... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 24451 "configure"
+// #line 25534 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -24692,7 +25775,7 @@ printf %s "checking fop-event... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 24695 "configure"
+// #line 25778 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -24936,7 +26019,7 @@ printf %s "checking fop-util... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 24939 "configure"
+// #line 26022 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -25190,7 +26273,7 @@ printf %s "checking freehep-graphics2d... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 25193 "configure"
+// #line 26276 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -25436,7 +26519,7 @@ printf %s "checking freehep-graphicsio... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 25439 "configure"
+// #line 26522 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -25682,7 +26765,7 @@ printf %s "checking freehep-graphicsbase... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 25685 "configure"
+// #line 26768 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -25928,7 +27011,7 @@ printf %s "checking freehep-graphicsio-emf... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 25931 "configure"
+// #line 27014 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -26174,7 +27257,7 @@ printf %s "checking freehep-io... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 26177 "configure"
+// #line 27260 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -26421,7 +27504,7 @@ printf %s "checking batik-all... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 26424 "configure"
+// #line 27507 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -26667,7 +27750,7 @@ printf %s "checking batik... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 26670 "configure"
+// #line 27753 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -26914,7 +27997,7 @@ printf %s "checking commons-io... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 26917 "configure"
+// #line 28000 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -27160,7 +28243,7 @@ printf %s "checking xmlgraphics-commons... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 27163 "configure"
+// #line 28246 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -27406,7 +28489,7 @@ printf %s "checking avalon-framework... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 27409 "configure"
+// #line 28492 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -27652,7 +28735,7 @@ printf %s "checking xml-apis-ext... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 27655 "configure"
+// #line 28738 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -27898,7 +28981,7 @@ printf %s "checking xml-commons-apis-ext... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 27901 "configure"
+// #line 28984 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -28148,7 +29231,7 @@ printf %s "checking commons-logging... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 28151 "configure"
+// #line 29234 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -28394,7 +29477,7 @@ printf %s "checking jlatexmath... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 28397 "configure"
+// #line 29480 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -28640,7 +29723,7 @@ printf %s "checking jlatexmath-fop... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 28643 "configure"
+// #line 29726 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -28948,7 +30031,7 @@ printf %s "checking Saxon-HE... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 28951 "configure"
+// #line 30034 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -29192,7 +30275,7 @@ printf %s "checking httpcore5... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 29195 "configure"
+// #line 30278 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -29436,7 +30519,7 @@ printf %s "checking httpclient5... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 29439 "configure"
+// #line 30522 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -29680,7 +30763,7 @@ printf %s "checking xmlresolver... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 29683 "configure"
+// #line 30766 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -29932,7 +31015,7 @@ printf %s "checking checkstyle... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 29935 "configure"
+// #line 31018 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -30178,7 +31261,7 @@ printf %s "checking commons-beanutils... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 30181 "configure"
+// #line 31264 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -30424,7 +31507,7 @@ printf %s "checking commons-collections... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 30427 "configure"
+// #line 31510 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -30670,7 +31753,7 @@ printf %s "checking guava... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 30673 "configure"
+// #line 31756 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -30916,7 +31999,7 @@ printf %s "checking antlr4-runtime... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 30919 "configure"
+// #line 32002 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -31162,7 +32245,7 @@ printf %s "checking junit4... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 31165 "configure"
+// #line 32248 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -31405,7 +32488,7 @@ printf %s "checking junit... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 31408 "configure"
+// #line 32491 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -31652,7 +32735,7 @@ printf %s "checking cobertura... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 31655 "configure"
+// #line 32738 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -31898,7 +32981,7 @@ printf %s "checking asm3... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 31901 "configure"
+// #line 32984 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -32141,7 +33224,7 @@ printf %s "checking asm... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 32144 "configure"
+// #line 33227 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -32388,7 +33471,7 @@ printf %s "checking sikuli... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 32391 "configure"
+// #line 33474 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -32632,7 +33715,7 @@ printf %s "checking jna... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 32635 "configure"
+// #line 33718 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -32876,7 +33959,7 @@ printf %s "checking jna-platform... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 32879 "configure"
+// #line 33962 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -33120,7 +34203,7 @@ printf %s "checking opencv... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 33123 "configure"
+// #line 34206 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -33365,7 +34448,7 @@ printf %s "checking ecj... " >&6; }
         if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 33368 "configure"
+// #line 34451 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -63248,6 +64331,7 @@ if test $XCOS_ENABLE = yes; then
    echo ""
    if test "$with_modelica" != no -a "x$OCAMLC" != "xno" -a "x$OCAMLOPT" != "xno"; then
      echo "Ocaml Configuration (for Modelica compiler):"
+     echo "  OCAMLVERSION ....... = $OCAMLVERSION"
      echo "  OCAMLC ............. = $OCAMLC"
      echo "  OCAMLCFLAGS ........ = $OCAMLCFLAGS"
      echo "  OCAMLOPT ........... = $OCAMLOPT"

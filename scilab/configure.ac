@@ -533,7 +533,7 @@ g++-* | g++ | ccache*g++ | ccache*g++-* )
     COMPILER_CXXFLAGS="$COMPILER_CXXFLAGS -fno-stack-protector " # bug 3131
     # add the extra filesystem library if needed
     if test "$($CXX -dumpversion |cut -d\. -f1)" -lt "9" ; then
-        COMPILER_LDFLAGS="$COMPILER_LDFLAGS -lstdc++fs" 
+        COMPILER_LDFLAGS="$COMPILER_LDFLAGS -lstdc++fs"
     fi
     ;;
 
@@ -547,7 +547,7 @@ g++-* | g++ | ccache*g++ | ccache*g++-* )
     else
         DEBUG_CXXFLAGS="-DNDEBUG -g1 -O2"
     fi
-    
+
     WARNING_CXXFLAGS="-Wall -Wpedantic"
     case "$host" in
     *-linux-gnu )
@@ -580,12 +580,12 @@ g++-* | g++ | ccache*g++ | ccache*g++-* )
                                 SYS_FMEMOPEN=1
                             fi
                         fi
-                        
+
                     fi
                 ;;
            esac
            ;;
-    esac    
+    esac
     ;;
 esac
 
@@ -627,7 +627,7 @@ gcc-* | gcc | ccache*gcc | ccache*gcc-* )
     else
         DEBUG_CFLAGS="-DNDEBUG -g1 -O2"
     fi
-    
+
     WARNING_CFLAGS="-Wall -Wpedantic "
     case "$host" in
     *-linux-gnu )
@@ -713,7 +713,7 @@ gcc-* | gcc | ccache*gcc | ccache*gcc-* )
     else
         DEBUG_CFLAGS="-DNDEBUG -g1 -O2"
     fi
-    
+
     WARNING_CFLAGS="-Wall -Wpedantic"
     case "$host" in
     *-linux-gnu )
@@ -727,10 +727,10 @@ gcc-* | gcc | ccache*gcc | ccache*gcc-* )
     case "$host_os" in
         *Darwin* | *darwin*)
             LDFLAGS="${LDFLAGS//-Wl,-dead_strip_dylibs/}"
-            ;;            
-    esac    
+            ;;
+    esac
     ;;  #  end of the clang case on the $CC
-   
+
 *)
     ## CC compiler (not GCC)
     if test "$enable_debug_C" != yes; then
@@ -974,14 +974,24 @@ if test "$with_xcos" != no; then
 ## ocaml which only called when using Xcos
 #################
 
-   if test "$with_modelica" != no; then
-      AC_CHECK_PROG_OCAML()
-   fi
-   XCOS_ENABLE=yes
+    if test "$with_modelica" != no; then
+        AC_PROG_OCAML()
+        AC_PROG_OCAMLLEX()
+        AC_PROG_OCAMLYACC()
+        AC_PROG_FINDLIB()
+        if test "x$OCAMLFIND" = "xno"; then
+            AC_CHECK_OCAML_MODULE([OCAML_num_INCLUDE], [Num], [Num], [/usr/lib/ocaml/ /usr/lib64/ocaml/ /usr/lib/ocaml/num/ /usr/lib64/ocaml/num/])
+        else
+            AC_CHECK_OCAML_PKG([num])
+        fi
+    fi
+    XCOS_ENABLE=yes
 
 fi
 
 AC_SUBST(XCOS_ENABLE)
+AC_SUBST(OCAML_num_INCLUDE)
+AC_SUBST(OCAML_PKG_num)
 
 AM_CONDITIONAL(OCAMLFIND, test "x$OCAMLFIND" != "xno")
 AM_CONDITIONAL(OCAML, test "$with_modelica" != no -a "x$OCAMLC" != "xno" -a "x$OCAMLOPT" != "xno")
@@ -1034,7 +1044,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 AC_JAVA_CHECK_JAR([jcef],[org.cef.CefApp],[Scilab Embedded browser - Java Chromium Embedded Framework])
                 JCEF=$PACKAGE_JAR_FILE
                 AC_SUBST(JCEF)
-                
+
                 # Jakarta Activation (Run dependency)
                 # Do not look for jakarta.activation.spi.MimeTypeRegistry here since it will detect jakarta.activation-api.jar
                 # Checked before activation.jar to avoid false detection
@@ -1641,12 +1651,12 @@ if $WITH_DEVTOOLS; then
     # ncurses includes are in a subdir
     NCURSES_CFLAGS="-I$DEVTOOLS_INCDIR -I$DEVTOOLS_INCDIR/ncurses"
     NCURSES_LIBS="-L$DEVTOOLS_LIBDIR/ -lscincurses"
-    
+
     saved_LIBS="$LIBS"
     LIBS="$LIBS $NCURSES_LIBS"
     AC_CHECK_LIB([scincurses],[tgetent])
     LIBS="$saved_LIBS"
-    
+
     ac_cv_lib_ncurses_tgetent=$ac_cv_lib_scincurses_tgetent
 
     saved_CFLAGS="$CFLAGS"
@@ -2476,6 +2486,7 @@ if test $XCOS_ENABLE = yes; then
    echo ""
    if test "$with_modelica" != no -a "x$OCAMLC" != "xno" -a "x$OCAMLOPT" != "xno"; then
      echo "Ocaml Configuration (for Modelica compiler):"
+     echo "  OCAMLVERSION ....... = $OCAMLVERSION"
      echo "  OCAMLC ............. = $OCAMLC"
      echo "  OCAMLCFLAGS ........ = $OCAMLCFLAGS"
      echo "  OCAMLOPT ........... = $OCAMLOPT"
@@ -2816,7 +2827,7 @@ if test "$CURRENT_YEAR" != "$DETECTED_YEAR"; then
     sed -i -e "s| 2022-$DETECTED_YEAR | 2022-$CURRENT_YEAR |g" ${SCI_SRCDIR}/etc/Info.plist.in
     sed -i -e "s|VALUE \"LegalCopyright\", \"Copyright (C) $DETECTED_YEAR|VALUE \"LegalCopyright\", \"Copyright (C) $CURRENT_YEAR|" $(find ${SCI_SRCDIR} -iname '*.rc')
     sed -i -e "s|2017-$DETECTED_YEAR|2017-$CURRENT_YEAR|" $(find ${SCI_SRCDIR} -iname 'banner.xml')
-    
+
     sed -i -e "s| 2022-$DETECTED_YEAR | 2022-$CURRENT_YEAR |g" ${SCI_SRCDIR}/modules/gui/images/icons/aboutscilab.svg
     AC_PATH_PROG(INKSCAPE, inkscape)
     if test -n "$INKSCAPE"; then

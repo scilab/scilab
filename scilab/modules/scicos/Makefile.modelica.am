@@ -23,9 +23,8 @@ if OCAML
 TARGET = modelicac XML2Modelica modelicat
 BASE_PATH = $(srcdir)/src/
 bin_PROGRAMS = $(TARGET)
-OCAMLLIBS=nums.cma
-OCAMLPKGS=num
 
+OCAML_num_LIBS=nums.cma
 
 ### XML2Modelica
 
@@ -113,45 +112,29 @@ SUFFIXES += .mll .mly
 
 modelicac: $(modelicac_SOURCES) $(MLS_modelicac)
 if OCAMLFIND
-	$(OCAMLFIND) $(OCAMLOPT) -package $(OCAMLPKGS) -linkpkg -o $@ -I $(BASE_PATH_MODELICAC) $(OCAMLOPTFLAGS) $(MLS_modelicac)
+	$(OCAMLFIND) $(OCAMLOPT) -package $(OCAML_PKG_num) -linkpkg -o $@ -I $(BASE_PATH_MODELICAC) $(OCAMLOPTFLAGS) $(MLS_modelicac)
 else
-	$(OCAMLOPT) -o $@ -I $(BASE_PATH_MODELICAC) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicac)
+	$(OCAMLOPT) -o $@ -I $(BASE_PATH_MODELICAC) -I $(OCAML_num_INCLUDE) $(OCAMLOPTFLAGS) $(OCAML_num_LIBS:.cma=.cmxa) $(MLS_modelicac)
 endif
 
 modelicac.ocamlc: $(modelicac_SOURCES) $(MLS_modelicac)
 if OCAMLFIND
-	$(OCAMLFIND) $(OCAMLC) -package $(OCAMLPKGS) -linkpkg -o $@ -I $(BASE_PATH_MODELICAC) $(OCAMLOPTFLAGS) $(MLS_modelicac)
+	$(OCAMLFIND) $(OCAMLC) -package $(OCAML_PKG_num) -linkpkg -o $@ -I $(BASE_PATH_MODELICAC) $(OCAMLOPTFLAGS) $(MLS_modelicac)
 else
-	$(OCAMLC) -o $@ -I $(BASE_PATH_MODELICAC) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $(MLS_modelicac)
+	$(OCAMLC) -o $@ -I $(BASE_PATH_MODELICAC) -I $(OCAML_num_INCLUDE) $(OCAMLOPTFLAGS) $(OCAML_num_LIBS:.cma=.cmxa) $(MLS_modelicac)
 endif
 
 XML2Modelica: $(XML2Modelica_SOURCES) $(MLS_XML2Modelica)
-if OCAMLFIND
-	$(OCAMLFIND) $(OCAMLOPT) -package $(OCAMLPKGS) -linkpkg -o $@ -I $(BASE_PATH_XML2Modelica) $(OCAMLCFLAGS) $(MLS_XML2Modelica)
-else
-	$(OCAMLOPT) -o $@ -I $(BASE_PATH_XML2Modelica) $(OCAMLCFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica)
-endif
+	$(OCAMLOPT) -o $@ -I $(BASE_PATH_XML2Modelica) $(OCAMLCFLAGS) $(MLS_XML2Modelica)
 
 XML2Modelica.ocamlc: $(XML2Modelica_SOURCES) $(MLS_XML2Modelica)
-if OCAMLFIND
-	$(OCAMLFIND) $(OCAMLC) -package $(OCAMLPKGS) -linkpkg -o $@ -I $(BASE_PATH_XML2Modelica) $(OCAMLCFLAGS) $(MLS_XML2Modelica)
-else
-	$(OCAMLC) -o $@ -I $(BASE_PATH_XML2Modelica) $(OCAMLCFLAGS) $(OCAMLLIBS) $(MLS_XML2Modelica)
-endif
+	$(OCAMLC) -o $@ -I $(BASE_PATH_XML2Modelica) $(OCAMLCFLAGS) $(MLS_XML2Modelica)
 
 modelicat: $(modelicat_SOURCES) $(MLS_modelicat)
-if OCAMLFIND
-	$(OCAMLFIND) $(OCAMLOPT) -package $(OCAMLPKGS) -linkpkg -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(MLS_modelicat)
-else
-	$(OCAMLOPT) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicat)
-endif
+	$(OCAMLOPT) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(MLS_modelicat)
 
 modelicat.ocamlc: $(modelicat_SOURCES) $(MLS_modelicat)
-if OCAMLFIND
-	$(OCAMLFIND) $(OCAMLC) -package $(OCAMLPKGS) -linkpkg -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(MLS_modelicat)
-else
-	$(OCAMLC) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $(MLS_modelicat)
-endif
+	$(OCAMLC) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(MLS_modelicat)
 
 CLEANFILES = $(BASE_PATH)/*/*.cmi \
 	$(BASE_PATH)/*/*.o \
