@@ -97,9 +97,9 @@ function [flag,errmsg] = assert_checkalmostequal ( varargin )
     //  Check that computed and expected are numerically close.
 
     [lhs,rhs]=argn()
-    if ( and(rhs <> [2 3 4 5] ) ) then
+    if ( and(rhs <> [2 3 4 5 6] ) ) then
         errmsg = gettext("%s: Wrong number of input arguments: %d to %d expected.")
-        error(msprintf(errmsg, "assert_checkalmostequal" , 2 , 5 ))
+        error(msprintf(errmsg, "assert_checkalmostequal" , 2 , 6 ))
     end
     //
     // Get arguments
@@ -108,6 +108,29 @@ function [flag,errmsg] = assert_checkalmostequal ( varargin )
     reltol = assert_argindefault ( rhs , varargin , 3 , sqrt(%eps) )
     abstol = assert_argindefault ( rhs , varargin , 4 , 0 )
     comptype = assert_argindefault ( rhs , varargin , 5 , "element" )
+    msg = assert_argindefault ( rhs , varargin , 6 , "" )
+    //
+    // Validate message parameter if provided
+    if rhs >= 6 then
+        if typeof(msg) <> "string" then
+            flag = %f
+            errmsg = gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n")
+            errmsg = msprintf(errmsg, "assert_checkalmostequal", 6)
+            if lhs == 1 then
+                error(errmsg)
+            end
+            return
+        end
+        if size(msg, "*") <> 1 then
+            flag = %f
+            errmsg = gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n")
+            errmsg = msprintf(errmsg, "assert_checkalmostequal", 6, 1, 1)
+            if lhs == 1 then
+                error(errmsg)
+            end
+            return
+        end
+    end
     //
     // Check types of variables
     if ( and(typeof(computed) <> ["constant" "sparse" "polynomial"]) ) then
@@ -219,9 +242,13 @@ function [flag,errmsg] = assert_checkalmostequal ( varargin )
         absstr = string(abstol)
         errmsg = gettext("%s: Assertion failed: expected(%s) = %s while computed(%s) = %s")
         errmsg = msprintf(errmsg, "assert_checkalmostequal", sub, estr, sub, cstr)
+        // Prepend custom message if provided
+        if msg <> "" then
+            errmsg = msg + ": " + errmsg
+        end
         if ( lhs < 2 ) then
             // If no output variable is given, generate an error
-            assert_generror ( errmsg )
+            assert_generror(errmsg)
         end
     end
 endfunction

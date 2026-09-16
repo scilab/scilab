@@ -25,6 +25,7 @@
             assert_checkequal ( computed , expected )
             flag = assert_checkequal ( computed , expected )
             [flag,errmsg] = assert_checkequal ( computed , expected )
+            [...] = assert_checkequal ( computed , expected , msg )
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -54,6 +55,16 @@
                     <para>
                         a string, the error message. If flag==%t, then errormsg=="".
                         If flag==%f, then errmsg contains the error message.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>msg :</term>
+                <listitem>
+                    <para>
+                        a 1-by-1 matrix of strings, a custom message to prepend to the
+                        error message (default msg=""). If provided and the assertion fails,
+                        the message is prepended as "msg: " before the default error message.
                     </para>
                 </listitem>
             </varlistentry>
@@ -88,6 +99,11 @@
                     <para>if the errmsg output variable is used, no error is generated.</para>
                 </listitem>
             </itemizedlist>
+        </para>
+        <para>
+            If a custom <literal>msg</literal> is provided and the assertion fails,
+            it is prepended to the error message (both the thrown error and the
+            returned <literal>errmsg</literal>).
         </para>
     </refsection>
     <refsection>
@@ -138,6 +154,9 @@ assert_checkequal (list(2,,7), list(2,%F,8));
 assert_checkequal ( [gdf(), gda()], [gdf(), gdf()] );
 assert_checkequal ( sind, cosd );
 assert_checkequal ( iolib, corelib );
+
+// With a custom message on failure
+[flag, errmsg] = assert_checkequal ( [1 2], [3 4], "my custom message" )
    ]]></programlisting>
    <screen><![CDATA[
 ...
@@ -215,6 +234,12 @@ assert_checkequal: Assertion failed: expected= lib@SCI\modules\core\macros\  whi
                 <revnumber>6.1.1</revnumber>
                 <revremark>
                     Matching NaN or void elements in simple or nested containers are now considered equal.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revremark>
+                    Optional msg input argument added.
                 </revremark>
             </revision>
         </revhistory>

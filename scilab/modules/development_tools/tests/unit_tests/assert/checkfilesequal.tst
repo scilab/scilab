@@ -285,3 +285,52 @@ checkassert ( flag , errmsg , "success" );
 [flag,errmsg] = assert_checkfilesequal ( filecomp4 , fileref2 , mycompfun3 );
 checkassert ( flag , errmsg , "failure" );
 
+//////////////////////////////////////////
+// Check custom message parameter
+//////////////////////////////////////////
+
+// Create test files for message testing
+file1 = fullfile(TMPDIR, "test_file1_msg.txt");
+file2 = fullfile(TMPDIR, "test_file2_msg.txt");
+fd = mopen(file1, "w");
+mputl(["line1"; "line2"], fd);
+mclose(fd);
+fd = mopen(file2, "w");
+mputl(["line1"; "line3"], fd);
+mclose(fd);
+
+// Test with custom message on failure
+[flag, errmsg] = assert_checkfilesequal(file1, file2, [], "my custom message");
+MY_assert_equal(flag, %f);
+// Check that custom message is in the error
+MY_assert_equal(~isempty(grep(errmsg, "my custom message")), %t);
+
+// Test backward compatibility (no message)
+[flag, errmsg] = assert_checkfilesequal(file1, file2);
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "content of computed file")), %t);
+
+// Test with empty message
+[flag, errmsg] = assert_checkfilesequal(file1, file2, [], "");
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "content of computed file")), %t);
+
+// Test success with message (should not error)
+[flag, errmsg] = assert_checkfilesequal(file1, file1, [], "success message");
+MY_assert_equal(flag, %t);
+MY_assert_equal(errmsg, "");
+
+// Test wrong type for message
+[flag, errmsg] = assert_checkfilesequal(file1, file1, [], 123);
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "Wrong type")), %t);
+
+// Test wrong size for message (row vector)
+[flag, errmsg] = assert_checkfilesequal(file1, file1, [], ["a" "b"]);
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "Wrong size")), %t);
+
+// Clean up
+mdelete(file1);
+mdelete(file2);
+

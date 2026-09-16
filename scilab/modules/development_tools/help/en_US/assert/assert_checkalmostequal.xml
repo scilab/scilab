@@ -30,6 +30,7 @@
             flag = assert_checkalmostequal ( computed , expected , reltol , abstol )
             flag = assert_checkalmostequal ( computed , expected , reltol , abstol , comptype )
             [flag,errmsg] = assert_checkalmostequal ( ... )
+            [...] = assert_checkalmostequal ( ... , msg )
 
         </synopsis>
     </refsynopsisdiv>
@@ -96,6 +97,16 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>msg :</term>
+                <listitem>
+                    <para>
+                      a 1-by-1 matrix of strings, a custom message to prepend to the
+                      error message (default msg=""). If provided and the assertion fails,
+                      the message is prepended as "msg: " before the default error message.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -159,6 +170,11 @@
                     <para>if the errmsg output variable is used, no error is generated.</para>
                 </listitem>
             </itemizedlist>
+        </para>
+        <para>
+            If a custom <literal>msg</literal> is provided and the assertion fails,
+            it is prepended to the error message (both the thrown error and the
+            returned <literal>errmsg</literal>).
         </para>
         <para>
             In the process of comparing the values, we separate %nan, +%inf, -%inf and remaining values.
@@ -285,6 +301,9 @@ assert_checkalmostequal ( 1+%i , 1+(1+1.e-4)*%i , 1.e-3 , [], "element" );
 // The following test fails.
 assert_checkalmostequal ( 1+%i , 1+(1+1.e-4)*%i , 1.e-5 , [], "element" );
 
+// With a custom message on failure
+[flag,errmsg] = assert_checkalmostequal ( 1 , 2 , %eps , [] , "element" , "my custom message" )
+
    ]]></programlisting>
     </refsection>
     <refsection role="history">
@@ -300,6 +319,12 @@ assert_checkalmostequal ( 1+%i , 1+(1+1.e-4)*%i , 1.e-5 , [], "element" );
                 <revnumber>6.0.1</revnumber>
                 <revremark>
                     Extension to polynomials.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revremark>
+                    Optional msg input argument added.
                 </revremark>
             </revision>
         </revhistory>

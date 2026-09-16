@@ -14,8 +14,8 @@ function [flag,errmsg] = assert_checkfilesequal ( varargin )
     //   Check two files are equal.
 
     [lhs,rhs]=argn()
-    if ( and ( rhs <> [ 2 3 ] ) ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong number of input arguments: %d to %d expected.") , "assert_checkfilesequal" , 2 , 3 )
+    if ( and ( rhs <> [ 2 3 4 ] ) ) then
+        errmsg = sprintf ( gettext ( "%s: Wrong number of input arguments: %d to %d expected.") , "assert_checkfilesequal" , 2 , 4 )
         error(errmsg)
     end
     //
@@ -24,8 +24,33 @@ function [flag,errmsg] = assert_checkfilesequal ( varargin )
     fileref = varargin(2)
     if ( rhs <= 2 ) then
         compfun = []
+        msg = ""
+    elseif ( rhs == 3 ) then
+        compfun = varargin(3)
+        msg = ""
     else
         compfun = varargin(3)
+        msg = varargin(4)
+    end
+    //
+    // Validate message parameter if provided
+    if rhs >= 4 then
+        if typeof(msg) <> "string" then
+            flag = %f
+            errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_checkfilesequal" , 4 )
+            if lhs == 1 then
+                error(errmsg)
+            end
+            return
+        end
+        if size(msg, "*") <> 1 then
+            flag = %f
+            errmsg = sprintf ( gettext ( "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n") , "assert_checkfilesequal" , 4 , 1 , 1 )
+            if lhs == 1 then
+                error(errmsg)
+            end
+            return
+        end
     end
     //
     // Check types of variables
@@ -58,6 +83,9 @@ function [flag,errmsg] = assert_checkfilesequal ( varargin )
     if ( fileinfo(filecomp) == [] ) then
         flag = %f
         errmsg = sprintf ( gettext ( "%s: The file %s does not exist.\n") , "assert_checkfilesequal" , filecomp )
+        if msg <> "" then
+            errmsg = msg + ": " + errmsg
+        end
         if ( lhs < 2 ) then
             assert_generror ( errmsg )
         else
@@ -67,6 +95,9 @@ function [flag,errmsg] = assert_checkfilesequal ( varargin )
     if ( fileinfo(fileref) == [] ) then
         flag = %f
         errmsg = sprintf ( gettext ( "%s: The file %s does not exist.\n") , "assert_checkfilesequal" , fileref )
+        if msg <> "" then
+            errmsg = msg + ": " + errmsg
+        end
         if ( lhs < 2 ) then
             assert_generror ( errmsg )
         else
@@ -79,6 +110,9 @@ function [flag,errmsg] = assert_checkfilesequal ( varargin )
     if ( err <> 0 ) then
         flag = %f
         errmsg = sprintf ( gettext ( "%s: Cannot open file %s.\n") , "assert_checkfilesequal" , filecomp )
+        if msg <> "" then
+            errmsg = msg + ": " + errmsg
+        end
         if ( lhs < 2 ) then
             assert_generror ( errmsg )
         else
@@ -89,6 +123,9 @@ function [flag,errmsg] = assert_checkfilesequal ( varargin )
     if ( err <> 0 ) then
         flag = %f
         errmsg = sprintf ( gettext ( "%s: Cannot open file %s.\n") , "assert_checkfilesequal" , fileref )
+        if msg <> "" then
+            errmsg = msg + ": " + errmsg
+        end
         if ( lhs < 2 ) then
             assert_generror ( errmsg )
         else
@@ -138,10 +175,13 @@ function [flag,errmsg] = assert_checkfilesequal ( varargin )
         // For example, we are there, while the file contents were different.
         // We consider that that not being able to close the file is a bigger issue,
     end
-
+    // Prepend custom message if provided
+    if msg <> "" & ~flag then
+        errmsg = msg + ": " + errmsg
+    end
     if ( ~flag & lhs < 2 ) then
         // If no output variable is given, generate an error
-        assert_generror ( errmsg )
+        assert_generror(errmsg)
     end
 endfunction
 

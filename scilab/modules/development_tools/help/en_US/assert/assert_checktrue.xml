@@ -23,9 +23,9 @@
         <title>Syntax</title>
         <synopsis>
             flag = assert_checktrue ( condition )
-            flag = assert_checktrue ( condition )
+            flag = assert_checktrue ( condition , msg )
             [flag,errmsg] = assert_checktrue ( condition )
-
+            [...] = assert_checktrue ( condition , msg )
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -47,6 +47,12 @@
                 <term>errmsg</term>
                 <listitem>
                     <para> a 1-by-1 matrix of strings, the error message. If flag==%t, then errormsg=="". If flag==%f, then errmsg contains the error message.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>msg :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of strings, a custom message to prepend to the error message (default msg=""). If provided and the assertion fails, the message is prepended as "msg: " before the default error message.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -73,6 +79,11 @@
             </itemizedlist>
         </para>
         <para>
+            If a custom <literal>msg</literal> is provided and the assertion fails,
+            it is prepended to the error message (both the thrown error and the
+            returned <literal>errmsg</literal>).
+        </para>
+        <para>
         </para>
     </refsection>
     <refsection>
@@ -93,6 +104,9 @@ flag = assert_checktrue ( [%t %f] )
 // Wrong calls
 assert_checktrue ( "a" )
 
+// With a custom message on failure
+[flag, errmsg] = assert_checktrue ( [%t %f], "my custom message" )
+
    ]]></programlisting>
     </refsection>
     <refsection role="history">
@@ -102,6 +116,12 @@ assert_checktrue ( "a" )
                 <revnumber>5.4.0</revnumber>
                 <revremark>
                     Function introduced
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revremark>
+                    Optional msg input argument added.
                 </revremark>
             </revision>
         </revhistory>

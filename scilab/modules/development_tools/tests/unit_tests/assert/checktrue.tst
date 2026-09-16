@@ -68,3 +68,38 @@ for o = list(%f, [%f %f], [%t %f], sparse(%f), sparse([%f %f]), sparse([%t %f]))
     checkassert (flag , errmsg , "failure");
 end
 
+//////////////////////////////////////////
+// Check custom message parameter
+//////////////////////////////////////////
+
+// Test with custom message on failure
+[flag, errmsg] = assert_checktrue([%f %t], "my custom message");
+MY_assert_equal(flag, %f);
+// Check that custom message is in the error
+MY_assert_equal(~isempty(grep(errmsg, "my custom message")), %t);
+
+// Test backward compatibility (no message)
+[flag, errmsg] = assert_checktrue([%f %t]);
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "Assertion failed")), %t);
+
+// Test with empty message
+[flag, errmsg] = assert_checktrue([%f %t], "");
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "Assertion failed")), %t);
+
+// Test success with message (should not error)
+[flag, errmsg] = assert_checktrue(%t, "success message");
+MY_assert_equal(flag, %t);
+MY_assert_equal(errmsg, "");
+
+// Test wrong type for message
+[flag, errmsg] = assert_checktrue(%t, 123);
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "Wrong type")), %t);
+
+// Test wrong size for message (row vector)
+[flag, errmsg] = assert_checktrue(%t, ["a" "b"]);
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "Wrong size")), %t);
+

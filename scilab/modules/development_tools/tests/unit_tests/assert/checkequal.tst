@@ -317,3 +317,43 @@ refmsg = msprintf(refmsg, "assert_checkequal", ..
     "1");
 MY_assert_equal( errmsg , refmsg );
 
+//////////////////////////////////////////
+// Check custom message parameter
+//////////////////////////////////////////
+
+// Test with custom message on failure
+[flag, errmsg] = assert_checkequal([1 2], [3 4], "my custom message");
+MY_assert_equal(flag, %f);
+// Check that custom message is in the error
+MY_assert_equal(~isempty(grep(errmsg, "my custom message")), %t);
+
+// Test backward compatibility (no message)
+[flag, errmsg] = assert_checkequal([1 2], [3 4]);
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "Assertion failed")), %t);
+
+// Test with empty message
+[flag, errmsg] = assert_checkequal([1 2], [3 4], "");
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "Assertion failed")), %t);
+
+// Test success with message (should not error)
+[flag, errmsg] = assert_checkequal([1 2], [1 2], "success message");
+MY_assert_equal(flag, %t);
+MY_assert_equal(errmsg, "");
+
+// Test wrong type for message
+[flag, errmsg] = assert_checkequal([1 2], [1 2], 123);
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "Wrong type")), %t);
+
+// Test wrong size for message (row vector)
+[flag, errmsg] = assert_checkequal([1 2], [1 2], ["a" "b"]);
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "Wrong size")), %t);
+
+// Test custom message with type mismatch
+[flag, errmsg] = assert_checkequal(1, "a", "type mismatch");
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "type mismatch")), %t);
+

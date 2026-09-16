@@ -368,4 +368,39 @@ for i = 1:3
   MY_assert_equal ( errmsg , refmsg );
   [flag,errmsg] = assert_checkalmostequal([1 p 3], [1 2 p], [], [], "matrix");
   MY_assert_equal ( errmsg , refmsg );
+
+//////////////////////////////////////////
+// Check custom message parameter
+//////////////////////////////////////////
+
+// Test with custom message on failure
+[flag, errmsg] = assert_checkalmostequal([1 2], [3 4], sqrt(%eps), 0, "element", "my custom message");
+MY_assert_equal(flag, %f);
+// Check that custom message is in the error
+MY_assert_equal(~isempty(grep(errmsg, "my custom message")), %t);
+
+// Test backward compatibility (no message)
+[flag, errmsg] = assert_checkalmostequal([1 2], [3 4]);
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "Assertion failed")), %t);
+
+// Test with empty message
+[flag, errmsg] = assert_checkalmostequal([1 2], [3 4], sqrt(%eps), 0, "element", "");
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "Assertion failed")), %t);
+
+// Test success with message (should not error)
+[flag, errmsg] = assert_checkalmostequal([1 2], [1 2], sqrt(%eps), 0, "element", "success message");
+MY_assert_equal(flag, %t);
+MY_assert_equal(errmsg, "");
+
+// Test wrong type for message
+[flag, errmsg] = assert_checkalmostequal([1 2], [1 2], sqrt(%eps), 0, "element", 123);
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "Wrong type")), %t);
+
+// Test wrong size for message (row vector)
+[flag, errmsg] = assert_checkalmostequal([1 2], [1 2], sqrt(%eps), 0, "element", ["a" "b"]);
+MY_assert_equal(flag, %f);
+MY_assert_equal(~isempty(grep(errmsg, "Wrong size")), %t);
 end

@@ -10,18 +10,46 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [flag, errmsg] = assert_checkequal(computed, expected)
+function [flag, errmsg] = assert_checkequal(computed, expected, msg)
     //  Check that computed and expected are equal.
     [lhs,rhs] = argn()
     flag = %F
-    if ( rhs <> 2 ) then
-        errmsg = gettext("%s: Wrong number of input arguments: %d expected.\n")
-        error(msprintf(errmsg, "assert_checkequal", 2))
+    if ( and(rhs <> [2 3]) ) then
+        errmsg = gettext("%s: Wrong number of input arguments: %d to %d expected.\n")
+        error(msprintf(errmsg, "assert_checkequal", 2, 3))
+    end
+    if rhs < 3 then
+        msg = ""
+    end
+    //
+    // Validate message parameter if provided
+    if rhs >= 3 then
+        if typeof(msg) <> "string" then
+            flag = %f
+            errmsg = gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n")
+            errmsg = msprintf(errmsg, "assert_checkequal", 3)
+            if lhs == 1 then
+                error(errmsg)
+            end
+            return
+        end
+        if size(msg, "*") <> 1 then
+            flag = %f
+            errmsg = gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n")
+            errmsg = msprintf(errmsg, "assert_checkequal", 3, 1, 1)
+            if lhs == 1 then
+                error(errmsg)
+            end
+            return
+        end
     end
 
     // Check types of variables
     if typeof(computed) <> typeof(expected) then
         errmsg = msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same types expected.\n"), "assert_checkequal", 1, 2);
+        if msg <> "" then
+            errmsg = msg + ": " + errmsg
+        end
         if lhs < 2 then
             error(errmsg)
         end
@@ -47,6 +75,9 @@ function [flag, errmsg] = assert_checkequal(computed, expected)
     end
     if or(ncom <> nexp) then
         errmsg = msprintf(gettext ( "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"), "assert_checkequal", 1 , 2)
+        if msg <> "" then
+            errmsg = msg + ": " + errmsg
+        end
         if lhs < 2 then
             error(errmsg)
         end
@@ -59,6 +90,9 @@ function [flag, errmsg] = assert_checkequal(computed, expected)
         eisreal = isreal(expected)
         if cisreal & ~eisreal then
             errmsg = msprintf(gettext("%s: Computed is real, but expected is complex."), "assert_checkequal")
+            if msg <> "" then
+                errmsg = msg + ": " + errmsg
+            end
             if lhs < 2 then
                 error(errmsg)
             end
@@ -66,6 +100,9 @@ function [flag, errmsg] = assert_checkequal(computed, expected)
         end
         if ~cisreal & eisreal then
             errmsg = msprintf(gettext("%s: Computed is complex, but expected is real."), "assert_checkequal")
+            if msg <> "" then
+                errmsg = msg + ": " + errmsg
+            end
             if lhs < 2 then
                 error(errmsg)
             end
@@ -100,8 +137,11 @@ function [flag, errmsg] = assert_checkequal(computed, expected)
                 errmsg = _("%s: Assertion failed: expected and computed are two distinct built-in functions.")
                 errmsg = msprintf(errmsg,"assert_checkequal")
             end
+            if msg <> "" then
+                errmsg = msg + ": " + errmsg
+            end
             if lhs < 2 then
-                assert_generror ( errmsg )
+                assert_generror(errmsg)
             end
         end
         return
@@ -113,8 +153,11 @@ function [flag, errmsg] = assert_checkequal(computed, expected)
             c = "lib@" + string(computed)(1)
             e = "lib@" + string(expected)(1)
             errmsg = msprintf(errmsg,"assert_checkequal", e, c)
+            if msg <> "" then
+                errmsg = msg + ": " + errmsg
+            end
             if lhs < 2 then
-                assert_generror ( errmsg )
+                assert_generror(errmsg)
             end
         end
         return
@@ -198,9 +241,13 @@ function [flag, errmsg] = assert_checkequal(computed, expected)
         else
             errmsg = msprintf(gettext("%s: Assertion failed: %s  while %s"),"assert_checkequal", estr, cstr)
         end
+        // Prepend custom message if provided
+        if msg <> "" then
+            errmsg = msg + ": " + errmsg
+        end
         if lhs < 2 then
             // If no output variable is given, generate an error
-            assert_generror ( errmsg )
+            assert_generror(errmsg)
         end
     end
 endfunction

@@ -24,8 +24,9 @@
         <synopsis>
             flag = assert_checkfilesequal ( filecomp , fileref )
             flag = assert_checkfilesequal ( filecomp , fileref , compfun )
-            [flag,errmsg] = assert_checkfilesequal ( ... )
-
+            [flag,errmsg] = assert_checkfilesequal ( filecomp , fileref )
+            [flag,errmsg] = assert_checkfilesequal ( filecomp , fileref , compfun )
+            [...] = assert_checkfilesequal ( ... , msg )
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -61,6 +62,12 @@
                     <para> a 1-by-1 matrix of strings, the error message. If flag==%t, then errormsg=="". If flag==%f, then errmsg contains the error message.</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>msg :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of strings, a custom message to prepend to the error message (default msg=""). If provided and the assertion fails, the message is prepended as "msg: " before the default error message.</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -80,6 +87,11 @@
                     <para>if the errmsg output variable is used, no error is generated.</para>
                 </listitem>
             </itemizedlist>
+        </para>
+        <para>
+            If a custom <literal>msg</literal> is provided and the assertion fails,
+            it is prepended to the error message (both the thrown error and the
+            returned <literal>errmsg</literal>).
         </para>
         <para>
             If the comparison function compfun is a function, it should have header areequal = compfun ( txtcomp , txtref )
@@ -198,6 +210,9 @@ endfunction
 // A test which fails
 [flag,errmsg] = assert_checkfilesequal ( filecomp4 , fileref2 , mycompfun )
 
+// With a custom message on failure
+[flag,errmsg] = assert_checkfilesequal ( filecomp2 , fileref1 , [] , "my custom message" )
+
    ]]></programlisting>
     </refsection>
     <refsection role="history">
@@ -207,6 +222,12 @@ endfunction
                 <revnumber>5.4.0</revnumber>
                 <revremark>
                     Function introduced
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revremark>
+                    Optional msg input argument added.
                 </revremark>
             </revision>
         </revhistory>
