@@ -71,12 +71,6 @@ libsciumfpack_la_LIBADD =  libsciumfpack-algo.la
 
 libsciumfpack_la_LIBADD += $(UMFPACK_LIB)
 
-if IS_MACOSX
-# Crappy workaround to avoid an undefined symbol while using umfpack features
-# For some unknown reasons, -lumfpack will not load cholmod & colamd
-# libsciumfpack_la_LIBADD += -lcholmod -lcolamd
-endif
-
 libsciumfpack_la_CPPFLAGS= \
     -I$(srcdir)/includes/ \
     -I$(srcdir)/src/c/ \
