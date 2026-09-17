@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Adeline CARNIS
+ *
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="caldiff" xml:lang="en">
+    <refnamediv>
+        <refname>caldiff</refname>
+        <refpurpose>calendar successive differences</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            cal = caldiff(dt)
+            cal = caldiff(dt, c)
+            cal = caldiff(dt, c, dim)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>dt</term>
+                <listitem>
+                    <para>
+                        An array of <link linkend="datetime">datetime</link> values.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>
+                        A scalar string specifying the type of calendar difference to compute. The default value is
+                        <literal>"default"</literal>.
+                    </para>
+                    <para>
+                        The following values are accepted:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>"default"</literal>: returns a <link linkend="calendarDuration">calendarDuration</link> containing
+                                years, months, days, and time components.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"Years"</literal>: returns complete calendar years.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"Months"</literal>: returns complete calendar months.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"Days"</literal>: returns complete days.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"Time"</literal>: returns the elapsed time component as a <literal>calendarDuration</literal>.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        The value of <literal>c</literal> is case-insensitive.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dim</term>
+                <listitem>
+                    <para>
+                        A scalar specifying the dimension along which successive differences are computed.
+                    </para>
+                    <para>
+                        <literal>dim</literal> can be:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>1</literal> or <literal>"r"</literal>: differences are computed along rows.
+                            </para>
+                        </listitem>
+
+                        <listitem>
+                            <para>
+                                <literal>2</literal> or <literal>"c"</literal>: differences are computed along columns.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"*"</literal>: differences are computed using the linear ordering of <literal>dt</literal>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"m"</literal>: differences are computed along the first non singleton dimension of <literal>dt</literal> (for compatibility with Matlab).
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cal</term>
+                <listitem>
+                    <para>
+                        An array containing successive calendar differences between values of <literal>dt</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>caldiff</literal> computes successive differences between <literal>datetime</literal> values.
+        </para>
+        <para>
+            By default, differences are returned as <literal>calendarDuration</literal> values containing calendar
+            years, calendar months, days, and time components.
+        </para>
+        <para>
+            For a vector <literal>dt</literal>, the successive differences are computed between consecutive values:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+cal(1) = dt(2) - dt(1)
+cal(2) = dt(3) - dt(2)
+...
+cal(n-1) = dt(n) - dt(n-1)
+]]></programlisting>
+        <para>
+            The optional argument <literal>c</literal> can be used to select a
+            specific component of the calendar difference.
+        </para>
+        <para>
+            With <literal>c = "years"</literal>, only complete calendar years
+            are returned. With <literal>c = "months"</literal>, the result is
+            expressed in complete calendar months. With <literal>c = "days"</literal>, only complete days are returned.
+            With <literal>c = "time"</literal>, the result contains only the
+            elapsed time difference.
+        </para>
+        <para>
+            When <literal>dim</literal> is specified, successive differences
+            are computed along the selected dimension.
+        </para>
+        <para>
+            When <literal>dim = "*"</literal>, the input is treated as a
+            linear array and differences are computed between consecutive
+            elements in linear order.
+        </para>
+        <para>
+            Missing datetime values propagate to the corresponding output
+            values.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para><emphasis role="bold">Successive calendar differences</emphasis></para>
+        <para>
+        <programlisting role="example"><![CDATA[
+dt = datetime(2024, 1, [1 2 4 7])
+d = caldiff(dt)
+]]></programlisting>
+<screen><![CDATA[
+--> dt = datetime(2024, 1, [1 2 4 7])
+
+ dt = [1x4 datetime]
+
+   2024-01-01   2024-01-02   2024-01-04   2024-01-07
+
+--> d = caldiff(dt)
+
+ d = [1x3 calendarDuration]
+
+    1d    2d    3d]]></screen>
+</para>
+<para><emphasis role="bold">Calendar year differences</emphasis></para>
+<para>
+        <programlisting role="example"><![CDATA[
+dt = [datetime(2020, 6, 15)
+    datetime(2021, 6, 15)
+    datetime(2023, 6, 15)]
+d = caldiff(dt, "years")
+]]></programlisting>
+<screen><![CDATA[
+--> dt = [datetime(2020, 6, 15)
+  >     datetime(2021, 6, 15)
+  >     datetime(2023, 6, 15)]
+
+ dt = [3x1 datetime]
+
+   2020-06-15
+   2021-06-15
+   2023-06-15
+
+--> d = caldiff(dt, "years")
+
+ d = [2x1 calendarDuration]
+
+    1y
+    2y
+]]></screen>
+</para>
+<para><emphasis role="bold">Calendar month differences</emphasis></para>
+<para>
+        <programlisting role="example"><![CDATA[
+dt = [datetime(2024, 1, 15)
+    datetime(2024, 2, 15)
+    datetime(2024, 5, 15)]
+d = caldiff(dt, "months")
+]]></programlisting>
+<screen><![CDATA[
+--> dt = [datetime(2024, 1, 15)
+  >     datetime(2024, 2, 15)
+  >     datetime(2024, 5, 15)]
+
+ dt = [3x1 datetime]
+
+   2024-01-15
+   2024-02-15
+   2024-05-15
+
+--> d = caldiff(dt, "months")
+
+ d = [2x1 calendarDuration]
+
+    1mo
+    3mo
+]]></screen>
+</para>
+<para><emphasis role="bold">Differences along the first dimension</emphasis></para>
+<para>
+        <programlisting role="example"><![CDATA[
+dt = datetime(2024, 1, [1 2 4; 10 20 40])
+d = caldiff(dt, "days", 1)
+]]></programlisting>
+<screen><![CDATA[
+--> dt = datetime(2024, 1, [1 2 4; 10 20 40])
+
+ dt = [2x3 datetime]
+
+   2024-01-01   2024-01-02   2024-01-04
+   2024-01-10   2024-01-20   2024-02-09
+
+--> d = caldiff(dt, "days", 1)
+
+ d = [1x3 calendarDuration]
+
+    9d    18d    36d
+]]></screen>
+</para>
+<para><emphasis role="bold">Differences along the second dimension</emphasis></para>
+<para>
+        <programlisting role="example"><![CDATA[
+dt = datetime(2024, 1, [1 2 4; 10 20 40])
+d = caldiff(dt, "days", 2)
+]]></programlisting>
+<screen><![CDATA[
+--> dt = datetime(2024, 1, [1 2 4; 10 20 40])
+
+ dt = [2x3 datetime]
+
+   2024-01-01   2024-01-02   2024-01-04
+   2024-01-10   2024-01-20   2024-02-09
+
+--> d = caldiff(dt, "days", 2)
+
+ d = [2x2 calendarDuration]
+
+     1d     2d
+    10d    20d
+]]></screen>
+</para>
+<para><emphasis role="bold">Linear successive differences</emphasis></para>
+<para>
+        <programlisting role="example"><![CDATA[
+dt = datetime(2024, 1, [1 2; 4 7])
+
+d = caldiff(dt, "days", "*")
+]]></programlisting>
+<screen><![CDATA[
+--> dt = datetime(2024, 1, [1 2; 4 7])
+
+ dt = [2x2 datetime]
+
+   2024-01-01   2024-01-02
+   2024-01-04   2024-01-07
+
+--> d = caldiff(dt, "days", "*")
+
+ d = [1x3 calendarDuration]
+
+    3d    -2d    5d
+]]></screen>
+</para>
+<para><emphasis role="bold">End-of-month difference</emphasis></para>
+<para>
+        <programlisting role="example"><![CDATA[
+dt = [datetime(2024, 1, 31)
+    datetime(2024, 2, 29)]
+
+d = caldiff(dt)
+]]></programlisting>
+<screen><![CDATA[
+--> dt = [datetime(2024, 1, 31)
+  >     datetime(2024, 2, 29)]
+
+ dt = [2x1 datetime]
+
+   2024-01-31
+   2024-02-29
+
+--> d = caldiff(dt)
+
+ d = [calendarDuration]
+
+    1mo
+]]></screen>
+</para>
+<para><emphasis role="bold">Leap year</emphasis></para>
+<para>
+        <programlisting role="example"><![CDATA[
+dt = [datetime(2024, 2, 28)
+    datetime(2024, 2, 29)
+    datetime(2024, 3, 1)]
+
+d = caldiff(dt)
+]]></programlisting>
+<screen><![CDATA[
+--> dt = [datetime(2024, 2, 28)
+  >     datetime(2024, 2, 29)
+  >     datetime(2024, 3, 1)]
+
+ dt = [3x1 datetime]
+
+   2024-02-28
+   2024-02-29
+   2024-03-01
+
+--> d = caldiff(dt)
+
+ d = [2x1 calendarDuration]
+
+    1d
+    1d
+]]></screen>
+</para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="datetime">datetime</link>
+            </member>
+            <member>
+                <link linkend="calendarDuration">calendarDuration</link>
+            </member>
+            <member>
+                <link linkend="between">between</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revremark>
+                    Function added.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

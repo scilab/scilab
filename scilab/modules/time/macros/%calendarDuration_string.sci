@@ -36,7 +36,7 @@ function out = %calendarDuration_string(dura)
     mm = modulo(int(d / min1), 60);
     ss = modulo(int(d / sec1), 60);
     ms = modulo(d, 1000);
-    hasTime = dura.t.duration <> 0 | (dura.y == 0 && dura.m == 0 && dura.d == 0);
+    hasTime = dura.t.duration <> 0 | (dura.y == 0 & dura.m == 0 & dura.d == 0);
 
     out = [];
     for c = 1:size(dura.y, 2)
