@@ -477,11 +477,11 @@
     <!-- Code content is plain text: strip the XML source indentation (the
          common minimum, keeping relative indentation) and surrounding blank
          lines, so the JS-side dedent is not required for correct layout. -->
-    <xsl:template match="db:programlisting[@role='example']">
+    <xsl:template match="db:programlisting[@role='example' or not(@role)]">
         <div class="example-wrapper"><div class="example-buttons"><button class="btn-run" title="Execute in console">&#9654;</button><button class="btn-edit" title="Open in SciNotes">&#9998;</button></div><pre class="programlisting language-scilab" data-role="example"><xsl:call-template name="dedent-block"><xsl:with-param name="text" select="string(.)"/></xsl:call-template></pre></div>
     </xsl:template>
 
-    <xsl:template match="db:programlisting"><pre class="programlisting language-scilab"><xsl:if test="@role"><xsl:attribute name="data-role"><xsl:value-of select="@role"/></xsl:attribute></xsl:if><xsl:call-template name="dedent-block"><xsl:with-param name="text" select="string(.)"/></xsl:call-template></pre>
+    <xsl:template match="db:programlisting[@role='no-scilab-exec']"><pre class="programlisting language-scilab"><xsl:if test="@role"><xsl:attribute name="data-role"><xsl:value-of select="@role"/></xsl:attribute></xsl:if><xsl:call-template name="dedent-block"><xsl:with-param name="text" select="string(.)"/></xsl:call-template></pre>
     </xsl:template>
 
     <!-- screen = console output of an example: plain text, no syntax
