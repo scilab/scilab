@@ -551,6 +551,13 @@ table.revhistory td.revnumber {
     /* MathJax will style this */
 }
 
+/* <latex style="display">: centered on its own line. A span (not a div)
+   so it stays valid inside the <p> generated for <para> */
+.math-tex-display {
+    display: block;
+    text-align: center;
+}
+
 /* ================================================================== */
 /* MEDIA OBJECTS                                                       */
 /* ================================================================== */

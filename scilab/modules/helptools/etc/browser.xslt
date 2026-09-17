@@ -735,7 +735,7 @@
     <!-- LATEX - Displayed LaTeX rendered by MathJax                            -->
     <!-- ================================================================== -->
     <xsl:template match="db:latex[@style='display']">
-        <span class="math-tex">\[<xsl:value-of select="."/>\]</span>
+        <span class="math-tex math-tex-display">\[<xsl:value-of select="."/>\]</span>
     </xsl:template>
 
     <!-- ================================================================== -->
