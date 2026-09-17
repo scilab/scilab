@@ -23,6 +23,7 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.compound.Compound;
 import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.root.Root;
 import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.graphic_objects.fec.Fec;
 import org.scilab.modules.graphic_objects.figure.Figure;
@@ -305,14 +306,13 @@ public final class GraphicModel {
             case UICONTEXTMENU:
                 createdObject = new Uicontextmenu();
                 break;
-                /* Create Scilab console object */
+                /* Create Scilab Root object */
+            case ROOT:
+                createdObject = Root.getRoot();
+                break;
+                /* Create Scilab Console object */
             case CONSOLE:
                 createdObject = Console.getConsole();
-                ((Console) createdObject).setScilabMode(Console.ScilabMode.NW);
-                break;
-            case JAVACONSOLE:
-                createdObject = Console.getConsole();
-                ((Console) createdObject).setScilabMode(Console.ScilabMode.STD);
                 break;
                 /* Uibar */
             case PROGRESSIONBAR:

@@ -2,7 +2,7 @@
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
 // Copyright (C) 2008 - DIGITEO - Vincent COUVERT
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2020 - 2021 - UTC - Stéphane MOTTELET
+// Copyright (C) 2020 - 2026 - UTC - Stéphane MOTTELET
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -51,19 +51,7 @@ function h =  findobj(varargin)
                 end
             end
         end
-
-        // Get all opened figures
-        figureIds = winsid();
-        if isempty(figureIds) then
-            return
-        end
-
-        // Iterate over all figures
-        currFigure = gcf();
-        for figureindex = 1:size(figureIds,2)
-            searchHandles(figureindex) = scf(figureIds(figureindex));
-        end
-        scf(currFigure);
+        searchHandles = get(0);
     end
 
     try
@@ -186,3 +174,4 @@ function [out,depth] = parse(varargin)
         end
     end
 endfunction
+

@@ -79,6 +79,8 @@ char const* getHandleTypeStr(int _iType)
             return "uimenu";
         case __GO_UICONTEXTMENU__:
             return "uicontextmenu";
+        case __GO_ROOT__:
+            return "Root";
         case __GO_CONSOLE__:
             return "Console";
         case __GO_SHOWHIDDENHANDLES__:

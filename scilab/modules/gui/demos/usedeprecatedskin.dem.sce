@@ -4,9 +4,9 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 function usedeprecatedskin()
-    c = get(0);
-    oldSkin = c.usedeprecatedskin;
-    c.usedeprecatedskin = "off";
+    r = get(0);
+    oldSkin = r.usedeprecatedskin;
+    r.usedeprecatedskin = "off";
     if get("notusedeprecatedskin_figure") <> [] then
         f = get("notusedeprecatedskin_figure");
         delete(f.children);
@@ -28,11 +28,11 @@ function usedeprecatedskin()
     frame = uicontrol(fr1, "style", "frame", "position", [10 110 200 30]);
     listbox = uicontrol(fr1, "style", "listbox", "string", "listbox1|listbox2|listbox3|listbox4|listbox5", "position", [10 50 200 50]);
     combo = uicontrol(fr1, "style", "popupmenu", "string", "popupmenu1|popupmenu2", "position", [10 10 200 30]);
-    c.usedeprecatedskin = oldSkin;
+    r.usedeprecatedskin = oldSkin;
 
-    c = get(0);
-    oldSkin = c.usedeprecatedskin;
-    c.usedeprecatedskin = "on";
+    r = get(0);
+    oldSkin = r.usedeprecatedskin;
+    r.usedeprecatedskin = "on";
     if get("usedeprecatedskin_figure") <> [] then
         f = get("usedeprecatedskin_figure");
         delete(f.children);
@@ -51,7 +51,7 @@ function usedeprecatedskin()
     frame = uicontrol(fr1, "style", "frame", "position", [10 110 200 30]);
     listbox = uicontrol(fr1, "style", "listbox", "string", "listbox1|listbox2|listbox3|listbox4|listbox5", "position", [10 50 200 50]);
     combo = uicontrol(fr1, "style", "popupmenu", "string", "popupmenu1|popupmenu2", "position", [10 10 200 30]);
-    c.usedeprecatedskin = oldSkin;
+    r.usedeprecatedskin = oldSkin;
 endfunction
 
 usedeprecatedskin();

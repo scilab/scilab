@@ -97,8 +97,12 @@ function uiimport_gui(data)
         "callback", "uiimport_cb", ...
         "tag", "uiimport_browser");
 
-    sw = get(0, "screensize_px")(3);
-    sh = get(0, "screensize_px")(4);
+    userUnits = get(0,"Units");
+    set(0,"Units","pixels");
+    sw = get(0, "screensize")(3);
+    sh = get(0, "screensize")(4);
+    set(0,"Units",userUnits);
+
 
     s = fig.figure_size;
     w = (sw - s(1)) / 2

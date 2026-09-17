@@ -84,8 +84,8 @@ function ierr = uicontrol_generic_test(uicontrol_style)
     f = scf();
 
     // Create a new uicontrol
-    consoleHandle = get(0);
-    set(consoleHandle, "UseDeprecatedSkin", "on");
+    rootHandle = get(0);
+    set(rootHandle, "UseDeprecatedSkin", "on");
     h = uicontrol("parent", f, "style", uicontrol_style);
 
     // --- BackgroundColor ---

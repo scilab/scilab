@@ -77,7 +77,7 @@
     <ClCompile Include="getMainWindowTitle.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\GetScreenProperty.cpp">
+    <ClCompile Include="..\cpp\GetRootProperty.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\GetUicontrolBackgroundColor.cpp">
@@ -551,7 +551,7 @@
     <ClInclude Include="..\cpp\displaytree.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\cpp\GetScreenProperty.hxx">
+    <ClInclude Include="..\cpp\GetRootProperty.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\InitUIMenu.hxx">
@@ -599,7 +599,7 @@
     <ClInclude Include="..\..\includes\exportUserInterface.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\GetScreenProperty.h">
+    <ClInclude Include="..\..\includes\GetRootProperty.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\GraphicWindow.h">

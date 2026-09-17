@@ -29,8 +29,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "HandleManagement.h"
-#include "getConsoleIdentifier.h"
-
+#include "getRootIdentifier.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
@@ -64,7 +63,7 @@ void* get_children_property(void* _pvCtx, int iObjUID)
 
     getGraphicObjectProperty(iObjUID, __GO_CHILDREN__, jni_int_vector, (void **)&piChildrenUID);
 
-    getGraphicObjectProperty(getConsoleIdentifier(), __GO_SHOWHIDDENHANDLES__, jni_bool, (void **)&piShowHiddenHandles);
+    getGraphicObjectProperty(getRootIdentifier(), __GO_SHOWHIDDENHANDLES__, jni_bool, (void **)&piShowHiddenHandles);
 
     if (iShowHiddenHandles == 0)
     {

@@ -105,9 +105,11 @@ function main_menubar_cb(key)
         // Finding the handle of the submenu "Files => Go to Bookmark"
         // It has a sub-submenu with Label = "TMPDIR", coming from the
         // SCI/modules/gui/etc/main_menubar.xml configuration file.
-        c = get(0);
-        old = c.showhiddenhandles;   // to be restored before leaving
-        c.showhiddenhandles = "on";
+        root = get(0);
+        old = root.showhiddenhandles;   // to be restored before leaving
+        root.showhiddenhandles = "on";
+        // console
+        c = root.children($); // The console is the first child
         f = c.children($);    // The "File" menu is the first one created
         f.callback = "main_menubar_cb(""setFavoriteDirs"")";
         menu_found = %f;
@@ -133,6 +135,6 @@ function main_menubar_cb(key)
                 uimenu(h, "Label", d, "Callback", "cd("""+d+"""),");
             end
         end
-        c.showhiddenhandles = old;
+        root.showhiddenhandles = old;
     end
 endfunction

@@ -81,6 +81,7 @@ jmethodID jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanboo
 jmethodID voidregisterScilabViewID; // cache method id
 jmethodID voidunregisterScilabViewID; // cache method id
 jmethodID jintgetConsoleIdentifierID; // cache method id
+jmethodID jintgetRootIdentifierID; // cache method id
 jmethodID voidbuildFigureMenuBarjintintID; // cache method id
 
 
@@ -182,6 +183,8 @@ static void registerScilabView(JavaVM * jvm_);
 static void unregisterScilabView(JavaVM * jvm_);
 
 static int getConsoleIdentifier(JavaVM * jvm_);
+
+static int getRootIdentifier(JavaVM * jvm_);
 
 static void buildFigureMenuBar(JavaVM * jvm_, int figureId);
 

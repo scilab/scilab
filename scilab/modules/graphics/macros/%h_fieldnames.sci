@@ -245,6 +245,9 @@ function fields = %h_fieldnames(h)
             "icon"
             "tag"
             ]
+            if ShowHiddenProperties
+                fields = ["parent";fields];
+            end
         case "Grayplot"
             fields=[
             "parent"
@@ -667,12 +670,24 @@ function fields = %h_fieldnames(h)
             end
 
             fields($ + 1)="Visible"
-        case "Console"
+        case "Root"
             fields=[
             "Children"
+            "pointer_location"
+            "screensize"
+            "screendepth"
             "ShowHiddenHandles"
             "ShowHiddenProperties"
             "UseDeprecatedSkin"
+            "Units"
+            "user_data"
+            "tag"
+            ]
+        case "Console"
+            fields=[
+            "parent"
+            "children"
+            "toolbar_visible"
             "user_data"
             "tag"
             ]

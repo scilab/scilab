@@ -323,6 +323,8 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_st_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_segs_color_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_screen_position_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_screensize_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_pointer_location_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_event_handler_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_event_handler_enable_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_arc_drawing_method_property.lo \
@@ -904,6 +906,7 @@ am__depfiles_remade =  \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_outside_colors_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_parent_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pixel_drawing_mode_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pointer_location_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_polyline_style_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_position_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rect_property.Plo \
@@ -911,6 +914,7 @@ am__depfiles_remade =  \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rotation_angles_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rotation_style_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screen_position_property.Plo \
+	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screensize_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_scrollable_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_alpha_property.Plo \
 	src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_property.Plo \
@@ -1717,6 +1721,8 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/get_ticks_st_property.c \
     src/c/getHandleProperty/get_segs_color_property.c \
     src/c/getHandleProperty/get_screen_position_property.c \
+    src/c/getHandleProperty/get_screensize_property.c \
+    src/c/getHandleProperty/get_pointer_location_property.c \
     src/c/getHandleProperty/get_event_handler_property.c \
     src/c/getHandleProperty/get_event_handler_enable_property.c \
     src/c/getHandleProperty/get_arc_drawing_method_property.c \
@@ -2731,6 +2737,12 @@ src/c/getHandleProperty/libscigraphics_algo_la-get_segs_color_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
 src/c/getHandleProperty/libscigraphics_algo_la-get_screen_position_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_screensize_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_pointer_location_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
 src/c/getHandleProperty/libscigraphics_algo_la-get_event_handler_property.lo:  \
@@ -3950,6 +3962,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_outside_colors_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_parent_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pixel_drawing_mode_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pointer_location_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_polyline_style_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_position_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rect_property.Plo@am__quote@ # am--include-marker
@@ -3957,6 +3970,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rotation_angles_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rotation_style_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screen_position_property.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screensize_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_scrollable_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_alpha_property.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_property.Plo@am__quote@ # am--include-marker
@@ -5154,6 +5168,20 @@ src/c/getHandleProperty/libscigraphics_algo_la-get_screen_position_property.lo: 
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_screen_position_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_screen_position_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_screen_position_property.lo `test -f 'src/c/getHandleProperty/get_screen_position_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_screen_position_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_screensize_property.lo: src/c/getHandleProperty/get_screensize_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_screensize_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screensize_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_screensize_property.lo `test -f 'src/c/getHandleProperty/get_screensize_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_screensize_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screensize_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screensize_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_screensize_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_screensize_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_screensize_property.lo `test -f 'src/c/getHandleProperty/get_screensize_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_screensize_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_pointer_location_property.lo: src/c/getHandleProperty/get_pointer_location_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_pointer_location_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pointer_location_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_pointer_location_property.lo `test -f 'src/c/getHandleProperty/get_pointer_location_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_pointer_location_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pointer_location_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pointer_location_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_pointer_location_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_pointer_location_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_pointer_location_property.lo `test -f 'src/c/getHandleProperty/get_pointer_location_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_pointer_location_property.c
 
 src/c/getHandleProperty/libscigraphics_algo_la-get_event_handler_property.lo: src/c/getHandleProperty/get_event_handler_property.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_event_handler_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_event_handler_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_event_handler_property.lo `test -f 'src/c/getHandleProperty/get_event_handler_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_event_handler_property.c
@@ -7945,6 +7973,7 @@ distclean: distclean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_outside_colors_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_parent_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pixel_drawing_mode_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pointer_location_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_polyline_style_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_position_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rect_property.Plo
@@ -7952,6 +7981,7 @@ distclean: distclean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rotation_angles_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rotation_style_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screen_position_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screensize_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_scrollable_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_property.Plo
@@ -8454,6 +8484,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_outside_colors_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_parent_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pixel_drawing_mode_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pointer_location_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_polyline_style_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_position_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rect_property.Plo
@@ -8461,6 +8492,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rotation_angles_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rotation_style_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screen_position_property.Plo
+	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_screensize_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_scrollable_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_alpha_property.Plo
 	-rm -f src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_segs_color_property.Plo

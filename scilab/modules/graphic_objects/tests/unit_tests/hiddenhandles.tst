@@ -5,10 +5,13 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
+
 // <-- Simple test hidden handles using the MVC implementation -->
 
 c = get(0); // Get console handle
-assert_checkequal(c.type, "Console");
+assert_checkequal(c.type, "Root");
 assert_checkequal(c.showhiddenhandles, "off"); // Hidden handles are not shown by default
 
 // Create a figure with two menus (one with hidden handle)

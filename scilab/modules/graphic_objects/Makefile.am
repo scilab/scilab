@@ -48,6 +48,7 @@ GRAPHIC_OBJECTS_C_SOURCES = \
 GRAPHIC_OBJECTS_CXX_SOURCES = \
     src/cpp/createGraphicObject.cpp \
     src/cpp/getGraphicObjectProperty.cpp \
+    src/cpp/getRootIdentifier.cpp \
     src/cpp/getConsoleIdentifier.cpp \
     src/cpp/setGraphicObjectProperty.cpp \
     src/cpp/deleteGraphicObject.cpp \

@@ -13,16 +13,16 @@
  *
  */
 
-#ifndef __GETSCREENPROPERTY_H__
-#define __GETSCREENPROPERTY_H__
+#ifndef __GETROOTPROPERTY_H__
+#define __GETROOTPROPERTY_H__
 #include "dynlib_gui.h"
 /*
- * Get a screen (root) property
+ * Get a root property
  *
  * @param stack address where the property name is stored
  * @param propertyName the name of the property to get
  * @return execution status
  */
-GUI_IMPEXP void* GetScreenProperty(void* _pvCtx, char *propertyName);
+GUI_IMPEXP void* GetRootProperty(void* _pvCtx, int iObjUID, char *propertyName);
 
 #endif /* !__GETSCREENPROPERTY_H__ */

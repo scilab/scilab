@@ -41,6 +41,7 @@ import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
+import org.scilab.modules.graphic_objects.root.Root;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
@@ -148,7 +149,7 @@ public class Scilab {
          */
         setJOGLFlags();
         /* Mode GUI */
-        if (mode == SCILAB_STD) {
+        if (mode == SCILAB_STD || mode == SCILAB_NW) {
             SwingView.registerSwingView();
         }
 
@@ -213,7 +214,11 @@ public class Scilab {
             // Create a user config file if not already exists
             ConfigManager.createUserCopy();
 
-            Integer consoleId = GraphicController.getController().askObject(Type.JAVACONSOLE);
+            Integer rootId = GraphicController.getController().askObject(Type.ROOT);
+            Integer consoleId = GraphicController.getController().askObject(Type.CONSOLE);
+            GraphicController.getController().setGraphicObjectRelationship(rootId, consoleId);
+            Root.getRoot().setScilabMode(Root.ScilabMode.STD);
+
             MenuBarBuilder.buildConsoleMenuBar(consoleId);
 
             SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
@@ -226,7 +231,8 @@ public class Scilab {
             if (mode  == SCILAB_NW) { //NW
                 ConfigManager.createUserCopy();
             }
-            GraphicController.getController().askObject(Type.CONSOLE);
+            GraphicController.getController().askObject(Type.ROOT);
+            Root.getRoot().setScilabMode(Root.ScilabMode.NW);
         }
     }
 

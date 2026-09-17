@@ -27,4 +27,4 @@ lab = findobj("tag", "Alabel");
 assert_checktrue(lab == u);
 
 all = findobj();
-assert_checktrue(size(all) == [7 1]);
+assert_checktrue(size(all) == [8 1]);

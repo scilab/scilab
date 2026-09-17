@@ -20,7 +20,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 
-import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.root.Root;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
@@ -36,7 +36,7 @@ public class PopupMenu extends Uicontrol {
         setStyle(__GO_UI_POPUPMENU__);
         setString(new String[] {});
 
-        if (Console.getConsole().getUseDeprecatedLF()) {
+        if (Root.getRoot().getUseDeprecatedLF()) {
             setRelief(RELIEF_FLAT);
         } else {
             UIDefaults defaults = UIManager.getDefaults();

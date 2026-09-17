@@ -86,7 +86,7 @@ void Click_menu(int n)
 
 }
 /*--------------------------------------------------------------------------*/
-int GetScreenProperty(char *prop, char *value)
+int GetRootProperty(char *prop, char *value)
 {
     return 0;
 }

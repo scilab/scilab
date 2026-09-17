@@ -18,92 +18,152 @@
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
           xml:lang="en" xml:id="root_properties">
     <refnamediv>
-        <refname>root_properties</refname>
-        <refpurpose>description of the root object properties.</refpurpose>
+        <refname>Root properties</refname>
+        <refpurpose>Description of root object properties.</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            The root object is a virtual object used to get the computer screen properties.
-            Use <literal>get</literal> function with <emphasis>0</emphasis> as first argument
-            to access its properties.
+             The <literal>Root</literal> entity  is a virtual graphical object which is the top level of the graphics
+             entities hierarchy. It is used to modify some general properties for handles and uicontrols
+             and to get the computer screen properties. Its properties may be addressed through its
+             handle as returned by <literal>get(0)</literal>.
+        </para>
+        <para>
+        Properties which can be modified are the following:
         </para>
         <variablelist>
             <varlistentry>
-                <term>Root properties</term>
+                <term>ShowHiddenHandles</term>
                 <listitem>
-                    <variablelist>
-                        <varlistentry>
-                            <term>screensize_px: </term>
-                            <listitem>
-                                <para>The screen size in pixels.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>screensize_pt: </term>
-                            <listitem>
-                                <para>The screen size in points.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>screensize_mm: </term>
-                            <listitem>
-                                <para>The screen size in millimeters.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>screensize_cm: </term>
-                            <listitem>
-                                <para>The screen size in centimeters.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>screensize_in: </term>
-                            <listitem>
-                                <para>The screen size in inches.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>screensize_norm: </term>
-                            <listitem>
-                                <para>The normalized screen size.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>screendepth: </term>
-                            <listitem>
-                                <para>The number of bits used to encode colors.</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <para>A boolean or a string</para>
+                    <para>Manages the display of all children handles in figures including default menus ones.</para>
+                    <para>
+                        Default value is <literal>"off"</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>UseDeprecatedSkin</term>
+                <listitem>
+                    <para>A boolean or a string</para>
+                    <para>Manages the rendering of uicontrols.</para>
+                    <para>
+                        Default value is <literal>"off"</literal> and uicontrols look and feel is managed by operating system.
+                    </para>
+                    <para>
+                        Setting this value to <literal>"on"</literal> or <literal>%T</literal> will make the uicontrols have an old TK look and feel.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ShowHiddenProperties</term>
+                <listitem>
+                    <para>A boolean or a string</para>
+                    <para>Manages the display of uicontrols properties.</para>
+                    <para>
+                        Default value is <literal>"off"</literal> and only the uicontrols properties used on the Java side are displayed.
+                    </para>
+                    <para>
+                        Setting this value to <literal>"on"</literal> or <literal>%T</literal> will make all available properties displayed (for example a <literal>ListboxTop</literal> property will be displayed for <literal>pushbutton</literal> uicontrols.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Units</term>
+                <listitem>
+                    <para>A string among <literal>"points"</literal>, <literal>"normalized"</literal>, <literal>"inches"</literal>, <literal>"centimeters"</literal> or <literal>"pixels"</literal>.</para>
+                    <para>Default value is <literal>"pixels"</literal>.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Userdata</term>
+                <listitem>
+                    <para>
+                        Any data of any type, that you want to assign to the root entity.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Tag</term>
+                <listitem>
+                    <para>Single string, that can be used as a root custom text id.</para>
+                </listitem>
+              </varlistentry>
+            </variablelist>
+            <para>
+                Read-only properties are:
+            </para>
+
+            <variablelist>
+              <varlistentry>
+                  <term>pointer_location</term>
+                  <listitem>
+                      <para>The coordinates of mouse pointer in current units.</para>
+                  </listitem>
+              </varlistentry>
+              <varlistentry>
+                  <term>screensize</term>
+                  <listitem>
+                      <para>The screen size in current units.</para>
+                  </listitem>
+              </varlistentry>
+              <varlistentry>
+                  <term>screendepth</term>
+                  <listitem>
+                      <para>The number of bits used to encode colors.</para>
+                  </listitem>
+              </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-get(0, "screensize_px")
-get(0, "screendepth")
+f = gcf() // Do no display hidden handles
+r = get(0);
+r.ShowHiddenHandles = "on";
+f = gcf() // Show menu handles as children
+
+h = uicontrol(); // Button with OS look & feel
+r.UseDeprecatedSkin = "on"
+h = uicontrol(); // Button with old TK look & feel
+
+h = uicontrol() // Minimal display of properties
+r.ShowHiddenProperties = "on"
+h = uicontrol() // Full display of properties
  ]]></programlisting>
+
+<programlisting role="example"><![CDATA[
+  get(0, "screensize")
+  get(0, "screendepth")
+ ]]></programlisting>
+
+<programlisting role="example"><![CDATA[
+  get(0, "Units")
+  set(0, "Units", "centimeters")
+ ]]></programlisting>
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+          <member>
+              <link linkend="console_properties">console_properties</link>
+          </member>
+            <member>
+                <link linkend="system_setproperty">system_setproperty</link>
+            </member>
             <member>
                 <link linkend="getsystemmetrics">getsystemmetrics</link>
             </member>
             <member>
-                <link linkend="system_getproperty">system_getproperty</link>
+                <link linkend="setlookandfeel">setlookandfeel</link>
             </member>
             <member>
-                <link linkend="console_properties">console_properties</link>
+                <link linkend="uicontrol">uicontrol</link>
             </member>
             <member>
                 <link linkend="usecanvas">usecanvas</link>
-            </member>
-            <member>
-                <link linkend="getlookandfeel">getlookandfeel</link>
             </member>
             <member>
                 <link linkend="preferences">preferences</link>
@@ -114,3 +174,4 @@ get(0, "screendepth")
         </simplelist>
     </refsection>
 </refentry>
+

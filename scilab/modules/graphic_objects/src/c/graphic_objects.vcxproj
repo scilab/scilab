@@ -362,6 +362,7 @@
     <ClCompile Include="..\cpp\Fac3DColorComputer.cpp" />
     <ClCompile Include="..\cpp\FigureList.cpp" />
     <ClCompile Include="..\cpp\FigureModel.cpp" />
+    <ClCompile Include="..\cpp\getRootIdentifier.cpp" />
     <ClCompile Include="..\cpp\getConsoleIdentifier.cpp" />
     <ClCompile Include="..\cpp\HandleManagement.cpp" />
     <ClCompile Include="..\cpp\MatPlotDecomposer.cpp" />
@@ -414,6 +415,7 @@
     <ClInclude Include="..\..\includes\Fac3DColorComputer.hxx" />
     <ClInclude Include="..\..\includes\FigureList.h" />
     <ClInclude Include="..\..\includes\FigureModel.h" />
+    <ClInclude Include="..\..\includes\getRootIdentifier.h" />
     <ClInclude Include="..\..\includes\getConsoleIdentifier.h" />
     <ClInclude Include="..\..\includes\getGraphicObjectProperty.h" />
     <ClInclude Include="..\..\includes\graphicObjectProperties.h" />

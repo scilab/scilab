@@ -36,7 +36,7 @@ import javax.swing.border.Border;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
-import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.root.Root;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -76,7 +76,7 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject , 
         super();
         //setFocusable(false);
 
-        if (Console.getConsole().getUseDeprecatedLF()) {
+        if (Root.getRoot().getUseDeprecatedLF()) {
             /* Avoid the L&F to erase user background settings */
             setContentAreaFilled(false);
             setOpaque(true);

@@ -589,6 +589,8 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_rotation_angles_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_rotation_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_screen_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_screensize_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_pointer_location_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_scrollable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_segs_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_specular_color_property.c" />

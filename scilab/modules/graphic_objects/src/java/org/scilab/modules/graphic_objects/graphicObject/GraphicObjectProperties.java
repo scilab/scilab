@@ -442,5 +442,9 @@ public class GraphicObjectProperties {
     public static final int __GO_MARK_BACKGROUND_ALPHA__ = 419;
     public static final int __GO_MARK_FOREGROUND_ALPHA__ = 420;
     public static final int __GO_FONT_COLOR_ALPHA__ = 421;
+    public static final int __GO_ROOT__ = 422;
+    public static final int __GO_POINTER_LOCATION__ = 423;
+    public static final int __GO_SCREENSIZE__ = 424;
+    public static final int __GO_SCREENDEPTH__ = 425;
 
 }

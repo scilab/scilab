@@ -24,10 +24,10 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            h = get(0)      // console
-            h  = get(tag)
-            h  = get(tagsPath)
-            h  = get(key)
+            h = get(0)      // Root window
+            h = get(tag)
+            h = get(tagsPath)
+            h = get(key)
             fids = get("figures_id")
 
             val = H.prop
@@ -73,8 +73,8 @@
                 <term>0 (zero)</term>
                 <listitem>
                     <para>
-                        Special id addressing the console and
-                        <link linkend="console_properties">its properties</link>.
+                        Special id addressing the Root window and
+                        <link linkend="root_properties">its properties</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -218,7 +218,7 @@
                 <itemizedlist>
                     <listitem>
                          <para>
-                            the Scilab console
+                            the Scilab Root window or Console
                         </para>
                     </listitem>
                     <listitem>
@@ -249,7 +249,7 @@
             [] is returned anyway if no matching object is found.
         </para>
         <para>
-            <emphasis role="bold">h = get(0)</emphasis> returns the handle of Scilab's console.
+            <emphasis role="bold">h = get(0)</emphasis> returns the handle of Scilab's Root window.
         </para>
         <para>
             <emphasis role="bold">h  = get(tag)</emphasis> returns the handle of the first
@@ -275,7 +275,7 @@
         </para>
         <para>
             <emphasis role="bold">val = get(0, prop)</emphasis> returns the value of the given
-            Root or Console property.
+            Root window property.
         </para>
         <para>
             <emphasis role="bold">val = get(H, prop)</emphasis> or
@@ -433,23 +433,26 @@ Axes
             <emphasis role="bold">Console special handle</emphasis>:
             <programlisting role="example"><![CDATA[
 get(0)
-get(0, "screensize_px")
+get(0, "screensize")
         ]]></programlisting>
             <screen><![CDATA[
 --> get(0)
- ans  =
-Handle of type "Console" with properties:
-=========================================
-Children: "uimenu"
-ShowHiddenHandles = "off"
-ShowHiddenProperties = "off"
-UseDeprecatedSkin = "off"
-user_data = []
-tag = ""
+ ans = [Root] with properties:
 
---> get(0, "screensize_px")
+  Children: [Console]
+  pointer_location = [785,485]
+  screensize = [1,1,2560,1440]
+  screendepth = 24
+  ShowHiddenHandles = "off"
+  ShowHiddenProperties = "off"
+  UseDeprecatedSkin = "off"
+  Units = "pixels"
+  user_data = []
+  tag = ""
+
+--> get(0, "screensize")
  ans  =
-   1.   1.   1920.   1080.
+   1.   1.   2560.   1440.
 ]]></screen>
         </para>
         <para>

@@ -28,7 +28,8 @@ import org.scilab.forge.scirenderer.shapes.appearance.Color;
 import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.root.Root;
+import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
@@ -65,7 +66,7 @@ public class XmlSaver {
             //scilab header
             Element header = doc.createElement("scilabgui");
             setAttribute(header, "version", "1.0", "");
-            setAttribute(header, "usedeprecatedskin", createAttribute(Console.getConsole().getUseDeprecatedLF()), "");
+            setAttribute(header, "usedeprecatedskin", createAttribute(Root.getRoot().getUseDeprecatedLF()), "");
 
             //figure
             Element figureElement = createFigure(doc, figure, reverseChildren);

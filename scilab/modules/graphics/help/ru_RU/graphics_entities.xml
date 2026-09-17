@@ -55,24 +55,27 @@
         </para>
         <para/>
         <variablelist>
-            <varlistentry>
-                <term>Командное окно, кореневой объект, мышь: </term>
+             <varlistentry>
+                <term>Root, Console</term>
                 <listitem>
                     <para>
-                        По своим меню командное окно может рассматриваться как специальное графическое
-                        окно. К своим меню и некоторым графическим  метанастройкам можно обращаться
-                        через их указатели, которые возращаются <code>c=get(0)</code>.
-                        См. подробности в <link linkend="console_properties">Свойства командного окна</link>.
+                      The <literal>Root</literal> entity  is a virtual graphical object which is the top level of the graphics
+                      entities hierarchy. It is also used to get the (read-only) computer
+                      screen properties and its graphical meta properties may be addressed through its
+                      handle as returned by
+                      <code>r=get(0)</code>. See <link linkend="root_properties">Root properties</link> for details.
                     </para>
                     <para>
-                        Корневой объект является виртуальным графическим объектом, используемым для получения
-                        свойств экрана компьютера. Его указатель тот же, что у командного окна:
-                        <code>r=get(0)</code>, но к свойствам экрана можно обращаться только в режиме чтения.
-                        См. подробности в <link linkend="root_properties">Свойства корневого объекта</link>.
+                        With its menus, the <literal>Console</literal> entity may be considered as a special graphic windows.
+                        It only exists when Scilab is started in STD mode (with its main GUI) and is always the last child of 
+                        a child of the  <literal>Root</literal>. Its menus may be addressed through its
+                        handle as returned by <code>c=findobj("type","Console")</code>.
+                        See <link linkend="console_properties">Console properties</link> for details.
                     </para>
                     <para>
-                        В Windows, можно получить некоторые дополнительные параметры экрана, окна и мыши
-                        через функцию <link linkend="getsystemmetrics">getsystemmetrics</link>.
+                        On Windows, some additional screen, windowing and mouse parameters may be
+                        retrieved through the <link linkend="getsystemmetrics">getsystemmetrics</link>
+                        function.
                     </para>
                 </listitem>
             </varlistentry>

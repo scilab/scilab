@@ -355,7 +355,7 @@
     <ClCompile Include="..\cpp\exportUserInterface.cpp" />
     <ClCompile Include="getHandleType.c" />
     <ClCompile Include="getMainWindowTitle.c" />
-    <ClCompile Include="..\cpp\GetScreenProperty.cpp" />
+    <ClCompile Include="..\cpp\GetRootProperty.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolBackgroundColor.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolFontAngle.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolFontName.cpp" />
@@ -523,7 +523,7 @@
     <ClInclude Include="..\..\includes\dynlib_gui.h" />
     <ClInclude Include="..\..\includes\exportUserInterface.hxx" />
     <ClInclude Include="..\..\includes\getHandleType.h" />
-    <ClInclude Include="..\..\includes\GetScreenProperty.h" />
+    <ClInclude Include="..\..\includes\GetRootProperty.h" />
     <ClInclude Include="..\..\includes\GetUicontrol.h" />
     <ClInclude Include="..\..\includes\getUIStyle.h" />
     <ClInclude Include="..\..\includes\gui_gw.hxx" />
@@ -553,7 +553,7 @@
     <ClInclude Include="..\cpp\CallMessageBox.hxx" />
     <ClInclude Include="..\cpp\ContextMenu.hxx" />
     <ClInclude Include="..\cpp\displaytree.hxx" />
-    <ClInclude Include="..\cpp\GetScreenProperty.hxx" />
+    <ClInclude Include="..\cpp\GetRootProperty.hxx" />
     <ClInclude Include="..\cpp\InitUIMenu.hxx" />
     <ClInclude Include="..\cpp\UnitsConversion.hxx" />
     <ClInclude Include="..\cpp\Widget.hxx" />

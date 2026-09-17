@@ -166,6 +166,8 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/get_ticks_st_property.c \
     src/c/getHandleProperty/get_segs_color_property.c \
     src/c/getHandleProperty/get_screen_position_property.c \
+    src/c/getHandleProperty/get_screensize_property.c \
+    src/c/getHandleProperty/get_pointer_location_property.c \
     src/c/getHandleProperty/get_event_handler_property.c \
     src/c/getHandleProperty/get_event_handler_enable_property.c \
     src/c/getHandleProperty/get_arc_drawing_method_property.c \

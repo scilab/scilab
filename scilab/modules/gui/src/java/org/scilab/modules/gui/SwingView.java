@@ -21,6 +21,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CONSOLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ROOT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
@@ -104,6 +105,7 @@ import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.scilab.modules.graphic_export.Driver;
 import org.scilab.modules.graphic_objects.DataLoader;
 import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.root.Root;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -226,7 +228,7 @@ public final class SwingView implements GraphicView {
     }
 
     private enum UielementType {
-        Console, CheckBox, Edit, Spinner, Frame, Figure, Axes, Image, ListBox, PopupMenu, Progressbar, PushButton, RadioButton, Slider, Table, Text, Uimenu, UiParentMenu, UiChildMenu, UiCheckedMenu, UiContextMenu, Waitbar, Tab, Layer, Browser
+        Root, Console, CheckBox, Edit, Spinner, Frame, Figure, Axes, Image, ListBox, PopupMenu, Progressbar, PushButton, RadioButton, Slider, Table, Text, Uimenu, UiParentMenu, UiChildMenu, UiCheckedMenu, UiContextMenu, Waitbar, Tab, Layer, Browser
     }
 
     private static class TypedObject {
@@ -271,6 +273,7 @@ public final class SwingView implements GraphicView {
                 GraphicObjectProperties.__GO_UICONTEXTMENU__,
                 GraphicObjectProperties.__GO_UIMENU__,
                 GraphicObjectProperties.__GO_CONSOLE__,
+                GraphicObjectProperties.__GO_ROOT__,
                 GraphicObjectProperties.__GO_PROGRESSIONBAR__,
                 GraphicObjectProperties.__GO_WAITBAR__,
                 GraphicObjectProperties.__GO_UICONTROL__
@@ -317,6 +320,8 @@ public final class SwingView implements GraphicView {
                 return UielementType.Axes;
             case __GO_CONSOLE__:
                 return UielementType.Console;
+            case __GO_ROOT__:
+                return UielementType.Root;
             case __GO_UI_CHECKBOX__:
                 return UielementType.CheckBox;
             case __GO_UI_EDIT__:
@@ -397,16 +402,14 @@ public final class SwingView implements GraphicView {
                 checkBox.setId(id);
                 setDefaultProperties(checkBox, id);
                 return checkBox;
-            case Console:
-                Console console = (Console) GraphicController.getController().getObjectFromId(id);
-                if (console.getScilabMode() == Console.ScilabMode.STD) {
-                    WindowsConfigurationManager.restoreUUID(NULLUUID);
-                    SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
-                    SwingScilabDockablePanel consoleTab = (SwingScilabDockablePanel) sciConsole.getParent();
-                    consoleTab.setId(id);
-                    return consoleTab;
-                }
+            case Root:
                 return null;
+            case Console:
+                WindowsConfigurationManager.restoreUUID(NULLUUID);
+                SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
+                SwingScilabDockablePanel consoleTab = (SwingScilabDockablePanel) sciConsole.getParent();
+                consoleTab.setId(id);
+                return consoleTab;
             case Edit: {
                 SwingScilabEditBox edit = new SwingScilabEditBox();
                 edit.setId(id);
@@ -558,7 +561,7 @@ public final class SwingView implements GraphicView {
                 setDefaultProperties(radioButton, id);
                 return radioButton;
             case Slider:
-                if (Console.getConsole().getUseDeprecatedLF()) {
+                if (Root.getRoot().getUseDeprecatedLF()) {
                     SwingScilabScroll slider = new SwingScilabScroll();
                     slider.setId(id);
                     setDefaultProperties(slider, id);
@@ -877,6 +880,7 @@ public final class SwingView implements GraphicView {
                     /*
                      * CONSOLE CHILDREN UPDATE
                      */
+                case __GO_ROOT__:
                 case __GO_CONSOLE__:
                     updateConsoleChildren(registeredObject, newChildren);
                     break;

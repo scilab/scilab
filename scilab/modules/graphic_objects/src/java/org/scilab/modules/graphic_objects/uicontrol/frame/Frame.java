@@ -21,7 +21,7 @@ import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 
 import org.scilab.modules.graphic_objects.axes.AxesContainer;
-import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.root.Root;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
@@ -38,7 +38,7 @@ public class Frame extends Uicontrol implements AxesContainer {
     public Frame() {
         super();
         setStyle(__GO_UI_FRAME__);
-        if (Console.getConsole().getUseDeprecatedLF()) {
+        if (Root.getRoot().getUseDeprecatedLF()) {
             setRelief(RELIEF_RIDGE);
         } else {
             UIDefaults defaults = UIManager.getDefaults();

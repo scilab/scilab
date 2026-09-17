@@ -17,6 +17,7 @@ extern "C"
 {
 #include "createGraphicObject.h"
 #include "getScilabJavaVM.h"
+#include "getRootIdentifier.h"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "FigureModel.h"
@@ -141,6 +142,8 @@ int createNewFigureWithAxes()
     setGraphicObjectProperty(id, __GO_TOOLBAR_VISIBLE__, (void*)&on, jni_bool, 1);
     setGraphicObjectProperty(id, __GO_INFOBAR_VISIBLE__, (void*)&on, jni_bool, 1);
 
+    //figures are children of root entity
+    setGraphicObjectRelationship(getRootIdentifier(), id);
     return id;
 }
 
@@ -187,6 +190,9 @@ int createFigure(int iDockable, int iMenubarType, int iToolbarType, int iDefault
 
         setGraphicObjectProperty(getCurrentSubWin(), __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
     }
+
+    //figures are children of root entity
+    setGraphicObjectRelationship(getRootIdentifier(), id);
 
     return id;
 }

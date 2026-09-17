@@ -96,6 +96,8 @@
         </method>
         <method name="getConsoleIdentifier" returnType="int" modifier="static">
         </method>
+        <method name="getRootIdentifier" returnType="int" modifier="static">
+        </method>
         <method name="buildFigureMenuBar" returnType="void" modifier="static">
             <parameter name="figureId" type="int"/>
         </method>

@@ -16,6 +16,6 @@
 // <-- Short Description -->
 // Error in findobj when no object exists
 
-assert_checktrue(isempty(findobj()))
+assert_checkequal(findobj(),get(0))
 assert_checktrue(isempty(findobj("type","Figure")))
 

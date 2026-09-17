@@ -16,6 +16,7 @@
 package org.scilab.modules.graphic_objects;
 
 import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.root.Root;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicView.ScilabView;
@@ -186,6 +187,10 @@ public final class CallGraphicController {
 
     public static void unregisterScilabView() {
         GraphicController.getController().unregister(ScilabView.getScilabView());
+    }
+
+    public static int getRootIdentifier() {
+        return Root.getRoot().getIdentifier();
     }
 
     public static int getConsoleIdentifier() {

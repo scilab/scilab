@@ -43,6 +43,7 @@
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "getRootIdentifier.h"
 #include "getConsoleIdentifier.h"
 #include "CurrentSubwin.h"
 #include "sciprint.h"
@@ -244,7 +245,7 @@ int sci_delete(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        if (isFigureModel(iObjUID) || isAxesModel(iObjUID))
+        if (iObjUID == getConsoleIdentifier() || iObjUID == getRootIdentifier() || isFigureModel(iObjUID) || isAxesModel(iObjUID))
         {
             Scierror(999, _("This object cannot be deleted.\n"));
             return 0;

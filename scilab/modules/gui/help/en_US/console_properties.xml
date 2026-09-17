@@ -24,43 +24,19 @@
     <refsection>
         <title>Description</title>
         <para>
-            This object is returned when calling <literal>get(0)</literal> and allows to modify
-            some parameters for handles and uicontrols. Consoles's properties are the following:
+            This object is returned when calling <literal>findobj("type","Console")</literal> and allows to access to the menus and toolbar of the Console.
         </para>
         <variablelist>
             <varlistentry>
-                <term>ShowHiddenHandles</term>
+                <term>toolbar_visible</term>
                 <listitem>
                     <para>A boolean or a string</para>
-                    <para>Manages the display of all children handles in figures including default menus ones.</para>
+                    <para>Manages the display of the console toolbar.</para>
                     <para>
-                        Default value is <literal>"off"</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>UseDeprecatedSkin</term>
-                <listitem>
-                    <para>A boolean or a string</para>
-                    <para>Manages the rendering of uicontrols.</para>
-                    <para>
-                        Default value is <literal>"off"</literal> and uicontrols look and feel is managed by operating system.
+                        Default value is <literal>"on"</literal>.
                     </para>
                     <para>
-                        Setting this value to <literal>"on"</literal> or <literal>%T</literal> will make the uicontrols have an old TK look and feel.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ShowHiddenProperties</term>
-                <listitem>
-                    <para>A boolean or a string</para>
-                    <para>Manages the display of uicontrols properties.</para>
-                    <para>
-                        Default value is <literal>"off"</literal> and only the uicontrols properties used on the Java side are displayed.
-                    </para>
-                    <para>
-                        Setting this value to <literal>"on"</literal> or <literal>%T</literal> will make all available properties displayed (for example a <literal>ListboxTop</literal> property will be displayed for <literal>pushbutton</literal> uicontrols.
+                        Setting this value to <literal>"off"</literal> hides the toolbar.
                     </para>
                 </listitem>
             </varlistentry>
@@ -83,18 +59,9 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-f=gcf() // Do no display hidden handles
-c = get(0);
-set(c, "ShowHiddenHandles", "on");
-f=gcf() // Show menu handles as children
-
-h=uicontrol(); // Button with OS look & feel
-set(c, "UseDeprecatedSkin", "on");
-h=uicontrol(); // Button with old TK look & feel
-
-h=uicontrol() // Minimal display of properties
-set(c, "ShowHiddenProperties", "on");
-h=uicontrol() // Full display of properties
+c = findobj("type","Console");
+c.toolbar_visible = "off";
+//c.toolbar_visible = "on";
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

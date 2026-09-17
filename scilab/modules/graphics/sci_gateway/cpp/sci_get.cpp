@@ -33,8 +33,7 @@ extern "C"
 #include "HandleManagement.h"
 #include "GetHashTable.h"
 #include "returnProperty.h"
-#include "getConsoleIdentifier.h"
-#include "GetScreenProperty.h"
+#include "getRootIdentifier.h"
 #include "FigureList.h"
 }
 /*--------------------------------------------------------------------------*/
@@ -82,10 +81,10 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
             return types::Function::OK;
         }
 
-        /* Console property */
-        if (in.size() == 1)
+        /* Root property */
+        if (in.size() == 1 && pdbll1 == 0)
         {
-            types::InternalType* pIT = static_cast<types::InternalType*>(sciReturnHandle(getHandle(getConsoleIdentifier())));
+            types::InternalType* pIT = static_cast<types::InternalType*>(sciReturnHandle(getHandle(getRootIdentifier())));
             if (pIT == NULL)
             {
                 /* An error has occurred */
@@ -110,9 +109,10 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         }
 
         char* pstr = wide_string_to_UTF8(pStr->get(0));
-        void* pvPropScreen = GetScreenProperty(NULL, pstr);
+        
+        pOut = (types::InternalType*)callGetProperty(NULL, getRootIdentifier(), pstr);                        
 
-        if (pvPropScreen == NULL) /* Return property */
+        if (pOut == NULL) /* Return property */
         {
             Scierror(999, _("%s: Could not read property '%s' for root object.\n"), "get", pstr);
             FREE(pstr);
@@ -120,7 +120,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         }
 
         FREE(pstr);
-        out.push_back(static_cast<types::InternalType*>(pvPropScreen));
+        out.push_back(static_cast<types::InternalType*>(pOut));
         return types::Function::OK;
     }
     else if (p1->isHandle())

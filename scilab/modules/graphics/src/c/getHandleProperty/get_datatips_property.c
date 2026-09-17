@@ -26,7 +26,6 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "HandleManagement.h"
-#include "getConsoleIdentifier.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 

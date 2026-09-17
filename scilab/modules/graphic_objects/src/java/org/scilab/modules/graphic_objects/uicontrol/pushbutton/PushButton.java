@@ -20,7 +20,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 
-import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.root.Root;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
@@ -40,7 +40,7 @@ public class PushButton extends Uicontrol {
         setStyle(__GO_UI_PUSHBUTTON__);
 
 
-        if (Console.getConsole().getUseDeprecatedLF()) {
+        if (Root.getRoot().getUseDeprecatedLF()) {
             setRelief(RELIEF_RAISED);
             setBackgroundColor(new Double[] {
                                    BUTTON_RED_BACKGROUND,

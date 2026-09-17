@@ -31,6 +31,7 @@
 #include "Scierror.h"
 #include "HandleManagement.h"
 #include "GetProperty.h"
+#include "getRootIdentifier.h"
 #include "InitObjects.h"
 #include "freeArrayOfString.h"
 
@@ -76,11 +77,23 @@ int sci_set(char *fname, void *pvApiCtx)
     CheckInputArgumentAtLeast(pvApiCtx, 2);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
-    if (isDoubleType(pvApiCtx, piAddr1))   /* tclsci handle */
+    if (isDoubleType(pvApiCtx, piAddr1))   /* Root handle as a zero double */
     {
-        /* call "set" for tcl/tk see tclsci/sci_gateway/c/sci_set.c */
-        OverLoad(1);
-        return 0;
+        double dbl1 = 0;
+
+        if (isScalar(pvApiCtx, piAddr1) == 0)
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
+            return 1;
+        }
+
+        getScalarDouble(pvApiCtx, piAddr1, &dbl1);
+
+        if (dbl1 != 0.0)
+        {
+            OverLoad(1);
+            return 0;
+        }
     }
 
     if (iRhs == 2)
@@ -254,7 +267,7 @@ int sci_set(char *fname, void *pvApiCtx)
     /*                                           1 <=> nothing done */
 
     /*  set or create a graphic window */
-    if (isHandleType(pvApiCtx, piAddr1) == 0 && isStringType(pvApiCtx, piAddr1) == 0)
+    if (isHandleType(pvApiCtx, piAddr1) == 0 && isStringType(pvApiCtx, piAddr1) == 0 && isDoubleType(pvApiCtx, piAddr1) == 0)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A handle or a string expected.\n"), fname, 1);
         return 0;
@@ -278,7 +291,7 @@ int sci_set(char *fname, void *pvApiCtx)
         }
         freeAllocatedSingleString(pstPath);
     }
-    else
+    else if (isHandleType(pvApiCtx, piAddr1))
     {
         //matrix of handle are managed by a %h_set
         if (isScalar(pvApiCtx, piAddr1) == FALSE)
@@ -294,6 +307,10 @@ int sci_set(char *fname, void *pvApiCtx)
         }
 
         iObjUID = getObjectFromHandle((long) hdl);
+    }
+    else //Root
+    {
+        iObjUID = getRootIdentifier();
     }
 
     if (iObjUID == 0)

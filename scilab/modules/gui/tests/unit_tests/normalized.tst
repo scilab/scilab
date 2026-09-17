@@ -10,7 +10,7 @@
 //resize the window and components must follow
 
 function f = test()
-    c = get(0);c.usedeprecatedskin = "off";
+    r = get(0);r.usedeprecatedskin = "off";
 
     function create_buttons(parent)
         uicontrol(parent, "style", "pushbutton", "units", "normalized", "position", [0 0.5 0.5 0.5], "string", "1");

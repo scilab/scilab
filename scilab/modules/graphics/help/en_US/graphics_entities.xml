@@ -25,8 +25,9 @@
         <para>
             In Scilab, graphics window and the drawing it contains are
             represented by hierarchical entities. The hierarchy top level is the
-            <literal>Figure</literal>. Each <literal>Figure</literal> defines at
-            least one child of type <literal>Axes</literal>. Each
+            <literal>Root</literal> and all other entities are its children. 
+            The most common children of the <literal>Root</literal> are <literal>Figures</literal>, which
+            may have one or more children of type <literal>Axes</literal>. Each
             <literal>Axes</literal> entity contains a set of leaf
             entities which are the basic graphics objects like
             <literal>Polylines</literal>, <literal>Rectangles</literal>,
@@ -50,20 +51,21 @@
         <para/>
         <variablelist>
             <varlistentry>
-                <term>Console, root, mouse: </term>
+                <term>Root, Console</term>
                 <listitem>
                     <para>
-                        With its menus, the console may be considered as a special graphic windows.
-                        Its menus and some graphical meta options may be addressed through its
-                        handle as returned by <code>c=get(0)</code>.
-                        See <link linkend="console_properties">Console properties</link> for details.
+                      The <literal>Root</literal> entity  is a virtual graphical object which is the top level of the graphics
+                      entities hierarchy. It is also used to get the (read-only) computer
+                      screen properties and its graphical meta properties may be addressed through its
+                      handle as returned by
+                      <code>r=get(0)</code>. See <link linkend="root_properties">Root properties</link> for details.
                     </para>
                     <para>
-                        The root object is a virtual graphical object used to get the computer
-                        screen properties. Its handle is the same as the console's one:
-                        <code>r=get(0)</code>, but the screen properties can be addressed only
-                        in read-only mode.
-                        See <link linkend="root_properties">Root properties</link> for details.
+                        With its menus, the <literal>Console</literal> entity may be considered as a special graphic windows.
+                        It only exists when Scilab is started in STD mode (with its main GUI) and is always the last child of 
+                        a child of the  <literal>Root</literal>. Its menus may be addressed through its
+                        handle as returned by <code>c=findobj("type","Console")</code>.
+                        See <link linkend="console_properties">Console properties</link> for details.
                     </para>
                     <para>
                         On Windows, some additional screen, windowing and mouse parameters may be
@@ -76,11 +78,11 @@
                 <term>Figure: </term>
                 <listitem>
                     <para>
-                        The <literal>Figure</literal> entity is the top level of the graphics
+                        The <literal>Figure</literal> entity is the second level of the graphics
                         entities hierarchy. This entity defines the parameters
                         for the figure itself as well as the parameters' default
                         values for the children creation. The figure children
-                        are the <literal>Axes</literal> entities.
+                        are the <literal>Axes</literal> entities and its parent is the <literal>Root</literal>.
                     </para>
                     <para>
                         The handle on the current figure (the figure used where
@@ -100,7 +102,7 @@
                 <term>Axes: </term>
                 <listitem>
                     <para>
-                        The <literal>Axes</literal> entity is the second level
+                        The <literal>Axes</literal> entity is the third level
                         of the graphics entities hierarchy. This entity defines
                         the parameters for the change of coordinates and the
                         axes drawing as well as the parameters' default values

@@ -32,7 +32,7 @@ extern "C"
 
 /**
 * Convert a pixel value to mm units
-* function used by GetScreenProperty
+* function used by GetRootProperty
 * @param value the value to convert
 * @return the new value
 */
@@ -40,7 +40,7 @@ double pixelTomm(double dvalue);
 
 /**
 * Convert a pixel value to cm units
-* function used by GetScreenProperty
+* function used by GetRootProperty
 * @param value the value to convert
 * @return the new value
 */
@@ -48,7 +48,7 @@ double pixelTocm(double dvalue);
 
 /**
 * Convert a pixel value to inch units
-* function used by GetScreenProperty
+* function used by GetRootProperty
 * @param value the value to convert
 * @return the new value
 */
@@ -56,7 +56,7 @@ double pixelToinch(double dvalue);
 
 /**
 * Convert a pixel value to point units
-* function used by GetScreenProperty
+* function used by GetRootProperty
 * @param value the value to convert
 * @return the new value
 */

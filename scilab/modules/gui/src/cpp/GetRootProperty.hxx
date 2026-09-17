@@ -1,7 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
- * Get the position of an uicontrol
+ * Get some of the properties of the Root window
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -14,8 +14,8 @@
  *
  */
 
-#ifndef __GETSCREENPROPERTY_HXX__
-#define __GETSCREENPROPERTY_HXX__
+#ifndef __GETROOTPROPERTY_HXX__
+#define __GETROOTPROPERTY_HXX__
 
 #include "CallScilabBridge.hxx"
 #include "UnitsConversion.hxx"
@@ -27,9 +27,12 @@ extern "C"
 #include "SetPropertyStatus.h"
 #include "os_string.h"
 #include "returnProperty.h"
-#include "GetScreenProperty.h"
+#include "GetRootProperty.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "sci_malloc.h"
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 }
 
-#endif /* !__GETSCREENPROPERTY_HXX__ */
+#endif /* !__GETROOTPROPERTY_HXX__ */

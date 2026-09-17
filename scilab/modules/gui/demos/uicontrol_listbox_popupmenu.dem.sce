@@ -12,7 +12,7 @@
 //
 
 function f = demo_list_combo()
-    c = get(0);c.usedeprecatedskin = "off";
+    r = get(0);r.usedeprecatedskin = "off";
     if get("listboxes_and_popupemnus_demo") <> [] then
         f = get("listboxes_and_popupemnus_demo");
         delete(f.children);

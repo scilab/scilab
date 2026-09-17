@@ -28,7 +28,7 @@ GetUicontrolString
 GetUicontrolTooltipString
 GetUimenuLabel
 GetUiobjectEnable
-GetScreenProperty
+GetRootProperty
 deleteJxclickString
 getJxclickMenuCallback
 getJxclickWindowID

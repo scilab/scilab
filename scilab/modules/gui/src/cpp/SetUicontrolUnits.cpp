@@ -28,9 +28,9 @@ int SetUicontrolUnits(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
     int type = -1;
     int *piType = &type;
 
-    /* Handle must be a uicontrol */
+    /* Handle must be a uicontrol or the graphic root object */
     getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void**) &piType);
-    if (type != __GO_UICONTROL__)
+    if (type != __GO_UICONTROL__ && type != __GO_ROOT__)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Units");
         return SET_PROPERTY_ERROR;

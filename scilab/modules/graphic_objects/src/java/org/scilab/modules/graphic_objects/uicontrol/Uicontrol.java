@@ -90,7 +90,7 @@ import java.awt.Font;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.root.Root;
 import org.scilab.modules.graphic_objects.event.EventHandler;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
@@ -593,7 +593,7 @@ public class Uicontrol extends GraphicObject {
         eventHandler = new EventHandler();
         setVisible(false); /* To avoid to see the object rendered before all its properties to be set (See bug #10346) */
 
-        if (Console.getConsole().getUseDeprecatedLF()) {
+        if (Root.getRoot().getUseDeprecatedLF()) {
             setBackgroundColor(new Double[] {
                                    DEFAULT_RED_BACKGROUND,
                                    DEFAULT_GREEN_BACKGROUND,

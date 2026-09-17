@@ -14,7 +14,7 @@ import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.builder.Builder;
-import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.root.Root;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
@@ -351,9 +351,9 @@ public class XMLDomLoader {
                             //call version manager ^^
                         }
 
-                        Integer console = Console.getConsole().getIdentifier();
+                        Integer root = Root.getRoot().getIdentifier();
                         //set usedeprecatedskin flag
-                        setBooleanAttribute(console, __GO_USEDEPRECATEDLF__, childNode.getAttributes(), "usedeprecatedskin");
+                        setBooleanAttribute(root, __GO_USEDEPRECATEDLF__, childNode.getAttributes(), "usedeprecatedskin");
                         break;
                     }
 

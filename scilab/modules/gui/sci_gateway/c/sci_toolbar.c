@@ -180,9 +180,9 @@ int sci_toolbar(char *fname, void* pvApiCtx)
 
             if ((strcmp(param[0], "off") == 0) || (strcmp(param[0], "on") == 0))
             {
-                iIsVisible = strcmp(param[0], "on") == 0;
-                if (iParentUID != getConsoleIdentifier() || (getScilabMode() == SCILAB_STD))
+                if ((iParentUID != 0 && iParentUID != getConsoleIdentifier()) || (getScilabMode() == SCILAB_STD))
                 {
+                    iIsVisible = strcmp(param[0], "on") == 0;
                     setGraphicObjectProperty(iParentUID, __GO_TOOLBAR_VISIBLE__, &iIsVisible, jni_bool, 1);
                 }
                 freeAllocatedMatrixOfString(nbRow, nbCol, param);
@@ -202,8 +202,13 @@ int sci_toolbar(char *fname, void* pvApiCtx)
     }
 
     /* Returned value */
-    piIsVisible = &iIsVisible;
-    getGraphicObjectProperty(iParentUID, __GO_TOOLBAR_VISIBLE__, jni_bool, (void **)&piIsVisible);
+    
+    if (iParentUID != 0)
+    {
+        piIsVisible = &iIsVisible;
+        getGraphicObjectProperty(iParentUID, __GO_TOOLBAR_VISIBLE__, jni_bool, (void **)&piIsVisible);        
+    }
+
     if (iIsVisible)
     {
         Output = os_strdup("on");

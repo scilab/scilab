@@ -113,7 +113,7 @@ void Click_menu(int n);
 * @param value unused (just reproduce the profile)
 * @return 0
 */
-int GetScreenProperty(char *prop, char *value);
+int GetRootProperty(char *prop, char *value);
 
 
 /**

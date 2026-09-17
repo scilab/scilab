@@ -58,7 +58,7 @@ import javax.swing.text.StyledEditorKit;
 import javax.swing.text.View;
 import javax.swing.text.ViewFactory;
 
-import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.root.Root;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
@@ -197,7 +197,7 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
         tabKeyAction = map.get(tabKey);
         shiftTabKeyAction = map.get(shiftTabKey);
 
-        if (Console.getConsole().getUseDeprecatedLF() == false) {
+        if (Root.getRoot().getUseDeprecatedLF() == false) {
             setEditFont(getFont());
         }
 

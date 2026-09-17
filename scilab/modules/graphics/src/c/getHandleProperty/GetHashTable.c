@@ -23,8 +23,8 @@
 #include "getDictionaryGetProperties.h"
 #include "sci_malloc.h"
 #include "os_string.h"
-
 #include "setGetHashTable.h"
+
 
 void* callGetProperty(void* _pvCtx, int iObjUID, char *propertyName)
 {

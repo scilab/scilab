@@ -5,7 +5,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 
-import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.root.Root;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 public class Spinner  extends Uicontrol {
@@ -14,7 +14,7 @@ public class Spinner  extends Uicontrol {
         super();
         setStyle(__GO_UI_SPINNER__);
 
-        if (Console.getConsole().getUseDeprecatedLF()) {
+        if (Root.getRoot().getUseDeprecatedLF()) {
             setRelief(RELIEF_SUNKEN);
         } else {
             UIDefaults defaults = UIManager.getDefaults();

@@ -79,7 +79,10 @@ function [c] = getcolor(Title,cini)
     [W, H] = (max(m*35,320), n*40)  // minW=320 for infos in status bar
     fig.axes_size = [W,H];
     // position = center of screen:
-    c = get(0,"screensize_px")
+    userUnits = get(0,"Units");
+    set(0,"Units","Pixels");
+    c = get(0,"screensize");
+    set(0,"Units",userUnits);
     fig.figure_position = [c(3)-W, c(4)-fig.figure_size(2)]/2
 
     toolbar(win, "off")

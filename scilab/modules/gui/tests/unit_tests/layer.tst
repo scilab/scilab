@@ -9,7 +9,7 @@
 // <-- NO CHECK REF -->
 
 function layer = create_layer(count)
-    c = get(0);c.usedeprecatedskin = "off"
+    r = get(0);r.usedeprecatedskin = "off"
     f = figure("dockable", "off" ,"infobar_visible", "off", "toolbar_visible", "off", "menubar_visible", "off", "layout", "border")
     f.figure_size = [300, 300];
 

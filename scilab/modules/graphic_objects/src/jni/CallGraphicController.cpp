@@ -107,6 +107,7 @@ jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanbooleanID=NUL
 voidregisterScilabViewID=NULL;
 voidunregisterScilabViewID=NULL;
 jintgetConsoleIdentifierID=NULL;
+jintgetRootIdentifierID=NULL;
 voidbuildFigureMenuBarjintintID=NULL;
 
 
@@ -151,6 +152,7 @@ jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanbooleanID=NUL
 voidregisterScilabViewID=NULL;
 voidunregisterScilabViewID=NULL;
 jintgetConsoleIdentifierID=NULL;
+jintgetRootIdentifierID=NULL;
 voidbuildFigureMenuBarjintintID=NULL;
 
 
@@ -772,6 +774,30 @@ throw GiwsException::JniCallMethodException(curEnv);
 return res;
 
 }
+
+int CallGraphicController::getRootIdentifier (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jintgetRootIdentifierID = curEnv->GetStaticMethodID(cls, "getRootIdentifier", "()I" ) ;
+if (jintgetRootIdentifierID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getRootIdentifier");
+}
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintgetRootIdentifierID ));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
+}
+
+
 
 void CallGraphicController::buildFigureMenuBar (JavaVM * jvm_, int figureId){
 

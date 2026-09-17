@@ -135,7 +135,7 @@ GUI_CXX_SOURCES = \
     src/cpp/SetConsoleShowHiddenHandles.cpp \
     src/cpp/GetConsoleShowHiddenHandles.cpp \
     src/cpp/UnitsConversion.cpp \
-    src/cpp/GetScreenProperty.cpp \
+    src/cpp/GetRootProperty.cpp \
     src/cpp/CallClipboard.cpp \
     src/cpp/exportUserInterface.cpp \
     src/jni/LookAndFeelManager.cpp \
