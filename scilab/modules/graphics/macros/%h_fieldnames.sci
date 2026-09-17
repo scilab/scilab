@@ -245,7 +245,7 @@ function fields = %h_fieldnames(h)
             "icon"
             "tag"
             ]
-            if ShowHiddenProperties
+            if showHiddenProperties
                 fields = ["parent";fields];
             end
         case "Grayplot"
