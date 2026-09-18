@@ -13,73 +13,9 @@
 // <-- Short Description -->
 // Display properties instead of the function
 // when inserting in gcf()
-gcf().info_message = "Non-regression test for bug 14265."
- gcf = [Figure] with properties:
-  children: [Axes]
-  figure_position = [200,200]
-  figure_size = [610,544]
-  axes_size = [610,443]
-  auto_resize = "on"
-  viewport = [0,0]
-  figure_name = "Graphic window number %d"
-  figure_id = 0
-  info_message = "Non-regression test for bug 14265."
-  color_map: [32x3 double]
-  pixel_drawing_mode = "copy"
-  anti_aliasing = "8x"
-  immediate_drawing = "on"
-  background = -2
-  visible = "on"
-  rotation_style = "unary"
-  event_handler = ""
-  event_handler_enable = "off"
-  user_data = []
-  resizefcn = ""
-  closerequestfcn = ""
-  resize = "on"
-  toolbar = "figure"
-  toolbar_visible = "on"
-  menubar = "figure"
-  menubar_visible = "on"
-  infobar_visible = "on"
-  dockable = "on"
-  layout = "none"
-  layout_options: (OptNoLayout tlist)
-  default_axes = "on"
-  icon = ""
-  tag = ""
-figure().info_message = "Non-regression test for bug 14265."
- figure = [Figure] with properties:
-  children: [Axes]
-  figure_position = [200,200]
-  figure_size = [610,561]
-  axes_size = [610,460]
-  auto_resize = "on"
-  viewport = [0,0]
-  figure_name = "Graphic window number %d"
-  figure_id = 1
-  info_message = "Non-regression test for bug 14265."
-  color_map: [33x3 double]
-  pixel_drawing_mode = "copy"
-  anti_aliasing = "8x"
-  immediate_drawing = "on"
-  background = 33
-  visible = "on"
-  rotation_style = "unary"
-  event_handler = ""
-  event_handler_enable = "off"
-  user_data = []
-  resizefcn = ""
-  closerequestfcn = ""
-  resize = "on"
-  toolbar = "figure"
-  toolbar_visible = "on"
-  menubar = "figure"
-  menubar_visible = "on"
-  infobar_visible = "on"
-  dockable = "on"
-  layout = "none"
-  layout_options: (OptNoLayout tlist)
-  default_axes = "on"
-  icon = ""
-  tag = ""
+// helper to execute a Scilab command after all pending AWT events have been processed
+jimport org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement
+ScilabInterpreterManagement.executeAndWaitForEDT("gcf();");
+gcf().info_message = "Non-regression test for bug 14265.";
+ScilabInterpreterManagement.executeAndWaitForEDT("figure();");
+gcf().info_message = "Non-regression test for bug 14265."; // Use figure created by 'figure()'

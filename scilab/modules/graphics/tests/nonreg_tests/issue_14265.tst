@@ -14,5 +14,11 @@
 // Display properties instead of the function
 // when inserting in gcf()
 
-gcf().info_message = "Non-regression test for bug 14265."
-figure().info_message = "Non-regression test for bug 14265."
+// helper to execute a Scilab command after all pending AWT events have been processed
+jimport org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement
+
+ScilabInterpreterManagement.executeAndWaitForEDT("gcf();");
+gcf().info_message = "Non-regression test for bug 14265.";
+
+ScilabInterpreterManagement.executeAndWaitForEDT("figure();");
+gcf().info_message = "Non-regression test for bug 14265."; // Use figure created by 'figure()'

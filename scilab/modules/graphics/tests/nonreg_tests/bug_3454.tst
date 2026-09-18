@@ -16,6 +16,9 @@
 // figure.axes_size and figure.figure_size might not be updated immediately.
 //
 
+// helper to execute a Scilab command after all pending AWT events have been processed
+jimport org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement
+
 // Test 1 : axes_size, auto_resize = "on"
 // ===========================
 
@@ -29,9 +32,9 @@ my_default_axes_size   = my_figure.axes_size;
 
 // auto_resize = "on"
 my_figure.auto_resize = "on";
-my_figure.axes_size = my_default_axes_size + 200;
-if or( my_figure.axes_size   <> (my_default_axes_size   + 200) ) then pause; end
-if or( my_figure.figure_size <> (my_default_figure_size + 200) ) then pause; end
+ScilabInterpreterManagement.executeAndWaitForEDT("my_figure.axes_size = my_default_axes_size + 10;");
+assert_checkequal(my_figure.axes_size, my_default_axes_size + 10);
+assert_checkequal(my_figure.figure_size, my_default_figure_size + 10);
 
 // Delete
 delete(my_figure);
@@ -50,9 +53,9 @@ my_default_axes_size   = my_figure.axes_size;
 
 // auto_resize = "on"
 my_figure.auto_resize = "off";
-my_figure.axes_size = my_default_axes_size + 200;
-if or( my_figure.axes_size   <> (my_default_axes_size   + 200) ) then pause; end
-if or( my_figure.figure_size <> my_default_figure_size) then pause; end
+ScilabInterpreterManagement.executeAndWaitForEDT("my_figure.axes_size = my_default_axes_size + 10;");
+assert_checkequal(my_figure.axes_size, my_default_axes_size + 10);
+assert_checkequal(my_figure.figure_size, my_default_figure_size);
 
 // Delete
 delete(my_figure);
@@ -71,10 +74,9 @@ my_default_axes_size   = my_figure.axes_size;
 
 // auto_resize = "on"
 my_figure.auto_resize = "on";
-my_figure.figure_size = my_default_figure_size + 200;
-sleep(200);//Wait for MVC update
-if or( my_figure.figure_size <> (my_default_figure_size + 200) ) then pause; end
-if or( my_figure.axes_size   <> (my_default_axes_size   + 200) ) then pause; end
+ScilabInterpreterManagement.executeAndWaitForEDT("my_figure.figure_size = my_default_figure_size + 10;");
+assert_checkequal(my_figure.figure_size, my_default_figure_size + 10);
+assert_checkequal(my_figure.axes_size, my_default_axes_size + 10);
 
 // Delete
 delete(my_figure);
@@ -93,9 +95,9 @@ my_default_axes_size   = my_figure.axes_size;
 
 // auto_resize = "on"
 my_figure.auto_resize = "off";
-my_figure.figure_size = my_default_figure_size + 200;
-if or( my_figure.figure_size <> (my_default_figure_size + 200) ) then pause; end
-if or( my_figure.axes_size   <> my_default_axes_size ) then pause; end
+ScilabInterpreterManagement.executeAndWaitForEDT("my_figure.figure_size = my_default_figure_size + 10;");
+assert_checkequal(my_figure.figure_size, my_default_figure_size + 10);
+assert_checkequal(my_figure.axes_size, my_default_axes_size);
 
 // Delete
 delete(my_figure);
