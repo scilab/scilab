@@ -130,7 +130,7 @@ public class SwingScilabCommonPanel {
                 }
 
                 /* Update callback */
-                String closingCommand =   "%closing_fig = findobj('figure_id', " + figureId + ", '-flat');"
+                String closingCommand =   "%closing_fig = getcallbackobject(" + component.getId() + ");"
                                         + "if (%closing_fig <> []) then"
                                         + "    if (get(%closing_fig, 'event_handler_enable') == 'on') then"
                                         + "        execstr(get(%closing_fig, 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');"

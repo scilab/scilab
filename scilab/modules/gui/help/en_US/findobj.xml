@@ -75,7 +75,7 @@
             <literal>findobj("-property", propertyName, ...)</literal> returns the handles of objects having the property <literal>propertyName</literal>. Other conditions can be added.
         </para>
         <para>
-            By default the search is done within all figures and <literal>findobj(searchHandles, ...)</literal> restricts the search to the given handles. The depth of the search is by default infinite and can be restricted by <literal>findobj(searchHandles, '-depth', d, ...)</literal>. A value of 0 restricts the search to objects given in <literal>searchHandles</literal> and does not search within descendants, this is equivalent to the <literal>"flat"</literal> optional string.
+            By default the search starts from the Root window and <literal>findobj(searchHandles, ...)</literal> restricts the search to the given handles. The depth of the search is by default infinite and can be restricted by <literal>findobj(searchHandles, '-depth', d, ...)</literal>. A value of 0 restricts the search to objects given in <literal>searchHandles</literal> and does not search within descendants, this is equivalent to the <literal>"flat"</literal> optional string.
         </para>
     </refsection>
     <refsection>
