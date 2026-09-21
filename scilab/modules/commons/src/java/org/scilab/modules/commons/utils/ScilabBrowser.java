@@ -13,13 +13,16 @@ import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.cef.CefApp;
 import org.cef.CefClient;
 import org.cef.CefSettings;
+import org.cef.handler.CefFocusHandler;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabConstants;
@@ -33,6 +36,9 @@ public final class ScilabBrowser {
      *  before cefApp_.dispose() (otherwise clients of browsers that never
      *  fully initialized can block the shutdown). */
     private static final Set<CefClient> activeClients = new LinkedHashSet<>();
+
+    /** Focus guard installed on each client, keyed by that client. */
+    private static final Map<CefClient, ScilabFocusHandler> focusGuards = new HashMap<>();
 
     /** Delay (ms) before the shutdown watchdog forces the process to exit
      *  if CefApp.N_Shutdown stays stuck in native code. */
@@ -99,6 +105,7 @@ public final class ScilabBrowser {
         synchronized (activeClients) {
             pending = new ArrayList<>(activeClients);
             activeClients.clear();
+            focusGuards.clear();
         }
         for (CefClient c : pending) {
             try {
@@ -132,15 +139,42 @@ public final class ScilabBrowser {
     public static CefClient get() {
         init();
         CefClient c = cefApp_.createClient();
+        // Installed here rather than by each caller: a client left without it
+        // recurses on focus until the AppKit thread dies, and CefClient only
+        // accepts one focus handler, so a late one would be a silent no-op.
+        ScilabFocusHandler guard = new ScilabFocusHandler();
+        c.addFocusHandler(guard);
         synchronized (activeClients) {
             activeClients.add(c);
+            focusGuards.put(c, guard);
         }
         return c;
+    }
+
+    /**
+     * Chain a focus handler behind the client's recursion guard.
+     * Use this instead of CefClient.addFocusHandler, which would either be
+     * ignored or replace the guard.
+     *
+     * @param client a client returned by {@link #get()}
+     * @param handler the handler to chain
+     */
+    public static void addFocusHandler(CefClient client, CefFocusHandler handler) {
+        ScilabFocusHandler guard;
+        synchronized (activeClients) {
+            guard = focusGuards.get(client);
+        }
+        if (guard != null) {
+            guard.add(handler);
+        } else {
+            client.addFocusHandler(handler);
+        }
     }
 
     public static void release(CefClient client) {
         synchronized (activeClients) {
             activeClients.remove(client);
+            focusGuards.remove(client);
         }
         client.dispose();
     }

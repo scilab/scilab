@@ -240,6 +240,7 @@ public class ScilabCefPanel extends JPanel {
         @Override
         public boolean onSetFocus(CefBrowser b, CefFocusHandler.FocusSource source) {
             if (b != browser) return false;
+            // Recursion is cut upstream, by ScilabFocusHandler.
             // Block navigation/JS-triggered focus grabs.
             // Allow FOCUS_SOURCE_SYSTEM so clicking on the browser
             // content naturally focuses the correct HTML element.
@@ -252,25 +253,23 @@ public class ScilabCefPanel extends JPanel {
             browserHasFocus = true;
             browserFocusRequested = false;
             final int focusTransfer = ++focusTransferGeneration;
-            if (OS.get() != OS.MAC) { // Not needed for macOS and leads to infinite loop (StackOverflowError)
-                // Notify FlexDock so it updates title bars, menus, etc.
-                SwingUtilities.invokeLater(() -> {
-                    if (!browserHasFocus || focusTransfer != focusTransferGeneration) {
-                        return;
-                    }
+            // Notify FlexDock so it updates title bars, menus, etc.
+            SwingUtilities.invokeLater(() -> {
+                if (!browserHasFocus || focusTransfer != focusTransferGeneration) {
+                    return;
+                }
 
-                    Component ancestor = SwingUtilities.getAncestorOfClass(View.class, ScilabCefPanel.this);
-                    if (ancestor != null) {
-                        if (ancestor instanceof JComponent) {
-                            ((JComponent) ancestor).putClientProperty(DOCKABLE_FOCUS_FROM_BROWSER_PROPERTY, Boolean.TRUE);
-                        }
-                        if (ancestor instanceof View) {
-                            setCefNativeFocusView((View) ancestor);
-                        }
-                        ActiveDockableTracker.requestDockableActivation(ancestor);
+                Component ancestor = SwingUtilities.getAncestorOfClass(View.class, ScilabCefPanel.this);
+                if (ancestor != null) {
+                    if (ancestor instanceof JComponent) {
+                        ((JComponent) ancestor).putClientProperty(DOCKABLE_FOCUS_FROM_BROWSER_PROPERTY, Boolean.TRUE);
                     }
-                });
-            }
+                    if (ancestor instanceof View) {
+                        setCefNativeFocusView((View) ancestor);
+                    }
+                    ActiveDockableTracker.requestDockableActivation(ancestor);
+                }
+            });
         }
 
         @Override
@@ -375,7 +374,6 @@ public class ScilabCefPanel extends JPanel {
     /* Handler lists, to let the user add them */
     ArrayList<CefKeyboardHandler> keyboardHandlers = null;
     ArrayList<CefContextMenuHandler> contextMenuHandlers = null;
-    ArrayList<CefFocusHandler> focusHandlers = null;
     ArrayList<CefRequestHandler> requestHandlers = null;
     ArrayList<CefLoadHandler> loadHandlers = null;
     ArrayList<CefLifeSpanHandler> lifeSpanHandlers = null;
@@ -391,7 +389,7 @@ public class ScilabCefPanel extends JPanel {
 
         client.addKeyboardHandler(keyboardHandler);
         client.addContextMenuHandler(contextMenuHandler);
-        client.addFocusHandler(focusHandler);
+        ScilabBrowser.addFocusHandler(client, focusHandler);
         client.addRequestHandler(requestHandler);
         client.addLoadHandler(loadHandler);
         client.addLifeSpanHandler(lifeSpanHandler);
@@ -781,37 +779,9 @@ public class ScilabCefPanel extends JPanel {
 
     public void addFocusHandler(CefFocusHandler h)
     {
-        if (focusHandlers == null)
-        {
-            focusHandlers = new ArrayList<>();
-            focusHandlers.add(focusHandler);
-            client.removeFocusHandler();
-            client.addFocusHandler(new CefFocusHandler() {
-                @Override
-                public void onTakeFocus(CefBrowser browser, boolean next) {
-                    for (CefFocusHandler h : focusHandlers)
-                    {
-                        h.onTakeFocus(browser, next);
-                    }
-                }
-                @Override
-                public boolean onSetFocus(CefBrowser browser, FocusSource source) {
-                    for (CefFocusHandler h : focusHandlers)
-                    {
-                        if (h.onSetFocus(browser, source))
-                            return true;
-                    }
-                    return false;
-                }
-                @Override
-                public void onGotFocus(CefBrowser browser) {
-                    for (CefFocusHandler h : focusHandlers) {
-                        h.onGotFocus(browser);
-                    }
-                }
-            });
-        }
-        focusHandlers.add(h);
+        // No local dispatcher here: removing the client's handler to install
+        // one would drop the recursion guard ScilabBrowser installed.
+        ScilabBrowser.addFocusHandler(client, h);
     }
 
     public void addRequestHandler(CefRequestHandler h)
