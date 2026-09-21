@@ -77,6 +77,7 @@ import org.flexdock.view.View;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.utils.ScilabBrowser;
+import org.scilab.modules.commons.utils.ScilabLink;
 import org.scilab.modules.commons.utils.WebBrowser;
 
 import com.google.gson.JsonElement;
@@ -305,6 +306,7 @@ public class ScilabCefPanel extends JPanel {
 
     // ---- External Request management ----
     // Open the default system browser for external links (http/https)
+    // Run the Scilab command of "scilab:" links (see ScilabLink)
     // Resolve SCI paths to real files on disk (file://)
     public final static class ScilabResourceHandler extends CefResourceRequestHandlerAdapter {
         @Override
@@ -335,13 +337,31 @@ public class ScilabCefPanel extends JPanel {
     }
     final CefRequestHandler requestHandler = new CefRequestHandlerAdapter() {
         @Override
-        public CefResourceRequestHandler getResourceRequestHandler(CefBrowser browser, CefFrame frame, CefRequest request, boolean isNavigation, boolean isDownload, String requestInitiator, BoolRef disableDefaultHandling) {
+        public boolean onBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, boolean user_gesture, boolean is_redirect) {
+            // "scilab:" links run a Scilab command, they never navigate.
+            // Only a click of the user runs it: a page cannot open a link
+            // by itself (script, redirection, ...).
             String url = request.getURL();
-            // Open external links in the default browser
-            if (isNavigation && (url.startsWith("https://") || url.startsWith("http://"))) {
-                WebBrowser.openUrl(request.getURL());
-                disableDefaultHandling.set(true); // Prevent JCEF from handling the URL
+            if (ScilabLink.isScilabLink(url)) {
+                if (user_gesture && !is_redirect) {
+                    ScilabLink.open(url);
+                }
+                return true;
             }
+
+            // Open external links in the default browser. The navigation is
+            // canceled here rather than by disabling the default handling of
+            // its request: the load then ends as aborted (ERR_ABORTED), which
+            // is not an error to display, instead of as failed.
+            if (url != null && (url.startsWith("https://") || url.startsWith("http://"))) {
+                WebBrowser.openUrl(url);
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public CefResourceRequestHandler getResourceRequestHandler(CefBrowser browser, CefFrame frame, CefRequest request, boolean isNavigation, boolean isDownload, String requestInitiator, BoolRef disableDefaultHandling) {
             return new ScilabResourceHandler();
         }
     };

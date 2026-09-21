@@ -11,6 +11,14 @@
     exclude-result-prefixes="d">
   <xsl:output method="text" encoding="UTF-8"/>
 
+  <!-- Set to '1' only by the web console (GUI mode): renders the "See also"
+       entries and the final "doc <page>" mention as
+       <a href="scilab:command">...</a> links the console recognizes and
+       turns into clickable command links. Other
+       consumers (a plain terminal in -nw/batch mode, or a caller-supplied
+       custom stylesheet) get plain text, since they cannot render it. -->
+  <xsl:param name="with-links" select="'0'"/>
+
   <xsl:variable name="inline-threshold" select="8"/>
 
   <!-- The arguments section is identified by its role. Pages not tagged yet
@@ -64,9 +72,20 @@
       <xsl:apply-templates select="$args-entries"/>
     </xsl:if>
     <xsl:apply-templates select="d:refsection[@role='see also']"/>
-    <xsl:text>&#10;Type "doc </xsl:text>
-    <xsl:value-of select="normalize-space(@xml:id)"/>
-    <xsl:text>" to open the </xsl:text>
+    <xsl:choose>
+      <xsl:when test="$with-links = '1'">
+        <xsl:text>&#10;Type &lt;a href="scilab:doc </xsl:text>
+        <xsl:value-of select="normalize-space(@xml:id)"/>
+        <xsl:text>"&gt;doc </xsl:text>
+        <xsl:value-of select="normalize-space(@xml:id)"/>
+        <xsl:text>&lt;/a&gt; to open the </xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>&#10;Type "doc </xsl:text>
+        <xsl:value-of select="normalize-space(@xml:id)"/>
+        <xsl:text>" to open the </xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:value-of select="normalize-space(d:refnamediv/d:refname)"/>
     <xsl:text> reference page&#10;</xsl:text>
   </xsl:template>
@@ -253,13 +272,106 @@
     <xsl:variable name="textValue" select="normalize-space(string($items))"/>
     <xsl:if test="$textValue != ''">
       <xsl:text>&#10;    See also:&#10;</xsl:text>
-      <xsl:call-template name="wrap-text">
-        <xsl:with-param name="text" select="$textValue"/>
-        <xsl:with-param name="width" select="80"/>
-        <xsl:with-param name="prefix" select="'        '"/>
-        <xsl:with-param name="continuation-prefix" select="'        '"/>
-      </xsl:call-template>
+      <xsl:choose>
+        <xsl:when test="$with-links = '1'">
+          <!-- Links cannot go through the generic word-wrapper: the markup
+               must not count in the line width, nor be torn apart at a
+               line-wrap boundary. Entries are laid out one by one instead,
+               each with its own target (the linkend) and label (the link
+               text). -->
+          <xsl:choose>
+            <xsl:when test=".//d:member[not(d:link)]">
+              <xsl:call-template name="see-also-links">
+                <xsl:with-param name="nodes" select=".//d:member[normalize-space(.) != '']"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:call-template name="see-also-links">
+                <xsl:with-param name="nodes" select=".//d:link[normalize-space(@linkend) != '']"/>
+              </xsl:call-template>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="wrap-text">
+            <xsl:with-param name="text" select="$textValue"/>
+            <xsl:with-param name="width" select="80"/>
+            <xsl:with-param name="prefix" select="'        '"/>
+            <xsl:with-param name="continuation-prefix" select="'        '"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
+  </xsl:template>
+
+  <!-- Lays out the "See also" entries (d:link or d:member nodes) as a
+       comma-separated list of <a href="scilab:help TARGET">LABEL</a> links,
+       wrapped on the visible width only (labels and separators). TARGET is
+       the linkend, LABEL the link text: they may differ, and a label may
+       hold spaces. An entry without linkend is left as plain text. -->
+  <xsl:template name="see-also-links">
+    <xsl:param name="nodes"/>
+    <xsl:param name="width" select="80"/>
+    <xsl:param name="indent" select="'        '"/>
+    <!-- visible length of the line being filled, 0 when at a line start -->
+    <xsl:param name="line-length" select="0"/>
+    <xsl:choose>
+      <xsl:when test="$nodes">
+        <xsl:variable name="node" select="$nodes[1]"/>
+        <xsl:variable name="target" select="normalize-space(($node/self::d:link | $node/d:link)[1]/@linkend)"/>
+        <xsl:variable name="text" select="normalize-space($node)"/>
+        <xsl:variable name="label">
+          <xsl:choose>
+            <xsl:when test="$text != ''">
+              <xsl:value-of select="$text"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$target"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <!-- the label, plus its "," separator when another entry follows -->
+        <xsl:variable name="item-length" select="string-length($label) + count($nodes[2])"/>
+        <xsl:variable name="fits" select="$line-length &gt; 0 and $line-length + 1 + $item-length &lt;= $width"/>
+        <xsl:choose>
+          <xsl:when test="$fits">
+            <xsl:text> </xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:if test="$line-length &gt; 0">
+              <xsl:text>&#10;</xsl:text>
+            </xsl:if>
+            <xsl:value-of select="$indent"/>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:choose>
+          <!-- the console only recognizes a link whose target holds no '"'
+               and whose label holds no '<' -->
+          <xsl:when test="$target != '' and not(contains($target, '&quot;')) and not(contains($label, '&lt;'))">
+            <xsl:text>&lt;a href="scilab:help </xsl:text>
+            <xsl:value-of select="$target"/>
+            <xsl:text>"&gt;</xsl:text>
+            <xsl:value-of select="$label"/>
+            <xsl:text>&lt;/a&gt;</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$label"/>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:if test="$nodes[2]">
+          <xsl:text>,</xsl:text>
+        </xsl:if>
+        <xsl:call-template name="see-also-links">
+          <xsl:with-param name="nodes" select="$nodes[position() &gt; 1]"/>
+          <xsl:with-param name="width" select="$width"/>
+          <xsl:with-param name="indent" select="$indent"/>
+          <xsl:with-param name="line-length" select="number($fits) * ($line-length + 1) + number(not($fits)) * string-length($indent) + $item-length"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="$line-length &gt; 0">
+        <xsl:text>&#10;</xsl:text>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template name="emit-lines">

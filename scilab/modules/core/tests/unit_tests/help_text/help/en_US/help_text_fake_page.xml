@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Antoine ELIAS
+ *
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ * Fake help page used by help_text.tst: NOT a real documentation page.
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xml:lang="en" xml:id="help_text_fake_page">
+    <refnamediv>
+        <refname>help_text_fake_page</refname>
+        <refpurpose>fake page testing the text rendering of help pages</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            y = help_text_fake_page(x)
+            y = help_text_fake_page(x, opt)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a real matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>opt</term>
+                <listitem>
+                    <para>a string.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para>Not rendered in the text help.</para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>
+                <link linkend="axes_properties">axes properties</link>
+            </member>
+            <member>
+                <link linkend="a_first_quite_long_page_identifier">a first quite long page label</link>
+            </member>
+            <member>
+                <link linkend="a_second_quite_long_page_identifier">a second quite long page label</link>
+            </member>
+            <member>
+                <link linkend="fake_target_01">fake label 01</link>
+            </member>
+            <member>
+                <link linkend="fake_target_02">fake label 02</link>
+            </member>
+            <member>
+                <link linkend="fake_target_03">fake label 03</link>
+            </member>
+            <member>
+                <link linkend="fake_target_04">fake label 04</link>
+            </member>
+            <member>
+                <link linkend="fake_target_05">fake label 05</link>
+            </member>
+            <member>
+                <link linkend="fake_target_06">fake label 06</link>
+            </member>
+            <member>
+                <link linkend="fake_target_07">fake label 07</link>
+            </member>
+            <member>
+                <link linkend="fake_target_08">fake label 08</link>
+            </member>
+            <member>
+                <link linkend="fake_target_09">fake label 09</link>
+            </member>
+            <member>
+                <link linkend="fake_target_10">fake label 10</link>
+            </member>
+            <member>
+                <link linkend="fake_target_11">fake label 11</link>
+            </member>
+            <member>
+                <link linkend="fake_target_12">fake label 12</link>
+            </member>
+            <member>
+                <link linkend="fake_target_13">fake label 13</link>
+            </member>
+            <member>
+                <link linkend="fake_target_14">fake label 14</link>
+            </member>
+            <member>
+                <link linkend="fake_target_15">fake label 15</link>
+            </member>
+            <member>
+                <link linkend="fake_target_16">fake label 16</link>
+            </member>
+            <member>
+                <link linkend="fake_target_17">fake label 17</link>
+            </member>
+            <member>
+                <link linkend="fake_target_18">fake label 18</link>
+            </member>
+            <member>
+                <link linkend="fake_target_19">fake label 19</link>
+            </member>
+            <member>
+                <link linkend="fake_target_20">fake label 20</link>
+            </member>
+            <member>
+                <link linkend="fake_target_21">fake label 21</link>
+            </member>
+            <member>
+                <link linkend="fake_target_22">fake label 22</link>
+            </member>
+            <member>
+                <link linkend="fake_target_23">fake label 23</link>
+            </member>
+            <member>
+                <link linkend="fake_target_24">fake label 24</link>
+            </member>
+            <member>
+                <link linkend="fake_target_25">fake label 25</link>
+            </member>
+            <member>
+                <link linkend="fake_target_26">fake label 26</link>
+            </member>
+            <member>
+                <link linkend="fake_target_27">fake label 27</link>
+            </member>
+            <member>
+                <link linkend="fake_target_28">fake label 28</link>
+            </member>
+            <member>
+                <link linkend="fake_target_29">fake label 29</link>
+            </member>
+            <member>
+                <link linkend="fake_target_30">fake label 30</link>
+            </member>
+            <member>
+                <link linkend="fake_target_31">fake label 31</link>
+            </member>
+            <member>
+                <link linkend="fake_target_32">fake label 32</link>
+            </member>
+            <member>
+                <link linkend="fake_target_33">fake label 33</link>
+            </member>
+            <member>
+                <link linkend="fake_target_34">fake label 34</link>
+            </member>
+            <member>
+                <link linkend="fake_target_35">fake label 35</link>
+            </member>
+            <member>
+                <link linkend="fake_target_36">fake label 36</link>
+            </member>
+            <member>
+                <link linkend="fake_target_37">fake label 37</link>
+            </member>
+            <member>
+                <link linkend="fake_target_38">fake label 38</link>
+            </member>
+            <member>
+                <link linkend="fake_target_39">fake label 39</link>
+            </member>
+            <member>
+                <link linkend="fake_target_40">fake label 40</link>
+            </member>
+            <member>
+                <link linkend="last_page">last_page</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

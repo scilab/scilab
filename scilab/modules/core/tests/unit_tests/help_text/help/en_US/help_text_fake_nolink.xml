@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Antoine ELIAS
+ *
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ * Fake help page used by help_text.tst: NOT a real documentation page.
+ * Its "See also" section mixes linked and unlinked members.
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xml:lang="en" xml:id="help_text_fake_nolink">
+    <refnamediv>
+        <refname>help_text_fake_nolink</refname>
+        <refpurpose>fake page with unlinked See also members</refpurpose>
+    </refnamediv>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>not a link</member>
+        </simplelist>
+    </refsection>
+</refentry>

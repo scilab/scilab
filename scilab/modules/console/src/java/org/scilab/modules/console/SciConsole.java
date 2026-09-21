@@ -62,6 +62,7 @@ import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.ScilabCefPanel;
 import org.scilab.modules.commons.utils.ScilabBrowser;
+import org.scilab.modules.commons.utils.ScilabLink;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.completion.Completion;
 import org.scilab.modules.history_manager.HistoryManagement;
@@ -392,10 +393,16 @@ public abstract class SciConsole extends JPanel {
 
         XConfiguration.addXConfigurationListener(new org.scilab.modules.console.ConsoleConfiguration(this));
 
+        // "scilab:" links, whatever the component showing them: run their
+        // command as if it had been typed, echoed at the prompt and stored
+        // in the history, for the user to see what a click has run.
+        ScilabLink.setConsole(command -> sendCommandsToScilab(command, true, true), message -> append(message));
+
         setForeground(ConsoleOptions.getConsoleColor().foreground);
         setBackground(ConsoleOptions.getConsoleColor().background);
         setFont(ConsoleOptions.getConsoleFont().font);
         setCaretColor(ConsoleOptions.getConsoleColor().cursor);
+        setLinkColor(ConsoleOptions.getConsoleColor().link);
     }
 
     public SciConsole getMe() {
@@ -413,6 +420,7 @@ public abstract class SciConsole extends JPanel {
             setForeground(ConsoleOptions.getConsoleColor().foreground);
             setBackground(ConsoleOptions.getConsoleColor().background);
             setCaretColor(ConsoleOptions.getConsoleColor().cursor);
+            setLinkColor(ConsoleOptions.getConsoleColor().link);
         }
         if (conf.font) {
             log.info("configurationChanged font");
@@ -760,6 +768,19 @@ public abstract class SciConsole extends JPanel {
         }
         String hexColor = String.format("#%06x", Integer.valueOf(color.getRGB() & 0x00FFFFFF));
         sendToHTML("caret", hexColor);
+    }
+
+    /**
+     * Set the Color of the command links of the Console
+     * @param color the link Color
+     */
+    public void setLinkColor(Color color) {
+        if (log.isLoggable(Level.INFO))
+        {
+            log.info("setLinkColor: " + color);
+        }
+        String hexColor = String.format("#%06x", Integer.valueOf(color.getRGB() & 0x00FFFFFF));
+        sendToHTML("linkcolor", hexColor);
     }
 
     public void closeConsole() {

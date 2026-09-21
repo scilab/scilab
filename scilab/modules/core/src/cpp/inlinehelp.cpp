@@ -305,7 +305,7 @@ bool resolveXmlPath(const std::string& sciPath, const std::string& lang, const s
     return false;
 }
 
-bool transformXmlToText(const std::string& xmlPath, std::string& output, std::string& error)
+bool transformXmlToText(const std::string& xmlPath, std::string& output, std::string& error, bool withLinks)
 {
     xmlDocPtr xmlDoc = xmlParseFile(xmlPath.c_str());
     if (!xmlDoc)
@@ -314,7 +314,9 @@ bool transformXmlToText(const std::string& xmlPath, std::string& output, std::st
         return false;
     }
 
-    xmlDocPtr resultDoc = xsltApplyStylesheet(g_stylesheet, xmlDoc, nullptr);
+    // "with-links" is an XPath string literal, not a raw value: quote it.
+    const char* params[] = {"with-links", withLinks ? "'1'" : "'0'", nullptr};
+    xmlDocPtr resultDoc = xsltApplyStylesheet(g_stylesheet, xmlDoc, params);
     if (!resultDoc)
     {
         xmlFreeDoc(xmlDoc);
@@ -695,7 +697,7 @@ void clearInlineHelpLinks()
     g_linksByLanguage.clear();
 }
 
-int inlineHelp(const std::wstring& key, std::wstring& content, bool* isScilab)
+int inlineHelp(const std::wstring& key, std::wstring& content, bool* isScilab, bool withLinks)
 {
     wchar_t* langW = getlanguage();
     if (langW == nullptr)
@@ -734,7 +736,7 @@ int inlineHelp(const std::wstring& key, std::wstring& content, bool* isScilab)
 
     std::string c;
     std::string transformError;
-    if (!transformXmlToText(xmlPath, c, transformError))
+    if (!transformXmlToText(xmlPath, c, transformError, withLinks))
     {
         //Scierror(999, _("%s: Cannot transform help page: %s\n"), "help", transformError.c_str());
         return -6;

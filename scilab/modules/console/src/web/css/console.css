@@ -258,6 +258,15 @@ pre.monospace {
     text-decoration: underline;
     text-decoration-style: dotted;
 }
+/* Command links embedded in output (e.g. "doc plot"): classic hyperlink
+   look, no hover-specific styling. The color comes from the preferences
+   (Colors > Desktop color > Link). */
+.console-link {
+    color: var(--console-link-color, #0000EE);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .latex-preview {
     position: absolute;
     background-color: white;

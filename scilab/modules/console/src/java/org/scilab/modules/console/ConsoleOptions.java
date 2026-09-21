@@ -37,6 +37,9 @@ public class ConsoleOptions {
     public static final String DISPLAYPATH = "//console/body/display";
     public static final String KEYMAPPATH = "//general/shortcuts/body/actions/action-folder[@xconf-uid=\"console\"]/action";
 
+    /* Classic hyperlink blue, same value as the default of XConfiguration-colors.xml */
+    private static final Color DEFAULT_LINK_COLOR = new Color(0x0000EE);
+
     private static ConsoleOptions.ConsoleColor color;
     private static ConsoleOptions.ConsoleFont font;
     private static ConsoleOptions.LaTeXFont latex;
@@ -71,19 +74,27 @@ public class ConsoleOptions {
         public Color background;
         public Color cursor;
         public Color foreground;
+        public Color link;
 
         private ConsoleColor() { }
 
-        @XConfAttribute(tag = "desktop-colors", attributes = {"background", "cursor", "text", "use-system-color"})
-        private void set(Color background, Color cursor, Color foreground, boolean useSystemColor) {
+        @XConfAttribute(tag = "desktop-colors", attributes = {"background", "cursor", "text", "link", "use-system-color"})
+        private void set(Color background, Color cursor, Color foreground, String link, boolean useSystemColor) {
             if (useSystemColor) {
                 this.background = Color.WHITE;
                 this.cursor = Color.BLACK;
                 this.foreground = Color.BLACK;
+                this.link = DEFAULT_LINK_COLOR;
             } else {
                 this.background = background;
                 this.cursor = cursor;
                 this.foreground = foreground;
+                try {
+                    this.link = Color.decode(link);
+                } catch (NumberFormatException e) {
+                    // preferences file written before the link color existed
+                    this.link = DEFAULT_LINK_COLOR;
+                }
             }
         }
     }

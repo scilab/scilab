@@ -152,6 +152,13 @@ public class SwingScilabBrowser extends JPanel implements SwingViewObject, Widge
 
             @Override
             public void onLoadError(CefBrowser browser, CefFrame frame, ErrorCode errorCode, String errorText, String failedUrl) {
+                // A navigation canceled on purpose is not an error: a "scilab:"
+                // link runs a command instead of navigating (see ScilabLink),
+                // and the current page has to stay displayed.
+                if (errorCode == ErrorCode.ERR_ABORTED) {
+                    return;
+                }
+
                 if (browser == browser_) {
                     try {
                         Path src = Paths.get(ScilabConstants.SCI.getAbsolutePath() + "/modules/gui/etc/error.html");

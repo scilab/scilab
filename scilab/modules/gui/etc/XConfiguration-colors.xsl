@@ -111,6 +111,41 @@
                     
                 </Color>
                 
+                <Panel gridx="11" gridy="1" weightx="1"/>
+
+                <Label text="_(Link )" gridx="12" gridy="1" fill="none" weightx="0" anchor="above_baseline" enable="{$enable}"/>
+
+                <!-- a preferences file written before the link color existed has no @link -->
+                <xsl:variable name="link-color">
+
+                    <xsl:choose>
+
+                        <xsl:when test="@link">
+
+                            <xsl:value-of select="@link"/>
+
+                        </xsl:when>
+
+                        <xsl:otherwise>
+
+                            <xsl:text>#0000ee</xsl:text>
+
+                        </xsl:otherwise>
+
+                    </xsl:choose>
+
+                </xsl:variable>
+
+                <Color color="{$link-color}" gridx="13" gridy="1" fill="none" weightx="0" anchor="above_baseline" listener="ActionListener" enable="{$enable}">
+
+                    <actionPerformed choose="link">
+
+                        <xsl:call-template name="context"/>
+
+                    </actionPerformed>
+
+                </Color>
+
             </Grid>
             
         </Title>

@@ -83,6 +83,15 @@ $(document).ready(async () => {
         }
     });
 
+    // Command links embedded in output (e.g. "doc plot") are real "scilab:"
+    // links: the click is left to its default action, and the Java side
+    // catches the navigation to run the command instead, as for any
+    // component (see ScilabLink.java). Only keep the click away from the
+    // handler of the output above, which prevents the default action.
+    $(".output").on("click", ".console-link", (e) => {
+        e.stopPropagation();
+    });
+
     $(".console").on("mousedown", (_e) => {
         focus();
         Scilab({request: "focus"});
@@ -531,10 +540,10 @@ async function fromJava(msg) {
 
                     output.forEach(o => {
                         if (o.style == "monospace" && last.hasClass("monospace")) {
-                            appendMonospaceText(last, processTextForLatex(processTextCRtoNL(o.text)));
+                            appendMonospaceText(last, processTextMarkup(processTextCRtoNL(o.text)));
                         } else if (o.style == "monospace") {
                             last = $(`<pre class="monospace"></pre>`);
-                            appendMonospaceText(last, processTextForLatex(processTextCRtoNL(o.text)));
+                            appendMonospaceText(last, processTextMarkup(processTextCRtoNL(o.text)));
                             $(".output").append(last);
                         }
                         // no else on purpose, implement style and mime-type for further support
@@ -564,6 +573,9 @@ async function fromJava(msg) {
             break;
         case "caret":
             $("body").css("caret-color", msg.data1)
+            break;
+        case "linkcolor":
+            document.documentElement.style.setProperty("--console-link-color", msg.data1);
             break;
         case "cut":
             cutCopyOrInterruptAction("cut");
@@ -650,17 +662,45 @@ function appendMonospaceText(node, {text, isHTML}) {
     }
 }
 
-/** Process text to wrap LaTeX expressions in HTML elements */
-function processTextForLatex(txt) {
+/**
+ * Process text to wrap LaTeX expressions and command links in HTML
+ * elements. A command link, written as `<a href="scilab:some command">label</a>`
+ * in otherwise plain output text (e.g. produced by help_text.xsl), is
+ * rendered as a real "scilab:" link (command percent-encoded). The Java
+ * side catches the navigation of any "scilab:" link to run "some command"
+ * instead, as if it had been typed at the prompt - it never navigates
+ * anywhere. The "scilab:" prefix is required so only this whitelisted
+ * pseudo-scheme is recognized
+ * (a real "http(s)://" link in output is left as plain escaped text, not
+ * turned into a clickable/command-running element). Everything outside a
+ * recognized construct is HTML-escaped, so arbitrary output (e.g. from
+ * disp()) cannot inject markup of its own. It can hold a command link
+ * though, whatever it comes from: the Java side only runs the commands it
+ * knows to be harmless (see ScilabLink.java) and reports the other ones.
+ * A link without command or without label is reduced to its label.
+ */
+function processTextMarkup(txt) {
     let idx = 0;
     let processed = "";
     let isHTML = false;
-    for (const match of txt.matchAll(/"\$(.*?)\$"/gm))
+    for (const match of txt.matchAll(/"\$(.*?)\$"|<a href="scilab:([^"]*)">([^<]*)<\/a>/gm))
     {
         // text before
         processed += escapeHtml(txt.substring(idx, match.index));
-        // LaTeX
-        processed += `<span class="monospace latex-expression" data-latex="${escapeHtml(match[1])}">${escapeHtml(match[0])}</span>`;
+        if (match[1] !== undefined) {
+            // LaTeX
+            processed += `<span class="monospace latex-expression" data-latex="${escapeHtml(match[1])}">${escapeHtml(match[0])}</span>`;
+        } else {
+            // Command link
+            const command = match[2].trim();
+            const label = match[3];
+            if (command === "" || label.trim() === "") {
+                // nothing to run or nothing to click on: keep the label only
+                processed += escapeHtml(label);
+            } else {
+                processed += `<a href="scilab:${encodeURIComponent(command)}" class="console-link" title="${escapeHtml(command)}">${escapeHtml(label)}</a>`;
+            }
+        }
         // next
         idx = match.index + match[0].length;
 

@@ -19,7 +19,7 @@ extern "C"
 
 #include "struct.hxx"
 
-CORE_IMPEXP int inlineHelp(const std::wstring& key, std::wstring& content, bool* isScilab = nullptr);
+CORE_IMPEXP int inlineHelp(const std::wstring& key, std::wstring& content, bool* isScilab = nullptr, bool withLinks = false);
 CORE_IMPEXP int generate_inline_links(const std::wstring& lang, const std::wstring& path);
 CORE_IMPEXP std::vector<std::wstring> listModuleXmlForLanguage(const std::string& lang);
 CORE_IMPEXP void clearInlineHelpLinks();
