@@ -30,7 +30,6 @@ extern "C"
 {
 #include "matrix_multiplication.h"
 #include "matrix_addition.h"
-#include "operation_f.h"
 #include "localization.h"
 #include "charEncoding.h"
 #include "elem_common.h"

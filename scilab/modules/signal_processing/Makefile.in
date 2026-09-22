@@ -177,28 +177,23 @@ am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/fortran/degree.lo src/fortran/parcha.lo \
 	src/fortran/ouch.lo src/fortran/dfftbi.lo \
 	src/fortran/dsqrtc.lo src/fortran/tranze.lo \
-	src/fortran/tscccf.lo src/fortran/dsn2.lo \
-	src/fortran/hammin.lo src/fortran/bounn.lo \
-	src/fortran/nstabl.lo src/fortran/ino.lo src/fortran/desia.lo \
+	src/fortran/tscccf.lo src/fortran/dsn2.lo src/fortran/bounn.lo \
+	src/fortran/nstabl.lo src/fortran/desia.lo \
 	src/fortran/desi11.lo src/fortran/cmpse3.lo \
-	src/fortran/cheby.lo src/fortran/trbize.lo src/fortran/r2tx.lo \
-	src/fortran/deli2.lo src/fortran/gee.lo src/fortran/r4tx.lo \
-	src/fortran/transn.lo src/fortran/r8tx.lo \
-	src/fortran/deli11.lo src/fortran/compel.lo \
-	src/fortran/filbut.lo src/fortran/desi01.lo \
+	src/fortran/trbize.lo src/fortran/r2tx.lo src/fortran/deli2.lo \
+	src/fortran/gee.lo src/fortran/r4tx.lo src/fortran/transn.lo \
+	src/fortran/r8tx.lo src/fortran/deli11.lo \
+	src/fortran/compel.lo src/fortran/desi01.lo \
 	src/fortran/desi22.lo src/fortran/amell.lo \
 	src/fortran/desi24.lo src/fortran/dellk.lo \
-	src/fortran/syredi.lo src/fortran/coeft.lo \
-	src/fortran/tranpo.lo src/fortran/blnumz.lo src/fortran/sn.lo \
-	src/fortran/bldenz.lo src/fortran/desib.lo \
-	src/fortran/freque.lo src/fortran/desi12.lo \
+	src/fortran/syredi.lo src/fortran/tranpo.lo \
+	src/fortran/blnumz.lo src/fortran/bldenz.lo \
+	src/fortran/desib.lo src/fortran/desi12.lo \
 	src/fortran/cmpse2.lo src/fortran/desi14.lo \
-	src/fortran/delip.lo src/fortran/deli1.lo \
-	src/fortran/trbipo.lo src/fortran/rpem.lo src/fortran/dfft2.lo \
-	src/fortran/dgee01.lo src/fortran/romeg.lo \
-	src/fortran/snell.lo src/fortran/fft842.lo \
-	src/fortran/tg02ad.lo src/fortran/remez.lo \
-	src/fortran/poles.lo src/fortran/desi00.lo \
+	src/fortran/delip.lo src/fortran/trbipo.lo src/fortran/rpem.lo \
+	src/fortran/dfft2.lo src/fortran/dgee01.lo \
+	src/fortran/romeg.lo src/fortran/fft842.lo \
+	src/fortran/remez.lo src/fortran/desi00.lo \
 	src/fortran/desi21.lo src/fortran/dfftmx.lo \
 	src/fortran/Ex-corr.lo
 am__objects_2 = src/c/libscisignal_processing_algo_la-corrtable.lo \
@@ -707,14 +702,11 @@ SIGNAL_PROCESSING_FORTRAN_SOURCES = \
     src/fortran/tranze.f \
     src/fortran/tscccf.f \
     src/fortran/dsn2.f \
-    src/fortran/hammin.f \
     src/fortran/bounn.f \
     src/fortran/nstabl.f \
-    src/fortran/ino.f \
     src/fortran/desia.f \
     src/fortran/desi11.f \
     src/fortran/cmpse3.f \
-    src/fortran/cheby.f \
     src/fortran/trbize.f \
     src/fortran/r2tx.f \
     src/fortran/deli2.f \
@@ -724,35 +716,27 @@ SIGNAL_PROCESSING_FORTRAN_SOURCES = \
     src/fortran/r8tx.f \
     src/fortran/deli11.f \
     src/fortran/compel.f \
-    src/fortran/filbut.f \
     src/fortran/desi01.f \
     src/fortran/desi22.f \
     src/fortran/amell.f \
     src/fortran/desi24.f \
     src/fortran/dellk.f \
     src/fortran/syredi.f \
-    src/fortran/coeft.f \
     src/fortran/tranpo.f \
     src/fortran/blnumz.f \
-    src/fortran/sn.f \
     src/fortran/bldenz.f \
     src/fortran/desib.f \
-    src/fortran/freque.f \
     src/fortran/desi12.f \
     src/fortran/cmpse2.f \
     src/fortran/desi14.f \
     src/fortran/delip.f \
-    src/fortran/deli1.f \
     src/fortran/trbipo.f \
     src/fortran/rpem.f \
     src/fortran/dfft2.f \
     src/fortran/dgee01.f \
     src/fortran/romeg.f \
-    src/fortran/snell.f \
     src/fortran/fft842.f \
-    src/fortran/tg02ad.f \
     src/fortran/remez.f \
-    src/fortran/poles.f \
     src/fortran/desi00.f \
     src/fortran/desi21.f \
     src/fortran/dfftmx.f\
@@ -994,21 +978,15 @@ src/fortran/tscccf.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dsn2.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/hammin.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/bounn.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/nstabl.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/ino.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/desia.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/desi11.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/cmpse3.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/cheby.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/trbize.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1028,8 +1006,6 @@ src/fortran/deli11.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/compel.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/filbut.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/desi01.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/desi22.lo: src/fortran/$(am__dirstamp) \
@@ -1042,19 +1018,13 @@ src/fortran/dellk.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/syredi.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/coeft.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/tranpo.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/blnumz.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/sn.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/bldenz.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/desib.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/freque.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/desi12.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1063,8 +1033,6 @@ src/fortran/cmpse2.lo: src/fortran/$(am__dirstamp) \
 src/fortran/desi14.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/delip.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/deli1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/trbipo.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1076,15 +1044,9 @@ src/fortran/dgee01.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/romeg.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/snell.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/fft842.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/tg02ad.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/remez.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/poles.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/desi00.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

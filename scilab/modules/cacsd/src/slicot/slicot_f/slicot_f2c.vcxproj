@@ -400,7 +400,6 @@ cd ..
     <ClCompile Include="..\ib01py.c" />
     <ClCompile Include="..\ib01qd.c" />
     <ClCompile Include="..\ib01rd.c" />
-    <ClCompile Include="..\inva.c" />
     <ClCompile Include="..\ma02ad.c" />
     <ClCompile Include="..\ma02ed.c" />
     <ClCompile Include="..\ma02fd.c" />
@@ -509,7 +508,6 @@ cd ..
     <f2c_rule Include="..\ib01py.f" />
     <f2c_rule Include="..\ib01qd.f" />
     <f2c_rule Include="..\ib01rd.f" />
-    <f2c_rule Include="..\inva.f" />
     <f2c_rule Include="..\ma02ad.f" />
     <f2c_rule Include="..\ma02ed.f" />
     <f2c_rule Include="..\ma02fd.f" />

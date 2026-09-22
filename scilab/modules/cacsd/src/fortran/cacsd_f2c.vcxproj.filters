@@ -54,9 +54,6 @@
     <ClCompile Include="feq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fout.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="front.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -162,9 +159,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="feq.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="fout.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="front.f">

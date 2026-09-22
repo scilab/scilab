@@ -29,13 +29,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="isort1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="ordmmd.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="spreshape.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="spt.f">
@@ -61,13 +55,7 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="isort1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ordmmd.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="spreshape.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="spt.c">

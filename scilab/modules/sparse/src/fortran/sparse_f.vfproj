@@ -65,9 +65,7 @@
 			<File RelativePath=".\blkfct.f"/>
 			<File RelativePath=".\blkslv.f"/>
 			<File RelativePath=".\inpnv.f"/>
-			<File RelativePath="isort1.f"/>
 			<File RelativePath=".\ordmmd.f"/>
-			<File RelativePath="spreshape.f"/>
 			<File RelativePath="spt.f"/>
 			<File RelativePath=".\symfct.f"/>
 			<File RelativePath="sz2ptr.f"/>

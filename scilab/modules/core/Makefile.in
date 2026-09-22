@@ -248,8 +248,7 @@ am__objects_3 = src/cpp/hash/libscicore_algo_la-md5.lo \
 	src/cpp/hash/libscicore_algo_la-sha1.lo \
 	src/cpp/hash/libscicore_algo_la-sha256.lo \
 	src/cpp/hash/libscicore_algo_la-sha3.lo
-am__objects_4 = src/fortran/clunit.lo src/fortran/folhp.lo \
-	src/fortran/xerbla.lo src/fortran/expsum.lo \
+am__objects_4 = src/fortran/clunit.lo src/fortran/xerbla.lo \
 	src/fortran/readinter.lo src/fortran/rewindinter.lo \
 	src/fortran/backspaceinter.lo src/fortran/write_inter.lo \
 	src/fortran/read_inter.lo
@@ -1038,9 +1037,7 @@ HASH_CPP_SOURCES = \
 
 CORE_FORTRAN_SOURCES = \
     src/fortran/clunit.f \
-    src/fortran/folhp.f \
     src/fortran/xerbla.f \
-    src/fortran/expsum.f \
     src/fortran/readinter.f \
     src/fortran/rewindinter.f \
     src/fortran/backspaceinter.f \
@@ -1483,11 +1480,7 @@ src/fortran/$(DEPDIR)/$(am__dirstamp):
 	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/clunit.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/folhp.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/xerbla.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/expsum.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/readinter.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

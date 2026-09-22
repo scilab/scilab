@@ -79,7 +79,6 @@
 			<File RelativePath="..\ib01py.f"/>
 			<File RelativePath="..\ib01qd.f"/>
 			<File RelativePath="..\ib01rd.f"/>
-			<File RelativePath="..\inva.f"/>
 			<File RelativePath="..\ma02ad.f"/>
 			<File RelativePath="..\ma02ed.f"/>
 			<File RelativePath="..\ma02fd.f"/>

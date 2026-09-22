@@ -66,28 +66,7 @@
     <ClCompile Include="ddif.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ddpow.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ddpow1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ddpowe.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ddrdiv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dexpm1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dipow.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dipowe.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dlblks.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dlgama.c">
@@ -102,40 +81,13 @@
     <ClCompile Include="dmmul1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dmprod.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="drdiv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dset.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dsort.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dsum.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dtild.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dvmul.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dwdiv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dwpow.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dwpow1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dwpowe.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dwrdiv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="eispack_split.c">
@@ -147,19 +99,10 @@
     <ClCompile Include="exch.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="franck.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gdcp2i.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hilber.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="i1mach.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="imcopy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="infinity.c">
@@ -174,28 +117,10 @@
     <ClCompile Include="isort.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="isova0.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="isoval.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ivimp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="iwamax.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="kronc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kronr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lnblnk.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="magic.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mtran.c">
@@ -210,12 +135,6 @@
     <ClCompile Include="rat.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rcopy.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rcsort.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="round.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -223,9 +142,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="urand.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vpythag.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="wacos.c">
@@ -252,9 +168,6 @@
     <ClCompile Include="wclmat.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wddiv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wdiv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -264,40 +177,16 @@
     <ClCompile Include="wdotcr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wdpow.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wdpow1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wdpowe.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wdrdiv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wexchn.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="wexpm1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wipow.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wipowe.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wlog.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="wmmul.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wmprod.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wmsum.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="wmul.c">
@@ -318,25 +207,7 @@
     <ClCompile Include="wsqrt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wswap.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wtan.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wvmul.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wwdiv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wwpow.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wwpow1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wwpowe.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="wwrdiv.c">
@@ -398,28 +269,7 @@
     <f2c_rule Include="ddif.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="ddpow.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="ddpow1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="ddpowe.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="ddrdiv.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="dexpm1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dipow.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dipowe.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dlblks.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dlgama.f">
@@ -434,40 +284,13 @@
     <f2c_rule Include="dmmul1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="dmprod.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="drdiv.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="dset.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dsort.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="dsum.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="dtild.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dvmul.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dwdiv.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dwpow.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dwpow1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dwpowe.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dwrdiv.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="eispack_split.f">
@@ -479,19 +302,10 @@
     <f2c_rule Include="exch.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="franck.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="gdcp2i.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="hilber.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="i1mach.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="imcopy.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="infinity.f">
@@ -506,28 +320,10 @@
     <f2c_rule Include="isort.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="isova0.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="isoval.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="ivimp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="iwamax.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="kronc.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="kronr.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="lnblnk.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="magic.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="mtran.f">
@@ -542,12 +338,6 @@
     <f2c_rule Include="rat.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="rcopy.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="rcsort.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="round.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -555,9 +345,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="urand.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="vpythag.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wacos.f">
@@ -584,9 +371,6 @@
     <f2c_rule Include="wclmat.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="wddiv.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="wdiv.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -596,40 +380,16 @@
     <f2c_rule Include="wdotcr.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="wdpow.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wdpow1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wdpowe.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wdrdiv.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="wexchn.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wexpm1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="wipow.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wipowe.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="wlog.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wmmul.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wmprod.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wmsum.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wmul.f">
@@ -650,25 +410,7 @@
     <f2c_rule Include="wsqrt.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="wswap.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wtan.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wvmul.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="wwdiv.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wwpow.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wwpow1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wwpowe.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wwrdiv.f">

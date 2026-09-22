@@ -447,29 +447,18 @@ cd ..
     <ClCompile Include="prja.c" />
     <ClCompile Include="dqk21.c" />
     <ClCompile Include="rchek.c" />
-    <ClCompile Include="rchek2.c" />
     <ClCompile Include="rkf45.c" />
     <ClCompile Include="rkqc.c" />
     <ClCompile Include="rksimp.c" />
     <ClCompile Include="roots.c" />
-    <ClCompile Include="roots2.c" />
-    <ClCompile Include="rscar1.c" />
-    <ClCompile Include="rscma1.c" />
-    <ClCompile Include="rscom1.c" />
     <ClCompile Include="solsy.c" />
     <ClCompile Include="stoda.c" />
     <ClCompile Include="stode.c" />
     <ClCompile Include="stodi.c" />
-    <ClCompile Include="svcar1.c" />
-    <ClCompile Include="svcma1.c" />
-    <ClCompile Include="svcom1.c" />
     <ClCompile Include="twodq.c" />
     <ClCompile Include="vmnorm.c" />
     <ClCompile Include="vnorm.c" />
-    <ClCompile Include="writbufode.c" />
     <ClCompile Include="xerrwv.c" />
-    <ClCompile Include="xsetf.c" />
-    <ClCompile Include="xsetun.c" />
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="ainvg.f" />
@@ -515,29 +504,18 @@ cd ..
     <f2c_rule Include="prja.f" />
     <f2c_rule Include="dqk21.f" />
     <f2c_rule Include="rchek.f" />
-    <f2c_rule Include="rchek2.f" />
     <f2c_rule Include="rkf45.f" />
     <f2c_rule Include="rkqc.f" />
     <f2c_rule Include="rksimp.f" />
     <f2c_rule Include="roots.f" />
-    <f2c_rule Include="roots2.f" />
-    <f2c_rule Include="rscar1.f" />
-    <f2c_rule Include="rscma1.f" />
-    <f2c_rule Include="rscom1.f" />
     <f2c_rule Include="solsy.f" />
     <f2c_rule Include="stoda.f" />
     <f2c_rule Include="stode.f" />
     <f2c_rule Include="stodi.f" />
-    <f2c_rule Include="svcar1.f" />
-    <f2c_rule Include="svcma1.f" />
-    <f2c_rule Include="svcom1.f" />
     <f2c_rule Include="twodq.f" />
     <f2c_rule Include="vmnorm.f" />
     <f2c_rule Include="vnorm.f" />
-    <f2c_rule Include="writbufode.f" />
     <f2c_rule Include="xerrwv.f" />
-    <f2c_rule Include="xsetf.f" />
-    <f2c_rule Include="xsetun.f" />
   </ItemGroup>
   <ItemGroup>
     <None Include="differential_equations_Import.def" />

@@ -59,11 +59,9 @@ SLATEC_SOURCES = \
     src/fortran/slatec/zwrsk.f \
     src/fortran/slatec/d9b0mp.f \
     src/fortran/slatec/d9b1mp.f \
-    src/fortran/slatec/d9knus.f \
     src/fortran/slatec/d9lgmc.f \
     src/fortran/slatec/dasyik.f \
     src/fortran/slatec/dasyjy.f \
-    src/fortran/slatec/dbdiff.f \
     src/fortran/slatec/dbesi0.f \
     src/fortran/slatec/dbesi1.f \
     src/fortran/slatec/dbesi.f \
@@ -76,25 +74,17 @@ SLATEC_SOURCES = \
     src/fortran/slatec/dbesy0.f \
     src/fortran/slatec/dbesy1.f \
     src/fortran/slatec/dbesy.f \
-    src/fortran/slatec/dbkias.f \
-    src/fortran/slatec/dbkisr.f \
     src/fortran/slatec/dbsi0e.f \
     src/fortran/slatec/dbsi1e.f \
     src/fortran/slatec/dbsk0e.f \
     src/fortran/slatec/dbsk1e.f \
-    src/fortran/slatec/dbskes.f \
-    src/fortran/slatec/dbskin.f \
     src/fortran/slatec/dbsknu.f \
     src/fortran/slatec/dbsynu.f \
     src/fortran/slatec/dcsevl.f \
-    src/fortran/slatec/dexint.f \
     src/fortran/slatec/dgamlm.f \
     src/fortran/slatec/dgamln.f \
     src/fortran/slatec/dgamma.f \
-    src/fortran/slatec/dgamrn.f \
-    src/fortran/slatec/dhkseq.f \
     src/fortran/slatec/djairy.f \
-    src/fortran/slatec/dpsixn.f \
     src/fortran/slatec/dxlegf.f \
     src/fortran/slatec/dyairy.f \
     src/fortran/slatec/fdump.f \
@@ -166,95 +156,53 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wwdiv.f \
     src/fortran/wdotcr.f \
     src/fortran/iset.f \
-    src/fortran/franck.f \
-    src/fortran/dwpowe.f \
-    src/fortran/rcsort.f \
-    src/fortran/wddiv.f \
     src/fortran/lnblnk.f \
     src/fortran/entier.f \
     src/fortran/round.f \
     src/fortran/cortr.f \
     src/fortran/simple.f \
     src/fortran/eispack_split.f \
-    src/fortran/wdrdiv.f \
-    src/fortran/imcopy.f \
     src/fortran/cbal.f \
-    src/fortran/dsum.f \
     src/fortran/urand.f \
     src/fortran/intp.f \
     src/fortran/watan.f \
-    src/fortran/wipowe.f \
     src/fortran/wacos.f \
-    src/fortran/wdpow1.f \
     src/fortran/dlgama.f \
     src/fortran/exch.f \
     src/fortran/wsign.f \
-    src/fortran/kronr.f \
     src/fortran/wrscal.f \
     src/fortran/dmmul1.f \
-    src/fortran/dwpow.f \
     src/fortran/wmmul.f \
     src/fortran/ddif.f \
     src/fortran/wdiv.f \
-    src/fortran/wtan.f \
-    src/fortran/ddpow.f \
-    src/fortran/magic.f \
     src/fortran/wcerr.f \
-    src/fortran/ivimp.f \
     src/fortran/dadd.f \
     src/fortran/isort.f \
-    src/fortran/hilber.f \
-    src/fortran/wdpowe.f \
-    src/fortran/wmprod.f \
     src/fortran/wscal.f \
-    src/fortran/dlblks.f \
-    src/fortran/kronc.f \
-    src/fortran/ddrdiv.f \
-    src/fortran/dipow.f \
     src/fortran/wshrsl.f \
     src/fortran/wwrdiv.f \
     src/fortran/coshin.f \
     src/fortran/iwamax.f \
-    src/fortran/dipowe.f \
     src/fortran/cusum.f \
     src/fortran/d1mach.f \
     src/fortran/wbdiag.f \
-    src/fortran/ddpow1.f \
-    src/fortran/vpythag.f \
-    src/fortran/isova0.f \
-    src/fortran/wswap.f \
-    src/fortran/wwpow1.f \
     src/fortran/gdcp2i.f \
-    src/fortran/drdiv.f \
-    src/fortran/wmsum.f \
     src/fortran/corth.f \
     src/fortran/mtran.f \
-    src/fortran/wwpow.f \
-    src/fortran/dvmul.f \
     src/fortran/wclmat.f \
     src/fortran/dsort.f \
     src/fortran/cerr.f \
-    src/fortran/rcopy.f \
-    src/fortran/wdpow.f \
     src/fortran/orthes.f \
     src/fortran/waxpy.f \
     src/fortran/coef.f \
-    src/fortran/dwdiv.f \
     src/fortran/arcosh.f \
     src/fortran/wasin.f \
     src/fortran/wexpm1.f \
-    src/fortran/ddpowe.f \
-    src/fortran/dmprod.f \
-    src/fortran/wwpowe.f \
     src/fortran/wdotci.f \
     src/fortran/dmcopy.f \
     src/fortran/wexchn.f \
-    src/fortran/isoval.f \
-    src/fortran/dwrdiv.f \
-    src/fortran/wipow.f \
     src/fortran/wlog.f \
     src/fortran/infinity.f \
-    src/fortran/dwpow1.f \
     src/fortran/wmul.f \
     src/fortran/dad.f \
     src/fortran/dset.f \
@@ -263,7 +211,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dclmat.f \
     src/fortran/ortran.f \
     src/fortran/bdiag.f \
-    src/fortran/wvmul.f \
     src/fortran/dmmul.f \
     src/fortran/wsqrt.f \
     src/fortran/rat.f \

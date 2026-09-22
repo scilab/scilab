@@ -68,9 +68,7 @@ HASH_CPP_SOURCES = \
 
 CORE_FORTRAN_SOURCES = \
     src/fortran/clunit.f \
-    src/fortran/folhp.f \
     src/fortran/xerbla.f \
-    src/fortran/expsum.f \
     src/fortran/readinter.f \
     src/fortran/rewindinter.f \
     src/fortran/backspaceinter.f \

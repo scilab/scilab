@@ -386,7 +386,6 @@ cd ..
     <ClCompile Include="gennf.c" />
     <ClCompile Include="gennor.c" />
     <ClCompile Include="genprm.c" />
-    <ClCompile Include="genunf.c" />
     <ClCompile Include="ignnbn.c" />
     <ClCompile Include="phrtsd.c" />
     <ClCompile Include="setgmn.c" />
@@ -403,7 +402,6 @@ cd ..
     <f2c_rule Include="gennf.f" />
     <f2c_rule Include="gennor.f" />
     <f2c_rule Include="genprm.f" />
-    <f2c_rule Include="genunf.f" />
     <f2c_rule Include="ignnbn.f" />
     <f2c_rule Include="phrtsd.f" />
     <f2c_rule Include="setgmn.f" />

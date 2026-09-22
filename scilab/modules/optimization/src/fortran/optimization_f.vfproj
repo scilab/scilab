@@ -68,7 +68,6 @@
 			<File RelativePath=".\calmaj.f"/>
 			<File RelativePath=".\ctcab.f"/>
 			<File RelativePath=".\ctonb.f"/>
-			<File RelativePath=".\dcube.f"/>
 			<File RelativePath=".\ddd2.f"/>
 			<File RelativePath=".\minpack\dogleg.f"/>
 			<File RelativePath=".\minpack\dpmpar.f"/>
@@ -76,20 +75,9 @@
 			<File RelativePath="..\..\sci_gateway\fortran\Ex-fsolve.f"/>
 			<File RelativePath="..\..\sci_gateway\fortran\Ex-lsqrsolve.f"/>
 			<File RelativePath="..\..\sci_gateway\fortran\Ex-optim.f"/>
-			<File RelativePath=".\fajc1.f"/>
-			<File RelativePath=".\fcomp1.f"/>
-			<File RelativePath=".\fcube.f"/>
 			<File RelativePath=".\minpack\fdjac1.f"/>
 			<File RelativePath=".\minpack\fdjac2.f"/>
 			<File RelativePath=".\ffinf1.f"/>
-			<File RelativePath=".\fmani1.f"/>
-			<File RelativePath=".\fmc11a.f"/>
-			<File RelativePath=".\fmc11b.f"/>
-			<File RelativePath=".\fmc11e.f"/>
-			<File RelativePath=".\fmc11z.f"/>
-			<File RelativePath=".\fmlag1.f"/>
-			<File RelativePath=".\fmulb1.f"/>
-			<File RelativePath=".\fmuls1.f"/>
 			<File RelativePath=".\fprf2.f"/>
 			<File RelativePath=".\frdf1.f"/>
 			<File RelativePath=".\fremf2.f"/>
@@ -100,9 +88,7 @@
 			<File RelativePath=".\minpack\hybrd1.f"/>
 			<File RelativePath=".\minpack\hybrj.f"/>
 			<File RelativePath=".\minpack\hybrj1.f"/>
-			<File RelativePath=".\icscof.f"/>
 			<File RelativePath=".\icse.f"/>
-			<File RelativePath=".\icse0.f"/>
 			<File RelativePath=".\icse1.f"/>
 			<File RelativePath=".\icse2.f"/>
 			<File RelativePath=".\icsec2.f"/>
@@ -116,13 +102,8 @@
 			<File RelativePath=".\n1fc1.f"/>
 			<File RelativePath=".\n1fc1a.f"/>
 			<File RelativePath=".\n1fc1o.f"/>
-			<File RelativePath=".\n1gc2.f"/>
-			<File RelativePath=".\n1gc2a.f"/>
-			<File RelativePath=".\n1gc2b.f"/>
 			<File RelativePath=".\n1qn1.f"/>
 			<File RelativePath=".\n1qn1a.f"/>
-			<File RelativePath=".\n1qn2.f"/>
-			<File RelativePath=".\n1qn2a.f"/>
 			<File RelativePath=".\n1qn3.f"/>
 			<File RelativePath=".\n1qn3a.f"/>
 			<File RelativePath=".\nlis0.f"/>
@@ -144,8 +125,6 @@
 			<File RelativePath=".\rlbd.f"/>
 			<File RelativePath=".\satur.f"/>
 			<File RelativePath=".\shanph.f"/>
-			<File RelativePath=".\strang.f"/>
-			<File RelativePath=".\writebuf.f"/>
 			<File RelativePath=".\zgcbd.f"/>
 			<File RelativePath=".\zqnbd.f"/>
 		</Filter>

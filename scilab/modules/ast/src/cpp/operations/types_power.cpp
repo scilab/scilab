@@ -20,7 +20,6 @@
 
 extern "C"
 {
-#include "operation_f.h"
 #include "matrix_power.h"
 #include "localization.h"
 #include "charEncoding.h"

@@ -1098,7 +1098,6 @@ includes/operations/matrix_multiplication.h \
 includes/operations/matrix_power.h \
 includes/operations/matrix_right_division.h \
 includes/operations/matrix_transpose.h \
-includes/operations/operation_f.h \
 includes/operations/operations.hxx \
 includes/operations/operations_tools.h \
 includes/operations/types_addition.hxx \

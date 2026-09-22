@@ -488,7 +488,6 @@ lib /DEF:"$(ProjectDir)functions_manager_import.def" /SUBSYSTEM:WINDOWS /MACHINE
     <ClInclude Include="includes\operations\matrix_transpose.h" />
     <ClInclude Include="includes\operations\operations.hxx" />
     <ClInclude Include="includes\operations\operations_tools.h" />
-    <ClInclude Include="includes\operations\operation_f.h" />
     <ClInclude Include="includes\operations\types_addition.hxx" />
     <ClInclude Include="includes\operations\types_comparison_eq.hxx" />
     <ClInclude Include="includes\operations\types_comparison_lt_le_gt_ge.hxx" />

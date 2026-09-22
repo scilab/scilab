@@ -406,8 +406,6 @@ cd ..
     <ClCompile Include="..\c\withf2c.c" />
     <ClCompile Include="backspaceinter.c" />
     <ClCompile Include="clunit.c" />
-    <ClCompile Include="expsum.c" />
-    <ClCompile Include="folhp.c" />
     <ClCompile Include="readinter.c" />
     <ClCompile Include="read_inter.c" />
     <ClCompile Include="rewindinter.c" />
@@ -417,8 +415,6 @@ cd ..
   <ItemGroup>
     <f2c_rule Include="backspaceinter.f" />
     <f2c_rule Include="clunit.f" />
-    <f2c_rule Include="expsum.f" />
-    <f2c_rule Include="folhp.f" />
     <f2c_rule Include="readinter.f" />
     <f2c_rule Include="read_inter.f" />
     <f2c_rule Include="rewindinter.f" />

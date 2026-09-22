@@ -181,8 +181,7 @@ am__objects_1 = src/c/libscisparse_algo_la-spUtils.lo \
 	src/c/libscisparse_algo_la-spOutput.lo \
 	src/c/libscisparse_algo_la-spAllocate.lo \
 	src/c/libscisparse_algo_la-spSolve.lo
-am__objects_2 = src/fortran/isort1.lo src/fortran/spt.lo \
-	src/fortran/sz2ptr.lo src/fortran/spreshape.lo \
+am__objects_2 = src/fortran/spt.lo src/fortran/sz2ptr.lo \
 	src/fortran/ordmmd.lo src/fortran/blkfc1.lo \
 	src/fortran/blkfct.lo src/fortran/blkslv.lo \
 	src/fortran/inpnv.lo src/fortran/symfct.lo
@@ -789,10 +788,8 @@ SPARSE_C_SOURCES = \
     src/c/spSolve.c
 
 SPARSE_FORTRAN_SOURCES = \
-    src/fortran/isort1.f \
     src/fortran/spt.f \
     src/fortran/sz2ptr.f \
-    src/fortran/spreshape.f \
     src/fortran/ordmmd.f \
 	src/fortran/blkfc1.f \
 	src/fortran/blkfct.f \
@@ -1098,13 +1095,9 @@ src/fortran/$(am__dirstamp):
 src/fortran/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/fortran/$(DEPDIR)
 	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/isort1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/spt.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/sz2ptr.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/spreshape.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ordmmd.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

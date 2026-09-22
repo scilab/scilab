@@ -185,7 +185,7 @@ am__objects_1 = src/fortran/jacl2.lo src/fortran/onface.lo \
 	src/fortran/dzdivq.lo src/fortran/arl2a.lo src/fortran/lq.lo \
 	src/fortran/outl2.lo src/fortran/dhetr.lo \
 	src/fortran/domout.lo src/fortran/rootgp.lo src/fortran/feq.lo \
-	src/fortran/fout.lo src/fortran/deg1l2.lo src/fortran/modul.lo \
+	src/fortran/deg1l2.lo src/fortran/modul.lo \
 	src/fortran/scapol.lo src/fortran/giv.lo src/fortran/storl2.lo \
 	src/fortran/calsca.lo src/fortran/qitz.lo src/fortran/front.lo
 am__objects_2 = src/slicot/sb04pd.lo src/slicot/ib01ad.lo \
@@ -221,8 +221,8 @@ am__objects_2 = src/slicot/sb04pd.lo src/slicot/ib01ad.lo \
 	src/slicot/sb02oy.lo src/slicot/sb03oy.lo src/slicot/sb03qx.lo \
 	src/slicot/ib01rd.lo src/slicot/sb03sy.lo src/slicot/mb04nd.lo \
 	src/slicot/mb01rd.lo src/slicot/mb01vd.lo src/slicot/sb10qd.lo \
-	src/slicot/ereduc.lo src/slicot/fstair.lo src/slicot/inva.lo \
-	src/slicot/polmc.lo src/slicot/ssxmc.lo src/slicot/ZB03OD.lo \
+	src/slicot/ereduc.lo src/slicot/fstair.lo src/slicot/polmc.lo \
+	src/slicot/ssxmc.lo src/slicot/ZB03OD.lo \
 	src/slicot/riccpack.lo src/slicot/Ex-schur.lo \
 	src/fortran/voiddummy.lo
 am__objects_3 = src/c/libscicacsd_algo_la-dmp2pm.lo
@@ -845,7 +845,6 @@ SLICOT_FORTRAN_SOURCES = \
     src/slicot/sb10qd.f \
     src/slicot/ereduc.f \
     src/slicot/fstair.f \
-    src/slicot/inva.f \
     src/slicot/polmc.f \
     src/slicot/ssxmc.f \
     src/slicot/ZB03OD.f \
@@ -881,7 +880,6 @@ CACSD_FORTRAN_SOURCES = \
     src/fortran/domout.f \
     src/fortran/rootgp.f \
     src/fortran/feq.f \
-    src/fortran/fout.f \
     src/fortran/deg1l2.f \
     src/fortran/modul.f \
     src/fortran/scapol.f \
@@ -1180,8 +1178,6 @@ src/fortran/rootgp.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/feq.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/fout.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/deg1l2.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/modul.lo: src/fortran/$(am__dirstamp) \
@@ -1403,8 +1399,6 @@ src/slicot/sb10qd.lo: src/slicot/$(am__dirstamp) \
 src/slicot/ereduc.lo: src/slicot/$(am__dirstamp) \
 	src/slicot/$(DEPDIR)/$(am__dirstamp)
 src/slicot/fstair.lo: src/slicot/$(am__dirstamp) \
-	src/slicot/$(DEPDIR)/$(am__dirstamp)
-src/slicot/inva.lo: src/slicot/$(am__dirstamp) \
 	src/slicot/$(DEPDIR)/$(am__dirstamp)
 src/slicot/polmc.lo: src/slicot/$(am__dirstamp) \
 	src/slicot/$(DEPDIR)/$(am__dirstamp)

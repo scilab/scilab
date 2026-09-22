@@ -180,35 +180,25 @@ am__objects_2 =  \
 	src/cpp/libscioptimization_algo_la-checkoptimerror.lo \
 	src/cpp/libscioptimization_algo_la-scioptimfunctions.lo
 am__objects_3 = src/fortran/gcbd.lo src/fortran/qpgen2.lo \
-	src/fortran/n1qn2a.lo src/fortran/fuclid.lo \
-	src/fortran/fmc11b.lo src/fortran/ql0001.lo \
-	src/fortran/shanph.lo src/fortran/fajc1.lo \
-	src/fortran/majysa.lo src/fortran/icsei.lo \
-	src/fortran/majour.lo src/fortran/n1qn1.lo \
-	src/fortran/n1qn1a.lo src/fortran/n1qn3.lo \
-	src/fortran/fmc11z.lo src/fortran/icse0.lo \
-	src/fortran/icse2.lo src/fortran/fmuls1.lo \
+	src/fortran/fuclid.lo src/fortran/ql0001.lo \
+	src/fortran/shanph.lo src/fortran/majysa.lo \
+	src/fortran/icsei.lo src/fortran/majour.lo \
+	src/fortran/n1qn1.lo src/fortran/n1qn1a.lo \
+	src/fortran/n1qn3.lo src/fortran/icse2.lo \
 	src/fortran/icsec2.lo src/fortran/gcp.lo src/fortran/n1fc1a.lo \
-	src/fortran/n1gc2.lo src/fortran/proj.lo src/fortran/n1gc2a.lo \
-	src/fortran/ddd2.lo src/fortran/fremf2.lo src/fortran/dcube.lo \
-	src/fortran/fcube.lo src/fortran/bfgsd.lo \
-	src/fortran/fcomp1.lo src/fortran/fmulb1.lo \
-	src/fortran/n1fc1o.lo src/fortran/relvar.lo \
-	src/fortran/satur.lo src/fortran/strang.lo \
-	src/fortran/fmc11a.lo src/fortran/fmani1.lo \
-	src/fortran/fmc11e.lo src/fortran/zqnbd.lo \
-	src/fortran/ajour.lo src/fortran/qnbd.lo src/fortran/nlis0.lo \
-	src/fortran/nlis2.lo src/fortran/n1qn2.lo src/fortran/majz.lo \
+	src/fortran/proj.lo src/fortran/ddd2.lo src/fortran/fremf2.lo \
+	src/fortran/bfgsd.lo src/fortran/n1fc1o.lo \
+	src/fortran/relvar.lo src/fortran/satur.lo \
+	src/fortran/zqnbd.lo src/fortran/ajour.lo src/fortran/qnbd.lo \
+	src/fortran/nlis0.lo src/fortran/nlis2.lo src/fortran/majz.lo \
 	src/fortran/n1qn3a.lo src/fortran/frdf1.lo \
-	src/fortran/icse1.lo src/fortran/ctonb.lo \
-	src/fortran/icscof.lo src/fortran/fmlag1.lo \
-	src/fortran/n1fc1.lo src/fortran/ffinf1.lo \
-	src/fortran/ctcab.lo src/fortran/n1gc2b.lo \
+	src/fortran/icse1.lo src/fortran/ctonb.lo src/fortran/n1fc1.lo \
+	src/fortran/ffinf1.lo src/fortran/ctcab.lo \
 	src/fortran/fprf2.lo src/fortran/icse.lo src/fortran/rlbd.lo \
 	src/fortran/calmaj.lo src/fortran/calbx.lo \
 	src/fortran/rednor.lo src/fortran/zgcbd.lo \
-	src/fortran/writebuf.lo src/fortran/qpgen1sci.lo \
-	src/fortran/rdmps1.lo src/fortran/rdmpsz.lo
+	src/fortran/qpgen1sci.lo src/fortran/rdmps1.lo \
+	src/fortran/rdmpsz.lo
 am__objects_4 = src/fortran/minpack/lmdif.lo \
 	src/fortran/minpack/qrfac.lo src/fortran/minpack/hybrj1.lo \
 	src/fortran/minpack/dogleg.lo src/fortran/minpack/lmder.lo \
@@ -710,59 +700,39 @@ OPTIMIZATION_C_SOURCES = \
 OPTIMIZATION_FORTRAN_SOURCES = \
     src/fortran/gcbd.f \
     src/fortran/qpgen2.f \
-    src/fortran/n1qn2a.f \
     src/fortran/fuclid.f \
-    src/fortran/fmc11b.f \
     src/fortran/ql0001.f \
     src/fortran/shanph.f \
-    src/fortran/fajc1.f \
     src/fortran/majysa.f \
     src/fortran/icsei.f \
     src/fortran/majour.f \
     src/fortran/n1qn1.f \
     src/fortran/n1qn1a.f \
     src/fortran/n1qn3.f \
-    src/fortran/fmc11z.f \
-    src/fortran/icse0.f \
     src/fortran/icse2.f \
-    src/fortran/fmuls1.f \
     src/fortran/icsec2.f \
     src/fortran/gcp.f \
     src/fortran/n1fc1a.f \
-    src/fortran/n1gc2.f \
     src/fortran/proj.f \
-    src/fortran/n1gc2a.f \
     src/fortran/ddd2.f \
     src/fortran/fremf2.f \
-    src/fortran/dcube.f \
-    src/fortran/fcube.f \
     src/fortran/bfgsd.f \
-    src/fortran/fcomp1.f \
-    src/fortran/fmulb1.f \
     src/fortran/n1fc1o.f \
     src/fortran/relvar.f \
     src/fortran/satur.f \
-    src/fortran/strang.f \
-    src/fortran/fmc11a.f \
-    src/fortran/fmani1.f \
-    src/fortran/fmc11e.f \
     src/fortran/zqnbd.f \
     src/fortran/ajour.f \
     src/fortran/qnbd.f \
     src/fortran/nlis0.f \
     src/fortran/nlis2.f \
-    src/fortran/n1qn2.f \
     src/fortran/majz.f \
     src/fortran/n1qn3a.f \
     src/fortran/frdf1.f \
     src/fortran/icse1.f \
     src/fortran/ctonb.f \
-    src/fortran/icscof.f \
-    src/fortran/fmlag1.f \
     src/fortran/n1fc1.f \
     src/fortran/ffinf1.f \
     src/fortran/ctcab.f \
-    src/fortran/n1gc2b.f \
     src/fortran/fprf2.f \
     src/fortran/icse.f \
     src/fortran/rlbd.f \
@@ -770,7 +740,6 @@ OPTIMIZATION_FORTRAN_SOURCES = \
     src/fortran/calbx.f \
     src/fortran/rednor.f \
     src/fortran/zgcbd.f \
-    src/fortran/writebuf.f \
     src/fortran/qpgen1sci.f \
     src/fortran/rdmps1.f \
     src/fortran/rdmpsz.f
@@ -1044,17 +1013,11 @@ src/fortran/gcbd.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/qpgen2.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/n1qn2a.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/fuclid.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/fmc11b.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ql0001.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/shanph.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/fajc1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/majysa.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1068,13 +1031,7 @@ src/fortran/n1qn1a.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/n1qn3.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/fmc11z.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/icse0.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/icse2.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/fmuls1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/icsec2.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1082,39 +1039,19 @@ src/fortran/gcp.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/n1fc1a.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/n1gc2.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/proj.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/n1gc2a.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ddd2.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/fremf2.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dcube.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/fcube.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/bfgsd.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/fcomp1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/fmulb1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/n1fc1o.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/relvar.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/satur.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/strang.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/fmc11a.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/fmani1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/fmc11e.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/zqnbd.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1126,8 +1063,6 @@ src/fortran/nlis0.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/nlis2.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/n1qn2.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/majz.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/n1qn3a.lo: src/fortran/$(am__dirstamp) \
@@ -1138,17 +1073,11 @@ src/fortran/icse1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ctonb.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/icscof.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/fmlag1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/n1fc1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ffinf1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ctcab.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/n1gc2b.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/fprf2.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1163,8 +1092,6 @@ src/fortran/calbx.lo: src/fortran/$(am__dirstamp) \
 src/fortran/rednor.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/zgcbd.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/writebuf.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/qpgen1sci.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

@@ -173,10 +173,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscilinear_algebra_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = src/fortran/DGELSY1.lo src/fortran/ZGELSY1.lo \
-	src/fortran/find.lo
-am__objects_2 = src/c/libscilinear_algebra_algo_la-schurtable.lo \
-	src/c/libscilinear_algebra_algo_la-lu.lo \
+am__objects_1 = src/fortran/DGELSY1.lo src/fortran/ZGELSY1.lo
+am__objects_2 = src/c/libscilinear_algebra_algo_la-lu.lo \
 	src/c/libscilinear_algebra_algo_la-qr.lo \
 	src/c/libscilinear_algebra_algo_la-hess.lo \
 	src/c/libscilinear_algebra_algo_la-eigen.lo \
@@ -269,7 +267,6 @@ am__depfiles_remade = sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-assembleEi
 	src/c/$(DEPDIR)/libscilinear_algebra_algo_la-norm.Plo \
 	src/c/$(DEPDIR)/libscilinear_algebra_algo_la-qr.Plo \
 	src/c/$(DEPDIR)/libscilinear_algebra_algo_la-rcond.Plo \
-	src/c/$(DEPDIR)/libscilinear_algebra_algo_la-schurtable.Plo \
 	src/c/$(DEPDIR)/libscilinear_algebra_algo_la-svd.Plo \
 	src/cpp/$(DEPDIR)/libscilinear_algebra_algo_la-schurSelect.Plo \
 	src/cpp/$(DEPDIR)/libscilinear_algebra_algo_la-scischur.Plo
@@ -712,7 +709,6 @@ LINEAR_ALGEBRA_CPP_SOURCES = \
     src/cpp/schurSelect.cpp
 
 LINEAR_ALGEBRA_C_SOURCES = \
-    src/c/schurtable.c \
     src/c/lu.c \
     src/c/qr.c \
     src/c/hess.c \
@@ -727,8 +723,7 @@ LINEAR_ALGEBRA_C_SOURCES = \
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = \
     src/fortran/DGELSY1.f \
-    src/fortran/ZGELSY1.f \
-    src/fortran/find.f
+    src/fortran/ZGELSY1.f
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/assembleEigenvectors.c \
@@ -957,16 +952,12 @@ src/fortran/DGELSY1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ZGELSY1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/find.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/c/$(am__dirstamp):
 	@$(MKDIR_P) src/c
 	@: > src/c/$(am__dirstamp)
 src/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/c/$(DEPDIR)
 	@: > src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscilinear_algebra_algo_la-schurtable.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscilinear_algebra_algo_la-lu.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscilinear_algebra_algo_la-qr.lo: src/c/$(am__dirstamp) \
@@ -1112,7 +1103,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscilinear_algebra_algo_la-norm.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscilinear_algebra_algo_la-qr.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscilinear_algebra_algo_la-rcond.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscilinear_algebra_algo_la-schurtable.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscilinear_algebra_algo_la-svd.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscilinear_algebra_algo_la-schurSelect.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscilinear_algebra_algo_la-scischur.Plo@am__quote@ # am--include-marker
@@ -1146,13 +1136,6 @@ am--depfiles: $(am__depfiles_remade)
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
-
-src/c/libscilinear_algebra_algo_la-schurtable.lo: src/c/schurtable.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscilinear_algebra_algo_la-schurtable.lo -MD -MP -MF src/c/$(DEPDIR)/libscilinear_algebra_algo_la-schurtable.Tpo -c -o src/c/libscilinear_algebra_algo_la-schurtable.lo `test -f 'src/c/schurtable.c' || echo '$(srcdir)/'`src/c/schurtable.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscilinear_algebra_algo_la-schurtable.Tpo src/c/$(DEPDIR)/libscilinear_algebra_algo_la-schurtable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/schurtable.c' object='src/c/libscilinear_algebra_algo_la-schurtable.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscilinear_algebra_algo_la-schurtable.lo `test -f 'src/c/schurtable.c' || echo '$(srcdir)/'`src/c/schurtable.c
 
 src/c/libscilinear_algebra_algo_la-lu.lo: src/c/lu.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscilinear_algebra_algo_la-lu.lo -MD -MP -MF src/c/$(DEPDIR)/libscilinear_algebra_algo_la-lu.Tpo -c -o src/c/libscilinear_algebra_algo_la-lu.lo `test -f 'src/c/lu.c' || echo '$(srcdir)/'`src/c/lu.c
@@ -1615,7 +1598,6 @@ distclean: distclean-am
 	-rm -f src/c/$(DEPDIR)/libscilinear_algebra_algo_la-norm.Plo
 	-rm -f src/c/$(DEPDIR)/libscilinear_algebra_algo_la-qr.Plo
 	-rm -f src/c/$(DEPDIR)/libscilinear_algebra_algo_la-rcond.Plo
-	-rm -f src/c/$(DEPDIR)/libscilinear_algebra_algo_la-schurtable.Plo
 	-rm -f src/c/$(DEPDIR)/libscilinear_algebra_algo_la-svd.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscilinear_algebra_algo_la-schurSelect.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscilinear_algebra_algo_la-scischur.Plo
@@ -1693,7 +1675,6 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/$(DEPDIR)/libscilinear_algebra_algo_la-norm.Plo
 	-rm -f src/c/$(DEPDIR)/libscilinear_algebra_algo_la-qr.Plo
 	-rm -f src/c/$(DEPDIR)/libscilinear_algebra_algo_la-rcond.Plo
-	-rm -f src/c/$(DEPDIR)/libscilinear_algebra_algo_la-schurtable.Plo
 	-rm -f src/c/$(DEPDIR)/libscilinear_algebra_algo_la-svd.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscilinear_algebra_algo_la-schurSelect.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscilinear_algebra_algo_la-scischur.Plo

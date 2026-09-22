@@ -39,9 +39,6 @@
     <ClCompile Include="ctonb.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dcube.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ddd2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,15 +60,6 @@
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-optim.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fajc1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fcomp1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fcube.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="minpack\fdjac1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -79,30 +67,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ffinf1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fmani1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fmc11a.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fmc11b.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fmc11e.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fmc11z.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fmlag1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fmulb1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fmuls1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="fprf2.c">
@@ -135,13 +99,7 @@
     <ClCompile Include="minpack\hybrj1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="icscof.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="icse.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="icse0.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="icse1.c">
@@ -183,25 +141,10 @@
     <ClCompile Include="n1fc1o.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="n1gc2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="n1gc2a.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="n1gc2b.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="n1qn1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="n1qn1a.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="n1qn2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="n1qn2a.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="n1qn3.c">
@@ -267,12 +210,6 @@
     <ClCompile Include="shanph.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="strang.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="writebuf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="zgcbd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -299,9 +236,6 @@
     <f2c_rule Include="ctonb.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="dcube.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="ddd2.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -323,15 +257,6 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\Ex-optim.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="fajc1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="fcomp1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="fcube.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="minpack\fdjac1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -339,30 +264,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="ffinf1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="fmani1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="fmc11a.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="fmc11b.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="fmc11e.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="fmc11z.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="fmlag1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="fmulb1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="fmuls1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="fprf2.f">
@@ -395,13 +296,7 @@
     <f2c_rule Include="minpack\hybrj1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="icscof.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="icse.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="icse0.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="icse1.f">
@@ -443,25 +338,10 @@
     <f2c_rule Include="n1fc1o.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="n1gc2.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="n1gc2a.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="n1gc2b.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="n1qn1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="n1qn1a.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="n1qn2.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="n1qn2a.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="n1qn3.f">
@@ -525,12 +405,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="shanph.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="strang.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="writebuf.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="zgcbd.f">

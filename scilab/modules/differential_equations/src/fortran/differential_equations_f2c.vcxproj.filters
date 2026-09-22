@@ -147,9 +147,6 @@
     <ClCompile Include="rchek.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rchek2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="rkf45.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -160,18 +157,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="roots.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="roots2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rscar1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rscma1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rscom1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="solsy.c">
@@ -186,15 +171,6 @@
     <ClCompile Include="stodi.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="svcar1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="svcma1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="svcom1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="twodq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -204,16 +180,7 @@
     <ClCompile Include="vnorm.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="writbufode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="xerrwv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="xsetf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="xsetun.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ddaskr.c">
@@ -347,9 +314,6 @@
     <f2c_rule Include="rchek.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="rchek2.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="rkf45.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -360,18 +324,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="roots.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="roots2.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="rscar1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="rscma1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="rscom1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="solsy.f">
@@ -386,15 +338,6 @@
     <f2c_rule Include="stodi.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="svcar1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="svcma1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="svcom1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="twodq.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -404,16 +347,7 @@
     <f2c_rule Include="vnorm.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="writbufode.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="xerrwv.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="xsetf.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="xsetun.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="ddaskr.f">

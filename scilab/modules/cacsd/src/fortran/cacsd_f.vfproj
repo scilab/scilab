@@ -81,7 +81,6 @@
 			<File RelativePath=".\dzdivq.f"/>
 			<File RelativePath=".\expan.f"/>
 			<File RelativePath=".\feq.f"/>
-			<File RelativePath=".\fout.f"/>
 			<File RelativePath=".\front.f"/>
 			<File RelativePath=".\giv.f"/>
 			<File RelativePath=".\hessl2.f"/>

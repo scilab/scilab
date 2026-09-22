@@ -56,9 +56,6 @@
     <ClCompile Include="rcond.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="schurtable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="svd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -100,9 +97,6 @@
     </None>
     <None Include="..\..\locales\linear_algebra.pot">
       <Filter>localization</Filter>
-    </None>
-    <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="core_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>

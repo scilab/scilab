@@ -403,7 +403,6 @@ cd ..
     <ClCompile Include="calmaj.c" />
     <ClCompile Include="ctcab.c" />
     <ClCompile Include="ctonb.c" />
-    <ClCompile Include="dcube.c" />
     <ClCompile Include="ddd2.c" />
     <ClCompile Include="minpack\dogleg.c" />
     <ClCompile Include="minpack\dpmpar.c" />
@@ -411,20 +410,9 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-fsolve.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-lsqrsolve.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-optim.c" />
-    <ClCompile Include="fajc1.c" />
-    <ClCompile Include="fcomp1.c" />
-    <ClCompile Include="fcube.c" />
     <ClCompile Include="minpack\fdjac1.c" />
     <ClCompile Include="minpack\fdjac2.c" />
     <ClCompile Include="ffinf1.c" />
-    <ClCompile Include="fmani1.c" />
-    <ClCompile Include="fmc11a.c" />
-    <ClCompile Include="fmc11b.c" />
-    <ClCompile Include="fmc11e.c" />
-    <ClCompile Include="fmc11z.c" />
-    <ClCompile Include="fmlag1.c" />
-    <ClCompile Include="fmulb1.c" />
-    <ClCompile Include="fmuls1.c" />
     <ClCompile Include="fprf2.c" />
     <ClCompile Include="frdf1.c" />
     <ClCompile Include="fremf2.c" />
@@ -435,9 +423,7 @@ cd ..
     <ClCompile Include="minpack\hybrd1.c" />
     <ClCompile Include="minpack\hybrj.c" />
     <ClCompile Include="minpack\hybrj1.c" />
-    <ClCompile Include="icscof.c" />
     <ClCompile Include="icse.c" />
-    <ClCompile Include="icse0.c" />
     <ClCompile Include="icse1.c" />
     <ClCompile Include="icse2.c" />
     <ClCompile Include="icsec2.c" />
@@ -451,13 +437,8 @@ cd ..
     <ClCompile Include="n1fc1.c" />
     <ClCompile Include="n1fc1a.c" />
     <ClCompile Include="n1fc1o.c" />
-    <ClCompile Include="n1gc2.c" />
-    <ClCompile Include="n1gc2a.c" />
-    <ClCompile Include="n1gc2b.c" />
     <ClCompile Include="n1qn1.c" />
     <ClCompile Include="n1qn1a.c" />
-    <ClCompile Include="n1qn2.c" />
-    <ClCompile Include="n1qn2a.c" />
     <ClCompile Include="n1qn3.c" />
     <ClCompile Include="n1qn3a.c" />
     <ClCompile Include="nlis0.c" />
@@ -479,8 +460,6 @@ cd ..
     <ClCompile Include="rlbd.c" />
     <ClCompile Include="satur.c" />
     <ClCompile Include="shanph.c" />
-    <ClCompile Include="strang.c" />
-    <ClCompile Include="writebuf.c" />
     <ClCompile Include="zgcbd.c" />
     <ClCompile Include="zqnbd.c" />
   </ItemGroup>
@@ -491,7 +470,6 @@ cd ..
     <f2c_rule Include="calmaj.f" />
     <f2c_rule Include="ctcab.f" />
     <f2c_rule Include="ctonb.f" />
-    <f2c_rule Include="dcube.f" />
     <f2c_rule Include="ddd2.f" />
     <f2c_rule Include="minpack\dogleg.f" />
     <f2c_rule Include="minpack\dpmpar.f" />
@@ -499,20 +477,9 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\Ex-fsolve.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\Ex-lsqrsolve.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\Ex-optim.f" />
-    <f2c_rule Include="fajc1.f" />
-    <f2c_rule Include="fcomp1.f" />
-    <f2c_rule Include="fcube.f" />
     <f2c_rule Include="minpack\fdjac1.f" />
     <f2c_rule Include="minpack\fdjac2.f" />
     <f2c_rule Include="ffinf1.f" />
-    <f2c_rule Include="fmani1.f" />
-    <f2c_rule Include="fmc11a.f" />
-    <f2c_rule Include="fmc11b.f" />
-    <f2c_rule Include="fmc11e.f" />
-    <f2c_rule Include="fmc11z.f" />
-    <f2c_rule Include="fmlag1.f" />
-    <f2c_rule Include="fmulb1.f" />
-    <f2c_rule Include="fmuls1.f" />
     <f2c_rule Include="fprf2.f" />
     <f2c_rule Include="frdf1.f" />
     <f2c_rule Include="fremf2.f" />
@@ -523,9 +490,7 @@ cd ..
     <f2c_rule Include="minpack\hybrd1.f" />
     <f2c_rule Include="minpack\hybrj.f" />
     <f2c_rule Include="minpack\hybrj1.f" />
-    <f2c_rule Include="icscof.f" />
     <f2c_rule Include="icse.f" />
-    <f2c_rule Include="icse0.f" />
     <f2c_rule Include="icse1.f" />
     <f2c_rule Include="icse2.f" />
     <f2c_rule Include="icsec2.f" />
@@ -539,13 +504,8 @@ cd ..
     <f2c_rule Include="n1fc1.f" />
     <f2c_rule Include="n1fc1a.f" />
     <f2c_rule Include="n1fc1o.f" />
-    <f2c_rule Include="n1gc2.f" />
-    <f2c_rule Include="n1gc2a.f" />
-    <f2c_rule Include="n1gc2b.f" />
     <f2c_rule Include="n1qn1.f" />
     <f2c_rule Include="n1qn1a.f" />
-    <f2c_rule Include="n1qn2.f" />
-    <f2c_rule Include="n1qn2a.f" />
     <f2c_rule Include="n1qn3.f" />
     <f2c_rule Include="n1qn3a.f" />
     <f2c_rule Include="nlis0.f" />
@@ -567,8 +527,6 @@ cd ..
     <f2c_rule Include="rlbd.f" />
     <f2c_rule Include="satur.f" />
     <f2c_rule Include="shanph.f" />
-    <f2c_rule Include="strang.f" />
-    <f2c_rule Include="writebuf.f" />
     <f2c_rule Include="zgcbd.f" />
     <f2c_rule Include="zqnbd.f" />
   </ItemGroup>

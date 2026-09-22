@@ -25,14 +25,6 @@
 #include "schur.h"
 
 /***********************************
-* Search Table for fschur
-***********************************/
-
-#define ARGS_fschur int*,double *,double*,double*,double*
-typedef int * (*fschurf)(ARGS_fschur);
-
-
-/***********************************
 * Search Table for gshsel
 ***********************************/
 
@@ -46,16 +38,6 @@ typedef int * (*gshself)(ARGS_gshsel);
 #define ARGS_gzhsel doublecmplx *,doublecmplx *
 typedef int * (*gzhself)(ARGS_gzhsel);
 
-/**************** fschur ***************/
-extern void C2F(folhp)(ARGS_fschur);
-extern void C2F(find)(ARGS_fschur);
-
-FTAB FTab_fschur[] =
-{
-    {"find", (voidf)  C2F(find)},
-    {"folhp", (voidf)  C2F(folhp)},
-    {(char *) 0, (voidf) 0}
-};
 /**************** gshsel ***************/
 extern void C2F(sb02ow)(ARGS_gshsel);
 extern void C2F(sb02ox)(ARGS_gshsel);
@@ -209,37 +191,3 @@ void C2F(setgzhsel)(int *len, char *name, int *rep)
         gzhselfonc = (gzhself) GetFunctionByName(name, rep, FTab_gzhsel);
     }
 }
-
-/***********************************
-* Search Table for schur uses : fschur
-***********************************/
-
-/** the current function fixed by setsolvf **/
-
-static fschurf fschurfonc ;
-
-/** function call : fschur  **/
-
-int *C2F(fschur)(int *lsize, double *alpha, double *beta, double *s, double *p)
-{
-    return ((*fschurfonc)(lsize, alpha, beta, s, p));
-}
-
-/** fixes the function associated to name **/
-
-void C2F(setfschur)(char *name, int *rep)
-{
-    if (strncmp(name, "c", 1) == 0 || strncmp(name, "cont", 4) == 0 )
-    {
-        fschurfonc = (fschurf) GetFunctionByName("folhp", rep, FTab_fschur);
-    }
-    else if (strncmp(name, "d", 1) == 0 || strncmp(name, "disc", 4) == 0 )
-    {
-        fschurfonc = (fschurf) GetFunctionByName("find", rep, FTab_fschur);
-    }
-    else
-    {
-        fschurfonc = (fschurf) GetFunctionByName(name, rep, FTab_fschur);
-    }
-}
-

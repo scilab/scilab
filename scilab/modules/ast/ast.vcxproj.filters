@@ -520,9 +520,6 @@
     <ClInclude Include="includes\operations\operations_tools.h">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
-    <ClInclude Include="includes\operations\operation_f.h">
-      <Filter>Header Files\operations</Filter>
-    </ClInclude>
     <ClInclude Include="includes\operations\types_addition.hxx">
       <Filter>Header Files\operations</Filter>
     </ClInclude>

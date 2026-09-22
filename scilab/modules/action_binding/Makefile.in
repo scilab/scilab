@@ -736,8 +736,9 @@ libsciaction_binding_algo_la_CPPFLAGS = $(libsciaction_binding_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(ACTION_BINDING_CPP_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libsciaction_binding_la_CPPFLAGS)
-libsciaction_binding_la_LIBADD = libsciaction_binding-algo.la
 
+# Never link libscicore here to avoid core symbols duplication (resolved at load time).
+libsciaction_binding_la_LIBADD = libsciaction_binding-algo.la
 
 #### Name of the module and the path ######
 modulename = action_binding

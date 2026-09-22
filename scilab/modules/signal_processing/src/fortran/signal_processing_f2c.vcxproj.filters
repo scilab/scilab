@@ -33,25 +33,16 @@
     <ClCompile Include="bounn.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cheby.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cmpse2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cmpse3.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="coeft.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="compel.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="degree.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="deli1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="deli11.c">
@@ -117,19 +108,7 @@
     <ClCompile Include="fft842.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="filbut.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="freque.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gee.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hammin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ino.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="nstabl.c">
@@ -139,9 +118,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="parcha.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="poles.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="r2tx.c">
@@ -162,16 +138,7 @@
     <ClCompile Include="rpem.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sn.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="snell.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="syredi.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tg02ad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tranpo.c">
@@ -209,25 +176,16 @@
     <f2c_rule Include="bounn.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="cheby.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="cmpse2.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="cmpse3.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="coeft.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="compel.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="degree.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="deli1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="deli11.f">
@@ -293,19 +251,7 @@
     <f2c_rule Include="fft842.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="filbut.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="freque.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="gee.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="hammin.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="ino.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="nstabl.f">
@@ -315,9 +261,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="parcha.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="poles.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="r2tx.f">
@@ -338,16 +281,7 @@
     <f2c_rule Include="rpem.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="sn.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="snell.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="syredi.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="tg02ad.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="tranpo.f">

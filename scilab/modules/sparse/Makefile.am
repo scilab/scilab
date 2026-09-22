@@ -13,10 +13,8 @@ SPARSE_C_SOURCES = \
     src/c/spSolve.c
 
 SPARSE_FORTRAN_SOURCES = \
-    src/fortran/isort1.f \
     src/fortran/spt.f \
     src/fortran/sz2ptr.f \
-    src/fortran/spreshape.f \
     src/fortran/ordmmd.f \
 	src/fortran/blkfc1.f \
 	src/fortran/blkfct.f \

@@ -387,17 +387,14 @@ cd ..
   <ItemGroup>
     <ClCompile Include="common_f2c.c" />
     <ClCompile Include="DGELSY1.c" />
-    <ClCompile Include="find.c" />
     <ClCompile Include="ZGELSY1.c" />
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="DGELSY1.f" />
-    <f2c_rule Include="find.f" />
     <f2c_rule Include="ZGELSY1.f" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
-    <None Include="Core_f_Import.def" />
     <None Include="elementary_functions_f_Import.def" />
     <None Include="elementary_functions_Import.def" />
     <None Include="core_import.def" />

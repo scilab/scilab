@@ -80,28 +80,6 @@ LINEAR_ALGEBRA_IMPEXP void C2F(setgshsel)(int *len, char *name, int *rep);
 
 
 /***********************************
-* Search Table for schur uses : fschur
-***********************************/
-
-/**
- * @TODO : add comment
- *
- * @param alpha
- * @param beta
- * @return <ReturnValue>
- */
-LINEAR_ALGEBRA_IMPEXP int *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta);
-
-/**
- *  fixes the function associated to name
- *
- * @param len
- * @param name
- * @param rep
- */
-LINEAR_ALGEBRA_IMPEXP void C2F(setgzhsel)(int *len, char *name, int *rep);
-
-/***********************************
 * Search Table for gschur uses : gzhsel
 ***********************************/
 /**
@@ -142,31 +120,6 @@ LINEAR_ALGEBRA_IMPEXP int *C2F(zchsel)(doublecmplx *alpha);
  * @param rep
  */
 LINEAR_ALGEBRA_IMPEXP void C2F(setzchsel)(int *len, char *name, int *rep);
-
-/***********************************
-* Search Table for schur uses : fschur
-***********************************/
-
-/**
- * @TODO add comment
- *
- * @param lsize
- * @param alpha
- * @param beta
- * @param s
- * @param p
- * @return <ReturnValue>
- */
-LINEAR_ALGEBRA_IMPEXP int *C2F(fschur)(int *lsize, double *alpha, double *beta, double *s, double *p);
-
-/**
- *  fixes the function associated to name
- *
- * @param name
- * @param rep
- */
-LINEAR_ALGEBRA_IMPEXP void C2F(setfschur)(char *name, int *rep);
-
 
 
 /***********************************

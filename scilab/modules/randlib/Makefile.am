@@ -30,7 +30,6 @@ RANDLIB_FORTRAN_SOURCES = \
     src/fortran/phrtsd.f \
     src/fortran/ignnbn.f \
     src/fortran/genf.f \
-    src/fortran/genunf.f \
     src/fortran/genexp.f \
     src/fortran/genmul.f \
     src/fortran/genprm.f \

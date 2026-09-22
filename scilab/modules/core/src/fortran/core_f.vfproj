@@ -65,8 +65,6 @@
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 			<File RelativePath=".\backspaceinter.f"/>
 			<File RelativePath="clunit.f"/>
-			<File RelativePath="expsum.f"/>
-			<File RelativePath="folhp.f"/>
 			<File RelativePath=".\read_inter.f"/>
 			<File RelativePath=".\readinter.f"/>
 			<File RelativePath=".\rewindinter.f"/>

@@ -19,14 +19,11 @@ SIGNAL_PROCESSING_FORTRAN_SOURCES = \
     src/fortran/tranze.f \
     src/fortran/tscccf.f \
     src/fortran/dsn2.f \
-    src/fortran/hammin.f \
     src/fortran/bounn.f \
     src/fortran/nstabl.f \
-    src/fortran/ino.f \
     src/fortran/desia.f \
     src/fortran/desi11.f \
     src/fortran/cmpse3.f \
-    src/fortran/cheby.f \
     src/fortran/trbize.f \
     src/fortran/r2tx.f \
     src/fortran/deli2.f \
@@ -36,35 +33,27 @@ SIGNAL_PROCESSING_FORTRAN_SOURCES = \
     src/fortran/r8tx.f \
     src/fortran/deli11.f \
     src/fortran/compel.f \
-    src/fortran/filbut.f \
     src/fortran/desi01.f \
     src/fortran/desi22.f \
     src/fortran/amell.f \
     src/fortran/desi24.f \
     src/fortran/dellk.f \
     src/fortran/syredi.f \
-    src/fortran/coeft.f \
     src/fortran/tranpo.f \
     src/fortran/blnumz.f \
-    src/fortran/sn.f \
     src/fortran/bldenz.f \
     src/fortran/desib.f \
-    src/fortran/freque.f \
     src/fortran/desi12.f \
     src/fortran/cmpse2.f \
     src/fortran/desi14.f \
     src/fortran/delip.f \
-    src/fortran/deli1.f \
     src/fortran/trbipo.f \
     src/fortran/rpem.f \
     src/fortran/dfft2.f \
     src/fortran/dgee01.f \
     src/fortran/romeg.f \
-    src/fortran/snell.f \
     src/fortran/fft842.f \
-    src/fortran/tg02ad.f \
     src/fortran/remez.f \
-    src/fortran/poles.f \
     src/fortran/desi00.f \
     src/fortran/desi21.f \
     src/fortran/dfftmx.f\

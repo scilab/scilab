@@ -81,9 +81,6 @@
     <ClCompile Include="..\ib01rd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\inva.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\ma02ad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -402,9 +399,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\ib01rd.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\inva.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\ma02ad.f">

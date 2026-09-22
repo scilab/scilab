@@ -189,24 +189,19 @@ am__v_lt_1 =
 libscielementary_functions_algo_la_LIBADD =
 am__objects_1 = src/fortran/slatec/zwrsk.lo \
 	src/fortran/slatec/d9b0mp.lo src/fortran/slatec/d9b1mp.lo \
-	src/fortran/slatec/d9knus.lo src/fortran/slatec/d9lgmc.lo \
-	src/fortran/slatec/dasyik.lo src/fortran/slatec/dasyjy.lo \
-	src/fortran/slatec/dbdiff.lo src/fortran/slatec/dbesi0.lo \
+	src/fortran/slatec/d9lgmc.lo src/fortran/slatec/dasyik.lo \
+	src/fortran/slatec/dasyjy.lo src/fortran/slatec/dbesi0.lo \
 	src/fortran/slatec/dbesi1.lo src/fortran/slatec/dbesi.lo \
 	src/fortran/slatec/dbesj0.lo src/fortran/slatec/dbesj1.lo \
 	src/fortran/slatec/dbesj.lo src/fortran/slatec/dbesk0.lo \
 	src/fortran/slatec/dbesk1.lo src/fortran/slatec/dbesk.lo \
 	src/fortran/slatec/dbesy0.lo src/fortran/slatec/dbesy1.lo \
-	src/fortran/slatec/dbesy.lo src/fortran/slatec/dbkias.lo \
-	src/fortran/slatec/dbkisr.lo src/fortran/slatec/dbsi0e.lo \
+	src/fortran/slatec/dbesy.lo src/fortran/slatec/dbsi0e.lo \
 	src/fortran/slatec/dbsi1e.lo src/fortran/slatec/dbsk0e.lo \
-	src/fortran/slatec/dbsk1e.lo src/fortran/slatec/dbskes.lo \
-	src/fortran/slatec/dbskin.lo src/fortran/slatec/dbsknu.lo \
+	src/fortran/slatec/dbsk1e.lo src/fortran/slatec/dbsknu.lo \
 	src/fortran/slatec/dbsynu.lo src/fortran/slatec/dcsevl.lo \
-	src/fortran/slatec/dexint.lo src/fortran/slatec/dgamlm.lo \
-	src/fortran/slatec/dgamln.lo src/fortran/slatec/dgamma.lo \
-	src/fortran/slatec/dgamrn.lo src/fortran/slatec/dhkseq.lo \
-	src/fortran/slatec/djairy.lo src/fortran/slatec/dpsixn.lo \
+	src/fortran/slatec/dgamlm.lo src/fortran/slatec/dgamln.lo \
+	src/fortran/slatec/dgamma.lo src/fortran/slatec/djairy.lo \
 	src/fortran/slatec/dxlegf.lo src/fortran/slatec/dyairy.lo \
 	src/fortran/slatec/fdump.lo src/fortran/slatec/gamma.lo \
 	src/fortran/slatec/initds.lo src/fortran/slatec/j4save.lo \
@@ -277,52 +272,32 @@ am__objects_3 = src/c/libscielementary_functions_algo_la-finite.lo \
 	src/c/libscielementary_functions_algo_la-issymmetric.lo
 am__objects_4 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/wwdiv.lo src/fortran/wdotcr.lo src/fortran/iset.lo \
-	src/fortran/franck.lo src/fortran/dwpowe.lo \
-	src/fortran/rcsort.lo src/fortran/wddiv.lo \
 	src/fortran/lnblnk.lo src/fortran/entier.lo \
 	src/fortran/round.lo src/fortran/cortr.lo \
 	src/fortran/simple.lo src/fortran/eispack_split.lo \
-	src/fortran/wdrdiv.lo src/fortran/imcopy.lo \
-	src/fortran/cbal.lo src/fortran/dsum.lo src/fortran/urand.lo \
-	src/fortran/intp.lo src/fortran/watan.lo src/fortran/wipowe.lo \
-	src/fortran/wacos.lo src/fortran/wdpow1.lo \
+	src/fortran/cbal.lo src/fortran/urand.lo src/fortran/intp.lo \
+	src/fortran/watan.lo src/fortran/wacos.lo \
 	src/fortran/dlgama.lo src/fortran/exch.lo src/fortran/wsign.lo \
-	src/fortran/kronr.lo src/fortran/wrscal.lo \
-	src/fortran/dmmul1.lo src/fortran/dwpow.lo \
+	src/fortran/wrscal.lo src/fortran/dmmul1.lo \
 	src/fortran/wmmul.lo src/fortran/ddif.lo src/fortran/wdiv.lo \
-	src/fortran/wtan.lo src/fortran/ddpow.lo src/fortran/magic.lo \
-	src/fortran/wcerr.lo src/fortran/ivimp.lo src/fortran/dadd.lo \
-	src/fortran/isort.lo src/fortran/hilber.lo \
-	src/fortran/wdpowe.lo src/fortran/wmprod.lo \
-	src/fortran/wscal.lo src/fortran/dlblks.lo \
-	src/fortran/kronc.lo src/fortran/ddrdiv.lo \
-	src/fortran/dipow.lo src/fortran/wshrsl.lo \
+	src/fortran/wcerr.lo src/fortran/dadd.lo src/fortran/isort.lo \
+	src/fortran/wscal.lo src/fortran/wshrsl.lo \
 	src/fortran/wwrdiv.lo src/fortran/coshin.lo \
-	src/fortran/iwamax.lo src/fortran/dipowe.lo \
-	src/fortran/cusum.lo src/fortran/d1mach.lo \
-	src/fortran/wbdiag.lo src/fortran/ddpow1.lo \
-	src/fortran/vpythag.lo src/fortran/isova0.lo \
-	src/fortran/wswap.lo src/fortran/wwpow1.lo \
-	src/fortran/gdcp2i.lo src/fortran/drdiv.lo \
-	src/fortran/wmsum.lo src/fortran/corth.lo src/fortran/mtran.lo \
-	src/fortran/wwpow.lo src/fortran/dvmul.lo \
-	src/fortran/wclmat.lo src/fortran/dsort.lo src/fortran/cerr.lo \
-	src/fortran/rcopy.lo src/fortran/wdpow.lo \
-	src/fortran/orthes.lo src/fortran/waxpy.lo src/fortran/coef.lo \
-	src/fortran/dwdiv.lo src/fortran/arcosh.lo \
+	src/fortran/iwamax.lo src/fortran/cusum.lo \
+	src/fortran/d1mach.lo src/fortran/wbdiag.lo \
+	src/fortran/gdcp2i.lo src/fortran/corth.lo \
+	src/fortran/mtran.lo src/fortran/wclmat.lo \
+	src/fortran/dsort.lo src/fortran/cerr.lo src/fortran/orthes.lo \
+	src/fortran/waxpy.lo src/fortran/coef.lo src/fortran/arcosh.lo \
 	src/fortran/wasin.lo src/fortran/wexpm1.lo \
-	src/fortran/ddpowe.lo src/fortran/dmprod.lo \
-	src/fortran/wwpowe.lo src/fortran/wdotci.lo \
-	src/fortran/dmcopy.lo src/fortran/wexchn.lo \
-	src/fortran/isoval.lo src/fortran/dwrdiv.lo \
-	src/fortran/wipow.lo src/fortran/wlog.lo \
-	src/fortran/infinity.lo src/fortran/dwpow1.lo \
-	src/fortran/wmul.lo src/fortran/dad.lo src/fortran/dset.lo \
-	src/fortran/dtild.lo src/fortran/i1mach.lo \
+	src/fortran/wdotci.lo src/fortran/dmcopy.lo \
+	src/fortran/wexchn.lo src/fortran/wlog.lo \
+	src/fortran/infinity.lo src/fortran/wmul.lo src/fortran/dad.lo \
+	src/fortran/dset.lo src/fortran/dtild.lo src/fortran/i1mach.lo \
 	src/fortran/dclmat.lo src/fortran/ortran.lo \
-	src/fortran/bdiag.lo src/fortran/wvmul.lo src/fortran/dmmul.lo \
-	src/fortran/wsqrt.lo src/fortran/rat.lo \
-	src/fortran/old_pythag.lo src/fortran/danints.lo
+	src/fortran/bdiag.lo src/fortran/dmmul.lo src/fortran/wsqrt.lo \
+	src/fortran/rat.lo src/fortran/old_pythag.lo \
+	src/fortran/danints.lo
 am__objects_5 = src/cpp/libscielementary_functions_algo_la-getmode.lo \
 	src/cpp/libscielementary_functions_algo_la-cumsum.lo \
 	src/cpp/libscielementary_functions_algo_la-cumprod.lo \
@@ -1041,11 +1016,9 @@ SLATEC_SOURCES = \
     src/fortran/slatec/zwrsk.f \
     src/fortran/slatec/d9b0mp.f \
     src/fortran/slatec/d9b1mp.f \
-    src/fortran/slatec/d9knus.f \
     src/fortran/slatec/d9lgmc.f \
     src/fortran/slatec/dasyik.f \
     src/fortran/slatec/dasyjy.f \
-    src/fortran/slatec/dbdiff.f \
     src/fortran/slatec/dbesi0.f \
     src/fortran/slatec/dbesi1.f \
     src/fortran/slatec/dbesi.f \
@@ -1058,25 +1031,17 @@ SLATEC_SOURCES = \
     src/fortran/slatec/dbesy0.f \
     src/fortran/slatec/dbesy1.f \
     src/fortran/slatec/dbesy.f \
-    src/fortran/slatec/dbkias.f \
-    src/fortran/slatec/dbkisr.f \
     src/fortran/slatec/dbsi0e.f \
     src/fortran/slatec/dbsi1e.f \
     src/fortran/slatec/dbsk0e.f \
     src/fortran/slatec/dbsk1e.f \
-    src/fortran/slatec/dbskes.f \
-    src/fortran/slatec/dbskin.f \
     src/fortran/slatec/dbsknu.f \
     src/fortran/slatec/dbsynu.f \
     src/fortran/slatec/dcsevl.f \
-    src/fortran/slatec/dexint.f \
     src/fortran/slatec/dgamlm.f \
     src/fortran/slatec/dgamln.f \
     src/fortran/slatec/dgamma.f \
-    src/fortran/slatec/dgamrn.f \
-    src/fortran/slatec/dhkseq.f \
     src/fortran/slatec/djairy.f \
-    src/fortran/slatec/dpsixn.f \
     src/fortran/slatec/dxlegf.f \
     src/fortran/slatec/dyairy.f \
     src/fortran/slatec/fdump.f \
@@ -1148,95 +1113,53 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wwdiv.f \
     src/fortran/wdotcr.f \
     src/fortran/iset.f \
-    src/fortran/franck.f \
-    src/fortran/dwpowe.f \
-    src/fortran/rcsort.f \
-    src/fortran/wddiv.f \
     src/fortran/lnblnk.f \
     src/fortran/entier.f \
     src/fortran/round.f \
     src/fortran/cortr.f \
     src/fortran/simple.f \
     src/fortran/eispack_split.f \
-    src/fortran/wdrdiv.f \
-    src/fortran/imcopy.f \
     src/fortran/cbal.f \
-    src/fortran/dsum.f \
     src/fortran/urand.f \
     src/fortran/intp.f \
     src/fortran/watan.f \
-    src/fortran/wipowe.f \
     src/fortran/wacos.f \
-    src/fortran/wdpow1.f \
     src/fortran/dlgama.f \
     src/fortran/exch.f \
     src/fortran/wsign.f \
-    src/fortran/kronr.f \
     src/fortran/wrscal.f \
     src/fortran/dmmul1.f \
-    src/fortran/dwpow.f \
     src/fortran/wmmul.f \
     src/fortran/ddif.f \
     src/fortran/wdiv.f \
-    src/fortran/wtan.f \
-    src/fortran/ddpow.f \
-    src/fortran/magic.f \
     src/fortran/wcerr.f \
-    src/fortran/ivimp.f \
     src/fortran/dadd.f \
     src/fortran/isort.f \
-    src/fortran/hilber.f \
-    src/fortran/wdpowe.f \
-    src/fortran/wmprod.f \
     src/fortran/wscal.f \
-    src/fortran/dlblks.f \
-    src/fortran/kronc.f \
-    src/fortran/ddrdiv.f \
-    src/fortran/dipow.f \
     src/fortran/wshrsl.f \
     src/fortran/wwrdiv.f \
     src/fortran/coshin.f \
     src/fortran/iwamax.f \
-    src/fortran/dipowe.f \
     src/fortran/cusum.f \
     src/fortran/d1mach.f \
     src/fortran/wbdiag.f \
-    src/fortran/ddpow1.f \
-    src/fortran/vpythag.f \
-    src/fortran/isova0.f \
-    src/fortran/wswap.f \
-    src/fortran/wwpow1.f \
     src/fortran/gdcp2i.f \
-    src/fortran/drdiv.f \
-    src/fortran/wmsum.f \
     src/fortran/corth.f \
     src/fortran/mtran.f \
-    src/fortran/wwpow.f \
-    src/fortran/dvmul.f \
     src/fortran/wclmat.f \
     src/fortran/dsort.f \
     src/fortran/cerr.f \
-    src/fortran/rcopy.f \
-    src/fortran/wdpow.f \
     src/fortran/orthes.f \
     src/fortran/waxpy.f \
     src/fortran/coef.f \
-    src/fortran/dwdiv.f \
     src/fortran/arcosh.f \
     src/fortran/wasin.f \
     src/fortran/wexpm1.f \
-    src/fortran/ddpowe.f \
-    src/fortran/dmprod.f \
-    src/fortran/wwpowe.f \
     src/fortran/wdotci.f \
     src/fortran/dmcopy.f \
     src/fortran/wexchn.f \
-    src/fortran/isoval.f \
-    src/fortran/dwrdiv.f \
-    src/fortran/wipow.f \
     src/fortran/wlog.f \
     src/fortran/infinity.f \
-    src/fortran/dwpow1.f \
     src/fortran/wmul.f \
     src/fortran/dad.f \
     src/fortran/dset.f \
@@ -1245,7 +1168,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dclmat.f \
     src/fortran/ortran.f \
     src/fortran/bdiag.f \
-    src/fortran/wvmul.f \
     src/fortran/dmmul.f \
     src/fortran/wsqrt.f \
     src/fortran/rat.f \
@@ -1584,15 +1506,11 @@ src/fortran/slatec/d9b0mp.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/d9b1mp.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
-src/fortran/slatec/d9knus.lo: src/fortran/slatec/$(am__dirstamp) \
-	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/d9lgmc.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dasyik.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dasyjy.lo: src/fortran/slatec/$(am__dirstamp) \
-	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
-src/fortran/slatec/dbdiff.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dbesi0.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
@@ -1618,10 +1536,6 @@ src/fortran/slatec/dbesy1.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dbesy.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
-src/fortran/slatec/dbkias.lo: src/fortran/slatec/$(am__dirstamp) \
-	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
-src/fortran/slatec/dbkisr.lo: src/fortran/slatec/$(am__dirstamp) \
-	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dbsi0e.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dbsi1e.lo: src/fortran/slatec/$(am__dirstamp) \
@@ -1630,17 +1544,11 @@ src/fortran/slatec/dbsk0e.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dbsk1e.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
-src/fortran/slatec/dbskes.lo: src/fortran/slatec/$(am__dirstamp) \
-	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
-src/fortran/slatec/dbskin.lo: src/fortran/slatec/$(am__dirstamp) \
-	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dbsknu.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dbsynu.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dcsevl.lo: src/fortran/slatec/$(am__dirstamp) \
-	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
-src/fortran/slatec/dexint.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dgamlm.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
@@ -1648,13 +1556,7 @@ src/fortran/slatec/dgamln.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dgamma.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
-src/fortran/slatec/dgamrn.lo: src/fortran/slatec/$(am__dirstamp) \
-	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
-src/fortran/slatec/dhkseq.lo: src/fortran/slatec/$(am__dirstamp) \
-	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/djairy.lo: src/fortran/slatec/$(am__dirstamp) \
-	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
-src/fortran/slatec/dpsixn.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
 src/fortran/slatec/dxlegf.lo: src/fortran/slatec/$(am__dirstamp) \
 	src/fortran/slatec/$(DEPDIR)/$(am__dirstamp)
@@ -1862,14 +1764,6 @@ src/fortran/wdotcr.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/iset.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/franck.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dwpowe.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/rcsort.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wddiv.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/lnblnk.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/entier.lo: src/fortran/$(am__dirstamp) \
@@ -1882,13 +1776,7 @@ src/fortran/simple.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/eispack_split.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wdrdiv.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/imcopy.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/cbal.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dsum.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/urand.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1896,11 +1784,7 @@ src/fortran/intp.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/watan.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wipowe.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wacos.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wdpow1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dlgama.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1908,13 +1792,9 @@ src/fortran/exch.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wsign.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/kronr.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wrscal.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dmmul1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dwpow.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wmmul.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1922,35 +1802,13 @@ src/fortran/ddif.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wdiv.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wtan.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/ddpow.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/magic.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wcerr.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/ivimp.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dadd.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/isort.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/hilber.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wdpowe.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wmprod.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wscal.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dlblks.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/kronc.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/ddrdiv.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dipow.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wshrsl.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1960,37 +1818,17 @@ src/fortran/coshin.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/iwamax.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dipowe.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/cusum.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/d1mach.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wbdiag.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/ddpow1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/vpythag.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/isova0.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wswap.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wwpow1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/gdcp2i.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/drdiv.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wmsum.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/corth.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/mtran.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wwpow.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dvmul.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wclmat.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1998,17 +1836,11 @@ src/fortran/dsort.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/cerr.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/rcopy.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wdpow.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/orthes.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/waxpy.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/coef.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dwdiv.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/arcosh.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -2016,29 +1848,15 @@ src/fortran/wasin.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wexpm1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/ddpowe.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dmprod.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wwpowe.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wdotci.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dmcopy.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wexchn.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/isoval.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dwrdiv.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wipow.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wlog.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/infinity.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dwpow1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wmul.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -2055,8 +1873,6 @@ src/fortran/dclmat.lo: src/fortran/$(am__dirstamp) \
 src/fortran/ortran.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/bdiag.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wvmul.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dmmul.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

@@ -456,7 +456,6 @@ cd ..
     <ClCompile Include="dzdivq.c" />
     <ClCompile Include="expan.c" />
     <ClCompile Include="feq.c" />
-    <ClCompile Include="fout.c" />
     <ClCompile Include="front.c" />
     <ClCompile Include="giv.c" />
     <ClCompile Include="hessl2.c" />
@@ -494,7 +493,6 @@ cd ..
     <f2c_rule Include="dzdivq.f" />
     <f2c_rule Include="expan.f" />
     <f2c_rule Include="feq.f" />
-    <f2c_rule Include="fout.f" />
     <f2c_rule Include="front.f" />
     <f2c_rule Include="giv.f" />
     <f2c_rule Include="hessl2.f" />

@@ -198,33 +198,27 @@ am__objects_1 =  \
 	src/c/libscidifferential_equations_algo_la-Ex-daskr.lo \
 	src/c/libscidifferential_equations_algo_la-errmds.lo \
 	src/c/libscidifferential_equations_algo_la-externals_for_tests.lo
-am__objects_2 = src/fortran/rscar1.lo src/fortran/bcomp.lo \
-	src/fortran/lcomp.lo src/fortran/loren.lo src/fortran/prja.lo \
-	src/fortran/vnorm.lo src/fortran/lsoda.lo \
-	src/fortran/lsodar.lo src/fortran/ainvg.lo \
-	src/fortran/lsode.lo src/fortran/svcom1.lo \
-	src/fortran/dqk21.lo src/fortran/solsy.lo src/fortran/lsodi.lo \
+am__objects_2 = src/fortran/bcomp.lo src/fortran/lcomp.lo \
+	src/fortran/loren.lo src/fortran/prja.lo src/fortran/vnorm.lo \
+	src/fortran/lsoda.lo src/fortran/lsodar.lo \
+	src/fortran/ainvg.lo src/fortran/lsode.lo src/fortran/dqk21.lo \
+	src/fortran/solsy.lo src/fortran/lsodi.lo \
 	src/fortran/ddassl.lo src/fortran/dqpsrt.lo \
 	src/fortran/dqelg.lo src/fortran/cfode.lo \
-	src/fortran/rscma1.lo src/fortran/colnew.lo \
-	src/fortran/dcutet.lo src/fortran/xsetf.lo \
+	src/fortran/colnew.lo src/fortran/dcutet.lo \
 	src/fortran/dgbsl.lo src/fortran/rkf45.lo src/fortran/rchek.lo \
 	src/fortran/dqags.lo src/fortran/xerrwv.lo \
 	src/fortran/twodq.lo src/fortran/dqagse.lo \
 	src/fortran/greatr.lo src/fortran/hpdel.lo \
-	src/fortran/hpins.lo src/fortran/svcar1.lo \
-	src/fortran/rscom1.lo src/fortran/rksimp.lo \
+	src/fortran/hpins.lo src/fortran/rksimp.lo \
 	src/fortran/roots.lo src/fortran/stoda.lo src/fortran/bnorm.lo \
-	src/fortran/rchek2.lo src/fortran/stode.lo \
-	src/fortran/vmnorm.lo src/fortran/prepj.lo \
-	src/fortran/lsdisc.lo src/fortran/fnorm.lo \
-	src/fortran/ddasrt.lo src/fortran/ddaskr.lo \
-	src/fortran/daux.lo src/fortran/stodi.lo src/fortran/xsetun.lo \
+	src/fortran/stode.lo src/fortran/vmnorm.lo \
+	src/fortran/prepj.lo src/fortran/lsdisc.lo \
+	src/fortran/fnorm.lo src/fortran/ddasrt.lo \
+	src/fortran/ddaskr.lo src/fortran/daux.lo src/fortran/stodi.lo \
 	src/fortran/intdy.lo src/fortran/ewset.lo \
-	src/fortran/roots2.lo src/fortran/prepji.lo \
-	src/fortran/svcma1.lo src/fortran/lsrgk.lo \
-	src/fortran/odeint.lo src/fortran/rkqc.lo \
-	src/fortran/writbufode.lo
+	src/fortran/prepji.lo src/fortran/lsrgk.lo \
+	src/fortran/odeint.lo src/fortran/rkqc.lo
 am__objects_3 =  \
 	src/cpp/libscidifferential_equations_algo_la-scifunctions.lo \
 	src/cpp/libscidifferential_equations_algo_la-checkodeerror.lo \
@@ -1027,7 +1021,6 @@ DIFFERENTIAL_EQUATIONS_C_SOURCES = \
     src/c/externals_for_tests.c
 
 DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = \
-    src/fortran/rscar1.f \
     src/fortran/bcomp.f \
     src/fortran/lcomp.f \
     src/fortran/loren.f \
@@ -1037,7 +1030,6 @@ DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = \
     src/fortran/lsodar.f \
     src/fortran/ainvg.f \
     src/fortran/lsode.f \
-    src/fortran/svcom1.f \
     src/fortran/dqk21.f \
     src/fortran/solsy.f \
     src/fortran/lsodi.f \
@@ -1045,10 +1037,8 @@ DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = \
     src/fortran/dqpsrt.f \
     src/fortran/dqelg.f \
     src/fortran/cfode.f \
-    src/fortran/rscma1.f \
     src/fortran/colnew.f \
     src/fortran/dcutet.f \
-    src/fortran/xsetf.f \
     src/fortran/dgbsl.f \
     src/fortran/rkf45.f \
     src/fortran/rchek.f \
@@ -1059,13 +1049,10 @@ DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = \
     src/fortran/greatr.f \
     src/fortran/hpdel.f \
     src/fortran/hpins.f \
-    src/fortran/svcar1.f \
-    src/fortran/rscom1.f \
     src/fortran/rksimp.f \
     src/fortran/roots.f \
     src/fortran/stoda.f \
     src/fortran/bnorm.f \
-    src/fortran/rchek2.f \
     src/fortran/stode.f \
     src/fortran/vmnorm.f \
     src/fortran/prepj.f \
@@ -1075,16 +1062,12 @@ DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = \
     src/fortran/ddaskr.f \
     src/fortran/daux.f \
     src/fortran/stodi.f \
-    src/fortran/xsetun.f \
     src/fortran/intdy.f \
     src/fortran/ewset.f \
-    src/fortran/roots2.f \
     src/fortran/prepji.f \
-    src/fortran/svcma1.f \
     src/fortran/lsrgk.f \
     src/fortran/odeint.f \
-    src/fortran/rkqc.f \
-    src/fortran/writbufode.f
+    src/fortran/rkqc.f
 
 GATEWAY_FORTRAN_SOURCES = \
     sci_gateway/fortran/Ex-impl.f \
@@ -1534,8 +1517,6 @@ src/fortran/$(am__dirstamp):
 src/fortran/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/fortran/$(DEPDIR)
 	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/rscar1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/bcomp.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/lcomp.lo: src/fortran/$(am__dirstamp) \
@@ -1554,8 +1535,6 @@ src/fortran/ainvg.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/lsode.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/svcom1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dqk21.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/solsy.lo: src/fortran/$(am__dirstamp) \
@@ -1570,13 +1549,9 @@ src/fortran/dqelg.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/cfode.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/rscma1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/colnew.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dcutet.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/xsetf.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dgbsl.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1598,10 +1573,6 @@ src/fortran/hpdel.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/hpins.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/svcar1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/rscom1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/rksimp.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/roots.lo: src/fortran/$(am__dirstamp) \
@@ -1609,8 +1580,6 @@ src/fortran/roots.lo: src/fortran/$(am__dirstamp) \
 src/fortran/stoda.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/bnorm.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/rchek2.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/stode.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1630,25 +1599,17 @@ src/fortran/daux.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/stodi.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/xsetun.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/intdy.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ewset.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/roots2.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/prepji.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/svcma1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/lsrgk.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/odeint.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/rkqc.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/writbufode.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/cpp/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp

@@ -8,7 +8,6 @@ LINEAR_ALGEBRA_CPP_SOURCES = \
     src/cpp/schurSelect.cpp
 
 LINEAR_ALGEBRA_C_SOURCES = \
-    src/c/schurtable.c \
     src/c/lu.c \
     src/c/qr.c \
     src/c/hess.c \
@@ -23,8 +22,7 @@ LINEAR_ALGEBRA_C_SOURCES = \
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = \
     src/fortran/DGELSY1.f \
-    src/fortran/ZGELSY1.f \
-    src/fortran/find.f
+    src/fortran/ZGELSY1.f
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/assembleEigenvectors.c \

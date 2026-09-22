@@ -105,7 +105,6 @@ SLICOT_FORTRAN_SOURCES= \
     src/slicot/sb10qd.f \
     src/slicot/ereduc.f \
     src/slicot/fstair.f \
-    src/slicot/inva.f \
     src/slicot/polmc.f \
     src/slicot/ssxmc.f \
     src/slicot/ZB03OD.f \
@@ -141,7 +140,6 @@ CACSD_FORTRAN_SOURCES = \
     src/fortran/domout.f \
     src/fortran/rootgp.f \
     src/fortran/feq.f \
-    src/fortran/fout.f \
     src/fortran/deg1l2.f \
     src/fortran/modul.f \
     src/fortran/scapol.f \

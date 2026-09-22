@@ -24,12 +24,6 @@
     <ClCompile Include="clunit.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="expsum.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="folhp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="xerbla.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,12 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="clunit.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="expsum.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="folhp.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="xerbla.f">

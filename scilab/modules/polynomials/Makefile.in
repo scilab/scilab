@@ -173,34 +173,14 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscipolynomials_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = src/fortran/residu.lo src/fortran/imptra.lo \
-	src/fortran/dmpadj.lo src/fortran/impins.lo \
-	src/fortran/dpmul1.lo src/fortran/wprxc.lo \
-	src/fortran/dmpcnc.lo src/fortran/wmpmu.lo \
-	src/fortran/mpinsp.lo src/fortran/impext.lo \
-	src/fortran/recbez.lo src/fortran/sfact1.lo \
-	src/fortran/dpodiv.lo src/fortran/dmptra.lo \
-	src/fortran/dmpins.lo src/fortran/dpsimp.lo \
-	src/fortran/dmpext.lo src/fortran/wpmul.lo \
-	src/fortran/bezstp.lo src/fortran/wmpad.lo \
-	src/fortran/dprxc.lo src/fortran/quadsd.lo \
-	src/fortran/wmpadj.lo src/fortran/dmpmu.lo \
-	src/fortran/wpmul1.lo src/fortran/wmpcnc.lo \
-	src/fortran/mptri.lo src/fortran/horner.lo \
-	src/fortran/idegre.lo src/fortran/fxshfr.lo \
-	src/fortran/mpdiag.lo src/fortran/dmpcle.lo \
-	src/fortran/wpodiv.lo src/fortran/wdmpmu.lo \
-	src/fortran/wmptra.lo src/fortran/wmpins.lo \
-	src/fortran/mpdegr.lo src/fortran/ddmpev.lo \
-	src/fortran/realit.lo src/fortran/dpmul.lo \
-	src/fortran/sfact2.lo src/fortran/dmpad.lo \
-	src/fortran/nextk.lo src/fortran/blktit.lo \
-	src/fortran/dimin.lo src/fortran/newest.lo \
-	src/fortran/dwmpmu.lo src/fortran/impcnc.lo \
-	src/fortran/wdmpad.lo src/fortran/wmpcle.lo \
-	src/fortran/quadit.lo src/fortran/quad.lo \
-	src/fortran/calcsc.lo src/fortran/writebufsfact.lo \
-	src/fortran/chkvar.lo
+am__objects_1 = src/fortran/residu.lo src/fortran/dpmul1.lo \
+	src/fortran/wprxc.lo src/fortran/recbez.lo \
+	src/fortran/sfact1.lo src/fortran/dpodiv.lo \
+	src/fortran/dpsimp.lo src/fortran/bezstp.lo \
+	src/fortran/dprxc.lo src/fortran/wpmul1.lo \
+	src/fortran/horner.lo src/fortran/idegre.lo \
+	src/fortran/wpodiv.lo src/fortran/dpmul.lo \
+	src/fortran/sfact2.lo src/fortran/blktit.lo
 am__objects_2 = src/cpp/libscipolynomials_algo_la-rpoly.lo \
 	src/cpp/libscipolynomials_algo_la-find_polynomial_roots_jenkins_traub.lo \
 	src/cpp/libscipolynomials_algo_la-polynomial.lo
@@ -701,60 +681,21 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 POLYNOMIALS_FORTRAN_SOURCES = \
     src/fortran/residu.f \
-    src/fortran/imptra.f \
-    src/fortran/dmpadj.f \
-    src/fortran/impins.f \
     src/fortran/dpmul1.f \
     src/fortran/wprxc.f \
-    src/fortran/dmpcnc.f \
-    src/fortran/wmpmu.f \
-    src/fortran/mpinsp.f \
-    src/fortran/impext.f \
     src/fortran/recbez.f \
     src/fortran/sfact1.f \
     src/fortran/dpodiv.f \
-    src/fortran/dmptra.f \
-    src/fortran/dmpins.f \
     src/fortran/dpsimp.f \
-    src/fortran/dmpext.f \
-    src/fortran/wpmul.f \
     src/fortran/bezstp.f \
-    src/fortran/wmpad.f \
     src/fortran/dprxc.f \
-    src/fortran/quadsd.f \
-    src/fortran/wmpadj.f \
-    src/fortran/dmpmu.f \
     src/fortran/wpmul1.f \
-    src/fortran/wmpcnc.f \
-    src/fortran/mptri.f \
     src/fortran/horner.f \
     src/fortran/idegre.f \
-    src/fortran/fxshfr.f \
-    src/fortran/mpdiag.f \
-    src/fortran/dmpcle.f \
     src/fortran/wpodiv.f \
-    src/fortran/wdmpmu.f \
-    src/fortran/wmptra.f \
-    src/fortran/wmpins.f \
-    src/fortran/mpdegr.f \
-    src/fortran/ddmpev.f \
-    src/fortran/realit.f \
     src/fortran/dpmul.f \
     src/fortran/sfact2.f \
-    src/fortran/dmpad.f \
-    src/fortran/nextk.f \
-    src/fortran/blktit.f \
-    src/fortran/dimin.f \
-    src/fortran/newest.f \
-    src/fortran/dwmpmu.f \
-    src/fortran/impcnc.f \
-    src/fortran/wdmpad.f \
-    src/fortran/wmpcle.f \
-    src/fortran/quadit.f \
-    src/fortran/quad.f \
-    src/fortran/calcsc.f \
-    src/fortran/writebufsfact.f \
-    src/fortran/chkvar.f
+    src/fortran/blktit.f
 
 POLYNOMIALS_CXX_SOURCES = \
     src/cpp/rpoly.cpp \
@@ -976,23 +917,9 @@ src/fortran/$(DEPDIR)/$(am__dirstamp):
 	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/residu.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/imptra.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dmpadj.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/impins.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dpmul1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wprxc.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dmpcnc.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wmpmu.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/mpinsp.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/impext.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/recbez.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1000,89 +927,25 @@ src/fortran/sfact1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dpodiv.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dmptra.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dmpins.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dpsimp.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dmpext.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wpmul.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/bezstp.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wmpad.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dprxc.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/quadsd.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wmpadj.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dmpmu.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wpmul1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wmpcnc.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/mptri.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/horner.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/idegre.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/fxshfr.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/mpdiag.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dmpcle.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wpodiv.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wdmpmu.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wmptra.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wmpins.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/mpdegr.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/ddmpev.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/realit.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dpmul.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/sfact2.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dmpad.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/nextk.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/blktit.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dimin.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/newest.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dwmpmu.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/impcnc.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wdmpad.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wmpcle.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/quadit.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/quad.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/calcsc.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/writebufsfact.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/chkvar.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/cpp/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp

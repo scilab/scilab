@@ -193,9 +193,8 @@ am__objects_3 = src/fortran/gennf.lo src/fortran/genchi.lo \
 	src/fortran/snorm.lo src/fortran/gennch.lo \
 	src/fortran/genmn.lo src/fortran/phrtsd.lo \
 	src/fortran/ignnbn.lo src/fortran/genf.lo \
-	src/fortran/genunf.lo src/fortran/genexp.lo \
-	src/fortran/genmul.lo src/fortran/genprm.lo \
-	src/fortran/gennor.lo
+	src/fortran/genexp.lo src/fortran/genmul.lo \
+	src/fortran/genprm.lo src/fortran/gennor.lo
 am_libscirandlib_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscirandlib_algo_la_OBJECTS = $(am_libscirandlib_algo_la_OBJECTS)
@@ -695,7 +694,6 @@ RANDLIB_FORTRAN_SOURCES = \
     src/fortran/phrtsd.f \
     src/fortran/ignnbn.f \
     src/fortran/genf.f \
-    src/fortran/genunf.f \
     src/fortran/genexp.f \
     src/fortran/genmul.f \
     src/fortran/genprm.f \
@@ -963,8 +961,6 @@ src/fortran/phrtsd.lo: src/fortran/$(am__dirstamp) \
 src/fortran/ignnbn.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/genf.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/genunf.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/genexp.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

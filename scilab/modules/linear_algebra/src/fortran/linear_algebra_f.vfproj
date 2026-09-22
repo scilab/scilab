@@ -58,7 +58,6 @@
 		</Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 			<File RelativePath=".\DGELSY1.f"/>
-			<File RelativePath="find.f"/>
 			<File RelativePath=".\ZGELSY1.f"/>
 		</Filter>
 		<File RelativePath="..\..\Makefile.am"/>

@@ -72,9 +72,4 @@
     <Library Include="..\..\..\..\bin\libintl.lib" />
     <Library Include="..\..\..\..\bin\libxml2.lib" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="core_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-  </ItemGroup>
 </Project>

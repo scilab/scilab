@@ -51,9 +51,6 @@
     <ClCompile Include="genprm.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="genunf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ignnbn.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -96,9 +93,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="genprm.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="genunf.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="ignnbn.f">
