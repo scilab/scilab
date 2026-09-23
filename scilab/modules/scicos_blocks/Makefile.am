@@ -394,6 +394,7 @@ SCICOS_BLOCKS_FORTRAN_SOURCES = \
     src/fortran/qzflr.f \
     src/fortran/qzrnd.f \
     src/fortran/qztrn.f \
+    src/fortran/fmttyp.f \
     src/fortran/readf.f \
     src/fortran/rndblk.f \
     src/fortran/samphold.f \

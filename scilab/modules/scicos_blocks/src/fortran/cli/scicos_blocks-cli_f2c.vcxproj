@@ -116,7 +116,6 @@
       <Message>Build Dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)../Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../Scicos-cli_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos-cli.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
@@ -146,7 +145,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>output_stream.lib;output_stream_f.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos-cli.lib;polynomials_f.lib;core_f.lib;../../../../../bin/blasplus.lib;../../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>output_stream.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos-cli.lib;polynomials_f.lib;core_f.lib;../../../../../bin/blasplus.lib;../../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>scicos_blocks-cli_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -162,7 +161,6 @@ cd ..
       <Message>Build Dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)../Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../Scicos-cli_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos-cli.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
@@ -195,7 +193,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>output_stream.lib;output_stream_f.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos-cli.lib;polynomials_f.lib;core_f.lib;../../../../../bin/blasplus.lib;../../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>output_stream.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos-cli.lib;polynomials_f.lib;core_f.lib;../../../../../bin/blasplus.lib;../../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>scicos_blocks-cli_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -211,7 +209,6 @@ cd ..
       <Message>Build Dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)../Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../Scicos-cli_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos-cli.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
@@ -244,7 +241,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>output_stream.lib;output_stream_f.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos-cli.lib;polynomials_f.lib;core_f.lib;../../../../../bin/blasplus.lib;../../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>output_stream.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos-cli.lib;polynomials_f.lib;core_f.lib;../../../../../bin/blasplus.lib;../../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>scicos_blocks-cli_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -261,7 +258,6 @@ cd ..
       <Message>Build Dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)../Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../Scicos-cli_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos-cli.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
@@ -292,7 +288,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>output_stream.lib;output_stream_f.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos-cli.lib;polynomials_f.lib;core_f.lib;../../../../../bin/blasplus.lib;../../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>output_stream.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos-cli.lib;polynomials_f.lib;core_f.lib;../../../../../bin/blasplus.lib;../../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>scicos_blocks-cli_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -310,7 +306,6 @@ cd ..
       <Message>Build Dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)../Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../Scicos-cli_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos-cli.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
@@ -344,7 +339,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>output_stream.lib;output_stream_f.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos-cli.lib;polynomials_f.lib;core_f.lib;../../../../../bin/blasplus.lib;../../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>output_stream.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos-cli.lib;polynomials_f.lib;core_f.lib;../../../../../bin/blasplus.lib;../../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>scicos_blocks-cli_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -362,7 +357,6 @@ cd ..
       <Message>Build Dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)../Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../Scicos-cli_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos-cli.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
@@ -396,7 +390,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>output_stream.lib;output_stream_f.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos-cli.lib;polynomials_f.lib;core_f.lib;../../../../../bin/blasplus.lib;../../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>output_stream.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos-cli.lib;polynomials_f.lib;core_f.lib;../../../../../bin/blasplus.lib;../../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>scicos_blocks-cli_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -414,7 +408,6 @@ cd ..
     <None Include="Core_f_Import.def" />
     <None Include="Elementary_functions_f_Import.def" />
     <None Include="Elementary_functions_Import.def" />
-    <None Include="Output_stream_f_Import.def" />
     <None Include="Output_stream_Import.def" />
     <None Include="polynomials_f_Import.def" />
     <None Include="Scicos_f_Import.def" />
@@ -463,6 +456,7 @@ cd ..
     <ClCompile Include="..\qzflr.c" />
     <ClCompile Include="..\qzrnd.c" />
     <ClCompile Include="..\qztrn.c" />
+    <ClCompile Include="..\fmttyp.c" />
     <ClCompile Include="..\readf.c" />
     <ClCompile Include="..\rndblk.c" />
     <ClCompile Include="..\samphold.c" />

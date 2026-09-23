@@ -44,21 +44,6 @@ OUTPUT_STREAM_C_SOURCES = \
 	src/c/sciprint_full.c \
 	src/c/error.c
 
-OUTPUT_STREAM_FORTRAN_SOURCES = \
-	src/fortran/wspdsp.f \
-	src/fortran/wmdsp.f \
-	src/fortran/strdsp.f \
-	src/fortran/lspdsp.f \
-	src/fortran/fmttyp.f \
-	src/fortran/fmt.f \
-	src/fortran/dspdsp.f \
-	src/fortran/dmrdsp.f \
-	src/fortran/dmpdsp.f \
-	src/fortran/dmdspf.f \
-	src/fortran/dmdsp.f \
-	src/fortran/dldsp.f \
-	src/fortran/basouttofile.f \
-	src/fortran/formatnumber.f
 
 
 libscioutput_stream_la_CPPFLAGS= \
@@ -91,7 +76,7 @@ noinst_LTLIBRARIES = libscioutput_stream-algo.la libscioutput_stream.la
 endif
 
 
-libscioutput_stream_algo_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(JNI_SOURCES)
+libscioutput_stream_algo_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(JNI_SOURCES)
 libscioutput_stream_la_SOURCES = $(GATEWAY_CPP_SOURCES)
 libscioutput_stream_algo_la_CPPFLAGS = $(libscioutput_stream_la_CPPFLAGS)
 

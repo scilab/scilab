@@ -184,10 +184,11 @@ am__objects_1 = src/fortran/jacl2.lo src/fortran/onface.lo \
 	src/fortran/qhesz.lo src/fortran/arl2.lo src/fortran/wesidu.lo \
 	src/fortran/dzdivq.lo src/fortran/arl2a.lo src/fortran/lq.lo \
 	src/fortran/outl2.lo src/fortran/dhetr.lo \
-	src/fortran/domout.lo src/fortran/rootgp.lo src/fortran/feq.lo \
-	src/fortran/deg1l2.lo src/fortran/modul.lo \
-	src/fortran/scapol.lo src/fortran/giv.lo src/fortran/storl2.lo \
-	src/fortran/calsca.lo src/fortran/qitz.lo src/fortran/front.lo
+	src/fortran/dmdspf.lo src/fortran/domout.lo \
+	src/fortran/rootgp.lo src/fortran/feq.lo src/fortran/deg1l2.lo \
+	src/fortran/modul.lo src/fortran/scapol.lo src/fortran/giv.lo \
+	src/fortran/storl2.lo src/fortran/calsca.lo \
+	src/fortran/qitz.lo src/fortran/front.lo
 am__objects_2 = src/slicot/sb04pd.lo src/slicot/ib01ad.lo \
 	src/slicot/tb01wd.lo src/slicot/ib01py.lo src/slicot/mb01rx.lo \
 	src/slicot/ib01md.lo src/slicot/sb02ru.lo src/slicot/sb04nw.lo \
@@ -877,6 +878,7 @@ CACSD_FORTRAN_SOURCES = \
     src/fortran/lq.f \
     src/fortran/outl2.f \
     src/fortran/dhetr.f \
+    src/fortran/dmdspf.f \
     src/fortran/domout.f \
     src/fortran/rootgp.f \
     src/fortran/feq.f \
@@ -1171,6 +1173,8 @@ src/fortran/lq.lo: src/fortran/$(am__dirstamp) \
 src/fortran/outl2.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dhetr.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dmdspf.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/domout.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

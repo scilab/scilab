@@ -524,15 +524,15 @@ am__objects_3 = src/fortran/csslti.lo src/fortran/cstblk.lo \
 	src/fortran/mfclck.lo src/fortran/minblk.lo src/fortran/mux.lo \
 	src/fortran/pload.lo src/fortran/powblk.lo \
 	src/fortran/qzcel.lo src/fortran/qzflr.lo src/fortran/qzrnd.lo \
-	src/fortran/qztrn.lo src/fortran/readf.lo \
-	src/fortran/rndblk.lo src/fortran/samphold.lo \
-	src/fortran/sawtth.lo src/fortran/sciblk.lo \
-	src/fortran/selblk.lo src/fortran/sinblk.lo \
-	src/fortran/sqrblk.lo src/fortran/sum2.lo src/fortran/sum3.lo \
-	src/fortran/tanblk.lo src/fortran/tcslti.lo \
-	src/fortran/tcsltj.lo src/fortran/timblk.lo \
-	src/fortran/trash.lo src/fortran/writef.lo \
-	src/fortran/zcross.lo
+	src/fortran/qztrn.lo src/fortran/fmttyp.lo \
+	src/fortran/readf.lo src/fortran/rndblk.lo \
+	src/fortran/samphold.lo src/fortran/sawtth.lo \
+	src/fortran/sciblk.lo src/fortran/selblk.lo \
+	src/fortran/sinblk.lo src/fortran/sqrblk.lo \
+	src/fortran/sum2.lo src/fortran/sum3.lo src/fortran/tanblk.lo \
+	src/fortran/tcslti.lo src/fortran/tcsltj.lo \
+	src/fortran/timblk.lo src/fortran/trash.lo \
+	src/fortran/writef.lo src/fortran/zcross.lo
 am__objects_4 =  \
 	src/c/libsciscicos_blocks_algo_la-scicos_evalhermite.lo \
 	src/c/libsciscicos_blocks_algo_la-scicos_indexfinder.lo
@@ -1735,6 +1735,7 @@ SCICOS_BLOCKS_FORTRAN_SOURCES = \
     src/fortran/qzflr.f \
     src/fortran/qzrnd.f \
     src/fortran/qztrn.f \
+    src/fortran/fmttyp.f \
     src/fortran/readf.f \
     src/fortran/rndblk.f \
     src/fortran/samphold.f \
@@ -2735,6 +2736,8 @@ src/fortran/qzflr.lo: src/fortran/$(am__dirstamp) \
 src/fortran/qzrnd.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/qztrn.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fmttyp.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/readf.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

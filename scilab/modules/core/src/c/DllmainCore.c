@@ -32,7 +32,6 @@
 #pragma comment(lib, "../../../../bin/core_f.lib")
 #pragma comment(lib, "../../../../bin/elementary_functions_f.lib")
 #pragma comment(lib, "../../../../bin/linpack_f.lib")
-#pragma comment(lib, "../../../../bin/output_stream_f.lib")
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(withf2c)(int *bOK);
 /*-----------------------------------------------------------------------------------*/

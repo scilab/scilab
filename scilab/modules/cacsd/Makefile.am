@@ -137,6 +137,7 @@ CACSD_FORTRAN_SOURCES = \
     src/fortran/lq.f \
     src/fortran/outl2.f \
     src/fortran/dhetr.f \
+    src/fortran/dmdspf.f \
     src/fortran/domout.f \
     src/fortran/rootgp.f \
     src/fortran/feq.f \

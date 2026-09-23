@@ -12,6 +12,7 @@ EXPORTS
 	eselect_
 	evtdly_
 	expblk_
+	fmttyp_
 	forblk_
 	fsv_
 	gensin_

@@ -24,9 +24,6 @@
     <None Include="Elementary_functions_Import.def">
       <Filter>Imports</Filter>
     </None>
-    <None Include="Output_stream_f_Import.def">
-      <Filter>Imports</Filter>
-    </None>
     <None Include="Output_stream_Import.def">
       <Filter>Imports</Filter>
     </None>
@@ -169,6 +166,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\qztrn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\fmttyp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\readf.c">

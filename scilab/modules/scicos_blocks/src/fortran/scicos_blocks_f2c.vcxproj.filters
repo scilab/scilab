@@ -141,6 +141,9 @@
     <ClCompile Include="qztrn.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fmttyp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="readf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -314,6 +317,9 @@
     <f2c_rule Include="qztrn.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
+    <f2c_rule Include="fmttyp.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
     <f2c_rule Include="readf.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -368,9 +374,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Elementary_functions_Import.def">
-      <Filter>Imports</Filter>
-    </None>
-    <None Include="Output_stream_f_Import.def">
       <Filter>Imports</Filter>
     </None>
     <None Include="Output_stream_Import.def">

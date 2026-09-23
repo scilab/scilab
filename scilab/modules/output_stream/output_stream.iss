@@ -25,7 +25,6 @@ Source: bin\{#OUTPUT_STREAM}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCI
 ;
 Source: bin\{#OUTPUT_STREAM}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#OUTPUT_STREAM}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#OUTPUT_STREAM}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#OUTPUT_STREAM}\license.txt; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB}
 ;

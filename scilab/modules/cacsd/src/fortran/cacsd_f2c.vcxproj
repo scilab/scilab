@@ -119,7 +119,6 @@ lib /DEF:"$(ProjectDir)cacsd_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform)
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Slicot_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
@@ -151,7 +150,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -171,7 +170,6 @@ lib /DEF:"$(ProjectDir)cacsd_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform)
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Slicot_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
@@ -206,7 +204,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -226,7 +224,6 @@ lib /DEF:"$(ProjectDir)cacsd_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform)
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Slicot_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
@@ -261,7 +258,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -281,7 +278,6 @@ lib /DEF:"$(ProjectDir)cacsd_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform)
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Slicot_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
@@ -314,7 +310,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -336,7 +332,6 @@ lib /DEF:"$(ProjectDir)cacsd_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform)
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Slicot_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
@@ -372,7 +367,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -394,7 +389,6 @@ lib /DEF:"$(ProjectDir)cacsd_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform)
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Slicot_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
@@ -430,7 +424,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;cacsd.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream.lib;differential_equations_f.lib;eispack_f.lib;linpack_f.lib;core_f.lib;polynomials.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -452,6 +446,7 @@ cd ..
     <ClCompile Include="degl2.c" />
     <ClCompile Include="dfrmg.c" />
     <ClCompile Include="dhetr.c" />
+    <ClCompile Include="dmdspf.c" />
     <ClCompile Include="domout.c" />
     <ClCompile Include="dzdivq.c" />
     <ClCompile Include="expan.c" />
@@ -489,6 +484,7 @@ cd ..
     <f2c_rule Include="degl2.f" />
     <f2c_rule Include="dfrmg.f" />
     <f2c_rule Include="dhetr.f" />
+    <f2c_rule Include="dmdspf.f" />
     <f2c_rule Include="domout.f" />
     <f2c_rule Include="dzdivq.f" />
     <f2c_rule Include="expan.f" />
@@ -526,7 +522,6 @@ cd ..
     <None Include="Elementary_functions_f_Import.def" />
     <None Include="core_import.def" />
     <None Include="linpack_f_Import.def" />
-    <None Include="Output_stream_f_Import.def" />
     <None Include="Output_stream_Import.def" />
     <None Include="Polynomials_f_Import.def" />
     <None Include="Polynomials_Import.def" />

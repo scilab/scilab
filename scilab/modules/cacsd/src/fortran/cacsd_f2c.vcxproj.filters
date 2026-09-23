@@ -42,6 +42,9 @@
     <ClCompile Include="dhetr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dmdspf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="domout.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -149,6 +152,9 @@
     <f2c_rule Include="dhetr.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
+    <f2c_rule Include="dmdspf.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
     <f2c_rule Include="domout.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -245,9 +251,6 @@
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="core_import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="Output_stream_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="Output_stream_Import.def">
