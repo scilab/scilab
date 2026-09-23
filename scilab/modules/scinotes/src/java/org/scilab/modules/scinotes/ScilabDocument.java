@@ -28,6 +28,7 @@ import java.util.Iterator;
 
 import javax.swing.text.GapContent;
 import javax.swing.text.PlainDocument;
+import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.AttributeSet;
@@ -114,7 +115,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
 
             autoIndent = SciNotesOptions.getSciNotesDisplay().automaticIndent;
             encoding = Charset.forName(SciNotesOptions.getSciNotesPreferences().encoding).toString();
-            eolStyle = SciNotesOptions.getSciNotesPreferences().eol;
+            setEOL(SciNotesOptions.getSciNotesPreferences().eol);
 
             undo = new CompoundUndoManager(this);
             addUndoableEditListener(undo);
@@ -224,6 +225,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public void setEOL(String eol) {
         this.eolStyle = eol;
+        putProperty(DefaultEditorKit.EndOfLineStringProperty, eol);
     }
 
     /**
@@ -383,9 +385,17 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         this.contentModified = contentModified;
         if (pane != null && !contentModified) {
             undo.setReference();
+            pane.contentMarkedUnmodified();
             pane.updateTitle();
         } else {
             this.contentModifiedSinceBackup = true;
+            if (pane != null) {
+                // The tab shows a star for a modified document: a document
+                // told it is modified without being edited -- a tab cloned
+                // into another window, a file removed from the disk -- kept a
+                // title saying it was saved.
+                pane.updateTitle();
+            }
         }
     }
 
@@ -804,7 +814,8 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             }
         }
 
-        if (pane != null) {
+        // The legacy overlay requires a Swing text view with model coordinates.
+        if (pane != null && !(pane instanceof MonacoEditorPane)) {
             KeywordEvent e = pane.getKeywordEvent();
 
             if (ScilabLexerConstants.isLaTeX(e.getType())) {

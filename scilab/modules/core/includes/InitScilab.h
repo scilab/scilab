@@ -35,6 +35,8 @@ typedef struct
     int iForceQuit;
     int iTimeoutDelay;
     int iWebMode;
+    int iLspPort;
+    int iDapPort;
 #ifdef _MSC_VER
     int iCodeAction;
     int iKeepConsole;

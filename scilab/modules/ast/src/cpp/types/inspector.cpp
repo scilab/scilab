@@ -26,14 +26,22 @@ namespace types
 {
 #ifndef NDEBUG
 std::unordered_set<InternalType*> Inspector::m_vIT;
+// InternalType instances may be created or destroyed concurrently by the
+// interpreter and external parser services (for example the Monaco LSP).
+// Protect the debug registry against concurrent insertions, removals and
+// iterations. The mutex is recursive because deleteItems() deletes registered
+// objects whose destructors call removeItem().
+std::recursive_mutex Inspector::m_mutex;
 
 size_t Inspector::getItemCount()
 {
+    std::lock_guard<std::recursive_mutex> lock(m_mutex);
     return m_vIT.size();
 }
 
 size_t Inspector::getUnreferencedItemCount()
 {
+    std::lock_guard<std::recursive_mutex> lock(m_mutex);
     int iCount = 0;
     for (auto it : m_vIT)
     {
@@ -49,16 +57,19 @@ size_t Inspector::getUnreferencedItemCount()
 void Inspector::addItem(InternalType* _pIT)
 {
     types::GenericType* pGT = _pIT->getAs<types::GenericType>();
+    std::lock_guard<std::recursive_mutex> lock(m_mutex);
     m_vIT.insert(pGT);
 }
 
 void Inspector::removeItem(InternalType* _pIT)
 {
+    std::lock_guard<std::recursive_mutex> lock(m_mutex);
     m_vIT.erase(_pIT);
 }
 
 InternalType* Inspector::getItem(size_t _iPos)
 {
+    std::lock_guard<std::recursive_mutex> lock(m_mutex);
     if (m_vIT.size() > _iPos)
     {
         return *std::next(m_vIT.begin(), _iPos);
@@ -69,6 +80,7 @@ InternalType* Inspector::getItem(size_t _iPos)
 
 InternalType* Inspector::getUnreferencedItem(size_t _iPos)
 {
+    std::lock_guard<std::recursive_mutex> lock(m_mutex);
     size_t iCount = 0;
     for (auto it : m_vIT)
     {
@@ -88,6 +100,7 @@ InternalType* Inspector::getUnreferencedItem(size_t _iPos)
 
 std::wstring Inspector::showItem(size_t _iPos)
 {
+    std::lock_guard<std::recursive_mutex> lock(m_mutex);
     std::wstring st;
     InternalType* pIT = getItem(_iPos);
     if (pIT == NULL)
@@ -103,6 +116,7 @@ std::wstring Inspector::showItem(size_t _iPos)
 
 std::wstring Inspector::showUnreferencedItem(size_t _iPos)
 {
+    std::lock_guard<std::recursive_mutex> lock(m_mutex);
     std::wstring st;
     InternalType* pIT = getUnreferencedItem(_iPos);
     if (pIT == NULL)
@@ -118,16 +132,16 @@ std::wstring Inspector::showUnreferencedItem(size_t _iPos)
 
 void Inspector::deleteItems()
 {
-    for (auto it : m_vIT)
+    std::lock_guard<std::recursive_mutex> lock(m_mutex);
+    while (m_vIT.empty() == false)
     {
-        delete it;
+        delete *m_vIT.begin();
     }
-
-    m_vIT.clear();
 }
 
 void Inspector::displayMemleak()
 {
+    std::lock_guard<std::recursive_mutex> lock(m_mutex);
     std::map<std::wstring, size_t> statistics;
 
     if (m_vIT.size() != 0)

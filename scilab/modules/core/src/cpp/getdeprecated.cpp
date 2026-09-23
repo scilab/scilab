@@ -9,6 +9,7 @@
 
 #include "context.hxx"
 #include "getdeprecated.hxx"
+#include "getdeprecated.h"
 
 extern "C" {
 #include "sci_malloc.h"
@@ -33,6 +34,24 @@ std::unordered_map<std::wstring, std::wstring> getDeprecated()
         {L"unix_w", L"host"},
         {L"unix_x", L"host"}
     };
+}
+
+char** getDeprecatedNames(int* size)
+{
+    std::unordered_map<std::wstring, std::wstring> deprecated = getDeprecated();
+    *size = static_cast<int>(deprecated.size());
+    if (*size == 0)
+    {
+        return nullptr;
+    }
+
+    char** names = static_cast<char**>(MALLOC(*size * sizeof(char*)));
+    int index = 0;
+    for (const auto& entry : deprecated)
+    {
+        names[index++] = wide_string_to_UTF8(entry.first.c_str());
+    }
+    return names;
 }
 
 std::unordered_map<std::wstring, std::wstring> getDeleted()

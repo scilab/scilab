@@ -24,10 +24,6 @@
 #define SCI_TRUE		            L"%T"
 #define SCI_FALSE		            L"%F"
 
-#define SCI_INT8		            L"int8"
-#define SCI_INT16		            L"int16"
-#define SCI_INT32		            L"int32"
-#define SCI_INT64		            L"int64"
 #define SCI_LPAREN		            L"("
 #define SCI_RPAREN		            L")"
 #define SCI_LBRACE		            L"{"

@@ -2487,6 +2487,30 @@ ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg)
     return newTree;
 }
 
+// The ';' or ',' which ends an instruction is echoed with the instruction, but it
+// is not part of the expression: its location stops at the expression text (see
+// recursiveExpression in parsescilab.yy). Returns the 0-based end of the printed
+// text, breaker included, from the 0-based end of the expression.
+static int getInstructionEnd(const std::string& _stLine, int _iExpEnd)
+{
+    const int iLineLen = (int)_stLine.size();
+    int iEnd = _iExpEnd;
+
+    while (iEnd < iLineLen
+            && (_stLine[iEnd] == ' ' || _stLine[iEnd] == '\t'
+                || _stLine[iEnd] == '\v' || _stLine[iEnd] == '\f'))
+    {
+        iEnd++;
+    }
+
+    if (iEnd < iLineLen && (_stLine[iEnd] == ';' || _stLine[iEnd] == ','))
+    {
+        return iEnd + 1;
+    }
+
+    return _iExpEnd;
+}
+
 std::string printExp(std::ifstream& _File, ast::Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer)
 {
     Location loc = _pExp->getLocation();
@@ -2514,7 +2538,7 @@ std::string printExp(std::ifstream& _File, ast::Exp* _pExp, const std::string& _
     {
         //expression on 1-line
         int iStart = loc.first_column - 1;
-        int iEnd = loc.last_column - 1;
+        int iEnd = getInstructionEnd(_stPreviousBuffer, loc.last_column - 1);
         int iLen = iEnd - iStart;
 
         int iCopyLen = iEnd - *_piCol;
@@ -2535,7 +2559,7 @@ std::string printExp(std::ifstream& _File, ast::Exp* _pExp, const std::string& _
             else
             {
                 printLine(_stPrompt, strLastLine, false);
-                *_piCol = loc.last_column - 1;
+                *_piCol = iEnd;
             }
         }
         else //middle of line
@@ -2548,7 +2572,7 @@ std::string printExp(std::ifstream& _File, ast::Exp* _pExp, const std::string& _
             else
             {
                 printLine("", strLastLine, false);
-                *_piCol = loc.last_column - 1;
+                *_piCol = iEnd;
             }
         }
     }
@@ -2589,7 +2613,7 @@ std::string printExp(std::ifstream& _File, ast::Exp* _pExp, const std::string& _
         std::getline(_File, _stPreviousBuffer);
         (*_piLine)++;
 
-        int iSize = loc.last_column - 1;
+        int iSize = getInstructionEnd(_stPreviousBuffer, loc.last_column - 1);
         std::string stLastLine(_stPreviousBuffer.c_str(), iSize);
         int iLineLen = (int)_stPreviousBuffer.size();
         if (iLineLen == iSize)
@@ -2600,7 +2624,7 @@ std::string printExp(std::ifstream& _File, ast::Exp* _pExp, const std::string& _
         else
         {
             printLine(_stPrompt, stLastLine, false);
-            *_piCol = loc.last_column - 1;
+            *_piCol = iSize;
         }
 
         ConfigVariable::setPrintCompact(isCompact);

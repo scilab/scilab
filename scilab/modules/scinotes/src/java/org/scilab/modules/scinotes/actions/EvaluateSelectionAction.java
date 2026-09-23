@@ -4,6 +4,7 @@
  * Copyright (C) 2010 - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2021 - UTC - Stéphane MOTTELET
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Cédric DELAMARRE
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,14 +23,13 @@ import java.util.StringTokenizer;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 
+import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.history_manager.HistoryManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
-import org.scilab.modules.console.SciPromptView;
 import org.scilab.modules.console.AdvCLIManagement;
 
 /**
@@ -101,9 +101,6 @@ public final class EvaluateSelectionAction extends DefaultAction {
         final String label1 = token.nextToken();
         final String label2 = token.nextToken();
         final MenuItem menuitem = createMenu(label1, null, new EvaluateSelectionAction(label1, editor), key);
-        if (!ScilabConsole.isExistingConsole()) { // Only available in STD mode
-            ((JMenuItem) menuitem.getAsSimpleMenuItem()).setEnabled(false);
-        }
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
             public void propertyChange(PropertyChangeEvent e) {
                 if (editor.getTextPane() != null) {

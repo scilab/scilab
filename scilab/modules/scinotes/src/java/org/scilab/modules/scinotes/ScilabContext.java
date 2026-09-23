@@ -49,6 +49,9 @@ public class ScilabContext implements ViewFactory {
     public static final String FONTPATH = "//fonts/body/fonts/item";
     public static final String XCONFFONTPATH = "//fonts/body/fonts/item[@xconf-uid=\"scinotes-font\"]";
 
+    /** Whitespace and tabulation marks have no color setting of their own. */
+    private static final Color WHITESPACE_MARK_COLOR = new Color(0xDC, 0xDC, 0xDC);
+
     /**
      * Contains the colors of the different tokens
      */
@@ -194,10 +197,7 @@ public class ScilabContext implements ViewFactory {
             }
         }
 
-        /* Special case : Scilab's developers in comments */
-        tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
-        tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
-        tokenColors[ScilabLexerConstants.ELSEIF] = tokenColors[ScilabLexerConstants.SKEYWORD];
+        genColorSpecialCases();
 
         // Default attributes
         for (Integer i : typeToDefault) {
@@ -251,15 +251,33 @@ public class ScilabContext implements ViewFactory {
      */
     public void genColors(String name, Color color) {
         tokenColors[ScilabLexerConstants.TOKENS.get(name)] = color;
-        tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
-        tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
-        tokenColors[ScilabLexerConstants.ELSEIF] = tokenColors[ScilabLexerConstants.SKEYWORD];
 
         if (ScilabLexerConstants.TOKENS.get(name) == ScilabLexerConstants.DEFAULT) {
             for (Integer i : typeToDefault) {
                 tokenColors[i] = tokenColors[0];
             }
         }
+
+        genColorSpecialCases();
+    }
+
+    /**
+     * The colors a token takes from another one, or from no setting at all.
+     * Applied after every load and after every change made in the preferences.
+     */
+    private void genColorSpecialCases() {
+        /* Special case : Scilab's developers in comments */
+        tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
+        tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
+        tokenColors[ScilabLexerConstants.ELSEIF] = tokenColors[ScilabLexerConstants.SKEYWORD];
+
+        /* The default text color would draw the whitespace marks as dark as the code. */
+        tokenColors[ScilabLexerConstants.WHITE] = WHITESPACE_MARK_COLOR;
+        tokenColors[ScilabLexerConstants.WHITE_COMMENT] = WHITESPACE_MARK_COLOR;
+        tokenColors[ScilabLexerConstants.WHITE_STRING] = WHITESPACE_MARK_COLOR;
+        tokenColors[ScilabLexerConstants.TAB] = WHITESPACE_MARK_COLOR;
+        tokenColors[ScilabLexerConstants.TAB_COMMENT] = WHITESPACE_MARK_COLOR;
+        tokenColors[ScilabLexerConstants.TAB_STRING] = WHITESPACE_MARK_COLOR;
     }
 
     /**

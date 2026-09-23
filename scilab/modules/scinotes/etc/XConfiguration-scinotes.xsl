@@ -174,12 +174,6 @@
                     </actionPerformed>
                 </Checkbox>
                 <Panel gridx="2" gridy="1" weightx="1"/>
-                <Panel gridx="3" gridy="1" weightx="1"/>
-                <Color color="{@current-line-color}" listener="ActionListener" gridx="4" gridy="1" weightx="0" enable="{@highlight-current-line}">
-                    <actionPerformed choose="current-line-color">
-                        <xsl:call-template name="context"/>
-                    </actionPerformed>
-                </Color>
                 
                 <Checkbox checked="{@show-line-numbers}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Show line numbers: )" gridx="1" gridy="2" fill="none" weightx="0" anchor="west">
                     <actionPerformed choose="show-line-numbers">
@@ -205,6 +199,12 @@
                     </actionPerformed>
                 </Checkbox>
                 
+                <Checkbox checked="{@show-whitespaces}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Show whitespaces and tabulations)" gridx="2" gridy="3" gridwidth="3" fill="none" weightx="0" anchor="west">
+                    <actionPerformed choose="show-whitespaces">
+                        <xsl:call-template name="context"/>
+                    </actionPerformed>
+                </Checkbox>
+                
                 <Label text="_(Background color: )" gridx="1" gridy="4" weightx="0"/>
                 <Color color="{@background-color}" listener="ActionListener" gridx="2" gridy="4" fill="none" weightx="0" anchor="west">
                     <actionPerformed choose="background-color">
@@ -218,104 +218,6 @@
                         <xsl:call-template name="context"/>
                     </actionPerformed>
                 </Color>
-            </Grid>
-        </Title>
-        
-        <VSpace height="10"/>
-        
-        <Title text="_(Keywords)">
-            <Grid>
-                <Checkbox checked="{@keywords-colorization}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Enable keywords colorization)" gridx="1" gridy="1" fill="none" weightx="0" anchor="west">
-                    <actionPerformed choose="keywords-colorization">
-                        <xsl:call-template name="context"/>
-                    </actionPerformed>
-                </Checkbox>
-                
-                <Panel gridx="2" gridy="1" weightx="1"/>
-                <Link gridx="3" gridy="1" weightx="0" listener="MouseListener" text="_(Set syntax Colors)" enable="{@keywords-colorization}">
-                    <mouseClicked set="path" value="colors" context="/" enable="{@keywords-colorization}"/>
-                </Link>
-                <Checkbox checked="{@highlight-brackets}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Highlight corresponding brackets)" gridx="1" gridy="2" fill="none" weightx="0" anchor="west">
-                    <actionPerformed choose="highlight-brackets">
-                        <xsl:call-template name="context"/>
-                    </actionPerformed>
-                </Checkbox>
-                <Grid gridx="1" gridy="3" gridwidth="3" ipadx="10">
-                    <Label gridx="1" gridy="1" weightx="0" text="_(Color: )" enable="{@highlight-brackets}"/>
-                    <Color color="{@brackets-color}" listener="ActionListener" gridx="2" gridy="1" weightx="0" enable="{@highlight-brackets}">
-                        <actionPerformed choose="brackets-color">
-                            <xsl:call-template name="context"/>
-                        </actionPerformed>
-                    </Color>
-                    <Panel gridx="3" gridy="1" weightx="1"/>
-                    <Checkbox checked="{@brackets-onmouseover}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Highlight on mouse over)" gridx="4" gridy="1" fill="none" weightx="0" anchor="west" enable="{@highlight-brackets}">
-                        <actionPerformed choose="brackets-onmouseover">
-                            <xsl:call-template name="context"/>
-                        </actionPerformed>
-                    </Checkbox>
-                    <Panel gridx="5" gridy="1" weightx="1"/>
-                    <Label gridx="6" gridy="1" weightx="0" text="_(Style: )" enable="{@highlight-brackets}"/>
-                    <Select gridx="7" gridy="1" listener="ActionListener" enable="{@highlight-brackets}">
-                        <xsl:variable name="bh" select="@brackets-highlightment"/>
-                        <actionPerformed choose="brackets-highlightment">
-                            <xsl:call-template name="context"/>
-                        </actionPerformed>
-                        <option value="_(Filled)" key="Filled">
-                            <xsl:if test="'Filled'=$bh">
-                                <xsl:attribute name="selected">selected</xsl:attribute>
-                            </xsl:if>
-                        </option>
-                        <option value="_(Framed)" key="Framed">
-                            <xsl:if test="'Framed'=$bh">
-                                <xsl:attribute name="selected">selected</xsl:attribute>
-                            </xsl:if>
-                        </option>
-                        <option value="_(Underlined)" key="Underlined">
-                            <xsl:if test="'Underlined'=$bh">
-                                <xsl:attribute name="selected">selected</xsl:attribute>
-                            </xsl:if>
-                        </option>
-                    </Select>
-                </Grid>
-                
-                <Checkbox checked="{@highlight-keywords}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Highlight corresponding keywords (e.g. if ... end))" gridx="1" gridy="4" fill="none" weightx="0" anchor="west">
-                    <actionPerformed choose="highlight-keywords">
-                        <xsl:call-template name="context"/>
-                    </actionPerformed>
-                </Checkbox>
-                
-                <Grid gridx="1" gridy="5" gridwidth="3" ipadx="10">
-                    <Label gridx="1" gridy="1" weightx="0" text="_(Color: )" enable="{@highlight-keywords}"/>
-                    <Color color="{@keywords-color}" listener="ActionListener" gridx="2" gridy="1" weightx="0" enable="{@highlight-keywords}">
-                        <actionPerformed choose="keywords-color">
-                            <xsl:call-template name="context"/>
-                        </actionPerformed>
-                    </Color>
-                    <Panel gridx="3" gridy="1" weightx="1"/>
-                    <Checkbox checked="{@keywords-onmouseover}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Highlight on mouse over)" gridx="4" gridy="1" fill="none" weightx="0" anchor="west" enable="{@highlight-keywords}">
-                        <actionPerformed choose="keywords-onmouseover">
-                            <xsl:call-template name="context"/>
-                        </actionPerformed>
-                    </Checkbox>
-                    <Panel gridx="5" gridy="1" weightx="1"/>
-                    <Label gridx="6" gridy="1" weightx="0" text="_(Style: )" enable="{@highlight-keywords}"/>
-                    <Select gridx="7" gridy="1" listener="ActionListener" enable="{@highlight-keywords}">
-                        <xsl:variable name="kh" select="@keywords-highlightment"/>
-                        <actionPerformed choose="keywords-highlightment">
-                            <xsl:call-template name="context"/>
-                        </actionPerformed>
-                        <option value="_(Filled)" key="Filled">
-                            <xsl:if test="'Filled'=$kh">
-                                <xsl:attribute name="selected">selected</xsl:attribute>
-                            </xsl:if>
-                        </option>
-                        <option value="_(Framed)" key="Framed">
-                            <xsl:if test="'Framed'=$kh">
-                                <xsl:attribute name="selected">selected</xsl:attribute>
-                            </xsl:if>
-                        </option>
-                    </Select>
-                </Grid>
             </Grid>
         </Title>
         
@@ -345,47 +247,16 @@
                     </actionPerformed>
                 </Checkbox>
                 
-                <xsl:variable name="enable">
-                    <xsl:choose>
-                        <xsl:when test="@use-spaces='true'">
-                            <xsl:text>false</xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text>true</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
-                
-                <Label text="_(Representation: )" gridx="1" gridy="2" weightx="0" enable="{$enable}"/>
-                
-                <Radiobutton value="{@tab-representation}" expected-value="chevrons" listener="ActionListener" text="_(Chevrons)" gridx="2" gridy="2" fill="none" weightx="0" anchor="west" enable="{$enable}">
-                    <actionPerformed choose="tab-representation">
-                        <xsl:call-template name="context"/>
-                    </actionPerformed>
-                </Radiobutton>
-                
-                <Radiobutton value="{@tab-representation}" expected-value="hrule" listener="ActionListener" text="_(Horizontal rule)" gridx="3" gridy="2" fill="none" weightx="0" anchor="center" enable="{$enable}">
-                    <actionPerformed choose="tab-representation">
-                        <xsl:call-template name="context"/>
-                    </actionPerformed>
-                </Radiobutton>
-                
-                <Radiobutton value="{@tab-representation}" expected-value="vrule" listener="ActionListener" text="_(Vertical rule)" gridx="4" gridy="2" fill="none" weightx="0" anchor="west" enable="{$enable}">
-                    <actionPerformed choose="tab-representation">
-                        <xsl:call-template name="context"/>
-                    </actionPerformed>
-                </Radiobutton>
-                
-                <Checkbox checked="{@automatic-indent}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Enable auto indentation)" gridx="1" gridy="3" fill="none" weightx="0" anchor="west">
+                <Checkbox checked="{@automatic-indent}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Enable auto indentation)" gridx="1" gridy="2" fill="none" weightx="0" anchor="west">
                     <actionPerformed choose="automatic-indent">
                         <xsl:call-template name="context"/>
                     </actionPerformed>
                 </Checkbox>
                 
-                <Label gridy="4" text="_(Indent size: )" enable="{@automatic-indent}"/>
+                <Label gridy="3" text="_(Indent size: )" enable="{@automatic-indent}"/>
                 
                 <NumericalSpinner gridx="2"
-                          gridy="4"
+                          gridy="3"
                           weightx="0"
                           min-value = "0"
                           increment = "1"

@@ -22,6 +22,19 @@
 #pragma comment(lib, "../../bin/libcurl.lib")
 #pragma comment(lib, "../../bin/libxml2.lib")
 #pragma comment(lib, "../../bin/libintl.lib")
+#if defined(_DEBUG)
+#pragma comment(lib, "../../libs/cppserver/lib/asiod.lib")
+#pragma comment(lib, "../../libs/cppserver/lib/cppcommond.lib")
+#pragma comment(lib, "../../libs/cppserver/lib/cppserverd.lib")
+#pragma comment(lib, "../../libs/cppserver/lib/fmtd.lib")
+#else
+#pragma comment(lib, "../../libs/cppserver/lib/asio.lib")
+#pragma comment(lib, "../../libs/cppserver/lib/cppcommon.lib")
+#pragma comment(lib, "../../libs/cppserver/lib/cppserver.lib")
+#pragma comment(lib, "../../libs/cppserver/lib/fmt.lib")
+#endif
+#pragma comment(lib, "../../libs/openssl/lib/libcrypto.lib")
+#pragma comment(lib, "../../libs/openssl/lib/libssl.lib")
 
  /*--------------------------------------------------------------------------*/
 //for Visual Leak Detector in debug compilation mode

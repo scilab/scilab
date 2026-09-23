@@ -1,6 +1,7 @@
 /*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Cédric DELAMARRE
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -24,6 +25,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.KeywordEvent;
 import org.scilab.modules.scinotes.MatchingBlockScanner;
+import org.scilab.modules.scinotes.MonacoEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabLexerConstants;
@@ -51,6 +53,8 @@ public class SelectBlockAction extends DefaultAction {
      */
     public void doAction() {
         ScilabEditorPane sep = getEditor().getTextPane();
+        int previousStart = sep.getSelectionStart();
+        int previousEnd = sep.getSelectionEnd();
         MatchingBlockScanner scanner = sep.getMatchingBlockManager(true).getScanner();
         KeywordEvent event = sep.getKeywordEvent(!isPopup, false);
         int tok = event.getType();
@@ -77,6 +81,10 @@ public class SelectBlockAction extends DefaultAction {
                     sep.setSelectionEnd(mpos.firstE);
                 }
             }
+        }
+
+        if (sep instanceof MonacoEditorPane) {
+            ((MonacoEditorPane) sep).finishSelectBlock(previousStart, previousEnd);
         }
     }
 
@@ -105,6 +113,11 @@ public class SelectBlockAction extends DefaultAction {
             public void propertyChange(PropertyChangeEvent e) {
                 if (editor.getTextPane() != null) {
                     ScilabEditorPane sep = editor.getTextPane();
+                    if (sep instanceof MonacoEditorPane) {
+                        menuitem.setEnabled(true);
+                        return;
+                    }
+
                     boolean block = ScilabLexerConstants.isMatchable(sep.getKeywordEvent(!sba.isPopup, false).getType());
                     block = block || ScilabLexerConstants.isMatchable(sep.getKeywordEvent(!sba.isPopup, true).getType());
                     menuitem.setEnabled(block);

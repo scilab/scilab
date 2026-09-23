@@ -123,11 +123,12 @@ public class SciNotesOptions {
         public boolean autoCompleteKeywords;
         public Color backgroundColor;
         public Color caretColor;
+        public boolean showWhitespaces;
 
         private Display() { }
 
-        @XConfAttribute(tag = "scinotes-display", attributes = {"highlight-current-line", "current-line-color", "show-line-numbers", "wrap-lines", "keywords-colorization", "highlight-brackets", "brackets-color", "brackets-highlightment", "brackets-onmouseover", "highlight-keywords", "keywords-color", "keywords-highlightment", "keywords-onmouseover", "whereami", "tab-size", "tab-representation", "use-spaces", "indent-size", "automatic-indent", "auto-complete-openers", "auto-complete-keywords", "background-color", "caret-color"})
-        private void set(boolean highlightCurrentLine, Color currentLineColor, boolean showLineNumbers, boolean wrapLines, boolean keywordsColorization, boolean highlightBrackets, Color bracketsColor, String bracketsHighlightment, boolean bracketsOnmouseover, boolean highlightKeywords, Color keywordsColor, String keywordsHighlightment, boolean keywordsOnmouseover, boolean whereami, int tabSize, String tabRepresentation, boolean useSpaces, int indentSize, boolean automaticIndent, boolean autoCompleteOpeners, boolean autoCompleteKeywords, Color backgroundColor, Color caretColor) {
+        @XConfAttribute(tag = "scinotes-display", attributes = {"highlight-current-line", "current-line-color", "show-line-numbers", "wrap-lines", "keywords-colorization", "highlight-brackets", "brackets-color", "brackets-highlightment", "brackets-onmouseover", "highlight-keywords", "keywords-color", "keywords-highlightment", "keywords-onmouseover", "whereami", "tab-size", "tab-representation", "use-spaces", "indent-size", "automatic-indent", "auto-complete-openers", "auto-complete-keywords", "background-color", "caret-color", "show-whitespaces"})
+        private void set(boolean highlightCurrentLine, Color currentLineColor, boolean showLineNumbers, boolean wrapLines, boolean keywordsColorization, boolean highlightBrackets, Color bracketsColor, String bracketsHighlightment, boolean bracketsOnmouseover, boolean highlightKeywords, Color keywordsColor, String keywordsHighlightment, boolean keywordsOnmouseover, boolean whereami, int tabSize, String tabRepresentation, boolean useSpaces, int indentSize, boolean automaticIndent, boolean autoCompleteOpeners, boolean autoCompleteKeywords, Color backgroundColor, Color caretColor, boolean showWhitespaces) {
             this.highlightCurrentLine = highlightCurrentLine;
             this.currentLineColor = currentLineColor;
             this.showLineNumbers = showLineNumbers;
@@ -175,6 +176,7 @@ public class SciNotesOptions {
             this.autoCompleteKeywords = autoCompleteKeywords;
             this.backgroundColor = backgroundColor;
             this.caretColor = caretColor;
+            this.showWhitespaces = showWhitespaces;
         }
     }
 

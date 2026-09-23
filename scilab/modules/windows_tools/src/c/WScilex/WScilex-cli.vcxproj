@@ -109,7 +109,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../windows_tools\src\c\scilab_windows;../../../../webtools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <ObjectFileName>cli/$(Configuration)/</ObjectFileName>
@@ -125,6 +125,7 @@
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <StackReserveSize>8000000</StackReserveSize>
+      <AdditionalDependencies>../../../../../bin/webtools.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -133,7 +134,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../windows_tools\src\c\scilab_windows;../../../../webtools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <ObjectFileName>cli/$(Configuration)/</ObjectFileName>
@@ -149,6 +150,7 @@
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <StackReserveSize>32000000</StackReserveSize>
+      <AdditionalDependencies>../../../../../bin/webtools.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -157,7 +159,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../windows_tools\src\c\scilab_windows;../../../../webtools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <ObjectFileName>cli/$(Configuration)/</ObjectFileName>
@@ -173,12 +175,13 @@
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <StackReserveSize>32000000</StackReserveSize>
       <TargetMachine>MachineARM64</TargetMachine>
+      <AdditionalDependencies>../../../../../bin/webtools.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../windows_tools\src\c\scilab_windows;../../../../webtools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ObjectFileName>cli/$(Configuration)/</ObjectFileName>
@@ -196,6 +199,7 @@
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <StackReserveSize>8000000</StackReserveSize>
+      <AdditionalDependencies>../../../../../bin/webtools.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -204,7 +208,7 @@
     </Midl>
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../windows_tools\src\c\scilab_windows;../../../../webtools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ObjectFileName>cli/$(Configuration)/</ObjectFileName>
@@ -222,6 +226,7 @@
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <StackReserveSize>32000000</StackReserveSize>
+      <AdditionalDependencies>../../../../../bin/webtools.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -230,7 +235,7 @@
     </Midl>
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../windows_tools\src\c\scilab_windows;../../../../webtools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ObjectFileName>cli/$(Configuration)/</ObjectFileName>
@@ -248,6 +253,7 @@
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <StackReserveSize>32000000</StackReserveSize>
       <TargetMachine>MachineARM64</TargetMachine>
+      <AdditionalDependencies>../../../../../bin/webtools.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

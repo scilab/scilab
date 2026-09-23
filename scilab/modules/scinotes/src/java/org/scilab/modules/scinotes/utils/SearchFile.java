@@ -418,6 +418,10 @@ public class SearchFile extends SwingScilabDockablePanel {
                 @Override
                 public void valueChanged(TreeSelectionEvent e) {
                     TreePath path = e.getNewLeadSelectionPath();
+                    if (path == null) {
+                        // selection cleared, e.g. when collapsing a node containing the selected row
+                        return;
+                    }
                     Object userObj = ((DefaultMutableTreeNode) path.getLastPathComponent()).getUserObject();
                     if (userObj instanceof SearchManager.MatchingPositions) {
                         statusbar.setText(((SearchManager.MatchingPositions) userObj).getFileName());
@@ -510,7 +514,8 @@ public class SearchFile extends SwingScilabDockablePanel {
             if (lineNumber != -1) {
                 editor.openFile(fileName, 0, null);
                 final ScilabEditorPane sep = editor.getTextPane();
-                if (sep.getName().equals(fileName)) {
+                // openFile names the tab after the canonical path, the search keeps the absolute one
+                if (sep != null && SciNotes.fileToCanonicalFile(new File(fileName)).getAbsolutePath().equals(sep.getName())) {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {

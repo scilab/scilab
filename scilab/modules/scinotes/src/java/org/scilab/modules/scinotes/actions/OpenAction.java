@@ -95,7 +95,12 @@ public class OpenAction extends DefaultAction {
         if (selection.length>0 && selection[0] != "") {
             for (int i = 0; i < selection.length; i++) {
                 ConfigSciNotesManager.saveToRecentOpenedFiles(selection[i]);
-                getEditor().readFile(new File(selection[i]));
+                try {
+                    getEditor().readFile(new File(selection[i]));
+                } catch (RuntimeException ex) {
+                    // Keep opening the rest of the selection if one file fails.
+                    ex.printStackTrace();
+                }
             }
             RecentFileAction.updateRecentOpenedFilesMenu(getEditor());
         }

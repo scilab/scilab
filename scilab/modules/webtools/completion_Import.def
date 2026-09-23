@@ -1,0 +1,13 @@
+﻿LIBRARY    scicompletion.dll
+
+
+EXPORTS
+;--------------------------
+; completion
+;--------------------------
+completionOnCommandWords
+completionOnFiles
+completionOnFunctions
+completionOnMacros
+completionOnMustBe
+completionOnVariables

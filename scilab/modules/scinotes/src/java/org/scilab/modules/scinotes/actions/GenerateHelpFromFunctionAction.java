@@ -3,6 +3,7 @@
  * Copyright (C) 2010 - Calixte DENIZET
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Cédric DELAMARRE
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,6 +26,7 @@ import javax.swing.text.Element;
 import javax.swing.text.BadLocationException;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.scinotes.MonacoEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabDocument;
@@ -76,6 +78,11 @@ public class GenerateHelpFromFunctionAction extends DefaultAction {
      */
     public void doAction() {
         ScilabEditorPane sep = getEditor().getTextPane();
+        if (sep instanceof MonacoEditorPane) {
+            ((MonacoEditorPane) sep).generateHelpComments();
+            return;
+        }
+
         int pos = sep.getCaretPosition();
         ScilabDocument doc = (ScilabDocument) sep.getDocument();
         Element root = doc.getDefaultRootElement();

@@ -14,6 +14,15 @@
 /* Cname */
 #undef CNAME
 
+/* CPPServer flags */
+#undef CPPSERVER_CFLAGS
+
+/* CPPServer library */
+#undef CPPSERVER_LIBS
+
+/* CPPServer version */
+#undef CPPSERVER_VERSION
+
 /* CURL flags */
 #undef CURL_CFLAGS
 
@@ -74,6 +83,9 @@
 
 /* HAVE_CPLUS_DEMANGLE */
 #undef HAVE_CPLUS_DEMANGLE
+
+/* Define to 1 if you have the <cppserver/cppserver.h> header file. */
+#undef HAVE_CPPSERVER_CPPSERVER_H
 
 /* Define to 1 if you have the <curl/curl.h> header file. */
 #undef HAVE_CURL_CURL_H
@@ -169,6 +181,9 @@
 
 /* Define to 1 if you have the `archive' library (-larchive). */
 #undef HAVE_LIBARCHIVE
+
+/* Define to 1 if you have the `cppserver' library (-lcppserver). */
+#undef HAVE_LIBCPPSERVER
 
 /* Define to 1 if you have the `curl' library (-lcurl). */
 #undef HAVE_LIBCURL

@@ -4,6 +4,7 @@
  * Copyright (C) 2010 - 2011 - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2021 - UTC - Stéphane MOTTELET
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Cédric DELAMARRE
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,6 +19,8 @@ package org.scilab.modules.scinotes;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -33,6 +36,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +63,7 @@ import javax.swing.undo.UndoManager;
 import org.flexdock.docking.event.DockingEvent;
 import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.commons.gui.ScilabGUIUtilities;
+import org.scilab.modules.commons.gui.ScilabCefPanel;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.XConfiguration;
@@ -123,12 +128,16 @@ public class SciNotes extends SwingScilabDockablePanel {
     private static final String XPATH_SCINOTES_ACTION = "/map/scinotes/entry";
 
     private static final String SCINOTES = "SciNotes";
+    private static final String SCINOTES_EDITOR_PROPERTY = "scinotes.editor";
+    private static final String MONACO_EDITOR_PROPERTY_VALUE = "monaco";
     private static final String SCI_EXTENSION = ".sci";
     private static final String SCE_EXTENSION = ".sce";
     private static final String TST_EXTENSION = ".tst";
     private static final String QUIT_EXTENSION = ".quit";
     private static final String DEM_EXTENSION = ".dem";
     private static final String START_EXTENSION = ".start";
+    private static final List<String> SCILAB_EXTENSIONS = Collections.unmodifiableList(Arrays.asList(
+                SCI_EXTENSION, SCE_EXTENSION, TST_EXTENSION, QUIT_EXTENSION, DEM_EXTENSION, START_EXTENSION));
     private static final String ALL_TST_FILES = "*.tst";
     private static final String ALL_QUIT_FILES = "*.quit";
     private static final String ALL_START_FILES = "*.start";
@@ -149,10 +158,23 @@ public class SciNotes extends SwingScilabDockablePanel {
     private static SciNotes editor;
     private static boolean mustWrapLines;
 
+    /** Screen location requested for the next newly created SciNotes window, if any. */
+    private static Point pendingWindowLocation;
+
+    /**
+     * True while a cross-window or drag-out tab transfer is tearing down its
+     * source tab. Guards MonacoEditorPane against grabbing native CEF focus
+     * for a sibling tab that JTabbedPane auto-selects in the source window
+     * during that teardown, which would otherwise flash focus back and forth
+     * between the source and destination windows.
+     */
+    private static volatile boolean tabTransferInProgress;
+
     private SwingScilabWindow parentWindow;
     private UUID uuid;
 
     private ScilabTabbedPane tabPane;
+    private ChangeListener tabChangeListener;
     private final SciNotesContents contentPane;
     private NavigatorWindow navigator;
     private SearchFile searchInFiles;
@@ -165,6 +187,7 @@ public class SciNotes extends SwingScilabDockablePanel {
 
     private boolean protectOpenFileList;
     private boolean restored;
+    private boolean restoringSession;
     private boolean firstOpen = true;
 
     private final List<Integer> tabList = new ArrayList<Integer>();
@@ -202,7 +225,7 @@ public class SciNotes extends SwingScilabDockablePanel {
         protectOpenFileList = false;
         contentPane = new SciNotesContents(this);
         tabPane = contentPane.getScilabTabbedPane();
-        tabPane.addChangeListener(new ChangeListener() {
+        tabChangeListener = new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 if (getTextPane() != null) {
@@ -219,7 +242,8 @@ public class SciNotes extends SwingScilabDockablePanel {
                     setTitle(getTextPane().getTitle());
                 }
             }
-        });
+        };
+        tabPane.addChangeListener(tabChangeListener);
         this.setContentPane(contentPane);
     }
 
@@ -228,6 +252,19 @@ public class SciNotes extends SwingScilabDockablePanel {
      */
     public SciNotes() {
         this(UUID.randomUUID().toString());
+    }
+
+    void showMonacoBrowser(ScilabCefPanel browser, Component target) {
+        contentPane.showBrowserOverlay(browser, target);
+    }
+
+    void showMonacoBrowserSplit(ScilabCefPanel browser, Component target, Component secondaryTarget,
+            SciNotesContents.SplitLayoutListener listener) {
+        contentPane.showBrowserOverlaySplit(browser, target, secondaryTarget, listener);
+    }
+
+    void removeMonacoBrowser(ScilabCefPanel browser) {
+        contentPane.removeBrowserOverlay(browser);
     }
 
     public static void configurationChanged(SciNotesConfiguration.Conf conf) {
@@ -607,35 +644,259 @@ public class SciNotes extends SwingScilabDockablePanel {
         String title = ed.getTabPane().getScilabTitleAt(ed.getTabPane().getSelectedIndex());
         ScilabEditorPane currentSep = ed.getTextPane();
         String winTitle = ed.getTitle();
+        int sourceSelectionStart = currentSep.getSelectionStart();
+        int sourceSelectionEnd = currentSep.getSelectionEnd();
+        boolean sourceHidden = b && prepareTabTransferSource(ed, currentSep);
+
+        try {
+            editor = null;
+
+            scinotesWithText(cdoc.getText());
+            ScilabEditorPane sep = editor.getTextPane();
+
+            if (currentSep.getName() != null) {
+                sep.setTitle(title);
+                editor.setTitle(winTitle);
+            }
+
+            currentSep.copyProps(sep);
+            if (currentSep.getName() != null) {
+                /*
+                 * scinotesWithText() opens an untitled tab; copyProps() has
+                 * just given the pane its file, so the tab stops showing an
+                 * Untitled number, and gives that number back.
+                 */
+                int index = editor.getTabPane().indexOfComponent(sep.getEditorComponent());
+                if (index >= 0) {
+                    editor.releaseUntitledNumber(editor.getTabPane().getScilabTitleAt(index));
+                    editor.getTabPane().setTitleAt(index, new File(currentSep.getName()).getName());
+                }
+            }
+            ScilabDocument sdoc = (ScilabDocument) sep.getDocument();
+            copyDocumentProperties(cdoc, sdoc);
+            sdoc.setContentModified(cdoc.isContentModified());
+            sdoc.setContentModifiedSinceBackup(cdoc.isContentModifiedSinceBackup());
+            sdoc.getUndoManager().discardAllEdits();
+            setTransferredSelection(sep, sourceSelectionStart, sourceSelectionEnd);
+            editor.enableUndoButton(false);
+            editor.enableRedoButton(false);
+            ConfigSciNotesManager.saveToOpenFiles(sep.getName(), editor, editor.getTextPane());
+
+            editor.activeRestoreTab();
+        } catch (RuntimeException e) {
+            restoreTabTransferSource(ed, currentSep, sourceHidden);
+            throw e;
+        }
 
         if (b) {
-            ed.closeTabAtWithoutConfirmation(ed.getTabPane().getSelectedIndex());
-            if (ed.getTabPane().getTabCount() == 0) {
-                ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockablePanel) ed);
-                ConfigSciNotesManager.removeEditorUUID(ed.uuid.toString());
+            /*
+             * Do not dispose a Monaco/JCEF source while its AWT drag callback
+             * is still unwinding. The destination is fully constructed first,
+             * and the source is closed on the following EDT turn.
+             */
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    /*
+                     * Closing the source tab can auto-select a sibling tab
+                     * still open in the source window. Without this guard
+                     * that sibling's MonacoEditorPane would grab native CEF
+                     * focus for the source browser and immediately hand it
+                     * back, flashing both windows' titlebars right after the
+                     * window was just detached.
+                     */
+                    tabTransferInProgress = true;
+                    try {
+                        int sourceIndex = ed.getTextPaneIndex(currentSep);
+                        if (sourceIndex >= 0) {
+                            ed.closeTabAtWithoutConfirmation(sourceIndex);
+                        }
+                        if (ed.getTabPane().getTabCount() == 0) {
+                            ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockablePanel) ed);
+                            ConfigSciNotesManager.removeEditorUUID(ed.uuid.toString());
+                        }
+                    } finally {
+                        tabTransferInProgress = false;
+                    }
+                    if (editor != null) {
+                        ScilabEditorPane newPane = editor.getTextPane();
+                        if (newPane != null) {
+                            newPane.requestFocus();
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * Copy an editor pane into a newly owned tab of another SciNotes window.
+     * The returned pane has its own Monaco model and uses the destination
+     * window's SharedBrowser; the source remains untouched on failure.
+     *
+     * @param destination destination SciNotes window
+     * @param source source editor pane
+     * @param title displayed tab title
+     * @param index requested destination index
+     * @return the new pane, or null when the copy could not be completed
+     */
+    public static ScilabEditorPane copyTabForTransfer(SciNotes destination,
+            ScilabEditorPane source, String title, int index) {
+        if (destination == null || source == null) {
+            return null;
+        }
+
+        ScilabEditorPane copied = null;
+        try {
+            ScilabDocument sourceDocument = (ScilabDocument) source.getDocument();
+            int selectionStart = source.getSelectionStart();
+            int selectionEnd = source.getSelectionEnd();
+            copied = destination.addTabForTransfer(title, index);
+            ScilabDocument copiedDocument = (ScilabDocument) copied.getDocument();
+
+            boolean updater = copiedDocument.isUpdater();
+            copiedDocument.setUpdater(false);
+            boolean autoIndent = copiedDocument.getAutoIndent();
+            copiedDocument.setAutoIndent(false);
+            try {
+                copiedDocument.insertString(0, sourceDocument.getText(), null);
+            } finally {
+                copiedDocument.setAutoIndent(autoIndent);
+                copiedDocument.setUpdater(updater);
+            }
+
+            source.copyProps(copied);
+            copyDocumentProperties(sourceDocument, copiedDocument);
+            copiedDocument.setContentModified(sourceDocument.isContentModified());
+            copiedDocument.setContentModifiedSinceBackup(sourceDocument.isContentModifiedSinceBackup());
+            copiedDocument.getUndoManager().discardAllEdits();
+            setTransferredSelection(copied, selectionStart, selectionEnd);
+            destination.updateTabTitle(destination.getTextPaneIndex(copied));
+            return copied;
+        } catch (BadLocationException | RuntimeException e) {
+            if (copied != null) {
+                int copiedIndex = destination.getTextPaneIndex(copied);
+                if (copiedIndex >= 0) {
+                    destination.closeTabAtWithoutConfirmation(copiedIndex);
+                }
+            }
+            System.err.println("SciNotes: unable to transfer editor tab: " + e.getMessage());
+            return null;
+        }
+    }
+
+    private static void copyDocumentProperties(ScilabDocument source, ScilabDocument destination) {
+        destination.setEncoding(source.getEncoding());
+        destination.setEOL(source.getEOL());
+        destination.setBinary(source.getBinary());
+    }
+
+    private static void setTransferredSelection(ScilabEditorPane pane, int start, int end) {
+        int length = pane.getDocument().getLength();
+        int safeStart = Math.min(Math.max(0, start), length);
+        int safeEnd = Math.min(Math.max(0, end), length);
+        pane.setCaretPosition(safeStart);
+        pane.moveCaretPosition(safeEnd);
+    }
+
+    /**
+     * Hide an autonomous SciNotes window immediately before its last
+     * successfully transferred tab is removed. The regular FlexDock closing
+     * operation still owns disposal and configuration cleanup.
+     *
+     * @param source source SciNotes window
+     * @param transferredPane pane about to be removed
+     * @return true when an autonomous source window was hidden
+     */
+    public static boolean hideWindowBeforeLastTabTransfer(SciNotes source,
+            ScilabEditorPane transferredPane) {
+        if (source == null || transferredPane == null
+                || source.getTabPane().getTabCount() != 1
+                || source.getTextPane(0) != transferredPane) {
+            return false;
+        }
+
+        SwingScilabWindow window = source.getParentWindow();
+        if (window != null && window.getNbDockedObjects() == 1) {
+            window.setVisible(false);
+            Toolkit.getDefaultToolkit().sync();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Commit a destination pane which was prepared without changing the
+     * selected tab. This is intentionally separate from copying so a DnD
+     * transaction can hide its disappearing source window first.
+     *
+     * @param destination destination SciNotes window
+     * @param transferredPane prepared destination pane
+     * @return true when the pane was activated
+     */
+    public static boolean activateTransferredTab(SciNotes destination,
+            ScilabEditorPane transferredPane) {
+        if (destination == null || transferredPane == null) {
+            return false;
+        }
+
+        int index = destination.getTextPaneIndex(transferredPane);
+        if (index < 0) {
+            return false;
+        }
+
+        try {
+            destination.getTabPane().setSelectedIndex(index);
+            destination.updateTabTitle(index);
+            destination.getInfoBar().setText(transferredPane.getInfoBarText());
+            transferredPane.requestFocus();
+            if (transferredPane instanceof MonacoEditorPane) {
+                ((MonacoEditorPane) transferredPane).restoreTransferredSelection();
+            }
+            return true;
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Release the source editor focus and hide its autonomous window when its
+     * last tab is about to be transferred.
+     *
+     * @param source source SciNotes window
+     * @param sourcePane source pane
+     * @return true when the source window was hidden
+     */
+    public static boolean prepareTabTransferSource(SciNotes source,
+            ScilabEditorPane sourcePane) {
+        if (sourcePane instanceof MonacoEditorPane) {
+            ((MonacoEditorPane) sourcePane).releaseFocusForTransfer();
+        }
+        return hideWindowBeforeLastTabTransfer(source, sourcePane);
+    }
+
+    /**
+     * Restore a source after a prepared destination failed to activate.
+     *
+     * @param source source SciNotes window
+     * @param sourcePane source pane
+     * @param sourceHidden whether preparation hid the source window
+     */
+    public static void restoreTabTransferSource(SciNotes source,
+            ScilabEditorPane sourcePane, boolean sourceHidden) {
+        if (source == null || sourcePane == null) {
+            return;
+        }
+        if (sourceHidden) {
+            SwingScilabWindow sourceWindow = source.getParentWindow();
+            if (sourceWindow != null) {
+                sourceWindow.setVisible(true);
             }
         }
-
-        editor = null;
-
-        scinotesWithText(cdoc.getText());
-        ScilabEditorPane sep = editor.getTextPane();
-
-        if (currentSep.getName() != null) {
-            sep.setTitle(title);
-            editor.setTitle(winTitle);
+        int sourceIndex = source.getTextPaneIndex(sourcePane);
+        if (sourceIndex >= 0) {
+            source.getTabPane().setSelectedIndex(sourceIndex);
+            sourcePane.requestFocus();
         }
-
-        currentSep.copyProps(sep);
-        ScilabDocument sdoc = (ScilabDocument) sep.getDocument();
-        sdoc.setContentModified(cdoc.isContentModified());
-        sdoc.getUndoManager().discardAllEdits();
-        sep.setCaretPosition(0);
-        editor.enableUndoButton(false);
-        editor.enableRedoButton(false);
-        ConfigSciNotesManager.saveToOpenFiles(sep.getName(), editor, editor.getTextPane());
-
-        editor.activeRestoreTab();
     }
 
     /**
@@ -647,8 +908,48 @@ public class SciNotes extends SwingScilabDockablePanel {
      *            a boolean
      */
     public static void cloneAndCloseCurrentTab(SciNotes ed, boolean b, int x, int y) {
-        cloneAndCloseCurrentTab(ed, b);
+        /*
+         * SciNotesGUI.init() shows the new window before this method gets a
+         * chance to move it, which makes it flash at its default position
+         * before jumping to the drop location. Hand the target location over
+         * so it can be applied before the window becomes visible; still set
+         * it explicitly afterward as a fallback for window-creation paths
+         * that do not consume the pending location (e.g. session restore).
+         */
+        pendingWindowLocation = new Point(x, y);
+        try {
+            cloneAndCloseCurrentTab(ed, b);
+        } finally {
+            pendingWindowLocation = null;
+        }
         editor.getSwingParentWindow().setLocation(x, y);
+    }
+
+    /**
+     * Consume the screen location requested for the next newly created
+     * SciNotes window, if any.
+     *
+     * @return the requested location, or null when none is pending
+     */
+    public static Point takePendingWindowLocation() {
+        Point location = pendingWindowLocation;
+        pendingWindowLocation = null;
+        return location;
+    }
+
+    /**
+     * @return true while a cross-window or drag-out tab transfer is tearing
+     *         down its source tab (see {@link #tabTransferInProgress}).
+     */
+    public static boolean isTabTransferInProgress() {
+        return tabTransferInProgress;
+    }
+
+    /**
+     * @param inProgress see {@link #tabTransferInProgress}
+     */
+    public static void setTabTransferInProgress(boolean inProgress) {
+        tabTransferInProgress = inProgress;
     }
 
     /**
@@ -692,8 +993,14 @@ public class SciNotes extends SwingScilabDockablePanel {
             return;
         }
 
-        // Restore files from previous version
-        RestoreOpenedFilesAction.forceRestore(this, getUUID().toString());
+        // Restore files from previous version. While replaying the saved list,
+        // do not rewrite it from each loadFile() call.
+        restoringSession = true;
+        try {
+            RestoreOpenedFilesAction.forceRestore(this, getUUID().toString());
+        } finally {
+            restoringSession = false;
+        }
 
         WindowsConfigurationManager.restorationFinished(SciNotes.this);
         if  (System.getProperty("os.name").toLowerCase().contains("mac")) {
@@ -722,6 +1029,16 @@ public class SciNotes extends SwingScilabDockablePanel {
                     if (!exists) {
                         success = WindowsConfigurationManager.restoreUUID(uuid);
                         if (success) {
+                            break;
+                        }
+                        if (ConfigSciNotesManager.countExistingOpenFiles(UUID.fromString(uuid)) > 0) {
+                            editor = SciNotesTab.getEditorInstance(uuid);
+                            ScilabTabFactory.getInstance().addToCache(editor);
+                            editor.setParentWindow();
+                            ConfigSciNotesManager.saveEditorUUID(editor.getPersistentId());
+                            SciNotesGUI.init(editor.getParentWindow(), editor, SCINOTES);
+                            WindowsConfigurationManager.unregisterEndedRestoration(editor);
+                            success = true;
                             break;
                         }
                         ConfigSciNotesManager.removeEditorUUID(uuid);
@@ -820,6 +1137,8 @@ public class SciNotes extends SwingScilabDockablePanel {
      * Close SciNotes instance including all tabs.
      */
     public void closeSciNotes() {
+        saveOpenFilesForRestore();
+
         for (int i = 0; i < getTabPane().getTabCount(); i++) {
             ScilabEditorPane textPaneAt = getTextPane(i);
             if (textPaneAt != null) {
@@ -853,6 +1172,24 @@ public class SciNotes extends SwingScilabDockablePanel {
         SciNotesGUI.clean(this);
         close();
         ConfigSciNotesManager.resetDocument();
+    }
+
+    /**
+     * Persist the current tab list before the dockable panel is destroyed.
+     * This keeps session restore independent from the individual open/save
+     * paths used to create each tab.
+     */
+    private void saveOpenFilesForRestore() {
+        ConfigSciNotesManager.saveEditorUUID(getPersistentId());
+        ConfigSciNotesManager.removeFromOpenFiles(getUUID());
+
+        int count = getTabPane().getTabCount();
+        for (int i = 0; i < count; i++) {
+            ScilabEditorPane pane = getTextPane(i);
+            if (pane != null && pane.getName() != null) {
+                ConfigSciNotesManager.saveToOpenFiles(pane.getName(), this, pane);
+            }
+        }
     }
 
     public boolean canClose() {
@@ -935,28 +1272,41 @@ public class SciNotes extends SwingScilabDockablePanel {
          * Test for modification added after bug 5103 fix: do not ask the user
          * for an Untitled not-modified file saving when closing SciNotes
          */
-        if (confirmation && ((ScilabDocument) textPaneAt.getDocument()).isContentModified()) {
+        /*
+         * Every tab on a file holds the same text, so the last one closing is
+         * the one that decides whether it is saved.
+         */
+        if (confirmation && ((ScilabDocument) textPaneAt.getDocument()).isContentModified()
+                && !stillOpenElsewhere(textPaneAt, false)) {
             if (!save(indexTab, false, scilabClose)) {
                 return false;
             }
         }
 
+        // A split tab holds two panes (see splitTab()/removeSplit()); closing
+        // the tab must close both, not just the one getTextPane(indexTab)
+        // resolves to. Left uncleaned, a MonacoEditorPane half stays
+        // registered forever in its SharedBrowser (see unregister()) even
+        // though its Swing component tree is gone with the tab.
+        ScilabEditorPane otherPaneAt = textPaneAt.getOtherPaneInSplit();
         textPaneAt.close();
+        if (otherPaneAt != null) {
+            otherPaneAt.close();
+        }
 
         if (textPaneAt.getName() == null) {
-            String closedTabName = tabPane.getScilabTitleAt(indexTab);
-            String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
-            tabList.remove(Integer.valueOf(closedTabNameIndex));
-            closedTabList.add(Integer.valueOf(closedTabNameIndex));
+            releaseUntitledNumber(tabPane.getScilabTitleAt(indexTab));
         }
 
         // correction for bug 5404, closing the last tabPane generate an
         // exception
         // that's why we need to remove ChangeListeners before closing
+        boolean removedTabListeners = false;
         if ((indexTab == 0) && (getTabPane().getTabCount() == 1)) {
-            for (int i = 0; i < tabPane.getChangeListeners().length; i++) {
-                tabPane.removeChangeListener(tabPane.getChangeListeners()[i]);
+            for (ChangeListener cl : tabPane.getChangeListeners()) {
+                tabPane.removeChangeListener(cl);
             }
+            removedTabListeners = true;
         }
 
         // Remove the filename associated with the tab from the list of open
@@ -970,6 +1320,13 @@ public class SciNotes extends SwingScilabDockablePanel {
         }
 
         tabPane.remove(indexTab);
+
+        // The bug-5404 workaround above drops every tab ChangeListener; without
+        // restoring ours, later tab switches (e.g. after re-opening files) no
+        // longer refresh the editor for the newly selected tab.
+        if (removedTabListeners) {
+            reinstallTabChangeListener();
+        }
 
         textPaneAt = getTextPane();
         if (textPaneAt != null) {
@@ -986,13 +1343,43 @@ public class SciNotes extends SwingScilabDockablePanel {
         /*
          * Test for modification added after bug 5103 fix: do not ask the user
          * for an Untitled not-modified file saving when closing SciNotes
+         *
+         * This window is closing with all its tabs: ask once for a file it
+         * shows several times, and not at all when another window keeps it.
          */
-        if (textPaneAt != null && ((ScilabDocument) textPaneAt.getDocument()).isContentModified()) {
+        if (textPaneAt != null && ((ScilabDocument) textPaneAt.getDocument()).isContentModified()
+                && !stillOpenElsewhere(textPaneAt, true) && isFirstTabOnFile(index)) {
             if (!save(index, false, false)) {
                 return false;
             }
         }
 
+        return true;
+    }
+
+    /**
+     * @param otherWindowsOnly true to ignore this window, whose tabs are
+     *        closing too
+     * @return whether another tab keeps this pane's file open
+     */
+    private static boolean stillOpenElsewhere(ScilabEditorPane pane, boolean otherWindowsOnly) {
+        return pane instanceof MonacoEditorPane
+               && ((MonacoEditorPane) pane).isOpenInAnotherPane(otherWindowsOnly);
+    }
+
+    /** Whether no earlier tab of this window shows the same file. */
+    private boolean isFirstTabOnFile(int indexTab) {
+        ScilabEditorPane pane = getTextPane(indexTab);
+        String name = pane == null ? null : pane.getName();
+        if (name == null) {
+            return true;
+        }
+        for (int i = 0; i < indexTab; i++) {
+            ScilabEditorPane other = getTextPane(i);
+            if (other != null && name.equals(other.getName())) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -1025,6 +1412,15 @@ public class SciNotes extends SwingScilabDockablePanel {
      */
     public static List<SciNotes> getSciNotesList() {
         return scinotesList;
+    }
+
+    /**
+     * The extensions of the files SciNotes reads as Scilab code.
+     *
+     * @return the extensions, dot included
+     */
+    public static List<String> getScilabExtensions() {
+        return SCILAB_EXTENSIONS;
     }
 
     /**
@@ -1125,12 +1521,10 @@ public class SciNotes extends SwingScilabDockablePanel {
         styledDocument.setContentModified(false);
 
         textPaneAt.setLastModified(newSavedFile.lastModified());
+        acknowledgeSharedSave(textPaneAt, newSavedFile);
 
         if (textPaneAt.getName() == null) {
-            String name = getTabPane().getScilabTitleAt(indexTab);
-            String index = name.substring(name.length() - 1, name.length());
-            tabList.remove(Integer.valueOf(index));
-            closedTabList.add(Integer.valueOf(index));
+            releaseUntitledNumber(getTabPane().getScilabTitleAt(indexTab));
         }
 
         textPaneAt.setName(fileToSave);
@@ -1174,11 +1568,22 @@ public class SciNotes extends SwingScilabDockablePanel {
 
         // Get current file path for Execute file into Scilab
         getTextPane().setLastModified(newSavedFile.lastModified());
+        acknowledgeSharedSave(textPaneAt, newSavedFile);
 
         textPaneAt.setName(fileToSave);
         setTitle(textPaneAt.getTitle());
 
         return true;
+    }
+
+    /*
+     * The same file can be open in other tabs and other windows: they show
+     * the text just written, so they are saved too.
+     */
+    private static void acknowledgeSharedSave(ScilabEditorPane pane, File savedFile) {
+        if (pane instanceof MonacoEditorPane) {
+            ((MonacoEditorPane) pane).acknowledgeSharedSave(savedFile);
+        }
     }
 
     /**
@@ -1294,10 +1699,7 @@ public class SciNotes extends SwingScilabDockablePanel {
         }
 
         if (getTextPane().getName() == null) {
-            String name = getTabPane().getScilabTitleAt(getTabPane().getSelectedIndex());
-            String index = name.substring(name.length() - 1, name.length());
-            tabList.remove(Integer.valueOf(index));
-            closedTabList.add(Integer.valueOf(index));
+            releaseUntitledNumber(getTabPane().getScilabTitleAt(getTabPane().getSelectedIndex()));
         }
 
         firstOpen = false;
@@ -1356,17 +1758,41 @@ public class SciNotes extends SwingScilabDockablePanel {
      * @return the text component inside the tab
      */
     public ScilabEditorPane addTab(String title, int index, int caretPos) {
-        ScilabEditorPane sep = new ScilabEditorPane(this);
+        return addTab(title, index, caretPos, true);
+    }
+
+    private ScilabEditorPane addTabForTransfer(String title, int index) {
+        return addTab(title, index, 0, false);
+    }
+
+    private ScilabEditorPane addTab(String title, int index, int caretPos, boolean activate) {
+        ScilabEditorPane sep = createEditorPane();
         initPane(sep);
         int ind = Math.min(Math.max(0, index), tabPane.getTabCount());
         tabPane.insertTab(title, null, sep.getEditorComponent(), "", ind);
-        tabPane.setSelectedIndex(ind);
         initInputMap(sep);
-        updateTabTitle();
-        getInfoBar().setText(sep.getInfoBarText());
+        if (activate) {
+            tabPane.setSelectedIndex(ind);
+            updateTabTitle();
+            getInfoBar().setText(sep.getInfoBarText());
+        }
         repaint();
-        sep.init(caretPos);
+        if (activate) {
+            sep.init(caretPos);
+        }
         return sep;
+    }
+
+    /**
+     * Create the editor pane used by a SciNotes tab.
+     * Monaco is opt-in while the integration is still experimental.
+     */
+    private ScilabEditorPane createEditorPane() {
+        if (MONACO_EDITOR_PROPERTY_VALUE.equalsIgnoreCase(System.getProperty(SCINOTES_EDITOR_PROPERTY))) {
+            return new MonacoEditorPane(this);
+        }
+
+        return new ScilabEditorPane(this);
     }
 
     public void addRestoreTab() {
@@ -1442,10 +1868,23 @@ public class SciNotes extends SwingScilabDockablePanel {
      */
     public void splitTab(boolean vertical) {
         ScilabEditorPane pane = getTextPane();
+        int orientation = vertical ? JSplitPane.VERTICAL_SPLIT : JSplitPane.HORIZONTAL_SPLIT;
+        /*
+         * The split menu is a radio group, and clicking the already selected
+         * entry still fires its action. Rebuilding an identical split would
+         * throw both panes (and, for Monaco, their models and views) away and
+         * recreate them for nothing -- a visible reload.
+         */
+        ScilabEditorPane splitSibling = pane.getOtherPaneInSplit();
+        if (pane.getEditorComponent().isSplited()) {
+            if (pane.getEditorComponent().getSplitPane().getOrientation() == orientation) {
+                return;
+            }
+        }
         Component bottom = pane.getEditorComponent().getBottom();
         int state = pane.getXln().getState();
-        ScilabEditorPane leftPane = new ScilabEditorPane(editor);
-        ScilabEditorPane rightPane = new ScilabEditorPane(editor);
+        ScilabEditorPane leftPane = createEditorPaneLike(pane);
+        ScilabEditorPane rightPane = createEditorPaneLike(pane);
         if (navigator != null) {
             navigator.changePaneOnSplit(pane, leftPane);
         }
@@ -1460,17 +1899,23 @@ public class SciNotes extends SwingScilabDockablePanel {
         rightPane.setDocument(doc);
         leftPane.setCaretPosition(0);
         rightPane.setCaretPosition(0);
-        JSplitPane split;
-        if (vertical) {
-            split = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-        } else {
-            split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-        }
+        JSplitPane split = new JSplitPane(orientation);
         leftPane.getXln().setWhereamiLineNumbering(state);
         rightPane.getXln().setWhereamiLineNumbering(state);
-        split.setLeftComponent(leftPane.getScrollPane());
-        split.setRightComponent(rightPane.getScrollPane());
+        split.setLeftComponent(getSplitComponent(leftPane));
+        split.setRightComponent(getSplitComponent(rightPane));
         split.setResizeWeight(0.5);
+        if (leftPane instanceof MonacoEditorPane) {
+            /*
+             * The Monaco overlay is one native window stretched over both
+             * halves (see MonacoEditorPane.SharedBrowser.activateSplit()); a
+             * real JSplitPane divider between them would sit under that
+             * window and become undraggable. Disable it: the page draws and
+             * drags its own separator, and moves this divider on release
+             * (see configureSplitHandle() in monaco-split.js).
+             */
+            split.setDividerSize(0);
+        }
         rightPane.setEditorComponent(leftPane.getEditorComponent());
         leftPane.setSplitPane(split);
         rightPane.setSplitPane(split);
@@ -1488,6 +1933,23 @@ public class SciNotes extends SwingScilabDockablePanel {
         tabPane.setComponentAt(tabPane.getSelectedIndex(), leftPane.getEditorComponent());
         leftPane.getEditorComponent().insertBottomComponent(bottom);
         leftPane.requestFocus();
+        if (pane instanceof MonacoEditorPane) {
+            pane.close();
+            // Changing the orientation of an existing split replaces both old
+            // panes, not just the one getTextPane() resolved to; the other
+            // would otherwise stay registered in its SharedBrowser with its
+            // Monaco model never disposed.
+            if (splitSibling != null) {
+                splitSibling.close();
+            }
+            /*
+             * There is only one native Monaco browser per window: rightPane
+             * cannot get its own document like leftPane just did. Turn it
+             * into a second live view of leftPane's model instead (see
+             * MonacoEditorPane.enterSplitView()).
+             */
+            ((MonacoEditorPane) rightPane).enterSplitView((MonacoEditorPane) leftPane);
+        }
     }
 
     /**
@@ -1495,9 +1957,10 @@ public class SciNotes extends SwingScilabDockablePanel {
      */
     public void removeSplit() {
         if (((EditorComponent) tabPane.getSelectedComponent()).isSplited()) {
-            ScilabEditorPane pane = new ScilabEditorPane(editor);
             ScilabEditorPane textpane = getTextPane();
+            ScilabEditorPane pane = createEditorPaneLike(textpane);
             Component bottom = textpane.getEditorComponent().getBottom();
+            ScilabEditorPane otherPane = textpane.getOtherPaneInSplit();
             if (navigator != null) {
                 navigator.changePaneOnSplit(textpane, pane);
             }
@@ -1517,7 +1980,29 @@ public class SciNotes extends SwingScilabDockablePanel {
             updateTabTitle();
             pane.getEditorComponent().insertBottomComponent(bottom);
             pane.requestFocus();
+            if (textpane instanceof MonacoEditorPane) {
+                textpane.close();
+                if (otherPane != null) {
+                    otherPane.close();
+                }
+            }
         }
+    }
+
+    private ScilabEditorPane createEditorPaneLike(ScilabEditorPane pane) {
+        if (pane instanceof MonacoEditorPane) {
+            return new MonacoEditorPane(this);
+        }
+
+        return new ScilabEditorPane(this);
+    }
+
+    private Component getSplitComponent(ScilabEditorPane pane) {
+        if (pane instanceof MonacoEditorPane) {
+            return pane.getEditorComponent().detachEditorViewComponent();
+        }
+
+        return pane.getScrollPane();
     }
 
     /**
@@ -1558,6 +2043,34 @@ public class SciNotes extends SwingScilabDockablePanel {
             numberOfUntitled++;
             tabList.add(Integer.valueOf(numberOfUntitled));
             return numberOfUntitled;
+        }
+    }
+
+    /**
+     * Give the number of an untitled tab back to the pool, so that a later
+     * empty tab can reuse it.
+     *
+     * @param title
+     *            the title of the tab being named or closed
+     */
+    private void releaseUntitledNumber(String title) {
+        if (title == null) {
+            return;
+        }
+
+        // A tab that an interrupted open left unnamed keeps the file name it
+        // was created with, and holds no number of the pool.
+        String name = title.startsWith("*") ? title.substring(1) : title;
+        if (!name.startsWith(SciNotesMessages.UNTITLED)) {
+            return;
+        }
+
+        try {
+            Integer number = Integer.valueOf(name.substring(SciNotesMessages.UNTITLED.length()).trim());
+            tabList.remove(number);
+            closedTabList.add(number);
+        } catch (NumberFormatException e) {
+            // Not an untitled tab after all.
         }
     }
 
@@ -1619,7 +2132,13 @@ public class SciNotes extends SwingScilabDockablePanel {
      * Undo last modification.
      */
     public void undo() {
-        ScilabDocument doc = (ScilabDocument) getTextPane().getDocument();
+        ScilabEditorPane pane = getTextPane();
+        if (pane instanceof MonacoEditorPane) {
+            // Monaco owns the live text and its own undo stack.
+            ((MonacoEditorPane) pane).undo();
+            return;
+        }
+        ScilabDocument doc = (ScilabDocument) pane.getDocument();
         synchronized (doc) {
             doc.getUndoManager().undo();
         }
@@ -1648,7 +2167,13 @@ public class SciNotes extends SwingScilabDockablePanel {
      * Redo last modification.
      */
     public void redo() {
-        ScilabDocument doc = (ScilabDocument) getTextPane().getDocument();
+        ScilabEditorPane pane = getTextPane();
+        if (pane instanceof MonacoEditorPane) {
+            // Monaco owns the live text and its own undo stack.
+            ((MonacoEditorPane) pane).redo();
+            return;
+        }
+        ScilabDocument doc = (ScilabDocument) pane.getDocument();
         synchronized (doc) {
             doc.getUndoManager().redo();
         }
@@ -1662,14 +2187,23 @@ public class SciNotes extends SwingScilabDockablePanel {
      */
     public void reload(int index) {
         ScilabEditorPane textPaneAt = getTextPane(index);
+        if (textPaneAt instanceof MonacoEditorPane && ((MonacoEditorPane) textPaneAt).reloadFileInPlace()) {
+            return;
+        }
+
         if (textPaneAt != null && textPaneAt.getName() != null) {
+            boolean removedTabListeners = false;
             if ((index == 0) && (getTabPane().getTabCount() == 1)) {
-                for (int j = 0; j < tabPane.getChangeListeners().length; j++) {
-                    tabPane.removeChangeListener(tabPane.getChangeListeners()[j]);
+                for (ChangeListener cl : tabPane.getChangeListeners()) {
+                    tabPane.removeChangeListener(cl);
                 }
+                removedTabListeners = true;
             }
             ConfigSciNotesManager.removeFromOpenFiles(this, textPaneAt);
             tabPane.remove(index);
+            if (removedTabListeners) {
+                reinstallTabChangeListener();
+            }
             File f = new File(textPaneAt.getName());
             if (f.exists()) {
                 loadFile(f, index);
@@ -1690,6 +2224,12 @@ public class SciNotes extends SwingScilabDockablePanel {
         boolean alreadyOpened = false;
         for (int i = 0; i < tabPane.getTabCount(); i++) {
             ScilabEditorPane textPaneAt = getTextPane(i);
+            if (textPaneAt == null) {
+                // getTextPane(i) can transiently be null while a freshly added
+                // tab is still wiring up; skip rather than NPE and abort a
+                // multi-file open.
+                continue;
+            }
             if (f.getAbsolutePath().equals(textPaneAt.getName())) {
                 /* File is already opnened */
                 tabPane.setSelectedIndex(i);
@@ -1746,12 +2286,17 @@ public class SciNotes extends SwingScilabDockablePanel {
 
                     switch (messageBox.getSelectedButton()) {
                         case 1: // Reload
+                            boolean removedTabListeners = false;
                             if ((i == 0) && (getTabPane().getTabCount() == 1)) {
-                                for (int j = 0; j < tabPane.getChangeListeners().length; j++) {
-                                    tabPane.removeChangeListener(tabPane.getChangeListeners()[j]);
+                                for (ChangeListener cl : tabPane.getChangeListeners()) {
+                                    tabPane.removeChangeListener(cl);
                                 }
+                                removedTabListeners = true;
                             }
                             tabPane.remove(i);
+                            if (removedTabListeners) {
+                                reinstallTabChangeListener();
+                            }
                             f = new File(textPaneAt.getName());
                             index = i;
                             break;
@@ -1884,8 +2429,14 @@ public class SciNotes extends SwingScilabDockablePanel {
             for (int i = 0; i < n; i++) {
                 ScilabEditorPane sep = ed.getTextPane(i);
                 sep.getXln().setWhereamiLineNumbering(SciNotesOptions.getSciNotesDisplay().showLineNumbers, SciNotesOptions.getSciNotesDisplay().whereami);
+                if (sep instanceof MonacoEditorPane) {
+                    ((MonacoEditorPane) sep).applyDisplayOptions();
+                }
                 if (sep.getOtherPaneInSplit() != null) {
                     sep.getOtherPaneInSplit().getXln().setWhereamiLineNumbering(SciNotesOptions.getSciNotesDisplay().showLineNumbers, SciNotesOptions.getSciNotesDisplay().whereami);
+                    if (sep.getOtherPaneInSplit() instanceof MonacoEditorPane) {
+                        ((MonacoEditorPane) sep.getOtherPaneInSplit()).applyDisplayOptions();
+                    }
                 }
             }
             ed.repaint();
@@ -1924,6 +2475,10 @@ public class SciNotes extends SwingScilabDockablePanel {
                 int n = ed.getTabPane().getTabCount();
                 for (int i = 0; i < n; i++) {
                     ScilabEditorPane sep = ed.getTextPane(i);
+                    if (sep instanceof MonacoEditorPane) {
+                        ((MonacoEditorPane) sep).applyDisplayOptions();
+                        continue;
+                    }
                     if (sep.getOtherPaneInSplit() == null) {
                         ScilabEditorPane pane = new ScilabEditorPane(editor);
                         ed.initPane(pane, !mustWrapLines);
@@ -2189,6 +2744,20 @@ public class SciNotes extends SwingScilabDockablePanel {
     }
 
     /**
+     * Re-attach SciNotes' own tab ChangeListener after code that strips every
+     * tab listener (the bug-5404 last-tab workaround). Without this the editor
+     * stops reacting to tab switches.
+     */
+    private void reinstallTabChangeListener() {
+        for (ChangeListener cl : tabPane.getChangeListeners()) {
+            if (cl == tabChangeListener) {
+                return;
+            }
+        }
+        tabPane.addChangeListener(tabChangeListener);
+    }
+
+    /**
      * Set SciNotes main ScilabTabbedPane.
      *
      * @param tabPane
@@ -2278,7 +2847,9 @@ public class SciNotes extends SwingScilabDockablePanel {
             firstOpen = false;
             ConfigManager.saveLastOpenedDirectory(f.getPath());
             ConfigSciNotesManager.saveToRecentOpenedFiles(f.getPath());
-            ConfigSciNotesManager.saveToOpenFiles(f.getPath(), this, getTextPane());
+            if (!restoringSession) {
+                ConfigSciNotesManager.saveToOpenFiles(f.getPath(), this, getTextPane());
+            }
 
             // Empty the undo Manager
             UndoManager undo = ((ScilabDocument) getTextPane().getDocument()).getUndoManager();
@@ -2583,4 +3154,3 @@ public class SciNotes extends SwingScilabDockablePanel {
         public void actionOn(ScilabDocument doc) throws IOException;
     }
 }
-

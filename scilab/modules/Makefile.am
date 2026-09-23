@@ -82,6 +82,8 @@ atoms \
 hdf5 \
 graph \
 ast \
+slint \
+webtools \
 scinotes \
 parallel \
 modules_manager \
@@ -90,9 +92,7 @@ history_browser \
 preferences \
 xml \
 external_objects \
-slint \
-coverage \
-webtools
+coverage
 
 if GUI
 SUBDIRS += external_objects_java

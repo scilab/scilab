@@ -4,6 +4,7 @@
  *  Copyright (C) 2008-2010 - DIGITEO - Bruno JOFRET
  *  Copyright (C) 2012 - 2016 - Scilab Enterprises
  *  Copyright (C) 2023 - Dassault Systèmes S.E. - Bruno JOFRET
+ *  Copyright (C) 2026 - Dassault Systèmes S.E. - Cédric DELAMARRE
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -109,7 +110,8 @@ static void print_rules(const std::string& _parent, const double _value)
 
 #define SetTree(PTR)                                                \
     {                                                               \
-        if(ParserSingleInstance::getExitStatus() == Parser::Failed) \
+        if(ParserSingleInstance::getExitStatus() == Parser::Failed  \
+                && !ParserSingleInstance::recoverTreeOnError())    \
         {                                                           \
             delete PTR;                                             \
             ParserSingleInstance::setTree(nullptr);                 \
@@ -509,11 +511,6 @@ recursiveExpression :
 recursiveExpression expression expressionLineBreak    {
                               print_rules("recursiveExpression", "recursiveExpression expression expressionLineBreak");
                               $2->setVerbose($3->bVerbose);
-                              // set the expressionLineBreak last position to the expression
-                              if($3->iNbBreaker)
-                              {
-                                $2->getLocation().last_column = $3->iNbBreaker;
-                              }
                               $1->push_back($2);
                               $$ = $1;
                               delete $3;
@@ -538,15 +535,31 @@ recursiveExpression expression expressionLineBreak    {
 | expression expressionLineBreak            {
                               print_rules("recursiveExpression", "expression expressionLineBreak");
                               ast::exps_t* tmp = new ast::exps_t;
-                              // set the expressionLineBreak last position to the expression
-                              if($2->iNbBreaker)
-                              {
-                                $1->getLocation().last_column = $2->iNbBreaker;
-                              }
                               $1->setVerbose($2->bVerbose);
                               tmp->push_back($1);
                               $$ = tmp;
                               delete $2;
+                            }
+| recursiveExpression error expressionLineBreak {
+                              print_rules("recursiveExpression", "recursiveExpression error expressionLineBreak");
+                              ast::CommentExp* recovery = new ast::CommentExp(@2, new std::wstring(L"@@ ERROR RECOVERY @@"));
+                              recovery->setVerbose($3->bVerbose);
+                              $1->push_back(recovery);
+                              $$ = $1;
+                              delete $3;
+                              yyerrok;
+                              StopOnError();
+                            }
+| error expressionLineBreak {
+                              print_rules("recursiveExpression", "error expressionLineBreak");
+                              ast::exps_t* tmp = new ast::exps_t;
+                              ast::CommentExp* recovery = new ast::CommentExp(@1, new std::wstring(L"@@ ERROR RECOVERY @@"));
+                              recovery->setVerbose($2->bVerbose);
+                              tmp->push_back(recovery);
+                              $$ = tmp;
+                              delete $2;
+                              yyerrok;
+                              StopOnError();
                             }
 ;
 
@@ -554,11 +567,14 @@ recursiveExpression expression expressionLineBreak    {
 ** -*- EXPRESSION LINE BREAK -*-
 */
 /* Fake Rule : How can we be sure this is the end of an instruction. */
-// $$->iNbBreaker is used to set SEMI or COMMA location to the expression
+// The SEMI or COMMA which ends an instruction is not part of the expression:
+// its location stops at the expression text. A consumer which needs the whole
+// instruction text, like printExp() or SemicolonAtEOLChecker, looks for the
+// breaker in the code, after the end of the expression.
 expressionLineBreak :
-SEMI                            { $$ = new LineBreakStr(); $$->bVerbose = false; $$->iNbBreaker = @1.last_column; print_rules("expressionLineBreak", "SEMI"); }
-| COMMA                         { $$ = new LineBreakStr(); $$->bVerbose = true;  $$->iNbBreaker = @1.last_column; print_rules("expressionLineBreak", "COMMA"); }
-| EOL                           { $$ = new LineBreakStr(); $$->bVerbose = true;  $$->iNbBreaker = 0; print_rules("expressionLineBreak", "EOL");}
+SEMI                            { $$ = new LineBreakStr(); $$->bVerbose = false; print_rules("expressionLineBreak", "SEMI"); }
+| COMMA                         { $$ = new LineBreakStr(); $$->bVerbose = true;  print_rules("expressionLineBreak", "COMMA"); }
+| EOL                           { $$ = new LineBreakStr(); $$->bVerbose = true;  print_rules("expressionLineBreak", "EOL");}
 | expressionLineBreak SEMI      { $$ = $1; print_rules("expressionLineBreak", "expressionLineBreak SEMI"); }
 | expressionLineBreak COMMA     { $$ = $1; print_rules("expressionLineBreak", "expressionLineBreak COMMA"); }
 | expressionLineBreak EOL       { $$ = $1; print_rules("expressionLineBreak", "expressionLineBreak EOL"); }
@@ -585,11 +601,6 @@ functionDeclaration                         { $$ = $1; print_rules("expression",
 | CONTINUE                                  { $$ = new ast::ContinueExp(@$); print_rules("expression", "CONTINUE");}
 | returnControl                             { $$ = $1; print_rules("expression", "returnControl");}
 | COMMENT                                   { $$ = new ast::CommentExp(@$, $1); print_rules("expression", "COMMENT");}
-| error                            {
-    print_rules("expression", "error");
-    $$ = new ast::CommentExp(@$, new std::wstring(L"@@ ERROR RECOVERY @@"));
-    StopOnError();
-  }
 ;
 
 /*
@@ -1211,7 +1222,7 @@ listableBegin COLON variable        { $$ = new ast::ListExp(@$, *new ast::Commen
 variable :
 NOT variable                %prec NOT       { $$ = new ast::NotExp(@$, *$2); print_rules("variable", "NOT variable");}
 | NOT functionCall          %prec NOT       { $$ = new ast::NotExp(@$, *$2); print_rules("variable", "NOT functionCall");}
-| variable DOT ID           %prec UPLEVEL   { $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, symbol::Symbol(*$3))); delete $3;print_rules("variable", "variable DOT ID");}
+| variable DOT ID           %prec UPLEVEL   { $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@3, symbol::Symbol(*$3))); delete $3;print_rules("variable", "variable DOT ID");}
 | variable DOT keywords     %prec UPLEVEL   { $$ = new ast::FieldExp(@$, *$1, *$3); print_rules("variable", "variable DOT keywords");}
 | variable DOT functionCall                 {
                               print_rules("variable", "variable DOT functionCall");
@@ -1219,7 +1230,7 @@ NOT variable                %prec NOT       { $$ = new ast::NotExp(@$, *$2); pri
                               $3->setLocation(@$);
                               $$ = $3;
 }
-| functionCall DOT ID                       { $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, symbol::Symbol(*$3))); delete $3; print_rules("variable", "functionCall DOT ID");}
+| functionCall DOT ID                       { $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@3, symbol::Symbol(*$3))); delete $3; print_rules("variable", "functionCall DOT ID");}
 | functionCall DOT keywords                 { $$ = new ast::FieldExp(@$, *$1, *$3); print_rules("variable", "functionCall DOT keywords");}
 | variable listableEnd                      {
     print_rules("variable", "variable listableEnd");
@@ -1423,10 +1434,10 @@ assignable ASSIGN variable              %prec HIGHLEVEL { $$ = new ast::AssignEx
 */
 /* What we can assign something to. */
 assignable :
-variable DOT ID             %prec UPLEVEL       { $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, symbol::Symbol(*$3))); delete $3;print_rules("assignable", "variable DOT ID");}
+variable DOT ID             %prec UPLEVEL       { $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@3, symbol::Symbol(*$3))); delete $3;print_rules("assignable", "variable DOT ID");}
 | variable DOT keywords     %prec UPLEVEL       { $$ = new ast::FieldExp(@$, *$1, *$3); print_rules("assignable", "variable DOT keywords");}
 | variable DOT functionCall                     { $3->setName(new ast::FieldExp(@$, *$1, $3->getName()));$3->setLocation(@$);$$ = $3;print_rules("assignable", "variable DOT functionCall");}
-| functionCall DOT ID                           { $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, symbol::Symbol(*$3))); delete $3; print_rules("assignable", "functionCall DOT ID");}
+| functionCall DOT ID                           { $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@3, symbol::Symbol(*$3))); delete $3; print_rules("assignable", "functionCall DOT ID");}
 | functionCall DOT keywords                     { $$ = new ast::FieldExp(@$, *$1, *$3); print_rules("assignable", "functionCall DOT keywords");}
 | ID                        %prec LISTABLE      { $$ = new ast::SimpleVar(@$, symbol::Symbol(*$1)); delete $1;print_rules("assignable", "ID");}
 | multipleResults                               { $$ = $1; print_rules("assignable", "multipleResults");}
@@ -1446,7 +1457,7 @@ LBRACK matrixOrCellColumns RBRACK   { $$ = new ast::AssignListExp(@$, *$2); prin
 */
 /* Arguments End control block */
 argumentsControl :
-ARGUMENTS EOL argumentsDeclarations END           { $$ = $3; print_rules("argumentsControl", "ARGUMENTS EOL argumentsDeclarations END");}
+ARGUMENTS EOL argumentsDeclarations END           { $$ = $3; $$->setLocation(@$); print_rules("argumentsControl", "ARGUMENTS EOL argumentsDeclarations END");}
 | ARGUMENTS EOL /* Epsilon */ END {
     print_rules("argumentsControl", "ARGUMENTS EOL argumentsDeclarations END");
     ast::exps_t* tmp = new ast::exps_t;
@@ -2053,8 +2064,11 @@ void yyerror(std::string msg) {
         wchar_t* pstMsg = to_wide_string(msg.c_str());
         ParserSingleInstance::PrintError(pstMsg);
         ParserSingleInstance::setExitStatus(Parser::Failed);
-    delete ParserSingleInstance::getTree();
+        if (!ParserSingleInstance::recoverTreeOnError())
+        {
+            delete ParserSingleInstance::getTree();
+            ParserSingleInstance::setTree(nullptr);
+        }
         FREE(pstMsg);
     }
 }
-

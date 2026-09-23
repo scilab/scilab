@@ -62,6 +62,11 @@ import javax.swing.text.Element;
             yybegin(BROKEN);
             int broken = yylex();
 
+            int implicitEnd = getImplicitEndFunctionType(p0, p1);
+            if (implicitEnd != ScilabDocument.ScilabLeafElement.NOTHING) {
+                return implicitEnd | broken;
+            }
+
             yyreset(new ScilabDocumentReader(doc, p0, p1));
             while (true) {
                 int ret = yylex();
@@ -77,6 +82,43 @@ import javax.swing.text.Element;
         } catch (IOException e) {
             return ScilabDocument.ScilabLeafElement.NOTHING;
         }
+    }
+
+    /**
+     * Detect an indented implicit function end. The regular lexer rule consumes
+     * indentation one character at a time, which makes its matching-block
+     * position unreliable. This is notably visible for methods in classdef.
+     */
+    private int getImplicitEndFunctionType(int p0, int p1) {
+        try {
+            String line = doc.getText(p0, p1 - p0);
+            int offset = 0;
+            while (offset < line.length() && (line.charAt(offset) == ' ' || line.charAt(offset) == '\t')) {
+                offset++;
+            }
+
+            if (!line.startsWith("end", offset)) {
+                return ScilabDocument.ScilabLeafElement.NOTHING;
+            }
+
+            int afterEnd = offset + 3;
+            if (afterEnd < line.length()) {
+                char next = line.charAt(afterEnd);
+                if (Character.isLetterOrDigit(next) || "_#!$?".indexOf(next) >= 0) {
+                    return ScilabDocument.ScilabLeafElement.NOTHING;
+                }
+            }
+
+            MatchingBlockScanner.MatchingPositions pos = matchBlock.getMatchingBlock(p0 + afterEnd, false);
+            if (pos != null) {
+                String match = doc.getText(pos.secondB, pos.secondE - pos.secondB);
+                if (match.equals("function")) {
+                    return ScilabDocument.ScilabLeafElement.ENDFUN;
+                }
+            }
+        } catch (BadLocationException e) { }
+
+        return ScilabDocument.ScilabLeafElement.NOTHING;
     }
 
     public FunctionInfo getFunctionInfo() {
@@ -139,7 +181,16 @@ end = "end"
 			         }
 
   {end}				 {
-  				   MatchingBlockScanner.MatchingPositions pos = matchBlock.getMatchingBlock(start + yychar() + yylength(), false);
+                                   int afterEnd = start + yychar() + yylength();
+                                   if (afterEnd < doc.getLength()) {
+                                      try {
+                                         char next = doc.getText(afterEnd, 1).charAt(0);
+                                         if (Character.isLetterOrDigit(next) || "_#!$?".indexOf(next) >= 0) {
+                                            return ScilabDocument.ScilabLeafElement.NOTHING;
+                                         }
+                                      } catch (BadLocationException e) { }
+                                   }
+				   MatchingBlockScanner.MatchingPositions pos = matchBlock.getMatchingBlock(afterEnd, false);
 				   if (pos != null) {
 				      try {
 				      	 String match = doc.getText(pos.secondB, pos.secondE - pos.secondB);

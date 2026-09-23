@@ -16,6 +16,7 @@ $PATH_SEPARATOR : path separator ';' (windows) ':' linux
 $SCILAB : scilab path (SCI in Scilab)
 -->
 <jvm_options>
+    <option value="-Dscinotes.editor=monaco"/>
     <option value="-Djava.library.path="/>
     <option value="-Djava.class.path=$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
     <option value="-Djava.system.class.loader=org.scilab.modules.jvm.ScilabClassLoader"/>

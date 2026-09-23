@@ -3,6 +3,7 @@
  * Copyright (C) 2010 - Calixte DENIZET
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Cédric DELAMARRE
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,7 +28,6 @@ import java.awt.Rectangle;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
 import java.util.Map;
-import java.util.Stack;
 
 import javax.swing.JPanel;
 import javax.swing.border.Border;
@@ -354,51 +354,10 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
      * with the whereami function
      */
     private void updateLineNumber() {
+        SciNotesLineNumberInfo info = SciNotesLineNumberInfo.compute(doc);
         synchronized (doc) {
-            Stack<Integer> stk = new Stack<Integer>();
-            Element root = doc.getDefaultRootElement();
-            int nlines = root.getElementCount();
-            lineNumber = new int[nlines + 1];
-            lineLevel = new byte[nlines + 1];
-            lineNumber[0] = 1;
-            int current = 1;
-            boolean prevBroken = false;
-            ScilabDocument.ScilabLeafElement elem;
-            for (int i = 0; i < nlines; i++) {
-                elem = (ScilabDocument.ScilabLeafElement) root.getElement(i);
-                int type = elem.getType();
-                switch (type) {
-                    case ScilabDocument.ScilabLeafElement.NOTHING :
-                        if (prevBroken) {
-                            lineNumber[i] = -1;
-                            if (!elem.isBroken()) {
-                                prevBroken = false;
-                            }
-                        } else {
-                            lineNumber[i] = current++;
-                        }
-                        lineLevel[i] = (byte) stk.size();
-                        break;
-                    case ScilabDocument.ScilabLeafElement.FUN :
-                        stk.push(new Integer(current));
-                        lineLevel[i] = (byte) stk.size();
-                        current = 2;
-                        lineNumber[i] = 1;
-                        if (elem.isBroken()) {
-                            prevBroken = true;
-                        }
-                        break;
-                    case ScilabDocument.ScilabLeafElement.ENDFUN :
-                        lineNumber[i] = current++;
-                        lineLevel[i] = (byte) stk.size();
-                        if (!stk.empty()) {
-                            current = stk.pop().intValue() + lineNumber[i];
-                        }
-                        break;
-                    default :
-                        break;
-                }
-            }
+            lineNumber = info.getLineNumbers();
+            lineLevel = info.getLineLevels();
         }
     }
 

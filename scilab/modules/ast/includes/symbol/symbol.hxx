@@ -26,6 +26,7 @@
 #endif
 #include <set>
 #include <list>
+#include <mutex>
 #include <string>
 #include <iostream>
 
@@ -89,16 +90,19 @@ public:
     bool operator<  (const Symbol &rhs) const;
     /** \} */
 
-    const string_set_type::const_iterator getNode() const
+    const std::wstring* getNode() const
     {
         return _set_node;
     }
 
 private:
+    static const std::wstring* intern(const std::wstring& value);
+
     /** \brief Static (global to all instance of Symbol) strings container. */
     static string_set_type _set;
-    /** \brief Pointer to the node containing the unique referenced wstring. */
-    const string_set_type::const_iterator _set_node;
+    static std::mutex _set_mutex;
+    /** \brief Pointer to the unique referenced wstring. */
+    const std::wstring* const _set_node;
 };
 
 /** \brief Intercept output stream redirection.

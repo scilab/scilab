@@ -3,6 +3,7 @@
  * Copyright (C) 2010-2011 - Calixte DENIZET
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Cédric DELAMARRE
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -43,6 +44,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.scinotes.MonacoEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
@@ -78,6 +80,11 @@ public final class IncrementalSearchAction extends DefaultAction {
      */
     @Override
     public void doAction() {
+        if (getEditor().getTextPane() instanceof MonacoEditorPane) {
+            ((MonacoEditorPane) getEditor().getTextPane()).openFind();
+            return;
+        }
+
         if (!fields.containsKey(getEditor())) {
             SearchField field = new SearchField();
             fields.put(getEditor(), field);

@@ -1,0 +1,10 @@
+﻿LIBRARY    graphics.dll
+
+
+EXPORTS
+;--------------------------
+; graphics
+;--------------------------
+getDictionaryGetProperties
+getDictionarySetProperties
+

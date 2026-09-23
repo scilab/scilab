@@ -32,7 +32,6 @@
 typedef struct __EXPRESSIONLINEBREAK__
 {
     bool bVerbose;
-    int iNbBreaker;
 } LineBreakStr;
 
 

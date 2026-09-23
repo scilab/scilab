@@ -32,7 +32,24 @@ libsciscinotes_la_etc_DATA = \
 	etc/XConfiguration-scinotes.xml \
 	etc/XConfiguration-scinotes.xsl
 
-SCINOTES_JNI_SOURCES = src/jni/ScilabKeywords_wrap.c
+#### scinotes : Monaco integration ####
+libsciscinotes_la_webdir = $(mydatadir)/src/web
+libsciscinotes_la_web_DATA = \
+    src/web/monaco.html \
+    src/web/monaco-state.js \
+    src/web/monaco-documents.js \
+    src/web/monaco-shared-history.js \
+    src/web/monaco-split.js \
+    src/web/monaco-bridge.js \
+    src/web/monaco-shortcuts.js \
+    src/web/monaco-scilab-language.js \
+    src/web/monaco-latex.js \
+    src/web/monaco-lsp.js \
+    src/web/monaco-bootstrap.js
+
+SCINOTES_JNI_SOURCES = \
+    src/jni/ScilabKeywords_wrap.c \
+    src/jni/SciNotesLspJNI.cpp
 
 SCINOTES_C_SOURCES = src/c/ScilabKeywords.c
 
@@ -65,6 +82,7 @@ libsciscinotes_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/webtools/includes/ \
     $(JAVA_JNI_INCLUDE) \
     $(AM_CPPFLAGS)
 
@@ -114,7 +132,11 @@ if SWIG
 BUILT_SOURCES+=swig
 endif
 
-libsciscinotes_la_LIBADD = libsciscinotes-algo.la $(X_LIBS) $(X_EXTRA_LIBS)
+libsciscinotes_la_LIBADD = \
+    libsciscinotes-algo.la \
+    $(top_builddir)/modules/webtools/libsciwebtools.la \
+    $(X_LIBS) \
+    $(X_EXTRA_LIBS)
 
 #### scinotes : gateway declaration ####
 libsciscinotes_la_sci_gatewaydir = $(mydatadir)/sci_gateway

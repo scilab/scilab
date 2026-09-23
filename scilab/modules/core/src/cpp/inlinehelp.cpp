@@ -1,5 +1,6 @@
 ﻿#include <unordered_map>
 #include <algorithm>
+#include <cstring>
 #include <string>
 #include <fstream>
 #include <map>
@@ -30,13 +31,29 @@ extern "C"
 #include "setgetlanguage.h"
 #include "sci_malloc.h"
 #include "sciprint.h"
+#include "inlinehelp.h"
 }
 
 //generate_inline_links
+// The index is read by the interpreter (help, toolbox loading) and by the LSP
+// thread (hover, signature help): every access goes through g_linksMutex.
 static std::unordered_map<std::string, types::Struct*> g_linksByLanguage;
+static std::mutex g_linksMutex;
 
 std::once_flag g_xmlInitOnce;
-xsltStylesheetPtr g_stylesheet = nullptr;
+
+// One compiled stylesheet per file, reparsed only when the file changes. A
+// compiled stylesheet can be applied concurrently by several threads, so the
+// selection made by loadStyleSheet is kept per thread: the console help and an
+// LSP hover each transform with their own sheet.
+struct CachedStyleSheet
+{
+    xsltStylesheetPtr sheet;
+    std::filesystem::file_time_type writeTime;
+};
+static std::map<std::string, CachedStyleSheet> g_stylesheets;
+static std::mutex g_stylesheetsMutex;
+static thread_local xsltStylesheetPtr t_stylesheet = nullptr;
 
 //used in initscilab
 void ensureLibxmlInitialized()
@@ -241,8 +258,29 @@ bool loadStyleSheet(const std::string& sheetPath)
 {
     std::string stylesheetPath = normalizeSeparators(sheetPath);
     //(sciPath, "modules/core/etc/help.xsl");
-    g_stylesheet = xsltParseStylesheetFile(reinterpret_cast<const xmlChar*>(stylesheetPath.c_str()));
-    return g_stylesheet != nullptr;
+    std::error_code ec;
+    std::filesystem::file_time_type writeTime = std::filesystem::last_write_time(stylesheetPath, ec);
+
+    std::lock_guard<std::mutex> lock(g_stylesheetsMutex);
+    auto it = g_stylesheets.find(stylesheetPath);
+    if (it != g_stylesheets.end() && !ec && it->second.writeTime == writeTime)
+    {
+        t_stylesheet = it->second.sheet;
+        return true;
+    }
+
+    xsltStylesheetPtr sheet = xsltParseStylesheetFile(reinterpret_cast<const xmlChar*>(stylesheetPath.c_str()));
+    if (sheet == nullptr)
+    {
+        t_stylesheet = nullptr;
+        return false;
+    }
+
+    // A replaced sheet may still be applied by another thread: it is not freed.
+    // This only happens when the .xsl file is edited while Scilab runs.
+    g_stylesheets[stylesheetPath] = {sheet, writeTime};
+    t_stylesheet = sheet;
+    return true;
 }
 
 bool loadLinksFile(const std::string& sciPath, const std::string& lang, types::Struct*& out, std::string& error)
@@ -307,6 +345,13 @@ bool resolveXmlPath(const std::string& sciPath, const std::string& lang, const s
 
 bool transformXmlToText(const std::string& xmlPath, std::string& output, std::string& error, bool withLinks)
 {
+    xsltStylesheetPtr sheet = t_stylesheet;
+    if (sheet == nullptr)
+    {
+        error = xmlPath;
+        return false;
+    }
+
     xmlDocPtr xmlDoc = xmlParseFile(xmlPath.c_str());
     if (!xmlDoc)
     {
@@ -316,7 +361,7 @@ bool transformXmlToText(const std::string& xmlPath, std::string& output, std::st
 
     // "with-links" is an XPath string literal, not a raw value: quote it.
     const char* params[] = {"with-links", withLinks ? "'1'" : "'0'", nullptr};
-    xmlDocPtr resultDoc = xsltApplyStylesheet(g_stylesheet, xmlDoc, params);
+    xmlDocPtr resultDoc = xsltApplyStylesheet(sheet, xmlDoc, params);
     if (!resultDoc)
     {
         xmlFreeDoc(xmlDoc);
@@ -326,7 +371,7 @@ bool transformXmlToText(const std::string& xmlPath, std::string& output, std::st
 
     xmlChar* buffer = nullptr;
     int bufferLength = 0;
-    if (xsltSaveResultToString(&buffer, &bufferLength, resultDoc, g_stylesheet) < 0)
+    if (xsltSaveResultToString(&buffer, &bufferLength, resultDoc, sheet) < 0)
     {
         xmlFreeDoc(resultDoc);
         xmlFreeDoc(xmlDoc);
@@ -689,6 +734,7 @@ int generate_inline_links(const std::wstring& lang, const std::wstring& path)
 
 void clearInlineHelpLinks()
 {
+    std::lock_guard<std::mutex> lock(g_linksMutex);
     for (auto&& s : g_linksByLanguage)
     {
         s.second->killMe();
@@ -720,7 +766,13 @@ int inlineHelp(const std::wstring& key, std::wstring& content, bool* isScilab, b
     std::string sciPath = getSciPathUtf8();
     std::string xmlPath;
     std::string lookupError;
-    if (!resolveXmlPath(sciPath, language, key, xmlPath, lookupError, isScilab))
+    bool resolved = false;
+    {
+        std::lock_guard<std::mutex> lock(g_linksMutex);
+        resolved = resolveXmlPath(sciPath, language, key, xmlPath, lookupError, isScilab);
+    }
+
+    if (!resolved)
     {
         if (!lookupError.empty())
         {
@@ -759,6 +811,7 @@ int loadToolboxHelp(const std::wstring& path)
 
     const std::string sciPath = getSciPathUtf8();
     bool hadError = false;
+    std::lock_guard<std::mutex> lock(g_linksMutex);
     std::string toolboxRoot = trimTrailingSeparators(normalizeSeparators(scilab::UTF8::toUTF8(path)));
 
     std::filesystem::directory_iterator end;
@@ -941,4 +994,52 @@ int loadToolboxHelp(const std::wstring& path)
     }
 
     return hadError ? -1 : 0;
+}
+
+extern "C"
+{
+int getInlineHelp(const wchar_t* key, wchar_t** content, BOOL* isScilab)
+{
+    if (key == nullptr || content == nullptr)
+    {
+        return -1;
+    }
+
+    *content = nullptr;
+
+    std::wstring result;
+    bool scilab = false;
+    int ret = inlineHelp(key, result, isScilab ? &scilab : nullptr);
+    if (ret != 0)
+    {
+        return ret;
+    }
+
+    size_t len = result.size() + 1;
+    wchar_t* buffer = static_cast<wchar_t*>(MALLOC(len * sizeof(wchar_t)));
+    if (buffer == nullptr)
+    {
+        return -2;
+    }
+
+    memcpy(buffer, result.c_str(), len * sizeof(wchar_t));
+    *content = buffer;
+
+    if (isScilab != nullptr)
+    {
+        *isScilab = scilab ? TRUE : FALSE;
+    }
+
+    return 0;
+}
+
+BOOL loadInlineHelpStyleSheet(const char* sheetPath)
+{
+    if (sheetPath == nullptr)
+    {
+        return FALSE;
+    }
+
+    return loadStyleSheet(sheetPath) ? TRUE : FALSE;
+}
 }

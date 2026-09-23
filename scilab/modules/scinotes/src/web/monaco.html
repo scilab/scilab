@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' file: data: blob:; script-src 'self' file: blob:; style-src 'self' file: 'unsafe-inline'; font-src 'self' file: data:; img-src 'self' file: data: blob:; worker-src 'self' blob:; connect-src 'self' file: data: ws://127.0.0.1:* ws://localhost:*;">
+    <title>SciNotes Monaco</title>
+    <style>
+        /*
+         * The find widget hangs its tooltips outside .monaco-editor, where
+         * Monaco no longer applies its UI font; same list as Monaco uses.
+         */
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI",
+                HelveticaNeue-Light, system-ui, Ubuntu, "Droid Sans", sans-serif;
+        }
+
+        /*
+         * Absolutely positioned so a split tab can place #editor and
+         * #editor-secondary side by side (or stacked) within this one
+         * native browser window -- see monaco-split.js. Outside split mode
+         * SciNotesMonacoLayoutSplit is never called and this 100%/0,0
+         * default makes #editor behave exactly like the old width/height:
+         * 100% rule.
+         */
+        #editor,
+        #editor-secondary {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #ffffff;
+            box-sizing: border-box;
+        }
+
+        #editor-secondary.scinotes-split-hidden {
+            display: none;
+        }
+
+        /*
+         * A split Monaco tab uses JSplitPane.setDividerSize(0) (the native
+         * divider would sit under the browser window and eat its clicks), so
+         * the visible separator between the two views is this border, added
+         * on the secondary view's edge that faces the primary one; the
+         * #split-handle strip over it is what the user drags.
+         */
+        #editor-secondary.scinotes-split-col {
+            border-left: 2px solid #a6a6a6;
+        }
+
+        #editor-secondary.scinotes-split-row {
+            border-top: 2px solid #a6a6a6;
+        }
+
+        #split-handle {
+            position: absolute;
+            z-index: 1;
+            background: transparent;
+            touch-action: none;
+        }
+
+        #split-handle.scinotes-split-hidden {
+            display: none;
+        }
+
+        #split-handle.scinotes-split-col {
+            cursor: col-resize;
+        }
+
+        #split-handle.scinotes-split-row {
+            cursor: row-resize;
+        }
+
+        #status {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            color: #4a4a4a;
+            font: 12px sans-serif;
+            pointer-events: none;
+        }
+
+        #status::before {
+            width: 26px;
+            height: 26px;
+            border: 3px solid #d9e0e7;
+            border-top-color: #4f7aa3;
+            border-radius: 50%;
+            content: "";
+            animation: scinotes-monaco-spin 0.85s linear infinite;
+        }
+
+        #status.error {
+            inset: auto 12px auto auto;
+            top: 10px;
+            display: block;
+            max-width: 70%;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #f48771;
+            white-space: pre-wrap;
+            pointer-events: auto;
+        }
+
+        #status.error::before {
+            display: none;
+        }
+
+        @keyframes scinotes-monaco-spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Monaco frames the current line with 2px. */
+        .monaco-editor .view-overlays .current-line-exact,
+        .monaco-editor .margin-view-overlays .current-line-exact-margin {
+            border-width: 1px !important;
+        }
+
+        .scinotes-anchor-line {
+            background: rgba(250, 214, 80, 0.18);
+        }
+
+        /*
+         * An anchor, and the local numbering, paint a background behind the
+         * number. Right aligned, its digits touch the edge of that background,
+         * hence the pixel; the box keeps its width, so the numbers stay in
+         * place when nothing is painted behind them.
+         */
+        .monaco-editor .margin-view-overlays .line-numbers {
+            box-sizing: border-box !important;
+            padding-right: 3px !important;
+        }
+
+        .scinotes-anchor-line-number {
+            background: #fafba4;
+            color: #315b62 !important;
+            font-weight: 600;
+        }
+
+        .scinotes-local-function-line-number-1 {
+            background: rgba(246, 191, 246, 0.85);
+        }
+
+        .scinotes-local-function-line-number-2 {
+            background: rgba(246, 101, 246, 0.75);
+        }
+
+        .scinotes-latex-widget {
+            display: none;
+            min-width: 80px;
+            max-width: 480px;
+            padding: 8px 30px 8px 10px;
+            border: 1px solid #c8c8c8;
+            border-radius: 4px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+            color: #000000;
+        }
+
+        .scinotes-latex-widget.visible {
+            display: block;
+        }
+
+        .scinotes-latex-widget-preview {
+            overflow: auto;
+        }
+
+        .scinotes-latex-widget-close {
+            position: absolute;
+            top: 3px;
+            right: 5px;
+            padding: 2px 5px;
+            border: 0;
+            background: transparent;
+            color: #555555;
+            cursor: pointer;
+            font: 16px sans-serif;
+        }
+
+        .scinotes-definition-pointer {
+            cursor: pointer !important;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="status" aria-label="Loading Monaco"></div>
+    <div id="editor"></div>
+    <div id="editor-secondary" class="scinotes-split-hidden"></div>
+    <div id="split-handle" class="scinotes-split-hidden"></div>
+    <script src="monaco-state.js"></script>
+    <script src="monaco-documents.js"></script>
+    <script src="monaco-shared-history.js"></script>
+    <script src="monaco-split.js"></script>
+    <script src="monaco-bridge.js"></script>
+    <script src="monaco-shortcuts.js"></script>
+    <script src="monaco-scilab-language.js"></script>
+    <script src="file:///SCI/thirdparty/web/mathjax/tex-mml-svg.js"></script>
+    <script src="monaco-latex.js"></script>
+    <script src="monaco-lsp.js"></script>
+    <script src="monaco-bootstrap.js"></script>
+</body>
+</html>

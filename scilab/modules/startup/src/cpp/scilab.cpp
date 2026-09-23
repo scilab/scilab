@@ -20,6 +20,7 @@
 #endif
 
 #include <cstdio>
+#include <cstdlib>
 #include <iostream>
 #include <string.h>
 #include <setjmp.h>
@@ -61,6 +62,12 @@ extern "C"
 #include "runner.hxx"
 #include "parser_private.hxx"
 
+extern "C"
+{
+#include "dap_interface.h"
+#include "lsp_interface.h"
+}
+
 #define INTERACTIVE     -1
 
 extern "C"
@@ -95,6 +102,8 @@ static void usage(void)
     std::cerr << "      -noatomsautoload : Do not autoload eligible ATOMS modules." << std::endl;
     std::cerr << "      -nb              : Do not display the banner (no banner)." << std::endl;
     std::cerr << "      -scihome <dir>   : Force SCIHOME to <dir>." << std::endl;
+    std::cerr << "      -lsp <port>      : Start the Scilab LSP TCP server endpoint on <port>." << std::endl;
+    std::cerr << "      -dap <port>      : Start the Scilab DAP TCP server endpoint on <port>." << std::endl;
     std::cerr << "      -texmacs         : Option to use Scilab from documents through http://texmacs.org." << std::endl;
     std::cerr << "      -version         : Display the Scilab version (no session opened)." << std::endl;
     std::cerr << "      -display Display : Set the display to the X server Display (XWindow systems only)." << std::endl;
@@ -115,6 +124,43 @@ static void usage(void)
     std::cerr << "      --context-dump   : Display context status." << std::endl;
     std::cerr << "      --exec-verbose   : Display command before running it." << std::endl;
     std::cerr << "      --timeout delay  : Kill the Scilab process after a delay." << std::endl;
+}
+
+static int parse_port_arg(const char* option, const char* value)
+{
+    char* end = NULL;
+    long port = strtol(value, &end, 10);
+
+    if (value == end || *end != '\0' || port <= 0 || port > 65535)
+    {
+        std::cerr << "Invalid " << option << " port: expected an integer between 1 and 65535." << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    return static_cast<int>(port);
+}
+
+static void start_protocol_endpoints(const ScilabEngineInfo* _pSEI)
+{
+    if (_pSEI->iLspPort > 0)
+    {
+        lspStartTcp(_pSEI->iLspPort, true);
+    }
+
+    if (_pSEI->iDapPort > 0)
+    {
+        dapStartTcp(_pSEI->iDapPort, true);
+    }
+}
+
+/*
+ * The DAP endpoint registers a debugger in the interpreter. Stop it before the
+ * quit scripts: they are executed like any other command, so an attached
+ * session would still report them to its client and could break into them.
+ */
+static void stop_protocol_endpoints()
+{
+    dapShutdown();
 }
 
 /*
@@ -323,6 +369,32 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
                 _pSEI->pstSciHome = argv[i];
             }
         }
+        else if (!strcmp("-lsp", argv[i]))
+        {
+            i++;
+            if (argc > i)
+            {
+                _pSEI->iLspPort = parse_port_arg("-lsp", argv[i]);
+            }
+            else
+            {
+                std::cerr << "Unspecified -lsp port" << std::endl;
+                exit(EXIT_FAILURE);
+            }
+        }
+        else if (!strcmp("-dap", argv[i]))
+        {
+            i++;
+            if (argc > i)
+            {
+                _pSEI->iDapPort = parse_port_arg("-dap", argv[i]);
+            }
+            else
+            {
+                std::cerr << "Unspecified -dap port" << std::endl;
+                exit(EXIT_FAILURE);
+            }
+        }
 #ifdef _MSC_VER
         else if (!strcmp("-O", argv[i]))
         {
@@ -523,9 +595,11 @@ int main(int argc, char *argv[])
         val = StartScilabEngine(pSEI);
         if (val == 0)
         {
+            start_protocol_endpoints(pSEI);
             val = RunScilabEngine(pSEI);
         }
 
+        stop_protocol_endpoints();
         StopScilabEngine(pSEI);
     }
     else

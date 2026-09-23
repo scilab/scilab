@@ -47,6 +47,9 @@
     <ClCompile Include="..\jni\SciNotes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\jni\SciNotesLspJNI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\callscinotes.h">

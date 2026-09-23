@@ -281,7 +281,11 @@ protected:
     virtual void visit (const FunctionDec  &e)
     {
         e.getArgs().accept(*this);
-        e.getReturns().accept(*this);
+        // Lambda FunctionDec nodes do not own a returns expression.
+        if (!e.isLambda())
+        {
+            e.getReturns().accept(*this);
+        }
         e.getBody().accept(*this);
     }
 

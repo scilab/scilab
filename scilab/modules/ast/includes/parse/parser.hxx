@@ -3,6 +3,7 @@
  *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Cédric DELAMARRE
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -144,6 +145,14 @@ public:
     bool stopOnFirstError(void);
     void enableStopOnFirstError(void);
     void disableStopOnFirstError(void);
+    bool recoverTreeOnError(void);
+    void enableTreeRecovery(void);
+    void disableTreeRecovery(void);
+
+    /** Control runtime symbol lookup used only for shell-mode detection. */
+    bool useRuntimeContext(void);
+    void enableRuntimeContext(void);
+    void disableRuntimeContext(void);
 
     /** \} */
 
@@ -160,4 +169,3 @@ private :
 };
 
 #endif /* !__PARSER_HXX__ */
-

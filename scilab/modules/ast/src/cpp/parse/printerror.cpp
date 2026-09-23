@@ -36,8 +36,12 @@ void ParserSingleInstance::PrintError(const std::wstring& msg)
         --yylloc.first_line;
     }
 
-    // fill call stack
-    ConfigVariable::fillWhereError(yylloc);
+    // A tool parse recovers a tree on error and runs on its own thread: the
+    // call stack it would fill here belongs to the interpreter.
+    if (!ParserSingleInstance::recoverTreeOnError())
+    {
+        ConfigVariable::fillWhereError(yylloc);
+    }
 
     /** Print where in the script the error is located */
     wchar_t* str = to_wide_string(ParserSingleInstance::getCodeLine(yylloc.first_line, &codeLine));

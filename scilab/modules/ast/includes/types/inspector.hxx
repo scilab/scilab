@@ -22,6 +22,7 @@
 #endif
 
 #include <unordered_set>
+#include <mutex>
 #include <string>
 #include "dynlib_ast.h"
 
@@ -34,6 +35,7 @@ class EXTERN_AST Inspector
 {
 protected :
     static std::unordered_set<InternalType*> m_vIT;
+    static std::recursive_mutex m_mutex;
 
 public :
     static size_t getItemCount();

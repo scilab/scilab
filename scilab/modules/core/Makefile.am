@@ -48,6 +48,7 @@ CORE_CPP_SOURCES = \
     src/cpp/callCommand.cpp \
     src/cpp/with_module.cpp \
     src/cpp/runner.cpp \
+    src/cpp/runtimeaccess.cpp \
     src/cpp/getvariablesname.cpp \
     src/cpp/getmacrosname.cpp \
     src/cpp/getfunctionsname.cpp \
@@ -260,6 +261,7 @@ includes/existfunction.h \
 includes/exit_status.hxx \
 includes/freeArrayOfString.h \
 includes/getcommandlineargs.h \
+includes/getdeprecated.h \
 includes/getmemory.h \
 includes/getos.h \
 includes/getversion.h \
@@ -271,6 +273,7 @@ includes/sci_mem_alloc.h \
 includes/scisparse.h \
 includes/sci_types.h \
 includes/storeCommand.h \
+includes/runtimeaccess.hxx \
 includes/timer.hxx \
 includes/version.h \
 includes/dynlib_core.h \
@@ -279,7 +282,8 @@ includes/getfunctionsname.h \
 includes/getmacrosname.h \
 includes/getvariablesname.h \
 includes/commandwords.h \
-includes/inlinehelp.hxx
+includes/inlinehelp.hxx \
+includes/inlinehelp.h
 
 
 if GUI

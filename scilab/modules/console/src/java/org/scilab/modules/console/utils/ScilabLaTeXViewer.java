@@ -135,6 +135,10 @@ public final class ScilabLaTeXViewer extends JPanel {
             begin = NULLRECT;
             end = NULLRECT;
         }
+        if (begin == null || end == null) {
+            removeLaTeXViewer(tc);
+            return 0;
+        }
 
         int abs;
         int ord;

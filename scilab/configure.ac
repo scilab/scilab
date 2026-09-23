@@ -1045,6 +1045,15 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 JCEF=$PACKAGE_JAR_FILE
                 AC_SUBST(JCEF)
 
+                # Monaco editor (web assets for the SciNotes embedded editor,
+                # shipped under thirdparty/web, not committed in Scilab sources)
+                AC_MSG_CHECKING([monaco-editor])
+                if test -f "$(pwd)/thirdparty/web/monaco-editor/vs/loader.js"; then
+                    AC_MSG_RESULT([ $(pwd)/thirdparty/web/monaco-editor/vs ])
+                else
+                    AC_MSG_WARN([Could not find Monaco editor web assets (thirdparty/web/monaco-editor/vs) used by the SciNotes embedded editor])
+                fi
+
                 # Jakarta Activation (Run dependency)
                 # Do not look for jakarta.activation.spi.MimeTypeRegistry here since it will detect jakarta.activation-api.jar
                 # Checked before activation.jar to avoid false detection
@@ -1940,6 +1949,19 @@ AC_SUBST(CURL_CFLAGS)
 AC_SUBST(CURL_LIBS)
 AC_SUBST(CURL_VERSION)
 
+#######################
+## Test for CppServer
+#######################
+
+if $WITH_DEVTOOLS; then
+    CPPSERVER_CFLAGS="-I$DEVTOOLS_INCDIR/cppserver -I$DEVTOOLS_INCDIR/cppcommon -I$DEVTOOLS_INCDIR/asio -I$DEVTOOLS_INCDIR/fmt"
+    CPPSERVER_LIBS="-L$DEVTOOLS_LIBDIR -lasio -lfmt -lcppcommon -lcppserver"
+else
+    AC_CPPSERVER()
+fi
+AC_SUBST(CPPSERVER_CFLAGS)
+AC_SUBST(CPPSERVER_LIBS)
+
 #################
 ## Tcl/Tk library
 #################
@@ -2740,6 +2762,11 @@ echo "CURL configuration:"
 echo "  CURL_CFLAGS ........ = $CURL_CFLAGS"
 echo "  CURL_LIBS .......... = $CURL_LIBS"
 echo "  CURL_VERSION ....... = $CURL_VERSION"
+
+echo ""
+echo "CppServer configuration:"
+echo "  CPPSERVER_CFLAGS ........ = $CPPSERVER_CFLAGS"
+echo "  CPPSERVER_LIBS .......... = $CPPSERVER_LIBS"
 
 echo ""
 echo "SWIG Configuration:"

@@ -34,6 +34,7 @@ public class EditorComponent extends JPanel {
     private ScilabEditorPane editor;
     private JScrollPane scroll;
     private JSplitPane split;
+    private Component center;
     private Component bottom;
 
     /**
@@ -44,7 +45,20 @@ public class EditorComponent extends JPanel {
         super(new BorderLayout());
         this.editor = editor;
         scroll = new ScilabScrollPane(editor);
-        add(scroll);
+        center = scroll;
+        add(center, BorderLayout.CENTER);
+    }
+
+    /**
+     * Constructor used by alternative editor frontends.
+     * @param editor the editor model associated with this component
+     * @param component the component to display
+     */
+    public EditorComponent(ScilabEditorPane editor, Component component) {
+        super(new BorderLayout());
+        this.editor = editor;
+        center = component;
+        add(center, BorderLayout.CENTER);
     }
 
     /**
@@ -66,11 +80,28 @@ public class EditorComponent extends JPanel {
      */
     public void setSplitPane(JSplitPane split) {
         this.split = split;
-        remove(scroll);
+        if (center != null && center.getParent() == this) {
+            remove(center);
+        }
+        center = split;
         add(split, BorderLayout.CENTER);
         split.setVisible(true);
         setVisible(true);
         revalidate();
+    }
+
+    /**
+     * Detach and return the component displayed by this editor component.
+     * @return the visible editor component
+     */
+    public Component detachEditorViewComponent() {
+        Component component = center;
+        if (component != null && component.getParent() == this) {
+            remove(component);
+            revalidate();
+        }
+        center = null;
+        return component;
     }
 
     /**

@@ -4,6 +4,7 @@
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Cédric DELAMARRE
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -48,6 +49,8 @@ extern FILE*    yyin;
 extern int      yyparse();
 extern int      yydebug;
 extern int      yylex_destroy();
+extern void     yyrestart(FILE*);
+extern void     scan_reset();
 
 void Parser::cleanup()
 {
@@ -68,20 +71,22 @@ void Parser::parseFile(const std::wstring& fileName, const std::wstring& progNam
 
     this->setExitStatus(ParserSingleInstance::getExitStatus());
     this->setControlStatus(ParserSingleInstance::getControlStatus());
-    if (getExitStatus() == Parser::Succeded)
+    bool recoverTreeOnError = ParserSingleInstance::recoverTreeOnError();
+    if (getExitStatus() == Parser::Succeded || recoverTreeOnError)
     {
         this->setTree(ParserSingleInstance::getTree());
     }
-    else
+    if (getExitStatus() != Parser::Succeded)
     {
         this->setErrorMessage(ParserSingleInstance::getErrorMessage());
     }
 
-    if (getExitStatus() != Parser::Succeded)
+    if (getExitStatus() != Parser::Succeded && !recoverTreeOnError)
     {
         delete ParserSingleInstance::getTree();
         ParserSingleInstance::setTree(nullptr);
     }
+    ParserSingleInstance::disableTreeRecovery();
 
     // FIXME : UNLOCK
 }
@@ -107,6 +112,15 @@ void ParserSingleInstance::parseFile(const std::wstring& fileName, const std::ws
         throw ast::InternalError(szError);
     }
 
+    /*
+     * A parse that stops early -- a syntax error with stopOnFirstError, or an
+     * exhausted parser stack -- never reaches the scanner's <<EOF>> rules. The
+     * flex buffer then still holds the text it had not consumed, and the next
+     * parse would read those leftovers before the document it was given. Start
+     * every parse from a clean buffer and a clean scanner state.
+     */
+    yyrestart(yyin);
+    scan_reset();
 
     ParserSingleInstance::disableStrictMode();
     //  Parser::getInstance()->enableStrictMode();
@@ -126,11 +140,12 @@ void Parser::parse(const char *command)
     ParserSingleInstance::parse(command);
     this->setExitStatus(ParserSingleInstance::getExitStatus());
     this->setControlStatus(ParserSingleInstance::getControlStatus());
-    if (getExitStatus() == Parser::Succeded)
+    bool recoverTreeOnError = ParserSingleInstance::recoverTreeOnError();
+    if (getExitStatus() == Parser::Succeded || recoverTreeOnError)
     {
         this->setTree(ParserSingleInstance::getTree());
     }
-    else
+    if (getExitStatus() != Parser::Succeded)
     {
         this->setErrorMessage(ParserSingleInstance::getErrorMessage());
     }
@@ -141,11 +156,12 @@ void Parser::parse(const char *command)
         scan_throw(YYEOF);
     }
 
-    if (getExitStatus() != Parser::Succeded)
+    if (getExitStatus() != Parser::Succeded && !recoverTreeOnError)
     {
         delete ParserSingleInstance::getTree();
         ParserSingleInstance::setTree(nullptr);
     }
+    ParserSingleInstance::disableTreeRecovery();
 
     // FIXME : UNLOCK
 }
@@ -168,6 +184,32 @@ void Parser::enableStopOnFirstError(void)
 void Parser::disableStopOnFirstError(void)
 {
     ParserSingleInstance::disableStopOnFirstError();
+}
+
+bool Parser::recoverTreeOnError(void)
+{
+    return ParserSingleInstance::recoverTreeOnError();
+}
+void Parser::enableTreeRecovery(void)
+{
+    ParserSingleInstance::enableTreeRecovery();
+}
+void Parser::disableTreeRecovery(void)
+{
+    ParserSingleInstance::disableTreeRecovery();
+}
+
+bool Parser::useRuntimeContext(void)
+{
+    return ParserSingleInstance::useRuntimeContext();
+}
+void Parser::enableRuntimeContext(void)
+{
+    ParserSingleInstance::enableRuntimeContext();
+}
+void Parser::disableRuntimeContext(void)
+{
+    ParserSingleInstance::disableRuntimeContext();
 }
 
 #ifdef _MSC_VER
@@ -233,6 +275,16 @@ void ParserSingleInstance::parse(const char *command)
         ParserSingleInstance::setExitStatus(Parser::Failed);
         return;
     }
+
+    /*
+     * A parse that stops early -- a syntax error with stopOnFirstError, or an
+     * exhausted parser stack -- never reaches the scanner's <<EOF>> rules. The
+     * flex buffer then still holds the text it had not consumed, and the next
+     * parse would read those leftovers before the document it was given. Start
+     * every parse from a clean buffer and a clean scanner state.
+     */
+    yyrestart(yyin);
+    scan_reset();
 
     yyparse();
 
@@ -310,8 +362,9 @@ std::wstring ParserSingleInstance::_prog_name;
 std::wstring ParserSingleInstance::_error_message;
 bool ParserSingleInstance::_strict_mode = false;
 bool ParserSingleInstance::_stop_on_first_error = true;
+bool ParserSingleInstance::_recover_tree_on_error = false;
+bool ParserSingleInstance::_use_runtime_context = true;
 ast::Exp* ParserSingleInstance::_the_program = nullptr;
 Parser::ParserStatus ParserSingleInstance::_exit_status = Parser::Succeded;
 std::list<Parser::ControlStatus> ParserSingleInstance::_control_status;
 FILE* ParserSingleInstance::fileLocker = nullptr;
-

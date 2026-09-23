@@ -52,6 +52,7 @@
     <path value="$SCILAB/modules/console/.libs"/>
     <path value="$SCILAB/modules/history_manager/.libs"/>
     <path value="$SCILAB/modules/completion/.libs"/>
+    <path value="$SCILAB/modules/webtools/.libs"/>
     <path value="$SCILAB/modules/localization/.libs"/>
     <path value="$SCILAB/modules/renderer/.libs"/>
     <path value="$SCILAB/modules/graphic_export/.libs"/>

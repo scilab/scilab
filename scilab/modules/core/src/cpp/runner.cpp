@@ -20,6 +20,7 @@
 #endif
 
 #include "runner.hxx"
+#include "runtimeaccess.hxx"
 #include "timer.hxx"
 #include "threadmanagement.hxx"
 #include "configvariable.hxx"
@@ -57,6 +58,7 @@ int StaticRunner::launch()
     ThreadManagement::WaitForCommandStoredSignal();
 
     Runner* runMe = (Runner*)GetCommand();
+    RuntimeExecutionGuard runtimeGuard;
     processRunner(runMe);
 
     // save current runner

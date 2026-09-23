@@ -846,6 +846,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
     }
 
+    /** Called when the current document contents become the clean reference. */
+    public void contentMarkedUnmodified() { }
+
     public void setMustAdjustVisibility(boolean mustAdjustVisibility) {
         ((ScilabCaret) getCaret()).setMustAdjustVisibility(mustAdjustVisibility);
     }

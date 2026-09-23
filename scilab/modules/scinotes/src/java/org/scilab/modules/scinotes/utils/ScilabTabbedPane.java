@@ -67,6 +67,7 @@ import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 
 import org.scilab.modules.scinotes.EditorComponent;
+import org.scilab.modules.scinotes.MonacoEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.actions.CloseAction;
@@ -139,7 +140,8 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
      * {@inheritDoc}
      */
     public void insertTab(String title, Icon icon, Component component, String tip, int index) {
-        super.insertTab(title, icon, component, tip, index);
+        // Swing renders an empty tooltip as a small blank yellow rectangle.
+        super.insertTab(title, icon, component, tip == null || tip.isEmpty() ? null : tip, index);
         setTabComponentAt(index, new CloseTabButton(title));
     }
 
@@ -246,8 +248,84 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                 if (tabbedPane == this && (index == tabbedPane.draggedIndex || getTabCount() == 1)) {
                     dtde.rejectDrop();
                 } else {
+                    ScilabEditorPane sourcePane = tabbedPane.editor.getTextPane(tabbedPane.draggedIndex);
                     Component c = tabbedPane.getComponentAt(tabbedPane.draggedIndex);
                     String title = tabbedPane.getScilabTitleAt(tabbedPane.draggedIndex);
+
+                    /*
+                     * A Monaco pane owns a model in the SharedBrowser of the
+                     * SciNotes window that constructed it. Moving its Swing
+                     * component and only changing setEditor() leaves that
+                     * immutable ownership pointing at the source window.
+                     * Create a destination-owned pane instead, then close the
+                     * source after the native DnD callback has completed.
+                     */
+                    if (tabbedPane != this && sourcePane instanceof MonacoEditorPane) {
+                        if (index == -1) {
+                            index = getTabCount();
+                        }
+                        ScilabEditorPane copiedPane = SciNotes.copyTabForTransfer(editor, sourcePane, title, index);
+                        if (copiedPane == null) {
+                            dtde.rejectDrop();
+                            return;
+                        }
+
+                        SciNotes sourceEditor = tabbedPane.editor;
+                        int copiedIndex = indexOfComponent(copiedPane.getEditorComponent());
+                        boolean sourceHidden = SciNotes.prepareTabTransferSource(sourceEditor, sourcePane);
+                        dtde.acceptDrop(DnDConstants.ACTION_MOVE);
+                        dtde.dropComplete(true);
+
+                        SwingUtilities.invokeLater(new Runnable() {
+                            public void run() {
+                                if (!SciNotes.activateTransferredTab(editor, copiedPane)) {
+                                    int failedIndex = editor.getTextPaneIndex(copiedPane);
+                                    if (failedIndex >= 0) {
+                                        editor.closeTabAtWithoutConfirmation(failedIndex);
+                                    }
+                                    SciNotes.restoreTabTransferSource(sourceEditor, sourcePane, sourceHidden);
+                                    return;
+                                }
+                                if (copiedPane.getName() != null) {
+                                    ConfigSciNotesManager.saveToOpenFiles(copiedPane.getName(), editor,
+                                            copiedPane, copiedIndex);
+                                }
+                                editor.updateTabTitle();
+
+                                SwingUtilities.invokeLater(new Runnable() {
+                                    public void run() {
+                                        /*
+                                         * Closing the source tab can auto-select a
+                                         * sibling tab still open in the source
+                                         * window. Without this guard that sibling's
+                                         * MonacoEditorPane would grab native CEF
+                                         * focus for the source browser and
+                                         * immediately hand it back, flashing both
+                                         * windows' titlebars right after the tab
+                                         * was just moved.
+                                         */
+                                        SciNotes.setTabTransferInProgress(true);
+                                        try {
+                                            int sourceIndex = sourceEditor.getTextPaneIndex(sourcePane);
+                                            if (sourceIndex >= 0) {
+                                                sourceEditor.closeTabAtWithoutConfirmation(sourceIndex);
+                                            }
+                                            if (sourceEditor.getTabPane().getTabCount() == 0) {
+                                                SciNotes.closeEditor(sourceEditor);
+                                            }
+                                        } finally {
+                                            SciNotes.setTabTransferInProgress(false);
+                                        }
+                                        if (editor.getTextPaneIndex(copiedPane) >= 0) {
+                                            copiedPane.requestFocus();
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                        return;
+                    }
+
                     ConfigSciNotesManager.removeFromOpenFiles(tabbedPane.editor, tabbedPane.editor.getTextPane(tabbedPane.draggedIndex));
                     if (tabbedPane.editor.getNavigator() != null) {
                         tabbedPane.editor.getNavigator().removePane(tabbedPane.editor.getTextPane(tabbedPane.draggedIndex));
@@ -282,6 +360,7 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                     editor.updateTabTitle();
 
                     dtde.acceptDrop(DnDConstants.ACTION_MOVE);
+                    dtde.dropComplete(true);
                 }
             } catch (IOException e) {
                 dtde.rejectDrop();
@@ -305,9 +384,22 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
 
     /**
      * Interface DragSourceListener
-     * {@inheritDoc}
-     */
+    * {@inheritDoc}
+    */
     public void dragDropEnd(DragSourceDropEvent dsde) {
+        /*
+         * A target SciNotes already completed the transfer transaction. Do
+         * not second-guess that result from screen geometry: while Monaco's
+         * heavyweight JCEF component is being reparented, the point lookup
+         * can transiently return null and used to start a second "drop outside"
+         * clone/close operation for the same source pane.
+         */
+        if (dsde.getDropSuccess()) {
+            draggedIndex = -1;
+            currentWhenDragged = null;
+            return;
+        }
+
         Component c = null;
         for (SciNotes sn : SciNotes.getSciNotesList()) {
             try {
@@ -323,8 +415,13 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
         }
 
         if (c == null) {
+            if (draggedIndex >= 0 && draggedIndex < getTabCount()) {
+                setSelectedIndex(draggedIndex);
+            }
             SciNotes.cloneAndCloseCurrentTab(editor, true, dsde.getX(), dsde.getY());
         }
+        draggedIndex = -1;
+        currentWhenDragged = null;
     }
 
     /**

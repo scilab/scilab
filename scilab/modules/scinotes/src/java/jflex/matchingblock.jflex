@@ -3,6 +3,7 @@
 package org.scilab.modules.scinotes;
 
 import java.io.IOException;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 
 @javax.annotation.Generated("JFlex")
@@ -35,6 +36,30 @@ import javax.swing.text.Element;
         return (int) yychar;
     }
 
+    private boolean isIndexEndToken(boolean lr) {
+        int tokenStart = lr ? start + yychar() : start + 1 - yychar() - yylength();
+        if (yylength() != 3 || tokenStart <= 0) {
+            return false;
+        }
+
+        try {
+            if (!doc.getText(tokenStart, yylength()).equals("end")) {
+                return false;
+            }
+
+            int previous = tokenStart - 1;
+            while (previous >= 0) {
+                char c = doc.getText(previous, 1).charAt(0);
+                if (!Character.isWhitespace(c)) {
+                    return c == '(' || c == '[' || c == ',' || c == ':';
+                }
+                previous--;
+            }
+        } catch (BadLocationException e) { }
+
+        return false;
+    }
+
     public MatchingPositions getNextBlock(int pos, boolean lr) {
         int s = 1;
         transp = false;
@@ -51,7 +76,11 @@ import javax.swing.text.Element;
               	yybegin(RL);
 	    }
 	    do {
-               if (yylex() == 0) {
+               int token = yylex();
+               if (isIndexEndToken(lr)) {
+                  continue;
+               }
+               if (token == 0) {
                   s--;
                } else {
                   s++;
@@ -80,7 +109,7 @@ import javax.swing.text.Element;
                 end = doc.getEndPosition().getOffset();
                 yyreset(new ScilabDocumentReader(doc, start, end));
                 yybegin(OPENCLOSE);
-                if (yylex() != 1) {
+                if (yylex() != 1 || isIndexEndToken(true)) {
                    return null;
                 }
 
@@ -91,7 +120,7 @@ import javax.swing.text.Element;
                  end = 0;
                  yyreset(new ScilabDocumentReader(doc, true, start, end));
                  yybegin(CLOSEOPEN);
-                 if (yylex() != 1) {
+                 if (yylex() != 1 || isIndexEndToken(false)) {
                     return null;
                  }
                  p1 = pos - yylength();
@@ -99,7 +128,11 @@ import javax.swing.text.Element;
             }
 
             do {
-               if (yylex() == 0) {
+               int token = yylex();
+               if (isIndexEndToken(lr)) {
+                  continue;
+               }
+               if (token == 0) {
                   s--;
                } else {
                   s++;

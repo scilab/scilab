@@ -4,6 +4,7 @@
  * Copyright (C) 2010 - Calixte DENIZET
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Cédric DELAMARRE
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,6 +27,7 @@ import javax.swing.JButton;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.scinotes.MonacoEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.SciNotesCaret;
 import org.scilab.modules.scinotes.ScilabDocument;
@@ -52,6 +54,11 @@ public class PasteAction extends DefaultAction {
      * Action !
      */
     public void doAction() {
+        if (getEditor().getTextPane() instanceof MonacoEditorPane) {
+            ((MonacoEditorPane) getEditor().getTextPane()).paste();
+            return;
+        }
+
         ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
         try {
             String str = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getContents(this).getTransferData(DataFlavor.stringFlavor);

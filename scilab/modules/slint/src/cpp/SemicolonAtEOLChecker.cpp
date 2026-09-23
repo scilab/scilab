@@ -88,24 +88,22 @@ void SemicolonAtEOLChecker::check(const ast::Exp * e, SLintContext & context, SL
         std::pair<unsigned int, unsigned int> out;
         if (context.getPosition(e->getLocation(), out) && out.first < out.second)
         {
-            const wchar_t * line = context.getCode() + out.first;
-            const unsigned len = out.second - out.first;
-            for (unsigned i = len - 1; i != -1; --i)
+            // the location of an instruction stops at its expression: the ';' which
+            // ends it, if any, comes after, possibly behind some blanks.
+            const wchar_t * code = context.getCode();
+            const unsigned int len = context.getCodeLength();
+            for (unsigned i = out.second; ; ++i)
             {
-                const wchar_t c = line[i];
+                const wchar_t c = i < len ? code[i] : L'\0';
                 if (c == L' ' || c == L'\t')
                 {
                     continue;
                 }
-                else if (c == L';')
-                {
-                    break;
-                }
-                else
+                else if (c != L';')
                 {
                     result.report(context, e->getLocation(), *this, _("Instruction not finished by a semi-colon."));
-                    break;
                 }
+                break;
             }
         }
     }

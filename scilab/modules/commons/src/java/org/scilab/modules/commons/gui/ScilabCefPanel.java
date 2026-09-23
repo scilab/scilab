@@ -251,8 +251,21 @@ public class ScilabCefPanel extends JPanel {
         @Override
         public void onGotFocus(CefBrowser b) {
             if (b != browser) return;
+            boolean alreadyFocused = browserHasFocus;
             browserHasFocus = true;
             browserFocusRequested = false;
+            if (alreadyFocused) {
+                /*
+                 * Chromium can re-fire onGotFocus for a browser that already
+                 * has focus (observed in bursts of 50+ calls within a few ms
+                 * right after requestBrowserFocus(), one new native thread
+                 * per call). Re-running the FlexDock activation below on
+                 * every one of those calls requests focus again on this same
+                 * component, which is what sustains the burst. Only the
+                 * first, genuine gained-focus transition needs it.
+                 */
+                return;
+            }
             final int focusTransfer = ++focusTransferGeneration;
             // Notify FlexDock so it updates title bars, menus, etc.
             SwingUtilities.invokeLater(() -> {
@@ -695,13 +708,83 @@ public class ScilabCefPanel extends JPanel {
      * from the web page itself. This also cancels any pending delayed transfer
      * to a Swing component scheduled by the click-outside handler.
      */
-    public void requestBrowserFocus() {
-        focusTransferGeneration++;
-        browser.getUIComponent().requestFocusInWindow();
+    /**
+     * Give the Swing focus owner back to the browser component. Chromium's
+     * own focus state is left untouched: this only repairs the Java side,
+     * when a lightweight component became the focus owner behind its back.
+     */
+    public void reclaimSwingFocus() {
+        CefBrowser currentBrowser = browser;
+        if (currentBrowser == null) {
+            return;
+        }
+        final Component ui = currentBrowser.getUIComponent();
+        final KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        final Component from = manager.getFocusOwner();
+        // Already the owner: asking again can bounce the focus onto an
+        // ancestor (see requestBrowserFocus()). No owner at all: the window
+        // is inactive, or Chromium's own native window holds the keyboard.
+        if (from == ui || from == null) {
+            return;
+        }
+        ui.requestFocusInWindow();
+        /*
+         * The request can be dropped without a word while the browser is
+         * being moved -- a tab being split lays the overlay out again -- and
+         * the keyboard then stays with the placeholder. Ask again for a
+         * moment, as long as nobody else took the focus meanwhile.
+         */
+        final Timer retry = new Timer(50, null);
+        retry.addActionListener(new java.awt.event.ActionListener() {
+            private int attempts = 0;
 
-        if (!browserHasFocus && !browserFocusRequested) {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent event) {
+                Component owner = manager.getFocusOwner();
+                if (owner != from || browser == null || ++attempts > 10) {
+                    retry.stop();
+                    return;
+                }
+                ui.requestFocusInWindow();
+            }
+        });
+        retry.start();
+    }
+
+    public void requestBrowserFocus() {
+        if (browserHasFocus) {
+            // Already focused: skip. Calling requestFocusInWindow() again on
+            // an already-focused heavyweight peer is redundant and was
+            // observed to bounce focus onto a lightweight ancestor
+            // container, whose own FocusListener re-requests focus on this
+            // pane, sustaining a Java-side echo of the same loop.
+            return;
+        }
+        focusTransferGeneration++;
+        CefBrowser currentBrowser = browser;
+        if (currentBrowser == null) {
+            return;
+        }
+        currentBrowser.getUIComponent().requestFocusInWindow();
+
+        if (!browserFocusRequested) {
             browserFocusRequested = true;
-            browser.setFocus(true);
+            currentBrowser.setFocus(true);
+        }
+    }
+
+    /**
+     * Relinquish Chromium's native keyboard focus without disposing it.
+     * Used when ownership of an editor interaction moves to another browser.
+     */
+    public void releaseBrowserFocus() {
+        focusTransferGeneration++;
+        browserHasFocus = false;
+        browserFocusRequested = false;
+        clearCefNativeFocusView();
+        CefBrowser currentBrowser = browser;
+        if (currentBrowser != null) {
+            currentBrowser.setFocus(false);
         }
     }
 
@@ -1195,12 +1278,33 @@ public class ScilabCefPanel extends JPanel {
      */
     @Override
     public void removeNotify() {
-        super.removeNotify();
-
-        // do not release while docking
+        // A docking move must let JCEF temporarily detach and reparent its
+        // native child without closing the browser.
         if (isDocking > 0) {
+            super.removeNotify();
             return;
         }
+
+        /*
+         * Mark the browser as closing before its child component receives
+         * removeNotify(). CefBrowserWr otherwise posts an asynchronous native
+         * setParent(0), which can race CloseBrowser while an owning SciNotes
+         * window is being destroyed. CefBrowser_N.setParent() deliberately
+         * ignores that detach once close(true) set its isClosing flag.
+         */
+        dispose();
+        super.removeNotify();
+    }
+
+    /**
+     * Explicitly dispose the native browser before its Swing hierarchy is
+     * detached. This method is idempotent and may also be called by owners
+     * which suppress removeNotify() while moving a browser component.
+     */
+    public void dispose() {
+        focusTransferGeneration++;
+        browserHasFocus = false;
+        browserFocusRequested = false;
 
         if (clickOutsideListener != null) {
             Toolkit.getDefaultToolkit().removeAWTEventListener(clickOutsideListener);
@@ -1221,15 +1325,19 @@ public class ScilabCefPanel extends JPanel {
             resizeSettleTimer.stop();
         }
 
-        if (browser != null) {
-            closeDevTools();
-            browser.close(true);
-            browser = null;
+        CefBrowser browserToClose = browser;
+        browser = null;
+        if (browserToClose != null) {
+            devToolsRequested = false;
+            devToolsBrowser = null;
+            browserToClose.closeDevTools();
+            browserToClose.close(true);
         }
 
-        if (client != null) {
-            ScilabBrowser.release(client);
-            client = null;
+        CefClient clientToRelease = client;
+        client = null;
+        if (clientToRelease != null) {
+            ScilabBrowser.release(clientToRelease);
         }
     }
 }

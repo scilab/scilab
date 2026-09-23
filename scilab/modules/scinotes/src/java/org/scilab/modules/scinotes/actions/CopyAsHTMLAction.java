@@ -3,6 +3,7 @@
  * Copyright (C) 2010 - Calixte DENIZET
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Cédric DELAMARRE
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,6 +32,7 @@ import javax.swing.TransferHandler;
 
 import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.scinotes.MonacoEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.HTMLCodeConverter;
@@ -58,6 +60,11 @@ public class CopyAsHTMLAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
+        if (!printLineNumber && getEditor().getTextPane() instanceof MonacoEditorPane) {
+            ((MonacoEditorPane) getEditor().getTextPane()).copy();
+            return;
+        }
+
         if (!getEditor().getTextPane().copyColumnSelectionInClipBoard()) {
             String selection = getEditor().getTextPane().getSelectedText();
             if (selection != null) {
@@ -94,7 +101,7 @@ public class CopyAsHTMLAction extends DefaultAction {
      */
     public static class HTMLSelection implements Transferable, ClipboardOwner {
 
-        private DataFlavor htmlFlavor;
+        private DataFlavor[] htmlFlavors;
         private String data;
         private boolean printLineNumber;
         private ScilabEditorPane pane;
@@ -104,14 +111,19 @@ public class CopyAsHTMLAction extends DefaultAction {
          * Default constructor
          * @param data the data to copy
          */
-        HTMLSelection(ScilabEditorPane pane, String data, boolean printLineNumber) {
+        public HTMLSelection(ScilabEditorPane pane, String data, boolean printLineNumber) {
             this.data = data;
             this.printLineNumber = printLineNumber;
             this.pane = pane;
             try {
-                htmlFlavor = new DataFlavor("text/html;class=java.lang.String");
+                htmlFlavors = new DataFlavor[] {
+                    new DataFlavor("text/html;class=java.lang.String"),
+                    new DataFlavor("text/html;class=java.lang.String;document=fragment"),
+                    new DataFlavor("text/html;class=java.lang.String;document=selection")
+                };
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
+                htmlFlavors = new DataFlavor[0];
             }
         }
 
@@ -120,7 +132,7 @@ public class CopyAsHTMLAction extends DefaultAction {
          */
         public Object getTransferData(DataFlavor flavor) {
             Object ret = null;
-            if (flavor.equals(htmlFlavor)) {
+            if (isHtmlFlavor(flavor)) {
                 if (!codeConverterLoaded) {
                     LoadClassPath.loadOnUse("copyAsHTMLinScinotes");
                     codeConverterLoaded = true;
@@ -137,20 +149,37 @@ public class CopyAsHTMLAction extends DefaultAction {
          * {@inheritDoc}
          */
         public DataFlavor[] getTransferDataFlavors() {
-            return new DataFlavor[] {htmlFlavor, DataFlavor.stringFlavor};
+            DataFlavor[] flavors = new DataFlavor[htmlFlavors.length + 1];
+            System.arraycopy(htmlFlavors, 0, flavors, 0, htmlFlavors.length);
+            flavors[htmlFlavors.length] = DataFlavor.stringFlavor;
+            return flavors;
         }
 
         /**
          * {@inheritDoc}
          */
         public boolean isDataFlavorSupported(DataFlavor flavor) {
-            return flavor.equals(htmlFlavor) || flavor.equals(DataFlavor.stringFlavor);
+            return isHtmlFlavor(flavor) || flavor.equals(DataFlavor.stringFlavor);
         }
 
         /**
          * {@inheritDoc}
          */
         public void lostOwnership(Clipboard clipboard, Transferable contents) { }
+
+        private boolean isHtmlFlavor(DataFlavor flavor) {
+            if (flavor == null) {
+                return false;
+            }
+
+            for (int i = 0; i < htmlFlavors.length; i++) {
+                if (flavor.equals(htmlFlavors[i])) {
+                    return true;
+                }
+            }
+
+            return "text".equals(flavor.getPrimaryType()) && "html".equals(flavor.getSubType());
+        }
     }
 
     /**

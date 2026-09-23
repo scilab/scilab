@@ -3,6 +3,7 @@
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Cédric DELAMARRE
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -105,6 +106,35 @@ public :
     }
 
     /*
+    ** Manage recovered tree mode
+    */
+    static bool recoverTreeOnError(void)
+    {
+        return _recover_tree_on_error;
+    }
+    static void enableTreeRecovery(void)
+    {
+        _recover_tree_on_error = true;
+    }
+    static void disableTreeRecovery(void)
+    {
+        _recover_tree_on_error = false;
+    }
+
+    static bool useRuntimeContext(void)
+    {
+        return _use_runtime_context;
+    }
+    static void enableRuntimeContext(void)
+    {
+        _use_runtime_context = true;
+    }
+    static void disableRuntimeContext(void)
+    {
+        _use_runtime_context = false;
+    }
+
+    /*
     ** Bison Debug management
     */
     static void enableParseTrace(void);
@@ -162,6 +192,8 @@ private :
     static std::wstring _error_message;
     static bool _strict_mode;
     static bool _stop_on_first_error;
+    static bool _recover_tree_on_error;
+    static bool _use_runtime_context;
     static ast::Exp* _the_program;
     static Parser::ParserStatus _exit_status;
     static std::list<Parser::ControlStatus> _control_status;
@@ -170,4 +202,3 @@ private :
 };
 
 #endif /* !__PARSER_PRIVATE_HXX__ */
-

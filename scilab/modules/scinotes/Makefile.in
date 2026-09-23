@@ -130,10 +130,11 @@ subdir = modules/scinotes
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx.m4 \
 	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
-	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/doxygen.m4 \
-	$(top_srcdir)/m4/eigen.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/cppserver.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/klu.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libarchive.m4 $(top_srcdir)/m4/libsmath.m4 \
@@ -182,12 +183,14 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciscinotes_la_etcdir)" \
 	"$(DESTDIR)$(libsciscinotes_la_rootdir)" \
-	"$(DESTDIR)$(libsciscinotes_la_sci_gatewaydir)"
+	"$(DESTDIR)$(libsciscinotes_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libsciscinotes_la_webdir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libsciscinotes_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/libsciscinotes_algo_la-ScilabKeywords.lo
-am__objects_2 = src/jni/libsciscinotes_algo_la-ScilabKeywords_wrap.lo
+am__objects_2 = src/jni/libsciscinotes_algo_la-ScilabKeywords_wrap.lo \
+	src/jni/libsciscinotes_algo_la-SciNotesLspJNI.lo
 am__objects_3 = src/jni/libsciscinotes_algo_la-SciNotes.lo \
 	src/cpp/libsciscinotes_algo_la-callscinotes.lo
 am_libsciscinotes_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
@@ -209,6 +212,7 @@ libsciscinotes_disable_la_OBJECTS =  \
 	$(am_libsciscinotes_disable_la_OBJECTS)
 am__DEPENDENCIES_1 =
 libsciscinotes_la_DEPENDENCIES = libsciscinotes-algo.la \
+	$(top_builddir)/modules/webtools/libsciwebtools.la \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__objects_6 = sci_gateway/cpp/libsciscinotes_la-sci_scinotes.lo \
 	sci_gateway/cpp/libsciscinotes_la-sci_closeSciNotesFromScilab.lo
@@ -239,6 +243,7 @@ am__depfiles_remade = sci_gateway/cpp/$(DEPDIR)/libsciscinotes_la-sci_closeSciNo
 	src/c/$(DEPDIR)/libsciscinotes_algo_la-ScilabKeywords.Plo \
 	src/cpp/$(DEPDIR)/libsciscinotes_algo_la-callscinotes.Plo \
 	src/jni/$(DEPDIR)/libsciscinotes_algo_la-SciNotes.Plo \
+	src/jni/$(DEPDIR)/libsciscinotes_algo_la-SciNotesLspJNI.Plo \
 	src/jni/$(DEPDIR)/libsciscinotes_algo_la-ScilabKeywords_wrap.Plo \
 	src/noscinotes/$(DEPDIR)/libsciscinotes_disable_la-noscinotes.Plo \
 	src/noscinotes/$(DEPDIR)/libsciscinotes_disable_la-noscinotes_gw.Plo
@@ -291,7 +296,8 @@ am__can_run_installinfo = \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
 DATA = $(libsciscinotes_la_etc_DATA) $(libsciscinotes_la_root_DATA) \
-	$(libsciscinotes_la_sci_gateway_DATA)
+	$(libsciscinotes_la_sci_gateway_DATA) \
+	$(libsciscinotes_la_web_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -348,6 +354,9 @@ COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CPPSERVER_CFLAGS = @CPPSERVER_CFLAGS@
+CPPSERVER_LIBS = @CPPSERVER_LIBS@
+CPPSERVER_VERSION = @CPPSERVER_VERSION@
 CSCOPE = @CSCOPE@
 CTAGS = @CTAGS@
 CURL_CFLAGS = @CURL_CFLAGS@
@@ -682,7 +691,26 @@ libsciscinotes_la_etc_DATA = \
 	etc/XConfiguration-scinotes.xml \
 	etc/XConfiguration-scinotes.xsl
 
-SCINOTES_JNI_SOURCES = src/jni/ScilabKeywords_wrap.c
+
+#### scinotes : Monaco integration ####
+libsciscinotes_la_webdir = $(mydatadir)/src/web
+libsciscinotes_la_web_DATA = \
+    src/web/monaco.html \
+    src/web/monaco-state.js \
+    src/web/monaco-documents.js \
+    src/web/monaco-shared-history.js \
+    src/web/monaco-split.js \
+    src/web/monaco-bridge.js \
+    src/web/monaco-shortcuts.js \
+    src/web/monaco-scilab-language.js \
+    src/web/monaco-latex.js \
+    src/web/monaco-lsp.js \
+    src/web/monaco-bootstrap.js
+
+SCINOTES_JNI_SOURCES = \
+    src/jni/ScilabKeywords_wrap.c \
+    src/jni/SciNotesLspJNI.cpp
+
 SCINOTES_C_SOURCES = src/c/ScilabKeywords.c
 SCINOTES_CXX_SOURCES = \
     src/jni/SciNotes.cpp \
@@ -713,6 +741,7 @@ libsciscinotes_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/webtools/includes/ \
     $(JAVA_JNI_INCLUDE) \
     $(AM_CPPFLAGS)
 
@@ -747,7 +776,12 @@ INCLUDE_FLAGS = $(libsciscinotes_la_CPPFLAGS)
 GIWS_WRAPPERS = src/jni/SciNotes.giws.xml
 SWIG_WRAPPERS = src/jni/ScilabKeywords.i
 BUILT_SOURCES = $(am__append_2) $(am__append_3)
-libsciscinotes_la_LIBADD = libsciscinotes-algo.la $(X_LIBS) $(X_EXTRA_LIBS)
+libsciscinotes_la_LIBADD = \
+    libsciscinotes-algo.la \
+    $(top_builddir)/modules/webtools/libsciwebtools.la \
+    $(X_LIBS) \
+    $(X_EXTRA_LIBS)
+
 
 #### scinotes : gateway declaration ####
 libsciscinotes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -921,6 +955,8 @@ src/jni/$(DEPDIR)/$(am__dirstamp):
 	@: > src/jni/$(DEPDIR)/$(am__dirstamp)
 src/jni/libsciscinotes_algo_la-ScilabKeywords_wrap.lo:  \
 	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libsciscinotes_algo_la-SciNotesLspJNI.lo:  \
+	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 src/jni/libsciscinotes_algo_la-SciNotes.lo: src/jni/$(am__dirstamp) \
 	src/jni/$(DEPDIR)/$(am__dirstamp)
 src/cpp/$(am__dirstamp):
@@ -986,6 +1022,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscinotes_algo_la-ScilabKeywords.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciscinotes_algo_la-callscinotes.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libsciscinotes_algo_la-SciNotes.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libsciscinotes_algo_la-SciNotesLspJNI.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libsciscinotes_algo_la-ScilabKeywords_wrap.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/noscinotes/$(DEPDIR)/libsciscinotes_disable_la-noscinotes.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/noscinotes/$(DEPDIR)/libsciscinotes_disable_la-noscinotes_gw.Plo@am__quote@ # am--include-marker
@@ -1064,6 +1101,13 @@ src/noscinotes/libsciscinotes_disable_la-noscinotes.lo: src/noscinotes/noscinote
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
+
+src/jni/libsciscinotes_algo_la-SciNotesLspJNI.lo: src/jni/SciNotesLspJNI.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libsciscinotes_algo_la-SciNotesLspJNI.lo -MD -MP -MF src/jni/$(DEPDIR)/libsciscinotes_algo_la-SciNotesLspJNI.Tpo -c -o src/jni/libsciscinotes_algo_la-SciNotesLspJNI.lo `test -f 'src/jni/SciNotesLspJNI.cpp' || echo '$(srcdir)/'`src/jni/SciNotesLspJNI.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libsciscinotes_algo_la-SciNotesLspJNI.Tpo src/jni/$(DEPDIR)/libsciscinotes_algo_la-SciNotesLspJNI.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/SciNotesLspJNI.cpp' object='src/jni/libsciscinotes_algo_la-SciNotesLspJNI.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libsciscinotes_algo_la-SciNotesLspJNI.lo `test -f 'src/jni/SciNotesLspJNI.cpp' || echo '$(srcdir)/'`src/jni/SciNotesLspJNI.cpp
 
 src/jni/libsciscinotes_algo_la-SciNotes.lo: src/jni/SciNotes.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libsciscinotes_algo_la-SciNotes.lo -MD -MP -MF src/jni/$(DEPDIR)/libsciscinotes_algo_la-SciNotes.Tpo -c -o src/jni/libsciscinotes_algo_la-SciNotes.lo `test -f 'src/jni/SciNotes.cpp' || echo '$(srcdir)/'`src/jni/SciNotes.cpp
@@ -1173,6 +1217,27 @@ uninstall-libsciscinotes_la_sci_gatewayDATA:
 	@list='$(libsciscinotes_la_sci_gateway_DATA)'; test -n "$(libsciscinotes_la_sci_gatewaydir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libsciscinotes_la_sci_gatewaydir)'; $(am__uninstall_files_from_dir)
+install-libsciscinotes_la_webDATA: $(libsciscinotes_la_web_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_web_DATA)'; test -n "$(libsciscinotes_la_webdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_webdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_webdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_webdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_webdir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_webDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_web_DATA)'; test -n "$(libsciscinotes_la_webdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_webdir)'; $(am__uninstall_files_from_dir)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -1264,7 +1329,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciscinotes_la_etcdir)" "$(DESTDIR)$(libsciscinotes_la_rootdir)" "$(DESTDIR)$(libsciscinotes_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciscinotes_la_etcdir)" "$(DESTDIR)$(libsciscinotes_la_rootdir)" "$(DESTDIR)$(libsciscinotes_la_sci_gatewaydir)" "$(DESTDIR)$(libsciscinotes_la_webdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1321,6 +1386,7 @@ distclean: distclean-am
 	-rm -f src/c/$(DEPDIR)/libsciscinotes_algo_la-ScilabKeywords.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciscinotes_algo_la-callscinotes.Plo
 	-rm -f src/jni/$(DEPDIR)/libsciscinotes_algo_la-SciNotes.Plo
+	-rm -f src/jni/$(DEPDIR)/libsciscinotes_algo_la-SciNotesLspJNI.Plo
 	-rm -f src/jni/$(DEPDIR)/libsciscinotes_algo_la-ScilabKeywords_wrap.Plo
 	-rm -f src/noscinotes/$(DEPDIR)/libsciscinotes_disable_la-noscinotes.Plo
 	-rm -f src/noscinotes/$(DEPDIR)/libsciscinotes_disable_la-noscinotes_gw.Plo
@@ -1342,7 +1408,8 @@ info-am:
 
 install-data-am: install-data-local install-libsciscinotes_la_etcDATA \
 	install-libsciscinotes_la_rootDATA \
-	install-libsciscinotes_la_sci_gatewayDATA
+	install-libsciscinotes_la_sci_gatewayDATA \
+	install-libsciscinotes_la_webDATA
 
 install-dvi: install-dvi-am
 
@@ -1376,6 +1443,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/$(DEPDIR)/libsciscinotes_algo_la-ScilabKeywords.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciscinotes_algo_la-callscinotes.Plo
 	-rm -f src/jni/$(DEPDIR)/libsciscinotes_algo_la-SciNotes.Plo
+	-rm -f src/jni/$(DEPDIR)/libsciscinotes_algo_la-SciNotesLspJNI.Plo
 	-rm -f src/jni/$(DEPDIR)/libsciscinotes_algo_la-ScilabKeywords_wrap.Plo
 	-rm -f src/noscinotes/$(DEPDIR)/libsciscinotes_disable_la-noscinotes.Plo
 	-rm -f src/noscinotes/$(DEPDIR)/libsciscinotes_disable_la-noscinotes_gw.Plo
@@ -1398,6 +1466,7 @@ ps-am:
 uninstall-am: uninstall-libsciscinotes_la_etcDATA \
 	uninstall-libsciscinotes_la_rootDATA \
 	uninstall-libsciscinotes_la_sci_gatewayDATA \
+	uninstall-libsciscinotes_la_webDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: all check check-am install install-am install-exec \
@@ -1415,16 +1484,17 @@ uninstall-am: uninstall-libsciscinotes_la_etcDATA \
 	install-html-local install-info install-info-am \
 	install-libsciscinotes_la_etcDATA \
 	install-libsciscinotes_la_rootDATA \
-	install-libsciscinotes_la_sci_gatewayDATA install-man \
-	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags tags-am uninstall uninstall-am \
-	uninstall-libsciscinotes_la_etcDATA \
+	install-libsciscinotes_la_sci_gatewayDATA \
+	install-libsciscinotes_la_webDATA install-man install-pdf \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
+	uninstall-am uninstall-libsciscinotes_la_etcDATA \
 	uninstall-libsciscinotes_la_rootDATA \
 	uninstall-libsciscinotes_la_sci_gatewayDATA \
+	uninstall-libsciscinotes_la_webDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .PRECIOUS: Makefile

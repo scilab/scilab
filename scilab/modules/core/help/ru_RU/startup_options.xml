@@ -55,6 +55,8 @@ Usage: Scilab <options>
       -noatomsautoload : Do not autoload eligible ATOMS modules.
       -nb              : Do not display the banner (no banner).
       -scihome <dir>   : Force SCIHOME to <dir>.
+      -lsp <port>      : Start the Scilab LSP TCP server endpoint on <port>.
+      -dap <port>      : Start the Scilab DAP TCP server endpoint on <port>.
       -texmacs         : Option to use Scilab from documents through http://texmacs.org.
       -version         : Display the Scilab version (no session opened).
       -display Display : Set the display to the X server Display (XWindow systems only).
@@ -404,6 +406,24 @@ evstr(a(i+2))*2
                                 <td>~/.Scilab/<literal>dir</literal></td>
                             </tr>
                         </table>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-lsp port</term>
+                <listitem>
+                    <para>
+                        Starts the Scilab Language Server Protocol TCP server endpoint on the given
+                        TCP port. This option can be used in graphical and non-graphical sessions.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-dap port</term>
+                <listitem>
+                    <para>
+                        Starts the Scilab Debug Adapter Protocol TCP server endpoint on the given
+                        TCP port. This option can be used in graphical and non-graphical sessions.
                     </para>
                 </listitem>
             </varlistentry>

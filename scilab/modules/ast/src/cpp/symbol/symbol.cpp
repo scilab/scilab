@@ -19,31 +19,39 @@
 #include "symbol.hxx"
 
 symbol::Symbol::string_set_type symbol::Symbol::_set;
+std::mutex symbol::Symbol::_set_mutex;
 
 namespace symbol
 {
+const std::wstring* Symbol::intern(const std::wstring& value)
+{
+    std::lock_guard<std::mutex> lock(_set_mutex);
+    return &(*_set.insert(value).first);
+}
+
 // Constructor
 Symbol::Symbol (const std::wstring &s):
-    _set_node (_set.insert(s).first)
+    _set_node (intern(s))
 {
 }
 
 // Accessor
 const std::wstring& Symbol::getName () const
 {
-    return (*_set_node);
+    return *_set_node;
 }
 
 // Return the size of the Symbol map.
 Symbol::size_type Symbol::getSize()
 {
+    std::lock_guard<std::mutex> lock(_set_mutex);
     return _set.size();
 }
 
 // Operators for better performances.
 bool Symbol::operator== (const Symbol &rhs) const
 {
-    return &(*_set_node) == &(*rhs.getNode());
+    return _set_node == rhs.getNode();
 }
 
 bool Symbol::operator!= (const Symbol &rhs) const
@@ -64,8 +72,9 @@ std::wostream& operator<< (std::wostream &ostr, const Symbol &the)
 
 wchar_t **Symbol::getAll()
 {
+    std::lock_guard<std::mutex> lock(_set_mutex);
     string_set_type::const_iterator it;
-    wchar_t **resultVector = new wchar_t*[getSize()];
+    wchar_t **resultVector = new wchar_t*[_set.size()];
     int i = 0;
 
     for (it = _set.begin() ; it != _set.end() ; ++it, ++i)

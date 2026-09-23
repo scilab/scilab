@@ -131,10 +131,11 @@ subdir = modules
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx.m4 \
 	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
-	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/doxygen.m4 \
-	$(top_srcdir)/m4/eigen.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/cppserver.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/klu.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libarchive.m4 $(top_srcdir)/m4/libsmath.m4 \
@@ -282,10 +283,10 @@ DIST_SUBDIRS = prebuildjava threads output_stream arnoldi \
 	commons jvm types action_binding graphic_objects renderer gui \
 	graphic_export graphics optimization randlib interpolation \
 	sound overloading m2sci development_tools helptools umfpack \
-	matio atoms graph ast scinotes parallel modules_manager \
-	ui_data history_browser preferences xml external_objects slint \
-	coverage webtools external_objects_java scicos_blocks scicos \
-	xcos mpi . javasci
+	matio atoms graph ast slint webtools scinotes parallel \
+	modules_manager ui_data history_browser preferences xml \
+	external_objects coverage external_objects_java scicos_blocks \
+	scicos xcos mpi . javasci
 am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/config/mkinstalldirs
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -349,6 +350,9 @@ COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CPPSERVER_CFLAGS = @CPPSERVER_CFLAGS@
+CPPSERVER_LIBS = @CPPSERVER_LIBS@
+CPPSERVER_VERSION = @CPPSERVER_VERSION@
 CSCOPE = @CSCOPE@
 CTAGS = @CTAGS@
 CURL_CFLAGS = @CURL_CFLAGS@
@@ -675,11 +679,10 @@ SUBDIRS = prebuildjava threads output_stream arnoldi \
 	types action_binding graphic_objects renderer gui \
 	graphic_export graphics optimization randlib interpolation \
 	sound overloading m2sci development_tools helptools umfpack \
-	parameters matio atoms hdf5 graph ast scinotes parallel \
-	modules_manager ui_data history_browser preferences xml \
-	external_objects slint coverage webtools $(am__append_1) \
-	$(am__append_2) $(am__append_3) $(am__append_4) . \
-	$(am__append_5)
+	parameters matio atoms hdf5 graph ast slint webtools scinotes \
+	parallel modules_manager ui_data history_browser preferences \
+	xml external_objects coverage $(am__append_1) $(am__append_2) \
+	$(am__append_3) $(am__append_4) . $(am__append_5)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)

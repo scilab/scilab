@@ -112,18 +112,22 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./includes;./src/c;./src/cpp;../../libs/intl;../../libs/curl/include;../ast/includes/exps;../ast/includes/types;../ast/includes/ast;../ast/includes/system_env;../ast/includes/operations;../api_scilab/includes;../localization/includes;../core/includes;../string/includes;../dynamic_link/includes;../output_stream/includes;../fileio/includes;../preferences/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./includes;./src/c;./src/cpp;../../libs/intl;../../libs/curl/include;../ast/includes/exps;../ast/includes/types;../ast/includes/ast;../ast/includes/system_env;../ast/includes/operations;../api_scilab/includes;../localization/includes;../core/includes;../string/includes;../dynamic_link/includes;../output_stream/includes;../fileio/includes;../functions_manager/includes;../preferences/includes;../../libs/cppserver/include;../../libs/openssl/include;../../libs/pcre2/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;WEBTOOLS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
+      <AdditionalOptions>/utf-8</AdditionalOptions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>
-      </Command>
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)completion_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicompletion.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)graphics_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
+</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../bin/fileio.lib;../../bin/scihistory_manager.lib;../ast/functions_manager.lib;RpcRT4.Lib;Shlwapi.lib;UserEnv.Lib;scicompletion.lib;core.lib;graphics.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -139,19 +143,22 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./includes;./src/c;./src/cpp;./sci_gateway/cpp;../../libs/intl;../../libs/libxml2;../../libs/curl/include;../ast/includes/exps;../ast/includes/types;../ast/includes/ast;../ast/includes/system_env;../ast/includes/operations;../api_scilab/includes;../localization/includes;../core/includes;../string/includes;../dynamic_link/includes;../output_stream/includes;../fileio/includes;../preferences/includes;../console/includes;../history_manager/includes;../completion/includes;../graphics/includes;../ast/includes/symbol;../slint/includes;..\..\libs\pcre;../../libs/rapidjson/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./includes;./src/c;./src/cpp;./sci_gateway/cpp;../../libs/intl;../../libs/libxml2;../../libs/curl/include;../ast/includes/exps;../ast/includes/types;../ast/includes/ast;../ast/includes/system_env;../ast/includes/operations;../api_scilab/includes;../localization/includes;../core/includes;../string/includes;../dynamic_link/includes;../output_stream/includes;../fileio/includes;../functions_manager/includes;../preferences/includes;../console/includes;../history_manager/includes;../completion/includes;../graphics/includes;../ast/includes/symbol;../slint/includes;..\..\libs\pcre;../../libs/rapidjson/include;../../libs/cppserver/include;../../libs/openssl/include;../../libs/pcre2/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;WEBTOOLS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/utf-8</AdditionalOptions>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)completion_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicompletion.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)graphics_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../bin/fileio.lib;../../bin/scihistory_manager.lib;../ast/functions_manager.lib;RpcRT4.Lib;Shlwapi.lib;UserEnv.Lib;scicompletion.lib;core.lib;graphics.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -167,19 +174,22 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./includes;./src/c;./src/cpp;./sci_gateway/cpp;../../libs/intl;../../libs/libxml2;../../libs/curl/include;../ast/includes/exps;../ast/includes/types;../ast/includes/ast;../ast/includes/system_env;../ast/includes/operations;../api_scilab/includes;../localization/includes;../core/includes;../string/includes;../dynamic_link/includes;../output_stream/includes;../fileio/includes;../preferences/includes;../console/includes;../history_manager/includes;../completion/includes;../graphics/includes;../ast/includes/symbol;../slint/includes;..\..\libs\pcre;../../libs/rapidjson/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./includes;./src/c;./src/cpp;./sci_gateway/cpp;../../libs/intl;../../libs/libxml2;../../libs/curl/include;../ast/includes/exps;../ast/includes/types;../ast/includes/ast;../ast/includes/system_env;../ast/includes/operations;../api_scilab/includes;../localization/includes;../core/includes;../string/includes;../dynamic_link/includes;../output_stream/includes;../fileio/includes;../functions_manager/includes;../preferences/includes;../console/includes;../history_manager/includes;../completion/includes;../graphics/includes;../ast/includes/symbol;../slint/includes;..\..\libs\pcre;../../libs/rapidjson/include;../../libs/cppserver/include;../../libs/openssl/include;../../libs/pcre2/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;WEBTOOLS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/utf-8</AdditionalOptions>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)completion_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicompletion.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)graphics_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../bin/fileio.lib;../../bin/scihistory_manager.lib;../ast/functions_manager.lib;RpcRT4.Lib;Shlwapi.lib;UserEnv.Lib;scicompletion.lib;core.lib;graphics.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -193,21 +203,25 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>./includes;./src/c;./src/cpp;../../libs/intl;../../libs/curl/include;../ast/includes/exps;../ast/includes/types;../ast/includes/ast;../ast/includes/system_env;../ast/includes/operations;../api_scilab/includes;../localization/includes;../core/includes;../string/includes;../dynamic_link/includes;../output_stream/includes;../fileio/includes;../preferences/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./includes;./src/c;./src/cpp;../../libs/intl;../../libs/curl/include;../ast/includes/exps;../ast/includes/types;../ast/includes/ast;../ast/includes/system_env;../ast/includes/operations;../api_scilab/includes;../localization/includes;../core/includes;../string/includes;../dynamic_link/includes;../output_stream/includes;../fileio/includes;../functions_manager/includes;../preferences/includes;../../libs/cppserver/include;../../libs/openssl/include;../../libs/pcre2/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;WEBTOOLS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/utf-8</AdditionalOptions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>
-      </Command>
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)completion_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicompletion.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)graphics_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
+</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../bin/fileio.lib;../../bin/scihistory_manager.lib;../ast/functions_manager.lib;RpcRT4.Lib;Shlwapi.lib;UserEnv.Lib;scicompletion.lib;core.lib;graphics.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -226,22 +240,25 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>./includes;./src/c;./src/cpp;./sci_gateway/cpp;../../libs/intl;../../libs/libxml2;../../libs/curl/include;../ast/includes/exps;../ast/includes/types;../ast/includes/ast;../ast/includes/system_env;../ast/includes/operations;../api_scilab/includes;../localization/includes;../core/includes;../string/includes;../dynamic_link/includes;../output_stream/includes;../fileio/includes;../preferences/includes;../console/includes;../history_manager/includes;../completion/includes;../graphics/includes;../ast/includes/symbol;../slint/includes;..\..\libs\pcre;../../libs/rapidjson/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./includes;./src/c;./src/cpp;./sci_gateway/cpp;../../libs/intl;../../libs/libxml2;../../libs/curl/include;../ast/includes/exps;../ast/includes/types;../ast/includes/ast;../ast/includes/system_env;../ast/includes/operations;../api_scilab/includes;../localization/includes;../core/includes;../string/includes;../dynamic_link/includes;../output_stream/includes;../fileio/includes;../functions_manager/includes;../preferences/includes;../console/includes;../history_manager/includes;../completion/includes;../graphics/includes;../ast/includes/symbol;../slint/includes;..\..\libs\pcre;../../libs/rapidjson/include;../../libs/cppserver/include;../../libs/openssl/include;../../libs/pcre2/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;WEBTOOLS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/utf-8</AdditionalOptions>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)completion_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicompletion.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)graphics_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../bin/fileio.lib;../../bin/scihistory_manager.lib;../ast/functions_manager.lib;RpcRT4.Lib;Shlwapi.lib;UserEnv.Lib;scicompletion.lib;core.lib;graphics.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -260,22 +277,25 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>./includes;./src/c;./src/cpp;./sci_gateway/cpp;../../libs/intl;../../libs/libxml2;../../libs/curl/include;../ast/includes/exps;../ast/includes/types;../ast/includes/ast;../ast/includes/system_env;../ast/includes/operations;../api_scilab/includes;../localization/includes;../core/includes;../string/includes;../dynamic_link/includes;../output_stream/includes;../fileio/includes;../preferences/includes;../console/includes;../history_manager/includes;../completion/includes;../graphics/includes;../ast/includes/symbol;../slint/includes;..\..\libs\pcre;../../libs/rapidjson/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./includes;./src/c;./src/cpp;./sci_gateway/cpp;../../libs/intl;../../libs/libxml2;../../libs/curl/include;../ast/includes/exps;../ast/includes/types;../ast/includes/ast;../ast/includes/system_env;../ast/includes/operations;../api_scilab/includes;../localization/includes;../core/includes;../string/includes;../dynamic_link/includes;../output_stream/includes;../fileio/includes;../functions_manager/includes;../preferences/includes;../console/includes;../history_manager/includes;../completion/includes;../graphics/includes;../ast/includes/symbol;../slint/includes;..\..\libs\pcre;../../libs/rapidjson/include;../../libs/cppserver/include;../../libs/openssl/include;../../libs/pcre2/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;WEBTOOLS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/utf-8</AdditionalOptions>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)completion_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicompletion.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)graphics_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../bin/fileio.lib;../../bin/scihistory_manager.lib;../ast/functions_manager.lib;RpcRT4.Lib;Shlwapi.lib;UserEnv.Lib;scicompletion.lib;core.lib;graphics.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -288,23 +308,59 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="includes\dap_interface.h" />
     <ClInclude Include="includes\dynlib_webtools.h" />
+    <ClInclude Include="includes\dynlib_webtools_gw.h" />
     <ClInclude Include="includes\fromJSON.hxx" />
     <ClInclude Include="includes\json.hxx" />
+    <ClInclude Include="includes\lsp_interface.h" />
     <ClInclude Include="includes\sciCurl.hxx" />
     <ClInclude Include="includes\toJSON.hxx" />
     <ClInclude Include="includes\url_tools.hxx" />
+    <ClInclude Include="includes\webtools.h" />
+    <ClInclude Include="includes\webtools_gw.hxx" />
+    <ClInclude Include="src\cpp\dapEndpoint.hxx" />
+    <ClInclude Include="src\cpp\evalVisitor.hxx" />
+    <ClInclude Include="src\cpp\json_rpc.hxx" />
+    <ClInclude Include="src\cpp\lspEndpoint.hxx" />
+    <ClInclude Include="src\cpp\lsp_dap_tools.hxx" />
+    <ClInclude Include="src\cpp\runtimeSnapshot.hxx" />
+    <ClInclude Include="src\cpp\nlohmann_json.hxx" />
+    <ClInclude Include="src\cpp\tcpClient.hxx" />
+    <ClInclude Include="src\cpp\tcpServer.hxx" />
+    <ClInclude Include="src\cpp\tcpSession.hxx" />
+    <ClInclude Include="src\cpp\windows_tools.hxx" />
+    <ClInclude Include="src\cpp\wsServer.hxx" />
+    <ClInclude Include="src\cpp\wsSession.hxx" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="webtools.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp\dapEndpoint.cpp" />
+    <ClCompile Include="src\cpp\dap_interface.cpp" />
+    <ClCompile Include="src\cpp\documentAnalysisVisitor.cpp" />
+    <ClCompile Include="src\cpp\formattingVisitor.cpp" />
+    <ClCompile Include="src\cpp\evalvisitor.cpp" />
     <ClCompile Include="src\cpp\fromJSON.cpp" />
     <ClCompile Include="src\cpp\json.cpp" />
+    <ClCompile Include="src\cpp\json_rpc.cpp" />
+    <ClCompile Include="src\cpp\lspCompletionHelp.cpp" />
+    <ClCompile Include="src\cpp\lspDiagnostics.cpp" />
+    <ClCompile Include="src\cpp\lspDocumentSync.cpp" />
+    <ClCompile Include="src\cpp\lspEndpoint.cpp" />
+    <ClCompile Include="src\cpp\runtimeSnapshot.cpp" />
+    <ClCompile Include="src\cpp\lspNavigation.cpp" />
+    <ClCompile Include="src\cpp\lspProtocolUtils.cpp" />
+    <ClCompile Include="src\cpp\lspFormatting.cpp" />
+    <ClCompile Include="src\cpp\lspSemanticTokens.cpp" />
+    <ClCompile Include="src\cpp\lsp_dap_tools.cpp" />
+    <ClCompile Include="src\cpp\lsp_interface.cpp" />
     <ClCompile Include="src\cpp\sciCurl.cpp" />
     <ClCompile Include="src\cpp\toJSON.cpp" />
     <ClCompile Include="src\cpp\url_tools.cpp" />
     <ClCompile Include="src\cpp\webtools.cpp" />
+    <ClCompile Include="src\cpp\windows_tools.cpp" />
     <ClCompile Include="src\c\DllmainWebtools.c" />
   </ItemGroup>
   <ItemGroup>
@@ -323,6 +379,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="core_Import.def" />
+    <None Include="completion_Import.def" />
+    <None Include="graphics_Import.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

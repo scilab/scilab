@@ -18,6 +18,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.cef.CefApp;
 import org.cef.CefClient;
@@ -118,12 +119,16 @@ public final class ScilabBrowser {
         // Daemon watchdog: CefApp.dispose posts N_Shutdown on the EDT,
         // which can stay stuck indefinitely in native code. Force exit
         // after a delay if the JVM could not die on its own.
+        final AtomicBoolean shutdownReturned = new AtomicBoolean(false);
         Thread watchdog = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     Thread.sleep(SHUTDOWN_WATCHDOG_DELAY_MS);
                 } catch (InterruptedException ie) {
+                    return;
+                }
+                if (shutdownReturned.get()) {
                     return;
                 }
                 System.err.println("[ScilabBrowser] CEF shutdown watchdog: forcing JVM halt (N_Shutdown stuck)");
@@ -133,7 +138,11 @@ public final class ScilabBrowser {
         watchdog.setDaemon(true);
         watchdog.start();
 
-        cefApp_.dispose();
+        try {
+            cefApp_.dispose();
+        } finally {
+            shutdownReturned.set(true);
+        }
     }
 
     public static CefClient get() {

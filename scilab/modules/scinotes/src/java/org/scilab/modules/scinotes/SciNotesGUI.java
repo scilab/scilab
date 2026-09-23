@@ -95,6 +95,10 @@ public final class SciNotesGUI {
 
         // Set SciNotes Window position /size
         mainWindow.setTitle(title);
+        java.awt.Point location = SciNotes.takePendingWindowLocation();
+        if (location != null) {
+            mainWindow.setLocation(location);
+        }
         mainWindow.setVisible(true);
 
         init(editorInstance);

@@ -103,6 +103,7 @@ ZLIB_VERSION=1.2.11
 XZ_VERSION=5.4.4
 JOGL_VERSION=2.5.0
 JCEF_VERSION=d3de827+cef-146.0.10+g8219561+chromium-146.0.7680.179
+MONACO_EDITOR_VERSION=0.55.1
 OPENXLSX_VERSION=0.3.2
 LIBARCHIVE_VERSION=3.7.1
 RAPIDJSON_VERSION=24b5e7a
@@ -114,12 +115,12 @@ ARROW_THRIFT_VERSION=0.20.0
 ARROW_MIMALLOC_VERSION=2.0.6
 ARROW_XSIMD_VERSION=13.0.0
 
-# # CppServer and its deps
-# CPPSERVER_VERSION=1.0.4.1
-# ASIO_VERSION=1.29.0
-# CPPCOMMON_VERSION=1.0.4.0
-# CPPSERVER_FMT_VERSION=10.2.1
-# CPPSERVER_CMAKE_VERSION=1.0.0.0
+# CppServer and its deps
+CPPSERVER_VERSION=1.0.6.0
+ASIO_VERSION=1-38-1
+CPPCOMMON_VERSION=1.0.6.0
+FMT_VERSION=12.2.0
+CPPCMAKESCRIPTS_VERSION=24ed6954308b
 
 # Variables used by ant to build Java deps in Java 21
 export JAVA_HOME="$BUILDDIR/java/jdk-$JDK_VERSION/"
@@ -129,42 +130,44 @@ export TARGET_LEVEL=1.8
 export TARGET_RT_JAR="$INSTALLROOTDIR/java/jre/lib/rt.jar"
 
 make_versions() {
-    echo "JDK_VERSION            = $JDK_VERSION"
-    echo "JRE_VERSION            = $JRE_VERSION"
-    echo "ANT_VERSION            = $ANT_VERSION"
-    echo "OPENBLAS_VERSION       = $OPENBLAS_VERSION"
-    echo "ARPACK_VERSION         = $ARPACK_VERSION"
-    echo "CURL_VERSION           = $CURL_VERSION"
-    echo "EIGEN_VERSION          = $EIGEN_VERSION"
-    echo "FFTW_VERSION           = $FFTW_VERSION"
-    echo "HDF5_VERSION           = $HDF5_VERSION"
-    echo "NCURSES_VERSION        = $NCURSES_VERSION"
-    echo "LIBXML2_VERSION        = $LIBXML2_VERSION"
-    echo "MATIO_VERSION          = $MATIO_VERSION"
-    echo "OPENSSL_VERSION        = $OPENSSL_VERSION"
-    echo "PCRE2_VERSION          = $PCRE2_VERSION"
-    echo "SUITESPARSE_VERSION    = $SUITESPARSE_VERSION"
-    echo "TCL_VERSION            = $TCL_VERSION"
-    echo "TK_VERSION             = $TK_VERSION"
-    echo "BWIDGET_VERSION        = $BWIDGET_VERSION"
-    echo "ZLIB_VERSION           = $ZLIB_VERSION"
-    echo "XZ_VERSION             = $XZ_VERSION"
-    echo "JOGL_VERSION           = $JOGL_VERSION"
-    echo "JCEF_VERSION           = $JCEF_VERSION"
-    echo "OPENXLSX_VERSION       = $OPENXLSX_VERSION"
-    echo "LIBARCHIVE_VERSION     = $LIBARCHIVE_VERSION"
-    echo "RAPIDJSON_VERSION      = $RAPIDJSON_VERSION"
-    echo "LIBXSLT_VERSION        = $LIBXSLT_VERSION"
-    echo "XLNT_VERSION           = $XLNT_VERSION"
-    echo "ARROW_VERSION          = $ARROW_VERSION"
-    echo "ARROW_BOOST_VERSION    = $ARROW_BOOST_VERSION"
-    echo "ARROW_THRIFT_VERSION   = $ARROW_THRIFT_VERSION"
-    echo "ARROW_MIMALLOC_VERSION = $ARROW_MIMALLOC_VERSION"
-    echo "ARROW_XSIMD_VERSION    = $ARROW_XSIMD_VERSION"
-    # echo "CPPSERVER_VERSION     = $CPPSERVER_VERSION"
-    # echo "ASIO_VERSION          = $ASIO_VERSION"
-    # echo "CPPCOMMON_VERSION     = $CPPCOMMON_VERSION"
-    # echo "CPPSERVER_FMT_VERSION = $CPPSERVER_FMT_VERSION"
+    echo "JDK_VERSION             = $JDK_VERSION"
+    echo "JRE_VERSION             = $JRE_VERSION"
+    echo "ANT_VERSION             = $ANT_VERSION"
+    echo "OPENBLAS_VERSION        = $OPENBLAS_VERSION"
+    echo "ARPACK_VERSION          = $ARPACK_VERSION"
+    echo "CURL_VERSION            = $CURL_VERSION"
+    echo "EIGEN_VERSION           = $EIGEN_VERSION"
+    echo "FFTW_VERSION            = $FFTW_VERSION"
+    echo "HDF5_VERSION            = $HDF5_VERSION"
+    echo "NCURSES_VERSION         = $NCURSES_VERSION"
+    echo "LIBXML2_VERSION         = $LIBXML2_VERSION"
+    echo "MATIO_VERSION           = $MATIO_VERSION"
+    echo "OPENSSL_VERSION         = $OPENSSL_VERSION"
+    echo "PCRE2_VERSION           = $PCRE2_VERSION"
+    echo "SUITESPARSE_VERSION     = $SUITESPARSE_VERSION"
+    echo "TCL_VERSION             = $TCL_VERSION"
+    echo "TK_VERSION              = $TK_VERSION"
+    echo "BWIDGET_VERSION         = $BWIDGET_VERSION"
+    echo "ZLIB_VERSION            = $ZLIB_VERSION"
+    echo "XZ_VERSION              = $XZ_VERSION"
+    echo "JOGL_VERSION            = $JOGL_VERSION"
+    echo "JCEF_VERSION            = $JCEF_VERSION"
+    echo "MONACO_EDITOR_VERSION   = $MONACO_EDITOR_VERSION"
+    echo "OPENXLSX_VERSION        = $OPENXLSX_VERSION"
+    echo "LIBARCHIVE_VERSION      = $LIBARCHIVE_VERSION"
+    echo "RAPIDJSON_VERSION       = $RAPIDJSON_VERSION"
+    echo "LIBXSLT_VERSION         = $LIBXSLT_VERSION"
+    echo "XLNT_VERSION            = $XLNT_VERSION"
+    echo "ARROW_VERSION           = $ARROW_VERSION"
+    echo "ARROW_BOOST_VERSION     = $ARROW_BOOST_VERSION"
+    echo "ARROW_THRIFT_VERSION    = $ARROW_THRIFT_VERSION"
+    echo "ARROW_MIMALLOC_VERSION  = $ARROW_MIMALLOC_VERSION"
+    echo "ARROW_XSIMD_VERSION     = $ARROW_XSIMD_VERSION"
+    echo "CPPSERVER_VERSION       = $CPPSERVER_VERSION"
+    echo "CPPCOMMON_VERSION       = $CPPCOMMON_VERSION"
+    echo "CPPCMAKESCRIPTS_VERSION = $CPPCMAKESCRIPTS_VERSION"
+    echo "ASIO_VERSION            = $ASIO_VERSION"
+    echo "FMT_VERSION             = $FMT_VERSION"
 }
 
 ####################
@@ -198,6 +201,8 @@ download_dependencies() {
     [ ! -f gluegen-v$JOGL_VERSION.tar.xz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/gluegen-v$JOGL_VERSION.tar.xz
     [ ! -f jcpp-v$JOGL_VERSION.tar.xz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/jcpp-v$JOGL_VERSION.tar.xz
     [ ! -f jogl-v$JOGL_VERSION.tar.xz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/jogl-v$JOGL_VERSION.tar.xz
+
+    [ ! -f monaco-editor-$MONACO_EDITOR_VERSION.tgz ] && curl -L -o monaco-editor-$MONACO_EDITOR_VERSION.tgz https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/monaco-editor-$MONACO_EDITOR_VERSION.tgz
 
     [ ! -f OpenXLSX-$OPENXLSX_VERSION.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/OpenXLSX-$OPENXLSX_VERSION.tar.gz
 
@@ -233,12 +238,12 @@ download_dependencies() {
     [ ! -f mimalloc-${ARROW_MIMALLOC_VERSION}.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/mimalloc-${ARROW_MIMALLOC_VERSION}.tar.gz
     [ ! -f xsimd-${ARROW_XSIMD_VERSION}.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/xsimd-${ARROW_XSIMD_VERSION}.tar.gz
 
-    # # CppServer and its deps
-    # [ ! -f cppserver-$CPPSERVER_VERSION.zip ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/cppserver-$CPPSERVER_VERSION.zip
-    # [ ! -f asio-$ASIO_VERSION.zip ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/asio-$ASIO_VERSION.zip
-    # [ ! -f cppcommon-$CPPCOMMON_VERSION.zip ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/cppcommon-$CPPCOMMON_VERSION.zip
-    # [ ! -f cppserverfmt-$CPPSERVER_FMT_VERSION.zip ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/cppserverfmt-$CPPSERVER_FMT_VERSION.zip
-    # [ ! -f cppservercmake-$CPPSERVER_FMT_VERSION.zip ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/cppservercmake-$CPPSERVER_CMAKE_VERSION.zip
+    # CppServer and its deps
+    [ ! -f CppServer-$CPPSERVER_VERSION.zip ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/CppServer-$CPPSERVER_VERSION.zip
+    [ ! -f asio-$ASIO_VERSION.zip ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/asio-$ASIO_VERSION.zip
+    [ ! -f CppCommon-$CPPCOMMON_VERSION.zip ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/CppCommon-$CPPCOMMON_VERSION.zip
+    [ ! -f fmt-$FMT_VERSION.zip ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/fmt-$FMT_VERSION.zip
+    [ ! -f CppCMakeScripts-$CPPCMAKESCRIPTS_VERSION.zip ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/CppCMakeScripts-$CPPCMAKESCRIPTS_VERSION.zip
 
     true;
 }
@@ -248,6 +253,7 @@ make_all() {
     build_ant
     build_gluegen
     build_jogl
+    build_monaco
     build_openblas
     build_eigen
     build_zlib
@@ -270,7 +276,7 @@ make_all() {
     build_libxslt
     build_xlnt
     build_arrow
-    # build_cppserver
+    build_cppserver
 }
 
 make_binary_directory() {
@@ -415,17 +421,17 @@ make_binary_directory() {
     rm -f "$LIBTHIRDPARTYDIR"/redist/libncurses.* "$LIBTHIRDPARTYDIR"/redist/libscincurses.*
     cp -d "$INSTALLUSRDIR"/lib/libscincurses.so* "$LIBTHIRDPARTYDIR/redist/"
 
-    # # cppserver lib and its deps
-    # rm -f "$LIBTHIRDPARTYDIR"/libasio.so*
-    # cp -d "$INSTALLUSRDIR"/lib/libasio.so "$LIBTHIRDPARTYDIR/"
-    # rm -f "$LIBTHIRDPARTYDIR"/libfmt.so*
-    # cp -d "$INSTALLUSRDIR"/lib/libfmt.so "$LIBTHIRDPARTYDIR/"
-    # rm -f "$LIBTHIRDPARTYDIR"/libcppserver.so*
-    # cp -d "$INSTALLUSRDIR"/lib/libcppserver.so "$LIBTHIRDPARTYDIR/"
-    # rm -f "$LIBTHIRDPARTYDIR"/libcppcommon.so*
-    # cp -d "$INSTALLUSRDIR"/lib/libcppcommon.so "$LIBTHIRDPARTYDIR/"
-    # # cppserver include
-    # cp -R "$INSTALLUSRDIR/include/cppserver/" "$INSTALLROOTDIR/include/"
+    # cppserver lib and its deps
+    rm -f "$LIBTHIRDPARTYDIR"/libasio.so*
+    cp -d "$INSTALLUSRDIR"/lib/libasio.so "$LIBTHIRDPARTYDIR/"
+    rm -f "$LIBTHIRDPARTYDIR"/libfmt.so*
+    cp -d "$INSTALLUSRDIR"/lib/libfmt.so "$LIBTHIRDPARTYDIR/"
+    rm -f "$LIBTHIRDPARTYDIR"/libcppserver.so*
+    cp -d "$INSTALLUSRDIR"/lib/libcppserver.so "$LIBTHIRDPARTYDIR/"
+    rm -f "$LIBTHIRDPARTYDIR"/libcppcommon.so*
+    cp -d "$INSTALLUSRDIR"/lib/libcppcommon.so "$LIBTHIRDPARTYDIR/"
+    # cppserver include
+    cp -R "$INSTALLUSRDIR/include/cppserver/" "$INSTALLROOTDIR/include/"
 
     # GCC libs could be there but are prefixed with "sci" to avoid clashing
     # system libraries static linked into scilab libraries instead.  This
@@ -1234,6 +1240,24 @@ build_jogl() {
     cp -a build/jar/jogl-all.jar "$INSTALLROOTDIR/thirdparty"
 }
 
+build_monaco() {
+    # Monaco editor: web assets for the SciNotes editor, shipped offline under
+    # thirdparty (not committed in Scilab sources). No build step: just extract
+    # the minified AMD bundle (package/min/vs) from the npm tarball.
+    cd "$BUILDDIR" || exit 1
+    rm -rf monaco-editor-pkg
+    mkdir -p monaco-editor-pkg
+    tar -xzf "$DOWNLOADDIR/monaco-editor-$MONACO_EDITOR_VERSION.tgz" -C monaco-editor-pkg
+
+    MONACODIR="$INSTALLROOTDIR/thirdparty/web/monaco-editor"
+    rm -rf "$MONACODIR"
+    mkdir -p "$MONACODIR"
+    cp -a monaco-editor-pkg/package/min/vs "$MONACODIR/vs"
+    cp -a monaco-editor-pkg/package/LICENSE "$MONACODIR/LICENSE"
+    cp -a monaco-editor-pkg/package/ThirdPartyNotices.txt "$MONACODIR/ThirdPartyNotices.txt"
+    echo "$MONACO_EDITOR_VERSION" > "$MONACODIR/version.txt"
+}
+
 build_openxlsx() {
     cd "$BUILDDIR" || exit 1
 
@@ -1277,73 +1301,76 @@ build_libxslt() {
     cp -a "$INSTALL_DIR"/include/* "$INSTALLUSRDIR/include/"
 }
 
-# build_cppserver() {
-#     cd "$BUILDDIR" || exit 1
+build_cppserver() {
+    cd "$BUILDDIR" || exit 1
 
-#     INSTALL_DIR=$BUILDDIR/cppserver-$CPPSERVER_VERSION/install_dir
+    INSTALL_DIR=$BUILDDIR/cppserver-$CPPSERVER_VERSION/install_dir
 
-#     rm -rf cppserver
-#     unzip -q "$DOWNLOADDIR/cppserver-$CPPSERVER_VERSION.zip"
-#     mv CppServer-$CPPSERVER_VERSION cppserver
-#     cd cppserver || exit 1
-#     # add cmake files
-#     unzip -q "$DOWNLOADDIR/cppservercmake-$CPPSERVER_CMAKE_VERSION.zip"
-#     mv CppCMakeScripts-$CPPSERVER_CMAKE_VERSION cmake
+    rm -rf cppserver
+    unzip -q "$DOWNLOADDIR/CppServer-$CPPSERVER_VERSION.zip"
+    mv CppServer-$CPPSERVER_VERSION cppserver
+    cd cppserver || exit 1
+    # add cmake files
+    unzip -q "$DOWNLOADDIR/CppCMakeScripts-$CPPCMAKESCRIPTS_VERSION.zip"
+    mv CppCMakeScripts-* cmake
 
-#     # add cppserver needed modules
-#     cd modules || exit 1
-#     unzip -q "$DOWNLOADDIR/asio-$ASIO_VERSION.zip"
-#     mv asio-asio-"$(echo $ASIO_VERSION | tr "." "-")" asio
-#     unzip -q "$DOWNLOADDIR/cppcommon-$CPPCOMMON_VERSION.zip"
-#     mv CppCommon-$CPPCOMMON_VERSION CppCommon
-#     cd CppCommon/modules || exit 1
-#     unzip -q "$DOWNLOADDIR/cppserverfmt-$CPPSERVER_FMT_VERSION.zip"
-#     mv fmt-$CPPSERVER_FMT_VERSION fmt
-#     cd ../../../
+    # add cppserver needed modules
+    cd modules || exit 1
+    unzip -q "$DOWNLOADDIR/asio-$ASIO_VERSION.zip"
+    mv asio-asio-"$(echo $ASIO_VERSION | tr "." "-")" asio
+    unzip -q "$DOWNLOADDIR/CppCommon-$CPPCOMMON_VERSION.zip"
+    mv CppCommon-$CPPCOMMON_VERSION CppCommon
+    cd CppCommon/modules || exit 1
+    unzip -q "$DOWNLOADDIR/fmt-$FMT_VERSION.zip"
+    mv fmt-$FMT_VERSION fmt
+    cd ../../../
 
-#     # link against our openssl
-#     export OPENSSL_ROOT_DIR="$INSTALLUSRDIR"
+    # link against our openssl
+    export OPENSSL_ROOT_DIR="$INSTALLUSRDIR"
 
-#     ln -s "$BUILDDIR/cppserver/cmake" modules/CppCommon/cmake
+    ln -s "$BUILDDIR/cppserver/cmake" modules/CppCommon/cmake
 
-#     # update cmake files to include only needed sources
-#     sed -i '/Catch2/s/^/#/' modules/CMakeLists.txt
-#     sed -i '/CppBenchmark/s/^/#/' modules/CMakeLists.txt
-#     sed -i '/cpp-optparse/s/^/#/' modules/CMakeLists.txt
-#     sed -i '/Catch2/s/^/#/' modules/CppCommon/modules/CMakeLists.txt
-#     sed -i '/CppBenchmark/s/^/#/' modules/CppCommon/modules/CMakeLists.txt
-#     sed -i '/vld/s/^/#/' modules/CppCommon/modules/CMakeLists.txt
+    # update cmake files to include only needed sources
+    sed -i '/Catch2/s/^/#/' modules/CMakeLists.txt
+    sed -i '/CppBenchmark/s/^/#/' modules/CMakeLists.txt
+    sed -i '/cpp-optparse/s/^/#/' modules/CMakeLists.txt
+    sed -i '/Catch2/s/^/#/' modules/CppCommon/modules/CMakeLists.txt
+    sed -i '/CppBenchmark/s/^/#/' modules/CppCommon/modules/CMakeLists.txt
+    sed -i '/vld/s/^/#/' modules/CppCommon/modules/CMakeLists.txt
 
-#     # generate makefile
-#     mkdir -p build
-#     cd build || exit 1
-#     # DCPPSERVER_MODULE: remove execution of benchmarks and tests from build
-#     cmake .. -DCMAKE_INSTALL_PREFIX="$INSTALL_DIR" \
-#         -DBUILD_SHARED_LIBS=ON \
-#         -DCPPSERVER_MODULE=true \
-#         -G "Unix Makefiles"
-#     # build cppserver
-#     cmake --build . --parallel --config Release
+    # generate makefile
+    mkdir -p build
+    cd build || exit 1
+    # DCPPSERVER_MODULE: remove execution of benchmarks and tests from build
+    cmake .. -DCMAKE_INSTALL_PREFIX="$INSTALL_DIR" \
+        -DBUILD_SHARED_LIBS=ON \
+        -DCPPSERVER_MODULE=true \
+        -G "Unix Makefiles"
+    # build cppserver
+    cmake --build . --parallel --config Release
 
-#     # copy libs
-#     cd ../
-#     cp -- $(find . -name *.so) "$INSTALLUSRDIR/lib/"
+    # copy libs
+    cd ../
+    cp -- $(find . -name *.so) "$INSTALLUSRDIR/lib/"
 
-#     # copy includes
-#     rm -rf "$INSTALLUSRDIR/include/cppserver/"
-#     mkdir -p "$INSTALLUSRDIR/include/cppserver/cppserver"
-#     mkdir -p "$INSTALLUSRDIR/include/cppserver/cppcommon"
-#     mkdir -p "$INSTALLUSRDIR/include/cppserver/asio"
-#     mkdir -p "$INSTALLUSRDIR/include/cppserver/fmt"
+    # copy includes
+    rm -rf "$INSTALLUSRDIR/include/cppserver/"
+    rm -rf "$INSTALLUSRDIR/include/cppcommon/"
+    rm -rf "$INSTALLUSRDIR/include/asio/"
+    rm -rf "$INSTALLUSRDIR/include/fmt/"
+    mkdir -p "$INSTALLUSRDIR/include/cppserver"
+    mkdir -p "$INSTALLUSRDIR/include/cppcommon"
+    mkdir -p "$INSTALLUSRDIR/include/asio"
+    mkdir -p "$INSTALLUSRDIR/include/fmt"
 
-#     cp -r include/server "$INSTALLUSRDIR/include/cppserver/cppserver"
+    cp -r include/server "$INSTALLUSRDIR/include/cppserver"
 
-#     rm modules/asio/asio/include/Makefile.am
-#     cp -r modules/asio/asio/include/* "$INSTALLUSRDIR/include/cppserver/asio/"
+    rm modules/asio/asio/include/Makefile.am
+    cp -r modules/asio/asio/include/* "$INSTALLUSRDIR/include/asio/"
 
-#     cp -r modules/CppCommon/include/* "$INSTALLUSRDIR/include/cppserver/cppcommon/"
-#     cp -r modules/CppCommon/modules/fmt/include/* "$INSTALLUSRDIR/include/cppserver/fmt/"
-# }
+    cp -r modules/CppCommon/include/* "$INSTALLUSRDIR/include/cppcommon/"
+    cp -r modules/CppCommon/modules/fmt/include/* "$INSTALLUSRDIR/include/fmt/"
+}
 
 #########################
 ##### DEFAULT FLAGS #####

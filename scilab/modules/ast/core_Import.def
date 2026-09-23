@@ -11,8 +11,10 @@ StorePrioritaryCommand
 StoreDebuggerCommand
 StoreCommandWithFlags
 parseCommand
+parseCommandWithRecovery
 checkCommand
 parseFile
+parseFileWithRecovery
 checkFile
 pause_interpreter
 getScilabVersionMajor

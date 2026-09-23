@@ -33,6 +33,10 @@ Source: modules\{#SCINOTES}\etc\{#SCINOTES}.start; DestDir: {app}\modules\{#SCIN
 Source: modules\{#SCINOTES}\etc\*.xml; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\etc\*.xsl; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
 ;
+; Monaco-based editor surface: our glue page and the Monaco thirdparty bundle.
+Source: modules\{#SCINOTES}\src\web\*; DestDir: {app}\modules\{#SCINOTES}\src\web; Flags: recursesubdirs createallsubdirs; Components: {#COMPN_SCINOTES}
+Source: thirdparty\web\monaco-editor\*; DestDir: {app}\thirdparty\web\monaco-editor; Flags: recursesubdirs createallsubdirs; Components: {#COMPN_SCINOTES}
+;
 Source: modules\{#SCINOTES}\macros\lib; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\macros\*.sci; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\macros\*.bin; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}

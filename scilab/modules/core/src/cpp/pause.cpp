@@ -14,6 +14,7 @@
 #include "configvariable.hxx"
 #include "threadmanagement.hxx"
 #include "runner.hxx"
+#include "runtimeaccess.hxx"
 
 extern "C" {
 #include "pause.h"
@@ -34,10 +35,17 @@ void pause_interpreter(void)
     // unlock console thread to display prompt again
     ThreadManagement::SendConsoleExecDoneSignal();
 
-    int iPauseLevel = ConfigVariable::getPauseLevel();
-    while (ConfigVariable::getPauseLevel() == iPauseLevel)
+    // The runtime context is stable while the interpreter is paused. Allow
+    // editor services to refresh it, then take exclusive ownership back when
+    // the paused execution resumes.
     {
-        StaticRunner::launch();
+        RuntimeUnlockGuard runtimeUnlockGuard;
+
+        int iPauseLevel = ConfigVariable::getPauseLevel();
+        while (ConfigVariable::getPauseLevel() == iPauseLevel)
+        {
+            StaticRunner::launch();
+        }
     }
 
     //return from console so change mode to initial

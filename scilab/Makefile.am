@@ -94,6 +94,7 @@ scilab_bin_CPPFLAGS = \
     -I$(top_srcdir)/modules/core/src/c/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
     -I$(top_srcdir)/modules/startup/src/c/ \
+    -I$(top_srcdir)/modules/webtools/includes/ \
     $(AM_CPPFLAGS)
 
 # --no-undefined --relax

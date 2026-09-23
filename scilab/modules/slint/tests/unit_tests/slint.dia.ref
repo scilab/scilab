@@ -62,7 +62,7 @@ assert_checkequal(a.info("00007")(1).msg, msprintf(_("Function returned value mi
 a = slint("SCI/modules/slint/tests/unit_tests/files/SingleInstr.sci", conf, %f);
 assert_checktrue(isfield(a.info, "00009"));
 assert_checkequal(size(a.info("00009"), "*"), 1);
-assert_checkequal(a.info("00009")(1).loc, [2 12; 2 18]);
+assert_checkequal(a.info("00009")(1).loc, [2 12; 2 17]);
 a = slint("SCI/modules/slint/tests/unit_tests/files/EmptyBlock.sci", conf, %f);
 assert_checktrue(isfield(a.info, "00010"));
 assert_checkequal(size(a.info("00010"), "*"), 1);

@@ -30,6 +30,9 @@ Source: modules\{#WEBTOOLS}\license.txt; DestDir: {app}\modules\{#WEBTOOLS}; Com
 Source: modules\{#WEBTOOLS}\etc\{#WEBTOOLS}.quit; DestDir: {app}\modules\{#WEBTOOLS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#WEBTOOLS}\etc\{#WEBTOOLS}.start; DestDir: {app}\modules\{#WEBTOOLS}\etc; Components: {#COMPN_SCILAB}
 ;
+; Stylesheets rendering the inline help in the LSP hover and signature help.
+Source: modules\{#WEBTOOLS}\etc\*.xsl; DestDir: {app}\modules\{#WEBTOOLS}\etc; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#WEBTOOLS}\includes\*.h; DestDir: {app}\modules\{#WEBTOOLS}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#WEBTOOLS}\includes\*.hxx; DestDir: {app}\modules\{#WEBTOOLS}\includes; Components: {#COMPN_SCILAB}
 ;

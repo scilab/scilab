@@ -40,6 +40,7 @@
 #include "consoledebugger.hxx"
 #include "UTF8.hxx"
 #include "inlinehelp.hxx"
+#include "runtimeaccess.hxx"
 
 extern "C"
 {
@@ -144,6 +145,8 @@ ScilabEngineInfo* InitScilabEngineInfo()
 #endif
 
     pSEI->iWebMode = 0;
+    pSEI->iLspPort = 0;
+    pSEI->iDapPort = 0;
 
     pSEI->iFilePos = -1;
     pSEI->iExecPos = -1;
@@ -464,6 +467,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     ConfigVariable::setUserMode(2);
     InitializePreferences(iUseCurrentWD);
+    RuntimeAccess::runtimeInitialized();
 
     return 0;
 }
@@ -496,6 +500,11 @@ int ExecExternalCommand(ScilabEngineInfo* _pSEI)
 void StopScilabEngine(ScilabEngineInfo* _pSEI)
 {
     ConfigVariable::setEndProcessing(true);
+
+    // Shutdown scripts and module termination already mutate the global
+    // context. Drain runtime readers before any of that teardown begins, not
+    // only immediately before symbol::Context::destroyInstance().
+    RuntimeAccess::runtimeShuttingDown();
 #ifdef _MSC_VER
     /* bug 3672 */
     /* Create a Mutex (closing scilab)

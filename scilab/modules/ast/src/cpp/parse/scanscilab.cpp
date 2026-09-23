@@ -2498,7 +2498,8 @@ YY_RULE_SETUP
   }
   yylval.str = new std::wstring(pwText);
   FREE(pwText);
-  types::InternalType * pIT = symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str));
+  types::InternalType * pIT = ParserSingleInstance::useRuntimeContext()
+    ? symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str)) : nullptr;
   if (pIT && pIT->isCallable() && ParserSingleInstance::getControlStatus() != Parser::WithinArguments)
   {
     DEBUG("yy_push_state(SHELLMODE)");
@@ -2580,6 +2581,13 @@ return scan_throw(LPAREN);
 case 45:
 YY_RULE_SETUP
 {
+  // Let Bison report an unmatched closing parenthesis as a syntax error.
+  // Calling top() here without a corresponding opening parenthesis invokes
+  // deque::back() on the empty container used by std::stack.
+  if (paren_levels.empty() || paren_levels.top() == 0) {
+    return scan_throw(RPAREN);
+  }
+
   --paren_levels.top();
 
   if (lambda_levels.size()) {
@@ -2908,7 +2916,11 @@ YY_RULE_SETUP
   ** Pushing SIMPLESTRING
   */
   pstBuffer.clear();
-  str_opener_column = yylloc.first_column;
+  /*
+  ** The quote is the last byte of the matched text: the leading blanks
+  ** are not part of the string.
+  */
+  str_opener_column = yylloc.last_column - 1;
   #ifdef TOKENDEV
   std::cout << "--> Push State SIMPLESTRING" << std::endl;
   #endif
@@ -3016,6 +3028,13 @@ YY_RULE_SETUP
 case 99:
 YY_RULE_SETUP
 {
+    // The matrix state owns a parenthesis level, but a closing parenthesis
+    // may still be unmatched within that state. Preserve the level and let
+    // Bison diagnose the unexpected token.
+    if (paren_levels.empty() || paren_levels.top() == 0) {
+      return scan_throw(RPAREN);
+    }
+
     --paren_levels.top();
     return scan_throw(RPAREN);
   }

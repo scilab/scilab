@@ -387,6 +387,7 @@ cd ..
     <ClCompile Include="..\cpp\parsecommand.cpp" />
     <ClCompile Include="..\cpp\pause.cpp" />
     <ClCompile Include="..\cpp\runner.cpp" />
+    <ClCompile Include="..\cpp\runtimeaccess.cpp" />
     <ClCompile Include="..\cpp\setformat.cpp" />
     <ClCompile Include="..\cpp\setlines.cpp" />
     <ClCompile Include="..\cpp\storeCommand.cpp" />
@@ -421,6 +422,9 @@ cd ..
     <ClCompile Include="win_mem_alloc.c" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\includes\machine.h.in" />
+    <None Include="..\..\includes\version.h.in" />
+    <None Include="..\..\includes\version.h.vc" />
     <None Include="..\..\locales\core.pot" />
     <None Include="..\..\core.iss" />
     <CustomBuildStep Include="..\..\includes\machine.h.vc">
@@ -442,14 +446,17 @@ cd ..
     <ClInclude Include="..\..\includes\banner.hxx" />
     <ClInclude Include="..\..\includes\BOOL.h" />
     <ClInclude Include="..\..\includes\callCommand.h" />
+    <ClInclude Include="..\..\includes\callinterf.h" />
     <ClInclude Include="..\..\includes\commandwords.h" />
     <ClInclude Include="..\..\includes\core_gw.hxx" />
     <ClInclude Include="..\..\includes\core_math.h" />
     <ClInclude Include="..\..\includes\dynlib_core.h" />
+    <ClInclude Include="..\..\includes\dynlib_core_gw.h" />
     <ClInclude Include="..\..\includes\existfunction.h" />
     <ClInclude Include="..\..\includes\exit_status.hxx" />
     <ClInclude Include="..\..\includes\freeArrayOfString.h" />
     <ClInclude Include="..\..\includes\getcommandlineargs.h" />
+    <ClInclude Include="..\..\includes\getdeprecated.h" />
     <ClInclude Include="..\..\includes\getdeprecated.hxx" />
     <ClInclude Include="..\..\includes\getfunctionsname.h" />
     <ClInclude Include="..\..\includes\getmacrosname.h" />
@@ -464,8 +471,11 @@ cd ..
     <ClInclude Include="..\..\includes\gw_user.h" />
     <ClInclude Include="..\..\includes\gw_user2.h" />
     <ClInclude Include="..\..\includes\hasHandleType.h" />
+    <ClInclude Include="..\..\includes\hashtable_private.h" />
+    <ClInclude Include="..\..\includes\hashtable_utility.h" />
     <ClInclude Include="..\..\includes\hasUIControlStyle.h" />
     <ClInclude Include="..\..\includes\inlinehelp.hxx" />
+    <ClInclude Include="..\..\includes\inlinehelp.h" />
     <ClInclude Include="..\..\includes\inffic.h" />
     <ClInclude Include="..\..\includes\InitializePreferences.h" />
     <ClInclude Include="..\..\includes\initMacOSXEnv.h" />
@@ -474,6 +484,7 @@ cd ..
     <ClInclude Include="..\..\includes\islittleendian.h" />
     <ClInclude Include="..\..\includes\loadversion.h" />
     <ClInclude Include="..\..\includes\machine.h" />
+    <ClInclude Include="..\..\includes\md5.h" />
     <ClInclude Include="..\..\includes\parsecommand.h" />
     <ClInclude Include="..\..\includes\pause.h" />
     <ClInclude Include="..\..\includes\sci_malloc.h" />
@@ -482,9 +493,11 @@ cd ..
     <ClInclude Include="..\..\includes\realmain.h" />
     <ClInclude Include="..\..\includes\returnanan.h" />
     <ClInclude Include="..\..\includes\runner.hxx" />
+    <ClInclude Include="..\..\includes\runtimeaccess.hxx" />
     <ClInclude Include="..\..\includes\scilabDefaults.h" />
     <ClInclude Include="..\..\includes\scimem.h" />
     <ClInclude Include="..\..\includes\scisparse.h" />
+    <ClInclude Include="..\..\includes\sci_mem_alloc.h" />
     <ClInclude Include="..\..\includes\sci_tools.h" />
     <ClInclude Include="..\..\includes\sci_types.h" />
     <ClInclude Include="..\..\includes\setformat.h" />

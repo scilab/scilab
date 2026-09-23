@@ -119,10 +119,11 @@ subdir = modules/webtools
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx.m4 \
 	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
-	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/doxygen.m4 \
-	$(top_srcdir)/m4/eigen.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/cppserver.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/klu.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libarchive.m4 $(top_srcdir)/m4/libsmath.m4 \
@@ -181,7 +182,25 @@ am__objects_1 = src/cpp/libsciwebtools_algo_la-webtools.lo \
 	src/cpp/libsciwebtools_algo_la-fromJSON.lo \
 	src/cpp/libsciwebtools_algo_la-toJSON.lo \
 	src/cpp/libsciwebtools_algo_la-url_tools.lo \
-	src/cpp/libsciwebtools_algo_la-sciCurl.lo
+	src/cpp/libsciwebtools_algo_la-sciCurl.lo \
+	src/cpp/libsciwebtools_algo_la-json_rpc.lo \
+	src/cpp/libsciwebtools_algo_la-evalVisitor.lo \
+	src/cpp/libsciwebtools_algo_la-lsp_dap_tools.lo \
+	src/cpp/libsciwebtools_algo_la-documentAnalysisVisitor.lo \
+	src/cpp/libsciwebtools_algo_la-formattingVisitor.lo \
+	src/cpp/libsciwebtools_algo_la-lsp_interface.lo \
+	src/cpp/libsciwebtools_algo_la-dap_interface.lo \
+	src/cpp/libsciwebtools_algo_la-lspEndpoint.lo \
+	src/cpp/libsciwebtools_algo_la-runtimeSnapshot.lo \
+	src/cpp/libsciwebtools_algo_la-lspDocumentSync.lo \
+	src/cpp/libsciwebtools_algo_la-lspDiagnostics.lo \
+	src/cpp/libsciwebtools_algo_la-lspSemanticTokens.lo \
+	src/cpp/libsciwebtools_algo_la-lspCompletionHelp.lo \
+	src/cpp/libsciwebtools_algo_la-lspNavigation.lo \
+	src/cpp/libsciwebtools_algo_la-lspProtocolUtils.lo \
+	src/cpp/libsciwebtools_algo_la-lspFormatting.lo \
+	src/cpp/libsciwebtools_algo_la-dapEndpoint.lo \
+	src/cpp/libsciwebtools_algo_la-windows_tools.lo
 am__objects_2 = src/c/libsciwebtools_algo_la-DllmainWebtools.lo
 am_libsciwebtools_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciwebtools_algo_la_OBJECTS = $(am_libsciwebtools_algo_la_OBJECTS)
@@ -193,7 +212,9 @@ libsciwebtools_algo_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(AM_CXXFLAGS) $(CXXFLAGS) $(libsciwebtools_algo_la_LDFLAGS) \
 	$(LDFLAGS) -o $@
-libsciwebtools_la_DEPENDENCIES = libsciwebtools-algo.la
+am__DEPENDENCIES_1 =
+libsciwebtools_la_DEPENDENCIES = libsciwebtools-algo.la \
+	$(am__DEPENDENCIES_1)
 am__objects_3 = sci_gateway/cpp/libsciwebtools_la-sci_http_get.lo \
 	sci_gateway/cpp/libsciwebtools_la-sci_http_put.lo \
 	sci_gateway/cpp/libsciwebtools_la-sci_http_post.lo \
@@ -241,12 +262,30 @@ am__depfiles_remade =  \
 	sci_gateway/cpp/$(DEPDIR)/libsciwebtools_la-sci_url_split.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libsciwebtools_la-webtools_gw.Plo \
 	src/c/$(DEPDIR)/libsciwebtools_algo_la-DllmainWebtools.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-dapEndpoint.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-dap_interface.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-documentAnalysisVisitor.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-evalVisitor.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-formattingVisitor.Plo \
 	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-fromJSON.Plo \
 	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-json.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-json_rpc.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspCompletionHelp.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspDiagnostics.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspDocumentSync.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspEndpoint.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspFormatting.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspNavigation.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspProtocolUtils.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspSemanticTokens.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lsp_dap_tools.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lsp_interface.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-runtimeSnapshot.Plo \
 	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-sciCurl.Plo \
 	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-toJSON.Plo \
 	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-url_tools.Plo \
-	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-webtools.Plo
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-webtools.Plo \
+	src/cpp/$(DEPDIR)/libsciwebtools_algo_la-windows_tools.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -351,6 +390,9 @@ COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CPPSERVER_CFLAGS = @CPPSERVER_CFLAGS@
+CPPSERVER_LIBS = @CPPSERVER_LIBS@
+CPPSERVER_VERSION = @CPPSERVER_VERSION@
 CSCOPE = @CSCOPE@
 CTAGS = @CTAGS@
 CURL_CFLAGS = @CURL_CFLAGS@
@@ -675,7 +717,25 @@ WEBTOOLS_CPP_SOURCES = \
     src/cpp/fromJSON.cpp \
     src/cpp/toJSON.cpp \
     src/cpp/url_tools.cpp \
-    src/cpp/sciCurl.cpp
+    src/cpp/sciCurl.cpp \
+    src/cpp/json_rpc.cpp \
+    src/cpp/evalVisitor.cpp \
+    src/cpp/lsp_dap_tools.cpp \
+    src/cpp/documentAnalysisVisitor.cpp \
+    src/cpp/formattingVisitor.cpp \
+    src/cpp/lsp_interface.cpp \
+    src/cpp/dap_interface.cpp \
+    src/cpp/lspEndpoint.cpp \
+    src/cpp/runtimeSnapshot.cpp \
+    src/cpp/lspDocumentSync.cpp \
+    src/cpp/lspDiagnostics.cpp \
+    src/cpp/lspSemanticTokens.cpp \
+    src/cpp/lspCompletionHelp.cpp \
+    src/cpp/lspNavigation.cpp \
+    src/cpp/lspProtocolUtils.cpp \
+    src/cpp/lspFormatting.cpp \
+    src/cpp/dapEndpoint.cpp \
+    src/cpp/windows_tools.cpp
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_http_get.cpp \
@@ -706,23 +766,31 @@ libsciwebtools_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/system_env/ \
     -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/completion/includes/ \
+    -I$(top_srcdir)/modules/console/includes/ \
     -I$(top_srcdir)/modules/fileio/includes \
+    -I$(top_srcdir)/modules/functions_manager/includes/ \
+    -I$(top_srcdir)/modules/graphics/includes/ \
+    -I$(top_srcdir)/modules/history_manager/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/slint/includes/ \
     -I$(top_srcdir)/modules/string/includes \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/api_scilab/includes \
     -I$(top_srcdir)/modules/preferences/includes \
+    $(CPPSERVER_CFLAGS) \
     $(CURL_CFLAGS) \
+    $(PCRE2_CFLAGS) \
     $(XML_FLAGS) \
     $(AM_CPPFLAGS)
 
 libsciwebtools_algo_la_CPPFLAGS = $(libsciwebtools_la_CPPFLAGS) -Wno-unused-parameter
 pkglib_LTLIBRARIES = libsciwebtools.la
 noinst_LTLIBRARIES = libsciwebtools-algo.la
-libsciwebtools_algo_la_LDFLAGS = $(CURL_LIBS)
+libsciwebtools_algo_la_LDFLAGS = $(CURL_LIBS) $(CPPSERVER_LIBS)
 libsciwebtools_algo_la_SOURCES = $(WEBTOOLS_CPP_SOURCES) $(WEBTOOLS_C_SOURCES)
 libsciwebtools_la_SOURCES = $(GATEWAY_CPP_SOURCES)
-libsciwebtools_la_LIBADD = libsciwebtools-algo.la
+libsciwebtools_la_LIBADD = libsciwebtools-algo.la $(CPPSERVER_LIBS)
 
 # For the code check (splint)
 CHECK_SRC = $(libsciwebtools_la_SOURCES)
@@ -737,14 +805,34 @@ libsciwebtools_la_root_DATA = license.txt
 
 #### webtools : init scripts ####
 libsciwebtools_la_etcdir = $(mydatadir)/etc
-libsciwebtools_la_etc_DATA = etc/webtools.quit etc/webtools.start
+libsciwebtools_la_etc_DATA = \
+etc/webtools.quit \
+etc/webtools.start \
+etc/help_md.xsl \
+etc/help_proto.xsl
+
 
 #### webtools : include files ####
 libsciwebtools_la_includedir = $(pkgincludedir)
 libsciwebtools_la_include_HEADERS = \
 includes/json.hxx \
+includes/lsp_interface.h \
+includes/dap_interface.h \
 includes/dynlib_webtools.h \
 includes/dynlib_webtools_gw.h
+
+EXTRA_DIST = \
+src/cpp/dapEndpoint.hxx \
+src/cpp/evalVisitor.hxx \
+src/cpp/json_rpc.hxx \
+src/cpp/lspEndpoint.hxx \
+src/cpp/lspProtocolUtils.hxx \
+src/cpp/lspDiagnostics.hxx \
+src/cpp/lsp_dap_tools.hxx \
+src/cpp/nlohmann_json.hxx \
+src/cpp/documentAnalysisVisitor.hxx \
+src/cpp/formattingVisitor.hxx \
+src/cpp/nlohmann/json.hpp
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -915,6 +1003,42 @@ src/cpp/libsciwebtools_algo_la-url_tools.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libsciwebtools_algo_la-sciCurl.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-json_rpc.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-evalVisitor.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-lsp_dap_tools.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-documentAnalysisVisitor.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-formattingVisitor.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-lsp_interface.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-dap_interface.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-lspEndpoint.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-runtimeSnapshot.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-lspDocumentSync.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-lspDiagnostics.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-lspSemanticTokens.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-lspCompletionHelp.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-lspNavigation.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-lspProtocolUtils.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-lspFormatting.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-dapEndpoint.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciwebtools_algo_la-windows_tools.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/c/$(am__dirstamp):
 	@$(MKDIR_P) src/c
 	@: > src/c/$(am__dirstamp)
@@ -1005,12 +1129,30 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciwebtools_la-sci_url_split.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciwebtools_la-webtools_gw.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciwebtools_algo_la-DllmainWebtools.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-dapEndpoint.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-dap_interface.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-documentAnalysisVisitor.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-evalVisitor.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-formattingVisitor.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-fromJSON.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-json.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-json_rpc.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspCompletionHelp.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspDiagnostics.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspDocumentSync.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspEndpoint.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspFormatting.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspNavigation.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspProtocolUtils.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspSemanticTokens.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lsp_dap_tools.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lsp_interface.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-runtimeSnapshot.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-sciCurl.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-toJSON.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-url_tools.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-webtools.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciwebtools_algo_la-windows_tools.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -1114,6 +1256,132 @@ src/cpp/libsciwebtools_algo_la-sciCurl.lo: src/cpp/sciCurl.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sciCurl.cpp' object='src/cpp/libsciwebtools_algo_la-sciCurl.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-sciCurl.lo `test -f 'src/cpp/sciCurl.cpp' || echo '$(srcdir)/'`src/cpp/sciCurl.cpp
+
+src/cpp/libsciwebtools_algo_la-json_rpc.lo: src/cpp/json_rpc.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-json_rpc.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-json_rpc.Tpo -c -o src/cpp/libsciwebtools_algo_la-json_rpc.lo `test -f 'src/cpp/json_rpc.cpp' || echo '$(srcdir)/'`src/cpp/json_rpc.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-json_rpc.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-json_rpc.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/json_rpc.cpp' object='src/cpp/libsciwebtools_algo_la-json_rpc.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-json_rpc.lo `test -f 'src/cpp/json_rpc.cpp' || echo '$(srcdir)/'`src/cpp/json_rpc.cpp
+
+src/cpp/libsciwebtools_algo_la-evalVisitor.lo: src/cpp/evalVisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-evalVisitor.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-evalVisitor.Tpo -c -o src/cpp/libsciwebtools_algo_la-evalVisitor.lo `test -f 'src/cpp/evalVisitor.cpp' || echo '$(srcdir)/'`src/cpp/evalVisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-evalVisitor.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-evalVisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/evalVisitor.cpp' object='src/cpp/libsciwebtools_algo_la-evalVisitor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-evalVisitor.lo `test -f 'src/cpp/evalVisitor.cpp' || echo '$(srcdir)/'`src/cpp/evalVisitor.cpp
+
+src/cpp/libsciwebtools_algo_la-lsp_dap_tools.lo: src/cpp/lsp_dap_tools.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-lsp_dap_tools.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lsp_dap_tools.Tpo -c -o src/cpp/libsciwebtools_algo_la-lsp_dap_tools.lo `test -f 'src/cpp/lsp_dap_tools.cpp' || echo '$(srcdir)/'`src/cpp/lsp_dap_tools.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lsp_dap_tools.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lsp_dap_tools.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/lsp_dap_tools.cpp' object='src/cpp/libsciwebtools_algo_la-lsp_dap_tools.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-lsp_dap_tools.lo `test -f 'src/cpp/lsp_dap_tools.cpp' || echo '$(srcdir)/'`src/cpp/lsp_dap_tools.cpp
+
+src/cpp/libsciwebtools_algo_la-documentAnalysisVisitor.lo: src/cpp/documentAnalysisVisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-documentAnalysisVisitor.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-documentAnalysisVisitor.Tpo -c -o src/cpp/libsciwebtools_algo_la-documentAnalysisVisitor.lo `test -f 'src/cpp/documentAnalysisVisitor.cpp' || echo '$(srcdir)/'`src/cpp/documentAnalysisVisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-documentAnalysisVisitor.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-documentAnalysisVisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/documentAnalysisVisitor.cpp' object='src/cpp/libsciwebtools_algo_la-documentAnalysisVisitor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-documentAnalysisVisitor.lo `test -f 'src/cpp/documentAnalysisVisitor.cpp' || echo '$(srcdir)/'`src/cpp/documentAnalysisVisitor.cpp
+
+src/cpp/libsciwebtools_algo_la-formattingVisitor.lo: src/cpp/formattingVisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-formattingVisitor.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-formattingVisitor.Tpo -c -o src/cpp/libsciwebtools_algo_la-formattingVisitor.lo `test -f 'src/cpp/formattingVisitor.cpp' || echo '$(srcdir)/'`src/cpp/formattingVisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-formattingVisitor.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-formattingVisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/formattingVisitor.cpp' object='src/cpp/libsciwebtools_algo_la-formattingVisitor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-formattingVisitor.lo `test -f 'src/cpp/formattingVisitor.cpp' || echo '$(srcdir)/'`src/cpp/formattingVisitor.cpp
+
+src/cpp/libsciwebtools_algo_la-lsp_interface.lo: src/cpp/lsp_interface.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-lsp_interface.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lsp_interface.Tpo -c -o src/cpp/libsciwebtools_algo_la-lsp_interface.lo `test -f 'src/cpp/lsp_interface.cpp' || echo '$(srcdir)/'`src/cpp/lsp_interface.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lsp_interface.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lsp_interface.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/lsp_interface.cpp' object='src/cpp/libsciwebtools_algo_la-lsp_interface.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-lsp_interface.lo `test -f 'src/cpp/lsp_interface.cpp' || echo '$(srcdir)/'`src/cpp/lsp_interface.cpp
+
+src/cpp/libsciwebtools_algo_la-dap_interface.lo: src/cpp/dap_interface.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-dap_interface.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-dap_interface.Tpo -c -o src/cpp/libsciwebtools_algo_la-dap_interface.lo `test -f 'src/cpp/dap_interface.cpp' || echo '$(srcdir)/'`src/cpp/dap_interface.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-dap_interface.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-dap_interface.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/dap_interface.cpp' object='src/cpp/libsciwebtools_algo_la-dap_interface.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-dap_interface.lo `test -f 'src/cpp/dap_interface.cpp' || echo '$(srcdir)/'`src/cpp/dap_interface.cpp
+
+src/cpp/libsciwebtools_algo_la-lspEndpoint.lo: src/cpp/lspEndpoint.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-lspEndpoint.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspEndpoint.Tpo -c -o src/cpp/libsciwebtools_algo_la-lspEndpoint.lo `test -f 'src/cpp/lspEndpoint.cpp' || echo '$(srcdir)/'`src/cpp/lspEndpoint.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspEndpoint.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspEndpoint.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/lspEndpoint.cpp' object='src/cpp/libsciwebtools_algo_la-lspEndpoint.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-lspEndpoint.lo `test -f 'src/cpp/lspEndpoint.cpp' || echo '$(srcdir)/'`src/cpp/lspEndpoint.cpp
+
+src/cpp/libsciwebtools_algo_la-runtimeSnapshot.lo: src/cpp/runtimeSnapshot.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-runtimeSnapshot.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-runtimeSnapshot.Tpo -c -o src/cpp/libsciwebtools_algo_la-runtimeSnapshot.lo `test -f 'src/cpp/runtimeSnapshot.cpp' || echo '$(srcdir)/'`src/cpp/runtimeSnapshot.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-runtimeSnapshot.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-runtimeSnapshot.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/runtimeSnapshot.cpp' object='src/cpp/libsciwebtools_algo_la-runtimeSnapshot.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-runtimeSnapshot.lo `test -f 'src/cpp/runtimeSnapshot.cpp' || echo '$(srcdir)/'`src/cpp/runtimeSnapshot.cpp
+
+src/cpp/libsciwebtools_algo_la-lspDocumentSync.lo: src/cpp/lspDocumentSync.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-lspDocumentSync.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspDocumentSync.Tpo -c -o src/cpp/libsciwebtools_algo_la-lspDocumentSync.lo `test -f 'src/cpp/lspDocumentSync.cpp' || echo '$(srcdir)/'`src/cpp/lspDocumentSync.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspDocumentSync.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspDocumentSync.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/lspDocumentSync.cpp' object='src/cpp/libsciwebtools_algo_la-lspDocumentSync.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-lspDocumentSync.lo `test -f 'src/cpp/lspDocumentSync.cpp' || echo '$(srcdir)/'`src/cpp/lspDocumentSync.cpp
+
+src/cpp/libsciwebtools_algo_la-lspDiagnostics.lo: src/cpp/lspDiagnostics.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-lspDiagnostics.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspDiagnostics.Tpo -c -o src/cpp/libsciwebtools_algo_la-lspDiagnostics.lo `test -f 'src/cpp/lspDiagnostics.cpp' || echo '$(srcdir)/'`src/cpp/lspDiagnostics.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspDiagnostics.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspDiagnostics.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/lspDiagnostics.cpp' object='src/cpp/libsciwebtools_algo_la-lspDiagnostics.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-lspDiagnostics.lo `test -f 'src/cpp/lspDiagnostics.cpp' || echo '$(srcdir)/'`src/cpp/lspDiagnostics.cpp
+
+src/cpp/libsciwebtools_algo_la-lspSemanticTokens.lo: src/cpp/lspSemanticTokens.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-lspSemanticTokens.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspSemanticTokens.Tpo -c -o src/cpp/libsciwebtools_algo_la-lspSemanticTokens.lo `test -f 'src/cpp/lspSemanticTokens.cpp' || echo '$(srcdir)/'`src/cpp/lspSemanticTokens.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspSemanticTokens.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspSemanticTokens.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/lspSemanticTokens.cpp' object='src/cpp/libsciwebtools_algo_la-lspSemanticTokens.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-lspSemanticTokens.lo `test -f 'src/cpp/lspSemanticTokens.cpp' || echo '$(srcdir)/'`src/cpp/lspSemanticTokens.cpp
+
+src/cpp/libsciwebtools_algo_la-lspCompletionHelp.lo: src/cpp/lspCompletionHelp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-lspCompletionHelp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspCompletionHelp.Tpo -c -o src/cpp/libsciwebtools_algo_la-lspCompletionHelp.lo `test -f 'src/cpp/lspCompletionHelp.cpp' || echo '$(srcdir)/'`src/cpp/lspCompletionHelp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspCompletionHelp.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspCompletionHelp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/lspCompletionHelp.cpp' object='src/cpp/libsciwebtools_algo_la-lspCompletionHelp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-lspCompletionHelp.lo `test -f 'src/cpp/lspCompletionHelp.cpp' || echo '$(srcdir)/'`src/cpp/lspCompletionHelp.cpp
+
+src/cpp/libsciwebtools_algo_la-lspNavigation.lo: src/cpp/lspNavigation.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-lspNavigation.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspNavigation.Tpo -c -o src/cpp/libsciwebtools_algo_la-lspNavigation.lo `test -f 'src/cpp/lspNavigation.cpp' || echo '$(srcdir)/'`src/cpp/lspNavigation.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspNavigation.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspNavigation.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/lspNavigation.cpp' object='src/cpp/libsciwebtools_algo_la-lspNavigation.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-lspNavigation.lo `test -f 'src/cpp/lspNavigation.cpp' || echo '$(srcdir)/'`src/cpp/lspNavigation.cpp
+
+src/cpp/libsciwebtools_algo_la-lspProtocolUtils.lo: src/cpp/lspProtocolUtils.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-lspProtocolUtils.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspProtocolUtils.Tpo -c -o src/cpp/libsciwebtools_algo_la-lspProtocolUtils.lo `test -f 'src/cpp/lspProtocolUtils.cpp' || echo '$(srcdir)/'`src/cpp/lspProtocolUtils.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspProtocolUtils.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspProtocolUtils.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/lspProtocolUtils.cpp' object='src/cpp/libsciwebtools_algo_la-lspProtocolUtils.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-lspProtocolUtils.lo `test -f 'src/cpp/lspProtocolUtils.cpp' || echo '$(srcdir)/'`src/cpp/lspProtocolUtils.cpp
+
+src/cpp/libsciwebtools_algo_la-lspFormatting.lo: src/cpp/lspFormatting.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-lspFormatting.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspFormatting.Tpo -c -o src/cpp/libsciwebtools_algo_la-lspFormatting.lo `test -f 'src/cpp/lspFormatting.cpp' || echo '$(srcdir)/'`src/cpp/lspFormatting.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspFormatting.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspFormatting.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/lspFormatting.cpp' object='src/cpp/libsciwebtools_algo_la-lspFormatting.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-lspFormatting.lo `test -f 'src/cpp/lspFormatting.cpp' || echo '$(srcdir)/'`src/cpp/lspFormatting.cpp
+
+src/cpp/libsciwebtools_algo_la-dapEndpoint.lo: src/cpp/dapEndpoint.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-dapEndpoint.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-dapEndpoint.Tpo -c -o src/cpp/libsciwebtools_algo_la-dapEndpoint.lo `test -f 'src/cpp/dapEndpoint.cpp' || echo '$(srcdir)/'`src/cpp/dapEndpoint.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-dapEndpoint.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-dapEndpoint.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/dapEndpoint.cpp' object='src/cpp/libsciwebtools_algo_la-dapEndpoint.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-dapEndpoint.lo `test -f 'src/cpp/dapEndpoint.cpp' || echo '$(srcdir)/'`src/cpp/dapEndpoint.cpp
+
+src/cpp/libsciwebtools_algo_la-windows_tools.lo: src/cpp/windows_tools.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciwebtools_algo_la-windows_tools.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciwebtools_algo_la-windows_tools.Tpo -c -o src/cpp/libsciwebtools_algo_la-windows_tools.lo `test -f 'src/cpp/windows_tools.cpp' || echo '$(srcdir)/'`src/cpp/windows_tools.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciwebtools_algo_la-windows_tools.Tpo src/cpp/$(DEPDIR)/libsciwebtools_algo_la-windows_tools.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/windows_tools.cpp' object='src/cpp/libsciwebtools_algo_la-windows_tools.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciwebtools_algo_la-windows_tools.lo `test -f 'src/cpp/windows_tools.cpp' || echo '$(srcdir)/'`src/cpp/windows_tools.cpp
 
 sci_gateway/cpp/libsciwebtools_la-sci_http_get.lo: sci_gateway/cpp/sci_http_get.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwebtools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciwebtools_la-sci_http_get.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciwebtools_la-sci_http_get.Tpo -c -o sci_gateway/cpp/libsciwebtools_la-sci_http_get.lo `test -f 'sci_gateway/cpp/sci_http_get.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_http_get.cpp
@@ -1434,12 +1702,30 @@ distclean: distclean-am
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciwebtools_la-sci_url_split.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciwebtools_la-webtools_gw.Plo
 	-rm -f src/c/$(DEPDIR)/libsciwebtools_algo_la-DllmainWebtools.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-dapEndpoint.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-dap_interface.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-documentAnalysisVisitor.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-evalVisitor.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-formattingVisitor.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-fromJSON.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-json.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-json_rpc.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspCompletionHelp.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspDiagnostics.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspDocumentSync.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspEndpoint.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspFormatting.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspNavigation.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspProtocolUtils.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspSemanticTokens.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lsp_dap_tools.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lsp_interface.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-runtimeSnapshot.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-sciCurl.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-toJSON.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-url_tools.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-webtools.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-windows_tools.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1502,12 +1788,30 @@ maintainer-clean: maintainer-clean-am
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciwebtools_la-sci_url_split.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciwebtools_la-webtools_gw.Plo
 	-rm -f src/c/$(DEPDIR)/libsciwebtools_algo_la-DllmainWebtools.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-dapEndpoint.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-dap_interface.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-documentAnalysisVisitor.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-evalVisitor.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-formattingVisitor.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-fromJSON.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-json.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-json_rpc.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspCompletionHelp.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspDiagnostics.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspDocumentSync.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspEndpoint.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspFormatting.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspNavigation.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspProtocolUtils.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lspSemanticTokens.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lsp_dap_tools.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-lsp_interface.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-runtimeSnapshot.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-sciCurl.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-toJSON.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-url_tools.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-webtools.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciwebtools_algo_la-windows_tools.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
