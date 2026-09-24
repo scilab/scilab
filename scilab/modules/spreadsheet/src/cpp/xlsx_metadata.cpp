@@ -13,6 +13,7 @@
 #include <cstring>
 #include <fstream>
 #include "xlsx_lib.hxx"
+#include "xlsx_streaming.hxx"
 
 int xlsx_valid_file(const char* filename)
 {
@@ -51,6 +52,11 @@ int xlsx_valid_file(const char* filename)
     }
     catch (const xlnt::exception& e)
     {
+        std::vector<std::string> titles;
+        if (xlsx_streaming_titles(filename, titles))
+        {
+            return 1; // readable through the streaming fallback
+        }
         return -4; // xlsx_is_valid_file: xlnt error when loading
     }
     catch (const std::exception& e)
@@ -87,6 +93,94 @@ std::string datetime_to_string(const xlnt::datetime& dt)
     {
         return "Unknown";
     }
+}
+
+// Streaming counterpart of xlsx_read_metadata. Core properties stay empty:
+// the streaming reader exposes only the sheet titles and their cells.
+static int xlsx_read_metadata_streaming(const char* filename, XlsxMetadata* metadata, const char* sheet_name, int sheet_index)
+{
+    std::vector<std::string> titles;
+
+    if (sheet_name == nullptr && sheet_index < 0)
+    {
+        if (!xlsx_streaming_titles(filename, titles))
+        {
+            return -2;
+        }
+
+        metadata->total_sheets = static_cast<int>(titles.size());
+        metadata->sheet_names = titles;
+        return 0;
+    }
+
+    metadata->sheet_info.is_sheet_info = true;
+
+    std::string target;
+    if (sheet_name != nullptr && strlen(sheet_name) > 0)
+    {
+        target = sheet_name;
+    }
+
+    int found = -1;
+    int max_row = 0;
+    int max_col = 0;
+    int count = 0;
+
+    auto want = [&](const std::string& title, int index)
+    {
+        if (!target.empty())
+        {
+            if (title != target)
+            {
+                return false;
+            }
+        }
+        else if (sheet_index <= 0 || index != sheet_index - 1)
+        {
+            return false;
+        }
+
+        found = index;
+        return true;
+    };
+
+    auto on_cell = [&](int, xlnt::cell cell)
+    {
+        // The reference path sizes the sheet from its declared dimension, so
+        // trailing cells that carry only a style still count here.
+        if (static_cast<int>(cell.row()) > max_row)
+        {
+            max_row = static_cast<int>(cell.row());
+        }
+        if (static_cast<int>(cell.column().index) > max_col)
+        {
+            max_col = static_cast<int>(cell.column().index);
+        }
+
+        if (!cell.to_string().empty())
+        {
+            count++;
+        }
+    };
+
+    if (!xlsx_streaming_scan(filename, titles, want, on_cell))
+    {
+        return -2;
+    }
+
+    if (found < 0)
+    {
+        return -5; // sheet not found or index out of range
+    }
+
+    metadata->sheet_info.sheet_name.assign(titles[found]);
+    metadata->sheet_info.sheet_index = found + 1;
+    metadata->sheet_info.cell_count = count;
+    metadata->sheet_info.is_empty = (count == 0);
+    metadata->sheet_info.max_row = count > 0 ? max_row : 0;
+    metadata->sheet_info.max_col = count > 0 ? max_col : 0;
+
+    return 0;
 }
 
 int xlsx_read_metadata(const char* filename, XlsxMetadata* metadata, const char* sheet_name, int sheet_index)
@@ -254,8 +348,7 @@ int xlsx_read_metadata(const char* filename, XlsxMetadata* metadata, const char*
     }
     catch (const xlnt::exception& e)
     {
-        // XLSX error
-        return -2;
+        return xlsx_read_metadata_streaming(filename, metadata, sheet_name, sheet_index);
     }
     catch (const std::exception& e)
     {

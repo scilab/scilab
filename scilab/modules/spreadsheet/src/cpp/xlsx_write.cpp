@@ -396,8 +396,9 @@ int xlsx_write(const char* filename, const XlsxData* data, const XlsxMetadata* m
     {
         xlnt::workbook wb;
         bool file_exists = false;
-        std::ifstream test_file(filename);
-        if (test_file.good())
+        // An empty file holds nothing to lose, so treat it as a new one.
+        std::ifstream test_file(filename, std::ios::binary | std::ios::ate);
+        if (test_file.good() && test_file.tellg() > 0)
         {
             test_file.close();
             try
@@ -407,7 +408,9 @@ int xlsx_write(const char* filename, const XlsxData* data, const XlsxMetadata* m
             }
             catch (...)
             {
-                wb = xlnt::workbook();
+                // Starting from a blank workbook here would overwrite whatever
+                // the file still holds, so refuse rather than destroy it.
+                return -8;
             }
         }
 

@@ -651,6 +651,9 @@ types::Function::ReturnValue sci_xlsxWrite(types::typed_list &in, int _iRetCount
                     Scierror(999, _("%s: Sheet does not exist in the file.\n"), FUNCTION_NAME);
                 }
                 break;
+            case -8:
+                Scierror(999, _("%s: The file '%s' exists but cannot be read: writing would destroy its content.\n"), FUNCTION_NAME, custom_metadata.filename.c_str());
+                break;
             default:
                 Scierror(999, _("%s: Error writing XLSX file (code %d).\n"), FUNCTION_NAME, result);
         }

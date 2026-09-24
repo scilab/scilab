@@ -347,6 +347,7 @@
     <ClInclude Include="src\c\ripole\ripole.h" />
     <ClInclude Include="src\c\splitLine.h" />
     <ClInclude Include="src\c\utftolatin.h" />
+    <ClInclude Include="src\cpp\xlsx_streaming.hxx" />
     <ClInclude Include="src\c\xls.h" />
   </ItemGroup>
   <ItemGroup>

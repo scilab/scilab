@@ -100,6 +100,9 @@
     <ClInclude Include="sci_gateway\cpp\xlsx_lib.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\cpp\xlsx_streaming.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="includes\arrow_lib.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -125,14 +125,13 @@ types::Function::ReturnValue sci_xlsxInfo(types::typed_list &in, int _iRetCount,
     {
         switch (result)
         {
-            case -1:
-                Scierror(999, _("%s: Cannot open file '%s'.\n"), FUNCTION_NAME, filename);
-                break;
+            // -1 means a null argument in xlsx_read_metadata, which cannot happen here
+            // leave it to the default branch, which reports the raw code.
             case -2:
-                Scierror(999, _("%s: The file contains no sheet.\n"), FUNCTION_NAME);
+                Scierror(999, _("%s: The file '%s' cannot be read as an XLSX file.\n"), FUNCTION_NAME, filename);
                 break;
             case -3:
-                Scierror(999, _("%s: Active sheet access error.\n"), FUNCTION_NAME);
+                Scierror(999, _("%s: Error reading metadata of file '%s'.\n"), FUNCTION_NAME, filename);
                 break;
             case -4:
                 Scierror(999, _("%s: Unknown error reading metadata.\n"), FUNCTION_NAME);

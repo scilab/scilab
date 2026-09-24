@@ -11,10 +11,12 @@
 #include <xlnt/xlnt.hpp>
 #include <algorithm>
 #include <climits> // INT_MAX
+#include <map>
 #include "xlsx_lib.hxx"
+#include "xlsx_streaming.hxx"
 
 
-static bool make_range_from_string(const xlnt::worksheet &ws, const std::string &range_str, xlnt::range_reference &out_ref, bool &out_of_bounds)
+static bool make_range_from_string(xlnt::column_t::index_t highest_col, xlnt::row_t highest_row, const std::string &range_str, xlnt::range_reference &out_ref, bool &out_of_bounds)
 {
     out_of_bounds = false;
     if (range_str.empty())
@@ -51,8 +53,8 @@ static bool make_range_from_string(const xlnt::worksheet &ws, const std::string 
 
     xlnt::column_t::index_t first_col = 1;
     xlnt::row_t first_row = 1;
-    xlnt::column_t::index_t last_col = ws.highest_column().index;
-    xlnt::row_t last_row = ws.highest_row();
+    xlnt::column_t::index_t last_col = highest_col;
+    xlnt::row_t last_row = highest_row;
 
     size_t colon = range_str.find(':');
     if (colon == std::string::npos)
@@ -63,9 +65,9 @@ static bool make_range_from_string(const xlnt::worksheet &ws, const std::string 
         if (type == 'R')  // row only: "1"
         {
             first_row = static_cast<xlnt::row_t>(std::stoul(token));
-            last_row = ws.highest_row();
+            last_row = highest_row;
             first_col = 1;
-            last_col = ws.highest_column().index;
+            last_col = highest_col;
         }
         else if (type == 'C')  // column only: "A"
         {
@@ -73,9 +75,9 @@ static bool make_range_from_string(const xlnt::worksheet &ws, const std::string 
             {
                 xlnt::column_t c(token);
                 first_col = c.index;
-                last_col = ws.highest_column().index;
+                last_col = highest_col;
                 first_row = 1;
-                last_row = ws.highest_row();
+                last_row = highest_row;
             }
             catch (...)
             {
@@ -96,9 +98,9 @@ static bool make_range_from_string(const xlnt::worksheet &ws, const std::string 
             {
                 xlnt::column_t c(colpart);
                 first_col = c.index;
-                last_col = ws.highest_column().index;
+                last_col = highest_col;
                 first_row = static_cast<xlnt::row_t>(std::stoul(rowpart));
-                last_row = ws.highest_row();
+                last_row = highest_row;
             }
             catch (...)
             {
@@ -129,8 +131,8 @@ static bool make_range_from_string(const xlnt::worksheet &ws, const std::string 
             return false; // invalide: "A:1", "1:A", "A1:B", "A:B2", etc...
         }
 
-        xlnt::column_t::index_t s_col = 1, e_col = ws.highest_column().index;
-        xlnt::row_t s_row = 1, e_row = ws.highest_row();
+        xlnt::column_t::index_t s_col = 1, e_col = highest_col;
+        xlnt::row_t s_row = 1, e_row = highest_row;
 
         if (start_type == 'R')  // row range: "1:3"
         {
@@ -139,7 +141,7 @@ static bool make_range_from_string(const xlnt::worksheet &ws, const std::string 
                 s_row = static_cast<xlnt::row_t>(std::stoul(start));
                 e_row = static_cast<xlnt::row_t>(std::stoul(end));
                 s_col = 1;
-                e_col = ws.highest_column().index;
+                e_col = highest_col;
             }
             catch (...)
             {
@@ -156,7 +158,7 @@ static bool make_range_from_string(const xlnt::worksheet &ws, const std::string 
                 s_col = c_start.index;
                 e_col = c_end.index;
                 s_row = 1;
-                e_row = ws.highest_row();
+                e_row = highest_row;
             }
             catch (...)
             {
@@ -213,8 +215,8 @@ static bool make_range_from_string(const xlnt::worksheet &ws, const std::string 
         return false;
     }
 
-    xlnt::column_t::index_t actual_highest_col = ws.highest_column().index;
-    xlnt::row_t actual_highest_row = ws.highest_row();
+    xlnt::column_t::index_t actual_highest_col = highest_col;
+    xlnt::row_t actual_highest_row = highest_row;
 
     if (first_col > actual_highest_col || first_row > actual_highest_row)
     {
@@ -318,6 +320,158 @@ static bool should_process_sheet(const std::string& sheet_name, int sheet_idx, c
     return true;
 }
 
+// Streaming counterpart of xlsx_read, for archives workbook::load() rejects.
+static int xlsx_read_streaming(const char* filename, XlsxData* data, const XlsxWriteOptions* options)
+{
+    data->sheets.clear();
+    data->sheet_count = 0;
+    data->is_loaded = false;
+
+    struct SheetCells
+    {
+        std::vector<XlsxCell> cells;
+        xlnt::column_t::index_t highest_col = 1;
+        xlnt::row_t highest_row = 1;
+    };
+
+    std::vector<std::string> titles;
+    std::map<int, SheetCells> collected;
+    std::vector<int> order;
+
+    auto want = [&](const std::string& title, int index)
+    {
+        if (!should_process_sheet(title, index, options))
+        {
+            return false;
+        }
+
+        collected[index];
+        order.push_back(index);
+        return true;
+    };
+
+    auto on_cell = [&](int index, xlnt::cell cell)
+    {
+        SheetCells& sheet = collected[index];
+
+        // The extents drive the range resolution, so empty cells count too.
+        if (cell.row() > sheet.highest_row)
+        {
+            sheet.highest_row = cell.row();
+        }
+        if (cell.column().index > sheet.highest_col)
+        {
+            sheet.highest_col = cell.column().index;
+        }
+
+        if (!cell.has_value())
+        {
+            return;
+        }
+
+        XlsxCell cell_data;
+        cell_data.row = static_cast<int>(cell.row());
+        cell_data.col = static_cast<int>(cell.column().index);
+        cell_data.dblValue = 0.0;
+        cell_data.type = detect_cell_type(cell);
+        get_cell_value(cell, cell_data);
+        sheet.cells.push_back(cell_data);
+    };
+
+    if (!xlsx_streaming_scan(filename, titles, want, on_cell))
+    {
+        return -2;
+    }
+
+    for (int index : order)
+    {
+        SheetCells& sheet = collected[index];
+        XlsxSheet sheet_data;
+        sheet_data.name = titles[index];
+        sheet_data.max_row = 0;
+        sheet_data.max_col = 0;
+
+        std::vector<XlsxCell>* source = &sheet.cells;
+        std::vector<XlsxCell> in_range;
+
+        if (options && !options->range.empty())
+        {
+            xlnt::range_reference rr;
+            bool out_of_bounds = false;
+            if (!make_range_from_string(sheet.highest_col, sheet.highest_row, options->range, rr, out_of_bounds))
+            {
+                return -5;
+            }
+
+            if (out_of_bounds)
+            {
+                data->sheets.push_back(sheet_data);
+                continue;
+            }
+
+            const int first_row = static_cast<int>(rr.top_left().row());
+            const int first_col = static_cast<int>(rr.top_left().column_index());
+            const int last_row = static_cast<int>(rr.bottom_right().row());
+            const int last_col = static_cast<int>(rr.bottom_right().column_index());
+
+            for (const auto& cell_data : sheet.cells)
+            {
+                if (cell_data.row >= first_row && cell_data.row <= last_row &&
+                    cell_data.col >= first_col && cell_data.col <= last_col)
+                {
+                    in_range.push_back(cell_data);
+                }
+            }
+            source = &in_range;
+        }
+
+        if (source->empty())
+        {
+            data->sheets.push_back(sheet_data);
+            continue;
+        }
+
+        int min_row = INT_MAX, max_row = 0;
+        int min_col = INT_MAX, max_col = 0;
+        for (const auto& cell_data : *source)
+        {
+            if (cell_data.row < min_row) min_row = cell_data.row;
+            if (cell_data.row > max_row) max_row = cell_data.row;
+            if (cell_data.col < min_col) min_col = cell_data.col;
+            if (cell_data.col > max_col) max_col = cell_data.col;
+        }
+
+        sheet_data.max_row = max_row - min_row + 1;
+        sheet_data.max_col = max_col - min_col + 1;
+
+        sheet_data.cells.resize(sheet_data.max_row);
+        for (int i = 0; i < sheet_data.max_row; i++)
+        {
+            sheet_data.cells[i].resize(sheet_data.max_col);
+            for (int j = 0; j < sheet_data.max_col; j++)
+            {
+                sheet_data.cells[i][j].row = min_row + i;
+                sheet_data.cells[i][j].col = min_col + j;
+                sheet_data.cells[i][j].dblValue = 0.0;
+                sheet_data.cells[i][j].value = "";
+                sheet_data.cells[i][j].type = XLSX_TYPE_STRING;
+            }
+        }
+
+        for (const auto& cell_data : *source)
+        {
+            sheet_data.cells[cell_data.row - min_row][cell_data.col - min_col] = cell_data;
+        }
+
+        data->sheets.push_back(sheet_data);
+    }
+
+    data->sheet_count = static_cast<int>(data->sheets.size());
+    data->is_loaded = true;
+    return 0;
+}
+
+
 int xlsx_read(const char* filename, XlsxData* data, const XlsxWriteOptions* options)
 {
     if (!filename || !data)
@@ -363,7 +517,7 @@ int xlsx_read(const char* filename, XlsxData* data, const XlsxWriteOptions* opti
             {
                 xlnt::range_reference rr;
                 bool out_of_bounds = false;
-                if (!make_range_from_string(ws, options->range, rr, out_of_bounds))
+                if (!make_range_from_string(ws.highest_column().index, ws.highest_row(), options->range, rr, out_of_bounds))
                 {
                     return -5;
                 }
@@ -526,7 +680,7 @@ int xlsx_read(const char* filename, XlsxData* data, const XlsxWriteOptions* opti
     }
     catch (const xlnt::exception& e)
     {
-        return -2; // XLNT error
+        return xlsx_read_streaming(filename, data, options);
     }
     catch (const std::exception& e)
     {
