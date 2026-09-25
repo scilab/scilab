@@ -53,6 +53,11 @@ public final class ScilabBrowser {
             settings.windowless_rendering_enabled = false;
             settings.log_severity = CefSettings.LogSeverity.LOGSEVERITY_DISABLE;
             List<String> cefArgs = new ArrayList<>();
+            
+            // On Unix (Linux), force CEF to use X11 backend to avoid Wayland/GTK4 issues for now
+            if (OS.get() == OS.UNIX) {
+                cefArgs.add("--ozone-platform=x11");  // Explicitly use X11 platform
+            } 
             if (OS.get() == OS.MAC) {
                 // Development version: JCEF is in SCI/lib/thirdparty/jcef/
                 // Packaged version:  JCEF is in SCI/../../lib/thirdparty/jcef/
