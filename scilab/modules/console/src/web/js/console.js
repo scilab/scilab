@@ -18,8 +18,6 @@ let searchResults = [];
 let searchHighlightTimeout = null;
 
 $(document).ready(async () => {
-    hideCompletionWindow();
-
     await updateFont("Consolas", "", 13, "normal");
 
     $(".prompt").text("--> ");
@@ -28,13 +26,24 @@ $(document).ready(async () => {
             Scilab({request: "devtools"});
             event.preventDefault();
             return;
-         }
+        }
 
-         if (event.key == "R" && event.ctrlKey && event.shiftKey) {
+        if (event.key == "R" && event.ctrlKey && event.shiftKey) {
             Scilab({request: "reload"});
             event.preventDefault();
             return;
-         }
+        }
+
+      if ((event.key.toLowerCase() === "c" && (event.ctrlKey || event.metaKey)) || (event.key === "Escape")) {
+          if (isInputDisabled() && (event.key === "Escape" || getSelectedText() === "")) {
+              // On Ctrl+C (or Meta+C) or Escape will interrupt execution when input is disabled
+              // Ctrl+C copies the selected text (if any) instead of interrupting
+              Scilab({
+                  request: "interrupt"
+              })
+              event.preventDefault();
+          }
+      }
     });
     document.addEventListener('wheel', function (event) {
         if (event.ctrlKey) {
@@ -42,19 +51,8 @@ $(document).ready(async () => {
         }
     }, { passive: false });
 
-
     $("body").on( "contextmenu", function() {
         Scilab({request: "contextmenu"});
-    });
-
-    $(".output").on("click", (e) => {
-        if (window.getSelection().toString() == "") {
-            focus();
-            e.preventDefault();
-            e.stopPropagation();
-        } else {
-            e.stopPropagation();
-        }
     });
 
     $(".output").on("mouseover", (e) => {
@@ -70,11 +68,6 @@ $(document).ready(async () => {
         if (e.relatedTarget && !e.relatedTarget.classList.contains("latex-preview")) {
             hideLatexPreview();
         }
-    });
-
-    // Clean up preview when clicking anywhere
-    $("body").on("click", () => {
-        hideLatexPreview();
     });
 
     $(".output").on("mousemove", (e) => {
@@ -93,25 +86,26 @@ $(document).ready(async () => {
     });
 
     $(".console").on("mousedown", (_e) => {
-        focus();
         Scilab({request: "focus"});
     });
 
-    $(".console").on("click", (_e) => {
+    $("body").on('focusout', (_e) => {
+        // hide unnecessary info
         hideCompletionWindow();
+        hideLatexPreview();
+    });
+    $("body").on('keypress', (_e) => {
         focus();
+        // will propagate the event down to the ".input"
     });
 
     $("body").on("mouseup", function(_e) {
-        if (window.getSelection) {
-            var txt = window.getSelection();
-        } else if (document.getSelection) {
-            var txt = document.getSelection();
-        } else if (document.selection) {
-            var txt = document.selection.createRange().text;
+        let s = window.getSelection();
+        if (s.type === "Range") {
+            Scilab({request: `select::${s.toString()}`});
+        } else {
+            focus();
         }
-
-        Scilab({request: `select::${txt.toString()}`});
     });
 
     $(".console").on("keypress", function (e) {
@@ -303,7 +297,7 @@ $(document).ready(async () => {
     $(".search-case-sensitive, .search-regex, .search-whole-word").on("change", updateSearchResults);
 
     // Makes input editable (caret and focus)
-    focus();
+    $(".input").focus();
 });
 
 function sendCommand(cmd) {
@@ -434,7 +428,6 @@ function isInputEnabled() {
 
 function disableInput() {
     $(".input-group").addClass("hide-input");
-    $(".console").focus();
     $(".input").val("");
     adjustInputSize();
     $("body").addClass(".progress");
@@ -799,7 +792,6 @@ function showCompletionWindow() {
 
 function hideCompletionWindow() {
     $(".completion").hide();
-    focus();
 }
 
 function clearCompletionContent() {
@@ -889,24 +881,8 @@ function updateInputCols() {
 }
 
 function focus() {
-    let inputEl = $(".input")[0];
-
-    // Only focus if not already focused
-    if (document.activeElement != inputEl) {
-        inputEl.focus();
-    }
-
-    if (inputEl.selectionStart === inputEl.selectionEnd) {
-        // If caret position is invalid or at the very end, ensure it's visible
-        let currentPos = inputEl.selectionStart;
-        if (currentPos === undefined || currentPos === null || currentPos < 0 || currentPos > inputEl.value.length) {
-            // Invalid position - set to appropriate end
-            inputEl.selectionStart = inputEl.selectionEnd = inputEl.value.length;
-        }
-    }
-    // An active selection (start != end) is left untouched: collapsing it here
-    // would kill mouse selections, since releasing the mouse over the input
-    // bubbles a click that ends up calling focus()
+    $(".input").focus();
+    // Note: in Chrome/CEF, the input caret will be in the same position as before
 }
 
 /** Log Scilab version */
@@ -969,15 +945,15 @@ function clearAction() {
 }
 
 function cutCopyOrInterruptAction(action, e) {
-    if (isInputDisabled()) {
-        Scilab({
-            request: "interrupt"
-        })
-        if (e) {
-            e.preventDefault();
-        }
-    } else if ($(".output")[0].selectionStart == $(".output")[0].selectionEnd) {
-        let text = getSelectedText();
+    let input = $(".input")[0];
+    let text = getSelectedText();
+    if (text === "" && document.activeElement === input && input.selectionStart != input.selectionEnd) {
+        //the textarea selection is not always reflected in the document selection
+        text = input.value.substring(input.selectionStart, input.selectionEnd);
+    }
+
+    if (text !== "") {
+        //a text is selected, copy (and eventually cut) it
         Scilab({
             request: `copy::${text}`
         });
@@ -987,9 +963,16 @@ function cutCopyOrInterruptAction(action, e) {
         if (e) {
             e.preventDefault();
         }
-    } else if (document.activeElement == $(".input")[0]) {
+    } else if (isInputDisabled()) {
+        Scilab({
+            request: "interrupt"
+        })
+        if (e) {
+            e.preventDefault();
+        }
+    } else if (document.activeElement == input) {
         if ($(".prompt").text() !== "--> " || //in multiline command
-            $(".input")[0].selectionStart == $(".input")[0].selectionEnd) { //selection in input
+            input.selectionStart == input.selectionEnd) { //no selection in input
             Scilab({
                 request: `interruptcommand::${$(".input").val()}`
             })

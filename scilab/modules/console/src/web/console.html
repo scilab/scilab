@@ -5,19 +5,19 @@
         <link href="css/console.css" rel="stylesheet">
     </head>
     <body spellcheck="false" onresize="updateSize()">
-        <div tabindex="0" class="console">
+        <div class="console">
             <div class="output"></div>
             <div class="input-group">
-              <pre class="prompt">--&gt; </pre>
-              <textarea class="input" tabindex="0" cols="1" oninput="adjustInputSize()" onpaste="return false;" autofocus contentEditable="plaintext-only"></textarea>
+              <pre tabindex="-1" class="prompt">--&gt; </pre>
+              <textarea class="input" cols="1" oninput="adjustInputSize()" onpaste="return false;" autofocus contentEditable="plaintext-only"></textarea>
             </div>
-<div class="completion" style="display: none;">
+            <div class="completion" style="display: none;">
                 <div class="window">
                     <ul class="listbox"></ul>
                 </div>
             </div>
 
-            <div class="empty" onclick="focus()"></div>
+            <div class="empty" inert></div>
         </div>
         <div class="ghost"></div>
         <div class="search-container" style="display: none;">
