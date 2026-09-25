@@ -82,7 +82,7 @@ import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
  *     scilab:image and xcos diagram generation (PNG cache)
  *   - fullTextSearch: ranked search of the pages in an in-memory index
  *     (HelpSearchIndex), built in the background
- *   - execCode / editCode / openXcos / openExternal: page actions
+ *   - execCode / editCode / copyCode / openXcos / openExternal: page actions
  */
 public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
 
@@ -1448,6 +1448,10 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
                         handleEditCode(request, callback);
                         return true;
 
+                    case "copyCode":
+                        handleCopyCode(request, callback);
+                        return true;
+
                     case "navigateById":
                         String id = extractJsonString(request, "id");
                         handleNavigateById(id, callback);
@@ -1660,6 +1664,15 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
                         }
                     }
                 });
+            }
+            callback.success("");
+        }
+
+        private void handleCopyCode(String request, CefQueryCallback callback) {
+            String code = extractJsonString(request, "code");
+            if (code != null && !code.isEmpty()) {
+                java.awt.datatransfer.StringSelection selection = new java.awt.datatransfer.StringSelection(code);
+                java.awt.Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
             }
             callback.success("");
         }

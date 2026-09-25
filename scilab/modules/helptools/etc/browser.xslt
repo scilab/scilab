@@ -107,9 +107,9 @@
                     }
                 });
 
-                /* Example buttons: run in console / open in SciNotes */
+                /* Example buttons: run in console / open in SciNotes / copy to clipboard */
                 document.addEventListener("click", function(e) {
-                    var btn = e.target.closest(".btn-run, .btn-edit");
+                    var btn = e.target.closest(".btn-run, .btn-edit, .btn-copy");
                     if (!btn || window.parent === window) return;
                     var wrapper = btn.closest(".example-wrapper");
                     if (!wrapper) return;
@@ -118,9 +118,26 @@
                     var code = pre.textContent;
                     if (btn.classList.contains("btn-run")) {
                         window.parent.postMessage({type: "execCode", code: code}, "*");
-                    } else {
+                    } else if (btn.classList.contains("btn-edit")) {
                         window.parent.postMessage({type: "editCode", code: code}, "*");
+                    } else {
+                        window.parent.postMessage({type: "copyCode", code: code}, "*");
                     }
+                });
+
+                /* Copy the current text selection to the clipboard with the
+                   platform shortcut (Ctrl+C / Cmd+C), reusing the same
+                   "copyCode" bridge as the example ".btn-copy" button */
+                document.addEventListener("keydown", function(e) {
+                    if (!(e.ctrlKey || e.metaKey) || e.altKey || e.shiftKey) return;
+                    if (e.key.toLowerCase() !== "c") return;
+                    if (window.parent === window) return;
+                    var active = document.activeElement;
+                    if (active &amp;&amp; (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.isContentEditable)) return;
+                    var text = window.getSelection().toString();
+                    if (!text) return;
+                    e.preventDefault();
+                    window.parent.postMessage({type: "copyCode", code: text}, "*");
                 });
 
                 /* Click to open Xcos diagrams */
@@ -478,7 +495,7 @@
          common minimum, keeping relative indentation) and surrounding blank
          lines, so the JS-side dedent is not required for correct layout. -->
     <xsl:template match="db:programlisting[@role='example' or not(@role)]">
-        <div class="example-wrapper"><div class="example-buttons"><button class="btn-run" title="Execute in console">&#9654;</button><button class="btn-edit" title="Open in SciNotes">&#9998;</button></div><pre class="programlisting language-scilab" data-role="example"><xsl:call-template name="dedent-block"><xsl:with-param name="text" select="string(.)"/></xsl:call-template></pre></div>
+        <div class="example-wrapper"><div class="example-buttons"><button class="btn-run" title="Execute in console">&#9654;</button><button class="btn-edit" title="Open in SciNotes">&#9998;</button><button class="btn-copy" title="Copy to clipboard">&#10697;</button></div><pre class="programlisting language-scilab" data-role="example"><xsl:call-template name="dedent-block"><xsl:with-param name="text" select="string(.)"/></xsl:call-template></pre></div>
     </xsl:template>
 
     <xsl:template match="db:programlisting[@role='no-scilab-exec']"><pre class="programlisting language-scilab"><xsl:if test="@role"><xsl:attribute name="data-role"><xsl:value-of select="@role"/></xsl:attribute></xsl:if><xsl:call-template name="dedent-block"><xsl:with-param name="text" select="string(.)"/></xsl:call-template></pre>

@@ -661,6 +661,12 @@
                 onSuccess: function () {},
                 onFailure: function () {}
             });
+        } else if (e.data.type === "copyCode" && e.data.code && typeof helpBrowserQuery === "function") {
+            helpBrowserQuery({
+                request: JSON.stringify({type: "copyCode", code: e.data.code}),
+                onSuccess: function () {},
+                onFailure: function () {}
+            });
         } else if (e.data.type === "openXcos" && e.data.file && typeof helpBrowserQuery === "function") {
             helpBrowserQuery({
                 request: JSON.stringify({type: "openXcos", file: e.data.file}),
