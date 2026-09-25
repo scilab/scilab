@@ -14,6 +14,7 @@ const MAX_SCROLL_HEIGHT = 10_000_000; // browser max element height (~16M in Chr
 // --- State ---
 
 let state = {
+    filetype: "csv",
     columns: [],     // {name, originalName, type, selected, inputFormat, outputFormat, formatRef, convert}
     rowtimes: "No",
     totalRows: 0,
@@ -150,6 +151,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("select-decimal").addEventListener("change", () => {
         requestPreview();
     });
+
+    // Sheet change (XLSX)
+    const selectSheetEl = document.getElementById("select-sheet");
+    if (selectSheetEl) {
+        selectSheetEl.addEventListener("change", (e) => {
+            let val = e.target.value;
+            const num = parseInt(val);
+            if (!isNaN(num) && String(num) === val) {
+                val = num;
+            }
+            toScilab({type: "sheet", sheet: val});
+        });
+    }
 
     // Header change
     document.getElementById("input-header").addEventListener("change", () => {
@@ -508,7 +522,9 @@ function setProgress(value) {
 }
 
 function updatePreview(data) {
-    // data: {nbrows, nbcols, headerlines, delimiter, decimal, varnames, vartypes, inputFormats, totalDataRows, initialRows, initialStart}
+    // data: {filetype, sheetnames, currentSheet, nbrows, nbcols, headerlines, delimiter, decimal, varnames, vartypes, inputFormats, totalDataRows, initialRows, initialStart}
+
+    state.filetype = data.filetype || "csv";
 
     // Scilab JSON collapses single-element vectors to scalars; rehydrate them.
     data.varnames = asArray(data.varnames);
@@ -521,9 +537,42 @@ function updatePreview(data) {
     document.getElementById("info-cols").textContent = data.nbcols;
     document.getElementById("input-header").value = data.headerlines;
 
-    // Set delimiter in dropdown
-    setDelimiterUI(data.delimiter);
-    setDecimalUI(data.decimal);
+    // Show/hide controls based on filetype
+    if (state.filetype === "xlsx") {
+        document.getElementById("row-delimiter").classList.add("d-none");
+        document.getElementById("row-custom-delim").classList.add("d-none");
+        document.getElementById("row-decimal").classList.add("d-none");
+
+        const rowSheet = document.getElementById("row-sheet");
+        if (rowSheet) {
+            rowSheet.classList.remove("d-none");
+            const selectSheet = document.getElementById("select-sheet");
+            selectSheet.innerHTML = "";
+            const sheets = asArray(data.sheetnames);
+            sheets.forEach((sh) => {
+                const opt = document.createElement("option");
+                opt.value = sh;
+                opt.textContent = sh;
+                selectSheet.appendChild(opt);
+            });
+            let targetSheet = data.currentSheet;
+            if (typeof targetSheet === "number" && sheets[targetSheet - 1]) {
+                targetSheet = sheets[targetSheet - 1];
+            }
+            if (targetSheet) {
+                selectSheet.value = targetSheet;
+            }
+        }
+    } else {
+        document.getElementById("row-delimiter").classList.remove("d-none");
+        document.getElementById("row-decimal").classList.remove("d-none");
+        const rowSheet = document.getElementById("row-sheet");
+        if (rowSheet) rowSheet.classList.add("d-none");
+
+        // Set delimiter in dropdown
+        setDelimiterUI(data.delimiter);
+        setDecimalUI(data.decimal);
+    }
 
     // Build column state
     state.columns = data.varnames.map((name, i) => ({

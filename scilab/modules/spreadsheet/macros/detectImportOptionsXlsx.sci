@@ -6,7 +6,7 @@ function opts = detectImportOptionsXlsx(f)
     variableNames = [];
     index = [];
 
-    if size(f, "*") > 1 then
+    if size(f, "r") > 1 then
         if and(isnan(test)) then
             variableNames = f(1,:);
             index = find(variableNames == "");

@@ -20,42 +20,73 @@ function uiimport_dopreview(delimiter, decimal, numheaderlines)
 
     // Read file once and cache
     if data.filetext == [] then
-        data.filetext = mgetl(path);
-    end
-
-    // pass cached text to detectImportOptions to avoid re-reading the file
-    if delimiter == [] || delimiter == "" then
-        // first load: auto-detect
-        try
-            opts = detectImportOptionsCSV(data.filetext, "", [], data.numheaderlines);
-            if opts.variableNames <> [] & size(opts.variableNames, "*") <> size(opts.variableTypes, "*") then
-                uiimport_sendtobrowser(struct("type", "error", "clear", %t, "message", "Problem during the import. Choose another delimiter or decimal separator."));
+        if data.filetype == "xlsx" then
+            try
+                data.filetext = %xlsxRead(path, data.sheet, "", "string");
+                if data.sheetnames == [] then
+                    s = xlsxInfo(path);
+                    data.sheetnames = s.sheet_names;
+                end
+                if type(data.sheet) == 1 && data.sheetnames <> [] && data.sheet <= size(data.sheetnames, "*") then
+                    data.sheet = data.sheetnames(data.sheet);
+                end
+            catch
+                uiimport_sendtobrowser(struct("type", "error", "clear", %t, "message", "Problem during opening the XLSX sheet."));
                 return;
             end
+        else
+            data.filetext = mgetl(path);
+        end
+    end
+
+    if data.filetype == "xlsx" then
+        try
+            opts = detectImportOptionsXlsx(data.filetext);
         catch
-            uiimport_sendtobrowser(struct("type", "error", "clear", %t, "message", "Problem during the import. Choose another delimiter or decimal separator or specify the number of lines of header."));
+            uiimport_sendtobrowser(struct("type", "error", "clear", %t, "message", "Problem during import of XLSX file."));
             return;
         end
     else
-        // user changed delimiter/decimal
-        try
-            if decimal == [] || decimal == "" then
-                decimal = ".";
-            end
-            opts = detectImportOptionsCSV(data.filetext, delimiter, decimal, data.numheaderlines);
-            if opts.variableNames <> [] & size(opts.variableNames, "*") <> size(opts.variableTypes, "*") then
-                uiimport_sendtobrowser(struct("type", "error", "clear", %t, "message", "Problem during the import. Choose another delimiter or decimal separator."));
+        // pass cached text to detectImportOptions to avoid re-reading the file
+        if delimiter == [] || delimiter == "" then
+            // first load: auto-detect
+            try
+                opts = detectImportOptionsCSV(data.filetext, "", [], data.numheaderlines);
+                if opts.variableNames <> [] & size(opts.variableNames, "*") <> size(opts.variableTypes, "*") then
+                    uiimport_sendtobrowser(struct("type", "error", "clear", %t, "message", "Problem during the import. Choose another delimiter or decimal separator."));
+                    return;
+                end
+            catch
+                uiimport_sendtobrowser(struct("type", "error", "clear", %t, "message", "Problem during the import. Choose another delimiter or decimal separator or specify the number of lines of header."));
                 return;
             end
-        catch
-            uiimport_sendtobrowser(struct("type", "error", "clear", %t, "message", "Problem during the import. Choose another delimiter or decimal separator or specify the number of lines of header."));
-            return;
+        else
+            // user changed delimiter/decimal
+            try
+                if decimal == [] || decimal == "" then
+                    decimal = ".";
+                end
+                opts = detectImportOptionsCSV(data.filetext, delimiter, decimal, data.numheaderlines);
+                if opts.variableNames <> [] & size(opts.variableNames, "*") <> size(opts.variableTypes, "*") then
+                    uiimport_sendtobrowser(struct("type", "error", "clear", %t, "message", "Problem during the import. Choose another delimiter or decimal separator."));
+                    return;
+                end
+            catch
+                uiimport_sendtobrowser(struct("type", "error", "clear", %t, "message", "Problem during the import. Choose another delimiter or decimal separator or specify the number of lines of header."));
+                return;
+            end
         end
     end
 
 
-    nbrows = size(opts.datalines, "*") + size(opts.header, "*");
-    if opts.datalines(1) <> size(opts.header, "*") + 1 then
+    if isfield(opts, "header") then
+        nbHeaderLines = size(opts.header, "*");
+    else
+        nbHeaderLines = 0;
+    end
+
+    nbrows = size(opts.datalines, "*") + nbHeaderLines;
+    if opts.datalines <> [] && opts.datalines(1) <> nbHeaderLines + 1 then
         nbrows = nbrows + 1;
     end
 
@@ -65,27 +96,34 @@ function uiimport_dopreview(delimiter, decimal, numheaderlines)
 
     nbcols = size(opts.variableNames, "*");
     varnames = opts.variableNames;
-    delim = opts.delimiter;
-    decim = opts.decimal;
+    
     totalDataRows = size(opts.datalines, "*");
 
-    // Initial batch from cached file text
+    // Initial batch from cached file text / matrix
     initialCount = min(100, totalDataRows);
     initialRows = [];
+    delim = "";
+    decim = "";
 
     if initialCount > 0 then
-        txt = data.filetext(opts.datalines(1:initialCount));
+        if data.filetype == "xlsx" then
+            initialRows = data.filetext(opts.datalines(1:initialCount), :);
+        else
+            txt = data.filetext(opts.datalines(1:initialCount));
 
-        try
-            initialRows = csvTextScan(txt, delim, decim, "string");
+            try
+                delim = opts.delimiter;
+                decim = opts.decimal;
+                initialRows = csvTextScan(txt, delim, decim, "string");
 
-            if size(initialRows, "c") <> size(varnames, "c") then
-                uiimport_sendtobrowser(struct("type", "error", "clear", %t, "message", "Problem during the import. Choose another delimiter or decimal separator."));
+                if size(initialRows, "c") <> size(varnames, "c") then
+                    uiimport_sendtobrowser(struct("type", "error", "clear", %t, "message", "Problem during the import. Choose another delimiter or decimal separator."));
+                    return;
+                end
+            catch
+                uiimport_sendtobrowser(struct("type", "error", "clear", %t, "message", "Problem during the import. Choose another delimiter or decimal separator or specify the number of lines of header."));
                 return;
             end
-        catch
-            uiimport_sendtobrowser(struct("type", "error", "clear", %t, "message", "Problem during the import. Choose another delimiter or decimal separator or specify the number of lines of header."));
-            return;
         end
     end
 
@@ -99,9 +137,12 @@ function uiimport_dopreview(delimiter, decimal, numheaderlines)
     preview = struct( ...
         "type", "preview", ...
         "data", struct( ...
+            "filetype", data.filetype, ...
+            "sheetnames", data.sheetnames, ...
+            "currentSheet", data.sheet, ...
             "nbrows", nbrows, ...
             "nbcols", nbcols, ...
-            "headerlines", size(opts.header, "*"), ...
+            "headerlines", nbHeaderLines, ...
             "delimiter", delim, ...
             "decimal", decim, ...
             "varnames", varnames, ...

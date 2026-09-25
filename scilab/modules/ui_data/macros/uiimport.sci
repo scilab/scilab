@@ -35,8 +35,8 @@ function uiimport(filepath)
             error(msprintf(_("%s: Wrong value for input argument #%d: A filename expected.\n"), fname, 1));
         end
 
-        if and(fileext(filepath) <> [".csv" ".txt"]) then
-            error(msprintf(_("%s: Wrong file type: csv or txt file expected.\n"), fname));
+        if and(fileext(filepath) <> [".csv" ".txt" ".xlsx"]) then
+            error(msprintf(_("%s: Wrong file type: csv, txt or xlsx file expected.\n"), fname));
         end
     else
         filepath = "";
@@ -66,9 +66,17 @@ function uiimport_gui(data)
         "icon", "text-csv", ...
         "visible", "off");
 
+    // determine file type
+    if filepath <> "" && fileext(filepath) == ".xlsx" then
+        ft = "xlsx";
+    else
+        ft = "csv";
+    end
+
     // store state in figure userdata
     data = struct( ...
         "path", filepath, ...
+        "filetype", ft, ...
         "opts", [], ...
         "numheaderlines", [], ...
         "varnames", [], ...
@@ -79,7 +87,9 @@ function uiimport_gui(data)
         "formatRef", [], ...
         "nbrows", 0, ...
         "nbcols", 0, ...
-        "filetext", []);
+        "filetext", [], ...
+        "sheet", 1, ...
+        "sheetnames", []);
 
     fig.userdata = data;
 

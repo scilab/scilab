@@ -18,9 +18,13 @@ function uiimport_doinputformat(colIndex, inputfmt)
     vartype = opts.variableTypes(idx);
 
     nbSample = min(50, size(opts.datalines, "*"));
-    txt = data.filetext(opts.datalines(1:nbSample));
-    %sample = csvTextScan(txt, opts.delimiter, opts.decimal, "string");
-    values = %sample(:, idx);
+    if data.filetype == "xlsx" then
+        values = data.filetext(opts.datalines(1:nbSample), idx);
+    else
+        txt = data.filetext(opts.datalines(1:nbSample));
+        %sample = csvTextScan(txt, opts.delimiter, opts.decimal, "string");
+        values = %sample(:, idx);
+    end
 
     try
         if vartype == "datetime" then

@@ -77,7 +77,14 @@
                             <span>lines</span>
                         </div>
                     </div>
-                    <div class="row mb-1 small align-items-center">
+                    <div class="row mb-1 small align-items-center d-none" id="row-sheet">
+                        <div class="col-7">Sheet</div>
+                        <div class="col-5">
+                            <select class="form-select form-select-sm" id="select-sheet" style="font-size: .95em;">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-1 small align-items-center" id="row-delimiter">
                         <div class="col-7">Delimiter</div>
                         <div class="col-5">
                             <select class="form-select form-select-sm" id="select-delimiter" style="font-size: .95em;">
@@ -97,7 +104,7 @@
                             <input type="text" class="form-control form-control-sm" id="input-custom-delim" maxlength="5">
                         </div>
                     </div>
-                    <div class="row mb-1 small align-items-center">
+                    <div class="row mb-1 small align-items-center" id="row-decimal">
                         <div class="col-7">Decimal</div>
                         <div class="col-5">
                             <select class="form-select form-select-sm" id="select-decimal" style="font-size: .95em;">
@@ -170,7 +177,7 @@
             <!-- Preview area: single table with sticky header -->
             <div class="flex-grow-1 d-flex flex-column overflow-hidden" id="preview-container">
                 <div class="d-flex align-items-center justify-content-center h-100 text-muted" id="preview-empty">
-                    <span>Open a CSV or TXT file to preview data</span>
+                    <span>Open a CSV, TXT or XLSX file to preview data</span>
                 </div>
                 <div class="d-none flex-grow-1 overflow-auto" id="preview-scroll">
                     <table class="table table-sm table-bordered table-hover mb-0" id="preview-table">

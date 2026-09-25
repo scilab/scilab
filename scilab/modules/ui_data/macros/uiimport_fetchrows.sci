@@ -24,13 +24,16 @@ function uiimport_fetchrows(startIdx, count)
         return;
     end
 
-    // index directly into cached file text
-    txt = data.filetext(opts.datalines(startIdx + 1 : endIdx));
-
-    try
-        x = csvTextScan(txt, opts.delimiter, opts.decimal, "string");
-    catch
-        return;
+    // index directly into cached data
+    if data.filetype == "xlsx" then
+        x = data.filetext(opts.datalines(startIdx + 1 : endIdx), :);
+    else
+        txt = data.filetext(opts.datalines(startIdx + 1 : endIdx));
+        try
+            x = csvTextScan(txt, opts.delimiter, opts.decimal, "string");
+        catch
+            return;
+        end
     end
 
 

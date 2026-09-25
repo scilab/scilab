@@ -15,13 +15,33 @@ function uiimport_cbselect()
         path = fileparts(path);
     end
 
-    path = uigetfile(["*.txt" "Text files"; "*.csv" "CSV files"], path, "Choose a file", %f);
+    path = uigetfile(["*.txt" "Text files"; "*.csv" "CSV files"; "*.xlsx" "XLSX files"], path, "Choose a file", %f);
     if ~isempty(path) then
         data = get("uiimport", "userdata");
         data.path = path;
         data.opts = [];
         data.numheaderlines = [];
         data.filetext = [];
+        if fileext(path) == ".xlsx" then
+            data.filetype = "xlsx";
+            data.sheet = 1;
+            try
+                s = xlsxInfo(path);
+                data.sheetnames = s.sheet_names;
+                if s.sheet_names <> [] then
+                    data.sheet = s.sheet_names(1);
+                else
+                    data.sheet = 1;
+                end
+            catch
+                data.sheetnames = [];
+                data.sheet = 1;
+            end
+        else
+            data.filetype = "csv";
+            data.sheet = 1;
+            data.sheetnames = [];
+        end
         set("uiimport", "userdata", data);
         set("uiimport", "figure_name", path);
         p = progressionbar("Import data ...");

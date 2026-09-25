@@ -36,11 +36,18 @@ function varargout = uiimport_dovariable(config, vartype)
     select vartype
     case {"table", "cell"}
         if and(vartypes == "double") then
-            // table dans le cas des doubles, on recupere juste les valeurs doubles
-            mat = csvTextScan(data.filetext(opts.datalines), opts.delimiter, opts.decimal, "double");
+            if data.filetype == "xlsx" then
+                mat = strtod(data.filetext(opts.datalines, :));
+            else
+                mat = csvTextScan(data.filetext(opts.datalines), opts.delimiter, opts.decimal, "double");
+            end
             d = table(mat(:, keepcols), "VariableNames", selVarNames);
         else
-            mat = csvTextScan(data.filetext(opts.datalines, :), opts.delimiter, opts.decimal, "string");
+            if data.filetype == "xlsx" then
+                mat = data.filetext(opts.datalines, :);
+            else
+                mat = csvTextScan(data.filetext(opts.datalines, :), opts.delimiter, opts.decimal, "string");
+            end
             l = list();
             for k = keepcols
                 m = mat(:, k);
@@ -72,9 +79,9 @@ function varargout = uiimport_dovariable(config, vartype)
             end
 
             d = table(l(:), "VariableNames", selVarNames);
-            if vartype == "cell" then
-                d = table2cell(d);
-            end
+        end
+        if vartype == "cell" then
+            d = table2cell(d);
         end
 
     case "timeseries"
@@ -86,9 +93,15 @@ function varargout = uiimport_dovariable(config, vartype)
         end
 
         idx = find(rowtimes == selVarNames);
+        extraArgs = list();
+        if data.filetype == "xlsx" then
+            extraArgs($+1) = "sheet";
+            extraArgs($+1) = data.sheet;
+        end
+
         if selConvert(idx) <> "" then
             jdx = find(selConvert(idx) == convert_names);
-            d = readtimeseries(path, opts, "VariableNames", selVarNamesRef, "RowTimes", selVarNamesRef(idx), "ConvertTime", convert_fcn(jdx));
+            d = readtimeseries(path, opts, extraArgs(:), "VariableNames", selVarNamesRef, "RowTimes", selVarNamesRef(idx), "ConvertTime", convert_fcn(jdx));
             selConvert(idx) = "";
         else
             if vartypes(idx) == "double" then
@@ -97,7 +110,7 @@ function varargout = uiimport_dovariable(config, vartype)
                 messagebox("Unable to create a variable. You must choose the conversion method.", "Warning", "warning", "Ok", "modal");
                 return;
             end
-            d = readtimeseries(path, opts, "VariableNames", selVarNamesRef, "RowTimes", selVarNamesRef(idx));
+            d = readtimeseries(path, opts, extraArgs(:), "VariableNames", selVarNamesRef, "RowTimes", selVarNamesRef(idx));
         end
         [a, k] = members(d.Properties.VariableNames, selVarNamesRef);
         selVarNames = selVarNames(k);
@@ -126,12 +139,20 @@ function varargout = uiimport_dovariable(config, vartype)
         d = list();
         varargout(1) = selVarNames;
         if and(vartypes == "double") then
-            mat = csvTextScan(data.filetext(opts.datalines), opts.delimiter, opts.decimal, "double");
+            if data.filetype == "xlsx" then
+                mat = strtod(data.filetext(opts.datalines, :));
+            else
+                mat = csvTextScan(data.filetext(opts.datalines), opts.delimiter, opts.decimal, "double");
+            end
             for k = keepcols
                 d($+1) = mat(:, k);
             end
         else
-            mat = csvTextScan(data.filetext(opts.datalines, :), opts.delimiter, opts.decimal, "string");
+            if data.filetype == "xlsx" then
+                mat = data.filetext(opts.datalines, :);
+            else
+                mat = csvTextScan(data.filetext(opts.datalines, :), opts.delimiter, opts.decimal, "string");
+            end
             for k = keepcols
                 m = mat(:, k);
                 fmt = opts.inputFormat(k);
@@ -164,9 +185,17 @@ function varargout = uiimport_dovariable(config, vartype)
 
     case "double_matrix"
         if and(vartypes == "double") then
-            d = csvTextScan(data.filetext(opts.datalines), opts.delimiter, opts.decimal, "double")(:, keepcols);
+            if data.filetype == "xlsx" then
+                d = strtod(data.filetext(opts.datalines, keepcols));
+            else
+                d = csvTextScan(data.filetext(opts.datalines), opts.delimiter, opts.decimal, "double")(:, keepcols);
+            end
         else
-            mat = csvTextScan(data.filetext(opts.datalines, :), opts.delimiter, opts.decimal, "string");
+            if data.filetype == "xlsx" then
+                mat = data.filetext(opts.datalines, :);
+            else
+                mat = csvTextScan(data.filetext(opts.datalines, :), opts.delimiter, opts.decimal, "string");
+            end
             d = %nan * ones(size(mat, 1), length(keepcols));
             for i = 1:length(keepcols)
                 k = keepcols(i)
@@ -191,7 +220,11 @@ function varargout = uiimport_dovariable(config, vartype)
         end
 
     case "string_matrix"
-        d = csvTextScan(data.filetext(opts.datalines, :), opts.delimiter, opts.decimal, "string")(:, keepcols);
+        if data.filetype == "xlsx" then
+            d = data.filetext(opts.datalines, keepcols);
+        else
+            d = csvTextScan(data.filetext(opts.datalines, :), opts.delimiter, opts.decimal, "string")(:, keepcols);
+        end
             
         for i = 1:length(keepcols)
             m = d(:, i);

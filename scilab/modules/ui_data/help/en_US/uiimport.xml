@@ -10,7 +10,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="uiimport">
     <refnamediv>
         <refname>uiimport</refname>
-        <refpurpose>Import data from csv/txt file</refpurpose>
+        <refpurpose>Import data from csv/txt/xlsx file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -35,7 +35,7 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            <literal>uiimport</literal> opens a Scilab application which asks you to select the CSV or TXT file to load data. 
+            <literal>uiimport</literal> opens a Scilab application which asks you to select the CSV, TXT or XLSX file to load data. 
         </para>
         <para>
             <literal>uiimport(filename)</literal> directly imports data in the application from filename.
@@ -69,18 +69,18 @@
                     </para>
                     <para/>
                     <para>
-                        <emphasis role="bold">Select a file</emphasis> loads data from CSV/TXT file.
+                        <emphasis role="bold">Select a file</emphasis> loads data from CSV/TXT/XLSX file.
                     </para>
                     <para/>
                     <para>
-                        <emphasis role="bold">Import as variable</emphasis> generates a table or timeseries (from data and selected 
-                        options) stored in the <literal>ans</literal> variable. The result is displayed in Scilab console.
+                        <emphasis role="bold">Import as variable</emphasis> generates a table, timeseries, column vectors, double matrix, 
+                        string matrix or cell stored in the variable defined in Variable name. The result is displayed in Scilab console.
                     </para>
                     <para/>
                     <para>
-                        <emphasis role="bold">Create a function</emphasis> generates a Scilab file with the name "import_" + filename + ".sce" 
-                        saved in the same location as the loaded file. This function contains all commands to create a table or timeseries. This file 
-                        will automatically appear in Scinotes. 
+                        <emphasis role="bold">Create a function</emphasis> generates a Scilab file with the name "import_" + variable_name + ".sce" 
+                        saved in the same location as the loaded file. This function contains all commands to create a table, timeseries,
+                        column vectors, double matrix, string matrix or cell (variable type selected). This file will automatically appear in Scinotes. 
                     </para>
                     <para/>
                     <para>
@@ -90,7 +90,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        From this function, the user will be able to import data as:
+                        The user will be able to import data as:
                     </para>
                     <para>
                         <inlinemediaobject>
@@ -152,10 +152,8 @@
                     <para>
                         <emphasis role="bold">File information as number of rows and columns. </emphasis>
                     </para>
-                    <para>
-                        <literal>uiimport</literal> automatically detects the delimiter and decimal separator of the file. 
-                        But the user can change them using the popupmenus.
-                    </para>
+                    <para> For CSV/TXT files, <literal>uiimport</literal> automatically detects the delimiter 
+                        and decimal separator of the file. The user can change them using the popupmenus. </para>
                     <para>The number of header lines can be set by the user.</para>
                     <para/>
                     <para>
@@ -174,6 +172,17 @@
                         <inlinemediaobject>
                             <imageobject>
                                 <imagedata fileref="../images/uiimport_info2.png"/>
+                            </imageobject>
+                        </inlinemediaobject>
+                    </para>
+                    <para/>
+                    <para> For XLSX files, the user can select the sheet to import using the <literal>Sheet</literal> popupmenu. 
+                        The delimiter and decimal separator options are not available for XLSX files.
+                    </para>
+                    <para>
+                        <inlinemediaobject>
+                            <imageobject>
+                                <imagedata fileref="../images/uiimport_info3.png"/>
                             </imageobject>
                         </inlinemediaobject>
                     </para>
@@ -268,18 +277,27 @@ uiimport(fullfile(SCI, "modules", "spreadsheet", "tests", "unit_tests","meteo_da
         <title>History</title>
         <revhistory>
             <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>uiimport</literal> has been rewritten with the <link linkend="browser">uicontrol browser</link>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                XLSX files are now supported.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
                 <revnumber>2024.1.0</revnumber>
                 <revdescription>
                     <para>
                         Introduction in Scilab.
-                    </para>
-                </revdescription>
-            </revision>
-            <revision>
-                <revnumber>2027.0.0</revnumber>
-                <revdescription>
-                    <para>
-                        <literal>uiimport</literal> has been rewritten with the <link linkend="browser">uicontrol browser</link>.
                     </para>
                 </revdescription>
             </revision>

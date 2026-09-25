@@ -31,6 +31,19 @@ function uiimport_cb(msg, cb)
         uiimport_dopreview(msg.delimiter, msg.decimal, msg.numheaderlines);
     case "fetchrows"
         uiimport_fetchrows(msg.start, msg.count);
+    case "sheet"
+        data = get("uiimport", "userdata");
+        data.sheet = msg.sheet;
+        data.filetext = [];
+        data.opts = [];
+        data.numheaderlines = [];
+        set("uiimport", "userdata", data);
+        p = progressionbar("Import data ...");
+        p.tag = "uiimport_progressionbar";
+        uiimport_dopreview([], [], []);
+        if is_handle_valid(p) then
+            delete(p)
+        end
     case "variable"
         select msg.vartype
         case {"table", "timeseries", "cell", "double_matrix", "string_matrix"}

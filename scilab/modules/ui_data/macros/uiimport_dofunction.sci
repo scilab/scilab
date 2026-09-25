@@ -53,10 +53,16 @@ function uiimport_dofunction(config, varname, vartype)
         p = sprintf(", ""NumHeaderLines"", %s", sci2exp(data.numheaderlines));
     end
 
-    if opts.decimal <> [] then
-        str($+1) = sprintf("    opts = detectImportOptions(filename, ""Delimiter"", ""%s"", ""Decimal"", ""%s""" + p + ");", opts.delimiter, opts.decimal);
+    if data.filetype == "xlsx" then
+        sheetOpt = sprintf(", ""Sheet"", %s", sci2exp(data.sheet));
+        str($+1) = sprintf("    opts = detectImportOptions(filename%s);", sheetOpt);
     else
-        str($+1) = sprintf("    opts = detectImportOptions(filename, ""Delimiter"", ""%s""" + p + ");", opts.delimiter);
+        sheetOpt = "";
+        if opts.decimal <> [] then
+            str($+1) = sprintf("    opts = detectImportOptions(filename, ""Delimiter"", ""%s"", ""Decimal"", ""%s""" + p + ");", opts.delimiter, opts.decimal);
+        else
+            str($+1) = sprintf("    opts = detectImportOptions(filename, ""Delimiter"", ""%s""" + p + ");", opts.delimiter);
+        end
     end
 
     if or(opts.inputFormat <> formatRef) then
@@ -65,21 +71,21 @@ function uiimport_dofunction(config, varname, vartype)
 
     select vartype
     case "string_matrix"
-        str($+1) = sprintf("    %s = readtable(filename, opts, ""VariableNames"", %s);", varname, sci2exp(selVarNamesRef));
+        str($+1) = sprintf("    %s = readtable(filename, opts%s, ""VariableNames"", %s);", varname, sheetOpt, sci2exp(selVarNamesRef));
 
     case {"table", "column_vectors", "cell", "double_matrix"}
-        str($+1) = sprintf("    %s = readtable(filename, opts, ""VariableNames"", %s);", varname, sci2exp(selVarNamesRef));
+        str($+1) = sprintf("    %s = readtable(filename, opts%s, ""VariableNames"", %s);", varname, sheetOpt, sci2exp(selVarNamesRef));
     case "timeseries"
         idx = find(rowtimes == selVarNames);
         if selConvert(idx) <> "" then
-            str($+1) = sprintf("    %s = readtimeseries(filename, opts, ""VariableNames"", %s, ""RowTimes"", ""%s"", ""ConvertTime"", %s);", varname, sci2exp(selVarNamesRef), selVarNamesRef(idx), selConvert(idx));
+            str($+1) = sprintf("    %s = readtimeseries(filename, opts%s, ""VariableNames"", %s, ""RowTimes"", ""%s"", ""ConvertTime"", %s);", varname, sheetOpt, sci2exp(selVarNamesRef), selVarNamesRef(idx), selConvert(idx));
             selConvert(idx) = "";
         else
             if variableTypes(idx) == "double" then
                 messagebox("Unable to create a variable. You must choose the conversion method.", "Warning", "warning", "Ok", "modal");
                 return;
             end
-            str($+1) = sprintf("    %s = readtimeseries(filename, opts, ""VariableNames"", %s, ""RowTimes"", ""%s"");", varname, sci2exp(selVarNamesRef), selVarNamesRef(idx));
+            str($+1) = sprintf("    %s = readtimeseries(filename, opts%s, ""VariableNames"", %s, ""RowTimes"", ""%s"");", varname, sheetOpt, sci2exp(selVarNamesRef), selVarNamesRef(idx));
         end
         variableNames = selVarNamesRef;
         vartime = variableNames(idx);
