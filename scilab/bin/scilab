@@ -822,6 +822,28 @@ case $OS in
 
         ;;
     *)
+        # Use a hardcoded OSCrypt key when no login keyring collection exists,
+        # so CEF does not prompt to create one at startup.
+        detect_login_keyring() {
+            test -z "$DBUS_SESSION_BUS_ADDRESS" && return 1
+            if command -v busctl >/dev/null 2>&1; then
+                out=$(busctl --user get-property org.freedesktop.secrets \
+                    /org/freedesktop/secrets org.freedesktop.Secret.Service \
+                    Collections 2>/dev/null)
+            elif command -v gdbus >/dev/null 2>&1; then
+                out=$(gdbus call --session --dest org.freedesktop.secrets \
+                    --object-path /org/freedesktop/secrets \
+                    --method org.freedesktop.DBus.Properties.Get \
+                    org.freedesktop.Secret.Service Collections 2>/dev/null)
+            else
+                return 1
+            fi
+            case "$out" in *"/org/freedesktop/secrets/collection/login"*) return 0 ;; *) return 1 ;; esac
+        }
+        if ! detect_login_keyring; then
+            export SCILAB_CEF_PASSWORD_STORE=basic
+        fi
+        ;;
 esac
 
 

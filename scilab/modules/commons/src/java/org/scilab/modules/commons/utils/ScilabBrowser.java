@@ -74,6 +74,13 @@ public final class ScilabBrowser {
                 settings.browser_subprocess_path = ScilabConstants.SCI.getPath() + pathPrefix + "/lib/thirdparty/jcef/jcef Helper.app";
             }
 
+            // Set by bin/scilab on Linux when the desktop keyring is locked/absent. This avoid the "unlock keyring" dialog at startup.
+            // User can set to enforce a specific keyring.
+            String passwordStore = System.getenv("SCILAB_CEF_PASSWORD_STORE");
+            if (passwordStore != null && !passwordStore.isEmpty()) {
+                cefArgs.add("--password-store=" + passwordStore);
+            }
+
             settings.cache_path = ScilabCommons.getSCIHOME() + "/jcef";
             settings.persist_session_cookies = true;
 
