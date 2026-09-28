@@ -34,7 +34,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 
@@ -419,7 +422,7 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
      * Generate the persistent toc.json. It contains ONLY the native Scilab
      * chapters (MAIN_CHAPTERS). Toolbox chapters registered via
      * add_help_chapter() are intentionally NOT written here: they are merged
-     * in memory at serve time ({@link #buildExternalChaptersJson()}), so that
+     * in memory at serve time ({@link #buildExternalChapters()}), so that
      * restarting Scilab without loading a toolbox does not leave its help
      * lingering in the tree.
      */
@@ -430,8 +433,7 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
         try {
             java.util.List<String> modules = readMainChapters();
 
-            StringBuilder json = new StringBuilder("[\n");
-            boolean firstChapter = true;
+            JsonArray chapters = new JsonArray();
 
             for (String mod : modules) {
                 // Always scan en_US for complete page list
@@ -451,21 +453,16 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
                     chapterTitle = getChapterTitle(helpDirEnUS, mod);
                 }
 
-                if (!firstChapter) json.append(",\n");
-                firstChapter = false;
-
-                json.append("{\"id\":\"").append(escapeJson(mod))
-                    .append("\",\"title\":\"").append(escapeJson(chapterTitle))
-                    .append("\",");
-
+                JsonObject chapter = new JsonObject();
+                chapter.addProperty("id", mod);
+                chapter.addProperty("title", chapterTitle);
                 String relPrefix = "modules/" + mod + "/help/en_US";
-                appendDirContents(json, helpDirEnUS, helpDirLocalized, relPrefix);
-                json.append("}");
+                addDirContents(chapter, helpDirEnUS, helpDirLocalized, relPrefix);
+                chapters.add(chapter);
             }
 
-            json.append("\n]");
             Files.createDirectories(tocFile.getParent());
-            Files.write(tocFile, json.toString().getBytes(StandardCharsets.UTF_8));
+            Files.write(tocFile, chapters.toString().getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
             System.err.println("HelpBrowser: TOC generation failed: " + e.getMessage());
         }
@@ -552,56 +549,48 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
     }
 
     /**
-     * Build the JSON for the currently registered external (toolbox) chapters,
-     * as a comma-separated list of chapter objects (no enclosing brackets), or
-     * an empty string when no toolbox is loaded. Computed in memory on every
+     * Build the chapter objects of the currently registered external (toolbox)
+     * chapters (empty when no toolbox is loaded). Computed in memory on every
      * getToc and never persisted, so toolbox help only appears while the
      * toolbox is actually loaded.
      */
-    private String buildExternalChaptersJson() {
-        if (externalChapters.isEmpty()) {
-            return "";
-        }
-        StringBuilder json = new StringBuilder();
-        boolean first = true;
+    private JsonArray buildExternalChapters() {
+        JsonArray chapters = new JsonArray();
         for (ExtChapter ch : externalChapters) {
-            StringBuilder one = new StringBuilder();
-            one.append("{\"id\":\"").append(escapeJson(ch.id))
-               .append("\",\"title\":\"").append(escapeJson(ch.title))
-               .append("\",");
+            JsonObject chapter = new JsonObject();
+            chapter.addProperty("id", ch.id);
+            chapter.addProperty("title", ch.title);
             String relPrefix = ch.enUS.toString().replace('\\', '/');
             try {
-                appendDirContents(one, ch.enUS, ch.localized, relPrefix);
+                addDirContents(chapter, ch.enUS, ch.localized, relPrefix);
             } catch (IOException e) {
                 continue; // skip a chapter we cannot read
             }
-            one.append("}");
-
-            if (!first) json.append(",\n");
-            first = false;
-            json.append(one);
+            chapters.add(chapter);
         }
-        return json.toString();
+        return chapters;
     }
 
     /**
-     * Splice the in-memory external chapters into the native toc.json array
-     * (a JSON array {@code [ ... ]}), inserting them before the closing
-     * bracket. Returns the native JSON unchanged when no toolbox is loaded.
+     * Append the in-memory external chapters to the native toc.json array.
+     * Returns the native JSON unchanged when no toolbox is loaded or when it
+     * is not the expected array.
      */
     private String mergeExternalChapters(String nativeJson) {
-        String ext = buildExternalChaptersJson();
-        if (ext.isEmpty()) {
+        JsonArray ext = buildExternalChapters();
+        if (ext.size() == 0) {
             return nativeJson;
         }
-        int close = nativeJson.lastIndexOf(']');
-        if (close < 0) {
-            return nativeJson; // not the expected array shape: leave as-is
+        try {
+            JsonElement toc = JsonParser.parseString(nativeJson);
+            if (!toc.isJsonArray()) {
+                return nativeJson;
+            }
+            toc.getAsJsonArray().addAll(ext);
+            return toc.toString();
+        } catch (JsonParseException e) {
+            return nativeJson;
         }
-        String head = nativeJson.substring(0, close);
-        // Does the array already contain at least one chapter?
-        boolean hasContent = !head.substring(head.indexOf('[') + 1).trim().isEmpty();
-        return head + (hasContent ? ",\n" : "") + ext + "\n]";
     }
 
     // ================================================================
@@ -807,21 +796,18 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
         subDirs.sort((a, b) -> a.getName().compareToIgnoreCase(b.getName()));
     }
 
-    private void appendDirContents(StringBuilder json, Path dir, Path localizedDir, String relPrefix) throws IOException {
+    /** Add the "sections" and "pages" arrays of a help directory to its TOC node. */
+    private void addDirContents(JsonObject node, Path dir, Path localizedDir, String relPrefix) throws IOException {
         // Collect XML pages and subdirs from en_US (complete list)
         java.util.List<File> xmlFiles = new java.util.ArrayList<>();
         java.util.List<File> subDirs = new java.util.ArrayList<>();
         listHelpDir(dir.toFile(), xmlFiles, subDirs);
 
         // Sections
-        json.append("\"sections\":[");
-        boolean firstSec = true;
+        JsonArray sections = new JsonArray();
         for (File sub : subDirs) {
             String subRel = relPrefix + "/" + sub.getName();
             if (!hasXmlContent(sub)) continue;
-
-            if (!firstSec) json.append(",");
-            firstSec = false;
 
             // Use localized CHAPTER title if available
             Path localizedSub = localizedDir.resolve(sub.getName());
@@ -829,36 +815,36 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
                     ? getSectionTitle(localizedSub)
                     : getSectionTitle(sub.toPath());
 
-            json.append("{\"id\":\"").append(escapeJson(sub.getName()))
-                .append("\",\"title\":\"").append(escapeJson(secTitle))
-                .append("\",");
-            appendDirContents(json, sub.toPath(), localizedSub, subRel);
-            json.append("}");
+            JsonObject section = new JsonObject();
+            section.addProperty("id", sub.getName());
+            section.addProperty("title", secTitle);
+            addDirContents(section, sub.toPath(), localizedSub, subRel);
+            sections.add(section);
         }
-        json.append("],");
+        node.add("sections", sections);
 
         // Pages
-        json.append("\"pages\":[");
-        boolean firstPage = true;
+        JsonArray pages = new JsonArray();
         for (File xml : xmlFiles) {
             String[] info = parseXmlPage(xml);
             if (info == null) continue;
 
-            if (!firstPage) json.append(",");
-            firstPage = false;
-
-            json.append("{\"id\":\"").append(escapeJson(info[0]))
-                .append("\",\"title\":\"").append(escapeJson(info[1]))
-                .append("\",\"purpose\":\"").append(escapeJson(info[2]))
-                .append("\",\"path\":\"").append(escapeJson(relPrefix + "/" + xml.getName()))
-                .append("\"");
+            JsonObject page = new JsonObject();
+            page.addProperty("id", info[0]);
+            page.addProperty("title", info[1]);
+            page.addProperty("purpose", info[2]);
+            page.addProperty("path", relPrefix + "/" + xml.getName());
             if (!info[3].isEmpty()) {
                 // xml:ids are NCNames: no comma, split back safely
-                json.append(",\"aliases\":[\"").append(escapeJson(info[3]).replace(",", "\",\"")).append("\"]");
+                JsonArray aliases = new JsonArray();
+                for (String alias : info[3].split(",")) {
+                    aliases.add(alias);
+                }
+                page.add("aliases", aliases);
             }
-            json.append("}");
+            pages.add(page);
         }
-        json.append("]");
+        node.add("pages", pages);
     }
 
     private boolean hasXmlContent(File dir) {
@@ -878,7 +864,8 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
      */
     private String[] parseXmlPage(File xml) {
         try {
-            String content = new String(Files.readAllBytes(xml.toPath()), StandardCharsets.UTF_8);
+            // CRLF checkouts: keep the TOC text with LF line ends only
+            String content = new String(Files.readAllBytes(xml.toPath()), StandardCharsets.UTF_8).replace("\r", "");
             java.util.regex.Matcher idM = java.util.regex.Pattern.compile("xml:id=\"([^\"]*)\"").matcher(content);
             java.util.regex.Matcher nameM = java.util.regex.Pattern.compile("<refname>([^<]*)</refname>").matcher(content);
             java.util.regex.Matcher purposeM = java.util.regex.Pattern.compile("<refpurpose>([^<]*)</refpurpose>").matcher(content);
@@ -903,14 +890,42 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
         }
     }
 
-    private static String decodeXmlEntities(String s) {
-        return s.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">")
-                .replace("&quot;", "\"").replace("&apos;", "'");
-    }
+    private static final java.util.regex.Pattern XML_ENTITY =
+        java.util.regex.Pattern.compile("&(amp|lt|gt|quot|apos|#[0-9]+|#x[0-9A-Fa-f]+);");
 
-    private static String escapeJson(String s) {
-        return s.replace("\\", "\\\\").replace("\"", "\\\"")
-                .replace("\n", "\\n").replace("\r", "").replace("\t", "\\t");
+    /**
+     * Decode the predefined and numeric XML entities in a single pass:
+     * sequential replace() calls would decode "&amp;lt;" (text "&lt;") to "<".
+     */
+    private static String decodeXmlEntities(String s) {
+        if (s.indexOf('&') < 0) return s;
+        java.util.regex.Matcher m = XML_ENTITY.matcher(s);
+        StringBuffer sb = new StringBuffer();
+        while (m.find()) {
+            String name = m.group(1);
+            String rep;
+            switch (name) {
+                case "amp": rep = "&"; break;
+                case "lt": rep = "<"; break;
+                case "gt": rep = ">"; break;
+                case "quot": rep = "\""; break;
+                case "apos": rep = "'"; break;
+                default:
+                    int cp;
+                    try {
+                        cp = name.charAt(1) == 'x'
+                             ? Integer.parseInt(name.substring(2), 16)
+                             : Integer.parseInt(name.substring(1));
+                    } catch (NumberFormatException e) {
+                        cp = -1;
+                    }
+                    rep = Character.isValidCodePoint(cp) ? new String(Character.toChars(cp)) : m.group();
+                    break;
+            }
+            m.appendReplacement(sb, java.util.regex.Matcher.quoteReplacement(rep));
+        }
+        m.appendTail(sb);
+        return sb.toString();
     }
 
     // ================================================================
@@ -1041,9 +1056,7 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
             int codeEnd = html.indexOf("\"", codeStart);
             if (codeEnd < 0) break;
 
-            String code = html.substring(codeStart, codeEnd)
-                    .replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">")
-                    .replace("&quot;", "\"").replace("&#xA;", "\n").replace("&#10;", "\n");
+            String code = decodeXmlEntities(html.substring(codeStart, codeEnd));
 
             // Find the whole container div and its closing tag
             int divStart = html.lastIndexOf("<div", start);
@@ -1754,10 +1767,9 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
     }
 
     private void doNavigate(String keyword) {
-        String escaped = keyword.replace("\\", "\\\\").replace("\"", "\\\"");
         browser.executeJavaScript(
                 "(function retry(n) {"
-                + "  if(window.scilabHelp) { window.scilabHelp.navigateById(\"" + escaped + "\"); }"
+                + "  if(window.scilabHelp) { window.scilabHelp.navigateById(" + jsString(keyword) + "); }"
                 + "  else if(n > 0) { setTimeout(function(){ retry(n-1); }, 100); }"
                 + "})(50);",
                 "helpbrowser", 0);
@@ -1768,9 +1780,8 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
         if (keyword == null || keyword.isEmpty()) return;
 
         // Tell the JS shell to perform a search
-        String escaped = keyword.replace("\\", "\\\\").replace("\"", "\\\"");
         browser.executeJavaScript(
-                "if(window.scilabHelp) window.scilabHelp.search(\"" + escaped + "\");",
+                "if(window.scilabHelp) window.scilabHelp.search(" + jsString(keyword) + ");",
                 "helpbrowser", 0);
     }
 
@@ -1827,6 +1838,11 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
     // ================================================================
     // Utility
     // ================================================================
+
+    /** Quoted JS/JSON string literal of s, safe to splice into executed JavaScript. */
+    private static String jsString(String s) {
+        return new Gson().toJson(s);
+    }
 
     /**
      * Extract a string value from a JSON object, or null if the request is
