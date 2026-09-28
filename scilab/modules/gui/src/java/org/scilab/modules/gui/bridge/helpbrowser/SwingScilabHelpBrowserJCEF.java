@@ -34,6 +34,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
+
 import org.cef.CefClient;
 import org.cef.browser.CefBrowser;
 import org.cef.browser.CefFrame;
@@ -1825,33 +1829,18 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
     // ================================================================
 
     /**
-     * Extract a string value from a simple JSON object.
-     * Lightweight parser — no external dependency needed.
+     * Extract a string value from a JSON object, or null if the request is
+     * not valid JSON or has no such string member.
      */
     private static String extractJsonString(String json, String key) {
-        // Find "key" in the JSON string
-        String needle = "\"" + key + "\"";
-        int keyStart = json.indexOf(needle);
-        if (keyStart < 0) return null;
-
-        // Find the colon after the key
-        int colon = json.indexOf(':', keyStart + needle.length());
-        if (colon < 0) return null;
-
-        // Find the opening quote of the value
-        int quote = json.indexOf('"', colon + 1);
-        if (quote < 0) return null;
-
-        // Find the closing quote (handle escaped quotes)
-        int end = quote + 1;
-        while (end < json.length()) {
-            if (json.charAt(end) == '"' && json.charAt(end - 1) != '\\') break;
-            end++;
+        try {
+            JsonElement root = JsonParser.parseString(json);
+            if (!root.isJsonObject()) return null;
+            JsonElement value = root.getAsJsonObject().get(key);
+            if (value == null || !value.isJsonPrimitive() || !value.getAsJsonPrimitive().isString()) return null;
+            return value.getAsString();
+        } catch (JsonParseException e) {
+            return null;
         }
-        if (end >= json.length()) return null;
-
-        return json.substring(quote + 1, end)
-                .replace("\\n", "\n").replace("\\t", "\t")
-                .replace("\\\"", "\"").replace("\\\\", "\\");
     }
 }
