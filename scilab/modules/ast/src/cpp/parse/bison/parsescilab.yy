@@ -783,12 +783,24 @@ classBlockList enumerationDeclaration declarationBreak {
                         std::get<2>(*$$) = *EMPTY_LIST_EXP;
                         std::get<1>(*$$).push_back($1);
                     }
-| methodsDeclaration declarationBreak { 
+| methodsDeclaration declarationBreak {
                         $$ = EMPTY_TUPLE_LIST_EXP;
                         std::get<0>(*$$) = *EMPTY_LIST_EXP;
                         std::get<1>(*$$) = *EMPTY_LIST_EXP;
                         std::get<2>(*$$) = *EMPTY_LIST_EXP;
                         std::get<2>(*$$).push_back($1);
+                    }
+/* comment lines between blocks are dropped, like trailing comments (lineEnd) */
+| classBlockList COMMENT EOL {
+                        $$ = $1;
+                        delete $2;
+                    }
+| COMMENT EOL {
+                        $$ = EMPTY_TUPLE_LIST_EXP;
+                        std::get<0>(*$$) = *EMPTY_LIST_EXP;
+                        std::get<1>(*$$) = *EMPTY_LIST_EXP;
+                        std::get<2>(*$$) = *EMPTY_LIST_EXP;
+                        delete $1;
                     }
 ;
 

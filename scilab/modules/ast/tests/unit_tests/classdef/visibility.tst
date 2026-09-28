@@ -170,6 +170,53 @@ check_exec("[y]=PrivChild().getS();", "y");
 assert_checkequal(y, 99);
 
 // -------------------------------------------------------------
+// Base methods and base constructor writing base private on derived instance
+// -------------------------------------------------------------
+classdef PrivWBase
+    properties (Private)
+        s = 1
+    end
+
+    methods
+        function PrivWBase(v)
+            this.s = this.s + v;
+        end
+
+        function setS(v)
+            this.s = v;
+        end
+
+        function y = getS()
+            y = this.s;
+        end
+    end
+end
+
+classdef PrivWChild < PrivWBase
+    methods
+        function PrivWChild(v)
+            PrivWBase(v);
+        end
+
+        function trySetS(v) // should error
+            this.s = v;
+        end
+    end
+end
+
+// parent constructor reading and writing its private on a derived instance
+check_exec("c=PrivWChild(5); [y]=c.getS();", "y");
+assert_checkequal(y, 6);
+
+// inherited setter on a derived instance
+check_exec("c=PrivWChild(5); c.setS(7); [y]=c.getS();", "y");
+assert_checkequal(y, 7);
+
+// child method or outside: base private still forbidden
+expect_err("c=PrivWChild(5); c.trySetS(1);");
+expect_err("c=PrivWChild(5); c.s=1;");
+
+// -------------------------------------------------------------
 // Constructor visibility (public/protected/private)
 // -------------------------------------------------------------
 

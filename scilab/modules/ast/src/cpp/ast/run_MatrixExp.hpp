@@ -136,22 +136,22 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     ((poRow->isObject() && poRow->getAs<types::Object>()->hasMethod(L"horzcat")) ||
                      (pIT->isObject() && pIT->getAs<types::Object>()->hasMethod(L"horzcat"))))
                 {
+                    types::Object* obj = poRow->isObject()
+                        ? poRow->getAs<types::Object>()
+                        : pIT->getAs<types::Object>();
+
+                    types::typed_list in;
+                    types::optional_list opt;
+                    types::typed_list out;
+
+                    in.push_back(poRow);
+                    in.push_back(pIT);
+
+                    poRow->IncreaseRef();
+                    pIT->IncreaseRef();
+
                     try
                     {
-                        types::Object* obj = poRow->isObject()
-                            ? poRow->getAs<types::Object>()
-                            : pIT->getAs<types::Object>();
-
-                        types::typed_list in;
-                        types::optional_list opt;
-                        types::typed_list out;
-
-                        in.push_back(poRow);
-                        in.push_back(pIT);
-
-                        poRow->IncreaseRef();
-                        pIT->IncreaseRef();
-
                         if (obj->callMethod(L"horzcat", in, opt, 1, out, e) == types::Function::OK && out.size() == 1)
                         {
                             poRow = out[0];
@@ -165,12 +165,13 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     }
                     catch (const InternalError& error)
                     {
+                        // release both operands (references taken above)
+                        cleanInOut(in, out);
                         if (poResult)
                         {
                             poResult->killMe();
                         }
 
-                        pIT->killMe();
                         throw error;
                     }
 
@@ -192,12 +193,12 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                         }
                         catch (const InternalError& error)
                         {
+                            // poRow and pIT already released by callOverloadMatrixExp
                             if (poResult)
                             {
                                 poResult->killMe();
                             }
 
-                            pIT->killMe();
                             throw error;
                         }
                     }
@@ -399,22 +400,22 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             if ((poResult->isObject() && poResult->getAs<types::Object>()->hasMethod(L"vertcat")) ||
                 (poRow->isObject() && poRow->getAs<types::Object>()->hasMethod(L"vertcat")))
             {
+                types::Object* obj = poResult->isObject()
+                    ? poResult->getAs<types::Object>()
+                    : poRow->getAs<types::Object>();
+
+                types::typed_list in;
+                types::optional_list opt;
+                types::typed_list out;
+
+                in.push_back(poResult);
+                in.push_back(poRow);
+
+                poResult->IncreaseRef();
+                poRow->IncreaseRef();
+
                 try
                 {
-                    types::Object* obj = poResult->isObject()
-                        ? poResult->getAs<types::Object>()
-                        : poRow->getAs<types::Object>();
-
-                    types::typed_list in;
-                    types::optional_list opt;
-                    types::typed_list out;
-
-                    in.push_back(poResult);
-                    in.push_back(poRow);
-
-                    poResult->IncreaseRef();
-                    poRow->IncreaseRef();
-
                     if (obj->callMethod(L"vertcat", in, opt, 1, out, e) == types::Function::OK && out.size() == 1)
                     {
                         poResult = out[0];
@@ -428,6 +429,8 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 }
                 catch (const InternalError& error)
                 {
+                    // release both operands (references taken above)
+                    cleanInOut(in, out);
                     throw error;
                 }
                 continue;
@@ -564,7 +567,7 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(const std::wstring& s
         }
         else
         {
-            Ret = Overload::call(L"%" + _paramL->getAs<types::List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<types::List>()->getShortTypeStr(), in, 1, out, true, true, _location);
+            Ret = Overload::call(L"%" + _paramL->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getShortTypeStr(), in, 1, out, true, true, _location);
         }
     }
     catch (const InternalError& error)

@@ -122,3 +122,57 @@ end
 
 expect_err("CycleA()");
 expect_err("CycleB()");
+
+// =============================================================
+// Concatenation of objects without horzcat/vertcat: error, no crash
+// =============================================================
+classdef NoCat
+    properties
+        v = 0
+    end
+    methods
+        function NoCat(x)
+            this.v = x;
+        end
+    end
+end
+
+// temporaries (used to crash with a double free)
+expect_err("[NoCat(1), NoCat(2)]");
+expect_err("[NoCat(1); NoCat(2)]");
+expect_err("[NoCat(1), 1]");
+expect_err("[1, NoCat(1)]");
+// variables
+a = NoCat(1);
+b = NoCat(2);
+expect_err("[a, b]");
+expect_err("[a; b]");
+assert_checkequal(a.v, 1);
+assert_checkequal(b.v, 2);
+
+// =============================================================
+// Comment lines at classdef body level
+// =============================================================
+classdef CommentedClass // trailing comment
+    // before the first block
+    properties
+        // inside a block
+        x = 1
+    end
+    // between two blocks
+
+    methods
+        function r = getx()
+            r = this.x;
+        end
+    end
+    // after the last block
+end
+
+assert_checkequal(CommentedClass().getx(), 1);
+
+classdef OnlyComments
+    // no block
+end
+
+assert_checktrue(isa(OnlyComments(), "OnlyComments"));

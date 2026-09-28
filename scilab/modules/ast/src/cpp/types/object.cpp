@@ -159,20 +159,34 @@ bool Object::toString(std::wostringstream& ostr)
     return false;
 }
 
-bool Object::extract(const std::wstring& name, InternalType*& out)
+Classdef* Object::getScopeClassdef()
 {
-    Classdef* ref = def;
-    AccessModifier access;
-
+    // access rights are those of the class defining the running method
+    // (inherited method or parent constructor), not of the object class
     if (scope.size() > 0)
     {
         const auto& methods = def->getMethods();
         auto it = methods.find(scope.top());
         if (it != methods.end())
         {
-            ref = std::get<1>(it->second);
+            return std::get<1>(it->second);
+        }
+
+        const auto& constructors = def->getConstructors();
+        auto itc = constructors.find(scope.top());
+        if (itc != constructors.end())
+        {
+            return std::get<1>(itc->second);
         }
     }
+
+    return def;
+}
+
+bool Object::extract(const std::wstring& name, InternalType*& out)
+{
+    Classdef* ref = getScopeClassdef();
+    AccessModifier access;
 
     if (ref->getAccessProperty(name, access))
     {
@@ -279,7 +293,7 @@ Object* Object::insert(typed_list* _pArgs, InternalType* _pSource, const ast::Ex
 bool Object::setProperty(const std::wstring& prop, InternalType* value)
 {
     AccessModifier access;
-    if (def->getAccessProperty(prop, access))
+    if (getScopeClassdef()->getAccessProperty(prop, access))
     {
         if (access == AccessModifier::PUBLIC ||
             (scope.size() > 0 && access != AccessModifier::NONE))

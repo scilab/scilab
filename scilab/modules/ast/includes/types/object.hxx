@@ -96,6 +96,8 @@ public:
 
     bool getMemory(long long* _piSize, long long* _piSizePlusType);
   private:
+    Classdef* getScopeClassdef();
+
     Classdef* def;
     std::map<std::wstring, InternalType*> properties;
     std::stack<std::wstring> scope;
