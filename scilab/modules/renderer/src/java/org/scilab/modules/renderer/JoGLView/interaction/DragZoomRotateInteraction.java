@@ -343,13 +343,18 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                     double xDelta = Math.abs(bounds[0] - bounds[1]) / (winSize[0] * axesBounds[2] * (1 - axesMargins[0] - axesMargins[1]));
                     double yDelta = Math.abs(bounds[2] - bounds[3]) / (winSize[1] * axesBounds[3] * (1 - axesMargins[2] - axesMargins[3]));
 
+                    // When an axis is reversed, screen-space movement maps to the opposite
+                    // direction in data space, so the pan delta's sign must flip too.
+                    double xSign = axes.getXAxisReverse() ? 1. : -1.;
+                    double ySign = axes.getYAxisReverse() ? -1. : 1.;
+
                     if (view == 0) {
                         // 2D View
-                        bounds[0] -= xDelta * dx;
-                        bounds[1] -= xDelta * dx;
+                        bounds[0] += xSign * xDelta * dx;
+                        bounds[1] += xSign * xDelta * dx;
 
-                        bounds[2] += yDelta * dy;
-                        bounds[3] += yDelta * dy;
+                        bounds[2] += ySign * yDelta * dy;
+                        bounds[3] += ySign * yDelta * dy;
                     } else {
                         // 3D view
                         double orientation = - Math.signum(Math.cos(Math.toRadians(axes.getRotationAngles()[0])));
@@ -358,11 +363,11 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                         double rotatedDX = dx * Math.sin(angle) + dy * Math.cos(angle);
                         double rotatedDY = dx * Math.cos(angle) - dy * Math.sin(angle);
 
-                        bounds[0] -= xDelta * rotatedDX * orientation;
-                        bounds[1] -= xDelta * rotatedDX * orientation;
+                        bounds[0] += xSign * xDelta * rotatedDX * orientation;
+                        bounds[1] += xSign * xDelta * rotatedDX * orientation;
 
-                        bounds[2] += yDelta * rotatedDY;
-                        bounds[3] += yDelta * rotatedDY;
+                        bounds[2] += ySign * yDelta * rotatedDY;
+                        bounds[3] += ySign * yDelta * rotatedDY;
                     }
 
                     Boolean zoomed = tightZoomBoxToDataBounds(axes, bounds);
@@ -382,9 +387,10 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                 Double[] bounds = axes.getDisplayedBounds();
 
                 double zDelta = (bounds[5] - bounds[4]) / 100;
+                double zSign = axes.getZAxisReverse() ? -1. : 1.;
 
-                bounds[4] += zDelta * dy;
-                bounds[5] += zDelta * dy;
+                bounds[4] += zSign * zDelta * dy;
+                bounds[5] += zSign * zDelta * dy;
 
                 Boolean zoomed = tightZoomBoxToDataBounds(axes, bounds);
                 boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
