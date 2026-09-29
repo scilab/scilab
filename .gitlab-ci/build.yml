@@ -36,14 +36,14 @@
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "push"
 windows_x64_build_mr:
   extends: .windows_build_mr
-  tags: [x64_windows]
+  tags: [x64_windows, build]
   needs:
     - windows_x64_set_env
     - job: windows_x64_build_prereq
       optional: true
 windows_arm64_build_mr:
   extends: .windows_build_mr
-  tags: [arm64_windows]
+  tags: [arm64_windows, build]
   needs:
     - windows_arm64_set_env
     - job: windows_arm64_build_prereq
@@ -55,12 +55,12 @@ windows_arm64_build_mr:
     - if: $CI_PIPELINE_SOURCE == "schedule"
 windows_x64_build_nightly:
   extends: .windows_build_nightly
-  tags: [x64_windows]
+  tags: [x64_windows, build]
   needs:
     - windows_x64_set_env
 windows_arm64_build_nightly:
   extends: .windows_build_nightly
-  tags: [arm64_windows]
+  tags: [arm64_windows, build]
   needs:
     - windows_arm64_set_env
 # build a release version
@@ -70,12 +70,12 @@ windows_arm64_build_nightly:
     - if: $CI_COMMIT_TAG
 windows_x64_build_release:
   extends: .windows_build_release
-  tags: [x64_windows]
+  tags: [x64_windows, build]
   needs:
     - windows_x64_set_env
 windows_arm64_build_release:
   extends: .windows_build_release
-  tags: [arm64_windows]
+  tags: [arm64_windows, build]
   needs:
     - windows_arm64_set_env
 

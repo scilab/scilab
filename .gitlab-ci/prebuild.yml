@@ -144,13 +144,13 @@ linux_build_prereq:
 # update x64 windows dependencies
 windows_x64_build_prereq:
   extends: .windows_build_prereq
-  tags: [x64_windows]
+  tags: [x64_windows, build]
   needs:
     - windows_x64_set_env
 # update arm64 windows dependencies
 windows_arm64_build_prereq:
   extends: .windows_build_prereq
-  tags: [arm64_windows]
+  tags: [arm64_windows, build]
   needs:
     - windows_arm64_set_env
 
