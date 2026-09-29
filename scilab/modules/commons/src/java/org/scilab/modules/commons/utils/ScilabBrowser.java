@@ -10,8 +10,19 @@
 package org.scilab.modules.commons.utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
+import java.nio.channels.OverlappingFileLockException;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -45,7 +56,214 @@ public final class ScilabBrowser {
      *  if CefApp.N_Shutdown stays stuck in native code. */
     private static final long SHUTDOWN_WATCHDOG_DELAY_MS = 3000;
 
+    /** Name of the lock file held in the master Chromium profile. */
+    private static final String CACHE_LOCK_FILE = ".scilab.lock";
+    /** Profile files copied from the master profile into a secondary one to
+     *  share the cookies ("Local State" holds the key encrypting them). The
+     *  SQLite journal is left out: a journal copied at another time than the
+     *  database could corrupt it on rollback. */
+    private static final String[] COOKIE_FILES = {
+        "Local State",
+        "Default/Network/Cookies"
+    };
+
+    /** Lock on the master Chromium profile, held until this process exits. */
+    private static FileChannel cacheLockChannel;
+    private static FileLock cacheLock;
+
+    /** Profile private to this process (in TMPDIR), null when using the master one. */
+    private static File privateProfile;
+
+    /** Maximum delay (ms) spent at exit waiting for CEF to terminate before
+     *  removing the private profile. */
+    private static final long PRIVATE_PROFILE_TERMINATE_DELAY_MS = 5000;
+    /** Maximum delay (ms) spent retrying the removal while the CEF
+     *  subprocesses exit. */
+    private static final long PRIVATE_PROFILE_DELETE_DELAY_MS = 1000;
+
+    /** Prefix of the Scilab TMPDIR names: SCI_TMP_<pid>_<random>. */
+    private static final String TMPDIR_PREFIX = "SCI_TMP_";
+
     private ScilabBrowser() { }
+
+    /**
+     * Chromium refuses to share a profile (cache_path) between processes:
+     * with a single SCIHOME/jcef, the second Scilab ends in
+     * INITIALIZATION_FAILED and every JCEF component of that instance is
+     * dead (console, help browser, assistant, browser uicontrol).
+     * The first Scilab locks SCIHOME/jcef, the master profile, for the whole
+     * life of the process; the OS releases the lock if Scilab dies, so a
+     * crash never leaves it unusable. The next instances use a profile in
+     * their own TMPDIR, removed with it on exit, seeded with the cookies of
+     * the master profile: they start logged in like the first one, but what
+     * they change is not kept.
+     *
+     * @param base the master profile directory (SCIHOME/jcef)
+     * @return a profile directory not used by another process
+     */
+    private static String lockCachePath(String base) {
+        File dir = new File(base);
+        if (cacheLock != null && cacheLock.isValid()) {
+            return dir.getAbsolutePath(); // CEF restarted in this process
+        }
+
+        dir.mkdirs();
+        FileChannel channel = null;
+        try {
+            channel = FileChannel.open(new File(dir, CACHE_LOCK_FILE).toPath(),
+                                       StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+            FileLock lock = channel.tryLock();
+            if (lock != null) {
+                cacheLockChannel = channel;
+                cacheLock = lock;
+                return dir.getAbsolutePath();
+            }
+        } catch (IOException | OverlappingFileLockException e) {
+            // master profile unusable: use a private one
+        }
+        if (channel != null) {
+            try {
+                channel.close();
+            } catch (IOException ignored) {
+                // nothing more to do
+            }
+        }
+
+        File tmp = new File(ScilabConstants.TMPDIR, "jcef");
+        if (!tmp.exists()) {
+            copyCookies(dir, tmp);
+        }
+        privateProfile = tmp;
+        return tmp.getAbsolutePath();
+    }
+
+    /**
+     * Remove the private profile at exit. clearTMPDIR() cannot be relied on:
+     * CEF and its subprocesses (GPU, network) may still hold some of its
+     * files and removedir gives up at the first file it cannot delete.
+     * Wait for CEF to terminate, then retry while the subprocesses exit.
+     * On Windows, a few files stay open until this process exits
+     * (chrome_debug.log, first_party_sets.db, ukm_db): the next Scilab
+     * removes them, see deleteOrphanProfiles().
+     */
+    private static void deletePrivateProfile() {
+        long deadline = System.currentTimeMillis() + PRIVATE_PROFILE_TERMINATE_DELAY_MS;
+        while (CefApp.getState() != CefAppState.TERMINATED) {
+            if (System.currentTimeMillis() > deadline || !sleep(100)) {
+                return;
+            }
+        }
+
+        deadline = System.currentTimeMillis() + PRIVATE_PROFILE_DELETE_DELAY_MS;
+        while (true) {
+            deleteTree(privateProfile.toPath());
+            if (!privateProfile.exists() || System.currentTimeMillis() > deadline || !sleep(100)) {
+                return;
+            }
+        }
+    }
+
+    /**
+     * Remove the private profiles left by Scilab processes that are gone
+     * (files kept open until exit on Windows, crash, ...). Only the jcef
+     * directory is removed, then its TMPDIR if nothing else is left in it
+     * (it survived clearTMPDIR() only because of jcef). A profile whose
+     * process id has been reused by another process is kept until a next run.
+     */
+    private static void deleteOrphanProfiles() {
+        File parent = ScilabConstants.TMPDIR.getAbsoluteFile().getParentFile();
+        File[] dirs = parent == null ? null : parent.listFiles();
+        if (dirs == null) {
+            return;
+        }
+
+        long self = ProcessHandle.current().pid();
+        for (File dir : dirs) {
+            String name = dir.getName();
+            File profile = new File(dir, "jcef");
+            if (!name.startsWith(TMPDIR_PREFIX) || !profile.isDirectory()) {
+                continue;
+            }
+            String[] parts = name.substring(TMPDIR_PREFIX.length()).split("_", 2);
+            long pid;
+            try {
+                pid = Long.parseLong(parts[0]);
+            } catch (NumberFormatException e) {
+                continue;
+            }
+            if (pid != self && !ProcessHandle.of(pid).isPresent()) {
+                deleteTree(profile.toPath());
+                dir.delete(); // only if empty
+            }
+        }
+    }
+
+    /**
+     * @param ms the delay to sleep
+     * @return false if the thread was interrupted
+     */
+    private static boolean sleep(long ms) {
+        try {
+            Thread.sleep(ms);
+            return true;
+        } catch (InterruptedException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Delete a directory tree, going on when a file cannot be deleted.
+     *
+     * @param root the directory to delete
+     */
+    private static void deleteTree(Path root) {
+        try {
+            Files.walkFileTree(root, new SimpleFileVisitor<Path>() {
+                @Override
+                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+                    file.toFile().delete();
+                    return FileVisitResult.CONTINUE;
+                }
+
+                @Override
+                public FileVisitResult visitFileFailed(Path file, IOException e) {
+                    return FileVisitResult.CONTINUE;
+                }
+
+                @Override
+                public FileVisitResult postVisitDirectory(Path dir, IOException e) {
+                    dir.toFile().delete();
+                    return FileVisitResult.CONTINUE;
+                }
+            });
+        } catch (IOException e) {
+            // retried by the caller
+        }
+    }
+
+    /**
+     * Copy the cookies of a profile into another one. Chromium may be writing
+     * them in the master profile: at worst the copy is a few seconds old or
+     * unreadable, and Chromium then drops it without touching the master.
+     *
+     * @param from the master profile directory
+     * @param to the profile directory to seed
+     */
+    private static void copyCookies(File from, File to) {
+        for (String name : COOKIE_FILES) {
+            File src = new File(from, name);
+            if (!src.isFile()) {
+                continue;
+            }
+            File dst = new File(to, name);
+            dst.getParentFile().mkdirs();
+            try {
+                Files.copy(src.toPath(), dst.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                // no cookies: the instance works anyway
+            }
+        }
+    }
 
     private static void init() {
         if (cefApp_ == null || CefApp.getState() == CefAppState.TERMINATED) {
@@ -81,8 +299,17 @@ public final class ScilabBrowser {
                 cefArgs.add("--password-store=" + passwordStore);
             }
 
-            settings.cache_path = ScilabCommons.getSCIHOME() + "/jcef";
+            settings.cache_path = lockCachePath(ScilabCommons.getSCIHOME() + "/jcef");
             settings.persist_session_cookies = true;
+
+            Thread cleanup = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    deleteOrphanProfiles();
+                }
+            }, "ScilabBrowser-profile-cleanup");
+            cleanup.setDaemon(true);
+            cleanup.start();
 
             CefApp.startup(cefArgs.toArray(new String[0]));
             cefApp_ = CefApp.getInstance(cefArgs.toArray(new String[0]), settings);
@@ -154,6 +381,10 @@ public final class ScilabBrowser {
             cefApp_.dispose();
         } finally {
             shutdownReturned.set(true);
+        }
+
+        if (privateProfile != null) {
+            deletePrivateProfile();
         }
     }
 
