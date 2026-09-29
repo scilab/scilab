@@ -43,14 +43,28 @@ function %ce_p(ce)
 
         for i = 1:size(s, "*")
             if s(i) + nb > maxL then
-                listcol($+1) = i-1;
-                nb = 2 + s(i) + 4;
+                if i - 1 > listcol($) then
+                    // at least two columns fit in the closing group
+                    listcol($+1) = i-1;
+                    nb = 2 + s(i) + 4;
+                elseif i > listcol($) then
+                    // exactly one column fits in the closing group
+                    listcol($+1) = i;
+                    nb = 2 + s(i) + 4;
+                else
+                    // column i alone already exceeds the console width: it must be
+                    // its own group, there is nothing to close before it
+                    listcol($+1) = i+1;
+                    nb = 2;
+                end
             else
                 nb = nb + s(i) + 4;
             end
         end
 
-        listcol($+1) = size(s, "*") + 1;
+        if listcol($) <> size(s, "*") + 1 then
+            listcol($+1) = size(s, "*") + 1;
+        end
 
         if length(listcol) > 2 then
             for i = 2:length(listcol)
