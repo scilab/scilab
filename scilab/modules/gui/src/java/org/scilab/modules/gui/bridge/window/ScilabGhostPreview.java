@@ -253,8 +253,11 @@ public class ScilabGhostPreview extends DefaultPreview {
         if (watchdog != null) {
             watchdog.stop();
         }
-        if (previewWindow != null && previewWindow.isVisible()) {
-            previewWindow.setVisible(false);
+        if (previewWindow != null && previewWindow.isDisplayable()) {
+            // dispose() rather than hide: a window left displayable keeps AWT
+            // alive, and the JVM (hence Scilab) then never exits. It is shown
+            // again by the next drag.
+            previewWindow.dispose();
         }
     }
 

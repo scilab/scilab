@@ -33,6 +33,8 @@ import java.io.File;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
@@ -145,6 +147,12 @@ public class ScilabCefPanel extends JPanel {
 
     /** >0 when a dock operation is in-progress */
     private static volatile int isDocking = 0;
+
+    /** Browsers closed by dispose() whose native close has not completed yet. */
+    private static final Set<CefBrowser> closingBrowsers = new HashSet<>();
+
+    /** Max time (ms) dispose() waits for closing browsers. */
+    private static final long CLOSING_BROWSERS_TIMEOUT_MS = 500;
 
     /** Global AWT listener to detect clicks outside the browser. */
     private AWTEventListener clickOutsideListener;
@@ -400,6 +408,11 @@ public class ScilabCefPanel extends JPanel {
             if (b == devToolsBrowser) {
                 devToolsBrowser = null;
                 devToolsRequested = false;
+            }
+            synchronized (closingBrowsers) {
+                if (closingBrowsers.remove(b)) {
+                    closingBrowsers.notifyAll();
+                }
             }
         }
     };
@@ -1263,6 +1276,39 @@ public class ScilabCefPanel extends JPanel {
         browser.closeDevTools();
     }
 
+    /**
+     * Wait for the browsers being closed to be destroyed by CEF.
+     * Otherwise, removeNotify() goes on and destroys the native parent of a
+     * browser still closing: Chromium then loses the compositor of another
+     * browser moved at the same time (e.g. closing SciNotes docked next to
+     * the console, which is reparented into the freed room). That page stays
+     * at its former size, never repainted again.
+     * CEF reports the end of a close on its own thread, so waiting here on the
+     * EDT cannot dead-lock; the wait is bounded anyway.
+     */
+    private static void waitForClosingBrowsers()
+    {
+        synchronized (closingBrowsers) {
+            long end = System.currentTimeMillis() + CLOSING_BROWSERS_TIMEOUT_MS;
+            long remaining = CLOSING_BROWSERS_TIMEOUT_MS;
+            while (!closingBrowsers.isEmpty() && remaining > 0) {
+                try {
+                    closingBrowsers.wait(remaining);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+                remaining = end - System.currentTimeMillis();
+            }
+            if (!closingBrowsers.isEmpty()) {
+                // A browser that never completed its close (e.g. never fully
+                // created) must not delay every later dispose.
+                log.warning(closingBrowsers.size() + " browser(s) not closed in time");
+                closingBrowsers.clear();
+            }
+        }
+    }
+
     public static void setDockInProgress(boolean inProgress)
     {
         if (inProgress) {
@@ -1331,6 +1377,9 @@ public class ScilabCefPanel extends JPanel {
             devToolsRequested = false;
             devToolsBrowser = null;
             browserToClose.closeDevTools();
+            synchronized (closingBrowsers) {
+                closingBrowsers.add(browserToClose);
+            }
             browserToClose.close(true);
         }
 
@@ -1338,6 +1387,10 @@ public class ScilabCefPanel extends JPanel {
         client = null;
         if (clientToRelease != null) {
             ScilabBrowser.release(clientToRelease);
+        }
+
+        if (browserToClose != null) {
+            waitForClosingBrowsers();
         }
     }
 }
