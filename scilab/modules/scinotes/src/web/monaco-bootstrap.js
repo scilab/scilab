@@ -94,7 +94,9 @@ function startMonaco(vsBase) {
             renderWhitespace: "none",
             suggest: {
                 showInlineDetails: true,
-                showStatusBar: true
+                showStatusBar: true,
+                // By default Monaco stops completing as you type in a snippet.
+                snippetsPreventQuickSuggestions: false
             },
             "semanticHighlighting.enabled": true
         });

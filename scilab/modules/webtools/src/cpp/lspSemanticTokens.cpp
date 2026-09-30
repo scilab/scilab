@@ -63,6 +63,8 @@ static bool is_field_identifier(const std::string& line, size_t column);
 static bool is_language_keyword(const std::string& word);
 static bool is_class_body_keyword(const std::string& word);
 static bool is_inside_class(const DocumentAnalysis& analysis, int line);
+static bool is_class_section_header(const DocumentAnalysis& analysis,
+    const std::string& line, int lineIndex, size_t start);
 static bool is_argument_validator(const std::string& word);
 static bool is_boolean_literal(const std::string& word);
 static bool is_language_variable(const std::string& word);
@@ -303,9 +305,12 @@ void collect_runtime_semantic_tokens(const std::vector<std::string>& lines,
                 continue;
             }
 
-            bool keyword = is_language_keyword(word) && !is_call_identifier(line, column)
-                && (!is_class_body_keyword(word)
-                    || is_inside_class(analysis, static_cast<int>(line_index)));
+            bool keyword = is_language_keyword(word)
+                && (is_class_body_keyword(word)
+                    ? is_inside_class(analysis, static_cast<int>(line_index))
+                        && (!is_call_identifier(line, column)
+                            || is_class_section_header(analysis, line, static_cast<int>(line_index), start))
+                    : !is_call_identifier(line, column));
             if (is_argument_validator(word) || keyword)
             {
                 tokens.push_back({
@@ -517,6 +522,28 @@ bool is_inside_class(const DocumentAnalysis& analysis, int line)
     }
 
     return false;
+}
+
+// "methods (Static)" opens a section: its attributes are not call arguments.
+// Only at the start of a line of the class body, not in a method.
+bool is_class_section_header(const DocumentAnalysis& analysis,
+    const std::string& line, int lineIndex, size_t start)
+{
+    if (line.find_first_not_of(" \t") != start)
+    {
+        return false;
+    }
+
+    for (const DocumentRegionEntry& region : analysis.regions)
+    {
+        if (region.role == DocumentRegionRole::Function
+                && lineIndex >= region.range.firstLine && lineIndex <= region.range.lastLine)
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 bool is_argument_validator(const std::string& word)

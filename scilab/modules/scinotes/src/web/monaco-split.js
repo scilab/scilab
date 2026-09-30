@@ -71,6 +71,7 @@ window.SciNotesMonacoEnableSplit = function(primaryDocumentId) {
             fontSize: 13,
             autoIndent: "full",
             renderWhitespace: "none",
+            suggest: { snippetsPreventQuickSuggestions: false },
             "semanticHighlighting.enabled": true
         });
         // Same focus and selection reports as the primary editor

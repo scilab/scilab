@@ -1692,6 +1692,10 @@ function configureLsp(config) {
         var replacement = monaco.editor.createModel(currentModel.getValue(),
             currentModel.getLanguageId(), monaco.Uri.parse(config.documentUri));
         replacement.setEOL(monaco.editor.EndOfLineSequence.LF);
+        // Its edits must reach the Java replica, as for any document model.
+        if (typeof installDocumentModel === "function") {
+            installDocumentModel(replacement);
+        }
         state.editor.setModel(replacement);
         if (state.activeDocumentId && state.documents[state.activeDocumentId]) {
             state.documents[state.activeDocumentId].model = replacement;
