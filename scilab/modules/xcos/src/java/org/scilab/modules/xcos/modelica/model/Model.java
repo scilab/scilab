@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementRefs;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -119,7 +120,10 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="struct" type="{}Struct" maxOccurs="unbounded" minOccurs="0"/>
+ *                   &lt;choice maxOccurs="unbounded" minOccurs="0">
+ *                     &lt;element name="struct" type="{}Struct"/>
+ *                     &lt;element name="terminal" type="{}Terminal"/>
+ *                   &lt;/choice>
  *                 &lt;/sequence>
  *               &lt;/restriction>
  *             &lt;/complexContent>
@@ -410,7 +414,10 @@ public class Model {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="struct" type="{}Struct" maxOccurs="unbounded" minOccurs="0"/>
+     *         &lt;choice maxOccurs="unbounded" minOccurs="0">
+     *           &lt;element name="struct" type="{}Struct"/>
+     *           &lt;element name="terminal" type="{}Terminal"/>
+     *         &lt;/choice>
      *       &lt;/sequence>
      *     &lt;/restriction>
      *   &lt;/complexContent>
@@ -421,40 +428,44 @@ public class Model {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "struct"
+        "structOrTerminal"
     })
     public static class Elements {
 
-        @XmlElement(nillable = true)
-        protected List<Struct> struct;
+        @XmlElements({
+            @XmlElement(name = "terminal", type = Terminal.class),
+            @XmlElement(name = "struct", type = Struct.class)
+        })
+        protected List<Object> structOrTerminal;
 
         /**
-         * Gets the value of the struct property.
+         * Gets the value of the structOrTerminal property.
          *
          * <p>
          * This accessor method returns a reference to the live list,
          * not a snapshot. Therefore any modification you make to the
          * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the struct property.
+         * This is why there is not a <CODE>set</CODE> method for the structOrTerminal property.
          *
          * <p>
          * For example, to add a new item, do as follows:
          * <pre>
-         *    getStruct().add(newItem);
+         *    getStructOrTerminal().add(newItem);
          * </pre>
          *
          *
          * <p>
          * Objects of the following type(s) are allowed in the list
+         * {@link Terminal }
          * {@link Struct }
          *
          *
          */
-        public List<Struct> getStruct() {
-            if (struct == null) {
-                struct = new ArrayList<Struct>();
+        public List<Object> getStructOrTerminal() {
+            if (structOrTerminal == null) {
+                structOrTerminal = new ArrayList<Object>();
             }
-            return this.struct;
+            return this.structOrTerminal;
         }
 
     }

@@ -114,7 +114,7 @@ function   [ok]=compile_init_modelica(xmlmodel,paremb,jaco)
     scs_m = null();
 
     icpr = list();
-    if exists(%scicos_solver) == 0 | (exists(%scicos_solver) <> 0 & %scicos_solver < 100) then
+    if %scicos_solver < 100 then
         %scicos_solver = 100;
     end
     icpr = c_pass2(bllst, connectmat, clkconnect, cor, corinv);

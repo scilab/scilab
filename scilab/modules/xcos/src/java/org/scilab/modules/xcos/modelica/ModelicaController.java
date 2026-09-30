@@ -287,9 +287,7 @@ public final class ModelicaController {
         updateIdentifiers(root.getIdentifiers());
 
         // Struct tree statistics
-        for (Struct struct : getRoot().getElements().getStruct()) {
-            updateInfo(struct);
-        }
+        updateInfo(getRoot().getElements().getStructOrTerminal());
 
         return statistics;
     }
@@ -317,13 +315,13 @@ public final class ModelicaController {
     }
 
     /**
-     * Update the info from the struct children.
+     * Update the info from the nodes of a tree level.
      *
-     * @param struct
-     *            the current node
+     * @param children
+     *            the {@link Struct} and {@link Terminal} nodes
      */
-    private void updateInfo(Struct struct) {
-        for (Object child : struct.getSubnodes().getStructOrTerminal()) {
+    private void updateInfo(List<Object> children) {
+        for (Object child : children) {
             if (child instanceof Terminal) {
                 final Terminal terminal = (Terminal) child;
 
@@ -339,7 +337,7 @@ public final class ModelicaController {
             } else { // child instanceof Struct
 
                 // recursive call
-                updateInfo((Struct) child);
+                updateInfo(((Struct) child).getSubnodes().getStructOrTerminal());
             }
         }
     }
@@ -382,20 +380,18 @@ public final class ModelicaController {
      * Set the default initial values
      */
     private void setDefaultValues() {
-        for (final Struct struct : getRoot().getElements().getStruct()) {
-            setDefaultValues(struct);
-        }
+        setDefaultValues(getRoot().getElements().getStructOrTerminal());
     }
 
     /**
-     * set the default initial values for a {@link Struct} node.
+     * set the default initial values for the nodes of a tree level.
      *
-     * @param struct
-     *            the node
+     * @param children
+     *            the {@link Struct} and {@link Terminal} nodes
      */
     @SuppressWarnings("unused")
-    private void setDefaultValues(final Struct struct) {
-        for (final Object child : struct.getSubnodes().getStructOrTerminal()) {
+    private void setDefaultValues(final List<Object> children) {
+        for (final Object child : children) {
             if (child instanceof Terminal) {
                 final Terminal terminal = (Terminal) child;
 
@@ -411,7 +407,7 @@ public final class ModelicaController {
 
             } else {
                 // recursive call
-                setDefaultValues((Struct) child);
+                setDefaultValues(((Struct) child).getSubnodes().getStructOrTerminal());
             }
         }
     }
@@ -425,8 +421,18 @@ public final class ModelicaController {
      *            the state weight
      */
     public void fixWeight(double derivative, double state) {
-        for (final Struct struct : getRoot().getElements().getStruct()) {
-            updateWeight(struct, derivative, state);
+        final Map<String, Terminal> derivatives = new HashMap<String, Terminal>();
+        final Map<String, Terminal> states = new HashMap<String, Terminal>();
+        collectTerminals(getRoot().getElements().getStructOrTerminal(), derivatives, states);
+
+        // a state may sit in another subtree than its derivative (arrays), or be missing
+        for (Map.Entry<String, Terminal> var : derivatives.entrySet()) {
+            setWeight(derivative, var.getValue());
+
+            final Terminal stateTerminal = states.get(var.getKey());
+            if (stateTerminal != null) {
+                setWeight(state, stateTerminal);
+            }
         }
 
         // clear and update statistics
@@ -437,23 +443,31 @@ public final class ModelicaController {
     }
 
     /**
-     * Update the weight for a {@link Struct} subtree
+     * Set the weight of a terminal; only a weight of 1 fixes it, as
+     * xml2modelica turns every fixed terminal into an equation.
      *
-     * @param struct
-     *            the current struct
-     * @param derivativeValue
-     *            the derivative weight
-     * @param stateValue
-     *            the state weight
+     * @param weight
+     *            the weight
+     * @param terminal
+     *            the terminal
      */
-    private void updateWeight(final Struct struct, double derivativeValue, double stateValue) {
-        final Map<String, Terminal> derivatives = new HashMap<String, Terminal>();
-        final Map<String, Terminal> states = new HashMap<String, Terminal>();
+    private static void setWeight(double weight, Terminal terminal) {
+        TerminalAccessor.WEIGHT.setData(weight, terminal);
+        TerminalAccessor.FIXED.setData(Boolean.valueOf(weight >= 1.0), terminal);
+    }
 
-        /*
-         * Find the derivates and states
-         */
-        for (final Object child : struct.getSubnodes().getStructOrTerminal()) {
+    /**
+     * Collect the derivatives and states of a subtree
+     *
+     * @param children
+     *            the {@link Struct} and {@link Terminal} nodes
+     * @param derivatives
+     *            the derivatives, keyed by the id of their state
+     * @param states
+     *            the other terminals, keyed by id
+     */
+    private void collectTerminals(final List<Object> children, Map<String, Terminal> derivatives, Map<String, Terminal> states) {
+        for (final Object child : children) {
             if (child instanceof Terminal) {
                 final Terminal terminal = (Terminal) child;
                 final String id = TerminalAccessor.getData(TerminalAccessor.ID, terminal);
@@ -469,27 +483,8 @@ public final class ModelicaController {
                 }
             } else {
                 // recursive call
-                updateWeight((Struct) child, derivativeValue, stateValue);
+                collectTerminals(((Struct) child).getSubnodes().getStructOrTerminal(), derivatives, states);
             }
-        }
-
-        /*
-         * Set the derivative and state values
-         */
-
-        // iterate on derivatives only
-        for (Map.Entry<String, Terminal> var : derivatives.entrySet()) {
-            assert derivatives.containsKey(var);
-            assert states.containsKey(var);
-
-            final Terminal derivative = var.getValue();
-            final Terminal state = states.get(var);
-
-            TerminalAccessor.WEIGHT.setData(stateValue, state);
-            TerminalAccessor.WEIGHT.setData(derivativeValue, derivative);
-
-            TerminalAccessor.FIXED.setData(Boolean.TRUE, state);
-            TerminalAccessor.FIXED.setData(Boolean.TRUE, derivative);
         }
     }
 

@@ -1,0 +1,96 @@
+<model>
+<name>fixture</name>
+<elements>
+<terminal>
+<name>p</name>
+<kind>fixed_parameter</kind>
+<id>p</id>
+<fixed value="true"/>
+<initial_value value="2."/>
+<nominal_value value=""/>
+<comment value="parameter outside any struct"/>
+</terminal>
+<struct>
+<name>A</name>
+<subnodes>
+<terminal>
+<name>x</name>
+<kind>variable</kind>
+<id>A.x</id>
+<fixed value=""/>
+<initial_value value="1."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal>
+<name>__der_x</name>
+<kind>variable</kind>
+<id>A.__der_x</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<struct>
+<name>T</name>
+<subnodes>
+<terminal>
+<name>[1]</name>
+<kind>variable</kind>
+<id>A.T.[1]</id>
+<fixed value=""/>
+<initial_value value="1."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal>
+<name>[2]</name>
+<kind>variable</kind>
+<id>A.T.[2]</id>
+<fixed value=""/>
+<initial_value value="1."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct>
+<name>__der_T</name>
+<subnodes>
+<terminal>
+<name>[1]</name>
+<kind>variable</kind>
+<id>A.__der_T.[1]</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal>
+<name>[2]</name>
+<kind>variable</kind>
+<id>A.__der_T.[2]</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<terminal>
+<name>__der_y</name>
+<kind>variable</kind>
+<id>A.__der_y</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="derivative without state"/>
+</terminal>
+</subnodes>
+</struct>
+</elements>
+<equations>
+<equation value=" `A.__der_x` = `p`; "/>
+</equations>
+<when_clauses/>
+</model>

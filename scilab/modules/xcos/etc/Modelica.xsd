@@ -154,7 +154,10 @@
       <xs:element name="elements" minOccurs="0">
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="struct" type="Struct" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="struct" type="Struct"/>
+              <xs:element name="terminal" type="Terminal"/>
+            </xs:choice>
           </xs:sequence>
         </xs:complexType>
       </xs:element>

@@ -158,8 +158,10 @@ public final class MainPanel extends JPanel {
         };
         final TreeModel model = new DefaultTreeModel(rootNode);
 
-        for (Struct struct : controller.getRoot().getElements().getStruct()) {
-            rootNode.add(createNodes(struct));
+        for (Object child : controller.getRoot().getElements().getStructOrTerminal()) {
+            if (child instanceof Struct) {
+                rootNode.add(createNodes((Struct) child));
+            }
         }
 
         return model;
@@ -216,7 +218,7 @@ public final class MainPanel extends JPanel {
             ret = getTerminals(subnodes);
         } else if (userObject instanceof Model) {
             final Model m = (Model) userObject;
-            ret = getTerminals(m.getElements().getStruct());
+            ret = getTerminals(m.getElements().getStructOrTerminal());
         } else if (userObject instanceof Collection) {
             final Collection c = (Collection) userObject;
 
