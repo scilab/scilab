@@ -8,8 +8,9 @@
 // <-- XCOS TEST -->
 // <-- NO CHECK REF -->
 //
-// Modelica initialization GUI on the RLC_Modelica demo, without the GUI:
-// the Solve button steps of SolveAction after Fix states.
+// Modelica initialization GUI on the RLC_Modelica and Hydraulics demos,
+// without the GUI: xcosConfigureModelica, then the Solve button steps of
+// SolveAction after Fix states.
 
 ilib_verbose(0);
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/ModelicaBlocks/RLC_Modelica.zcos"));
@@ -17,13 +18,13 @@ jimport java.io.File;
 jimport org.scilab.modules.xcos.modelica.Modelica;
 jimport org.scilab.modules.xcos.modelica.ModelicaController;
 
-// Opening the GUI: xcosConfigureModelica
-modelica_libs = getModelicaPath();
-needcompile = 4;
-%Modelica_Init = %t;
-[bllst, connectmat, clkconnect, cor, corinv, ok] = c_pass1(scs_m);
-%Modelica_Init = %f;
-assert_checktrue(ok);
+// The GUI window itself is not opened
+prot = funcprot(0);
+function xcosConfigureXmlFile(init, relations)
+endfunction
+funcprot(prot);
+
+xcosConfigureModelica(scs_m);
 name = stripblanks(scs_m.props.title(1)) + "_imf";
 f = TMPDIR + "/" + name + "_init.xml";
 
@@ -61,3 +62,15 @@ assert_checkequal(strtod(e(1).attributes.value), 1);
 e = xmlXPath(doc, "//terminal[id=""Inductor1.__der_i""]/initial_value");
 assert_checktrue(strtod(e(1).attributes.value) <> 0);
 xmlDelete(doc);
+
+// ----------------------------------------------------------------------------
+// Hydraulics: its MUX block has consistent port sizes once evaluated only
+// ----------------------------------------------------------------------------
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/ModelicaBlocks/Hydraulics.zcos"));
+xcosConfigureModelica(scs_m);
+name = stripblanks(scs_m.props.title(1)) + "_imf";
+f = TMPDIR + "/" + name + "_init.xml";
+c = ModelicaController.new(m.load(File.new(f)));
+c.fixWeight(0, 1);
+m.save(c.getRoot(), File.new(f));
+assert_checktrue(compile_init_modelica(name, "0", "0"));

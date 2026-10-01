@@ -54,6 +54,15 @@ function xcosConfigureModelica(scs_m)
 
     needcompile=4;
 
+    // Evaluate the blocks in the diagram context, as xcos_compile does:
+    // c_pass1 needs up to date models (port sizes, parameters)
+    %scicos_context = struct();
+    [%scicos_context, ierr] = script2var(scs_m.props.context, %scicos_context);
+    [scs_m, %cpr, needcompile, ok] = do_eval(scs_m, struct(), %scicos_context);
+    if ~ok then
+        return
+    end
+
     if compile then
         %Modelica_Init=%t
         // in order to generate *_im.mo -> *_im_f.mo -> *_im.xml
