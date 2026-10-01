@@ -607,8 +607,12 @@ public class SciNotes extends SwingScilabDockablePanel {
      *            the text which should be modified
      */
     public static void scinotesWithText(String text) {
+        scinotesWithText(text, false);
+    }
+
+    private static void scinotesWithText(String text, boolean newWindow) {
         ScilabLexer.update();
-        launchSciNotes();
+        launchSciNotes(newWindow);
         ScilabEditorPane theTextPane;
         if (editor.getTabPane().getTabCount() != 0 && editor.getTextPane(0) != null) {
             String name = editor.getTextPane(0).getName();
@@ -651,7 +655,7 @@ public class SciNotes extends SwingScilabDockablePanel {
         try {
             editor = null;
 
-            scinotesWithText(cdoc.getText());
+            scinotesWithText(cdoc.getText(), true);
             ScilabEditorPane sep = editor.getTextPane();
 
             if (currentSep.getName() != null) {
@@ -1014,8 +1018,20 @@ public class SciNotes extends SwingScilabDockablePanel {
      * @return the instance
      */
     public static void launchSciNotes() {
+        launchSciNotes(false);
+    }
+
+    /**
+     * Create SciNotes instance
+     *
+     * @param fresh
+     *            true to always open a new, empty window: a tab moved to a
+     *            window of its own must not bring back the files of a
+     *            SciNotes window closed earlier
+     */
+    private static void launchSciNotes(boolean fresh) {
         if (editor == null) {
-            List<String> uuids = ConfigSciNotesManager.getEditorsUUID();
+            List<String> uuids = fresh ? new ArrayList<String>() : ConfigSciNotesManager.getEditorsUUID();
             boolean success = false;
             if (!uuids.isEmpty()) {
                 for (String uuid : uuids) {

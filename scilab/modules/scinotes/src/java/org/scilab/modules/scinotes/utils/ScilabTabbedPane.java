@@ -47,6 +47,7 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -92,9 +93,28 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
     private static DataFlavor DATAFLAVOR;
     private static ScilabTabbedPane currentWhenDragged;
 
+    /**
+     * What a tab drag carries: the source tabbed pane, never the pane itself.
+     * Windows offers the drag data to every native drop target on the way,
+     * and Chromium (the JCEF browsers) asks for it: Java then serializes the
+     * transferred object. Serializing a Swing component uninstalls the UI of
+     * its whole tree, and a non-serializable listener made it fail before the
+     * UIs were installed back: the source window was left unable to paint.
+     * The reference is transient, so only this empty holder is serialized; a
+     * drop in the same JVM gets the object itself.
+     */
+    static final class TabTransfer implements Serializable {
+        private static final long serialVersionUID = 1L;
+        final transient ScilabTabbedPane source;
+
+        TabTransfer(ScilabTabbedPane source) {
+            this.source = source;
+        }
+    }
+
     static {
         try {
-            DATAFLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + ";class=" + ScilabTabbedPane.class.getName());
+            DATAFLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + ";class=" + TabTransfer.class.getName());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -186,7 +206,7 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
             throw new UnsupportedFlavorException(flavor);
         }
 
-        return this;
+        return new TabTransfer(this);
     }
 
     /**
@@ -243,9 +263,11 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
             dtde.rejectDrop();
         } else {
             try {
-                ScilabTabbedPane tabbedPane = (ScilabTabbedPane) dtde.getTransferable().getTransferData(DATAFLAVOR);
+                ScilabTabbedPane tabbedPane = ((TabTransfer) dtde.getTransferable().getTransferData(DATAFLAVOR)).source;
                 int index = indexAtLocation(dtde.getLocation().x, dtde.getLocation().y);
-                if (tabbedPane == this && (index == tabbedPane.draggedIndex || getTabCount() == 1)) {
+                if (tabbedPane == null) {
+                    dtde.rejectDrop();
+                } else if (tabbedPane == this && (index == tabbedPane.draggedIndex || getTabCount() == 1)) {
                     dtde.rejectDrop();
                 } else {
                     ScilabEditorPane sourcePane = tabbedPane.editor.getTextPane(tabbedPane.draggedIndex);
