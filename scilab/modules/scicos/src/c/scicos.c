@@ -159,7 +159,8 @@ enum Solver
     N_VDestroy_Serial(yscale);			\
     if (m_A != NULL) SUNMatDestroy(m_A);	\
     if (m_LS != NULL) SUNLinSolFree(m_LS);	\
-	KINFree(&kin_mem);
+	KINFree(&kin_mem);				\
+	SUNContext_Free(&scicos_sunctx);
 
 
 #define ONE   SUN_RCONST(1.0)
@@ -6924,10 +6925,19 @@ static int CallKinsol(double *told)
         }
     }
 
+    /* the context only exists during cossim / cossimdaskr: create one here */
+    if (SUNContext_Create(SUN_COMM_NULL, &scicos_sunctx) < 0)
+    {
+        FREE(Mode_save);
+        *ierr = 10000;
+        return -1;
+    }
+
     y = N_VNewEmpty_Serial(N, scicos_sunctx);
     if (y == NULL)
     {
         FREE(Mode_save);
+        SUNContext_Free(&scicos_sunctx);
         return -1;
     }
     yscale = N_VNew_Serial(N, scicos_sunctx);
@@ -6935,6 +6945,7 @@ static int CallKinsol(double *told)
     {
         FREE(Mode_save);
         N_VDestroy_Serial(y);
+        SUNContext_Free(&scicos_sunctx);
         return -1;
     }
     fscale = N_VNew_Serial(N, scicos_sunctx);
@@ -6943,6 +6954,7 @@ static int CallKinsol(double *told)
         FREE(Mode_save);
         N_VDestroy_Serial(y);
         N_VDestroy_Serial(yscale);
+        SUNContext_Free(&scicos_sunctx);
         return -1;
     }
     ysdata =  NV_DATA_S(yscale);
@@ -6956,6 +6968,7 @@ static int CallKinsol(double *told)
         N_VDestroy_Serial(y);
         N_VDestroy_Serial(yscale);
         N_VDestroy_Serial(fscale);
+        SUNContext_Free(&scicos_sunctx);
         return -1;
     }
 
