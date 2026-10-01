@@ -9,6 +9,8 @@
 
 package org.scilab.modules.commons.utils;
 
+import java.awt.Component;
+import java.awt.event.HierarchyListener;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -34,6 +36,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.cef.CefApp;
 import org.cef.CefClient;
 import org.cef.CefSettings;
+import org.cef.browser.CefBrowser;
 import org.cef.handler.CefFocusHandler;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabCommons;
@@ -312,6 +315,27 @@ public final class ScilabBrowser {
             cleanup.start();
 
             CefApp.startup(cefArgs.toArray(new String[0]));
+
+            // macOS: CEF intercepts the app-menu Quit / CMD+Q before AWT's
+            // Desktop.setQuitHandler is never invoked, so Scilab never exits via the menu.
+            if (OS.get() == OS.MAC) {
+                CefApp.addAppHandler(new org.cef.handler.CefAppHandlerAdapter(cefArgs.toArray(new String[0])) {
+                    @Override
+                    public boolean onBeforeTerminate() {
+                        // commons cannot depend on action_binding: reflectively
+                        // call InterpreterManagement.requestScilabExec("exit();").
+                        try {
+                            Class<?> im = ClassLoader.getSystemClassLoader()
+                                .loadClass("org.scilab.modules.action_binding.InterpreterManagement");
+                            im.getMethod("requestScilabExec", String.class).invoke(null, "exit();");
+                        } catch (Throwable t) {
+                            t.printStackTrace();
+                        }
+                        return true; // Scilab's exit() will perform the real termination
+                    }
+                });
+            }
+
             cefApp_ = CefApp.getInstance(cefArgs.toArray(new String[0]), settings);
 
             try {
@@ -423,12 +447,38 @@ public final class ScilabBrowser {
         }
     }
 
+    /**
+     * Force-close a browser.
+     * On macOS, CefBrowserWr forwards every visibility change of its component
+     * to the browser NSView asynchronously, even while closing: one landing
+     * after CEF freed that view crashes the main thread. Drop that listener first.
+     */
+    public static void close(CefBrowser browser) {
+        Component ui = browser.getUIComponent();
+        if (ui != null) {
+            for (HierarchyListener l : ui.getHierarchyListeners()) {
+                ui.removeHierarchyListener(l);
+            }
+        }
+        browser.close(true);
+    }
+
     public static void release(CefClient client) {
         synchronized (activeClients) {
             activeClients.remove(client);
             focusGuards.remove(client);
         }
+        // Exit race: the shutdown final hook may have disposed CefApp before a window's removeNotify runs.
+        // Disposing the client then throws IllegalStateException "CefApp was terminated"
+        if (isShutdown()) {
+            return;
+        }
         client.dispose();
+    }
+
+    /** @return true if CefApp is not initialized or already terminated. */
+    public static boolean isShutdown() {
+        return cefApp_ == null || CefApp.getState() == CefAppState.TERMINATED;
     }
 
     public static String getJcefVersion() {

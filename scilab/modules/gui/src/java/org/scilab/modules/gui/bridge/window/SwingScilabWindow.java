@@ -120,7 +120,10 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
             taskbar.setIconImage(new ImageIcon(FindIconHelper.findIcon("scilabMacOS", "256x256")).getImage());
             desktop.setAboutHandler(e->InterpreterManagement.requestScilabExec("about();"));
             desktop.setPreferencesHandler(e ->InterpreterManagement.requestScilabExec("preferences();"));
-            desktop.setQuitHandler((e,r)->InterpreterManagement.requestScilabExec("exit();"));
+            // Note: on macOS the app-menu Quit / CMD+Q does not reach this
+            // handler when JCEF is loaded (CEF intercepts the termination); it
+            // is handled by CefApp.onBeforeTerminate in ScilabBrowser instead.
+            desktop.setQuitHandler((e, r) -> InterpreterManagement.requestScilabExec("exit();"));
         }
 
         /* defining the Layout */

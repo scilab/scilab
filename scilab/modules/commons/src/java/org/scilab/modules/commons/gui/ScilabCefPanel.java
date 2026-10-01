@@ -1371,16 +1371,23 @@ public class ScilabCefPanel extends JPanel {
             resizeSettleTimer.stop();
         }
 
+        // If CefApp was already terminated by the shutdown hook (exit race),
+        // any browser/client teardown call throws "CefApp was terminated" and
+        // aborts the window close.
+        boolean shutdown = ScilabBrowser.isShutdown();
+
         CefBrowser browserToClose = browser;
         browser = null;
         if (browserToClose != null) {
             devToolsRequested = false;
             devToolsBrowser = null;
-            browserToClose.closeDevTools();
-            synchronized (closingBrowsers) {
-                closingBrowsers.add(browserToClose);
+            if (!shutdown) {
+                browserToClose.closeDevTools();
+                synchronized (closingBrowsers) {
+                    closingBrowsers.add(browserToClose);
+                }
+                ScilabBrowser.close(browserToClose);
             }
-            browserToClose.close(true);
         }
 
         CefClient clientToRelease = client;
@@ -1389,7 +1396,9 @@ public class ScilabCefPanel extends JPanel {
             ScilabBrowser.release(clientToRelease);
         }
 
-        if (browserToClose != null) {
+        // macOS: CEF's message loop is pumped from the EDT, so the close
+        // cannot complete while we block it here; the wait only times out.
+        if (browserToClose != null && !shutdown && OS.get() != OS.MAC) {
             waitForClosingBrowsers();
         }
     }

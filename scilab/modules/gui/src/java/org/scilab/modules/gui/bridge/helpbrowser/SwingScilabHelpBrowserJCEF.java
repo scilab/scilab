@@ -1790,7 +1790,7 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
         searchExecutor.shutdownNow();
         XConfiguration.removeXConfigurationListener(syntaxColorsListener);
         if (browser != null) {
-            browser.close(true);
+            ScilabBrowser.close(browser);
         }
         if (client != null) {
             ScilabBrowser.release(client);
