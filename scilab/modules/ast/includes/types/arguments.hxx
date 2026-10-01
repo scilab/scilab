@@ -41,6 +41,8 @@ struct ARG
 };
 
 std::wstring var2str(types::InternalType* pIT);
+// printf-like formatting without length limit (messages can embed user data)
+EXTERN_AST std::wstring formatError(const char* fmt, ...);
 
 EXTERN_AST std::function<types::InternalType*(types::InternalType*, const std::wstring& name)> getTypeConvertor(const std::wstring& name);
 EXTERN_AST std::tuple<std::function<int(types::typed_list&)>, std::vector<int>> getFunctionValidator(const std::wstring& name);

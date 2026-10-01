@@ -95,9 +95,7 @@ Macro::Macro(std::vector<symbol::Variable*>& _inputArgs, ast::SeqExp& _body, con
         types::InternalType* pIT = symbol::Context::getInstance()->get(var);
         if (pIT == nullptr && m_captured.find(e) == m_captured.end())
         {
-            char msg[128];
-            os_sprintf(msg, _("%s: variable `'%ls\' must exist.\n"), "lambda", e.data());
-            throw ast::InternalError(scilab::UTF8::toWide(msg));
+            throw ast::InternalError(formatError(_("%s: variable `'%ls\' must exist.\n"), "lambda", e.data()));
         }
 
         if (pIT)
@@ -122,9 +120,7 @@ Macro::Macro(std::vector<symbol::Variable*>& _inputArgs, ast::SeqExp& _body, con
         types::InternalType* pIT = symbol::Context::getInstance()->get(var);
         if (pIT == nullptr && m_captured.find(c) == m_captured.end())
         {
-            char msg[128];
-            os_sprintf(msg, _("%s: variable `%ls` must exist.\n"), "lambda", c.data());
-            throw ast::InternalError(scilab::UTF8::toWide(msg));
+            throw ast::InternalError(formatError(_("%s: variable `%ls` must exist.\n"), "lambda", c.data()));
         }
 
         if (pIT)
@@ -493,7 +489,9 @@ Callable::ReturnValue Macro::call(typed_list& in, optional_list& opt, int _iRetC
     {
         try
         {
-            types::InternalType* skipArgs = symbol::Context::getInstance()->get(symbol::Symbol(L"%skipArgs"));
+            // look only in variables: a missing symbol makes Context::get scan all libraries
+            static const symbol::Symbol skipArgsSymbol(L"%skipArgs");
+            types::InternalType* skipArgs = symbol::Context::getInstance()->getOrCreate(skipArgsSymbol)->get();
             if (skipArgs == nullptr)
             {
                 int expectedmin = 0;
@@ -506,37 +504,37 @@ Callable::ReturnValue Macro::call(typed_list& in, optional_list& opt, int _iRetC
 
                 if (in.size() < expectedmin || (bVarargin == false && in.size() > m_arguments.size()))
                 {
-                    char msg[128];
+                    std::wstring msg;
                     if (expectedmin != expectedmax)
                     {
-                        os_sprintf(msg, _("%s: Wrong number of input arguments: %d to %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), expectedmin, expectedmax);
+                        msg = formatError(_("%s: Wrong number of input arguments: %d to %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), expectedmin, expectedmax);
                     }
                     else
                     {
                         if (bVarargin)
                         {
-                            os_sprintf(msg, _("%s: Wrong number of input argument(s): at least %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), (int)m_arguments.size());
+                            msg = formatError(_("%s: Wrong number of input argument(s): at least %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), (int)m_arguments.size());
                         }
                         else
                         {
-                            os_sprintf(msg, _("%s: Wrong number of input argument(s): %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), (int)m_arguments.size());
+                            msg = formatError(_("%s: Wrong number of input argument(s): %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), (int)m_arguments.size());
                         }
                     }
 
-                    throw ast::InternalError(scilab::UTF8::toWide(msg), 999, getBody()->getLocation());
+                    throw ast::InternalError(msg, 999, getBody()->getLocation());
                 }
             }
 
             // manage default_value of all inputs before everything else
             for (int i = 0; i < m_inputArgs->size(); ++i)
             {
-                std::wstring name = (*m_inputArgs)[i]->getSymbol().getName();
-                if (m_arguments.find(name) == m_arguments.end())
+                auto it = m_arguments.find((*m_inputArgs)[i]->getSymbol().getName());
+                if (it == m_arguments.end())
                 {
                     continue;
                 }
 
-                ARG arg = m_arguments[name];
+                const ARG& arg = it->second;
                 if (i >= in.size())
                 {
                     if (arg.default_value)
@@ -546,121 +544,118 @@ Callable::ReturnValue Macro::call(typed_list& in, optional_list& opt, int _iRetC
                         InternalType* pIT = ((ast::RunVisitor*)exec.get())->getResult();
                         if (pIT == nullptr || pIT->isAssignable() == false)
                         {
-                            char msg[128];
-                            os_sprintf(msg, _("%s: Unable to evaluate default value.\n"), scilab::UTF8::toUTF8(m_wstName).data());
-                            throw ast::InternalError(scilab::UTF8::toWide(msg), 999, arg.default_value->getLocation());
+                            throw ast::InternalError(formatError(_("%s: Unable to evaluate default value.\n"), scilab::UTF8::toUTF8(m_wstName).data()), 999, arg.default_value->getLocation());
                         }
 
                         pIT->IncreaseRef();
-                        pContext->put(symbol::Symbol(name), pIT);
+                        pContext->put((*m_inputArgs)[i], pIT);
                         in.push_back(pIT);
                     }
                 }
             }
 
-            for (int i = 0; i < m_inputArgs->size(); ++i)
+            // current value of each input: validators and error messages must see
+            // what the function body will receive, not the raw inputs
+            types::typed_list values(in.begin(), in.end());
+
+            // 1. size then type conversion, one value per input
+            for (int i = 0; i < m_inputArgs->size() && i < values.size(); ++i)
             {
-                std::wstring name = (*m_inputArgs)[i]->getSymbol().getName();
-                if (m_arguments.find(name) == m_arguments.end())
+                auto it = m_arguments.find((*m_inputArgs)[i]->getSymbol().getName());
+                if (it == m_arguments.end())
                 {
                     continue;
                 }
 
-                ARG arg = m_arguments[name];
+                const ARG& arg = it->second;
+                types::InternalType* cur = values[i];
                 if (arg.dimsConvertor)
                 {
                     // check size + expand + transpose
-                    types::InternalType* p = arg.dimsConvertor(in[i]);
+                    types::InternalType* p = arg.dimsConvertor(cur);
                     if (p == nullptr)
                     {
                         if (skipArgs == nullptr)
                         {
-                            char msg[128];
-                            os_sprintf(msg, _("%s: Wrong size of input argument #%d: %ls expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), i + 1, arg.dimsStr().c_str());
-                            throw ast::InternalError(scilab::UTF8::toWide(msg));
+                            throw ast::InternalError(formatError(_("%s: Wrong size of input argument #%d: %ls expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), i + 1, arg.dimsStr().c_str()));
                         }
 
-                        p = in[i]; // no error and send "bad formatted var to function, following 'skipArguments' status"
+                        // no error and send "bad formatted var to function, following 'skipArguments' status"
                     }
                     else
                     {
-                        if (in[i] != p)
-                        {
-                            // update var
-                            pContext->put(symbol::Symbol(name), p);
-                        }
+                        cur = p;
                     }
                 }
 
                 for (auto&& convertor : arg.convertors)
                 {
-                    types::InternalType* p = convertor.convertor(in[i]);
-                    if (p)
+                    types::InternalType* p = nullptr;
+                    try
                     {
-                        if (arg.dimsConvertor)
+                        p = convertor.convertor(cur);
+                    }
+                    catch (const ast::InternalError&)
+                    {
+                        if (cur != values[i])
                         {
-                            p = arg.dimsConvertor(p);
+                            cur->killMe();
                         }
 
-                        pContext->put(symbol::Symbol(name), p);
+                        throw;
+                    }
+
+                    if (p && p != cur)
+                    {
+                        // intermediate value (expanded or transposed) is not used anymore
+                        if (cur != values[i])
+                        {
+                            cur->killMe();
+                        }
+
+                        cur = p;
                     }
                 }
 
-                if (skipArgs == nullptr)
+                if (cur != values[i])
                 {
-                    for (int j = 0; j < arg.validators.size(); ++j)
+                    pContext->put((*m_inputArgs)[i], cur);
+                    values[i] = cur;
+                }
+            }
+
+            // 2. validators, once all inputs are converted (they can refer to other inputs)
+            if (skipArgs == nullptr)
+            {
+                for (int i = 0; i < m_inputArgs->size() && i < values.size(); ++i)
+                {
+                    auto it = m_arguments.find((*m_inputArgs)[i]->getSymbol().getName());
+                    if (it == m_arguments.end())
+                    {
+                        continue;
+                    }
+
+                    const ARG& arg = it->second;
+                    for (auto&& validator : arg.validators)
                     {
                         types::typed_list args;
-                        for (int k = 0; k < arg.validators[j].inputs.size(); ++k)
+                        for (auto&& input : validator.inputs)
                         {
-                            int index = -1;
-                            types::InternalType* val = nullptr;
-                            std::tie(index, val) = arg.validators[j].inputs[k];
-                            if (index != -1)
-                            {
-                                args.push_back(in[index]);
-                            }
-                            else
-                            {
-                                args.push_back(val);
-                            }
+                            int index = std::get<0>(input);
+                            args.push_back(index != -1 ? values[index] : std::get<1>(input));
                         }
 
-                        if (arg.validators[j].validator(args) == false)
+                        if (validator.validator(args) == false)
                         {
-                            auto error = arg.validators[j].error;
-                            auto errorArgs = arg.validators[j].errorArgs;
-                            char msg[128];
-
-                            switch (abs(std::get<1>(error)))
+                            // messages take at most 3 extra strings, unused ones are ignored by the format
+                            std::string strs[3];
+                            for (int k = 0; k < validator.errorArgs.size() && k < 3; ++k)
                             {
-                                case 2:
-                                    os_sprintf(msg, _(std::get<0>(error).data()), scilab::UTF8::toUTF8(m_wstName).data(), i + 1);
-                                    break;
-                                case 3:
-                                {
-                                    std::string s1 = std::get<0>(errorArgs[0]) != -1 ? scilab::UTF8::toUTF8(var2str(in[std::get<0>(errorArgs[0])])) : std::get<1>(errorArgs[0]);
-                                    os_sprintf(msg, _(std::get<0>(error).data()), scilab::UTF8::toUTF8(m_wstName).data(), i + 1, s1.data());
-                                    break;
-                                }
-                                case 4:
-                                {
-                                    std::string s1 = std::get<0>(errorArgs[0]) != -1 ? scilab::UTF8::toUTF8(var2str(in[std::get<0>(errorArgs[0])])) : std::get<1>(errorArgs[0]);
-                                    std::string s2 = std::get<0>(errorArgs[1]) != -1 ? scilab::UTF8::toUTF8(var2str(in[std::get<0>(errorArgs[1])])) : std::get<1>(errorArgs[1]);
-                                    os_sprintf(msg, _(std::get<0>(error).data()), scilab::UTF8::toUTF8(m_wstName).data(), i + 1, s1.data(), s2.data());
-                                    break;
-                                }
-                                case 5:
-                                {
-                                    std::string s1 = std::get<0>(errorArgs[0]) != -1 ? scilab::UTF8::toUTF8(var2str(in[std::get<0>(errorArgs[0])])) : std::get<1>(errorArgs[0]);
-                                    std::string s2 = std::get<0>(errorArgs[1]) != -1 ? scilab::UTF8::toUTF8(var2str(in[std::get<0>(errorArgs[1])])) : std::get<1>(errorArgs[1]);
-                                    std::string s3 = std::get<0>(errorArgs[2]) != -1 ? scilab::UTF8::toUTF8(var2str(in[std::get<0>(errorArgs[2])])) : std::get<1>(errorArgs[2]);
-                                    os_sprintf(msg, _(std::get<0>(error).data()), scilab::UTF8::toUTF8(m_wstName).data(), i + 1, s1.data(), s2.data(), s3.data());
-                                    break;
-                                }
+                                int pos = std::get<0>(validator.errorArgs[k]);
+                                strs[k] = pos != -1 ? scilab::UTF8::toUTF8(var2str(values[pos])) : std::get<1>(validator.errorArgs[k]);
                             }
 
-                            throw ast::InternalError(scilab::UTF8::toWide(msg), 999, arg.loc);
+                            throw ast::InternalError(formatError(_(std::get<0>(validator.error).data()), scilab::UTF8::toUTF8(m_wstName).data(), i + 1, strs[0].data(), strs[1].data(), strs[2].data()), 999, arg.loc);
                         }
                     }
                 }
@@ -1071,17 +1066,17 @@ void Macro::updateArguments()
                     {
                         if (m_arguments.size() >= inputNames.size() || inputNames[m_arguments.size()] != name)
                         {
-                            char msg[128];
+                            std::wstring msg;
                             if (std::find(inputNames.begin(), inputNames.end(), name) == inputNames.end())
                             {
-                                os_sprintf(msg, _("%s: Identifier '%s' must be an input argument.\n"), scilab::UTF8::toUTF8(m_wstName).data(), scilab::UTF8::toUTF8(name).data());
+                                msg = formatError(_("%s: Identifier '%s' must be an input argument.\n"), scilab::UTF8::toUTF8(m_wstName).data(), scilab::UTF8::toUTF8(name).data());
                             }
                             else
                             {
-                                os_sprintf(msg, _("%s: Identifier must be define in same order that parameters.\n"), scilab::UTF8::toUTF8(m_wstName).data());
+                                msg = formatError(_("%s: Identifier must be define in same order that parameters.\n"), scilab::UTF8::toUTF8(m_wstName).data());
                             }
 
-                            throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                            throw ast::InternalError(msg, 999, dec->getArgumentType()->getLocation());
                         }
                     }
                 }
@@ -1109,9 +1104,7 @@ void Macro::updateArguments()
                     name += f->getTail()->getAs<ast::SimpleVar>()->getSymbol().getName();
                     */
 
-                    char msg[128];
-                    os_sprintf(msg, _("%s: Expression with field are not managed.\n"), "arguments");
-                    throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                    throw ast::InternalError(formatError(_("%s: Expression with field are not managed.\n"), "arguments"), 999, dec->getArgumentType()->getLocation());
                 }
 
                 if (name == L"varargin")
@@ -1122,9 +1115,7 @@ void Macro::updateArguments()
                         dec->getArgumentType()->getExps().size() != 0 ||
                         dec->getArgumentValidators()->getExps().size() != 0)
                     {
-                        char msg[128];
-                        os_sprintf(msg, _("%s: varargin must be declared without parameter.\n"), "arguments");
-                        throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                        throw ast::InternalError(formatError(_("%s: varargin must be declared without parameter.\n"), "arguments"), 999, dec->getArgumentType()->getLocation());
                     }
 
                     bvarargin = true;
@@ -1144,9 +1135,7 @@ void Macro::updateArguments()
                         std::wstring name = dim->getAs<ast::SimpleVar>()->getSymbol().getName();
                         if (std::find(inputNames.begin(), inputNames.end(), name) == inputNames.end())
                         {
-                            char msg[128];
-                            os_sprintf(msg, _("%s: Dimension must be an input parameter.\n"), scilab::UTF8::toUTF8(m_wstName).data());
-                            throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                            throw ast::InternalError(formatError(_("%s: Dimension must be an input parameter.\n"), scilab::UTF8::toUTF8(m_wstName).data()), 999, dec->getArgumentType()->getLocation());
                         }
 
                         symbol::Variable* var = symbol::Context::getInstance()->getOrCreate(dim->getAs<ast::SimpleVar>()->getSymbol());
@@ -1167,9 +1156,7 @@ void Macro::updateArguments()
                         ast::MatrixExp* m = dim->getAs<ast::MatrixExp>();
                         if (m->getLines().size() != 1)
                         {
-                            char msg[128];
-                            os_sprintf(msg, _("%s: Dimension must be a number, row vector or ':'.\n"), scilab::UTF8::toUTF8(m_wstName).data());
-                            throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                            throw ast::InternalError(formatError(_("%s: Dimension must be a number, row vector or ':'.\n"), scilab::UTF8::toUTF8(m_wstName).data()), 999, dec->getArgumentType()->getLocation());
                         }
 
                         ast::MatrixLineExp* ml = m->getLines()[0]->getAs<ast::MatrixLineExp>();
@@ -1177,9 +1164,7 @@ void Macro::updateArguments()
                         {
                             if (c->isDoubleExp() == false)
                             {
-                                char msg[128];
-                                os_sprintf(msg, _("%s: Dimension must be a number, row vector or ':'.\n"), scilab::UTF8::toUTF8(m_wstName).data());
-                                throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                                throw ast::InternalError(formatError(_("%s: Dimension must be a number, row vector or ':'.\n"), scilab::UTF8::toUTF8(m_wstName).data()), 999, dec->getArgumentType()->getLocation());
                             }
 
                             d.push_back(static_cast<int>(c->getAs<ast::DoubleExp>()->getValue()));
@@ -1189,9 +1174,7 @@ void Macro::updateArguments()
                     }
                     else
                     {
-                        char msg[128];
-                        os_sprintf(msg, _("%s: Dimension must be a number, row vector or ':'.\n"), scilab::UTF8::toUTF8(m_wstName).data());
-                        throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                        throw ast::InternalError(formatError(_("%s: Dimension must be a number, row vector or ':'.\n"), scilab::UTF8::toUTF8(m_wstName).data()), 999, dec->getArgumentType()->getLocation());
                     }
                 }
 
@@ -1214,9 +1197,7 @@ void Macro::updateArguments()
                     auto f = getTypeConvertor(name);
                     if (f == nullptr)
                     {
-                        char msg[128];
-                        os_sprintf(msg, _("%s: Unknown conversion function '%s'\n"), scilab::UTF8::toUTF8(m_wstName).data(), scilab::UTF8::toUTF8(name).data());
-                        throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                        throw ast::InternalError(formatError(_("%s: Unknown conversion function '%s'\n"), scilab::UTF8::toUTF8(m_wstName).data(), scilab::UTF8::toUTF8(name).data()), 999, dec->getArgumentType()->getLocation());
                     }
 
                     argConv.convertor = [f, this](types::InternalType* x)
@@ -1232,9 +1213,7 @@ void Macro::updateArguments()
                 }
                 else if (needDefaultValue)
                 {
-                    char msg[128];
-                    os_sprintf(msg, _("%s: Identifier '%s' needs a default value.\n"), scilab::UTF8::toUTF8(m_wstName).data(), scilab::UTF8::toUTF8(name).data());
-                    throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                    throw ast::InternalError(formatError(_("%s: Identifier '%s' needs a default value.\n"), scilab::UTF8::toUTF8(m_wstName).data(), scilab::UTF8::toUTF8(name).data()), 999, dec->getArgumentType()->getLocation());
                 }
 
                 // validators
@@ -1249,16 +1228,12 @@ void Macro::updateArguments()
 
                         if (f == nullptr)
                         {
-                            char msg[128];
-                            os_sprintf(msg, _("%s: Unknown validation function '%s'\n"), scilab::UTF8::toUTF8(m_wstName).data(), scilab::UTF8::toUTF8(name).data());
-                            throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                            throw ast::InternalError(formatError(_("%s: Unknown validation function '%s'\n"), scilab::UTF8::toUTF8(m_wstName).data(), scilab::UTF8::toUTF8(name).data()), 999, dec->getArgumentType()->getLocation());
                         }
 
                         if (rhs[0] != 1)
                         {
-                            char msg[128];
-                            os_sprintf(msg, _("%s: Wrong number of input argument(s): %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), 1);
-                            throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                            throw ast::InternalError(formatError(_("%s: Wrong number of input argument(s): %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), 1), 999, dec->getArgumentType()->getLocation());
                         }
 
                         ARG_VALIDATOR argValidator;
@@ -1295,27 +1270,21 @@ void Macro::updateArguments()
 
                         if (f == nullptr)
                         {
-                            char msg[128];
-                            os_sprintf(msg, _("%s: \"%ls\" is not a validation function.\n"), scilab::UTF8::toUTF8(m_wstName).data(), name.c_str());
-                            throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                            throw ast::InternalError(formatError(_("%s: \"%ls\" is not a validation function.\n"), scilab::UTF8::toUTF8(m_wstName).data(), name.c_str()), 999, dec->getArgumentType()->getLocation());
                         }
 
                         if (rhs.size() == 1)
                         {
                             if (rhs[0] != size && rhs[0] != -1)
                             {
-                                char msg[128];
-                                os_sprintf(msg, _("%s: Wrong number of input argument(s): %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), rhs[0]);
-                                throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                                throw ast::InternalError(formatError(_("%s: Wrong number of input argument(s): %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), rhs[0]), 999, dec->getArgumentType()->getLocation());
                             }
                         }
                         else
                         {
                             if (size < rhs[0] || size > rhs[1])
                             {
-                                char msg[128];
-                                os_sprintf(msg, _("%s: Wrong number of input argument(s): between %d and %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), rhs[0], rhs[1]);
-                                throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                                throw ast::InternalError(formatError(_("%s: Wrong number of input argument(s): between %d and %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), rhs[0], rhs[1]), 999, dec->getArgumentType()->getLocation());
                             }
                         }
 
@@ -1332,9 +1301,7 @@ void Macro::updateArguments()
                                 {
                                     if (std::find(inputNames.begin(), inputNames.end(), name) == inputNames.end())
                                     {
-                                        char msg[128];
-                                        os_sprintf(msg, _("%s: Identifier '%s' must be an input argument.\n"), scilab::UTF8::toUTF8(m_wstName).data(), scilab::UTF8::toUTF8(name).data());
-                                        throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                                        throw ast::InternalError(formatError(_("%s: Identifier '%s' must be an input argument.\n"), scilab::UTF8::toUTF8(m_wstName).data(), scilab::UTF8::toUTF8(name).data()), 999, dec->getArgumentType()->getLocation());
                                     }
 
                                     int pos = static_cast<int>(std::find(inputNames.begin(), inputNames.end(), inputs[i]->getAs<ast::SimpleVar>()->getSymbol().getName()) - inputNames.begin());
@@ -1358,9 +1325,7 @@ void Macro::updateArguments()
                             {
                                 if (checkArgument(inputs[i]) == false)
                                 {
-                                    char msg[128];
-                                    os_sprintf(msg, _("%s: argument must be constant expression.\n"), scilab::UTF8::toUTF8(m_wstName).data());
-                                    throw ast::InternalError(scilab::UTF8::toWide(msg), 999, dec->getArgumentType()->getLocation());
+                                    throw ast::InternalError(formatError(_("%s: argument must be constant expression.\n"), scilab::UTF8::toUTF8(m_wstName).data()), 999, dec->getArgumentType()->getLocation());
                                 }
 
                                 std::unique_ptr<ast::ConstVisitor> exec(ConfigVariable::getDefaultVisitor());
@@ -1370,17 +1335,13 @@ void Macro::updateArguments()
                                 }
                                 catch (const ast::InternalError& /*ie*/)
                                 {
-                                    char msg[128];
-                                    os_sprintf(msg, _("%s: Unable to evaluate argument.\n"), scilab::UTF8::toUTF8(m_wstName).data());
-                                    throw ast::InternalError(scilab::UTF8::toWide(msg), 999, inputs[i]->getLocation());
+                                    throw ast::InternalError(formatError(_("%s: Unable to evaluate argument.\n"), scilab::UTF8::toUTF8(m_wstName).data()), 999, inputs[i]->getLocation());
                                 }
 
                                 types::InternalType* pIT = ((ast::RunVisitor*)exec.get())->getResult();
                                 if (pIT == nullptr || pIT->isAssignable() == false)
                                 {
-                                    char msg[128];
-                                    os_sprintf(msg, _("%s: Unable to evaluate argument.\n"), scilab::UTF8::toUTF8(m_wstName).data());
-                                    throw ast::InternalError(scilab::UTF8::toWide(msg), 999, inputs[i]->getLocation());
+                                    throw ast::InternalError(formatError(_("%s: Unable to evaluate argument.\n"), scilab::UTF8::toUTF8(m_wstName).data()), 999, inputs[i]->getLocation());
                                 }
 
                                 pIT->IncreaseRef();
@@ -1423,9 +1384,7 @@ void Macro::updateArguments()
 
             if (m_arguments.size() + (bvarargin ? 1 : 0) != m_inputArgs->size())
             {
-                char msg[128];
-                os_sprintf(msg, _("%s: All parameters must be specified in arguments block.\n"), scilab::UTF8::toUTF8(m_wstName).data());
-                throw ast::InternalError(scilab::UTF8::toWide(msg), 999, e->getLocation());
+                throw ast::InternalError(formatError(_("%s: All parameters must be specified in arguments block.\n"), scilab::UTF8::toUTF8(m_wstName).data()), 999, e->getLocation());
             }
         }
     }

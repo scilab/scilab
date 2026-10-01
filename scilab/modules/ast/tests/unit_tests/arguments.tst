@@ -373,7 +373,7 @@ test_bool(uint32(vref), vref == 1)
 test_bool(int64(vref), vref == 1)
 test_bool(uint64(vref), vref == 1)
 test_bool(vref == 1, vref == 1)
-test_bool(string(vref == 1), vref == 1)
+assert_checkerror("test_bool(string(vref == 1), vref == 1)", "test_bool: Unable to convert ''string'' to boolean.");
 
 //varargin
 function r = test_varargin(a, varargin)
@@ -430,4 +430,114 @@ function test_size(a)
 endfunction
 
 test_size(list(1, 2 ,3))
+
+// vectors are transposed to match the expected orientation
+function r = test_transpose_row(a)
+    arguments
+        a (1, :)
+    end
+    r = a;
+endfunction
+
+function r = test_transpose_col(a)
+    arguments
+        a (:, 1)
+    end
+    r = a;
+endfunction
+
+function r = test_transpose_fixed(a)
+    arguments
+        a (1, 3)
+    end
+    r = a;
+endfunction
+
+assert_checkequal(test_transpose_row(1:3), 1:3);
+assert_checkequal(test_transpose_row((1:3)'), 1:3);
+assert_checkequal(test_transpose_row(["a"; "b"]), ["a", "b"]);
+assert_checkequal(test_transpose_col((1:3)'), (1:3)');
+assert_checkequal(test_transpose_col(1:3), (1:3)');
+assert_checkequal(test_transpose_fixed((1:3)'), 1:3);
+
+assert_checkerror("test_transpose_row(ones(2, 3))", "test_transpose_row: Wrong size of input argument #1: 1 x n expected.");
+assert_checkerror("test_transpose_col(ones(2, 3))", "test_transpose_col: Wrong size of input argument #1: m x 1 expected.");
+assert_checkerror("test_transpose_fixed((1:4)'')", "test_transpose_fixed: Wrong size of input argument #1: 1 x 3 expected.");
+
+// type conversion + transposition
+function r = test_convert_transpose(a)
+    arguments
+        a (1, :) double
+    end
+    r = a;
+endfunction
+
+assert_checkequal(test_convert_transpose(int8([1; 2; 3])), [1, 2, 3]);
+
+// string conversion: the whole string must be a number
+function r = test_string_double(a)
+    arguments
+        a double
+    end
+    r = a;
+endfunction
+
+function r = test_string_int(a)
+    arguments
+        a int8
+    end
+    r = a;
+endfunction
+
+assert_checkequal(test_string_double("2.5"), 2.5);
+assert_checkequal(test_string_double([" 1", "-3e2 "]), [1, -300]);
+assert_checkequal(test_string_int(["7", "-5"]), int8([7, -5]));
+assert_checkerror("test_string_double(""abc"")", "test_string_double: Unable to convert ""abc"" to double.");
+assert_checkerror("test_string_double(""12abc"")", "test_string_double: Unable to convert ""12abc"" to double.");
+assert_checkerror("test_string_double("""")", "test_string_double: Unable to convert """" to double.");
+assert_checkerror("test_string_int(""x"")", "test_string_int: Unable to convert ""x"" to int.");
+
+function r = test_string_bool(a)
+    arguments
+        a boolean
+    end
+    r = a;
+endfunction
+
+// boolean: non zero is true, NaN and strings are rejected
+assert_checkequal(test_string_bool([0, 0.5, -2]), [%f, %t, %t]);
+assert_checkequal(test_string_bool(int64([0, 2^32])), [%f, %t]);
+assert_checkerror("test_string_bool([1, %nan])", "test_string_bool: Unable to convert NaN to boolean.");
+assert_checkerror("test_string_bool(""T"")", "test_string_bool: Unable to convert ''string'' to boolean.");
+
+// validators see converted values, including those of other inputs
+function r = test_validator_converted(a, b)
+    arguments
+        a (1, :)
+        b (1, :) {mustBeEqualDims(b, a)}
+    end
+    r = size(b);
+endfunction
+
+function r = test_validator_next(a, b)
+    arguments
+        a {mustBeEqualDims(a, b)}
+        b (1, :)
+    end
+    r = size(b);
+endfunction
+
+assert_checkequal(test_validator_converted((1:3)', 1:3), [1, 3]);
+assert_checkequal(test_validator_converted(1:3, (1:3)'), [1, 3]);
+assert_checkequal(test_validator_next(1:3, (1:3)'), [1, 3]);
+
+// error messages longer than a fixed buffer
+function test_long_message(m)
+    arguments
+        m {mustBeMember(m, ["alpha_option_one", "beta_option_two", "gamma_option_three", "delta_option_four", "epsilon_option_five", "zeta_option_six"])}
+    end
+endfunction
+
+msg = "test_long_message: Wrong value for input argument #1: Must be in [""alpha_option_one"",""beta_option_two"",""gamma_option_three"",""delta_option_four"",""epsilon_option_five"",""zeta_option_six""].";
+assert_checkerror("test_long_message(""nope"")", msg);
 

@@ -6,6 +6,10 @@
  * along with this program.
  */
 
+#include <algorithm>
+#include <cstdarg>
+#include <cwctype>
+
 #include "arguments.hxx"
 #include "overload.hxx"
 #include "opexp.hxx"
@@ -61,6 +65,24 @@ std::wstring var2str(types::InternalType* pIT)
     return L"";
 }
 
+std::wstring formatError(const char* fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+    va_list args2;
+    va_copy(args2, args);
+    int size = vsnprintf(nullptr, 0, fmt, args);
+    va_end(args);
+
+    std::vector<char> buf(size > 0 ? size + 1 : 1, '\0');
+    if (size > 0)
+    {
+        vsnprintf(buf.data(), buf.size(), fmt, args2);
+    }
+    va_end(args2);
+
+    return scilab::UTF8::toWide(buf.data());
+}
 
 bool mustBeEmpty(types::InternalType* x) { return x->isDouble() && x->getAs<types::Double>()->isEmpty(); }
 bool mustBeDouble(types::InternalType* x) { return x->isDouble(); }
@@ -183,6 +205,60 @@ types::InternalType* convertNum(types::InternalType* val)
     return out;
 }
 
+// the whole string must be a number (surrounding spaces allowed)
+static bool parseDouble(const wchar_t* str, double& d)
+{
+    wchar_t* end = nullptr;
+    d = wcstod(str, &end);
+    if (end == str)
+    {
+        return false;
+    }
+
+    while (iswspace(*end))
+    {
+        ++end;
+    }
+
+    return *end == L'\0';
+}
+
+// non zero is true
+template<class T_IN>
+types::InternalType* numToBool(types::InternalType* val)
+{
+    T_IN* in = val->getAs<T_IN>();
+    types::Bool* out = new types::Bool(in->getDims(), in->getDimsArray());
+    int* pout = out->get();
+    typename T_IN::type* pin = in->get();
+    for (int i = 0; i < in->getSize(); ++i)
+    {
+        pout[i] = pin[i] != 0 ? 1 : 0;
+    }
+
+    return out;
+}
+
+template<class T>
+types::InternalType* stringToNum(types::String* in, const std::wstring& name, const char* type)
+{
+    T* out = new T(in->getDims(), in->getDimsArray());
+    typename T::type* pout = out->get();
+    for (int i = 0; i < in->getSize(); ++i)
+    {
+        double d = 0;
+        if (parseDouble(in->get()[i], d) == false)
+        {
+            out->killMe();
+            throw ast::InternalError(formatError(_("%ls: Unable to convert \"%ls\" to %s.\n"), name.data(), in->get()[i], type));
+        }
+
+        pout[i] = static_cast<typename T::type>(d);
+    }
+
+    return out;
+}
+
 types::InternalType* toDouble(types::InternalType* val, const std::wstring& name)
 {
     switch (val->getType())
@@ -208,22 +284,10 @@ types::InternalType* toDouble(types::InternalType* val, const std::wstring& name
         case types::InternalType::ScilabUInt64:
             return convertNum<types::Double, types::UInt64>(val);
         case types::InternalType::ScilabString:
-        {
-            types::String* in = val->getAs<types::String>();
-            types::Double* out = new types::Double(in->getDims(), in->getDimsArray());
-            double* pout = out->get();
-            for (int i = 0; i < in->getSize(); ++i)
-            {
-                pout[i] = wcstod(in->get()[i], NULL);
-            }
-
-            return out;
-        }
+            return stringToNum<types::Double>(val->getAs<types::String>(), name, "double");
         default:
         {
-            char msg[128];
-            os_sprintf(msg, _("%ls: Unable to convert '%ls' to double.\n"), name.data(), val->getTypeStr().data());
-            throw ast::InternalError(scilab::UTF8::toWide(msg));
+            throw ast::InternalError(formatError(_("%ls: Unable to convert '%ls' to double.\n"), name.data(), val->getTypeStr().data()));
         }
     }
 }
@@ -254,22 +318,10 @@ types::InternalType* toInt(types::InternalType* val, const std::wstring& name)
         case types::InternalType::ScilabUInt64:
             return convertNum<T, types::UInt64>(val);
         case types::InternalType::ScilabString:
-        {
-            types::String* in = val->getAs<types::String>();
-            T* out = new T(in->getDims(), in->getDimsArray());
-            typename T::type* pout = out->get();
-            for (int i = 0; i < in->getSize(); ++i)
-            {
-                pout[i] = static_cast<typename T::type>(std::wcstoull(in->get()[i], NULL, 10));
-            }
-
-            return out;
-        }
+            return stringToNum<T>(val->getAs<types::String>(), name, "int");
         default:
         {
-            char msg[128];
-            os_sprintf(msg, _("%ls: Unable to convert '%ls' to int.\n"), name.data(), val->getTypeStr().data());
-            throw ast::InternalError(scilab::UTF8::toWide(msg));
+            throw ast::InternalError(formatError(_("%ls: Unable to convert '%ls' to int.\n"), name.data(), val->getTypeStr().data()));
         }
     }
 }
@@ -281,32 +333,34 @@ types::InternalType* toBool(types::InternalType* val, const std::wstring& name)
         case types::InternalType::ScilabBool:
             return val;
         case types::InternalType::ScilabDouble:
-        case types::InternalType::ScilabInt8:
-        case types::InternalType::ScilabUInt8:
-        case types::InternalType::ScilabInt16:
-        case types::InternalType::ScilabUInt16:
-        case types::InternalType::ScilabInt32:
-        case types::InternalType::ScilabUInt32:
-        case types::InternalType::ScilabInt64:
-        case types::InternalType::ScilabUInt64:
-            return toInt<types::Bool>(val, name);
-        case types::InternalType::ScilabString:
         {
-            types::String* in = val->getAs<types::String>();
-            types::Bool* out = new types::Bool(in->getDims(), in->getDimsArray());
-            int* pout = out->get();
-            for (int i = 0; i < in->getSize(); ++i)
+            types::Double* d = val->getAs<types::Double>();
+            if (std::any_of(d->get(), d->get() + d->getSize(), [](double v) { return std::isnan(v); }))
             {
-                pout[i] = wcscmp(in->get()[i], L"T") == 0 ? 1 : 0;
+                throw ast::InternalError(formatError(_("%ls: Unable to convert NaN to boolean.\n"), name.data()));
             }
 
-            return out;
+            return numToBool<types::Double>(val);
         }
+        case types::InternalType::ScilabInt8:
+            return numToBool<types::Int8>(val);
+        case types::InternalType::ScilabUInt8:
+            return numToBool<types::UInt8>(val);
+        case types::InternalType::ScilabInt16:
+            return numToBool<types::Int16>(val);
+        case types::InternalType::ScilabUInt16:
+            return numToBool<types::UInt16>(val);
+        case types::InternalType::ScilabInt32:
+            return numToBool<types::Int32>(val);
+        case types::InternalType::ScilabUInt32:
+            return numToBool<types::UInt32>(val);
+        case types::InternalType::ScilabInt64:
+            return numToBool<types::Int64>(val);
+        case types::InternalType::ScilabUInt64:
+            return numToBool<types::UInt64>(val);
         default:
         {
-            char msg[128];
-            os_sprintf(msg, _("%ls: Unable to convert '%ls' to boolean.\n"), name.data(), val->getTypeStr().data());
-            throw ast::InternalError(scilab::UTF8::toWide(msg));
+            throw ast::InternalError(formatError(_("%ls: Unable to convert '%ls' to boolean.\n"), name.data(), val->getTypeStr().data()));
         }
     }
 }
@@ -402,9 +456,7 @@ types::InternalType* toString(types::InternalType* val, const std::wstring& name
             return val;
         default:
         {
-            char msg[128];
-            os_sprintf(msg, _("%ls: Unable to convert '%ls' to string.\n"), name.data(), val->getTypeStr().data());
-            throw ast::InternalError(scilab::UTF8::toWide(msg));
+            throw ast::InternalError(formatError(_("%ls: Unable to convert '%ls' to string.\n"), name.data(), val->getTypeStr().data()));
         }
     }
 }
@@ -1172,7 +1224,8 @@ types::InternalType* transposevar(types::InternalType* x, const std::vector<std:
 
             if (transposeDims.size() == 2)
             {
-                if (transposeDims[0] == 1)
+                // row expected, column given
+                if (transposeDims[0] == 1 && gt->getCols() == 1)
                 {
                     if (transposeDims[1] == -1 || transposeDims[1] == gt->getRows())
                     {
@@ -1181,7 +1234,8 @@ types::InternalType* transposevar(types::InternalType* x, const std::vector<std:
                         return transposed;
                     }
                 }
-                else if (transposeDims[1] == 1)
+                // column expected, row given
+                else if (transposeDims[1] == 1 && gt->getRows() == 1)
                 {
                     if (transposeDims[0] == -1 || transposeDims[0] == gt->getCols())
                     {
@@ -1288,16 +1342,24 @@ types::InternalType* checksize(types::InternalType* x, const std::vector<std::tu
 
     types::GenericType* g = x->getAs<types::GenericType>();
 
-    types::typed_list in1 = {x};
-    types::typed_list out1;
-    if (Overload::call(L"size", in1, 1, out1) != types::Function::OK)
+    std::vector<int> dims1;
+    if (x->isArrayOf())
     {
-        return nullptr;
+        dims1.assign(g->getDimsArray(), g->getDimsArray() + g->getDims());
     }
+    else
+    {
+        types::typed_list in1 = {x};
+        types::typed_list out1;
+        if (Overload::call(L"size", in1, 1, out1) != types::Function::OK)
+        {
+            return nullptr;
+        }
 
-    types::Double* p1 = out1[0]->getAs<types::Double>();
-    std::vector<int> dims1(p1->get(), p1->get() + p1->getSize());
-    p1->killMe();
+        types::Double* p1 = out1[0]->getAs<types::Double>();
+        dims1.assign(p1->get(), p1->get() + p1->getSize());
+        p1->killMe();
+    }
 
     if (dims1.size() > dims.size())
     {
@@ -1361,16 +1423,17 @@ types::InternalType* checksize(types::InternalType* x, const std::vector<std::tu
         }
 
         status &= ok;
-
-        if (ok == false && dims1[i] == 1)
-        {
-            return transposevar(x, dims);
-        }
     }
 
     if (status)
     {
         return x;
+    }
+
+    // a vector with the wrong orientation can still match once transposed
+    if (dims1.size() == 2 && (dims1[0] == 1 || dims1[1] == 1))
+    {
+        return transposevar(x, dims);
     }
 
     return nullptr;
