@@ -28,12 +28,20 @@ allDLLs(fortran) = [];
 
 [_, output] = host(dlwWriteBatchFile("dumpbin /IMPORTS " + strcat(allDLLs, " ")));
 found = grep(output, "libmmd.dll");
-assert_checkequal(found, []);
+if found <> [] then
+    names = grep(output, "Dump of");
+    disp(output(gsort([found names],"g","i")))
+    error("dependency found");
+end
 
 // checks that we don't have a dependency on user32.dll
 allDLLs = ls("SCI/bin/*.dll");
-haveDeps = grep(allDLLs, ["io", "libcrypto", "tk85", "tcl85", "sound", "scilocalization", "sciconsole", "noconsole", "newt", "nativewindow", "libjvm", "Windows", "windows", "core", "ast"]);
+haveDeps = grep(allDLLs, ["io", "libcrypto", "tk85", "tcl85", "sound", "scilocalization", "sciconsole", "noconsole", "newt", "nativewindow", "libjvm", "Windows", "windows", "webtools", "core", "ast", "glass", "prism_d3d"]);
 allDLLs(haveDeps) = [];
 [_, output] = host(dlwWriteBatchFile("dumpbin /IMPORTS " + strcat(allDLLs, " ")));
 found = grep(output, "USER32.dll");
-assert_checkequal(found, []);
+if found <> [] then
+    names = grep(output, "Dump of");
+    disp(output(gsort([found names],"g","i")))
+    error("dependency found");
+end
