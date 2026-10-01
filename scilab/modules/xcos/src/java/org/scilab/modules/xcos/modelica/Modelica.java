@@ -18,14 +18,13 @@ package org.scilab.modules.xcos.modelica;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.OutputStreamWriter;
 import java.io.FileOutputStream;
 import java.io.Writer;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -51,7 +50,6 @@ import org.xml.sax.SAXException;
  * Main class for modelica manipulation.
  */
 public final class Modelica {
-    private static final String LATIN1_ENCODING = "ISO-8859-1";
     private static final String MODEL_CLASS_PACKAGE = "org.scilab.modules.xcos.modelica.model";
     private static final String SCHEMA_FILENAME = "/Modelica.xsd";
 
@@ -81,7 +79,7 @@ public final class Modelica {
              * Customize the file to be handled by the xml2modelica and
              * modelicat tool.
              */
-            marshaller.setProperty(Marshaller.JAXB_ENCODING, LATIN1_ENCODING);
+            marshaller.setProperty(Marshaller.JAXB_ENCODING, StandardCharsets.UTF_8.name());
 
             marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
         } catch (JAXBException e) {
@@ -130,14 +128,13 @@ public final class Modelica {
      */
     @SuppressWarnings("unchecked")
     public Model load(File file) throws JAXBException {
-        InputStreamReader reader;
-        try {
-            reader = new InputStreamReader(new FileInputStream(file), Charset.forName(LATIN1_ENCODING));
-        } catch (FileNotFoundException e) {
+        // bytes, so that the parser applies the declared encoding, UTF-8 by default
+        try (InputStream in = new FileInputStream(file)) {
+            return ((JAXBElement<Model>) unmarshaller.unmarshal(in)).getValue();
+        } catch (IOException e) {
             Logger.getLogger(Modelica.class.getName()).severe(e.toString());
             return null;
         }
-        return ((JAXBElement<Model>) unmarshaller.unmarshal(reader)).getValue();
     }
 
     /**
@@ -170,7 +167,7 @@ public final class Modelica {
             }
             buffer.append(newline);
 
-            try (Writer fw =  new OutputStreamWriter(new FileOutputStream(file), "UTF-8")) {
+            try (Writer fw =  new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
                 fw.append(buffer);
             }
         } catch (FactoryConfigurationError | IOException e) {
