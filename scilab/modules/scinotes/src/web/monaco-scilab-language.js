@@ -79,6 +79,8 @@ function registerScilabLanguage() {
         ]
     });
     registerScilabTokenizer();
+    registerScilabPrototypeLanguage("scilab-proto", "function.defaultLibrary");
+    registerScilabPrototypeLanguage("scilab-proto-macro", "macro");
     defineScilabTheme();
 }
 
@@ -131,15 +133,14 @@ function defineScilabTheme(themeConfig) {
             tokenRule("macro.inFile", colors.macroInFile, mergeFontStyle(styles.macroInFile, "underline")),
             tokenRule("macro.deprecated", colors.functionKeyword, mergeFontStyle(styles.functionKeyword, "underline strikethrough")),
             tokenRule("variable", colors.identifier, styles.identifier),
-            tokenRule("variable.scilabRuntime", colors.externalVariable, styles.externalVariable),
-            tokenRule("variable.definition.scilabRuntime", colors.externalVariable, styles.externalVariable),
-            tokenRule("variable.declaration.scilabRuntime", colors.externalVariable, styles.externalVariable),
             tokenRule("variable.readonly", colors.constants, styles.constants),
             tokenRule("variable.readonly.scilabRuntime", colors.constants, styles.constants),
             tokenRule("variable.deprecated", colors.functionKeyword, mergeFontStyle(styles.functionKeyword, "strikethrough")),
             tokenRule("parameter", colors.inputOutputArgs, styles.inputOutputArgs),
             tokenRule("property", colors.field, styles.field),
-            tokenRule("identifier", colors.identifier, styles.identifier)
+            tokenRule("identifier", colors.identifier, styles.identifier),
+            // The "..." closing a help syntax cut short (registerScilabPrototypeLanguage).
+            tokenRule("elision", colors.defaultText, mergeFontStyle(styles.defaultText, "bold"))
         ],
         colors: {
             "editor.background": "#" + ui.background,
@@ -171,7 +172,6 @@ function normalizeScilabTheme(themeConfig) {
             macro: "AE5CB0",
             macroInFile: "000000",
             string: "BC8F8F",
-            externalVariable: "FF0000",
             inputOutputArgs: "834310",
             identifier: "000000",
             comment: "64AE64",
@@ -263,12 +263,25 @@ function mergeFontStyle(base, extra) {
     return Object.keys(styles).join(" ");
 }
 
+var scilabKeywords = {
+    functionKeywords: ["function", "endfunction"],
+    controlKeywords: ["abort", "break", "quit", "return", "resume", "pause", "continue", "exit"],
+    structureKeywords: ["then", "do", "catch", "case", "otherwise", "elseif", "else"],
+    openCloseStructureKeywords: ["if", "for", "while", "try", "select", "switch", "arguments", "classdef", "enumeration", "properties", "methods", "end"]
+};
+
+function isScilabKeyword(word) {
+    return Object.keys(scilabKeywords).some(function(group) {
+        return scilabKeywords[group].indexOf(word) >= 0;
+    });
+}
+
 function registerScilabTokenizer() {
     monaco.languages.setMonarchTokensProvider("scilab", {
-        functionKeywords: ["function", "endfunction"],
-        controlKeywords: ["abort", "break", "quit", "return", "resume", "pause", "continue", "exit"],
-        structureKeywords: ["then", "do", "catch", "case", "otherwise", "elseif", "else"],
-        openCloseStructureKeywords: ["if", "for", "while", "try", "select", "switch", "arguments", "classdef", "enumeration", "properties", "methods", "end"],
+        functionKeywords: scilabKeywords.functionKeywords,
+        controlKeywords: scilabKeywords.controlKeywords,
+        structureKeywords: scilabKeywords.structureKeywords,
+        openCloseStructureKeywords: scilabKeywords.openCloseStructureKeywords,
         tokenizer: {
             root: [
                 [/\t+/, "tab"],
@@ -318,10 +331,10 @@ function registerScilabTokenizer() {
                         "@default": "identifier"
                     }
                 }],
-                [/"([^"\\]|\\.)*$/, "string.invalid"],
+                [/"(?:[^"]|"")*$/, "string.invalid"],
                 [/"/, "string", "@string"],
                 [/([\]\)}])(')/, ["delimiter", "operator"]],
-                [/'([^'\\]|\\.)*$/, "string.invalid"],
+                [/'(?:[^']|'')*$/, "string.invalid"],
                 [/'/, "string", "@singleString"],
                 [/\.\.\.\s*$/, "delimiter"],
                 [/[;,.()[\]{}]/, "delimiter"]
@@ -396,5 +409,80 @@ function registerScilabTokenizer() {
                 [/'(?!')/, "string", "@pop"]
             ]
         }
+    });
+}
+
+/*
+ * The syntax block of a help hover: calling forms such as
+ * "[a, b] = name(x, list(f, p))". Semantic tokens do not reach a hover, so the
+ * editor colors are rebuilt here: outputs and arguments as the arguments of a
+ * function declaration, the documented name as a primitive or a macro
+ * (calleeToken), nested calls as primitives.
+ * Each line is a form of its own. Monarch carries its state to the next line
+ * and tries no rule once a line is consumed, so every rule goes back to root
+ * when its match ends the line.
+ */
+function registerScilabPrototypeLanguage(id, calleeToken) {
+    function rule(regex, token, next) {
+        var cases = { "@eos": { token: token, next: "@popall" } };
+        cases["@default"] = next ? { token: token, next: next } : token;
+        return [regex, { cases: cases }];
+    }
+    var identifier = /[%!$]?[a-zA-Z_]\w*/;
+    var common = [
+        rule(/\/\/.*$/, "comment"),
+        rule(/"(?:[^"]|"")*"?/, "string"),
+        rule(/'(?:[^']|'')*'?/, "string"),
+        rule(/\b(([0-9]+\.?[0-9]*)|(\.[0-9]+))([eE][+\-]?[0-9]+)?\b/, "number"),
+        rule(/\.{2,}|\$|:/, "operator.special"),
+        rule(/(==|~=|<>|>=|<=|&&|\|\||[=<>&|+\-*\/\\^'])/, "operator"),
+        rule(/[;,()[\]{}]/, "delimiter"),
+        rule(/\s+/, "white")
+    ];
+    var keywords = [].concat(scilabKeywords.functionKeywords, scilabKeywords.controlKeywords,
+                             scilabKeywords.structureKeywords, scilabKeywords.openCloseStructureKeywords);
+
+    monaco.languages.register({ id: id });
+    monaco.languages.setMonarchTokensProvider(id, {
+        tokenizer: {
+            root: [
+                // A line of its own: the forms left out of the hover.
+                [/\.\.\.$/, "elision"],
+                rule(/\[/, "delimiter", "@outputs"),
+                rule(/[%!$]?[a-zA-Z_]\w*(?=\s*=(?!=))/, "type.identifier"),
+                [identifier, {
+                    cases: {
+                        "@eos": { token: "@rematch", next: "@lastWord" },
+                        "@default": { token: "@rematch", next: "@callee" }
+                    }
+                }]
+            ].concat(common),
+            // The first name of a form: a keyword, or the documented function.
+            callee: [
+                [identifier, {
+                    cases: {
+                        "$0@keywords": { token: "keyword.structure", switchTo: "@args" },
+                        "@default": { token: calleeToken, switchTo: "@args" }
+                    }
+                }]
+            ],
+            lastWord: [
+                [identifier, {
+                    cases: {
+                        "$0@keywords": { token: "keyword.structure", next: "@popall" },
+                        "@default": { token: calleeToken, next: "@popall" }
+                    }
+                }]
+            ],
+            outputs: [
+                rule(/\]/, "delimiter", "@pop"),
+                rule(identifier, "type.identifier")
+            ].concat(common),
+            args: [
+                rule(/[%!$]?[a-zA-Z_]\w*(?=\s*\()/, "function.defaultLibrary"),
+                rule(identifier, "type.identifier")
+            ].concat(common)
+        },
+        keywords: keywords
     });
 }

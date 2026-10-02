@@ -123,9 +123,16 @@ window.SciNotesMonacoSetAnchors = function(anchors) {
 
 window.SciNotesMonacoFocus = function() {
     var editor = getViewEditor();
-    if (editor) {
-        editor.focus();
+    if (!editor) {
+        return;
     }
+    // Java asks for the focus on every tab or window activation: an element
+    // of the editor already holding it, such as the find widget, keeps it.
+    var domNode = editor.getDomNode();
+    if (domNode && domNode.contains(document.activeElement)) {
+        return;
+    }
+    editor.focus();
 };
 
 window.SciNotesMonacoBlur = function() {
@@ -1333,6 +1340,64 @@ function notifyJavaForDocument(documentId, prefix, value) {
         onSuccess: function() {},
         onFailure: function() {}
     });
+}
+
+/*
+ * Ctrl+wheel (Cmd+wheel on macOS) changes the SciNotes font size, shared by
+ * every tab and saved, as in the former editor. Captured before Monaco, which
+ * would scroll. A trackpad pinch sends many small deltas: they are summed so
+ * that one wheel notch is one step.
+ */
+/*
+ * Hover height: a hover taller than HOVER_MAX_HEIGHT gets a scrollbar, unless
+ * it is so by HOVER_HEIGHT_TOLERANCE at most, then it is shown whole: no
+ * scrollbar for a few pixels. Monaco has no option for it; this replaces
+ * _updateMaxDimensions() of its content hover widget, where it computes its
+ * maximum just before measuring the contents. Should the internals change,
+ * nothing is replaced and Monaco keeps its own maximum.
+ */
+var HOVER_MAX_HEIGHT = 250;
+var HOVER_HEIGHT_TOLERANCE = 50;
+
+function limitHoverHeight(editor) {
+    var controller = editor && editor.getContribution("editor.contrib.contentHover");
+    var wrapper = controller && controller._contentWidget;
+    var widget = wrapper && wrapper._contentHoverWidget;
+    if (!widget || widget.__scinotesHoverHeight
+            || typeof widget._updateMaxDimensions !== "function"
+            || !widget._resizableNode || !widget._hover || !widget._hover.contentsDomNode
+            || typeof widget._setHoverWidgetMaxDimensions !== "function") {
+        return;
+    }
+    widget.__scinotesHoverHeight = true;
+    var monacoMaxDimensions = widget._updateMaxDimensions;
+    widget._updateMaxDimensions = function() {
+        monacoMaxDimensions.call(this);
+        var maxSize = this._resizableNode.maxSize;
+        var natural = this._hover.contentsDomNode.scrollHeight;
+        var height = natural <= HOVER_MAX_HEIGHT + HOVER_HEIGHT_TOLERANCE
+            ? Math.max(natural, HOVER_MAX_HEIGHT) : HOVER_MAX_HEIGHT;
+        this._resizableNode.maxSize = new maxSize.constructor(maxSize.width, height);
+        this._setHoverWidgetMaxDimensions(maxSize.width, height);
+    };
+}
+
+function configureWheelZoom() {
+    var isMac = /Mac/.test(navigator.platform);
+    var pending = 0;
+    window.addEventListener("wheel", function(event) {
+        if (!(isMac ? event.metaKey : event.ctrlKey)) {
+            return;
+        }
+        event.preventDefault();
+        event.stopPropagation();
+        var delta = event.deltaMode === 1 ? event.deltaY * 40 : event.deltaY;
+        pending += delta;
+        if (Math.abs(pending) >= 50) {
+            notifyJava("zoom:", pending > 0 ? "1" : "-1");
+            pending = 0;
+        }
+    }, { capture: true, passive: false });
 }
 
 function configureFileDrop() {

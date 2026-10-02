@@ -258,6 +258,14 @@ public class SciNotesContents extends JPanel {
             secondaryLocal = new Rectangle(secondary.x - bounds.x, secondary.y - bounds.y, secondary.width, secondary.height);
         }
         boolean visible = bounds.width > 0 && bounds.height > 0;
+        /*
+         * A tab just inserted is showing but not laid out yet: empty. Hiding
+         * Chromium for that one pass makes it show its last frame, the
+         * previous document, once visible again.
+         */
+        if (!visible && !browserTarget.isValid()) {
+            return;
+        }
         browserOverlay.setBounds(bounds);
         browserOverlay.setVisible(visible);
         if (visible) {

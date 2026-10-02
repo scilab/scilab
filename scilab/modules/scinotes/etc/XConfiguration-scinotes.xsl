@@ -168,7 +168,7 @@
     <xsl:template match="scinotes-display">
         <Title text="_(General display options)">
             <Grid>
-                <Checkbox checked="{@highlight-current-line}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Highlight current line: )" gridx="1" gridy="1" fill="none" weightx="0" anchor="west">
+                <Checkbox checked="{@highlight-current-line}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Highlight current line)" gridx="1" gridy="1" fill="none" weightx="0" anchor="west">
                     <actionPerformed choose="highlight-current-line">
                         <xsl:call-template name="context"/>
                     </actionPerformed>

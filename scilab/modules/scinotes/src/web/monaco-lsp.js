@@ -274,6 +274,33 @@ function createSciNotesLspClient(config) {
         modelLifecycleListeners = [];
     }
 
+    /*
+     * The calling forms of a hover -- the syntax block of a help page, or the
+     * prototype of a macro, which opens the hover -- get the prototype
+     * languages of monaco-scilab-language.js, which color them as the editor
+     * would; the name takes the macro color when the hovered word is one.
+     * Keywords keep the plain Scilab block: their "syntax" is a code sample.
+     */
+    function colorHelpSyntax(contents, model, position) {
+        var value = contents && typeof contents === "object" && !Array.isArray(contents)
+            ? contents.value : null;
+        if (typeof value !== "string" || typeof registerScilabPrototypeLanguage !== "function"
+                || (value.indexOf("(scilab-help://") < 0 && value.indexOf("```scilab\n") !== 0)) {
+            return contents;
+        }
+        var word = model.getWordAtPosition(position);
+        if (!word || isScilabKeyword(word.word)) {
+            return contents;
+        }
+        // A hover opening on a prototype is a macro's, documented by no help page.
+        var macro = value.indexOf("```scilab\n") === 0 || isMacroPosition(position);
+        var language = macro ? "scilab-proto-macro" : "scilab-proto";
+        return {
+            kind: contents.kind,
+            value: value.replace(/^```scilab$/m, "```" + language)
+        };
+    }
+
     function convertMarkupContent(contents) {
         if (!contents) {
             return null;
@@ -1436,6 +1463,11 @@ function createSciNotesLspClient(config) {
                     return null;
                 }
 
+                if (typeof limitHoverHeight === "function") {
+                    var editors = window.SciNotesMonacoState;
+                    limitHoverHeight(editors.editor);
+                    limitHoverHeight(editors.secondaryEditor);
+                }
                 return requestPromise("textDocument/hover", {
                     textDocument: {
                         uri: modelUri(model)
@@ -1450,7 +1482,8 @@ function createSciNotesLspClient(config) {
                         return null;
                     }
 
-                    var contents = convertMarkupContent(result.contents);
+                    var contents = convertMarkupContent(
+                        colorHelpSyntax(result.contents, model, position));
                     if (!contents) {
                         return null;
                     }
@@ -1486,7 +1519,9 @@ function createSciNotesLspClient(config) {
     function initialize() {
         initializeRequestId = request("initialize", {
             processId: null,
-            rootPath: config.rootPath || null,
+            // The server cds to a root path: SciNotes shares the console's
+            // Scilab, whose current directory is the user's.
+            rootPath: null,
             capabilities: {
                 textDocument: {
                     completion: {
@@ -1513,7 +1548,6 @@ function createSciNotesLspClient(config) {
         updateDebug({
             url: config.url,
             documentUri: config.documentUri || null,
-            rootPath: config.rootPath || null,
             modelLanguageId: getModel() && getModel().getLanguageId ? getModel().getLanguageId() : null,
             initialized: false,
             opened: false,

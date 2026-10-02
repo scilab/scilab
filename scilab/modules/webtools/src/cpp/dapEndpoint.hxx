@@ -70,6 +70,7 @@ private:
     DapEndpoint();
     ~DapEndpoint();
 
+    void setSpawned(bool _spawned);
     void onConnected(std::shared_ptr<CppServer::Asio::TCPSession>& session);
     void onDisconnected(std::shared_ptr<CppServer::Asio::TCPSession>& session);
     void onMessage(const std::vector<uint8_t>& msg);

@@ -817,10 +817,13 @@ std::string getDoc(const std::string& _word, const std::string& _sheetFile)
     std::wstring content(rawContent ? rawContent : L"");
     FREE(rawContent);
 
-    content += L"For more details use F1 on selected function";
     if(isScilab)
     {
-        content += L" or open [the Scilab doc](scilab-help://"+word+L")";
+        content += L"[Open documentation](scilab-help://" + word + L") · F1";
+    }
+    else
+    {
+        content += L"F1 for the full help";
     }
 
     return scilab::UTF8::toUTF8(content);

@@ -113,11 +113,6 @@ DapEndpoint::DapEndpoint(): m_server(nullptr),
     ConfigVariable::setFlushStream(false);
     m_service = std::make_shared<CppServer::Asio::Service>();
     m_service->Start();
-#ifdef _MSC_VER
-    // change hidden window title to not been listed
-    // when we try to open a scilab file using file association.
-    SetWindowLspDapTitle();
-#endif
 }
 
 DapEndpoint::~DapEndpoint()
@@ -171,10 +166,23 @@ void DapEndpoint::shutdown()
     m_is_running = false;
 }
 
+void DapEndpoint::setSpawned(bool _spawned)
+{
+    m_spawned = _spawned;
+#ifdef _MSC_VER
+    if (m_spawned)
+    {
+        // A Scilab spawned as a server must not be picked to open
+        // a file through the file association.
+        SetWindowLspDapTitle();
+    }
+#endif
+}
+
 void DapEndpoint::startTcp(int _iPort, bool _spawned)
 {
     m_iPort = _iPort;
-    m_spawned = _spawned;
+    setSpawned(_spawned);
     m_ws_server = nullptr;
     m_ws_session = nullptr;
     m_server = std::make_shared<SciTcpServer>(m_service, m_iPort);
@@ -196,7 +204,7 @@ void DapEndpoint::startTcp(int _iPort, bool _spawned)
 void DapEndpoint::startWs(int _iPort, const std::string& token, bool _spawned)
 {
     m_iPort = _iPort;
-    m_spawned = _spawned;
+    setSpawned(_spawned);
     m_server = nullptr;
     m_session = nullptr;
 

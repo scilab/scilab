@@ -71,6 +71,20 @@ static std::string document_symbol_signature(const DocumentSymbolEntry* symbol,
     return line.substr(first, last - first + 1);
 }
 
+// A hover shows the calling form, as the help does: "y = foo(x)".
+static std::string hover_prototype(const std::string& signature)
+{
+    const std::string keyword = "function";
+    if (signature.compare(0, keyword.size(), keyword) == 0
+            && signature.size() > keyword.size()
+            && std::isspace(static_cast<unsigned char>(signature[keyword.size()])))
+    {
+        size_t start = signature.find_first_not_of(" \t", keyword.size());
+        return start == std::string::npos ? signature : signature.substr(start);
+    }
+    return signature;
+}
+
 static std::string document_macro_hover(const std::string& word,
     const DocumentSymbolEntry* symbol, const std::vector<std::string>& lines,
     const std::string& source)
@@ -78,7 +92,7 @@ static std::string document_macro_hover(const std::string& word,
     std::string signature = document_symbol_signature(symbol, lines);
     return signature.empty()
         ? "`" + word + "` - macro defined in " + source
-        : "```scilab\n" + signature + "\n```\n\nMacro defined in " + source + ".";
+        : "```scilab\n" + hover_prototype(signature) + "\n```\n\nMacro defined in " + source + ".";
 }
 
 static std::string runtime_macro_signature(types::InternalType* value, const std::string& fallbackName)
@@ -1114,7 +1128,7 @@ void LspEndpoint::handleHover(const json& json_msg)
                     ? nullptr : snapshot.macro(*symbol);
                 if (macro != nullptr && !macro->signature.empty())
                 {
-                    doc = "```scilab\n" + macro->signature + "\n```";
+                    doc = "```scilab\n" + hover_prototype(macro->signature) + "\n```";
                 }
             }
         }
@@ -1172,7 +1186,7 @@ void LspEndpoint::handleHover(const json& json_msg)
                     std::string signature = runtime_macro_signature(pIT, displayName);
                     if (!signature.empty())
                     {
-                        doc = "```scilab\n" + signature + "\n```";
+                        doc = "```scilab\n" + hover_prototype(signature) + "\n```";
                     }
                     else
                     {

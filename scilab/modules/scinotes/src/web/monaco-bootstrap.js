@@ -112,6 +112,7 @@ function startMonaco(vsBase) {
         configureFocusHandling();
         configureOpenUrlHandling();
         configureFileDrop();
+        configureWheelZoom();
 
         state.editor.onDidFocusEditorText(function() {
             state.secondaryViewActive = false;

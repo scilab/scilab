@@ -96,12 +96,6 @@ LspEndpoint::LspEndpoint():
     m_service = std::make_shared<CppServer::Asio::Service>();
     m_service->Start();
     RuntimeAccess_addStableCallback(&LspEndpoint::onRuntimeStable);
-
-#ifdef _MSC_VER
-    // change hidden window title to not been listed
-    // when we try to open a scilab file using file association.
-    SetWindowLspDapTitle();
-#endif
 }
 
 LspEndpoint::~LspEndpoint()
@@ -153,10 +147,23 @@ void LspEndpoint::onRuntimeStable()
     });
 }
 
+void LspEndpoint::setSpawned(bool _spawned)
+{
+    m_spawned = _spawned;
+#ifdef _MSC_VER
+    if (m_spawned)
+    {
+        // A Scilab spawned as a server must not be picked to open
+        // a file through the file association.
+        SetWindowLspDapTitle();
+    }
+#endif
+}
+
 void LspEndpoint::startTcp(int _iPort, bool _spawned)
 {
     m_iPort = _iPort;
-    m_spawned = _spawned;
+    setSpawned(_spawned);
     {
         RuntimeTryLockGuard runtimeGuard;
         if (runtimeGuard.ownsLock())
@@ -194,7 +201,7 @@ void LspEndpoint::startTcp(int _iPort, bool _spawned)
 void LspEndpoint::startWs(int _iPort, const std::string& token, bool _spawned)
 {
     m_iPort = _iPort;
-    m_spawned = _spawned;
+    setSpawned(_spawned);
     {
         RuntimeTryLockGuard runtimeGuard;
         if (runtimeGuard.ownsLock())

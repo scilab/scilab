@@ -195,6 +195,29 @@
             cursor: pointer !important;
         }
 
+        /*
+         * Hovers: Monaco sizes the box on its contents; a narrower markdown
+         * wraps sooner and the box follows.
+         */
+        .monaco-hover .markdown-hover {
+            max-width: 460px;
+        }
+
+        /* The "Open help" line ending a help hover stands apart. */
+        .monaco-hover .rendered-markdown > p:last-child:has(> a[data-href^="command:scinotes.openHelp"]) {
+            margin-top: 14px;
+        }
+
+        /* Room around a code block and between its lines, which Monaco sets inline. */
+        .monaco-hover .rendered-markdown [data-code] {
+            display: block;
+            margin: 8px 0 10px;
+        }
+
+        .monaco-hover .rendered-markdown .monaco-tokenized-source {
+            line-height: 1.5 !important;
+        }
+
     </style>
 </head>
 <body>

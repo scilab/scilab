@@ -49,6 +49,7 @@ private:
     LspEndpoint();
     ~LspEndpoint();
 
+    void setSpawned(bool _spawned);
     void onTcpConnected(std::shared_ptr<CppServer::Asio::TCPSession>& session);
     void onTcpDisconnected(std::shared_ptr<CppServer::Asio::TCPSession>& session);
     void onTcpMessage(const std::vector<uint8_t>& msg);

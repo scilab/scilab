@@ -128,6 +128,19 @@ function saveActiveDocumentState() {
     entry.redoDepth = state.redoDepth;
 }
 
+/*
+ * The sticky lines (the enclosing function shown at the top) are recomputed
+ * asynchronously after a model change: the previous document's stayed on
+ * screen meanwhile. Monaco has no API for it; _resetState() empties the widget,
+ * and nothing happens should that internal method disappear.
+ */
+function clearStickyScroll(editor) {
+    var sticky = editor && editor.getContribution("store.contrib.stickyScrollController");
+    if (sticky && typeof sticky._resetState === "function") {
+        sticky._resetState();
+    }
+}
+
 function selectDocumentEntry(entry, presentation) {
     var state = window.SciNotesMonacoState;
     if (!entry || !state.editor) {
@@ -153,6 +166,7 @@ function selectDocumentEntry(entry, presentation) {
     state.applyingJavaValue = true;
     state.editor.setModel(entry.model);
     state.applyingJavaValue = false;
+    clearStickyScroll(state.editor);
 
     presentation = presentation || {};
     if (presentation.options && typeof applyEditorOptions === "function") {
@@ -414,6 +428,13 @@ window.SciNotesMonacoMarkDocumentSaved = function(id, digest) {
         state.pendingClean = true;
         state.savedAlternativeVersionId = entry.savedAlternativeVersionId;
         notifyModifiedState();
+    } else {
+        /*
+         * A tab in the background reports it too: an edit Java has just
+         * made in its replica (a tab moved from another window gets its
+         * text that way) sent "modified" first, and would win otherwise.
+         */
+        notifyJavaForDocument(entry.id, "modified:", "false");
     }
     return true;
 };

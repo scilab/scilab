@@ -1896,6 +1896,18 @@ public class MonacoEditorPane extends ScilabEditorPane {
                     updateSelectionFromMonaco(payload);
                 }
             });
+        } else if (request.startsWith("zoom:")) {
+            final int step;
+            try {
+                step = Integer.parseInt(request.substring("zoom:".length()));
+            } catch (NumberFormatException e) {
+                return;
+            }
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    SciNotes.updateFontSize(step);
+                }
+            });
         } else if (request.startsWith("infoBar:")) {
             final String text = request.substring("infoBar:".length());
             SwingUtilities.invokeLater(new Runnable() {
@@ -2187,7 +2199,18 @@ public class MonacoEditorPane extends ScilabEditorPane {
         }
     }
 
-    private void dispatchShortcut(String bridge) {
+    private void dispatchShortcut(final String bridge) {
+        // CEF calls its keyboard handler on its own thread: the actions touch
+        // Swing and the SciNotes tabs.
+        if (!SwingUtilities.isEventDispatchThread()) {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    dispatchShortcut(bridge);
+                }
+            });
+            return;
+        }
+
         if ("new".equals(bridge)) {
             newFile();
         } else if ("open".equals(bridge)) {
@@ -3644,7 +3667,6 @@ public class MonacoEditorPane extends ScilabEditorPane {
         appendTokenStyle(builder, "macro", context, ScilabLexerConstants.MACROS, false);
         appendTokenStyle(builder, "macroInFile", context, ScilabLexerConstants.MACROINFILE, false);
         appendTokenStyle(builder, "string", context, ScilabLexerConstants.STRING, false);
-        appendTokenStyle(builder, "externalVariable", context, ScilabLexerConstants.VARIABLES, false);
         appendTokenStyle(builder, "inputOutputArgs", context, ScilabLexerConstants.INPUTOUTPUTARGS, false);
         appendTokenStyle(builder, "identifier", context, ScilabLexerConstants.ID, false);
         appendTokenStyle(builder, "comment", context, ScilabLexerConstants.COMMENT, false);
@@ -4008,7 +4030,6 @@ public class MonacoEditorPane extends ScilabEditorPane {
         builder.append('{');
         builder.append("\"url\":").append(quoteJs(endpoint.getUrl()));
         builder.append(",\"documentUri\":").append(quoteJs(getDocumentUri()));
-        builder.append(",\"rootPath\":").append(quoteJs(getRootPath()));
         builder.append(",\"languageId\":\"scilab\"");
         builder.append(",\"enableSignatureHelp\":true");
         builder.append('}');
@@ -4022,19 +4043,6 @@ public class MonacoEditorPane extends ScilabEditorPane {
         }
 
         return "untitled:scinotes/" + getUUID().toString();
-    }
-
-    private String getRootPath() {
-        String name = getName();
-        File root = null;
-        if (name != null && !name.isEmpty()) {
-            root = new File(name).getAbsoluteFile().getParentFile();
-        }
-        if (root == null) {
-            root = new File(System.getProperty("user.dir", "."));
-        }
-
-        return root.getPath();
     }
 
     // Monaco is shipped under Scilab thirdparty.
