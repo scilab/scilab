@@ -20,10 +20,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
-import java.awt.Window;
 import java.awt.event.AWTEventListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyEvent;
 import java.awt.event.MouseEvent;
@@ -39,7 +40,6 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import javax.swing.JComponent;
 import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -66,6 +66,7 @@ import org.cef.callback.CefAuthCallback;
 import org.cef.callback.CefCallback;
 import org.cef.callback.CefContextMenuParams;
 import org.cef.callback.CefMenuModel;
+import org.cef.callback.CefQueryCallback;
 import org.cef.handler.CefMessageRouterHandlerAdapter;
 import org.cef.handler.CefRequestHandler;
 import org.cef.handler.CefRequestHandlerAdapter;
@@ -74,8 +75,6 @@ import org.cef.handler.CefResourceRequestHandlerAdapter;
 import org.cef.misc.BoolRef;
 import org.cef.misc.EventFlags;
 import org.cef.network.CefRequest;
-import org.flexdock.docking.activation.ActiveDockableTracker;
-import org.flexdock.view.View;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.utils.ScilabBrowser;
@@ -112,7 +111,6 @@ public class ScilabCefPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger("org.scilab.modules.commons.gui.ScilabCefPanel");
-    public static final String DOCKABLE_FOCUS_FROM_BROWSER_PROPERTY = ScilabCefPanel.class.getName() + ".dockableFocusFromBrowser";
     public static final String CEF_NATIVE_FOCUS_PROPERTY = ScilabCefPanel.class.getName() + ".cefNativeFocus";
 
     private CefClient client;
@@ -130,20 +128,29 @@ public class ScilabCefPanel extends JPanel {
     /** Set between an open request and the DevTools browser showing up. */
     private volatile boolean devToolsRequested = false;
 
-    /** True when Chromium has native focus. */
-    private volatile boolean browserHasFocus = false;
-
-    /** Incremented whenever a pending Swing focus transfer must be cancelled. */
-    private volatile int focusTransferGeneration = 0;
-
-    /** True while waiting for CEF to acknowledge a browser focus request. */
+    /**
+     * True while waiting for CEF to acknowledge a browser focus request.
+     * Who holds the focus is kept by CefFocusCoordinator, for all the panels.
+     */
     private volatile boolean browserFocusRequested = false;
 
-    /** FlexDock view currently marked as holding native CEF focus for this panel. */
-    private View cefNativeFocusView = null;
+    /** Focus of the page as the page itself reports it (see PAGE_FOCUS_JS). */
+    private volatile boolean pageFocused = false;
 
-    /** Single FlexDock view marked as holding native CEF focus across all CEF panels. */
-    private static View currentCefNativeFocusView = null;
+    /**
+     * Makes the page report its own focus and blur to CefFocusCoordinator.
+     * A blur towards one of its frames is not one: the page keeps the focus
+     * (document.hasFocus()).
+     */
+    private static final String PAGE_FOCUS_JS =
+        "(function() {"
+        + "  if (window.__scilabFocusWatch) return;"
+        + "  window.__scilabFocusWatch = true;"
+        + "  function send(r) { if (window.scilabFocusQuery) window.scilabFocusQuery({request: r, onSuccess: function() {}, onFailure: function() {}}); }"
+        + "  window.addEventListener('focus', function(e) { if (e.target === window) send('focus'); });"
+        + "  window.addEventListener('blur', function(e) { if (e.target === window) setTimeout(function() { if (!document.hasFocus()) send('blur'); }, 0); });"
+        + "  if (document.hasFocus()) send('focus');"
+        + "})();";
 
     /** >0 when a dock operation is in-progress */
     private static volatile int isDocking = 0;
@@ -153,9 +160,6 @@ public class ScilabCefPanel extends JPanel {
 
     /** Max time (ms) dispose() waits for closing browsers. */
     private static final long CLOSING_BROWSERS_TIMEOUT_MS = 500;
-
-    /** Global AWT listener to detect clicks outside the browser. */
-    private AWTEventListener clickOutsideListener;
 
     /**
      * Invisible heavyweight AWT Canvas whose sole purpose is to own a
@@ -259,47 +263,13 @@ public class ScilabCefPanel extends JPanel {
         @Override
         public void onGotFocus(CefBrowser b) {
             if (b != browser) return;
-            boolean alreadyFocused = browserHasFocus;
-            browserHasFocus = true;
-            browserFocusRequested = false;
-            if (alreadyFocused) {
-                /*
-                 * Chromium can re-fire onGotFocus for a browser that already
-                 * has focus (observed in bursts of 50+ calls within a few ms
-                 * right after requestBrowserFocus(), one new native thread
-                 * per call). Re-running the FlexDock activation below on
-                 * every one of those calls requests focus again on this same
-                 * component, which is what sustains the burst. Only the
-                 * first, genuine gained-focus transition needs it.
-                 */
-                return;
-            }
-            final int focusTransfer = ++focusTransferGeneration;
-            // Notify FlexDock so it updates title bars, menus, etc.
-            SwingUtilities.invokeLater(() -> {
-                if (!browserHasFocus || focusTransfer != focusTransferGeneration) {
-                    return;
-                }
-
-                Component ancestor = SwingUtilities.getAncestorOfClass(View.class, ScilabCefPanel.this);
-                if (ancestor != null) {
-                    if (ancestor instanceof JComponent) {
-                        ((JComponent) ancestor).putClientProperty(DOCKABLE_FOCUS_FROM_BROWSER_PROPERTY, Boolean.TRUE);
-                    }
-                    if (ancestor instanceof View) {
-                        setCefNativeFocusView((View) ancestor);
-                    }
-                    ActiveDockableTracker.requestDockableActivation(ancestor);
-                }
-            });
+            CefFocusCoordinator.gained(ScilabCefPanel.this);
         }
 
         @Override
         public void onTakeFocus(CefBrowser b, boolean next) {
             if (b != browser) return;
-            browserHasFocus = false;
-            browserFocusRequested = false;
-            clearCefNativeFocusView();
+            CefFocusCoordinator.lost(ScilabCefPanel.this);
             // Tab traversal out of the browser
             SwingUtilities.invokeLater(() -> {
                 KeyboardFocusManager mgr = KeyboardFocusManager.getCurrentKeyboardFocusManager();
@@ -321,6 +291,9 @@ public class ScilabCefPanel extends JPanel {
             if (b == browser && frame != null && frame.isMain()) {
                 browserLoaded = true;
                 scheduleSnapshotRefresh();
+                if (!CefFocusCoordinator.WINDOWS) {
+                    b.executeJavaScript(PAGE_FOCUS_JS, b.getURL(), 0);
+                }
             }
         }
     };
@@ -432,6 +405,24 @@ public class ScilabCefPanel extends JPanel {
         super(new BorderLayout(0, 0));
         client = ScilabBrowser.get();
         browser = client.createBrowser(url, false, false);
+        CefFocusCoordinator.register(this);
+        // Outside Windows, the page reports its own focus (see PAGE_FOCUS_JS)
+        if (!CefFocusCoordinator.WINDOWS) {
+            client.addMessageRouter(CefMessageRouter.create(
+                new CefMessageRouterConfig("scilabFocusQuery", "scilabFocusQueryCancel"),
+                new CefMessageRouterHandlerAdapter() {
+                    @Override
+                    public boolean onQuery(CefBrowser b, CefFrame frame, long queryId, String request,
+                                           boolean persistent, CefQueryCallback callback) {
+                        if (b != browser || !("focus".equals(request) || "blur".equals(request))) {
+                            return false;
+                        }
+                        CefFocusCoordinator.pageFocusChanged(ScilabCefPanel.this, "focus".equals(request));
+                        callback.success("");
+                        return true;
+                    }
+                }));
+        }
 
         client.addKeyboardHandler(keyboardHandler);
         client.addContextMenuHandler(contextMenuHandler);
@@ -487,7 +478,7 @@ public class ScilabCefPanel extends JPanel {
                         if (showCover()) {
                             resizing = true;
                             // Drop its CEF "focused" titlebar mark now the browser hidden
-                            clearCefNativeFocusView();
+                            CefFocusCoordinator.hidden(this);
                             resizeSettleTimer.restart();
                         }
                     }
@@ -552,124 +543,50 @@ public class ScilabCefPanel extends JPanel {
         nativeFocusSink.setMaximumSize(new Dimension(0, 0));
         add(nativeFocusSink, BorderLayout.SOUTH);
 
-        // ---- Click-outside detection ----
-        // When the browser has focus and the user clicks on another
-        // component, release Chromium focus and transfer to the target.
-        clickOutsideListener = event -> {
-            if (!browserHasFocus) return;
-            if (event.getID() != MouseEvent.MOUSE_PRESSED) return;
-            MouseEvent me = (MouseEvent) event;
-            Component src = me.getComponent();
-            if (src == null || !isShowing()) return;
-
-            // The toolkit reports the same click twice: first targeted at the
-            // heavyweight frame, then retargeted at the deep lightweight
-            // component. Resolve the deepest component ourselves so the first
-            // event is already conclusive, then walk up to a focusable target.
-            // Never aim at the Window itself: Window.requestFocusInWindow()
-            // hands focus back to its most recent owner - the browser.
-            Component target = SwingUtilities.getDeepestComponentAt(src, me.getX(), me.getY());
-            if (target == null) {
-                target = src;
-            }
-            if (SwingUtilities.isDescendingFrom(target, ScilabCefPanel.this)) {
-                return;
-            }
-            // Pressing a split divider starts a transient drag, not a real focus
-            // change: keep the original focus owner so it is still focused after the
-            // drag (the resize mask hides then restores the browser meanwhile).
-            if (target instanceof BasicSplitPaneDivider) {
-                return;
-            }
-            while (target != null && !(target instanceof Window) && !target.isFocusable()) {
-                target = target.getParent();
-            }
-            if (target == null || target instanceof Window) return;
-
-            browserHasFocus = false;
-            browserFocusRequested = false;
-            final int focusTransfer = ++focusTransferGeneration;
-            clearCefNativeFocusView();
-            browser.setFocus(false);
-            // Only steal native focus when both components are in the
-            // same window.  For separate windows the OS handles it.
-            if (SwingUtilities.getWindowAncestor(target) == SwingUtilities.getWindowAncestor(ScilabCefPanel.this)) {
-                final Component focusTarget = target;
-                final class Sink implements Runnable {
-                    private int attempts = 0;
-                    @Override
-                    public void run() {
-                        if (browserHasFocus || focusTransfer != focusTransferGeneration) {
-                            return;
-                        }
-                        if (nativeFocusSink.hasFocus()) {
-                            focusTarget.requestFocusInWindow();
-                        } else if (++attempts < 10) {
-                            // If the focus sink failed, try again after the next repaint cycle.
-                            nativeFocusSink.requestFocus();
-                            SwingUtilities.invokeLater(this);
-                        }
-                    }
+        // The Swing focus given to the panel goes to its page, whatever gave
+        // it (a click on its dock title bar, FlexDock, the window focus
+        // restoration, Tab traversal): its owners only have to let the focus
+        // reach it.
+        setFocusable(true);
+        addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (!e.isTemporary()) {
+                    requestBrowserFocus();
                 }
-                nativeFocusSink.requestFocus();
-                SwingUtilities.invokeLater(new Sink());
             }
-        };
-        Toolkit.getDefaultToolkit().addAWTEventListener(
-            clickOutsideListener, AWTEvent.MOUSE_EVENT_MASK);
+        });
+
     }
 
-    private void setCefNativeFocusView(View view) {
-        if (!SwingUtilities.isEventDispatchThread()) {
-            SwingUtilities.invokeLater(() -> setCefNativeFocusView(view));
-            return;
-        }
-
-        cefNativeFocusView = view;
-
-        synchronized (ScilabCefPanel.class) {
-            if (currentCefNativeFocusView == view) {
-                repaintTitlebar(view);
-                return;
-            }
-
-            clearCefNativeFocusView(currentCefNativeFocusView);
-            currentCefNativeFocusView = view;
-            view.putClientProperty(CEF_NATIVE_FOCUS_PROPERTY, Boolean.TRUE);
-            repaintTitlebar(view);
-        }
+    void setPageFocused(boolean focused) {
+        pageFocused = focused;
     }
 
-    private void clearCefNativeFocusView() {
-        if (!SwingUtilities.isEventDispatchThread()) {
-            SwingUtilities.invokeLater(() -> clearCefNativeFocusView());
-            return;
-        }
+    /** @return the focus of the page as the page itself reports it */
+    boolean isPageFocused() {
+        return pageFocused;
+    }
 
-        View view = cefNativeFocusView;
-        cefNativeFocusView = null;
+    /** CEF acknowledged the focus request, or another browser got the focus. */
+    void focusRequestDone() {
+        browserFocusRequested = false;
+    }
 
-        synchronized (ScilabCefPanel.class) {
-            if (currentCefNativeFocusView == view) {
-                clearCefNativeFocusView(view);
-                currentCefNativeFocusView = null;
-            }
+    /**
+     * Ask Chromium to blur the page. A windowed browser ignores it on
+     * Windows (see CefFocusCoordinator), other platforms may need it.
+     */
+    void blurBrowser() {
+        CefBrowser currentBrowser = browser;
+        if (currentBrowser != null) {
+            currentBrowser.setFocus(false);
         }
     }
 
-    private static void clearCefNativeFocusView(View view) {
-        if (view == null) {
-            return;
-        }
-
-        view.putClientProperty(CEF_NATIVE_FOCUS_PROPERTY, null);
-        repaintTitlebar(view);
-    }
-
-    private static void repaintTitlebar(View view) {
-        if (view != null && view.getTitlebar() != null) {
-            view.getTitlebar().repaint();
-        }
+    /** @return the heavyweight component able to take the native focus from Chromium */
+    Canvas getNativeFocusSink() {
+        return nativeFocusSink;
     }
 
     // ====================================================================
@@ -717,11 +634,6 @@ public class ScilabCefPanel extends JPanel {
     }
 
     /**
-     * Give native keyboard focus back to Chromium after a focus request coming
-     * from the web page itself. This also cancels any pending delayed transfer
-     * to a Swing component scheduled by the click-outside handler.
-     */
-    /**
      * Give the Swing focus owner back to the browser component. Chromium's
      * own focus state is left untouched: this only repairs the Java side,
      * when a lightweight component became the focus owner behind its back.
@@ -729,6 +641,12 @@ public class ScilabCefPanel extends JPanel {
     public void reclaimSwingFocus() {
         CefBrowser currentBrowser = browser;
         if (currentBrowser == null) {
+            return;
+        }
+        // On X11, asking the Swing focus while the page holds the keyboard
+        // makes the Java window take it back from Chromium (e.g. a click in
+        // SciNotes, which calls this method, then often needed a second one)
+        if (!CefFocusCoordinator.WINDOWS && (CefFocusCoordinator.hasFocus(this) || pageFocused)) {
             return;
         }
         final Component ui = currentBrowser.getUIComponent();
@@ -765,7 +683,7 @@ public class ScilabCefPanel extends JPanel {
     }
 
     public void requestBrowserFocus() {
-        if (browserHasFocus) {
+        if (CefFocusCoordinator.hasFocus(this)) {
             // Already focused: skip. Calling requestFocusInWindow() again on
             // an already-focused heavyweight peer is redundant and was
             // observed to bounce focus onto a lightweight ancestor
@@ -773,7 +691,7 @@ public class ScilabCefPanel extends JPanel {
             // pane, sustaining a Java-side echo of the same loop.
             return;
         }
-        focusTransferGeneration++;
+        CefFocusCoordinator.newRequest();
         CefBrowser currentBrowser = browser;
         if (currentBrowser == null) {
             return;
@@ -791,14 +709,9 @@ public class ScilabCefPanel extends JPanel {
      * Used when ownership of an editor interaction moves to another browser.
      */
     public void releaseBrowserFocus() {
-        focusTransferGeneration++;
-        browserHasFocus = false;
-        browserFocusRequested = false;
-        clearCefNativeFocusView();
-        CefBrowser currentBrowser = browser;
-        if (currentBrowser != null) {
-            currentBrowser.setFocus(false);
-        }
+        CefFocusCoordinator.lost(this);
+        CefFocusCoordinator.newRequest();
+        blurBrowser();
     }
 
     /** Enable or disable DevTools (CtrlShiftI) */
@@ -806,7 +719,7 @@ public class ScilabCefPanel extends JPanel {
         this.debug = enabled;
     }
 
-    /** @return true if DevTools are currently open */
+    /** @return true if the DevTools and reload shortcuts are enabled (see setDebug) */
     public boolean isDebug() {
         return debug;
     }
@@ -1079,7 +992,7 @@ public class ScilabCefPanel extends JPanel {
     private void hideCover() {
         cardLayout.show(cardPanel, CARD_BROWSER);
         refreshBrowserGeometry();
-        if (browserHasFocus && browser != null) {
+        if (CefFocusCoordinator.hasFocus(this) && browser != null) {
             Component ui = browser.getUIComponent();
             if (ui != null) {
                 ui.requestFocusInWindow();
@@ -1348,16 +1261,7 @@ public class ScilabCefPanel extends JPanel {
      * which suppress removeNotify() while moving a browser component.
      */
     public void dispose() {
-        focusTransferGeneration++;
-        browserHasFocus = false;
-        browserFocusRequested = false;
-
-        if (clickOutsideListener != null) {
-            Toolkit.getDefaultToolkit().removeAWTEventListener(clickOutsideListener);
-            clickOutsideListener = null;
-        }
-
-        clearCefNativeFocusView();
+        CefFocusCoordinator.unregister(this);
 
         if (resizeMouseListener != null) {
             Toolkit.getDefaultToolkit().removeAWTEventListener(resizeMouseListener);

@@ -29,8 +29,8 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
+import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -133,23 +133,19 @@ public abstract class SciConsole extends JPanel {
             cefPanel.setDebug(true);
         }
 
-        addFocusListener(new FocusListener() {
+        // The console only lays out its browser: the focus given to its dock
+        // goes to the browser panel, which hands it to the page. Put the caret
+        // back in the input line then (the output may have been selected).
+        setFocusable(false);
+        cefPanel.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusGained(FocusEvent e) {
                 if (e.isTemporary())
                 {
                     return;
                 }
-                log.info(() -> "SciConsole focusGained " + Thread.currentThread());
-
+                log.fine(() -> "SciConsole focusGained " + Thread.currentThread());
                 sendToHTML("focus");
-            }
-
-            public void focusLost(FocusEvent e) {
-                if (e.isTemporary())
-                {
-                    return;
-                }
-                log.info(() -> "SciConsole focusLost " + Thread.currentThread());
             }
         });
 

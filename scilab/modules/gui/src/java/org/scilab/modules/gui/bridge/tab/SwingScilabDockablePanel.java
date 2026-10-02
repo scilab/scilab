@@ -383,34 +383,71 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      */
     @Override
     public void focusGained(FocusEvent e) {
-        //ActiveDockableTracker.requestDockableActivation(this);
-        if (Boolean.TRUE.equals(getClientProperty(ScilabCefPanel.DOCKABLE_FOCUS_FROM_BROWSER_PROPERTY))) {
-            putClientProperty(ScilabCefPanel.DOCKABLE_FOCUS_FROM_BROWSER_PROPERTY, null);
+        // FlexDock activating this dockable after a click in one of its
+        // browsers: that browser holds the native focus, do not take it back.
+        // A state rather than a one-shot flag: FlexDock does not request the
+        // focus when the dockable is already active, and a leftover flag then
+        // swallowed the next real focus gain (e.g. a click on the title bar).
+        if (Boolean.TRUE.equals(getClientProperty(ScilabCefPanel.CEF_NATIVE_FOCUS_PROPERTY))) {
             return;
         }
 
+        Container content = getContentPane();
         Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
-        if (focusOwner != null && ((contentPane != null && SwingUtilities.isDescendingFrom(focusOwner, contentPane))
-                || (getContentPane() != null && SwingUtilities.isDescendingFrom(focusOwner, getContentPane())))) {
+        if (focusOwner != null && content != null && SwingUtilities.isDescendingFrom(focusOwner, content)) {
             return;
         }
 
-        if (contentPane != null) {
-            if (log.isLoggable(Level.FINE)) {
-                log.fine("SwingScilabDockablePanel focus redirect to contentPane " + contentPane);
+        requestContentFocus();
+    }
+
+    /**
+     * Give the focus to the content of this dock: called when the dock or its
+     * title bar gets the focus (a click on the title bar, FlexDock activating
+     * the dock, the window focus restoration).
+     * A focusable content gets it. A content which only lays out a browser
+     * (not focusable, e.g. the console or the help) gets it through that
+     * browser panel, which hands it to its page.
+     * Docks with a specific focus target override this method.
+     */
+    protected void requestContentFocus() {
+        Container content = getContentPane();
+        Component target = content;
+        if (content != null && !content.isFocusable()) {
+            ScilabCefPanel browser = findBrowser(content);
+            if (browser != null) {
+                target = browser;
             }
-            contentPane.requestFocus();
-        } else if (getContentPane() != null) {
+        }
+        if (target != null) {
             if (log.isLoggable(Level.FINE)) {
-                log.fine("SwingScilabDockablePanel focus redirected to getContentPane() " + getContentPane());
+                log.fine("SwingScilabDockablePanel focus redirected to " + target);
             }
-            getContentPane().requestFocus();
+            target.requestFocus();
         } else {
             if (log.isLoggable(Level.FINE)) {
                 log.fine("SwingScilabDockablePanel focus redirected to this " + SwingScilabDockablePanel.this);
             }
             SwingScilabDockablePanel.this.requestFocusInWindow();
         }
+    }
+
+    /** @return the first shown browser panel in this component, null if none */
+    private static ScilabCefPanel findBrowser(Component c) {
+        if (c instanceof ScilabCefPanel) {
+            return (ScilabCefPanel) c;
+        }
+        if (c instanceof Container) {
+            for (Component child : ((Container) c).getComponents()) {
+                if (child.isShowing()) {
+                    ScilabCefPanel found = findBrowser(child);
+                    if (found != null) {
+                        return found;
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     /**

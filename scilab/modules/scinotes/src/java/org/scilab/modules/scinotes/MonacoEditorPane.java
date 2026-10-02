@@ -514,6 +514,12 @@ public class MonacoEditorPane extends ScilabEditorPane {
                     pane.createMonacoDocument();
                 }
             }
+            // A focus asked while the page was loading waited for the editor
+            // (onLoadEnd comes before it is ready): give it now, otherwise
+            // SciNotes is the active dock while the keyboard stays elsewhere.
+            if (active != null) {
+                SwingUtilities.invokeLater(() -> active.focusMonacoIfRequested());
+            }
         }
 
         /*

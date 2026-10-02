@@ -12,7 +12,6 @@ package org.scilab.modules.gui.bridge.helpbrowser;
 
 import java.awt.BorderLayout;
 import java.awt.Desktop;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -41,7 +40,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 
-import org.cef.CefClient;
 import org.cef.browser.CefBrowser;
 import org.cef.browser.CefFrame;
 import org.cef.browser.CefMessageRouter;
@@ -50,17 +48,15 @@ import org.cef.callback.CefContextMenuParams;
 import org.cef.callback.CefMenuModel;
 import org.cef.callback.CefQueryCallback;
 import org.cef.handler.CefContextMenuHandlerAdapter;
-import org.cef.handler.CefKeyboardHandlerAdapter;
 import org.cef.handler.CefLifeSpanHandlerAdapter;
 import org.cef.handler.CefLoadHandlerAdapter;
 import org.cef.handler.CefMessageRouterHandlerAdapter;
 import org.cef.misc.BoolRef;
-import org.cef.misc.EventFlags;
 import org.cef.network.CefRequest.TransitionType;
 
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.commons.utils.ScilabBrowser;
+import org.scilab.modules.commons.gui.ScilabCefPanel;
 import org.scilab.modules.commons.xml.ScilabXPathFactory;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.commons.xml.XConfigurationEvent;
@@ -71,7 +67,7 @@ import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
  * JCEF-based Scilab Help Browser.
  *
  * Replaces the old JavaHelp-based SwingScilabHelpBrowser with a modern
- * Chromium-based browser using the existing ScilabBrowser JCEF singleton.
+ * Chromium-based browser embedded through a ScilabCefPanel, as the console.
  *
  * Architecture:
  * - Shell HTML (index.html) loaded from SCI/modules/helptools/src/web/
@@ -108,10 +104,10 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
 
     private final String language;
     private final Path helpOutputDir; // TMPDIR/help/<lang>/
-    private final CefClient client;
+    /** Browser panel: shared JCEF focus handling, links, resize masking. */
+    private final ScilabCefPanel cefPanel;
     private final CefBrowser browser;
     private javax.xml.transform.Templates xsltTemplates;
-    private boolean devToolsOpened = false;
     private boolean pageLoaded = false;
     private String pendingKeyword = null;
     private String currentPageId = null;
@@ -188,43 +184,23 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
         // Initialize XSLT transformer
         initTransformer();
 
-        // Create JCEF browser
-        client = ScilabBrowser.get();
+        // Create JCEF browser. Its handlers are added through the panel: a
+        // CefClient keeps a single handler of each kind, and the panel already
+        // installed its own.
         String shellUrl = "file:///" + WEB_DIR.replace('\\', '/') + "/index.html";
-        browser = client.createBrowser(shellUrl, false, false);
+        cefPanel = new ScilabCefPanel(shellUrl);
+        browser = cefPanel.getBrowser();
 
         // Message router: JS -> Java bridge
         CefMessageRouterConfig routerConfig = new CefMessageRouterConfig("helpBrowserQuery", "helpBrowserCancel");
         CefMessageRouter router = CefMessageRouter.create(routerConfig, new HelpBrowserMessageHandler());
-        client.addMessageRouter(router);
+        cefPanel.getClient().addMessageRouter(router);
 
-        // Keyboard handler: Ctrl+Shift+I for devtools
-        client.addKeyboardHandler(new CefKeyboardHandlerAdapter() {
-            @Override
-            public boolean onKeyEvent(CefBrowser b, CefKeyEvent event) {
-                if (b != browser) return false;
-                if (event.type != CefKeyEvent.EventType.KEYEVENT_RAWKEYDOWN) return false;
-
-                boolean isMac = OS.get() == OS.MAC;
-                boolean isCtrl = !isMac && (event.modifiers & EventFlags.EVENTFLAG_CONTROL_DOWN) != 0;
-                boolean isCmd = isMac && (event.modifiers & EventFlags.EVENTFLAG_COMMAND_DOWN) != 0;
-                boolean isShift = (event.modifiers & EventFlags.EVENTFLAG_SHIFT_DOWN) != 0;
-
-                if ((isCtrl || isCmd) && isShift && event.windows_key_code == KeyEvent.VK_I) {
-                    if (devToolsOpened) {
-                        browser.closeDevTools();
-                    } else {
-                        browser.openDevTools();
-                    }
-                    devToolsOpened = !devToolsOpened;
-                    return true;
-                }
-                return false;
-            }
-        });
+        // Ctrl+Shift+I toggles the DevTools
+        cefPanel.setDebug(true);
 
         // Open external links in system browser
-        client.addLifeSpanHandler(new CefLifeSpanHandlerAdapter() {
+        cefPanel.addLifeSpanHandler(new CefLifeSpanHandlerAdapter() {
             @Override
             public boolean onBeforePopup(CefBrowser b, CefFrame frame, String targetUrl,
                     String targetFrameName) {
@@ -240,7 +216,7 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
         });
 
         // Track page load to know when executeJavaScript is safe
-        client.addLoadHandler(new CefLoadHandlerAdapter() {
+        cefPanel.addLoadHandler(new CefLoadHandlerAdapter() {
             @Override
             public void onLoadEnd(CefBrowser b, CefFrame frame, int httpStatusCode) {
                 if (b == browser && frame.isMain()) {
@@ -254,7 +230,7 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
         });
 
         // Disable context menu
-        client.addContextMenuHandler(new CefContextMenuHandlerAdapter() {
+        cefPanel.addContextMenuHandler(new CefContextMenuHandlerAdapter() {
             @Override
             public void onBeforeContextMenu(CefBrowser b, CefFrame frame,
                     CefContextMenuParams params, CefMenuModel model) {
@@ -275,7 +251,11 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
         };
         XConfiguration.addXConfigurationListener(syntaxColorsListener);
 
-        add(browser.getUIComponent(), BorderLayout.CENTER);
+        add(cefPanel, BorderLayout.CENTER);
+
+        // The help only lays out its browser: the focus given to its dock
+        // goes to the browser panel, which hands it to the page.
+        setFocusable(false);
     }
 
     // ================================================================
@@ -1789,12 +1769,7 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
     public void close() {
         searchExecutor.shutdownNow();
         XConfiguration.removeXConfigurationListener(syntaxColorsListener);
-        if (browser != null) {
-            ScilabBrowser.close(browser);
-        }
-        if (client != null) {
-            ScilabBrowser.release(client);
-        }
+        cefPanel.dispose();
     }
 
     // ================================================================
