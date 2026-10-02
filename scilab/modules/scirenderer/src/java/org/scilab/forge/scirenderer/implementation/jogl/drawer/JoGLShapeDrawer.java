@@ -171,6 +171,10 @@ public final class JoGLShapeDrawer {
             synchronized (texture) {
                 if (texture.isValid()) {
                     drawingTools.bind(texture);
+                    if (drawingTools.getLightManager().isLightningEnable()) {
+                        // the default GL_REPLACE texture mode ignores the lighted color
+                        gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_MODE, GL2.GL_MODULATE);
+                    }
                     buffersManager.bindTextureCoordinatesBuffer(gl, geometry.getTextureCoordinates());
                 }
             }
