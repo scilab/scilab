@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Adeline CARNIS
+ *
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="silhouette">
+    <refnamediv>
+        <refname>silhouette</refname>
+        <refpurpose>Compute the silhouette values of a clustering</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            s = silhouette(X, labels)
+            s = silhouette(X, labels, metric)
+            s = silhouette(X, labels, metric, param)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>
+                        A double matrix of size n-by-p, where n is the
+                        number of samples/observations and p is the number of features.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>labels</term>
+                <listitem>
+                    <para>
+                        A double vector of length n containing the cluster label assigned to each sample. At least two
+                        distinct clusters must be present, and the number of clusters must be strictly less than n.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>metric</term>
+                <listitem>
+                    <para>
+                        A string specifying the distance metric used to compute pairwise distances between samples.
+                        Its default value is "euclidean". The supported metrics and their parameters are
+                        those of the <link linkend="pdist">pdist</link> function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>param</term>
+                <listitem>
+                    <para>
+                        An optional parameter passed to <link linkend="pdist">pdist</link> along with the selected 
+                        metric. Its default value is []. The accepted values depend on the selected metric.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>
+                        A column vector of doubles of length n containing the
+                        silhouette coefficient of each sample, where n is the number of samples in X. 
+                        Each element is in the range [-1, 1].
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            The <literal>silhouette</literal> function computes the silhouette coefficient for each sample in a clustering.
+        </para>
+        <para>
+            The silhouette coefficient measures how similar a sample is to its own cluster compared with other clusters. It is based on the average distance 
+            between samples, using th edistance metric specified by <varname>metric</varname>.
+        </para>
+        <para>
+            For each sample i, two quantities are computed:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    a(i): the mean distance between sample i and all other samples belonging to the same cluster. 
+                    If the cluster contains only one sample, a(i) is set to zero.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    b(i): the minimum, over all other clusters, of the mean distance between sample i and the samples belonging to that cluster.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            The silhouette coefficient s(i) is defined as s(i) = (b(i) - a(i)) / max(a(i), b(i))
+        </para>
+        <para>
+            If both a(i) and b(i) are zero, the silhouette coefficient is set to zero.
+        </para>
+        <para>
+            The silhouette coefficient ranges from -1 to 1. A value close to 1 indicates that the sample is well matched 
+            to its own cluster and poorly matched to neighboring clusters. A value close to zero indicates that the sample 
+            lies near a cluster boundary. A negative value indicates that the sample may be closer, on average, to another 
+            cluster than its assigned cluster.
+        </para>
+    </refsection>
+    <refsection role="example">
+    <title>Examples</title>
+        <para>
+            <programlisting role="example"><![CDATA[
+rand("seed", 0);
+X1 = rand(20, 2);
+X2 = rand(20, 2) + [3 0];
+X3 = rand(20, 2) + [1.5 3];
+
+X = [X1; X2; X3];
+labels = [ones(20, 1); 2 * ones(20, 1); 3 * ones(20, 1)];
+
+// compute the silhouette coefficients
+s = silhouette(X, labels);
+s(1:5)
+
+// compute the score (average) silhouette
+m = mean(s)
+            ]]></programlisting>
+            <screen><![CDATA[ 
+--> s(1:5)
+
+ ans = [5x1 double]
+
+   0.8639779
+   0.7643916
+   0.8208359
+   0.8769499
+   0.8803262
+
+--> // compute the score (average) silhouette
+
+--> m = mean(s)
+
+ m = 
+
+    0.8400074
+   ]]></screen>
+        </para>
+        <para>
+            <programlisting role="example"><![CDATA[
+rand("seed", 0);
+data = [rand(30, 2) + 1; rand(30, 2) + 5; rand(30, 2) + 9];
+idx = kmeans(data, 3);
+s = silhouette(data, idx);
+s(1:5)
+            ]]></programlisting>
+            <screen><![CDATA[ 
+--> s(1:5)
+
+ ans = [5x1 double]
+
+   0.9304514
+   0.9230544
+   0.9052566
+   0.9317198
+   0.9324727               
+                ]]></screen>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member><link linkend="pdist">pdist</link></member>
+            <member><link linkend="squareform">squareform</link></member>
+            <member><link linkend="kmeans">kmeans</link></member>
+            <member><link linkend="dbscan">dbscan</link></member>
+            <member><link linkend="meanshift">meanshift</link></member>
+            <member><link linkend="agglomerative">agglomerative</link></member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revremark>Function added.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
