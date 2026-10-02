@@ -14,7 +14,8 @@ initialfonts = xlfont();
 assert_checkequal(size(initialfonts,'*'), 11);
 
 availablefonts = xlfont('AVAILABLE_FONTS');
-assert_checktrue(size(availablefonts,'*') >= 11);
+// A minimal Linux may only have a few fonts, but Java logical fonts are always there
+assert_checktrue(or(availablefonts == "SansSerif"));
 
 
 for i=1:11:1
@@ -61,16 +62,17 @@ end
 
 xlfont('reset')
 
-xlfont("Verdana", size(xlfont(), "*"), %f, %f);
-assert_checkequal(xlfont()($), "Verdana");
+// SansSerif is a Java logical font, available whatever the fonts installed
+xlfont("SansSerif", size(xlfont(), "*"), %f, %f);
+assert_checkequal(xlfont()($), "SansSerif");
 
-xlfont("Verdana", size(xlfont(), "*"), %f, %t);
-assert_checkequal(xlfont()($), "Verdana Italic");
+xlfont("SansSerif", size(xlfont(), "*"), %f, %t);
+assert_checkequal(xlfont()($), "SansSerif Italic");
 
-xlfont("Verdana", size(xlfont(), "*"), %t, %f);
-assert_checkequal(xlfont()($), "Verdana Bold");
+xlfont("SansSerif", size(xlfont(), "*"), %t, %f);
+assert_checkequal(xlfont()($), "SansSerif Bold");
 
-xlfont("Verdana", size(xlfont(), "*"), %t, %t);
-assert_checkequal(xlfont()($), "Verdana Bold Italic");
+xlfont("SansSerif", size(xlfont(), "*"), %t, %t);
+assert_checkequal(xlfont()($), "SansSerif Bold Italic");
 
 xlfont('reset')
