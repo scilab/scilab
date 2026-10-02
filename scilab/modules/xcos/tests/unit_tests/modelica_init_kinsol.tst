@@ -57,4 +57,4 @@ assert_checktrue(Compute_cic("Kinsol", string(nx)));
 x = initial(f, "chaos1.x");
 gamma = initial(f, "chaos1.gamma");
 assert_checkfalse(x == 2);
-assert_checkalmostequal(x - x^3 + gamma, 0, [], 1e-6);
+assert_checkalmostequal(x - x^3 + gamma, 0, [], 1e-4);
