@@ -782,6 +782,35 @@
             </listitem>
             <listitem>
                 <para>
+                    <emphasis role="bold">Format : Édition...</emphasis>
+                </para>
+                <para>
+                    L'item ouvre une boîte de dialogue pour modifier le bloc ou le lien sélectionné. Son onglet <emphasis>Légende du bloc</emphasis> définit :
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>Unique name</emphasis> : l'identifiant du bloc, aussi disponible dans <literal>model.label</literal> et utilisé comme nom de variable, par exemple dans le code Modelica ou dans un export SSP.
+                            Ce doit être un identifiant C valide : lettres sans accent, chiffres et <literal>_</literal> uniquement, sans chiffre en tête.
+                            La valeur saisie est convertie en conséquence : les accents sont retirés, tout autre caractère devient un seul <literal>_</literal> et un <literal>_</literal> est ajouté devant un chiffre initial.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Description</emphasis> : un texte libre décrivant le bloc.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            la zone de texte : le texte libre affiché avec le bloc, qui accepte n'importe quel caractère.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                <para>Les autres onglets définissent les couleurs de la bordure, du texte et du fond.</para>
+                <para/>
+            </listitem>
+            <listitem>
+                <para>
                     <emphasis role="bold">Format : Auto-positionnement</emphasis>
                 </para>
                 <para/>

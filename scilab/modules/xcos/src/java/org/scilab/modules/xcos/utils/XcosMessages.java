@@ -340,7 +340,7 @@ public final class XcosMessages {
     public static final String BLOCK_AUTO_POSITION_SPLIT_BLOCK = Messages.gettext("Split Block");
     public static final String BLOCK_AUTO_POSITION_SPLIT_BLOCK_CONTEXTUAL = Messages.gettext("Auto-Position Split Block");
 
-    public static final String VAR_NAME_TOOLTIP = Messages.gettext("Unique identifier the block");
+    public static final String VAR_NAME_TOOLTIP = Messages.gettext("Unique identifier of the block: letters, digits and '_' only, accents are removed and other characters become '_'. Use the description or the text for a free label.");
     public static final String ONELINE_DESCRIPTION_TOOLTIP = Messages.gettext("A one-line description of the block");
     public static final String MULTILINE_DESCRIPTION_TOOLTIP = Messages.gettext("Annotation (or comment) attached to the object");
 

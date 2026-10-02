@@ -378,29 +378,8 @@ public final class EditFormatAction extends DefaultAction {
             model.setStyle(identifier, identifierStyle.toString());
         }
 
-        // convert to a C / Scilab compatible variable name
-        // @see XcosCell.isValidCIdentifier
-        StringBuilder str = new StringBuilder(name.length());
-        name.codePoints()
-            .dropWhile(c -> !XcosCell.is_nondigit(c))
-            .map(c -> Character.isWhitespace(c) ? '_' : c)
-            .filter(c -> XcosCell.is_nondigit(c) || XcosCell.is_digit(c))
-            .forEach(c -> str.append((char) c));
-        // on failure, the input might containing only numbers
-        // add a leading '_'
-        if (str.isEmpty()) {
-            str.insert(0, '_');
-            name.codePoints()
-                .dropWhile(c -> !XcosCell.is_nondigit(c) && !XcosCell.is_digit(c))
-                .map(c -> Character.isWhitespace(c) ? '_' : c)
-                .filter(c -> XcosCell.is_nondigit(c) || XcosCell.is_digit(c))
-                .forEach(c -> str.append((char) c));
-        }
-        // still on failure, set as empty
-        if (str.length() == 1 && str.charAt(0) == '_') {
-            str.setLength(0);
-        }
-        name = str.toString();
+        // the name is the block identifier (model.label, SSP, Modelica)
+        name = XcosCell.toValidCIdentifier(name);
 
         //
         // Update the cell value and cell identifier value (related annotation)

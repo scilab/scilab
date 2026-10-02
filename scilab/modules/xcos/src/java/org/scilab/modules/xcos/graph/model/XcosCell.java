@@ -16,6 +16,7 @@
 
 package org.scilab.modules.xcos.graph.model;
 
+import java.text.Normalizer;
 import java.util.Collections;
 import java.util.List;
 
@@ -30,6 +31,7 @@ import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
+import com.mxgraph.util.mxUtils;
 import java.rmi.server.UID;
 import org.scilab.modules.xcos.block.TextBlock;
 
@@ -137,6 +139,39 @@ public class XcosCell extends mxCell {
         // others should be either a digit or a non digit
         boolean found = name.codePoints().skip(1).allMatch(c -> (is_nondigit(c) || is_digit(c)));
         return found;
+    }
+
+    /**
+     * Convert a name to a valid C identifier: accents are removed, other
+     * invalid characters become a single '_' and a leading digit gets a '_'.
+     *
+     * @param name the name, possibly an HTML label
+     * @return a valid C identifier, empty if nothing is left
+     */
+    public static String toValidCIdentifier(String name) {
+        String text = Normalizer.normalize(mxUtils.getBodyMarkup(name, true), Normalizer.Form.NFD);
+
+        StringBuilder str = new StringBuilder(text.length());
+        boolean separator = false;
+        for (int c : text.codePoints().toArray()) {
+            if (Character.getType(c) == Character.NON_SPACING_MARK) {
+                continue;
+            }
+            if (is_nondigit(c) || is_digit(c)) {
+                if (separator && str.charAt(str.length() - 1) != '_') {
+                    str.append('_');
+                }
+                separator = false;
+                str.append((char) c);
+            } else if (str.length() > 0) {
+                separator = true;
+            }
+        }
+
+        if (str.length() > 0 && is_digit(str.charAt(0))) {
+            str.insert(0, '_');
+        }
+        return str.toString();
     }
 
 

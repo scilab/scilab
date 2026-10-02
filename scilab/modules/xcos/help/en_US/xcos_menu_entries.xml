@@ -774,6 +774,35 @@
             </listitem>
             <listitem>
                 <para>
+                    <emphasis role="bold">Format:Edit...</emphasis>
+                </para>
+                <para>
+                    This menu opens a dialog to edit the selected block or link. Its <emphasis>Block legend</emphasis> tab sets:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>Unique name</emphasis>: the identifier of the block, also available as <literal>model.label</literal> and used as a variable name, for instance in the Modelica code or in an SSP export.
+                            It must be a valid C identifier: unaccented letters, digits and <literal>_</literal> only, not starting with a digit.
+                            The value entered is converted accordingly: accents are removed, any other characters become a single <literal>_</literal> and a <literal>_</literal> is added before a leading digit.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Description</emphasis>: a free text describing the block.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            the text area: the free text displayed with the block, which accepts any character.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                <para>The other tabs set the colors of the border, of the text and of the background.</para>
+                <para/>
+            </listitem>
+            <listitem>
+                <para>
                     <emphasis role="bold">Format:Auto-Position</emphasis>
                 </para>
                 <para/>

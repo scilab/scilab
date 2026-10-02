@@ -557,6 +557,9 @@
             <title>label</title>
             <para>String that defines a label. It can be used to identify a block in order to access or modify its parameters during simulation.</para>
             <para>
+                It is the <emphasis>Unique name</emphasis> of the block in Xcos (<emphasis>Format:Edit...</emphasis>) and must be a valid C identifier: an invalid value is replaced by an empty string.
+            </para>
+            <para>
                 Size : 1.
             </para>
             <para>

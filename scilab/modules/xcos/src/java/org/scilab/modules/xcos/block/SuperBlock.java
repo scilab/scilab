@@ -30,7 +30,7 @@ import org.scilab.modules.xcos.block.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCustomizeAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskRemoveAction;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
-import org.scilab.modules.xcos.utils.FileUtils;
+import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -152,7 +152,7 @@ public final class SuperBlock extends BasicBlock {
     @Override
     public void setValue(Object value) {
         if (value != null) {
-            super.setValue(FileUtils.toValidCIdentifier(value.toString()));
+            super.setValue(XcosCell.toValidCIdentifier(value.toString()));
         } else {
             super.setValue(value);
         }
