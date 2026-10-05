@@ -80,6 +80,7 @@ public final class ExportAction extends DefaultAction {
     private static final String HTML = "html";
     private static final String VML = "vml";
     private static final String SVG = "svg";
+    private static final String PNG = "png";
 
     /**
      * Constructor
@@ -145,11 +146,47 @@ public final class ExportAction extends DefaultAction {
             int index = fileName.lastIndexOf('.');
             String format = fileName.substring(index+1);
             try {
-                export(graph, new File(fileName), format, null);                
+                export(graph, new File(fileName), format, askBackground(graph, format));
             } catch (IOException ex) {
                 Logger.getLogger(ExportAction.class.getName()).severe(e.toString());
             }
         }
+    }
+
+    /**
+     * Background to export with, transparency being kept for PNG only: the
+     * other bitmap formats have no alpha channel.
+     *
+     * @param graph
+     *            the exported diagram
+     * @param fileFormat
+     *            the export format
+     * @param transparent
+     *            true for a transparent background when the format allows it
+     * @return the background color, null for a transparent one
+     */
+    public static Color background(XcosDiagram graph, String fileFormat, boolean transparent) {
+        if (transparent && fileFormat.equalsIgnoreCase(PNG)) {
+            return null;
+        }
+        return graph.getAsComponent().getBackground();
+    }
+
+    /**
+     * Background to export with, asking the user for a transparent one when
+     * exporting to PNG.
+     *
+     * @param graph
+     *            the exported diagram, also the parent of the question
+     * @param fileFormat
+     *            the export format
+     * @return the background color, null for a transparent one
+     */
+    static Color askBackground(XcosDiagram graph, String fileFormat) {
+        boolean transparent = fileFormat.equalsIgnoreCase(PNG)
+                              && ScilabModalDialog.show(XcosTab.get(graph), XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS,
+                                      IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION;
+        return background(graph, fileFormat, transparent);
     }
 
     /**
@@ -195,6 +232,8 @@ public final class ExportAction extends DefaultAction {
      *            the current filename
      * @param fileFormat
      *            the file format
+     * @param backgroundColor
+     *            The background Color, null is transparent
      * @throws IOException
      *             when an error occurs
      */
@@ -202,13 +241,8 @@ public final class ExportAction extends DefaultAction {
                                      String fileFormat, Color backgroundColor) throws IOException {
         final mxGraphComponent graphComponent = graph.getAsComponent();
 
-        Color bg = null;
-        if (backgroundColor == null) {
-            bg = graphComponent.getBackground();
-        }
-
         BufferedImage image = mxCellRenderer.createBufferedImage(graph, null,
-                              1, bg, graphComponent.isAntiAlias(), null,
+                              1, backgroundColor, graphComponent.isAntiAlias(), null,
                               graphComponent.getCanvas());
 
         if (image != null) {

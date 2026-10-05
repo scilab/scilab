@@ -909,7 +909,7 @@ public final class Xcos {
         XcosCellFactory.insertChildren(controller, graph);
         String filename = String.format(file, name[0]);
 
-        ExportAction.export(graph, new File(filename), format, null);
+        ExportAction.export(graph, new File(filename), format, ExportAction.background(graph, format, true));
         // without String Formatter, output only the single layer
         if (file.equals(filename))
         {
@@ -962,7 +962,7 @@ public final class Xcos {
             XcosCellFactory.insertChildren(controller, graph);
             
             filename = String.format(file, path);
-            ExportAction.export(graph, new File(filename), format, null);
+            ExportAction.export(graph, new File(filename), format, ExportAction.background(graph, format, true));
         }
     }
 

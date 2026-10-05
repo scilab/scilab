@@ -36,15 +36,10 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.filechooser.FileMask;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.messagebox.ScilabModalDialog;
-import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
-import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
-import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfScicosID;
-import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -132,13 +127,7 @@ public final class ExportAllAction extends DefaultAction {
             String format = ((FileMask) fc.getFileFilter()).getExtensionFromFilter();
 
             /* update states from the format */
-            Color backgroundColor = null;
-            if ((!format.equalsIgnoreCase("png"))
-                    || ScilabModalDialog.show(XcosTab.get((XcosDiagram) getGraph(null)),
-                                              XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS,
-                                              IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
-                backgroundColor = null;
-            }
+            Color backgroundColor = ExportAction.askBackground((XcosDiagram) getGraph(null), format);
 
             /*
              * Instantiate all the sub-diagrams
