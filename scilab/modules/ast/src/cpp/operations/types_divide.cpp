@@ -20,6 +20,7 @@ extern "C"
 {
 #include "matrix_right_division.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "localization.h"
 #include "charEncoding.h"
 #include "configvariable_interface.h"
@@ -106,7 +107,7 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
             case 4 :
                 if (getWarningMode())
                 {
-                    sciprint(_("Warning : Division by zero...\n"));
+                    Sciwarning(_("Warning : Division by zero...\n"));
                 }
                 break;
             default :

@@ -225,7 +225,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
         if or(u==contextvars) then
             %scicos_context(u)=updated_vars(u)
         else
-            mprintf(_("Warning the variable %s does not match any context variable name\nignored"),u)
+            warning(msprintf(_("the variable %s does not match any context variable name\nignored"),u))
         end
     end
     if ierr == 0 then //++ no error

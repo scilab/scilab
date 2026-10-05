@@ -25,6 +25,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "eigen.h"
 #include "issymmetric.h"
 #include "vfinite.h"
@@ -450,9 +451,9 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
         if (iRet > 0)
         {
-            sciprint(_("Warning :\n"));
-            sciprint(_("Non convergence in the QZ algorithm.\n"));
-            sciprint(_("The top %d  x %d blocks may not be in generalized Schur form.\n"), iRet);
+            Sciwarning(_("Warning :\n"));
+            Sciwarning(_("Non convergence in the QZ algorithm.\n"));
+            Sciwarning(_("The top %d  x %d blocks may not be in generalized Schur form.\n"), iRet);
         }
 
         if (iRet < 0)

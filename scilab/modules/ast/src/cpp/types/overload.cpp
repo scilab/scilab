@@ -19,6 +19,7 @@ extern "C"
 #include "os_string.h"
 #include "sci_malloc.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 }
 
 #include "configvariable.hxx"
@@ -77,7 +78,7 @@ types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _
         {
             char* pstFunc2 = wide_string_to_UTF8(stFunc2.c_str());
             char* pstFunc = wide_string_to_UTF8(stFunc.c_str());
-            sciprint(_("Warning : please rename your overloaded function\n \"%s\" to \"%s\"\n"), pstFunc2, pstFunc);
+            Sciwarning(_("Warning : please rename your overloaded function\n \"%s\" to \"%s\"\n"), pstFunc2, pstFunc);
             FREE(pstFunc);
             FREE(pstFunc2);
         }

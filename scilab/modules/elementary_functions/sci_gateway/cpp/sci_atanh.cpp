@@ -28,6 +28,7 @@ extern "C"
 #include "localization.h"
 #include "elem_common.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 }
 
 /*
@@ -84,7 +85,7 @@ types::Function::ReturnValue sci_atanh(types::typed_list &in, int _iRetCount, ty
                     if (ConfigVariable::getIeee() == 1 && ConfigVariable::getWarningMode() && bAlreadyDisp == false)
                     {
                         bAlreadyDisp = true;
-                        sciprint(_("%s: Warning: Wrong value for input argument #%d: Singularity of the function.\n"), "atanh", 1);
+                        Sciwarning(_("%s: Warning: Wrong value for input argument #%d: Singularity of the function.\n"), "atanh", 1);
                     }
                 }
                 else if (dAbsIn > 1 && bComplex == false)

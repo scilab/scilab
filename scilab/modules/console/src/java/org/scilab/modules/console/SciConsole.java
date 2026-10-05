@@ -336,8 +336,8 @@ public abstract class SciConsole extends JPanel {
                     case "cleared": {
                         lockOutput--;
                         if (lockOutput == 0) {
-                            for (String s : outputList) {
-                                append(s);
+                            for (String[] s : outputList) {
+                                append(s[0], s[1]);
                             }
                             outputList.clear();
                         }
@@ -399,6 +399,8 @@ public abstract class SciConsole extends JPanel {
         setFont(ConsoleOptions.getConsoleFont().font);
         setCaretColor(ConsoleOptions.getConsoleColor().cursor);
         setLinkColor(ConsoleOptions.getConsoleColor().link);
+        setWarningStyle(ConsoleOptions.getConsoleColor().warning, ConsoleOptions.getConsoleColor().warningBold, ConsoleOptions.getConsoleColor().warningItalic);
+        setErrorStyle(ConsoleOptions.getConsoleColor().error, ConsoleOptions.getConsoleColor().errorBold, ConsoleOptions.getConsoleColor().errorItalic);
     }
 
     public SciConsole getMe() {
@@ -417,6 +419,8 @@ public abstract class SciConsole extends JPanel {
             setBackground(ConsoleOptions.getConsoleColor().background);
             setCaretColor(ConsoleOptions.getConsoleColor().cursor);
             setLinkColor(ConsoleOptions.getConsoleColor().link);
+            setWarningStyle(ConsoleOptions.getConsoleColor().warning, ConsoleOptions.getConsoleColor().warningBold, ConsoleOptions.getConsoleColor().warningItalic);
+            setErrorStyle(ConsoleOptions.getConsoleColor().error, ConsoleOptions.getConsoleColor().errorBold, ConsoleOptions.getConsoleColor().errorItalic);
         }
         if (conf.font) {
             log.info("configurationChanged font");
@@ -779,17 +783,51 @@ public abstract class SciConsole extends JPanel {
         sendToHTML("linkcolor", hexColor);
     }
 
+    /**
+     * Set the style used to display warning messages in the Console
+     * @param color the warning Color
+     * @param bold true to display warnings in bold
+     * @param italic true to display warnings in italic
+     */
+    public void setWarningStyle(Color color, boolean bold, boolean italic) {
+        if (log.isLoggable(Level.INFO))
+        {
+            log.info("setWarningStyle: " + color + " bold: " + bold + " italic: " + italic);
+        }
+        String hexColor = String.format("#%06x", Integer.valueOf(color.getRGB() & 0x00FFFFFF));
+        sendToHTML("warningstyle", hexColor, bold ? "bold" : "normal", italic ? "italic" : "normal");
+    }
+
+    /**
+     * Set the style used to display error messages in the Console
+     * @param color the error Color
+     * @param bold true to display errors in bold
+     * @param italic true to display errors in italic
+     */
+    public void setErrorStyle(Color color, boolean bold, boolean italic) {
+        if (log.isLoggable(Level.INFO))
+        {
+            log.info("setErrorStyle: " + color + " bold: " + bold + " italic: " + italic);
+        }
+        String hexColor = String.format("#%06x", Integer.valueOf(color.getRGB() & 0x00FFFFFF));
+        sendToHTML("errorstyle", hexColor, bold ? "bold" : "normal", italic ? "italic" : "normal");
+    }
+
     public void closeConsole() {
         interruptAndDisable();
     }
 
-    private List<String> outputList = new ArrayList<String>();
+    private List<String[]> outputList = new ArrayList<String[]>();
     public void append(String data) {
+        append(data, "monospace");
+    }
+
+    public void append(String data, String style) {
         if (lockOutput != 0) {
-            outputList.add(data);
+            outputList.add(new String[] {data, style});
         } else {
             data = data.replaceAll(CRLF, LF);
-            sendToHTML("output", data, "monospace");
+            sendToHTML("output", data, style);
         }
     }
 

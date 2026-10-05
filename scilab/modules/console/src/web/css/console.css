@@ -118,6 +118,20 @@ pre.monospace {
     position: relative;
 }
 
+/* severity styles: user-defined through the Colors preference page,
+   fallbacks picked to stay readable on both light and dark backgrounds */
+pre.monospace.warning {
+    color: var(--warning-color, #c68a00);
+    font-weight: var(--warning-weight, normal);
+    font-style: var(--warning-style, normal);
+}
+
+pre.monospace.error {
+    color: var(--error-color, #d0453a);
+    font-weight: var(--error-weight, normal);
+    font-style: var(--error-style, normal);
+}
+
 .input-group {
     flex: 0 0 auto;
     width: 100%;

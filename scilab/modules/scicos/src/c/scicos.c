@@ -4524,7 +4524,7 @@ static void addevs(double t, int *evtnb, int *ierr1)
                 evtspt[i] = evtspt[*evtnb]; /* remove old evtnb from chain */
                 if (TCritWarning == 0)
                 {
-                    sciprint(_("\n Warning: an event is reprogrammed at t=%g by removing another"), t );
+                    Sciwarning(_("\n Warning: an event is reprogrammed at t=%g by removing another"), t );
                     sciprint(_("\n         (already programmed) event. There may be an error in"));
                     Sciwarning(_("\n         your model. Please check your model\n"));
                     TCritWarning = 1;
@@ -7021,7 +7021,7 @@ static int CallKinsol(double *told)
             for (j = 0; j < N; j++)
                 if (fsdata[j] - fsdata[j] != 0)
                 {
-                    sciprint(_("\nWarning: The residual function #%d returns a NaN/Inf"), j);
+                    Sciwarning(_("\nWarning: The residual function #%d returns a NaN/Inf"), j);
                     sciprint(_("\n The residual function returns NAN/Inf. \n Please verify your model:\n some functions might be called with illegal inputs."));
                     freekinsol;
                     *ierr = 400 - status;

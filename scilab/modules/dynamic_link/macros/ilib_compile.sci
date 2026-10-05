@@ -142,7 +142,7 @@ function libn = ilib_compile(lib_name, ..
         clearglobal cppCompilation;
 
         if ( ilib_verbose() <> 0 & ScilabTreeFound <> %t) then
-            mprintf(gettext("%s: Warning: Scilab has not been able to find where the Scilab sources are. Please submit a bug report on https://gitlab.com/scilab/scilab/-/issues\n"),"ilib_compile");
+            warning(msprintf(gettext("%s: Scilab has not been able to find where the Scilab sources are. Please submit a bug report on https://gitlab.com/scilab/scilab/-/issues"),"ilib_compile"));
         end
 
         oldPath = pwd();
@@ -188,7 +188,7 @@ function libn = ilib_compile(lib_name, ..
             // stderr can be not empty, it can contain compilation warnings
             if stderr <> "" then
                 if ( ilib_verbose() <> 0 ) then
-                    mprintf(gettext("%s: Warning: No error code returned by the compilation but the error output is not empty:\n"),"ilib_compile");
+                    warning(msprintf(gettext("%s: No error code returned by the compilation but the error output is not empty:"),"ilib_compile"));
                     mprintf("%s\n", stderr);
                 end
             end

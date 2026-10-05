@@ -17,6 +17,7 @@
 extern "C"
 {
 #include "sciprint.h"
+#include "Sciwarning.h"
 }
 
 namespace types
@@ -62,11 +63,11 @@ Object::~Object()
     }
     catch (ast::InternalError& ie)
     {
-        sciprint(_("Warning: 'delete' method of class '%ls' failed: %ls"), def->getName().data(), ie.GetErrorMessage().data());
+        Sciwarning(_("Warning: 'delete' method of class '%ls' failed: %ls"), def->getName().data(), ie.GetErrorMessage().data());
     }
     catch (...)
     {
-        sciprint(_("Warning: 'delete' method of class '%ls' failed.\n"), def->getName().data());
+        Sciwarning(_("Warning: 'delete' method of class '%ls' failed.\n"), def->getName().data());
     }
 
     for (auto&& prop : properties)

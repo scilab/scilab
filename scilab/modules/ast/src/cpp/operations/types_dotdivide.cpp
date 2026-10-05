@@ -26,6 +26,7 @@ extern "C"
 {
 #include "localization.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 }
 
 using namespace types;
@@ -829,7 +830,7 @@ InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRig
 
                 if (ConfigVariable::getIeee() == 1)
                 {
-                    sciprint(_("Warning : division by zero...\n"));
+                    Sciwarning(_("Warning : division by zero...\n"));
                 }
             }
 

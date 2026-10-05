@@ -23,6 +23,7 @@
 extern "C"
 {
 #include "sciprint.h"
+#include "Sciwarning.h"
 }
 
 namespace symbol
@@ -131,8 +132,8 @@ bool Variable::put(types::InternalType* _pIT, int _iLevel)
                             os_swprintf(pwstFuncName, 1024, L"%-24ls", name.getName().c_str());
                             char* pstFuncName = wide_string_to_UTF8(pwstFuncName);
 
-                            sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
-                            sciprint("\n");
+                            Sciwarning(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
+                            Sciwarning("\n");
                             FREE(pstFuncName);
                         }
                     }

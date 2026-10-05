@@ -156,7 +156,7 @@ function [x,frequ]=linfn(G,PREC,RELTOL,options);
     s=real(spec(a));
 
     if min(abs(s)) < RELTOL then
-        mprintf(gettext("%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"),"linfn");
+        warning(msprintf(gettext("%s: the A matrix has eigenvalues near the imaginary axis."),"linfn"));
     end
 
 

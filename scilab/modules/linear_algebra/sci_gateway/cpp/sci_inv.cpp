@@ -25,6 +25,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "invert_matrix.h"
 #include "configvariable_interface.h"
 #include "doublecomplex.h"
@@ -104,8 +105,8 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
         {
             if (getWarningMode())
             {
-                sciprint(_("Warning :\n"));
-                sciprint(_("matrix is close to singular or badly scaled. rcond = %1.4E\n"), dblRcond);
+                Sciwarning(_("Warning :\n"));
+                Sciwarning(_("matrix is close to singular or badly scaled. rcond = %1.4E\n"), dblRcond);
             }
         }
     }

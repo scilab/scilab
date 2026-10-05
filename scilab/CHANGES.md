@@ -54,6 +54,7 @@ For a high-level description of the main new features in this release, please co
 
 #### Features improvements
 
+- Console: warnings and errors are now visually distinct from regular output (dedicated colors, in both the console and the terminal where errors go to stderr). Colors and bold/italic styles can be customized in Preferences ⇒ Colors.
 - New web-based GUIs for ATOMS & Scilab Demonstration using "browser" uicontrols.
 - Objects defined using `classdef` now support static properties and methods.
 - `csvTextScan()` now manages a "substitute" option as `csvRead()` to enable replacement of particular strings in the read file.
@@ -193,6 +194,7 @@ Known incompatibilities
 
 ### Scilab 2026.1.0
 
+- Many warning messages formerly printed as regular output (near-singularity in `inv()`/`spec()`/`freq()`/`rtitr()`, solver diagnostics in `ode()`/`odedc()`/`intg()`/`int2d()`/`int3d()`, function redefinition, `mopen()`, `createdir()`, uicontrols...) now go through the standard warning channel: they are hidden by `warning("off")` and raise an error under `warning("stop")`.
 - `readtable()` & `readtimeseries()` now also return empty columns (columns with missing or undefined names).
 - In toolboxes, when using custom "builder_<lang>.sce" files in "src" folder, `tbx_build_src_clean()` must be called to be sure "cleaner<lang>.sce" files are generated.
 

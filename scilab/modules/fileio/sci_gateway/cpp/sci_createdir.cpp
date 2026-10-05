@@ -28,6 +28,7 @@ extern "C"
 #include "expandPathVariable.h"
 #include "configvariable_interface.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "PATH_MAX.h"
@@ -57,7 +58,7 @@ types::Function::ReturnValue sci_createdir(types::typed_list &in, int _iRetCount
     {
         if (getWarningMode())
         {
-            sciprint(_("%ls: Warning: Directory '%ls' already exists.\n"), L"createdir", pwstPath);
+            Sciwarning(_("%ls: Warning: Directory '%ls' already exists.\n"), L"createdir", pwstPath);
         }
         iRet = 1;
     }

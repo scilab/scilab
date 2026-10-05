@@ -116,7 +116,7 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
             os_swprintf(pwstToPrint, iSize, warning.c_str(), pwstTemp);
             pwstToPrint[iSize - 1] = L'\0';
 
-            scilabForcedWriteW(pwstToPrint);
+            scilabWarningW(pwstToPrint);
             FREE(pwstToPrint);
         }
 

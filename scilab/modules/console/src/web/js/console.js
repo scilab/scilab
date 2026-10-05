@@ -532,12 +532,15 @@ async function fromJava(msg) {
                     let last = $(".output").children(":last-child");
 
                     output.forEach(o => {
-                        if (o.style == "monospace" && last.hasClass("monospace")) {
-                            appendMonospaceText(last, processTextMarkup(processTextCRtoNL(o.text)));
-                        } else if (o.style == "monospace") {
-                            last = $(`<pre class="monospace"></pre>`);
-                            appendMonospaceText(last, processTextMarkup(processTextCRtoNL(o.text)));
-                            $(".output").append(last);
+                        // text styles rendered as monospace blocks, tagged with their severity
+                        if (["monospace", "warning", "error"].includes(o.style)) {
+                            if (last.attr("data-style") == o.style) {
+                                appendMonospaceText(last, processTextMarkup(processTextCRtoNL(o.text)));
+                            } else {
+                                last = $(`<pre class="monospace${o.style == "monospace" ? "" : " " + o.style}" data-style="${o.style}"></pre>`);
+                                appendMonospaceText(last, processTextMarkup(processTextCRtoNL(o.text)));
+                                $(".output").append(last);
+                            }
                         }
                         // no else on purpose, implement style and mime-type for further support
                     });
@@ -563,6 +566,16 @@ async function fromJava(msg) {
             break;
         case "fgcolor":
             $("body").css("color", msg.data1)
+            break;
+        case "warningstyle":
+            document.documentElement.style.setProperty("--warning-color", msg.data1);
+            document.documentElement.style.setProperty("--warning-weight", msg.data2);
+            document.documentElement.style.setProperty("--warning-style", msg.data3);
+            break;
+        case "errorstyle":
+            document.documentElement.style.setProperty("--error-color", msg.data1);
+            document.documentElement.style.setProperty("--error-weight", msg.data2);
+            document.documentElement.style.setProperty("--error-style", msg.data3);
             break;
         case "caret":
             $("body").css("caret-color", msg.data1)

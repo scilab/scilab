@@ -129,6 +129,8 @@ void endSynchronize();
 // Methods
 static void display(JavaVM * jvm_, char const* dataToDisplay);
 
+static void display(JavaVM * jvm_, char const* dataToDisplay, int severity);
+
 static char* readLine(JavaVM * jvm_);
 
 static void clear(JavaVM * jvm_);

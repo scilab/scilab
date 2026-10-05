@@ -31,6 +31,7 @@ extern "C"
 #include "scifunctions.h"
 #include "configvariable_interface.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -230,17 +231,17 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
         {
             if (pDblParams->get(0) < 0.0e0)
             {
-                sciprint(_("%ls: Warning: Wrong value for the first element of argument #%d: The default value will be used.\n"), L"int2d", iFPar+2);
+                Sciwarning(_("%ls: Warning: Wrong value for the first element of argument #%d: The default value will be used.\n"), L"int2d", iFPar+2);
             }
 
             if (pDblParams->get(2) < 1)
             {
-                sciprint(_("%ls: Warning: Wrong value for the third element of argument #%d: The default value will be used.\n"), L"int2d", iFPar+2);
+                Sciwarning(_("%ls: Warning: Wrong value for the third element of argument #%d: The default value will be used.\n"), L"int2d", iFPar+2);
             }
 
             if (pDblParams->get(3) < 1)
             {
-                sciprint(_("%ls: Warning: Wrong value for the fourth element of argument #%d: The default value will be used.\n"), L"int2d", iFPar+2);
+                Sciwarning(_("%ls: Warning: Wrong value for the fourth element of argument #%d: The default value will be used.\n"), L"int2d", iFPar+2);
             }
         }
 

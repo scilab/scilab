@@ -33,6 +33,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "configvariable_interface.h"
 }
 
@@ -137,8 +138,8 @@ types::String* TypeToString(T* _pI)
         if (bWarning == false && report_nul && !valid)
         {
             int v = static_cast<int>(p[i]);
-            sciprint(_("WARNING : \n"));
-            sciprint(_("%s: Wrong value for input argument #%d: Contains value %d at index %d, value must be between %d and %d. \n"), "ascii", 1, v, i+1, 1, MAX_ASCII);
+            Sciwarning(_("WARNING : \n"));
+            Sciwarning(_("%s: Wrong value for input argument #%d: Contains value %d at index %d, value must be between %d and %d. \n"), "ascii", 1, v, i+1, 1, MAX_ASCII);
             bWarning = true;
         }
 

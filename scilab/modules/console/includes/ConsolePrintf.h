@@ -24,6 +24,14 @@
 * @return total number of characters written is returned.
 */
 CONSOLE_IMPEXP int ConsolePrintf(const char *line);
+
+/**
+* ConsolePrint function
+* @param a string to display
+* @param severity of the message (scilab_print_severity)
+* @return total number of characters written is returned.
+*/
+CONSOLE_IMPEXP void ConsolePrint(const char *line, int severity);
 /*--------------------------------------------------------------------------*/
 #endif /* __CONSOLEPRINTF_H__ */
 

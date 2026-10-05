@@ -22,6 +22,7 @@ extern "C"
 #include "charEncoding.h"
 #include "Scierror.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "localization.h"
 }
 
@@ -101,7 +102,7 @@ types::Function::ReturnValue sci_spzeros(types::typed_list &in, int _iRetCount, 
             // FIXME: should be an error. To fix we need GenericType::m_iSize huger than int
             if (getWarningMode())
             {
-                sciprint(_("%s: Warning: You have created a Sparse of size > %d.\nDue to a Scilab limitation, reading or writing values from/to \nthis sparse using a unique index could lead to unexpected behavior."), "sparse", INT_MAX);
+                Sciwarning(_("%s: Warning: You have created a Sparse of size > %d.\nDue to a Scilab limitation, reading or writing values from/to \nthis sparse using a unique index could lead to unexpected behavior."), "sparse", INT_MAX);
             }
         }
 

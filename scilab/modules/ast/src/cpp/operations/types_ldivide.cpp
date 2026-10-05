@@ -21,6 +21,7 @@ extern "C"
 {
 #include "matrix_left_division.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "localization.h"
 #include "charEncoding.h"
 }
@@ -81,7 +82,7 @@ InternalType *GenericLDivide(InternalType *_pLeftOperand, InternalType *_pRightO
             case 3 :
                 throw ast::InternalError(_W("Left division by zero...\n"));
             case 4 :
-                sciprint(_("Warning : Left division by zero...\n"));
+                Sciwarning(_("Warning : Left division by zero...\n"));
                 break;
             default :
                 sciprint(_("Operator \\ : Error %d not yet managed.\n"), iResult);

@@ -25,11 +25,28 @@ extern "C"
 {
 #endif
 
-typedef void (*SCILAB_OUTPUT_METHOD)(const char *text);
+/* severity of a message sent to the console, ordered by increasing level */
+typedef enum
+{
+    SCI_MSG_OUTPUT  = 0,
+    SCI_MSG_WARNING = 1,
+    SCI_MSG_ERROR   = 2
+} scilab_print_severity;
 
+typedef void (*SCILAB_OUTPUT_METHOD)(const char *text);
+typedef void (*SCILAB_PRINT_METHOD)(const char *text, int severity);
+
+/* single writer receiving every message with its severity, preferred over the legacy per-stream writers below */
+OUTPUT_STREAM_IMPEXP void setScilabPrintMethod(SCILAB_PRINT_METHOD writer);
+
+/* legacy writers: severity is flattened to output/error streams; any of these setters disables the SCILAB_PRINT_METHOD writer */
 OUTPUT_STREAM_IMPEXP void setScilabOutputMethod(SCILAB_OUTPUT_METHOD writer);
 OUTPUT_STREAM_IMPEXP void setScilabErrorStreamMethod(SCILAB_OUTPUT_METHOD writer);
 OUTPUT_STREAM_IMPEXP void setScilabOutputStreamMethod(SCILAB_OUTPUT_METHOD writer);
+
+/* unconditional funnel: every console message goes through here, whatever its origin */
+OUTPUT_STREAM_IMPEXP void scilab_print(const char* _pstText, int _iSeverity);
+OUTPUT_STREAM_IMPEXP void scilab_printW(const wchar_t* _pwstText, int _iSeverity);
 
 OUTPUT_STREAM_IMPEXP void scilabWrite(const char* _pstText);
 
@@ -37,6 +54,9 @@ OUTPUT_STREAM_IMPEXP void scilabWriteW(const wchar_t* _pwstText);
 
 OUTPUT_STREAM_IMPEXP void scilabError(const char* _pstText);
 OUTPUT_STREAM_IMPEXP void scilabErrorW(const wchar_t* _pwstText);
+
+OUTPUT_STREAM_IMPEXP void scilabWarning(const char* _pstText);
+OUTPUT_STREAM_IMPEXP void scilabWarningW(const wchar_t* _pwstText);
 
 /* functions write in "console" without take care of mode*/
 OUTPUT_STREAM_IMPEXP void scilabForcedWriteW(const wchar_t* _pwsText);

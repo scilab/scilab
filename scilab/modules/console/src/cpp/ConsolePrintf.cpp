@@ -40,3 +40,17 @@ int ConsolePrintf(const char *line)
 
     return 0;
 }
+
+void ConsolePrint(const char *line, int severity)
+{
+    JavaVM *vm = getScilabJavaVM();
+    if (vm == NULL)
+    {
+        /* Java not yet or badly initialized */
+        printf("%s", line);
+    }
+    else
+    {
+        CallScilabBridge::display(vm, line, severity);
+    }
+}

@@ -14,6 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "gw_tclsci.h"
@@ -69,7 +70,7 @@ int gw_tclsci(void)
         }
         else
         {
-            sciprint(_("Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"));
+            Sciwarning(_("Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"));
         }
     }
     else

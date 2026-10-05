@@ -17,6 +17,7 @@
 
 extern "C"
 {
+#include "Sciwarning.h"
 #include "SetUicontrol.h"
 }
 
@@ -68,7 +69,7 @@ int SetUicontrolMin(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int
 
         if ((value != minValue) && (value != maxValue))
         {
-            sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), IntToStyle(objectStyle), "Min", "Max");
+            Sciwarning(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), IntToStyle(objectStyle), "Min", "Max");
         }
 
     }

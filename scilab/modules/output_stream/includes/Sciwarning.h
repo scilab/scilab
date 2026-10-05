@@ -18,6 +18,14 @@
 
 #include "dynlib_output_stream.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 OUTPUT_STREAM_IMPEXP int Sciwarning(const char *msg, ...);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // SCIWARNING_H

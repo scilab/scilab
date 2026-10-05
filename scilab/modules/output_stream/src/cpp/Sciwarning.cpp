@@ -14,14 +14,19 @@
  */
 
 #include "scilabexception.hxx"
+#include "scilabWrite.hxx"
 
 extern "C"
 {
 #include "sciprint.h"
 #include "Sciwarning.h"
+#include "Scierror.h"
 #include "configvariable_interface.h"
 }
 
+#ifdef _MSC_VER
+#define vsnprintf _vsnprintf
+#endif
 
 int Sciwarning(const char *msg, ...)
 {
@@ -29,10 +34,17 @@ int Sciwarning(const char *msg, ...)
     if (getWarningMode())
     {
         //print warning message
+        char s_buf[bsiz];
         va_list ap;
         va_start(ap, msg);
-        scivprint(msg, ap);
+        retval = vsnprintf(s_buf, bsiz - 1, msg, ap);
+        if (retval < 0)
+        {
+            s_buf[bsiz - 1] = '\0';
+        }
         va_end(ap);
+
+        scilabWarning(s_buf);
 
         if (getWarningStop())
         {

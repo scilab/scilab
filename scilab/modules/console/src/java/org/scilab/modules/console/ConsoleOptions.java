@@ -75,11 +75,17 @@ public class ConsoleOptions {
         public Color cursor;
         public Color foreground;
         public Color link;
+        public Color warning;
+        public boolean warningBold;
+        public boolean warningItalic;
+        public Color error;
+        public boolean errorBold;
+        public boolean errorItalic;
 
         private ConsoleColor() { }
 
-        @XConfAttribute(tag = "desktop-colors", attributes = {"background", "cursor", "text", "link", "use-system-color"})
-        private void set(Color background, Color cursor, Color foreground, String link, boolean useSystemColor) {
+        @XConfAttribute(tag = "desktop-colors", attributes = {"background", "cursor", "text", "link", "warning", "warning-bold", "warning-italic", "error", "error-bold", "error-italic", "use-system-color"})
+        private void set(Color background, Color cursor, Color foreground, String link, Color warning, boolean warningBold, boolean warningItalic, Color error, boolean errorBold, boolean errorItalic, boolean useSystemColor) {
             if (useSystemColor) {
                 this.background = Color.WHITE;
                 this.cursor = Color.BLACK;
@@ -96,6 +102,13 @@ public class ConsoleOptions {
                     this.link = DEFAULT_LINK_COLOR;
                 }
             }
+            // severity styles are not covered by the system color scheme
+            this.warning = warning;
+            this.warningBold = warningBold;
+            this.warningItalic = warningItalic;
+            this.error = error;
+            this.errorBold = errorBold;
+            this.errorItalic = errorItalic;
         }
     }
 

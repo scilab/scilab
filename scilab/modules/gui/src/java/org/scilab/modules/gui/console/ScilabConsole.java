@@ -106,6 +106,15 @@ public class ScilabConsole extends ScilabDockable implements Console {
     }
 
     /**
+     * Displays data in the console
+     * @param dataToDisplay the data to be displayed
+     * @param severity severity of the message (0: output, 1: warning, 2: error)
+     */
+    public void display(String dataToDisplay, int severity) {
+        ScilabBridge.display(this, dataToDisplay, severity);
+    }
+
+    /**
      * Reads input data in the console
      * @return the data entered by the user
      */

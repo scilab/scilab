@@ -23,6 +23,7 @@ extern "C"
 {
 #include "Scierror.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "localization.h"
 #include "elem_common.h"
 #include "log.h"
@@ -75,7 +76,7 @@ types::Function::ReturnValue sci_log1p(types::typed_list &in, int _iRetCount, ty
             {
                 if (ConfigVariable::getWarningMode())
                 {
-                    sciprint(_("%s: Warning: Wrong value for input argument #%d: Singularity of the function.\n"), "log1p", 1);
+                    Sciwarning(_("%s: Warning: Wrong value for input argument #%d: Singularity of the function.\n"), "log1p", 1);
                     break;
                 }
             }

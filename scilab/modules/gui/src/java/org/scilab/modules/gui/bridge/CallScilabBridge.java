@@ -127,6 +127,15 @@ public class CallScilabBridge {
     }
 
     /**
+     * Display a line in the Console
+     * @param dataToDisplay the line to display
+     * @param severity severity of the message (0: output, 1: warning, 2: error)
+     */
+    public static void display(String dataToDisplay, int severity) {
+        ScilabConsole.getConsole().display(dataToDisplay, severity);
+    }
+
+    /**
      * Get the status of the Console
      * @return true if the console is at the prompt
      */

@@ -21,6 +21,7 @@
 extern "C"
 {
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "dmp2pm.h"
@@ -334,8 +335,8 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
         {
             char strValue[256];
             sprintf(strValue, "%lf", pdblWork[0]);
-            sciprint(_("Warning :\n"));
-            sciprint(_("matrix is close to singular or badly scaled. rcond = %s\n"), strValue);
+            Sciwarning(_("Warning :\n"));
+            Sciwarning(_("matrix is close to singular or badly scaled. rcond = %s\n"), strValue);
             iErr = 0;
         }
         else if (iErr == 2)

@@ -74,8 +74,7 @@ function [K2, lm, vm, lM, vM] = cond2sp(A, C, rtol, itermax, verb)
         end
         if iter >= itermax then
 
-            mprintf(gettext(" Warning : for lM ""convergence"" at rtol = %e \n"), rtol);
-            mprintf(gettext("           don''t reached after %d iterations (got only %e) \n"), itermax, crit);
+            warning(msprintf(gettext("for lM ""convergence"" at rtol = %e\ndon''t reached after %d iterations (got only %e)"), rtol, itermax, crit));
             break
         end
     end
@@ -105,8 +104,7 @@ function [K2, lm, vm, lM, vM] = cond2sp(A, C, rtol, itermax, verb)
             lm_old = lm
         end
         if iter >= itermax then
-            mprintf(gettext(" Warning : for lm ""convergence"" at rtol = %e \n"), rtol);
-            mprintf(gettext("           don''t reached after %d iterations (got only %e) \n"),itermax, crit);
+            warning(msprintf(gettext("for lm ""convergence"" at rtol = %e\ndon''t reached after %d iterations (got only %e)"), rtol, itermax, crit));
             break
         end
     end

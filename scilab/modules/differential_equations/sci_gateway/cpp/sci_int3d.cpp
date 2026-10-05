@@ -31,6 +31,7 @@ extern "C"
 #include "scifunctions.h"
 #include "configvariable_interface.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -277,7 +278,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
             {
                 if (pDblParams->get(i) < 0)
                 {
-                    sciprint(_("%ls: Warning: Wrong value for the element %d of argument #%d: The default value will be used.\n"), L"int3d", i + 1, iFPar+3);
+                    Sciwarning(_("%ls: Warning: Wrong value for the element %d of argument #%d: The default value will be used.\n"), L"int3d", i + 1, iFPar+3);
                 }
             }
         }
@@ -291,7 +292,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
         {
             if (getWarningMode())
             {
-                sciprint(_("%ls: Warning: Wrong value for the element %d and %d of argument #%d: The default value will be used.\n"), L"int3d", 3, 4, iFPar+3);
+                Sciwarning(_("%ls: Warning: Wrong value for the element %d and %d of argument #%d: The default value will be used.\n"), L"int3d", 3, 4, iFPar+3);
             }
             epsabs = 0.0;
             epsrel = 1.0e-5;
@@ -389,7 +390,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
         {
             if (getWarningMode())
             {
-                sciprint(_("%ls: Warning: maxpts was too small to obtain the required accuracy.\n"), L"int3d");
+                Sciwarning(_("%ls: Warning: maxpts was too small to obtain the required accuracy.\n"), L"int3d");
             }
         }
         else if (ifail == 3)

@@ -17,6 +17,10 @@
         <method name="display" returnType="void" modifier="static">
             <parameter type="String" name="dataToDisplay" />
         </method>
+        <method name="display" returnType="void" modifier="static">
+            <parameter type="String" name="dataToDisplay" />
+            <parameter type="int" name="severity" />
+        </method>
         <method name="readLine" returnType="String" modifier="static" detachThread="true">
         </method>
         <method name="clear" returnType="void" modifier="static">

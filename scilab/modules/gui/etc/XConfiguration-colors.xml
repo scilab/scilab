@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <colors title="_(Colors)">
     <body>
-        <desktop-colors use-system-color="true" text="#000000" background="#ffffff" cursor="#000000" link="#0000ee"/>
+        <desktop-colors use-system-color="true" text="#000000" background="#ffffff" cursor="#000000" link="#0000ee" warning="#c68a00" warning-bold="false" warning-italic="false" error="#d0453a" error-bold="false" error-italic="false"/>
         <syntax-highlighting-colors name="Default">
             <item name="Default" color="#000000" bold="false" italic="false" underline="false" strike-through="false"/>
             <item name="Special" color="#FFAA00" bold="false" italic="false" underline="false" strike-through="false"/>

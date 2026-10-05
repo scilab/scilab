@@ -28,6 +28,7 @@ extern "C"
 #include "expandPathVariable.h"
 #include "configvariable_interface.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "PATH_MAX.h"
@@ -53,7 +54,7 @@ types::Function::ReturnValue sci_removedir(types::typed_list &in, int _iRetCount
     {
         if (getWarningMode())
         {
-            sciprint(_("%s: Warning: Directory '%ls' does not exist.\n"), "removedir", pwstPath);
+            Sciwarning(_("%s: Warning: Directory '%ls' does not exist.\n"), "removedir", pwstPath);
         }
     }
     else

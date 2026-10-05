@@ -32,6 +32,7 @@ extern "C"
 #include "scifunctions.h"
 #include "configvariable_interface.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "matrix_division.h"
 #include "vfinite.h"
 #include "common_structure.h"
@@ -310,7 +311,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
         {
             if (getWarningMode())
             {
-                sciprint(msg, "intg: Warning");
+                Sciwarning(msg, "intg: Warning");
             }
         }
         else

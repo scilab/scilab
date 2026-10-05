@@ -48,6 +48,15 @@ public interface Console extends Dockable {
     void display(String dataToDisplay);
 
     /**
+     * Displays data in Console
+     * @param dataToDisplay the data to be displayed
+     * @param severity severity of the message (0: output, 1: warning, 2: error)
+     */
+    default void display(String dataToDisplay, int severity) {
+        display(dataToDisplay);
+    }
+
+    /**
      * Clears the console (all output view is cleared)
      */
     void clear();

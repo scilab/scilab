@@ -22,6 +22,7 @@
 extern "C"
 {
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "elem_common.h"
@@ -529,8 +530,8 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
 
         if (bFirst && dRcond + 1 == 1)
         {
-            sciprint(_("Warning :\n"));
-            sciprint(_("matrix is close to singular or badly scaled. rcond = %g\n"), dRcond);
+            Sciwarning(_("Warning :\n"));
+            Sciwarning(_("matrix is close to singular or badly scaled. rcond = %g\n"), dRcond);
             bFirst = false;
         }
 

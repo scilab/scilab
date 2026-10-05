@@ -451,17 +451,12 @@ extern "C"
 #include <unistd.h>
 #endif
     extern char *getCmdLine(void);
-    extern void ConsolePrintf(const char *);
+    extern void ConsolePrint(const char *, int);
 }
 
-static void TermError(const char *text)
+static void TermPrint(const char *text, int severity)
 {
-    fprintf(stderr, "%s", text);
-}
-
-static void TermOutput(const char *text)
-{
-    fprintf(stdout, "%s", text);
+    fprintf(severity == SCI_MSG_ERROR ? stderr : stdout, "%s", text);
 }
 
 /*
@@ -519,8 +514,7 @@ int main(int argc, char *argv[])
     {
         setScilabMode(SCILAB_NW);
         setScilabInputMethod(&getCmdLine);
-        setScilabErrorStreamMethod(&TermError);
-        setScilabOutputStreamMethod(&TermOutput);
+        setScilabPrintMethod(&TermPrint);
 #if defined(__APPLE__)
         if (pSEI->iNoJvm == 0)
         {
@@ -532,7 +526,7 @@ int main(int argc, char *argv[])
     {
         setScilabMode(SCILAB_STD);
         setScilabInputMethod(&ConsoleRead);
-        setScilabOutputMethod(&ConsolePrintf);
+        setScilabPrintMethod(&ConsolePrint);
 
 #ifdef _MSC_VER
         if (pSEI->iCodeAction != -1)
@@ -560,8 +554,7 @@ int main(int argc, char *argv[])
 #else
     setScilabMode(SCILAB_NWNI);
     setScilabInputMethod(&getCmdLine);
-    setScilabErrorStreamMethod(&TermError);
-    setScilabOutputStreamMethod(&TermOutput);
+    setScilabPrintMethod(&TermPrint);
 #endif // defined(WITHOUT_GUI)
 
 #ifdef _MSC_VER

@@ -26,6 +26,7 @@ extern "C"
 {
 #include "Scierror.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "localization.h"
 #include "tan.h"
 #include "abs.h"
@@ -90,7 +91,7 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
                     {
                         if (ConfigVariable::getWarningMode())
                         {
-                            sciprint(_("%s: Warning: Wrong value for input argument #%d: Singularity of the function.\n"), "atan", 1);
+                            Sciwarning(_("%s: Warning: Wrong value for input argument #%d: Singularity of the function.\n"), "atan", 1);
                         }
 
                         msg = false;

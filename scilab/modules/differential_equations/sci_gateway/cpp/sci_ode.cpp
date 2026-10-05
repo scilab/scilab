@@ -32,6 +32,7 @@ extern "C"
 #include "scifunctions.h"
 #include "elem_common.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "sci_malloc.h"
 #include "sciprint.h"
 #include "common_structure.h"
@@ -657,14 +658,14 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 
     if (bFuncJac && (jt == 2 || jt == 5) && getWarningMode())
     {
-        sciprint(_("%s: Warning: Jacobian is given, but not used.\n"), "ode");
+        Sciwarning(_("%s: Warning: Jacobian is given, but not used.\n"), "ode");
     }
 
     if (bFuncJac == false && (jt == 1 || jt == 4))
     {
         if (getWarningMode())
         {
-            sciprint(_("%s: Warning: No Jacobian external given, but one is required by %ODEOPTIONS(6) value. Jacobian will be estimated.\n"), "ode");
+            Sciwarning(_("%s: Warning: No Jacobian external given, but one is required by %ODEOPTIONS(6) value. Jacobian will be estimated.\n"), "ode");
         }
 
         jt = 2;
@@ -747,7 +748,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
     {
         if (getWarningMode())
         {
-            sciprint(_("%s: Warning: Wrong value for maximum stiff/non-stiff order allowed :\nAt most %d for mxordn, %d for mxords and no null value for both expected.\nWrong value will be reduced to the default value.\n"), "ode", 12, 5);
+            Sciwarning(_("%s: Warning: Wrong value for maximum stiff/non-stiff order allowed :\nAt most %d for mxordn, %d for mxords and no null value for both expected.\nWrong value will be reduced to the default value.\n"), "ode", 12, 5);
         }
 
         mxordn = 12;
@@ -1182,12 +1183,12 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 //              specified by itask.  see jroot.
                 if (getWarningMode())
                 {
-                    sciprint(_("%s: Warning: At t = %lf, y is a root, jroot = "), "ode", t0);
+                    Sciwarning(_("%s: Warning: At t = %lf, y is a root, jroot = "), "ode", t0);
                     for (int k = 0; k < pDblNg->get(0); k++)
                     {
-                        sciprint("\t%d", jroot[k]);
+                        Sciwarning("\t%d", jroot[k]);
                     }
-                    sciprint("\n");
+                    Sciwarning("\n");
                 }
 
                 break;
@@ -1435,12 +1436,12 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 
                 if (getWarningMode())
                 {
-                    sciprint(_("%s: Warning: At t = %lf, y is a root, jroot = "), "ode", t0);
+                    Sciwarning(_("%s: Warning: At t = %lf, y is a root, jroot = "), "ode", t0);
                     for (int k = 0; k < pDblNg->get(0); k++)
                     {
-                        sciprint("\t%d", jroot[k]);
+                        Sciwarning("\t%d", jroot[k]);
                     }
-                    sciprint("\n");
+                    Sciwarning("\n");
                 }
 
                 types::Double* pDblYOutTemp = pDblYOut;

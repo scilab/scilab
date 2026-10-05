@@ -199,6 +199,27 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         append(dataToDisplay);
     }
 
+    /**
+     * Displays data in the console with a severity
+     * @param dataToDisplay the data to be displayed
+     * @param severity severity of the message (0: output, 1: warning, 2: error)
+     * @see fr.scilab.console.HelpBrowser#display(java.lang.String)
+     */
+    @Override
+    public void display(String dataToDisplay, int severity) {
+        switch (severity) {
+            case 2:
+                append(dataToDisplay, "error");
+                break;
+            case 1:
+                append(dataToDisplay, "warning");
+                break;
+            default:
+                append(dataToDisplay);
+                break;
+        }
+    }
+
     @Override
     public int getCharWithoutOutput() {
         int retChar = this.getUserInputValue();

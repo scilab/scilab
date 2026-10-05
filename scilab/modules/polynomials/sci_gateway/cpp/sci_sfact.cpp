@@ -24,6 +24,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "elem_common.h"
     extern int C2F(sfact1)(double*, int*, double*, int*, int*);
     extern int C2F(sfact2)(double*, int*, int*, double*, int*, int*);
@@ -111,7 +112,7 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
         }
         else if (iErr < 0)
         {
-            sciprint("%s: warning: Convergence at 10^%d near.\n", "sfact", iErr);
+            Sciwarning("%s: warning: Convergence at 10^%d near.\n", "sfact", iErr);
         }
 
         // return result

@@ -42,6 +42,15 @@ public interface SimpleConsole {
     void display(String dataToDisplay);
 
     /**
+     * Displays data in Console
+     * @param dataToDisplay the data to be displayed
+     * @param severity severity of the message (0: output, 1: warning, 2: error)
+     */
+    default void display(String dataToDisplay, int severity) {
+        display(dataToDisplay);
+    }
+
+    /**
      * Clears the console (no more scroll history and prompt on top left corner)
      */
     void clear();

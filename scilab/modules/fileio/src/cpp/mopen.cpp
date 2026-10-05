@@ -24,6 +24,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "mopen.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "charEncoding.h"
 #include "configvariable_interface.h"
 #include "isdir.h"
@@ -39,7 +40,7 @@ int mopen(const wchar_t* _pstFilename, const wchar_t* _pstMode, int _iSwap, int*
     if (getWarningMode() && FileManager::isOpened(_pstFilename))
     {
         char* pst = wide_string_to_UTF8(_pstFilename);
-        sciprint(_("Warning: file '%s' already opened in Scilab.\n"), pst);
+        Sciwarning(_("Warning: file '%s' already opened in Scilab.\n"), pst);
         FREE(pst);
     }
     /* bug 4846 */

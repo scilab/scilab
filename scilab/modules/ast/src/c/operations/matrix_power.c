@@ -541,8 +541,8 @@ int iPowerRealSquareMatrixByRealScalar(
         {
             if (getWarningMode())
             {
-                sciprint(_("Warning :\n"));
-                sciprint(_("matrix is close to singular or badly scaled. rcond = %1.4E\n"), dblRcond);
+                Sciwarning(_("Warning :\n"));
+                Sciwarning(_("matrix is close to singular or badly scaled. rcond = %1.4E\n"), dblRcond);
                 Sciwarning(_("computing least squares solution. (see lsq).\n"));
             }
         }
@@ -681,8 +681,8 @@ int iPowerComplexSquareMatrixByRealScalar(
         {
             if (getWarningMode())
             {
-                sciprint(_("Warning :\n"));
-                sciprint(_("matrix is close to singular or badly scaled. rcond = %1.4E\n"), dblRcond);
+                Sciwarning(_("Warning :\n"));
+                Sciwarning(_("matrix is close to singular or badly scaled. rcond = %1.4E\n"), dblRcond);
                 Sciwarning(_("computing least squares solution. (see lsq).\n"));
             }
         }

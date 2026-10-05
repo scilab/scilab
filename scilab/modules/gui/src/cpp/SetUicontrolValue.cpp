@@ -17,6 +17,7 @@
 
 extern "C"
 {
+#include "Sciwarning.h"
 #include <stdio.h>
 #include "GetUicontrol.h"
 }
@@ -103,7 +104,7 @@ int SetUicontrolValue(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
      */
     if ((objectStyle == __GO_UI_POPUPMENU__ || objectStyle == __GO_UI_LISTBOX__) && truncated)
     {
-        sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be an integer, the value will be truncated.\n")), IntToStyle(objectStyle));
+        Sciwarning(const_cast<char*>(_("Warning: '%s' 'Value' property should be an integer, the value will be truncated.\n")), IntToStyle(objectStyle));
     }
 
     /*
@@ -116,7 +117,7 @@ int SetUicontrolValue(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
 
         if ((value[0] != minValue) && (value[0] != maxValue))
         {
-            sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), IntToStyle(objectStyle), "Min", "Max");
+            Sciwarning(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), IntToStyle(objectStyle), "Min", "Max");
         }
 
     }

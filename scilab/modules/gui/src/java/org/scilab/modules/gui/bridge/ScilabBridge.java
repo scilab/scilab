@@ -671,6 +671,16 @@ public class ScilabBridge {
     }
 
     /**
+     * Displays data in the console
+     * @param console the console to display the data in
+     * @param dataToDisplay the data to be displayed
+     * @param severity severity of the message (0: output, 1: warning, 2: error)
+     */
+    public static void display(Console console, String dataToDisplay, int severity) {
+        ScilabConsoleBridge.display(console, dataToDisplay, severity);
+    }
+
+    /**
      * Reads input data in the console
      * @param console the console to read the data from
      * @return the data entered by the user

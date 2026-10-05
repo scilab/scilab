@@ -173,6 +173,34 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
+void CallScilabBridge::display (JavaVM * jvm_, char const* dataToDisplay, int severity){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voiddisplayjstringjava_lang_StringjintintID = curEnv->GetStaticMethodID(cls, "display", "(Ljava/lang/String;I)V" ) ;
+if (voiddisplayjstringjava_lang_StringjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "display");
+}
+
+jstring dataToDisplay_ = curEnv->NewStringUTF( dataToDisplay );
+if (dataToDisplay != NULL && dataToDisplay_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
+                         curEnv->CallStaticVoidMethod(cls, voiddisplayjstringjava_lang_StringjintintID ,dataToDisplay_, severity);
+                        curEnv->DeleteLocalRef(dataToDisplay_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
 char* CallScilabBridge::readLine (JavaVM * jvm_){
 
 JNIEnv * curEnv = NULL;

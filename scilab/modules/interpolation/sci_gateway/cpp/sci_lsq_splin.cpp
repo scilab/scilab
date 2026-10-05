@@ -23,6 +23,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 #include "configvariable_interface.h"
 #include "interpolation_functions.h"
 #include "interpolation.h"
@@ -162,7 +163,7 @@ types::Function::ReturnValue sci_lsq_splin(types::typed_list &in, int _iRetCount
     }
     else if (ierr == 1 && getWarningMode())
     {
-        sciprint(_("%ls: Warning: Rank deficiency of the least square matrix.\n"), L"lsq_splin");
+        Sciwarning(_("%ls: Warning: Rank deficiency of the least square matrix.\n"), L"lsq_splin");
     }
 
     // *** Return result in Scilab. ***
