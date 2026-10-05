@@ -83,9 +83,11 @@ expectedroots  = [0. ; 0. ];
 checkroots(p,expectedroots,%eps);
 
 // 2 real roots with a zero derivate at the root
+// A double root is only accurate to ~sqrt(%eps), and may come back as a complex
+// pair: the absolute tolerance covers the imaginary part, compared with 0.
 p=(%s-%pi)^2;
 expectedroots  = [%pi;%pi];
-checkroots(p,expectedroots,1d-8);
+checkroots(p,expectedroots,1d-8,1d-7);
 
 // Tests from CPOLY
 // M. A. Jenkins and J. F. Traub. 1972.
