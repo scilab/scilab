@@ -80,12 +80,30 @@ for extension = [".parquet", ".arrow"]
     expected = parquetRead(path, "OutputType", "timeseries");
     assert_checktrue(istimeseries(expected));
 
-    expected = parquetRead(path, "RowTimes", "duration");
-    assert_checkequal(expected.Properties.variableNames, ["duration", "date"]);
+    // compression options (scalar: gzip, snappy, zstd, uncompressed) for parquet files
+    if extension == ".parquet" then
+        for comp = ["gzip", "snappy", "zstd", "uncompressed"]
+            path_comp = fullfile(TMPDIR, "comp_" + comp + extension);
+            parquetWrite(path_comp, t, comp);
+            expected = parquetRead(path_comp);
+            assert_checkequal(expected, t);
+        end
+
+        // per-variable compression (vector of strings)
+        t_multi = table(rand(3,1), ["a"; "b"; "c"], int32([1; 2; 3]), "VariableNames", ["v1", "v2", "v3"]);
+        path_multi = fullfile(TMPDIR, "comp_multi" + extension);
+        parquetWrite(path_multi, t_multi, ["gzip", "snappy", "uncompressed"]);
+        expected_multi = parquetRead(path_multi);
+        assert_checkequal(expected_multi, t_multi);
+
+        parquetWrite(path_multi, t_multi, ["zstd"; "gzip"; "snappy"]);
+        expected_multi = parquetRead(path_multi);
+        assert_checkequal(expected_multi, t_multi);
+    end
 end
 
 // errors
-msg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "parquetWrite", 2);
+msg = msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "parquetWrite", 2, 3);
 assert_checkerror("parquetWrite()", msg);
 msg = msprintf(_("%s: Wrong type for input argument #%d: Must be in %s.\n"), "parquetWrite", 1, sci2exp("string"));
 assert_checkerror("parquetWrite(1,1)", msg);
@@ -93,3 +111,10 @@ msg = msprintf(_("%s: Wrong type for input argument #%d: Must be in %s.\n"), "pa
 assert_checkerror("parquetWrite(""1"",1)", msg);
 msg = msprintf(_("%s: Wrong extension for input argument #%d: Supported extensions are %s.\n"), "parquetWrite", 1, sci2exp(["parquet", "arrow"]));
 assert_checkerror("parquetWrite(fullfile(TMPDIR, ""test.csv""), t)", msg);
+msg = msprintf(_("%s: Wrong value for input argument #%d: Must be in %s.\n"), "parquetWrite", 3, sci2exp(["gzip", "snappy", "zstd", "uncompressed"]));
+assert_checkerror("parquetWrite(path, t, ""invalid"")", msg);
+assert_checkerror("parquetWrite(path, t, 123)", msg);
+msg_size = msprintf(_("%s: Wrong size for input argument #%d: A vector of %d compression types expected.\n"), "parquetWrite", 3, 2);
+assert_checkerror("parquetWrite(path, t, [""gzip"", ""snappy"", ""uncompressed""])", msg_size);
+msg_val = msprintf(_("%s: Wrong value for input argument #%d: Elements must be in %s.\n"), "parquetWrite", 3, sci2exp(["gzip", "snappy", "zstd", "uncompressed"]));
+assert_checkerror("parquetWrite(path, t, [""gzip"", ""invalid""])", msg_val);

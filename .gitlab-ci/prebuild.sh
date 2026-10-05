@@ -114,6 +114,8 @@ ARROW_BOOST_VERSION=1_81_0
 ARROW_THRIFT_VERSION=0.20.0
 ARROW_MIMALLOC_VERSION=2.0.6
 ARROW_XSIMD_VERSION=13.0.0
+ARROW_SNAPPY_VERSION=1.1.10
+ARROW_ZSTD_VERSION=1.5.6
 
 # CppServer and its deps
 CPPSERVER_VERSION=1.0.6.0
@@ -163,6 +165,8 @@ make_versions() {
     echo "ARROW_THRIFT_VERSION    = $ARROW_THRIFT_VERSION"
     echo "ARROW_MIMALLOC_VERSION  = $ARROW_MIMALLOC_VERSION"
     echo "ARROW_XSIMD_VERSION     = $ARROW_XSIMD_VERSION"
+    echo "ARROW_SNAPPY_VERSION    = $ARROW_SNAPPY_VERSION"
+    echo "ARROW_ZSTD_VERSION      = $ARROW_ZSTD_VERSION"
     echo "CPPSERVER_VERSION       = $CPPSERVER_VERSION"
     echo "CPPCOMMON_VERSION       = $CPPCOMMON_VERSION"
     echo "CPPCMAKESCRIPTS_VERSION = $CPPCMAKESCRIPTS_VERSION"
@@ -237,6 +241,8 @@ download_dependencies() {
     [ ! -f thrift-${ARROW_THRIFT_VERSION}.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/thrift-${ARROW_THRIFT_VERSION}.tar.gz
     [ ! -f mimalloc-${ARROW_MIMALLOC_VERSION}.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/mimalloc-${ARROW_MIMALLOC_VERSION}.tar.gz
     [ ! -f xsimd-${ARROW_XSIMD_VERSION}.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/xsimd-${ARROW_XSIMD_VERSION}.tar.gz
+    [ ! -f snappy-${ARROW_SNAPPY_VERSION}.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/snappy-${ARROW_SNAPPY_VERSION}.tar.gz
+    [ ! -f zstd-${ARROW_ZSTD_VERSION}.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/zstd-${ARROW_ZSTD_VERSION}.tar.gz
 
     # CppServer and its deps
     [ ! -f CppServer-$CPPSERVER_VERSION.zip ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/CppServer-$CPPSERVER_VERSION.zip
@@ -1031,6 +1037,8 @@ build_arrow() {
     export ARROW_XSIMD_URL=file://$DOWNLOADDIR/xsimd-$ARROW_XSIMD_VERSION.tar.gz
     export ARROW_ZLIB_URL=file://$DOWNLOADDIR/zlib-$ZLIB_VERSION.tar.gz
     sed -i 's/9a93b2b7dfdac77ceba5a558a580e74667dd6fede4585b91eefb60f03b72df23/c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1/' thirdparty/versions.txt
+    export ARROW_SNAPPY_URL=file://$DOWNLOADDIR/snappy-$ARROW_SNAPPY_VERSION.tar.gz
+    export ARROW_ZSTD_URL=file://$DOWNLOADDIR/zstd-$ARROW_ZSTD_VERSION.tar.gz
     # Selected options similar to https://github.com/microsoft/vcpkg/blob/5825c5878e2ccab9b3c3128e4529a3b4a86776b4/ports/arrow/portfile.cmake
     cmake -B build . --install-prefix="$INSTALL_DIR" \
         -DCMAKE_BUILD_TYPE=Release \
@@ -1039,6 +1047,10 @@ build_arrow() {
         -DARROW_BUILD_TESTS=OFF \
         -DARROW_PARQUET=ON \
         -DARROW_WITH_ZLIB=ON \
+        -DARROW_WITH_SNAPPY=ON \
+        -DSnappy_SOURCE=BUNDLED \
+        -DARROW_WITH_ZSTD=ON \
+        -Dzstd_SOURCE=BUNDLED \
         -G "Unix Makefiles"
     cmake --build build/
     cmake --build build/ --target install

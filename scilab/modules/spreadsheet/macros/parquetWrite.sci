@@ -5,10 +5,11 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function parquetWrite(filename, t)
+function parquetWrite(filename, t, compression)
     arguments
         filename {mustBeA(filename, "string"), mustBeScalar}
         t {mustBeA(t, ["table", "timeseries"])}
+        compression string = "gzip"
     end
 
     ext = fileext(filename);
@@ -22,6 +23,22 @@ function parquetWrite(filename, t)
     if typeof(data) <> "list" then
         // if table has one column
         data = list(data);
+    end
+
+    codecs = ["gzip", "snappy", "zstd", "uncompressed"];
+    if isscalar(compression) then
+        if and(compression <> codecs) then
+            error(msprintf(_("%s: Wrong value for input argument #%d: Must be in %s.\n"), "parquetWrite", 3, sci2exp(codecs)));
+        end
+    else
+        if size(compression, "*") <> cols then
+            error(msprintf(_("%s: Wrong size for input argument #%d: A vector of %d compression types expected.\n"), "parquetWrite", 3, cols));
+        end
+        for i = 1:cols
+            if and(compression(i) <> codecs) then
+                error(msprintf(_("%s: Wrong value for input argument #%d: Elements must be in %s.\n"), "parquetWrite", 3, sci2exp(codecs)));
+            end
+        end
     end
 
     columnTypes = emptystr(1, cols);
@@ -51,7 +68,7 @@ function parquetWrite(filename, t)
         end
     end
 
-    %parquetWrite(filename, ext, data, columnNames, columnTypes);
+    %parquetWrite(filename, ext, data, columnNames, columnTypes, compression);
 endfunction
 
 function col_double = convert_datetime_column(col_data)

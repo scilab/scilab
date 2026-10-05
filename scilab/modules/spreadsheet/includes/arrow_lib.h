@@ -31,7 +31,7 @@ extern "C" {
     ArrowData_t arrow_read(const char* filename);
 
     int arrow_write(const char* filename, ArrowData* raw_data);
-    int parquet_write(const char* filename, ArrowData* raw_data);
+    int parquet_write(const char* filename, ArrowData* raw_data, types::String* pCompression);
 
 #ifdef __cplusplus
 }

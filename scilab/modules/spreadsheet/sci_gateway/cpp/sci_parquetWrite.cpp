@@ -37,9 +37,9 @@ extern "C"
 /* ==================================================================== */
 types::Function::ReturnValue sci_parquetWrite(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if (in.size() != 5)
+    if (in.size() != 5 && in.size() != 6)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "parquetWrite", 5);
+        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "parquetWrite", 5, 6);
         return types::Function::Error;
     }
 
@@ -84,6 +84,19 @@ types::Function::ReturnValue sci_parquetWrite(types::typed_list &in, int _iRetCo
     types::String* file_e = in[1]->getAs<types::String>();
     char* file_extension = wide_string_to_UTF8(file_e->get(0));
 
+    types::String* pCompression = nullptr;
+    if (in.size() == 6)
+    {
+        if (in[5]->isString() == false)
+        {
+            FREE(filename);
+            FREE(file_extension);
+            Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), "parquetWrite", 6);
+            return types::Function::Error;
+        }
+        pCompression = in[5]->getAs<types::String>();
+    }
+
     types::List* pList = in[2]->getAs<types::List>();
     int cols = pList->getSize();
 
@@ -106,12 +119,20 @@ types::Function::ReturnValue sci_parquetWrite(types::typed_list &in, int _iRetCo
         return types::Function::Error;
     }
 
+    if (pCompression != nullptr && pCompression->getSize() != 1 && pCompression->getSize() != cols)
+    {
+        FREE(filename);
+        FREE(file_extension);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string or a vector of %d strings expected.\n"), "parquetWrite", 6, cols);
+        return types::Function::Error;
+    }
+
     ArrowData st = {pMetaColumnNames, pMetaColumnTypes, pList, 0};
     int result = 0;
 
     if (strcmp(file_extension, ".parquet") == 0)
     {
-        result = parquet_write(filename, &st);
+        result = parquet_write(filename, &st, pCompression);
     }
     else if (strcmp(file_extension, ".arrow") == 0)
     {

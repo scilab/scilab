@@ -19,6 +19,7 @@
         <title>Syntax</title>
         <synopsis>
             parquetWrite(filename, data)
+            parquetWrite(filename, data, compression)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -37,6 +38,15 @@
                 <listitem>
                     <para>A <link linkend="table">table</link> or <link linkend="timeseries">timeseries</link>
                         containing the data to write.</para>
+                </listitem>
+            </varlistentry>    
+            <varlistentry>
+                <term>compression</term>
+                <listitem>
+                    <para>Scalar string or string array specifying the compression algorithm for Parquet files.
+                        If a scalar string is provided, the compression applies to the entire file.
+                        If a string array (with length matching the number of variables) is provided, each element specifies the compression for the corresponding variable.
+                        Supported values are <literal>"gzip"</literal> (default), <literal>"snappy"</literal>, <literal>"zstd"</literal> and <literal>"uncompressed"</literal>.</para>
                 </listitem>
             </varlistentry>    
         </variablelist>
@@ -100,6 +110,15 @@
     <refsection role="history">
         <title>History</title>
         <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        Add the optional <varname>compression</varname> argument to <function>parquetWrite</function>, 
+                        supporting "gzip", "snappy", "zstd" and "uncompressed" compression algorithms.
+                    </para>
+                </revdescription>
+            </revision>
             <revision>
                 <revnumber>2026.1.0</revnumber>
                 <revremark>Function added.</revremark>
