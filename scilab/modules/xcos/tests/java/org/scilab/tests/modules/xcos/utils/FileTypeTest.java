@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.rmi.server.UID;
 
 import org.junit.Assume;
-import org.junit.Before;
 import org.junit.Test;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
@@ -33,11 +32,6 @@ import org.scilab.modules.xcos.io.XcosFileType;
  */
 public class FileTypeTest {
     private static final String XcosFileHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-
-    @Before
-    public void loadLibrary() {
-        System.loadLibrary("scilab");
-    }
 
     @Test
     public void checkSupportedType() {

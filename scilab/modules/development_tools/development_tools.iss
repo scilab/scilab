@@ -48,6 +48,8 @@ Source: modules\{#DEVTOOLS}\macros\assert\cleanmacros.bat; DestDir: {app}\module
 ;
 Source: modules\{#DEVTOOLS}\tests\*.*; DestDir: {app}\modules\{#DEVTOOLS}\tests; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS} and {#COMPN_TESTS}
 Source: modules\{#DEVTOOLS}\data\test_run_level.xml; DestDir: {app}\modules\{#DEVTOOLS}\data; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS} and {#COMPN_TESTS}
+; JUnit runs the modules Java tests (tests/java) from test_run
+Source: thirdparty\junit-4.10.jar; DestDir: {app}\thirdparty; Components: {#COMPN_DEVTOOLS} and {#COMPN_TESTS}
 ;
 Source: modules\{#DEVTOOLS}\help\*.*; DestDir: {app}\modules\{#DEVTOOLS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;--------------------------------------------------------------------------------------------------------------

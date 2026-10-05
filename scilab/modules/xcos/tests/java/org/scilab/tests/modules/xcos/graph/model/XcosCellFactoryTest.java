@@ -19,6 +19,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.EnumSet;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.xcos.JavaController;
@@ -27,12 +28,12 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.model.BlockInterFunction;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 
+@Ignore("XcosCellFactory.createBlock needs a running Scilab interpreter")
 public class XcosCellFactoryTest {
     private JavaController controller;
 
     @Before
-    public void loadLibrary() {
-        System.loadLibrary("scilab");
+    public void createController() {
         controller = new JavaController();
     }
 

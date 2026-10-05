@@ -32,8 +32,7 @@ public class ControlPortTest {
     private JavaController controller;
 
     @Before
-    public void loadLibrary() {
-        System.loadLibrary("scilab");
+    public void createController() {
         controller = new JavaController();
     }
 

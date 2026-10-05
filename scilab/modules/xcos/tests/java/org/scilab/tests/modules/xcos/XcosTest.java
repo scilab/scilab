@@ -17,7 +17,6 @@ package org.scilab.tests.modules.xcos;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.scilab.modules.xcos.Xcos;
 
@@ -25,11 +24,6 @@ import org.scilab.modules.xcos.Xcos;
  * Test of the {@link XcosTest} class.
  */
 public class XcosTest {
-
-    @Before
-    public void loadLibrary() {
-        System.loadLibrary("scilab");
-    }
 
     /**
      * Be careful when modifying the tradename and version.
