@@ -1,0 +1,86 @@
+<model><name>BouncingBall_Modelica_imf</name>
+<elements><struct><name>Bounce1</name>
+<subnodes><terminal><name>__der_v</name>
+<kind>variable</kind>
+<id>Bounce1.__der_v</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of Bounce1.v"/>
+</terminal>
+<terminal><name>__der_y</name>
+<kind>variable</kind>
+<id>Bounce1.__der_y</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of Bounce1.y"/>
+</terminal>
+<terminal><name>y</name>
+<kind>variable</kind>
+<id>Bounce1.y</id>
+<fixed value=""/>
+<initial_value value="10."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>v</name>
+<kind>variable</kind>
+<id>Bounce1.v</id>
+<fixed value=""/>
+<initial_value value="3."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort1</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort1.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort1.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort2</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort2.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort2.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+</elements>
+<equations><equation value=" `Bounce1.__der_y` = `Bounce1.v`; "/>
+<equation value=" `Bounce1.__der_v` = (-0.9); "/>
+<equation value=" `OutPutPort1.vi` = `OutPutPort1.vo`; "/>
+<equation value=" `OutPutPort2.vi` = `OutPutPort2.vo`; "/>
+<equation value=" `Bounce1.y` = `OutPutPort1.vi`; "/>
+<equation value=" `Bounce1.v` = `OutPutPort2.vi`; "/>
+</equations>
+<when_clauses/>
+</model>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+  <name>fixture</name>
+  <elements>
+    <!-- a comment between elements -->
+    <terminal>
+      <name>top</name>
+      <kind>fixed_parameter</kind>
+      <id>top</id>
+      <fixed value="false"/>
+      <initial_value value="0.9"/>
+      <nominal_value value=""/>
+      <comment value="top"/>
+    </terminal>
+    <struct>
+      <name>R1</name>
+      <subnodes>
+        <terminal>
+          <name>R</name>
+          <kind>fixed_parameter</kind>
+          <id>R1.R</id>
+          <fixed value="true"/>
+          <initial_value value="1.5"/>
+          <nominal_value value=""/>
+          <comment value="Résistance (Ω)"/>
+        </terminal>
+        <terminal>
+          <name>i</name>
+          <kind>variable</kind>
+          <id>R1.i</id>
+          <fixed value="false"/>
+          <initial_value value="-2.5e-3"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+          <output/>
+        </terminal>
+        <terminal>
+          <name>n</name>
+          <kind>discrete_variable</kind>
+          <id>R1.n</id>
+          <fixed value=""/>
+          <initial_value value="42."/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+        <!-- quoted value: reference to another id -->
+        <terminal>
+          <name>ref</name>
+          <kind>variable</kind>
+          <id>R1.ref</id>
+          <fixed value=""/>
+          <initial_value value="`R1.R`"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+        <terminal>
+          <name>chain</name>
+          <kind>variable</kind>
+          <id>R1.chain</id>
+          <fixed value=""/>
+          <initial_value value="`R1.ref`"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+        <terminal>
+          <name>empty</name>
+          <kind>variable</kind>
+          <id>R1.empty</id>
+          <fixed value=""/>
+          <initial_value value=""/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+        <terminal>
+          <name>expr</name>
+          <kind>variable</kind>
+          <id>R1.expr</id>
+          <fixed value=""/>
+          <initial_value value="R1.R*2"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+        <struct>
+          <name>sub</name>
+          <subnodes>
+            <terminal>
+              <name>x</name>
+              <kind>variable</kind>
+              <id>R1.sub.x</id>
+              <fixed value=""/>
+              <initial_value value="7"/>
+              <nominal_value value=""/>
+              <comment value=""/>
+            </terminal>
+            <terminal>
+              <name>dup</name>
+              <kind>variable</kind>
+              <id>dup</id>
+              <fixed value=""/>
+              <initial_value value="1"/>
+              <nominal_value value=""/>
+              <comment value=""/>
+            </terminal>
+          </subnodes>
+        </struct>
+        <!-- after the nested struct, yet found first: terminals are searched before structs -->
+        <terminal>
+          <name>dup</name>
+          <kind>variable</kind>
+          <id>dup</id>
+          <fixed value=""/>
+          <initial_value value="2"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+      </subnodes>
+    </struct>
+    <struct>
+      <name>C1</name>
+      <subnodes>
+        <terminal>
+          <name>v</name>
+          <kind>variable</kind>
+          <id>C1.v</id>
+          <fixed value=""/>
+          <initial_value value="3.25"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+        <terminal>
+          <name>w</name>
+          <kind>variable</kind>
+          <id>C1.w</id>
+          <fixed value=""/>
+          <initial_value value="8"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+      </subnodes>
+    </struct>
+  </elements>
+</model>

@@ -58,7 +58,6 @@ src/c/scicos_print.c \
 src/c/import.c \
 src/c/scicos.c \
 src/c/scicos_free.c \
-src/c/ezxml.c \
 src/c/var2sci.c \
 src/c/MlistGetFieldNumber.c \
 src/c/lsodar.c \

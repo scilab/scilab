@@ -1,0 +1,145 @@
+<model><name>Ball_Platform_imf</name>
+<elements><struct><name>Ball_Platform1</name>
+<subnodes><terminal><name>__der_v2</name>
+<kind>variable</kind>
+<id>Ball_Platform1.__der_v2</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of Ball_Platform1.v2"/>
+</terminal>
+<terminal><name>__der_y2</name>
+<kind>variable</kind>
+<id>Ball_Platform1.__der_y2</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of Ball_Platform1.y2"/>
+</terminal>
+<terminal><name>__der_v1</name>
+<kind>variable</kind>
+<id>Ball_Platform1.__der_v1</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of Ball_Platform1.v1"/>
+</terminal>
+<terminal><name>__der_y1</name>
+<kind>variable</kind>
+<id>Ball_Platform1.__der_y1</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of Ball_Platform1.y1"/>
+</terminal>
+<terminal><name>y1</name>
+<kind>variable</kind>
+<id>Ball_Platform1.y1</id>
+<fixed value=""/>
+<initial_value value="11."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>v1</name>
+<kind>variable</kind>
+<id>Ball_Platform1.v1</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>y2</name>
+<kind>variable</kind>
+<id>Ball_Platform1.y2</id>
+<fixed value=""/>
+<initial_value value="15."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>v2</name>
+<kind>variable</kind>
+<id>Ball_Platform1.v2</id>
+<fixed value=""/>
+<initial_value value="1."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>y0</name>
+<kind>variable</kind>
+<id>Ball_Platform1.y0</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>v1p</name>
+<kind>discrete_variable</kind>
+<id>Ball_Platform1.v1p</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>v2p</name>
+<kind>discrete_variable</kind>
+<id>Ball_Platform1.v2p</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort1</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort1.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort1.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort2</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort2.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort2.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+</elements>
+<equations><equation value=" `Ball_Platform1.y0` = 10.; "/>
+<equation value=" `Ball_Platform1.__der_y1` = `Ball_Platform1.v1`; "/>
+<equation value=" (0.5 * `Ball_Platform1.__der_v1`) = (if noEvent(((`Ball_Platform1.v1` &lt; 0.001) and (`Ball_Platform1.v1` &gt; (-0.001)))) then 0. else (((-4.9) - (2. * (`Ball_Platform1.y1` - `Ball_Platform1.y0`))) - (0.2 * `Ball_Platform1.v1`))); "/>
+<equation value=" `Ball_Platform1.__der_y2` = `Ball_Platform1.v2`; "/>
+<equation value=" `Ball_Platform1.__der_v2` = (if noEvent(((`Ball_Platform1.v2` &lt; 0.001) and (`Ball_Platform1.v2` &gt; (-0.001)))) then 0. else (-9.800000000000001)); "/>
+<equation value=" `OutPutPort1.vi` = `OutPutPort1.vo`; "/>
+<equation value=" `OutPutPort2.vi` = `OutPutPort2.vo`; "/>
+<equation value=" `Ball_Platform1.y2` = `OutPutPort1.vi`; "/>
+<equation value=" `Ball_Platform1.y1` = `OutPutPort2.vi`; "/>
+</equations>
+<when_clauses/>
+</model>

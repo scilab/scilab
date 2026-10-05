@@ -41,9 +41,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\ezxml.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\import.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -266,9 +263,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\dynlib_scicos.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ezxml.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\includes\gw_scicos.h">

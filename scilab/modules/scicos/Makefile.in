@@ -248,7 +248,7 @@ am__libsciscicos_algo_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/cpp/sciblk4.cpp src/cpp/createblklist.cpp \
 	src/cpp/extractblklist.cpp src/c/tree.c src/c/scicos_malloc.c \
 	src/c/scicos_print.c src/c/import.c src/c/scicos.c \
-	src/c/scicos_free.c src/c/ezxml.c src/c/var2sci.c \
+	src/c/scicos_free.c src/c/var2sci.c \
 	src/c/MlistGetFieldNumber.c src/c/lsodar.c src/c/ddaskr.c
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/noscicos/libsciscicos_algo_la-noscicos.lo
@@ -290,7 +290,6 @@ am__objects_3 = src/c/libsciscicos_algo_la-tree.lo \
 	src/c/libsciscicos_algo_la-import.lo \
 	src/c/libsciscicos_algo_la-scicos.lo \
 	src/c/libsciscicos_algo_la-scicos_free.lo \
-	src/c/libsciscicos_algo_la-ezxml.lo \
 	src/c/libsciscicos_algo_la-var2sci.lo \
 	src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo \
 	src/c/libsciscicos_algo_la-lsodar.lo \
@@ -576,7 +575,6 @@ am__depfiles_remade = sci_gateway/c/$(DEPDIR)/libsciscicos_cli_la-sci_loadScicos
 	sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_vec2var.Plo \
 	src/c/$(DEPDIR)/libsciscicos_algo_la-MlistGetFieldNumber.Plo \
 	src/c/$(DEPDIR)/libsciscicos_algo_la-ddaskr.Plo \
-	src/c/$(DEPDIR)/libsciscicos_algo_la-ezxml.Plo \
 	src/c/$(DEPDIR)/libsciscicos_algo_la-import.Plo \
 	src/c/$(DEPDIR)/libsciscicos_algo_la-lsodar.Plo \
 	src/c/$(DEPDIR)/libsciscicos_algo_la-scicos.Plo \
@@ -1095,7 +1093,6 @@ src/c/scicos_print.c \
 src/c/import.c \
 src/c/scicos.c \
 src/c/scicos_free.c \
-src/c/ezxml.c \
 src/c/var2sci.c \
 src/c/MlistGetFieldNumber.c \
 src/c/lsodar.c \
@@ -1677,8 +1674,6 @@ src/c/libsciscicos_algo_la-scicos.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-scicos_free.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciscicos_algo_la-ezxml.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-var2sci.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo:  \
@@ -1993,7 +1988,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_vec2var.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-MlistGetFieldNumber.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-ddaskr.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-ezxml.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-import.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-lsodar.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-scicos.Plo@am__quote@ # am--include-marker
@@ -2114,13 +2108,6 @@ src/c/libsciscicos_algo_la-scicos_free.lo: src/c/scicos_free.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/scicos_free.c' object='src/c/libsciscicos_algo_la-scicos_free.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_algo_la-scicos_free.lo `test -f 'src/c/scicos_free.c' || echo '$(srcdir)/'`src/c/scicos_free.c
-
-src/c/libsciscicos_algo_la-ezxml.lo: src/c/ezxml.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_algo_la-ezxml.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_algo_la-ezxml.Tpo -c -o src/c/libsciscicos_algo_la-ezxml.lo `test -f 'src/c/ezxml.c' || echo '$(srcdir)/'`src/c/ezxml.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciscicos_algo_la-ezxml.Tpo src/c/$(DEPDIR)/libsciscicos_algo_la-ezxml.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/ezxml.c' object='src/c/libsciscicos_algo_la-ezxml.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_algo_la-ezxml.lo `test -f 'src/c/ezxml.c' || echo '$(srcdir)/'`src/c/ezxml.c
 
 src/c/libsciscicos_algo_la-var2sci.lo: src/c/var2sci.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_algo_la-var2sci.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_algo_la-var2sci.Tpo -c -o src/c/libsciscicos_algo_la-var2sci.lo `test -f 'src/c/var2sci.c' || echo '$(srcdir)/'`src/c/var2sci.c
@@ -3163,7 +3150,6 @@ distclean: distclean-am
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_vec2var.Plo
 	-rm -f src/c/$(DEPDIR)/libsciscicos_algo_la-MlistGetFieldNumber.Plo
 	-rm -f src/c/$(DEPDIR)/libsciscicos_algo_la-ddaskr.Plo
-	-rm -f src/c/$(DEPDIR)/libsciscicos_algo_la-ezxml.Plo
 	-rm -f src/c/$(DEPDIR)/libsciscicos_algo_la-import.Plo
 	-rm -f src/c/$(DEPDIR)/libsciscicos_algo_la-lsodar.Plo
 	-rm -f src/c/$(DEPDIR)/libsciscicos_algo_la-scicos.Plo
@@ -3317,7 +3303,6 @@ maintainer-clean: maintainer-clean-am
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_vec2var.Plo
 	-rm -f src/c/$(DEPDIR)/libsciscicos_algo_la-MlistGetFieldNumber.Plo
 	-rm -f src/c/$(DEPDIR)/libsciscicos_algo_la-ddaskr.Plo
-	-rm -f src/c/$(DEPDIR)/libsciscicos_algo_la-ezxml.Plo
 	-rm -f src/c/$(DEPDIR)/libsciscicos_algo_la-import.Plo
 	-rm -f src/c/$(DEPDIR)/libsciscicos_algo_la-lsodar.Plo
 	-rm -f src/c/$(DEPDIR)/libsciscicos_algo_la-scicos.Plo

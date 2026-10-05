@@ -8,16 +8,3 @@ INRIA
 
 License:
 GPL
-
-EZXML:
-======
-
-Files:
-src/c/ezxml.c src/c/ezxml.h
-
-Copyright:
-2004-2006 Aaron Voisine
-
-License:
-MIT
-

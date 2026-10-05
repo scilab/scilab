@@ -1,0 +1,913 @@
+<model><name>Hydraulics_imf</name>
+<elements><struct><name>Bache1</name>
+<subnodes><terminal><name>__der_Hm</name>
+<kind>variable</kind>
+<id>Bache1.__der_Hm</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of Bache1.Hm"/>
+</terminal>
+<terminal><name>__der_z</name>
+<kind>variable</kind>
+<id>Bache1.__der_z</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of Bache1.z"/>
+</terminal>
+<terminal><name>z</name>
+<kind>variable</kind>
+<id>Bache1.z</id>
+<fixed value=""/>
+<initial_value value="30."/>
+<nominal_value value=""/>
+<comment value="Hauteur du fluide"/>
+</terminal>
+<terminal><name>Tm</name>
+<kind>variable</kind>
+<id>Bache1.Tm</id>
+<fixed value=""/>
+<initial_value value="290."/>
+<nominal_value value=""/>
+<comment value="TempÃ©rature moyenne"/>
+</terminal>
+<terminal><name>Pm</name>
+<kind>variable</kind>
+<id>Bache1.Pm</id>
+<fixed value=""/>
+<initial_value value="100000."/>
+<nominal_value value=""/>
+<comment value="Pression moyenne"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>Bache1.Hm</id>
+<fixed value=""/>
+<initial_value value="100000."/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique moyenne"/>
+</terminal>
+<terminal><name>rho</name>
+<kind>variable</kind>
+<id>Bache1.rho</id>
+<fixed value=""/>
+<initial_value value="998."/>
+<nominal_value value=""/>
+<comment value="Masse volumique"/>
+</terminal>
+<terminal><name>BQ</name>
+<kind>variable</kind>
+<id>Bache1.BQ</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Bilan de masse"/>
+</terminal>
+<terminal><name>BH</name>
+<kind>variable</kind>
+<id>Bache1.BH</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Bilan d'Ã©nergie"/>
+</terminal>
+<terminal><name>Oe1</name>
+<kind>variable</kind>
+<id>Bache1.Oe1</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>Oe2</name>
+<kind>variable</kind>
+<id>Bache1.Oe2</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>Os1</name>
+<kind>variable</kind>
+<id>Bache1.Os1</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>Os2</name>
+<kind>variable</kind>
+<id>Bache1.Os2</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>region</name>
+<kind>variable</kind>
+<id>Bache1.region</id>
+<fixed value=""/>
+<initial_value value="1."/>
+<nominal_value value=""/>
+<comment value="NumÃ©ro de rÃ©gion IF97"/>
+</terminal>
+<terminal><name>Max_e1</name>
+<kind>variable</kind>
+<id>Bache1.Max_e1</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>Max_e2</name>
+<kind>variable</kind>
+<id>Bache1.Max_e2</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>Max_s1</name>
+<kind>variable</kind>
+<id>Bache1.Max_s1</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>Max_s2</name>
+<kind>variable</kind>
+<id>Bache1.Max_s2</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>ThermoCar1</name>
+<kind>variable</kind>
+<id>Bache1.ThermoCar1</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>ThermoCar2</name>
+<kind>variable</kind>
+<id>Bache1.ThermoCar2</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>yNiveau</name>
+<kind>variable</kind>
+<id>Bache1.yNiveau</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<struct><name>Ce1</name>
+<subnodes><terminal><name>P</name>
+<kind>variable</kind>
+<id>Bache1.Ce1.P</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Pression du fluide"/>
+</terminal>
+<terminal><name>H</name>
+<kind>variable</kind>
+<id>Bache1.Ce1.H</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique du fluide"/>
+</terminal>
+<terminal><name>Q</name>
+<kind>variable</kind>
+<id>Bache1.Ce1.Q</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="DÃ©bit massique du fluide"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>Bache1.Ce1.Hm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique de mÃ©lange"/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>Cs2</name>
+<subnodes><terminal><name>P</name>
+<kind>variable</kind>
+<id>Bache1.Cs2.P</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Pression du fluide"/>
+</terminal>
+<terminal><name>H</name>
+<kind>variable</kind>
+<id>Bache1.Cs2.H</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique du fluide"/>
+</terminal>
+<terminal><name>Q</name>
+<kind>variable</kind>
+<id>Bache1.Cs2.Q</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="DÃ©bit massique du fluide"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>Bache1.Cs2.Hm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique de mÃ©lange"/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>Ce2</name>
+<subnodes><terminal><name>P</name>
+<kind>variable</kind>
+<id>Bache1.Ce2.P</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Pression du fluide"/>
+</terminal>
+<terminal><name>H</name>
+<kind>variable</kind>
+<id>Bache1.Ce2.H</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique du fluide"/>
+</terminal>
+<terminal><name>Q</name>
+<kind>variable</kind>
+<id>Bache1.Ce2.Q</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="DÃ©bit massique du fluide"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>Bache1.Ce2.Hm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique de mÃ©lange"/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>Cs1</name>
+<subnodes><terminal><name>P</name>
+<kind>variable</kind>
+<id>Bache1.Cs1.P</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Pression du fluide"/>
+</terminal>
+<terminal><name>H</name>
+<kind>variable</kind>
+<id>Bache1.Cs1.H</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique du fluide"/>
+</terminal>
+<terminal><name>Q</name>
+<kind>variable</kind>
+<id>Bache1.Cs1.Q</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="DÃ©bit massique du fluide"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>Bache1.Cs1.Hm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique de mÃ©lange"/>
+</terminal>
+</subnodes>
+</struct>
+</subnodes>
+</struct>
+<struct><name>Source1</name>
+<subnodes><terminal><name>Pm</name>
+<kind>variable</kind>
+<id>Source1.Pm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Pression moyenne"/>
+</terminal>
+<terminal><name>Q</name>
+<kind>variable</kind>
+<id>Source1.Q</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="DÃ©bit"/>
+</terminal>
+<terminal><name>Tm</name>
+<kind>variable</kind>
+<id>Source1.Tm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="TempÃ©rature moyenne"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>Source1.Hm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique moyenne"/>
+</terminal>
+<struct><name>C</name>
+<subnodes><terminal><name>P</name>
+<kind>variable</kind>
+<id>Source1.C.P</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Pression du fluide"/>
+</terminal>
+<terminal><name>H</name>
+<kind>variable</kind>
+<id>Source1.C.H</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique du fluide"/>
+</terminal>
+<terminal><name>Q</name>
+<kind>variable</kind>
+<id>Source1.C.Q</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="DÃ©bit massique du fluide"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>Source1.C.Hm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique de mÃ©lange"/>
+</terminal>
+</subnodes>
+</struct>
+</subnodes>
+</struct>
+<struct><name>VanneReglante1</name>
+<subnodes><terminal><name>Cv</name>
+<kind>variable</kind>
+<id>VanneReglante1.Cv</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Cv"/>
+</terminal>
+<terminal><name>Q</name>
+<kind>variable</kind>
+<id>VanneReglante1.Q</id>
+<fixed value=""/>
+<initial_value value="500."/>
+<nominal_value value=""/>
+<comment value="DÃ©bit massique"/>
+</terminal>
+<terminal><name>deltaP</name>
+<kind>variable</kind>
+<id>VanneReglante1.deltaP</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Perte de charge singuliÃ¨re"/>
+</terminal>
+<terminal><name>rho</name>
+<kind>variable</kind>
+<id>VanneReglante1.rho</id>
+<fixed value=""/>
+<initial_value value="998."/>
+<nominal_value value=""/>
+<comment value="Masse volumique"/>
+</terminal>
+<terminal><name>Tm</name>
+<kind>variable</kind>
+<id>VanneReglante1.Tm</id>
+<fixed value=""/>
+<initial_value value="290."/>
+<nominal_value value=""/>
+<comment value="TempÃ©rature moyenne"/>
+</terminal>
+<terminal><name>Pm</name>
+<kind>variable</kind>
+<id>VanneReglante1.Pm</id>
+<fixed value=""/>
+<initial_value value="100000."/>
+<nominal_value value=""/>
+<comment value="Pression moyenne"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>VanneReglante1.Hm</id>
+<fixed value=""/>
+<initial_value value="100000."/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique moyenne"/>
+</terminal>
+<terminal><name>region</name>
+<kind>variable</kind>
+<id>VanneReglante1.region</id>
+<fixed value=""/>
+<initial_value value="1."/>
+<nominal_value value=""/>
+<comment value="NumÃ©ro de rÃ©gion IF97"/>
+</terminal>
+<terminal><name>ThermoCar</name>
+<kind>variable</kind>
+<id>VanneReglante1.ThermoCar</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>Ouv</name>
+<kind>variable</kind>
+<id>VanneReglante1.Ouv</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<struct><name>C1</name>
+<subnodes><terminal><name>P</name>
+<kind>variable</kind>
+<id>VanneReglante1.C1.P</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Pression du fluide"/>
+</terminal>
+<terminal><name>H</name>
+<kind>variable</kind>
+<id>VanneReglante1.C1.H</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique du fluide"/>
+</terminal>
+<terminal><name>Q</name>
+<kind>variable</kind>
+<id>VanneReglante1.C1.Q</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="DÃ©bit massique du fluide"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>VanneReglante1.C1.Hm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique de mÃ©lange"/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>C2</name>
+<subnodes><terminal><name>P</name>
+<kind>variable</kind>
+<id>VanneReglante1.C2.P</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Pression du fluide"/>
+</terminal>
+<terminal><name>H</name>
+<kind>variable</kind>
+<id>VanneReglante1.C2.H</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique du fluide"/>
+</terminal>
+<terminal><name>Q</name>
+<kind>variable</kind>
+<id>VanneReglante1.C2.Q</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="DÃ©bit massique du fluide"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>VanneReglante1.C2.Hm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique de mÃ©lange"/>
+</terminal>
+</subnodes>
+</struct>
+</subnodes>
+</struct>
+<struct><name>PerteDP1</name>
+<subnodes><terminal><name>khi</name>
+<kind>variable</kind>
+<id>PerteDP1.khi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Coefficient de perte de charge hydraulique"/>
+</terminal>
+<terminal><name>deltaPf</name>
+<kind>variable</kind>
+<id>PerteDP1.deltaPf</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Perte de charge par frottement"/>
+</terminal>
+<terminal><name>deltaP</name>
+<kind>variable</kind>
+<id>PerteDP1.deltaP</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Perte de charge totale"/>
+</terminal>
+<terminal><name>Q</name>
+<kind>variable</kind>
+<id>PerteDP1.Q</id>
+<fixed value=""/>
+<initial_value value="500."/>
+<nominal_value value=""/>
+<comment value="DÃ©bit massique"/>
+</terminal>
+<terminal><name>rho</name>
+<kind>variable</kind>
+<id>PerteDP1.rho</id>
+<fixed value=""/>
+<initial_value value="998."/>
+<nominal_value value=""/>
+<comment value="Masse volumique"/>
+</terminal>
+<terminal><name>Tm</name>
+<kind>variable</kind>
+<id>PerteDP1.Tm</id>
+<fixed value=""/>
+<initial_value value="290."/>
+<nominal_value value=""/>
+<comment value="TempÃ©rature moyenne"/>
+</terminal>
+<terminal><name>Pm</name>
+<kind>variable</kind>
+<id>PerteDP1.Pm</id>
+<fixed value=""/>
+<initial_value value="100000."/>
+<nominal_value value=""/>
+<comment value="Pression moyenne"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>PerteDP1.Hm</id>
+<fixed value=""/>
+<initial_value value="100000."/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique moyenne"/>
+</terminal>
+<terminal><name>region</name>
+<kind>variable</kind>
+<id>PerteDP1.region</id>
+<fixed value=""/>
+<initial_value value="1."/>
+<nominal_value value=""/>
+<comment value="NumÃ©ro de rÃ©gion IF97"/>
+</terminal>
+<terminal><name>ThermoCar</name>
+<kind>variable</kind>
+<id>PerteDP1.ThermoCar</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<struct><name>C1</name>
+<subnodes><terminal><name>P</name>
+<kind>variable</kind>
+<id>PerteDP1.C1.P</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Pression du fluide"/>
+</terminal>
+<terminal><name>H</name>
+<kind>variable</kind>
+<id>PerteDP1.C1.H</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique du fluide"/>
+</terminal>
+<terminal><name>Q</name>
+<kind>variable</kind>
+<id>PerteDP1.C1.Q</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="DÃ©bit massique du fluide"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>PerteDP1.C1.Hm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique de mÃ©lange"/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>C2</name>
+<subnodes><terminal><name>P</name>
+<kind>variable</kind>
+<id>PerteDP1.C2.P</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Pression du fluide"/>
+</terminal>
+<terminal><name>H</name>
+<kind>variable</kind>
+<id>PerteDP1.C2.H</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique du fluide"/>
+</terminal>
+<terminal><name>Q</name>
+<kind>variable</kind>
+<id>PerteDP1.C2.Q</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="DÃ©bit massique du fluide"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>PerteDP1.C2.Hm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique de mÃ©lange"/>
+</terminal>
+</subnodes>
+</struct>
+</subnodes>
+</struct>
+<struct><name>Puits1</name>
+<subnodes><terminal><name>Pm</name>
+<kind>variable</kind>
+<id>Puits1.Pm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Pression moyenne"/>
+</terminal>
+<terminal><name>Q</name>
+<kind>variable</kind>
+<id>Puits1.Q</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="DÃ©bit"/>
+</terminal>
+<terminal><name>Tm</name>
+<kind>variable</kind>
+<id>Puits1.Tm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="TempÃ©rature moyenne"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>Puits1.Hm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique moyenne"/>
+</terminal>
+<struct><name>C</name>
+<subnodes><terminal><name>P</name>
+<kind>variable</kind>
+<id>Puits1.C.P</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Pression du fluide"/>
+</terminal>
+<terminal><name>H</name>
+<kind>variable</kind>
+<id>Puits1.C.H</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique du fluide"/>
+</terminal>
+<terminal><name>Q</name>
+<kind>variable</kind>
+<id>Puits1.C.Q</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="DÃ©bit massique du fluide"/>
+</terminal>
+<terminal><name>Hm</name>
+<kind>variable</kind>
+<id>Puits1.C.Hm</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value="Enthalpie spÃ©cifique de mÃ©lange"/>
+</terminal>
+</subnodes>
+</struct>
+</subnodes>
+</struct>
+<struct><name>OutPutPort1</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort1.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort1.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort2</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort2.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort2.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>InPutPort1</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>InPutPort1.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>vi</name>
+<kind>input</kind>
+<id>InPutPort1.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+</elements>
+<equations><equation value=" `Source1.C.P` = `Source1.Pm`; "/>
+<equation value=" `Source1.C.Q` = `Source1.Q`; "/>
+<equation value=" `Source1.C.Hm` = `Source1.Hm`; "/>
+<equation value=" `Source1.Pm` = 300000.; "/>
+<equation value=" `Source1.Hm` = 100000.; "/>
+<equation value=" `Source1.Tm` = 290.; "/>
+<equation value=" `VanneReglante1.C1.H` = `VanneReglante1.C2.H`; "/>
+<equation value=" `VanneReglante1.C1.Q` = `VanneReglante1.C2.Q`; "/>
+<equation value=" `VanneReglante1.Q` = `VanneReglante1.C1.Q`; "/>
+<equation value=" `VanneReglante1.deltaP` = (`VanneReglante1.C1.P` - `VanneReglante1.C2.P`); "/>
+<equation value=" 0. = (if (`VanneReglante1.Q` &gt; 0.) then (`VanneReglante1.C1.H` - `VanneReglante1.C1.Hm`) else (`VanneReglante1.C2.H` - `VanneReglante1.C2.Hm`)); "/>
+<equation value=" `VanneReglante1.ThermoCar` = (if ((if (`VanneReglante1.Q` &gt;= 0.) then `VanneReglante1.Q` else (- `VanneReglante1.Q`)) &gt; 1.) then (`VanneReglante1.Q` * (if (`VanneReglante1.Q` &gt;= 0.) then `VanneReglante1.Q` else (- `VanneReglante1.Q`))) else (`VanneReglante1.Q` * 1.)); "/>
+<equation value=" ((`VanneReglante1.deltaP` * `VanneReglante1.Cv`) * (if (`VanneReglante1.Cv` &gt;= 0.) then `VanneReglante1.Cv` else (- `VanneReglante1.Cv`))) = ((1733000000000. * `VanneReglante1.ThermoCar`) / (`VanneReglante1.rho` ^ 2.)); "/>
+<equation value=" `VanneReglante1.Cv` = (`VanneReglante1.Ouv` * 8005.42); "/>
+<equation value=" `VanneReglante1.Pm` = ((`VanneReglante1.C1.P` + `VanneReglante1.C2.P`) / 2.); "/>
+<equation value=" `VanneReglante1.Hm` = ((`VanneReglante1.C1.H` + `VanneReglante1.C2.H`) / 2.); "/>
+<equation value=" `VanneReglante1.Tm` = ((`VanneReglante1.Hm` / 4187.) + 273.15); "/>
+<equation value=" `VanneReglante1.region` = 1.; "/>
+<equation value=" `VanneReglante1.rho` = 998.; "/>
+<equation value=" `Bache1.Ce2.Q` = 0.; "/>
+<equation value=" `Bache1.Ce2.H` = 100000.; "/>
+<equation value=" `Bache1.Cs1.Q` = 0.; "/>
+<equation value=" `Bache1.Cs1.H` = 100000.; "/>
+<equation value=" `Bache1.Max_e1` = (if ((`Bache1.z` - 40.) &lt; 0.) then 0. else (`Bache1.z` - 40.)); "/>
+<equation value=" `Bache1.ThermoCar1` = (if ((if (`Bache1.Ce1.Q` &gt;= 0.) then `Bache1.Ce1.Q` else (- `Bache1.Ce1.Q`)) &gt; 1.) then (`Bache1.Ce1.Q` * (if (`Bache1.Ce1.Q` &gt;= 0.) then `Bache1.Ce1.Q` else (- `Bache1.Ce1.Q`))) else (`Bache1.Ce1.Q` * 1.)); "/>
+<equation value=" (((101300. + ((`Bache1.rho` * 9.806649999999999) * `Bache1.Max_e1`)) - `Bache1.Ce1.P`) * `Bache1.Oe1`) = (((1. * `Bache1.ThermoCar1`) / 2.) / `Bache1.rho`); "/>
+<equation value=" `Bache1.Oe1` = (if (`Bache1.Ce1.Q` &gt;= 0.) then 1. else(if (`Bache1.z` &gt; 40.25) then 1. else(if (`Bache1.z` &lt; 40.) then 0. else ((`Bache1.z` - 40.) / 0.25)))); "/>
+<equation value=" `Bache1.Max_e2` = (if ((`Bache1.z` - 0.) &lt; 0.) then 0. else (`Bache1.z` - 0.)); "/>
+<equation value=" `Bache1.Ce2.P` = (101300. + ((`Bache1.rho` * 9.806649999999999) * `Bache1.Max_e2`)); "/>
+<equation value=" `Bache1.Oe2` = 0.; "/>
+<equation value=" `Bache1.Max_s1` = (if ((`Bache1.z` - 40.) &lt; 0.) then 0. else (`Bache1.z` - 40.)); "/>
+<equation value=" `Bache1.Cs1.P` = (101300. + ((`Bache1.rho` * 9.806649999999999) * `Bache1.Max_s1`)); "/>
+<equation value=" `Bache1.Os1` = 0.; "/>
+<equation value=" `Bache1.Max_s2` = (if ((`Bache1.z` - 0.) &lt; 0.) then 0. else (`Bache1.z` - 0.)); "/>
+<equation value=" `Bache1.ThermoCar2` = (if ((if (`Bache1.Cs2.Q` &gt;= 0.) then `Bache1.Cs2.Q` else (- `Bache1.Cs2.Q`)) &gt; 1.) then (`Bache1.Cs2.Q` * (if (`Bache1.Cs2.Q` &gt;= 0.) then `Bache1.Cs2.Q` else (- `Bache1.Cs2.Q`))) else (`Bache1.Cs2.Q` * 1.)); "/>
+<equation value=" (((101300. + ((`Bache1.rho` * 9.806649999999999) * `Bache1.Max_s2`)) - `Bache1.Cs2.P`) * `Bache1.Os2`) = (((1. * `Bache1.ThermoCar2`) / 2.) / `Bache1.rho`); "/>
+<equation value=" `Bache1.Os2` = (if (`Bache1.Cs2.Q` &lt;= 0.) then 1. else(if (`Bache1.z` &gt; 0.25) then 1. else(if (`Bache1.z` &lt; 0.) then 0. else ((`Bache1.z` - 0.) / 0.25)))); "/>
+<equation value=" `Bache1.BQ` = (((`Bache1.Ce1.Q` + `Bache1.Ce2.Q`) - `Bache1.Cs1.Q`) - `Bache1.Cs2.Q`); "/>
+<equation value=" ((`Bache1.rho` * 1.) * `Bache1.__der_z`) = `Bache1.BQ`; "/>
+<equation value=" `Bache1.BH` = ((((`Bache1.Ce1.Q` * (`Bache1.Ce1.H` - `Bache1.Hm`)) + (`Bache1.Ce2.Q` * (`Bache1.Ce2.H` - `Bache1.Hm`))) - (`Bache1.Cs1.Q` * (`Bache1.Cs1.H` - `Bache1.Hm`))) - (`Bache1.Cs2.Q` * (`Bache1.Cs2.H` - `Bache1.Hm`))); "/>
+<equation value=" `Bache1.__der_Hm` = (if (`Bache1.z` &gt; (1e-06)) then (`Bache1.BH` / ((`Bache1.rho` * 1.) * `Bache1.z`)) else 0.); "/>
+<equation value=" `Bache1.Ce1.Hm` = `Bache1.Hm`; "/>
+<equation value=" `Bache1.Ce2.Hm` = `Bache1.Hm`; "/>
+<equation value=" `Bache1.Cs1.Hm` = `Bache1.Hm`; "/>
+<equation value=" `Bache1.Cs2.Hm` = `Bache1.Hm`; "/>
+<equation value=" `Bache1.yNiveau` = `Bache1.z`; "/>
+<equation value=" `Bache1.Pm` = (101300. + (((`Bache1.rho` * 9.806649999999999) * `Bache1.z`) / 2.)); "/>
+<equation value=" `Bache1.Tm` = ((`Bache1.Hm` / 4187.) + 273.15); "/>
+<equation value=" `Bache1.region` = 1.; "/>
+<equation value=" `Bache1.rho` = 998.; "/>
+<equation value=" (`PerteDP1.C1.P` - `PerteDP1.C2.P`) = `PerteDP1.deltaP`; "/>
+<equation value=" `PerteDP1.C2.Q` = `PerteDP1.C1.Q`; "/>
+<equation value=" `PerteDP1.C2.H` = `PerteDP1.C1.H`; "/>
+<equation value=" `PerteDP1.Q` = `PerteDP1.C1.Q`; "/>
+<equation value=" 0. = (if (`PerteDP1.Q` &gt; 0.) then (`PerteDP1.C1.H` - `PerteDP1.C1.Hm`) else (`PerteDP1.C2.H` - `PerteDP1.C2.Hm`)); "/>
+<equation value=" `PerteDP1.deltaP` = (`PerteDP1.deltaPf` + ((`PerteDP1.rho` * 9.806649999999999) * 0.)); "/>
+<equation value=" `PerteDP1.ThermoCar` = (if ((if (`PerteDP1.Q` &gt;= 0.) then `PerteDP1.Q` else (- `PerteDP1.Q`)) &gt; 1.) then (`PerteDP1.Q` * (if (`PerteDP1.Q` &gt;= 0.) then `PerteDP1.Q` else (- `PerteDP1.Q`))) else (`PerteDP1.Q` * 1.)); "/>
+<equation value=" `PerteDP1.deltaPf` = (((8. * `PerteDP1.khi`) * `PerteDP1.ThermoCar`) / (0.01579136750830927 * `PerteDP1.rho`)); "/>
+<equation value=" `PerteDP1.khi` = 1.5; "/>
+<equation value=" `PerteDP1.Pm` = ((`PerteDP1.C1.P` + `PerteDP1.C2.P`) / 2.); "/>
+<equation value=" `PerteDP1.Hm` = ((`PerteDP1.C1.H` + `PerteDP1.C2.H`) / 2.); "/>
+<equation value=" `PerteDP1.Tm` = ((`PerteDP1.Hm` / 4187.) + 273.15); "/>
+<equation value=" `PerteDP1.region` = 1.; "/>
+<equation value=" `PerteDP1.rho` = 998.; "/>
+<equation value=" `Puits1.C.P` = `Puits1.Pm`; "/>
+<equation value=" `Puits1.C.Q` = `Puits1.Q`; "/>
+<equation value=" `Puits1.C.Hm` = `Puits1.Hm`; "/>
+<equation value=" `Puits1.Pm` = 100000.; "/>
+<equation value=" `Puits1.Hm` = 100000.; "/>
+<equation value=" `Puits1.Tm` = 290.; "/>
+<equation value=" `OutPutPort1.vi` = `OutPutPort1.vo`; "/>
+<equation value=" `OutPutPort2.vi` = `OutPutPort2.vo`; "/>
+<equation value=" `InPutPort1.vi` = `InPutPort1.vo`; "/>
+<equation value=" `VanneReglante1.C1.P` = `Source1.C.P`; "/>
+<equation value=" `VanneReglante1.C1.H` = `Source1.C.H`; "/>
+<equation value=" `VanneReglante1.C1.Q` = `Source1.C.Q`; "/>
+<equation value=" `VanneReglante1.C1.Hm` = `Source1.C.Hm`; "/>
+<equation value=" `Bache1.Ce1.P` = `VanneReglante1.C2.P`; "/>
+<equation value=" `Bache1.Ce1.H` = `VanneReglante1.C2.H`; "/>
+<equation value=" `Bache1.Ce1.Q` = `VanneReglante1.C2.Q`; "/>
+<equation value=" `Bache1.Ce1.Hm` = `VanneReglante1.C2.Hm`; "/>
+<equation value=" `PerteDP1.C1.P` = `Bache1.Cs2.P`; "/>
+<equation value=" `PerteDP1.C1.H` = `Bache1.Cs2.H`; "/>
+<equation value=" `PerteDP1.C1.Q` = `Bache1.Cs2.Q`; "/>
+<equation value=" `PerteDP1.C1.Hm` = `Bache1.Cs2.Hm`; "/>
+<equation value=" `Puits1.C.P` = `PerteDP1.C2.P`; "/>
+<equation value=" `Puits1.C.H` = `PerteDP1.C2.H`; "/>
+<equation value=" `Puits1.C.Q` = `PerteDP1.C2.Q`; "/>
+<equation value=" `Puits1.C.Hm` = `PerteDP1.C2.Hm`; "/>
+<equation value=" `Bache1.yNiveau` = `OutPutPort1.vi`; "/>
+<equation value=" `Bache1.yNiveau` = `OutPutPort2.vi`; "/>
+<equation value=" `InPutPort1.vo` = `VanneReglante1.Ouv`; "/>
+</equations>
+<when_clauses/>
+</model>

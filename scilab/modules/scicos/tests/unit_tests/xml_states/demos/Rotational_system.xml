@@ -1,0 +1,200 @@
+<model><name>Rotational_system_imf</name>
+<elements><struct><name>SecondOrderRotationalSystem1</name>
+<subnodes><terminal><name>__der_omega2</name>
+<kind>variable</kind>
+<id>SecondOrderRotationalSystem1.__der_omega2</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of SecondOrderRotationalSystem1.omega2"/>
+</terminal>
+<terminal><name>__der_omega1</name>
+<kind>variable</kind>
+<id>SecondOrderRotationalSystem1.__der_omega1</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of SecondOrderRotationalSystem1.omega1"/>
+</terminal>
+<terminal><name>__der_phi2</name>
+<kind>variable</kind>
+<id>SecondOrderRotationalSystem1.__der_phi2</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of SecondOrderRotationalSystem1.phi2"/>
+</terminal>
+<terminal><name>__der_phi1</name>
+<kind>variable</kind>
+<id>SecondOrderRotationalSystem1.__der_phi1</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of SecondOrderRotationalSystem1.phi1"/>
+</terminal>
+<terminal><name>phi1</name>
+<kind>variable</kind>
+<id>SecondOrderRotationalSystem1.phi1</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>phi2</name>
+<kind>variable</kind>
+<id>SecondOrderRotationalSystem1.phi2</id>
+<fixed value=""/>
+<initial_value value="1."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>omega1</name>
+<kind>variable</kind>
+<id>SecondOrderRotationalSystem1.omega1</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>omega2</name>
+<kind>variable</kind>
+<id>SecondOrderRotationalSystem1.omega2</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>phi1val</name>
+<kind>variable</kind>
+<id>SecondOrderRotationalSystem1.phi1val</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>phi2val</name>
+<kind>variable</kind>
+<id>SecondOrderRotationalSystem1.phi2val</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>omega1val</name>
+<kind>variable</kind>
+<id>SecondOrderRotationalSystem1.omega1val</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>omega2val</name>
+<kind>variable</kind>
+<id>SecondOrderRotationalSystem1.omega2val</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort1</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort1.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort1.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort2</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort2.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort2.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort3</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort3.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort3.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort4</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort4.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort4.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+</elements>
+<equations><equation value=" `SecondOrderRotationalSystem1.omega1` = `SecondOrderRotationalSystem1.__der_phi1`; "/>
+<equation value=" (0.4 * `SecondOrderRotationalSystem1.__der_omega1`) = ((11. * (`SecondOrderRotationalSystem1.phi2` - `SecondOrderRotationalSystem1.phi1`)) + (0.2 * (`SecondOrderRotationalSystem1.__der_phi2` - `SecondOrderRotationalSystem1.__der_phi1`))); "/>
+<equation value=" `SecondOrderRotationalSystem1.omega2` = `SecondOrderRotationalSystem1.__der_phi2`; "/>
+<equation value=" (1. * `SecondOrderRotationalSystem1.__der_omega2`) = ((((11. * (`SecondOrderRotationalSystem1.phi1` - `SecondOrderRotationalSystem1.phi2`)) + (0.2 * (`SecondOrderRotationalSystem1.__der_phi1` - `SecondOrderRotationalSystem1.__der_phi2`))) - (5. * `SecondOrderRotationalSystem1.phi2`)) - (1. * `SecondOrderRotationalSystem1.__der_phi2`)); "/>
+<equation value=" `SecondOrderRotationalSystem1.phi1val` = `SecondOrderRotationalSystem1.phi1`; "/>
+<equation value=" `SecondOrderRotationalSystem1.phi2val` = `SecondOrderRotationalSystem1.phi2`; "/>
+<equation value=" `SecondOrderRotationalSystem1.omega1val` = `SecondOrderRotationalSystem1.omega1`; "/>
+<equation value=" `SecondOrderRotationalSystem1.omega2val` = `SecondOrderRotationalSystem1.omega2`; "/>
+<equation value=" `OutPutPort1.vi` = `OutPutPort1.vo`; "/>
+<equation value=" `OutPutPort2.vi` = `OutPutPort2.vo`; "/>
+<equation value=" `OutPutPort3.vi` = `OutPutPort3.vo`; "/>
+<equation value=" `OutPutPort4.vi` = `OutPutPort4.vo`; "/>
+<equation value=" `SecondOrderRotationalSystem1.phi1val` = `OutPutPort1.vi`; "/>
+<equation value=" `SecondOrderRotationalSystem1.phi2val` = `OutPutPort2.vi`; "/>
+<equation value=" `SecondOrderRotationalSystem1.omega1val` = `OutPutPort3.vi`; "/>
+<equation value=" `SecondOrderRotationalSystem1.omega2val` = `OutPutPort4.vi`; "/>
+</equations>
+<when_clauses/>
+</model>

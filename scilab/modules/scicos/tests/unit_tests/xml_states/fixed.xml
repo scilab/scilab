@@ -1,0 +1,99 @@
+<model>
+  <name>fixed</name>
+  <elements>
+    <struct>
+      <name>F</name>
+      <subnodes>
+        <!-- kept on write -->
+        <terminal>
+          <name>lt</name>
+          <kind>variable</kind>
+          <id>a&lt;b</id>
+          <fixed value=""/>
+          <initial_value value="&#49;.5"/>
+          <nominal_value value=""/>
+          <comment value="R&amp;D &quot;q&quot;"/>
+        </terminal>
+        <terminal>
+          <name>ref</name>
+          <kind>variable</kind>
+          <id>ref</id>
+          <fixed value=""/>
+          <initial_value value="`a&lt;b`"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+        <terminal>
+          <name>noinit</name>
+          <kind>variable</kind>
+          <id>noinit</id>
+          <fixed value=""/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+        <terminal>
+          <name>noid</name>
+          <kind>variable</kind>
+          <fixed value=""/>
+          <initial_value value="3"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+        <terminal>
+          <name>after</name>
+          <kind>variable</kind>
+          <id>after</id>
+          <fixed value=""/>
+          <initial_value value="5"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+        <terminal>
+          <name>long</name>
+          <kind>variable</kind>
+          <id>long.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</id>
+          <fixed value=""/>
+          <initial_value value="4"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+        <terminal>
+          <name>reflong</name>
+          <kind>variable</kind>
+          <id>reflong</id>
+          <fixed value=""/>
+          <initial_value value="`long.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+        <terminal>
+          <name>loopa</name>
+          <kind>variable</kind>
+          <id>loop.a</id>
+          <fixed value=""/>
+          <initial_value value="`loop.b`"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+        <terminal>
+          <name>loopb</name>
+          <kind>variable</kind>
+          <id>loop.b</id>
+          <fixed value=""/>
+          <initial_value value="`loop.a`"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+        <terminal>
+          <name>self</name>
+          <kind>variable</kind>
+          <id>self</id>
+          <fixed value=""/>
+          <initial_value value="`self`"/>
+          <nominal_value value=""/>
+          <comment value=""/>
+        </terminal>
+      </subnodes>
+    </struct>
+  </elements>
+</model>

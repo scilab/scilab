@@ -1,0 +1,467 @@
+<model><name>RLC_Modelica_imf</name>
+<elements><struct><name>Capacitor1</name>
+<subnodes><terminal><name>__der_v</name>
+<kind>variable</kind>
+<id>Capacitor1.__der_v</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of Capacitor1.v"/>
+</terminal>
+<struct><name>p</name>
+<subnodes><terminal><name>v</name>
+<kind>variable</kind>
+<id>Capacitor1.p.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>Capacitor1.p.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>n</name>
+<subnodes><terminal><name>v</name>
+<kind>variable</kind>
+<id>Capacitor1.n.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>Capacitor1.n.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>Capacitor1.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>v</name>
+<kind>variable</kind>
+<id>Capacitor1.v</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>Inductor1</name>
+<subnodes><terminal><name>__der_i</name>
+<kind>variable</kind>
+<id>Inductor1.__der_i</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of Inductor1.i"/>
+</terminal>
+<struct><name>p</name>
+<subnodes><terminal><name>v</name>
+<kind>variable</kind>
+<id>Inductor1.p.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>Inductor1.p.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>n</name>
+<subnodes><terminal><name>v</name>
+<kind>variable</kind>
+<id>Inductor1.n.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>Inductor1.n.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>Inductor1.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>v</name>
+<kind>variable</kind>
+<id>Inductor1.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>VsourceAC1</name>
+<subnodes><struct><name>p</name>
+<subnodes><terminal><name>v</name>
+<kind>variable</kind>
+<id>VsourceAC1.p.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>VsourceAC1.p.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>n</name>
+<subnodes><terminal><name>v</name>
+<kind>variable</kind>
+<id>VsourceAC1.n.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>VsourceAC1.n.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>VsourceAC1.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>v</name>
+<kind>variable</kind>
+<id>VsourceAC1.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>CurrentSensor1</name>
+<subnodes><struct><name>p</name>
+<subnodes><terminal><name>v</name>
+<kind>variable</kind>
+<id>CurrentSensor1.p.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>CurrentSensor1.p.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>n</name>
+<subnodes><terminal><name>v</name>
+<kind>variable</kind>
+<id>CurrentSensor1.n.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>CurrentSensor1.n.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>CurrentSensor1.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>v</name>
+<kind>variable</kind>
+<id>CurrentSensor1.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>Resistor1</name>
+<subnodes><struct><name>p</name>
+<subnodes><terminal><name>v</name>
+<kind>variable</kind>
+<id>Resistor1.p.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>Resistor1.p.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>n</name>
+<subnodes><terminal><name>v</name>
+<kind>variable</kind>
+<id>Resistor1.n.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>Resistor1.n.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>Resistor1.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>v</name>
+<kind>variable</kind>
+<id>Resistor1.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>VoltageSensor1</name>
+<subnodes><struct><name>p</name>
+<subnodes><terminal><name>v</name>
+<kind>variable</kind>
+<id>VoltageSensor1.p.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>VoltageSensor1.p.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>n</name>
+<subnodes><terminal><name>v</name>
+<kind>variable</kind>
+<id>VoltageSensor1.n.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>VoltageSensor1.n.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>VoltageSensor1.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>v</name>
+<kind>variable</kind>
+<id>VoltageSensor1.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>Ground1</name>
+<subnodes><struct><name>p</name>
+<subnodes><terminal><name>v</name>
+<kind>variable</kind>
+<id>Ground1.p.v</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>i</name>
+<kind>variable</kind>
+<id>Ground1.p.i</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+</subnodes>
+</struct>
+<struct><name>OutPutPort1</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort1.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort1.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort2</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort2.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort2.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+</elements>
+<equations><equation value=" `VsourceAC1.i` = `VsourceAC1.p.i`; "/>
+<equation value=" `VsourceAC1.n.i` = (- `VsourceAC1.i`); "/>
+<equation value=" `VsourceAC1.v` = (`VsourceAC1.p.v` - `VsourceAC1.n.v`); "/>
+<equation value=" `VsourceAC1.v` = (2. * sin((6.283185307179586 * time))); "/>
+<equation value=" `CurrentSensor1.i` = `CurrentSensor1.p.i`; "/>
+<equation value=" `CurrentSensor1.n.i` = (- `CurrentSensor1.i`); "/>
+<equation value=" `CurrentSensor1.v` = (`CurrentSensor1.p.v` - `CurrentSensor1.n.v`); "/>
+<equation value=" `CurrentSensor1.v` = 0.; "/>
+<equation value=" `Resistor1.i` = `Resistor1.p.i`; "/>
+<equation value=" `Resistor1.n.i` = (- `Resistor1.i`); "/>
+<equation value=" `Resistor1.v` = (`Resistor1.p.v` - `Resistor1.n.v`); "/>
+<equation value=" (0.2 * `Resistor1.i`) = `Resistor1.v`; "/>
+<equation value=" `VoltageSensor1.i` = `VoltageSensor1.p.i`; "/>
+<equation value=" `VoltageSensor1.n.i` = (- `VoltageSensor1.i`); "/>
+<equation value=" `VoltageSensor1.v` = (`VoltageSensor1.p.v` - `VoltageSensor1.n.v`); "/>
+<equation value=" `VoltageSensor1.i` = 0.; "/>
+<equation value=" `Inductor1.i` = `Inductor1.p.i`; "/>
+<equation value=" `Inductor1.n.i` = (- `Inductor1.i`); "/>
+<equation value=" `Inductor1.v` = (`Inductor1.p.v` - `Inductor1.n.v`); "/>
+<equation value=" (0.0001 * `Inductor1.__der_i`) = `Inductor1.v`; "/>
+<equation value=" `Capacitor1.i` = `Capacitor1.p.i`; "/>
+<equation value=" `Capacitor1.n.i` = (- `Capacitor1.i`); "/>
+<equation value=" `Capacitor1.v` = (`Capacitor1.p.v` - `Capacitor1.n.v`); "/>
+<equation value=" (0.1 * `Capacitor1.__der_v`) = `Capacitor1.i`; "/>
+<equation value=" `Ground1.p.v` = 0.; "/>
+<equation value=" `OutPutPort1.vi` = `OutPutPort1.vo`; "/>
+<equation value=" `OutPutPort2.vi` = `OutPutPort2.vo`; "/>
+<equation value=" ((((0. + `VoltageSensor1.n.i`) + `CurrentSensor1.p.i`) + `Capacitor1.n.i`) + `Inductor1.n.i`) = 0.; "/>
+<equation value=" (((0. + `CurrentSensor1.n.i`) + `Ground1.p.i`) + `VsourceAC1.n.i`) = 0.; "/>
+<equation value=" ((((0. + `VoltageSensor1.p.i`) + `Capacitor1.p.i`) + `Inductor1.p.i`) + `Resistor1.n.i`) = 0.; "/>
+<equation value=" ((0. + `Resistor1.p.i`) + `VsourceAC1.p.i`) = 0.; "/>
+<equation value=" `Capacitor1.n.v` = `Inductor1.n.v`; "/>
+<equation value=" `CurrentSensor1.p.v` = `Inductor1.n.v`; "/>
+<equation value=" `VoltageSensor1.n.v` = `Inductor1.n.v`; "/>
+<equation value=" `Ground1.p.v` = `VsourceAC1.n.v`; "/>
+<equation value=" `CurrentSensor1.n.v` = `VsourceAC1.n.v`; "/>
+<equation value=" `Inductor1.p.v` = `Resistor1.n.v`; "/>
+<equation value=" `Capacitor1.p.v` = `Resistor1.n.v`; "/>
+<equation value=" `VoltageSensor1.p.v` = `Resistor1.n.v`; "/>
+<equation value=" `Resistor1.p.v` = `VsourceAC1.p.v`; "/>
+<equation value=" `VoltageSensor1.v` = `OutPutPort1.vi`; "/>
+<equation value=" `CurrentSensor1.i` = `OutPutPort2.vi`; "/>
+</equations>
+<when_clauses/>
+</model>

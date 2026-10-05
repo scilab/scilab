@@ -400,7 +400,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\cpp\XMIResource_load.cpp" />
     <ClCompile Include="..\..\cpp\XMIResource_save.cpp" />
     <ClCompile Include="..\ddaskr.c" />
-    <ClCompile Include="..\ezxml.c" />
     <ClCompile Include="..\import.c" />
     <ClCompile Include="..\MlistGetFieldNumber.c" />
     <ClCompile Include="..\lsodar.c" />
@@ -447,7 +446,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClInclude Include="..\..\cpp\view_scilab\StateAdapter.hxx" />
     <ClInclude Include="..\..\cpp\view_scilab\TextAdapter.hxx" />
     <ClInclude Include="..\ddaskr.h" />
-    <ClInclude Include="..\ezxml.h" />
     <ClInclude Include="..\..\..\includes\gw_scicos.h" />
     <ClInclude Include="..\il_sim.h" />
     <ClInclude Include="..\il_state.h" />

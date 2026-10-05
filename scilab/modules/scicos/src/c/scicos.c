@@ -65,7 +65,10 @@
 #include "syncexec.h"
 #include "realtime.h"
 #include "sci_malloc.h"
-#include "ezxml.h"
+
+#include <libxml/parser.h>
+#include <libxml/tree.h>
+#include <libxml/xmlsave.h>
 
 #include "sciblk2.h"
 #include "sciblk4.h"
@@ -284,7 +287,12 @@ static void psol(int *nequations, sunrealtype *tOld, sunrealtype *actual, sunrea
 static void addevs(double t, int *evtnb, int *ierr1);
 static int synchro_g_nev(ScicosImport *scs_imp, double *g, int kf, int *ierr);
 static void Multp(double *A, double *B, double *R, int ra, int rb, int ca, int cb);
-static int read_id(ezxml_t *elements, char *id, double *value);
+typedef struct id_chain
+{
+    const char *id;
+    const struct id_chain *prev;
+} id_chain;
+static int read_id(xmlNodePtr elements, const char *id, const id_chain *visited, double *value);
 static int simblkdaskr(sunrealtype tres, N_Vector yy, N_Vector yp, N_Vector resval, void *rdata);
 static void deprecatedSundialsErrHandler(int code, const char *module, const char *function, char *msg, void *user_data);
 static void SundialsErrHandler(int line, const char *func, const char *file, const char *msg, SUNErrCode code, void *user_data, SUNContext sunctx);
@@ -6539,93 +6547,174 @@ static void Multp(double *A, double *B, double *R, int ra, int rb, int ca, int c
     return;
 }
 /*--------------------------------------------------------------------------*/
-int read_xml_initial_states(int nvar, const char * xmlfile, char **ids, double *svars)
+static int is_element(xmlNodePtr node, const char *name)
 {
-    ezxml_t model, elements;
-    int result = 0, i = 0;
-    double vr = 0.;
+    return node->type == XML_ELEMENT_NODE && xmlStrEqual(node->name, BAD_CAST name);
+}
+/*--------------------------------------------------------------------------*/
+static xmlNodePtr first_child(xmlNodePtr parent, const char *name)
+{
+    xmlNodePtr child = NULL;
 
-    if (nvar == 0)
+    for (child = parent ? parent->children : NULL; child; child = child->next)
     {
-        return 0;
+        if (is_element(child, name))
+        {
+            return child;
+        }
     }
-    result = 0;
+    return NULL;
+}
+/*--------------------------------------------------------------------------*/
+/* Terminals of a level are searched before its nested structs. */
+static xmlNodePtr find_terminal(xmlNodePtr parent, const char *id)
+{
+    xmlNodePtr child = NULL, subnodes = NULL, found = NULL;
+    xmlChar *text = NULL;
+    int match = 0;
+
+    if (parent == NULL)
+    {
+        return NULL;
+    }
+
+    for (child = parent->children; child; child = child->next)
+    {
+        if (is_element(child, "terminal"))
+        {
+            text = xmlNodeGetContent(first_child(child, "id"));
+            match = text != NULL && xmlStrEqual(text, BAD_CAST id);
+            xmlFree(text);
+            if (match)
+            {
+                return child;
+            }
+        }
+    }
+
+    for (child = parent->children; child; child = child->next)
+    {
+        if (is_element(child, "struct"))
+        {
+            for (subnodes = child->children; subnodes; subnodes = subnodes->next)
+            {
+                if (is_element(subnodes, "subnodes") && (found = find_terminal(subnodes, id)) != NULL)
+                {
+                    return found;
+                }
+            }
+        }
+    }
+    return NULL;
+}
+/*--------------------------------------------------------------------------*/
+static int has_id(int nvar, char **ids)
+{
+    int i = 0;
+
     for (i = 0; i < nvar; i++)
     {
         if (strcmp(ids[i], "") != 0)
         {
-            result = 1;
-            break;
+            return 1;
         }
     }
-    if (result == 0)
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+static xmlDocPtr read_states_file(const char *xmlfile)
+{
+    /* Scilab turns blank keeping off at startup: keep blanks so that
+       write_xml_states preserves the file layout */
+    int keepBlanks = xmlKeepBlanksDefault(1);
+    xmlDocPtr doc = xmlReadFile(xmlfile, NULL, XML_PARSE_NONET | XML_PARSE_NOERROR | XML_PARSE_NOWARNING);
+
+    xmlKeepBlanksDefault(keepBlanks);
+    if (doc == NULL)
+    {
+        sciprint(_("Error: Cannot find file '%s'.\n"), xmlfile);
+    }
+    return doc;
+}
+/*--------------------------------------------------------------------------*/
+int read_xml_initial_states(int nvar, const char * xmlfile, char **ids, double *svars)
+{
+    xmlDocPtr doc = NULL;
+    xmlNodePtr elements = NULL;
+    int i = 0;
+    double vr = 0.;
+
+    if (!has_id(nvar, ids))
     {
         return 0;
     }
 
-    model = ezxml_parse_file(xmlfile);
-
-    if (model == NULL)
+    doc = read_states_file(xmlfile);
+    if (doc == NULL)
     {
-        sciprint(_("Error: Cannot find file '%s'.\n"), xmlfile);
-        return -1;/* file does not exist*/
+        return -1;
     }
 
-    elements = ezxml_child(model, "elements");
+    elements = first_child(xmlDocGetRootElement(doc), "elements");
     for (i = 0; i < nvar; i++)
     {
         vr = 0.0;
-        result = read_id(&elements, ids[i], &vr);
-        if (result == 1)
+        if (read_id(elements, ids[i], NULL, &vr) == 1)
         {
             svars[i] = vr;
         }
     }
-    ezxml_free(model);
+    xmlFreeDoc(doc);
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int read_id(ezxml_t *elements, char *id, double *value)
+/* visited: the ids whose value referred to this one; a loop resolves to nothing */
+static int read_id(xmlNodePtr elements, const char *id, const id_chain *visited, double *value)
 {
-    char V1[100], V2[100];
-    int ok = 0, i = 0, ln = 0;
+    id_chain link = { id, visited };
+    const id_chain *c = NULL;
+    xmlChar *v = NULL;
+    char *ref = NULL;
+    size_t ln = 0;
+    int ok = 0;
 
     if (strcmp(id, "") == 0)
     {
         return 0;
     }
-    ok = search_in_child(elements, id, V1);
-    if (ok == 0 )
+    for (c = visited; c != NULL; c = c->prev)
     {
-        /*sciprint(_("Cannot find: %s=%s  \n"),id,V1);      */
+        if (strcmp(c->id, id) == 0)
+        {
+            return 0;
+        }
+    }
+
+    v = xmlGetProp(first_child(find_terminal(elements, id), "initial_value"), BAD_CAST "value");
+    if (v == NULL)
+    {
         return 0;
+    }
+
+    if (Convert_number((char *)v, value) == 0)
+    {
+        ok = 1;
     }
     else
     {
-        if (Convert_number(V1, value) != 0)
+        /* a quoted value, e.g. `name`, refers to another id */
+        ln = strlen((char *)v);
+        if (ln > 2)
         {
-            ln = (int)(strlen(V1));
-            if (ln > 2)
-            {
-                for (i = 1; i <= ln - 2; i++)
-                {
-                    V2[i - 1] = V1[i];
-                }
-                V2[ln - 2] = '\0';
-                ok = read_id(elements, V2, value);
-                return ok;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-        else
-        {
-            /*      printf("\n ---->>>%s= %g",V1,*value);*/
-            return 1;
+            ref = (char *)MALLOC(ln - 1);
+            memcpy(ref, v + 1, ln - 2);
+            ref[ln - 2] = '\0';
+            ok = read_id(elements, ref, &link, value);
+            FREE(ref);
         }
     }
+    xmlFree(v);
+    return ok;
 }
 /*--------------------------------------------------------------------------*/
 int Convert_number(char *s, double *out)
@@ -6659,83 +6748,59 @@ int Convert_number(char *s, double *out)
 /*--------------------------------------------------------------------------*/
 int write_xml_states(int nvar, const char * xmlfile, char **ids, double *x)
 {
-    ezxml_t model, elements;
-    int result = 0, i = 0, err = 0;
+    xmlDocPtr doc = NULL;
+    xmlNodePtr elements = NULL, initial = NULL;
+    xmlBufferPtr buffer = NULL;
+    xmlSaveCtxtPtr ctxt = NULL;
     FILE *fd = NULL;
-    char *s = NULL;
-    char **xv = NULL;
+    char value[32];
+    int i = 0, err = 0;
 
-    if (nvar == 0)
-    {
-        return 0;
-    }
-    result = 0;
-    for (i = 0; i < nvar; i++)
-    {
-        if (strcmp(ids[i], "") != 0)
-        {
-            result = 1;
-            break;
-        }
-    }
-    if (result == 0)
+    if (!has_id(nvar, ids))
     {
         return 0;
     }
 
-    xv = MALLOC(nvar * sizeof(char*));
-    for (i = 0; i < nvar; i++)
+    doc = read_states_file(xmlfile);
+    if (doc == NULL)
     {
-        xv[i] = MALLOC(nvar * 100 * sizeof(char));
-        sprintf(xv[i], "%g", x[i]);
+        return -1;
     }
 
-    model = ezxml_parse_file(xmlfile);
-    if (model == NULL)
-    {
-        sciprint(_("Error: Cannot find file '%s'.\n"), xmlfile);
-        err = -1;
-        goto err_free_xv;
-    }
-
-    elements = ezxml_child(model, "elements");
-
+    elements = first_child(xmlDocGetRootElement(doc), "elements");
     for (i = 0; i < nvar; i++)
     {
         if (strcmp(ids[i], "") == 0)
         {
             continue;
         }
-        result = write_in_child(&elements, ids[i], xv[i]);
-        if (result == 0 )
+        /* unknown ids are ignored */
+        initial = first_child(find_terminal(elements, ids[i]), "initial_value");
+        if (initial != NULL)
         {
-            /* sciprint(_("cannot find %s in '%s' \n"),ids[i],xmlfile);      */
-            /* err= -1;*/ /* Variable does not exist*/
+            sprintf(value, "%g", x[i]);
+            xmlSetProp(initial, BAD_CAST "value", BAD_CAST value);
         }
     }
 
-    s = ezxml_toxml(model);
-    ezxml_free(model);
-
+    /* no XML declaration: xml2modelica rejects it */
+    buffer = xmlBufferCreate();
+    ctxt = xmlSaveToBuffer(buffer, "UTF-8", XML_SAVE_NO_DECL);
+    xmlSaveDoc(ctxt, doc);
+    xmlSaveClose(ctxt);
+    xmlFreeDoc(doc);
 
     wcfopen(fd, (char*)xmlfile, "wb");
     if (fd == NULL)
     {
-        err = -3;/* cannot write to file*/
-        goto err_free_s;
+        err = -3;
     }
-
-    fputs (s, fd);
-    fclose(fd);
-
-err_free_s:
-    free(s);
-err_free_xv:
-    for (i = 0; i < nvar; i++)
+    else
     {
-        FREE(xv[i]);
+        fwrite(xmlBufferContent(buffer), 1, xmlBufferLength(buffer), fd);
+        fclose(fd);
     }
-    FREE(xv);
+    xmlBufferFree(buffer);
     return err;
 }
 /*--------------------------------------------------------------------------*/

@@ -405,7 +405,6 @@ lib /DEF:"$(ProjectDir)Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
     <ClCompile Include="..\cpp\XMIResource_load.cpp" />
     <ClCompile Include="..\cpp\XMIResource_save.cpp" />
     <ClCompile Include="DllmainScicos.c" />
-    <ClCompile Include="ezxml.c" />
     <ClCompile Include="import.c" />
     <ClCompile Include="MlistGetFieldNumber.c" />
     <ClCompile Include="lsodar.c" />
@@ -454,7 +453,6 @@ lib /DEF:"$(ProjectDir)Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
     <ClInclude Include="..\cpp\view_scilab\TextAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\ports_management.hxx" />
     <ClInclude Include="..\..\includes\dynlib_scicos.h" />
-    <ClInclude Include="ezxml.h" />
     <ClInclude Include="..\..\includes\gw_scicos.h" />
     <ClInclude Include="il_sim.h" />
     <ClInclude Include="il_state.h" />

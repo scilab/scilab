@@ -1,0 +1,517 @@
+<model><name>Heat_conduction_imf</name>
+<elements><struct><name>ConductionPDE1</name>
+<subnodes><struct><name>__der_T</name>
+<subnodes><terminal><name>[8]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.__der_T.[8]</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of ConductionPDE1.T.[8]"/>
+</terminal>
+<terminal><name>[7]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.__der_T.[7]</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of ConductionPDE1.T.[7]"/>
+</terminal>
+<terminal><name>[6]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.__der_T.[6]</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of ConductionPDE1.T.[6]"/>
+</terminal>
+<terminal><name>[5]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.__der_T.[5]</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of ConductionPDE1.T.[5]"/>
+</terminal>
+<terminal><name>[4]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.__der_T.[4]</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of ConductionPDE1.T.[4]"/>
+</terminal>
+<terminal><name>[3]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.__der_T.[3]</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of ConductionPDE1.T.[3]"/>
+</terminal>
+<terminal><name>[2]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.__der_T.[2]</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of ConductionPDE1.T.[2]"/>
+</terminal>
+<terminal><name>[9]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.__der_T.[9]</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of ConductionPDE1.T.[9]"/>
+</terminal>
+<terminal><name>[1]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.__der_T.[1]</id>
+<fixed value=""/>
+<initial_value value="0."/>
+<nominal_value value=""/>
+<comment value="Time derivative of ConductionPDE1.T.[1]"/>
+</terminal>
+</subnodes>
+</struct>
+<terminal><name>Thival</name>
+<kind>variable</kind>
+<id>ConductionPDE1.Thival</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>T1val</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T1val</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>T2val</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T2val</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>T3val</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T3val</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>T4val</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T4val</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>T5val</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T5val</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>T6val</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T6val</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>T7val</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T7val</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>T8val</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T8val</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>T9val</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T9val</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>Tloval</name>
+<kind>variable</kind>
+<id>ConductionPDE1.Tloval</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<struct><name>T</name>
+<subnodes><terminal><name>[1]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T.[1]</id>
+<fixed value=""/>
+<initial_value value="30."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>[2]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T.[2]</id>
+<fixed value=""/>
+<initial_value value="30."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>[3]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T.[3]</id>
+<fixed value=""/>
+<initial_value value="30."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>[4]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T.[4]</id>
+<fixed value=""/>
+<initial_value value="30."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>[5]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T.[5]</id>
+<fixed value=""/>
+<initial_value value="30."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>[6]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T.[6]</id>
+<fixed value=""/>
+<initial_value value="30."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>[7]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T.[7]</id>
+<fixed value=""/>
+<initial_value value="30."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>[8]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T.[8]</id>
+<fixed value=""/>
+<initial_value value="30."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+<terminal><name>[9]</name>
+<kind>variable</kind>
+<id>ConductionPDE1.T.[9]</id>
+<fixed value=""/>
+<initial_value value="30."/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<terminal><name>deltaX</name>
+<kind>variable</kind>
+<id>ConductionPDE1.deltaX</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort1</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort1.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort1.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort2</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort2.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort2.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort3</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort3.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort3.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort4</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort4.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort4.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort5</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort5.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort5.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort6</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort6.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort6.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort7</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort7.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort7.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort8</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort8.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort8.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort9</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort9.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort9.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort10</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort10.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort10.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+<struct><name>OutPutPort11</name>
+<subnodes><terminal><name>vo</name>
+<kind>variable</kind>
+<id>OutPutPort11.vo</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+<output/>
+</terminal>
+<terminal><name>vi</name>
+<kind>variable</kind>
+<id>OutPutPort11.vi</id>
+<fixed value=""/>
+<initial_value value=""/>
+<nominal_value value=""/>
+<comment value=""/>
+</terminal>
+</subnodes>
+</struct>
+</elements>
+<equations><equation value=" `ConductionPDE1.deltaX` = 0.1111111111111111; "/>
+<equation value=" (1. * `ConductionPDE1.__der_T.[1]`) = ((1. * ((`ConductionPDE1.T.[2]` - (2. * `ConductionPDE1.T.[1]`)) + 100.)) / (`ConductionPDE1.deltaX` ^ 2.)); "/>
+<equation value=" (1. * `ConductionPDE1.__der_T.[9]`) = ((1. * ((0. - (2. * `ConductionPDE1.T.[9]`)) + `ConductionPDE1.T.[8]`)) / (`ConductionPDE1.deltaX` ^ 2.)); "/>
+<equation value=" (1. * `ConductionPDE1.__der_T.[2]`) = ((1. * ((`ConductionPDE1.T.[3]` - (2. * `ConductionPDE1.T.[2]`)) + `ConductionPDE1.T.[1]`)) / (`ConductionPDE1.deltaX` ^ 2.)); "/>
+<equation value=" (1. * `ConductionPDE1.__der_T.[3]`) = ((1. * ((`ConductionPDE1.T.[4]` - (2. * `ConductionPDE1.T.[3]`)) + `ConductionPDE1.T.[2]`)) / (`ConductionPDE1.deltaX` ^ 2.)); "/>
+<equation value=" (1. * `ConductionPDE1.__der_T.[4]`) = ((1. * ((`ConductionPDE1.T.[5]` - (2. * `ConductionPDE1.T.[4]`)) + `ConductionPDE1.T.[3]`)) / (`ConductionPDE1.deltaX` ^ 2.)); "/>
+<equation value=" (1. * `ConductionPDE1.__der_T.[5]`) = ((1. * ((`ConductionPDE1.T.[6]` - (2. * `ConductionPDE1.T.[5]`)) + `ConductionPDE1.T.[4]`)) / (`ConductionPDE1.deltaX` ^ 2.)); "/>
+<equation value=" (1. * `ConductionPDE1.__der_T.[6]`) = ((1. * ((`ConductionPDE1.T.[7]` - (2. * `ConductionPDE1.T.[6]`)) + `ConductionPDE1.T.[5]`)) / (`ConductionPDE1.deltaX` ^ 2.)); "/>
+<equation value=" (1. * `ConductionPDE1.__der_T.[7]`) = ((1. * ((`ConductionPDE1.T.[8]` - (2. * `ConductionPDE1.T.[7]`)) + `ConductionPDE1.T.[6]`)) / (`ConductionPDE1.deltaX` ^ 2.)); "/>
+<equation value=" (1. * `ConductionPDE1.__der_T.[8]`) = ((1. * ((`ConductionPDE1.T.[9]` - (2. * `ConductionPDE1.T.[8]`)) + `ConductionPDE1.T.[7]`)) / (`ConductionPDE1.deltaX` ^ 2.)); "/>
+<equation value=" `ConductionPDE1.Thival` = 100.; "/>
+<equation value=" `ConductionPDE1.T1val` = `ConductionPDE1.T.[1]`; "/>
+<equation value=" `ConductionPDE1.T2val` = `ConductionPDE1.T.[2]`; "/>
+<equation value=" `ConductionPDE1.T3val` = `ConductionPDE1.T.[3]`; "/>
+<equation value=" `ConductionPDE1.T4val` = `ConductionPDE1.T.[4]`; "/>
+<equation value=" `ConductionPDE1.T5val` = `ConductionPDE1.T.[5]`; "/>
+<equation value=" `ConductionPDE1.T6val` = `ConductionPDE1.T.[6]`; "/>
+<equation value=" `ConductionPDE1.T7val` = `ConductionPDE1.T.[7]`; "/>
+<equation value=" `ConductionPDE1.T8val` = `ConductionPDE1.T.[8]`; "/>
+<equation value=" `ConductionPDE1.T9val` = `ConductionPDE1.T.[9]`; "/>
+<equation value=" `ConductionPDE1.Tloval` = 0.; "/>
+<equation value=" `OutPutPort1.vi` = `OutPutPort1.vo`; "/>
+<equation value=" `OutPutPort2.vi` = `OutPutPort2.vo`; "/>
+<equation value=" `OutPutPort3.vi` = `OutPutPort3.vo`; "/>
+<equation value=" `OutPutPort4.vi` = `OutPutPort4.vo`; "/>
+<equation value=" `OutPutPort5.vi` = `OutPutPort5.vo`; "/>
+<equation value=" `OutPutPort6.vi` = `OutPutPort6.vo`; "/>
+<equation value=" `OutPutPort7.vi` = `OutPutPort7.vo`; "/>
+<equation value=" `OutPutPort8.vi` = `OutPutPort8.vo`; "/>
+<equation value=" `OutPutPort9.vi` = `OutPutPort9.vo`; "/>
+<equation value=" `OutPutPort10.vi` = `OutPutPort10.vo`; "/>
+<equation value=" `OutPutPort11.vi` = `OutPutPort11.vo`; "/>
+<equation value=" `ConductionPDE1.Thival` = `OutPutPort1.vi`; "/>
+<equation value=" `ConductionPDE1.T1val` = `OutPutPort2.vi`; "/>
+<equation value=" `ConductionPDE1.T2val` = `OutPutPort3.vi`; "/>
+<equation value=" `ConductionPDE1.T3val` = `OutPutPort4.vi`; "/>
+<equation value=" `ConductionPDE1.T4val` = `OutPutPort5.vi`; "/>
+<equation value=" `ConductionPDE1.T5val` = `OutPutPort6.vi`; "/>
+<equation value=" `ConductionPDE1.T6val` = `OutPutPort7.vi`; "/>
+<equation value=" `ConductionPDE1.T7val` = `OutPutPort8.vi`; "/>
+<equation value=" `ConductionPDE1.T8val` = `OutPutPort9.vi`; "/>
+<equation value=" `ConductionPDE1.T9val` = `OutPutPort10.vi`; "/>
+<equation value=" `ConductionPDE1.Tloval` = `OutPutPort11.vi`; "/>
+</equations>
+<when_clauses/>
+</model>
