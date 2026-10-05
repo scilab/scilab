@@ -21,6 +21,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "createGraphicObject.h"
+#include "deleteGraphicObject.h"
 #include "BuildObjects.h"
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
@@ -31,6 +32,7 @@
 #include "FigureModel.h"
 #include "HandleManagement.h"
 #include "SetHashTable.h"
+#include "SetPropertyStatus.h"
 #include "os_string.h"
 #include "sciprint.h"
 #include "addColor.h"
@@ -44,7 +46,7 @@ int sci_figure(char * fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr = NULL;
-    int iType = 0;
+    int iSetStatus = 0;
     int iFig = 0;
     int iRhs = nbInputArgument(pvApiCtx);
     int iLhs = nbOutputArgument(pvApiCtx);
@@ -96,73 +98,17 @@ int sci_figure(char * fname, void* pvApiCtx)
         return 0;
     }
 
-    if (iRhs == 1)
+    //figure(x, ...): x is either a figure id or the first property name
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if (sciErr.iErr)
     {
-        //figure(x);
-        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            return 0;
-        }
-
-        sciErr = getVarType(pvApiCtx, piAddr, &iType);
-        if (sciErr.iErr || iType != sci_matrix)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 1);
-            return 0;
-        }
-
-        if (getScalarDouble(pvApiCtx, piAddr, &dblId))
-        {
-            Scierror(999, _("%s: No more memory.\n"), fname);
-            return 0;
-        }
-
-        iId = (int)(dblId + 0.5); //avoid 1.999 -> 1
-
-        //get current fig from id
-        iFig = getFigureFromIndex(iId);
-        if (iFig == 0) // Figure does not exist, create a new one
-        {
-            iFig = createNewFigureWithAxes();
-            setGraphicObjectProperty(iFig, __GO_ID__, &iId, jni_int,  1);
-            iAxes = setDefaultProperties(iFig, TRUE);
-        }
-
-        initBar(iFig, bMenuBar, bToolBar, bInfoBar);
-        createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iFig));
-        AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
-        ReturnArguments(pvApiCtx);
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    // Prepare property analysis
-    if (iRhs % 2 == 0)
+    if (isDoubleType(pvApiCtx, piAddr) && isScalar(pvApiCtx, piAddr))
     {
-        //get highest value of winsid to create the new windows @ + 1
-        iId = getValidDefaultFigureId();
-        iPos = 0;
-    }
-    else
-    {
-        iPos = 1;
-        //figure(x, ...);
-        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            return 0;
-        }
-
-        if (isVarMatrixType(pvApiCtx, piAddr) == 0)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 1);
-            return 0;
-        }
-
         if (getScalarDouble(pvApiCtx, piAddr, &dblId))
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
@@ -176,6 +122,61 @@ int sci_figure(char * fname, void* pvApiCtx)
         {
             bDoCreation = FALSE;
         }
+
+        iPos = 1;
+    }
+    else if (isStringType(pvApiCtx, piAddr) && isScalar(pvApiCtx, piAddr))
+    {
+        //get highest value of winsid to create the new windows @ + 1
+        iId = getValidDefaultFigureId();
+        iPos = 0;
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 1);
+        return 0;
+    }
+
+    // Check all property names before creating or modifying any figure
+    if ((iRhs - iPos) % 2 != 0)
+    {
+        Scierror(999, _("%s: Wrong number of input arguments: property/value pairs expected.\n"), fname);
+        return 0;
+    }
+
+    for (i = iPos + 1 ; i <= iRhs ; i += 2)
+    {
+        int* piAddrProp = NULL;
+        sciErr = getVarAddressFromPosition(pvApiCtx, i, &piAddrProp);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i);
+            return 0;
+        }
+
+        if (isStringType(pvApiCtx, piAddrProp) == FALSE || isScalar(pvApiCtx, piAddrProp) == FALSE)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, i);
+            return 0;
+        }
+    }
+
+    if (iRhs == 1)
+    {
+        //figure(num);
+        if (iFig == 0) // Figure does not exist, create a new one
+        {
+            iFig = createNewFigureWithAxes();
+            setGraphicObjectProperty(iFig, __GO_ID__, &iId, jni_int,  1);
+            iAxes = setDefaultProperties(iFig, TRUE);
+        }
+
+        initBar(iFig, bMenuBar, bToolBar, bInfoBar);
+        createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iFig));
+        AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
+        ReturnArguments(pvApiCtx);
+        return 0;
     }
 
     if (bDoCreation)
@@ -598,7 +599,11 @@ int sci_figure(char * fname, void* pvApiCtx)
                     {
                         if (getAllocatedSingleString(pvApiCtx, piAddrData, (char**)&_pvData))
                         {
-                            Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, 3);
+                            Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, i + 1);
+                            if (bDoCreation)
+                            {
+                                deleteGraphicObject(iFig);
+                            }
                             freeAllocatedSingleString(pstProName);
                             return 1;
                         }
@@ -610,7 +615,11 @@ int sci_figure(char * fname, void* pvApiCtx)
                         isMatrixOfString = 1;
                         if (getAllocatedMatrixOfString(pvApiCtx, piAddrData, &iRows, &iCols, (char***)&_pvData))
                         {
-                            Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
+                            Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, i + 1);
+                            if (bDoCreation)
+                            {
+                                deleteGraphicObject(iFig);
+                            }
                             freeAllocatedSingleString(pstProName);
                             return 1;
                         }
@@ -627,7 +636,33 @@ int sci_figure(char * fname, void* pvApiCtx)
             }
         }
 
-        callSetProperty(pvApiCtx, iFig, _pvData, iType, iRows, iCols, pstProName);
+        iSetStatus = callSetProperty(pvApiCtx, iFig, _pvData, iType, iRows, iCols, pstProName);
+
+        if (iType == sci_strings)
+        {
+            //free allocated data
+            if (isMatrixOfString == 1)
+            {
+                freeAllocatedMatrixOfString(iRows, iCols, (char**)_pvData);
+            }
+            else
+            {
+                freeAllocatedSingleString((char*)_pvData);
+            }
+        }
+
+        if (iSetStatus == SET_PROPERTY_ERROR)
+        {
+            // error already reported by the set function
+            // do not leave a half-built figure behind
+            if (bDoCreation)
+            {
+                deleteGraphicObject(iFig);
+            }
+
+            freeAllocatedSingleString(pstProName);
+            return 1;
+        }
 
         // If backgroundcolor is set :
         // * add it to colormap => performed by callSetProperty
@@ -643,18 +678,6 @@ int sci_figure(char * fname, void* pvApiCtx)
         }
 
         freeAllocatedSingleString(pstProName);
-        if (iType == sci_strings)
-        {
-            //free allacted data
-            if (isMatrixOfString == 1)
-            {
-                freeAllocatedMatrixOfString(iRows, iCols, (char**)_pvData);
-            }
-            else
-            {
-                freeAllocatedSingleString((char*)_pvData);
-            }
-        }
     }
 
     if (position)
