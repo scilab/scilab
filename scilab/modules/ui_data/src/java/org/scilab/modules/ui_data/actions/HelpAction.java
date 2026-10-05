@@ -50,7 +50,7 @@ public final class HelpAction extends CommonCallBack {
     @Override
     public void callBack() {
         try {
-            ScilabInterpreterManagement.asynchronousScilabExec(null, "help");
+            ScilabInterpreterManagement.asynchronousScilabExec(null, "doc();");
         } catch (InterpreterException e) {
             System.err.println(e);
         }
