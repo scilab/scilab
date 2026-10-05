@@ -256,15 +256,19 @@ title(_("Plot with 3 independent Y scales at shared X"), "fontsize",3);
 xlabel(_("Common X axis"), "fontsize",2);
 ylabel(_("Scale #1"), "fontsize",2);
 xgrid(color("grey70")*[1 1], [1 1], [7 7])
+ax = gca();
+ax.auto_margins = "off";
 
 // Blue curve => y2 scale (middle axis)
 c = color("blue");
 ax2 = newaxes();
 set(ax2, "filled", "off", "foreground", c, "font_color", c);
-plot2d(x, y3, logflag="nl", style=c)
-e.children.thickness = 2;
+e = plot2d(x, y3, logflag="nl", style=c);
+e.thickness = 2;
 ax2.axes_visible(1) = "off";
 ax2.y_location = "middle";
+ax2.margins = ax.margins;
+ax2.auto_margins = "off";
 
 // Red curve => y3 scale (right axis)
 c = color("red");
@@ -275,6 +279,8 @@ ylabel(_("Scale #3"),"color",[1 0 0])
 e.thickness = 2;
 ax3.axes_visible(1) = "off";
 ax3.y_location = "right";
+ax3.margins = ax.margins;
+ax3.auto_margins = "off";
      ]]></programlisting>
         <scilab:image><![CDATA[
             // Preparing data
@@ -291,6 +297,8 @@ ax3.y_location = "right";
             xlabel("Common X axis", "fontsize",2);
             ylabel("Scale #1", "fontsize",2);
             xgrid(color("grey70")*[1 1], [1 1], [7 7])
+            ax = gca();
+            ax.auto_margins = "off";
 
             // Blue curve => y2 scale (middle axis)
             c = color("blue");
@@ -300,6 +308,8 @@ ax3.y_location = "right";
             e.thickness = 2;
             ax2.axes_visible(1) = "off";
             ax2.y_location = "middle";
+            ax2.margins = ax.margins;
+            ax2.auto_margins = "off";
 
             // Red curve => y3 scale (right axis)
             c = color("red");
@@ -310,6 +320,8 @@ ax3.y_location = "right";
             e.thickness = 2;
             ax3.axes_visible(1) = "off";
             ax3.y_location = "right";
+            ax3.margins = ax.margins;
+            ax3.auto_margins = "off";
         ]]></scilab:image>
     </refsection>
     <refsection role="see also">
