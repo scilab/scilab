@@ -28,16 +28,15 @@ extern "C"
 #include "elem_common.h"
 #include "sci_malloc.h"
 
-    void C2F(rdmpsz)(int*, int*, int*, int*, int*, char*, int*, unsigned long int);
+    void C2F(rdmpsz)(int*, int*, int*, int*, int*, char*, int*, size_t);
     int  C2F(clunit)(int*, char*, int*, int);
     void C2F(rdmps1)(int*, char*, int*, int*, int*, int*, int*, int*, int*,
                      double*, double*, double*, char*, char*, char*, char*,
                      char*, int*, char*, char*, int*, int*, int*, int*, int*,
                      int*, int*, int*, int*, double*, double*, double*,
-                     double*, double*, double*, unsigned long int,
-                     unsigned long int, unsigned long int, unsigned long int,
-                     unsigned long int, unsigned long int, unsigned long int,
-                     unsigned long int);
+                     double*, double*, double*,
+                     size_t, size_t, size_t, size_t,
+                     size_t, size_t, size_t, size_t);
 }
 /*--------------------------------------------------------------------------*/
 static int openMPSFile(types::String* pStrFilename, int* piMode, int* lunit);
