@@ -54,6 +54,7 @@ endfunction
 
 function files = junit_sources(paths)
     // .java files given directly, or found recursively in the given directories
+    // nonreg_tests directories are skipped: each of their tests is run by its own .tst
     files = [];
     for p = paths(:)'
         if isdir(p) then
@@ -62,7 +63,7 @@ function files = junit_sources(paths)
                 files = [files; p + "/" + java];
             end
             for d = findfiles(p)'
-                if isdir(p + "/" + d) then
+                if isdir(p + "/" + d) & d <> "nonreg_tests" then
                     files = [files; junit_sources(p + "/" + d)];
                 end
             end
