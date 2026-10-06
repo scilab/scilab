@@ -1521,7 +1521,7 @@ Xcos trace:   objectUnreferenced( 23 , BLOCK ) : 0
       dstate = []
       odstate: (empty list)
       rpar = [0;-15;15;30]
-      ipar: [15x1 double]
+      ipar: [16x1 double]
       opar: (empty list)
       blocktype = "c"
       firing = []
@@ -1572,7 +1572,7 @@ Xcos trace:   objectUnreferenced( 23 , BLOCK ) : 0
   dstate = []
   odstate: (empty list)
   rpar = [0;-15;15;30]
-  ipar: [15x1 double]
+  ipar: [16x1 double]
   opar: (empty list)
   blocktype = "c"
   firing = []
@@ -1779,7 +1779,7 @@ Xcos trace:   objectUnreferenced( 26 , BLOCK ) : 0
       dstate = []
       odstate: (empty list)
       rpar = [0;-15;15;30]
-      ipar: [15x1 double]
+      ipar: [16x1 double]
       opar: (empty list)
       blocktype = "c"
       firing = []

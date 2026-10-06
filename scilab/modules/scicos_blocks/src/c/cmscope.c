@@ -742,13 +742,11 @@ static void setFigureSettings(int iFigureUID, scicos_block * block)
         setGraphicObjectProperty(iFigureUID, __GO_SIZE__, &win_dim, jni_int_vector, 2);
     }
 
-    label = GetLabelPtrs(block);
+    label = getScopeName(ipar, block->nipar, NULL);
     if (label != NULL)
     {
-        if (strlen(label) > 0)
-        {
-            setGraphicObjectProperty(iFigureUID, __GO_NAME__, label, jni_string, 1);
-        }
+        setGraphicObjectProperty(iFigureUID, __GO_NAME__, label, jni_string, 1);
+        FREE(label);
     }
 }
 

@@ -37,4 +37,14 @@ int findChildWithKindAt(int parent, int type, const int position);
  */
 BOOL setLabel(int iAxeUID, int _iName, char* pstLabel);
 
+/**
+ * Get the scope name stored at the end of ipar as [chars ; number of chars]
+ *
+ * \param ipar the integer parameters
+ * \param nipar the ipar size
+ * \param niparWithoutName if not NULL, set to the ipar size without the name
+ * \return the name (to be FREE'd) or NULL if empty
+ */
+char* getScopeName(const int* ipar, int nipar, int* niparWithoutName);
+
 #endif /* _SCO_UTILS_ */

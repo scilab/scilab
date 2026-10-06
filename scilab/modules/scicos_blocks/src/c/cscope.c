@@ -665,10 +665,9 @@ static BOOL pushData(scicos_block * block, int input, int row)
  */
 static void setFigureSettings(int iFigureUID, scicos_block * block)
 {
-    char *label = NULL;
-
-    int nipar = GetNipar(block);
+    int nipar;
     int *ipar = GetIparPtrs(block);
+    char *label = getScopeName(ipar, GetNipar(block), &nipar);
 
     int win_pos[2];
     int win_dim[2];
@@ -688,13 +687,10 @@ static void setFigureSettings(int iFigureUID, scicos_block * block)
         setGraphicObjectProperty(iFigureUID, __GO_SIZE__, &win_dim, jni_int_vector, 2);
     }
 
-    label = GetLabelPtrs(block);
     if (label != NULL)
     {
-        if (strlen(label) > 0)
-        {
-            setGraphicObjectProperty(iFigureUID, __GO_NAME__, label, jni_string, 1);
-        }
+        setGraphicObjectProperty(iFigureUID, __GO_NAME__, label, jni_string, 1);
+        FREE(label);
     }
 }
 

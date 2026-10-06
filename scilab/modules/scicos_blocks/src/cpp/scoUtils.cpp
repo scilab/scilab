@@ -96,3 +96,38 @@ BOOL setLabel(int iAxeUID, int _iName, char* pstLabel)
 
     return (BOOL) (result && iLabelUID != 0);
 }
+
+char* getScopeName(const int* ipar, int nipar, int* niparWithoutName)
+{
+    int len = 0;
+    char* name = NULL;
+
+    if (nipar > 0)
+    {
+        len = ipar[nipar - 1];
+    }
+    if (len < 0 || len > nipar - 1)
+    {
+        len = -1;
+    }
+    if (niparWithoutName != NULL)
+    {
+        *niparWithoutName = (len < 0) ? nipar : nipar - 1 - len;
+    }
+    if (len <= 0)
+    {
+        return NULL;
+    }
+
+    name = (char*) MALLOC((len + 1) * sizeof(char));
+    if (name == NULL)
+    {
+        return NULL;
+    }
+    for (int i = 0; i < len; i++)
+    {
+        name[i] = (char) ipar[nipar - 1 - len + i];
+    }
+    name[len] = '\0';
+    return name;
+}

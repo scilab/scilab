@@ -111,7 +111,8 @@ function [x,y,typ] = CMSCOPE(job,arg1,arg2)
                 yy=[ymin(:)';ymax(:)']
                 rpar=[0;period(:);yy(:)]
                 clrs=clrs(1:sum(in))
-                ipar=[win;size(in,"*");N;wpos(:);wdim(:);in(:);clrs(:);heritance]
+                name=ascii(nom)
+                ipar=[win;size(in,"*");N;wpos(:);wdim(:);in(:);clrs(:);heritance;name(:);size(name,"*")]
                 //if prod(size(dstate))<>(sum(in)+1)*N+1 then
                 //dstate=-eye((sum(in)+1)*N+1,1),
                 //end
@@ -120,7 +121,6 @@ function [x,y,typ] = CMSCOPE(job,arg1,arg2)
                 //model.dstate=dstate;
                 model.rpar=rpar;
                 model.ipar=ipar
-                model.label=nom;
                 graphics.id=nom;
                 graphics.exprs=exprs;
                 graphics.style = "CMSCOPE;verticalLabelPosition=bottom;" + ..
@@ -152,7 +152,7 @@ function [x,y,typ] = CMSCOPE(job,arg1,arg2)
         model.intyp=[1;1]
         model.evtin=1
         model.rpar=[0;period(:);yy(:)]
-        model.ipar=[win;size(in,"*");N;wpos(:);wdim(:);in(:);clrs(1:sum(in))]
+        model.ipar=[win;size(in,"*");N;wpos(:);wdim(:);in(:);clrs(1:sum(in));0]
         model.blocktype="c"
         model.dep_ut=[%t %f]
 

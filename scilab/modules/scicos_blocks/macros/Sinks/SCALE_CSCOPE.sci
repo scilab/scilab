@@ -101,13 +101,13 @@ function [x,y,typ]=SCALE_CSCOPE(job,arg1,arg2)
                     wdim=[-1;-1];
                 end
                 rpar=[autoscale;ymin;ymax;per]
-                ipar=[win;1;N;clrs(:);wpos(:);wdim(:)]
+                name=ascii(nom)
+                ipar=[win;1;N;clrs(:);wpos(:);wdim(:);name(:);size(name,"*")]
                 //if prod(size(dstate))<>(8+1)*N+1 then dstate=-eye((8+1)*N+1,1),end
                 //model.dstate=[];
                 model.rpar=rpar;
                 model.ipar=ipar
                 model.evtin=ones(1-heritance,1)
-                model.label=nom;
                 graphics.id=nom
                 graphics.exprs=exprs;
                 x.graphics=graphics;
@@ -132,7 +132,7 @@ function [x,y,typ]=SCALE_CSCOPE(job,arg1,arg2)
         model.in2=1
         model.evtin=1
         model.rpar=[autoscale;ymin;ymax;per]  //As Oth element was not used, It is now utilise for scaling parameter
-        model.ipar=[win;1;N;clrs;wpos;wdim]
+        model.ipar=[win;1;N;clrs;wpos;wdim;0]
         model.blocktype="c"
         model.dep_ut=[%t %f]
 
