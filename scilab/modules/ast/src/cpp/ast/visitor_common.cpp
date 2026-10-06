@@ -764,6 +764,29 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
             return false;
         }
 
+        // a("b") is normally a shorthand for a.b (dynamic field access) when "a" is a
+        // variable/handle. But when "a" is actually the name of a callable (function or
+        // macro) being called with a single string argument - e.g. legend("a") - it must
+        // stay a real call, not be reinterpreted as legend.a (see issue #17554). Only check
+        // this for a call made directly on the outermost identifier of the chain: a nested
+        // struct/handle field such as x.y("z") or the output of a call such as gcf()("z")
+        // must keep the dynamic field access shorthand.
+        bool bMainIsCallable = false;
+        if (fields.size() == 1 && pCall->getName().isSimpleVar() && fields.back()->getArgs() == NULL)
+        {
+            ast::SimpleVar* pMainVar = dynamic_cast<ast::SimpleVar*>(fields.back()->getExp());
+            if (pMainVar)
+            {
+                symbol::Context* ctx = symbol::Context::getInstance();
+                types::InternalType* pITMain = ctx->getCurrentLevel(pMainVar->getSymbol());
+                if (pITMain == NULL)
+                {
+                    pITMain = ctx->get(pMainVar->getSymbol());
+                    bMainIsCallable = pITMain != NULL && pITMain->isCallable();
+                }
+            }
+        }
+
         // used to manage insertion with list in argument
         // a(list("field", 2)) = 2 as a.field(2)
         if (pCurrentArgs &&  pCurrentArgs->size() > 0 &&
@@ -785,7 +808,8 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
             if (pCurrentArgs &&
                     pCurrentArgs->size() == 1 &&
                     (*pCurrentArgs)[0]->isString() &&
-                    (*pCurrentArgs)[0]->getAs<types::String>()->getSize() == 1)
+                    (*pCurrentArgs)[0]->getAs<types::String>()->getSize() == 1 &&
+                    bMainIsCallable == false)
             {
                 // a("b") => a.b or a(x)("b") => a(x).b
                 ExpHistory * pEHParent = fields.back();
@@ -1565,17 +1589,37 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     in = *pEH->getArgs();
                 }
 
+                // args are owned by the ExpHistory: protect them from being
+                // deleted by the callee (ie: legend("ab" + "c").font_size = 3)
+                for (auto arg : in)
+                {
+                    arg->IncreaseRef();
+                }
+
                 try
                 {
                     ret = pITCurrent->invoke(in, opt, 1, out, *pEH->getExp());
                 }
                 catch (ast::InternalAbort& ia)
                 {
+                    for (auto arg : in)
+                    {
+                        arg->DecreaseRef();
+                    }
                     throw ia;
                 }
                 catch (const ast::InternalError& ie)
                 {
+                    for (auto arg : in)
+                    {
+                        arg->DecreaseRef();
+                    }
                     throw ie;
+                }
+
+                for (auto arg : in)
+                {
+                    arg->DecreaseRef();
                 }
 
                 if (ret == false || out.size() != 1 || out[0]->isHandle() == false)
