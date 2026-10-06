@@ -246,14 +246,14 @@ pre.monospace.error {
     background: #ccc;
 }
 
-.listitem .listpad {
-    width: 50px;
+.listitem .listicon {
+    align-self: center;
+    margin: 0 4px 0 2px;
 }
 
-.listitem .listtype {
-    margin-left: auto;
-    margin-right: 5px;
-    font-style: italic;
+/* the kind colors are unreadable on the selection background */
+.listitem.selected .listicon {
+    color: inherit;
 }
 
 .empty {

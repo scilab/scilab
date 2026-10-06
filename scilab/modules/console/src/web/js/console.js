@@ -89,6 +89,12 @@ $(document).ready(async () => {
         Scilab({request: "focus"});
     });
 
+    // keep the focus in the input: its focusout would hide the completion
+    // window before the click on an entry is received
+    $(".completion").on("mousedown", (e) => {
+        e.preventDefault();
+    });
+
     $("body").on('focusout', (_e) => {
         // hide unnecessary info
         hideCompletionWindow();
@@ -112,9 +118,7 @@ $(document).ready(async () => {
         switch (e.key) {
             case "Enter":
                 if (isCompletion()) {
-                    let pattern = $(".completion").data("pattern");
-                    updateInput(pattern, $(".listitem.selected").data("entry"));
-                    hideCompletionWindow();
+                    validateCompletion($(".listitem.selected").data("entry"));
                 } else if (isInputEnabled()) {
                     sendCommand($(".input").val());
                 }
@@ -190,6 +194,11 @@ $(document).ready(async () => {
                     break;
                 case "End":
                     updateCompletionSelection(-1, "absolute");
+                    e.preventDefault();
+                    e.stopPropagation();
+                    break;
+                case "Tab":
+                    validateCompletion($(".listitem.selected").data("entry"));
                     e.preventDefault();
                     e.stopPropagation();
                     break;
@@ -338,7 +347,7 @@ function openCompletion(autovalid) {
                 } else {
                     clearCompletionContent();
                     $(".completion").data("pattern", res.pattern);
-                    res.entries.forEach(r => addCompletionEntry(r.entry, r.type));
+                    res.entries.forEach(r => addCompletionEntry(r.entry, r.type, r.kind));
                     showCompletionWindow();
                 }
             }
@@ -563,6 +572,7 @@ async function fromJava(msg) {
             break;
         case "bgcolor":
             $("body").css("background-color", msg.data1)
+            $("body").toggleClass("dark", isDarkColor($("body").css("background-color")));
             break;
         case "fgcolor":
             $("body").css("color", msg.data1)
@@ -803,6 +813,11 @@ function showCompletionWindow() {
     updateScrollView();
 }
 
+function validateCompletion(entry) {
+    updateInput($(".completion").data("pattern"), entry);
+    hideCompletionWindow();
+}
+
 function hideCompletionWindow() {
     $(".completion").hide();
 }
@@ -811,16 +826,22 @@ function clearCompletionContent() {
     $(".listbox").children().remove();
 }
 
-function addCompletionEntry(entry, type) {
-    let li = $("<li>").addClass("listitem").data("entry", {entry, type});
+// LSP CompletionItemKind to codicon, as Monaco does in SciNotes
+const COMPLETION_ICONS = {
+    3: "symbol-function",
+    5: "symbol-field",
+    6: "symbol-variable",
+    14: "symbol-keyword",
+    17: "symbol-file",
+    19: "symbol-folder"
+};
+
+function addCompletionEntry(entry, type, kind) {
+    let li = $("<li>").addClass("listitem").attr("title", type).data("entry", {entry, type});
+    li.append($("<span>").addClass(`listicon codicon codicon-${COMPLETION_ICONS[kind] || "symbol-variable"}`));
     li.append($("<div>").addClass("listentry").text(entry));
-    li.append($("<div>").addClass("listpad"));
-    li.append($("<div>").addClass("listtype").text(type));
-    li.click((e) => {
-        let pattern = $(".completion").data("pattern");
-        updateInput(pattern, $(e.target).parent().data("entry"));
-        hideCompletionWindow();
-    });
+    // the click may be on the li itself or on one of its children
+    li.click((_e) => validateCompletion(li.data("entry")));
 
     $(".listbox").append(li);
 }
@@ -869,6 +890,12 @@ function rgb2hex(c) {
 
 function getForeground() {
     return rgb2hex($("body").css("color"));
+}
+
+// Selects the dark variant of the completion icon colors
+function isDarkColor(c) {
+    let rgb = c.match(/\d+/g).map(Number);
+    return 0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2] < 128;
 }
 
 function getBackground() {

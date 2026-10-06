@@ -965,21 +965,21 @@ public abstract class SciConsole extends JPanel {
             ArrayList<String> files = new ArrayList<String>();
             ArrayList<String> directories = new ArrayList<String>();
             separateFilesDirectories(scilabFilesDictionary, files, directories);
-            entries.add(Messages.gettext("File"), files);
-            entries.add(Messages.gettext("Directory"), directories);
+            entries.add(Messages.gettext("File"), CompletionEntry.FILE, files);
+            entries.add(Messages.gettext("Directory"), CompletionEntry.FOLDER, directories);
         } else {
             String searchedPattern = getPart(entry, caret);
             entries = new CompletionEntries(searchedPattern);
             String[] scilabFieldsDictionary = Completion.searchFieldsDictionary(entry, searchedPattern);
             if (scilabFieldsDictionary != null) {
-                entries.add("field", scilabFieldsDictionary);
+                entries.add("field", CompletionEntry.FIELD, scilabFieldsDictionary);
             } else {
-                entries.add(Messages.gettext("command"), Completion.searchCommandsDictionary(searchedPattern));
-                entries.add(Messages.gettext("function"), Completion.searchFunctionsDictionary(searchedPattern));
-                entries.add(Messages.gettext("handle property"), Completion.searchHandleGraphicsPropertiesDictionary(searchedPattern));
-                entries.add(Messages.gettext("macro"), Completion.searchMacrosDictionary(searchedPattern));
-                entries.add(Messages.gettext("variable"), Completion.searchVariablesDictionary(searchedPattern));
-                entries.add(Messages.gettext("arguments validator"), Completion.searchMustBeDictionary(searchedPattern));
+                entries.add(Messages.gettext("command"), CompletionEntry.KEYWORD, Completion.searchCommandsDictionary(searchedPattern));
+                entries.add(Messages.gettext("function"), CompletionEntry.FUNCTION, Completion.searchFunctionsDictionary(searchedPattern));
+                entries.add(Messages.gettext("handle property"), CompletionEntry.FIELD, Completion.searchHandleGraphicsPropertiesDictionary(searchedPattern));
+                entries.add(Messages.gettext("macro"), CompletionEntry.FUNCTION, Completion.searchMacrosDictionary(searchedPattern));
+                entries.add(Messages.gettext("variable"), CompletionEntry.VARIABLE, Completion.searchVariablesDictionary(searchedPattern));
+                entries.add(Messages.gettext("arguments validator"), CompletionEntry.KEYWORD, Completion.searchMustBeDictionary(searchedPattern));
             }
         }
 

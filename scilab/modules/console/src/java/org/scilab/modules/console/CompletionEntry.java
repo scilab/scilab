@@ -9,11 +9,21 @@
 package org.scilab.modules.console;
 
 public class CompletionEntry {
+    // LSP CompletionItemKind values, as sent by the LSP server to SciNotes
+    public static final int FUNCTION = 3;
+    public static final int FIELD = 5;
+    public static final int VARIABLE = 6;
+    public static final int KEYWORD = 14;
+    public static final int FILE = 17;
+    public static final int FOLDER = 19;
+
     private String entry;
     private String type;
+    private int kind;
 
-    CompletionEntry(String entry, String type) {
+    CompletionEntry(String entry, String type, int kind) {
         this.entry = entry;
         this.type = type;
+        this.kind = kind;
     }
 }

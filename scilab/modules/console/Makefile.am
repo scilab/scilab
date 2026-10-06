@@ -41,7 +41,9 @@ libsciconsole_la_etc_DATA = \
 libsciconsole_la_webdir = $(mydatadir)/src/web
 libsciconsole_la_web_DATA = src/web/console.html
 libsciconsole_la_cssdir = $(mydatadir)/src/web/css
-libsciconsole_la_css_DATA = src/web/css/console.css
+libsciconsole_la_css_DATA = \
+	src/web/css/console.css \
+	src/web/css/codicon.css
 libsciconsole_la_jsdir = $(mydatadir)/src/web/js
 libsciconsole_la_js_DATA = src/web/js/console.js
 

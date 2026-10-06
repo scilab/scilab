@@ -23,19 +23,19 @@ public class CompletionEntries {
         entries.add(msg);
     }
 
-    public void add(String type, String[] array) {
+    public void add(String type, int kind, String[] array) {
         if (array == null) return;
 
         for (int i = 0; i < array.length; ++i) {
-            entries.add(new CompletionEntry(array[i], type));
+            entries.add(new CompletionEntry(array[i], type, kind));
         }
     }
 
-    public void add(String type, ArrayList<String> array) {
+    public void add(String type, int kind, ArrayList<String> array) {
         if (array == null) return;
 
         for (String a : array) {
-            entries.add(new CompletionEntry(a, type));
+            entries.add(new CompletionEntry(a, type, kind));
         }
     }
 
