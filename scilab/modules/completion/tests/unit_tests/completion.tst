@@ -22,22 +22,22 @@ endfunction
 // File paths
 
 if (getos() == "Windows") then
-    r = completion("C:\Documents and");
+    r = completion("C:\Documents and")
     assert_checkequal(r, "Documents and Settings\");
 
-    r = completion("c:\documents And");
+    r = completion("c:\documents And")
     assert_checkequal(r, "Documents and Settings\");
 else
-    r = completion("/tm");
-    assert_checkequal(r, "tmp/");
+    r = completion("/etc/fst")
+    assert_checkequal(r, "fstab");
 
-    r = completion("/TM");
+    r = completion("/etc/FST")
     // We are still case sensitive
     assert_checkequal(r, []);
 end
 
-r = completion(SCI+"/to");
-r2 = completion(SCI+"/TO");
+r = completion(SCI+"/to")
+r2 = completion(SCI+"/TO")
 if (getos() == "Windows") then
     assert_checkequal(r, ["tools\"]);
     assert_checkequal(r2, ["tools\"]);
@@ -49,25 +49,25 @@ end
 
 // Predefined variables
 
-r = completion("ho", "variables");
+r = completion("ho", "variables")
 check_completion(r, "home");
 
-r = completion("HO", "variables");
+r = completion("HO", "variables")
 check_completion(r, "home");
 
-r = completion("%na");
+r = completion("%na")
 check_completion(r, "%nan");
 
-r = completion("%Na");
+r = completion("%Na")
 check_completion(r, "%nan");
 
-r = completion("tmp");
+r = completion("tmp")
 check_completion(r, "TMPDIR");
 
-r = completion("Tmp");
+r = completion("Tmp")
 check_completion(r, "TMPDIR");
 
-r = completion("%", "variables");
+r = completion("%", "variables")
 rexpected = ["%chars"; "%e"; "%eps"; "%fftw"; "%gui"; "%i";"%inf"; "%io"; "%nan"; "%pi"; "%s"; "%tk"; "%z"];
 assert_checkequal(r, rexpected);
 
@@ -76,31 +76,31 @@ assert_checkequal(r, rexpected);
 
 variable1_completion1 = 1;
 variable1_completion2 = 2;
-r = completion("variable1_comp");
+r = completion("variable1_comp")
 assert_checkequal(r, ["variable1_completion1"; "variable1_completion2"]);
-r = completion("VARIABLE1_COMP");
+r = completion("VARIABLE1_COMP")
 assert_checkequal(r, ["variable1_completion1"; "variable1_completion2"]);
 
 variable2_completion = 1;
 VARIABLE2_COMPLETION = 2;
-r = completion("variable2_comp");
+r = completion("variable2_comp")
 assert_checkequal(r, ["VARIABLE2_COMPLETION"; "variable2_completion"]);
-r = completion("VARIABLE2_COMP");
+r = completion("VARIABLE2_COMP")
 assert_checkequal(r, ["VARIABLE2_COMPLETION"; "variable2_completion"]);
 
 
 // Predefined functions, macros and commands
 
-r = completion("floo");
+r = completion("floo")
 check_completion(r, "floor");
 
-r = completion("FLOO");
+r = completion("FLOO")
 check_completion(r, "floor");
 
-r = completion("abort");
+r = completion("abort")
 check_completion(r, "abort");
 
-r = completion("Abort");
+r = completion("Abort")
 check_completion(r, "abort");
 
 
@@ -108,67 +108,67 @@ check_completion(r, "abort");
 
 function [] = function_completion(x);
 endfunction;
-r = completion("function_comp");
+r = completion("function_comp")
 assert_checkequal(r, "function_completion");
-r = completion("FUNCTION_COMP");
+r = completion("FUNCTION_COMP")
 assert_checkequal(r, "function_completion");
 
 function [] = FUNCTION_COMPLETION(x);
 endfunction;
-r = completion("function_comp");
+r = completion("function_comp")
 assert_checkequal(r, ["FUNCTION_COMPLETION"; "function_completion"]);
-r = completion("FUNCTION_COMP");
+r = completion("FUNCTION_COMP")
 assert_checkequal(r, ["FUNCTION_COMPLETION"; "function_completion"]);
 
 
 // Filter argument
 
-r = completion("ho");
+r = completion("ho")
 assert_checkequal(r, ["home"; "horizontalalignment"; "horner"; "host"; "hot"; "hours"; "householder"]);
 
-r = completion("ho", "functions");
+r = completion("ho", "functions")
 assert_checkequal(r, "host");
 
-r = completion("ho", "commands");
+r = completion("ho", "commands")
 assert_checkequal(r, []);
 
-r = completion("ho", "macros");
+r = completion("ho", "macros")
 assert_checkequal(r, ["horner"; "hot"; "hours"; "householder"]);
 
-r = completion("ho", "variables");
+r = completion("ho", "variables")
 assert_checkequal(r, "home");
 
-r = completion("ho", "graphic_properties");
+r = completion("ho", "graphic_properties")
 assert_checkequal(r, "horizontalalignment");
 
-r = completion("ho", "files");
+r = completion("ho", "files")
 assert_checkequal(r, []);
 
-r = completion("abo");
+r = completion("abo")
 assert_checkequal(r, ["abort"; "about"]);
 
-r = completion("abo", "functions");
+r = completion("abo", "functions")
 assert_checkequal(r, ["abort"; "about"]);
 
-r = completion("abo", "commands");
+r = completion("abo", "commands")
 assert_checkequal(r, "abort");
 
-r = completion("abo", "variables");
+r = completion("abo", "variables")
 assert_checkequal(r, []);
 
-r = completion("abo", "macros");
+r = completion("abo", "macros")
 assert_checkequal(r, []);
 
-r = completion("abo", "graphic_properties");
+r = completion("abo", "graphic_properties")
 assert_checkequal(r, []);
 
-r = completion("abo", "files");
+r = completion("abo", "files")
 assert_checkequal(r, []);
 
 
 // Output arguments
 
-[functions,commands,variables,macros,graphic_properties,files] = completion("ho");
+[functions,commands,variables,macros,graphic_properties,files] = completion("ho")
 assert_checkequal(functions, ["host"]);
 assert_checkequal(commands, []);
 assert_checkequal(variables, ["home"]);
@@ -176,7 +176,7 @@ assert_checkequal(macros, ["horner"; "hot"; "hours"; "householder"]);
 assert_checkequal(graphic_properties, ["horizontalalignment"]);
 assert_checkequal(files, []);
 
-[functions,commands,variables,macros,graphic_properties,files] = completion("abo");
+[functions,commands,variables,macros,graphic_properties,files] = completion("abo")
 assert_checkequal(functions, ["abort"; "about"]);
 assert_checkequal(commands, ["abort"]);
 assert_checkequal(variables, []);
@@ -185,10 +185,10 @@ assert_checkequal(graphic_properties, []);
 assert_checkequal(files, []);
 
 if (getos() == "Windows") then;
-    [functions,commands,variables,macros,graphic_properties,files] = completion("C:\Documents and");
+    [functions,commands,variables,macros,graphic_properties,files] = completion("C:\Documents and")
     assert_checkequal(files, ["Documents and Settings\"]);
 else
-    [functions,commands,variables,macros,graphic_properties,files] = completion("/tm");
+    [functions,commands,variables,macros,graphic_properties,files] = completion("/tm")
     assert_checkequal(files, ["tmp/"]);
 end
 
