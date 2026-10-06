@@ -24795,13 +24795,13 @@ printf "%s\n" "$as_me: WARNING: Could not find or use the Java package/jar jeucl
 
 
 
-    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking javafx.base" >&5
-printf %s "checking javafx.base... " >&6; }
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking javafx-base" >&5
+printf %s "checking javafx-base... " >&6; }
     PACKAGE_JAR_FILE=
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/thirdparty/jcef $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -name 'javafx.base.jar' -or -name 'libjavafx.base.jar' -or -name 'libjavafx.base-java.jar' -or -name 'javafx.base*.jar' \) 2>/dev/null |tr '\n' ':')."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -name 'javafx-base.jar' -or -name 'libjavafx-base.jar' -or -name 'libjavafx-base-java.jar' -or -name 'javafx-base*.jar' \) 2>/dev/null |tr '\n' ':')."
 
 
         if test ! -f conftestSharedChecker.class ; then
@@ -25009,7 +25009,7 @@ EOF
         CLASSPATH=$ac_java_classpath
         export CLASSPATH
         echo "CLASSPATH="$CLASSPATH >&5
-        cmd="$JAVA conftestSharedChecker \"javafx.base\" \"javafx.collections.ObservableList\" \"$jar_resolved\" \"\" \"\" \"\""
+        cmd="$JAVA conftestSharedChecker \"javafx-base\" \"javafx.collections.ObservableList\" \"$jar_resolved\" \"\" \"\" \"\""
         if (echo $cmd >&5 ; eval $cmd >conftestSharedChecker.java.output 2>&5); then
             read PACKAGE_JAR_FILE PACKAGE_JAR_VERSION << EOF
 $(tail -n 1 conftestSharedChecker.java.output)
@@ -25023,10 +25023,10 @@ printf "%s\n" " $PACKAGE_JAR_FILE $PACKAGE_JAR_VERSION " >&6; }
             { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
             if test "" = "yes"; then
-                { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar javafx.base used by JavaFX base (looking for package javafx.collections.ObservableList)" >&5
-printf "%s\n" "$as_me: WARNING: Could not find or use the Java package/jar javafx.base used by JavaFX base (looking for package javafx.collections.ObservableList)" >&2;}
+                { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar javafx-base used by JavaFX base (looking for package javafx.collections.ObservableList)" >&5
+printf "%s\n" "$as_me: WARNING: Could not find or use the Java package/jar javafx-base used by JavaFX base (looking for package javafx.collections.ObservableList)" >&2;}
             else
-                as_fn_error $? "Could not find or use the Java package/jar javafx.base used by JavaFX base (looking for package javafx.collections.ObservableList)" "$LINENO" 5
+                as_fn_error $? "Could not find or use the Java package/jar javafx-base used by JavaFX base (looking for package javafx.collections.ObservableList)" "$LINENO" 5
             fi
         fi
         if test -f conftestSharedChecker.java.output; then
@@ -25042,13 +25042,13 @@ printf "%s\n" "$as_me: WARNING: Could not find or use the Java package/jar javaf
 
 
 
-    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking javafx.swing" >&5
-printf %s "checking javafx.swing... " >&6; }
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking javafx-swing" >&5
+printf %s "checking javafx-swing... " >&6; }
     PACKAGE_JAR_FILE=
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/thirdparty/jcef $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -name 'javafx.swing.jar' -or -name 'libjavafx.swing.jar' -or -name 'libjavafx.swing-java.jar' -or -name 'javafx.swing*.jar' \) 2>/dev/null |tr '\n' ':')."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -name 'javafx-swing.jar' -or -name 'libjavafx-swing.jar' -or -name 'libjavafx-swing-java.jar' -or -name 'javafx-swing*.jar' \) 2>/dev/null |tr '\n' ':')."
 
 
         if test ! -f conftestSharedChecker.class ; then
@@ -25256,7 +25256,7 @@ EOF
         CLASSPATH=$ac_java_classpath
         export CLASSPATH
         echo "CLASSPATH="$CLASSPATH >&5
-        cmd="$JAVA conftestSharedChecker \"javafx.swing\" \"javafx.embed.swing.JFXPanel\" \"$jar_resolved\" \"\" \"\" \"\""
+        cmd="$JAVA conftestSharedChecker \"javafx-swing\" \"javafx.embed.swing.JFXPanel\" \"$jar_resolved\" \"\" \"\" \"\""
         if (echo $cmd >&5 ; eval $cmd >conftestSharedChecker.java.output 2>&5); then
             read PACKAGE_JAR_FILE PACKAGE_JAR_VERSION << EOF
 $(tail -n 1 conftestSharedChecker.java.output)
@@ -25270,10 +25270,10 @@ printf "%s\n" " $PACKAGE_JAR_FILE $PACKAGE_JAR_VERSION " >&6; }
             { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
             if test "" = "yes"; then
-                { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar javafx.swing used by JavaFX Swing (looking for package javafx.embed.swing.JFXPanel)" >&5
-printf "%s\n" "$as_me: WARNING: Could not find or use the Java package/jar javafx.swing used by JavaFX Swing (looking for package javafx.embed.swing.JFXPanel)" >&2;}
+                { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar javafx-swing used by JavaFX Swing (looking for package javafx.embed.swing.JFXPanel)" >&5
+printf "%s\n" "$as_me: WARNING: Could not find or use the Java package/jar javafx-swing used by JavaFX Swing (looking for package javafx.embed.swing.JFXPanel)" >&2;}
             else
-                as_fn_error $? "Could not find or use the Java package/jar javafx.swing used by JavaFX Swing (looking for package javafx.embed.swing.JFXPanel)" "$LINENO" 5
+                as_fn_error $? "Could not find or use the Java package/jar javafx-swing used by JavaFX Swing (looking for package javafx.embed.swing.JFXPanel)" "$LINENO" 5
             fi
         fi
         if test -f conftestSharedChecker.java.output; then
@@ -25289,13 +25289,13 @@ printf "%s\n" "$as_me: WARNING: Could not find or use the Java package/jar javaf
 
 
 
-    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking javafx.graphics" >&5
-printf %s "checking javafx.graphics... " >&6; }
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking javafx-graphics" >&5
+printf %s "checking javafx-graphics... " >&6; }
     PACKAGE_JAR_FILE=
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/thirdparty/jcef $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -name 'javafx.graphics.jar' -or -name 'libjavafx.graphics.jar' -or -name 'libjavafx.graphics-java.jar' -or -name 'javafx.graphics*.jar' \) 2>/dev/null |tr '\n' ':')."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -name 'javafx-graphics.jar' -or -name 'libjavafx-graphics.jar' -or -name 'libjavafx-graphics-java.jar' -or -name 'javafx-graphics*.jar' \) 2>/dev/null |tr '\n' ':')."
 
 
         if test ! -f conftestSharedChecker.class ; then
@@ -25503,7 +25503,7 @@ EOF
         CLASSPATH=$ac_java_classpath
         export CLASSPATH
         echo "CLASSPATH="$CLASSPATH >&5
-        cmd="$JAVA conftestSharedChecker \"javafx.graphics\" \"javafx.stage.Stage\" \"$jar_resolved\" \"\" \"\" \"\""
+        cmd="$JAVA conftestSharedChecker \"javafx-graphics\" \"javafx.stage.Stage\" \"$jar_resolved\" \"\" \"\" \"\""
         if (echo $cmd >&5 ; eval $cmd >conftestSharedChecker.java.output 2>&5); then
             read PACKAGE_JAR_FILE PACKAGE_JAR_VERSION << EOF
 $(tail -n 1 conftestSharedChecker.java.output)
@@ -25517,10 +25517,10 @@ printf "%s\n" " $PACKAGE_JAR_FILE $PACKAGE_JAR_VERSION " >&6; }
             { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
             if test "" = "yes"; then
-                { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar javafx.graphics used by JavaFX graphics (looking for package javafx.stage.Stage)" >&5
-printf "%s\n" "$as_me: WARNING: Could not find or use the Java package/jar javafx.graphics used by JavaFX graphics (looking for package javafx.stage.Stage)" >&2;}
+                { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar javafx-graphics used by JavaFX graphics (looking for package javafx.stage.Stage)" >&5
+printf "%s\n" "$as_me: WARNING: Could not find or use the Java package/jar javafx-graphics used by JavaFX graphics (looking for package javafx.stage.Stage)" >&2;}
             else
-                as_fn_error $? "Could not find or use the Java package/jar javafx.graphics used by JavaFX graphics (looking for package javafx.stage.Stage)" "$LINENO" 5
+                as_fn_error $? "Could not find or use the Java package/jar javafx-graphics used by JavaFX graphics (looking for package javafx.stage.Stage)" "$LINENO" 5
             fi
         fi
         if test -f conftestSharedChecker.java.output; then

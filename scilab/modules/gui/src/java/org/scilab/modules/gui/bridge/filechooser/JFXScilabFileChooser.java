@@ -16,7 +16,6 @@ import java.util.StringTokenizer;
 import java.util.concurrent.*;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import java.awt.Toolkit;
 import java.awt.Dimension;
@@ -31,12 +30,12 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.DirectoryChooser;
 
 import javax.swing.JFrame;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.gui.filechooser.FileChooserInfos;
+import org.scilab.modules.gui.filechooser.ScilabFileChooserBridge;
 import org.scilab.modules.gui.filechooser.SimpleFileChooser;
+import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.SciFileFilter;
 
 /**
@@ -57,26 +56,36 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
     private String[] selectionFileNames; // Filenames
     private int selectionSize;
     private int filterIndex;
-    private boolean acceptAllFileFilterUsed = false;
+    private boolean acceptAllFileFilterUsed = true; // JFileChooser default
     private int dialogType = 0;
     private boolean directorySelectionOnly = false;
     private boolean multipleSelection = false;
     private DirectoryChooser directoryChooser;
     private FileChooser fileChooser;
+    private final ExtensionFilter acceptAllFilter;
+    private final List<ExtensionFilter> maskFilters = new ArrayList<ExtensionFilter>();
+    // Raw settings, replayed on a Swing chooser if the JavaFX dialog fails
+    private final List<String[][]> masks = new ArrayList<String[][]>();
+    private String initialDirectory;
+    private String initialFileName;
     private Stage stage;
     private static JFXPanel jfxpanel; // Instantiated only to start the JavaFX toolkit
+    // GTK matches "*.*" literally, hiding files without extension
+    private static final String ALL_FILES_PATTERN = OS.get() == OS.UNIX ? "*" : "*.*";
 
 
     public JFXScilabFileChooser() {
         startJavaFXToolkit();
         directoryChooser = new DirectoryChooser();
         fileChooser = new FileChooser();
+        acceptAllFilter = new ExtensionFilter(new SciFileFilter("*.*", null, 0).getDescription(), ALL_FILES_PATTERN);
+        setCurrentDirectory(new File(ConfigManager.getLastOpenedDirectory()));
     }
 
     /**
      * Start the JavaFX toolkit (if not already done) by creating a JFXPanel
      */
-    private static synchronized void startJavaFXToolkit() {
+    public static synchronized void startJavaFXToolkit() {
         if (jfxpanel != null) {
             return;
         }
@@ -102,7 +111,11 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
         @Override public ArrayList<File> call() throws Exception {
             // This method is invoked on the JavaFX thread
             ArrayList<File> theResult = new ArrayList<File>();
-            
+
+            fileChooser.setTitle(title);
+            directoryChooser.setTitle(title);
+            setupFilters();
+
             if (OS.get() == OS.MAC) {
                 if (!(stage instanceof Stage)) {
                     stage = new Stage();
@@ -122,13 +135,6 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
                 stage.setTitle(title);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show(); //show stage because you wouldn't be able to get Height & width of the stage
-            } else {
-                fileChooser.setTitle(title);
-                directoryChooser.setTitle(title);
-                List<ExtensionFilter> allExtensionFilters = fileChooser.getExtensionFilters();
-                if (!allExtensionFilters.isEmpty()) {
-                    fileChooser.setSelectedExtensionFilter(allExtensionFilters.get(allExtensionFilters.size()-1));
-                }
             }
             if (dialogType == JFXScilabFileChooser.OPEN_DIALOG) {
                 if (multipleSelection == false) {
@@ -166,13 +172,11 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
                         }
                     }
                     if (filter == null) {
-                         if (acceptAllFileFilterUsed) {
-                             filter = getFileFilterFromExtension("*.*");
-                             if (filter != null) {
-                                 fileChooser.setSelectedExtensionFilter(filter);
-                             }
+                         filter = getFileFilterFromExtension(ALL_FILES_PATTERN);
+                         if (filter != null) {
+                             fileChooser.setSelectedExtensionFilter(filter);
                          }
-                     } 
+                     }
                 }
                 
                 File aFile  = fileChooser.showSaveDialog(stage);
@@ -200,22 +204,44 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
      * Display this chooser and wait for user selection
      */
     public void displayAndWait() {
-        FutureTask<ArrayList<File>> futureTask = new FutureTask<ArrayList<File>>(
-          new getChosenFile()
-        );
-        Platform.runLater(futureTask);
+        ArrayList<File> result;
         try {
-            ArrayList<File> result = futureTask.get();
+            FutureTask<ArrayList<File>> futureTask = new FutureTask<ArrayList<File>>(
+              new getChosenFile()
+            );
+            Platform.runLater(futureTask);
+            result = futureTask.get();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            result = new ArrayList<File>();
+        } catch (ExecutionException | RuntimeException | LinkageError e) {
+            ScilabFileChooserBridge.disableJavaFX(e instanceof ExecutionException ? e.getCause() : e);
+            if (stage != null) {
+                // macOS owner stage, left open when the dialog failed
+                final Stage ownerStage = stage;
+                try {
+                    Platform.runLater(() -> ownerStage.close());
+                } catch (RuntimeException ignored) {
+                }
+            }
+            displaySwingChooser();
+            return;
+        }
+
+        try {
             selectionSize = result.size();
             if (selectionSize > 0) {
                 selection = new String[selectionSize];
                 selectionFileNames = new String[selectionSize];
                 for (int i=0; i<result.size(); i++) {
-                    selection[i] = result.get(i).getAbsolutePath();
-                    selectionPath = result.get(i).getParentFile().getPath();
-                    selectionFileNames[i] = result.get(i).getName();
+                    File file = result.get(i).getAbsoluteFile();
+                    selection[i] = file.getPath();
+                    File parent = file.getParentFile();
+                    selectionPath = (directorySelectionOnly || parent == null) ? file.getPath() : parent.getPath();
+                    selectionFileNames[i] = file.getName();
                 }
-                filterIndex = getSelectedFilterIndex()+1;
+                filterIndex = getScilabFilterIndex();
+                ConfigManager.saveLastOpenedDirectory(selectionPath);
             } else {
                 // Cancel case
                 selection = new String[1];
@@ -239,12 +265,38 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
         }
     }
 
+    /**
+     * Replay this chooser's settings on a Swing chooser, which also fills FileChooserInfos
+     */
+    private void displaySwingChooser() {
+        SwingScilabFileChooser swingChooser = new SwingScilabFileChooser();
+        swingChooser.setTitle(title);
+        if (directorySelectionOnly) {
+            swingChooser.setDirectorySelectionOnly();
+        }
+        swingChooser.setAcceptAllFileFilterUsed(acceptAllFileFilterUsed);
+        for (String[][] mask : masks) {
+            swingChooser.addMask(mask[0], mask[1]);
+        }
+        if (initialDirectory != null) {
+            swingChooser.setInitialDirectory(initialDirectory);
+        }
+        if (initialFileName != null) {
+            swingChooser.setInitialFileName(initialFileName);
+        }
+        swingChooser.setMultipleSelection(multipleSelection);
+        swingChooser.setUiDialogType(dialogType);
+        swingChooser.displayAndWait();
+
+        selection = swingChooser.getSelection();
+        selectionPath = swingChooser.getSelectionPathName();
+        selectionFileNames = swingChooser.getSelectionFileNames();
+        selectionSize = swingChooser.getSelectionSize();
+        filterIndex = FileChooserInfos.getInstance().getFilterIndex();
+    }
+
     public void setAcceptAllFileFilterUsed(boolean flag) {
         acceptAllFileFilterUsed = flag;
-        if (flag == true)  {
-            SciFileFilter filter = new SciFileFilter("*.*",null, 0);        
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(filter.getDescription(),"*.*"));
-        }
     }
 
     /**
@@ -253,38 +305,65 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
      * @param fileMaskDescription the maskDescription to set
      */
     public void addMask(String[] theMask, String[] theFileMaskDescription) {
+        masks.add(new String[][] {theMask, theFileMaskDescription});
+        boolean noDescription = theFileMaskDescription == null || theFileMaskDescription.length == 0;
+        for (int i=0; i<theMask.length; i++) {
+            SciFileFilter filter = new SciFileFilter(theMask[i], noDescription ? null : theFileMaskDescription[i], i);
+            maskFilters.add(new ExtensionFilter(filter.getDescription(), getPatterns(theMask[i])));
+        }
+    }
 
-        if (theFileMaskDescription == null || theFileMaskDescription.length == 0) {
-            for (int i=0; i<theMask.length; i++) {
-                SciFileFilter filter = new SciFileFilter(theMask[i], null, i);
-                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(filter.getDescription(),Arrays.asList(theMask[i].split("\\|"))));
-                if (theMask[i].equals("*.*"))
-                {
-                     acceptAllFileFilterUsed = true;
-                }
+    /**
+     * Same filters and default selection as the Swing chooser: "All files" first,
+     * then the masks; the last mask is selected when "All files" is listed, the first one otherwise.
+     */
+    private void setupFilters() {
+        List<ExtensionFilter> filters = fileChooser.getExtensionFilters();
+        filters.clear();
+        if (acceptAllFileFilterUsed) {
+            filters.add(acceptAllFilter);
+        }
+        filters.addAll(maskFilters);
+        if (!maskFilters.isEmpty()) {
+            fileChooser.setSelectedExtensionFilter(maskFilters.get(acceptAllFileFilterUsed ? maskFilters.size() - 1 : 0));
+        } else if (acceptAllFileFilterUsed) {
+            fileChooser.setSelectedExtensionFilter(acceptAllFilter);
+        }
+    }
+
+    /**
+     * Swing numbering: masks from 1 in the order given, then "All files".
+     */
+    private int getScilabFilterIndex() {
+        ExtensionFilter selected = fileChooser.getSelectedExtensionFilter();
+        int index = maskFilters.indexOf(selected);
+        if (index >= 0) {
+            return index + 1;
+        }
+        return (selected != null && selected == acceptAllFilter) ? maskFilters.size() + 1 : 0;
+    }
+
+    /**
+     * Native dialogs match patterns literally: "all" is a SciFileFilter keyword,
+     * not a pattern, and blanks around '|' would become part of the extension.
+     */
+    private static List<String> getPatterns(String mask) {
+        List<String> patterns = new ArrayList<String>();
+        if (mask.equals("all")) {
+            for (String ext : new SciFileFilter(mask, null, 0).getExtensions()) {
+                patterns.add("*." + ext);
             }
         } else {
-            for (int i=0; i<theMask.length; i++) {
-                SciFileFilter filter = new SciFileFilter(theMask[i], theFileMaskDescription[i], i);
-                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(filter.getDescription(),Arrays.asList(theMask[i].split("\\|"))));
-                if (theMask[i].equals("*.*"))
-                {
-                     acceptAllFileFilterUsed = true;
+            for (String pattern : mask.split("\\|")) {
+                pattern = pattern.trim();
+                if (pattern.equals("*.*")) {
+                    patterns.add(ALL_FILES_PATTERN);
+                } else if (!pattern.isEmpty()) {
+                    patterns.add(pattern);
                 }
             }
         }
-    }
-
-    public void setFileFilter(FileChooser.ExtensionFilter filter) {
-        fileChooser.setSelectedExtensionFilter(filter);
-    }
-
-    public void setFileFilter(FileFilter filter) {
-        String[] ext = ((FileNameExtensionFilter) filter).getExtensions();
-        for (int i=0; i<ext.length; i++) {
-            ext[i]="*."+ext[i];
-        }
-        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter(((FileNameExtensionFilter)filter).getDescription(),ext));
+        return patterns;
     }
 
     public ExtensionFilter getFileFilterFromExtension(String extension) {
@@ -301,36 +380,22 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
         return null;
     }
 
-    public int getSelectedFilterIndex() {
-       int k = 0;
-       for (ExtensionFilter filter : fileChooser.getExtensionFilters()) {
-           if (fileChooser.getSelectedExtensionFilter() == filter) {
-               return k;
-           }
-           k = k+1;
-       }
-       return -1;
-   }
-
     public void setTitle(String string) {
         title = string;
     }
 
     public void setCurrentDirectory(File file) {
-        File dir;
-        if (file.isDirectory()) {
-            dir = file;
-        } else if (file.exists()) {
-            dir = file.getParentFile();       
-        } else
-        {
+        // Like JFileChooser, fall back on the nearest existing parent
+        File dir = file.getAbsoluteFile();
+        while (dir != null && !dir.isDirectory()) {
+            dir = dir.getParentFile();
+        }
+        if (dir == null) {
             dir = new File(System.getProperty("user.dir"));
         }
-        if (directorySelectionOnly == true)  {
-             directoryChooser.setInitialDirectory(dir);
-        } else {
-             fileChooser.setInitialDirectory(dir);
-        }
+        // Both, as setDirectorySelectionOnly() may be called after this method
+        directoryChooser.setInitialDirectory(dir);
+        fileChooser.setInitialDirectory(dir);
     }
 
     public void setInitialDirectory(String path) {
@@ -338,6 +403,7 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
         if (path == null || path.length() == 0) {
             return;
         }
+        initialDirectory = path;
         // Replace beginning of the path if is an environment variable
         String newPath = path;
         StringTokenizer tok = new StringTokenizer(path, File.separator);
@@ -356,6 +422,7 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
         if (path == null || path.length() == 0) {
             return;
         }
+        initialFileName = path;
         File file = new File(path);
         fileChooser.setInitialFileName(file.getName());
      }

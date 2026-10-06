@@ -16,11 +16,11 @@
 
 package org.scilab.modules.gui.filechooser;
 
-import org.scilab.modules.gui.bridge.filechooser.SwingScilabExportFileChooser;
-import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
-import org.scilab.modules.gui.bridge.filechooser.JFXScilabFileChooser;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.gui.bridge.filechooser.JFXScilabExportFileChooser;
+import org.scilab.modules.gui.bridge.filechooser.JFXScilabFileChooser;
+import org.scilab.modules.gui.bridge.filechooser.SwingScilabExportFileChooser;
+import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 
 /**
  * Bridge dedicated to Scilab file chooser GUIs
@@ -28,6 +28,8 @@ import org.scilab.modules.gui.bridge.filechooser.JFXScilabExportFileChooser;
  * @author Sylvestre KOUMAR
  */
 public class ScilabFileChooserBridge {
+
+    private static volatile boolean javaFXDisabled = false;
 
     /**
      * Constructor
@@ -41,11 +43,7 @@ public class ScilabFileChooserBridge {
      * @return the created FileChooser
      */
     public static SimpleFileChooser createFileChooser() {
-        if (OS.get() == OS.MAC || OS.get() == OS.WINDOWS) {
-            return new JFXScilabFileChooser();
-        } else {
-            return new SwingScilabFileChooser();
-        }
+        return useJavaFX() ? new JFXScilabFileChooser() : new SwingScilabFileChooser();
     }
 
     /**
@@ -54,10 +52,33 @@ public class ScilabFileChooserBridge {
      * @return the created ExportFileChooser
      */
     public static SimpleFileChooser createExportFileChooser(Integer figureUID) {
-        if (OS.get() == OS.MAC || OS.get() == OS.WINDOWS) {
-            return new JFXScilabExportFileChooser(figureUID);
-        } else {
-            return new SwingScilabExportFileChooser(figureUID);
+        return useJavaFX() ? new JFXScilabExportFileChooser(figureUID) : new SwingScilabExportFileChooser(figureUID);
+    }
+
+    /**
+     * Only the toolkit start is guarded here: the export chooser also exports
+     * from its constructor, and an export error must not reopen a dialog.
+     */
+    private static boolean useJavaFX() {
+        if (!javaFXDisabled) {
+            try {
+                JFXScilabFileChooser.startJavaFXToolkit();
+            } catch (Exception | LinkageError e) {
+                disableJavaFX(e);
+            }
+        }
+        return !javaFXDisabled;
+    }
+
+    /**
+     * Use the Swing file choosers for the rest of the session
+     * @param cause the JavaFX failure
+     */
+    public static synchronized void disableJavaFX(Throwable cause) {
+        if (!javaFXDisabled) {
+            javaFXDisabled = true;
+            System.err.println("JavaFX file chooser unavailable, falling back to Swing.");
+            cause.printStackTrace();
         }
     }
 

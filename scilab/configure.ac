@@ -1234,19 +1234,19 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
 
                 # JavaFX base
                 # Used in native file chooser
-                AC_JAVA_CHECK_JAR([javafx.base],[javafx.collections.ObservableList],[JavaFX base])
+                AC_JAVA_CHECK_JAR([javafx-base],[javafx.collections.ObservableList],[JavaFX base])
                 JAVAFX_BASE=$PACKAGE_JAR_FILE
                 AC_SUBST(JAVAFX_BASE)
 
                 # JavaFX Swing
                 # Used in native file chooser
-                AC_JAVA_CHECK_JAR([javafx.swing],[javafx.embed.swing.JFXPanel],[JavaFX Swing])
+                AC_JAVA_CHECK_JAR([javafx-swing],[javafx.embed.swing.JFXPanel],[JavaFX Swing])
                 JAVAFX_SWING=$PACKAGE_JAR_FILE
                 AC_SUBST(JAVAFX_SWING)
 
                 # JavaFX graphics
                 # Used in native file chooser
-                AC_JAVA_CHECK_JAR([javafx.graphics],[javafx.stage.Stage],[JavaFX graphics])
+                AC_JAVA_CHECK_JAR([javafx-graphics],[javafx.stage.Stage],[JavaFX graphics])
                 JAVAFX_GRAPHICS=$PACKAGE_JAR_FILE
                 AC_SUBST(JAVAFX_GRAPHICS)
 

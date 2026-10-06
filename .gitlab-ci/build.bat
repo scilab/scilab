@@ -69,6 +69,8 @@ IF EXIST thirdparty.zip (
     rd /s /q scilab\thirdparty\
     mkdir scilab\thirdparty\
     unzip.exe -o thirdparty.zip -d scilab\thirdparty\
+    REM JavaFX: remove the -win suffix (javafx-<module>-<version>-win.jar)
+    for %%f in (scilab\thirdparty\javafx-*-win.jar) do for /f "tokens=1-3 delims=-" %%a in ("%%~nxf") do move /Y "%%f" "scilab\thirdparty\%%a-%%b-%%c.jar"
 )
 
 REM Define environment variables if not defined

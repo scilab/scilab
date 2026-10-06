@@ -55,30 +55,31 @@ public class JFXScilabExportFileChooser extends JFXScilabFileChooser {
 
     private static final int NB_FILE_MASKS = 10;
 
+    // Same order as the Swing chooser: the first one, PNG, is the default
     private final String[] description = {
-        Messages.gettext("Windows BMP image"),
-        Messages.gettext("GIF image"),
-        Messages.gettext("JPEG image"),
         Messages.gettext("PNG image"),
-        Messages.gettext("PPM image"),
-        Messages.gettext("Enhanced Metafile image (EMF)"),
+        Messages.gettext("JPEG image"),
         Messages.gettext("Encapsulated PostScript image (EPS)"),
         Messages.gettext("PostScript image (PS)"),
         Messages.gettext("PDF image"),
-        Messages.gettext("SVG image")
+        Messages.gettext("SVG image"),
+        Messages.gettext("Enhanced Metafile image (EMF)"),
+        Messages.gettext("GIF image"),
+        Messages.gettext("Windows BMP image"),
+        Messages.gettext("PPM image")
     };
 
     private final String[] extensions = {
-        "*.bmp",
-        "*.gif",
-        "*.jpg|*.jpeg",
         "*.png",
-        "*.ppm",
-        "*.emf",
+        "*.jpg|*.jpeg",
         "*.eps",
         "*.ps",
         "*.pdf",
-        "*.svg"
+        "*.svg",
+        "*.emf",
+        "*.gif",
+        "*.bmp",
+        "*.ppm"
     };
 
     private String exportName;

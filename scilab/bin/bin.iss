@@ -139,6 +139,11 @@ Source: bin\brotlienc.dll; DestDir: {app}\bin; Flags: recursesubdirs; Components
 Source: bin\parquet.dll; DestDir: {app}\bin; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: bin\snappy.dll; DestDir: {app}\bin; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
+; JavaFX
+Source: bin\glass.dll; DestDir: {app}\bin; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: bin\prism_d3d.dll; DestDir: {app}\bin; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: bin\prism_sw.dll; DestDir: {app}\bin; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+;
 ; batch files
 Source: bin\scinotes.bat; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\xcos.bat; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

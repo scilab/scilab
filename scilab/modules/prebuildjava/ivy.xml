@@ -66,9 +66,24 @@
         <!-- <dependency org="net.sourceforge.jeuclid" name="jeuclid-core" rev="3.1.9" conf="*->master"/> -->
         <dependency org="de.rototor.jeuclid" name="jeuclid-core" rev="3.1.14" conf="*->default"/>
 
-        <!-- COPY --><!--<dependency org="" name="javafx.base" rev=""/>-->
-        <!-- COPY --><!--<dependency org="" name="javafx.swing" rev=""/>-->
-        <!-- COPY --><!--<dependency org="" name="javafx.graphics" rev=""/>-->
+        <dependency org="org.openjfx" name="javafx-base" rev="21.0.11" conf="*->master">
+            <artifact name="javafx-base" type="jar" ext="jar" m:classifier="linux"/>
+            <artifact name="javafx-base" type="jar" ext="jar" m:classifier="mac"/>
+            <artifact name="javafx-base" type="jar" ext="jar" m:classifier="mac-aarch64"/>
+            <artifact name="javafx-base" type="jar" ext="jar" m:classifier="win"/>
+        </dependency>
+        <dependency org="org.openjfx" name="javafx-graphics" rev="21.0.11" conf="*->master">
+            <artifact name="javafx-graphics" type="jar" ext="jar" m:classifier="linux"/>
+            <artifact name="javafx-graphics" type="jar" ext="jar" m:classifier="mac"/>
+            <artifact name="javafx-graphics" type="jar" ext="jar" m:classifier="mac-aarch64"/>
+            <artifact name="javafx-graphics" type="jar" ext="jar" m:classifier="win"/>
+        </dependency>
+        <dependency org="org.openjfx" name="javafx-swing" rev="21.0.11" conf="*->master">
+            <artifact name="javafx-swing" type="jar" ext="jar" m:classifier="linux"/>
+            <artifact name="javafx-swing" type="jar" ext="jar" m:classifier="mac"/>
+            <artifact name="javafx-swing" type="jar" ext="jar" m:classifier="mac-aarch64"/>
+            <artifact name="javafx-swing" type="jar" ext="jar" m:classifier="win"/>
+        </dependency>
 
         <dependency org="org.freehep" name="freehep-graphicsio-emf" rev="2.4" conf="*->default"/> <!-- Downloads freehep-graphics*.jar -->
         <dependency org="org.freehep" name="freehep-io" rev="2.2.2" conf="*->master"/> <!-- Dependency of freehep-graphicsio.jar -->

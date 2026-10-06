@@ -36,9 +36,9 @@ The option is "disableUnderMode" and can be:
     <path value="$SCILAB/thirdparty/lucene-core-9.10.0.jar"/>
     <path value="$SCILAB/thirdparty/lucene-analysis-common-9.10.0.jar"/>
     <path value="$SCILAB/thirdparty/lucene-queryparser-9.10.0.jar"/>
-    <path value="$SCILAB/thirdparty/javafx.base-21.0.11.jar"/>
-    <path value="$SCILAB/thirdparty/javafx.graphics-21.0.11.jar"/>
-    <path value="$SCILAB/thirdparty/javafx.swing-21.0.11.jar"/>
+    <path value="$SCILAB/thirdparty/javafx-base-21.0.11.jar"/>
+    <path value="$SCILAB/thirdparty/javafx-graphics-21.0.11.jar"/>
+    <path value="$SCILAB/thirdparty/javafx-swing-21.0.11.jar"/>
     <path value="$SCILAB/thirdparty/jcef-146.0.10.jar"/>
     <path value="$SCILAB/thirdparty/gson-2.10.1.jar"/>
 

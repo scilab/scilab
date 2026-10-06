@@ -83,6 +83,7 @@ export PATH="/usr/local/bin:$INSTALLUSRDIR/bin:$PATH"
 ################################
 JDK_VERSION=21.0.11+10
 JRE_VERSION=21.0.11_10
+JAVAFX_VERSION=21.0.11
 ANT_VERSION=1.10.17
 OPENBLAS_VERSION=0.3.28
 ARPACK_VERSION=3.9.1
@@ -134,6 +135,7 @@ export TARGET_RT_JAR="$INSTALLROOTDIR/java/jre/lib/rt.jar"
 make_versions() {
     echo "JDK_VERSION             = $JDK_VERSION"
     echo "JRE_VERSION             = $JRE_VERSION"
+    echo "JAVAFX_VERSION          = $JAVAFX_VERSION"
     echo "ANT_VERSION             = $ANT_VERSION"
     echo "OPENBLAS_VERSION        = $OPENBLAS_VERSION"
     echo "ARPACK_VERSION          = $ARPACK_VERSION"
@@ -153,7 +155,7 @@ make_versions() {
     echo "ZLIB_VERSION            = $ZLIB_VERSION"
     echo "XZ_VERSION              = $XZ_VERSION"
     echo "JOGL_VERSION            = $JOGL_VERSION"
-    echo "JCEF_VERSION            = $JCEF_VERSION"
+    echo "JCEF_VERSION           = $JCEF_VERSION"
     echo "MONACO_EDITOR_VERSION   = $MONACO_EDITOR_VERSION"
     echo "OPENXLSX_VERSION        = $OPENXLSX_VERSION"
     echo "LIBARCHIVE_VERSION      = $LIBARCHIVE_VERSION"
@@ -182,6 +184,7 @@ download_dependencies() {
 
     [ ! -f jre-$JRE_VERSION.tar.gz ] && curl -L -o jre-$JRE_VERSION.tar.gz "https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/OpenJDK21U-jre_x64_linux_hotspot_$(echo ${JRE_VERSION} |sed 's/-//g').tar.gz"
     [ ! -f jdk-$JDK_VERSION.tar.gz ] && curl -L -o jdk-$JDK_VERSION.tar.gz "https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/ibm-semeru-open-jdk_x64_linux_$(echo ${JDK_VERSION} |sed 's/+/_/g')_openj9-0.59.0.tar.gz"
+    [ ! -f openjfx-${JAVAFX_VERSION}_linux-x64_bin-sdk.zip ] && curl -L -o openjfx-${JAVAFX_VERSION}_linux-x64_bin-sdk.zip "https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/openjfx-${JAVAFX_VERSION}_linux-x64_bin-sdk.zip"
 
     [ ! -f OpenBLAS-$OPENBLAS_VERSION.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/OpenBLAS-$OPENBLAS_VERSION.tar.gz
     [ ! -f apache-ant-$ANT_VERSION-bin.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/apache-ant-$ANT_VERSION-bin.tar.gz
@@ -507,12 +510,26 @@ make_jar() {
     JAVATHIRDPARTYDIR=$INSTALLROOTDIR/thirdparty
     mkdir -p "$JAVATHIRDPARTYDIR"
 
+    LIBTHIRDPARTYDIR=$INSTALLROOTDIR/lib/thirdparty
+    mkdir -p "$LIBTHIRDPARTYDIR"
+
     # copy .jar from scilab prerequirements
     cd "$DOWNLOADDIR" || exit 1
     rm -rf thirdparty
     mkdir thirdparty
     cd thirdparty || exit 1
     unzip -o "$DOWNLOADDIR/thirdparty.zip"
+
+    # JavaFX
+    ## Rename JARs (Remove -linux suffix)
+    mv javafx-base-${JAVAFX_VERSION}-linux.jar javafx-base-${JAVAFX_VERSION}.jar 
+    mv javafx-graphics-${JAVAFX_VERSION}-linux.jar javafx-graphics-${JAVAFX_VERSION}.jar 
+    mv javafx-swing-${JAVAFX_VERSION}-linux.jar javafx-swing-${JAVAFX_VERSION}.jar
+    ## Extract native libs
+    unzip -q javafx-graphics-${JAVAFX_VERSION}.jar libglass.so libprism_sw.so libprism_es2.so -d "$LIBTHIRDPARTYDIR"
+    ## Remove native libs from archive
+    zip -d javafx-graphics-${JAVAFX_VERSION}.jar '*.so'
+
     # Copy all JARs from thirdparty.zip
     # JAR versions are enforced to trigger a prerequirement rebuild on upgrade
     cp -a -t "$JAVATHIRDPARTYDIR"           \
@@ -554,9 +571,9 @@ make_jar() {
         istack-commons-runtime-4.2.0.jar    \
         jakarta.activation-2.0.1.jar        \
         jakarta.activation-api-2.1.3.jar    \
-        javafx.base-21.0.11.jar             \
-        javafx.graphics-21.0.11.jar         \
-        javafx.swing-21.0.11.jar            \
+        javafx-base-21.0.11.jar             \
+        javafx-graphics-21.0.11.jar         \
+        javafx-swing-21.0.11.jar            \
         javax.activation-api-1.2.0.jar      \
         javax.annotation-api-1.3.2.jar      \
         jaxb-api-2.3.1.jar                  \
@@ -591,11 +608,7 @@ make_jar() {
         xmlresolver-6.0.4.jar               \
         || exit 1
 
-    # Copy native libs embedded in JARs from thirdparty.zip
-    LIBTHIRDPARTYDIR=$INSTALLROOTDIR/lib/thirdparty
-    mkdir -p "$LIBTHIRDPARTYDIR"
-
-    # JCEF
+    # JCEF (Copy native libs)
     mkdir -p "$LIBTHIRDPARTYDIR/jcef"
     unzip -p "jcef-natives-linux-amd64-jcef-$JCEF_VERSION.jar" "jcef-natives-linux-amd64-jcef-$JCEF_VERSION.tar.gz" \
         | tar -xzf - -C "$LIBTHIRDPARTYDIR/jcef" \

@@ -20,9 +20,9 @@ jgraphx.jar=${thirdparty.dir}/jgraphx-2.1.0.7.jar
 
 jogl2.jar=${thirdparty.dir}/jogl-all-2.5.0.jar
 
-javafx.base.jar=${thirdparty.dir}/javafx.base-21.0.11.jar
-javafx.swing.jar=${thirdparty.dir}/javafx.swing-21.0.11.jar
-javafx.graphics.jar=${thirdparty.dir}/javafx.graphics-21.0.11.jar
+javafx-base.jar=${thirdparty.dir}/javafx-base-21.0.11.jar
+javafx-swing.jar=${thirdparty.dir}/javafx-swing-21.0.11.jar
+javafx-graphics.jar=${thirdparty.dir}/javafx-graphics-21.0.11.jar
 
 jhall.jar=${thirdparty.dir}/jhall-2.0.jar
 

@@ -20,9 +20,9 @@ jgraphx.jar=@JGRAPHX@
 
 jogl2.jar=@JOGL2@
 
-javafx.base.jar=@JAVAFX_BASE@
-javafx.swing.jar=@JAVAFX_SWING@
-javafx.graphics.jar=@JAVAFX_GRAPHICS@
+javafx-base.jar=@JAVAFX_BASE@
+javafx-swing.jar=@JAVAFX_SWING@
+javafx-graphics.jar=@JAVAFX_GRAPHICS@
 
 jhall.jar=@JHALL@
 

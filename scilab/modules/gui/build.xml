@@ -19,7 +19,7 @@
     <property name="library.name" value="${library.gui.name}"/>
     <property name="library.title" value="Graphical interface"/>
     <!-- List only the mandatory packages -->
-    <property name="manifest.class-path" value="flexdock.jar jrosetta-engine.jar jrosetta-API.jar javafx.base.jar javafx.swing.jar javafx.graphics.jar"/>
+    <property name="manifest.class-path" value="flexdock.jar jrosetta-engine.jar jrosetta-API.jar javafx-base.jar javafx-swing.jar javafx-graphics.jar"/>
     <description>
         Build the Scilab GUI module
     </description>
