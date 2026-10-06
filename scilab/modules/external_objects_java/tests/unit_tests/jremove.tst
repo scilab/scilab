@@ -11,11 +11,10 @@
 
 jimport java.lang.Runtime
 jimport java.lang.String
-runtime = Runtime.getRuntime()
+runtime = Runtime.getRuntime();
 
 // construct a big java.lang.String object
 LENGTH =  2**18;
-SIZEOF_STR = 36 + LENGTH*2; // per string on the Java side
 function str = alloc()
     str = jnewInstance(String, int8(grand(1,LENGTH, "unf", 32, 124)));
 endfunction
@@ -37,6 +36,7 @@ function G()
     //    jremove(String)
 endfunction
 
+// Heap used after each release, displayed by tests/benchmarks/jremove.tst
 color=1;
 N=100;
 for i=1:N
@@ -67,7 +67,3 @@ for i=1:N
     clear("l");
     times(color,i) = (runtime.totalMemory() - runtime.freeMemory());
 end
-
-// plot(times'); // to debug; this should look like GC-cycles
-M = double(max(times, "c"));
-assert_checktrue(M < (2 * N * SIZEOF_STR));
