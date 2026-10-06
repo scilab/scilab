@@ -17,9 +17,7 @@ w = floor(10 * rand(n, 4)) + 50;
 ts1 = timeseries(t, v(:, 1), v(:, 2), v(:, 3), v(:, 4), "VariableNames", ["Time", "res1", "res2", "res3", "res4"]);
 ts2 = timeseries(t, w(:, 1), w(:, 2), w(:, 3), w(:, 4), "VariableNames", ["Time", "res1", "res2", "res3", "res4"]);
 
-stackedplot(ts1);
-f = gcf();
-a = f.children;
+a = stackedplot(ts1);
 c = a.children.children;
 assert_checkequal(size(a, "*"), 4);
 assert_checkequal(a.y_label.text, ["res4"; "res3"; "res2"; "res1"]);
@@ -30,9 +28,7 @@ assert_checkequal(c.line_style, ones(4, 1));
 assert_checkequal(c.foreground, 33 * ones(4, 1));
 
 
-stackedplot(ts2);
-f = gcf();
-a = f.children;
+a = stackedplot(ts2);
 c = a.children.children;
 assert_checkequal(size(a, "*"), 4);
 assert_checkequal(a.y_label.text, ["res4"; "res3"; "res2"; "res1"]);
@@ -43,9 +39,7 @@ assert_checkequal(c.line_style, ones(4, 1));
 assert_checkequal(c.foreground, 33 * ones(4, 1));
 
 
-stackedplot(ts1, ts2);
-f = gcf();
-a = f.children;
+a = stackedplot(ts1, ts2);
 c = a.children.children;
 l = a.children(a.children.type == "Legend");
 assert_checkequal(size(a, "*"), 4);
@@ -58,9 +52,7 @@ assert_checkequal(c.foreground, [34; 33; 34; 33; 34; 33; 34; 33]);
 assert_checkequal(l(1).text, ["res4"; "res4"]);
 
 
-stackedplot(ts2, ts1);
-f = gcf();
-a = f.children;
+a = stackedplot(ts2, ts1);
 c = a.children.children;
 l = a.children(a.children.type == "Legend");
 assert_checkequal(size(a, "*"), 4);
@@ -73,9 +65,7 @@ assert_checkequal(c.foreground, [34; 33; 34; 33; 34; 33; 34; 33]);
 assert_checkequal(l(1).text, ["res4"; "res4"]);
 
 
-stackedplot(ts1, ts2, "res1");
-f = gcf();
-a = f.children;
+a = stackedplot(ts1, ts2, "res1");
 c = a.children.children;
 l = a.children(a.children.type == "Legend");
 assert_checkequal(size(a, "*"), 1);
@@ -88,9 +78,7 @@ assert_checkequal(c.foreground, [34; 33]);
 assert_checkequal(l(1).text, ["res1"; "res1"]);
 
 
-stackedplot(ts1, ts2, "res1", "CombineMatchingNames", %f);
-f = gcf();
-a = f.children;
+a = stackedplot(ts1, ts2, "res1", "CombineMatchingNames", %f);
 c = a.children.children;
 assert_checkequal(size(a, "*"), 2);
 assert_checkequal(a.y_label.text, ["res1"; "res1"]);
@@ -101,9 +89,7 @@ assert_checkequal(c.line_style, [1; 1]);
 assert_checkequal(c.foreground, [34; 33]);
 
 
-stackedplot(ts1, ts2, ["res1", "res3"]);
-f = gcf();
-a = f.children;
+a = stackedplot(ts1, ts2, ["res1", "res3"]);
 c = a.children.children;
 l = a.children(a.children.type == "Legend");
 assert_checkequal(size(a, "*"), 2);
@@ -116,9 +102,7 @@ assert_checkequal(c.foreground, [34; 33; 34; 33]);
 assert_checkequal(l(1).text, ["res3"; "res3"]);
 
 
-stackedplot(ts1, ts2, [1 3]);
-f = gcf();
-a = f.children;
+a = stackedplot(ts1, ts2, [1 3]);
 c = a.children.children;
 l = a.children(a.children.type == "Legend");
 assert_checkequal(size(a, "*"), 2);
@@ -131,9 +115,7 @@ assert_checkequal(c.foreground, [34; 33; 34; 33]);
 assert_checkequal(l(1).text, ["res3"; "res3"]);
 
 
-stackedplot(ts1, ts2, {"res1", "res2", ["res3", "res4"]});
-f = gcf();
-a = f.children;
+a = stackedplot(ts1, ts2, {"res1", "res2", ["res3", "res4"]});
 c = a.children.children;
 l = a.children(a.children.type == "Legend");
 assert_checkequal(size(a, "*"), 3);
@@ -146,9 +128,7 @@ assert_checkequal(c.foreground, [34; 34; 33; 33; 34; 33; 34; 33]);
 assert_checkequal(size(l, "*"), 3);
 assert_checkequal(l(1).text, ["res3"; "res4";"res3"; "res4"]);
 
-stackedplot(ts1, ts2, "LegendLabels", ["Results ts1", "Results ts2"]);
-f = gcf();
-a = f.children;
+a = stackedplot(ts1, ts2, "LegendLabels", ["Results ts1", "Results ts2"]);
 c = a.children.children;
 l = a.children(a.children.type == "Legend");
 assert_checkequal(size(a, "*"), 4);
@@ -162,9 +142,7 @@ assert_checkequal(l(1).text, ["Results ts1 - res4"; "Results ts2 - res4"]);
 
 
 vars = {"res1", "res2", ["res3", "res4"]};
-stackedplot(ts1, ts2, "--or", "LegendLabels", ["Results ts1", "Results ts2"], vars);
-f = gcf();
-a = f.children;
+a = stackedplot(ts1, ts2, "--or", "LegendLabels", ["Results ts1", "Results ts2"], vars);
 c = a.children.children;
 l = a.children(a.children.type == "Legend");
 assert_checkequal(size(a, "*"), 3);
@@ -177,9 +155,7 @@ assert_checkequal(c.foreground, 5 * ones(8,1));
 assert_checkequal(size(l, "*"), 3);
 assert_checkequal(l(1).text, ["Results ts1 - res3"; "Results ts1 - res4";"Results ts2 - res3"; "Results ts2 - res4"]);
 
-stackedplot(ts1, ts2, ["--or", "*b"], "LegendLabels", ["Results ts1", "Results ts2"], vars);
-f = gcf();
-a = f.children;
+a = stackedplot(ts1, ts2, ["--or", "*b"], "LegendLabels", ["Results ts1", "Results ts2"], vars);
 c = a.children.children;
 l = a.children(a.children.type == "Legend");
 assert_checkequal(size(a, "*"), 3);
@@ -191,9 +167,7 @@ assert_checkequal(c.foreground, [1; 1; 5; 5; 1; 5; 1; 5]);
 assert_checkequal(size(l, "*"), 3);
 assert_checkequal(l(1).text, ["Results ts1 - res3"; "Results ts1 - res4";"Results ts2 - res3"; "Results ts2 - res4"]);
 
-stackedplot(ts1, "marker", "o", "markersize", 3, vars);
-f = gcf();
-a = f.children;
+a = stackedplot(ts1, "marker", "o", "markersize", 3, vars);
 c = a.children.children;
 l = a.children(a.children.type == "Legend");
 assert_checkequal(size(a, "*"), 3);
@@ -207,33 +181,24 @@ assert_checkequal(c.mark_style, [9; 9; 9; 9]);
 assert_checkequal(size(l, "*"), 1);
 assert_checkequal(l(1).text, ["res3"; "res4"]);
 
-stackedplot(ts1, "Title", "Stackedplot graph test");
-f = gcf();
-a = f.children;
+a = stackedplot(ts1, "Title", "Stackedplot graph test");
 assert_checkequal(a($).title.text, "Stackedplot graph test");
 
-stackedplot(ts1, ts2, ["res2", "res4"], "DisplayLabels", ["graph - res2", "graph - res4"]);
-f = gcf();
-a = f.children;
+a = stackedplot(ts1, ts2, ["res2", "res4"], "DisplayLabels", ["graph - res2", "graph - res4"]);
 assert_checkequal(size(a, "*"), 2);
 assert_checkequal(a.y_label.text, ["graph - res4"; "graph - res2"]);
 
-stackedplot(ts1, ts2, "DisplayLabels", ["r1", "r2", "r3", "r4"]);
-f = gcf();
-a = f.children;
+a = stackedplot(ts1, ts2, "DisplayLabels", ["r1", "r2", "r3", "r4"]);
 assert_checkequal(size(a, "*"), 4);
 assert_checkequal(a.y_label.text, ["r4"; "r3"; "r2"; "r1"]);
 
-stackedplot(ts1, ts2, "DisplayLabels", ["r1", "r2", "r3", "r4"], "CombineMatchingNames", %f);
-f = gcf();
-a = f.children;
+a = stackedplot(ts1, ts2, "DisplayLabels", ["r1", "r2", "r3", "r4"], "CombineMatchingNames", %f);
 assert_checkequal(size(a, "*"), 8);
 assert_checkequal(a.y_label.text, ["r4"; "r3"; "r2"; "r1"; "r4"; "r3"; "r2"; "r1"]);
 
 // res2 is drawned in two graphs
 vars = {["res1", "res2"], ["res2", "res3"], "res4"};
-f = stackedplot(ts1, vars);
-a = f.children;
+a = stackedplot(ts1, vars);
 assert_checkequal(size(a, "*"), 3);
 assert_checkequal(a.y_label.text, ["res4"; "res2"; "res3"; "res1"; "res2"]);
 assert_checkequal(a.x_label.text, ["Time"; ""; ""]);
@@ -276,3 +241,54 @@ msg = msprintf(_("%s: DisplayLabels must be the same size as the number of varia
 assert_checkerror("stackedplot(ts1, ts2, ""DisplayLabels"", [""r1"", ""r2"", ""r3""])", msg);
 msg = msprintf(_("%s: Wrong value for input argument #%d: a valid LineSpec or VariableName expected.\n"), "stackedplot", 2);
 assert_checkerror("stackedplot(ts1, ""o+-"")", msg);
+
+// stackedplot with subplot
+clf();
+n = 100;
+t = datetime(2000, 1, 1) + caldays(1:n)';
+y = floor(10 * rand(n, 3)) + 10;
+tss = timeseries(t, y(:, 1), y(:, 2), y(:, 3), "VariableNames", ["Time", "Var 1", "Var 2", "Var 3"]);
+a1 = subplot(1, 2, 1);
+plot(1:10);
+a2 = subplot(1, 2, 2);
+stackedplot(tss);
+f = gcf();
+assert_checkequal(size(f.children, "*"), 4);
+assert_checkequal(f.children(4).axes_bounds, [0 0 0.5 1]);
+assert_checkequal(f.children(3).axes_bounds, [0.5 0 0.5 1/3]);
+assert_checkequal(f.children(2).axes_bounds, [0.5 1/3 0.5 1/3]);
+assert_checkequal(f.children(1).axes_bounds, [0.5 2/3 0.5 1/3]);
+assert_checkequal(f.children(4).tag, "");
+assert_checkequal(f.children(1:3).tag, ["stackedplot:1:3"; "stackedplot:1:2"; "stackedplot:1:1"]);
+
+// stackedplot(ax, ts1, ..., tsn, ...): the left subplot is replaced
+stackedplot(a1, tss);
+assert_checkequal(size(f.children, "*"), 6);
+assert_checkequal(f.children(1:3).axes_bounds, [0 2/3 0.5 1/3; 0 1/3 0.5 1/3; 0 0 0.5 1/3]);
+assert_checkequal(f.children(1:3).tag, ["stackedplot:2:3"; "stackedplot:2:2"; "stackedplot:2:1"]);
+assert_checkequal(f.children(4:6).axes_bounds, [0.5 2/3 0.5 1/3; 0.5 1/3 0.5 1/3; 0.5 0 0.5 1/3]);
+
+// replot from the top axes of a stackedplot: the whole stack is replaced
+sca(f.children(6));
+stackedplot(tss, ["Var 1", "Var 2"]);
+assert_checkequal(size(f.children, "*"), 5);
+assert_checkequal(f.children(1:2).axes_bounds, [0.5 0.5 0.5 0.5; 0.5 0 0.5 0.5]);
+assert_checkequal(f.children(3:5).axes_bounds, [0 2/3 0.5 1/3; 0 1/3 0.5 1/3; 0 0 0.5 1/3]);
+
+// vertical subplots with axes without polyline
+clf();
+subplot(3, 1, 1);
+xstring(0.5, 0.5, "text");
+subplot(3, 1, 2);
+plot(1:10);
+subplot(3, 1, 3);
+stackedplot(tss);
+assert_checkequal(size(f.children, "*"), 5);
+assert_checkequal(f.children(4:5).axes_bounds, [0 1/3 1 1/3; 0 0 1 1/3]);
+assert_checkalmostequal(f.children(1:3).axes_bounds(:, 2), 2/3 + [2; 1; 0] / 9);
+
+// error
+msg = msprintf(_("%s: Argument #%d: Graphic handle of type ''%s'' expected.\n"), "stackedplot", 1, "Axes");
+assert_checkerror("stackedplot(f, tss)", msg);
+msg = msprintf(_("%s: Wrong type for input argument #%d: A timeseries expected.\n"), "stackedplot", 2);
+assert_checkerror("stackedplot(gca())", msg);

@@ -23,7 +23,8 @@
             stackedplot(..., LineSpec, GlobalProperty)
             stackedplot(..., "CombineMatchingNames", %f)
             stackedplot(..., Name, Value)
-            f = stackedplot(..)
+            stackedplot(axes_handle, ...)
+            ax = stackedplot(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -91,9 +92,17 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>f</term>
+                <term>axes_handle</term>
                 <listitem>
-                    <para>handle of the created figure.</para>
+                    <para>This optional argument forces the stackedplot to replace the axes
+                        given by <varname>axes_handle</varname> rather than the current axes (see <link linkend="gca">gca</link>).
+                        If <varname>axes_handle</varname> belongs to a stackedplot, all the axes of this stackedplot are replaced.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ax</term>
+                <listitem>
+                    <para>A vector of handle(s) to the axes created.</para>
                     <para/>
                 </listitem>
             </varlistentry>
@@ -101,20 +110,37 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>The stackedplot function plots the variables of timeseries on the same time basis (x-axis).
-            All timeseries must have the same time basis. If two or more timeseries have common variables, 
-            their curves will be in the same graph. By specifying CombineMatchingNames to %f, there will be 
-            one graph per variable for each timeseries.
+        <para>
+            The <function>stackedplot</function> function plots selected variables of one or more
+            <literal>timeseries</literal> objects in a set of vertically stacked axes
+            sharing the same time basis. All <literal>timeseries</literal> objects
+            passed to a single call must have the same time basis.
         </para>
         <para>
-            stackeplot(..., vars) plots only variables of timeseries specified by vars. vars can be 
+            When two or more input <literal>timeseries</literal> have common variable
+            names, their curves are combined in the same graph by default.
+            With <literal>"CombineMatchingNames", %f</literal>, a separate graph is
+            created for each variable of each <literal>timeseries</literal>.
+        </para>
+        <para>
+            Several independent <literal>stackedplot</literal> objects can be created
+            in the same figure. The stacked axes replace the current axes, so
+            <function>stackedplot</function> can be used after
+            <link linkend="subplot">subplot</link> to build stacked plots in different
+            sub-regions of the same figure. Each axes created by <function>stackedplot</function>
+            is tagged <literal>"stackedplot:group:rank"</literal>: when the current axes
+            belongs to a stacked plot, the whole stacked plot is replaced.
+            Axes belonging to another subplot are preserved.
+        </para>
+        <para>
+            stackedplot(..., vars) plots only variables of timeseries specified by vars. vars can be 
             <itemizedlist>
                 <listitem>
                     <para> a vector of strings containing variables names to plot.</para>
                     <para/>
                 </listitem>
                 <listitem>
-                    <para> a vector of indexes ccorresponding to position of variables names in timeseries.</para>
+                    <para> a vector of indexes corresponding to position of variables names in timeseries.</para>
                     <para/>
                 </listitem>
                 <listitem>
@@ -138,6 +164,11 @@
         <para>
             stackedplot(..., "LegendLabels", str) adds a legend for each plot. str is a vector of size N timeseries 
             input. The legend can be used to specify the name of timeseries.
+        </para>
+        <para>
+            stackedplot(..., "CombineMatchingNames", %f) disables the default
+            grouping of variables having the same name across input
+            <literal>timeseries</literal>.
         </para>
         <para>
             Enter the command <literal>stackedplot</literal> to see a demo.
@@ -273,6 +304,77 @@
         ]]>
         </scilab:image>
         </para>
+        <para><emphasis role="bold">stackedplot with subplots</emphasis></para>
+        <para>
+        <programlisting role="example"><![CDATA[
+clf();
+n = 100;
+t = datetime(2020, 1, 1) + caldays(1:n)';
+
+// Temperature, pressure and humidity
+temperature = 15 + 8 * sin((1:n)' / 15) + rand(n, 1);
+pressure = 1010 + 10 * sin((1:n)' / 20) + rand(n, 1);
+humidity = 60 + 15 * cos((1:n)' / 18) + rand(n, 1);
+
+ts = timeseries(t, temperature, pressure, humidity, ..
+    "VariableNames", ["Time", "Temperature", "Pressure", "Humidity"]);
+f = gcf();
+f.axes_size = [1200; 600];
+subplot(1, 2, 1);
+plot(1:n, temperature);
+title("Temperature");
+
+subplot(1, 2, 2);
+a = stackedplot(ts, "Title", "Weather data");
+mean_values = [mean(humidity), mean(pressure), mean(temperature)];
+x = gce().children.data(:,1);
+x_ticks = gca().x_ticks;
+for i = 3:-1:1
+    plot(a(i), x, mean_values(i) * ones(1,n), "r");
+    legend([ts.Properties.VariableNames(3-i+2); "Mean"])
+    if i == 1 then
+        a(i).x_ticks = x_ticks;
+    else
+        a(i).axes_visible(1) = "off";
+    end
+end
+        ]]>
+        </programlisting>
+        <scilab:image><![CDATA[
+clf();
+n = 100;
+t = datetime(2020, 1, 1) + caldays(1:n)';
+
+// Temperature, pressure and humidity
+temperature = 15 + 8 * sin((1:n)' / 15) + rand(n, 1);
+pressure = 1010 + 10 * sin((1:n)' / 20) + rand(n, 1);
+humidity = 60 + 15 * cos((1:n)' / 18) + rand(n, 1);
+
+ts = timeseries(t, temperature, pressure, humidity, ..
+    "VariableNames", ["Time", "Temperature", "Pressure", "Humidity"]);
+f = gcf();
+f.axes_size = [1200; 600];
+subplot(1, 2, 1);
+plot(1:n, temperature);
+title("Temperature");
+
+subplot(1, 2, 2);
+a = stackedplot(ts, "Title", "Weather data");
+mean_values = [mean(humidity), mean(pressure), mean(temperature)];
+x = gce().children.data(:,1);
+x_ticks = gca().x_ticks;
+for i = 3:-1:1
+    plot(a(i), x, mean_values(i) * ones(1,n), "r");
+    legend([ts.Properties.VariableNames(3-i+2); "Mean"])
+    if i == 1 then
+        a(i).x_ticks = x_ticks;
+    else
+        a(i).axes_visible(1) = "off";
+    end
+end
+        ]]>
+        </scilab:image>
+        </para>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -280,11 +382,29 @@
             <member>
                 <link linkend="timeseries">timeseries</link>
             </member>
+            <member>
+                <link linkend="subplot">subplot</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection role="history">
         <title>History</title>
         <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        <function>stackedplot</function> can now be used with subplots and does not create a new figure on each call.
+                    </para>
+                    <para>
+                        Add <varname>axes_handle</varname> argument to <function>stackedplot</function> to 
+                        specify the axes in which to create the plot.
+                    </para>
+                    <para>
+                        The function now returns the handles of the created axes.
+                    </para>
+                </revdescription>
+            </revision>
             <revision>
                 <revnumber>2024.0.0</revnumber>
                 <revremark>

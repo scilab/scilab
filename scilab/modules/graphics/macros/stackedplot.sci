@@ -84,6 +84,17 @@ function varargout = stackedplot(varargin)
         f.children.margins = margins;
     endfunction
 
+    function g = stackedplot_group(tags)
+        // group of axes tagged "stackedplot:<group>:<rank>", %nan for other axes
+        g = %nan * ones(size(tags, "*"), 1);
+        for k = 1:size(tags, "*")
+            t = tokens(tags(k), ":");
+            if size(t, "*") == 3 && t(1) == "stackedplot" then
+                g(k) = strtod(t(2));
+            end
+        end
+    endfunction
+
     if nargin == 0 then
         n = 100;
         t = seconds(1:n)';
@@ -92,15 +103,30 @@ function varargout = stackedplot(varargin)
 
         y2 = floor(10 * rand(n, 2)) + 20;
         ts2 = timeseries(t, y2(:, 1), y2(:, 2), "VariableNames", ["Time", "Var 1", "Var 2"]);
-        f = stackedplot(ts1, ts2);
+        a = stackedplot(ts1, ts2);
         if nargout
-            varargout(1) = f;
+            varargout(1) = a;
         end
         return
     end
 
+    fname = "stackedplot";
+
+    // index of the first timeseries in varargin
+    first = 1;
+    if type(varargin(1)) == 9 then
+        // stackedplot(ax, ts1, ..., tsn, ...)
+        h = varargin(1);
+        if size(h, "*") <> 1 || h.type <> "Axes" then
+            msg = _("%s: Argument #%d: Graphic handle of type ''%s'' expected.\n");
+            error(msprintf(msg, fname, 1, "Axes"));
+        end
+        sca(h);
+        first = 2;
+    end
+
     //list of ts
-    for i = 1:size(varargin)
+    for i = first:nargin
         if typeof(varargin(i)) == "timeseries" then
             tss($+1) = varargin(i);
         else
@@ -108,8 +134,12 @@ function varargout = stackedplot(varargin)
         end
     end
 
-    rhs = i;
-    fname = "stackedplot";
+    if size(tss) == 0 then
+        error(msprintf(_("%s: Wrong type for input argument #%d: A timeseries expected.\n"), fname, first));
+    end
+
+    rhs = first + size(tss);
+
     //process other parameters
     while rhs < =nargin
         select varargin(rhs)
@@ -345,15 +375,43 @@ function varargout = stackedplot(varargin)
         xLabel = "Time";
     end
 
-    //open a new plot
-    f = scf();
+    f = gcf();
     f.immediate_drawing = "off";
 
+    // Axes created by stackedplot are tagged "stackedplot:<group>:<rank>".
+    // If the current axes belongs to a stackedplot, the whole group is
+    // replaced, otherwise only the current axes is replaced.
+    a_target = gca();
+    parent = a_target.parent;
+    siblings = parent.children(parent.children.type == "Axes");
+    siblings_group = stackedplot_group(siblings.tag);
+
+    target_group = stackedplot_group(a_target.tag);
+    if isnan(target_group) then
+        groups = a_target;
+    else
+        groups = siblings(siblings_group == target_group);
+    end
+
+    bounds = groups.axes_bounds;
+    xmin = min(bounds(:, 1));
+    ymin = min(bounds(:, 2));
+    xmax = max(bounds(:, 1) + bounds(:, 3));
+    ymax = max(bounds(:, 2) + bounds(:, 4));
+    target_bounds = [xmin, ymin, xmax - xmin, ymax - ymin];
+
+    gid = max([0; siblings_group(~isnan(siblings_group))]) + 1;
+
     stackedsize = size(stacked);
+    ax = [];
     m = 0;
     for i = 1:stackedsize
         info = stacked(i);
-        subplot(size(stacked), 1, i);
+        a = newaxes(parent);
+        a.axes_bounds = [target_bounds(1), target_bounds(2) + (i - 1) * target_bounds(4) / stackedsize, target_bounds(3), target_bounds(4) / stackedsize];
+        a.tag = msprintf("stackedplot:%d:%d", gid, i);
+        sca(a);
+        ax(i) = a;
 
         for j = 1:size(info, "*")
             var = info(j);
@@ -381,7 +439,7 @@ function varargout = stackedplot(varargin)
             if linespec == [] then
                 s = size(colors, "r");
                 if size(tss) > 1 then
-                    c = modulo(var.ts-1, s) + 1;
+                    c = modulo(var.ts - 1, s) + 1;
                 else
                     c = modulo(j - 1, s) + 1;
                 end
@@ -450,15 +508,18 @@ function varargout = stackedplot(varargin)
     end
     //update_margins(f)
 
+    // new axes are created before deleting the old ones to avoid
+    // the creation of a default axes when the figure becomes empty
+    delete(groups);
 
-    a = f.children(1);
-    a.x_label.text = xLabel;
+    ax_bottom = ax(stackedsize);
+    ax_bottom.x_label.text = xLabel;
 
-    l = length(a.x_ticks.locations)
+    l = length(ax_bottom.x_ticks.locations)
     if l < 10 then
         l = l + 1;
     end
-    loc = round(linspace(a.data_bounds(1), a.data_bounds(2), l))'
+    loc = round(linspace(ax_bottom.data_bounds(1), ax_bottom.data_bounds(2), l))'
 
     if isDuration then
         d = duration(0, 0, zeros(loc), "OutputFormat", datatime.format);
@@ -470,11 +531,12 @@ function varargout = stackedplot(varargin)
         d.time = modulo(loc, 24*60*60);
         labels = string(d);
     end
-    a.x_ticks = tlist(["ticks", "locations", "labels"], loc, labels);
+    ax_bottom.x_ticks = tlist(["ticks", "locations", "labels"], loc, labels);
 
     if titleFigure <> [] then
-        title(f.children($), titleFigure)
-        f.children($).title.font_style = 8;
+        title(ax(1), titleFigure)
+        ax(1).title.font_style = 8;
+        sca(ax(stackedsize));
     end
 
     f.axes_size = f.axes_size + 1;
@@ -483,8 +545,8 @@ function varargout = stackedplot(varargin)
 
     // manage font_angle instead of the length of ylabel
     if m < 16 then
-        for i = 1:size(f.children, "*")
-            a = f.children(i)
+        for i = 1:stackedsize
+            a = ax(i);
             a.y_label.font_angle = 0;
         
             if m > 7 then
@@ -496,7 +558,7 @@ function varargout = stackedplot(varargin)
     end
 
     if nargout
-        varargout(1) = f;
+        varargout(1) = ax($:-1:1);
     end
     
 endfunction
