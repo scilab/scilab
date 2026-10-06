@@ -339,9 +339,6 @@
             <emphasis role="bold">Choosing the normal or logarithmic plotting mode:</emphasis>
         </para>
         <programlisting role="example"><![CDATA[
-gda().grid = [1 1]*color("grey70");
-title(gda(), "fontsize", 3, "color", "lightseagreen", "fontname", "helvetica bold");
-
 x = linspace(1e-1,100,1000);
 xm = 35;
 dx = 17;
@@ -353,12 +350,12 @@ subplot(2,2,2), plot("ln", x, G), title("semilog-x : plot(""ln"", x, y)"); gca()
 subplot(2,2,3), plot("nl", x, G), title("semilog-y : plot(""nl"", x, y)"); gca().sub_ticks(2) = 8;
 subplot(2,2,4), plot("ll", x, G), title("loglog : plot(""ll"", x, y)");    gca().sub_ticks = [8 8];
 
-sda();
+for a = gcf().children'
+    a.grid = [1 1]*color("grey70");
+    title(a, "fontsize", 3, "color", "lightseagreen", "fontname", "helvetica bold");
+end
  ]]></programlisting>
         <scilab:image><![CDATA[
-            gda().grid = [1 1]*color("grey70");
-            title(gda(), "", "fontsize", 3, "color", "lightseagreen", "fontname", "helvetica bold");
-
             x = linspace(1e-1,100,1000);
             xm = 35;
             dx = 17;
@@ -372,8 +369,12 @@ sda();
             subplot(2,2,4), plot("ll", x, G), title("loglog : plot(""ll"", x, y)")
             gca().sub_ticks = [8 8];
 
+            for a = gcf().children'
+                a.grid = [1 1]*color("grey70");
+                title(a, "fontsize", 3, "color", "lightseagreen", "fontname", "helvetica bold");
+            end
+
             gcf().axes_size = [750 520];
-            sda();
         ]]></scilab:image>
         <para/>
         <para>
