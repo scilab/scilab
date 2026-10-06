@@ -22,7 +22,7 @@ import org.scilab.modules.graphic_objects.graphicView.GraphicView;
  *
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
-public class GEDView implements GraphicView {
+public final class GEDView implements GraphicView {
 
     private static boolean visible = true;
     private static boolean autoresize = true;

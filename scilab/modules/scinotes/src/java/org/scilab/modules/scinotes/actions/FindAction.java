@@ -118,8 +118,8 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
     private JCheckBox checkRegular;
     private JCheckBox checkCircular;
     private JCheckBox checkWhole;
-    private JComboBox comboFind;
-    private JComboBox comboReplace;
+    private JComboBox<String> comboFind;
+    private JComboBox<String> comboReplace;
     private JLabel labelFind;
     private JLabel labelReplace;
     private JPanel panelButton;
@@ -150,18 +150,18 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
 
     private boolean restarted;
 
-    private Object[] highlighters;
-    private Object selectedHighlight;
+    private transient Object[] highlighters;
+    private transient Object selectedHighlight;
 
     private String previousRegexp;
     private int previousIndex;
-    private List<Integer[]> foundOffsets;
-    private final MyListener myListener = new MyListener();
+    private transient List<Integer[]> foundOffsets;
+    private final transient MyListener myListener = new MyListener();
 
     private boolean comboReplaceCanceled;
     private boolean comboFindCanceled;
 
-    private Document previousDocument;
+    private transient Document previousDocument;
 
     /**
      * Constructor
@@ -329,8 +329,8 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
         panelFind = new JPanel();
         labelFind = new JLabel();
         labelReplace = new JLabel();
-        comboFind = new JComboBox();
-        comboReplace = new JComboBox();
+        comboFind = new JComboBox<>();
+        comboReplace = new JComboBox<>();
         panelButton = new JPanel();
         buttonFind = new JButton();
         buttonReplaceFind = new JButton();

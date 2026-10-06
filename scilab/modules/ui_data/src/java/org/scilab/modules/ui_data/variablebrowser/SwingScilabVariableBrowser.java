@@ -101,32 +101,32 @@ public final class SwingScilabVariableBrowser extends SwingScilabDockablePanel i
     private SwingTableModel<Object> dataModel;
     private JTable table;
 
-    private MenuBar menuBar;
-    private Menu fileMenu;
-    private Menu helpMenu;
-    private Menu filterMenu;
-    private CheckBoxMenuItem filterDoubleCheckBox;
-    private CheckBoxMenuItem filterPolynomialCheckBox;
-    private CheckBoxMenuItem filterScilabVarCheckBox;
-    private CheckBoxMenuItem filterBooleanCheckBox;
-    private CheckBoxMenuItem filterSparseCheckBox;
-    private CheckBoxMenuItem filterSparseBoolCheckBox;
-    private CheckBoxMenuItem filterIntegerCheckBox;
-    private CheckBoxMenuItem filterGraphicHandlesCheckBox;
-    private CheckBoxMenuItem filterStringCheckBox;
-    private CheckBoxMenuItem filtercompiledFuncCheckBox;
-    private CheckBoxMenuItem filterFunctionLibCheckBox;
-    private CheckBoxMenuItem filterListCheckBox;
-    private CheckBoxMenuItem filterTListCheckBox;
-    private CheckBoxMenuItem filterMListCheckBox;
-    private CheckBoxMenuItem filterPointerCheckBox;
-    private CheckBoxMenuItem filterIntrinsicFunctionCheckBox;
-    private CheckBoxMenuItem filterImplicitPolynomialCheckBox;
+    private transient MenuBar menuBar;
+    private transient Menu fileMenu;
+    private transient Menu helpMenu;
+    private transient Menu filterMenu;
+    private transient CheckBoxMenuItem filterDoubleCheckBox;
+    private transient CheckBoxMenuItem filterPolynomialCheckBox;
+    private transient CheckBoxMenuItem filterScilabVarCheckBox;
+    private transient CheckBoxMenuItem filterBooleanCheckBox;
+    private transient CheckBoxMenuItem filterSparseCheckBox;
+    private transient CheckBoxMenuItem filterSparseBoolCheckBox;
+    private transient CheckBoxMenuItem filterIntegerCheckBox;
+    private transient CheckBoxMenuItem filterGraphicHandlesCheckBox;
+    private transient CheckBoxMenuItem filterStringCheckBox;
+    private transient CheckBoxMenuItem filtercompiledFuncCheckBox;
+    private transient CheckBoxMenuItem filterFunctionLibCheckBox;
+    private transient CheckBoxMenuItem filterListCheckBox;
+    private transient CheckBoxMenuItem filterTListCheckBox;
+    private transient CheckBoxMenuItem filterMListCheckBox;
+    private transient CheckBoxMenuItem filterPointerCheckBox;
+    private transient CheckBoxMenuItem filterIntrinsicFunctionCheckBox;
+    private transient CheckBoxMenuItem filterImplicitPolynomialCheckBox;
     private JButton filteringButton;
 
     private boolean isSetData = false;
 
-    private TableRowSorter < ? > rowSorter;
+    private transient TableRowSorter < ? > rowSorter;
 
     /**
      * Create a JTable with data Model.
@@ -134,6 +134,8 @@ public final class SwingScilabVariableBrowser extends SwingScilabDockablePanel i
      */
     public SwingScilabVariableBrowser(String[] columnsName, int[] aligment) {
         super(UiDataMessages.VARIABLE_BROWSER, VARBROWSERUUID);
+
+        init();
 
         setAssociatedXMLIDForHelp("browsevar");
 

@@ -52,8 +52,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  */
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
-@SuppressWarnings(value = { "serial" })
 public final class SuperBlock extends BasicBlock {
+    private static final long serialVersionUID = 1L;
     /**
      * The interfunction name (linked to Xcos-core)
      */

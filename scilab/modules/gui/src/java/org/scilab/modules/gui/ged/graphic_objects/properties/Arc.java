@@ -43,6 +43,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Arc extends ContentLayout {
+    private static final long serialVersionUID = 1L;
     private JTextField cULP;
     private JTextField cULPx;
     private JTextField cULPy;
@@ -58,7 +59,7 @@ public class Arc extends ContentLayout {
      */
     public void arcDrawingMethod(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lArcDrawingMethod = new JLabel();
-        final JComboBox cArcDrawingMethod = new JComboBox();
+        final JComboBox<String> cArcDrawingMethod = new JComboBox<>();
         addLabelComboBox(panel, lArcDrawingMethod, MessagesGED.arc_drawing_method,
                          cArcDrawingMethod, new String[] {MessagesGED.nurbs , MessagesGED.lines},
                          LEFTMARGIN, COLUMN, ROW);

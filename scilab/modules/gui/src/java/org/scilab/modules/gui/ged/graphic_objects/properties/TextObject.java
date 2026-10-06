@@ -41,6 +41,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class TextObject extends ContentLayout {
+    private static final long serialVersionUID = 1L;
     private String[] text;
     private int index = 0;
 
@@ -144,7 +145,7 @@ public class TextObject extends ContentLayout {
      */
     public void fontStyle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lFontStyle = new JLabel();
-        final JComboBox cFontStyle = new JComboBox();
+        final JComboBox<String> cFontStyle = new JComboBox<>();
         String[] options = new String[] { "Monospaced", "Symbol", "Serif", "Serif Italic", "Serif Bold",
                                           "Serif Bold Italic", "SansSerif", "SansSerif Italic",
                                           "SansSerif Bold", "SansSerif Bold Italic"
@@ -175,7 +176,7 @@ public class TextObject extends ContentLayout {
      */
     public void fractionalFont(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lFractionalFont = new JLabel();
-        final JComboBox cFractionalFont = new JComboBox();
+        final JComboBox<String> cFractionalFont = new JComboBox<>();
         addLabelComboBox(panel, lFractionalFont, MessagesGED.fractional_font,
                          cFractionalFont, new String[] {MessagesGED.off , MessagesGED.on},
                          LEFTMARGIN, COLUMN, ROW);
@@ -204,7 +205,7 @@ public class TextObject extends ContentLayout {
      */
     public void text(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lText = new JLabel();
-        final JComboBox cText = new JComboBox();
+        final JComboBox<String> cText = new JComboBox<>();
         addLabelComboBox(panel, lText, MessagesGED.text,
                          cText, null, LEFTMARGIN, COLUMN, ROW);
         cText.setEditable(true);
@@ -216,7 +217,7 @@ public class TextObject extends ContentLayout {
                 }
                 if ("comboBoxEdited".equals(evt.getActionCommand())) {
                     text[index] = (String) cText.getSelectedItem();
-                    cText.setModel(new DefaultComboBoxModel(text));
+                    cText.setModel(new DefaultComboBoxModel<>(text));
                     cText.setSelectedIndex(index);
                     GraphicController.getController()
                     .setProperty(UID, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
@@ -226,6 +227,6 @@ public class TextObject extends ContentLayout {
         // Get the current status of the property: Text
         text = (String[]) GraphicController.getController()
                .getProperty(UID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
-        cText.setModel(new DefaultComboBoxModel(text));
+        cText.setModel(new DefaultComboBoxModel<>(text));
     }
 }

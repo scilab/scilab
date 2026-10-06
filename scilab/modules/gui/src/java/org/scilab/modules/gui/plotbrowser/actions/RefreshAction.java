@@ -30,6 +30,7 @@ import org.scilab.modules.gui.plotbrowser.SwingPlotBrowser;
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
 public final class RefreshAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

@@ -38,6 +38,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,17 +53,18 @@ import javax.swing.JButton;
  * Displays news in HTML format (JEditorPane/HTMLEditorKit)
  * Loads styles from CSS newsfeed.css (in directory ui_data/etc or SCIHOME)
  */
-public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, HyperlinkListener {
+public final class NewsFeedWidget extends JPanel implements NewsFeedEventListener, HyperlinkListener {
+    private static final long serialVersionUID = 1L;
     private static final String NEWS_DATE_HTML_ID = "news_date";
     private static final String NEWS_CONTENT_HTML_ID = "news_content";
     private static final String NEWS_LINK_HTML_ID = "news_link";
     private static final String NEWS_MEDIA_CONTENT_HTML_ID = "news_media_content";
     private static final String NEWS_DESCRIPTION_HTML_ID = "news_description";
 
-    private final NewsFeedController newsFeedController;
-    private final JEditorPane editorPane;
-    private final JScrollPane scrollPane;
-    private final JPanel headerPane;
+    private final transient NewsFeedController newsFeedController;
+    private final transient JEditorPane editorPane;
+    private final transient JScrollPane scrollPane;
+    private final transient JPanel headerPane;
     private final JButton headerButton;
 
     public NewsFeedWidget(NewsFeedController newsFeedController) {
@@ -166,8 +168,8 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
                 }
 
                 try {
-                    WebBrowser.openUrl(new URL(link), link);
-                } catch (MalformedURLException ex) {
+                    WebBrowser.openUrl(URI.create(link).toURL(), link);
+                } catch (MalformedURLException | IllegalArgumentException ex) {
                     Logger.getLogger(NewsFeedWidget.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

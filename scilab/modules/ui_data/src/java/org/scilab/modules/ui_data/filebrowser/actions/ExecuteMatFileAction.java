@@ -21,8 +21,8 @@ import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
  * Action to load the mat file
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class ExecuteMatFileAction extends ExecuteCommandAction {
+    private static final long serialVersionUID = 1L;
 
     private static final String MAT = "loadmatfile('%s')";
 

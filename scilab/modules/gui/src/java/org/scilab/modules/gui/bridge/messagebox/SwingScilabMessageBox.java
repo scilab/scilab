@@ -76,7 +76,7 @@ import org.scilab.modules.localization.Messages;
  * Swing implementation of a Scilab MessageBox
  * @author Vincent COUVERT
  */
-public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, ActionListener {
+public final class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, ActionListener {
 
     private static final long serialVersionUID = 7939976395338222763L;
 
@@ -104,13 +104,13 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     /**
      * Icons
      */
-    private final Icon scilabIcon = new ImageIcon(FindIconHelper.findIcon("scilab", "48x48"));
-    private final Icon passwdIcon = new ImageIcon(FindIconHelper.findIcon("emblem-readonly", "48x48"));
-    private final Icon hourglassIcon = new ImageIcon(FindIconHelper.findIcon("process-working"));
+    private transient final Icon scilabIcon = new ImageIcon(FindIconHelper.findIcon("scilab", "48x48"));
+    private transient final Icon passwdIcon = new ImageIcon(FindIconHelper.findIcon("emblem-readonly", "48x48"));
+    private transient final Icon hourglassIcon = new ImageIcon(FindIconHelper.findIcon("process-working"));
 
     private int elementId;
 
-    private Icon messageIcon;
+    private transient Icon messageIcon;
 
     private int scilabDialogType = X_MESSAGE_TYPE;
 
@@ -132,7 +132,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     /**
      * Used for x_choose
      */
-    private JList listBox;
+    private JList<Object> listBox;
     private String[] listboxItems;
     private int selectedItem;
 
@@ -163,10 +163,10 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      */
     private String message;
     private String title;
-    private final Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
+    private final transient Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
     private int messageType = -1;
-    private Component[] objs;
-    private Object[] buttons;
+    private transient Component[] objs;
+    private transient Object[] buttons;
     private boolean modal = true;
     private JCheckBox checkbox;
 
@@ -926,9 +926,9 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      */
     private JScrollPane createXchooseListBox() {
         // Add the ListBox
-        listBox = new JList();
+        listBox = new JList<>();
         listBox.setLayoutOrientation(JList.VERTICAL);
-        listBox.setModel(new DefaultListModel());
+        listBox.setModel(new DefaultListModel<>());
         listBox.addMouseListener(new MouseListener() {
 
             @Override
@@ -956,9 +956,10 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
             }
 
         });
-        ((DefaultListModel) listBox.getModel()).clear();
+        DefaultListModel<Object> model = (DefaultListModel<Object>) listBox.getModel();
+        model.clear();
         for (int i = 0; i < listboxItems.length; i++) {
-            ((DefaultListModel) listBox.getModel()).addElement(listboxItems[i]);
+            model.addElement(listboxItems[i]);
         }
         listBox.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollPane = new JScrollPane(listBox);

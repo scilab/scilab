@@ -26,7 +26,7 @@ import org.scilab.modules.gui.utils.UIElementMapper;
  * Interface for Message Boxes used by Scilab functions such as messagebox, message, ...
  * @author Vincent COUVERT
  */
-public class ScilabMessageBox extends ScilabUIElement implements MessageBox {
+public final class ScilabMessageBox extends ScilabUIElement implements MessageBox {
 
     private SimpleMessageBox component;
 

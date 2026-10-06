@@ -446,22 +446,22 @@ public class Uicontrol extends GraphicObject {
     private static String defaultFontAngle = "";
     private static String defaultFontUnits = "";
 
-    private UicontrolStyle style;
+    protected UicontrolStyle style;
     private Double[] backgroundColor = { -1.0, -1.0, -1.0};
     private Boolean enable = true;
-    private String fontAngle = "";
-    private String fontName = "";
-    private double fontSize = 0;
-    private String fontUnits = "points";
-    private String fontWeight = "";
-    private Double[] foregroundColor = { -1.0, -1.0, -1.0};
-    private String horizontalAlignment = "";
-    private String verticalAlignment = "";
+    protected String fontAngle = "";
+    protected String fontName = "";
+    protected double fontSize = 0;
+    protected String fontUnits = "points";
+    protected String fontWeight = "";
+    protected Double[] foregroundColor = { -1.0, -1.0, -1.0};
+    protected String horizontalAlignment = "";
+    protected String verticalAlignment = "";
     private Integer[] listboxTop;
     private double max = 1.0;
     private double min;
     private Double[] position = {DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT};
-    private String relief = RELIEF_DEFAULT;
+    protected String relief = RELIEF_DEFAULT;
     private Double[] sliderStep = {0.01, 0.1};
     private Boolean snapToTicks = false;
     private String[] string = new String[] {};
@@ -591,22 +591,22 @@ public class Uicontrol extends GraphicObject {
     public Uicontrol() {
         super();
         eventHandler = new EventHandler();
-        setVisible(false); /* To avoid to see the object rendered before all its properties to be set (See bug #10346) */
+        visible = false; /* To avoid to see the object rendered before all its properties to be set (See bug #10346) */
 
         if (Root.getRoot().getUseDeprecatedLF()) {
-            setBackgroundColor(new Double[] {
+            backgroundColor = new Double[] {
                                    DEFAULT_RED_BACKGROUND,
                                    DEFAULT_GREEN_BACKGROUND,
                                    DEFAULT_BLUE_BACKGROUND
-                               });
+                               };
 
-            setHorizontalAlignment("center");
-            setVerticalAlignment("middle");
+            horizontalAlignment = "center";
+            verticalAlignment = "middle";
 
-            setFontName(DEFAULT_FONTNAME);
-            setFontSize(DEFAULT_FONTSIZE);
-            setFontAngle(DEFAULT_FONTANGLE);
-            setFontWeight(DEFAULT_FONTWEIGHT);
+            fontName = DEFAULT_FONTNAME;
+            fontSize = DEFAULT_FONTSIZE;
+            fontAngle = DEFAULT_FONTANGLE;
+            fontWeight = DEFAULT_FONTWEIGHT;
         }
     }
 
@@ -657,7 +657,7 @@ public class Uicontrol extends GraphicObject {
      * @param style the uicontrol style
      * @return the uicontrol style as an enum element
      */
-    private UicontrolStyle intToStyleEnum(int style) {
+    protected static UicontrolStyle intToStyleEnum(int style) {
         switch (style) {
             case __GO_UI_CHECKBOX__ :
                 return UicontrolStyle.CHECKBOX;
@@ -1061,7 +1061,7 @@ public class Uicontrol extends GraphicObject {
      * @param style the style
      */
     public UpdateStatus setStyle(int style) {
-        UicontrolStyle val =  intToStyleEnum(style);
+        UicontrolStyle val = intToStyleEnum(style);
         if (val == this.style) {
             return UpdateStatus.NoChange;
         }

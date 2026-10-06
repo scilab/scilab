@@ -17,6 +17,7 @@ package org.scilab.modules.renderer.JoGLView.interaction;
 
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -44,10 +45,10 @@ import org.scilab.modules.renderer.utils.EntityPicker.SurfaceInfo;
  */
 public class DragZoomRotateInteraction extends FigureInteraction {
 
-    private static final int XY_TRANSLATION_MODIFIER = MouseEvent.BUTTON1_MASK;
-    private static final int Z_TRANSLATION_MODIFIER = MouseEvent.BUTTON1_MASK | MouseEvent.ALT_MASK;
-    private static final int ROTATION_MODIFIER = MouseEvent.BUTTON3_MASK;
-    private static final int MACOSX_ROTATION_MODIFIER = MouseEvent.BUTTON1_MASK | MouseEvent.CTRL_MASK;
+    private static final int XY_TRANSLATION_MODIFIER = InputEvent.BUTTON1_DOWN_MASK;
+    private static final int Z_TRANSLATION_MODIFIER = InputEvent.BUTTON1_DOWN_MASK | InputEvent.ALT_DOWN_MASK;
+    private static final int ROTATION_MODIFIER = InputEvent.BUTTON3_DOWN_MASK;
+    private static final int MACOSX_ROTATION_MODIFIER = InputEvent.BUTTON1_DOWN_MASK | InputEvent.CTRL_DOWN_MASK;
 
     /**
      * The box size is multiply by this value.
@@ -280,7 +281,7 @@ public class DragZoomRotateInteraction extends FigureInteraction {
             }
         }
         public void mouseDragged(MouseEvent e) {
-            switch (e.getModifiers()) {
+            switch (e.getModifiersEx()) {
                 case MACOSX_ROTATION_MODIFIER:
                     /*
                      * Mac OS X specific case: the users first left-clic and then presses CTRL

@@ -204,8 +204,8 @@ public final class ConfigManager {
     }
 
     /**
-     * Get the font size in the help viewer
-     * @return the font size
+     * Set the font size in the help viewer
+     * @param size the font size to set
      */
     public static void setHelpFontSize(int size) {
         readDocument();
@@ -250,7 +250,7 @@ public final class ConfigManager {
 
     /**
      * Save the Last Opened Directory in Scilab
-     * @param the directory's path
+     * @param path the directory's path
      */
     public static void saveLastOpenedDirectory(String path ) {
         readDocument();

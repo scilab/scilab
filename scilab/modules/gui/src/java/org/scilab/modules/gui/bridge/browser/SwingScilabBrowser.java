@@ -78,13 +78,14 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
 
-public class SwingScilabBrowser extends JPanel implements SwingViewObject, Widget {
+public final class SwingScilabBrowser extends JPanel implements SwingViewObject, Widget {
+    private static final long serialVersionUID = 1L;
 
     private String callback;
     private Integer callbackType;
     private Integer uid;
-    private ScilabCefPanel cefPanel;
-    private CefBrowser browser_;
+    private transient ScilabCefPanel cefPanel;
+    private transient CefBrowser browser_;
     private Boolean debug = false;
     private String url = "";
     private String helpers;

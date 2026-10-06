@@ -31,7 +31,7 @@ import javax.swing.BorderFactory;
 * @author Pierre GRADIT
 *
 */
-public class Scroll extends JScrollPane implements XComponent {
+public final class Scroll extends JScrollPane implements XComponent {
 
     /** Universal identifier for serialization.
      *

@@ -255,7 +255,6 @@ public final class BlockPositioning {
      *            The orientation.
      */
     private static void updatePortsPositions(final XcosDiagram diag, BasicBlock block, List<BasicPort> ports, Orientation iter) {
-        @SuppressWarnings("serial")
         JavaController controller = new JavaController();
         String[] style = new String[1];
         controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, style);

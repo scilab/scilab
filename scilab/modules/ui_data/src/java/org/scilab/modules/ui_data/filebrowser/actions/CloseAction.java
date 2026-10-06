@@ -31,8 +31,8 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Close action
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class CloseAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static final KeyStroke KEY = ScilabKeyStroke.getKeyStroke("OSSCKEY W");
 

@@ -33,10 +33,6 @@ public interface ToolBar extends UIElement {
      */
     SimpleToolBar getAsSimpleToolBar();
 
-    /**
-     * Add a PushButton to the ToolBar.
-     * @param pushButton the PushButton to add .
-     */
     //void add(SwingScilabPushButton pushButton);
 
     /**

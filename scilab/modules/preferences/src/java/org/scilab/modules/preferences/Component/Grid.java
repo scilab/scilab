@@ -35,7 +35,7 @@ import org.scilab.modules.preferences.XConfigManager;
  * @author Pierre GRADIT
  *
  */
-public class Grid extends Panel implements XComponent {
+public final class Grid extends Panel implements XComponent {
 
     /** Universal identifier for serialization.
      *

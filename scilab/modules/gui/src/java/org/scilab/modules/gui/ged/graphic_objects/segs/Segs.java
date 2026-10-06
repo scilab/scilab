@@ -20,7 +20,8 @@ import org.scilab.modules.gui.ged.graphic_objects.SimpleObject;
 * Properties of the segs.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Segs extends SimpleObject {
+public final class Segs extends SimpleObject {
+    private static final long serialVersionUID = 1L;
     private DataProperties data;
     private Mark mark;
     private Style style;

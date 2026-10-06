@@ -115,18 +115,10 @@
     </target>
     <!-- Compile sources -->
     <target name="compile" description="Build sources" depends="init">
-        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" debuglevel="lines,vars,source" verbose="off" listfiles="on" includeAntRuntime="no" source="17" target="17" encoding="utf-8">
-			<compilerarg value="-Xlint" />
-            <!--  Silent some warnings -->
-            <compilerarg value="-Xlint:-unchecked" />
-            <!-- Too borring and painful to fix -->
-            <compilerarg value="-Xlint:-rawtypes" />
-            <!-- Too borring and painful to fix -->
-            <compilerarg value="-Xlint:-path" />
-            <!--  Silent the bad path element -->
-            <compilerarg value="-Xlint:-serial" />
-            <!--  Silent warning about the serializable -->
-            <compilerarg value="-Xlint:-options" />
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" debuglevel="lines,vars,source" verbose="off" listfiles="on" includeAntRuntime="no" release="21" encoding="utf-8">
+			<compilerarg value="-Xlint:all" />
+			<compilerarg value="-Xmaxwarns" />
+			<compilerarg value="10000" />
         </javac>
     </target>
 

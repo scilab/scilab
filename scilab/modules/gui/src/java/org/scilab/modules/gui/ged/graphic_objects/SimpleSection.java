@@ -16,6 +16,7 @@ package org.scilab.modules.gui.ged.graphic_objects;
 
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+
 import org.scilab.modules.gui.ged.ContentLayout;
 
 /**
@@ -23,8 +24,11 @@ import org.scilab.modules.gui.ged.ContentLayout;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public abstract class SimpleSection extends ContentLayout {
+    private static final long serialVersionUID = 1L;
     private JToggleButton bSection;
     private JPanel pSection;
+    private final String sectionName;
+    private final String objectName;
 
     /**
     * Initializes the properties and the icons of the buttons.
@@ -32,18 +36,22 @@ public abstract class SimpleSection extends ContentLayout {
     * @param objectName name of object
     */
     public SimpleSection(String sectionName, String objectName) {
-        bSection = new JToggleButton();
-        pSection = new JPanel();
-        initMainPanel(sectionName, objectName);
+        this.bSection = new JToggleButton();
+        this.pSection = new JPanel();
+        this.sectionName = sectionName;
+        this.objectName = objectName;
     }
 
     /**
-    * Insert show/hide button, title and main JPanel of group.
-    * @param sectionName name of section
-    * @param objectName name of object
-    */
-    private void initMainPanel(String sectionName, String objectName) {
-        this.addHeader(this, pSection, bSection, sectionName, objectName);
+     * Insert show/hide button, title and main JPanel of group.
+     *
+     * This must be called once, after the constructor has returned (from the
+     * subclass constructor tail), never from this constructor: addHeader
+     * calls overridable Swing methods on this, which the this-escape
+     * analysis rejects in the constructor of an externally extendable class.
+     */
+    protected void initializeSection() {
+        addHeader(this, pSection, bSection, sectionName, objectName);
     }
 
     /**
@@ -92,4 +100,5 @@ public abstract class SimpleSection extends ContentLayout {
         pSection.setVisible(visible);
         bSection.setSelected(!visible);
     }
+
 }

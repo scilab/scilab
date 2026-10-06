@@ -50,8 +50,8 @@ import org.scilab.modules.gui.bridge.filechooser.JFXScilabFileChooser;
  * @author Sylvestre Koumar
  *
  */
-@SuppressWarnings(value = { "serial" })
-public class JFXScilabExportFileChooser extends JFXScilabFileChooser {
+public final class JFXScilabExportFileChooser extends JFXScilabFileChooser {
+    private static final long serialVersionUID = 1L;
 
     private static final int NB_FILE_MASKS = 10;
 
@@ -154,8 +154,6 @@ public class JFXScilabExportFileChooser extends JFXScilabFileChooser {
 
     /**
      * Manage the export (bitmap/vectorial format) and export errors
-     */
-    /**
      * Export an bitmap file
      * @param userExtension extension caught by the user
      */

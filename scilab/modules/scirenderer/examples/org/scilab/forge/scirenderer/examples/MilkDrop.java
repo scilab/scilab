@@ -42,8 +42,9 @@ import java.nio.IntBuffer;
  *
  * @author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
 public final class MilkDrop extends ExampleFrame {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Frame title.

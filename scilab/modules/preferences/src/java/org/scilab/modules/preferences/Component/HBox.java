@@ -30,7 +30,7 @@ import java.awt.Component;
  * @author Pierre GRADIT
  *
  */
-public class HBox extends Panel implements XComponent {
+public final class HBox extends Panel implements XComponent {
 
     /** Universal identifier for serialization.
      *

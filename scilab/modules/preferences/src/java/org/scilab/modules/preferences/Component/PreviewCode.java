@@ -42,8 +42,7 @@ import org.scilab.modules.scinotes.ScilabLexerConstants;
  * @author Pierre GRADIT
  *
  */
-@SuppressWarnings(value = { "serial" })
-public class PreviewCode extends Panel implements XComponent, XChooser {
+public final class PreviewCode extends Panel implements XComponent, XChooser {
 
     /** Universal identifier for serialization.
      *
@@ -61,6 +60,7 @@ public class PreviewCode extends Panel implements XComponent, XChooser {
         super(peer);
         fixedHeight = false;
         previewEditorPane = new ScilabEditorPane(null);
+        previewEditorPane.init();
         ScilabEditorKit kit = new ScilabEditorKit();
         previewEditorPane.setEditorKit(kit);
         previewEditorPane.setFont(kit.getStylePreferences().tokenFonts[0]);
@@ -156,7 +156,7 @@ public class PreviewCode extends Panel implements XComponent, XChooser {
     /** Row selection management.
      *
      */
-    private ActionListener actionListener = null;
+    private transient ActionListener actionListener = null;
     String chosenItem;
 
     /** Actual response read by the listener.

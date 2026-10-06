@@ -26,7 +26,7 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 /**
  * @author Vincent COUVERT
  */
-public class UiImage extends Uicontrol {
+public final class UiImage extends Uicontrol {
 
     /**
      * Constructor

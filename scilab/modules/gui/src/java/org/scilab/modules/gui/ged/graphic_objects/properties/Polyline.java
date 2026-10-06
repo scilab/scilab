@@ -46,6 +46,8 @@ import org.scilab.modules.gui.ged.graphic_objects.contouredObject.MarkStyle;
 */
 public class Polyline extends ContentLayout {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * Components of the property: Arrow Size Factor
      * @param panel
@@ -149,7 +151,7 @@ public class Polyline extends ContentLayout {
      */
     public void closed(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lClosed = new JLabel();
-        final JComboBox cClosed = new JComboBox();
+        final JComboBox<String> cClosed = new JComboBox<String>();
         addLabelComboBox(panel, lClosed, MessagesGED.closed,
                          cClosed, new String[] {MessagesGED.off , MessagesGED.on},
                          LEFTMARGIN, COLUMN, ROW);
@@ -178,7 +180,7 @@ public class Polyline extends ContentLayout {
      */
     public void polylineStyle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lPolyline = new JLabel();
-        final JComboBox cPolyline = new JComboBox();
+        final JComboBox<String> cPolyline = new JComboBox<String>();
         String[] options = new String[] {MessagesGED.interpolated, MessagesGED.staircase, MessagesGED.barplot,
                                          MessagesGED.bar, MessagesGED.arrowed, MessagesGED.filled
                                         };

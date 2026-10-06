@@ -23,7 +23,7 @@ import javax.swing.ListCellRenderer;
 import javax.swing.UIManager;
 import javax.swing.table.JTableHeader;
 
-public class RowHeaderRenderer extends JLabel implements ListCellRenderer {
+public final class RowHeaderRenderer extends JLabel implements ListCellRenderer<Object> {
     private static final long serialVersionUID = 4489940466608197313L;
 
     public RowHeaderRenderer(JTable table) {
@@ -36,7 +36,7 @@ public class RowHeaderRenderer extends JLabel implements ListCellRenderer {
         setFont(header.getFont());
     }
 
-    public Component getListCellRendererComponent( JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+    public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         setText((value == null) ? "" : value.toString());
         return this;
     }

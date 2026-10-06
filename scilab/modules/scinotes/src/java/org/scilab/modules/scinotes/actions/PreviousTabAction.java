@@ -25,8 +25,8 @@ import org.scilab.modules.scinotes.SciNotes;
  * @author Sylvestre Koumar
  *
  */
-@SuppressWarnings(value = { "serial" })
 public class PreviousTabAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor

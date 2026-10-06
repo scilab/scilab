@@ -33,8 +33,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Use maximum of space inside the diagram
  */
-@SuppressWarnings(value = { "serial" })
 public final class FitDiagramToViewAction extends OneBlockDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.FIT_DIAGRAM_TO_VIEW;
     /** Icon name of the action */
@@ -42,7 +42,7 @@ public final class FitDiagramToViewAction extends OneBlockDependantAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_SPACE;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /**
      * Constructor

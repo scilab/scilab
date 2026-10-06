@@ -81,9 +81,9 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
 
     public static Map<String, SwingScilabWindow> allScilabWindows = Collections.synchronizedMap(new HashMap<String, SwingScilabWindow>());
 
-    protected SimpleMenuBar menuBar;
-    protected SimpleToolBar toolBar;
-    protected SimpleTextBox infoBar;
+    protected transient SimpleMenuBar menuBar;
+    protected transient SimpleToolBar toolBar;
+    protected transient SimpleTextBox infoBar;
     private String uuid;
     private int elementId; // the id of the Window which contains this SimpleWindow
     protected String windowUID;
@@ -95,19 +95,18 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Constructor
      */
+    private transient ActionListener closeListener;
+
     public SwingScilabWindow() {
         super();
         this.uuid = UUID.randomUUID().toString();
-        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+    }
 
-        // By default ctrl+w close the window
-        ActionListener listener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                processWindowEvent(new WindowEvent(SwingScilabWindow.this, WindowEvent.WINDOW_CLOSING));
-            }
-        };
-        getRootPane().registerKeyboardAction(listener, ScilabKeyStroke.getKeyStroke("OSSCKEY W"), JComponent.WHEN_IN_FOCUSED_WINDOW);
+    /**
+     * Initialize window after construction is complete to avoid this-escape
+     */
+    public void init() {
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         // TODO : Only for testing : Must be removed
         this.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
@@ -145,6 +144,15 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
         // let the OS choose the window position if not specified by user.
         setLocationByPlatform(true);
 
+        // By default ctrl+w close the window
+        closeListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                processWindowEvent(new WindowEvent(SwingScilabWindow.this, WindowEvent.WINDOW_CLOSING));
+            }
+        };
+        getRootPane().registerKeyboardAction(closeListener, ScilabKeyStroke.getKeyStroke("OSSCKEY W"), JComponent.WHEN_IN_FOCUSED_WINDOW);
+
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -161,6 +169,8 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
             }
         });
     }
+
+
 
     public void setIsRestoring(boolean b) {
         isRestoring = b;
@@ -213,10 +223,14 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @return the created window
      */
     public static SwingScilabWindow createWindow(boolean isDockingPort) {
+        SwingScilabWindow w;
         if (isDockingPort) {
-            return new SwingScilabDockingWindow();
+            w = new SwingScilabDockingWindow();
+        } else {
+            w = new SwingScilabStaticWindow();
         }
-        return new SwingScilabStaticWindow();
+        w.init();
+        return w;
     }
 
     /** force closing all Scilab windows not using the ClosingOperationsManager */

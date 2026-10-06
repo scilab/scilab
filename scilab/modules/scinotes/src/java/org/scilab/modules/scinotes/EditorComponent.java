@@ -17,17 +17,20 @@ package org.scilab.modules.scinotes;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.scinotes.utils.ScilabScrollPane;
 
 /**
  * @author Calixte DENIZET
  */
-public class EditorComponent extends JPanel {
+public final class EditorComponent extends JPanel {
 
     private static final long serialVersionUID = -1466505151043279504L;
 
@@ -47,6 +50,15 @@ public class EditorComponent extends JPanel {
         scroll = new ScilabScrollPane(editor);
         center = scroll;
         add(center, BorderLayout.CENTER);
+        scroll.addMouseWheelListener(new MouseWheelListener() {
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                if ((OS.get() == OS.MAC && e.isMetaDown()) || e.isControlDown()) {
+                    int n = e.getWheelRotation();
+                    SciNotes.updateFontSize(n);
+                    e.consume();
+                }
+            }
+        });
     }
 
     /**

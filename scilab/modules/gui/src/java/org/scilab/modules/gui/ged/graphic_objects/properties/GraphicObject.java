@@ -37,6 +37,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class GraphicObject extends ContentLayout {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Components of the property: Tag.
@@ -107,7 +108,7 @@ public class GraphicObject extends ContentLayout {
      */
     public void visible(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         final JLabel lVisible = new JLabel();
-        final JComboBox cVisible = new JComboBox();
+        final JComboBox<String> cVisible = new JComboBox<>();
         String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
         addLabelComboBox(panel, lVisible, MessagesGED.visible,
                          cVisible, messageOffOn, LEFTMARGIN, COLUMN, ROW);

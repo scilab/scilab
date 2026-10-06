@@ -65,7 +65,7 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
  * @since 2012-06-01
  */
 
-public class Editor {
+public final class Editor {
 
     JPopupMenu menu;
     JMenuItem copy, copyStyle, cut, paste, pasteStyle, delete, clear, hide, unhide, clipboardCopy, labelX, labelY, labelZ, title, insert, remove, ged, editdata, undo, redo;
@@ -289,12 +289,7 @@ public class Editor {
         }
     }
 
-    /**
-     * Initializes the popup menu.
-     *
-     * Create the popup menu and all popup menu items
-     * and set the properly action for each menu item.
-     */
+    
     public void init() {
         menu = new JPopupMenu();
         labels = new JMenu(Messages.gettext("Label"));

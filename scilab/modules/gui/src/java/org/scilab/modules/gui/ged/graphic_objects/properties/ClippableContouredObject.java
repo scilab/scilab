@@ -35,7 +35,8 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class ClippableContouredObject extends ContentLayout {
-    private JComboBox cClipState;
+    private static final long serialVersionUID = 1L;
+    private JComboBox<String> cClipState;
     private JTextField cClipBox;
     private JTextField cClipBoxUpper;
     private JTextField cClipBoxPoint;
@@ -52,7 +53,7 @@ public class ClippableContouredObject extends ContentLayout {
      */
     public void clipState(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lClipState = new JLabel();
-        cClipState = new JComboBox();
+        cClipState = new JComboBox<String>();
         addLabelComboBox(panel, lClipState, MessagesGED.clip_state,
                          cClipState, new String[] {MessagesGED.off, MessagesGED.clipgrf, MessagesGED.on},
                          LEFTMARGIN, COLUMN, ROW);

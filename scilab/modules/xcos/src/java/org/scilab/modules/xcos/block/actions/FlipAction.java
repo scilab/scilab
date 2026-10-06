@@ -32,8 +32,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Block flip handling
  */
-@SuppressWarnings(value = { "serial" })
 public class FlipAction extends VertexSelectionDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.FLIP;
     /** Icon name of the action */
@@ -41,7 +41,7 @@ public class FlipAction extends VertexSelectionDependantAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_F;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /**
      * Constructor

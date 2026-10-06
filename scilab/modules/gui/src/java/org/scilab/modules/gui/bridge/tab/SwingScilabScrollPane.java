@@ -29,6 +29,8 @@ import java.awt.Rectangle;
 
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -46,7 +48,7 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
     private static final long serialVersionUID = -4262585651413643814L;
 
     private SwingScilabCanvas canvas;
-    private Figure figure;
+    private transient Figure figure;
     private Component comp;
     private Container uiContent;
 
@@ -60,6 +62,14 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
         this.uiContent = uiContentPane;
         this.figure = figure;
         //this.uiContent = uiContentPane;
+    }
+
+    /**
+     * Finish initialization after construction (setBorder and controller
+     * registration would leak this from the constructor).
+     * Called once right after instantiation, before the pane is used.
+     */
+    public void init() {
         // use the axes background as default one
         setBorder(null);
         GraphicController.getController().register(this);

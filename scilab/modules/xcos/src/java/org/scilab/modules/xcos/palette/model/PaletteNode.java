@@ -210,6 +210,9 @@ public abstract class PaletteNode implements TreeNode {
      *
      * @param toBeReloaded
      *            the category to refresh
+     * @param selected
+     *            the node to select after the refresh, or null to keep the
+     *            current selection
      */
     public static void refreshView(final TreeNode toBeReloaded, final TreeNode selected) {
         if (PaletteManagerView.get() != null) {
@@ -224,16 +227,18 @@ public abstract class PaletteNode implements TreeNode {
             /*
              * Select the better path, if applicable
              */
-            ArrayList<Object> path = new ArrayList<Object>();
-            for (TreeNode n = selected; n != null; n = n.getParent()) {
-                path.add(n);
-            }
-            Collections.reverse(path);
-            if (path.get(0) != tree.getModel().getRoot()) {
-                path.add(0, tree.getModel().getRoot());
-            }
+            if (selected != null) {
+                ArrayList<Object> path = new ArrayList<Object>();
+                for (TreeNode n = selected; n != null; n = n.getParent()) {
+                    path.add(n);
+                }
+                Collections.reverse(path);
+                if (path.get(0) != tree.getModel().getRoot()) {
+                    path.add(0, tree.getModel().getRoot());
+                }
 
-            tree.setSelectionPath(new TreePath(path.toArray()));
+                tree.setSelectionPath(new TreePath(path.toArray()));
+            }
 
             // makes the PaletteSearchManager aware that the index should be updated.
             PaletteManagerView.get().getSearchManager().setIndexIsOutdated(true);

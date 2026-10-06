@@ -23,7 +23,8 @@ import org.scilab.modules.gui.ged.graphic_objects.properties.CameraProperties;
 * Construction and startup of all components of the section: Camera.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Camera extends SimpleSection {
+public final class Camera extends SimpleSection {
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static Camera instance;
     private CameraProperties camera = new CameraProperties();
@@ -34,6 +35,7 @@ public class Camera extends SimpleSection {
     */
     public Camera(Integer objectID) {
         super(MessagesGED.camera, "axes");
+        initializeSection();
         instance = this;
         sectionPanel = getSectionPanel();
         initComponents(objectID);

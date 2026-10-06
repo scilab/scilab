@@ -33,8 +33,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  *
  * @see SuperBlock#unmask()
  */
-@SuppressWarnings(value = { "serial" })
 public final class SuperblockMaskRemoveAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.REMOVE;
     /** Icon name of the action */

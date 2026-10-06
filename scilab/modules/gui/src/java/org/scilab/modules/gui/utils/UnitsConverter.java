@@ -180,10 +180,10 @@ public final class UnitsConverter {
 
     public static Double[] convertPositionToPixels(Double[] position, UicontrolUnits oldUnit, Widget uicontrol) {
         Double[] convertedPosition = new Double[4];
-        convertedPosition[0] = new Double(convertToPixel(position[0].doubleValue(), oldUnit, uicontrol, true));
-        convertedPosition[1] = new Double(convertToPixel(position[1].doubleValue(), oldUnit, uicontrol, false));
-        convertedPosition[2] = new Double(convertToPixel(position[2].doubleValue(), oldUnit, uicontrol, true));
-        convertedPosition[3] = new Double(convertToPixel(position[3].doubleValue(), oldUnit, uicontrol, false));
+        convertedPosition[0] = Double.valueOf(convertToPixel(position[0].doubleValue(), oldUnit, uicontrol, true));
+        convertedPosition[1] = Double.valueOf(convertToPixel(position[1].doubleValue(), oldUnit, uicontrol, false));
+        convertedPosition[2] = Double.valueOf(convertToPixel(position[2].doubleValue(), oldUnit, uicontrol, true));
+        convertedPosition[3] = Double.valueOf(convertToPixel(position[3].doubleValue(), oldUnit, uicontrol, false));
         return convertedPosition;
     }
 

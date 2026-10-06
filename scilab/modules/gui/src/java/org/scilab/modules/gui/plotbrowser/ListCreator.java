@@ -34,9 +34,9 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
 public class ListCreator {
-    private JList list;
-    private final ArrayList<Integer> uids = new ArrayList<Integer>();
-    private ArrayList<Object> cbArray = new ArrayList<Object>();
+    private JList<Object> list;
+    private final ArrayList<Integer> uids = new ArrayList<>();
+    private ArrayList<Object> cbArray = new ArrayList<>();
 
     public ListCreator(Integer figureID) {
         structure();
@@ -45,7 +45,7 @@ public class ListCreator {
     }
 
     private void structure() {
-        list = new JList();
+        list = new JList<>();
 
         list.setCellRenderer(new CheckBoxCellRenderer());
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -128,7 +128,7 @@ public class ListCreator {
             }
         }
 
-        list.setListData(new Vector(cbArray));
+        list.setListData(new Vector<>(cbArray));
 
         SwingPlotBrowser.pReceive.add(new JScrollPane(list));
     }

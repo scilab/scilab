@@ -34,12 +34,12 @@ import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.Widget;
 
-public class SwingScilabSpinner extends JSpinner implements SwingViewObject, Widget {
+public final class SwingScilabSpinner extends JSpinner implements SwingViewObject, Widget {
     private static final long serialVersionUID = -8036645127098703686L;
 
     private Integer uid;
     private CommonCallBack callback;
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     public SwingScilabSpinner() {
         setModel(new SpinnerNumberModel(0.0, 0.0, 1.0, 0.1));

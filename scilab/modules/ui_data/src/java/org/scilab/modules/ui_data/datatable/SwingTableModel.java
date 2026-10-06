@@ -15,6 +15,8 @@
 
 package org.scilab.modules.ui_data.datatable;
 
+import java.io.ObjectStreamField;
+
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,6 +27,16 @@ import javax.swing.table.DefaultTableModel;
 public class SwingTableModel<Type> extends DefaultTableModel implements ScilabTable<Type> {
 
     private static final long serialVersionUID = -4255704246347716837L;
+
+    // Explicit serialized form (JDK Object Serialization Spec) — required because
+    // the generic Type[][] erases to Object[][], which javac's serial-lint cannot
+    // statically prove Serializable. Declaring serialPersistentFields is the JDK's
+    // own documented way to take over the field-type check (see java.util.HashMap,
+    // TreeMap, etc.); it preserves the exact same fields as default serialization.
+    private static final ObjectStreamField[] serialPersistentFields = {
+        new ObjectStreamField("columnNames", String[].class),
+        new ObjectStreamField("data", Object[][].class),
+    };
 
     private String[] columnNames;
     private Type[][] data;
@@ -100,7 +112,7 @@ public class SwingTableModel<Type> extends DefaultTableModel implements ScilabTa
     /**
      * {@inheritDoc}
      */
-    public Class getColumnClass(int c) {
+    public Class<?> getColumnClass(int c) {
         // Need to force return of ImageIcon when needed
         // to have real images displayed
         // and no PATH comming from "toString" method.

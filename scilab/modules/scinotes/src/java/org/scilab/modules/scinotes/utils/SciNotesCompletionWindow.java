@@ -99,7 +99,7 @@ public class SciNotesCompletionWindow extends AbstractSciCompletionWindow {
             }
             if (window.getHeight() + location.y > value + height) {
                 try {
-                    int ypos = first.modelToView(currentCaretPosition).height;
+                    int ypos = first.modelToView2D(currentCaretPosition).getBounds().height;
                     location.y = location.y - window.getHeight() - ypos;
                 } catch (BadLocationException e) { }
             }
@@ -135,7 +135,7 @@ public class SciNotesCompletionWindow extends AbstractSciCompletionWindow {
      * @param position where to append the completed word
      */
     public void addCompletedWord(int position) {
-        addCompletedWord(((CompletionItem) listUI.getSelectedValue()).getReturnValue(), position);
+        addCompletedWord(listUI.getSelectedValue().getReturnValue(), position);
     }
 
     /**

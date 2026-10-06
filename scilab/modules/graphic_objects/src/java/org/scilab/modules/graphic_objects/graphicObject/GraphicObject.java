@@ -125,7 +125,7 @@ public abstract class GraphicObject implements Cloneable {
     private List <Integer> children;
 
     /** Specifies whether the object is visible or not */
-    private boolean visible;
+    protected boolean visible;
 
     /** Specifies if the "handle" is referenced in scilab */
     private boolean referenced;

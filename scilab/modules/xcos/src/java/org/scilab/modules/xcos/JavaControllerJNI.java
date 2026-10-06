@@ -7,6 +7,7 @@
  * ----------------------------------------------------------------------------- */
 
 package org.scilab.modules.xcos;
+import org.scilab.modules.localization.NativeLibraryLoader;
 
 public class JavaControllerJNI {
   public final static native int port_from_property(int jarg1);
@@ -135,7 +136,7 @@ public class JavaControllerJNI {
 
   static {
     try {
-        System.loadLibrary("scixcos");
+        NativeLibraryLoader.loadLibrary("scixcos");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

@@ -48,7 +48,7 @@ public final class LoadClassPath {
     private static final String XPATH_EXPRS = "//classpaths/path[@load='onUse']/load";
 
     /** Cache the already loaded libraries */
-    private static Set<String> loadedModules = new HashSet<String>();
+    private static Set<String> loadedModules = new HashSet<>();
 
     /**
      * Load the module on the classpath
@@ -57,7 +57,6 @@ public final class LoadClassPath {
      *
      * @param module the module to be loaded
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void loadOnUse(String module) {
         if (loadedModules.contains(module)) {
             return;
@@ -69,16 +68,16 @@ public final class LoadClassPath {
         // Initialize xpath
         final ClassLoader classloader = ClassLoader.getSystemClassLoader();
         XPathFactory factory = null;
-		Class sxpfClass = null;
+		Class<?> sxpfClass = null;
         try {
         	sxpfClass = classloader.loadClass("org.scilab.modules.commons.xml.ScilabXPathFactory");
         } catch (ClassNotFoundException e) {
         	System.err.println("Error: ClassNotFoundException: " + e.getLocalizedMessage());
         }
         try {
-        	Class[] parameters = new Class[] {};
+        	Class<?>[] parameters = new Class<?>[] {};
             final Method method = sxpfClass.getDeclaredMethod("newInstance", parameters);
-            factory = (XPathFactory) method.invoke(classloader , new Object[] {});
+            factory = (XPathFactory) method.invoke(classloader, (Object[]) new Class<?>[] {});
 
         } catch (NoSuchMethodException e) {
             System.err.println("Error: Cannot find the declared method: " + e.getLocalizedMessage());
@@ -91,16 +90,16 @@ public final class LoadClassPath {
 
         // initialize document factory
         DocumentBuilderFactory domFactory = null;
-        Class sdbfClass = null;
+        Class<?> sdbfClass = null;
         try {
         	sdbfClass = classloader.loadClass("org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory");
         } catch (ClassNotFoundException e) {
         	System.err.println("Error: Class Not Found: " + e.getLocalizedMessage());
         }
         try {
-        	Class[] parameters = new Class[] {};
+        	Class<?>[] parameters = new Class<?>[] {};
             final Method method = sdbfClass.getDeclaredMethod("newInstance", parameters);
-            domFactory = (DocumentBuilderFactory) method.invoke(classloader , new Object[] {});
+            domFactory = (DocumentBuilderFactory) method.invoke(classloader, (Object[]) new Class<?>[] {});
 
         } catch (NoSuchMethodException e) {
             System.err.println("Error: Cannot find the declared method: " + e.getLocalizedMessage());

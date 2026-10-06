@@ -23,7 +23,7 @@ import org.scilab.modules.gui.toolbar.SimpleToolBar;
  * Swing implementation for Scilab ToolBar in GUIs
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabToolBar extends JToolBar implements SimpleToolBar {
+public final class SwingScilabToolBar extends JToolBar implements SimpleToolBar {
 
     private static final long serialVersionUID = 1L;
 

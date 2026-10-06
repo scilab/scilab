@@ -20,7 +20,8 @@ import org.scilab.modules.gui.ged.graphic_objects.SimpleObject;
 * Properties of the imageplot.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Imageplot extends SimpleObject {
+public final class Imageplot extends SimpleObject {
+    private static final long serialVersionUID = 1L;
     private BaseProperties base;
     private DataProperties data;
 

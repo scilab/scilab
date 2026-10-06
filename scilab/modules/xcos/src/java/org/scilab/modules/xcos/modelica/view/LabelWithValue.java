@@ -24,8 +24,8 @@ import javax.swing.UIManager;
 /**
  * A panel with a title and a text label
  */
-@SuppressWarnings(value = { "serial" })
 public final class LabelWithValue extends JPanel {
+    private static final long serialVersionUID = 1L;
     private static final int TEXT_DEFAULT_COLUMNS = 3;
     private static final Icon ERROR_ICON = (Icon) UIManager
                                            .get("OptionPane.errorIcon");

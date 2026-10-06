@@ -26,9 +26,9 @@ import org.scilab.modules.xcos.modelica.ModelicaMessages;
 /**
  * Fix the derivative of the current model
  */
-@SuppressWarnings(value = { "serial" })
 public final class FixDerivativesAction extends AbstractAction {
-    private final ModelicaController controller;
+    private static final long serialVersionUID = 1L;
+    private final transient ModelicaController controller;
 
     /**
      * Default constructor

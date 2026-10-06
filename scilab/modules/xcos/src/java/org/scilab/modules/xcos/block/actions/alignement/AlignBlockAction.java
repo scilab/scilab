@@ -28,6 +28,8 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
  * Align selected blocks on axes (left-right-centered-top-bottom-middle)
  */
 public abstract class AlignBlockAction extends MultiSelectionDependantAction {
+
+    private static final long serialVersionUID = 1L;
     private String align;
 
     /**

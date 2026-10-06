@@ -25,10 +25,12 @@ import java.awt.Point;
 public abstract class CubeFacesPointComputer extends AbstractPointComputer {
 
     /** Clicked position */
-    private final Vector3d position;
+    private Vector3d position;
 
     /** First axis index */
-    private final int axisIndex;
+    private int axisIndex;
+
+    private boolean computed;
 
     private static final double threshold = 0.05;
 
@@ -40,7 +42,22 @@ public abstract class CubeFacesPointComputer extends AbstractPointComputer {
      */
     public CubeFacesPointComputer(final Axes axes, final Point point) {
         super(axes, point);
-        Double[] bounds = axes.getCorrectedBounds();
+    }
+
+    /**
+     * Compute {@link #position} and {@link #axisIndex}.
+     *
+     * Deferred out of the constructor so that the (final, inherited) helpers
+     * are not invoked before the object is fully initialized, which is what
+     * triggered the this-escape warning. Runs at most once, on first access.
+     */
+    private void compute() {
+        if (computed) {
+            return;
+        }
+        computed = true;
+
+        Double[] bounds = getAxes().getCorrectedBounds();
 
         double maxLambda = -Double.MAX_VALUE;
         Vector3d returnedValue = null;
@@ -132,6 +149,7 @@ public abstract class CubeFacesPointComputer extends AbstractPointComputer {
      * @return the current axis index.
      */
     protected final int getAxisIndex() {
+        compute();
         return axisIndex;
     }
 
@@ -140,6 +158,7 @@ public abstract class CubeFacesPointComputer extends AbstractPointComputer {
      * @return the position.
      */
     public final Vector3d getPosition() {
+        compute();
         return position;
     }
 }

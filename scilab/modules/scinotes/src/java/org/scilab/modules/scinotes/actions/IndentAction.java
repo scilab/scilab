@@ -35,8 +35,8 @@ import org.scilab.modules.scinotes.TabManager;
  * @author Calixte DENIZET
  *
  */
-@SuppressWarnings("serial")
 public final class IndentAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

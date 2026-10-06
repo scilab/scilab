@@ -46,7 +46,7 @@ public class ZoomAction extends CommonCallBack {
     private static final String ICON_ZOOMIN = FindIconHelper.findIcon("zoom-in");
     private static final String ICON_ZOOMOUT = FindIconHelper.findIcon("zoom-out");
 
-    private static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    private static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
     private static final String ZOOM_IN = "ZoomIn";
     private static final String ZOOM_OUT = "ZoomOut";
 

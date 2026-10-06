@@ -27,7 +27,7 @@ import org.scilab.modules.gui.utils.UIElementMapper;
  * Interface for ColorChooser for Scilab
  * @author Vincent COUVERT
  */
-public class ScilabColorChooser extends ScilabUIElement implements ColorChooser {
+public final class ScilabColorChooser extends ScilabUIElement implements ColorChooser {
 
     private SimpleColorChooser component;
 

@@ -38,18 +38,18 @@ import org.scilab.modules.preferences.XConfigManager;
  * @author Calixte DENIZET
  *
  */
-public class NumericalSpinner extends JSpinner implements XComponent, XChooser, ChangeListener {
+public final class NumericalSpinner extends JSpinner implements XComponent, XChooser, ChangeListener {
 
     /** Universal identifier for serialization.
      *
      */
     private static final long serialVersionUID = -4842434795956015958L;
-    private static final Double defaultInc = new Double(1);
+    private static final Double defaultInc = Double.valueOf(1);
 
-    private Double min = new Double(Double.NEGATIVE_INFINITY);
-    private Double max = new Double(Double.POSITIVE_INFINITY);
-    private SpinnerNumberModel spinnerModel;
-    private ActionListener actionListener;
+    private Double min = Double.valueOf(Double.NEGATIVE_INFINITY);
+    private Double max = Double.valueOf(Double.POSITIVE_INFINITY);
+    private transient SpinnerNumberModel spinnerModel;
+    private transient ActionListener actionListener;
 
 
     /** Define the set of actuators.
@@ -66,7 +66,7 @@ public class NumericalSpinner extends JSpinner implements XComponent, XChooser, 
      */
     public NumericalSpinner(final Node peer) {
         super();
-        spinnerModel = new SpinnerNumberModel(new Double(0), min, max, defaultInc);
+        spinnerModel = new SpinnerNumberModel(Double.valueOf(0), min, max, defaultInc);
         setModel(spinnerModel);
         addChangeListener(this);
 
@@ -215,7 +215,7 @@ public class NumericalSpinner extends JSpinner implements XComponent, XChooser, 
      */
     public final void value(String value) {
         if (!value.equals(XCommonManager.NAV) && !value.equals("")) {
-            spinnerModel.setValue(new Double(value));
+            spinnerModel.setValue(Double.valueOf(value));
         }
     }
 
@@ -226,7 +226,7 @@ public class NumericalSpinner extends JSpinner implements XComponent, XChooser, 
     public final void minvalue(String minvalue) {
         if (!minvalue.equals(XCommonManager.NAV) && !minvalue.equals("")) {
             try {
-                spinnerModel.setMinimum(new Double(minvalue));
+                spinnerModel.setMinimum(Double.valueOf(minvalue));
             } catch (NumberFormatException e) { }
         }
     }
@@ -238,7 +238,7 @@ public class NumericalSpinner extends JSpinner implements XComponent, XChooser, 
     public final void maxvalue(String maxvalue) {
         if (!maxvalue.equals(XCommonManager.NAV) && !maxvalue.equals("")) {
             try {
-                spinnerModel.setMaximum(new Double(maxvalue));
+                spinnerModel.setMaximum(Double.valueOf(maxvalue));
             } catch (NumberFormatException e) { }
         }
     }
@@ -252,7 +252,7 @@ public class NumericalSpinner extends JSpinner implements XComponent, XChooser, 
             spinnerModel.setStepSize(defaultInc);
         } else {
             try {
-                spinnerModel.setStepSize(new Double(increment));
+                spinnerModel.setStepSize(Double.valueOf(increment));
             } catch (NumberFormatException e) { }
         }
     }

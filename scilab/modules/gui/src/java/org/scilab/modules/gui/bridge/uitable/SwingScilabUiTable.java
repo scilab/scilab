@@ -53,20 +53,20 @@ import org.scilab.modules.gui.widget.Widget;
  * Swing implementation for Scilab UiTable in GUIs
  * @author Han DONG
  */
-public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, Widget {
+public final class SwingScilabUiTable extends JScrollPane implements SwingViewObject, Widget {
 
     private static final long serialVersionUID = -5497171010652701217L;
 
     private Integer uid;
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     private JTable uiTable;
-    private JList rowHeader;
+    private JList<?> rowHeader;
 
-    private Object[] colNames = {};
-    private Object[] rowNames = {};
-    private Object[][] data = {};
+    private transient Object[] colNames = {};
+    private transient Object[] rowNames = {};
+    private transient Object[][] data = {};
 
     private int nCol;
     private int nRow;
@@ -317,9 +317,9 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
      * Create/Return the rowHeader Java Object
      * @return the rowHeader
      */
-    private JList getCustomRowHeader() {
+    private JList<?> getCustomRowHeader() {
         if (rowHeader == null) {
-            rowHeader = new JList(rowNames);
+            rowHeader = new JList<>(rowNames);
             rowHeader.setFixedCellWidth(50);
             rowHeader.setFixedCellHeight(uiTable.getRowHeight());
             rowHeader.setCellRenderer(new RowHeaderRenderer(uiTable));
@@ -382,7 +382,7 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
         //updates table with new row names
         nRow = names.length;
         rowNames = names;
-        rowHeader = new JList(names);
+        rowHeader = new JList<>(names);
         rowHeader.setFixedCellWidth(50);
         rowHeader.setFixedCellHeight(uiTable.getRowHeight());
         rowHeader.setCellRenderer(new RowHeaderRenderer(uiTable));
@@ -422,7 +422,7 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
             for (int k = 0; k < nRow; k++) {
                 rowNames[k] = k;
             }
-            rowHeader = new JList(rowNames);
+            rowHeader = new JList<>(rowNames);
             rowHeader.setFixedCellWidth(50);
             rowHeader.setFixedCellHeight(uiTable.getRowHeight());
             rowHeader.setCellRenderer(new RowHeaderRenderer(uiTable));

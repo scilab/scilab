@@ -30,8 +30,8 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Action to go to SCI
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class GoToSCIAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     /**
      * {@inheritDoc}

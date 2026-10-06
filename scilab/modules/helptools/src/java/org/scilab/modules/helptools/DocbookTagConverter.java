@@ -53,7 +53,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public abstract class DocbookTagConverter extends DefaultHandler implements Converter {
 
     private static final String DOCBOOKURI = "http://docbook.org/ns/docbook";
-    private static final Class<?>[] argsType = new Class[] {Map.class, String.class};
+    private static final Class<?>[] argsType = new Class<?>[] {Map.class, String.class};
     protected static final String SCI = ScilabConstants.SCI.toURI().getPath();
 
     private Map<String, Method> mapMeth = new HashMap<String, Method>();
@@ -97,11 +97,6 @@ public abstract class DocbookTagConverter extends DefaultHandler implements Conv
         }
 
         this.imgConvert = imgConvert;
-        imgConvert.registerExternalImageConverter(new LaTeXImageConverter(this));
-        imgConvert.registerExternalImageConverter(new MathMLImageConverter(this));
-        imgConvert.registerExternalImageConverter(new SVGImageConverter(this));
-        imgConvert.registerExternalImageConverter(new ScilabImageConverter(this));
-        imgConvert.registerExternalImageConverter(new XcosImageConverter(this));
     }
 
     /**
@@ -237,6 +232,14 @@ public abstract class DocbookTagConverter extends DefaultHandler implements Conv
      */
     @Override
     public void registerAllExternalXMLHandlers() {
+        // Registered here (after construction) rather than in the constructor
+        // so that a fully-initialized converter is handed to the image
+        // converters; this also avoids leaking this from the constructor.
+        imgConvert.registerExternalImageConverter(new LaTeXImageConverter(this));
+        imgConvert.registerExternalImageConverter(new MathMLImageConverter(this));
+        imgConvert.registerExternalImageConverter(new SVGImageConverter(this));
+        imgConvert.registerExternalImageConverter(new ScilabImageConverter(this));
+        imgConvert.registerExternalImageConverter(new XcosImageConverter(this));
     }
 
     /**

@@ -123,15 +123,15 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                 }
             };
 
-            Class scilab = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.core.Scilab");
+            Class<?> scilab = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.core.Scilab");
             Method registerFinalHook = scilab.getDeclaredMethod("registerFinalHook", Runnable.class);
             registerFinalHook.invoke(null, runnable);
 
-            defaultWinAttributes.put("x", new Integer(DEFAULTX));
-            defaultWinAttributes.put("y", new Integer(DEFAULTY));
-            defaultWinAttributes.put("height", new Integer(DEFAULTHEIGHT));
-            defaultWinAttributes.put("width", new Integer(DEFAULTWIDTH));
-            defaultWinAttributes.put("state", new Integer(SwingScilabWindow.NORMAL));
+            defaultWinAttributes.put("x", Integer.valueOf(DEFAULTX));
+            defaultWinAttributes.put("y", Integer.valueOf(DEFAULTY));
+            defaultWinAttributes.put("height", Integer.valueOf(DEFAULTHEIGHT));
+            defaultWinAttributes.put("width", Integer.valueOf(DEFAULTWIDTH));
+            defaultWinAttributes.put("state", Integer.valueOf(SwingScilabWindow.NORMAL));
             /*
               Uncomment this code for debugging focus issues
 
@@ -358,8 +358,8 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             LayoutNodeSerializer serializer = new LayoutNodeSerializer();
             win.appendChild(serializer.serialize(doc, layoutNode));
 
-            for (Dockable dockable : (Set<Dockable>) window.getDockingPort().getDockables()) {
-                saveTabProperties((SwingScilabDockablePanel) dockable, false);
+            for (Object o : window.getDockingPort().getDockables()) {
+                saveTabProperties((SwingScilabDockablePanel) o, false);
             }
 
             writeDocument();
@@ -520,16 +520,17 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                 DockingManager.dock(defaultTab, window.getDockingPort());
             }
 
-            for (SwingScilabDockablePanel tab : (Set<SwingScilabDockablePanel>) window.getDockingPort().getDockables()) {
-                tab.setParentWindowId(window.getId());
+            Set<?> dockables = window.getDockingPort().getDockables();
+            for (Object o : dockables) {
+                ((SwingScilabDockablePanel) o).setParentWindowId(window.getId());
             }
 
             SwingScilabDockablePanel[] tabs = new SwingScilabDockablePanel[window.getNbDockedObjects()];
-            tabs = ((Set<SwingScilabDockablePanel>) window.getDockingPort().getDockables()).toArray(tabs);
+            tabs = dockables.toArray(tabs);
 
             // Be sur that the main tab will have the focus.
             // Get the elder tab and activate it
-            final SwingScilabDockablePanel mainTab = ClosingOperationsManager.getElderTab(new ArrayList(Arrays.asList(tabs)));
+            final SwingScilabDockablePanel mainTab = ClosingOperationsManager.getElderTab(new ArrayList<>(Arrays.asList(tabs)));
             BarUpdater.forceUpdateBars(mainTab.getParentWindowId(), mainTab.getMenuBar(), mainTab.getToolBar(), mainTab.getInfoBar(), mainTab.getName(), mainTab.getWindowIcon());
 
             if (!ScilabConsole.isExistingConsole() && tabs.length == 1 && tabs[0].getPersistentId().equals(NULLUUID)) {

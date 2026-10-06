@@ -60,7 +60,7 @@ import org.scilab.modules.localization.Messages;
  * Swing implementation of a Scilab FileChooser
  * @author Vincent COUVERT
  */
-public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser {
+public final class SwingScilabFontChooser extends JDialog implements SimpleFontChooser {
 
     private static final long serialVersionUID = 1L;
 
@@ -72,10 +72,10 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
 
     private int elementId;
 
-    private final JList fontNameList;
+    private final JList<String> fontNameList;
     private final String[] availableFontNames;
 
-    private final JList fontSizeList;
+    private final JList<String> fontSizeList;
     private final String[] availableFontSizes = {"8", "10", "11", "12",
                                                  "13", "14", "16", "18", "20",
                                                  "24", "30", "36", "40",
@@ -120,8 +120,8 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
         fontPanel.setBorder(new TitledBorder(new EtchedBorder(), Messages.gettext("Font")));
 
         /* Font names list */
-        fontNameList = new JList();
-        fontNameList.setModel(new DefaultListModel());
+        fontNameList = new JList<>();
+        fontNameList.setModel(new DefaultListModel<>());
         fontNameList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         fontPanel.add(new JScrollPane(fontNameList));
 
@@ -130,7 +130,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
 
         /* Add the font names to the list */
         for (int fontIndex = 0; fontIndex < availableFontNames.length; fontIndex++) {
-            ((DefaultListModel) fontNameList.getModel()).addElement(availableFontNames[fontIndex]);
+            ((DefaultListModel<String>) fontNameList.getModel()).addElement(availableFontNames[fontIndex]);
             if ((font != null) && (availableFontNames[fontIndex].equals(font.getFamily()))) {
                 fontNameList.setSelectedIndex(fontIndex);
             }
@@ -143,14 +143,14 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
         ScilabSwingUtilities.closeOnEscape(this);
 
         /* Font size list */
-        fontSizeList = new JList();
-        fontSizeList.setModel(new DefaultListModel());
+        fontSizeList = new JList<>();
+        fontSizeList.setModel(new DefaultListModel<>());
         fontSizeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         fontPanel.add(new JScrollPane(fontSizeList));
 
         /* Add the font sizes to the list */
         for (int sizeIndex = 0; sizeIndex < availableFontSizes.length; sizeIndex++) {
-            ((DefaultListModel) fontSizeList.getModel()).addElement(availableFontSizes[sizeIndex]);
+            ((DefaultListModel<String>) fontSizeList.getModel()).addElement(availableFontSizes[sizeIndex]);
             if ((font != null) && (availableFontSizes[sizeIndex].equals(Integer.toString(font.getSize())))) {
                 fontSizeList.setSelectedIndex(sizeIndex);
             }
@@ -303,8 +303,8 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
         if (fontNameList.getSelectedIndex() == -1 || fontSizeList.getSelectedIndex() == -1) {
             return;
         }
-        String selectedFontName = (String) fontNameList.getSelectedValue();
-        String resultSizeName = (String) fontSizeList.getSelectedValue();
+        String selectedFontName = fontNameList.getSelectedValue();
+        String resultSizeName = fontSizeList.getSelectedValue();
         int selectedFontSize = Integer.parseInt(resultSizeName);
         int attrs = Font.PLAIN;
 
@@ -382,12 +382,12 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
 
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-        ((DefaultListModel) fontNameList.getModel()).removeAllElements();
+        ((DefaultListModel<String>) fontNameList.getModel()).removeAllElements();
 
         if (!monospacedMode & !scinotesMode) {
             /* Display all fonts */
             for (int fontIndex = 0; fontIndex < availableFontNames.length; fontIndex++) {
-                ((DefaultListModel) fontNameList.getModel()).addElement(availableFontNames[fontIndex]);
+                ((DefaultListModel<String>) fontNameList.getModel()).addElement(availableFontNames[fontIndex]);
             }
         }
 
@@ -395,7 +395,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
             /* Display only monospaced fonts */
             for (int fontIndex = 0; fontIndex < availableFontNames.length; fontIndex++) {
                 if (ScilabFontUtils.isMonospaced(new Font(availableFontNames[fontIndex], Font.PLAIN, DEFAULT_FONT_SIZE))) {
-                    ((DefaultListModel) fontNameList.getModel()).addElement(availableFontNames[fontIndex]);
+                    ((DefaultListModel<String>) fontNameList.getModel()).addElement(availableFontNames[fontIndex]);
                 }
             }
         }
@@ -404,7 +404,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
             /* Display only SciNotes compatibles fonts */
             for (int fontIndex = 0; fontIndex < availableFontNames.length; fontIndex++) {
                 if (ScilabFontUtils.isAllStylesSameWidths(availableFontNames[fontIndex])) {
-                    ((DefaultListModel) fontNameList.getModel()).addElement(availableFontNames[fontIndex]);
+                    ((DefaultListModel<String>) fontNameList.getModel()).addElement(availableFontNames[fontIndex]);
                 }
             }
         }
@@ -414,7 +414,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
             for (int fontIndex = 0; fontIndex < availableFontNames.length; fontIndex++) {
                 if (ScilabFontUtils.isMonospaced(new Font(availableFontNames[fontIndex], Font.PLAIN, DEFAULT_FONT_SIZE))
                         && ScilabFontUtils.isAllStylesSameWidths(availableFontNames[fontIndex])) {
-                    ((DefaultListModel) fontNameList.getModel()).addElement(availableFontNames[fontIndex]);
+                    ((DefaultListModel<String>) fontNameList.getModel()).addElement(availableFontNames[fontIndex]);
                 }
             }
         }

@@ -143,7 +143,7 @@ public final class ArrowKeyListener implements KeyListener {
             realMove = pixelMove;
         }
 
-        if (e.getModifiers() == Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) {
+        if ((e.getModifiersEx() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()) != 0) {
             realMove *= MODIFIER_FACTOR;
         }
 

@@ -43,7 +43,7 @@ import org.scilab.modules.preferences.XSentinel;
  * @author Pierre GRADIT
  * @author Calixte DENIZET
  */
-public class Color extends JButton implements XComponent, XChooser {
+public final class Color extends JButton implements XComponent, XChooser {
 
     /**
      *
@@ -51,7 +51,7 @@ public class Color extends JButton implements XComponent, XChooser {
     private static final long serialVersionUID = 5598263085800128888L;
     private static final int ICONDIM = 16;
 
-    private ActionListener actionListener = null;
+    private transient ActionListener actionListener = null;
     private SwingScilabColorChooser colorChooser;
 
     /**

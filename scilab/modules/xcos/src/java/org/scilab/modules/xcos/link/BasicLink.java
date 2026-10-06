@@ -18,6 +18,7 @@ package org.scilab.modules.xcos.link;
 
 import java.awt.MouseInfo;
 import java.awt.geom.Line2D;
+
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,17 +54,43 @@ import com.mxgraph.util.mxRectangle;
  */
 // CSOFF: ClassDataAbstractionCoupling
 public abstract class BasicLink extends XcosCell {
+    private static final long serialVersionUID = 1L;
     private static final mxGeometry DEFAULT_GEOMETRY = new mxGeometry(0, 0, 80, 80);
     private static final int DETECTION_RECTANGLE_DIMENSION = 10;
     private transient int ordering;
 
+    /**
+     * Construct a link.
+     *
+     * The MVC link kind is set synchronously on purpose : callers use the
+     * link right after the constructor returns. Deferring the write through
+     * SwingUtilities.invokeLater() leaves the MVC un-synchronized until the
+     * event queue dispatches the task.
+     */
     public BasicLink(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id, int linkKind) {
         super(controller, uid, kind, value, geometry, style == null ? XcosOptions.getEdition().getEdgeStyle() : style, id);
 
         this.vertex = false;
         this.edge = true;
 
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.KIND, linkKind);
+        initializeLink(controller, uid, kind, linkKind);
+    }
+
+    /**
+     * Initialize link properties during construction.
+     *
+     * The uid and kind are taken from the constructor arguments rather than
+     * from getUID()/getKind() : calling those inherited methods from a
+     * constructor would let partially-initialized subclasses escape (and is
+     * reported by the {@code this-escape} lint).
+     *
+     * @param controller the controller
+     * @param uid the uid
+     * @param kind the kind
+     * @param linkKind the link kind
+     */
+    private void initializeLink(JavaController controller, long uid, Kind kind, int linkKind) {
+        controller.setObjectProperty(uid, kind, ObjectProperties.KIND, linkKind);
     }
 
     /**
@@ -316,5 +343,6 @@ public abstract class BasicLink extends XcosCell {
 
         return str.toString();
     }
+
 }
 // CSON: ClassDataAbstractionCoupling

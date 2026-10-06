@@ -25,7 +25,8 @@ import org.scilab.modules.gui.ged.graphic_objects.properties.ContouredObject;
 * Construction and startup of all components of the section: Style/Appeareance.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Style extends SimpleSection {
+public final class Style extends SimpleSection {
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static Style instance;
     private ContouredObject contouredObject = new ContouredObject();
@@ -36,6 +37,7 @@ public class Style extends SimpleSection {
     */
     public Style(Integer objectID) {
         super(MessagesGED.style_appearance, "arc");
+        initializeSection();
         instance = this;
         sectionPanel = getSectionPanel();
         initComponents(objectID);

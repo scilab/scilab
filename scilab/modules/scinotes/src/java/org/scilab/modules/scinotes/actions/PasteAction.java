@@ -38,8 +38,8 @@ import org.scilab.modules.scinotes.ScilabEditorKit;
  * @author Bruno JOFRET
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class PasteAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

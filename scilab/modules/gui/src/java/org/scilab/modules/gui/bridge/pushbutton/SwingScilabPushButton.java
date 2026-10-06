@@ -56,7 +56,7 @@ import org.scilab.modules.gui.widget.Widget;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabPushButton extends JButton implements SwingViewObject , Widget {
+public final class SwingScilabPushButton extends JButton implements SwingViewObject , Widget {
 
     private static final long serialVersionUID = 2277539556048935959L;
 
@@ -67,7 +67,7 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject , 
     private boolean isLaTeX;
     private int fontSize;
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     /**
      * Constructor
@@ -81,13 +81,11 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject , 
             setContentAreaFilled(false);
             setOpaque(true);
 
-            addPropertyChangeListener(ICON_CHANGED_PROPERTY, new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent evt) {
-                    final Icon newIcon = (Icon) evt.getNewValue();
-                    final boolean iconEnable = newIcon != null;
-                    setContentAreaFilled(iconEnable);
-                    setOpaque(!iconEnable);
-                }
+            addPropertyChangeListener(ICON_CHANGED_PROPERTY, (PropertyChangeEvent evt) -> {
+                final Icon newIcon = (Icon) evt.getNewValue();
+                final boolean iconEnable = newIcon != null;
+                setContentAreaFilled(iconEnable);
+                setOpaque(!iconEnable);
             });
         }
     }

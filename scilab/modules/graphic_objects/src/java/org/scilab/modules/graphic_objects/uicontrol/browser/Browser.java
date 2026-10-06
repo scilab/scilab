@@ -12,7 +12,7 @@ package org.scilab.modules.graphic_objects.uicontrol.browser;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BROWSER__;
 
-public class Browser extends Uicontrol {
+public final class Browser extends Uicontrol {
     public Browser() {
         super();
         setStyle(__GO_UI_BROWSER__);

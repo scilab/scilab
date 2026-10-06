@@ -101,10 +101,6 @@ public class ScilabBridge {
         throw new UnsupportedOperationException(); /* Prevents calls from subclass */
     }
 
-    /*****************/
-    /* Window Bridge */
-    /*****************/
-
     /**
      * Creates a new window
      * @return the created window
@@ -298,10 +294,6 @@ public class ScilabBridge {
 
 
 
-    /*****************/
-    /* ToolBar Bridge */
-    /*****************/
-
     /**
      * Creates a new ToolBar
      * @return the created ToolBar
@@ -336,10 +328,9 @@ public class ScilabBridge {
         return ScilabToolBarBridge.isVisible(toolbar);
     }
 
-    /**************/
-    /* Tab Bridge */
-    /**************/
-
+    // =============
+    // Tab Bridge
+    
     /**
      * Creates a Scilab tab
      * @param name the name of the tab (used to identify it)
@@ -648,10 +639,9 @@ public class ScilabBridge {
 
 
 
-    /******************/
-    /* Console Bridge */
-    /******************/
-
+    // ==================
+    // Console Bridge
+    
     /**
      * Creates a Scilab Console
      * @return the created console
@@ -927,10 +917,9 @@ public class ScilabBridge {
         ScilabConsoleBridge.setCursor(console, cursor);
     }
 
-    /*****************/
-    /* Canvas Bridge */
-    /*****************/
-
+    // =================
+    // Canvas Bridge
+    
     /**
      * Creates a Scilab Canvas
      * @param figureIndex index of the displayed figure
@@ -1087,10 +1076,10 @@ public class ScilabBridge {
         ScilabCanvasBridge.setSingleBuffered(canvas, useSingleBuffer);
     }
 
-    /*****************/
-    /* MenuBar Bridge */
-    /*****************/
-
+    // =================
+    // MenuBar Bridge
+    // =================
+    
     /**
      * Creates a new MenuBar
      * @return the created MenuBar
@@ -1108,10 +1097,10 @@ public class ScilabBridge {
         ScilabMenuBarBridge.add(menuBar, newMenu);
     }
 
-    /*****************/
-    /* MenuItem Bridge */
-    /*****************/
-
+    // =================
+    // MenuItem Bridge
+    // =================
+    
     /**
      * Creates a new MenuItem
      * @return the created MenuItem
@@ -1354,10 +1343,10 @@ public class ScilabBridge {
         return ScilabMenuItemBridge.isChecked(menuItem);
     }
 
-    /****************************/
-    /* CheckBox MenuItem Bridge */
-    /****************************/
-
+    // ============================
+    // CheckBox MenuItem Bridge
+    // ============================
+    
     /**
      * Creates a new CheckBoxMenuItem
      * @return the created CheckBoxMenuItem
@@ -1609,10 +1598,10 @@ public class ScilabBridge {
         return ScilabCheckBoxMenuItemBridge.isChecked(checkBoxMenuItem);
     }
 
-    /*****************/
-    /* Menu Bridge */
-    /*****************/
-
+    // =================
+    // Menu Bridge
+    // =================
+    
     /**
      * Creates a new Menu
      * @return the created Menu
@@ -1854,9 +1843,9 @@ public class ScilabBridge {
         return ScilabMenuBridge.isChecked(menu);
     }
 
-    /**********************/
-    /* ContextMenu Bridge */
-    /**********************/
+    // ======================
+    // ContextMenu Bridge
+    // ======================
 
     /**
      * Creates a new ContextMenu
@@ -2046,9 +2035,9 @@ public class ScilabBridge {
         ScilabContextMenuBridge.requestFocus(contextMenu);
     }
 
-    /********************/
-    /* Separator Bridge */
-    /********************/
+    // ====================
+    // Separator Bridge
+    // ====================
 
     /**
      * Creates a new Separator
@@ -2058,9 +2047,9 @@ public class ScilabBridge {
         return ScilabSeparatorBridge.createSeparator();
     }
 
-    /******************/
-    /* TextBox Bridge */
-    /******************/
+    // ==================
+    // TextBox Bridge
+    // ==================
 
     /**
      * Creates a new TextBox
@@ -2282,9 +2271,9 @@ public class ScilabBridge {
         ScilabTextBoxBridge.requestFocus(textBox);
     }
 
-    /***********************/
-    /* FileChooser Bridge */
-    /***********************/
+    // =======================
+    // FileChooser Bridge
+    // =======================
 
     /**
      * Create a new FileChooser
@@ -2420,9 +2409,9 @@ public class ScilabBridge {
         ScilabFileChooserBridge.invalidate(fileChooser);
     }
 
-    /*********************/
-    /* MessageBox Bridge */
-    /*********************/
+    // =====================
+    // MessageBox Bridge
+    // =====================
 
     /**
      * Create a new MessageBox
@@ -2611,9 +2600,9 @@ public class ScilabBridge {
         ScilabMessageBoxBridge.setParentForLocation(messageBox, parent);
     }
 
-    /***********************/
-    /* Help Browser Bridge */
-    /***********************/
+    // =======================
+    // Help Browser Bridge
+    // =======================
 
     /**
      * Create a new Help Browser
@@ -2659,9 +2648,9 @@ public class ScilabBridge {
         ScilabHelpBrowserBridge.close(browser);
     }
 
-    /***********************/
-    /* FontChooser Bridge */
-    /***********************/
+    // =======================
+    // FontChooser Bridge
+    // =======================
 
     /**
      * Create a new FontChooser
@@ -2725,9 +2714,9 @@ public class ScilabBridge {
         ScilabFontChooserBridge.displayAndWait(fontChooser);
     }
 
-    /***********************/
-    /* ColorChooser Bridge */
-    /***********************/
+    // =======================
+    // ColorChooser Bridge
+    // =======================
 
     /**
      * Create a new ColorChooser
@@ -2774,9 +2763,9 @@ public class ScilabBridge {
     }
 
 
-    /******************/
-    /* Tree Bridge    */
-    /******************/
+    // ==================
+    // Tree Bridge
+    // ==================
 
     /**
      * Display a given tree
@@ -2820,9 +2809,9 @@ public class ScilabBridge {
         ScilabConsoleBridge.evaluateSelectionWithNoEcho(console);
     }
 
-    /**********************/
-    /* UiDisplayTree Bridge */
-    /**********************/
+    // ======================
+    // UiDisplayTree Bridge
+    // ======================
 
     /**
      * Creates a new UiDisplayTree

@@ -30,7 +30,7 @@ public abstract class JavaCallBack extends CommonCallBack {
 
     private static final long serialVersionUID = -6513057558261299432L;
     private static final String DOT = ".";
-    private static final Map<Class, ArgConverter> converters = new HashMap<Class, ArgConverter>();
+    private static final Map<Class<?>, ArgConverter> converters = new HashMap<Class<?>, ArgConverter>();
 
     static {
         converters.put(int.class, new ArgConverter() {
@@ -73,7 +73,7 @@ public abstract class JavaCallBack extends CommonCallBack {
                     }
 
                     int lastPoint = cmd.lastIndexOf(DOT);
-                    Class invokedClass;
+                    Class<?> invokedClass;
                     invokedClass = Class.forName(cmd.substring(0, lastPoint));
                     String methName = cmd.substring(lastPoint + 1);
 
@@ -120,7 +120,7 @@ public abstract class JavaCallBack extends CommonCallBack {
             public void callBack() {
                 try {
                     int lastPoint = getCommand().lastIndexOf(DOT);
-                    Class invokedClass;
+                    Class<?> invokedClass;
                     invokedClass = Class.forName(getCommand().substring(0, lastPoint));
                     Method runMe = invokedClass.getMethod(getCommand().substring(lastPoint + 1));
                     // Only able to launch method Class.

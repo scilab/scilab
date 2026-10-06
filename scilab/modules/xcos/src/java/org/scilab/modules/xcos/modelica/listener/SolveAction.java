@@ -36,8 +36,8 @@ import org.scilab.modules.xcos.modelica.model.Model;
 /**
  * Solve the model.
  */
-@SuppressWarnings(value = { "serial" })
 public final class SolveAction extends AbstractAction {
+    private static final long serialVersionUID = 1L;
     private static final String COMPILE_STRING = "fw='%s'; paremb='%s'; jaco='%s'; " + "if(compile_init_modelica(fw, paremb, jaco)) then "
             + "mopen('%s', 'w'); end ";
     private static final String COMPUTE_STRING = "method='%s'; Nunknowns='%s'; " + "if(Compute_cic(method,Nunknowns)) then " + "mopen('%s', 'w'); " + "end ";
@@ -185,7 +185,7 @@ public final class SolveAction extends AbstractAction {
         }
     }
 
-    private final ModelicaController controller;
+    private final transient ModelicaController controller;
     private final JProgressBar progress;
 
     /**

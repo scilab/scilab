@@ -3,5 +3,4 @@
  *
  * <p>This package is now deprecated and should not be used at all as it does not handle large Xcos files.
  */
-@Deprecated
 package org.scilab.modules.xcos.io.codec;

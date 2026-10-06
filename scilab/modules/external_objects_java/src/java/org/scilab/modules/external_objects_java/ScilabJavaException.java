@@ -20,8 +20,8 @@ package org.scilab.modules.external_objects_java;
  *
  * @author Calixte DENIZET
  */
-@SuppressWarnings("serial")
 public class ScilabJavaException extends Exception {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor

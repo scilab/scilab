@@ -24,7 +24,8 @@ import org.scilab.modules.gui.ged.graphic_objects.properties.Axes;
 *
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Position extends SimpleSection {
+public final class Position extends SimpleSection {
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static Position instance;
     private Axes axes = new Axes();
@@ -35,6 +36,7 @@ public class Position extends SimpleSection {
     */
     public Position(Integer objectID) {
         super(MessagesGED.position, "axes");
+        initializeSection();
         instance = this;
         sectionPanel = getSectionPanel();
         initComponents(objectID);

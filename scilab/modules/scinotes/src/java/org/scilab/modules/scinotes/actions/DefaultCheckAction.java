@@ -41,27 +41,16 @@ public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements C
      */
     private static final long serialVersionUID = 5618123082228356437L;
     private SciNotes editorBackup;
+    private String initLabel;
 
     /**
      * Constructor
      * @param editor SciNotes
      */
-    @SuppressWarnings("serial")
     public DefaultCheckAction(SciNotes editor) {
         super();
-        setText(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS);
-        setState(true);
-        editorBackup = editor;
-
-        setCallback(new CommonCallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
-            public void callBack() {
-                doAction();
-            }
-
-            public void actionPerformed(ActionEvent e) {
-                callBack();
-            }
-        });
+        this.initLabel = SciNotesMessages.DEFAULT + SciNotesMessages.DOTS;
+        this.editorBackup = editor;
     }
 
     /**
@@ -69,12 +58,18 @@ public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements C
      * @param label label (string)
      * @param editor SciNotes
      */
-    @SuppressWarnings("serial")
     protected DefaultCheckAction(String label, SciNotes editor) {
         super();
-        setText(label);
+        this.initLabel = label;
+        this.editorBackup = editor;
+    }
+
+    @Override
+    public void init() {
+        super.init();
+        setText(initLabel);
         setState(true);
-        editorBackup = editor;
+
         setCallback(new CommonCallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
             public void callBack() {
                 doAction();
@@ -118,6 +113,7 @@ public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements C
      * @return CheckBoxMenuItem
      */
     protected static CheckBoxMenuItem createCheckBoxMenu(String title, String icon, DefaultCheckAction defaultCheckAction, KeyStroke keyStroke) {
+        defaultCheckAction.init();
         defaultCheckAction.setText(title);
         defaultCheckAction.setChecked(false);
         if (keyStroke != null) {

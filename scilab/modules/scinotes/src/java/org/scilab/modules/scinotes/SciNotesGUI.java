@@ -320,8 +320,8 @@ public final class SciNotesGUI {
             } else {
                 className = DEFAULTACTIONPATH + DOT + actionClass;
             }
-            Class clazz = loader.loadClass(className);
-            method = clazz.getMethod("createMenu", new Class[] {String.class, SciNotes.class, KeyStroke.class});
+            Class<?> clazz = loader.loadClass(className);
+            method = clazz.getMethod("createMenu", new Class<?>[] {String.class, SciNotes.class, KeyStroke.class});
         } catch (ClassNotFoundException e) {
             System.err.println("No action: " + className);
         } catch (NoSuchMethodException e) {
@@ -370,8 +370,8 @@ public final class SciNotesGUI {
             } else {
                 className = DEFAULTACTIONPATH + DOT + actionClass;
             }
-            Class clazz = loader.loadClass(className);
-            Method method = clazz.getMethod("createButton", new Class[] {String.class, String.class, SciNotes.class});
+            Class<?> clazz = loader.loadClass(className);
+            Method method = clazz.getMethod("createButton", new Class<?>[] {String.class, String.class, SciNotes.class});
             JButton button = (JButton) method.invoke(null, new Object[] {Messages.gettext(tooltip), icon, editor});
             ScilabLAF.setDefaultProperties(button);
 

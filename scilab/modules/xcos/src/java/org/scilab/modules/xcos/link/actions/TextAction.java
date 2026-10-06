@@ -31,8 +31,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * @deprecated since 5.4.0
  */
 @Deprecated
-@SuppressWarnings(value = { "serial" })
 public class TextAction extends StyleAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.EDIT;
     /** Icon name of the action */

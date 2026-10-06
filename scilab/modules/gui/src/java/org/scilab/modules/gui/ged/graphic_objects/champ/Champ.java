@@ -20,7 +20,8 @@ import org.scilab.modules.gui.ged.graphic_objects.SimpleObject;
 * Properties of the champ.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Champ extends SimpleObject {
+public final class Champ extends SimpleObject {
+    private static final long serialVersionUID = 1L;
     private DataProperties data;
     private Style style;
 

@@ -42,7 +42,7 @@ public class ScilabGeneralPrefs implements XConfigurationListener {
 
     public static void openPreferences(String path) {
         try {
-            Class prefs = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.preferences.ScilabPreferences");
+            Class<?> prefs = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.preferences.ScilabPreferences");
             Method open = prefs.getDeclaredMethod("openPreferences", String.class);
             open.invoke(null, path);
         } catch (ClassNotFoundException e) {

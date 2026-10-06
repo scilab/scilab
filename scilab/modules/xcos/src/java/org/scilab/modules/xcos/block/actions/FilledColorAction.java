@@ -38,8 +38,8 @@ import com.mxgraph.util.mxUtils;
 /**
  * Change the filled color of multiple blocks
  */
-@SuppressWarnings(value = { "serial" })
 public final class FilledColorAction extends VertexSelectionDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.FILL_BLOCK_COLOR;
     /** Icon name of the action */

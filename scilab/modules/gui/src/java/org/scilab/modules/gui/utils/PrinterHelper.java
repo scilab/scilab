@@ -17,6 +17,7 @@ package org.scilab.modules.gui.utils;
 
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -83,7 +84,7 @@ public class PrinterHelper {
 
         URL url;
         try {
-            url = new URL("file:///" + fileName);
+            url = new File(fileName).toURI().toURL();
             pageToPrint.setEditable(false);
             pageToPrint.setContentType("text/plain;charset=UTF-8");
             try {

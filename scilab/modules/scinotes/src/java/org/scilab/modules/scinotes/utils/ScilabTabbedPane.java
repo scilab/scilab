@@ -80,11 +80,11 @@ import org.scilab.modules.scinotes.actions.SaveAction;
  * Class for a tabbedpane with close-button
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
-public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener,
+public final class ScilabTabbedPane extends JTabbedPane implements DragGestureListener,
     DragSourceListener,
     DropTargetListener,
     Transferable {
+    private static final long serialVersionUID = 1L;
 
     private static final ImageIcon CLOSEICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/close-tab.png");
     private static final ImageIcon CLOSEONICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/close-tab-on.png");
@@ -556,6 +556,8 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
      */
     class CloseTabButton extends JPanel {
 
+        private static final long serialVersionUID = 1L;
+
         private JLabel label;
 
         /**
@@ -610,6 +612,8 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
          * Inner class for the close-button
          */
         class CloseButton extends JButton {
+
+            private static final long serialVersionUID = 1L;
 
             /**
              * Constructor

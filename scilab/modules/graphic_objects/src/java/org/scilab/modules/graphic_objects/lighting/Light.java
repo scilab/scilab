@@ -25,7 +25,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  * Light class
  * @author Pedro SOUZA
  */
-public class Light extends GraphicObject {
+public final class Light extends GraphicObject {
 
     public enum LightProperty {POSITION, DIRECTION, TYPE};
 

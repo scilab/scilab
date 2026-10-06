@@ -35,8 +35,8 @@ import com.mxgraph.view.mxCellState;
 /**
  * Block shadow handling
  */
-@SuppressWarnings(value = { "serial" })
 public final class ShowHideShadowAction extends VertexSelectionDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.SHOWHIDE_SHADOW;
     /** Icon name of the action */

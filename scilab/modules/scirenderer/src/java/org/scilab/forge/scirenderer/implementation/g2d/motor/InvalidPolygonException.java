@@ -17,8 +17,9 @@ package org.scilab.forge.scirenderer.implementation.g2d.motor;
 /**
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class InvalidPolygonException extends Exception {
+
+    private static final long serialVersionUID = 1L;
 
     public InvalidPolygonException(String msg) {
         super(msg);

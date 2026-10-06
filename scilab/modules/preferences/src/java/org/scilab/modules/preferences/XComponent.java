@@ -36,6 +36,15 @@ public interface XComponent {
      * @param peer the corresponding view DOM node
      */
     void refresh(Node peer);
+
+    /** Finish initialization after construction. Overridable Swing methods that
+     * would leak this from the constructor are deferred here. Default
+     * implementation does nothing; called once by the ComponentFactory right
+     * after instantiation.
+     *
+     * @param peer the corresponding view DOM node
+     */
+    default void init(Node peer) { }
 }
 
 

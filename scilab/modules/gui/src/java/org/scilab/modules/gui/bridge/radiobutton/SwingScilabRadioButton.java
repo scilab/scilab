@@ -60,15 +60,19 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
 
     private CommonCallBack callback;
 
-    private ActionListener actListener;
+    private transient ActionListener actListener;
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     /**
      * Constructor
      */
     public SwingScilabRadioButton() {
         super();
+    }
+
+    @Override
+    public void init() {
         /* Avoid the L&F to erase user background settings */
         setContentAreaFilled(false);
         setOpaque(true);

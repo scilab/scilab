@@ -33,8 +33,8 @@ import org.scilab.modules.scinotes.KeywordEvent;
  * OpenURLAction Class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class OpenURLAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

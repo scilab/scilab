@@ -53,7 +53,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
+import javax.xml.parsers.SAXParserFactory;
+import javax.xml.parsers.SAXParser;
 
 /**
  * All the filetype recognized by Xcos.
@@ -135,7 +136,11 @@ public enum XcosFileType {
                 JavaController.unregister_view(xcosView);
 
                 XcosSAXHandler handler = new XcosSAXHandler(into, null);
-                XMLReader reader = XMLReaderFactory.createXMLReader();
+                SAXParserFactory factory = SAXParserFactory.newInstance();
+                // XcosSAXHandler dispatches on localName; SAXParserFactory is not namespace-aware by default
+                factory.setNamespaceAware(true);
+                SAXParser parser = factory.newSAXParser();
+                XMLReader reader = parser.getXMLReader();
                 reader.setContentHandler(handler);
                 reader.setErrorHandler(handler);
 
@@ -143,6 +148,9 @@ public enum XcosFileType {
                 reader.parse(new InputSource(file));
                 LOG.exiting("XMLReader", "parse");
             } catch (SAXException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            } catch (javax.xml.parsers.ParserConfigurationException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             } catch (Exception e) {

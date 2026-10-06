@@ -34,13 +34,13 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
  * RefreshAction class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class RefreshAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_W;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     private static ImageIcon icon = new ImageIcon(FindIconHelper.findIcon("view-refresh"));
 

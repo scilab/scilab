@@ -38,7 +38,7 @@ public interface ScilabTreeTableModel extends TreeModel {
      * @param column the column number
      * @return the type for column number
      */
-    public Class getColumnClass(int column);
+    public Class<?> getColumnClass(int column);
 
     /**
      * @param node the node

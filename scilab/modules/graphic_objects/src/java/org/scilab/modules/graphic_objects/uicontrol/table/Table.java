@@ -26,7 +26,7 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 /**
  * @author Vincent COUVERT
  */
-public class Table extends Uicontrol {
+public final class Table extends Uicontrol {
 
     /**
      * Constructor

@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
  * Use a user defined format to format ticks label.
  */
 public class UserDefinedFormat extends DecimalFormat {
+    private static final long serialVersionUID = 1L;
 
     private String format;
     private double scale;

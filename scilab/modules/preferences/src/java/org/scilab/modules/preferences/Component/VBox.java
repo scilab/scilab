@@ -31,7 +31,7 @@ import java.awt.Component;
 * @author Pierre GRADIT
 *
 */
-public class VBox extends Panel implements XComponent {
+public final class VBox extends Panel implements XComponent {
 
     /** Universal identifier for serialization.
      *

@@ -25,8 +25,8 @@ import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
  * Action to open the file in SciNotes
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class OpenFileInSciNotesAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private SwingScilabTreeTable table;
 
@@ -43,11 +43,11 @@ public class OpenFileInSciNotesAction extends CommonCallBack {
      * {@inheritDoc}
      */
     public void callBack() {
-        Class scinotesClass = null;
+        Class<?> scinotesClass = null;
         Method scinotes = null;
         try {
             scinotesClass = Class.forName("org.scilab.modules.scinotes.SciNotes");
-            scinotes = scinotesClass.getMethod("scinotes", new Class[] {String.class});
+            scinotes = scinotesClass.getMethod("scinotes", new Class<?>[] {String.class});
         } catch (ClassNotFoundException e) {
             System.err.println("Could not find SciNotes class");
             e.printStackTrace();

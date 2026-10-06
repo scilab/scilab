@@ -31,8 +31,8 @@ import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
  * @author Calixte DENIZET
  */
 
-@SuppressWarnings(value = { "serial" })
 public class ExecuteCommandAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private SwingScilabTreeTable table;
     private String cmd;

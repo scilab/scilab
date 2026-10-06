@@ -26,7 +26,7 @@ import org.w3c.dom.Node;
  * Implementation of Link compliant with extended management.
  * @author Vincent COUVERT
  */
-public class Link extends Label {
+public final class Link extends Label {
 
     private static final long serialVersionUID = -8915028261763299611L;
 
@@ -37,6 +37,18 @@ public class Link extends Label {
     public Link(final Node peer) {
         super(peer);
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }
+
+    /**
+     * Finish initialization after construction. {@code Label.init(Node)} sets
+     * the plain-text/color attributes from the DOM node; re-apply the
+     * link-specific styling (underline, link color) afterwards so it is not
+     * overwritten by the base implementation.
+     * @param peer the corresponding view DOM node
+     */
+    @Override
+    public void init(final Node peer) {
+        super.init(peer);
         refresh(peer);
     }
 

@@ -37,8 +37,8 @@ import com.mxgraph.util.mxUndoManager;
 /**
  * Undo manager
  */
-@SuppressWarnings(value = { "serial" })
-public class UndoAction extends DefaultAction {
+public final class UndoAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = ScilabGraphMessages.UNDO;
     /** Icon name of the action */
@@ -46,7 +46,7 @@ public class UndoAction extends DefaultAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_Z;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /**
      * Manage enable modification
@@ -110,9 +110,18 @@ public class UndoAction extends DefaultAction {
      */
     public UndoAction(ScilabGraph scilabGraph) {
         super(scilabGraph);
+    }
 
-        UndoConstraint c = new UndoConstraint(scilabGraph);
-        c.install(this, scilabGraph);
+    /**
+     * Install the undo constraint after construction to avoid this-escape.
+     */
+    @Override
+    protected void installConstraints() {
+        ScilabGraph g = getScilabGraph();
+        if (g != null) {
+            UndoConstraint c = new UndoConstraint(g);
+            c.install(this, g);
+        }
     }
 
     /**

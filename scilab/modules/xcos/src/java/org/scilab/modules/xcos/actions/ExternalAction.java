@@ -33,8 +33,8 @@ import org.scilab.modules.xcos.utils.BlockPositioning;
 /**
  * External action
  */
-@SuppressWarnings(value = { "serial" })
 public final class ExternalAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = "";
     /** Icon name of the action */

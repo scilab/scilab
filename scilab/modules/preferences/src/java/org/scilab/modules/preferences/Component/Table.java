@@ -48,8 +48,7 @@ import org.scilab.modules.preferences.XComponent;
  * @author Pierre GRADIT
  *
  */
-@SuppressWarnings(value = { "serial" })
-public class Table extends Panel implements XComponent, XChooser, ListSelectionListener, ActionListener {
+public final class Table extends Panel implements XComponent, XChooser, ListSelectionListener, ActionListener {
 
     /** Universal identifier for serialization.
      *
@@ -209,6 +208,7 @@ public class Table extends Panel implements XComponent, XChooser, ListSelectionL
     //end Dynamic_controller
 
     private final class CustomTableCellRenderer extends DefaultTableCellRenderer {
+        private static final long serialVersionUID = 1L;
         public Component getTableCellRendererComponent (JTable table,
                 Object obj, boolean isSelected, boolean hasFocus, int row, int column) {
             Component cell = super.getTableCellRendererComponent(table, obj, isSelected, hasFocus, row, column);
@@ -226,7 +226,6 @@ public class Table extends Panel implements XComponent, XChooser, ListSelectionL
         addActionListener((ActionListener) listener);
     }
 
-    @SuppressWarnings("unused")
     private void checkContent() {
         for (int j = 0; j < model.getColumnCount(); j++) {
             System.out.print("  " + model.getColumnName(j));
@@ -263,7 +262,7 @@ public class Table extends Panel implements XComponent, XChooser, ListSelectionL
     /** Row selection management.
      *
      */
-    private ActionListener actionListener = null;
+    private transient ActionListener actionListener = null;
 
     /** Actual response read by the listener.
      *
@@ -368,8 +367,8 @@ class Model extends AbstractTableModel {
     /** Data source.
      *
      */
-    private NodeList nodelist;
-    private NodeList prevC, prevR;
+    private transient NodeList nodelist;
+    private transient NodeList prevC, prevR;
     private int rows;
     private int cols;
 

@@ -68,7 +68,7 @@ public final class ScilabSwingUtilities {
         throw new UnsupportedOperationException();
     }
 
-    /**
+    /*
      * Add a component to its new parent.
      * This method is thread safe.
      * @param component component to add
@@ -121,7 +121,7 @@ public final class ScilabSwingUtilities {
         }
     }
 
-    /**
+    /*
      * Add a component to its new parent.
      * This method is thread safe.
      * @param component component to add

@@ -21,7 +21,8 @@ import org.scilab.modules.gui.ged.graphic_objects.SimpleObject;
 *
 * @author Marcos Cardinot <mcardinot@gmail.com>
 */
-public class Axes extends SimpleObject {
+public final class Axes extends SimpleObject {
+    private static final long serialVersionUID = 1L;
     private BaseProperties base;
     private Box box;
     private Camera camera;

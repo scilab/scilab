@@ -28,11 +28,11 @@ import javax.swing.tree.TreePath;
  *
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = {"serial"})
 public class ScilabTreeTableModelAdapter extends AbstractTableModel {
+    private static final long serialVersionUID = 1L;
 
     private JTree tree;
-    private ScilabTreeTableModel treeTableModel;
+    private transient ScilabTreeTableModel treeTableModel;
 
     /**
      * Default constructor
@@ -90,7 +90,7 @@ public class ScilabTreeTableModelAdapter extends AbstractTableModel {
     }
 
     /** {@inheritdoc} */
-    public Class getColumnClass(int column) {
+    public Class<?> getColumnClass(int column) {
         return treeTableModel.getColumnClass(column);
     }
 

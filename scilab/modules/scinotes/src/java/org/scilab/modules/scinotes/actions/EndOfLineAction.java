@@ -67,6 +67,7 @@ public class EndOfLineAction extends DefaultCheckAction {
      * @return JRadioButtonMenuItem
      */
     public JRadioButtonMenuItem createRadioButtonMenuItem(SciNotes editor) {
+        init();
         JRadioButtonMenuItem radio = new JRadioButtonMenuItem(eolMenuLabel);
         radio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {

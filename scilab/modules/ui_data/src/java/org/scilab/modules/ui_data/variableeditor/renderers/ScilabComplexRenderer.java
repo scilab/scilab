@@ -35,8 +35,8 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author Allan SIMON
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class ScilabComplexRenderer extends DefaultTableCellRenderer {
+    private static final long serialVersionUID = 1L;
 
     public static final int SHORT = 0;
     public static final int SHORTE = 1;
@@ -65,7 +65,7 @@ public class ScilabComplexRenderer extends DefaultTableCellRenderer {
     private static NumberFormat numberFormat = SHORTFORMAT;
     private static NumberFormat numberFormatE = SHORTEFORMAT;
 
-    private Map desktopFontHints = (Map) Toolkit.getDefaultToolkit().getDesktopProperty("awt.font.desktophints");
+    private transient Map<?, ?> desktopFontHints = (Map<?, ?>) Toolkit.getDefaultToolkit().getDesktopProperty("awt.font.desktophints");
     private boolean areHintsSet = false;
     private int ascent = -1;
     private Font fontFori;

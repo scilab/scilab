@@ -20,6 +20,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
@@ -73,7 +74,7 @@ public class ScilabCaret extends DefaultCaret {
      * @param active the color of the selection when it is active
      * @param inactive the color of the selection when it is inactive
      */
-    public void setSelectionColor(Color active, Color inactive) {
+    public final void setSelectionColor(Color active, Color inactive) {
         selectionColor = active;
         inactiveSelectionColor = inactive;
         if (inactiveSelectionColor == null) {
@@ -146,7 +147,8 @@ public class ScilabCaret extends DefaultCaret {
             Rectangle r = null;
             int pos = editor.getCaretPosition();
             try {
-                r = editor.modelToView(pos);
+                Rectangle2D rect = editor.modelToView2D(pos);
+                r = new Rectangle((int) rect.getX(), (int) rect.getY(), (int) rect.getWidth(), (int) rect.getHeight());
             } catch (BadLocationException e) {
                 System.err.println(e);
             }

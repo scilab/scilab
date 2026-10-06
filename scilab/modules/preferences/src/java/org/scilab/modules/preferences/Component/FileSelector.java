@@ -49,7 +49,7 @@ import org.w3c.dom.Node;
  * @author Calixte DENIZET
  *
  */
-public class FileSelector extends Panel implements XComponent, XChooser, DocumentListener {
+public final class FileSelector extends Panel implements XComponent, XChooser, DocumentListener {
 
     /** Universal identifier for serialization.
      *
@@ -59,7 +59,7 @@ public class FileSelector extends Panel implements XComponent, XChooser, Documen
     private static final Color NORMALCOLOR = Color.BLACK;
     private static final Color ERRORCOLOR = Color.RED;
 
-    private ActionListener actionListener;
+    private transient ActionListener actionListener;
     private JTextField textField;
     private JButton button;
     private String currentDir = System.getProperty("user.home");
@@ -85,7 +85,7 @@ public class FileSelector extends Panel implements XComponent, XChooser, Documen
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, FileSelector.this);
-                SwingScilabFileChooser fileChooser = new SwingScilabFileChooser();
+                SwingScilabFileChooser fileChooser = SwingScilabFileChooser.create();
                 fileChooser.setInitialDirectory(currentDir);
                 fileChooser.setParentFrame(frame);
                 fileChooser.setMultipleSelection(false);

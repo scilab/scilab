@@ -29,8 +29,8 @@ import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
  * @author Sylvestre Koumar
  *
  */
-@SuppressWarnings(value = { "serial" })
 public class PageSetupAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     private static PageFormat pageFormat;
 

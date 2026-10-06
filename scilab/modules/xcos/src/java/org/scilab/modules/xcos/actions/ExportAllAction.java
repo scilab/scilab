@@ -48,8 +48,8 @@ import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 /**
  * Diagram export management
  */
-@SuppressWarnings(value = { "serial" })
 public final class ExportAllAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.EXPORT_ALL;
     /** Icon name of the action */
@@ -58,7 +58,7 @@ public final class ExportAllAction extends DefaultAction {
     public static final int MNEMONIC_KEY = 0;
     /** Accelerator key for the action */
     public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit()
-            .getMenuShortcutKeyMask();
+            .getMenuShortcutKeyMaskEx();
 
     private static final String HTML = "html";
     private static final String VML = "vml";
@@ -218,7 +218,7 @@ public final class ExportAllAction extends DefaultAction {
                     String[] strUID = new String[1];
                     controller.getObjectProperty(currentUID, Kind.BLOCK, ObjectProperties.UID, strUID);
 
-                    final XcosDiagram child = new XcosDiagram(controller, currentUID, Kind.BLOCK, strUID[0]);
+                    final XcosDiagram child = XcosDiagram.create(controller, currentUID, Kind.BLOCK, strUID[0]);
                     XcosCellFactory.insertChildren(controller, child);
                     diagrams.add(child);
                     stash.add(currentUID);

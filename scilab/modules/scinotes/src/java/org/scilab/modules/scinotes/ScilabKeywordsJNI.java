@@ -7,6 +7,7 @@
  * ----------------------------------------------------------------------------- */
 
 package org.scilab.modules.scinotes;
+import org.scilab.modules.localization.NativeLibraryLoader;
 
 
 /* It is generated code. Disable checkstyle */
@@ -15,6 +16,7 @@ package org.scilab.modules.scinotes;
    * @author Allan CORNET - DIGITEO 2009
    * @author Calixte DENIZET
    */
+
 public class ScilabKeywordsJNI {
 
   /**
@@ -26,7 +28,7 @@ public class ScilabKeywordsJNI {
 
   static {
     try {
-        System.loadLibrary("sciscinotes");
+        NativeLibraryLoader.loadLibrary("sciscinotes");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

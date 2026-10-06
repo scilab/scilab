@@ -47,7 +47,7 @@ import org.scilab.modules.console.utils.ScilabLaTeXViewer;
  * The class ScilabDocument is used to render a document .sci or .sce
  * @author Calixte DENIZET
  */
-public class ScilabDocument extends PlainDocument implements DocumentListener {
+public final class ScilabDocument extends PlainDocument implements DocumentListener {
 
     private static final long serialVersionUID = -1227880612912063687L;
 
@@ -70,12 +70,12 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private static final String LINE_SEPARATOR = "line.separator";
     private static final int INITFUNCTIONSNUMBER = 128;
 
-    private View view;
-    private List<String> saved = new Vector<String>();
-    private FunctionScanner funScanner;
-    private ScilabLexer lexerBlockComment;
+    private transient View view;
+    private transient List<String> saved = new Vector<String>();
+    private transient FunctionScanner funScanner;
+    private transient ScilabLexer lexerBlockComment;
 
-    private Set<String> functions = new HashSet<String>(INITFUNCTIONSNUMBER);
+    private transient Set<String> functions = new HashSet<String>(INITFUNCTIONSNUMBER);
 
     private boolean contentModified;
     private boolean contentModifiedSinceBackup;
@@ -670,7 +670,10 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 case ScilabLeafElement.FUN :
                     if (compt == 0) {
                         FunctionScanner.FunctionInfo info = e.getFunctionInfo();
-                        return new List[] {info.returnValues, info.argsValues};
+                        List<String>[] result = (List<String>[]) new ArrayList<?>[2];
+                        result[0] = info.returnValues;
+                        result[1] = info.argsValues;
+                        return result;
                     } else {
                         compt++;
                     }
@@ -888,7 +891,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         private boolean visible = true;
         private int previousType;
         private int type;
-        private FunctionScanner.FunctionInfo info;
+        private transient FunctionScanner.FunctionInfo info;
         private boolean broken;
         private boolean brokenString;
         private boolean blockComment;

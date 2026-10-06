@@ -284,10 +284,10 @@ public class Rotation {
     @Override
     public int hashCode() {
         int hashCode = 0;
-        hashCode += 7 * (new Double(a).hashCode());
-        hashCode += 17 * (new Double(b).hashCode());
-        hashCode += 29 * (new Double(c).hashCode());
-        hashCode += 37 * (new Double(d).hashCode());
+        hashCode += 7 * (Double.valueOf(a).hashCode());
+        hashCode += 17 * (Double.valueOf(b).hashCode());
+        hashCode += 29 * (Double.valueOf(c).hashCode());
+        hashCode += 37 * (Double.valueOf(d).hashCode());
         return hashCode;
     }
 

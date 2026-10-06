@@ -40,7 +40,9 @@ import org.scilab.modules.gui.ged.MessagesGED;
 *
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class DataProperties extends SimpleSection {
+public final class DataProperties extends SimpleSection {
+
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static DataProperties instance;
     private Integer currentpolyline;
@@ -65,6 +67,7 @@ public class DataProperties extends SimpleSection {
     */
     public DataProperties(Integer objectID) {
         super(MessagesGED.data_properties, "polyline");
+        initializeSection();
         instance = this;
         currentpolyline = objectID;
         sectionPanel = getSectionPanel();

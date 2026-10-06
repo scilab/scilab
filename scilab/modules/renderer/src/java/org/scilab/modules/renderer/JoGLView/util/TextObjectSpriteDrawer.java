@@ -23,6 +23,7 @@ import java.awt.font.TextLayout;
 import java.awt.geom.Rectangle2D;
 
 import javax.swing.Icon;
+import javax.swing.SwingUtilities;
 
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -61,8 +62,8 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
     private final int[] columnWidth;
     private final float[] lineAscent;
 
-    private final int width;
-    private final int height;
+    private int width;
+    private int height;
 
     private boolean latexSet = false;
     private boolean mathmlSet = false;
@@ -81,16 +82,6 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         this.lineAscent = new float[lineNumber];
         this.columnWidth = new int[columnNumber];
         this.entities = new Object[columnNumber][lineNumber];
-
-        boolean fractionalFont = textObject.getFontFractional();
-        Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor(), textObject.getFont().getColorAlpha().floatValue());
-        Font font = computeFont(textObject);
-
-        loadDeps(textObject);
-        fillEntityMatrix(textObject, fractionalFont, textColor, font);
-
-        this.width  = sum(columnWidth) + HMARGIN * (columnNumber + 1) + 2 * thickness + SPACEWIDTH * (columnNumber - 1);
-        this.height = sum(lineHeight)  + VMARGIN * (lineNumber + 1) + 2 * thickness;
     }
 
     /**
@@ -109,6 +100,21 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         this.lineAscent = new float[lineNumber];
         this.columnWidth = new int[columnNumber];
         this.entities = new Object[columnNumber][lineNumber];
+    }
+
+    /**
+     * Finish initialization after construction (entity matrix filling would leak
+     * this from the constructor).
+     * Called once right after instantiation, before the drawer is used.
+     * Must run after the subclass has configured appearance, alignment and thickness.
+     * @param colorMap the color map to use
+     * @param textObject the text object to draw
+     * @param scaleFactor the scale factor to apply
+     */
+    public void init(final ColorMap colorMap, final TextObject textObject, double scaleFactor) {
+        Integer[] dimensions = textObject.getTextArrayDimensions();
+        int columnNumber = dimensions[1];
+        int lineNumber = dimensions[0];
 
         boolean fractionalFont = textObject.getFontFractional();
         Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor(), textObject.getFont().getColorAlpha().floatValue());
@@ -415,4 +421,5 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         }
         return sum;
     }
+
 }

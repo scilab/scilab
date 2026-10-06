@@ -8,13 +8,13 @@
 
 package org.scilab.modules.localization;
 
-
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
  /** 
    * @author Allan CORNET
    * @copyright DIGITEO 2010
    */
+
 public class LocaleToLCIDJNI {
 
   /**
@@ -26,7 +26,7 @@ public class LocaleToLCIDJNI {
 
   static {
     try {
-        System.loadLibrary("scilocalization");
+        NativeLibraryLoader.loadLibrary("scilocalization");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

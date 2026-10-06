@@ -23,8 +23,9 @@ import java.nio.FloatBuffer;
 /**
  * @author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
 public class JoGLElementsBuffer extends JoGLDataBuffer implements ElementsBuffer {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * The current size of one element.
@@ -294,6 +295,8 @@ public class JoGLElementsBuffer extends JoGLDataBuffer implements ElementsBuffer
      * A specific runtime exception for bad elements size.
      */
     private static class BadElementSizeException extends RuntimeException {
+
+        private static final long serialVersionUID = 1L;
 
         /**
          * Default constructor.

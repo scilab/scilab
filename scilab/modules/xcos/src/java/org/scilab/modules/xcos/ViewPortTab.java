@@ -35,12 +35,14 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.mxGraphOutline;
 
-@SuppressWarnings(value = { "serial" })
 public final class ViewPortTab extends SwingScilabDockablePanel {
+    private static final long serialVersionUID = 1L;
     public static final String DEFAULT_WIN_UUID = "xcos-viewport-default-window";
 
     private ViewPortTab(XcosDiagram graph, String uuid) {
         super(XcosMessages.VIEWPORT, uuid);
+
+        init();
 
         graph.setViewPortTab(uuid);
         setWindowIcon(Xcos.ICON.getImage());

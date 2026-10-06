@@ -119,6 +119,12 @@ public abstract class BasicPort extends XcosCell {
     /**
      * Instantiate a port with a style (or typename).
      *
+     * The port properties are set synchronously on purpose : callers use the
+     * port (e.g. its MVC port kind when inserting it into a block) right
+     * after the constructor returns. Deferring the initialization through
+     * SwingUtilities.invokeLater() leaves the MVC un-synchronized until the
+     * event queue dispatches the task.
+     *
      * @param style
      *            Value to be set as a Style and as TypeName
      */
@@ -126,12 +132,34 @@ public abstract class BasicPort extends XcosCell {
         super(controller, uid, kind, value, new mxGeometry(0, 0, DEFAULT_PORTSIZE, DEFAULT_PORTSIZE), style, id);
 
         this.vertex = true;
+        this.orientation = orientation;
 
+        initializePort(controller, uid, kind, isImplicit, portKind);
+    }
+
+    /**
+     * Initialize port properties during construction.
+     *
+     * The mxCell field is assigned and the model synchronized directly rather
+     * than through the inherited setStyle() : calling it from a constructor
+     * would let partially-initialized subclasses escape (and is reported by
+     * the {@code this-escape} lint).
+     *
+     * @param controller the controller
+     * @param uid the uid
+     * @param kind the kind
+     * @param isImplicit whether the port is implicit
+     * @param portKind the port kind
+     */
+    private void initializePort(JavaController controller, long uid, Kind kind, boolean isImplicit, PortKind portKind) {
         controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.IMPLICIT, isImplicit);
         controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.PORT_KIND, portKind.ordinal());
 
-        this.orientation = orientation;
-        setStyle(computeLabelPosition(orientation));
+        final String labelStyle = computeLabelPosition(orientation);
+        this.style = labelStyle;
+        if (labelStyle != null) {
+            controller.setObjectProperty(uid, kind, ObjectProperties.STYLE, labelStyle);
+        }
     }
 
     /**
@@ -166,7 +194,9 @@ public abstract class BasicPort extends XcosCell {
      */
     public final String computeLabelPosition(final Orientation current) {
         if (current != null) {
-            StyleMap style = new StyleMap(getStyle());
+            // read the mxCell field directly rather than calling getStyle() as
+            // this method is also invoked during construction (this-escape)
+            StyleMap style = new StyleMap(this.style);
 
             // clean up any previously set spacing values
             style.remove(mxConstants.STYLE_LABEL_POSITION);
@@ -184,7 +214,7 @@ public abstract class BasicPort extends XcosCell {
             return style.toString();
         }
 
-        return getStyle();
+        return this.style;
     }
 
     /**
@@ -240,4 +270,5 @@ public abstract class BasicPort extends XcosCell {
 
         return str.toString();
     }
+
 }

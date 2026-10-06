@@ -21,6 +21,7 @@ import static java.util.Arrays.asList;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
@@ -155,14 +156,14 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
         URL u;
         File f;
         try {
-            u = new URL(url);
+            u = URI.create(url).toURL();
 
             try {
                 f = new File(u.toURI());
             } catch (URISyntaxException e) {
                 f = new File(u.getPath());
             }
-        } catch (MalformedURLException e1) {
+        } catch (MalformedURLException | IllegalArgumentException e1) {
             throw new RuntimeException(e1);
         }
 

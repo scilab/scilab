@@ -72,7 +72,7 @@ public final class PaletteSearcher {
             }
 
             for (int i = 0; i < hits.length; i++) {
-                Document doc = searcher.doc(hits[i].doc);
+                Document doc = searcher.storedFields().document(hits[i].doc);
                 found.add(doc);
             }
         } catch (IOException | QueryNodeException e) {

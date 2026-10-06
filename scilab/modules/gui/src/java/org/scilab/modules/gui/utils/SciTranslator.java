@@ -23,7 +23,7 @@ package org.scilab.modules.gui.utils;
  *
  */
 public class SciTranslator {
-    /**
+    /*
      * Those static final constant are only for reverse compatibility
      * With old Scilab.
      * Java button are :

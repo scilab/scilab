@@ -61,13 +61,14 @@ public final class GraphActionManager {
         for (DefaultAction defaultAction : actionSet) {
             if (defaultAction.getClass() == action) {
                 // Here we can safely cast the action according to the test.
-                return (T) defaultAction;
+                return action.cast(defaultAction);
             }
         }
 
         T instance = null;
         try {
             instance = action.getConstructor(ScilabGraph.class).newInstance(graph);
+            instance.initializeAction();
             actionSet.add(instance);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
@@ -128,7 +129,7 @@ public final class GraphActionManager {
         for (DefaultAction defaultAction : actionSet) {
             if (defaultAction.getClass() == action) {
                 // Here we can safely cast the action according to the test.
-                return (T) defaultAction;
+                return action.cast(defaultAction);
             }
         }
 

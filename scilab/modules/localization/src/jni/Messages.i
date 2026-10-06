@@ -51,10 +51,10 @@ public class%}
     try {
         if (System.getProperty("os.name").toLowerCase().contains("windows") != true) {
             if (System.getProperty("testngTests")!=null) {
-                System.loadLibrary("scilab");
+                NativeLibraryLoader.loadLibrary("scilab");
             }
         }
-        System.loadLibrary("scilocalization");
+        NativeLibraryLoader.loadLibrary("scilocalization");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

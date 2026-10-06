@@ -44,7 +44,7 @@ import com.mxgraph.model.mxGeometry;
  * @author Antoine ELIAS
  *
  */
-public class PaletteDiagram extends XcosDiagram {
+public final class PaletteDiagram extends XcosDiagram {
 
     private String name;
     private String fileName;
@@ -55,6 +55,11 @@ public class PaletteDiagram extends XcosDiagram {
      */
     public PaletteDiagram(long uid) {
         super(new JavaController(), uid, Kind.DIAGRAM, new UID().toString());
+
+        // initialize the diagram-level state (this class is final, so calling
+        // this from the constructor cannot leak a subclass-partial instance)
+        initializeDiagram();
+
         setComponent(new PaletteComponent(this));
 
         setTitle(PaletteDiagram.class.getName());

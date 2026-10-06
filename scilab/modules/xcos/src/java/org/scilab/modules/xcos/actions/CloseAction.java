@@ -33,8 +33,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Diagram closing management
  */
-@SuppressWarnings(value = { "serial" })
 public final class CloseAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.CLOSE;
     /** Icon name of the action */
@@ -43,7 +43,7 @@ public final class CloseAction extends DefaultAction {
     public static final int MNEMONIC_KEY = KeyEvent.VK_W;
     /** Accelerator key for the action */
     public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit()
-            .getMenuShortcutKeyMask();
+            .getMenuShortcutKeyMaskEx();
 
     /**
      * Constructor

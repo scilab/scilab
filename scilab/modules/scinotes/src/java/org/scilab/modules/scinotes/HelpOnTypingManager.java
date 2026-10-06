@@ -121,7 +121,7 @@ public final class HelpOnTypingManager implements KeyListener {
         ScilabDocument doc = (ScilabDocument) textPane.getDocument();
         if (isActive() && c != KeyEvent.CHAR_UNDEFINED && textPane.getSelectionStart() == textPane.getSelectionEnd()) {
             int pos = textPane.getCaretPosition();
-            if (c == ' ' && e.getModifiers() == 0) {
+            if (c == ' ' && !e.isShiftDown() && !e.isControlDown() && !e.isAltDown() && !e.isMetaDown()) {
                 int end = doc.getDefaultRootElement().getElement(doc.getDefaultRootElement().getElementIndex(pos)).getEndOffset() - 1;
                 /* the following test is used to know if an insertion in the line is done */
                 if (pos == end) {

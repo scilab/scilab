@@ -95,8 +95,8 @@ public final class EditInScinotesAction extends CommonCallBack {
             /* Dynamic load of the SciNotes class.
              * This is done to avoid a cyclic dependency on gui <=> SciNotes
              */
-            Class scinotesClass = Class.forName(SCINOTES_PACKAGE);
-            Class[] arguments = new Class[] {String.class};
+            Class<?> scinotesClass = Class.forName(SCINOTES_PACKAGE);
+            Class<?>[] arguments = new Class<?>[] {String.class};
             Method method = scinotesClass.getMethod("scinotesWithText", arguments);
             method.invoke(scinotesClass, new Object[] {CommandHistory.getSelectedCommands()});
 

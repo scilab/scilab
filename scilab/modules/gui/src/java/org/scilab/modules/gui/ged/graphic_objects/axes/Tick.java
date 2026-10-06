@@ -24,7 +24,8 @@ import org.scilab.modules.gui.ged.graphic_objects.properties.TextObject;
 * Construction and startup of all components of the section: Font.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Tick extends SimpleSection {
+public final class Tick extends SimpleSection {
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static Tick instance;
     private Axes axes = new Axes();
@@ -36,6 +37,7 @@ public class Tick extends SimpleSection {
     */
     public Tick(Integer objectID) {
         super(MessagesGED.tick, "axes");
+        initializeSection();
         instance = this;
         sectionPanel = getSectionPanel();
         initComponents(objectID);

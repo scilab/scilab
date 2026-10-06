@@ -33,8 +33,8 @@ import com.mxgraph.view.mxGraphSelectionModel;
 /**
  * SplitBlock auto Position.
  */
-@SuppressWarnings(value = { "serial" })
-public class AutoPositionSplitBlockAction extends VertexSelectionDependantAction {
+public final class AutoPositionSplitBlockAction extends VertexSelectionDependantAction {
+    private static final long serialVersionUID = 1L;
 
     /** Name of the action */
     public static final String NAME = XcosMessages.BLOCK_AUTO_POSITION_SPLIT_BLOCK;
@@ -53,11 +53,19 @@ public class AutoPositionSplitBlockAction extends VertexSelectionDependantAction
      */
     public AutoPositionSplitBlockAction(ScilabGraph scilabGraph) {
         super(scilabGraph);
+    }
 
-        // The MenuItem is enabled only when SplitBlock is selected.
-        if (scilabGraph != null) {
+    /**
+     * Install the SplitBlock constraint after construction to avoid this-escape.
+     * super.installConstraints() installs the vertex-selection constraint first.
+     */
+    @Override
+    protected void installConstraints() {
+        super.installConstraints();
+        ScilabGraph g = getScilabGraph();
+        if (g != null) {
             SplitBlockSelectionDependantConstraint c = new SplitBlockSelectionDependantConstraint();
-            c.install(this, scilabGraph);
+            c.install(this, g);
         }
     }
 

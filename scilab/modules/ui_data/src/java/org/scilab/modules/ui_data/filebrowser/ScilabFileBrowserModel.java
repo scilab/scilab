@@ -50,7 +50,7 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel
         UiDataMessages.TYPE_COLUMN, UiDataMessages.LASTMODIF_COLUMN
     };
 
-    private static final Class[] types = {
+    private static final Class<?>[] types = {
         ScilabTreeTableModel.class, FileSize.class, String.class, Date.class
     };
 
@@ -63,7 +63,6 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel
             watchDirectories(new Object[] {root});
         }
 
-        @SuppressWarnings("unchecked")
         @Override
         protected Void doInBackground() throws Exception {
             for (; ; ) {
@@ -114,7 +113,7 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel
 
                 // trigger a refresh on the EDT for the full treepath
                 List<WatchEvent<?>> events = key.pollEvents();
-                for (@SuppressWarnings("rawtypes") WatchEvent event : events) {
+                for (WatchEvent<?> event : events) {
                     publish((WatchEvent<Path>) event);
                 }
 
@@ -190,7 +189,7 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel
      */
     public void setBaseDir(final String baseDir, final SwingScilabTreeTable stt) {
         this.baseDir = baseDir;
-        SwingWorker worker =
+        SwingWorker<Void, Void> worker =
         new SwingWorker<Void, Void>() {
             protected Void doInBackground() throws Exception {
                 File f = new File(baseDir);
@@ -339,7 +338,7 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel
     }
 
     /** {@inheritDoc} */
-    public Class getColumnClass(int column) {
+    public Class<?> getColumnClass(int column) {
         return types[column];
     }
 

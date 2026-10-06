@@ -49,8 +49,8 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * DuplicateVariableAction class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class DuplicateVariableAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static final String KEY = "OSSCKEY D";
     private static final String CREATE = "Duplicate";

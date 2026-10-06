@@ -72,7 +72,7 @@ import org.scilab.modules.gui.widget.Widget;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabListBox extends JScrollPane implements SwingViewObject, Widget {
+public final class SwingScilabListBox extends JScrollPane implements SwingViewObject, Widget {
 
     private static final long serialVersionUID = 3507396207331058895L;
 
@@ -80,21 +80,21 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
 
     private Integer uid;
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
-    private CommonCallBack callback;
+    private transient CommonCallBack callback;
 
-    private ListSelectionListener listListener;
+    private transient ListSelectionListener listListener;
 
-    private AdjustmentListener adjustmentListener;
+    private transient AdjustmentListener adjustmentListener;
 
     /**
      * the JList we use
      */
-    private JList list;
+    private JList<Object> list;
 
-    private ListCellRenderer defaultRenderer = null;
-    private ListCellRenderer listRenderer = null;
+    private transient ListCellRenderer<? super Object> defaultRenderer = null;
+    private transient ListCellRenderer<Object> listRenderer = null;
 
     /**
      * Constructor
@@ -104,8 +104,8 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
         getViewport().add(getList());
         defaultRenderer = getList().getCellRenderer();
 
-        listRenderer = new ListCellRenderer() {
-            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+        listRenderer = new ListCellRenderer<Object>() {
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
                 if (value instanceof SwingScilabListItem) {
@@ -429,7 +429,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * @see org.scilab.modules.gui.widget.Widget#setText(java.lang.String)
      */
     public void setText(String text) {
-        DefaultListModel model = new DefaultListModel();
+        DefaultListModel<Object> model = new DefaultListModel<>();
         model.addElement(text);
         getList().setModel(model);
         revalidate();
@@ -441,7 +441,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * @see org.scilab.modules.gui.widget.Widget#setText(java.lang.String)
      */
     public void setText(String[] text) {
-        DefaultListModel model = new DefaultListModel();
+        DefaultListModel<Object> model = new DefaultListModel<>();
 
         // check numbers of columns
         GraphicController controller = GraphicController.getController();
@@ -641,11 +641,11 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * Get or create the list component
      * @return the list
      */
-    private JList getList() {
+    private JList<Object> getList() {
         if (list == null) {
-            list = new JList();
+            list = new JList<>();
             list.setLayoutOrientation(JList.VERTICAL);
-            list.setModel(new DefaultListModel());
+            list.setModel(new DefaultListModel<>());
         }
         return list;
     }

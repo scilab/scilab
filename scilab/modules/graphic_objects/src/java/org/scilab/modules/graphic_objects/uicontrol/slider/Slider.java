@@ -26,7 +26,7 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 /**
  * @author Vincent COUVERT
  */
-public class Slider extends Uicontrol {
+public final class Slider extends Uicontrol {
 
     /**
      * Constructor

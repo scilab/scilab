@@ -48,7 +48,7 @@ public final class ScilabOperations {
     private static final String toString(ScilabJavaObject A) {
         String s;
         if (A.clazz.isArray()) {
-            Class cl = A.clazz.getComponentType();
+            Class<?> cl = A.clazz.getComponentType();
             if (cl.isPrimitive()) {
                 s = Arrays.deepToString(new Object[] { A.object });
                 s = s.substring(1, s.length() - 1);

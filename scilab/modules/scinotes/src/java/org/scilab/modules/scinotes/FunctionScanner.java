@@ -343,8 +343,8 @@ public final class FunctionScanner {
 
     public FunctionScanner(ScilabDocument doc) {
         this.doc = doc;
-        returnValues = new ArrayList();
-        argsValues = new ArrayList();
+        returnValues = new ArrayList<>();
+        argsValues = new ArrayList<>();
 	this.matchBlock = new MatchingBlockScanner(doc);
     }
 
@@ -366,8 +366,8 @@ public final class FunctionScanner {
 
     public int getLineType(int p0, int p1) {
         try {
-            returnValues = new ArrayList();
-            argsValues = new ArrayList();
+            returnValues = new ArrayList<>();
+            argsValues = new ArrayList<>();
 	    start = p0;
             end = p1;
             yyreset(new ScilabDocumentReader(doc, p0, p1));
@@ -442,7 +442,7 @@ public final class FunctionScanner {
         public List<String> returnValues;
         public List<String> argsValues;
 
-        public FunctionInfo(String name, List ret, List args) {
+        public FunctionInfo(String name, List<String> ret, List<String> args) {
             this.functionName = name;
             this.returnValues = ret;
             this.argsValues = args;

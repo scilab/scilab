@@ -27,8 +27,8 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * CopySelectionAsScilabMatrixWithCRAction class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class CopySelectionAsScilabMatrixWithCRAction extends CopySelectionAction {
+    private static final long serialVersionUID = 1L;
 
     private static final String KEY = "OSSCKEY R";
     private static final String COPYAS = "Copy as Scilab matrix with CR";

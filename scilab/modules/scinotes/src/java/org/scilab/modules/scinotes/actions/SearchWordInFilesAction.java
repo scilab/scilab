@@ -69,7 +69,6 @@ import org.scilab.modules.scinotes.utils.SearchFile;
  * SearchWordInFilesAction Class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class SearchWordInFilesAction extends DefaultAction implements WindowFocusListener {
 
     private static final long serialVersionUID = 1L;
@@ -91,9 +90,9 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
     private JButton buttonClose;
     private JButton cancelButton;
     private JButton chooseBaseDirButton;
-    private JComboBox comboBaseDir;
-    private JComboBox comboFilePattern;
-    private JComboBox comboWordPattern;
+    private JComboBox<String> comboBaseDir;
+    private JComboBox<String> comboFilePattern;
+    private JComboBox<String> comboWordPattern;
     private JCheckBox checkRecursive;
     private JCheckBox checkWordCase;
     private JCheckBox checkFileCase;
@@ -239,17 +238,17 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
 
         JLabel baseDirLabel = new JLabel(SciNotesMessages.BASEDIRECTORY);
         JLabel baseDirExpLabel = new JLabel(SciNotesMessages.BASEDIREXP);
-        comboBaseDir = new JComboBox();
+        comboBaseDir = new JComboBox<String>();
         comboBaseDir.setEditable(true);
         chooseBaseDirButton = new JButton(SciNotesMessages.CHOOSEDIR);
         JPanel panelBase = new JPanel();
         JLabel filePatternLabel = new JLabel(SciNotesMessages.FILEPATTERN + ":");
         JLabel filePatternExpLabel = new JLabel(SciNotesMessages.FILEPATTERNEXP);
-        comboFilePattern = new JComboBox();
+        comboFilePattern = new JComboBox<String>();
         comboFilePattern.setEditable(true);
         ((JTextField) comboFilePattern.getEditor().getEditorComponent()).setColumns(32);
         JLabel wordPatternLabel = new JLabel(SciNotesMessages.WORDPATTERN + ":");
-        comboWordPattern = new JComboBox();
+        comboWordPattern = new JComboBox<String>();
         comboWordPattern.setEditable(true);
         comboWordPattern.getEditor().addActionListener(new ActionListener() {
 
@@ -695,7 +694,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
     /**
      * fill comboBaseDir
      */
-    private static void fillCombo(JComboBox combo, String nodeName, String childNodeName) {
+    private static void fillCombo(JComboBox<String> combo, String nodeName, String childNodeName) {
         combo.removeAllItems();
         List<String> recent = ConfigSciNotesManager.getRecent(nodeName, childNodeName);
         for (String item : recent) {
@@ -706,7 +705,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
     /**
      * Update recent base directory
      */
-    private static String updateRecent(JComboBox combo, String last, String nodeName, String childNodeName) {
+    private static String updateRecent(JComboBox<String> combo, String last, String nodeName, String childNodeName) {
         String str = (String) combo.getEditor().getItem();
         if (str != null && str.length() != 0 && !str.equals(last)) {
             List<String> recent = ConfigSciNotesManager.getRecent(nodeName, childNodeName);

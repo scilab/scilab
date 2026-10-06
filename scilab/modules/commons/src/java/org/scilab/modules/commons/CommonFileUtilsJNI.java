@@ -7,11 +7,12 @@
  * ----------------------------------------------------------------------------- */
 
 package org.scilab.modules.commons;
+import org.scilab.modules.localization.NativeLibraryLoader;
 
 
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
- /** 
+ /**
    * Some file utils
    * @author Calixte DENIZET
    * @copyright DIGITEO 2011
@@ -27,7 +28,7 @@ public class CommonFileUtilsJNI {
 
   static {
     try {
-        System.loadLibrary("scicommons");
+        NativeLibraryLoader.loadLibrary("scicommons");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

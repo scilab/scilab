@@ -60,15 +60,19 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, W
 
     private CommonCallBack callback;
 
-    private ActionListener actListener;
+    private transient ActionListener actListener;
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     /**
      * Constructor
      */
     public SwingScilabCheckBox() {
         super();
+    }
+
+    @Override
+    public void init() {
         /* Avoid the L&F to erase user background settings */
         setContentAreaFilled(false);
         setOpaque(true);

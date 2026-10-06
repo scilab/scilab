@@ -25,7 +25,7 @@ import org.scilab.modules.renderer.JoGLView.interaction.util.PointAComputer;
 /**
  * @author Bruno JOFRET
  */
-public class OnePointRubberBox extends RubberBox implements PointRubberBox {
+public final class OnePointRubberBox extends RubberBox implements PointRubberBox {
 
     /**
      * Default constructor.

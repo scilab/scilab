@@ -33,8 +33,8 @@ import org.scilab.modules.scinotes.SciNotes;
  * Content pane for SciNotes.
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial", "this-escape" })
-public class SciNotesContents extends JPanel {
+public final class SciNotesContents extends JPanel {
+    private static final long serialVersionUID = 1L;
 
     private ScilabTabbedPane stp;
     private final JLayeredPane editorLayer;
@@ -42,7 +42,7 @@ public class SciNotesContents extends JPanel {
     private ScilabCefPanel browserOverlay;
     private Component browserTarget;
     private Component secondaryBrowserTarget;
-    private SplitLayoutListener splitLayoutListener;
+    private transient SplitLayoutListener splitLayoutListener;
 
     /**
      * Notified with the browser overlay's local (overlay-relative) bounds
@@ -63,7 +63,7 @@ public class SciNotesContents extends JPanel {
      * Re-run the layout whenever the target or one of its ancestors is resized
      * or moved (i.e. once the strip settles).
      */
-    private final java.awt.event.ComponentAdapter overlayTargetResized =
+    private final transient java.awt.event.ComponentAdapter overlayTargetResized =
         new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent e) {
                 layoutBrowserOverlay();
@@ -72,7 +72,7 @@ public class SciNotesContents extends JPanel {
                 layoutBrowserOverlay();
             }
         };
-    private final java.awt.event.HierarchyBoundsListener overlayAncestorMoved =
+    private final transient java.awt.event.HierarchyBoundsListener overlayAncestorMoved =
         new java.awt.event.HierarchyBoundsListener() {
             public void ancestorMoved(java.awt.event.HierarchyEvent e) {
                 layoutBrowserOverlay();

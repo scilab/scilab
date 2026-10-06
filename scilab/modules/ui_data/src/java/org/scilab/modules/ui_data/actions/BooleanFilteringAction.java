@@ -18,8 +18,8 @@ package org.scilab.modules.ui_data.actions;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
-@SuppressWarnings(value = { "serial" })
 public class BooleanFilteringAction extends FilteringAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = UiDataMessages.BOOLEAN;
 

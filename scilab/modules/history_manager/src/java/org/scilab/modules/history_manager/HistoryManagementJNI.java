@@ -7,6 +7,7 @@
  * ----------------------------------------------------------------------------- */
 
 package org.scilab.modules.history_manager;
+import org.scilab.modules.localization.NativeLibraryLoader;
 
 
 /* It is generated code. Disable checkstyle */
@@ -17,6 +18,7 @@ package org.scilab.modules.history_manager;
    * @author Allan CORNET
    * @copyright INRIA
    */
+
 class HistoryManagementJNI {
 
  /**
@@ -28,7 +30,7 @@ class HistoryManagementJNI {
 
   static {
     try {
-        System.loadLibrary("scihistory_manager");
+        NativeLibraryLoader.loadLibrary("scihistory_manager");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

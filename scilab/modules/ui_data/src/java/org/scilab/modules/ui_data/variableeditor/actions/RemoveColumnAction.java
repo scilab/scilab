@@ -30,8 +30,8 @@ import org.scilab.modules.ui_data.variableeditor.TableVariableEditor;
  * Set Precision Action class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class RemoveColumnAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private final JTable table;
 

@@ -73,7 +73,7 @@ public final class ToolBarBuilder {
      * @throws IOException can be thrown when an error occurs while accessing the file
      * @throws ParserConfigurationException can be thrown when an error occurs while parsing the file
      */
-    public static Object buildToolBar(Class[] resultClass, String fileToLoad) throws SAXException, IOException, ParserConfigurationException {
+    public static Object buildToolBar(Class<?>[] resultClass, String fileToLoad) throws SAXException, IOException, ParserConfigurationException {
 
         InvocationHandler invocationHandler = new ToolBarConfigurationHandler(fileToLoad);
 
@@ -103,7 +103,7 @@ public final class ToolBarBuilder {
 
         try {
             ToolBarConfiguration toolBarConfig =
-                (ToolBarConfiguration) buildToolBar(new Class[] {ToolBarConfiguration.class}, fileToLoad);
+                (ToolBarConfiguration) buildToolBar(new Class<?>[] {ToolBarConfiguration.class}, fileToLoad);
             toolBarConfig.addPushButtons(toolbar);
         } catch (IllegalArgumentException e) {
             System.err.println(CANNOT_CREATE_TOOLBAR);

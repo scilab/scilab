@@ -12,7 +12,7 @@ import java.io.StringReader;
 @javax.annotation.Generated("JFlex")
 
 // See https://github.com/jflex-de/jflex/issues/222
-@SuppressWarnings("FallThrough")
+@SuppressWarnings("fallthrough")
 public final class SynopsisLexer {
 
   /** This character denotes the end of file. */

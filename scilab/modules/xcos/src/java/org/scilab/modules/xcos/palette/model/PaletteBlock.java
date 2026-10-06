@@ -193,8 +193,8 @@ public class PaletteBlock {
         int iconW = img.getIconWidth();
         int iconH = img.getIconHeight();
         float scale = Math.min((float) maxW / iconW, (float) maxH / iconH);
-        iconW *= scale;
-        iconH *= scale;
+        iconW = (int) (iconW * scale);
+        iconH = (int) (iconH * scale);
         return new Dimension(iconW, iconH);
     }
 }

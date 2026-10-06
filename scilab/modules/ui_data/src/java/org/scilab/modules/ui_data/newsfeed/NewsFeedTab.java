@@ -46,14 +46,15 @@ import java.util.ListIterator;
  * now, manages one tab only
  */
 public class NewsFeedTab extends SwingScilabDockablePanel implements SimpleTab {
+    private static final long serialVersionUID = 1L;
 
     public static final String NEWSFEED_UUID = "DC0957B3-81DA-4E39-B0B5-E93B35412162";
     public static final String NEWSFEED_HELP_ID = "newsfeed";
 
     private static NewsFeedTab instance = null;
 
-    private NewsFeedWidget newsFeedWidget;
-    private NewsFeedController newsFeedController;
+    private transient NewsFeedWidget newsFeedWidget;
+    private transient NewsFeedController newsFeedController;
 
     static {
         ScilabTabFactory.getInstance().addTabFactory(NewsFeedTabFactory.getInstance());
@@ -62,6 +63,7 @@ public class NewsFeedTab extends SwingScilabDockablePanel implements SimpleTab {
     public static NewsFeedTab getInstance() {
         if (instance == null) {
             instance = new NewsFeedTab();
+            instance.init();
         }
         return instance;
     }

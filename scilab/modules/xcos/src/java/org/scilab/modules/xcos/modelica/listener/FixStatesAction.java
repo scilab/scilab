@@ -26,9 +26,9 @@ import org.scilab.modules.xcos.modelica.ModelicaMessages;
 /**
  * Fix the state of the current model.
  */
-@SuppressWarnings(value = { "serial" })
 public final class FixStatesAction extends AbstractAction {
-    private final ModelicaController controller;
+    private static final long serialVersionUID = 1L;
+    private final transient ModelicaController controller;
 
     /**
      * Default constructor

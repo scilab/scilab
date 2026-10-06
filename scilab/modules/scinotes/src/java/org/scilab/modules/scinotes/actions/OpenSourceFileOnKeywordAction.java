@@ -62,10 +62,10 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
     private static boolean windowAlreadyExist;
     private static JFrame mainFrame;
 
-    private NavigableSet<String> macrosSet;
+    private transient NavigableSet<String> macrosSet;
     private JButton okButton;
     private JButton cancelButton;
-    private JComboBox comboComplete;
+    private JComboBox<String> comboComplete;
     private boolean onMenu;
     private int lastSize;
 
@@ -173,7 +173,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
             return;
         }
 
-        macrosSet = new TreeSet(ScilabLexer.macros);
+        macrosSet = new TreeSet<>(ScilabLexer.macros);
 
         mainFrame = new JFrame();
         mainFrame.setAlwaysOnTop(true);
@@ -184,7 +184,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
 
         JLabel label = new JLabel(SciNotesMessages.OPEN_SOURCE_FILE_OF);
 
-        comboComplete = new JComboBox();
+        comboComplete = new JComboBox<>();
         comboComplete.setEditable(true);
         if (name.length() != 0) {
             comboComplete.removeAllItems();
@@ -311,7 +311,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
      */
     private void updateComboComplete(String old) {
         String name = (String) comboComplete.getEditor().getItem();
-        Set subset = null;
+        Set<String> subset = null;
         if (name != null && !name.equals(old)) {
             String bound = "";
             Iterator<String> iter;

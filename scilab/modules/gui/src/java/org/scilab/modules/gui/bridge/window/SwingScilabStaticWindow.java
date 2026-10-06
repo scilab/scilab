@@ -29,7 +29,9 @@ import org.scilab.modules.gui.bridge.tab.SwingScilabPanel;
 import org.scilab.modules.gui.bridge.tab.SwingScilabStaticPanel;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 
-public class SwingScilabStaticWindow extends SwingScilabWindow {
+public final class SwingScilabStaticWindow extends SwingScilabWindow {
+
+    private static final long serialVersionUID = 1L;
 
     private SwingScilabStaticPanel panel;
 

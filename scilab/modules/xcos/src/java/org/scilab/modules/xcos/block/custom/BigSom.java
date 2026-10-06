@@ -26,6 +26,7 @@ import org.scilab.modules.xcos.block.custom.SumPortLabeler;
  * Implement the BIGSOM_f function.
  */
 public class BigSom extends BasicBlock {
+    private static final long serialVersionUID = 1L;
     /**
      * Default constructor
      */

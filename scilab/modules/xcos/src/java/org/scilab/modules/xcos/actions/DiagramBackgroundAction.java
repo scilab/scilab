@@ -32,8 +32,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Diagram background color changing
  */
-@SuppressWarnings(value = { "serial" })
 public final class DiagramBackgroundAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.DIAGRAM_BACKGROUND;
     /** Icon name of the action */

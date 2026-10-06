@@ -36,7 +36,7 @@ import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 /**
  * @author Calixte Denizet
  */
-public class SciDocConfiguration {
+public final class SciDocConfiguration {
 
     private static final String SCIVAR = "\\$\\{SCI\\}";
     private static final String SCI = ScilabConstants.SCI.getPath();

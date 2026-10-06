@@ -25,7 +25,7 @@ import com.jogamp.opengl.GL2;
 /**
  * @author Pierre Lando
  */
-public class JoGLClippingPlane implements ClippingPlane {
+public final class JoGLClippingPlane implements ClippingPlane {
 
     /**
      * GL index of this clipping plane.

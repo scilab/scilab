@@ -88,7 +88,7 @@ public class ScilabView extends WrappedPlainView {
     private Color lineColor = new Color(220, 220, 220);
 
     private final Rectangle rect = new Rectangle();
-    private Map desktopFontHints;
+    private Map<?, ?> desktopFontHints;
     private boolean enableDesktopFontHints = true;
 
     private int whiteHeight;
@@ -223,7 +223,7 @@ public class ScilabView extends WrappedPlainView {
      * @return the x-coordinate where to draw the next piece of text
      * @throws BadLocationException if p0 and p1 are bad positions in the text
      */
-    protected int drawUnselectedText(Graphics g, int sx, int sy, int p0, int p1) throws BadLocationException {
+    protected float drawUnselectedText(Graphics2D g, float sx, float sy, int p0, int p1) throws BadLocationException {
         if (!enable) {
             return super.drawUnselectedText(g, sx, sy, p0, p1);
         }
@@ -231,13 +231,13 @@ public class ScilabView extends WrappedPlainView {
         if (enableDesktopFontHints && desktopFontHints == null) {
             /* This hint is used to have antialiased fonts in the view in using
                the same method (differents way to antialias with LCD screen) as the desktop. */
-            desktopFontHints = (Map) Toolkit.getDefaultToolkit().getDesktopProperty(DESKTOPHINTS);
-            calculateHeight(((Graphics2D) g).getFontRenderContext(), context.tokenFonts[0]);
+            desktopFontHints = (Map<?, ?>) Toolkit.getDefaultToolkit().getDesktopProperty(DESKTOPHINTS);
+            calculateHeight(g.getFontRenderContext(), context.tokenFonts[0]);
             enableDesktopFontHints = desktopFontHints != null;
         }
 
         if (enableDesktopFontHints) {
-            ((Graphics2D) g).addRenderingHints(desktopFontHints);
+            g.addRenderingHints(desktopFontHints);
         }
 
         /* The lexer returns all tokens between the pos p0 and p1.
@@ -254,8 +254,8 @@ public class ScilabView extends WrappedPlainView {
         int tok = -1;
         int mark = p0;
         int start = p0;
-        int x = sx;
-        int y = sy;
+        float x = sx;
+        float y = sy;
         boolean isBroken = false;
 
         int startL = line.getStartOffset();
@@ -302,16 +302,16 @@ public class ScilabView extends WrappedPlainView {
 
                 doc.getText(mark, end - mark, text);
 
-                int w;
+                float w;
 
                 if ((context.tokenAttrib[tok] & 1) != 0) {
                     w = Utilities.getTabbedTextWidth(text, metrics, x, this, mark);
-                    g.drawLine(x, y + 1, x + w, y + 1);
+                    g.drawLine((int) x, (int) y + 1, (int) (x + w), (int) y + 1);
                 }
 
                 if ((context.tokenAttrib[tok] & 2) != 0) {
                     w = Utilities.getTabbedTextWidth(text, metrics, x, this, mark);
-                    g.drawLine(x, y - whiteHeight, x + w, y - whiteHeight);
+                    g.drawLine((int) x, (int) (y - whiteHeight), (int) (x + w), (int) (y - whiteHeight));
                 }
 
                 switch (tok) {
@@ -320,7 +320,7 @@ public class ScilabView extends WrappedPlainView {
                     case ScilabLexerConstants.WHITE_STRING :
                         if (isWhiteViewable) {
                             w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
-                            g.drawLine(x + (w - 1) / 2, y - whiteHeight, x + (w + 1) / 2, y - whiteHeight);
+                            g.drawLine((int) x + (int) (w - 1) / 2, (int) (y - whiteHeight), (int) x + (int) (w + 1) / 2, (int) (y - whiteHeight));
                         }
                         break;
                     case ScilabLexerConstants.TAB :
@@ -337,11 +337,11 @@ public class ScilabView extends WrappedPlainView {
                             g.setColor(Color.WHITE);
                         }
                         w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
-                        for (int i = 0; i < w; i += 4) {
-                            g.drawLine(x + i, y + 2, x + i + 1, y + 2);
+                        for (int i = 0; i < (int) w; i += 4) {
+                            g.drawLine((int) x + i, (int) y + 2, (int) x + i + 1, (int) y + 2);
                         }
-                        for (int i = 2; i < w; i += 4) {
-                            g.drawLine(x + i, y + 1, x + i + 1, y + 1);
+                        for (int i = 2; i < (int) w; i += 4) {
+                            g.drawLine((int) x + i, (int) y + 1, (int) x + i + 1, (int) y + 1);
                         }
                         break;
                     default :
@@ -361,7 +361,7 @@ public class ScilabView extends WrappedPlainView {
     /**
      * {@inheritDoc}
      */
-    protected void drawLine(int p0, int p1, Graphics g, int x, int y) {
+    protected void drawLine(int p0, int p1, Graphics2D g, float x, float y) {
         ScilabEditorPane pane = (ScilabEditorPane) getContainer();
         int sel0 = pane.getSelectionStart();
         int sel1 = pane.getSelectionEnd();
@@ -412,9 +412,9 @@ public class ScilabView extends WrappedPlainView {
      * @return the x-coordinate where to draw the next piece of text
      * @throws BadLocationException if p0 and p1 are bad positions in the text
      */
-    protected int drawSelectedText(Graphics g, int x, int y, int p0, int p1) throws BadLocationException {
+    protected float drawSelectedText(Graphics2D g, float x, float y, int p0, int p1) throws BadLocationException {
         unselected = false;
-        int z = drawUnselectedText(g, x, y, p0, p1);
+        float z = drawUnselectedText(g, x, y, p0, p1);
         unselected = true;
         return z;
     }
@@ -465,21 +465,21 @@ public class ScilabView extends WrappedPlainView {
      * @param g the graphics ... (yeah ! once again)
      * @param start the position in the document
      */
-    protected void paintTab(Segment text, int x, int y, Graphics g, int start) {
+    protected void paintTab(Segment text, float x, float y, Graphics2D g, int start) {
         FontMetrics fm = g.getFontMetrics();
-        int w = Utilities.getTabbedTextWidth(text, fm, x, this, start);
+        float w = Utilities.getTabbedTextWidth(text, fm, x, this, start);
         switch (tabType) {
             case TABVERTICAL :
-                g.drawLine(x, y + 4, x, y + 4 - fm.getHeight());
+                g.drawLine((int) x, (int) y + 4, (int) x, (int) (y + 4 - fm.getHeight()));
                 break;
             case TABDOUBLECHEVRONS :
-                g.drawString("\u00BB", x, y);
+                g.drawString("\u00BB", (int) x, (int) y);
                 break;
             case TABHORIZONTAL :
-                g.drawLine(x, y - whiteHeight, x + w - 1, y - whiteHeight);
+                g.drawLine((int) x, (int) (y - whiteHeight), (int) (x + w - 1), (int) (y - whiteHeight));
                 break;
             case TABCHARACTER :
-                g.drawString(tabCharacter, x, y);
+                g.drawString(tabCharacter, (int) x, (int) y);
                 break;
             default :
         }

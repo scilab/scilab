@@ -31,8 +31,8 @@ import com.mxgraph.swing.util.mxGraphActions;
 /**
  * Group any blocks and ease the manipulation of them.
  */
-@SuppressWarnings(value = { "serial" })
 public class GroupAction extends MultiSelectionDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = ScilabGraphMessages.GROUP;
     /** Icon name of the action */
@@ -40,7 +40,7 @@ public class GroupAction extends MultiSelectionDependantAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_G;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /**
      * Default constructor

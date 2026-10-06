@@ -21,7 +21,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.KeyboardFocusManager;
+import java.awt.AWTKeyStroke;
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -52,8 +54,8 @@ import org.scilab.modules.commons.gui.ScilabKeyStroke;
  * Class to have an incremental search field.
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
-public class HelpSearchField extends JPanel implements FocusListener, KeyListener {
+public final class HelpSearchField extends JPanel implements FocusListener, KeyListener {
+    private static final long serialVersionUID = 1L;
 
     private static final String SCI = ScilabConstants.SCI.getPath();
     private static final String TAB = "tab";
@@ -70,7 +72,7 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
     private JTextComponent textcomp;
     private final TopBotButtons[] buttons = new TopBotButtons[2];
 
-    private final DefaultHighlighter.DefaultHighlightPainter highlighter = new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
+    private final transient DefaultHighlighter.DefaultHighlightPainter highlighter = new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
     private int currentPos;
     private String currentWord;
 
@@ -89,7 +91,7 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
         this.parent = parent;
         setTextComponent(textcomp, key);
         field = new JTextField();
-        field.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
+        field.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.<AWTKeyStroke>emptySet());
         field.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), TAB);
         field.getActionMap().put(TAB, new AbstractAction() {
             @Override
@@ -223,7 +225,8 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
             try {
                 JScrollPane scrollPane = (JScrollPane) SwingUtilities.getAncestorOfClass(JScrollPane.class, textcomp);
                 if (scrollPane != null) {
-                    final Rectangle rect = textcomp.modelToView(start);
+                    final Rectangle2D rect2d = textcomp.modelToView2D(start);
+                    final Rectangle rect = new Rectangle((int) rect2d.getX(), (int) rect2d.getY(), (int) rect2d.getWidth(), (int) rect2d.getHeight());
                     final JScrollBar sb = scrollPane.getVerticalScrollBar();
                     final int value = sb.getValue();
                     final int h = sb.getHeight();
@@ -270,7 +273,7 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
                     textcomp.getHighlighter().removeAllHighlights();
                 }
                 getText();
-                if ((key == KeyEvent.VK_ENTER || key == KeyEvent.VK_F3) && ((e.getModifiers() & KeyEvent.SHIFT_MASK) != 0)) {
+                if ((key == KeyEvent.VK_ENTER || key == KeyEvent.VK_F3) && e.isShiftDown()) {
                     currentPos = Math.max(0, currentPos - 1);
                     start = text.lastIndexOf(str, currentPos);
                     if (start == -1) {
@@ -312,6 +315,8 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
      */
     class CloseButton extends JButton {
 
+        private static final long serialVersionUID = 1L;
+
         /**
          * Constructor
          */
@@ -336,6 +341,8 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
      * Inner class for the top-bot-buttons
      */
     class TopBotButtons extends JButton {
+
+        private static final long serialVersionUID = 1L;
 
         /**
          * Constructor

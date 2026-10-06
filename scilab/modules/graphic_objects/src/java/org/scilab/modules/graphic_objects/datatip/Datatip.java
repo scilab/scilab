@@ -35,6 +35,7 @@ import java.util.Locale;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import static org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
 import org.scilab.modules.graphic_objects.PolylineData;
+import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
@@ -109,7 +110,7 @@ public class Datatip extends Text {
         super();
         displayComponents = "xy";
         autoOrientation = true;
-        setOrientationAsEnum(TipOrientation.TOP_RIGHT);
+        currentOrientation = TipOrientation.TOP_RIGHT;
         tipTextFormat = new DecimalFormat("#,###.###", DecimalFormatSymbols.getInstance(Locale.US));
 
         detachedMode = false;
@@ -121,19 +122,19 @@ public class Datatip extends Text {
         displayFnc = "";
         ratio = 0.;
         dataIndex = Integer.MIN_VALUE;
-        setVisible(true);
-        setBox(true);
-        setLineMode(true);
-        setLineStyle(3);
-        setFillMode(true);
-        setBackground(-2);
-        setClipStateAsEnum(ClipStateType.OFF);
+        visible = true;
+        box = true;
+        line.setMode(true);
+        line.setLineStyle(Line.LineType.fromScilabIndex(3));
+        fillMode = true;
+        background = -2;
+        clipProperty.setClipState(ClipStateType.OFF);
 
-        setMarkMode(true);
-        setMarkSize(8);
-        setMarkBackground(-1);
-        setMarkForeground(-1);
-        setMarkStyle(11);
+        mark.setMode(true);
+        mark.setSize(8);
+        mark.setBackground(-1);
+        mark.setForeground(-1);
+        mark.setStyle(11);
     }
 
     @Override

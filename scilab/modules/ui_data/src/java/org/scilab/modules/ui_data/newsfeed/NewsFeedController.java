@@ -30,7 +30,7 @@ import java.util.Iterator;
  * Communicates through NewsFeedEvent event class
  * URL and other settings loaded from a settings file
  */
-public class NewsFeedController implements ActionListener {
+public final class NewsFeedController implements ActionListener {
 
     private List<News> news;
     private News currentNews = new News();

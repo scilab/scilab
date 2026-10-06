@@ -29,7 +29,6 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.I
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
@@ -55,8 +54,8 @@ import org.scilab.modules.xcos.io.HandledElement;
 /**
  * Open dialog to set block parameters
  */
-@SuppressWarnings(value = { "serial" })
 public class BlockParametersAction extends VertexSelectionDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.BLOCK_PARAMETERS;
     /** Icon name of the action */
@@ -65,7 +64,7 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
     public static final int MNEMONIC_KEY = KeyEvent.VK_B;
     /** Accelerator key for the action */
     public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit()
-            .getMenuShortcutKeyMask();
+            .getMenuShortcutKeyMaskEx();
 
     /**
      * Constructor
@@ -119,7 +118,7 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
 
                 XcosDiagram sub = Xcos.findDiagram(cell.getUID());
                 if (sub == null) {
-                    sub = new XcosDiagram(controller, cell.getUID(), cell.getKind(), cell.getId());
+                    sub = XcosDiagram.create(controller, cell.getUID(), cell.getKind(), cell.getId());
                     XcosCellFactory.insertChildren(controller, sub);
 
                     ScicosObjectOwner root = Xcos.findRoot(graph);

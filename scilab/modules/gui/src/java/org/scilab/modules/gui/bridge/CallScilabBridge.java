@@ -104,11 +104,11 @@ public class CallScilabBridge {
         throw new UnsupportedOperationException(); /* Prevents calls from subclass */
     }
 
-    /******************/
+    /* *****************/
     /*                */
     /* CONSOLE BRIDGE */
     /*                */
-    /******************/
+    /* *****************/
 
     /**
      * Read a line from the Console
@@ -188,11 +188,11 @@ public class CallScilabBridge {
         ScilabConsole.getConsole().clearHistory();
     }
 
-    /**************************/
+    /* *************************/
     /*                        */
     /* OBJECT CREATION BRIDGE */
     /*                        */
-    /**************************/
+    /* *************************/
 
     /**
      * Create a new Color Chooser in Scilab GUIs
@@ -232,11 +232,11 @@ public class CallScilabBridge {
         return ((SwingScilabContextMenu) uicontextmenu).displayAndWait();
     }
 
-    /************************/
+    /* ***********************/
     /*                      */
     /* ENABLE/DISABLE MENUS */
     /*                      */
-    /************************/
+    /* ***********************/
 
     /**
      * Enable/Disable a menu of a Scilab figure or console giving its name
@@ -265,11 +265,11 @@ public class CallScilabBridge {
         }
     }
 
-    /****************/
+    /* ***************/
     /*              */
     /* REMOVE MENUS */
     /*              */
-    /****************/
+    /* ***************/
 
     /**
      * Delete a menu of a Scilab figure or console giving its name
@@ -283,11 +283,11 @@ public class CallScilabBridge {
         }
     }
 
-    /***********************/
+    /* **********************/
     /*                     */
     /* FILE CHOOSER BRIDGE */
     /*                     */
-    /***********************/
+    /* **********************/
 
 
 
@@ -311,11 +311,11 @@ public class CallScilabBridge {
         return 0;
     }
 
-    /**********************/
+    /* *********************/
     /*                    */
     /* MESSAGE BOX BRIDGE */
     /*                    */
-    /**********************/
+    /* *********************/
 
     /**
      * Set the MessageBox title
@@ -502,11 +502,11 @@ public class CallScilabBridge {
         ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setIcon(name);
     }
 
-    /**********************/
+    /* *********************/
     /*                    */
     /* HELPBROWSER BRIDGE */
     /*                    */
-    /**********************/
+    /* *********************/
 
     /**
      * Launch Scilab help browser if not already created
@@ -629,11 +629,11 @@ public class CallScilabBridge {
         });
     }
 
-    /************/
+    /* ***********/
     /*          */
     /* WEBLINKS */
     /*          */
-    /************/
+    /* ***********/
 
     /**
      * Open a Browser on Scilab Web Site
@@ -705,11 +705,11 @@ public class CallScilabBridge {
         WebBrowser.openUrl("https://www.3ds.com/");
     }
 
-    /***************************/
+    /* **************************/
     /*                         */
     /* JAVA CALLBACKS FOR GUIS */
     /*                         */
-    /***************************/
+    /* **************************/
 
     /**
      * Select all the console contents
@@ -978,11 +978,11 @@ public class CallScilabBridge {
         return (job.pageDialog(scilabPageFormat) != null);
     }
 
-    /***********************/
+    /* **********************/
     /*                     */
     /* FONT CHOOSER BRIDGE */
     /*                     */
-    /***********************/
+    /* **********************/
 
     /**
      * Set the default font name for a FileChooser
@@ -1069,11 +1069,11 @@ public class CallScilabBridge {
         ((FontChooser) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
     }
 
-    /************************/
+    /* ***********************/
     /*                      */
     /* COLOR CHOOSER BRIDGE */
     /*                      */
-    /************************/
+    /* ***********************/
 
     /**
      * Set the title of a ColorChooser
@@ -1122,11 +1122,11 @@ public class CallScilabBridge {
         ((ColorChooser) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
     }
 
-    /************************/
+    /* ***********************/
     /*                      */
     /* CLIPBOARD MANAGEMENT */
     /*                      */
-    /************************/
+    /* ***********************/
 
     /**
      * Get the contents of the clipboard
@@ -1244,11 +1244,11 @@ public class CallScilabBridge {
         }
     }
 
-    /********/
+    /* *******/
     /*      */
     /* MISC */
     /*      */
-    /********/
+    /* *******/
 
     /**
      * Get the screen resolution
@@ -1338,11 +1338,11 @@ public class CallScilabBridge {
         ScilabAboutBox.displayAndWait();
     }
 
-    /******************/
+    /* *****************/
     /*                */
     /* UITABLE BRIDGE */
     /*                */
-    /******************/
+    /* *****************/
 
     public static void fireClosingFinished(int figUID) {
         SwingViewObject view = SwingView.getFromId(figUID);

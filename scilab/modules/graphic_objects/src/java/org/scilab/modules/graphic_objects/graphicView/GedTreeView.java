@@ -31,6 +31,7 @@ public class GedTreeView extends TreeView {
     public static GedTreeView create() {
         if (me == null) {
             me = new GedTreeView();
+            me.initTreeListener();
         }
         return me;
     }

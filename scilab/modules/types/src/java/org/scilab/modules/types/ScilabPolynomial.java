@@ -30,7 +30,7 @@ import java.util.Arrays;
  *
  * @see org.scilab.modules.javasci.Scilab
  */
-public class ScilabPolynomial implements ScilabType {
+public final class ScilabPolynomial implements ScilabType {
 
     private static final long serialVersionUID = 870624048944109684L;
 

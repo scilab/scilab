@@ -20,7 +20,8 @@ import org.scilab.modules.gui.ged.graphic_objects.SimpleObject;
 * Properties of the legend.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Arc extends SimpleObject {
+public final class Arc extends SimpleObject {
+    private static final long serialVersionUID = 1L;
     private BaseProperties base;
     private DataProperties data;
     private Style style;

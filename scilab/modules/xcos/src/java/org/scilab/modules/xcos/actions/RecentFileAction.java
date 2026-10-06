@@ -43,8 +43,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  *
  * This class doesn't follow standard action implementation.
  */
-@SuppressWarnings(value = { "serial" })
 public final class RecentFileAction extends DefaultAction implements PropertyChangeListener {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.RECENT_FILES;
     /** Icon name of the action */
@@ -57,7 +57,7 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
     private static final Map<URI, RecentFileAction> INSTANCE_REGISTRY = new HashMap<URI, RecentFileAction>();
 
     private File recentFile;
-    private MenuItem menu;
+    private transient MenuItem menu;
 
     /**
      * @param file
@@ -109,6 +109,7 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
         RecentFileAction action = INSTANCE_REGISTRY.get(fileURI);
         if (action == null) {
             action = new RecentFileAction(f);
+            action.initializeAction();
         }
 
         ConfigurationManager manager = ConfigurationManager.getInstance();
@@ -150,9 +151,9 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
         URL old;
         URL current;
         try {
-            old = new URL(oldURL);
+            old = URI.create(oldURL).toURL();
             current = recentFile.toURI().toURL();
-        } catch (MalformedURLException e) {
+        } catch (MalformedURLException | IllegalArgumentException e) {
             Logger.getLogger(RecentFileAction.class.getName()).severe(e.toString());
             return;
         }
@@ -168,7 +169,7 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
          * Our job then
          */
         try {
-            URL newUrl = new URL(newURL);
+            URL newUrl = URI.create(newURL).toURL();
             final URI newURI = newUrl.toURI();
 
             recentFile = new File(newURI);
@@ -179,7 +180,7 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
 
         } catch (URISyntaxException e) {
             Logger.getLogger(RecentFileAction.class.getName()).severe(e.toString());
-        } catch (MalformedURLException e) {
+        } catch (MalformedURLException | IllegalArgumentException e) {
             Logger.getLogger(RecentFileAction.class.getName()).severe(e.toString());
         }
     }

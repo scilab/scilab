@@ -33,8 +33,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * View Xcos documentation
  */
-@SuppressWarnings(value = { "serial" })
 public final class XcosDocumentationAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.XCOS_DOCUMENTATION;
     /** Icon name of the action */

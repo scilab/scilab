@@ -27,7 +27,8 @@ import org.scilab.modules.gui.ged.graphic_objects.properties.Font;
 * Construction and startup of all components of the section: Label.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Label extends SimpleSection {
+public final class Label extends SimpleSection {
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static Label instance;
     private ContouredObject contouredObject = new ContouredObject();
@@ -40,6 +41,7 @@ public class Label extends SimpleSection {
     */
     public Label(Integer objectID) {
         super(MessagesGED.label, "datatip");
+        initializeSection();
         instance = this;
         sectionPanel = getSectionPanel();
         initComponents(objectID);

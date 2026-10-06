@@ -32,8 +32,8 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Change cwd action
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class ChangeCWDAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private SwingScilabTreeTable table;
 
@@ -61,7 +61,7 @@ public class ChangeCWDAction extends CommonCallBack {
         button.setToolTipText(UiDataMessages.SELECTDIR);
         button.addActionListener(new CommonCallBack(null) {
             public void callBack() {
-                SwingScilabFileChooser filechooser = new SwingScilabFileChooser();
+                SwingScilabFileChooser filechooser = SwingScilabFileChooser.create();
                 filechooser.setCurrentDirectory(new File(table.getComboBox().getBaseDir()));
                 filechooser.setTitle(UiDataMessages.SELECTADIR);
                 filechooser.setMultipleSelection(false);

@@ -42,11 +42,23 @@ import java.nio.DoubleBuffer;
  * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabDoubleReference extends ScilabDouble {
+    private static final long serialVersionUID = 1L;
 
-    private final DoubleBuffer realBuffer;
-    private final DoubleBuffer imaginaryBuffer;
-    private final int nbRows;
-    private final int nbCols;
+    private transient DoubleBuffer realBuffer;
+    private transient DoubleBuffer imaginaryBuffer;
+    private int nbRows;
+    private int nbCols;
+
+    /**
+     * Public no-arg constructor required by the Externalizable contract.
+     * Not used in practice: readResolve() converts this to a ScilabDouble.
+     */
+    public ScilabDoubleReference() {
+        this.realBuffer = null;
+        this.imaginaryBuffer = null;
+        this.nbRows = 0;
+        this.nbCols = 0;
+    }
 
     /**
      * Constructor with a matrix of complex numbers

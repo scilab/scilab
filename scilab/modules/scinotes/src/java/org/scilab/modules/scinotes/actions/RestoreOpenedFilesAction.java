@@ -69,8 +69,8 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  * @author Paul Griffiths
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class RestoreOpenedFilesAction extends DefaultCheckAction {
+    private static final long serialVersionUID = 1L;
 
     private static final int GAP = 10;
     private static final String ESCAPE = "ESCAPE";
@@ -285,8 +285,8 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
      * @return the files to open in the different editors
      */
     private static List<File> getOpenedFiles(JTree tree, String uuid) {
-        List<File> list = new ArrayList();
-        List<String> remove = new ArrayList();
+        List<File> list = new ArrayList<File>();
+        List<String> remove = new ArrayList<String>();
         TreeModel model = tree.getModel();
         TreeNode node = (TreeNode) model.getChild(model.getRoot(), 0);
 
@@ -311,7 +311,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
      */
     private static JTree fillTree(String uuid) {
         List<UUID> editorID = ConfigSciNotesManager.getOpenFilesEditorList();
-        Vector eds = new Vector(1);
+        Vector<Object> eds = new Vector<Object>(1);
 
         List<File> filesToOpen = removeAlreadyOpenFiles(uuid);
 
@@ -343,7 +343,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
     private static List<File> removeAlreadyOpenFiles(String editorUUID) {
         List<File> filesToOpen = ConfigSciNotesManager.getOpenFilesByEditor(UUID.fromString(editorUUID));
         SciNotes editor = SciNotes.getEditorFromUUID(editorUUID);
-        List<File> filesToRemove = new ArrayList();
+        List<File> filesToRemove = new ArrayList<File>();
         if (editor != null) {
             int n = editor.getTabPane().getTabCount();
             for (int i = 0; i < n; i++) {
@@ -455,8 +455,9 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
      * Inner class to handle the checkbox in a JTree
      */
     static class CheckBoxNodeEditor extends AbstractCellEditor implements TreeCellEditor {
+        private static final long serialVersionUID = 1L;
 
-        private final CheckBoxNodeRenderer renderer = new CheckBoxNodeRenderer();
+        private final transient CheckBoxNodeRenderer renderer = new CheckBoxNodeRenderer();
         private ChangeEvent changeEvent;
         private final JTree tree;
 
@@ -578,7 +579,8 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
     /**
      * Inner class to have a named Vector to add to the tree
      */
-    static class FilesVector extends Vector {
+    static class FilesVector extends Vector<Object> {
+        private static final long serialVersionUID = 1L;
 
         private final String name;
 

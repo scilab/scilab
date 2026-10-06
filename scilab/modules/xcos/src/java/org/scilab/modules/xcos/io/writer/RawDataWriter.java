@@ -229,14 +229,12 @@ public class RawDataWriter extends ScilabWriter {
     private void writeList(ScilabType value, final String scilabClass) throws XMLStreamException {
         shared.stream.writeAttribute("scilabClass", scilabClass);
 
-        @SuppressWarnings("unchecked")
         ArrayList<ScilabType> values = (ArrayList<ScilabType>) value;
         for (ScilabType subValue : values) {
             write(subValue, null);
         }
     }
 
-    @SuppressWarnings("incomplete-switch")
     private void writeMatrix(ScilabType value, ScilabTypeEnum type, final String intPrecision) throws XMLStreamException {
         shared.stream.writeAttribute("height", Integer.toString(value.getHeight()));
         shared.stream.writeAttribute("width", Integer.toString(value.getWidth()));
@@ -271,6 +269,8 @@ public class RawDataWriter extends ScilabWriter {
                         String strValue = ((ScilabString) value).getData()[i][j];
                         shared.stream.writeAttribute("value", strValue);
                         break;
+                    default:
+                        throw new XMLStreamException("Not handled ScilabType : " + type.name());
                 }
             }
         }

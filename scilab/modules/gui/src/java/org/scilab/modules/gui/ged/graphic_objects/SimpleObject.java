@@ -26,6 +26,7 @@ import org.scilab.modules.gui.ged.ContentLayout;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public abstract class SimpleObject extends ContentLayout {
+    private static final long serialVersionUID = 1L;
     private Integer objectID;
 
     /**

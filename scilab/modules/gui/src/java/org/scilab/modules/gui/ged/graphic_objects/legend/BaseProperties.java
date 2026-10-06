@@ -24,7 +24,8 @@ import org.scilab.modules.gui.ged.graphic_objects.properties.GraphicObject;
 * Construction and startup of all components of the section: Base Properties.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class BaseProperties extends SimpleSection {
+public final class BaseProperties extends SimpleSection {
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static BaseProperties instance;
     private ContouredObject contouredObject = new ContouredObject();
@@ -36,6 +37,7 @@ public class BaseProperties extends SimpleSection {
     */
     public BaseProperties(Integer objectID) {
         super(MessagesGED.base_properties, "legend");
+        initializeSection();
         instance = this;
         sectionPanel = getSectionPanel();
         initComponents(objectID);

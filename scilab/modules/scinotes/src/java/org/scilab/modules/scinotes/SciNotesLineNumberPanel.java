@@ -54,13 +54,13 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  * of a JScrollPane.
  * @author Calixte DENIZET
  */
-public class SciNotesLineNumberPanel extends JPanel implements CaretListener, DocumentListener, MouseMotionListener {
+public final class SciNotesLineNumberPanel extends JPanel implements CaretListener, DocumentListener, MouseMotionListener {
 
     private static final long serialVersionUID = -5302189665896954438L;
     private static final int PANELGAPSIZE = 10;
     private static final Border OUTER = new MatteBorder(0, 0, 0, 2, Color.GRAY);
     private static final int HEIGHT = Integer.MAX_VALUE - 1000000;
-    private static Map desktopFontHints;
+    private static Map<?, ?> desktopFontHints;
 
     private ScilabEditorPane textPane;
 
@@ -274,9 +274,9 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             View view = doc.getView();
             Rectangle clip = g.getClipBounds();
             Point pt = new Point(0, clip.y);
-            int rowStartOffset = textPane.viewToModel(pt);
+            int rowStartOffset = textPane.viewToModel2D(pt);
             pt.y += clip.height;
-            int endOffset = textPane.viewToModel(pt);
+            int endOffset = textPane.viewToModel2D(pt);
             int lineEnd = root.getElementIndex(endOffset);
             boolean colorChanged;
 
@@ -366,7 +366,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
      * @param e event
      */
     public void mouseMoved(MouseEvent e) {
-        int pos = textPane.viewToModel(e.getPoint());
+        int pos = textPane.viewToModel2D(e.getPoint());
         Element root = doc.getDefaultRootElement();
         ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(pos));
         if (line.isAnchor()) {

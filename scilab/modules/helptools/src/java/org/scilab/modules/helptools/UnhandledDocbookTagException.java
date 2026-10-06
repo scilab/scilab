@@ -17,8 +17,9 @@ package org.scilab.modules.helptools;
 
 import org.xml.sax.SAXException;
 
-@SuppressWarnings(value = { "serial" })
 public class UnhandledDocbookTagException extends SAXException {
+
+    private static final long serialVersionUID = 1L;
 
     public UnhandledDocbookTagException(String tag) {
         super("The tag " + tag + " is not handled.");

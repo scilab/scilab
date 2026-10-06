@@ -36,7 +36,7 @@ import org.w3c.dom.Node;
  * @author Pierre GRADIT
  *
  */
-public class File extends JTextField implements XComponent, XChooser, MouseListener {
+public final class File extends JTextField implements XComponent, XChooser, MouseListener {
 
     /** Universal identifier for serialization.
      *
@@ -137,7 +137,7 @@ public class File extends JTextField implements XComponent, XChooser, MouseListe
 
     public void mouseClicked(final MouseEvent e) {
         if (actionListener != null && isEnabled()) {
-            ActionEvent transmit  = new ActionEvent(this, e.getID(), "File change", e.getWhen() + 1, e.getModifiers());
+            ActionEvent transmit  = new ActionEvent(this, e.getID(), "File change", e.getWhen() + 1, e.getModifiersEx());
             actionListener.actionPerformed(transmit);
         }
     }
@@ -191,7 +191,7 @@ public class File extends JTextField implements XComponent, XChooser, MouseListe
     /** Row selection management.
      *
      */
-    private ActionListener actionListener = null;
+    private transient ActionListener actionListener = null;
 
     /** Registration of a single listener.
      * @param listener for the unique actionListener.

@@ -37,8 +37,9 @@ import java.awt.Dimension;
 /**
  * @author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
 public final class Sprites extends ExampleFrame {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Frame title.

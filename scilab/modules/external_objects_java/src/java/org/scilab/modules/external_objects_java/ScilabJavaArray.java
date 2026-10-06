@@ -30,11 +30,10 @@ import java.util.logging.Level;
  *
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = {"unchecked", "serial"})
 public final class ScilabJavaArray {
 
-    static final Map<Class, Class> mappings = new HashMap<Class, Class>(8);
-    private static final Map<String, Class> baseType = new HashMap<String, Class>(8);
+    static final Map<Class<?>, Class<?>> mappings = new HashMap<Class<?>, Class<?>>(8);
+    private static final Map<String, Class<?>> baseType = new HashMap<String, Class<?>>(8);
 
     static {
         mappings.put(Double.class, double.class);
@@ -63,7 +62,7 @@ public final class ScilabJavaArray {
      * @param the id of the array
      */
     public static int newInstance(String className, int[] dims) throws ScilabJavaException {
-        Class cl = null;
+        Class<?> cl = null;
 
         if (ScilabJavaObject.debug) {
             StringBuffer buf = new StringBuffer();
@@ -113,7 +112,7 @@ public final class ScilabJavaArray {
                     throw new ScilabJavaException("Problem in retrieving " + i + "-th element: " + index[i] + ">" + (Array.getLength(obj) - 1));
                 }
             } else if (obj instanceof List) {
-                List list = (List) obj;
+                List<?> list = (List<?>) obj;
                 if (index[i] >= 0 && index[i] < list.size()) {
                     obj = list.get(index[i]);
                 } else {
@@ -144,7 +143,7 @@ public final class ScilabJavaArray {
                     throw new ScilabJavaException("Problem in retrieving " + i + "-th element: " + index[i] + ">" + (Array.getLength(obj) - 1));
                 }
             } else if (obj instanceof List) {
-                List list = (List) obj;
+                List<?> list = (List<?>) obj;
                 if (index[i] >= 0 && index[i] < list.size()) {
                     obj = list.get(index[i]);
                 } else {
@@ -166,11 +165,11 @@ public final class ScilabJavaArray {
                 throw new ScilabJavaException("Problem in setting " + index[i] + "-th element: " + index[i] + ">" + (Array.getLength(obj) - 1));
             }
         } else if (obj instanceof List) {
-            List list = (List) obj;
+            List<?> list = (List<?>) obj;
             if (index[i] >= 0 && index[i] < list.size()) {
-                list.set(index[i], x);
+                listSet(list, index[i], x);
             } else if (index[i] == list.size()) {
-                list.add(x);
+                listAdd(list, x);
             } else {
                 throw new ScilabJavaException("Problem in retrieving " + i + "-th element: " + index[i] + ">" + (list.size() - 1));
             }
@@ -298,9 +297,9 @@ public final class ScilabJavaArray {
      * @return the primitive array.
      */
     public static Object toPrimitive(final Object a) {
-        Class base = a.getClass();
+        Class<?> base = a.getClass();
         if (base.isArray()) {
-            Class[] types = getPrimClasses(base);
+            Class<?>[] types = getPrimClasses(base);
             if (types == null) {
                 return a;
             }
@@ -327,7 +326,7 @@ public final class ScilabJavaArray {
      * @param types an array containing the intermediate array class (see getPrimClass)
      * @return the converted array
      */
-    private static Object toPrimitive(final Object a, int pos, Class[] types) {
+    private static Object toPrimitive(final Object a, int pos, Class<?>[] types) {
         Object[] arr = (Object[]) a;
         Object[] o = (Object[]) Array.newInstance(types[pos], arr.length);
 
@@ -477,9 +476,9 @@ public final class ScilabJavaArray {
      * @return the primitive array.
      */
     public static Object fromPrimitive(final Object a) {
-        Class base = a.getClass();
+        Class<?> base = a.getClass();
         if (base.isArray()) {
-            Class[] types = getFromPrimClasses(base);
+            Class<?>[] types = getFromPrimClasses(base);
             if (types == null) {
                 return a;
             }
@@ -506,7 +505,7 @@ public final class ScilabJavaArray {
      * @param types an array containing the intermediate array class (see getPrimClass)
      * @return the converted array
      */
-    private static Object fromPrimitive(final Object a, int pos, Class[] types) {
+    private static Object fromPrimitive(final Object a, int pos, Class<?>[] types) {
         Object[] arr = (Object[]) a;
         Object[] o = (Object[]) Array.newInstance(types[pos], arr.length);
 
@@ -533,8 +532,8 @@ public final class ScilabJavaArray {
      * @param c the Class
      * @return the base
      */
-    public static Class getArrayBaseType(Class c) {
-        Class base = c;
+    public static Class<?> getArrayBaseType(Class<?> c) {
+        Class<?> base = c;
         while (base.isArray()) {
             base = base.getComponentType();
         }
@@ -547,15 +546,15 @@ public final class ScilabJavaArray {
      * @param c the Class
      * @return info
      */
-    public static Object[] getArrayInfo(Class c) {
-        Class base = c;
+    public static Object[] getArrayInfo(Class<?> c) {
+        Class<?> base = c;
         int dims = 0;
         while (base.isArray()) {
             base = base.getComponentType();
             dims++;
         }
 
-        return new Object[] {base, new Integer(dims)};
+        return new Object[] {base, Integer.valueOf(dims)};
     }
 
     /**
@@ -563,9 +562,9 @@ public final class ScilabJavaArray {
      * @param c the base class
      * @return an array of classes
      */
-    private static Class[] getFromPrimClasses(Class c) {
+    private static Class<?>[] getFromPrimClasses(Class<?> c) {
         int nbDims = 0;
-        Class base = c;
+        Class<?> base = c;
         while (base.isArray()) {
             base = base.getComponentType();
             nbDims++;
@@ -576,7 +575,7 @@ public final class ScilabJavaArray {
             return null;
         }
 
-        Class[] cl = new Class[nbDims - 1];
+        Class<?>[] cl = new Class<?>[nbDims - 1];
         if (cl.length != 0) {
             cl[0] = Array.newInstance(base, 0).getClass();
             for (int i = 1; i < nbDims - 1; i++) {
@@ -592,9 +591,9 @@ public final class ScilabJavaArray {
      * @param c the base class
      * @return an array of classes
      */
-    private static Class[] getPrimClasses(Class c) {
+    private static Class<?>[] getPrimClasses(Class<?> c) {
         int nbDims = 0;
-        Class base = c;
+        Class<?> base = c;
         while (base.isArray()) {
             base = base.getComponentType();
             nbDims++;
@@ -605,7 +604,7 @@ public final class ScilabJavaArray {
             return null;
         }
 
-        Class[] cl = new Class[nbDims - 1];
+        Class<?>[] cl = new Class<?>[nbDims - 1];
         if (cl.length != 0) {
             cl[0] = Array.newInstance(base, 0).getClass();
             for (int i = 1; i < nbDims - 1; i++) {
@@ -755,7 +754,7 @@ public final class ScilabJavaArray {
      * @return a one-dim array
      */
     static Object toOneDim(Object x) {
-        Class base = getArrayBaseType(x.getClass());
+        Class<?> base = getArrayBaseType(x.getClass());
 
         if (base.isPrimitive()) {
             try {
@@ -798,7 +797,7 @@ public final class ScilabJavaArray {
      * @param x the one-dim array
      * @return a bi-dim array
      */
-    static Object singleToOneDim(Class base, Object x) {
+    static Object singleToOneDim(Class<?> base, Object x) {
         Object ret = Array.newInstance(base, 1);
         Array.set(ret, 0, x);
 
@@ -809,11 +808,11 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static double[] toDoubleArray(List<Double> l) {
+    public static double[] toDoubleArray(List<?> l) {
         double[] arr = new double[l.size()];
         int i = 0;
-        for (Double d : l) {
-            arr[i++] = d;
+        for (Object o : l) {
+            arr[i++] = (Double) o;
         }
 
         return arr;
@@ -823,11 +822,11 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static float[] toFloatArray(List<Float> l) {
+    public static float[] toFloatArray(List<?> l) {
         float[] arr = new float[l.size()];
         int i = 0;
-        for (Float f : l) {
-            arr[i++] = f;
+        for (Object o : l) {
+            arr[i++] = (Float) o;
         }
 
         return arr;
@@ -837,11 +836,11 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static byte[] toByteArray(List<Byte> l) {
+    public static byte[] toByteArray(List<?> l) {
         byte[] arr = new byte[l.size()];
         int i = 0;
-        for (Byte b : l) {
-            arr[i++] = b;
+        for (Object o : l) {
+            arr[i++] = (Byte) o;
         }
 
         return arr;
@@ -851,11 +850,11 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static short[] toShortArray(List<Short> l) {
+    public static short[] toShortArray(List<?> l) {
         short[] arr = new short[l.size()];
         int i = 0;
-        for (Short s : l) {
-            arr[i++] = s;
+        for (Object o : l) {
+            arr[i++] = (Short) o;
         }
 
         return arr;
@@ -865,11 +864,11 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static int[] toIntArray(List<Integer> l) {
+    public static int[] toIntArray(List<?> l) {
         int[] arr = new int[l.size()];
         int i = 0;
-        for (Integer in : l) {
-            arr[i++] = in;
+        for (Object o : l) {
+            arr[i++] = (Integer) o;
         }
 
         return arr;
@@ -879,11 +878,11 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static long[] toLongArray(List<Long> l) {
+    public static long[] toLongArray(List<?> l) {
         long[] arr = new long[l.size()];
         int i = 0;
-        for (Long lo : l) {
-            arr[i++] = lo;
+        for (Object o : l) {
+            arr[i++] = (Long) o;
         }
 
         return arr;
@@ -893,7 +892,7 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static String[] toStringArray(List<String> l) {
+    public static String[] toStringArray(List<?> l) {
         return l.toArray(new String[l.size()]);
     }
 
@@ -901,11 +900,11 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static boolean[] toBooleanArray(List<Boolean> l) {
+    public static boolean[] toBooleanArray(List<?> l) {
         boolean[] arr = new boolean[l.size()];
         int i = 0;
-        for (Boolean b : l) {
-            arr[i++] = b;
+        for (Object o : l) {
+            arr[i++] = (Boolean) o;
         }
 
         return arr;
@@ -915,11 +914,11 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static char[] toCharArray(List<Character> l) {
+    public static char[] toCharArray(List<?> l) {
         char[] arr = new char[l.size()];
         int i = 0;
-        for (Character c : l) {
-            arr[i++] = c;
+        for (Object o : l) {
+            arr[i++] = (Character) o;
         }
 
         return arr;
@@ -929,18 +928,46 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static List toList(Object obj) {
+    public static List<?> toList(Object obj) {
         if (obj.getClass().isArray()) {
-            Class base = obj.getClass().getComponentType();
+            Class<?> base = obj.getClass().getComponentType();
             if (ScilabJavaObject.primTypes.containsKey(base)) {
                 obj = fromPrimitive(obj);
             }
-            return new ArrayList(Arrays.asList((Object[]) obj));
+            return new ArrayList<>(Arrays.asList((Object[]) obj));
         }
 
-        List l = new LinkedList();
+        List<Object> l = new LinkedList<>();
         l.add(obj);
 
         return l;
+    }
+
+    /**
+     * Set an element in a list whose element type is not statically known.
+     */
+    public static void listSet(List<?> list, int index, Object value) throws ScilabJavaException {
+        ((List<Object>) list).set(index, value);
+    }
+
+    /**
+     * Append an element to a list whose element type is not statically known.
+     */
+    public static void listAdd(List<?> list, Object value) throws ScilabJavaException {
+        ((List<Object>) list).add(value);
+    }
+
+    /**
+     * Insert an element into a list whose element type is not statically known.
+     */
+    public static void listAdd(List<?> list, int index, Object value) throws ScilabJavaException {
+        ((List<Object>) list).add(index, value);
+    }
+
+    /**
+     * Put an entry into a map whose key/value types are not statically known.
+     */
+    public static void mapPut(Map<?, ?> map, Object key, Object value) throws ScilabJavaException {
+        ((Map<Object, Object>) map).put(key, value);
     }
 }

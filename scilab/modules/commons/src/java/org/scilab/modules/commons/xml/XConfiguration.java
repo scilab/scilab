@@ -84,10 +84,10 @@ public class XConfiguration {
     private static final String PARSING_ERROR = Messages.gettext("An error occurred when loading the preferences file, try to reload the default one.");
 
     private static final XPathFactory xpathFactory = ScilabXPathFactory.newInstance();
-    private static final Map < Class<?>, StringParser > conv = new HashMap < Class<?>, StringParser > ();
+    private static final Map<Class<?>, StringParser> conv = new HashMap<>();
 
     private static final EventListenerList listenerList = new EventListenerList();
-    private static final Set<String> modifiedPaths = new HashSet<String>();
+    private static final Set<String> modifiedPaths = new HashSet<>();
 
     private static Document doc;
     private static boolean hasBeenRead;
@@ -105,7 +105,7 @@ public class XConfiguration {
         addXConfigurationListener(ScilabGeneralPrefs.getInstance());
 
         try {
-            Class histoprefs = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.history_manager.HistoryPrefs");
+            Class<?> histoprefs = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.history_manager.HistoryPrefs");
             Method getinstance = histoprefs.getDeclaredMethod("getInstance");
             addXConfigurationListener((XConfigurationListener)getinstance.invoke(null));
         } catch (ClassNotFoundException e) {
@@ -543,7 +543,7 @@ public class XConfiguration {
         }
 
         Method[] meths = type.getDeclaredMethods();
-        Map<String, Method> mapMethods = new HashMap<String, Method>();
+        Map<String, Method> mapMethods = new HashMap<>();
         for (Method m : meths) {
             String name = m.getName();
             if (name.startsWith("set") && m.getParameterTypes().length == 1 && m.getReturnType().equals(Void.TYPE)) {
@@ -552,13 +552,13 @@ public class XConfiguration {
             }
         }
 
-        Map<String, String> names = new HashMap<String, String>();
+        Map<String, String> names = new HashMap<>();
 
         T[] values = (T[]) Array.newInstance(type, nodes.getLength());
         for (int i = 0; i < values.length; i++) {
             NamedNodeMap map = nodes.item(i).getAttributes();
             try {
-                Constructor<T> constructor = type.getDeclaredConstructor(new Class[] {});
+                Constructor<T> constructor = type.getDeclaredConstructor(new Class<?>[] {});
                 constructor.setAccessible(true);
                 values[i] = constructor.newInstance();
             } catch (InstantiationException e) {
@@ -593,7 +593,7 @@ public class XConfiguration {
                 String value = n.getNodeValue();
                 Method method = mapMethods.get(methName);
                 if (method != null) {
-                    Class[] paramsClass = method.getParameterTypes();
+                    Class<?>[] paramsClass = method.getParameterTypes();
                     StringParser parser = conv.get(paramsClass[0]);
                     if (parser != null) {
                         Object[] params = new Object[] {parser.parse(value)};
@@ -626,7 +626,7 @@ public class XConfiguration {
      */
     public static final <T, U> Map<T, U> get(final Document doc, final String key, final Class<T> keyType, final String value, final Class<U> valueType, final String path) {
         XPath xp = xpathFactory.newXPath();
-        Map<T, U> map = new HashMap<T, U>();
+        Map<T, U> map = new HashMap<>();
         NodeList nodes;
         try {
             nodes = (NodeList) xp.compile(path).evaluate(doc, XPathConstants.NODESET);
@@ -653,7 +653,7 @@ public class XConfiguration {
                 return map;
             }
 
-            map.put((T) convK.parse(kk), (U) convV.parse(vv));
+            map.put(keyType.cast(convK.parse(kk)), valueType.cast(convV.parse(vv)));
         }
 
         return map;
@@ -700,7 +700,7 @@ public class XConfiguration {
 
             if (mustInstantiate) {
                 try {
-                    Constructor<T> constructor = type.getDeclaredConstructor(new Class[] {});
+                    Constructor<T> constructor = type.getDeclaredConstructor(new Class<?>[] {});
                     constructor.setAccessible(true);
                     values[i] = constructor.newInstance();
                 } catch (InstantiationException e) {
@@ -724,7 +724,7 @@ public class XConfiguration {
                 if (tag.isEmpty() || tag.equals(nodeName)) {
                     String[] attributes = attrs.get(j);
                     Object[] params = new Object[attributes.length];
-                    Class[] paramsClass = method.getParameterTypes();
+                    Class<?>[] paramsClass = method.getParameterTypes();
                     for (int k = 0; k < attributes.length; k++) {
                         String p = "";
                         Node node = null;
@@ -787,7 +787,7 @@ public class XConfiguration {
                     try {
                         return (int) Double.parseDouble(str);
                     } catch (NumberFormatException ee) {
-                        return new Integer(0);
+                        return Integer.valueOf(0);
                     }
                 }
             }
@@ -797,7 +797,7 @@ public class XConfiguration {
                 if (str.length() > 0) {
                     return str.charAt(0);
                 } else {
-                    return new Character((char) 0);
+                    return Character.valueOf((char) 0);
                 }
             }
         });
@@ -809,7 +809,7 @@ public class XConfiguration {
                     try {
                         return (byte) Double.parseDouble(str);
                     } catch (NumberFormatException ee) {
-                        return new Byte((byte) 0);
+                        return Byte.valueOf((byte) 0);
                     }
                 }
             }
@@ -822,7 +822,7 @@ public class XConfiguration {
                     try {
                         return (short) Double.parseDouble(str);
                     } catch (NumberFormatException ee) {
-                        return new Short((short) 0);
+                        return Short.valueOf((short) 0);
                     }
                 }
             }
@@ -832,7 +832,7 @@ public class XConfiguration {
                 try {
                     return Double.parseDouble(str);
                 } catch (NumberFormatException ee) {
-                    return new Double((double) 0);
+                    return Double.valueOf((double) 0);
                 }
             }
         });
@@ -841,7 +841,7 @@ public class XConfiguration {
                 try {
                     return Float.parseFloat(str);
                 } catch (NumberFormatException ee) {
-                    return new Float((float) 0);
+                    return Float.valueOf((float) 0);
                 }
             }
         });
@@ -858,7 +858,7 @@ public class XConfiguration {
                     try {
                         return (long) Double.parseDouble(str);
                     } catch (NumberFormatException ee) {
-                        return new Long((long) 0);
+                        return Long.valueOf((long) 0);
                     }
                 }
             }

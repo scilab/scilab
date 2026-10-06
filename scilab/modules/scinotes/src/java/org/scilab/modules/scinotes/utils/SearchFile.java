@@ -79,8 +79,8 @@ import java.io.IOException;
  * Class SearchFile: open a window with a JTree to show the results of a search in files.
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
-public class SearchFile extends SwingScilabDockablePanel {
+public final class SearchFile extends SwingScilabDockablePanel {
+    private static final long serialVersionUID = 1L;
 
     public static final String SEARCHDONE = "SearchFile.SearchDone";
 
@@ -90,7 +90,7 @@ public class SearchFile extends SwingScilabDockablePanel {
 
     private SwingScilabWindow parentWindow;
     private SciNotes editor;
-    private MyBackgroundSearch mySearch;
+    private transient MyBackgroundSearch mySearch;
     private JTree tree;
 
     /**
@@ -100,6 +100,7 @@ public class SearchFile extends SwingScilabDockablePanel {
      */
     public SearchFile(SciNotes editor, String uuid) {
         super(SciNotesMessages.SEARCHINFILES, uuid == null ? UUID.randomUUID().toString() : uuid);
+        init();
         this.editor = editor;
         editor.addSearchInFiles(this);
         ConfigSciNotesManager.saveSearchInFilesState(editor.getPersistentId(), getPersistentId());
@@ -175,8 +176,8 @@ public class SearchFile extends SwingScilabDockablePanel {
      */
     public void changeToolBar() {
         SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
-        Set<SwingScilabDockablePanel> set = win.getDockingPort().getDockables();
-        for (SwingScilabDockablePanel tab : set) {
+        Set<?> set = win.getDockingPort().getDockables();
+        for (Object tab : set) {
             if (tab == editor) {
                 addToolBar(editor.getToolBar());
                 break;

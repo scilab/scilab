@@ -9,13 +9,13 @@
 package org.scilab.modules.localization;
 
 
-
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
  /** 
    * @author Sylvestre LEDRU
    * @copyright DIGITEO 2009
    */
+
 public class MessagesJNI {
 
   /**
@@ -29,10 +29,10 @@ public class MessagesJNI {
     try {
         if (System.getProperty("os.name").toLowerCase().contains("windows") != true) {
             if (System.getProperty("testngTests")!=null) {
-                System.loadLibrary("scilab");
+                NativeLibraryLoader.loadLibrary("scilab");
             }
         }
-        System.loadLibrary("scilocalization");
+        NativeLibraryLoader.loadLibrary("scilocalization");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

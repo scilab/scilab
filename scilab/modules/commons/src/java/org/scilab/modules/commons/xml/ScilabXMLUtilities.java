@@ -61,7 +61,7 @@ public class ScilabXMLUtilities {
     private static final String ENCODING = "UTF-8";
     private static final String ERROR_WRITE = Messages.gettext("Could not save file: ");
     private static final String ERROR_READ = Messages.gettext("Could not load file: ");
-    private static final Integer INDENTATION = new Integer(4);
+    private static final Integer INDENTATION = Integer.valueOf(4);
 
     private static Transformer transformer;
 
@@ -416,7 +416,7 @@ public class ScilabXMLUtilities {
      * @param clazz the class type of the value
      * @return the converted object
      */
-    private static final Object convert(String value, Class clazz) {
+    private static final Object convert(String value, Class<?> clazz) {
         if (clazz == int.class) {
             return Integer.parseInt(value);
         } else if (clazz == float.class) {

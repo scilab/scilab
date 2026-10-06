@@ -37,8 +37,8 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * RefreshAction class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class CutAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static final String KEY = "OSSCKEY X";
     private static final String CUT = "Cut";

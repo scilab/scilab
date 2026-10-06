@@ -75,14 +75,14 @@ public class SciDockingListener implements DockingListener {
             newId = ((SciDockingListener) newListeners[1]).getAssociatedWindowId();
         } else { /* Docking port created by Flexdock itself */
             /* Retrieve the ID of the parent window */
-            Set<Dockable> allDockables = e.getNewDockingPort().getDockables();
+            Set<?> allDockables = e.getNewDockingPort().getDockables();
             /* Have to find another dockable than the one we just docked */
-            Iterator<Dockable> it =  allDockables.iterator();
-            Dockable dock = it.next();
+            Iterator<?> it = allDockables.iterator();
+            Dockable dock = (Dockable) it.next();
 
             if (it.hasNext()) { /** More than one dockable --> already existing docking port */
                 while (e.getDockable() == dock) {
-                    dock = it.next();
+                    dock = (Dockable) it.next();
                 }
                 newId = ((SwingScilabDockablePanel) dock).getParentWindowId();
             } else { /** Create a new Window to display the tab inside it */

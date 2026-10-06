@@ -22,7 +22,7 @@ import java.awt.Point;
 /**
  * @author Pierre Lando
  */
-public class PointBComputer extends AbstractPointComputer implements PointComputer {
+public final class PointBComputer extends AbstractPointComputer implements PointComputer {
 
     /** First axis index */
     private final int firstAxisIndex;

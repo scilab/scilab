@@ -53,8 +53,8 @@ public final class ScilabFontUtils {
      */
     public static String[][] getMonospacedFontsFamillyName() {
         String[] fontFamilly = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames() ;
-        List<String> mono = new ArrayList();
-        List<String> notMono = new ArrayList();
+        List<String> mono = new ArrayList<>();
+        List<String> notMono = new ArrayList<>();
         for (int i = 0; i < fontFamilly.length; i++) {
             if (isMonospaced(fontFamilly[i])) {
                 mono.add(fontFamilly[i]);
@@ -71,8 +71,8 @@ public final class ScilabFontUtils {
      */
     public static String[][] getAllStylesSameWidthsFontsFamillyName() {
         String[] fontFamilly = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames() ;
-        List<String> all = new ArrayList();
-        List<String> notAll = new ArrayList();
+        List<String> all = new ArrayList<>();
+        List<String> notAll = new ArrayList<>();
         for (int i = 0; i < fontFamilly.length; i++) {
             if (isAllStylesSameWidths(fontFamilly[i])) {
                 all.add(fontFamilly[i]);

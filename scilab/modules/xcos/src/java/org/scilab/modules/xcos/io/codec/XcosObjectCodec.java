@@ -177,7 +177,7 @@ public class XcosObjectCodec extends mxCellCodec {
                     Constructor<? extends Object> cstrs = template.getClass().getConstructor(Long.TYPE);
                     obj = cstrs.newInstance(controller.createObject(kind));
                 } else {
-                    obj = template.getClass().newInstance();
+                    obj = template.getClass().getDeclaredConstructor().newInstance();
                 }
             }
 

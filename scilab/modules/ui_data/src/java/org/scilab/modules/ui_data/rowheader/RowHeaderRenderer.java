@@ -31,8 +31,8 @@ import javax.swing.table.TableCellRenderer;
 /**
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
-public class RowHeaderRenderer extends JLabel implements TableCellRenderer {
+public final class RowHeaderRenderer extends JLabel implements TableCellRenderer {
+    private static final long serialVersionUID = 1L;
 
     private int index;
     private JTable table;

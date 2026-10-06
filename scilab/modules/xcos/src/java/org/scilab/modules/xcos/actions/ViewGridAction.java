@@ -31,8 +31,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Grid visibility management
  */
-@SuppressWarnings(value = { "serial" })
 public final class ViewGridAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.GRID;
     /** Icon name of the action */

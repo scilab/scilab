@@ -33,7 +33,7 @@ public abstract class CommonCallBack extends AbstractAction {
 
     private static final long serialVersionUID = -919820581757579168L;
 
-    private CallBack callback;
+    private transient CallBack callback;
 
     /**
      * @param command the callback command

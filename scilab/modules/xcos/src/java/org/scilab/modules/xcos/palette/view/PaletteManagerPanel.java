@@ -62,8 +62,8 @@ import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 /**
  * The content pane for the block view
  */
-@SuppressWarnings(value = { "serial" })
-public class PaletteManagerPanel extends JSplitPane {
+public final class PaletteManagerPanel extends JSplitPane {
+    private static final long serialVersionUID = 1L;
 
     /** Name of tree node for recently used blocks **/
     public static final String RECENTLY_USED_BLOCKS = "Recently Used Blocks";
@@ -129,12 +129,12 @@ public class PaletteManagerPanel extends JSplitPane {
     }
 
     private static XcosConstants.PaletteBlockSize currentSize;
-    private final PaletteManager controller;
-    private CustomMouseWheelListener mouseWheelListener;
+    private final transient PaletteManager controller;
+    private transient CustomMouseWheelListener mouseWheelListener;
     private JTree tree;
-    private PaletteDiagram diagramInstance;
-    private List<TreePath> historyNext;
-    private List<TreePath> historyPrev;
+    private transient PaletteDiagram diagramInstance;
+    private transient List<TreePath> historyNext;
+    private transient List<TreePath> historyPrev;
     private TreePath currentPath;
 
     /**

@@ -22,7 +22,7 @@ import java.awt.Point;
 /**
  * @author Pierre Lando
  */
-public class PointCComputer extends CubeFacesPointComputer implements PointComputer {
+public final class PointCComputer extends CubeFacesPointComputer implements PointComputer {
 
     private final Vector3d secondPosition;
     private final Vector3d firstPosition;

@@ -102,7 +102,7 @@ class ComponentFactory {
 
             try {
                 // First with a Node as argument
-                Class[] parameter = new Class[] {Node.class};
+                Class<?>[] parameter = new Class<?>[] {Node.class};
                 constructor = componentClass.getConstructor(parameter);
             } catch (NoSuchMethodException e) {
                 System.err.println("NoSuchMethodException:" + e);
@@ -131,6 +131,12 @@ class ComponentFactory {
             System.err.println("InvocationTargetException:" + e.getTargetException());
             e.getTargetException().printStackTrace();
             return new XStub(node, "InvocationTargetException");
+        }
+
+        // Finish initialization post-construction (deferred setup that would
+        // otherwise leak this from the constructor, e.g. overridable Swing calls).
+        if (component instanceof XComponent) {
+            ((XComponent) component).init(node);
         }
 
         return component;

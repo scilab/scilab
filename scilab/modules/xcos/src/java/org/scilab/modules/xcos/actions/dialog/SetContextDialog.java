@@ -69,13 +69,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
 // CSOFF: MagicNumber
-@SuppressWarnings(value = { "serial" })
-public class SetContextDialog extends JDialog {
+public final class SetContextDialog extends JDialog {
+    private static final long serialVersionUID = 1L;
     private static final Dimension PREFERRED_SIZE = new Dimension(480, 320);
     private static final String SHARED_NEW_LINE = "\n";
 
-    private final ScicosParameters parameters;
-    private final XcosDiagram rootGraph;
+    private final transient ScicosParameters parameters;
+    private final transient XcosDiagram rootGraph;
 
     private JTextArea contextArea;
 
@@ -201,6 +201,7 @@ public class SetContextDialog extends JDialog {
     }
 
     private class ActionImpl extends AbstractAction implements ActionListener {
+        private static final long serialVersionUID = 1L;
 
         public ActionImpl() {
             super(XcosMessages.OK);

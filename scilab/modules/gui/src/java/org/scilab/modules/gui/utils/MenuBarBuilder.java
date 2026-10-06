@@ -73,7 +73,7 @@ public final class MenuBarBuilder {
      * @throws IOException can be thrown when an error occurs while accessing the file
      * @throws ParserConfigurationException can be thrown when an error occurs while parsing the file
      */
-    public static Object buildMenuBar(Class[] resultClass, String fileToLoad) throws SAXException, IOException, ParserConfigurationException {
+    public static Object buildMenuBar(Class<?>[] resultClass, String fileToLoad) throws SAXException, IOException, ParserConfigurationException {
 
         InvocationHandler invocationHandler = new MenuBarConfigurationHandler(fileToLoad);
 
@@ -103,7 +103,7 @@ public final class MenuBarBuilder {
 
         try {
             MenuBarConfiguration menuBarConfig =
-                (MenuBarConfiguration) buildMenuBar(new Class[] {MenuBarConfiguration.class}, fileToLoad);
+                (MenuBarConfiguration) buildMenuBar(new Class<?>[] {MenuBarConfiguration.class}, fileToLoad);
             menuBarConfig.addMenus(menubar);
         } catch (IllegalArgumentException e) {
             System.err.println(CANNOT_CREATE_MENUBAR);

@@ -34,8 +34,8 @@ import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 /**
  * The palette block view
  */
-@SuppressWarnings(value = { "serial" })
 public final class PaletteBlockView extends JLabel {
+    private static final long serialVersionUID = 1L;
 
     private static final int DEFAULT_ICON_TEXT_GAP = 5;
 
@@ -45,7 +45,7 @@ public final class PaletteBlockView extends JLabel {
     private static final Border NON_SELECTED_BORDER = BorderFactory
             .createEmptyBorder();
     private StatusUI statusUI;
-    private PaletteBlockCtrl controller;
+    private transient PaletteBlockCtrl controller;
 
     /**
      * UI states

@@ -43,17 +43,6 @@ public class InteractionManager implements RubberBoxListener {
     }
 
     /**
-     * Finalize method.
-     * @exception Throwable the <code>Exception</code> raised by this method
-     */
-    protected void finalize() throws Throwable {
-        if (rubberBox != null) {
-            rubberBox.removeListener(this);
-        }
-        super.finalize();
-    }
-
-    /**
      * Called to start zooming.
      */
     public void startInteractiveZoom() {

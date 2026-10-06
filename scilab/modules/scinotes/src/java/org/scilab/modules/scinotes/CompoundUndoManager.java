@@ -32,13 +32,13 @@ import javax.swing.undo.CannotRedoException;
  * @author Calixte DENIZET
  *
  */
-public class CompoundUndoManager extends UndoManager {
+public final class CompoundUndoManager extends UndoManager {
 
     private static final long serialVersionUID = 2400488911410627080L;
 
-    private CompoundEdit compoundEdit;
-    private ScilabDocument sdoc;
-    private Segment seg = new Segment();
+    private transient CompoundEdit compoundEdit;
+    private transient ScilabDocument sdoc;
+    private transient Segment seg = new Segment();
     private boolean remove;
     private int nbEdits;
     private char[] breaks;

@@ -30,7 +30,7 @@ import org.scilab.modules.preferences.XConfigManager;
  *
  */
 //public class Button extends JButton implements XComponent {
-public class Button extends JButton implements XComponent {
+public final class Button extends JButton implements XComponent {
 
     /** Universal identifier for serialization.
      *

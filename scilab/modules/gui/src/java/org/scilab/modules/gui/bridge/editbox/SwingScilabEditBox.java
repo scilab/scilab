@@ -78,7 +78,7 @@ import org.scilab.modules.gui.widget.Widget;
  * Swing implementation for Scilab EditBox in GUIs
  * @author Vincent COUVERT
  */
-public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, Widget {
+public final class SwingScilabEditBox extends JScrollPane implements SwingViewObject, Widget {
 
     private static final long serialVersionUID = 2048261239598753717L;
 
@@ -86,12 +86,12 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
 
     private CommonCallBack callback;
 
-    private FocusListener focusListener;
+    private transient FocusListener focusListener;
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
-    private StyledDocument doc;
-    private SimpleAttributeSet docAttributes = new SimpleAttributeSet();
+    private transient StyledDocument doc;
+    private transient SimpleAttributeSet docAttributes = new SimpleAttributeSet();
 
     private JTextPane textPane = new JTextPane();
     //use to disable wordwarp
@@ -99,9 +99,9 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     private boolean scrollable = false;
     private boolean isMultiLine = false;
 
-    private Object enterKeyAction;
-    private Object tabKeyAction;
-    private Object shiftTabKeyAction;
+    private transient Object enterKeyAction;
+    private transient Object tabKeyAction;
+    private transient Object shiftTabKeyAction;
 
 
     private class EditBoxView extends BoxView {

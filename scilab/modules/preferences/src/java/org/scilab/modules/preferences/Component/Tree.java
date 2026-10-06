@@ -40,15 +40,15 @@ import org.w3c.dom.NodeList;
  *
  * @author Pierre GRADIT
  */
-public class Tree extends Panel implements XComponent, XChooser, TreeSelectionListener {
+public final class Tree extends Panel implements XComponent, XChooser, TreeSelectionListener {
 
     /**
      * Universal identifier for serialization.
      */
     private static final long serialVersionUID = -6127289363733321914L;
 
-    private ActionListener actionListener = null;
-    private XTreeModel model;
+    private transient ActionListener actionListener = null;
+    private transient XTreeModel model;
     private JTree tree;
     private boolean dontChange = false;
 

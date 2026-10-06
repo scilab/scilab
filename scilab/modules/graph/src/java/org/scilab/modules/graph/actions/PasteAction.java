@@ -35,8 +35,8 @@ import com.mxgraph.swing.handler.mxGraphTransferHandler;
  *
  * This action is enabled by the {@link CutAction} and {@link CopyAction}.
  */
-@SuppressWarnings(value = { "serial" })
 public final class PasteAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = ScilabGraphMessages.PASTE;
     /** Icon name of the action */
@@ -44,7 +44,7 @@ public final class PasteAction extends DefaultAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_V;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /**
      * Constructor

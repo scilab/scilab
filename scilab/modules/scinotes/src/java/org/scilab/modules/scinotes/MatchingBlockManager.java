@@ -440,8 +440,8 @@ public class MatchingBlockManager {
         public void paint(Graphics g, int pos0, int pos1, Shape bounds, JTextComponent c) {
             try {
                 Rectangle alloc = bounds.getBounds();
-                Rectangle p0 = c.modelToView(pos0);
-                Rectangle p1 = c.modelToView(pos1);
+                Rectangle p0 = c.modelToView2D(pos0).getBounds();
+                Rectangle p1 = c.modelToView2D(pos1).getBounds();
                 g.setColor(color);
 
                 if (p0.y == p1.y) {
@@ -455,8 +455,8 @@ public class MatchingBlockManager {
                     Element root = doc.getDefaultRootElement();
                     int line0 = root.getElementIndex(pos0);
                     int line1 = root.getElementIndex(pos1);
-                    Rectangle r0 = c.modelToView(root.getElement(line0).getEndOffset());
-                    Rectangle r1 = c.modelToView(root.getElement(line1).getStartOffset());
+                    Rectangle r0 = c.modelToView2D(root.getElement(line0).getEndOffset()).getBounds();
+                    Rectangle r1 = c.modelToView2D(root.getElement(line1).getStartOffset()).getBounds();
                     if (line0 != line1) {
                         if (!strict) {
                             if (filled) {

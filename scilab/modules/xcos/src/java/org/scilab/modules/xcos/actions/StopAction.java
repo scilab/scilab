@@ -34,8 +34,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Stop the simulation
  */
-@SuppressWarnings(value = { "serial" })
 public final class StopAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.STOP;
     /** Icon name of the action */

@@ -19,8 +19,9 @@ import org.scilab.forge.scirenderer.SciRendererException;
 /**
  * @author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
 public class DegenerateMatrixException extends SciRendererException {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor.

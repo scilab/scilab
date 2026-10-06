@@ -17,8 +17,9 @@ package org.scilab.forge.scirenderer.shapes.appearance;
 /**
  * @author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
 public final class Color extends java.awt.Color {
+
+    private static final long serialVersionUID = 1L;
 
     private static final float COMPONENT_MAX_VALUE = 255f;
 

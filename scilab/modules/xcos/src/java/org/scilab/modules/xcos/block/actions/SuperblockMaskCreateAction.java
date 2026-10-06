@@ -40,8 +40,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Create a mask for the {@link SuperBlock}
  */
-@SuppressWarnings(value = { "serial" })
 public final class SuperblockMaskCreateAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.CREATE;
     /** Icon name of the action */

@@ -102,10 +102,10 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
     public static void register() {
         JavaController controller = new JavaController();
 
-        ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, ""), DIAGRAM_IGNORED_FIELDS, null,
+        ScilabGraphCodec diagramCodec = new XcosDiagramCodec(XcosDiagram.create(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, ""), DIAGRAM_IGNORED_FIELDS, null,
                 null);
         mxCodecRegistry.register(diagramCodec);
-        ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new XcosDiagram(controller, controller.createObject(Kind.BLOCK), Kind.BLOCK, ""),
+        ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(XcosDiagram.create(controller, controller.createObject(Kind.BLOCK), Kind.BLOCK, ""),
                 SUPERBLOCKDIAGRAM_IGNORED_FIELDS, null, null);
         mxCodecRegistry.register(superBlockDiagramCodec);
     }
@@ -299,7 +299,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      */
     @Override
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
-        final Package p = Package.getPackage("org.scilab.modules.xcos");
+        final Package p = Xcos.class.getPackage();
 
         trace(enc, node, new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP).append(p.getSpecificationVersion()).append(SEP)
               .append(p.getImplementationVersion()).toString());

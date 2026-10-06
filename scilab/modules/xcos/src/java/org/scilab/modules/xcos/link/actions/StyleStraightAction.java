@@ -30,8 +30,8 @@ import com.mxgraph.util.mxConstants;
 /**
  * Implement the set link horizontal action
  */
-@SuppressWarnings(value = { "serial" })
 public class StyleStraightAction extends StyleAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.LINK_STYLE_STRAIGHT;
     /** Icon name of the action */

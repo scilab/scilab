@@ -28,7 +28,7 @@ import java.nio.FloatBuffer;
 /**
  * @author Pierre Lando
  */
-public class HelpersGeometry extends DefaultGeometry {
+public final class HelpersGeometry extends DefaultGeometry {
 
     /** The helper size */
     private static final double HELPERS_SIZE = .05;
@@ -52,12 +52,6 @@ public class HelpersGeometry extends DefaultGeometry {
         setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
         setFillDrawingMode(Geometry.FillDrawingMode.NONE);
         setVertices(vertexBuffer);
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        bufferManager.dispose(vertexBuffer);
     }
 
     public void updateVertex(Axes axes, PointComputer pointAComputer, Vector3d secondPoint, RubberBox.Status status) {

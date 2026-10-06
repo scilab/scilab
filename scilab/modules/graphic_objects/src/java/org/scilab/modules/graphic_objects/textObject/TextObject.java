@@ -46,7 +46,7 @@ public abstract class TextObject extends ContouredObject {
     protected FormattedText[] text;
 
     /** Text array dimensions (number of rows, number of columns) */
-    private int[] dimensions;
+    protected int[] dimensions;
 
     /** Constructor */
     public TextObject() {

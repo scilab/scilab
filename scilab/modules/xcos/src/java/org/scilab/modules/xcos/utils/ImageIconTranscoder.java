@@ -79,7 +79,7 @@ public class ImageIconTranscoder extends ImageTranscoder {
      * @param height the image height
      */
     public void setDimensions(int width, int height) {
-        hints.put(KEY_WIDTH, new Float(width));
-        hints.put(KEY_HEIGHT, new Float(height));
+        hints.put(KEY_WIDTH, Float.valueOf(width));
+        hints.put(KEY_HEIGHT, Float.valueOf(height));
     }
 }

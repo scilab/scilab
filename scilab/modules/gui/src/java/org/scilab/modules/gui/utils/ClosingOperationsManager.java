@@ -53,8 +53,8 @@ import org.scilab.modules.commons.xml.XConfiguration;
  * @author Calixte DENIZET
  */
 
-@SuppressWarnings(value = { "serial" })
 public class ClosingOperationsManager {
+    private static final long serialVersionUID = 1L;
 
     private static final String EXIT_CONFIRM = Messages.gettext("Are you sure you want to close %s ?");
     private static final String EXIT_CONFIRM_AND = Messages.gettext("Are you sure you want to close %s and %s ?");

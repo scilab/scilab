@@ -21,6 +21,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Arrays;
@@ -457,7 +458,7 @@ public final class ConfigurationManager {
 
         // load the file into a rootGraph
         ScicosObjectOwner rootOwner = new ScicosObjectOwner(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
-        XcosDiagram rootGraph = new XcosDiagram(controller, rootOwner.getUID(), rootOwner.getKind(), "");
+        XcosDiagram rootGraph = XcosDiagram.create(controller, rootOwner.getUID(), rootOwner.getKind(), "");
         rootGraph.setSavedFile(f);
 
         try {
@@ -502,7 +503,7 @@ public final class ConfigurationManager {
      */
     private XcosDiagram createDiagram(JavaController controller, ScicosObjectOwner root, ScicosObjectOwner layer, String uid, String tabUUID)
     {
-        XcosDiagram graph = new XcosDiagram(controller, layer, uid);
+        XcosDiagram graph = XcosDiagram.create(controller, layer, uid);
         XcosCellFactory.insertChildren(controller, graph);
         graph.installListeners();
         graph.setModified(false);
@@ -524,7 +525,7 @@ public final class ConfigurationManager {
         final URL url;
         final File f;
         try {
-            url = new URL(doc.getUrl());
+            url = URI.create(doc.getUrl()).toURL();
             f = new File(url.toURI());
         } catch (Exception e) {
             return null;
@@ -581,9 +582,8 @@ public final class ConfigurationManager {
         File lastFile = null;
         if (recentFiles.hasNext()) {
             try {
-                lastFile = new File(new URL(recentFiles.next().getUrl()).toURI());
-            } catch (MalformedURLException e) {
-            } catch (URISyntaxException e) {
+                lastFile = new File(URI.create(recentFiles.next().getUrl()));
+            } catch (Exception e) {
             }
         }
         if (lastFile != null) {

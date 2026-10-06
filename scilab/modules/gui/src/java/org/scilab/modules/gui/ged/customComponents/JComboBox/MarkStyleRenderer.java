@@ -30,14 +30,15 @@ import org.scilab.modules.gui.ged.graphic_objects.contouredObject.MarkStyle;
 *
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class MarkStyleRenderer extends JPanel implements ListCellRenderer {
+public class MarkStyleRenderer extends JPanel implements ListCellRenderer<MarkStyle> {
+    private static final long serialVersionUID = 1L;
     private MarkStyle value;
     private static Color background = Color.WHITE;
     private static Color foreground = Color.BLACK;
 
     @Override
-    public Component getListCellRendererComponent(JList list,
-            Object value,
+    public Component getListCellRendererComponent(JList<? extends MarkStyle> list,
+            MarkStyle value,
             int index,
             boolean isSelected,
             boolean cellHasFocus) {
@@ -50,7 +51,7 @@ public class MarkStyleRenderer extends JPanel implements ListCellRenderer {
         }
 
         if (value instanceof MarkStyle) {
-            setMarkType((MarkStyle) value);
+            setMarkType(value);
         } else {
             setMarkType(null);
         }

@@ -60,21 +60,21 @@ import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
  * @author Marouane BEN JELLOUL
  * @author Jean-Baptiste Silvy
  */
-public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
+public final class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 
     private static final long serialVersionUID = 6101347094617535625L;
 
     /** The renderer canvas */
-    private final Canvas rendererCanvas;
+    private final transient Canvas rendererCanvas;
 
     /** The drawn figure */
-    private AxesContainer figure;
+    private transient AxesContainer figure;
 
     /** The drawer visitor used to draw the figure */
-    private DrawerVisitor drawerVisitor;
+    private transient DrawerVisitor drawerVisitor;
 
     /** The drawable component where the draw is performed */
-    private final Component drawableComponent;
+    private final transient Component drawableComponent;
 
     private Integer id;
 
@@ -105,6 +105,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
         });
 
         drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
+        drawerVisitor.init();
         rendererCanvas.setMainDrawer(drawerVisitor);
         drawableComponent.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {

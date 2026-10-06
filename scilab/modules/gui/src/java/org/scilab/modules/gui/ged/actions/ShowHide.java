@@ -26,6 +26,8 @@ import org.scilab.modules.gui.ged.SwingInspector;
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
 public class ShowHide extends CommonCallBack {
+
+    private static final long serialVersionUID = 1L;
     private static boolean click = true;
     private static SwingScilabPushButton button;
 

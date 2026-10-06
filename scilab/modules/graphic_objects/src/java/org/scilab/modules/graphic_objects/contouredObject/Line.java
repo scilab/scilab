@@ -102,10 +102,10 @@ public class Line {
                          }
 
     /** Specifies whether the line is drawn or not */
-    private boolean mode;
+    protected boolean mode;
 
     /** Line style */
-    private LineType lineStyle;
+    protected LineType lineStyle;
 
     /** Line thickness */
     private double thickness;

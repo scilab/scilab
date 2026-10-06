@@ -30,7 +30,7 @@ import org.w3c.dom.Node;
  * @author Pierre GRADIT
  *
  */
-public class Entry extends JPasswordField implements XComponent, XChooser {
+public final class Entry extends JPasswordField implements XComponent, XChooser {
 
     /** Universal identifier for serialization.
      *

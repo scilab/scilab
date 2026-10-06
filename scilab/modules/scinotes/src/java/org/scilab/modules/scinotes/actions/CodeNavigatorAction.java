@@ -28,8 +28,8 @@ import org.scilab.modules.scinotes.utils.NavigatorWindow;
  * @author Bruno JOFRET
  * @author Calixte DENIZET
  */
-@SuppressWarnings("serial")
 public final class CodeNavigatorAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

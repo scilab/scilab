@@ -33,6 +33,7 @@ import org.scilab.modules.xcos.block.actions.AutoPositionSplitBlockAction;
  * A SplitBlock is used on a junction between links.
  */
 public final class SplitBlock extends BasicBlock {
+    private static final long serialVersionUID = 1L;
 
     /** The default size */
     public static final int DEFAULT_SIZE = 7;

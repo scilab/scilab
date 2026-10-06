@@ -16,6 +16,7 @@
 package org.scilab.modules.preferences.Component;
 
 import java.awt.BorderLayout;
+import java.net.URI;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
@@ -32,7 +33,7 @@ import org.scilab.modules.preferences.XConfigManager;
  * @author Calixte DENIZET
  *
  */
-public class Image extends Panel implements XComponent {
+public final class Image extends Panel implements XComponent {
 
     /** Universal identifier for serialization.
      *
@@ -84,7 +85,7 @@ public class Image extends Panel implements XComponent {
         if (!url.equals(this.url)) {
             this.url = url.replace("$SCI", System.getenv("SCI"));
             try {
-                URL myurl = new URL(this.url);
+                URL myurl = URI.create(this.url).toURL();
                 label.setIcon(new ImageIcon(myurl));
             } catch (Exception e) {
                 System.err.println(e);

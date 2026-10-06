@@ -36,7 +36,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStat
 /**
  * @author Vincent COUVERT
  */
-public class Uimenu extends GraphicObject {
+public final class Uimenu extends GraphicObject {
 
     private boolean checked;
     private boolean enable = true;

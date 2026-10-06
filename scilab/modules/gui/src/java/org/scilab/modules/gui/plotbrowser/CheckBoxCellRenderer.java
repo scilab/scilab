@@ -28,11 +28,11 @@ import javax.swing.border.EmptyBorder;
  *
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
-public class CheckBoxCellRenderer implements ListCellRenderer {
+public class CheckBoxCellRenderer implements ListCellRenderer<Object> {
     Border noFocusBorder = new EmptyBorder(1, 1, 1, 1);
 
     public Component getListCellRendererComponent(
-        JList list,
+        JList<?> list,
         Object value,
         int index,
         boolean isSelected,

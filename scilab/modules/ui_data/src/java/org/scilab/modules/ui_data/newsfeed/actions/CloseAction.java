@@ -27,6 +27,7 @@ import org.scilab.modules.ui_data.newsfeed.NewsFeedTab;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 
 public class CloseAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static final String LABEL = UiDataMessages.CLOSE;
     private static final String ICON = null;

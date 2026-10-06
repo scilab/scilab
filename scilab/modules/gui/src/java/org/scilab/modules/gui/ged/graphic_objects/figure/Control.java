@@ -23,7 +23,8 @@ import org.scilab.modules.gui.ged.graphic_objects.properties.Figure;
 * Construction and startup of all components of the section: Control.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Control extends SimpleSection {
+public final class Control extends SimpleSection {
+    private static final long serialVersionUID = 1L;
     private static Control instance;
     private JPanel sectionPanel;
     private Figure figure = new Figure();
@@ -34,6 +35,7 @@ public class Control extends SimpleSection {
     */
     public Control(Integer objectID) {
         super(MessagesGED.control, "figure");
+        initializeSection();
         instance = this;
         sectionPanel = getSectionPanel();
         initComponents(objectID);

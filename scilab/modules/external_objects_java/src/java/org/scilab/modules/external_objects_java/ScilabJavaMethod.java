@@ -34,8 +34,8 @@ import javax.swing.SwingUtilities;
  *
  * @author Calixte DENIZET
  */
-@SuppressWarnings("serial")
 public final class ScilabJavaMethod {
+    private static final long serialVersionUID = 1L;
 
     /**
      * @param obj the object where invoking method
@@ -43,9 +43,9 @@ public final class ScilabJavaMethod {
      * @param args the ids of arguments
      * @return the resulting object
      */
-    public static Object invoke(String name, Class clazz, Object obj, Class[] returnType, int[] args) throws ScilabJavaException {
+    public static Object invoke(String name, Class<?> clazz, Object obj, Class<?>[] returnType, int[] args) throws ScilabJavaException {
         int nbargs = args.length;
-        Class[] cl = new Class[nbargs];
+        Class<?>[] cl = new Class<?>[nbargs];
         Object[] argsO = new Object[nbargs];
 
         for (int i = 0; i < nbargs; i++) {
@@ -67,7 +67,7 @@ public final class ScilabJavaMethod {
      * @param argsClass the Class of the arguments
      * @return the resulting object
      */
-    public static Object call(final String name, final Class clazz, final Object obj, final Class[] returnType, final Object[] args, final Class[] argsClass) throws ScilabJavaException {
+    public static Object call(final String name, final Class<?> clazz, final Object obj, final Class<?>[] returnType, final Object[] args, final Class<?>[] argsClass) throws ScilabJavaException {
         MethodDescriptor[] mdesc = null;
         try {
             mdesc = Introspector.getBeanInfo(clazz).getMethodDescriptors();
@@ -81,15 +81,13 @@ public final class ScilabJavaMethod {
         try {
             final Object[] info = FunctionArguments.findMethod(name, mdesc, argsClass, args);
             final Method meth = (Method) info[0];
-            final Class returned = meth.getReturnType();
+            final Class<?> returned = meth.getReturnType();
             Object ret = null;
             final Object[] _args;
 
-            if (!meth.isAccessible()) {
-                try {
-                    meth.setAccessible(true);
-                } catch (SecurityException e) { }
-            }
+            try {
+                meth.setAccessible(true);
+            } catch (SecurityException e) { }
 
             if (info.length == 2) {
                 // Method with variable arguments, so they have been modified and are the second element of the returned array

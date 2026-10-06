@@ -339,7 +339,7 @@ public final class ScilabBrowser {
             cefApp_ = CefApp.getInstance(cefArgs.toArray(new String[0]), settings);
 
             try {
-                Class scilab = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.core.Scilab");
+                Class<?> scilab = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.core.Scilab");
                 Method registerFinalHook = scilab.getDeclaredMethod("registerFinalHook", Runnable.class);
                 registerFinalHook.invoke(null, new Runnable() {
                     public void run() {

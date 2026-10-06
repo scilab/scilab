@@ -24,7 +24,8 @@ import org.scilab.modules.gui.ged.graphic_objects.properties.GraphicObject;
 * Construction and startup of all components of the section: Data Properties.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class DataProperties extends SimpleSection {
+public final class DataProperties extends SimpleSection {
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static DataProperties instance;
     private ClippableContouredObject clippableContouredObject = new ClippableContouredObject();
@@ -36,6 +37,7 @@ public class DataProperties extends SimpleSection {
     */
     public DataProperties(Integer objectID) {
         super(MessagesGED.data_properties, "surface");
+        initializeSection();
         instance = this;
         sectionPanel = getSectionPanel();
         initComponents(objectID);

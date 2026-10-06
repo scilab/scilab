@@ -131,16 +131,16 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     private Integer id;
 
     private boolean eventEnabled = false;
-    ComponentListener componentListener;
+    transient ComponentListener componentListener;
 
     static {
         PropertyChangeListenerFactory.addFactory(new BarUpdater.UpdateBarFactory());
     }
 
     private String parentWindowId;
-    private MenuBar menuBar;
-    private ToolBar toolBar;
-    private TextBox infoBar;
+    private transient MenuBar menuBar;
+    private transient ToolBar toolBar;
+    private transient TextBox infoBar;
     private String helpID;
     private boolean paintEnable = true;
 
@@ -151,13 +151,13 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     /** Scroll the axes */
     private SwingScilabScrollPane scrolling;
 
-    private Image icon;
+    private transient Image icon;
 
-    private Action closeAction;
+    private transient Action closeAction;
 
     /** The listener for event handling */
-    private ScilabEventListener eventHandler;
-    private EditorEventListener editorEventHandler = null;
+    private transient ScilabEventListener eventHandler;
+    private transient EditorEventListener editorEventHandler = null;
 
     /** A reference to the canvas used for event handling management */
     private SwingScilabCanvas contentCanvas = null;
@@ -171,16 +171,23 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      */
     public SwingScilabDockablePanel(String name, String uuid) {
         super(uuid, name, name);
+        // no need for an axes
+        contentPane = null;
+        uiContentPane = null;
+        scrolling = null;
+    }
+
+    /**
+     * Finish initialization after construction (addAction, setVisible, focus
+     * listener registration and setCallback would leak this from the constructor).
+     * Called once right after instantiation, before the panel is used.
+     */
+    public void init() {
         //This button is "overloaded" when we add a callback
         //this.addAction(DockingConstants.CLOSE_ACTION);
         // Removed because make JOGL crash when "Unpin"
         //this.addAction(DockingConstants.PIN_ACTION);
         this.addAction(DockingConstants.ACTIVE_WINDOW);
-
-        // no need for an axes
-        contentPane = null;
-        uiContentPane = null;
-        scrolling = null;
 
         this.setVisible(true);
 
@@ -200,12 +207,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     public SwingScilabDockablePanel(String name, int figureId) {
         super(name, name, name);
 
-        // This button is "overloaded" when we add a callback
-        //this.addAction(DockingConstants.CLOSE_ACTION);
-        // Removed because make JOGL crash when "Unpin"
-        //this.addAction(DockingConstants.PIN_ACTION);
-        this.addAction(DockingConstants.ACTIVE_WINDOW);
-
         // create the panel in which all the uiobjects will lie.
         //contentPane = new SwingScilabAxes(figureId);
 
@@ -214,14 +215,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         //scrolling.setBackground(1, 0, 0);
         // put in in the back of the tab
         //setContentPane(scrolling.getAsContainer());
-
-        this.setVisible(true);
-
-        getTitlebar().addFocusListener(this);
-        addFocusListener(this);
-        setCallback(null);
-
-        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("shift F6"), ACTION_TOGGLE_PREVIOUS);
     }
 
     /**
@@ -268,8 +261,19 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         //SwingScilabCanvas canvas = new SwingScilabCanvas(figureId, figure);
         //contentCanvas = canvas;
 
+        // Initialize editorEventHandler synchronously to avoid NPE when setEventHandlerEnabled is called
         editorEventHandler = new EditorEventListener(figure.getIdentifier());
+    }
 
+    /**
+     * Finish initialization of a figure panel: base initialization then the
+     * figure content (layered panes, scroll pane, listeners, closing operations).
+     * editorEventHandler is initialized in the constructor.
+     * Called once right after instantiation, before the panel is used.
+     * @param figure the figure
+     */
+    public void init(final Figure figure) {
+        init();
         layeredPane = new JLayeredPane();
         layeredPane.setLayout(null);
         layeredPane.setBorder(null);
@@ -282,6 +286,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
 
         layeredPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
         scrolling = new SwingScilabScrollPane(layeredPane, uiContentPane, figure);
+        scrolling.init();
 
         setContentPane(scrolling.getAsContainer());
 
@@ -497,7 +502,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
 
         DockingPort port = evt.getNewDockingPort();
         SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (Component) port);
-        Iterator iter = port.getDockables().iterator();
+        Iterator<?> iter = port.getDockables().iterator();
 
         if (port.getDockables().size() > 1) {
             while (iter.hasNext()) {
@@ -1240,4 +1245,5 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     public void enableResizeEvent() {
         addComponentListener(componentListener);
     }
+
 }

@@ -43,7 +43,8 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Legend extends ContentLayout {
-    private JComboBox cLocation;
+    private static final long serialVersionUID = 1L;
+    private JComboBox<String> cLocation;
     private JTextField cCoordinates;
     private JTextField cX;
     private JTextField cY;
@@ -58,7 +59,7 @@ public class Legend extends ContentLayout {
      */
     public void legendLocation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lLocation = new JLabel();
-        cLocation = new JComboBox();
+        cLocation = new JComboBox<>();
         String[] options = new String[] {"in_upper_right", "in_upper_left",
                                          "in_lower_right", "in_lower_left",
                                          "out_upper_right", "out_upper_left",

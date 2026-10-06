@@ -23,8 +23,8 @@ import java.util.Map.Entry;
  * Perform useful conversions between a style string and key/value based map.
  * Only the first "inherited" style is supported, eg. a key without value ; this makes flip and rotation preserved across block updates.
  */
-@SuppressWarnings(value = { "serial" })
 public final class StyleMap extends LinkedHashMap<String, String> {
+    private static final long serialVersionUID = 1L;
     private String inheritedStyle = null;
 
     /**

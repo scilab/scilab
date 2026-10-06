@@ -44,7 +44,8 @@ import org.scilab.modules.gui.ged.graphic_objects.contouredObject.MarkStyle;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class ContouredObject extends ContentLayout {
-    JComboBox cMarkMode;
+    private static final long serialVersionUID = 1L;
+    private JComboBox<String> cMarkMode;
 
     /**
      * Components of the property: Background Color.
@@ -100,7 +101,7 @@ public class ContouredObject extends ContentLayout {
      */
     public void fillMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lFillMode = new JLabel();
-        final JComboBox cFillMode = new JComboBox();
+        final JComboBox<String> cFillMode = new JComboBox<>();
         addLabelComboBox(panel, lFillMode, MessagesGED.fill_mode,
                          cFillMode, new String[] {MessagesGED.off , MessagesGED.on},
                          LEFTMARGIN, COLUMN, ROW);
@@ -209,7 +210,7 @@ public class ContouredObject extends ContentLayout {
      */
     public void lineMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lLineMode = new JLabel();
-        final JComboBox cLineMode = new JComboBox();
+        final JComboBox<String> cLineMode = new JComboBox<>();
         addLabelComboBox(panel, lLineMode, MessagesGED.line_mode,
                          cLineMode, new String[] {MessagesGED.off , MessagesGED.on},
                          LEFTMARGIN, COLUMN, ROW);
@@ -237,7 +238,7 @@ public class ContouredObject extends ContentLayout {
      */
     public void lineStyle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lLine = new JLabel();
-        final JComboBox cLine = new JComboBox();
+        final JComboBox<String> cLine = new JComboBox<>();
         String[] options = new String[] {MessagesGED.dash, MessagesGED.dash_dot, MessagesGED.longdash_dot,
                                          MessagesGED.bigdash_dot, MessagesGED.bigdash_longdash, MessagesGED.dot, MessagesGED.double_dot
                                         };
@@ -348,7 +349,7 @@ public class ContouredObject extends ContentLayout {
      */
     public void markMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lMarkMode = new JLabel();
-        cMarkMode = new JComboBox();
+        cMarkMode = new JComboBox<String>();
         addLabelComboBox(panel, lMarkMode, MessagesGED.mark_mode,
                          cMarkMode, new String[] {MessagesGED.off , MessagesGED.on},
                          LEFTMARGIN, COLUMN, ROW);
@@ -366,7 +367,7 @@ public class ContouredObject extends ContentLayout {
         cMarkMode.setSelectedIndex(enable ? 1 : 0);
     }
 
-    public JComboBox getMarkMode() {
+    public JComboBox<String> getMarkMode() {
         return cMarkMode;
     }
 
@@ -426,7 +427,7 @@ public class ContouredObject extends ContentLayout {
      */
     public void markSizeUnit(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lMarkSizeUnit = new JLabel();
-        final JComboBox cMarkSizeUnit = new JComboBox();
+        final JComboBox<String> cMarkSizeUnit = new JComboBox<>();
         addLabelComboBox(panel, lMarkSizeUnit, MessagesGED.mark_size_unit,
                          cMarkSizeUnit, new String[] {MessagesGED.point , MessagesGED.tabulated},
                          LEFTMARGIN, COLUMN, ROW);
@@ -454,7 +455,7 @@ public class ContouredObject extends ContentLayout {
     public void markStyle(JPanel panel, MarkStyleRenderer markStyleRenderer,
                           int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lMarkStyle = new JLabel();
-        final JComboBox cMarkStyle = new JComboBox(MarkStyle.values());
+        final JComboBox<MarkStyle> cMarkStyle = new JComboBox<MarkStyle>(MarkStyle.values());
         addLabelComboBox(panel, lMarkStyle, MessagesGED.mark_style,
                          cMarkStyle, null,
                          LEFTMARGIN, COLUMN, ROW);

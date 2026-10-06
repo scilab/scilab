@@ -30,8 +30,8 @@ import org.scilab.modules.scinotes.ScilabDocument;
  * Class for paste action
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class RepeatSelectionOnColumnAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

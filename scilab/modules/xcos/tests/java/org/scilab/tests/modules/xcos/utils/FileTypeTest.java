@@ -78,7 +78,7 @@ public class FileTypeTest {
         File tmp = File.createTempFile("xcosTest", XcosFileType.XCOS.getDottedExtension());
 
         JavaController controller = new JavaController();
-        XcosFileType.XCOS.save(tmp.getCanonicalPath(), new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString()));
+        XcosFileType.XCOS.save(tmp.getCanonicalPath(), XcosDiagram.create(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString()));
 
         assert XcosFileType.XCOS == XcosFileType.findFileType(tmp);
 
@@ -91,7 +91,7 @@ public class FileTypeTest {
         File tmp = File.createTempFile("xcosTest", XcosFileType.ZCOS.getDottedExtension());
 
         JavaController controller = new JavaController();
-        XcosFileType.ZCOS.save(tmp.getCanonicalPath(), new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString()));
+        XcosFileType.ZCOS.save(tmp.getCanonicalPath(), XcosDiagram.create(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString()));
 
         assert XcosFileType.ZCOS == XcosFileType.findFileType(tmp);
 

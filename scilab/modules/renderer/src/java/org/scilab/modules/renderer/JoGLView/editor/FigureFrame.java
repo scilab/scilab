@@ -26,9 +26,10 @@ import java.awt.*;
 /**
  * @author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
-public class FigureFrame extends JFrame {
-    private final TreeModel treeModel;
+public final class FigureFrame extends JFrame {
+
+    private static final long serialVersionUID = 1L;
+    private final transient TreeModel treeModel;
     public FigureFrame(Integer id) {
         treeModel = new SciTreeModel(id);
         initialize();

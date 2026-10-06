@@ -31,8 +31,8 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
  * Launch Scilab help class
  * @author Vincent COUVERT
  */
-@SuppressWarnings(value = { "serial" })
 public final class HelpAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static ImageIcon icon = new ImageIcon(FindIconHelper.findIcon("help-browser"));
 

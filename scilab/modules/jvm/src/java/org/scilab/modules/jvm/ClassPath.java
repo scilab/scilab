@@ -30,7 +30,7 @@ import java.util.Vector;
  */
 public class ClassPath {
 
-	private static final Class[] parameters = new Class[] {URL.class};
+	private static final Class<?>[] parameters = new Class<?>[] {URL.class};
 
 	private static Vector<URL> queued = new Vector<URL>();
     

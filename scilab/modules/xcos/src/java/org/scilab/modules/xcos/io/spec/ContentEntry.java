@@ -33,7 +33,8 @@ import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
+import javax.xml.parsers.SAXParserFactory;
+import javax.xml.parsers.SAXParser;
 
 public class ContentEntry implements Entry {
     private static final Logger LOG = Logger.getLogger(ContentEntry.class.getName());
@@ -64,7 +65,11 @@ public class ContentEntry implements Entry {
         
         try {
             XcosSAXHandler handler = new XcosSAXHandler(content, pack.getDictionary());
-            XMLReader reader = XMLReaderFactory.createXMLReader();
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            // XcosSAXHandler dispatches on localName; SAXParserFactory is not namespace-aware by default
+            factory.setNamespaceAware(true);
+            SAXParser parser = factory.newSAXParser();
+            XMLReader reader = parser.getXMLReader();
             reader.setContentHandler(handler);
             reader.setErrorHandler(handler);
 
@@ -75,6 +80,9 @@ public class ContentEntry implements Entry {
             reader.parse(is);
             LOG.exiting("XMLReader", "parse");
         } catch (SAXException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } catch (javax.xml.parsers.ParserConfigurationException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         } catch (Exception e) {

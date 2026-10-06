@@ -29,8 +29,8 @@ import org.scilab.modules.scinotes.ScilabDocument;
  * @author Calixte DENIZET
  *
  */
-@SuppressWarnings(value = { "serial" })
 public final class ToLowerCaseAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

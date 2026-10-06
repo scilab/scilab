@@ -70,9 +70,9 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
 
     private CommonCallBack callback;
 
-    private ChangeListener changeListener;
+    private transient ChangeListener changeListener;
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     private double previousUserValueCallback = Double.POSITIVE_INFINITY;
 
@@ -120,6 +120,14 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
      */
     public SwingScilabSlider() {
         super();
+    }
+
+    /**
+     * Finish initialization after construction. Overridable Swing methods and
+     * listener registration are deferred here to avoid this-escape from the
+     * constructor. Must be called once right after instantiation.
+     */
+    public void init() {
         // needed to have slider working with GLCanvas
         setOpaque(true);
         setMinimum(MINIMUM_VALUE);
@@ -133,11 +141,11 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
         getInputMap().put(KeyStroke.getKeyStroke("UP"), "RightAction");
         getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "RightAction");
         getActionMap().put("RightAction", new RightAction());
-        getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()), "CtrlRightAction");
-        getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()), "CtrlRightAction");
+        getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), "CtrlRightAction");
+        getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), "CtrlRightAction");
         getActionMap().put("CtrlRightAction", new CtrlRightAction());
-        getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()), "CtrlLeftAction");
-        getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()), "CtrlLeftAction");
+        getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), "CtrlLeftAction");
+        getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), "CtrlLeftAction");
         getActionMap().put("CtrlLeftAction", new CtrlLeftAction());
 
 

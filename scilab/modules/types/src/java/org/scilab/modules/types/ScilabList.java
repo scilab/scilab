@@ -173,6 +173,8 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
             case 0:
                 int size = in.readInt();
                 ensureCapacity(size + 1);
+                // the serialized form may contain non-ScilabType objects (e.g. Xcos mxPoint)
+                @SuppressWarnings("rawtypes")
                 ArrayList list = (ArrayList) this;
                 for (int i = 0; i < size; i++) {
                     list.add(in.readObject());

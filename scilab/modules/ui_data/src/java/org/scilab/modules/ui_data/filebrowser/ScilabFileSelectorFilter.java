@@ -50,8 +50,8 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * A panel with file filter and the combo to set the cwd.
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
-public class ScilabFileSelectorFilter extends JPanel {
+public final class ScilabFileSelectorFilter extends JPanel {
+    private static final long serialVersionUID = 1L;
 
     private static final int GAP = 3;
 
@@ -133,6 +133,7 @@ public class ScilabFileSelectorFilter extends JPanel {
     }
 
     private class MyJTextField extends JPanel {
+        private static final long serialVersionUID = 1L;
 
         JTextFieldWithPlaceHolder textField;
         Color defaultFg;
@@ -218,6 +219,7 @@ public class ScilabFileSelectorFilter extends JPanel {
      * It is a workaround for a GTK bug which avoids me to paint directly in the field.
      */
     private class JTextFieldWithPlaceHolder extends JTextField implements DocumentListener, FocusListener {
+        private static final long serialVersionUID = 1L;
 
         boolean isEmpty = true;
         Color defaultFg;

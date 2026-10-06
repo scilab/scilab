@@ -32,16 +32,16 @@ import org.scilab.modules.xcos.modelica.model.Terminal;
 /**
  * Implement a table model for a {@link Terminal} list
  */
-@SuppressWarnings(value = { "serial" })
 public final class TerminalTableModel extends AbstractTableModel {
+    private static final long serialVersionUID = 1L;
     /**
      * Specialized event with a before commit flag.
      *
      * On each modification, this event is fired twice; one before the change
      * (beforeCommit == true) and one after the change (beforeCommit == false).
      */
-    @SuppressWarnings(value = { "serial" })
     public static final class TerminalTableModelEvent extends TableModelEvent {
+        private static final long serialVersionUID = 1L;
         private final boolean beforeCommit;
 
         /**
@@ -135,7 +135,7 @@ public final class TerminalTableModel extends AbstractTableModel {
 
     }
 
-    private List<Terminal> terminals;
+    private transient List<Terminal> terminals;
 
     /**
      * Default constructor

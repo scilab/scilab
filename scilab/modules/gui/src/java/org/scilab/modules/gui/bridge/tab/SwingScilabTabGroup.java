@@ -67,12 +67,12 @@ import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.Widget;
 
-public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject, Widget {
+public final class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject, Widget {
     private static final long serialVersionUID = 965704348405077905L;
     private Integer id;
-    private Border defaultBorder = null;
-    private CommonCallBack callback = null;
-    private ChangeListener listener = null;
+    private transient Border defaultBorder = null;
+    private transient CommonCallBack callback = null;
+    private transient ChangeListener listener = null;
 
     public SwingScilabTabGroup() {
         super();

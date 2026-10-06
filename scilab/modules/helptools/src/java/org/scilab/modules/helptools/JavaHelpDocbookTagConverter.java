@@ -32,7 +32,7 @@ import org.xml.sax.SAXException;
  * Class to convert DocBook to JavaHelp
  * @author Calixte DENIZET
  */
-public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
+public final class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
 
     private static final String XMLSTRING = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n";
 

@@ -39,7 +39,7 @@ import java.util.Map;
  *
  * @see org.scilab.modules.javasci.Scilab
  */
-public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
+public final class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
 
     private static final long serialVersionUID = 3224510024213901841L;
 
@@ -246,6 +246,8 @@ public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
             case 0:
                 int size = in.readInt();
                 ensureCapacity(size + 1);
+                // the serialized form may contain non-ScilabType objects (e.g. Xcos mxPoint)
+                @SuppressWarnings("rawtypes")
                 ArrayList list = (ArrayList) this;
                 for (int i = 0; i < size; i++) {
                     list.add(in.readObject());

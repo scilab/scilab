@@ -31,6 +31,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Imageplot extends ContentLayout {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Components of the property: Data Mapping (only to Grayplot).
@@ -42,7 +43,7 @@ public class Imageplot extends ContentLayout {
      */
     public void dataMapping(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lDataMapping = new JLabel();
-        final JComboBox cDataMapping = new JComboBox();
+        final JComboBox<String> cDataMapping = new JComboBox<>();
         this.addLabelComboBox(panel, lDataMapping, MessagesGED.data_mapping,
                               cDataMapping, new String[] {MessagesGED.scaled, MessagesGED.direct},
                               LEFTMARGIN, COLUMN, ROW);

@@ -21,7 +21,8 @@ import org.scilab.modules.gui.ged.graphic_objects.SimpleObject;
 *
 * @author Marcos Cardinot <mcardinot@gmail.com>
 */
-public class Figure extends SimpleObject {
+public final class Figure extends SimpleObject {
+    private static final long serialVersionUID = 1L;
     private BaseProperties base;
     private DataProperties data;
     private Control control;

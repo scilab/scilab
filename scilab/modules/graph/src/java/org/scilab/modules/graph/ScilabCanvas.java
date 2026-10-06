@@ -20,6 +20,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Dimension2D;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -245,8 +246,8 @@ public class ScilabCanvas extends mxInteractiveCanvas {
          */
         URL url;
         try {
-            url = new URL(image);
-        } catch (MalformedURLException e) {
+            url = URI.create(image).toURL();
+        } catch (IllegalArgumentException | MalformedURLException e) {
             Logger.getLogger(ScilabCanvas.class.getName()).severe(e.toString());
             return;
         }
@@ -320,8 +321,8 @@ public class ScilabCanvas extends mxInteractiveCanvas {
         super.setImageBasePath(imageBasePath);
 
         try {
-            this.urlBasePath = new URL(imageBasePath);
-        } catch (MalformedURLException e) {
+            this.urlBasePath = URI.create(imageBasePath).toURL();
+        } catch (IllegalArgumentException | MalformedURLException e) {
             Logger.getLogger(ScilabCanvas.class.getName()).severe(e.toString());
         }
     }
@@ -330,9 +331,14 @@ public class ScilabCanvas extends mxInteractiveCanvas {
      * Gets the image path from the given style. If the path is relative (does
      * not start with a slash) then it is appended to the imageBasePath.
      *
+     * The base path is only set when a diagram is saved (see
+     * {@link ScilabGraph#setSavedFile}) ; other canvases (palette
+     * drag-and-drop, off-screen export) have no base path and can only
+     * resolve absolute image URLs.
+     *
      * @param style
      *            the current style
-     * @return the image path
+     * @return the image path or null when it cannot be resolved
      */
     @Override
     public String getImageForStyle(Map<String, Object> style) {
@@ -343,8 +349,15 @@ public class ScilabCanvas extends mxInteractiveCanvas {
         }
 
         try {
-            return new URL(this.urlBasePath, filename).toExternalForm();
-        } catch (MalformedURLException e) {
+            if (urlBasePath != null) {
+                return urlBasePath.toURI().resolve(filename).toURL().toExternalForm();
+            }
+
+            // no base path : only absolute image URLs (e.g. the palette block
+            // icons) can be handled
+            return URI.create(filename).toURL().toExternalForm();
+        } catch (MalformedURLException | java.net.URISyntaxException | IllegalArgumentException e) {
+            Logger.getLogger(ScilabCanvas.class.getName()).severe(e.toString());
         }
 
         return null;

@@ -31,7 +31,7 @@ import org.scilab.modules.gui.menubar.MenuBar;
  * @author Vincent COUVERT
  * @author Bruno JOFRET
  */
-public class ScilabWindow extends ScilabUIElement implements Window {
+public final class ScilabWindow extends ScilabUIElement implements Window {
 
     private SimpleWindow component;
 

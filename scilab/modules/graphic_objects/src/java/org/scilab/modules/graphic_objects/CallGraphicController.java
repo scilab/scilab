@@ -66,7 +66,7 @@ public final class CallGraphicController {
     }
 
     public static boolean setGraphicObjectProperty(int id, int propertyName, double value) {
-        return setGraphicObjectProperty(id, propertyName, (Object) new Double(value));
+        return setGraphicObjectProperty(id, propertyName, (Object) Double.valueOf(value));
     }
 
     public static boolean setGraphicObjectProperty(int id, int propertyName, double[] value) {
@@ -81,7 +81,7 @@ public final class CallGraphicController {
 
 
     public static boolean setGraphicObjectProperty(int id, int propertyName, int value) {
-        return setGraphicObjectProperty(id, propertyName, (Object) new Integer(value));
+        return setGraphicObjectProperty(id, propertyName, (Object) Integer.valueOf(value));
     }
 
     public static boolean setGraphicObjectProperty(int id, int propertyName, int[] value) {
@@ -95,7 +95,7 @@ public final class CallGraphicController {
     }
 
     public static boolean setGraphicObjectProperty(int id, int propertyName, boolean value) {
-        return setGraphicObjectProperty(id, propertyName, (Object) new Boolean(value));
+        return setGraphicObjectProperty(id, propertyName, (Object) Boolean.valueOf(value));
     }
 
     public static boolean setGraphicObjectProperty(int id, int propertyName, boolean[] value) {

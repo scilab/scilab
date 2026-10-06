@@ -29,8 +29,8 @@ import javax.swing.SwingUtilities;
  *
  * @author Calixte DENIZET
  */
-@SuppressWarnings("serial")
 public class ScilabJavaConstructor {
+    private static final long serialVersionUID = 1L;
 
     protected Class<?> clazz;
 
@@ -38,7 +38,7 @@ public class ScilabJavaConstructor {
      * Constructor
      * @param clazz the class where the constructor belongs to
      */
-    public ScilabJavaConstructor(Class clazz) {
+    public ScilabJavaConstructor(Class<?> clazz) {
         this.clazz = clazz;
     }
 
@@ -48,7 +48,7 @@ public class ScilabJavaConstructor {
      */
     public Object invoke(final int[] args) throws ScilabJavaException {
         final int nbargs = args.length;
-        final Class[] cls = new Class[nbargs];
+        final Class<?>[] cls = new Class<?>[nbargs];
         final Object[] argsO = new Object[nbargs];
 
         for (int i = 0; i < nbargs; i++) {
@@ -62,7 +62,7 @@ public class ScilabJavaConstructor {
 
         try {
             final Object[] info = FunctionArguments.findConstructor(clazz.getConstructors(), cls, argsO);
-            final Constructor constructor = (Constructor) info[0];
+            final Constructor<?> constructor = (Constructor<?>) info[0];
             final Object[] _args;
             if (info.length == 2) {
                 // Constructor with variable arguments, so they have been modified and are the second element of the returned array
@@ -71,11 +71,7 @@ public class ScilabJavaConstructor {
                 _args = argsO;
             }
 
-            if (!constructor.isAccessible()) {
-                try {
-                    constructor.setAccessible(true);
-                } catch (SecurityException e) { }
-            }
+            constructor.trySetAccessible();
 
             if (Component.class.isAssignableFrom(clazz)) {
                 if (SwingUtilities.isEventDispatchThread()) {

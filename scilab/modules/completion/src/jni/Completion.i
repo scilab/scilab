@@ -48,11 +48,16 @@ public class%}
     throw new UnsupportedOperationException();
   }";
 
+/* imports needed by the JNI class */
+%pragma(java) jniclassimports=%{
+import org.scilab.modules.localization.NativeLibraryLoader;
+%}
+
 /* static load of library */
 %pragma(java) jniclasscode=%{
   static {
     try {
-        System.loadLibrary("scicompletion");
+        NativeLibraryLoader.loadLibrary("scicompletion");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

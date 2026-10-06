@@ -29,7 +29,7 @@ import org.w3c.dom.Node;
 * @author Pierre GRADIT
 *
 */
-public class Icon extends JLabel implements XComponent {
+public final class Icon extends JLabel implements XComponent {
 
     /** Universal identifier for serialization.
      *

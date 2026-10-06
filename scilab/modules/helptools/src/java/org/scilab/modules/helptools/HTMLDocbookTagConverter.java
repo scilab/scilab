@@ -69,19 +69,20 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected final String outName;
     protected String outImages;
 
-    protected final Map<String, String> mapId;
-    protected final Map<String, String> tocitem;
-    protected final HTMLDocbookLinkResolver.TreeId tree;
-    protected final Map<String, HTMLDocbookLinkResolver.TreeId> mapTreeId;
-    protected final Map<String, String> mapIdPurpose;
-    protected final Map<String, String> mapIdRefname;
+    protected Map<String, String> mapId;
+    protected Map<String, String> tocitem;
+    protected HTMLDocbookLinkResolver.TreeId tree;
+    protected Map<String, HTMLDocbookLinkResolver.TreeId> mapTreeId;
+    protected Map<String, String> mapIdPurpose;
+    protected Map<String, String> mapIdRefname;
 
-    protected final TemplateHandler templateHandler;
+    protected TemplateHandler templateHandler;
+    private File templateFile;
 
-    protected final ScilabLexer scilabLexer;
-    protected final XMLLexer xmlLexer;
-    protected final CLexer cLexer;
-    protected final JavaLexer javaLexer;
+    protected ScilabLexer scilabLexer;
+    protected XMLLexer xmlLexer;
+    protected CLexer cLexer;
+    protected JavaLexer javaLexer;
 
     protected String bookTitle = "";
     protected String partTitle = "";
@@ -97,10 +98,10 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected String prependToProgramListing;
     protected String currentId;
     protected String indexFilename = "index" /*UUID.randomUUID().toString()*/ + ".html";
-    protected final String language;
+    protected String language;
 
-    protected final boolean isToolbox;
-    protected final Backend type;
+    protected boolean isToolbox;
+    protected Backend type;
 
     /**
      * Constructor
@@ -116,7 +117,6 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         this.outName = sciDocMain.getOutputDirectory() + File.separator;
         this.outImages = this.outName;
 
-        imgConvert.setDocbookTagConverter(this);
         HTMLDocbookLinkResolver resolver = new HTMLDocbookLinkResolver(inName);
 
         mapId = resolver.getMapId();
@@ -180,7 +180,10 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             System.err.println(msg);
             throw new RuntimeException();
         }
-        templateHandler = new TemplateHandler(this, tpl, language);
+        // TemplateHandler is built in registerAllExternalXMLHandlers() so
+        // that a fully-initialized converter is passed to it (this also
+        // avoids leaking this from the constructor).
+        templateFile = tpl;
     }
 
     public static boolean containsCJK(CharSequence seq) {
@@ -242,6 +245,13 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     @Override
     public void registerAllExternalXMLHandlers() {
         super.registerAllExternalXMLHandlers();
+
+        // Bind the shared image converter to this fully-constructed instance
+        // (deferred from the constructor to avoid leaking this).
+        getImageConverter().setDocbookTagConverter(this);
+
+        // Build the template handler now that this is fully initialized.
+        templateHandler = new TemplateHandler(this, templateFile, language);
 
         registerExternalXMLHandler(new HTMLMathMLHandler(outImages, imageDir));
         registerExternalXMLHandler(new HTMLSVGHandler(outImages, imageDir));
@@ -1097,7 +1107,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @param attributes the tag attributes
      * @param contents the tag contents
      * @return the HTML code
-     * @throws SAXEception if an error is encountered
+     * @throws SAXException if an error is encountered
      */
     public String handleRefsection(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
@@ -1113,7 +1123,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @param attributes the tag attributes
      * @param contents the tag contents
      * @return the HTML code
-     * @throws SAXEception if an error is encountered
+     * @throws SAXException if an error is encountered
      */
     public String handleRefsect1(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
@@ -1129,7 +1139,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @param attributes the tag attributes
      * @param contents the tag contents
      * @return the HTML code
-     * @throws SAXEception if an error is encountered
+     * @throws SAXException if an error is encountered
      */
     public String handleRefsect2(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");

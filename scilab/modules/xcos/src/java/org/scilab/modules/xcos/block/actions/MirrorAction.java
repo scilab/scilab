@@ -31,8 +31,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Mirror a block
  */
-@SuppressWarnings(value = { "serial" })
 public class MirrorAction extends VertexSelectionDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.MIRROR;
     /** Icon name of the action */
@@ -40,7 +40,7 @@ public class MirrorAction extends VertexSelectionDependantAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_M;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /**
      * Constructor

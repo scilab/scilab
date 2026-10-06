@@ -22,11 +22,11 @@ import java.awt.Point;
 /**
  * @author Pierre Lando
  */
-public class PointDComputer extends CubeFacesPointComputer implements PointComputer {
+public final class PointDComputer extends CubeFacesPointComputer implements PointComputer {
 
-    private final int firstAxisIndex;
-    private final Vector3d secondPosition;
-    private final Vector3d firstPosition;
+    private int firstAxisIndex;
+    private Vector3d secondPosition;
+    private Vector3d firstPosition;
 
     /**
      * Constructor
@@ -37,6 +37,7 @@ public class PointDComputer extends CubeFacesPointComputer implements PointCompu
      */
     public PointDComputer(Axes axes, PointComputer pointCComputer, Point point) {
         super(axes, point);
+        // Initialize fields directly in constructor to avoid this-escape
         firstAxisIndex = pointCComputer.getFirstAxisIndex();
         if (getPosition() != null) {
             firstPosition = pointCComputer.getFirstPosition();

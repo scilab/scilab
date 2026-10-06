@@ -64,6 +64,28 @@ public class XcosCell extends mxCell {
         this(controller, new ScicosObjectOwner(controller, uid, kind), value, geometry, style, id);
     }
 
+    /**
+     * Construct an Xcos graphical object.
+     *
+     * The initialization is done synchronously on purpose : callers use the
+     * cell (e.g. read its geometry) right after the constructor returns.
+     * Deferring the initialization through SwingUtilities.invokeLater()
+     * leaves the value, geometry, style and id fields null until the event
+     * queue dispatches the task, breaking e.g. the palette drag-and-drop.
+     *
+     * @param controller
+     *                   the shared controller
+     * @param owner
+     *                   the associated MVC owner
+     * @param value
+     *                   the cell value
+     * @param geometry
+     *                   the cell geometry
+     * @param style
+     *                   the cell style
+     * @param id
+     *                   the cell id
+     */
     public XcosCell(final JavaController controller, ScicosObjectOwner owner, Object value, mxGeometry geometry,
             String style, String id) {
         super();
@@ -74,23 +96,55 @@ public class XcosCell extends mxCell {
         }
 
         this.owner = owner;
-        setValue(controller, value);
-        setGeometry(controller, geometry);
-        setStyle(controller, style);
-        setId(controller, id);
+        initializeCell(controller, value, geometry, style, id);
+    }
+
+    /**
+     * Initialize the cell properties during construction.
+     *
+     * The JGraphX fields are assigned directly and the model is synchronized
+     * through private helpers only : calling overridable methods from a
+     * constructor would let partially-initialized subclasses escape (and is
+     * reported by the {@code this-escape} lint).
+     *
+     * The value is deliberately not synchronized here as it is a read-only
+     * view of the model state in every construction path (see
+     * {@link XcosCellFactory#createBlock}); {@link #setMVCValue(JavaController, Object)}
+     * remains the overridable post-construction synchronization hook.
+     *
+     * @param controller the controller
+     * @param value the value
+     * @param geometry the geometry
+     * @param style the style
+     * @param id the id
+     */
+    private void initializeCell(final JavaController controller, Object value, mxGeometry geometry,
+            String style, String id) {
+        this.value = value;
+        this.geometry = geometry;
+        this.style = style;
+
+        if (id == null || id.isEmpty()) {
+            id = new UID().toString();
+        }
+        this.id = id;
+
+        setMVCGeometry(controller, geometry);
+        setMVCStyle(controller, style);
+        setMVCId(controller, id);
     }
 
     /**
      * @return the MVC unique identifier
      */
-    public long getUID() {
+    public final long getUID() {
         return owner.getUID();
     }
 
     /**
      * @return the MVC kind of object
      */
-    public Kind getKind() {
+    public final Kind getKind() {
         return owner.getKind();
     }
 
@@ -280,8 +334,10 @@ public class XcosCell extends mxCell {
                  */
                 mxPoint sourcePoint = null;
                 mxPoint targetPoint = null;
-                mxICell sourceCell = getSource();
-                mxICell targetCell = getTarget();
+                // read the mxCell fields rather than calling getSource()/getTarget()
+                // as this method is also invoked during construction (this-escape)
+                mxICell sourceCell = source;
+                mxICell targetCell = target;
                 if (sourceCell != null && sourceCell.getGeometry() != null) {
                     sourcePoint = new mxPoint(sourceCell.getGeometry().getCenterX(),
                             sourceCell.getGeometry().getCenterY());
@@ -349,7 +405,9 @@ public class XcosCell extends mxCell {
     }
 
     public final void setStyle(JavaController controller, String style) {
-        super.setStyle(style);
+        // assign the mxCell field directly as this method is also invoked
+        // during construction (this-escape through the overridable super method)
+        this.style = style;
         setMVCStyle(controller, style);
     }
 
@@ -733,4 +791,5 @@ public class XcosCell extends mxCell {
         c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), true, false), getKind());
         return c;
     }
+
 }

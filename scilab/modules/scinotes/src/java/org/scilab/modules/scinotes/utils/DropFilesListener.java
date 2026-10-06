@@ -40,7 +40,7 @@ import org.scilab.modules.scinotes.ScilabEditorPane;
  * @author Calixte DENIZET
  *
  */
-public class DropFilesListener implements DropTargetListener {
+public final class DropFilesListener implements DropTargetListener {
 
     private DropTarget dropTarget;
     private ScilabEditorPane pane;
@@ -102,7 +102,7 @@ public class DropFilesListener implements DropTargetListener {
         if (arg0.isDataFlavorSupported(DataFlavor.stringFlavor)) {
             previousPoint = actualPoint;
             actualPoint = arg0.getLocation();
-            actualPos = pane.viewToModel(actualPoint);
+            actualPos = pane.viewToModel2D(actualPoint);
             pane.setCaretPosition(actualPos);
         }
     }
@@ -112,7 +112,6 @@ public class DropFilesListener implements DropTargetListener {
      * @param arg0 the drop event
      * @see java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
      */
-    @SuppressWarnings("unchecked")
     public void drop(DropTargetDropEvent arg0) {
         arg0.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
         Transferable transferable = arg0.getTransferable();
@@ -121,7 +120,7 @@ public class DropFilesListener implements DropTargetListener {
             DataFlavor uriListFlavor = new DataFlavor("text/uri-list;class=java.lang.String");
             if (transferable.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
                 try {
-                    java.util.List data = (java.util.List) transferable.getTransferData(DataFlavor.javaFileListFlavor);
+                    java.util.List<java.io.File> data = (java.util.List<java.io.File>) transferable.getTransferData(DataFlavor.javaFileListFlavor);
                     for (int i = 0; i < data.size(); i++) {
                         SciNotes.getEditor().openFile(data.get(i).toString(), 0, null);
                     }
@@ -146,7 +145,7 @@ public class DropFilesListener implements DropTargetListener {
                     arg0.dropComplete(false);
                     return;
                 }
-                java.util.List data = textURIListToFileList(uriData);
+                java.util.List<java.io.File> data = textURIListToFileList(uriData);
                 for (int i = 0; i < data.size(); i++) {
                     SciNotes.getEditor().openFile(data.get(i).toString(), 0, null);
                 }
@@ -155,7 +154,7 @@ public class DropFilesListener implements DropTargetListener {
                 try {
                     String dropString = (String) transferable.getTransferData(DataFlavor.stringFlavor);
                     ScilabDocument doc = (ScilabDocument) pane.getDocument();
-                    int pos = pane.viewToModel(arg0.getLocation());
+                    int pos = pane.viewToModel2D(arg0.getLocation());
                     doc.mergeEditsBegin();
                     if (arg0.getDropAction() == DnDConstants.ACTION_MOVE) {
                         doc.remove(p0, p1 - p0);
@@ -197,8 +196,8 @@ public class DropFilesListener implements DropTargetListener {
      * @param data String URI
      * @return java.util.List
      */
-    private static java.util.List textURIListToFileList(String data) {
-        java.util.List list = new java.util.ArrayList(1);
+    private static java.util.List<java.io.File> textURIListToFileList(String data) {
+        java.util.List<java.io.File> list = new java.util.ArrayList<>(1);
         for (java.util.StringTokenizer st = new java.util.StringTokenizer(data, "\r\n");
                 st.hasMoreTokens();) {
             String s = st.nextToken();

@@ -54,7 +54,7 @@ public class DiagramComparatorTest {
          * Init test vector
          */
         for (int i = 0; i < 20; i++) {
-            testVector.add(new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString()));
+            testVector.add(XcosDiagram.create(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString()));
         }
 
         /*
@@ -89,7 +89,7 @@ public class DiagramComparatorTest {
         for (int i = 0; i < 20; i++) {
             String uid = new UID().toString();
             SuperBlock blk = new SuperBlock(controller, controller.createObject(Kind.BLOCK), Kind.BLOCK, null, new mxGeometry(0, 0, 0, 0), SuperBlock.INTERFUNCTION_NAME, uid);
-            testVector.add(new XcosDiagram(controller, blk.getUID(), blk.getKind(), uid));
+            testVector.add(XcosDiagram.create(controller, blk.getUID(), blk.getKind(), uid));
         }
 
         /*
@@ -119,9 +119,9 @@ public class DiagramComparatorTest {
         /*
          * Init test vector
          */
-        XcosDiagram root1 = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString());
+        XcosDiagram root1 = XcosDiagram.create(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString());
         root1.installListeners();
-        XcosDiagram root2 = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString());
+        XcosDiagram root2 = XcosDiagram.create(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString());
         root2.installListeners();
 
         /*
@@ -130,13 +130,13 @@ public class DiagramComparatorTest {
         SuperBlock r1b1 = new SuperBlock(controller, controller.createObject(Kind.BLOCK), Kind.BLOCK, null, new mxGeometry(), SuperBlock.INTERFUNCTION_NAME, new UID().toString());
         root1.addCell(r1b1);
 
-        XcosDiagram r1diag1 = new XcosDiagram(controller, r1b1.getUID(), r1b1.getKind(), r1b1.getId());
+        XcosDiagram r1diag1 = XcosDiagram.create(controller, r1b1.getUID(), r1b1.getKind(), r1b1.getId());
         r1diag1.installListeners();
 
         SuperBlock r1diag1b1 = new SuperBlock(controller, controller.createObject(Kind.BLOCK), Kind.BLOCK, null, new mxGeometry(), SuperBlock.INTERFUNCTION_NAME, new UID().toString());
         r1diag1.addCell(r1diag1b1);
 
-        XcosDiagram r1diag1b1diag1 = new XcosDiagram(controller, r1diag1b1.getUID(), r1diag1b1.getKind(), r1diag1b1.getId());
+        XcosDiagram r1diag1b1diag1 = XcosDiagram.create(controller, r1diag1b1.getUID(), r1diag1b1.getKind(), r1diag1b1.getId());
         r1diag1b1diag1.installListeners();
 
         /*
@@ -201,9 +201,9 @@ public class DiagramComparatorTest {
         /*
          * Init test vector
          */
-        XcosDiagram root1 = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString());
+        XcosDiagram root1 = XcosDiagram.create(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString());
         root1.installListeners();
-        XcosDiagram root2 = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString());
+        XcosDiagram root2 = XcosDiagram.create(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString());
         root2.installListeners();
 
         /*
@@ -214,9 +214,9 @@ public class DiagramComparatorTest {
         SuperBlock r2b1 = new SuperBlock(controller, controller.createObject(Kind.BLOCK), Kind.BLOCK, null, new mxGeometry(), SuperBlock.INTERFUNCTION_NAME, new UID().toString());
         root1.addCell(r2b1);
 
-        XcosDiagram r1diag1 = new XcosDiagram(controller, r1b1.getUID(), r1b1.getKind(), r1b1.getId());
+        XcosDiagram r1diag1 = XcosDiagram.create(controller, r1b1.getUID(), r1b1.getKind(), r1b1.getId());
         r1diag1.installListeners();
-        XcosDiagram r2diag1 = new XcosDiagram(controller, r2b1.getUID(), r2b1.getKind(), r2b1.getId());
+        XcosDiagram r2diag1 = XcosDiagram.create(controller, r2b1.getUID(), r2b1.getKind(), r2b1.getId());
         r2diag1.installListeners();
 
         /*
@@ -227,9 +227,9 @@ public class DiagramComparatorTest {
         SuperBlock r2b2 = new SuperBlock(controller, controller.createObject(Kind.BLOCK), Kind.BLOCK, null, new mxGeometry(), SuperBlock.INTERFUNCTION_NAME, new UID().toString());
         root1.addCell(r2b2);
 
-        XcosDiagram r1diag2 = new XcosDiagram(controller, r1b2.getUID(), r1b2.getKind(), r1b2.getId());
+        XcosDiagram r1diag2 = XcosDiagram.create(controller, r1b2.getUID(), r1b2.getKind(), r1b2.getId());
         r1diag2.installListeners();
-        XcosDiagram r2diag2 = new XcosDiagram(controller, r2b2.getUID(), r2b2.getKind(), r2b2.getId());
+        XcosDiagram r2diag2 = XcosDiagram.create(controller, r2b2.getUID(), r2b2.getKind(), r2b2.getId());
         r2diag2.installListeners();
 
         /*
@@ -292,7 +292,7 @@ public class DiagramComparatorTest {
         /*
          * Init test vector
          */
-        XcosDiagram root = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString());
+        XcosDiagram root = XcosDiagram.create(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString());
         root.installListeners();
 
         /*
@@ -301,7 +301,7 @@ public class DiagramComparatorTest {
         SuperBlock b1 = new SuperBlock(controller, controller.createObject(Kind.BLOCK), Kind.BLOCK, null, new mxGeometry(), SuperBlock.INTERFUNCTION_NAME, new UID().toString());
         root.addCell(b1);
 
-        XcosDiagram diag1 = new XcosDiagram(controller, b1.getUID(), b1.getKind(), b1.getId());
+        XcosDiagram diag1 = XcosDiagram.create(controller, b1.getUID(), b1.getKind(), b1.getId());
         diag1.installListeners();
 
         /*
@@ -310,7 +310,7 @@ public class DiagramComparatorTest {
         SuperBlock b2 = new SuperBlock(controller, controller.createObject(Kind.BLOCK), Kind.BLOCK, null, new mxGeometry(), SuperBlock.INTERFUNCTION_NAME, new UID().toString());
         root.addCell(b2);
 
-        XcosDiagram diag2 = new XcosDiagram(controller, b2.getUID(), b2.getKind(), b2.getId());
+        XcosDiagram diag2 = XcosDiagram.create(controller, b2.getUID(), b2.getKind(), b2.getId());
         diag2.installListeners();
 
         /*

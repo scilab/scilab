@@ -28,7 +28,7 @@ import org.scilab.modules.graphic_objects.utils.LayoutType;
 /**
  * @author Vincent COUVERT
  */
-public class Layer extends Uicontrol {
+public final class Layer extends Uicontrol {
     private enum LayerProperty {
         LAYER_VALUE,
         LAYER_STRING

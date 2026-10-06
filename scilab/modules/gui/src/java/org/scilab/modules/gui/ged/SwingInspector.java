@@ -38,12 +38,13 @@ import org.scilab.modules.gui.utils.WindowsConfigurationManager;
  *
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
-public class SwingInspector extends SwingScilabDockablePanel {
+public final class SwingInspector extends SwingScilabDockablePanel {
+    private static final long serialVersionUID = 1L;
     private static SwingInspector instance;
     private JScrollPane desktop;
     private static JPanel pReceive;
-    private MenuBar menuBar;
-    private Menu fileMenu;
+    private transient MenuBar menuBar;
+    private transient Menu fileMenu;
     public static final String INSPECTORUUID = "4m249547-6a71-4998-r8c-00o367s47932";
 
     private static String imagepath = System.getenv("SCI") + "/modules/gui/images/icons/";
@@ -61,6 +62,7 @@ public class SwingInspector extends SwingScilabDockablePanel {
     */
     public SwingInspector(Integer objectID) {
         super(MessagesGED.property_list, INSPECTORUUID);
+        init();
         instance = this;
 
         setAssociatedXMLIDForHelp("quickged");

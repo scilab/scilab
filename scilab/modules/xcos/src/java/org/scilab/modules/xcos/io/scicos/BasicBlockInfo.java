@@ -84,7 +84,6 @@ public final class BasicBlockInfo {
      *            The type to search for.
      * @return control ports of given block
      */
-    @SuppressWarnings("unchecked")
     public static <T extends BasicPort> List<T> getAllTypedPorts(BasicBlock block, boolean revert, Class<T> type) {
         final List<T> data = new ArrayList<T>();
         if (block == null) {
@@ -97,7 +96,9 @@ public final class BasicBlockInfo {
          */
         Class<T> realType = type;
         while (!realType.getSuperclass().equals(BasicPort.class)) {
-            realType = (Class<T>) realType.getSuperclass();
+            @SuppressWarnings("unchecked")
+            Class<T> newRealType = (Class<T>) realType.getSuperclass();
+            realType = newRealType;
         }
 
         for (int i = 0; i < childrenCount; ++i) {
@@ -106,7 +107,9 @@ public final class BasicBlockInfo {
                 // There we are sure that the cell is an instance of the type
                 // class. Thus we can safely cast it and add it to the result
                 // vector.
-                data.add((T) cell);
+                @SuppressWarnings("unchecked")
+                T castCell = (T) cell;
+                data.add(castCell);
             }
         }
 

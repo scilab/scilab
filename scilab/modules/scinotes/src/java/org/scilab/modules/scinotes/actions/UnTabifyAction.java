@@ -31,8 +31,8 @@ import org.scilab.modules.scinotes.ScilabDocument;
  * @author Sylvestre Koumar
  *
  */
-@SuppressWarnings(value = { "serial" })
 public class UnTabifyAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor

@@ -63,8 +63,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
 // CSOFF: MagicNumber
-@SuppressWarnings(value = { "serial" })
-public class SetupDialog extends JDialog {
+public final class SetupDialog extends JDialog {
+    private static final long serialVersionUID = 1L;
     private static final DecimalFormatSymbols FORMAT_SYMBOL = DecimalFormatSymbols.getInstance();
     private static final DecimalFormat CURRENT_FORMAT = new DecimalFormat("0.0####E00", FORMAT_SYMBOL);
     private static final BigDecimal MAX_DOUBLE = BigDecimal.valueOf(Double.MAX_VALUE);
@@ -232,8 +232,8 @@ public class SetupDialog extends JDialog {
         Arrays.sort(AVAILABLE_SOLVERS);
     }
 
-    private final ScicosParameters parameters;
-    private final XcosDiagram currentGraph;
+    private final transient ScicosParameters parameters;
+    private final transient XcosDiagram currentGraph;
 
     private JFormattedTextField integration;
     private JFormattedTextField rts;
@@ -320,6 +320,7 @@ public class SetupDialog extends JDialog {
         solver.setSelectedIndex(currentIndex);
 
         final class ComboboxToolTipRenderer extends DefaultListCellRenderer {
+            private static final long serialVersionUID = 1L;
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 JComponent comp = (JComponent) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);

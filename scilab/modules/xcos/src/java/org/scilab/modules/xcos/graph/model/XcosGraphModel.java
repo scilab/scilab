@@ -30,6 +30,7 @@ import org.scilab.modules.xcos.VectorOfString;
  * Implement a custom model for Xcos
  */
 public class XcosGraphModel extends mxGraphModel {
+    private static final long serialVersionUID = 1L;
     
     public XcosGraphModel(JavaController controller, ScicosObjectOwner owner, String uid) {
         super(new mxCell());

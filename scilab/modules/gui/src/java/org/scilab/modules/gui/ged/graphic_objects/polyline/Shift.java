@@ -38,7 +38,9 @@ import org.scilab.modules.gui.ged.MessagesGED;
 *
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Shift extends SimpleSection {
+public final class Shift extends SimpleSection {
+
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static Shift instance;
     private Integer currentpolyline;
@@ -67,6 +69,7 @@ public class Shift extends SimpleSection {
     */
     public Shift(Integer objectID) {
         super(MessagesGED.shift, "polyline");
+        initializeSection();
         instance = this;
         currentpolyline = objectID;
         sectionPanel = getSectionPanel();

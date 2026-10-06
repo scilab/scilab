@@ -43,7 +43,7 @@ public class ScilabFileChooserBridge {
      * @return the created FileChooser
      */
     public static SimpleFileChooser createFileChooser() {
-        return useJavaFX() ? new JFXScilabFileChooser() : new SwingScilabFileChooser();
+        return useJavaFX() ? new JFXScilabFileChooser() : SwingScilabFileChooser.create();
     }
 
     /**
@@ -52,7 +52,7 @@ public class ScilabFileChooserBridge {
      * @return the created ExportFileChooser
      */
     public static SimpleFileChooser createExportFileChooser(Integer figureUID) {
-        return useJavaFX() ? new JFXScilabExportFileChooser(figureUID) : new SwingScilabExportFileChooser(figureUID);
+        return useJavaFX() ? new JFXScilabExportFileChooser(figureUID) : SwingScilabExportFileChooser.create(figureUID);
     }
 
     /**

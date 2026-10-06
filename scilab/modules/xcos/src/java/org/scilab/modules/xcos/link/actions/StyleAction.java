@@ -29,6 +29,8 @@ import org.scilab.modules.xcos.link.BasicLink;
  * base class for changing the link style
  */
 public abstract class StyleAction extends DefaultAction {
+
+    private static final long serialVersionUID = 1L;
     /** Accelerator key for all children actions */
     public static final int ACCELERATOR_KEY = 0;
 

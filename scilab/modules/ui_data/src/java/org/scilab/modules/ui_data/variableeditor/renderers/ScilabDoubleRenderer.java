@@ -19,8 +19,8 @@ package org.scilab.modules.ui_data.variableeditor.renderers;
  * CellRenderer for double type
  * @author Allan SIMON
  */
-@SuppressWarnings(value = { "serial" })
 public class ScilabDoubleRenderer extends ScilabComplexRenderer {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

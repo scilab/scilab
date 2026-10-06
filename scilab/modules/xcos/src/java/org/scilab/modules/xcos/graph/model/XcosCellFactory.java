@@ -176,7 +176,7 @@ public final class XcosCellFactory {
                 String[] strUID = new String[1];
                 controller.getObjectProperty(last.getUID(), last.getKind(), ObjectProperties.UID, strUID);
 
-                diagram = new XcosDiagram(controller, last.getUID(), last.getKind(), strUID[0]);
+                diagram = XcosDiagram.create(controller, last.getUID(), last.getKind(), strUID[0]);
                 insertChildren(controller, diagram);
             } else {
                 diagram = null;
@@ -522,10 +522,10 @@ public final class XcosCellFactory {
             
             // snap to grid
             double gridSize = XcosOptions.getEdition().getGraphGrid();
-            x = (double) (Math.floor(x / gridSize) * (long) gridSize);
-            y = (double) (Math.floor(y / gridSize) * (long) gridSize);
-            w = (double) (Math.ceil(w / gridSize) * (long) gridSize);
-            h = (double) (Math.ceil(h / gridSize) * (long) gridSize);
+            x = Math.floor(x / gridSize) * (long) gridSize;
+            y = Math.floor(y / gridSize) * (long) gridSize;
+            w = Math.ceil(w / gridSize) * (long) gridSize;
+            h = Math.ceil(h / gridSize) * (long) gridSize;
 
             block.setGeometry(new mxGeometry(x, y, w, h));
         }

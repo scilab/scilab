@@ -609,30 +609,8 @@ public final class ScilabVariables {
         }
     }
 
-    /**
-     * Send double sparse matrix as buffer
-     * Useless for now due to Scilab limitations (A=sparse(...);A(1,1)=123; a new A is created so references are lost)
-     *
-     * @param varName
-     *            the variable name
-     * @param indexes
-     *            an integer array with the indexes of the (sub)*-list which
-     *            will contain the data
-     * @param row
-     *            the row number
-     * @param col
-     *            the col number
-     * @param nbItem
-     *            the number of non null elements
-     * @param nbItemRow
-     *            the number by row of non null elements
-     * @param colPos
-     *            the column position of the non null elements
-     * @param data
-     *            the data
-     * @param handlerId
-     *            the handler id
-     */
+    // Send double sparse matrix as buffer
+    // Useless for now due to Scilab limitations (A=sparse(...);A(1,1)=123; a new A is created so references are lost)
     /*public static final void sendDataAsBuffer(String varName, int[] indexes, int row, int col, int nbItem, IntBuffer nbItemRow, IntBuffer colPos, DoubleBuffer data, int handlerId) {
       if (indexes.length != 0) {
       addElement(indexes, new ScilabSparseReference(null, row, col, nbItem, nbItemRow, colPos, data, null));
@@ -674,32 +652,8 @@ public final class ScilabVariables {
         }
     }
 
-    /**
-     * Send complex sparse matrix as buffer
-     * Useless for now due to Scilab limitations (A=sparse(...);A(1,1)=123; a new A is created so references are lost)
-     *
-     * @param varName
-     *            the variable name
-     * @param indexes
-     *            an integer array with the indexes of the (sub)*-list which
-     *            will contain the data
-     * @param row
-     *            the row number
-     * @param col
-     *            the col number
-     * @param nbItem
-     *            the number of non null elements
-     * @param nbItemRow
-     *            the number by row of non null elements
-     * @param colPos
-     *            the column position of the non null elements
-     * @param real
-     *            the real data
-     * @param imag
-     *            the imaginary data
-     * @param handlerId
-     *            the handler id
-     */
+    // Send complex sparse matrix as buffer
+    // Useless for now due to Scilab limitations (A=sparse(...);A(1,1)=123; a new A is created so references are lost)
     /*private static final void sendDataAsBuffer(String varName, int[] indexes, int row, int col, int nbItem, IntBuffer nbItemRow, IntBuffer colPos, DoubleBuffer real, DoubleBuffer imag, int handlerId) {
       if (indexes.length != 0) {
       addElement(indexes, new ScilabSparse(null, row, col, nbItem, nbItemRow, colPos, real, imag));
@@ -738,27 +692,7 @@ public final class ScilabVariables {
         }
     }
 
-    /**
-     * Send boolean sparse matrix as Buffer
-     *
-     * @param varName
-     *            the variable name
-     * @param indexes
-     *            an integer array with the indexes of the (sub)*-list which
-     *            will contain the data
-     * @param row
-     *            the row number
-     * @param col
-     *            the col number
-     * @param nbItem
-     *            the number of true elements
-     * @param nbItemRow
-     *            the number by row of true elements
-     * @param colPos
-     *            the column position of the true elements
-     * @param handlerId
-     *            the handler id
-     */
+    // Send boolean sparse matrix as Buffer
     /*public static final void sendDataAsBuffer(String varName, int[] indexes, int row, int col, int nbItem, IntBuffer nbItemRow, IntBuffer colPos, int handlerId) {
       if (indexes.length != 0) {
       addElement(indexes, new ScilabBooleanSparse(null, row, col, nbItem, nbItemRow, colPos));

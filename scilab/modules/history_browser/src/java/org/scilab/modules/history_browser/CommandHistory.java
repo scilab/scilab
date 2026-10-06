@@ -76,8 +76,9 @@ import org.scilab.modules.localization.Messages;
  * @author Vincent COUVERT
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class CommandHistory extends SwingScilabDockablePanel implements SimpleTab {
+
+    private static final long serialVersionUID = 1L;
 
     public static final String COMMANDHISTORYUUID = "856207f6-0a60-47a0-b9f4-232feedd4bf4";
 
@@ -117,6 +118,7 @@ public final class CommandHistory extends SwingScilabDockablePanel implements Si
      */
     private CommandHistory() {
         super(CommandHistoryMessages.TITLE, COMMANDHISTORYUUID);
+        init();
         setAssociatedXMLIDForHelp("browsehistory");
         initialize();
         addMenuBar(createMenuBar());
@@ -573,8 +575,9 @@ public final class CommandHistory extends SwingScilabDockablePanel implements Si
         }
     }
 
-    @SuppressWarnings(value = { "serial" })
     static class HistoryTree extends JTree {
+
+        private static final long serialVersionUID = 1L;
 
         private boolean first = true;
         private Color defaultColor;

@@ -77,8 +77,8 @@ import org.scilab.modules.xcos.utils.XcosConstants;
  * Move the Selected cells to a new SuperBlock diagram
  */
 // CSOFF: ClassFanOutComplexity
-@SuppressWarnings(value = { "serial" })
 public class RegionToSuperblockAction extends VertexSelectionDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;
     /** Icon name of the action */

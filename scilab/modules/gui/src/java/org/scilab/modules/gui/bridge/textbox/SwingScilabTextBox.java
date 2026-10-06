@@ -36,11 +36,11 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
+public final class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 
     private static final long serialVersionUID = 3632560416759268432L;
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     /**
      * Constructor

@@ -20,7 +20,8 @@ import org.scilab.modules.gui.ged.graphic_objects.SimpleObject;
 * Properties of the label.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Label extends SimpleObject {
+public final class Label extends SimpleObject {
+    private static final long serialVersionUID = 1L;
     private BaseProperties base;
     private Font font;
     private Position position;

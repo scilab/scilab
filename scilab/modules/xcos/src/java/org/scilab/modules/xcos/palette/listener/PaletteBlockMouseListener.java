@@ -163,7 +163,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
                          MouseInfo.getPointerInfo().getLocation().y);
 
             // ctrl is not down ? clear selections
-            if ((e.getModifiers() & MouseEvent.CTRL_MASK) == 0) {
+            if ((e.getModifiersEx() & MouseEvent.CTRL_DOWN_MASK) == 0) {
                 PaletteCtrl.clearSelections();
             }
             blockCtrl.setSelected(true);
@@ -171,7 +171,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
             if (e.getClickCount() == 1) {
                 boolean isSelected = blockCtrl.isSelected();
                 // ctrl is not down ? clear selections
-                if ((e.getModifiers() & MouseEvent.CTRL_MASK) == 0) {
+                if ((e.getModifiersEx() & MouseEvent.CTRL_DOWN_MASK) == 0) {
                     PaletteCtrl.clearSelections();
                 }
                 blockCtrl.setSelected(!isSelected); // toggle

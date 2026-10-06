@@ -37,8 +37,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Viewport tab visibility managemet
  */
-@SuppressWarnings(value = { "serial" })
 public final class ViewViewportAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.VIEWPORT;
     /** Icon name of the action */

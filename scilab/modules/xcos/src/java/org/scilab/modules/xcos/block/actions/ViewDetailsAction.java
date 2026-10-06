@@ -33,8 +33,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * View the details of the action
  */
-@SuppressWarnings(value = { "serial" })
 public final class ViewDetailsAction extends VertexSelectionDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.DETAILS;
     /** Icon name of the action */

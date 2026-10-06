@@ -28,8 +28,8 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * RefreshAction class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class RefreshAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private final SwingScilabVariableEditor editor;
 

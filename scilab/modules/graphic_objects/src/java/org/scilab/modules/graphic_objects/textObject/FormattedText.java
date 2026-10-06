@@ -112,6 +112,13 @@ public class FormattedText {
         return false;
     }
 
+    @Override
+    public int hashCode() {
+        int result = text != null ? text.hashCode() : 0;
+        result = 31 * result + (font != null ? font.hashCode() : 0);
+        return result;
+    }
+
     /**
      * @return the font
      */

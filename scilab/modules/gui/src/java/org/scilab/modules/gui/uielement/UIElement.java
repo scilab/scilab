@@ -112,10 +112,6 @@ public interface UIElement {
     //
     //	public abstract void setTextLayout(Layout newLayout);
 
-    /**
-     * To set the Background color of the element.
-     * @param color the Color
-     */
     //void setBackground(Color color);
 
     /**

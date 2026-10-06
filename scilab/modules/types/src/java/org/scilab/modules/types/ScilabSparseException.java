@@ -18,8 +18,9 @@ package org.scilab.modules.types;
 /**
  * Exception which can occurred when a Sparse matrix is created
  */
-@SuppressWarnings(value = { "serial" })
 public class ScilabSparseException extends Exception {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

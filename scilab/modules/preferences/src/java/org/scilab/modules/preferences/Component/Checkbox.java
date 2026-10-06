@@ -27,7 +27,7 @@ import org.w3c.dom.Node;
  * @author Pierre GRADIT
  *
  */
-public class Checkbox extends SwingScilabCheckBox implements XComponent, XChooser {
+public final class Checkbox extends SwingScilabCheckBox implements XComponent, XChooser {
 
     /** Universal identifier for serialization.
      *
@@ -57,6 +57,17 @@ public class Checkbox extends SwingScilabCheckBox implements XComponent, XChoose
         setFocusable(true);
 
         refresh(peer);
+    }
+
+    /** Finish initialization after construction (deferred setup that would
+     * otherwise leak this from the constructor). Called once by the
+     * {@code ComponentFactory} right after instantiation.
+     *
+     * @param peer the corresponding view DOM node
+     */
+    @Override
+    public void init(final Node peer) {
+        init();
     }
 
     /** Refresh the component by the use of actuators.

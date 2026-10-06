@@ -24,8 +24,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Align block on the top
  */
-@SuppressWarnings(value = { "serial" })
 public final class AlignBlockActionTop extends AlignBlockAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.ALIGN_TOP;
     /** Icon name of the action */

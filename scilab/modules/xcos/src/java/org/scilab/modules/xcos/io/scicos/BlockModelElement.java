@@ -203,7 +203,7 @@ final class BlockModelElement extends BlockPartsElement {
         field++;
         if (data.get(field) instanceof ScilabMList) {
             try {
-                new DiagramElement(controller).decode((ScilabMList) data.get(field), new XcosDiagram(controller, into.getUID(), into.getKind(), into.getId()));
+                new DiagramElement(controller).decode((ScilabMList) data.get(field), XcosDiagram.create(controller, into.getUID(), into.getKind(), into.getId()));
             } catch (ScicosFormatException e) {
                 throw new RuntimeException(e);
             }

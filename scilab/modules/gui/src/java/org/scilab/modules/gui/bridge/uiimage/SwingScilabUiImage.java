@@ -50,14 +50,14 @@ import org.scilab.modules.gui.utils.Size;
  * @author Han DONG
  * @author Vincent COUVERT
  */
-public class SwingScilabUiImage extends JLabel implements SwingViewObject, SimpleUiImage {
+public final class SwingScilabUiImage extends JLabel implements SwingViewObject, SimpleUiImage {
 
     private static final long serialVersionUID = -3394912554085956130L;
 
     private Integer uid;
 
     private ImageIcon imi;
-    private Image img;
+    private transient Image img;
     private String imageFile;
     private int imageWidth;
     private int imageHeight;
@@ -66,7 +66,7 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
     private double[] shear;
     private double angle;
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     /**
      * Constructor

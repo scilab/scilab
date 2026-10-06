@@ -30,8 +30,8 @@ import org.scilab.modules.console.ConsoleOptions;
  * Class to have a preview of a LaTeX string
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class ScilabLaTeXViewer extends JPanel {
+    private static final long serialVersionUID = 1L;
 
     private static final int INSET = 3;
     private static final Rectangle NULLRECT = new Rectangle(0, 0, 0, 0);
@@ -129,8 +129,8 @@ public final class ScilabLaTeXViewer extends JPanel {
         Rectangle begin;
         Rectangle end;
         try {
-            begin = tc.modelToView(b);
-            end = tc.modelToView(e);
+            begin = tc.modelToView2D(b).getBounds();
+            end = tc.modelToView2D(e).getBounds();
         } catch (BadLocationException ex) {
             begin = NULLRECT;
             end = NULLRECT;

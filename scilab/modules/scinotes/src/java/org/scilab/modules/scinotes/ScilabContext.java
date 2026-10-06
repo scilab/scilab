@@ -20,6 +20,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.swing.text.ViewFactory;
 import javax.swing.text.View;
@@ -42,7 +43,7 @@ import org.scilab.modules.gui.utils.ScilabFontUtils;
  * The class ScilabContext provides a context to render a Scilab's document.
  * @author Calixte DENIZET
  */
-public class ScilabContext implements ViewFactory {
+public final class ScilabContext implements ViewFactory {
 
     public static final String COLORSPATH = "//colors/body/syntax-highlighting-colors/item";
     public static final String SYSTEMFONTPATH = "//fonts/body/fonts";
@@ -372,6 +373,11 @@ public class ScilabContext implements ViewFactory {
 
             return false;
         }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(fontname, fontsize, desktop);
+        }
     }
 
     /**
@@ -439,6 +445,11 @@ public class ScilabContext implements ViewFactory {
             }
 
             return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(underline, strikeThrough, bold, italic, color, type);
         }
     }
 }

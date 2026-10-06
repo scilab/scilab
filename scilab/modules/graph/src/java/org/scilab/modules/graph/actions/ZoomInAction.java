@@ -38,8 +38,8 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 /**
  * Zoom management
  */
-@SuppressWarnings(value = { "serial" })
-public class ZoomInAction extends DefaultAction {
+public final class ZoomInAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = ScilabGraphMessages.ZOOM_IN;
     /** Icon name of the action */
@@ -47,7 +47,7 @@ public class ZoomInAction extends DefaultAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_ADD;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /** key used on {@link InputMap} for this action */
     private static final String ZOOM_IN = "zoomIn";
@@ -77,7 +77,7 @@ public class ZoomInAction extends DefaultAction {
          */
         @Override
         public void mouseWheelMoved(MouseWheelEvent e) {
-            if ((e.getModifiers() & ACCELERATOR_KEY) != 0) {
+            if ((e.getModifiersEx() & ACCELERATOR_KEY) != 0) {
                 if (e.getWheelRotation() < 0) {
                     scilabGraph.getAsComponent().zoomIn();
                 }

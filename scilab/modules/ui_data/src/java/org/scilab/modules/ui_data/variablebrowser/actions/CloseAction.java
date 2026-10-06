@@ -25,8 +25,8 @@ import org.scilab.modules.ui_data.actions.DefaultAction;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 
-@SuppressWarnings(value = { "serial" })
 public class CloseAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     /** Name of the action */
     public static final String NAME = UiDataMessages.CLOSE;
@@ -35,7 +35,7 @@ public class CloseAction extends DefaultAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_W;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
 
     /**

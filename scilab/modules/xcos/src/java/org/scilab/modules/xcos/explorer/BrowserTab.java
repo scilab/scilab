@@ -49,7 +49,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Tab of the Xcos Browser
  */
-public class BrowserTab extends SwingScilabDockablePanel implements SimpleTab {
+public final class BrowserTab extends SwingScilabDockablePanel implements SimpleTab {
+    private static final long serialVersionUID = 1L;
     public static final String DEFAULT_WIN_UUID = "xcos-browser-default-window";
     public static final String DEFAULT_TAB_UUID = "xcos-browser-default-tab";
 
@@ -63,6 +64,7 @@ public class BrowserTab extends SwingScilabDockablePanel implements SimpleTab {
      */
     public BrowserTab(BrowserView view, String uuid) {
         super(XcosMessages.DIAGRAM_BROWSER, uuid);
+        init();
         initComponents(view);
     }
 

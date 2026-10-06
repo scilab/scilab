@@ -69,8 +69,8 @@ import org.scilab.modules.xcos.graph.model.XcosGraphModel;
 /**
  * Customize the block representation.
  */
-@SuppressWarnings(value = { "serial" })
 public final class EditFormatAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /**
      * Name of the action
      */
@@ -86,7 +86,7 @@ public final class EditFormatAction extends DefaultAction {
     /**
      * Accelerator key for the action
      */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /**
      * The default color used on non initialized border color.
@@ -413,7 +413,9 @@ public final class EditFormatAction extends DefaultAction {
                 XcosGraphModel parentModel = (XcosGraphModel) parentGraph.getModel();
                 Object superBlock = parentModel.getCell(jgraphxID[0]);
                 if (superBlock instanceof SuperBlock) {
-                    List<mxICell> ports = ContextUpdate.IOBlocks.getPorts((SuperBlock) superBlock, (Class<? extends ContextUpdate>) cell.getClass());
+                    // reason: cell instanceof ContextUpdate checked above (line 422)
+                    Class<? extends ContextUpdate> cellClass = cell.getClass().asSubclass(ContextUpdate.class);
+                    List<mxICell> ports = ContextUpdate.IOBlocks.getPorts((SuperBlock) superBlock, cellClass);
 
                     if (ports.size() >= portNumber) {
                         mxICell port = ports.get(portNumber - 1);
@@ -470,7 +472,12 @@ public final class EditFormatAction extends DefaultAction {
         if (image != null && !image.isEmpty()) {
             String path;
             try {
-                URL url = new URL(image);
+                URL url;
+                try {
+                    url = URI.create(image).toURL();
+                } catch (IllegalArgumentException e) {
+                    url = new File(image).toURI().toURL();
+                }
                 path = url.toExternalForm();
             } catch (MalformedURLException e) {
                 path = image;
@@ -543,6 +550,7 @@ public final class EditFormatAction extends DefaultAction {
     // CSOFF: ClassDataAbstractionCoupling
     // CSOFF: ClassFanOutComplexity
     private static final class EditFormatDialog extends javax.swing.JDialog {
+        private static final long serialVersionUID = 1L;
         private static final int TEXT_AREA_ROWS = 5;
         private static final int TEXT_AREA_COLUMNS = 20;
 
@@ -558,7 +566,7 @@ public final class EditFormatAction extends DefaultAction {
         private javax.swing.JColorChooser backgroundColorChooser;
         private javax.swing.JColorChooser borderColorChooser;
         private javax.swing.JColorChooser textColorChooser;
-        private javax.swing.JComboBox fontNameComboBox;
+        private javax.swing.JComboBox<String> fontNameComboBox;
         private javax.swing.JLabel fontNameLabel;
         private javax.swing.JSpinner fontSizeSpinner;
         private javax.swing.JLabel fontSizeLabel;
@@ -585,7 +593,7 @@ public final class EditFormatAction extends DefaultAction {
         private javax.swing.JButton resetButton;
         private javax.swing.JPanel buttonPane;
 
-        private XcosDiagram graph;
+        private transient XcosDiagram graph;
         private XcosCell cell;
 
         private final transient ChangeListener defaultChangeListener = new ChangeListener() {
@@ -759,7 +767,7 @@ public final class EditFormatAction extends DefaultAction {
             fontSizeLabel = new javax.swing.JLabel();
             fontSizeSpinner = new javax.swing.JSpinner();
             fontNameLabel = new javax.swing.JLabel();
-            fontNameComboBox = new javax.swing.JComboBox();
+            fontNameComboBox = new javax.swing.JComboBox<>();
             fontStyleBold = new javax.swing.JCheckBox();
             fontStyleItalic = new javax.swing.JCheckBox();
             fontStyleLabel = new javax.swing.JLabel();
@@ -800,7 +808,7 @@ public final class EditFormatAction extends DefaultAction {
 
             fontNameLabel.setText(XcosMessages.FONT_NAME);
 
-            fontNameComboBox.setModel(new javax.swing.DefaultComboBoxModel(GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames()));
+            fontNameComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames()));
 
             fontNameComboBox.addActionListener(defaultActionListener);
 

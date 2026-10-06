@@ -26,7 +26,7 @@
     <!-- Compile sources -->
     <target name="compile" description="Build sources of Javasci v2" depends="init">
         <mkdir dir="${classes.dir}/v2"/>
-        <javac srcdir="src/java/" destdir="${classes.dir}/v2" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" includes="org/**/*.java" source="17" target="17"/>
+        <javac srcdir="src/java/" destdir="${classes.dir}/v2" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" includes="org/**/*.java" release="21"/>
     </target>
 
     <!-- Create the jar -->

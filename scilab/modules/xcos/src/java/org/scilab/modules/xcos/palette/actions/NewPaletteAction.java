@@ -30,8 +30,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  *
  * TODO: actionPerformed for this class
  */
-@SuppressWarnings(value = { "serial" })
 public final class NewPaletteAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.NEW_PALETTE;
     /** Icon name of the action */

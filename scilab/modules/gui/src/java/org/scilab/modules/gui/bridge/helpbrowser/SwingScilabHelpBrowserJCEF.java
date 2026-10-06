@@ -90,7 +90,7 @@ import org.scilab.modules.gui.textbox.TextBox;
  *   - execCode / editCode / copyCode / openXcos / openExternal: page actions
  *   - linkStatus: target of the hovered link, shown in the info bar
  */
-public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
+public final class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
 
     private static final long serialVersionUID = 1L;
 
@@ -106,16 +106,16 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
     private static final String SYNTAX_COLORS_PATH = "//colors/body/syntax-highlighting-colors/item";
 
     private final String language;
-    private final Path helpOutputDir; // TMPDIR/help/<lang>/
+    private final transient Path helpOutputDir; // TMPDIR/help/<lang>/
     /** Browser panel: shared JCEF focus handling, links, resize masking. */
     private final ScilabCefPanel cefPanel;
-    private final CefBrowser browser;
-    private javax.xml.transform.Templates xsltTemplates;
+    private final transient CefBrowser browser;
+    private transient javax.xml.transform.Templates xsltTemplates;
     private boolean pageLoaded = false;
     private String pendingKeyword = null;
     private String currentPageId = null;
     /** Notified when Preferences > Colors changes, to recolor the displayed code. */
-    private final XConfigurationListener syntaxColorsListener;
+    private final transient XConfigurationListener syntaxColorsListener;
 
     /**
      * Keyword lists for syntax highlighting: helpOutputDir/keywords.txt is
@@ -129,7 +129,7 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
     private long keywordsFileTime = -1;
 
     /** Pre-generated images manifest: canonical code hash -> file name. */
-    private java.util.Map<String, String> imagesManifest = null;
+    private transient java.util.Map<String, String> imagesManifest = null;
     private long imagesManifestTime = -1;
     private boolean imagesManifestFromZip = false;
 
@@ -139,10 +139,10 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
      * &lt;toolbox&gt;/help/images/help_images.index written at build time by
      * tbx_build_help(); empty when no toolbox pre-generated its images.
      */
-    private java.util.Map<String, Path> toolboxImagesManifest = null;
+    private transient java.util.Map<String, Path> toolboxImagesManifest = null;
 
     /** External help chapters registered via add_help_chapter() (toolboxes). */
-    private volatile java.util.List<ExtChapter> externalChapters;
+    private volatile transient java.util.List<ExtChapter> externalChapters;
 
     /**
      * Full-text search. The index of the native chapters is built in the
@@ -151,7 +151,7 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
      * run on this single thread: a search waits for the native index without
      * blocking the CEF UI thread.
      */
-    private final java.util.concurrent.ExecutorService searchExecutor =
+    private final transient java.util.concurrent.ExecutorService searchExecutor =
         java.util.concurrent.Executors.newSingleThreadExecutor(r -> {
             Thread t = new Thread(r, "HelpBrowser-search");
             t.setDaemon(true);
@@ -159,9 +159,9 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
         });
     private static final int MAX_SEARCH_RESULTS = 50;
     /** Accessed on searchExecutor only. */
-    private HelpSearchIndex nativeSearchIndex = null;
+    private transient HelpSearchIndex nativeSearchIndex = null;
     /** Toolbox chapter indexes by chapter signature; accessed on searchExecutor only. */
-    private final java.util.Map<String, HelpSearchIndex> toolboxSearchIndexes = new java.util.HashMap<>();
+    private final transient java.util.Map<String, HelpSearchIndex> toolboxSearchIndexes = new java.util.HashMap<>();
 
     public SwingScilabHelpBrowserJCEF(String[] helps, String language) {
         super(); // calls SwingScilabHelpBrowser() which sets BorderLayout

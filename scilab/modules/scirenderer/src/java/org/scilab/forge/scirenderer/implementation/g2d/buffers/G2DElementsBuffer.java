@@ -22,7 +22,6 @@ import java.nio.FloatBuffer;
 /**
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class G2DElementsBuffer implements DataBuffer, ElementsBuffer {
 
     /**
@@ -190,6 +189,8 @@ public class G2DElementsBuffer implements DataBuffer, ElementsBuffer {
      * A specific runtime exception for bad elements size.
      */
     private static class BadElementSizeException extends RuntimeException {
+
+        private static final long serialVersionUID = 1L;
 
         /**
          * Default constructor.

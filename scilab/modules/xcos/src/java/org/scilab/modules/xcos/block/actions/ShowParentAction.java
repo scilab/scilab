@@ -42,8 +42,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Show the parent graph (only installed on a {@link SuperBlockDiagram})
  */
-@SuppressWarnings(value = { "serial" })
 public class ShowParentAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.SHOW_PARENT;
     /** Icon name of the action */
@@ -51,7 +51,7 @@ public class ShowParentAction extends DefaultAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_HOME;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /**
      * Constructor
@@ -101,7 +101,7 @@ public class ShowParentAction extends DefaultAction {
                     controller.getObjectProperty(defaultParent.getUID(), defaultParent.getKind(), ObjectProperties.PARENT_DIAGRAM, parent);
                 }
 
-                parentGraph = new XcosDiagram(controller, parent[0], parentKind, "");
+                parentGraph = XcosDiagram.create(controller, parent[0], parentKind, "");
                 XcosCellFactory.insertChildren(controller, parentGraph);
                 parentGraph.setModified(graph.isModified());
                 parentGraph.installListeners();

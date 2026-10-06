@@ -38,7 +38,7 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
  * Swing implementation of a Scilab ColorChooser
  * @author Vincent COUVERT
  */
-public class SwingScilabColorChooser extends JDialog implements SimpleColorChooser {
+public final class SwingScilabColorChooser extends JDialog implements SimpleColorChooser {
 
     private static final long serialVersionUID = 1L;
 

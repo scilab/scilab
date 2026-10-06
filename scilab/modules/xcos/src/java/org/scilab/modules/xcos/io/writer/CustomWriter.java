@@ -116,7 +116,7 @@ public class CustomWriter extends ScilabWriter {
          * Add a version comment at the top layer
          */
         if (kind == Kind.DIAGRAM) {
-            final Package p = Package.getPackage("org.scilab.modules.xcos");
+            final Package p = Xcos.class.getPackage();
             String comment = new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP)
             .append(p.getSpecificationVersion()).append(SEP).append(p.getImplementationVersion()).toString();
             shared.stream.writeComment(comment);

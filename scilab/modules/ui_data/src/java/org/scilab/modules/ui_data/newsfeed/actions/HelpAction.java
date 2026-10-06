@@ -33,6 +33,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class HelpAction extends CommonCallBack  {
+    private static final long serialVersionUID = 1L;
 
     private static final String LABEL = NewsFeedUIMessages.NEWS_FEED_HELP_LABEL;
     private static final String ICON = FindIconHelper.findIcon("help-browser");

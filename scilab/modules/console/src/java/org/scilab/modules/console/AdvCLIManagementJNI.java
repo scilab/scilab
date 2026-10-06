@@ -7,12 +7,14 @@
  * ----------------------------------------------------------------------------- */
 
 package org.scilab.modules.console;
+import org.scilab.modules.localization.NativeLibraryLoader;
+
 
 public class AdvCLIManagementJNI {
 
   static {
     try {
-        System.loadLibrary("sciconsole");
+        NativeLibraryLoader.loadLibrary("sciconsole");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

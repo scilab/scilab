@@ -64,7 +64,8 @@ public class ScilabInteger implements ScilabType {
      *            true, if the values are unsigned; false if they are signed.
      */
     public ScilabInteger(byte[][] data, boolean bUnsigned) {
-        this.setData(data, bUnsigned);
+        this.byteData = data;
+        this.precision = bUnsigned ? ScilabIntegerTypeEnum.sci_uint8 : ScilabIntegerTypeEnum.sci_int8;
     }
 
     /**
@@ -76,7 +77,8 @@ public class ScilabInteger implements ScilabType {
      *            true, if the values are unsigned; false if they are signed.
      */
     public ScilabInteger(short[][] data, boolean bUnsigned) {
-        this.setData(data, bUnsigned);
+        this.shortData = data;
+        this.precision = bUnsigned ? ScilabIntegerTypeEnum.sci_uint16 : ScilabIntegerTypeEnum.sci_int16;
     }
 
     /**
@@ -88,7 +90,8 @@ public class ScilabInteger implements ScilabType {
      *            true, if the values are unsigned; false if they are signed.
      */
     public ScilabInteger(int[][] data, boolean bUnsigned) {
-        this.setData(data, bUnsigned);
+        this.intData = data;
+        this.precision = bUnsigned ? ScilabIntegerTypeEnum.sci_uint32 : ScilabIntegerTypeEnum.sci_int32;
     }
 
     /**
@@ -100,7 +103,8 @@ public class ScilabInteger implements ScilabType {
      *            true, if the values are unsigned; false if they are signed.
      */
     public ScilabInteger(long[][] data, boolean bUnsigned) {
-        this.setData(data, bUnsigned);
+        this.longData = data;
+        this.precision = bUnsigned ? ScilabIntegerTypeEnum.sci_uint64 : ScilabIntegerTypeEnum.sci_int64;
     }
 
     /**
@@ -114,7 +118,8 @@ public class ScilabInteger implements ScilabType {
      * @param swaped true if the matrices are stored row by row
      */
     public ScilabInteger(String varName, byte[][] data, boolean bUnsigned, boolean swaped) {
-        this.setData(data, bUnsigned);
+        this.byteData = data;
+        this.precision = bUnsigned ? ScilabIntegerTypeEnum.sci_uint8 : ScilabIntegerTypeEnum.sci_int8;
         this.varName = varName;
         this.swaped = swaped;
     }
@@ -130,7 +135,8 @@ public class ScilabInteger implements ScilabType {
      * @param swaped true if the matrices are stored row by row
      */
     public ScilabInteger(String varName, short[][] data, boolean bUnsigned, boolean swaped) {
-        this.setData(data, bUnsigned);
+        this.shortData = data;
+        this.precision = bUnsigned ? ScilabIntegerTypeEnum.sci_uint16 : ScilabIntegerTypeEnum.sci_int16;
         this.varName = varName;
         this.swaped = swaped;
     }
@@ -146,7 +152,8 @@ public class ScilabInteger implements ScilabType {
      * @param swaped true if the matrices are stored row by row
      */
     public ScilabInteger(String varName, int[][] data, boolean bUnsigned, boolean swaped) {
-        this.setData(data, bUnsigned);
+        this.intData = data;
+        this.precision = bUnsigned ? ScilabIntegerTypeEnum.sci_uint32 : ScilabIntegerTypeEnum.sci_int32;
         this.varName = varName;
         this.swaped = swaped;
     }
@@ -162,7 +169,8 @@ public class ScilabInteger implements ScilabType {
      * @param swaped true if the matrices are stored row by row
      */
     public ScilabInteger(String varName, long[][] data, boolean bUnsigned, boolean swaped) {
-        this.setData(data, bUnsigned);
+        this.longData = data;
+        this.precision = bUnsigned ? ScilabIntegerTypeEnum.sci_uint64 : ScilabIntegerTypeEnum.sci_int64;
         this.varName = varName;
         this.swaped = swaped;
     }

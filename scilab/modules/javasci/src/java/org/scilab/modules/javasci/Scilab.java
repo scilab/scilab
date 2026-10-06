@@ -654,7 +654,8 @@ public class Scilab {
                     case sci_uint64:
                         // will be available in Scilab 6
                         throw new UnsupportedTypeException("64 bit (signed and unsigned) integer types not managed in Scilab 5.X");
-
+                    default:
+                        throw new UnsupportedTypeException("Type not managed: " + sciType);
                 }
 
             default:

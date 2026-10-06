@@ -53,6 +53,10 @@ public abstract class AbstractDrawable3DObject {
         if (vertices == null || vertices.length == 0) {
             throw new InvalidPolygonException("Invalid 3D Object: no vertices was given");
         }
+        
+        // Validate vertices before assigning to final fields to avoid this-escape
+        validateVerticesStatic(vertices);
+        
         this.vertices = vertices;
         if (colors != null && AbstractDrawable3DObject.isMonochromatic(colors)) {
             this.color = colors[0];
@@ -61,13 +65,48 @@ public abstract class AbstractDrawable3DObject {
             this.colors = colors;
             this.color = null;
         }
-        if (isDegenerate()) {
+        setPrecedence(defaultPrecedence++);
+    }
+
+    /**
+     * Validate vertices before construction is complete to avoid this-escape
+     * @param vertices the vertices to validate
+     * @throws InvalidPolygonException if vertices are invalid
+     */
+    private static void validateVerticesStatic(Vector3d[] vertices) throws InvalidPolygonException {
+        if (isDegenerateStatic(vertices)) {
             throw new InvalidPolygonException("Invalid 3D Object: two vertices are the same");
         }
-        if (isNanOrInf()) {
+        if (isNanOrInfStatic(vertices)) {
             throw new InvalidPolygonException("Invalid 3D Object: contains NaN or Inf coordinates");
         }
-        setPrecedence(defaultPrecedence++);
+    }
+
+    /**
+     * Check if vertices are degenerate (static version to avoid this-escape)
+     * @param vertices the vertices to check
+     * @return true if there are two vertices which are identical
+     */
+    private static boolean isDegenerateStatic(Vector3d[] vertices) {
+        Set<Vector3d> set = new HashSet<Vector3d>();
+        for (Vector3d v : vertices) {
+            set.add(v);
+        }
+        return set.size() != vertices.length;
+    }
+
+    /**
+     * Check if vertices contain NaN or Inf (static version to avoid this-escape)
+     * @param vertices the vertices to check
+     * @return true if any vertex contains NaN or Inf
+     */
+    private static boolean isNanOrInfStatic(Vector3d[] vertices) {
+        for (Vector3d v : vertices) {
+            if (isNanOrInf(v)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     final Color getColor(final int i) {
@@ -129,7 +168,7 @@ public abstract class AbstractDrawable3DObject {
      * Set the precedence of this object.
      * @param precedence the precedence of this object
      */
-    public void setPrecedence(int precedence) {
+    public final void setPrecedence(int precedence) {
         this.precedence = precedence;
     }
 
@@ -353,22 +392,11 @@ public abstract class AbstractDrawable3DObject {
      * @return true if there are two vertices which are indentical
      */
     protected boolean isDegenerate() {
-        Set<Vector3d> set = new HashSet<Vector3d>();
-        for (Vector3d v : vertices) {
-            set.add(v);
-        }
-
-        return set.size() != vertices.length;
+        return isDegenerateStatic(vertices);
     }
 
     protected boolean isNanOrInf() {
-        for (Vector3d v : vertices) {
-            if (isNanOrInf(v)) {
-                return true;
-            }
-        }
-
-        return false;
+        return isNanOrInfStatic(vertices);
     }
 
     public static final boolean isNanOrInf(final Vector3d v) {

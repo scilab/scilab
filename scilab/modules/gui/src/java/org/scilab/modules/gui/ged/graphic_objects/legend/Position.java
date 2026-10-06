@@ -23,7 +23,8 @@ import org.scilab.modules.gui.ged.graphic_objects.properties.Legend;
 * Construction and startup of all components of the section: Position.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Position extends SimpleSection {
+public final class Position extends SimpleSection {
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static Position instance;
     private Legend legend = new Legend();
@@ -34,6 +35,7 @@ public class Position extends SimpleSection {
     */
     public Position(Integer objectID) {
         super(MessagesGED.position, "legend");
+        initializeSection();
         instance = this;
         sectionPanel = getSectionPanel();
         initComponents(objectID);

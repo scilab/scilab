@@ -19,8 +19,9 @@ package org.scilab.forge.scirenderer;
  *
  * @author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
 public class SciRendererException extends Exception {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructs a new exception with null as its detail message.

@@ -7,6 +7,7 @@
  * ----------------------------------------------------------------------------- */
 
 package org.scilab.modules.commons;
+import org.scilab.modules.localization.NativeLibraryLoader;
 
 
 /* It is generated code. Disable checkstyle */
@@ -16,6 +17,7 @@ package org.scilab.modules.commons;
    * @author Sylvestre LEDRU
    * @copyright DIGITEO 2010
    */
+
 public class ScilabCommonsJNI {
 
   /**
@@ -27,7 +29,7 @@ public class ScilabCommonsJNI {
 
   static {
     try {
-        System.loadLibrary("scicommons");
+        NativeLibraryLoader.loadLibrary("scicommons");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

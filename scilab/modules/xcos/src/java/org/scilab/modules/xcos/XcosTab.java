@@ -21,6 +21,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.ref.WeakReference;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
@@ -137,25 +138,25 @@ import com.mxgraph.util.mxEventObject;
  */
 // CSOFF: ClassFanOutComplexity
 // CSOFF: ClassDataAbstractionCoupling
-@SuppressWarnings(value = { "serial" })
 public class XcosTab extends SwingScilabDockablePanel {
+    private static final long serialVersionUID = 1L;
     private static final String DEFAULT_WIN_UUID = "xcos-default-window";
 
     /*
      * Instance fields
      */
-    private MenuBar menuBar;
-    private Menu fileMenu;
-    private Menu recentsMenu;
-    private Menu edit;
-    private Menu view;
-    private Menu simulate;
-    private Menu format;
-    private Menu alignMenu;
-    private Menu blockPosition;
-    private Menu linkStyle;
-    private Menu tools;
-    private Menu help;
+    private transient MenuBar menuBar;
+    private transient Menu fileMenu;
+    private transient Menu recentsMenu;
+    private transient Menu edit;
+    private transient Menu view;
+    private transient Menu simulate;
+    private transient Menu format;
+    private transient Menu alignMenu;
+    private transient Menu blockPosition;
+    private transient Menu linkStyle;
+    private transient Menu tools;
+    private transient Menu help;
 
     private JCheckBoxMenuItem viewport;
 
@@ -398,6 +399,7 @@ public class XcosTab extends SwingScilabDockablePanel {
     protected static XcosTab allocate(XcosDiagram graph)
     {
         final XcosTab tab = new XcosTab(graph, graph.getGraphTab());
+        tab.init();
 
         ClosingOperationsManager.addDependencyWithRoot(tab);
         ClosingOperationsManager.registerClosingOperation(tab, new ClosingOperation(graph));
@@ -630,8 +632,8 @@ public class XcosTab extends SwingScilabDockablePanel {
         for (int i = 0; i < sizeOfMenu; i++) {
             URL url;
             try {
-                url = new URL(recentFiles.get(i).getUrl());
-            } catch (final MalformedURLException e) {
+                url = URI.create(recentFiles.get(i).getUrl()).toURL();
+            } catch (final MalformedURLException | IllegalArgumentException e) {
                 Logger.getLogger(XcosTab.class.getName()).severe(e.toString());
                 break;
             }

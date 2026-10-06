@@ -50,14 +50,20 @@ public class Panel extends JPanel implements XComponent {
         return new String[] {};
     }
 
-    /** Constructor.
+    /**
+     * Constructor.
+     *
+     * The layout is installed through JPanel's constructor (it must be in
+     * place synchronously, before subclasses such as VBox, HBox, Grid,
+     * FileSelector, ... add children with layout constraints). The preferred
+     * dimension is applied in {@link #init(Node)}: setPreferredSize is an
+     * overridable method, so calling it from this non-final class's
+     * constructor would leak this.
      *
      * @param peer : associated view DOM node.
      */
     public Panel(final Node peer) {
-        super();
-        setLayout(new BorderLayout());
-        XConfigManager.setDimension(this, peer);
+        super(new BorderLayout());
 
         String fixed = XConfigManager.getAttribute(peer, "fixed-width");
         if (!(fixed.equals(XConfigManager.NAV))) {
@@ -70,6 +76,23 @@ public class Panel extends JPanel implements XComponent {
         }
 
         //setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.GREEN));
+    }
+
+    /**
+     * Finish initialization after construction. Applies the preferred
+     * dimension deferred from the constructor (setPreferredSize is an
+     * overridable method); called once by the ComponentFactory right after
+     * instantiation, before the component is added to its container.
+     *
+     * @param peer the corresponding view DOM node
+     */
+    @Override
+    public void init(final Node peer) {
+        int height = XConfigManager.getInt(peer, "height", 0);
+        int width = XConfigManager.getInt(peer, "width",  0);
+        if (height > 0 && width > 0) {
+            setPreferredSize(new Dimension(width, height));
+        }
     }
 
     /**

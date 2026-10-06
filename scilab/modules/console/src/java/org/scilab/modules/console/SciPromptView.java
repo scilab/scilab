@@ -31,7 +31,7 @@ import com.artenum.rosetta.interfaces.ui.PromptView;
  * Scilab Console UI which contains the prompt
  * @author Vincent COUVERT
  */
-public class SciPromptView extends JPanel implements PromptView {
+public final class SciPromptView extends JPanel implements PromptView {
 
     private static final long serialVersionUID = 1L;
 
@@ -48,7 +48,7 @@ public class SciPromptView extends JPanel implements PromptView {
 
     private String defaultPrompt;
     private String inBlockPrompt;
-    private InputParsingManager inputParsingManager;
+    private transient InputParsingManager inputParsingManager;
 
     // Working vars
     private StringBuffer promptTextContent;

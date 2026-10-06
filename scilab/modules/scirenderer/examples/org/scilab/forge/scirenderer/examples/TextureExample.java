@@ -40,8 +40,9 @@ import java.util.Date;
 /**
  * @author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
 public final class TextureExample extends ExampleFrame {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Frame title.

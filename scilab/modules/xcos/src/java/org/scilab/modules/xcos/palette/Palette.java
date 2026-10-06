@@ -519,7 +519,7 @@ public final class Palette {
 
         JavaController controller = new JavaController();
 
-        final XcosDiagram graph = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
+        final XcosDiagram graph = XcosDiagram.create(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
         graph.installListeners();
 
         graph.addCell(block);

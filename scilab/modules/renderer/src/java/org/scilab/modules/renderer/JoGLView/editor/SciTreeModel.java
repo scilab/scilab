@@ -28,7 +28,7 @@ import java.util.Vector;
 /**
  * @author Pierre Lando
  */
-public class SciTreeModel implements TreeModel, GraphicView {
+public final class SciTreeModel implements TreeModel, GraphicView {
     private final Integer rootId;
     private final EventListenerList listeners = new EventListenerList();
 

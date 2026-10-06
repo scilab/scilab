@@ -32,8 +32,8 @@ import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManag
 /**
  * Launch the modelica compiler configuration TCL UI
  */
-@SuppressWarnings(value = { "serial" })
 public final class InitModelicaAction extends SimulationNotRunningAction {
+    private static final long serialVersionUID = 1L;
     /** the name */
     public static final String NAME = XcosMessages.INIT_MODELICA;
     /** no icon */

@@ -37,8 +37,7 @@ import org.scilab.modules.ui_data.variableeditor.undo.CellsUndoableEdit;
  * @author Allan SIMON
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
-public class SwingEditvarTableModel extends DefaultTableModel {
+public final class SwingEditvarTableModel extends DefaultTableModel {
 
     private static final long serialVersionUID = -4255704246347716837L;
     private static final String GUILL = "\"";
@@ -56,7 +55,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
     private SwingScilabVariableEditor editor;
     private CellsUndoManager undoManager;
 
-    private Vector copyVector;
+    private Vector<Vector<?>> copyVector;
 
     /**
      * Default construction setting table data.
@@ -105,8 +104,19 @@ public class SwingEditvarTableModel extends DefaultTableModel {
      * @param row the number of rows
      * @param row the number of columns
      */
-    public void changeData(Vector v, int row, int col) {
-        dataVector = v;
+    public void changeData(Vector<?> v, int row, int col) {
+        // Build a typed row vector from the generic input so setDataVector can be
+        // called without an unchecked cast (DefaultTableModel.setDataVector takes
+        // Vector<? extends Vector>).
+        Vector<Vector<?>> rows = new Vector<>(v.size());
+        for (Object rowVec : v) {
+            rows.addElement((Vector<?>) rowVec);
+        }
+        Vector<Object> identifiers = new Vector<>();
+        for (int i = 0; i < col; i++) {
+            identifiers.add(i + 1);
+        }
+        super.setDataVector(rows, identifiers);
         scilabMatrixRowCount = row;
         scilabMatrixColCount = col;
         updateFullMatrix(null, 0, 0);
@@ -123,7 +133,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
 
         int c = Math.max(cols, colsData);
 
-        Vector identifiers = new Vector(c);
+        Vector<Object> identifiers = new Vector<>(c);
         for (int i = 0; i < c; ++i) {
             identifiers.addElement(i + 1);
         }
@@ -137,15 +147,15 @@ public class SwingEditvarTableModel extends DefaultTableModel {
      * @param columns the number of columns
      * @return the corresponding Vector
      */
-    protected Vector convertData(Object[][] data, int rows, int cols) {
+    protected Vector<Vector<Object>> convertData(Object[][] data, int rows, int cols) {
         int r = Math.max(data.length, rows);
         int c = 0;
         if (data.length != 0) {
             c = Math.max(data[0].length, cols);
         }
-        Vector rv = new Vector(r);
+        Vector<Vector<Object>> rv = new Vector<>(r);
         for (int i = 0; i < data.length; i++) {
-            Vector cv = new Vector(c);
+            Vector<Object> cv = new Vector<>(c);
             for (int j = 0; j < data[i].length; j++) {
                 cv.addElement(data[i][j]);
             }
@@ -155,7 +165,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
             rv.addElement(cv);
         }
         for (int i = 0; i < rows - data.length; i++) {
-            Vector cv = new Vector(c);
+            Vector<Object> cv = new Vector<>(c);
             for (int j = 0; j < c; j++) {
                 cv.addElement(null);
             }
@@ -181,7 +191,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
         if (rows > getRowCount()) {
             int r = rows - getRowCount();
             for (int i = 0; i < r; i++) {
-                Vector v = new Vector(getColumnCount());
+                Vector<?> v = new Vector<>(getColumnCount());
                 for (int j = 0; j < getColumnCount(); j++) {
                     v.addElement(null);
                 }
@@ -197,12 +207,16 @@ public class SwingEditvarTableModel extends DefaultTableModel {
      * Clone the datas
      * @return the cloned datas
      */
-    public Vector cloneDatas() {
-        Vector v = new Vector(dataVector.size());
+    public Vector<Vector<Object>> cloneDatas() {
+        Vector<Vector<Object>> v = new Vector<>(dataVector.size());
         for (int i = 0; i < dataVector.size(); i++) {
-            Vector vv = (Vector) dataVector.get(i);
-            if (vv != null) {
-                v.addElement(vv.clone());
+            Vector<?> row = dataVector.get(i);
+            if (row != null) {
+                Vector<Object> copy = new Vector<>(row.size());
+                for (Object e : row) {
+                    copy.addElement(e);
+                }
+                v.addElement(copy);
             } else {
                 v.addElement(null);
             }
@@ -217,7 +231,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
     public void addColumns(int number) {
         columnIdentifiers.setSize(getColumnCount() + number);
         for (int i = 0; i < getRowCount(); i++) {
-            ((Vector) dataVector.elementAt(i)).setSize(getColumnCount());
+            dataVector.elementAt(i).setSize(getColumnCount());
         }
     }
 
@@ -364,11 +378,11 @@ public class SwingEditvarTableModel extends DefaultTableModel {
 
         if (row >= scilabMatrixRowCount) {
             for (int i = scilabMatrixRowCount; i <= row; i++) {
-                Vector rowVector = (Vector) dataVector.elementAt(i);
+                Vector<?> rowVector = dataVector.elementAt(i);
                 for (int j = 0; j <= Math.max(col, scilabMatrixColCount - 1); j++) {
-                    rowVector.setElementAt(defaultValue, j);
+                    setElementAt(rowVector, j, defaultValue);
                     if (copyVector == null) {
-                        copyVector = (Vector) dataVector.clone();
+                        copyVector = cloneDataVector();
                     }
                     if (!defaultAdded) {
                         defaultAdded = true;
@@ -379,11 +393,11 @@ public class SwingEditvarTableModel extends DefaultTableModel {
 
         if (col >= scilabMatrixColCount) {
             for (int i = 0; i <= Math.max(row, scilabMatrixRowCount - 1); i++) {
-                Vector rowVector = (Vector) dataVector.elementAt(i);
+                Vector<?> rowVector = dataVector.elementAt(i);
                 for (int j = scilabMatrixColCount; j <= col; j++) {
-                    rowVector.setElementAt(defaultValue, j);
+                    setElementAt(rowVector, j, defaultValue);
                     if (copyVector == null) {
-                        copyVector = (Vector) dataVector.clone();
+                        copyVector = cloneDataVector();
                     }
                     if (!defaultAdded) {
                         defaultAdded = true;
@@ -391,9 +405,9 @@ public class SwingEditvarTableModel extends DefaultTableModel {
                 }
             }
         }
-        
+
         value = escapeQuotes(value);
-        ((Vector) dataVector.elementAt(row)).setElementAt(value, col);
+        setElementAt(dataVector.elementAt(row), col, value);
 
         if (col >= scilabMatrixColCount || row >= scilabMatrixRowCount) {
             if (col >= scilabMatrixColCount) {
@@ -437,16 +451,16 @@ public class SwingEditvarTableModel extends DefaultTableModel {
      * @param col the column index
      * @return true if the matrix has been enlarged
      */
-    public boolean setValues(Vector data, int row, int col) {
+    public boolean setValues(Vector<?> data, int row, int col) {
         int countCols = 0;
         for (int i = 0; i < data.size(); i++) {
-            countCols = Math.max(countCols, ((Vector) data.get(i)).size());
+            countCols = Math.max(countCols, ((Vector<?>) data.get(i)).size());
         }
         boolean isModified = enlarge(row + data.size(), col + countCols);
 
         for (int i = 0; i < data.size(); i++) {
-            for (int j = 0; j < ((Vector) data.get(i)).size(); j++) {
-                isModified = setValue(((Vector) data.get(i)).get(j), row + i, col + j) || isModified;
+            for (int j = 0; j < ((Vector<?>) data.get(i)).size(); j++) {
+                isModified = setValue(((Vector<?>) data.get(i)).get(j), row + i, col + j) || isModified;
             }
         }
 
@@ -484,7 +498,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
     public void removeRow(int row, int colB, int colE) {
         if (row == scilabMatrixRowCount - 1 && colB == 0 && colE >= scilabMatrixColCount - 1) {
             scilabMatrixRowCount--;
-            Vector v = (Vector) dataVector.get(row);
+            Vector<?> v = dataVector.get(row);
             for (int i = 0; i < scilabMatrixColCount; i++) {
                 v.setElementAt(null, i);
             }
@@ -501,7 +515,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
         if (col == scilabMatrixColCount - 1 && rowB == 0 && rowE >= scilabMatrixRowCount - 1) {
             scilabMatrixColCount--;
             for (int i = 0; i < scilabMatrixRowCount; i++) {
-                ((Vector) dataVector.get(i)).setElementAt(null, col);
+                ((Vector<?>) dataVector.get(i)).setElementAt(null, col);
             }
         }
     }
@@ -510,7 +524,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
      * @param cols the column indexes to remove, the array is supposed to be ordered
      */
     public void removeColumns(int[] cols) {
-        Vector copy = null;
+        Vector<?> copy = null;
         int oldRowCount = scilabMatrixRowCount;
         int oldColCount = scilabMatrixColCount;
         int c = 0;
@@ -521,11 +535,11 @@ public class SwingEditvarTableModel extends DefaultTableModel {
                 }
                 if (col - c == scilabMatrixColCount - 1) {
                     for (int i = 0; i < scilabMatrixRowCount; i++) {
-                        ((Vector) dataVector.get(i)).setElementAt(null, col - c);
+                        ((Vector<?>) dataVector.get(i)).setElementAt(null, col - c);
                     }
                 } else {
                     for (int i = 0; i < scilabMatrixRowCount; i++) {
-                        ((Vector) dataVector.get(i)).removeElementAt(col - c);
+                        dataVector.get(i).removeElementAt(col - c);
                     }
                 }
                 scilabMatrixColCount--;
@@ -542,7 +556,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
      * @param rows the row indexes to remove, the array is supposed to be ordered
      */
     public void removeRows(int[] rows) {
-        Vector copy = null;
+        Vector<?> copy = null;
         int oldRowCount = scilabMatrixRowCount;
         int oldColCount = scilabMatrixColCount;
         int r = 0;
@@ -552,7 +566,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
                     copy = cloneDatas();
                 }
                 if (row - r == scilabMatrixRowCount - 1) {
-                    Vector rv = (Vector) dataVector.get(row - r);
+                    Vector<?> rv = dataVector.get(row - r);
                     for (int i = 0; i < scilabMatrixColCount; i++) {
                         rv.setElementAt(null, i);
                     }
@@ -574,12 +588,12 @@ public class SwingEditvarTableModel extends DefaultTableModel {
      */
     public void insertColumn(int col) {
         if (col < scilabMatrixColCount - 1) {
-            Vector copy = cloneDatas();
+            Vector<Vector<Object>> copy = cloneDatas();
             int oldRowCount = scilabMatrixRowCount;
             int oldColCount = scilabMatrixColCount;
             Object o = getDefaultValue();
             for (int i = 0; i < scilabMatrixRowCount; i++) {
-                ((Vector) dataVector.get(i)).insertElementAt(o, col);
+                insertElementAt(dataVector.get(i), col, o);
             }
             scilabMatrixColCount++;
             updateFullMatrix(copy, oldRowCount, oldColCount);
@@ -591,11 +605,11 @@ public class SwingEditvarTableModel extends DefaultTableModel {
      */
     public void insertRow(int row) {
         if (row < scilabMatrixRowCount - 1) {
-            Vector copy = cloneDatas();
+            Vector<Vector<Object>> copy = cloneDatas();
             int oldRowCount = scilabMatrixRowCount;
             int oldColCount = scilabMatrixColCount;
             Object o = getDefaultValue();
-            Vector v = new Vector(getColumnCount());
+            Vector<Object> v = new Vector<>(getColumnCount());
             for (int i = 0; i < scilabMatrixColCount; i++) {
                 v.addElement(o);
             }
@@ -765,11 +779,11 @@ public class SwingEditvarTableModel extends DefaultTableModel {
     private Object getDefaultValue() {
         Object ret = null;
         if (type.equals(EditVar.DOUBLE)) {
-            ret = new Double(0.0);
+            ret = Double.valueOf(0.0);
         } else if (type.equals(EditVar.STRING)) {
             ret = "";
         } else if (type.equals(EditVar.INTEGER)) {
-            ret = new Integer(0);
+            ret = Integer.valueOf(0);
         } else if (type.equals(EditVar.COMPLEX)) {
             ret = new Double[] {0.0, 0.0};
         } else if (type.equals(EditVar.BOOLEAN)) {
@@ -836,7 +850,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
                     if (oldValue != null) {
                         Object newValue;
                         if (oldValue instanceof Vector) {
-                            newValue = (Vector) dataVector.clone();
+                            newValue = dataVector.clone();
                         } else {
                             newValue = getValueAt(row, col);
                         }
@@ -909,5 +923,33 @@ public class SwingEditvarTableModel extends DefaultTableModel {
      */
     public static String getDataAsScilabString(String str) {
         return str.replace(GUILL, "\"\"").replace("'", "''");
+    }
+
+    /**
+     * Shallow copy of the underlying data vector as a typed structure, avoiding
+     * the unchecked cast that a direct {@code (Vector<Vector<?>>) dataVector.clone()}
+     * would require (DefaultTableModel.dataVector is a raw {@code Vector<Vector>}).
+     */
+    private Vector<Vector<?>> cloneDataVector() {
+        Vector<Vector<?>> copy = new Vector<>(dataVector.size());
+        for (Vector<?> row : dataVector) {
+            copy.addElement(row);
+        }
+        return copy;
+    }
+
+    /**
+     * Set an element in a row vector whose static element type is the raw
+     * {@code Vector} inherited from DefaultTableModel.
+     */
+    private static void setElementAt(Vector<?> row, int index, Object value) {
+        ((Vector<Object>) row).setElementAt(value, index);
+    }
+
+    /**
+     * Insert an element in a row vector (see {@link #setElementAt}).
+     */
+    private static void insertElementAt(Vector<?> row, int index, Object value) {
+        ((Vector<Object>) row).insertElementAt(value, index);
     }
 }

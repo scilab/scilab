@@ -108,7 +108,6 @@ public class ScilabTypeCoder {
         return vec;
     }
 
-    @SuppressWarnings("unchecked")
     private VectorOfDouble encode(ScilabType var, VectorOfDouble vec) {
         switch (var.getType()) {
             case sci_matrix:
@@ -320,10 +319,9 @@ public class ScilabTypeCoder {
      * @param as the type to encode
      * @param detected the detected type
      */
-    @SuppressWarnings({"unchecked", "fallthrough"})
     private void encodeHeader(Object var, VectorOfDouble vec, final ScilabTypeEnum as) {
         ScilabType matrix = null;
-        ArrayList<ScilabType> list = null;
+        ArrayList<?> list = null;
 
         // defensive programming
         switch (as) {
@@ -336,7 +334,7 @@ public class ScilabTypeCoder {
             case sci_list:
             case sci_mlist:
             case sci_tlist:
-                list = (ArrayList<ScilabType>) var;
+                list = (ArrayList<?>) var;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -411,7 +409,6 @@ public class ScilabTypeCoder {
         public void apply(R r, C c, V v);
     }
 
-    @SuppressWarnings("unchecked")
     private ScilabType decode(VectorOfDouble vec, ScilabType var) {
         switch (var.getType()) {
             case sci_matrix:
@@ -588,7 +585,6 @@ public class ScilabTypeCoder {
         return (ScilabType) var;
     }
 
-    @SuppressWarnings("fallthrough")
     private ScilabType decodeHeader(VectorOfDouble vec) {
         int nativeScilabType = (int) vec.get(position++);
 
@@ -603,10 +599,14 @@ public class ScilabTypeCoder {
         int listLen = 0;
 
         final ScilabTypeEnum type = ScilabTypeEnum.swigToEnum(nativeScilabType);
-        switch (type) { 
+
+        // special case for integer precision
+        if (type == ScilabTypeEnum.sci_ints) {
+            precision = (int) vec.get(position++);
+        }
+
+        switch (type) {
             case sci_ints:
-                // special case for integer precision
-                precision = (int) vec.get(position++);
             case sci_matrix:
             case sci_boolean:
             case sci_strings:
@@ -668,7 +668,8 @@ public class ScilabTypeCoder {
                             return new ScilabInteger(new int[height][width], true);
                         case sci_uint64:
                             return new ScilabInteger(new long[height][width], true);
-
+                        default:
+                            throw new IllegalArgumentException();
                     }
                 }
             case sci_strings:
@@ -729,24 +730,23 @@ public class ScilabTypeCoder {
         int listLen = 0;
 
         final ScilabTypeEnum type = ScilabTypeEnum.swigToEnum(nativeScilabType);
+
+        // special case for integer precision
+        if (type == ScilabTypeEnum.sci_ints) {
+            precision = (int) vec.get(position++);
+        }
+
         switch (type) {
             case sci_ints:
-                // special case for integer precision
-                precision = (int) vec.get(position++);
-            // fall through
             case sci_matrix:
-            // fall through
             case sci_boolean:
-            // fall through
             case sci_strings:
                 position++; // n-Dims not managed
                 height = (int) vec.get(position++);
                 width = (int) vec.get(position++);
                 break;
             case sci_list:
-            // fall through
             case sci_mlist:
-            // fall through
             case sci_tlist:
                 listLen = (int) vec.get(position++);
                 break;

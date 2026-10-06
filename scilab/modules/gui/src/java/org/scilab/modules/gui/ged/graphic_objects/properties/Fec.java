@@ -44,6 +44,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Fec extends ContentLayout {
+    private static final long serialVersionUID = 1L;
     private JTextField czBounds;
     private JTextField czBoundsMIN;
     private JTextField czBoundsMAX;

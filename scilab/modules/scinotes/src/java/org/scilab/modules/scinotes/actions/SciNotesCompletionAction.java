@@ -63,8 +63,8 @@ import org.scilab.modules.scinotes.utils.SciNotesCompletionWindow;
 /**
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class SciNotesCompletionAction extends CompletionAction {
+    private static final long serialVersionUID = 1L;
 
     private SciNotes editor;
 
@@ -212,8 +212,8 @@ public final class SciNotesCompletionAction extends CompletionAction {
         public Point getWindowCompletionLocation() {
             try {
                 int pos = editor.getTextPane().getCaretPosition();
-                Rectangle r = editor.getTextPane().modelToView(pos);
-                return new Point(r.x, r.y + r.height);
+                java.awt.geom.Rectangle2D r = editor.getTextPane().modelToView2D(pos);
+                return new Point((int) r.getX(), (int) (r.getY() + r.getHeight()));
             } catch (BadLocationException e) { }
             return new Point(0, 0);
         }

@@ -27,8 +27,8 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 /**
  * Selection management
  */
-@SuppressWarnings(value = { "serial" })
 public final class InvertSelectionAction extends VertexSelectionDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = ScilabGraphMessages.INVERT_SELECTION;
     /** Icon name of the action */

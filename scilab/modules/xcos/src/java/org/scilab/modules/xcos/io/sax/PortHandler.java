@@ -73,9 +73,6 @@ class PortHandler implements ScilabHandler {
         }
 
         String value = atts.getValue("value");
-        if (value != null &&  shared.validCIdentifier.matcher(value).matches()) {
-            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.LABEL, value);
-        }
 
         /*
          * Allocate the port with the right class to set default properties
@@ -115,6 +112,13 @@ class PortHandler implements ScilabHandler {
             default:
                 throw new IllegalArgumentException();
         }
+
+        /*
+         * The port label is stored as the model NAME : PORT has no LABEL
+         * property and the graphical value has to be synced back to the model
+         * (read as the block in_label / out_label).
+         */
+        port.setValue(shared.controller, value);
 
         /*
          * Setup the properties

@@ -31,6 +31,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class UpdateAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static final String LABEL = NewsFeedUIMessages.NEWS_FEED_UPDATE_LABEL;
     private static final String ICON = FindIconHelper.findIcon("view-refresh");

@@ -66,8 +66,8 @@ import com.mxgraph.util.mxXmlUtils;
 /**
  * Diagram export management
  */
-@SuppressWarnings(value = { "serial" })
 public final class ExportAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.EXPORT;
     /** Icon name of the action */
@@ -75,7 +75,7 @@ public final class ExportAction extends DefaultAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_E;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     private static final String HTML = "html";
     private static final String VML = "vml";

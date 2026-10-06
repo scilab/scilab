@@ -34,7 +34,7 @@ import java.awt.Dimension;
 /**
  * @author Pierre Lando
  */
-public class FormattedTextSpriteDrawer implements TextureDrawer {
+public final class FormattedTextSpriteDrawer implements TextureDrawer {
     private TextEntity textEntity;
     private Dimension dimension;
     private int descent;

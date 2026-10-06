@@ -44,8 +44,9 @@ import java.text.DecimalFormat;
 /**
  * @author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
 public final class SimpleRuler extends ExampleFrame {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Frame title.

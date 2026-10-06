@@ -65,7 +65,7 @@ public class ScilabEditorKit extends DefaultEditorKit {
 
     private final char[] buffer = new char[BUFFERCAPACITY];
 
-    private ScilabContext preferences;
+    private transient ScilabContext preferences;
     private boolean plain;
 
     /**

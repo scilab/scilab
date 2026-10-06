@@ -42,8 +42,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Diagram compilation management
  */
-@SuppressWarnings(value = { "serial" })
 public final class CompileAction extends OneBlockDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.COMPILE;
     /** Icon name of the action */

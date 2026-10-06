@@ -50,7 +50,7 @@ import org.scilab.modules.graphic_objects.graphicObject.Visitor;
  * @author Manuel JULIACHS
  */
 public class Polyline extends ClippableContouredObject {
-    /** TBD: data */
+    // TBD: data
     // Data data -> Data Model
     /* TODO: properties relative to the data model */
     /** Polyline properties names */

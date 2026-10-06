@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box.Filler;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -43,6 +44,7 @@ import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.gui.ged.actions.ShowHide;
 
@@ -52,13 +54,16 @@ import org.scilab.modules.gui.ged.actions.ShowHide;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class ContentLayout extends JPanel {
-    private GridBagLayout layout;
+    private static final long serialVersionUID = 1L;
     private GridBagConstraints gbc;
     private static String imagepath = System.getenv("SCI") + "/modules/gui/images/icons/";
 
     public ContentLayout() {
-        layout = new GridBagLayout();
-        setLayout(layout);
+        // The layout is installed through JPanel's constructor: it must be in
+        // place synchronously, before subclasses add children with GridBag
+        // constraints, and setLayout is an overridable method which would leak
+        // this from a non-final class's constructor.
+        super(new GridBagLayout());
         gbc = new GridBagConstraints();
         gbc.weightx = 1;
         gbc.weighty = 1;
@@ -196,16 +201,16 @@ public class ContentLayout extends JPanel {
                 Integer scilabColor = ColorMapHandler.getScilabColor(red, green, blue, parentFigure);
 
                 try {
-                    Class partypes[] = new Class[2];
+                    Class<?>[] partypes = new Class<?>[2];
                     partypes[0] = Integer.TYPE;
                     partypes[1] = String.class;
 
-                    Class cls = Class.forName("org.scilab.modules.gui.ged.graphic_objects." + packClass);
+                    Class<?> cls = Class.forName("org.scilab.modules.gui.ged.graphic_objects." + packClass);
                     Method meth = cls.getMethod(method, partypes);
 
                     Object arglist[] = new Object[2];
-                    arglist[0] = new Integer(scilabColor);
-                    arglist[1] = new Integer(objectID);
+                    arglist[0] = Integer.valueOf(scilabColor);
+                    arglist[1] = Integer.valueOf(objectID);
 
                     meth.invoke(methobj, arglist);
                 } catch (Throwable e) {
@@ -293,11 +298,11 @@ public class ContentLayout extends JPanel {
         table.setModel(new DefaultTableModel(
                            new Object[][] {null, null}, new String [] {"X", "Y"}
         ) {
-            Class[] types = new Class [] {
+            Class<?>[] types = new Class<?>[] {
                 Double.class, Double.class, Double.class
             };
 
-            public Class getColumnClass(int columnIndex) {
+            public Class<?> getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
@@ -386,13 +391,13 @@ public class ContentLayout extends JPanel {
             "Null", "Null"
         }
                        ) {
-            Class[] types = new Class [] {
+            Class<?>[] types = new Class<?>[] {
                 Double.class, Double.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false
             };
-            public Class getColumnClass(int columnIndex) {
+            public Class<?> getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -431,10 +436,12 @@ public class ContentLayout extends JPanel {
         shiftDialog.getContentPane().add(ok, gbc);
     }
 
-    public void addJComboBox(JPanel panel, JComboBox combobox, String[] options, int column, int row) {
+    public void addJComboBox(JPanel panel, JComboBox<?> combobox, String[] options, int column, int row) {
         combobox.setPreferredSize(new Dimension(5, 20));
         if (options != null) {
-            combobox.setModel(new DefaultComboBoxModel(options));
+            // options is a String[] set onto a JComboBox<?>; the model is applied via a
+            // suppressed helper so the call stays warning-free on the wildcard type.
+            setComboModel(combobox, new DefaultComboBoxModel<>(options));
         }
 
         gbc = new GridBagConstraints();
@@ -446,6 +453,10 @@ public class ContentLayout extends JPanel {
         gbc.weightx = 0.1;
         gbc.insets = new Insets(0, 4, 5, 0);
         panel.add(combobox, gbc);
+    }
+
+    private static void setComboModel(JComboBox<?> combobox, ComboBoxModel<?> model) {
+        ((JComboBox) combobox).setModel(model);
     }
 
     public void addJLabel(JPanel panel, JLabel label, String text, int column, int row, int insetLeft) {
@@ -570,8 +581,8 @@ public class ContentLayout extends JPanel {
     * @param spanel Main Jpanel of Section
     * @param row Row number
     */
-    public void addSectionPanel(JPanel mpanel, JPanel spanel, int row) {
-        gbc = new GridBagConstraints();
+    public static final void addSectionPanel(JPanel mpanel, JPanel spanel, int row) {
+        GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = row;
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -591,7 +602,7 @@ public class ContentLayout extends JPanel {
     * @param row Row number
     */
     public void addLabelComboBox(JPanel panel, JLabel label, String message,
-                                 JComboBox comboBox, String[] options,
+                                 JComboBox<?> comboBox, String[] options,
                                  int leftMargin, int firstColumn, int row) {
         addJLabel(panel, label, message, firstColumn, row, leftMargin);
         addJComboBox(panel, comboBox, options, firstColumn + 1, row);
@@ -700,4 +711,5 @@ public class ContentLayout extends JPanel {
         addJLabel(panel, label, message, firstColumn, row, leftMargin);
         add3CheckBoxField(panel, fieldPanel, CB1, CB2, CB3, firstColumn + 1, row);
     }
+
 }

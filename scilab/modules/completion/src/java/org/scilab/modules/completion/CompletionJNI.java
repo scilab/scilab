@@ -7,6 +7,7 @@
  * ----------------------------------------------------------------------------- */
 
 package org.scilab.modules.completion;
+import org.scilab.modules.localization.NativeLibraryLoader;
 
 
 /* It is generated code. Disable checkstyle */
@@ -15,6 +16,7 @@ package org.scilab.modules.completion;
    * @author Allan CORNET
    * @copyright INRIA 2007
    */
+
 public class CompletionJNI {
 
   /**
@@ -26,7 +28,7 @@ public class CompletionJNI {
 
   static {
     try {
-        System.loadLibrary("scicompletion");
+        NativeLibraryLoader.loadLibrary("scicompletion");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

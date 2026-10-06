@@ -17,6 +17,7 @@
 package org.scilab.modules.graphic_objects.axes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 import org.scilab.modules.graphic_objects.textObject.Font;
@@ -88,6 +89,14 @@ public class TicksProperty {
             }
 
             return false;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = number;
+            result = 31 * result + Arrays.hashCode(locations);
+            result = 31 * result + labels.hashCode();
+            return result;
         }
 
         /**
@@ -428,6 +437,15 @@ public class TicksProperty {
         }
 
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (auto ? 1 : 0);
+        result = 31 * result + subticks;
+        result = 31 * result + (defaultFont != null ? defaultFont.hashCode() : 0);
+        result = 31 * result + (auto ? automaticTicks.hashCode() : userTicks.hashCode());
+        return result;
     }
 
     /**

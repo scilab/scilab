@@ -30,8 +30,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Display about box for Xcos
  */
-@SuppressWarnings(value = { "serial" })
 public final class AboutXcosAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.ABOUT_XCOS;
     /** Icon name of the action */

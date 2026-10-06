@@ -26,6 +26,7 @@ import org.scilab.modules.xcos.block.custom.SumPortLabeler;
  * Implement the SUMMATION function.
  */
 public class Summation extends BasicBlock {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor

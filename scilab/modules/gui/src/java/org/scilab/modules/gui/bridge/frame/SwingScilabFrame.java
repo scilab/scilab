@@ -101,14 +101,14 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, Widget 
     private Integer uid = -1;
     int redraw = 0;
     protected boolean hasLayout = false;
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
     private SwingScilabCanvas canvas = null;
 
     // BJ: This EditorEventListener leads to a huge leak mem openning many Axes withih Frames.
     // DO NOT ACTIVATE THIS until EditorEventListener can manage Axes within Frames (Only Figure is working now)
-    private EditorEventListener editorEventHandler = null;
+    private transient EditorEventListener editorEventHandler = null;
 
-    private ScilabEventListener eventHandler;
+    private transient ScilabEventListener eventHandler;
     private boolean eventEnabled = false;
 
     /**
@@ -116,6 +116,10 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, Widget 
      */
     public SwingScilabFrame() {
         super();
+    }
+
+    @Override
+    public void init() {
         // the Default layout is null so we have to set a Position and a Size of every Dockable we add to it
         super.setLayout(null);
         hasLayout = false;

@@ -39,7 +39,7 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
  * Class the convert a DocBook xml file
  * @author Calixte DENIZET
  */
-public class HTMLDocbookLinkResolver extends DefaultHandler {
+public final class HTMLDocbookLinkResolver extends DefaultHandler {
 
     private static boolean isCaseInsensitiveOS = System.getProperty("os.name").toLowerCase().contains("windows") || System.getProperty("os.name").toLowerCase().contains("mac");
 

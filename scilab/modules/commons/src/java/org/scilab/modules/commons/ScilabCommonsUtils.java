@@ -164,8 +164,8 @@ public final class ScilabCommonsUtils {
         try {
             if (SwingUtilities.isEventDispatchThread()) {
                 try {
-                    Class jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
-                    Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class[] { String.class });
+                    Class<?> jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
+                    Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class<?>[] { String.class });
                     loadOnUseMethod.invoke(null, finalStr);
                 } catch (java.lang.ClassNotFoundException ex) {
                     System.err.println("Could not find the Scilab class to load dependency: " + ex);
@@ -181,8 +181,8 @@ public final class ScilabCommonsUtils {
                     @Override
                     public void run() {
                         try {
-                            Class jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
-                            Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class[] { String.class });
+                            Class<?> jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
+                            Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class<?>[] { String.class });
                             loadOnUseMethod.invoke(null, finalStr);
                         } catch (java.lang.ClassNotFoundException ex) {
                             System.err.println("Could not find the Scilab class to load dependency: " + ex);

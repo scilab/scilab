@@ -32,13 +32,13 @@ import org.w3c.dom.NodeList;
 * @author Pierre GRADIT
 *
 */
-public class Select extends JComboBox implements XComponent, XChooser {
+public final class Select extends JComboBox<String> implements XComponent, XChooser {
 
     /** Universal identifier for serialization.
      *
      */
     private static final long serialVersionUID = -6127289363733321914L;
-    private Map<String, String> map;
+    private transient Map<String, String> map;
 
     /** Define the set of actuators.
     *

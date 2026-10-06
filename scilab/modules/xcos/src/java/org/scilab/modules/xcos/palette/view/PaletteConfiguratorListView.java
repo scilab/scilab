@@ -31,8 +31,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Implement the edit category view
  */
-@SuppressWarnings(value = { "serial" })
-public class PaletteConfiguratorListView extends JTable {
+public final class PaletteConfiguratorListView extends JTable {
+    private static final long serialVersionUID = 1L;
     private static final String[] COLUMN_TITLE = {
         XcosMessages.ENABLE,
         XcosMessages.PAL_NAME
@@ -73,7 +73,8 @@ public class PaletteConfiguratorListView extends JTable {
      * The default model
      */
     public static class PaletteListModel extends AbstractTableModel {
-        private final Category category;
+        private static final long serialVersionUID = 1L;
+        private final transient Category category;
 
         /**
          * Default constructor with data

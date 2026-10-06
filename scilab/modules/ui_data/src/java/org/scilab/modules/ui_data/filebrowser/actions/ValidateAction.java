@@ -30,11 +30,11 @@ import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
  * Action to validate a file
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class ValidateAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private SwingScilabTreeTable table;
-    private Map<String, Action> ext = new HashMap<String, Action>();
+    private transient Map<String, Action> ext = new HashMap<String, Action>();
 
     /**
      * Default constructor

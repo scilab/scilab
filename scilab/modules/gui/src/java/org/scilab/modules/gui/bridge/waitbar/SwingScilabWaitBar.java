@@ -39,7 +39,7 @@ import org.scilab.modules.gui.waitbar.SimpleWaitBar;
  * Swing implementation of a Scilab Wait Bars
  * @author Vincent COUVERT
  */
-public class SwingScilabWaitBar extends JFrame implements SwingViewObject, SimpleWaitBar {
+public final class SwingScilabWaitBar extends JFrame implements SwingViewObject, SimpleWaitBar {
 
     private static final long serialVersionUID = -5208590743368628657L;
 

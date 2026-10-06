@@ -67,7 +67,7 @@ public class SciUndockingAction extends AbstractAction {
         /* If we undock a tab contained in view with two elements, then
            the two elements will be alone, so we remove the actions. */
         DockingPort port = DockingManager.getMainDockingPort(associatedTab);
-        Iterator iter = port.getDockables().iterator();
+        Iterator<?> iter = port.getDockables().iterator();
         if (port.getDockables().size() == 2) {
             while (iter.hasNext()) {
                 Object d = iter.next();

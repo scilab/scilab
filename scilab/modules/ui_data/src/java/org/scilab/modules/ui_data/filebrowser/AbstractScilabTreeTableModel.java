@@ -162,7 +162,7 @@ public abstract class AbstractScilabTreeTableModel implements ScilabTreeTableMod
     /**
      * {@inheritdoc}
      */
-    public Class getColumnClass(int column) {
+    public Class<?> getColumnClass(int column) {
         return Object.class;
     }
 

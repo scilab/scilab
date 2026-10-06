@@ -69,7 +69,7 @@ public final class PaletteBlockKeyListener implements KeyListener {
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             PaletteBlockView currentBlockView = ((PaletteBlockView) e.getSource());
             boolean isSelected = currentBlockView.getController().isSelected();
-            if ((e.getModifiers() & KeyEvent.CTRL_MASK) == 0) {
+            if ((e.getModifiersEx() & KeyEvent.CTRL_DOWN_MASK) == 0) {
                 PaletteCtrl.clearSelections();
             }
             currentBlockView.getController().setSelected(!isSelected); // toggle
@@ -116,7 +116,7 @@ public final class PaletteBlockKeyListener implements KeyListener {
             PaletteBlockView nextBlockView = (PaletteBlockView) pview.getComponentAt(x, y);
 
             // handle keys to decide the selection type
-            boolean ctrlIsDown = (e.getModifiers() & KeyEvent.CTRL_MASK) != 0;
+            boolean ctrlIsDown = (e.getModifiersEx() & KeyEvent.CTRL_DOWN_MASK) != 0;
             boolean isSelected = nextBlockView.getController().isSelected();
             if (!ctrlIsDown) {
                 PaletteCtrl.clearSelections();

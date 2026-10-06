@@ -24,6 +24,7 @@ import org.scilab.modules.localization.Messages;
  * Default exception for a Xcos - Scicos communication
  */
 public abstract class ScicosFormatException extends Exception {
+    private static final long serialVersionUID = 1L;
     private static final String UNABLE_TO_DECODE_INVALID_DATA = Messages
             .gettext("Unable to decode \"%s\" : invalid data.");
     private static final String UNABLE_TO_DECODE_INVALID_FIELD = Messages
@@ -33,24 +34,24 @@ public abstract class ScicosFormatException extends Exception {
      * Used when the {@link Element} cannot be used to decode/encode the
      * instance.
      */
-    @SuppressWarnings(value = { "serial" })
-    public static class WrongElementException extends ScicosFormatException {
+    public final static class WrongElementException extends ScicosFormatException {
+        private static final long serialVersionUID = 1L;
 
         /**
          * Default constructor
          */
+        @SuppressWarnings("this-escape")
         public WrongElementException() {
             super();
-
-            printStackTrace();
+            super.printStackTrace();
         }
     }
 
     /**
      * Used when the expected data cannot be casted safely.
-    @SuppressWarnings(value = { "serial" })
      */
     public static class WrongTypeException extends ScicosFormatException {
+        private static final long serialVersionUID = 1L;
 
         /**
          * Default cstr
@@ -91,10 +92,10 @@ public abstract class ScicosFormatException extends Exception {
     }
 
     /**
-    @SuppressWarnings(value = { "serial" })
      * Used when the expected data are not well formatted.
      */
     public static class WrongStructureException extends ScicosFormatException {
+        private static final long serialVersionUID = 1L;
 
         /**
          * Default constructor
@@ -123,11 +124,11 @@ public abstract class ScicosFormatException extends Exception {
         }
     }
 
-    @SuppressWarnings(value = { "serial" })
-    /**
-     * Used when the data doesn't have a valid version number.
-     */
     public static class VersionMismatchException extends ScicosFormatException {
+        private static final long serialVersionUID = 1L;
+        /**
+         * Used when the data doesn't have a valid version number.
+         */
         private final String wrongVersion;
 
         /**
@@ -151,9 +152,10 @@ public abstract class ScicosFormatException extends Exception {
     /**
      * Default constructor
      */
+    @SuppressWarnings("this-escape")
     protected ScicosFormatException() {
         if (!(this instanceof VersionMismatchException)) {
-            printStackTrace();
+            super.printStackTrace();
         }
     }
 

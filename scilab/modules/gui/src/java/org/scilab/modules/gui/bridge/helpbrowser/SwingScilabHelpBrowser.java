@@ -24,6 +24,7 @@ import java.io.FilenameFilter;
 import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Enumeration;
@@ -80,7 +81,7 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
     private JHelp jhelp;
     private URL homePageURL;
     private HelpSearchField searchField;
-    private ClassLoader classLoader;
+    private transient ClassLoader classLoader;
 
     /* We are storing the HelpHistory model to be able to
      * use the back/forward feature from the jpopupmenu
@@ -116,7 +117,7 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
     public SwingScilabHelpBrowser(String[] helps, String language) {
         super(new BorderLayout());
         jhelp = new JHelp();
-        add(jhelp);
+        super.add(jhelp);
         setFocusable(true);
         searchField = new HelpSearchField(this, null);
 
@@ -137,7 +138,7 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
         helpHistory = (DefaultHelpHistoryModel) jhelp.getHistoryModel();
 
         try {
-            homePageURL = new URL(jhelp.getModel().getHelpSet().getHelpSetURL().toString().replace("jhelpset.hs", "ScilabHomePage.html"));
+            homePageURL = URI.create(jhelp.getModel().getHelpSet().getHelpSetURL().toString().replace("jhelpset.hs", "ScilabHomePage.html")).toURL();
         } catch (MalformedURLException ex) { }
 
         jhelp.getContentViewer().addHelpModelListener(this);
@@ -246,7 +247,7 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
             buffer.append("/jhelpset.hs");
             URL helpSetURL = null;
             try {
-                helpSetURL = new URL(buffer.toString());
+                helpSetURL = URI.create(buffer.toString()).toURL();
             } catch (MalformedURLException cannotHappen) {
                 cannotHappen.printStackTrace();
                 continue;
@@ -267,7 +268,7 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
             jhelp.getModel().getHelpSet().add(helpSet);
         }
         /** Disable Index navigator because no index in Scilab help files */
-        Enumeration navigators = jhelp.getHelpNavigators();
+        Enumeration<?> navigators = jhelp.getHelpNavigators();
         while (navigators.hasMoreElements()) {
             Object nav = navigators.nextElement();
             if (nav instanceof JHelpIndexNavigator) {
@@ -478,7 +479,7 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
         URL u = homePageURL;
         try {
             if (url != null) {
-                u = new URL(url);
+                u = URI.create(url).toURL();
             }
         } catch (MalformedURLException e) { }
         setCurrentURL(u);
@@ -502,7 +503,7 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
         if (keyword.length() > 0 && keyword.charAt(0) == '%') {
             keyword = keyword.replace("%", "percent");
         }
-        Enumeration navigators = jhelp.getHelpNavigators();
+        Enumeration<?> navigators = jhelp.getHelpNavigators();
         if (navigators.hasMoreElements()) {
             jhelp.setCurrentNavigator((JHelpTOCNavigator) navigators.nextElement());
         } else {
@@ -527,7 +528,7 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
      * @param keyword the keyword to search
      */
     public void fullTextSearch(String keyword) {
-        Enumeration navigators = jhelp.getHelpNavigators();
+        Enumeration<?> navigators = jhelp.getHelpNavigators();
         while (navigators.hasMoreElements()) {
             Object nav = navigators.nextElement();
             if (nav instanceof JHelpSearchNavigator) {
@@ -535,7 +536,7 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
                 jhelp.setCurrentNavigator(searchNav);
                 SearchQuery query = searchNav.getSearchEngine().createQuery();
                 query.addSearchListener((BasicSearchNavigatorUI) searchNav.getUI());
-                query.start(keyword, new Locale(currentLanguage));
+                query.start(keyword, Locale.forLanguageTag(currentLanguage));
                 break;
             }
         }

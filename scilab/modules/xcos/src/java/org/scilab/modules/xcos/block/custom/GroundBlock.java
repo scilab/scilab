@@ -28,8 +28,8 @@ import org.scilab.modules.xcos.Kind;
 /**
  * The Ground block has only one specificity : it's port position.
  */
-@SuppressWarnings(value = { "serial" })
 public class GroundBlock extends BasicBlock {
+    private static final long serialVersionUID = 1L;
 
     /** Default constructor */
     public GroundBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {

@@ -32,8 +32,8 @@ import java.awt.Insets;
  * @see http ://www.javakb.com/Uwe/Forum.aspx/java-gui/1904/Flowlayout-JPanel-
  *      and-JScrollPane-Scrolling-vertically-impossible
  */
-@SuppressWarnings(value = { "serial" })
 public class ModifiedFlowLayout extends FlowLayout {
+    private static final long serialVersionUID = 1L;
     public ModifiedFlowLayout() {
         super();
     }

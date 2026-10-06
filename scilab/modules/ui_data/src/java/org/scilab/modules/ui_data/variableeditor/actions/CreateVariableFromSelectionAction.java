@@ -50,8 +50,8 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * RefreshAction class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class CreateVariableFromSelectionAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static final String KEY = "OSSCKEY K";
     private static final String CREATE = "Create";

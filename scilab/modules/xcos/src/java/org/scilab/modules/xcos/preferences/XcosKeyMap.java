@@ -80,13 +80,12 @@ import org.scilab.modules.xcos.link.actions.StyleVerticalAction;
 import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
 import org.w3c.dom.Document;
 
-@SuppressWarnings("unchecked")
 public final class XcosKeyMap {
     protected static final String KEYMAP_XPATH = "//general/shortcuts/body/actions/action-folder[@xconf-uid=\"xcos\"]/action";
     private static Map<String, KeyStroke> actionKeys;
 
     private static String[] actionMapKeys;
-    private static Class <? extends DefaultAction > [] actionMapValues;
+    private static Class<?>[] actionMapValues;
 
     private XcosKeyMap() {
         // private constructor : static class
@@ -167,7 +166,11 @@ public final class XcosKeyMap {
          */
         final int len = tree.size();
         actionMapKeys = tree.keySet().toArray(new String[len]);
-        actionMapValues = tree.values().toArray(new Class[len]);
+        // tree.values() is Collection<Class<? extends DefaultAction>>; toArray(Class<?>[])
+        // yields Class<?>[] without an unchecked cast, and each element is narrowed
+        // with asSubclass(DefaultAction.class) at the use site (updateActionKeyStroke).
+        final Class<?>[] values = tree.values().toArray(new Class<?>[len]);
+        actionMapValues = values;
     }
 
     private static Map<String, KeyStroke> getActionKeys() {
@@ -195,7 +198,7 @@ public final class XcosKeyMap {
         for (final Entry<String, KeyStroke> it : actions.entrySet()) {
             final int found = Arrays.binarySearch(actionMapKeys, it.getKey());
             if (found >= 0) {
-                GraphActionManager.updateActionKeyStroke(actionMapValues[found], it.getValue());
+                GraphActionManager.updateActionKeyStroke(actionMapValues[found].asSubclass(DefaultAction.class), it.getValue());
             }
         }
     }

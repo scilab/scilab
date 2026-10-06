@@ -30,7 +30,7 @@ import org.w3c.dom.Node;
  * @author Vincent COUVERT
  *
  */
-public class Slider extends SwingScilabSlider implements XComponent, Widget {
+public final class Slider extends SwingScilabSlider implements XComponent, Widget {
 
     /** Universal identifier for serialization.
      *
@@ -53,6 +53,17 @@ public class Slider extends SwingScilabSlider implements XComponent, Widget {
 
         String foreground = XConfigManager.getAttribute(peer , XComponentAttributes.FOREGROUND);
         foreground(foreground);
+    }
+
+    /**
+     * Finish initialization after construction (deferred setup that would
+     * otherwise leak this from the constructor). Called once by the
+     * {@code ComponentFactory} right after instantiation.
+     * @param peer the corresponding view DOM node
+     */
+    @Override
+    public void init(final Node peer) {
+        init();
     }
 
     /**

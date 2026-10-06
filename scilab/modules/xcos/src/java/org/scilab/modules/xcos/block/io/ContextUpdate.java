@@ -69,8 +69,8 @@ public abstract class ContextUpdate extends BasicBlock {
      * Implement a listener which update the value and refresh the view when the
      * index of the port change.
      */
-    @SuppressWarnings(value = { "serial" })
     private static final class IndexChangeAdapter implements PropertyChangeListener, Serializable {
+        private static final long serialVersionUID = 1L;
         private static IndexChangeAdapter instance;
 
         /**
@@ -121,9 +121,9 @@ public abstract class ContextUpdate extends BasicBlock {
      * Implement a listener to update the
      * {@link ContextUpdate#isContextDependent} flag.
      *
-     * @SuppressWarnings(value = { "serial" })
      */
     private static final class ExprsChangeAdapter implements PropertyChangeListener, Serializable {
+        private static final long serialVersionUID = 1L;
         private static final Pattern INTEGER_PATTERN = Pattern.compile("\\d+");
 
         private static ExprsChangeAdapter instance;
@@ -422,12 +422,15 @@ public abstract class ContextUpdate extends BasicBlock {
      * @param blockName the interface function and style applied on the block
      */
     protected ContextUpdate(JavaController controller, String blockName) {
-        super(controller, controller.createObject(Kind.BLOCK), Kind.BLOCK, null, new mxGeometry(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT), blockName, new UID().toString());
-
-        controller.setObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, blockName);
+        this(controller, controller.createObject(Kind.BLOCK), blockName);
     }
 
-    
+    // The uid is a parameter so that the interface function is set synchronously without calling getUID() on "this".
+    private ContextUpdate(JavaController controller, long uid, String blockName) {
+        super(controller, uid, Kind.BLOCK, null, new mxGeometry(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT), blockName, new UID().toString());
+
+        controller.setObjectProperty(uid, Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, blockName);
+    }
 
     /**
      * Set the ordering on the I/O block

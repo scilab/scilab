@@ -31,8 +31,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * View the diagram as a scilab tree
  */
-@SuppressWarnings(value = { "serial" })
 public final class ViewDiagramTreeShowAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.OLD_DIAGRAM_BROWSER;
     /** Icon name of the action */

@@ -45,8 +45,8 @@ import org.scilab.modules.ui_data.variableeditor.actions.RemoveRowAction;
  * Class for the RowHeader
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
-public class RowHeader extends JPanel implements TableModelListener {
+public final class RowHeader extends JPanel implements TableModelListener {
+    private static final long serialVersionUID = 1L;
 
     private static final Insets INSETS = new Insets(1, 0, 0, 0);
 
@@ -112,7 +112,7 @@ public class RowHeader extends JPanel implements TableModelListener {
                         rsm.setSelectionInterval(row, clickedRow);
                         table.setColumnSelectionInterval(0, colC - 1);
                     } else {
-                        if ((e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0) {
+                        if ((e.getModifiersEx() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()) != 0) {
                             if (table.isRowSelected(row)) {
                                 rsm.removeSelectionInterval(row, row);
                             } else {
@@ -151,7 +151,7 @@ public class RowHeader extends JPanel implements TableModelListener {
                         if (e.isShiftDown()) {
                             rsm.setSelectionInterval(clickedRow, row);
                         } else {
-                            if ((e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0) {
+                            if ((e.getModifiersEx() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()) != 0) {
                                 if (rsm.isSelectedIndex(row)) {
                                     rsm.removeSelectionInterval(lead, row);
                                     rsm.addSelectionInterval(clickedRow, row);

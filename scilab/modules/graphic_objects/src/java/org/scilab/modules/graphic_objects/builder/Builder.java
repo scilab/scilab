@@ -529,7 +529,7 @@ public final class Builder {
         if (fontSize == -1) {
             font.setSize(axes.getFontSize());
         } else {
-            font.setSize(new Double(fontSize));
+            font.setSize(Double.valueOf(fontSize));
         }
         if (textColor == -1) {
             font.setColor(axes.getFontColor());

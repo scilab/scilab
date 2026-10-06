@@ -54,8 +54,7 @@ import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
  * Swing implementation for Scilab Console in GUIs
  * @author Vincent COUVERT
  */
-@SuppressWarnings(value = { "serial" })
-public class SwingScilabConsole extends SciConsole implements SimpleConsole {
+public final class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
     private static final long serialVersionUID = 1L;
 
@@ -188,6 +187,10 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         menu.add(evalWithNoEchoMenu);
 
         setComponentPopupMenu(menu);
+
+        // SwingScilabConsole is final, so finishing the SciConsole initialization
+        // here cannot leak this from an analyzable constructor
+        init();
     }
 
     /**

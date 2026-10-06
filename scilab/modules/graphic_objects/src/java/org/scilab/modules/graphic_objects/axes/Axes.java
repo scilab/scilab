@@ -248,8 +248,6 @@ public class Axes extends GraphicObject {
     
     private double[] axesScale={0,0,0};
     
-    //////////////
-
     /**
      * Default ColorMap: (3 x N) matrix, where N is the number of colors and 3
      * the number of color channels
@@ -2895,7 +2893,7 @@ public class Axes extends GraphicObject {
      * @return the margins
      */
     public Boolean getAutoMargins() {
-        return new Boolean(auto_margins);
+        return Boolean.valueOf(auto_margins);
     }
 
     /**

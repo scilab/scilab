@@ -34,6 +34,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class VectField extends ContentLayout {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Components of the property: Arrow Size

@@ -74,6 +74,13 @@ class LinkHandler implements ScilabHandler {
         }
 
         /*
+         * The link label is stored as the model NAME : LINK has no LABEL
+         * property and the graphical value has to be synced back to the model
+         * (read as the link id).
+         */
+        link.setValue(saxHandler.controller, value);
+
+        /*
          * Set the attributes
          */
         String description = atts.getValue("description");

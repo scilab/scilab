@@ -52,14 +52,14 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Implement the default view for the palette
  */
-@SuppressWarnings(value = { "serial" })
 public class PaletteManagerView extends SwingScilabDockablePanel implements SimpleTab {
+    private static final long serialVersionUID = 1L;
     public static final String DEFAULT_WIN_UUID = "xcos-palette-default-window";
     public static final String DEFAULT_TAB_UUID = PaletteManager.MODEL_CLASS_PACKAGE;
 
-    private final PaletteManager controller;
+    private final transient PaletteManager controller;
     private PaletteManagerPanel panel;
-    private PaletteSearchManager searchMgr;
+    private transient PaletteSearchManager searchMgr;
 
     /**
      * Default constructor
@@ -121,6 +121,7 @@ public class PaletteManagerView extends SwingScilabDockablePanel implements Simp
 
     public static void restore(final boolean visible) {
         PaletteManagerView tab = new PaletteManagerView(PaletteManager.getInstance());
+        tab.init();
         if (visible) {
             final SwingScilabWindow win = WindowsConfigurationManager.restoreWindow(DEFAULT_TAB_UUID);
             win.addTab(tab);
@@ -217,7 +218,9 @@ public class PaletteManagerView extends SwingScilabDockablePanel implements Simp
         /* Create the infobar */
         setInfoBar(ScilabTextBox.createTextBox());
 
-        setCallback(new ClosePalettesAction(null));
+        ClosePalettesAction closePalettesAction = new ClosePalettesAction(null);
+        closePalettesAction.initializeAction();
+        setCallback(closePalettesAction);
         getTree().revalidate();
         getPanel().performStartUpLayout();
     }

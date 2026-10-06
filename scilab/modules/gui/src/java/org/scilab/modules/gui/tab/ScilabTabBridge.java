@@ -46,7 +46,9 @@ public class ScilabTabBridge {
      * @return the created tab
      */
     public static SimpleTab createTab(String name) {
-        return new SwingScilabDockablePanel(name);
+        SwingScilabDockablePanel tab = new SwingScilabDockablePanel(name);
+        tab.init();
+        return tab;
     }
 
     /**
@@ -55,7 +57,9 @@ public class ScilabTabBridge {
      * @return the created tab
      */
     public static SimpleTab createTab(String name, String uuid) {
-        return new SwingScilabDockablePanel(name, uuid);
+        SwingScilabDockablePanel tab = new SwingScilabDockablePanel(name, uuid);
+        tab.init();
+        return tab;
     }
 
     /**
@@ -65,7 +69,9 @@ public class ScilabTabBridge {
      * @return the created tab
      */
     public static SimpleTab createTab(String name, int figureId) {
-        return new SwingScilabDockablePanel(name, figureId);
+        SwingScilabDockablePanel tab = new SwingScilabDockablePanel(name, figureId);
+        tab.init();
+        return tab;
     }
 
     /**

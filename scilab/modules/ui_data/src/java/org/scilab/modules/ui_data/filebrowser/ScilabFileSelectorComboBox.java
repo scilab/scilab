@@ -19,6 +19,7 @@ import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
+import java.awt.AWTKeyStroke;
 import java.awt.event.AWTEventListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +30,7 @@ import java.io.FileFilter;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.NavigableSet;
 import java.util.TreeSet;
 
 import javax.swing.JComboBox;
@@ -50,8 +52,8 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  *
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
-public class ScilabFileSelectorComboBox extends JComboBox implements DocumentListener {
+public final class ScilabFileSelectorComboBox extends JComboBox<String> implements DocumentListener {
+    private static final long serialVersionUID = 1L;
 
     private static final FileFilter DIRFILTER = new FileFilter() {
         public boolean accept(File f) {
@@ -63,7 +65,7 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
 
     private int lastSize = -1;
     private String oldName = "";
-    private TreeSet<String> currentSet;
+    private transient NavigableSet<String> currentSet;
     private JTextComponent textComponent;
     private boolean disableUpdateCombo;
     private boolean disableShowPopup;
@@ -79,7 +81,7 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
      */
     public ScilabFileSelectorComboBox() {
         super();
-        setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
+        setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.<AWTKeyStroke>emptySet());
         textComponent = (JTextComponent) getEditor().getEditorComponent();
         textComponent.getDocument().addDocumentListener(this);
         defaultFg = textComponent.getForeground();
@@ -506,7 +508,7 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
                         bound = trueName.substring(0, len - 1);
                         bound += (char) (trueName.charAt(len - 1) + 1);
                     }
-                    currentSet = (TreeSet) set.subSet(trueName, true, bound, false);
+                    currentSet = set.subSet(trueName, true, bound, false);
                 } else {
                     currentSet = set;
                 }

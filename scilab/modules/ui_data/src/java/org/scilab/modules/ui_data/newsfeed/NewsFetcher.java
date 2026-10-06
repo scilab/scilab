@@ -17,6 +17,7 @@ package org.scilab.modules.ui_data.newsfeed;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -74,7 +75,7 @@ public class NewsFetcher {
 
                 // resolve until we do not get Location
                 while (relocation != null) {
-                    con = new URL(relocation).openConnection();
+                    con = URI.create(relocation).toURL().openConnection();
                     if (con instanceof HttpURLConnection) {
                         connection =  (HttpURLConnection) con;
                         relocation = connection.getHeaderField("Location");
@@ -154,7 +155,7 @@ public class NewsFetcher {
     public void readSettings() throws Exception {
         rssURL = null;
         String urlSetting = NewsFeedSettings.getStringSetting("url");
-        rssURL = new URL(urlSetting);
+        rssURL = URI.create(urlSetting).toURL();
     }
 
     public URL getURL() {

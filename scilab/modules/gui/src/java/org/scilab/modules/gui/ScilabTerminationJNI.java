@@ -7,6 +7,7 @@
  * ----------------------------------------------------------------------------- */
 
 package org.scilab.modules.gui;
+import org.scilab.modules.localization.NativeLibraryLoader;
 
 
 /* It is generated code. Disable checkstyle */
@@ -14,6 +15,7 @@ package org.scilab.modules.gui;
  /**
    * @author Calixte DENIZET
    */
+
 public class ScilabTerminationJNI {
 
   /**
@@ -25,7 +27,7 @@ public class ScilabTerminationJNI {
 
   static {
     try {
-        System.loadLibrary("scigui");
+        NativeLibraryLoader.loadLibrary("scigui");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

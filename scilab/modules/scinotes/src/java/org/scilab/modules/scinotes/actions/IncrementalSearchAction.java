@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.InputEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
@@ -32,6 +33,8 @@ import java.awt.event.KeyListener;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import java.awt.AWTKeyStroke;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -154,8 +157,8 @@ public final class IncrementalSearchAction extends DefaultAction {
     /**
      * Inner class to have an incremental search field.
      */
-    @SuppressWarnings(value = { "serial" })
     class SearchField extends JPanel implements FocusListener, KeyListener {
+        private static final long serialVersionUID = 1L;
 
         private String text;
         private final JTextField field;
@@ -169,7 +172,7 @@ public final class IncrementalSearchAction extends DefaultAction {
             field = new JTextField();
             field.addKeyListener(this);
             field.addFocusListener(this);
-            field.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
+            field.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.emptySet());
             field.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), TAB);
             field.getActionMap().put(TAB, new AbstractAction() {
                 @Override
@@ -274,7 +277,7 @@ public final class IncrementalSearchAction extends DefaultAction {
                     if (!exact) {
                         str = str.toLowerCase();
                     }
-                    if (key == KeyEvent.VK_ENTER && ((e.getModifiers() & KeyEvent.SHIFT_MASK) != 0)) {
+                    if (key == KeyEvent.VK_ENTER && ((e.getModifiersEx() & InputEvent.SHIFT_DOWN_MASK) != 0)) {
                         start = text.lastIndexOf(str, pos - 1);
                         e.consume();
                     } else {
@@ -323,8 +326,8 @@ public final class IncrementalSearchAction extends DefaultAction {
         /**
          * Inner class for the close-buttons
          */
-        @SuppressWarnings(value = { "serial" })
         class CloseButton extends JButton {
+            private static final long serialVersionUID = 1L;
 
             /**
              * Constructor
@@ -348,9 +351,9 @@ public final class IncrementalSearchAction extends DefaultAction {
 
         /**
          * Inner class for the top-bot-buttons
-        @SuppressWarnings(value = { "serial" })
          */
         class TopBotButtons extends JButton {
+            private static final long serialVersionUID = 1L;
 
             /**
              * Constructor

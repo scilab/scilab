@@ -28,8 +28,8 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * CopySelectionAction class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 class CopySelectionAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     protected SwingScilabVariableEditor editor;
     private String begin;

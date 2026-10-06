@@ -26,6 +26,7 @@ import org.scilab.modules.xcos.block.SuperBlock;
  * graph.
  */
 public abstract class SuperBlockSelectedAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor
@@ -35,9 +36,18 @@ public abstract class SuperBlockSelectedAction extends DefaultAction {
      */
     public SuperBlockSelectedAction(ScilabGraph scilabGraph) {
         super(scilabGraph);
+    }
 
-        SpecificCellSelectedConstraint c = new SpecificCellSelectedConstraint(
-            SuperBlock.class);
-        c.install(this, scilabGraph);
+    /**
+     * Install the selection constraint after construction to avoid this-escape.
+     */
+    @Override
+    protected void installConstraints() {
+        ScilabGraph g = getScilabGraph();
+        if (g != null) {
+            SpecificCellSelectedConstraint c = new SpecificCellSelectedConstraint(
+                SuperBlock.class);
+            c.install(this, g);
+        }
     }
 }

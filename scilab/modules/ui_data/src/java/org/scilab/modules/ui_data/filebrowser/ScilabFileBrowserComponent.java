@@ -28,8 +28,8 @@ import javax.swing.border.EmptyBorder;
  * A JPanel containing the different elements composing the File Browser
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
-public class ScilabFileBrowserComponent extends JPanel {
+public final class ScilabFileBrowserComponent extends JPanel {
+    private static final long serialVersionUID = 1L;
 
     private static final int GAP = 3;
 

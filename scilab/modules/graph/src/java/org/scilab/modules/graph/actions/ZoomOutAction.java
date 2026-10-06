@@ -41,8 +41,8 @@ import org.scilab.modules.gui.menuitem.MenuItem;
  *
  * @author Bruno JOFFRET
  */
-@SuppressWarnings(value = { "serial" })
-public class ZoomOutAction extends DefaultAction implements ActionListener {
+public final class ZoomOutAction extends DefaultAction implements ActionListener {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = ScilabGraphMessages.ZOOM_OUT;
     /** Icon name of the action */
@@ -50,7 +50,7 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_SUBTRACT;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /** key used on {@link InputMap} for this action */
     private static final String ZOOM_OUT = "zoomOut";
@@ -80,7 +80,7 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
          */
         @Override
         public void mouseWheelMoved(MouseWheelEvent e) {
-            if ((e.getModifiers() & ACCELERATOR_KEY) != 0) {
+            if ((e.getModifiersEx() & ACCELERATOR_KEY) != 0) {
                 if (e.getWheelRotation() > 0) {
                     scilabGraph.getAsComponent().zoomOut();
                 }

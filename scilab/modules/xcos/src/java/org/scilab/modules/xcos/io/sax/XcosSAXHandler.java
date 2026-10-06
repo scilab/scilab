@@ -45,7 +45,7 @@ import org.xml.sax.helpers.DefaultHandler;
 /**
  * Implement a diagram SAX handler to decode the document as a stream.
  */
-public class XcosSAXHandler extends DefaultHandler {
+public final class XcosSAXHandler extends DefaultHandler {
     protected static final Logger LOG = Logger.getLogger("org.scilab.modules.xcos.io.sax");
 
     /*

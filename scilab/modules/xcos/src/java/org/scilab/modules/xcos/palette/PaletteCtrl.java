@@ -47,7 +47,7 @@ public final class PaletteCtrl {
     private static XcosDiagram internalGraph;
     static {
         JavaController controller = new JavaController();
-        internalGraph = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
+        internalGraph = XcosDiagram.create(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
         internalGraph.installListeners();
     }
 
@@ -65,6 +65,7 @@ public final class PaletteCtrl {
      */
     public PaletteCtrl() {
         this.view = new PaletteView();
+        this.view.initialize();
 
         // install listeners
         this.view.addMouseListener(MOUSE_LISTENER);

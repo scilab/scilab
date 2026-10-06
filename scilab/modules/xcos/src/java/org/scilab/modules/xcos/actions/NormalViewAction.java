@@ -28,8 +28,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Back to normal size for diagram (100%)
  */
-@SuppressWarnings(value = { "serial" })
 public final class NormalViewAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.NORMAL_100;
     /** Icon name of the action */

@@ -75,14 +75,14 @@ import org.scilab.modules.gui.widget.Widget;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabScrollableFrame extends JScrollPane implements SwingViewObject, Widget {
+public final class SwingScilabScrollableFrame extends JScrollPane implements SwingViewObject, Widget {
 
     private static final long serialVersionUID = -7401084975837285447L;
 
     private Integer uid;
     private JPanel panel = new JPanel();
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     /**
      * Constructor

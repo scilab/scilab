@@ -30,8 +30,9 @@ import org.w3c.dom.Node;
 /**
  * {@link Entry} component which only allow a Scilab single double data text.
  */
-@SuppressWarnings(value = { "serial" })
-public class ScilabDoubleEntry extends JFormattedTextField implements XComponent, XChooser {
+public final class ScilabDoubleEntry extends JFormattedTextField implements XComponent, XChooser {
+
+    private static final long serialVersionUID = 1L;
 
     /*
      * Static things, modify the following lines in case of a format change

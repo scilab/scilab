@@ -353,12 +353,19 @@ void register_view(const std::string& name, org_scilab_modules_scicos::View* vie
 void unregister_view(org_scilab_modules_scicos::View* view);
 
 /*
+ * Imports needed by the JNI class
+ */
+%pragma(java) jniclassimports=%{
+import org.scilab.modules.localization.NativeLibraryLoader;
+%}
+
+/*
  * Static load of library
  */
 %pragma(java) jniclasscode=%{
   static {
     try {
-        System.loadLibrary("scixcos");
+        NativeLibraryLoader.loadLibrary("scixcos");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

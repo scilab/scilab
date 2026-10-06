@@ -40,12 +40,10 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import com.artenum.rosetta.ui.CompletionItemListCellRenderer;
 import com.artenum.rosetta.interfaces.core.CompletionItem;
 import com.artenum.rosetta.interfaces.core.InputParsingManager;
 import com.artenum.rosetta.interfaces.ui.CompletionWindow;
 
-import org.scilab.modules.completion.Completion;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -60,7 +58,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
 
     protected JPanel window;
     protected CompletionItemListModel model;
-    protected JList listUI;
+    protected JList<CompletionItem> listUI;
     protected JScrollPane scrollPane;
     protected InputParsingManager inputParsingManager;
     protected JComponent focusOutComponent;
@@ -114,7 +112,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
 
         /* List to display all completion items */
         model = new CompletionItemListModel();
-        listUI = new JList(model);
+        listUI = new JList<CompletionItem>(model);
         listUI.setCellRenderer(new SciCompletionItemListCellRenderer());
         scrollPane = new JScrollPane(listUI, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
@@ -159,7 +157,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      */
     @Override
     public String getCompletionResult() {
-        return ((CompletionItem) listUI.getSelectedValue()).getReturnValue();
+        return listUI.getSelectedValue().getReturnValue();
     }
 
     /**
@@ -168,7 +166,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      */
 
     public String getCompletionResultType() {
-        return ((CompletionItem) listUI.getSelectedValue()).getType();
+        return listUI.getSelectedValue().getType();
     }
 
     /**
@@ -193,9 +191,9 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * List model which allow filter on completion item
      * In Scilab, filter and sort are done by Scilab and have not to be done here
      */
-    protected static class CompletionItemListModel extends AbstractListModel {
+    protected static class CompletionItemListModel extends AbstractListModel<CompletionItem> {
         private static final long serialVersionUID = 1L;
-        private List<CompletionItem> data;
+        private transient List<CompletionItem> data;
         private String filter;
 
         /**
@@ -212,7 +210,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
          * @see javax.swing.ListModel#getElementAt(int)
          */
         @Override
-        public Object getElementAt(int index) {
+        public CompletionItem getElementAt(int index) {
             /* Filtering is done by Scilab */
             return data.get(index);
         }

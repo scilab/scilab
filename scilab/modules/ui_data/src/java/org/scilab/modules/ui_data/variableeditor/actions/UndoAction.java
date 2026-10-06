@@ -33,8 +33,8 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * UndoAction class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class UndoAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static final String KEY = "OSSCKEY Z";
     private static final String UNDO = "Undo";

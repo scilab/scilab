@@ -49,7 +49,9 @@ public class ScilabCheckBoxMenuItemBridge {
      * @return the created MenuItem
      */
     public static SimpleCheckBoxMenuItem createCheckBoxMenuItem(boolean autoCheckedMode) {
-        return new SwingScilabCheckBoxMenuItem(autoCheckedMode);
+        SwingScilabCheckBoxMenuItem checkBoxMenuItem = new SwingScilabCheckBoxMenuItem(autoCheckedMode);
+        checkBoxMenuItem.init();
+        return checkBoxMenuItem;
     }
 
     /**

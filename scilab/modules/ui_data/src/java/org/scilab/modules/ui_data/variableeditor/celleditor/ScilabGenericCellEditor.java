@@ -33,8 +33,16 @@ public class ScilabGenericCellEditor extends DefaultCellEditor {
      * Constructor
      */
     public ScilabGenericCellEditor() {
-        super(new JFormattedTextField());
-        ((JFormattedTextField) getComponent()).setBorder(BorderFactory.createEmptyBorder());
+        super(createEditorField());
+    }
+
+    /**
+     * @return the editor text field with its border configured
+     */
+    private static JFormattedTextField createEditorField() {
+        JFormattedTextField field = new JFormattedTextField();
+        field.setBorder(BorderFactory.createEmptyBorder());
+        return field;
     }
 
     /**

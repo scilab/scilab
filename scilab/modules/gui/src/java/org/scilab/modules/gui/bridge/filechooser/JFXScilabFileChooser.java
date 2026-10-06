@@ -95,7 +95,7 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
         // The JavaFX application thread is not a daemon one and would prevent
         // DestroyJavaVM() from returning, so it has to be stopped when Scilab exits.
         try {
-            Class scilab = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.core.Scilab");
+            Class<?> scilab = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.core.Scilab");
             Method registerFinalHook = scilab.getDeclaredMethod("registerFinalHook", Runnable.class);
             registerFinalHook.invoke(null, new Runnable() {
                 public void run() {
@@ -269,7 +269,7 @@ public class JFXScilabFileChooser implements SimpleFileChooser {
      * Replay this chooser's settings on a Swing chooser, which also fills FileChooserInfos
      */
     private void displaySwingChooser() {
-        SwingScilabFileChooser swingChooser = new SwingScilabFileChooser();
+        SwingScilabFileChooser swingChooser = SwingScilabFileChooser.create();
         swingChooser.setTitle(title);
         if (directorySelectionOnly) {
             swingChooser.setDirectorySelectionOnly();

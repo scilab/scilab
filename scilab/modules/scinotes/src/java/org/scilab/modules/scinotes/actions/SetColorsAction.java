@@ -26,6 +26,7 @@ import org.scilab.modules.scinotes.SciNotes;
  * @author Calixte DENIZET
  */
 public class SetColorsAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

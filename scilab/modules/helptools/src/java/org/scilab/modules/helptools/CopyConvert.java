@@ -23,6 +23,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -242,10 +243,17 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
                 URL url = null;
 
                 try {
-                    URL base = new URL(locator.getSystemId());
-                    url = new URL(base, attValue);
+                    URL base;
+                    try {
+                        base = URI.create(locator.getSystemId()).toURL();
+                    } catch (IllegalArgumentException e) {
+                        base = new File(locator.getSystemId()).toURI().toURL();
+                    }
+                    url = base.toURI().resolve(attValue).toURL();
                 } catch (MalformedURLException e) {
                     reportError("Malformed URL '" + attValue + "'");
+                } catch (URISyntaxException e) {
+                    reportError("Malformed URI '" + attValue + "'");
                 }
 
                 if (url != null) {

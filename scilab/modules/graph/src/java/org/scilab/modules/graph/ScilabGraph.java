@@ -78,22 +78,12 @@ public class ScilabGraph extends mxGraph {
     /**
      * Manage the modification state on change
      */
-    private final mxIEventListener changeTracker = new mxIEventListener() {
-        @Override
-        public void invoke(Object source, mxEventObject evt) {
-            setModified(true);
-        }
-    };
+    private mxIEventListener changeTracker;
 
     /**
      * Manage the undo/redo on change
      */
-    private final mxIEventListener undoHandler = new mxIEventListener() {
-        @Override
-        public void invoke(Object source, mxEventObject evt) {
-            undoManager.undoableEditHappened((mxUndoableEdit) evt.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT));
-        }
-    };
+    private mxIEventListener undoHandler;
 
     /**
      * Remove the undo handler from the component
@@ -113,32 +103,20 @@ public class ScilabGraph extends mxGraph {
     /**
      * Update the selection on undo/redo
      */
-    private final mxIEventListener selectionHandler = new mxIEventListener() {
-        @Override
-        public void invoke(Object source, mxEventObject evt) {
-            List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT)).getChanges();
-            getSelectionModel().setCells(getSelectionCellsForChanges(changes));
-        }
-    };
+    private mxIEventListener selectionHandler;
 
     /**
      * Update the component when the graph is locked
      */
-    private final PropertyChangeListener cellLockBackgroundUpdater = new PropertyChangeListener() {
-        @Override
-        public void propertyChange(PropertyChangeEvent evt) {
-            if (evt.getPropertyName().equals("cellsLocked")) {
-                getAsComponent().getGraphControl().repaint();
-            }
-        }
-    };
+    private PropertyChangeListener cellLockBackgroundUpdater;
 
     /**
      * Default constructor:
-     * <UL>
-     *   <LI> disable unused actions
-     *   <LI> install listeners
-     *   <LI> Replace JGraphX components by specialized components if needed.
+     * <ul>
+     *   <li> disable unused actions
+     *   <li> install listeners
+     *   <li> Replace JGraphX components by specialized components if needed.
+     * </ul>
      */
     public ScilabGraph() {
         this(null, null);
@@ -156,23 +134,57 @@ public class ScilabGraph extends mxGraph {
         mxGraphActions.getSelectPreviousAction().setEnabled(false);
         mxGraphActions.getSelectChildAction().setEnabled(false);
         mxGraphActions.getSelectParentAction().setEnabled(false);
+    }
 
-        registerUndoHandler();
+    /**
+     * Initialize handlers after construction is complete to avoid this-escape.
+     *
+     * This must be called once, after the constructor has returned (e.g. from a
+     * factory or subclass constructor tail), never from the constructor itself.
+     */
+    protected void initializeHandlers() {
+        // Initialize all handlers
+        changeTracker = new mxIEventListener() {
+            @Override
+            public void invoke(Object source, mxEventObject evt) {
+                setModified(true);
+            }
+        };
+        undoHandler = new mxIEventListener() {
+            @Override
+            public void invoke(Object source, mxEventObject evt) {
+                undoManager.undoableEditHappened((mxUndoableEdit) evt.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT));
+            }
+        };
+        selectionHandler = new mxIEventListener() {
+            @Override
+            public void invoke(Object source, mxEventObject evt) {
+                List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT)).getChanges();
+                getSelectionModel().setCells(getSelectionCellsForChanges(changes));
+            }
+        };
+        cellLockBackgroundUpdater = new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (evt.getPropertyName().equals("cellsLocked")) {
+                    getAsComponent().getGraphControl().repaint();
+                }
+            }
+        };
 
         // Keeps the selection in sync with the command history
         undoManager.addListener(mxEvent.UNDO, selectionHandler);
         undoManager.addListener(mxEvent.REDO, selectionHandler);
 
-        setComponent(new ScilabComponent(this));
-
         // graph locked change support
         changeSupport.addPropertyChangeListener(cellLockBackgroundUpdater);
+
+        // Register undo handler
+        registerUndoHandler();
 
         // Modified property change
         getModel().addListener(mxEvent.CHANGE, changeTracker);
     }
-
-
 
     /**
      * @return The previously saved file or null.
@@ -273,8 +285,14 @@ public class ScilabGraph extends mxGraph {
 
     /**
      * @return The component associated with the current graph.
+     * Uses lazy initialization to avoid passing 'this' before fully initialized.
      */
     public mxGraphComponent getAsComponent() {
+        if (component == null) {
+            component = new ScilabComponent(this);
+            // Adds rubberband selection
+            rubberBand = new mxRubberband(component);
+        }
         return component;
     }
 
@@ -378,4 +396,5 @@ public class ScilabGraph extends mxGraph {
 
         return mxGraphModel.getTopmostCells(model, cells.toArray());
     }
+
 }

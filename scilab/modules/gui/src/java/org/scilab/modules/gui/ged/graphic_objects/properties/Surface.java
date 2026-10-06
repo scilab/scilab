@@ -42,6 +42,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Surface extends ContentLayout {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Components of the property: Color Flag
@@ -187,7 +188,7 @@ public class Surface extends ContentLayout {
     public void surfaceMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
         JLabel lSurfaceMode = new JLabel();
-        final JComboBox cSurfaceMode = new JComboBox();
+        final JComboBox<String> cSurfaceMode = new JComboBox<>();
         addLabelComboBox(panel, lSurfaceMode, MessagesGED.surface_mode,
                          cSurfaceMode, messageOffOn, LEFTMARGIN, COLUMN, ROW);
         cSurfaceMode.addActionListener(new ActionListener() {

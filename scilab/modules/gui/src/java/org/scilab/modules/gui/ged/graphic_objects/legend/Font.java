@@ -23,7 +23,8 @@ import org.scilab.modules.gui.ged.graphic_objects.properties.TextObject;
 * Construction and startup of all components of the section: Font.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Font extends SimpleSection {
+public final class Font extends SimpleSection {
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static Font instance;
     private TextObject textObject = new TextObject();
@@ -34,6 +35,7 @@ public class Font extends SimpleSection {
     */
     public Font(Integer objectID) {
         super(MessagesGED.font, "legend");
+        initializeSection();
         instance = this;
         sectionPanel = getSectionPanel();
         initComponents(objectID);

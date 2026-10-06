@@ -26,6 +26,7 @@ import org.scilab.modules.xcos.block.custom.ProdPortLabeler;
  * Implement the PRODUCT_f block.
  */
 public class Product extends BasicBlock {
+    private static final long serialVersionUID = 1L;
 
     public Product(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
         super(controller, uid, kind, value, geometry, style, id);

@@ -39,8 +39,8 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.I
  * Export to Csv class
  * @author Sylvestre Ledru
  */
-@SuppressWarnings(value = { "serial" })
 public final class ExportToCsvAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static final String KEY = "OSSCKEY S";
     private static final String CREATE = "Export to CSV";

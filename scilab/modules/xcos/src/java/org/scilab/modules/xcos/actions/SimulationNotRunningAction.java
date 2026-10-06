@@ -27,8 +27,8 @@ import org.scilab.modules.graph.actions.base.GraphActionManager;
  * This action is enable when the simulation is not running, otherwise it is
  * disabled.
  */
-@SuppressWarnings(value = { "serial" })
 public abstract class SimulationNotRunningAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /**
      * Default constructor
      *

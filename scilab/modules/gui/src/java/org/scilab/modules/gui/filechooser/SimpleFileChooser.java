@@ -24,6 +24,12 @@ package org.scilab.modules.gui.filechooser;
 public interface SimpleFileChooser {
 
     /**
+     * Initialize the file chooser : Overridable Swing methods are deferred here to avoid this-escape.
+     * Default implementation does nothing. Must be called once right after instantiation.
+     */
+    default void init() { }
+
+    /**
      * Set the title of the file chooser
      * @param title the title to set
      */

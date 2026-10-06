@@ -39,6 +39,8 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
  */
 public abstract class DefaultAction extends CommonCallBack {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * Default constructor.
      *
@@ -59,8 +61,6 @@ public abstract class DefaultAction extends CommonCallBack {
      */
     public DefaultAction() {
         super("", CallBack.UNTYPED);
-
-        installProperties();
     }
 
     /**
@@ -123,7 +123,11 @@ public abstract class DefaultAction extends CommonCallBack {
      *            the associated callBack
      * @return the menu item
      */
-    protected static MenuItem createMenu(CommonCallBack callBack) {
+    protected static MenuItem createMenu(DefaultAction callBack) {
+        // putValue in installProperties would leak this from a constructor,
+        // so the properties are installed here, after construction
+        callBack.installProperties();
+
         MenuItem item = ScilabMenuItem.createMenuItem();
 
         SwingScilabMenuItem swingItem = (SwingScilabMenuItem) item
@@ -140,7 +144,11 @@ public abstract class DefaultAction extends CommonCallBack {
      *            the associated callback
      * @return the push button
      */
-    protected static JButton createButton(CommonCallBack callback) {
+    protected static JButton createButton(DefaultAction callback) {
+        // putValue in installProperties would leak this from a constructor,
+        // so the properties are installed here, after construction
+        callback.installProperties();
+
         JButton button = new JButton();
         button.setAction(callback);
 
@@ -159,7 +167,11 @@ public abstract class DefaultAction extends CommonCallBack {
      *            the associated callback
      * @return the checkbox item
      */
-    protected static CheckBoxMenuItem createCheckBoxMenu(CommonCallBack callback) {
+    protected static CheckBoxMenuItem createCheckBoxMenu(DefaultAction callback) {
+        // putValue in installProperties would leak this from a constructor,
+        // so the properties are installed here, after construction
+        callback.installProperties();
+
         CheckBoxMenuItem item = ScilabCheckBoxMenuItem.createCheckBoxMenuItem();
 
         SwingScilabCheckBoxMenuItem swingItem = (SwingScilabCheckBoxMenuItem) item

@@ -26,8 +26,8 @@ import org.scilab.modules.scinotes.SciNotes;
  * @author Calixte DENIZET
  *
  */
-@SuppressWarnings(value = { "serial" })
 public class SaveAndExecuteFileAction extends ExecuteFileIntoScilabAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

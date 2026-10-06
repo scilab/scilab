@@ -55,10 +55,14 @@ NIO_BUFFER_TYPEMAP(unsigned char, BUFF, java.nio.ByteBuffer);
 NIO_BUFFER_TYPEMAP(float, BUFF, java.nio.FloatBuffer);
 #undef NIO_BUFFER_TYPEMAP
 
+%pragma(java) jniclassimports=%{
+import org.scilab.modules.localization.NativeLibraryLoader;
+%}
+
 %pragma(java) jniclasscode=%{
   static {
     try {
-        System.loadLibrary("scigraphic_objects");
+        NativeLibraryLoader.loadLibrary("scigraphic_objects");
     } catch (UnsatisfiedLinkError e) {
       System.err.println("Native library failed to load. \n" + e);
       System.exit(1);

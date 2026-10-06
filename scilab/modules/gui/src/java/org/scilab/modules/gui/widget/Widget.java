@@ -30,6 +30,13 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
 public interface Widget extends Dockable {
 
     /**
+     * Initialize the widget : Overridable Swing methods and listener registration are deferred here to avoid this-escape.
+     * Default implementation does nothing; classes whose constructor has nothing to defer
+     * do not need to override it. Must be called once right after instantiation.
+     */
+    default void init() { }
+
+    /**
      * Set the Background color of the widget.
      * @param color the Color
      */

@@ -26,7 +26,7 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 /**
  * @author Vincent COUVERT
  */
-public class Edit extends Uicontrol {
+public final class Edit extends Uicontrol {
 
     /**
      * Constructor

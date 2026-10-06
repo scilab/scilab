@@ -7,12 +7,14 @@
  * ----------------------------------------------------------------------------- */
 
 package org.scilab.modules.graphic_objects;
+import org.scilab.modules.localization.NativeLibraryLoader;
+
 
 public class DataLoaderJNI {
 
   static {
     try {
-        System.loadLibrary("scigraphic_objects");
+        NativeLibraryLoader.loadLibrary("scigraphic_objects");
     } catch (UnsatisfiedLinkError e) {
       System.err.println("Native library failed to load. \n" + e);
       System.exit(1);

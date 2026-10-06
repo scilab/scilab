@@ -24,8 +24,8 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 
-@SuppressWarnings(value = { "serial" })
 public class ScilabVarFilteringButtonAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = UiDataMessages.SCILABVAR;
 

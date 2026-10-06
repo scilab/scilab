@@ -84,14 +84,18 @@ public class ScilabTabFactory extends DockableFactory.Stub {
                 LoadClassPath.loadOnUse(pack);
             }
             try {
-                Class clazz = Class.forName(className);
-                factory = (AbstractScilabTabFactory) clazz.newInstance();
+                Class<?> clazz = Class.forName(className);
+                factory = (AbstractScilabTabFactory) clazz.getDeclaredConstructor().newInstance();
                 addTabFactory(factory);
             } catch (ClassNotFoundException e) {
                 System.out.println(e);
             } catch (IllegalAccessException e) {
                 System.out.println(e);
             } catch (InstantiationException e) {
+                System.out.println(e);
+            } catch (java.lang.reflect.InvocationTargetException e) {
+                System.out.println(e);
+            } catch (NoSuchMethodException e) {
                 System.out.println(e);
             }
         }
@@ -208,6 +212,7 @@ public class ScilabTabFactory extends DockableFactory.Stub {
         }
 
         SwingScilabDockablePanel tab = new SwingScilabDockablePanel(EMPTYTAB, u);
+        tab.init();
         String text = String.format(ERROR, u, System.getProperty("user.home"));
         JTextArea textarea = new JTextArea(text);
         textarea.setEditable(false);

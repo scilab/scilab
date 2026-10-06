@@ -33,8 +33,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Opens context settings Window
  */
-@SuppressWarnings(value = { "serial" })
 public final class SetContextAction extends SimulationNotRunningAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.SET_CONTEXT;
     /** Icon name of the action */

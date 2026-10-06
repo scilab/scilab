@@ -50,8 +50,8 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * RefreshAction class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class CreateNewVariableAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static final String KEY = "OSSCKEY N";
     private static final String CREATENEW = "Create new";
@@ -117,7 +117,7 @@ public final class CreateNewVariableAction extends CommonCallBack {
 
     public Object[] askForNewMatrix() {
         final JDialog dialog = new JDialog();
-        final Object[] ret = new Object[] { "", new Integer(0), new Integer(0), "" };
+        final Object[] ret = new Object[] { "", Integer.valueOf(0), Integer.valueOf(0), "" };
         dialog.setModalityType(ModalityType.APPLICATION_MODAL);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setIconImage(new ImageIcon(FindIconHelper.findIcon("rrze_table", "256x256")).getImage());

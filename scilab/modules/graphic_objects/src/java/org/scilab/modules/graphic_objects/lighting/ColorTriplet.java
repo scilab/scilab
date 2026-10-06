@@ -44,9 +44,22 @@ public class ColorTriplet {
         ambient = new Double[3];
         diffuse = new Double[3];
         specular = new Double[3];
-        setAmbientColor(other.ambient);
-        setDiffuseColor(other.diffuse);
-        setSpecularColor(other.specular);
+        // Inline the logic from setAmbientColor/setDiffuseColor/setSpecularColor to avoid method calls on 'this' in constructor
+        if (other.ambient.length == 3 && isColorValid(other.ambient)) {
+            ambient[0] = other.ambient[0];
+            ambient[1] = other.ambient[1];
+            ambient[2] = other.ambient[2];
+        }
+        if (other.diffuse.length == 3 && isColorValid(other.diffuse)) {
+            diffuse[0] = other.diffuse[0];
+            diffuse[1] = other.diffuse[1];
+            diffuse[2] = other.diffuse[2];
+        }
+        if (other.specular.length == 3 && isColorValid(other.specular)) {
+            specular[0] = other.specular[0];
+            specular[1] = other.specular[1];
+            specular[2] = other.specular[2];
+        }
     }
 
 

@@ -27,6 +27,7 @@ import org.scilab.modules.scinotes.SciNotes;
  * @author Calixte DENIZET
  */
 public class GeneralSettingsAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

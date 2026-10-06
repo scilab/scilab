@@ -20,7 +20,9 @@ import org.scilab.modules.gui.ged.graphic_objects.SimpleObject;
 * Properties of the polyline.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Polyline extends SimpleObject {
+public final class Polyline extends SimpleObject {
+
+    private static final long serialVersionUID = 1L;
     private BaseProperties base;
     private DataProperties data;
     private Mark mark;

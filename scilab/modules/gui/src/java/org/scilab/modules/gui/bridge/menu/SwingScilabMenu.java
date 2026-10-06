@@ -49,16 +49,16 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMenu {
+public final class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMenu {
 
     private static final long serialVersionUID = 1L;
 
     private CommonCallBack callback;
-    private MouseListener[] nativeMouseListeners;
-    private MouseListener customedMouseListener;
+    private transient MouseListener[] nativeMouseListeners;
+    private transient MouseListener customedMouseListener;
     private boolean checkedState;
     private String text = "";
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     private Integer uid;
 

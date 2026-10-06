@@ -464,10 +464,10 @@ public final class ConfigSciNotesManager {
         Element restorefiles = (Element) allSizeElements.item(0);
         if (restorefiles == null) {
             Element restoreElement = document.createElement(RESTOREFILES);
-            restorefiles.setAttribute(VALUE, new Boolean(activated).toString());
+            restorefiles.setAttribute(VALUE, Boolean.valueOf(activated).toString());
             restorefiles.appendChild((Node) restoreElement);
         } else {
-            restorefiles.setAttribute(VALUE, new Boolean(activated).toString());
+            restorefiles.setAttribute(VALUE, Boolean.valueOf(activated).toString());
         }
 
         clean(root);
@@ -1433,7 +1433,7 @@ public final class ConfigSciNotesManager {
         }
 
 
-        ((Element) recent).setAttribute(attrib, new Boolean(state).toString());
+        ((Element) recent).setAttribute(attrib, Boolean.valueOf(state).toString());
 
         root.appendChild(recent);
 

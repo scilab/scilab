@@ -18,6 +18,8 @@ package org.scilab.modules.graph.utils;
 import java.awt.geom.Dimension2D;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,16 +52,16 @@ public final class ScilabGraphUtils extends mxUtils {
     /**
      * Cache for the generated SVG components
      */
-    private static Map<URL, WeakReference<GraphicsNode>> generatedSVGComponents = new HashMap<URL, WeakReference<GraphicsNode>>();
+    private static Map<URI, WeakReference<GraphicsNode>> generatedSVGComponents = new HashMap<URI, WeakReference<GraphicsNode>>();
     /**
      * Cache for the generated SVG document sizes
      */
-    private static Map<URL, Dimension2D> generatedSVGSizes = new HashMap<URL, Dimension2D>();
+    private static Map<URI, Dimension2D> generatedSVGSizes = new HashMap<URI, Dimension2D>();
 
     /**
      * Cache for the generated latex icons
      */
-    private static Map<Float, Map<String, TeXIcon>> generatedLatexIcons = new WeakHashMap<Float, Map<String, TeXIcon>>();
+    private static Map<String, Map<Float, TeXIcon>> generatedLatexIcons = new WeakHashMap<String, Map<Float, TeXIcon>>();
 
     /**
      * Table conversion between escaped/unescaped HTML symbols
@@ -84,6 +86,14 @@ public final class ScilabGraphUtils extends mxUtils {
      * @return the corresponding graphic node
      */
     public static GraphicsNode getSVGComponent(URL filename) {
+        try {
+            return getSVGComponent(filename.toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static GraphicsNode getSVGComponent(URI filename) {
         WeakReference<GraphicsNode> nodeRef;
         GraphicsNode node;
 
@@ -107,7 +117,7 @@ public final class ScilabGraphUtils extends mxUtils {
 
                 node = builder.build(ctx, doc);
 
-                generatedSVGComponents.put(filename, node.getWeakReference());
+                generatedSVGComponents.put(filename, new WeakReference<>(node));
                 generatedSVGSizes.put(filename, ctx.getDocumentSize());
             } catch (IOException | NullPointerException e) {
                 Logger.getLogger(ScilabGraphUtils.class.getName()).severe(e.toString());
@@ -127,6 +137,14 @@ public final class ScilabGraphUtils extends mxUtils {
      * @return the dimension of the file
      */
     public static Dimension2D getSVGDocumentSizes(URL filename) {
+        try {
+            return getSVGDocumentSizes(filename.toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Dimension2D getSVGDocumentSizes(URI filename) {
         Dimension2D ret = generatedSVGSizes.get(filename);
 
         // Generate the GraphicsNode if not available
@@ -150,17 +168,17 @@ public final class ScilabGraphUtils extends mxUtils {
         TeXIcon icon;
         String escapedText = SupportedLabelType.Latex.escape(text);
 
-        Map<String, TeXIcon> iconMap = generatedLatexIcons.get(size);
+        Map<Float, TeXIcon> iconMap = generatedLatexIcons.get(text);
         if (iconMap == null) {
-            iconMap = new WeakHashMap<String, TeXIcon>();
-            generatedLatexIcons.put(size, iconMap);
+            iconMap = new HashMap<Float, TeXIcon>();
+            generatedLatexIcons.put(text, iconMap);
         }
 
-        icon = iconMap.get(escapedText);
+        icon = iconMap.get(size);
         if (icon == null) {
             TeXFormula tex = new TeXFormula(escapedText);
             icon = tex.createTeXIcon(TeXConstants.STYLE_DISPLAY, size);
-            iconMap.put(escapedText, icon);
+            iconMap.put(size, icon);
         }
         return icon;
     }

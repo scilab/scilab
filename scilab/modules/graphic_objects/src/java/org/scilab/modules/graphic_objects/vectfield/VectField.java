@@ -32,6 +32,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NUMBER_ARROWS__;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.contouredObject.Line.LineType;
@@ -145,7 +146,18 @@ public abstract class VectField extends GraphicClippableObject {
      */
     public UpdateStatus setProperty(Object property, Object value) {
         if (property == VectFieldProperty.ARROWS) {
-            setArrows((ArrayList<Arrow>) value);
+            if (!(value instanceof Collection<?>)) {
+                return UpdateStatus.Fail;
+            }
+            Collection<?> list = (Collection<?>) value;
+            ArrayList<Arrow> arrows = new ArrayList<Arrow>(list.size());
+            for (Object arrow : list) {
+                if (!(arrow instanceof Arrow)) {
+                    return UpdateStatus.Fail;
+                }
+                arrows.add((Arrow) arrow);
+            }
+            setArrows(arrows);
         } else if (property == VectFieldProperty.NUMBERARROWS) {
             setNumberArrows((Integer) value);
         } else if (property == Arrow.ArrowProperty.BASE) {

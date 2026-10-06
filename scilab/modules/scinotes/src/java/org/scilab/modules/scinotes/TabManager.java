@@ -22,7 +22,7 @@ import javax.swing.text.Element;
  * This class handles the tabulation
  * @author Calixte DENIZET
  */
-public class TabManager {
+public final class TabManager {
 
     private static final String EOL = "\n";
 
@@ -58,7 +58,7 @@ public class TabManager {
             this.tab = "\t";
             lengthTab = 1;
         }
-        doc.putProperty("tabSize", new Integer(Math.max(n, 1)));
+        doc.putProperty("tabSize", Integer.valueOf(Math.max(n, 1)));
         if (indent != null) {
             indent.setProperties(tab, SciNotesOptions.getSciNotesDisplay().indentSize);
         }

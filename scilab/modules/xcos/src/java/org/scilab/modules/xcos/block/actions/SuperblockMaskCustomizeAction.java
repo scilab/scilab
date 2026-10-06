@@ -69,8 +69,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Customize the mask of the {@link SuperBlock}.
  */
-@SuppressWarnings(value = { "serial" })
 public final class SuperblockMaskCustomizeAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.CUSTOMIZE;
     /** Icon name of the action */
@@ -134,10 +134,10 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
      * class is tightly coupled to Swing
      */
     // CSOFF: ClassDataAbstractionCoupling
-    @SuppressWarnings(value = { "serial" })
     private static class CustomizeFrame extends JFrame {
+        private static final long serialVersionUID = 1L;
 
-        private final CustomizeFrameControler controler;
+        private final transient CustomizeFrameControler controler;
 
         private javax.swing.JPanel buttonBlob;
         private javax.swing.JButton cancelButton;
@@ -298,7 +298,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
             /* Evaluate the context and set up the variable name selection */
             TableColumn vars = varCustomizeTable.getColumnModel().getColumn(0);
-            JComboBox validVars = new JComboBox();
+            JComboBox<String> validVars = new JComboBox<>();
             validVars.setEditable(true);
             final Set<String> keys = controler.context.keySet();
             for (String key : keys) {
@@ -323,7 +323,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                         XcosMessages.MASK_WINTITLE, XcosMessages.MASK_WINTITLE
                                                                                                                           }
             }, new String[] { XcosMessages.MASK_VARNAME, XcosMessages.MASK_DEFAULTVALUES, XcosMessages.MASK_VARDESC }) {
-                private final Class<?>[] types = new Class[] {java.lang.String.class, java.lang.String.class, java.lang.String.class };
+                private final Class<?>[] types = new Class<?>[] {java.lang.String.class, java.lang.String.class, java.lang.String.class };
                 
                 @Override
                 public Class<?> getColumnClass(int columnIndex) {
@@ -639,7 +639,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
             private final Map<String, ScilabType> context;
             private final Set<String> allocatedVariables = new HashSet<>();
-            
+
             /**
              * Cstr
              *
@@ -668,28 +668,27 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
             }
 
             /**
-             * Swap two table rows
+             * Swap two table rows using typed operations to avoid rawtypes warnings.
+             * The table has 3 columns: VARNAME, DEFAULTVALUES, VARDESC (all Strings).
              *
              * @param model
              *            the model
              * @param row1
              *            the first row
              * @param row2
-             *            th second row
+             *            the second row
              */
             private void swapTableRow(DefaultTableModel model, int row1, int row2) {
-                /*
-                 * doesn't need to be checked as the operation doesn't depend on
-                 * it
-                 */
-                @SuppressWarnings("rawtypes")
-                final Vector<Vector> data = model.getDataVector();
+                // Get the column count
+                final int columnCount = model.getColumnCount();
 
-                /* Inverting data */
-                @SuppressWarnings("rawtypes")
-                Vector tmp = data.get(row2);
-                data.set(row2, data.get(row1));
-                data.set(row1, tmp);
+                // Swap each column value between the two rows
+                for (int col = 0; col < columnCount; col++) {
+                    Object value1 = model.getValueAt(row1, col);
+                    Object value2 = model.getValueAt(row2, col);
+                    model.setValueAt(value2, row1, col);
+                    model.setValueAt(value1, row2, col);
+                }
             }
         }
     }

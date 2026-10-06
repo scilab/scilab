@@ -193,7 +193,7 @@ public class SearchManager {
             return searchInFiles(killed, dir, recursive, ignoreCR, file, word);
         } else {
             final Pattern fword = word;
-            SwingWorker worker = new SwingWorker<Object, Object>() {
+            SwingWorker<Object, Object> worker = new SwingWorker<Object, Object>() {
                 @Override
                 public Object doInBackground() {
                     long begin = System.currentTimeMillis();
@@ -740,7 +740,7 @@ public class SearchManager {
     public static abstract class BackgroundSearch {
 
         private MatchingPositions pos;
-        private SwingWorker worker;
+        private SwingWorker<?, ?> worker;
         private long time;
         private boolean[] killed;
 
@@ -807,7 +807,7 @@ public class SearchManager {
          * Set the SwingWorker we work with
          * @param worker the SwingWorker
          */
-        private void setSwingWorker(SwingWorker worker) {
+        private void setSwingWorker(SwingWorker<?, ?> worker) {
             this.worker = worker;
         }
 

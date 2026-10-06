@@ -298,11 +298,11 @@ public enum TerminalAccessor {
     /**
      * Event on model change
      */
-    @SuppressWarnings(value = { "serial" })
     public static class ChangeEvent extends EventObject {
-        private final Terminal terminal;
-        private final Object oldData;
-        private final Object newData;
+        private static final long serialVersionUID = 1L;
+        private final transient Terminal terminal;
+        private final transient Object oldData;
+        private final transient Object newData;
 
         /**
          * Default constructor.
@@ -460,7 +460,6 @@ public enum TerminalAccessor {
             @Override
             public void change(ChangeEvent event) {
                 // will update the default initial on access value
-                @SuppressWarnings("unused")
                 final Double notUsed = getData(INITIAL, event.getTerminal());
             }
         });
@@ -497,7 +496,7 @@ public enum TerminalAccessor {
      *            the current data to parse
      * @return the data of the identifier
      */
-    @SuppressWarnings({ "unchecked" })
+    @SuppressWarnings("unchecked")
     public static <T> T getData(TerminalAccessor identifier, Terminal terminal) {
         return (T) identifier.getData(terminal);
     }

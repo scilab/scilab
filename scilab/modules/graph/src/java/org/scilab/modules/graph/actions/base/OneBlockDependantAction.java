@@ -21,14 +21,24 @@ import org.scilab.modules.graph.ScilabGraph;
  * Common class for actions that need at least 1 cell on the graph.
  */
 public abstract class OneBlockDependantAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /**
      * Default constructor
      * @param scilabGraph the graph to work on
      */
     public OneBlockDependantAction(ScilabGraph scilabGraph) {
         super(scilabGraph);
+    }
 
-        MinimalNumberOfCellsConstraint constraint = new MinimalNumberOfCellsConstraint(1);
-        constraint.install(this, scilabGraph);
+    /**
+     * Install the constraint after construction to avoid this-escape.
+     */
+    @Override
+    protected void installConstraints() {
+        ScilabGraph g = getScilabGraph();
+        if (g != null) {
+            MinimalNumberOfCellsConstraint constraint = new MinimalNumberOfCellsConstraint(1);
+            constraint.install(this, g);
+        }
     }
 }

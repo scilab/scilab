@@ -14,12 +14,22 @@ import java.util.ArrayList;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 
-public class SwingScilabLayer extends SwingScilabFrame {
+public final class SwingScilabLayer extends SwingScilabFrame {
     private static final long serialVersionUID = 9038916804095320758L;
     private ArrayList<Integer> layers = new ArrayList<Integer>();
 
     public SwingScilabLayer() {
         super();
+    }
+
+    /**
+     * {@inheritDoc}
+     * Overrides the base frame layout (null) with a {@link CardLayout} used
+     * to switch between layers.
+     */
+    @Override
+    public void init() {
+        super.init();
         setLayout(new CardLayout());
         hasLayout = true;
     }

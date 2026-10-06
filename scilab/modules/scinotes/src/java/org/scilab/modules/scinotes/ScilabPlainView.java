@@ -63,7 +63,7 @@ public class ScilabPlainView extends PlainView {
     private Color lineColor = new Color(220, 220, 220);
 
     private final Rectangle rect = new Rectangle();
-    private Map desktopFontHints;
+    private Map<?, ?> desktopFontHints;
     private boolean enableDesktopFontHints = true;
 
     private int whiteHeight;

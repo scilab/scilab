@@ -31,7 +31,7 @@ public abstract class ClippableTextObject extends TextObject {
     private enum ClippableTextObjectProperty { CLIPPROPERTY };
 
     /** Clipping state */
-    private ClippableProperty clipProperty;
+    protected ClippableProperty clipProperty;
 
     /**  Constructor */
     public ClippableTextObject() {

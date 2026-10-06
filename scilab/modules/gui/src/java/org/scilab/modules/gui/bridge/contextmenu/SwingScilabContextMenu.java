@@ -49,7 +49,7 @@ import org.scilab.modules.gui.utils.Size;
  * Swing implementation for Scilab Menus in GUIs
  * @author Vincent COUVERT
  */
-public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObject, SimpleContextMenu {
+public final class SwingScilabContextMenu extends JPopupMenu implements SwingViewObject, SimpleContextMenu {
 
     private static final long serialVersionUID = 1L;
 
@@ -57,9 +57,9 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
 
     private boolean checkedState;
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
     
-    private PopupMenuListener listener;
+    private transient PopupMenuListener listener;
 
     /**
      * Constructor

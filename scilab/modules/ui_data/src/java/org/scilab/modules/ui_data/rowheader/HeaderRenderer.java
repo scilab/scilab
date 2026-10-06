@@ -33,8 +33,8 @@ import javax.swing.table.TableCellRenderer;
 /**
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
-public class HeaderRenderer extends JLabel implements TableCellRenderer {
+public final class HeaderRenderer extends JLabel implements TableCellRenderer {
+    private static final long serialVersionUID = 1L;
 
     private static final Insets INSETS = new Insets(1, 1, 1, 0);
 

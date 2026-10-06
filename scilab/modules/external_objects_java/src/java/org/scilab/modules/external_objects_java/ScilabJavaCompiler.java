@@ -56,8 +56,8 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
  * Try to find the compiler provide with JDK and if it is not found, use the Eclipse Compiler for Java
  * @author Calixte DENIZET
  */
-@SuppressWarnings("serial")
 public class ScilabJavaCompiler {
+    private static final long serialVersionUID = 1L;
 
     private static final String JAVACOMPILER = "javax.tools.JavaCompiler";
     private static final String BINPATH = System.getProperty("java.io.tmpdir") + File.separator + "JIMS" + File.separator + "bin";
@@ -381,7 +381,7 @@ public class ScilabJavaCompiler {
         }
     }
 
-    private static class ClassFileManager extends ForwardingJavaFileManager {
+    private static class ClassFileManager extends ForwardingJavaFileManager<StandardJavaFileManager> {
 
         String className;
 

@@ -165,7 +165,8 @@ class RawDataHandler implements ScilabHandler {
 
                 switch (fieldValue.as) {
                     case DIAGRAM_CONTEXT: {
-                        ArrayList container = ((ArrayList) fieldValue.value);
+                        @SuppressWarnings("unchecked")
+                        ArrayList<Object> container = (ArrayList<Object>) fieldValue.value;
                         container.add(atts.getValue("value"));
                         break;
                     }
@@ -290,7 +291,6 @@ class RawDataHandler implements ScilabHandler {
      *            decoded scilabClass
      * @return the container
      */
-    @SuppressWarnings("fallthrough")
     private Object allocateDataType(HandledElement found, Attributes atts, int height, int width, String scilabClass) {
         String v;
         final Object container;
@@ -304,31 +304,30 @@ class RawDataHandler implements ScilabHandler {
             case ScilabInteger:
                 v = atts.getValue("intPrecision");
                 if (v != null) {
-                    boolean unsigned = true;
                     switch (ScilabIntegerTypeEnum.valueOf(v)) {
                         case sci_int8:
-                            unsigned = false;
-                        // no break on purpose
+                            container = new ScilabInteger(new byte[height][width], false);
+                            break;
                         case sci_uint8:
-                            container = new ScilabInteger(new byte[height][width], unsigned);
+                            container = new ScilabInteger(new byte[height][width], true);
                             break;
                         case sci_int16:
-                            unsigned = false;
-                        // no break on purpose
+                            container = new ScilabInteger(new short[height][width], false);
+                            break;
                         case sci_uint16:
-                            container = new ScilabInteger(new short[height][width], unsigned);
+                            container = new ScilabInteger(new short[height][width], true);
                             break;
                         case sci_int32:
-                            unsigned = false;
-                        // no break on purpose
+                            container = new ScilabInteger(new int[height][width], false);
+                            break;
                         case sci_uint32:
-                            container = new ScilabInteger(new int[height][width], unsigned);
+                            container = new ScilabInteger(new int[height][width], true);
                             break;
                         case sci_int64:
-                            unsigned = false;
-                        // no break on purpose
+                            container = new ScilabInteger(new long[height][width], false);
+                            break;
                         case sci_uint64:
-                            container = new ScilabInteger(new long[height][width], unsigned);
+                            container = new ScilabInteger(new long[height][width], true);
                             break;
                         default:
                             container = new ScilabInteger(new long[height][width], false);
@@ -381,6 +380,7 @@ class RawDataHandler implements ScilabHandler {
                         return;
                     }
 
+                    @SuppressWarnings("unchecked")
                     ArrayList<Object> parentList = (ArrayList<Object>) ((RawDataDescriptor) parent).value;
                     parentList.add(fieldValue.value);
                     return;
@@ -406,8 +406,7 @@ class RawDataHandler implements ScilabHandler {
                         }
                         XcosCell diagramOrSuperBlockRoot = (XcosCell) parent;
 
-                        @SuppressWarnings("unchecked")
-                        ArrayList value = (ArrayList) fieldValue.value;
+                        ArrayList<?> value = (ArrayList<?>) fieldValue.value;
                         VectorOfString ctx = new VectorOfString(value.size());
                         for (int i = 0; i < value.size(); i++) {
                             ctx.set(i, (String) value.get(i));
@@ -431,7 +430,7 @@ class RawDataHandler implements ScilabHandler {
                             saxHandler.controller.getObjectProperty(cell.getUID(), cell.getKind(), ObjectProperties.CHILDREN, children);
                             if (children.size() == 0) {
                                 try {
-                                    new DiagramElement(saxHandler.controller).decode((ScilabMList) fieldValue.value, new XcosDiagram(saxHandler.controller, cell.getUID(), cell.getKind(), cell.getId()));
+                                    new DiagramElement(saxHandler.controller).decode((ScilabMList) fieldValue.value, XcosDiagram.create(saxHandler.controller, cell.getUID(), cell.getKind(), cell.getId()));
                                 } catch (ScicosFormatException e) {
                                 }
                             }

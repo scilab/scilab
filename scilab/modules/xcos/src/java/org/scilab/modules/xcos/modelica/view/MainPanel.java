@@ -62,11 +62,11 @@ import org.scilab.modules.xcos.modelica.model.Terminal;
  */
 // CSOFF: FanOutComplexity
 // CSOFF: DataAbstractionCoupling
-@SuppressWarnings(value = { "serial" })
 public final class MainPanel extends JPanel {
+    private static final long serialVersionUID = 1L;
     private static final int[] EXTENDED_STATUS_LAYOUT_DATA = new int[] { 2, 6 };
 
-    private final ModelicaController controller;
+    private final transient ModelicaController controller;
 
     private javax.swing.JPanel controlBar;
     private javax.swing.JScrollPane treeScrollPane;
@@ -90,7 +90,7 @@ public final class MainPanel extends JPanel {
     private javax.swing.JCheckBox generateJacobianButton;
     private javax.swing.JButton solveButton;
     private javax.swing.JLabel solver;
-    private javax.swing.JComboBox solverComboBox;
+    private javax.swing.JComboBox<String> solverComboBox;
     private javax.swing.JProgressBar solverWaitBar;
     private javax.swing.JPanel variableStatusBar;
     private javax.swing.JPanel extendedStatus;
@@ -220,7 +220,7 @@ public final class MainPanel extends JPanel {
             final Model m = (Model) userObject;
             ret = getTerminals(m.getElements().getStructOrTerminal());
         } else if (userObject instanceof Collection) {
-            final Collection c = (Collection) userObject;
+            final Collection<?> c = (Collection<?>) userObject;
 
             ret = new ArrayList<Terminal>();
             for (Object o : c) {
@@ -242,8 +242,12 @@ public final class MainPanel extends JPanel {
         solver.setText(ModelicaMessages.SOLVER + " :");
         control.add(solver);
 
-        solverComboBox.setModel(new javax.swing.DefaultComboBoxModel(
-                                    ModelicaController.ComputationMethod.values()));
+        ModelicaController.ComputationMethod[] methods = ModelicaController.ComputationMethod.values();
+        String[] methodNames = new String[methods.length];
+        for (int i = 0; i < methods.length; i++) {
+            methodNames[i] = methods[i].name();
+        }
+        solverComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(methodNames));
         solverComboBox.setToolTipText(ModelicaMessages.INITIAL_COMPUTING_METHOD);
         control.add(solverComboBox);
 
@@ -355,7 +359,7 @@ public final class MainPanel extends JPanel {
         table = new javax.swing.JTable();
         controlBar = new javax.swing.JPanel();
         solver = new javax.swing.JLabel();
-        solverComboBox = new javax.swing.JComboBox();
+        solverComboBox = new javax.swing.JComboBox<>();
         solverWaitBar = new javax.swing.JProgressBar();
         embeddedParametersButton = new javax.swing.JCheckBox();
         generateJacobianButton = new javax.swing.JCheckBox();

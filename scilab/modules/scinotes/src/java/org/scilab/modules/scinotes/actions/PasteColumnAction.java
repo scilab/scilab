@@ -39,8 +39,8 @@ import org.scilab.modules.scinotes.ScilabEditorKit;
  * Class for paste action
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class PasteColumnAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     private static final String CR = "\n";
 

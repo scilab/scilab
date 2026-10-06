@@ -42,6 +42,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Figure extends ContentLayout {
+    private static final long serialVersionUID = 1L;
     private JTextField cAxesSize;
     private JTextField cAxesSizeX;
     private JTextField cAxesSizeY;
@@ -67,7 +68,7 @@ public class Figure extends ContentLayout {
      */
     public void antiAliasing(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lAliasing = new JLabel();
-        final JComboBox cAliasing = new JComboBox();
+        final JComboBox<String> cAliasing = new JComboBox<>();
 
         addLabelComboBox(panel, lAliasing, MessagesGED.anti_alising,
                          cAliasing, new String[] {MessagesGED.off , MessagesGED.on},
@@ -97,7 +98,7 @@ public class Figure extends ContentLayout {
      */
     public void autoResize(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lResize = new JLabel();
-        final JComboBox cResize = new JComboBox();
+        final JComboBox<String> cResize = new JComboBox<>();
 
         addLabelComboBox(panel, lResize, MessagesGED.auto_resize,
                          cResize, new String[] {MessagesGED.off , MessagesGED.on},
@@ -257,7 +258,7 @@ public class Figure extends ContentLayout {
      */
     public void eventHandler(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lEventHandler = new JLabel();
-        JComboBox cEventHandler = new JComboBox();
+        JComboBox<String> cEventHandler = new JComboBox<>();
         addLabelComboBox(panel, lEventHandler, MessagesGED.event_handler,
                          cEventHandler, new String[] {MessagesGED.off, MessagesGED.function},
                          LEFTMARGIN, COLUMN, ROW);
@@ -572,7 +573,7 @@ public class Figure extends ContentLayout {
      */
     public void immediateDrawing(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lImmediateDrawing = new JLabel();
-        final JComboBox cImmediateDrawing = new JComboBox();
+        final JComboBox<String> cImmediateDrawing = new JComboBox<>();
 
         addLabelComboBox(panel, lImmediateDrawing, MessagesGED.immediate_drawing,
                          cImmediateDrawing, new String[] {MessagesGED.off , MessagesGED.on},
@@ -603,7 +604,7 @@ public class Figure extends ContentLayout {
      */
     public void pixelDrawingMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lPixelDrawingMode = new JLabel();
-        final JComboBox cPixelDrawingMode = new JComboBox();
+        final JComboBox<String> cPixelDrawingMode = new JComboBox<>();
 
         String[] options = new String[] {"clear", "and", "andReverse", "copy", "andInverted", "noop",
                                          "xor", "or", "nor", "equiv", "invert", "orReverse", "copyInverted", "orInverted", "nand", "set"
@@ -673,7 +674,7 @@ public class Figure extends ContentLayout {
      */
     public void rotationStyle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lRotationStyle = new JLabel();
-        final JComboBox cRotationStyle = new JComboBox();
+        final JComboBox<String> cRotationStyle = new JComboBox<>();
 
         addLabelComboBox(panel, lRotationStyle, MessagesGED.rotation_style,
                          cRotationStyle, new String[] {MessagesGED.unary, MessagesGED.multiple},

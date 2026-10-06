@@ -43,8 +43,8 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * PasteAction class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class PasteAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static final String KEY = "OSSCKEY V";
     private static final String PASTE = "Paste";
@@ -101,14 +101,14 @@ public final class PasteAction extends CommonCallBack {
 
         StringTokenizer rElems = new StringTokenizer(str, "\n");
         int countRows = rElems.countTokens();
-        Vector vr = new Vector(countRows);
+        Vector<Vector<Object>> vr = new Vector<>(countRows);
         NumberFormat format = NumberFormat.getInstance();
         ParsePosition position = new ParsePosition(0);
         format.setParseIntegerOnly(false);
         for (int i = 0; i < countRows; i++) {
             StringTokenizer cElems = new StringTokenizer(rElems.nextToken(), "\t");
             int countCols = cElems.countTokens();
-            Vector vc = new Vector(countCols);
+            Vector<Object> vc = new Vector<>(countCols);
             for (int j = 0; j < countCols; j++) {
                 String ss = cElems.nextToken();
                 Number x = format.parse(ss, position);
@@ -126,10 +126,10 @@ public final class PasteAction extends CommonCallBack {
         int oldRows = model.getScilabMatrixRowCount();
         int oldCols = model.getScilabMatrixColCount();
 
-        if (vr.size() == 1 && ((Vector) vr.get(0)).size() == 1 && row < oldRows && col < oldCols) {
-            model.setValueAtAndUpdate(true, true, ((Vector) vr.get(0)).get(0), row, col);
+        if (vr.size() == 1 && vr.get(0).size() == 1 && row < oldRows && col < oldCols) {
+            model.setValueAtAndUpdate(true, true, vr.get(0).get(0), row, col);
         } else {
-            Vector oldVector = model.cloneDatas();
+            Vector<Vector<Object>> oldVector = model.cloneDatas();
             model.setValues(vr, row, col);
             model.updateFullMatrix(oldVector, oldRows, oldCols);
         }

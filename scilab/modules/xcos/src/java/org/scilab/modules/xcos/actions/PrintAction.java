@@ -37,8 +37,8 @@ import com.mxgraph.swing.mxGraphComponent;
 /**
  * Diagram printing management
  */
-@SuppressWarnings(value = { "serial" })
 public final class PrintAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.PRINT;
     /** Icon name of the action */
@@ -46,7 +46,7 @@ public final class PrintAction extends DefaultAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_P;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /** The default page margin */
     private static final int DEFAULT_MARGIN = 36;

@@ -88,8 +88,8 @@ import java.util.TreeMap;
 /**
  * A block on the diagram
  */
-@SuppressWarnings(value = { "serial" })
 public class BasicBlock extends XcosCell implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * Sorted kind of input, useful to sort them by kind
      */
@@ -634,7 +634,7 @@ public class BasicBlock extends XcosCell implements Serializable {
                         e.printStackTrace();
                     }
 
-                    XcosDiagram theDiagram = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
+                    XcosDiagram theDiagram = XcosDiagram.create(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
                     theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
                     mxGeometry geom = BasicBlock.this.getGeometry();
                     setDefaultPosition(geom);

@@ -45,8 +45,9 @@ import java.awt.event.KeyEvent;
  * @author Pierre Lando
  * @author Manuel Juliachs
  */
-@SuppressWarnings(value = { "serial" })
 public final class RotatableSprite extends ExampleFrame {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Frame title.

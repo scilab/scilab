@@ -17,6 +17,7 @@ package org.scilab.modules.ui_data.filebrowser.actions;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.SwingUtilities;
 
@@ -31,8 +32,8 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Action to edit a file with the default associated application
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class EditFileWithDefaultAppAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static final boolean isWindows = (OS.get() == OS.WINDOWS);
 
@@ -64,7 +65,7 @@ public class EditFileWithDefaultAppAction extends CommonCallBack {
             try {
                 if (isWindows) {
                     String cmd = "rundll32 url.dll,FileProtocolHandler " + file.getCanonicalPath();
-                    Runtime.getRuntime().exec(cmd);
+                    new ProcessBuilder(cmd.split(" ")).start();
                 } else {
                     dt.edit(file);
                 }

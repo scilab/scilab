@@ -621,7 +621,7 @@ public class GOBuilder {
 
                     item = xmlAttributes.get("prototype-display-value");
                     if (item != null && item.equals("") == false) {
-                        controller.setProperty(uic, __GO_UI_MAX__, new Double(item.length()));
+                        controller.setProperty(uic, __GO_UI_MAX__, Double.valueOf(item.length()));
                     }
 
                     //callback

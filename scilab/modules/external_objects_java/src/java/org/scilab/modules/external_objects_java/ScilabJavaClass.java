@@ -23,8 +23,8 @@ import java.util.logging.Level;
  *
  * @author Calixte DENIZET
  */
-@SuppressWarnings("serial")
 public class ScilabJavaClass extends ScilabJavaObject {
+    private static final long serialVersionUID = 1L;
 
     protected ScilabJavaConstructor sjc;
     protected URL classURL;
@@ -33,7 +33,7 @@ public class ScilabJavaClass extends ScilabJavaObject {
      * Constructor
      * @param cls the class to wrap
      */
-    public ScilabJavaClass(Class cls) {
+    public ScilabJavaClass(Class<?> cls) {
         super(cls, cls);
         sjc = new ScilabJavaConstructor(cls);
     }

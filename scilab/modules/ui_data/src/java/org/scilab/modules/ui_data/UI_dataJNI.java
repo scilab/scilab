@@ -7,6 +7,7 @@
  * ----------------------------------------------------------------------------- */
 
 package org.scilab.modules.ui_data;
+import org.scilab.modules.localization.NativeLibraryLoader;
 
 
 /* It is generated code. Disable checkstyle */
@@ -17,6 +18,7 @@ package org.scilab.modules.ui_data;
    * @author Allan CORNET
    * @copyright INRIA 
    */
+
 class UI_dataJNI {
 
  /**
@@ -28,7 +30,7 @@ class UI_dataJNI {
 
   static {
     try {
-        System.loadLibrary("sciui_data");
+        NativeLibraryLoader.loadLibrary("sciui_data");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

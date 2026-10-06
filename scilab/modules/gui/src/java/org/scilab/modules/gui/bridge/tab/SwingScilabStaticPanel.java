@@ -52,22 +52,22 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.Widget;
 
-public class SwingScilabStaticPanel extends SwingScilabScrollPane implements SwingScilabPanel {
+public final class SwingScilabStaticPanel extends SwingScilabScrollPane implements SwingScilabPanel {
     private static final long serialVersionUID = -3887923938827929317L;
     private Integer id;
-    private TextBox infoBar;
-    private MenuBar menuBar;
-    private ToolBar toolBar;
+    private transient TextBox infoBar;
+    private transient MenuBar menuBar;
+    private transient ToolBar toolBar;
     private String parentWindowId;
-    private JLayeredPane uiContentPane;
-    private JLayeredPane layeredPane;
+    private transient JLayeredPane uiContentPane;
+    private transient JLayeredPane layeredPane;
     private boolean eventEnabled = false;
-    private ComponentListener componentListener;
-    private HierarchyBoundsListener ancestorListener;
+    private transient ComponentListener componentListener;
+    private transient HierarchyBoundsListener ancestorListener;
 
     /** The listener for event handling */
-    private ScilabEventListener eventHandler;
-    private EditorEventListener editorEventHandler = null;
+    private transient ScilabEventListener eventHandler;
+    private transient EditorEventListener editorEventHandler = null;
 
     private SwingScilabCanvas contentCanvas;
     protected boolean hasLayout;
@@ -155,6 +155,10 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
             }
         };
         addComponentListener(componentListener);
+
+        // SwingScilabStaticPanel is final, so finishing the SwingScilabScrollPane
+        // initialization here cannot leak this from an analyzable constructor
+        init();
     }
 
     /**

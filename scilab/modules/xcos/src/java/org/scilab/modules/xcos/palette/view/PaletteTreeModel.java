@@ -28,8 +28,8 @@ import org.scilab.modules.xcos.palette.model.PaletteNode;
 /**
  * Wrap the PaletteNode on a specific model which handle the enable flag.
  */
-@SuppressWarnings(value = { "serial" })
 public class PaletteTreeModel extends DefaultTreeModel {
+    private static final long serialVersionUID = 1L;
     private static final String ARG_EXCEPTION_MESSAGE = "The argument must be a PaletteNode instance";
 
     /**

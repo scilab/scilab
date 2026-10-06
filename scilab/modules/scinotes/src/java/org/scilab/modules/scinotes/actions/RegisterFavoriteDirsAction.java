@@ -37,8 +37,8 @@ import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
  * Action to register favorite directories
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class RegisterFavoriteDirsAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     private static MenuItem addDir;
     private static MenuItem rmDir;
@@ -126,10 +126,10 @@ public final class RegisterFavoriteDirsAction extends DefaultAction {
     /**
      * Inner class to handle the action which consists to add a new directory
      */
-    @SuppressWarnings(value = { "serial" })
     static class AddDirectoryAction extends DefaultAction {
+        private static final long serialVersionUID = 1L;
 
-        private Menu menu;
+        private transient Menu menu;
 
         /**
          * Constructor
@@ -176,11 +176,11 @@ public final class RegisterFavoriteDirsAction extends DefaultAction {
 
     /**
      * Inner class to handle the action which consists to remove a directory
-    @SuppressWarnings(value = { "serial" })
      */
     static class RmDirectoryAction extends DefaultAction {
+        private static final long serialVersionUID = 1L;
 
-        private Menu menu;
+        private transient Menu menu;
 
         /**
          * Constructor

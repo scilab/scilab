@@ -29,6 +29,7 @@ public class FlattenTreeView extends TreeView {
     public static void createView() {
         if (me == null) {
             me = new FlattenTreeView();
+            me.initTreeListener();
             GraphicController.getController().register(me);
             me.show();
         }

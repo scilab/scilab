@@ -21,6 +21,8 @@ import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 
 public abstract class FilteringAction extends DefaultAction {
 
+    private static final long serialVersionUID = 1L;
+
     /** Icon name of the action */
     public static final String SMALL_ICON = "";
     /** Mnemonic key of the action */

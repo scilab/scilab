@@ -301,7 +301,7 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
         }
         try {
             isValid = false;
-            canvasAnimator.finalize();//Thread.dumpStack();
+            canvasAnimator.stop();
         } catch (Throwable e) {
             // TODO: handle exception
         }
@@ -418,16 +418,6 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
             //System.err.println("[DEBUG] nb threads = "+Thread.activeCount());
         }
 
-        @Override
-        protected void finalize() throws Throwable {
-            running = false;
-            // we increment the semaphore to allow run() to unlock it and to be sure
-            // to go out.
-            semaphore.release();
-            autoDrawable.destroy();
-            super.finalize();
-        }
-
         public synchronized boolean isDrawFinished() {
             return semaphore.availablePermits() == 0;
         }
@@ -435,6 +425,12 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
         /** Ask the animator to perform a draw later. */
         public synchronized void redraw() {
             semaphore.release();
+        }
+
+        /** Stop the animator thread */
+        public synchronized void stop() {
+            running = false;
+            semaphore.release(); // Release to unblock the thread if it's waiting
         }
 
         /** Wait until a drawing has been performed */

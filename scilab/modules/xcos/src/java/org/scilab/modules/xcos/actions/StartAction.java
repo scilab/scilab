@@ -44,8 +44,8 @@ import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 /**
  * Start the simulation
  */
-@SuppressWarnings(value = { "serial" })
 public final class StartAction extends OneBlockDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.START;
     /** Icon name of the action */

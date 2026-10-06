@@ -34,8 +34,8 @@ import org.scilab.modules.scinotes.ScilabLexerConstants;
  * Class to handle the block selection
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class SelectBlockAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     protected boolean isPopup;
 

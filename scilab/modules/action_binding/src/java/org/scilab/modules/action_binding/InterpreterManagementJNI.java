@@ -7,6 +7,7 @@
  * ----------------------------------------------------------------------------- */
 
 package org.scilab.modules.action_binding;
+import org.scilab.modules.localization.NativeLibraryLoader;
 
 
 /* It is generated code. Disable checkstyle */
@@ -27,7 +28,7 @@ class InterpreterManagementJNI {
 
   static {
     try {
-        System.loadLibrary("sciaction_binding");
+        NativeLibraryLoader.loadLibrary("sciaction_binding");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
         System.err.println(e.getLocalizedMessage());

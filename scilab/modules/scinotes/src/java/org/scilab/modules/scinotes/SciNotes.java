@@ -120,7 +120,7 @@ import org.w3c.dom.Document;
  * @author Bruno JOFRET
  * @author Calixte DENIZET
  */
-public class SciNotes extends SwingScilabDockablePanel {
+public final class SciNotes extends SwingScilabDockablePanel {
 
     private static final long serialVersionUID = -6410183357490518676L;
 
@@ -174,7 +174,7 @@ public class SciNotes extends SwingScilabDockablePanel {
     private UUID uuid;
 
     private ScilabTabbedPane tabPane;
-    private ChangeListener tabChangeListener;
+    private transient ChangeListener tabChangeListener;
     private final SciNotesContents contentPane;
     private NavigatorWindow navigator;
     private SearchFile searchInFiles;
@@ -190,8 +190,8 @@ public class SciNotes extends SwingScilabDockablePanel {
     private boolean restoringSession;
     private boolean firstOpen = true;
 
-    private final List<Integer> tabList = new ArrayList<Integer>();
-    private final List<Integer> closedTabList = new ArrayList<Integer>();
+    private final transient List<Integer> tabList = new ArrayList<Integer>();
+    private final transient List<Integer> closedTabList = new ArrayList<Integer>();
 
     static {
         ConfigSciNotesManager.createUserCopy();
@@ -213,6 +213,7 @@ public class SciNotes extends SwingScilabDockablePanel {
      */
     public SciNotes(String uuid) {
         super(SCINOTES, uuid);
+        init();
         setWindowIcon("accessories-text-editor");
         setAssociatedXMLIDForHelp("scinotes");
         this.uuid = UUID.fromString(uuid);
@@ -1804,11 +1805,14 @@ public class SciNotes extends SwingScilabDockablePanel {
      * Monaco is opt-in while the integration is still experimental.
      */
     private ScilabEditorPane createEditorPane() {
+        ScilabEditorPane pane;
         if (MONACO_EDITOR_PROPERTY_VALUE.equalsIgnoreCase(System.getProperty(SCINOTES_EDITOR_PROPERTY))) {
-            return new MonacoEditorPane(this);
+            pane = new MonacoEditorPane(this);
+        } else {
+            pane = new ScilabEditorPane(this);
         }
-
-        return new ScilabEditorPane(this);
+        pane.init();
+        return pane;
     }
 
     public void addRestoreTab() {
@@ -2006,11 +2010,14 @@ public class SciNotes extends SwingScilabDockablePanel {
     }
 
     private ScilabEditorPane createEditorPaneLike(ScilabEditorPane pane) {
+        ScilabEditorPane newPane;
         if (pane instanceof MonacoEditorPane) {
-            return new MonacoEditorPane(this);
+            newPane = new MonacoEditorPane(this);
+        } else {
+            newPane = new ScilabEditorPane(this);
         }
-
-        return new ScilabEditorPane(this);
+        newPane.init();
+        return newPane;
     }
 
     private Component getSplitComponent(ScilabEditorPane pane) {
@@ -2497,6 +2504,7 @@ public class SciNotes extends SwingScilabDockablePanel {
                     }
                     if (sep.getOtherPaneInSplit() == null) {
                         ScilabEditorPane pane = new ScilabEditorPane(editor);
+                        pane.init();
                         ed.initPane(pane, !mustWrapLines);
                         sep.copyProps(pane);
                         pane.setDocument(sep.getDocument());
@@ -2514,11 +2522,6 @@ public class SciNotes extends SwingScilabDockablePanel {
             }
         }
     }
-
-    /**
-     * Set a line numbering compatible with the whereami function
-     * @param state 0 for nothing, 1 for normal and 2 for whereami
-     */
 
     /**
      * Enable the highlighted line in this editor
@@ -3049,8 +3052,8 @@ public class SciNotes extends SwingScilabDockablePanel {
                         className = DEFAULTACTIONPATH + DOT + action;
                     }
                     try {
-                        Class clazz = loader.loadClass(className);
-                        Constructor constructor = clazz.getConstructor(new Class[] { String.class, SciNotes.class });
+                        Class<?> clazz = loader.loadClass(className);
+                        Constructor<?> constructor = clazz.getConstructor(new Class<?>[] { String.class, SciNotes.class });
                         Object act = constructor.newInstance(new Object[] { "", ed });
                         sep.getInputMap().put(key, act);
                     } catch (ClassNotFoundException e) {

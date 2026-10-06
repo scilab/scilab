@@ -32,8 +32,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Set the debug level
  */
-@SuppressWarnings(value = { "serial" })
 public final class DebugLevelAction extends SimulationNotRunningAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.SET_DEBUG;
     /** Icon name of the action */

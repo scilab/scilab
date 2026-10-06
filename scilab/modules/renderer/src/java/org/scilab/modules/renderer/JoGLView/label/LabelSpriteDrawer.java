@@ -32,7 +32,7 @@ import org.scilab.modules.renderer.JoGLView.util.TextObjectSpriteDrawer;
  *    -refactoring
  * @author Pierre Lando
  */
-public class LabelSpriteDrawer extends TextObjectSpriteDrawer implements TextureDrawer {
+public final class LabelSpriteDrawer extends TextObjectSpriteDrawer implements TextureDrawer {
 
     /**
     * Default constructor.

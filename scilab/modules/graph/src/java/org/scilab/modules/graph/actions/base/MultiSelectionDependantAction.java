@@ -24,6 +24,7 @@ import org.scilab.modules.graph.ScilabGraph;
  * not, the action will be disabled.
  */
 public abstract class MultiSelectionDependantAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /**
      * Default constructor
      *
@@ -32,10 +33,17 @@ public abstract class MultiSelectionDependantAction extends DefaultAction {
      */
     public MultiSelectionDependantAction(ScilabGraph scilabGraph) {
         super(scilabGraph);
+    }
 
-        if (scilabGraph != null) {
+    /**
+     * Install the selection constraint after construction to avoid this-escape.
+     */
+    @Override
+    protected void installConstraints() {
+        ScilabGraph g = getScilabGraph();
+        if (g != null) {
             SelectedNumberOfCellsConstraint constraint = new SelectedNumberOfCellsConstraint(2);
-            constraint.install(this, scilabGraph);
+            constraint.install(this, g);
         }
     }
 }

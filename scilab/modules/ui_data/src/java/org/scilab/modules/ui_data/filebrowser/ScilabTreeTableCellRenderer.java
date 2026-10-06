@@ -42,8 +42,8 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
 /**
  * The table renderer to render the tree in the first column of the JTable
  */
-@SuppressWarnings(value = { "serial" })
-public class ScilabTreeTableCellRenderer extends JTree implements TableCellRenderer {
+public final class ScilabTreeTableCellRenderer extends JTree implements TableCellRenderer {
+    private static final long serialVersionUID = 1L;
 
     private SwingScilabTreeTable table;
     protected int visibleRow;

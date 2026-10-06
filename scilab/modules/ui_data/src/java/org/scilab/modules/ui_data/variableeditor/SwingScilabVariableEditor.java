@@ -77,7 +77,7 @@ import org.scilab.modules.ui_data.variableeditor.undo.CellsUndoManager;
  * @author Allan SIMON
  * @author Calixte DENIZET
  */
-public class SwingScilabVariableEditor extends SwingScilabDockablePanel implements SimpleVariableEditor {
+public final class SwingScilabVariableEditor extends SwingScilabDockablePanel implements SimpleVariableEditor {
 
     /**
      * Prefix used in the tabs titles.
@@ -100,6 +100,7 @@ public class SwingScilabVariableEditor extends SwingScilabDockablePanel implemen
      */
     public SwingScilabVariableEditor(String name, String type, Object[][] data) {
         super(UiDataMessages.VARIABLE_EDITOR);
+        init();
         setAssociatedXMLIDForHelp("editvar");
         setWindowIcon("rrze_table");
         refreshButton = RefreshAction.createButton(this, UiDataMessages.REFRESH);

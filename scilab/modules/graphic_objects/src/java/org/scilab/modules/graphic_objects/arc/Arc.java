@@ -165,10 +165,6 @@ public class Arc extends ClippableContouredObject {
         return UpdateStatus.Success;
     }
 
-    /**
-     * Set the parent axes
-     * @param axes the parent axes to set
-     */
     /*
     public void setParent(Axes axes) {
     	super.setParent(axes);

@@ -17,6 +17,7 @@ package org.scilab.modules.commons.gui;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
@@ -34,30 +35,30 @@ public final class ScilabKeyStroke {
         String key = "";
         int mask;
         if (!GraphicsEnvironment.isHeadless()) {
-            mask = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+            mask = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
         } else {
             switch (OS.get()) {
                 case MAC:
-                    mask = KeyEvent.META_MASK;
+                    mask = InputEvent.META_DOWN_MASK;
                     break;
                 default:
-                    mask = KeyEvent.CTRL_MASK;
+                    mask = InputEvent.CTRL_DOWN_MASK;
             }
         }
 
-        if ((mask & KeyEvent.CTRL_MASK) != 0) {
+        if ((mask & InputEvent.CTRL_DOWN_MASK) != 0) {
             key += " Ctrl";
         }
-        if ((mask & KeyEvent.META_MASK) != 0) {
+        if ((mask & InputEvent.META_DOWN_MASK) != 0) {
             key += " Meta";
         }
-        if ((mask & KeyEvent.SHIFT_MASK) != 0) {
+        if ((mask & InputEvent.SHIFT_DOWN_MASK) != 0) {
             key += " Shift";
         }
-        if ((mask & KeyEvent.ALT_MASK) != 0) {
+        if ((mask & InputEvent.ALT_DOWN_MASK) != 0) {
             key += " Alt";
         }
-        if ((mask & KeyEvent.ALT_GRAPH_MASK) != 0) {
+        if ((mask & KeyEvent.ALT_GRAPH_DOWN_MASK) != 0) {
             key += " AltGraph";
         }
 

@@ -185,12 +185,12 @@ public class MonacoEditorPane extends ScilabEditorPane {
     private static final Map<String, MonacoEditorPane> SHARED_HISTORY_ORIGINS =
         new HashMap<String, MonacoEditorPane>();
 
-    private final SharedBrowser sharedBrowser;
+    private final transient SharedBrowser sharedBrowser;
     private final JPanel browserHost;
     private final ScilabCefPanel cefPanel;
-    private final CefClient client;
-    private final CefBrowser browser;
-    private final DocumentListener documentListener;
+    private final transient CefClient client;
+    private final transient CefBrowser browser;
+    private transient DocumentListener documentListener;
 
     private boolean browserReady;
     private boolean paneConstructed;
@@ -208,13 +208,13 @@ public class MonacoEditorPane extends ScilabEditorPane {
     private int pendingRevealLine;
     private Point lastContextMenuPoint = new Point(0, 0);
     private JPopupMenu activeContextMenu;
-    private AWTEventListener contextMenuDismissListener;
+    private transient AWTEventListener contextMenuDismissListener;
     private long lastMonacoExternalModification;
     private int documentRevision;
     private int lastPreHandledKeyCode = -1;
     private int lastPreHandledModifiers = -1;
-    private final Object droppedFilesLock = new Object();
-    private List<String> draggedFilePaths = new ArrayList<String>();
+    private final transient Object droppedFilesLock = new Object();
+    private transient List<String> draggedFilePaths = new ArrayList<String>();
 
     /**
      * Set only on the secondary half of a split Monaco tab: the primary
@@ -674,11 +674,22 @@ public class MonacoEditorPane extends ScilabEditorPane {
      * Constructor.
      * @param editor the SciNotes editor
      */
-    @SuppressWarnings("this-escape")
     public MonacoEditorPane(final SciNotes editor) {
         super(editor);
-
         browserHost = new JPanel(new BorderLayout());
+        sharedBrowser = getSharedBrowser(editor);
+        cefPanel = sharedBrowser.cefPanel;
+        client = sharedBrowser.client;
+        browser = sharedBrowser.browser;
+    }
+
+    /**
+     * Complete the initialization: must be called once, right after the
+     * constructor returned (see ScilabEditorPane#init()).
+     */
+    @Override
+    public void init() {
+        super.init();
         /*
          * Unlike a classic ScilabEditorPane, this MonacoEditorPane ("this")
          * is never added to the visible Swing tree: EditorComponent's
@@ -704,10 +715,6 @@ public class MonacoEditorPane extends ScilabEditorPane {
                 }
             }
         });
-        sharedBrowser = getSharedBrowser(editor);
-        cefPanel = sharedBrowser.cefPanel;
-        client = sharedBrowser.client;
-        browser = sharedBrowser.browser;
         boolean installBrowserHandlers = sharedBrowser.isEmpty();
         if (installBrowserHandlers) {
         browser.getUIComponent().addMouseListener(new MouseAdapter() {
@@ -1568,7 +1575,7 @@ public class MonacoEditorPane extends ScilabEditorPane {
          *
          * super.requestFocus() targets "this", but "this" is never actually
          * added to the visible Swing tree for a Monaco pane (EditorComponent
-         * displays browserHost instead - see the constructor). A
+         * displays browserHost instead - see init()). A
          * non-showing component can never become the real focus owner, so
          * that call alone is a no-op and does not break the loop.
          * browserHost is the real, showing stand-in: request focus there.
@@ -1722,17 +1729,6 @@ public class MonacoEditorPane extends ScilabEditorPane {
     }
 
     /**
-     * Turn this pane into a live secondary view of {@code primary}'s Monaco
-     * model instead of an independent document. Called by
-     * {@code SciNotes.splitTab()} on the "other" half of a split: the shared
-     * native browser can only ever show one Monaco document as its own, so
-     * that half cannot get one the normal way (see the SharedBrowser class
-     * comment). Any document this pane's own construction already created
-     * (see SharedBrowser#paneConstructed) is discarded first.
-     *
-     * @param primary the split's other pane, which owns the shared document
-     */
-    /**
      * The pane owning the Monaco document of the split this pane belongs to,
      * or null when its tab is not split. Works from either half.
      */
@@ -1758,6 +1754,17 @@ public class MonacoEditorPane extends ScilabEditorPane {
         return null;
     }
 
+    /**
+     * Turn this pane into a live secondary view of {@code primary}'s Monaco
+     * model instead of an independent document. Called by
+     * {@code SciNotes.splitTab()} on the "other" half of a split: the shared
+     * native browser can only ever show one Monaco document as its own, so
+     * that half cannot get one the normal way (see the SharedBrowser class
+     * comment). Any document this pane's own construction already created
+     * (see SharedBrowser#paneConstructed) is discarded first.
+     *
+     * @param primary the split's other pane, which owns the shared document
+     */
     void enterSplitView(MonacoEditorPane primary) {
         splitPrimary = primary;
         if (monacoDocumentCreated) {

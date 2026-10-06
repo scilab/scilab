@@ -25,6 +25,7 @@ import java.text.FieldPosition;
  * For a number 3.0001, 3 is called the base and 1e-4 the fractional part.
  */
 public class TinyIntervalFormat extends DecimalFormat {
+    private static final long serialVersionUID = 1L;
 
     private static final DecimalFormat simpleFormat = new DecimalFormat("0.######");
 

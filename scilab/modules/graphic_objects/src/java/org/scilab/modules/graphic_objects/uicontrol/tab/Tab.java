@@ -29,7 +29,7 @@ import org.scilab.modules.graphic_objects.utils.LayoutType;
 /**
  * @author Vincent COUVERT
  */
-public class Tab extends Uicontrol {
+public final class Tab extends Uicontrol {
     private enum TabProperty {
         TAB_VALUE,
         TAB_STRING

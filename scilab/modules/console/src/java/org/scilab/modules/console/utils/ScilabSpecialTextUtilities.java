@@ -163,11 +163,11 @@ public final class ScilabSpecialTextUtilities {
      */
     private static void setIcon(JComponent component, Icon icon) throws InvocationTargetException {
         try {
-            Class clazz = component.getClass();
-            Method method = clazz.getMethod("getIcon", new Class[] {});
+            Class<?> clazz = component.getClass();
+            Method method = clazz.getMethod("getIcon", new Class<?>[] {});
             Object obj = method.invoke(component, new Object[] {});
             if (icon != null || (obj != null && (obj instanceof SpecialIcon))) {
-                method = clazz.getMethod("setIcon", new Class[] {Icon.class});
+                method = clazz.getMethod("setIcon", new Class<?>[] {Icon.class});
                 method.invoke(component, new Object[] {icon});
             }
         } catch (NoSuchMethodException e) {

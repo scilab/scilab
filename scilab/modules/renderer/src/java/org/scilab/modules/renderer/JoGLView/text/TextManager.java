@@ -536,8 +536,10 @@ public class TextManager {
         if (text.getTextBoxMode() == 2) {
             /* Set the scale factor to 1 in order to return the dimensions of an unscaled texture. */
             spriteDrawer = new TextSpriteDrawer(colorMap, text, 1.0);
+            spriteDrawer.init(colorMap, text, 1.0);
         } else {
             spriteDrawer = new TextSpriteDrawer(colorMap, text);
+            spriteDrawer.init(colorMap, text, 1.0);
         }
 
         return spriteDrawer.getTextureSize();
@@ -551,6 +553,7 @@ public class TextManager {
      */
     protected Texture createSprite(final ColorMap colorMap, final Text textObject) {
         TextSpriteDrawer spriteDrawer = new TextSpriteDrawer(colorMap, textObject);
+        spriteDrawer.init(colorMap, textObject, 1.0);
         Texture texture = textureManager.createTexture();
         texture.setMagnificationFilter(Texture.Filter.LINEAR);
         texture.setMinifyingFilter(Texture.Filter.LINEAR);
@@ -567,6 +570,7 @@ public class TextManager {
      */
     protected Texture createSprite(final ColorMap colorMap, final Text textObject, double scaleFactor) {
         TextSpriteDrawer spriteDrawer = new TextSpriteDrawer(colorMap, textObject, scaleFactor);
+        spriteDrawer.init(colorMap, textObject, scaleFactor);
         Texture texture = textureManager.createTexture();
         texture.setMagnificationFilter(Texture.Filter.LINEAR);
         texture.setMinifyingFilter(Texture.Filter.LINEAR);

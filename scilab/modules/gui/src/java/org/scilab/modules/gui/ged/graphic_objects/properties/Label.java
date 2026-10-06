@@ -42,6 +42,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Label extends ContentLayout {
+    private static final long serialVersionUID = 1L;
     private JTextField cCoordinates;
     private JTextField cX;
     private JTextField cY;
@@ -56,7 +57,7 @@ public class Label extends ContentLayout {
      */
     public void autoPosition(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lAutoPosition = new JLabel();
-        final JComboBox cAutoPosition = new JComboBox();
+        final JComboBox<String> cAutoPosition = new JComboBox<>();
         addLabelComboBox(panel, lAutoPosition, MessagesGED.auto_position,
                          cAutoPosition, new String[] {MessagesGED.off , MessagesGED.on},
                          LEFTMARGIN, COLUMN, ROW);
@@ -85,7 +86,7 @@ public class Label extends ContentLayout {
      */
     public void autoRotation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lAutoRotation = new JLabel();
-        final JComboBox cAutoRotation = new JComboBox();
+        final JComboBox<String> cAutoRotation = new JComboBox<>();
         addLabelComboBox(panel, lAutoRotation, MessagesGED.auto_rotation,
                          cAutoRotation, new String[] {MessagesGED.off , MessagesGED.on},
                          LEFTMARGIN, COLUMN, ROW);

@@ -41,8 +41,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  *
  * @author Vincent COUVERT
  */
-@SuppressWarnings(value = { "serial" })
 public final class SaveAsAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.SAVE_AS;
     /** Icon name of the action */
@@ -50,7 +50,7 @@ public final class SaveAsAction extends DefaultAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_S;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = KeyEvent.SHIFT_DOWN_MASK | Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = KeyEvent.SHIFT_DOWN_MASK | Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /**
      * Constructor

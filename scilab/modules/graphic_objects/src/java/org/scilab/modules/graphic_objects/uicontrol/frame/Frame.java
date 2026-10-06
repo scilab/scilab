@@ -17,6 +17,7 @@ package org.scilab.modules.graphic_objects.uicontrol.frame;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
 
+import java.awt.Font;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 
@@ -37,20 +38,38 @@ public class Frame extends Uicontrol implements AxesContainer {
      */
     public Frame() {
         super();
-        setStyle(__GO_UI_FRAME__);
+        // direct field init: avoid overridable setters from the constructor (this-escape)
+        style = intToStyleEnum(__GO_UI_FRAME__);
         if (Root.getRoot().getUseDeprecatedLF()) {
-            setRelief(RELIEF_RIDGE);
+            relief = RELIEF_RIDGE;
         } else {
             UIDefaults defaults = UIManager.getDefaults();
 
-            //font
-            setFont(defaults.getFont("Panel.font"));
+            //font: same rules as Uicontrol.setFont(), the uicontrol defaults win over Panel.font
+            Font panelFont = defaults.getFont("Panel.font");
+            if (panelFont != null) {
+                fontName = getDefaultFontName().isEmpty() ? panelFont.getName() : getDefaultFontName();
+                fontSize = getDefaultFontSize() == 0 ? panelFont.getSize() : getDefaultFontSize();
+                if (getDefaultFontAngle().isEmpty()) {
+                    fontAngle = panelFont.isItalic() ? "italic" : "normal";
+                } else {
+                    fontAngle = getDefaultFontAngle();
+                }
+                if (getDefaultFontWeight().isEmpty()) {
+                    fontWeight = panelFont.isBold() ? "bold" : "normal";
+                } else {
+                    fontWeight = getDefaultFontWeight();
+                }
+                if (!getDefaultFontUnits().isEmpty()) {
+                    fontUnits = getDefaultFontUnits();
+                }
+            }
 
             //h-alignment
-            setHorizontalAlignment("left");
+            horizontalAlignment = "left";
 
             //v-alignement
-            setVerticalAlignment("middle");
+            verticalAlignment = "middle";
         }
     }
 

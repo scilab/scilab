@@ -27,8 +27,8 @@ import org.scilab.modules.gui.SwingViewObject;
 /**
  * @author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
 public class PanelLayout implements LayoutManager, Serializable {
+    private static final long serialVersionUID = 1L;
 
     public static final String GL_CANVAS = "GL_CANVAS";
     public static final String UI_CONTROL = "UI_CONTROL";

@@ -26,8 +26,8 @@ import org.scilab.modules.scinotes.SciNotes;
  * @author Bruno JOFRET
  *
  */
-@SuppressWarnings(value = { "serial" })
 public class RedoAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

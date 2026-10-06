@@ -37,7 +37,26 @@ public abstract class ScilabGraphUniqueObject extends mxCell implements Comparab
      */
     public ScilabGraphUniqueObject() {
         super();
-        generateId();
+        /*
+         * Assign the inherited id field directly rather than going through
+         * generateId(): mxCell.setId is an overridable method of the jgraphx
+         * library, so even a super.setId call from the constructor makes the
+         * this-escape analysis warn (it cannot inspect the library body).
+         * mxCell.setId only assigns this field, so this is equivalent.
+         */
+        id = new UID().toString();
+    }
+
+    /**
+     * Seal {@link mxCell#setId(String)} as final so that the id set on a cell
+     * (at construction or by {@link #generateId()}) cannot be redirected by a
+     * subclass override.
+     *
+     * @see com.mxgraph.model.mxCell#setId(java.lang.String)
+     */
+    @Override
+    public final void setId(String id) {
+        super.setId(id);
     }
 
     /**
@@ -45,7 +64,7 @@ public abstract class ScilabGraphUniqueObject extends mxCell implements Comparab
      *
      * @see com.mxgraph.model.mxCell#setId(java.lang.String)
      */
-    public void generateId() {
+    public final void generateId() {
         super.setId(new UID().toString());
     }
 

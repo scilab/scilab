@@ -13,7 +13,7 @@ import java.io.IOException;
 @javax.annotation.Generated("JFlex")
 
 // See https://github.com/jflex-de/jflex/issues/222
-@SuppressWarnings("FallThrough")
+@SuppressWarnings("fallthrough")
 public final class XMLLexer {
 
   /** This character denotes the end of file. */

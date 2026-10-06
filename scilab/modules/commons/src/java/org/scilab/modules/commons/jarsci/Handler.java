@@ -17,6 +17,7 @@ package org.scilab.modules.commons.jarsci;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
@@ -43,7 +44,7 @@ public class Handler extends URLStreamHandler {
             path = "/" + path;
         }
 
-        URL jar = new URL("jar:" + JARPATH + "!" + path);
+        URL jar = URI.create("jar:" + JARPATH + "!" + path).toURL();
         return jar.openConnection();
     }
 }

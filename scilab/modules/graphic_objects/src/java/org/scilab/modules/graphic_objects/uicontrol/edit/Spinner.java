@@ -8,7 +8,7 @@ import javax.swing.UIManager;
 import org.scilab.modules.graphic_objects.root.Root;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
-public class Spinner  extends Uicontrol {
+public final class Spinner  extends Uicontrol {
 
     public Spinner() {
         super();

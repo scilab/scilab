@@ -30,8 +30,8 @@ import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 /**
  * A textblock is used to annotate diagrams.
  */
-@SuppressWarnings(value = { "serial" })
 public final class TextBlock extends BasicBlock {
+    private static final long serialVersionUID = 1L;
     /**
      * Default constructor
      */

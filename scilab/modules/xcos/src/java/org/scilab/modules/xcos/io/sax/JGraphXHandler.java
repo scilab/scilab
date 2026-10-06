@@ -180,7 +180,9 @@ class JGraphXHandler implements ScilabHandler {
                     }
                 } else if (localParent instanceof RawDataHandler.RawDataDescriptor) {
                     RawDataHandler.RawDataDescriptor parent = (RawDataHandler.RawDataDescriptor) localParent;
-                    ((ArrayList) parent.value).add(p);
+                    @SuppressWarnings("unchecked")
+                    ArrayList<Object> list = (ArrayList<Object>) parent.value;
+                    list.add(p);
                 }
                 return p;
             }

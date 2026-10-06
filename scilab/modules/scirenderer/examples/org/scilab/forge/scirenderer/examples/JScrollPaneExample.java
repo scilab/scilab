@@ -21,8 +21,9 @@ import java.awt.*;
 /**
  * @Author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
 public class JScrollPaneExample extends JFrame {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Main function.

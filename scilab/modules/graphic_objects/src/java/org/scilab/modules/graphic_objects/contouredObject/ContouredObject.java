@@ -33,25 +33,25 @@ public abstract class ContouredObject extends GraphicObject {
     public enum ContouredObjectPropertyType { LINE, FILLMODE, BACKGROUND, BACKGROUND_ALPHA, MARK, MARK_OFFSET, MARK_STRIDE, MARK_SIZES, NUM_MARK_SIZES, MARK_FOREGROUNDS, NUM_MARK_FOREGROUNDS, MARK_BACKGROUNDS, NUM_MARK_BACKGROUNDS, SELECTED };
 
     /** Line property */
-    private Line line;
+    protected Line line;
 
     /** Specifies whether the object is filled or not */
-    private boolean fillMode;
+    protected boolean fillMode;
 
     /** Background (fill) color */
-    private int background;
+    protected int background;
 
     /** Background transparency (0.0 = fully transparent, 1.0 = fully opaque) */
-    private double backgroundAlpha;
+    protected double backgroundAlpha;
 
     /** Mark property */
-    private Mark mark;
+    protected Mark mark;
 
     private int offset;
     private int stride;
 
     private boolean selected;
-    private final Integer selectedColor = new Integer(-3);
+    private final Integer selectedColor = Integer.valueOf(-3);
 
     /** Mark sizes
      *  The class Mark only handles a single size.

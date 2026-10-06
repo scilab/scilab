@@ -19,8 +19,8 @@ package org.scilab.modules.ui_data.variableeditor.renderers;
  * CellRenderer for sparse type
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class ScilabSparseRenderer extends ScilabComplexSparseRenderer {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

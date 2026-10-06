@@ -53,11 +53,11 @@ import org.scilab.modules.localization.Messages;
  * @author Sylvestre Koumar
  *
  */
-public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTree {
+public final class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTree {
 
     private static final long serialVersionUID = 1L;
 
-    private Icon icon;
+    private transient Icon icon;
     private CommonCallBack callback;
     private JScrollPane scrollPane = new JScrollPane();
 
@@ -197,6 +197,7 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 
             SwingScilabWindow window = SwingScilabWindow.createWindow(true);
             final SwingScilabDockablePanel tab = new SwingScilabDockablePanel(Messages.gettext("Tree Overview"));
+            tab.init();
             ClosingOperationsManager.addDependencyWithRoot(tab);
             tab.setCallback(new CommonCallBack("", CallBack.UNTYPED) {
                 private static final long serialVersionUID = 8418506008885202932L;

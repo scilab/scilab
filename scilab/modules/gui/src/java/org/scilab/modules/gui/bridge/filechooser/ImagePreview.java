@@ -46,8 +46,8 @@ import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 
 /* ImagePreview.java by FileChooserDemo2.java. */
-@SuppressWarnings(value = { "serial" })
-public class ImagePreview extends JComponent implements PropertyChangeListener {
+public final class ImagePreview extends JComponent implements PropertyChangeListener {
+    private static final long serialVersionUID = 1L;
 
     ImageIcon thumbnail = null;
     File file = null;

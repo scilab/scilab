@@ -31,8 +31,8 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * SupprAction class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class SupprAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static final String KEY = "DELETE";
     private static final String SUPPR = "Suppr";

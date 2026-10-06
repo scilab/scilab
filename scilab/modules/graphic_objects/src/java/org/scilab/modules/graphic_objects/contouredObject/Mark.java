@@ -49,22 +49,22 @@ public class Mark {
 
 
     /** Specifies whether marks must be drawn or not */
-    private boolean mode;
+    protected boolean mode;
 
     /** Mark style */
-    private int style;
+    protected int style;
 
     /** Mark size unit */
-    private MarkSizeUnitType markSizeUnit;
+    protected MarkSizeUnitType markSizeUnit;
 
     /** Mark size */
-    private int size;
+    protected int size;
 
     /** Foreground color */
-    private int foreground;
+    protected int foreground;
 
     /** Background color */
-    private int background;
+    protected int background;
 
     /** Background (face) transparency (0.0 = fully transparent, 1.0 = fully opaque) */
     private double backgroundAlpha;

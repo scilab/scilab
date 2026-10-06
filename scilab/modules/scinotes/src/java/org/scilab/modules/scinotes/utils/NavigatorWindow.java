@@ -87,16 +87,16 @@ import org.scilab.modules.scinotes.tabfactory.CodeNavigatorTabFactory;
  *
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class NavigatorWindow extends SwingScilabDockablePanel implements DocumentListener,
     TreeExpansionListener {
+    private static final long serialVersionUID = 1L;
 
     private static final String EMPTY = "";
 
-    private Map<ScilabEditorPane, DefaultMutableTreeNode> mapNode = new HashMap();
-    private Map<ScilabEditorPane, TreePath> mapFunPath = new HashMap();
-    private Map<ScilabEditorPane, TreePath> mapAnchorPath = new HashMap();
-    private List<ScilabEditorPane> panes = new ArrayList<ScilabEditorPane>();
+    private transient Map<ScilabEditorPane, DefaultMutableTreeNode> mapNode = new HashMap<ScilabEditorPane, DefaultMutableTreeNode>();
+    private transient Map<ScilabEditorPane, TreePath> mapFunPath = new HashMap<ScilabEditorPane, TreePath>();
+    private transient Map<ScilabEditorPane, TreePath> mapAnchorPath = new HashMap<ScilabEditorPane, TreePath>();
+    private transient List<ScilabEditorPane> panes = new ArrayList<ScilabEditorPane>();
 
     private SciNotes editor;
 
@@ -115,7 +115,7 @@ public final class NavigatorWindow extends SwingScilabDockablePanel implements D
     private JLabel labelGotoLine;
     private JLabel labelNumerotation;
     private JTextField lineNumber;
-    private JComboBox numType;
+    private JComboBox<String> numType;
     private JScrollPane scrollPane;
 
     private SwingScilabWindow parentWindow;
@@ -129,6 +129,7 @@ public final class NavigatorWindow extends SwingScilabDockablePanel implements D
      */
     public NavigatorWindow(SciNotes editor, String uuid) {
         super(SciNotesMessages.CODE_NAVIGATOR, uuid == null ? UUID.randomUUID().toString() : uuid);
+        init();
         this.editor = editor;
         editor.addNavigator(this);
         setContentPane(new javax.swing.JPanel());
@@ -291,8 +292,8 @@ public final class NavigatorWindow extends SwingScilabDockablePanel implements D
     public void changeToolBar() {
         SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
         if (win != null && win.getDockingPort() != null) {
-            Set<SwingScilabDockablePanel> set = (Set<SwingScilabDockablePanel>) win.getDockingPort().getDockables();
-            for (SwingScilabDockablePanel tab : set) {
+            Set<?> set = win.getDockingPort().getDockables();
+            for (Object tab : set) {
                 if (tab == editor) {
                     addToolBar(editor.getToolBar());
                     break;
@@ -399,7 +400,7 @@ public final class NavigatorWindow extends SwingScilabDockablePanel implements D
     private void initComponents() {
         labelNumerotation = new JLabel();
         lineNumber = new JTextField();
-        numType = new JComboBox();
+        numType = new JComboBox<String>();
         jSeparator1 = new JSeparator();
         labelGotoLine = new JLabel();
         scrollPane = new JScrollPane();
@@ -428,7 +429,7 @@ public final class NavigatorWindow extends SwingScilabDockablePanel implements D
             }
         });
 
-        numType.setModel(new DefaultComboBoxModel(new String[] {SciNotesMessages.ABSOLUTE, SciNotesMessages.RELATIVE}));
+        numType.setModel(new DefaultComboBoxModel<String>(new String[] {SciNotesMessages.ABSOLUTE, SciNotesMessages.RELATIVE}));
         numType.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 int i = numType.getSelectedIndex();
@@ -504,7 +505,7 @@ public final class NavigatorWindow extends SwingScilabDockablePanel implements D
                                );
         /* End NetBeans */
 
-        List<Component> components = new ArrayList(3);
+        List<Component> components = new ArrayList<Component>(3);
         components.add(functionNavigator);
         components.add(lineNumber);
         components.add(numType);

@@ -43,8 +43,8 @@ import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
  * {@link javax.swing.JScrollPane#add(java.awt.Component)} on this class but use
  * {@link JPanel#add(java.awt.Component)} instead.
  */
-@SuppressWarnings(value = { "serial" })
 public class PaletteView extends JPanel implements Scrollable {
+    private static final long serialVersionUID = 1L;
 
     private static Rectangle2D.Double selectionRect;
     private boolean isLoaded;
@@ -53,12 +53,16 @@ public class PaletteView extends JPanel implements Scrollable {
      * Default constructor
      */
     public PaletteView() {
-        setName("PaletteView");
-        initComponents();
+        // Initialize in a separate method to avoid 'this' escape warnings
+        // Subclasses and callers must call initialize() after construction
     }
 
-    /** Setup component */
-    private void initComponents() {
+    /**
+     * Initialize the palette view
+     * Should be called after construction, by subclasses and direct callers
+     */
+    public void initialize() {
+        setName("PaletteView");
         setBackground(Color.WHITE);
 
         setLayout(new ModifiedFlowLayout(FlowLayout.LEADING,

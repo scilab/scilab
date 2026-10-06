@@ -44,8 +44,9 @@ import java.util.EventListener;
 /**
  * @author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
 public final class JLatexMath extends ExampleFrame {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Frame title.

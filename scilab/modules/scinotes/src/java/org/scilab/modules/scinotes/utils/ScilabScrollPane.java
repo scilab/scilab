@@ -31,11 +31,11 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
  * A ScrollPane where the vertical scrollbar can contains marks to indicate particular positions in the document.
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class ScilabScrollPane extends JScrollPane {
+    private static final long serialVersionUID = 1L;
 
     private static final Color MARKCOLOR = new Color(229, 192, 0);
-    private List<Rectangle> marks;
+    private transient List<Rectangle> marks;
 
     /**
      * Default constructor
@@ -74,9 +74,11 @@ public class ScilabScrollPane extends JScrollPane {
      */
     protected class ScilabVerticalScrollBar extends ScrollBar {
 
-        private Field trackRect;
-        private Field thumbRect;
-        private ScrollBarUI ui;
+        private static final long serialVersionUID = 1L;
+
+        private transient Field trackRect;
+        private transient Field thumbRect;
+        private transient ScrollBarUI ui;
 
         /**
          * Default constructor

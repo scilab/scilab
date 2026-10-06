@@ -47,7 +47,7 @@ public class SearchAction extends CommonCallBack {
     private static final String ICON_SEARCH = FindIconHelper.findIcon("system-search");
 
     private static JButton btnSearch;
-    private static JComboBox txtSearch;
+    private static JComboBox<String> txtSearch;
     private static JPanel searchBar;
 
     /**
@@ -65,7 +65,7 @@ public class SearchAction extends CommonCallBack {
         searchBar = new JPanel();
         searchBar.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
-        txtSearch = new JComboBox();
+        txtSearch = new JComboBox<>();
         txtSearch.setUI(new SearchUI());
         searchBar.add(txtSearch);
 
@@ -153,7 +153,6 @@ class SearchUI extends MetalComboBoxUI {
      * @return JButton
      */
     @Override
-    @SuppressWarnings("serial")
     protected JButton createArrowButton() {
         JButton btn = new JButton() {
             @Override

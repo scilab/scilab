@@ -137,25 +137,25 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     private final Component component;
     private final AxesContainer figure;
-    private final InteractionManager interactionManager;
+    private InteractionManager interactionManager;
 
-    private final ColorMapTextureDataProvider colorMapTextureDataProvider;
+    private ColorMapTextureDataProvider colorMapTextureDataProvider;
 
-    private final ScilabTextureManager textureManager;
-    private final MarkSpriteManager markManager;
-    private final LabelManager labelManager;
-    private final DataManager dataManager;
-    private final TextManager textManager;
+    private ScilabTextureManager textureManager;
+    private MarkSpriteManager markManager;
+    private LabelManager labelManager;
+    private DataManager dataManager;
+    private TextManager textManager;
 
-    private final ContouredObjectDrawer contouredObjectDrawer;
-    private final LegendDrawer legendDrawer;
-    protected final AxesDrawer axesDrawer;
-    private final AxisDrawer axisDrawer;
-    private final ArrowDrawer arrowDrawer;
-    private final FecDrawer fecDrawer;
-    private final Fac3dDrawer fac3dDrawer;
-    private final TransparentFaceSorter transparentFaceSorter;
-    private final DatatipTextDrawer datatipTextDrawer;
+    private ContouredObjectDrawer contouredObjectDrawer;
+    private LegendDrawer legendDrawer;
+    protected AxesDrawer axesDrawer;
+    private AxisDrawer axisDrawer;
+    private ArrowDrawer arrowDrawer;
+    private FecDrawer fecDrawer;
+    private Fac3dDrawer fac3dDrawer;
+    private TransparentFaceSorter transparentFaceSorter;
+    private DatatipTextDrawer datatipTextDrawer;
     private DatatipDisplayModeManager datatipDisplayModeManager;
 
     private DrawingTools drawingTools;
@@ -179,13 +179,23 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     public DrawerVisitor(Component component, Canvas canvas, AxesContainer figure) {
-        GraphicController.getController().register(this);
-
+        // Assign final fields first
         this.component = component;
         this.canvas = canvas;
         this.figure = figure;
+    }
 
+    /**
+     * Finish initialization after construction (manager creation and controller
+     * registration would leak this from the constructor).
+     * Called once right after instantiation, before the visitor is used.
+     */
+    public void init() {
         this.interactionManager = new InteractionManager(this);
+        
+        // Now safe to register
+        GraphicController.getController().register(this);
+        visitorMap.put(figure.getIdentifier(), this);
         this.dataManager = new DataManager(canvas);
         this.textureManager = new ScilabTextureManager(this);
         this.markManager = new MarkSpriteManager(canvas.getTextureManager());
@@ -202,8 +212,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
         this.datatipTextDrawer = new DatatipTextDrawer(canvas);
         this.datatipDisplayModeManager = new DatatipDisplayModeManager(component);
-
-        visitorMap.put(figure.getIdentifier(), this);
     }
 
     public static void changeVisitor(AxesContainer figure, DrawerVisitor visitor) {
@@ -1601,4 +1609,5 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             fireUpdate();
         }
     }
+
 }

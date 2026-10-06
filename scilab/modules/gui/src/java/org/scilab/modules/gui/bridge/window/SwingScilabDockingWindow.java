@@ -35,6 +35,7 @@ import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.SciDockingListener;
 
 public class SwingScilabDockingWindow extends SwingScilabWindow {
+    private static final long serialVersionUID = 1L;
 
     static {
         // The console is a heavyweight JCEF browser: FlexDock's glasspane is
@@ -48,10 +49,21 @@ public class SwingScilabDockingWindow extends SwingScilabWindow {
     }
 
     private SciDockingPort sciDockingPort;
-    private SciDockingListener sciDockingListener;
+    private transient SciDockingListener sciDockingListener;
 
-    public SwingScilabDockingWindow() {
+    /**
+     * Constructor. Non-public: use {@link SwingScilabWindow#createWindow(boolean)}
+     * or, for subclasses, call {@code super()} and then {@code init()}
+     * explicitly right after construction.
+     */
+    protected SwingScilabDockingWindow() {
         super();
+    }
+
+    @Override
+    public void init() {
+        super.init();
+
         /* Create automatically a docking port associated to the window */
         sciDockingPort = new SciDockingPort();
         EffectsManager.setPreview(new ScilabGhostPreview());
@@ -117,9 +129,9 @@ public class SwingScilabDockingWindow extends SwingScilabWindow {
             close();
         } else {
             /* Make sur a Tab is active */
-            Set<SwingScilabDockablePanel> docks = sciDockingPort.getDockables();
-            Iterator<SwingScilabDockablePanel> it = docks.iterator();
-            ActiveDockableTracker.requestDockableActivation(it.next());
+            Set<?> docks = sciDockingPort.getDockables();
+            Iterator<?> it = docks.iterator();
+            ActiveDockableTracker.requestDockableActivation((SwingScilabDockablePanel) it.next());
         }
     }
 

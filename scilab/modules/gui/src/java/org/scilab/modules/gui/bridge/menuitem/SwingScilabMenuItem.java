@@ -54,17 +54,17 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, SimpleMenuItem {
+public final class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, SimpleMenuItem {
 
     private static final long serialVersionUID = 1L;
     private CommonCallBack callback;
-    private Menu meAsAMenu;
-    private CheckBoxMenuItem meAsACheckBoxMenuItem;
+    private transient Menu meAsAMenu;
+    private transient CheckBoxMenuItem meAsACheckBoxMenuItem;
     private boolean checkedState;
     private boolean autoCheckedMode = true;
     private String text = "";
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     private Integer uid;
 

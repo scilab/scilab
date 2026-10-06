@@ -38,11 +38,12 @@ import java.nio.ShortBuffer;
  * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabIntegerReference extends ScilabInteger {
+    private static final long serialVersionUID = 1L;
 
-    private LongBuffer longBuffer;
-    private IntBuffer intBuffer;
-    private ShortBuffer shortBuffer;
-    private ByteBuffer byteBuffer;
+    private transient LongBuffer longBuffer;
+    private transient IntBuffer intBuffer;
+    private transient ShortBuffer shortBuffer;
+    private transient ByteBuffer byteBuffer;
     private final int nbRows;
     private final int nbCols;
 

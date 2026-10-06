@@ -44,8 +44,7 @@ import org.scilab.modules.xcos.utils.Stack;
  *
  * @see <a href="http://java.sun.com/docs/books/tutorial/javabeans/properties/bound.html">JavaBeans Bound Properties</a>
  */
-@SuppressWarnings(value = { "serial" })
-public class ScicosParameters implements Serializable, Cloneable {
+public final class ScicosParameters implements Cloneable {
 
     /*
      * Bean properties

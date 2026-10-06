@@ -62,12 +62,11 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener {
         topModel = new DefaultTreeModel(top);
         tree = new JTree(topModel);
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        tree.addTreeSelectionListener(this);
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 
 
         //Listen for when the selection changes.
-        tree.addTreeSelectionListener(this);
+        // (listener registration is deferred to initTreeListener() to avoid this-escape)
 
 
         Dimension minDims = new Dimension(400, 300);
@@ -95,6 +94,14 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener {
         frame.add(panel);
         frame.setVisible(false);
         frame.setSize(1200, 600);
+    }
+
+    /**
+     * Register the tree selection listener after construction to avoid this-escape.
+     * Must be called by subclasses right after instantiation.
+     */
+    protected void initTreeListener() {
+        tree.addTreeSelectionListener(this);
     }
 
     public abstract void createObject(Integer id);

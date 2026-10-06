@@ -31,6 +31,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.JarURLConnection;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -84,7 +85,6 @@ import org.scilab.modules.localization.Messages;
  * @author Sylvestre LEDRU
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implements MouseWheelListener {
 
     private static final String SCILAB_PROTO = "scilab://";
@@ -104,7 +104,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
     private JEditorPane accessibleHtml;
 
     private final JHelpContentViewer x;
-    private List<HelpSet> helpSets;
+    private transient List<HelpSet> helpSets;
 
     public SwingScilabHelpBrowserViewer(JHelpContentViewer x) {
         super(x);
@@ -150,10 +150,10 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
     }
 
     private void initHelpSets(HelpSet hs) {
-        helpSets = new ArrayList();
+        helpSets = new ArrayList<>();
         helpSets.add(hs);
-        for (Enumeration<HelpSet> e = hs.getHelpSets(); e.hasMoreElements();) {
-            helpSets.add(e.nextElement());
+        for (Enumeration<?> e = hs.getHelpSets(); e.hasMoreElements();) {
+            helpSets.add((HelpSet) e.nextElement());
         }
     }
 
@@ -174,7 +174,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
                     }
                 }
             }
-            url = new URL(helpSets.get(0).getHelpSetURL().toString().replace("jhelpset.hs", "ScilabErrorPage.html"));
+            url = URI.create(helpSets.get(0).getHelpSetURL().toString().replace("jhelpset.hs", "ScilabErrorPage.html")).toURL();
         } catch (MalformedURLException ex) { }
 
         return url;
@@ -203,7 +203,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
                     }
                 }
             }
-            url = new URL(helpSets.get(0).getHelpSetURL().toString().replace("jhelpset.hs", "ScilabErrorPage.html"));
+            url = URI.create(helpSets.get(0).getHelpSetURL().toString().replace("jhelpset.hs", "ScilabErrorPage.html")).toURL();
         } catch (MalformedURLException ex) { }
 
         return url;
@@ -339,8 +339,8 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
             /* Dynamic load of the SciNotes class.
              * This is done to avoid a cyclic dependency on gui <=> scinotes
              */
-            Class scinotesClass = Class.forName("org.scilab.modules.scinotes.SciNotes");
-            Class[] arguments = new Class[] {String.class};
+            Class<?> scinotesClass = Class.forName("org.scilab.modules.scinotes.SciNotes");
+            Class<?>[] arguments = new Class<?>[] {String.class};
             Method method = scinotesClass.getMethod("scinotesWithText", arguments);
             method.invoke(scinotesClass, new Object[] {code});
 
@@ -564,7 +564,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
 
         menuItem = new JMenuItem(Messages.gettext("Edit in the Scilab Text Editor"));
         try {
-            Class scinotesClass = Class.forName("org.scilab.modules.scinotes.SciNotes");
+            Class<?> scinotesClass = Class.forName("org.scilab.modules.scinotes.SciNotes");
         } catch (ClassNotFoundException e) {
             /* SciNotes not available */
             menuItem.setEnabled(false);

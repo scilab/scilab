@@ -107,14 +107,14 @@ import com.google.gson.JsonParser;
  *   panel.destroy();
  * </pre>
  */
-public class ScilabCefPanel extends JPanel {
+public final class ScilabCefPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger("org.scilab.modules.commons.gui.ScilabCefPanel");
     public static final String CEF_NATIVE_FOCUS_PROPERTY = ScilabCefPanel.class.getName() + ".cefNativeFocus";
 
-    private CefClient client;
-    private CefBrowser browser;
+    private transient CefClient client;
+    private transient CefBrowser browser;
     private boolean debug = false;
 
     /**
@@ -123,7 +123,7 @@ public class ScilabCefPanel extends JPanel {
      * "DevTools are open" state: JCEF exposes none, and getDevToolsClient()
      * creates a CDP client on demand, so it always answers "open".
      */
-    private volatile CefBrowser devToolsBrowser = null;
+    private transient volatile CefBrowser devToolsBrowser = null;
 
     /** Set between an open request and the DevTools browser showing up. */
     private volatile boolean devToolsRequested = false;
@@ -190,14 +190,14 @@ public class ScilabCefPanel extends JPanel {
     private CardLayout cardLayout;
     private JPanel cardPanel;
     private final ResizeCover resizeCover = new ResizeCover();
-    private AWTEventListener resizeMouseListener;
+    private transient AWTEventListener resizeMouseListener;
     private Timer resizeSettleTimer;
     private Timer snapshotRefreshTimer;
     private long lastResizeStepMs = 0;
     /** Time of the last mouse release, to skip masking the single resize it triggers. */
     private volatile long lastMouseReleaseMs = 0;
     /** Last page snapshot, refreshed while idle so a gesture can mask instantly. */
-    private volatile BufferedImage cachedSnapshot;
+    private transient volatile BufferedImage cachedSnapshot;
     /** True while a mouse button is held. */
     private volatile boolean mouseDown = false;
     /** True while the snapshot cover is masking the browser. */
@@ -206,7 +206,7 @@ public class ScilabCefPanel extends JPanel {
     /* Default implementations of handlers */
 
     // ---- Keyboard: Ctrl+Shift+I for DevTools, Ctrl+Shift+R to reload ----
-    final CefKeyboardHandler keyboardHandler = new CefKeyboardHandlerAdapter() {
+    final transient CefKeyboardHandler keyboardHandler = new CefKeyboardHandlerAdapter() {
         @Override
         public boolean onKeyEvent(CefBrowser b, CefKeyEvent event) {
             if (b != browser) return false;
@@ -236,7 +236,7 @@ public class ScilabCefPanel extends JPanel {
     };
     
     // ---- Context menu: suppress default JCEF menu ----
-   final CefContextMenuHandler contextMenuHandler = new CefContextMenuHandlerAdapter() {
+   final transient CefContextMenuHandler contextMenuHandler = new CefContextMenuHandlerAdapter() {
         @Override
         public void onBeforeContextMenu(CefBrowser b, CefFrame frame,
                                         CefContextMenuParams params, CefMenuModel model) {
@@ -249,7 +249,7 @@ public class ScilabCefPanel extends JPanel {
     };
 
     // ---- Focus management ----
-    final CefFocusHandler focusHandler = new CefFocusHandlerAdapter() {
+    final transient CefFocusHandler focusHandler = new CefFocusHandlerAdapter() {
         @Override
         public boolean onSetFocus(CefBrowser b, CefFocusHandler.FocusSource source) {
             if (b != browser) return false;
@@ -285,7 +285,7 @@ public class ScilabCefPanel extends JPanel {
     // ---- Load state: gate resize masking until the browser has painted ----
     /** Set once the browser's main frame finished loading. */
     private volatile boolean browserLoaded = false;
-    final CefLoadHandler loadHandler = new CefLoadHandlerAdapter() {
+    final transient CefLoadHandler loadHandler = new CefLoadHandlerAdapter() {
         @Override
         public void onLoadEnd(CefBrowser b, CefFrame frame, int httpStatusCode) {
             if (b == browser && frame != null && frame.isMain()) {
@@ -329,7 +329,7 @@ public class ScilabCefPanel extends JPanel {
             return false;
         }
     }
-    final CefRequestHandler requestHandler = new CefRequestHandlerAdapter() {
+    final transient CefRequestHandler requestHandler = new CefRequestHandlerAdapter() {
         @Override
         public boolean onBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, boolean user_gesture, boolean is_redirect) {
             // "scilab:" links run a Scilab command, they never navigate.
@@ -361,7 +361,7 @@ public class ScilabCefPanel extends JPanel {
     };
 
     // ---- Life span: track the DevTools window ----
-    final CefLifeSpanHandler lifeSpanHandler = new CefLifeSpanHandlerAdapter() {
+    final transient CefLifeSpanHandler lifeSpanHandler = new CefLifeSpanHandlerAdapter() {
         @Override
         public void onAfterCreated(CefBrowser b) {
             // The DevTools browser is created on this very client, so its

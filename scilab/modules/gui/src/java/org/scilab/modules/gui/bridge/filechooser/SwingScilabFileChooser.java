@@ -57,10 +57,26 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 
     /**
      * Default constructor
+     * package-private: use {@link #create()} (or, for subclasses, call
+     * {@code super()} then {@code init()} explicitly) so that {@link #init()}
+     * is never forgotten.
      */
-    public SwingScilabFileChooser() {
+    SwingScilabFileChooser() {
         super();
+    }
 
+    /**
+     * Creates and fully initializes a new file chooser.
+     * @return the created file chooser
+     */
+    public static SwingScilabFileChooser create() {
+        SwingScilabFileChooser fc = new SwingScilabFileChooser();
+        fc.init();
+        return fc;
+    }
+
+    @Override
+    public void init() {
         //System.out.println("[Constructor] SwingScilabFileChooser");
         /** Bug 3231 fixed: do not explore all zip files on desktop under Windows */
         //putClientProperty("FileChooser.useShellFolder", Boolean.FALSE);

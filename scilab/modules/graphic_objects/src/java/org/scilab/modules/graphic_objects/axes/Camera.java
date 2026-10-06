@@ -16,6 +16,8 @@
 
 package org.scilab.modules.graphic_objects.axes;
 
+import java.util.Arrays;
+
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
@@ -104,6 +106,16 @@ public class Camera {
         }
 
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = view != null ? view.hashCode() : 0;
+        result = 31 * result + (isoview ? 1 : 0);
+        result = 31 * result + (cubeScaling ? 1 : 0);
+        result = 31 * result + (rotationAngles != null ? Arrays.hashCode(rotationAngles) : 0);
+        result = 31 * result + (rotationAngles3d != null ? Arrays.hashCode(rotationAngles3d) : 0);
+        return result;
     }
 
     /**

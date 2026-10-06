@@ -25,16 +25,19 @@ import org.scilab.modules.xcos.palette.model.PaletteBlock;
  * Implement a view to show the search results.
  * @author Marcos Cardinot <mcardinot@gmail.com>
  */
-@SuppressWarnings(value = { "serial" })
-public class PaletteSearchView extends PaletteView {
+public final class PaletteSearchView extends PaletteView {
+    private static final long serialVersionUID = 1L;
 
     private JLabel header;
-    private PaletteCtrl paletteCtrl;
+    private transient PaletteCtrl paletteCtrl;
 
     /**
      * Default constructor
      */
     public PaletteSearchView() {
+        // Call parent initialization
+        initialize();
+        // Override the name
         setName("PaletteSearchView");
         this.header = new JLabel();
         this.paletteCtrl = new PaletteCtrl();

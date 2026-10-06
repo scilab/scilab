@@ -73,6 +73,7 @@ import org.scilab.modules.localization.Messages;
  * @author Vincent COUVERT
  */
 public abstract class SciConsole extends JPanel {
+    private static final long serialVersionUID = 1L;
 
     private static final Logger log = Logger.getLogger("org.scilab.modules.console.SciConsole");
 
@@ -92,7 +93,7 @@ public abstract class SciConsole extends JPanel {
     /**
      * Protection for userInputValue variable R/W
      */
-    private Semaphore canReadUserInputValue = new Semaphore(0);
+    private transient Semaphore canReadUserInputValue = new Semaphore(0);
 
     private int maxNumberOfLines;
 
@@ -101,12 +102,12 @@ public abstract class SciConsole extends JPanel {
     private static BlockingQueue<Boolean> displayQueue = new LinkedBlockingQueue<Boolean>();
 
     // JCEF
-    private final ScilabCefPanel cefPanel;
+    private final transient ScilabCefPanel cefPanel;
     public boolean ready;
 
     //Input
     private boolean disableLock = false;
-    private Thread concurrentThread = null;
+    private transient Thread concurrentThread = null;
     private String defaultPrompt;
 
     private String selectedText;
@@ -132,7 +133,14 @@ public abstract class SciConsole extends JPanel {
         {
             cefPanel.setDebug(true);
         }
+    }
 
+    /**
+     * Finish initialization after construction (focus listener and CEF handler
+     * registration would leak this from the constructor).
+     * Called once right after instantiation, before the console is used.
+     */
+    public void init() {
         // The console only lays out its browser: the focus given to its dock
         // goes to the browser panel, which hands it to the page. Put the caret
         // back in the input line then (the output may have been selected).
@@ -476,15 +484,6 @@ public abstract class SciConsole extends JPanel {
     }
 
     /**
-     * Set the shortcuts in the pane relatively to the file
-     * keysConfiguration.xml
-     *
-     * @param sep
-     *            the textpane
-     * @param ed
-     *            the SciNotes editor
-     */
-    /**
      * Updates Scilab internal variables containing the size of the console
      * These variables are used to format data before displaying it
      */
@@ -817,7 +816,7 @@ public abstract class SciConsole extends JPanel {
         interruptAndDisable();
     }
 
-    private List<String[]> outputList = new ArrayList<String[]>();
+    private transient List<String[]> outputList = new ArrayList<String[]>();
     public void append(String data) {
         append(data, "monospace");
     }
@@ -1066,4 +1065,5 @@ public abstract class SciConsole extends JPanel {
     }
 
     public abstract void helpOnTheKeyword();
+
 }

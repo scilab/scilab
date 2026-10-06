@@ -39,8 +39,8 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * The File Browser history
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class ScilabFileBrowserHistory {
+    private static final long serialVersionUID = 1L;
 
     private static final String PREVIOUSICON = FindIconHelper.findIcon("go-previous");
     private static final String NEXTICON = FindIconHelper.findIcon("go-next");

@@ -78,9 +78,8 @@ public class ScilabClassLoader extends URLClassLoader {
 	 * Method used to load a class
 	 * @param name the name of the class to be loaded
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public Class loadClass(String name) throws ClassNotFoundException {
+	public Class<?> loadClass(String name) throws ClassNotFoundException {
 		return super.loadClass(name);
 	}
 

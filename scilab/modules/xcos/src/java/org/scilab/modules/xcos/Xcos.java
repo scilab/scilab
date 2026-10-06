@@ -199,15 +199,6 @@ public final class Xcos {
 
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        if (browser != null) {
-            JavaController.unregister_view(browser);
-        }
-
-        JavaController.unregister_view(view);
-    }
-
     /**
      * @return the per Scilab application, Xcos instance
      */
@@ -456,7 +447,7 @@ public final class Xcos {
                 }
             }
 
-            diag = new XcosDiagram(controller, currentId, currentKind, "");
+            diag = XcosDiagram.create(controller, currentId, currentKind, "");
             diag.setSavedFile(f);
             diag.installListeners();
 
@@ -599,7 +590,6 @@ public final class Xcos {
      *
      * @return the diagram collection
      */
-    @SuppressWarnings("serial")
     public List<XcosDiagram> createDiagramCollection() {
         return new ArrayList<XcosDiagram>() {
             @Override
@@ -863,9 +853,9 @@ public final class Xcos {
 
         if (XcosFileType.getAvailableSaveFormats().contains(filetype)) {
             if (export) {
-                filetype.save(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
+                filetype.save(file, XcosDiagram.create(new JavaController(), diagramId, Kind.DIAGRAM, ""));
             } else {
-                filetype.load(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
+                filetype.load(file, XcosDiagram.create(new JavaController(), diagramId, Kind.DIAGRAM, ""));
             }
         } else {
             throw new IllegalArgumentException("not handled filetype");
@@ -905,7 +895,7 @@ public final class Xcos {
         controller.getObjectProperty(diagramId, kind, ObjectProperties.NAME, name);
         name[0] = name[0].replaceAll("[\\\\/:*?\"<>|]", "_");
 
-        XcosDiagram graph = new XcosDiagram(controller, diagramId, kind, "");
+        XcosDiagram graph = XcosDiagram.create(controller, diagramId, kind, "");
         XcosCellFactory.insertChildren(controller, graph);
         String filename = String.format(file, name[0]);
 
@@ -958,7 +948,7 @@ public final class Xcos {
         {
             Long layerId = layers.get(i);
             String path = paths.get(i);
-            graph = new XcosDiagram(controller, layerId, Kind.BLOCK, "");
+            graph = XcosDiagram.create(controller, layerId, Kind.BLOCK, "");
             XcosCellFactory.insertChildren(controller, graph);
             
             filename = String.format(file, path);

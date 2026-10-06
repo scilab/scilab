@@ -22,6 +22,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -103,17 +104,17 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private Color highlightColor;
     private Color highlightContourColor;
     private boolean highlightEnable;
-    private Object highlightCL;
+    private transient Object highlightCL;
     private boolean matchingKeywordsEnable;
     private boolean matchingOpenersEnable;
     private boolean overwriteMode;
-    private ScilabLexer lexer;
+    private transient ScilabLexer lexer;
     private SciNotes editor;
-    private IndentManager indent;
-    private TabManager tab;
-    private CommentManager com;
-    private HelpOnTypingManager helpOnTyping;
-    private TrailingWhiteManager trailingWhite;
+    private transient IndentManager indent;
+    private transient TabManager tab;
+    private transient CommentManager com;
+    private transient HelpOnTypingManager helpOnTyping;
+    private transient TrailingWhiteManager trailingWhite;
     private boolean readonly;
     private boolean binary;
     private String infoBar = "";
@@ -129,8 +130,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private long lastExternalModification;
 
     /* matchLR matches Left to Right ... */
-    private MatchingBlockManager matchLR;
-    private MatchingBlockManager matchRL;
+    private transient MatchingBlockManager matchLR;
+    private transient MatchingBlockManager matchRL;
 
     private boolean suppressCom = false;
 
@@ -150,8 +151,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean saveHighlightEnable;
 
     private EventListenerList kwListeners = new EventListenerList();
-    private Map<Integer, Object> highlightedWords = new HashMap<Integer, Object>();
-    private Set<File> toRemove = new HashSet<File>();
+    private transient Map<Integer, Object> highlightedWords = new HashMap<Integer, Object>();
+    private transient Set<File> toRemove = new HashSet<File>();
 
     //private List<Object> highlightedWords = new ArrayList<Object>();
     //private List<Integer> highlightedWordsBegin = new ArrayList<Integer>();
@@ -167,15 +168,16 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
         this.editor = editor;
         this.uuid = UUID.randomUUID();
-        edComponent = new EditorComponent(this);
+    }
 
-        /*
-          When SciNotes is docked and has two tabs, switching the tabs causes a focus loss.
-          The focus is gave to the other docked component and that generates a toolbar change.
-          The solution is to set FocusCycleRoot to false (set to true by default in JEditorPane).
-        */
-        setFocusCycleRoot(false);
-
+    /**
+     * Complete the initialization: must be called once, right after the
+     * constructor (including subclass constructors) returned, so that "this"
+     * never escapes during construction.
+     */
+    public void init() {
+        // setEditorKit() needs the enclosing scroll pane to exist already
+        getEditorComponent();
         addCaretListener(this);
         addMouseMotionListener(this);
         addMouseListener(this);
@@ -262,7 +264,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                             if (ssp != null) {
                                 height = ssp.getHeight() + ssp.getVerticalScrollBar().getValue();
                             } else {
-                                height = edComponent.getHeight();
+                                height = getEditorComponent().getHeight();
                             }
                             ScilabLaTeXViewer.displayExpression(ScilabEditorPane.this, height, exp, start, end);
                         } catch (BadLocationException ex) { }
@@ -291,16 +293,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                             OpenSourceFileOnKeywordAction.openSource(ScilabEditorPane.this, url);
                         }
                     } catch (BadLocationException ex) { }
-                }
-            }
-        });
-
-        getScrollPane().addMouseWheelListener(new MouseWheelListener() {
-            public void mouseWheelMoved(MouseWheelEvent e) {
-                if ((OS.get() == OS.MAC && e.isMetaDown()) || e.isControlDown()) {
-                    int n = e.getWheelRotation();
-                    SciNotes.updateFontSize(n);
-                    e.consume();
                 }
             }
         });
@@ -379,7 +371,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public boolean getScrollableTracksViewportWidth() {
         if (((ScilabDocument) getDocument()).getView() instanceof ScilabView) {
-            return !edComponent.isSplited();
+            return !getEditorComponent().isSplited();
         } else {
             return super.getScrollableTracksViewportWidth();
         }
@@ -455,7 +447,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             ctrlHit = false;
         } else if (mousePoint != null && e.getKeyCode() == KeyEvent.VK_CONTROL) {
             ctrlHit = true;
-            preventConcernedKeywordListener(viewToModel(mousePoint), e, KeywordListener.ONMOUSEOVER);
+            int pos = viewToModel2D(mousePoint);
+            preventConcernedKeywordListener(pos, e, KeywordListener.ONMOUSEOVER);
         } else {
             ctrlHit = false;
         }
@@ -468,7 +461,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     public void keyReleased(KeyEvent e) {
         if (mousePoint != null && e.getKeyCode() == KeyEvent.VK_CONTROL) {
             ctrlHit = false;
-            preventConcernedKeywordListener(viewToModel(mousePoint), e, KeywordListener.ONMOUSEOVER);
+            int pos = viewToModel2D(mousePoint);
+            preventConcernedKeywordListener(pos, e, KeywordListener.ONMOUSEOVER);
         }
     }
 
@@ -807,9 +801,23 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * focusCycleRoot is true by default in JEditorPane; when SciNotes is docked
+     * with two tabs, switching tabs then causes a focus loss to the other
+     * docked component. Set it here instead of the constructor (this-escape).
+     */
+    @Override
+    public void addNotify() {
+        setFocusCycleRoot(false);
+        super.addNotify();
+    }
+
+    /**
      * @return the scrollPane or the splitpane associated with this textPane
      */
     public EditorComponent getEditorComponent() {
+        if (edComponent == null) {
+            edComponent = new EditorComponent(this);
+        }
         return edComponent;
     }
 
@@ -824,14 +832,14 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param split the split used
      */
     public void setSplitPane(JSplitPane split) {
-        edComponent.setSplitPane(split);
+        getEditorComponent().setSplitPane(split);
     }
 
     /**
      * @param split the split used
      */
     public JSplitPane getSplitPane() {
-        return edComponent.getSplitPane();
+        return getEditorComponent().getSplitPane();
     }
 
     /**
@@ -879,7 +887,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                         setCaretPosition(pos);
                     }
                     JScrollBar scrollbar = getScrollPane().getVerticalScrollBar();
-                    Rectangle rect = modelToView(pos);
+                    Rectangle2D rect2d = modelToView2D(pos);
+                    Rectangle rect = new Rectangle((int) rect2d.getX(), (int) rect2d.getY(), (int) rect2d.getWidth(), (int) rect2d.getHeight());
                     if (centered) {
                         int value = scrollbar.getValue();
                         int h = scrollbar.getHeight();
@@ -1280,7 +1289,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     public void paint(Graphics g, int p0, int p1, Shape bounds, JTextComponent c) {
         if (highlightEnable) {
             try {
-                Rectangle r = modelToView(getCaretPosition());
+                Rectangle2D r2d = modelToView2D(getCaretPosition());
+                Rectangle r = new Rectangle((int) r2d.getX(), (int) r2d.getY(), (int) r2d.getWidth(), (int) r2d.getHeight());
                 if (highlightColor != null) {
                     g.setColor(highlightColor);
                     g.fillRect(0, r.y, getWidth(), r.height);
@@ -1353,7 +1363,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         if (caret) {
             tok = lexer.getKeyword(getCaretPosition(), strict);
         } else {
-            tok = lexer.getKeyword(viewToModel(mousePoint), strict);
+            int pos = viewToModel2D(mousePoint);
+            tok = lexer.getKeyword(pos, strict);
         }
         return new KeywordEvent(this, null, tok, lexer.start + lexer.yychar(), lexer.yylength());
     }
@@ -1370,7 +1381,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         if (caret) {
             pos = getCaretPosition();
         } else {
-            pos = viewToModel(mousePoint);
+            pos = viewToModel2D(mousePoint);
         }
 
         tok = lexer.getKeyword(pos, true);
@@ -1458,7 +1469,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void mouseMoved(MouseEvent e) {
         this.mousePoint = e.getPoint();
-        preventConcernedKeywordListener(viewToModel(mousePoint), e, KeywordListener.ONMOUSEOVER);
+        int pos = viewToModel2D(mousePoint);
+        preventConcernedKeywordListener(pos, e, KeywordListener.ONMOUSEOVER);
     }
 
     /**
@@ -1707,7 +1719,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                 for (Integer[] position : positions) {
                     try {
                         highlightedWords.put(position[0], highlighter.addHighlight(position[0], position[1], HIGHLIGHTER));
-                        Rectangle r = modelToView(position[0]);
+                        Rectangle2D r2d = modelToView2D(position[0]);
+                        Rectangle r = new Rectangle((int) r2d.getX(), (int) r2d.getY(), (int) r2d.getWidth(), (int) r2d.getHeight());
                         if (r != null && (marks.size() == 0 || marks.get(marks.size() - 1).y != r.y)) {
                             marks.add(r);
                         }

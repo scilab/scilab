@@ -28,7 +28,8 @@ import org.scilab.modules.gui.ged.graphic_objects.properties.ContouredObject;
 * Construction and startup of all components of the section: Mark Properties.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Mark extends SimpleSection {
+public final class Mark extends SimpleSection {
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static Mark instance;
     private final MarkStyleRenderer markStyleRenderer = new MarkStyleRenderer();
@@ -43,6 +44,7 @@ public class Mark extends SimpleSection {
     */
     public Mark(Integer objectID) {
         super(MessagesGED.mark, "rectangle");
+        initializeSection();
         instance = this;
         sectionPanel = getSectionPanel();
         chooserMarkBackground = new JColorChooser();

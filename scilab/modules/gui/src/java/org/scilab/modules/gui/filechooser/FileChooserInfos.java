@@ -42,7 +42,6 @@ public final class FileChooserInfos {
      * SINGLETON
      */
     private FileChooserInfos() {
-        init();
     }
 
     /**

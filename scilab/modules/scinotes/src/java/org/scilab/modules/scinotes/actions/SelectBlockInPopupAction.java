@@ -24,8 +24,8 @@ import org.scilab.modules.scinotes.SciNotes;
  * Class to handle the block selection in popup menu
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class SelectBlockInPopupAction extends SelectBlockAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

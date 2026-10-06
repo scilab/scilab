@@ -79,11 +79,4 @@ public class ScicosObjectOwner {
         return true;
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        JavaController controller = new JavaController();
-
-        controller.deleteObject(uid);
-    }
-
 }

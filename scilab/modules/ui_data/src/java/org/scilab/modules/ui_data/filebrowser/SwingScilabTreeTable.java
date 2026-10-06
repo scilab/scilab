@@ -67,8 +67,8 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  *
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = {"serial"})
-public class SwingScilabTreeTable extends JTable {
+public final class SwingScilabTreeTable extends JTable {
+    private static final long serialVersionUID = 1L;
 
     private static final Insets INSETS = new Insets(0, 2, 0, 0);
     private static final DateFormat DATEFORMAT =
@@ -90,14 +90,14 @@ public class SwingScilabTreeTable extends JTable {
         }
     };
 
-    private SwingWorker dirRefresher;
-    private ScilabFileBrowserModel model;
+    private transient SwingWorker<Void, Void> dirRefresher;
+    private transient ScilabFileBrowserModel model;
 
-    private Method isLocationInExpandControl;
+    private transient Method isLocationInExpandControl;
 
     protected ScilabTreeTableCellRenderer tree;
     protected ScilabFileSelectorComboBox combobox;
-    protected ScilabFileBrowserHistory history;
+    protected transient ScilabFileBrowserHistory history;
 
     /**
      * Default Constructor
@@ -181,7 +181,7 @@ public class SwingScilabTreeTable extends JTable {
         try {
             isLocationInExpandControl =
                 BasicTreeUI.class.getDeclaredMethod(
-                    "isLocationInExpandControl", new Class[] {TreePath.class, int.class, int.class});
+                    "isLocationInExpandControl", new Class<?>[] {TreePath.class, int.class, int.class});
             isLocationInExpandControl.setAccessible(true);
         } catch (NoSuchMethodException e) {
         }
@@ -210,7 +210,7 @@ public class SwingScilabTreeTable extends JTable {
                                     (Component) e.getSource(),
                                     e.getID(),
                                     e.getWhen(),
-                                    e.getModifiers(),
+                                    e.getModifiersEx(),
                                     r.x,
                                     r.y,
                                     e.getClickCount(),
@@ -492,7 +492,7 @@ public class SwingScilabTreeTable extends JTable {
         return popup;
     }
 
-    public synchronized void setDirRefresher(SwingWorker refresher, ScilabFileBrowserModel model) {
+    public synchronized void setDirRefresher(SwingWorker<Void, Void> refresher, ScilabFileBrowserModel model) {
         dirRefresher = refresher;
         this.model = model;
     }

@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
@@ -144,7 +145,7 @@ public final class PaletteIndexer {
                 try {
                     // we have to generate a url in the form before indexing
                     // jar:file:/modules/helptools/jar/scilab_en_US_help.jar!/scilab_en_US_help/blockName.html
-                    url = new URL("jar:" + fileURI + "!/" + basename + '/' + blk + ".html");
+                    url = URI.create("jar:" + fileURI + "!/" + basename + '/' + blk + ".html").toURL();
                 } catch (MalformedURLException ex) {
                     Logger.getLogger(PaletteIndexer.class.getName()).log(Level.SEVERE, null, ex);
                 }

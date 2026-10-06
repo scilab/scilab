@@ -139,11 +139,11 @@ public class FileMask extends FileFilter {
         if (fullDescription == null) {
             if (description == null) {
                 fullDescription = description == null ? "(" : description + " (";
-                Enumeration extensions = filters.elements();
+                Enumeration<String> extensions = filters.elements();
                 if (extensions != null && extensions.hasMoreElements()) {
-                    fullDescription += "." + (String) extensions.nextElement();
+                    fullDescription += "." + extensions.nextElement();
                     while (extensions.hasMoreElements()) {
-                        fullDescription += ", ." + (String) extensions.nextElement();
+                        fullDescription += ", ." + extensions.nextElement();
                     }
                 }
                 return fullDescription + ")";

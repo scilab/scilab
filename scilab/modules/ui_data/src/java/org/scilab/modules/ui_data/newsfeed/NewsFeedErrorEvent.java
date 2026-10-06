@@ -19,6 +19,8 @@ package org.scilab.modules.ui_data.newsfeed;
  * News feed error event
  */
 public class NewsFeedErrorEvent extends NewsFeedEvent {
+
+    private static final long serialVersionUID = 1L;
     private String errorMessage;
 
     public NewsFeedErrorEvent(Object source, String errorMessage) {

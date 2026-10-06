@@ -39,8 +39,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Generate code for the current graph.
  */
-@SuppressWarnings(value = { "serial" })
 public class CodeGenerationAction extends SuperBlockSelectedAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.CODE_GENERATION;
     /** Icon name of the action */

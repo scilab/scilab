@@ -37,6 +37,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Datatip extends ContentLayout {
+    private static final long serialVersionUID = 1L;
     private JTextField cTipData = new JTextField();
     private JTextField cTipDataX = new JTextField();
     private JTextField cTipDataY = new JTextField();
@@ -86,7 +87,7 @@ public class Datatip extends ContentLayout {
     public void tipAutoOrientation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
         JLabel lTipAutoOrientation = new JLabel();
-        final JComboBox cTipAutoOrientation = new JComboBox();
+        final JComboBox<String> cTipAutoOrientation = new JComboBox<>();
         addLabelComboBox(panel, lTipAutoOrientation, MessagesGED.auto_orientation,
                          cTipAutoOrientation, messageOffOn, LEFTMARGIN, COLUMN, ROW);
         cTipAutoOrientation.addActionListener(new ActionListener() {
@@ -114,7 +115,7 @@ public class Datatip extends ContentLayout {
     public void tipBoxMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
         JLabel lBoxMode = new JLabel();
-        final JComboBox cBoxMode = new JComboBox();
+        final JComboBox<String> cBoxMode = new JComboBox<>();
         addLabelComboBox(panel, lBoxMode, MessagesGED.box_mode,
                          cBoxMode, messageOffOn, LEFTMARGIN, COLUMN, ROW);
         cBoxMode.addActionListener(new ActionListener() {
@@ -257,7 +258,7 @@ public class Datatip extends ContentLayout {
     public void tipLabelMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
         JLabel lTipLabelMode = new JLabel();
-        final JComboBox cTipLabelMode = new JComboBox();
+        final JComboBox<String> cTipLabelMode = new JComboBox<>();
         addLabelComboBox(panel, lTipLabelMode, MessagesGED.label_mode,
                          cTipLabelMode, messageOffOn, LEFTMARGIN, COLUMN, ROW);
         cTipLabelMode.addActionListener(new ActionListener() {
@@ -284,7 +285,7 @@ public class Datatip extends ContentLayout {
      */
     public void tipOrientation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lTipOrientation = new JLabel();
-        final JComboBox cTipOrientation = new JComboBox();
+        final JComboBox<String> cTipOrientation = new JComboBox<>();
         String[] options = new String[] {"top_left", "top_right",
                                          "bottom_left", "bottom_right"
                                         };

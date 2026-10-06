@@ -15,6 +15,8 @@
  */
 package org.scilab.modules.gui;
 
+import org.scilab.modules.localization.NativeLibraryLoader;
+
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
@@ -166,7 +168,15 @@ public final class SwingView implements GraphicView {
 
     static {
         try {
-            System.loadLibrary("gluegen_rt");
+            NativeLibraryLoader.loadLibrary("gluegen_rt");
+        } catch (SecurityException e) {
+            System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
+            System.err.println(e.getLocalizedMessage());
+            System.exit(-1);
+        } catch (UnsatisfiedLinkError e) {
+            System.err.println("The native library gluegen_rt does not exist or cannot be found.");
+            System.err.println(e.getLocalizedMessage());
+            System.exit(-1);
         } catch (Exception e) {
             System.err.println(e);
         }
@@ -399,6 +409,7 @@ public final class SwingView implements GraphicView {
         switch (type) {
             case CheckBox:
                 SwingScilabCheckBox checkBox = new SwingScilabCheckBox();
+                checkBox.init();
                 checkBox.setId(id);
                 setDefaultProperties(checkBox, id);
                 return checkBox;
@@ -439,6 +450,7 @@ public final class SwingView implements GraphicView {
                 SwingScilabPanel tab;
                 if (figure.getDockable()) {
                     SwingScilabDockablePanel t = new SwingScilabDockablePanel(figureTitle, figureId, figure);
+                    t.init(figure);
                     ClosingOperationsManager.addDependencyWithRoot(t);
                     tab = t;
                 } else {
@@ -515,6 +527,7 @@ public final class SwingView implements GraphicView {
                     return frame;
                 } else {
                     SwingScilabFrame frame = new SwingScilabFrame();
+                    frame.init();
                     frame.setId(id);
                     setDefaultProperties(frame, id);
                     Integer borderId = (Integer) GraphicController.getController().getProperty(id, __GO_UI_FRAME_BORDER__);
@@ -557,6 +570,7 @@ public final class SwingView implements GraphicView {
             }
             case RadioButton:
                 SwingScilabRadioButton radioButton = new SwingScilabRadioButton();
+                radioButton.init();
                 radioButton.setId(id);
                 setDefaultProperties(radioButton, id);
                 return radioButton;
@@ -568,6 +582,7 @@ public final class SwingView implements GraphicView {
                     return slider;
                 } else {
                     SwingScilabSlider slider = new SwingScilabSlider();
+                    slider.init();
                     slider.setId(id);
                     setDefaultProperties(slider, id);
                     return slider;
@@ -601,6 +616,7 @@ public final class SwingView implements GraphicView {
                 return childMenu;
             case UiCheckedMenu: /* SwingView internal type */
                 SwingScilabCheckBoxMenuItem checkedMenu = new SwingScilabCheckBoxMenuItem(false);
+                checkedMenu.init();
                 checkedMenu.setId(id);
                 setMenuDefaultProperties(checkedMenu, id);
                 return checkedMenu;
@@ -621,6 +637,7 @@ public final class SwingView implements GraphicView {
                 return TabGroup;
             case Layer:
                 SwingScilabLayer layer = new SwingScilabLayer();
+                layer.init();
                 layer.setId(id);
                 return layer;
             case Browser:

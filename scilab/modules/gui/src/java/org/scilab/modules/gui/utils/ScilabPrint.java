@@ -30,7 +30,7 @@ import javax.print.attribute.PrintRequestAttributeSet;
  * @author Sylvestre Koumar
  *
  */
-public class ScilabPrint implements Printable {
+public final class ScilabPrint implements Printable {
 
     private static final int PRINT_MARGIN = 3;
 

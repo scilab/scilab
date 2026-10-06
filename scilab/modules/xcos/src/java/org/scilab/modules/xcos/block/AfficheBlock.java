@@ -48,6 +48,7 @@ import org.scilab.modules.xcos.graph.model.XcosGraphModel;
  * Implement the AFFICH_m block
  */
 public final class AfficheBlock extends BasicBlock {
+    private static final long serialVersionUID = 1L;
     /**
      * Default refresh rate used on the simulation to update block.
      */
@@ -64,6 +65,7 @@ public final class AfficheBlock extends BasicBlock {
      * Update the value of the associated block
      */
     private static class UpdateValueListener implements ActionListener, Serializable {
+        private static final long serialVersionUID = 1L;
         /**
          * Default constructor
          */
@@ -129,6 +131,10 @@ public final class AfficheBlock extends BasicBlock {
 
     public AfficheBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
         super(controller, uid, kind, value, geometry, style, id);
+
+        // as XcosCell does not dispatch setMVCValue() during construction,
+        // synchronize the value here to keep the historical behaviour
+        syncValueToModel(controller, value);
     }
 
     /**
@@ -141,6 +147,16 @@ public final class AfficheBlock extends BasicBlock {
      */
     @Override
     protected void setMVCValue(JavaController controller, Object value) {
+        syncValueToModel(controller, value);
+    }
+
+    /**
+     * Store the value on the C++ model.
+     *
+     * @param controller the controller
+     * @param value the value
+     */
+    private void syncValueToModel(JavaController controller, Object value) {
         if (value == null) {
             return;
         }

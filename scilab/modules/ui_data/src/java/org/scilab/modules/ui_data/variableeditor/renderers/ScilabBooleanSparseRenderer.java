@@ -26,8 +26,8 @@ import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
  * CellRenderer for boolean type
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class ScilabBooleanSparseRenderer extends ScilabBooleanRenderer {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor

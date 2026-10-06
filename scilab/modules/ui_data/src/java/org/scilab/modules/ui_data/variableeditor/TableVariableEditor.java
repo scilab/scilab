@@ -57,8 +57,8 @@ import org.scilab.modules.ui_data.variableeditor.actions.RemoveColumnAction;
  * The table
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
-public class TableVariableEditor extends JTable {
+public final class TableVariableEditor extends JTable {
+    private static final long serialVersionUID = 1L;
 
     private JScrollPane scrollPane;
     private int clickedColumn;
@@ -74,6 +74,16 @@ public class TableVariableEditor extends JTable {
     public TableVariableEditor(SwingScilabVariableEditor editor) {
         super();
         this.editor = editor;
+
+        // TableVariableEditor is final, so initializing here cannot leak this
+        // from an analyzable constructor
+        initializeEditor();
+    }
+
+    /**
+     * Initialize the editor: scroll pane, listeners and header renderers.
+     */
+    private void initializeEditor() {
         scrollPane = new JScrollPane(this);
         /* Modify the table size when the knob is at the bottom of the vertical scrollbar */
         scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
@@ -122,7 +132,7 @@ public class TableVariableEditor extends JTable {
                         csm.setSelectionInterval(column, clickedColumn);
                         table.setRowSelectionInterval(0, rowC - 1);
                     } else {
-                        if ((e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0) {
+                        if ((e.getModifiersEx() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()) != 0) {
                             if (table.isColumnSelected(column)) {
                                 csm.removeSelectionInterval(column, column);
                             } else {
@@ -163,7 +173,7 @@ public class TableVariableEditor extends JTable {
                         if (e.isShiftDown()) {
                             csm.setSelectionInterval(clickedColumn, column);
                         } else {
-                            if ((e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0) {
+                            if ((e.getModifiersEx() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()) != 0) {
                                 if (csm.isSelectedIndex(column)) {
                                     csm.removeSelectionInterval(lead, column);
                                     csm.addSelectionInterval(clickedColumn, column);

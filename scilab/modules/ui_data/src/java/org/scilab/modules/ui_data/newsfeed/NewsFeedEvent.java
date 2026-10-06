@@ -21,6 +21,8 @@ import java.util.EventObject;
  * News feed event
  */
 public class NewsFeedEvent extends EventObject {
+
+    private static final long serialVersionUID = 1L;
     public static final int NEWS_CHANGED = 1;
     public static final int NEWSFEED_UPDATED = 2;
     public static final int NEWSFEED_ERROR = 3;

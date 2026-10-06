@@ -29,6 +29,7 @@ import com.mxgraph.view.mxGraphSelectionModel;
  * not, the action will be disabled.
  */
 public abstract class VertexSelectionDependantAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Enable the selection if there is at least a vertex in the selection.
@@ -91,10 +92,17 @@ public abstract class VertexSelectionDependantAction extends DefaultAction {
      */
     public VertexSelectionDependantAction(ScilabGraph scilabGraph) {
         super(scilabGraph);
+    }
 
-        if (scilabGraph != null) {
+    /**
+     * Install the selection constraint after construction to avoid this-escape.
+     */
+    @Override
+    protected void installConstraints() {
+        ScilabGraph g = getScilabGraph();
+        if (g != null) {
             VertexSelectionDependantConstraint c = new VertexSelectionDependantConstraint();
-            c.install(this, scilabGraph);
+            c.install(this, g);
         }
     }
 }

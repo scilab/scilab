@@ -76,7 +76,7 @@ import org.scilab.modules.gui.widget.Widget;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Widget {
+public final class SwingScilabLabel extends JScrollPane implements SwingViewObject, Widget {
 
     private enum LabelStyle {
         TEXT, LATEX, MATHML, HTML
@@ -88,7 +88,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Wi
 
     private JComponent label = new JLabel(" ");
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     private LabelStyle labelStyle = null;
 
@@ -658,8 +658,8 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Wi
         private final static Font DEFAULTFONT = new Font("serif", Font.PLAIN, 12);
         private final static boolean isWindows = System.getProperty("os.name").toLowerCase().indexOf("win") != -1;
 
-        private Icon icon;
-        private Icon iconDisable;
+        private transient Icon icon;
+        private transient Icon iconDisable;
         private float fontSize;
         private String text;
         private Dimension preferred;

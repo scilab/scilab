@@ -33,10 +33,10 @@ import org.scilab.modules.localization.Messages;
  * Class ScilabVariableEditor
  * Implements a ScilabWindow containing Variable Editor (JTable)
  */
-@SuppressWarnings(value = { "serial" })
 public final class ScilabVariableEditor extends SwingScilabDockingWindow implements VariableEditor {
+    private static final long serialVersionUID = 1L;
 
-    private static Map<String, Component> map = new HashMap();
+    private static Map<String, Component> map = new HashMap<>();
 
     private static ScilabVariableEditor instance;
 
@@ -55,8 +55,16 @@ public final class ScilabVariableEditor extends SwingScilabDockingWindow impleme
         tabPane = editorTab.getTabPane();
         TextBox infobar = ScilabTextBox.createTextBox();
         editorTab.addInfoBar(infobar);
-        addTab(editorTab);
         map.put(variableName, tabPane.getSelectedComponent());
+    }
+
+    /**
+     * Dock the editor tab once the docking port is created by super.init()
+     */
+    @Override
+    public void init() {
+        super.init();
+        addTab(editorTab);
     }
 
     /**
@@ -138,6 +146,7 @@ public final class ScilabVariableEditor extends SwingScilabDockingWindow impleme
                 SwingUtilities.invokeAndWait(new Runnable() {
                     public void run() {
                         instance = new ScilabVariableEditor(type, data, variableName);
+                        instance.init();
                         instance.setVisible(true);
                     }
                 });

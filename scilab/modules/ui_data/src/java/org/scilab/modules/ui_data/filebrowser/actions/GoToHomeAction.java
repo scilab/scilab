@@ -31,8 +31,8 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Action to go to user-home
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class GoToHomeAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     /**
      * {@inheritDoc}

@@ -20,8 +20,9 @@ package org.scilab.forge.scirenderer.implementation.jogl;
  *
  * @author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
 public class HardwareFailException extends Exception {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor.

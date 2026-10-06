@@ -20,7 +20,8 @@ import org.scilab.modules.gui.ged.graphic_objects.SimpleObject;
 * Properties of the rectangle.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Rectangle extends SimpleObject {
+public final class Rectangle extends SimpleObject {
+    private static final long serialVersionUID = 1L;
     private DataProperties data;
     private Mark mark;
     private Style style;

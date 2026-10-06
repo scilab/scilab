@@ -53,13 +53,13 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
 
     private static final long serialVersionUID = 1L;
     private CommonCallBack callback;
-    private Menu meAsAMenu;
+    private transient Menu meAsAMenu;
     private boolean autoCheckedMode = true;
     private String text = "";
 
     private Integer uid;
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     /**
      * Constructor
@@ -73,7 +73,19 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
      * @param autoCheckedMode if false, menu checking is managed by the user (and not automatically by Java)
      */
     public SwingScilabCheckBoxMenuItem(boolean autoCheckedMode) {
-        super();
+        this.autoCheckedMode = autoCheckedMode;
+    }
+
+    /**
+     * Finish initialization after construction (setModel and addActionListener
+     * are overridable methods which would leak this from the constructor).
+     * Called once right after instantiation, before the item is used.
+     */
+    @Override
+    public void init() {
+        if (!autoCheckedMode) {
+            setModel(new ScilabCheckBoxMenuItemModel());
+        }
         addActionListener(new ActionListener() {
             /**
              * Action performed ? What do I have to do ?
@@ -83,10 +95,6 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
                 StringBlockingResult.getInstance().setResult(((SwingScilabCheckBoxMenuItem) arg0.getSource()).getText());
             }
         });
-        this.autoCheckedMode = autoCheckedMode;
-        if (!autoCheckedMode) {
-            setModel(new ScilabCheckBoxMenuItemModel());
-        }
     }
 
     /**

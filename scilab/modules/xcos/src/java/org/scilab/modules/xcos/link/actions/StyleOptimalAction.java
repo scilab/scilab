@@ -28,8 +28,8 @@ import com.mxgraph.util.mxConstants;
 /**
  * Implement the set link optimal action.
  */
-@SuppressWarnings(value = { "serial" })
 public class StyleOptimalAction extends StyleAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.LINK_STYLE_OPTIMAL;
     /** Icon name of the action */

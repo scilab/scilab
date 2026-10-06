@@ -158,6 +158,7 @@ public class EncodingAction extends DefaultCheckAction {
      * @return JRadioButtonMenuItem
      */
     public JRadioButtonMenuItem createRadioButtonMenuItem(SciNotes editor) {
+        init();
         JRadioButtonMenuItem radio = new JRadioButtonMenuItem(encoding);
         radio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {

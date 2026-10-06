@@ -47,7 +47,7 @@ public class SwingScilabUiDisplayTree extends JScrollPane implements SimpleUiDis
     private JLabel label;
     private SwingScilabTree sst;
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     /**
      * Constructor

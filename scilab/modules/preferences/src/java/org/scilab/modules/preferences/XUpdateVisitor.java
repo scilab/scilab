@@ -325,7 +325,6 @@ public class XUpdateVisitor {
      *            : description of component
      * @return the built component
      */
-    @SuppressWarnings("unchecked")
     public final Component buildPeerFor(final Node node) {
         return ComponentFactory.getComponent(node);
     }

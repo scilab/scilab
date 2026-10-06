@@ -20,7 +20,8 @@ import org.scilab.modules.gui.ged.graphic_objects.SimpleObject;
 * Properties of the datatip.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Datatip extends SimpleObject {
+public final class Datatip extends SimpleObject {
+    private static final long serialVersionUID = 1L;
     private BaseProperties base;
     private DataProperties data;
     private Label label;

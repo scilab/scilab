@@ -36,11 +36,12 @@ import org.scilab.modules.gui.utils.WindowsConfigurationManager;
  *
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
-public class SwingPlotBrowser extends SwingScilabDockablePanel {
-    private JScrollPane desktop;
+public final class SwingPlotBrowser extends SwingScilabDockablePanel {
+    private static final long serialVersionUID = 1L;
+    private transient JScrollPane desktop;
     public static JPanel pReceive;
-    private MenuBar menuBar;
-    private Menu fileMenu;
+    private transient MenuBar menuBar;
+    private transient Menu fileMenu;
     public static final String PLOTBROWSERUUID = "4m249547-6a71-4998-r8c-00o367s47932-B";
 
     /**
@@ -50,6 +51,10 @@ public class SwingPlotBrowser extends SwingScilabDockablePanel {
     */
     public SwingPlotBrowser(Integer objectID) {
         super(MessagesPlotBrowser.plot_browser, PLOTBROWSERUUID);
+
+        // SwingPlotBrowser is final, so initializing here cannot leak this
+        // from an analyzable constructor
+        init();
 
         setAssociatedXMLIDForHelp("plotbrowser");
 

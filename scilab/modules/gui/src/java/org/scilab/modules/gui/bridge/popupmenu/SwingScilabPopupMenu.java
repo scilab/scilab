@@ -61,7 +61,7 @@ import org.scilab.modules.gui.widget.Widget;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, Widget {
+public final class SwingScilabPopupMenu extends JComboBox<Object> implements SwingViewObject, Widget {
 
     private static final long serialVersionUID = -4366581303317502544L;
 
@@ -69,13 +69,13 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
     private CommonCallBack callback;
 
-    private ActionListener defaultActionListener;
+    private transient ActionListener defaultActionListener;
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
 
-    private ListCellRenderer defaultRenderer = null;
-    private ListCellRenderer listRenderer = null;
+    private transient ListCellRenderer<Object> defaultRenderer = null;
+    private transient ListCellRenderer<Object> listRenderer = null;
 
     /**
      * Constructor
@@ -84,8 +84,8 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         super();
 
         defaultRenderer = getRenderer();
-        listRenderer = new ListCellRenderer() {
-            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+        listRenderer = new ListCellRenderer<Object>() {
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
                 if (value instanceof SwingScilabListItem) {
@@ -316,7 +316,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
      * @param text the text of the items
      */
     public void setText(String[] text) {
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        DefaultComboBoxModel<Object> model = new DefaultComboBoxModel<>();
 
         //get numbers of columns
         GraphicController controller = GraphicController.getController();

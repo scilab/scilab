@@ -49,7 +49,10 @@ public class ColorMap {
      * @param colorMap the ColorMap to copy
      */
     public ColorMap(ColorMap colorMap) {
-        setData(colorMap.data);
+        int length = colorMap.data.length;
+        length -= length % CHANNELS_NUMBER;
+        data = new Double[length];
+        System.arraycopy(colorMap.data, 0, data, 0, length);
     }
 
     /**

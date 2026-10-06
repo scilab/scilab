@@ -18,6 +18,7 @@ package org.scilab.modules.graphic_objects.label;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+import org.scilab.modules.graphic_objects.textObject.FormattedText;
 import org.scilab.modules.graphic_objects.textObject.TextObject;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -56,11 +57,11 @@ public class Label extends TextObject {
         corners = new double[4][3];
         autoRotation = false;
 
-        Integer[] textDimensions = {1, 1};
-        String[] textStrings = {""};
-
-        setTextArrayDimensions(textDimensions);
-        setTextStrings(textStrings);
+        // Directly set fields instead of calling methods to avoid passing 'this' before fully initialized
+        dimensions = new int[] {1, 1};
+        text = new FormattedText[1];
+        text[0] = new FormattedText();
+        text[0].setText("");
     }
 
     /**

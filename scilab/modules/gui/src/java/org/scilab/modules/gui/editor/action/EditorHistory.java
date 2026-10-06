@@ -114,7 +114,7 @@ public class EditorHistory implements ActionHistory {
     */
     public void dispose() {
 
-        Iterator i = history.iterator();
+        Iterator<?> i = history.iterator();
         while (i.hasNext()) {
             Action action = (Action)i.next();
             action.dispose();

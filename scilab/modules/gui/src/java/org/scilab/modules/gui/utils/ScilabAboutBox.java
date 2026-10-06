@@ -133,8 +133,8 @@ public class ScilabAboutBox {
         ap.close.requestFocus();
     }
 
-    @SuppressWarnings("serial")
     private static final class AboutPanel extends JPanel {
+        private static final long serialVersionUID = 1L;
         private static final String SCIDIR = System.getenv("SCI");
         private static final String IMAGEPATH = SCIDIR + "/modules/gui/images/icons/aboutscilab.png";
         private static final Font FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 10);

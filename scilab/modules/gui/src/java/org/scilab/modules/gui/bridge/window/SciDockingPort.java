@@ -18,6 +18,8 @@ import org.scilab.modules.commons.gui.ScilabCefPanel;
 
 public class SciDockingPort extends DefaultDockingPort {
 
+    private static final long serialVersionUID = 1L;
+
     public static void initStatic() {
         DockingManager.setDockingStrategy(SciDockingPort.class, new SciDockingStrategy());
     }

@@ -27,7 +27,7 @@ import org.scilab.modules.gui.utils.UIElementMapper;
  * Interface for FontChooser for Scilab
  * @author Vincent COUVERT
  */
-public class ScilabFontChooser extends ScilabUIElement implements FontChooser {
+public final class ScilabFontChooser extends ScilabUIElement implements FontChooser {
 
     private SimpleFontChooser component;
 

@@ -35,7 +35,6 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Type;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
 import java.text.AttributedCharacterIterator;
@@ -254,6 +253,7 @@ public class Export {
                     }
                 }
             };
+            visitor.init();
 
             try {
                 canvas.setMainDrawer(visitor);
@@ -373,6 +373,7 @@ public class Export {
                         // Don't delete during the export
                     }
                 };
+                visitor.init();
                 joglCanvas.setMainDrawer(visitor);
                 joglCanvas.redraw();
                 GraphicController.getController().unregister(visitor);
@@ -446,6 +447,7 @@ public class Export {
                 }
             }
         };
+        visitor.init();
         visitor.setDrawingTools(canvas.getDrawingTools());
         canvas.setMainDrawer(visitor);
         visitorsToExp.put(visitor, exporter);
@@ -1110,35 +1112,17 @@ public class Export {
     private static class EMFExporter extends Exporter {
 
         private OutputStream out;
-        private Class<Graphics2D> g2dClass;
-        private Constructor<Graphics2D> g2dCtor;
+        private Class<? extends Graphics2D> g2dClass;
+        private Constructor<? extends Graphics2D> g2dCtor;
         private Graphics2D g2d;
         private ByteArrayOutputStream buffer;
 
         public EMFExporter() {
             try {
-                g2dClass = (Class<Graphics2D>) Class.forName("org.freehep.graphicsio.emf.EMFGraphics2D");
-            } catch (ClassNotFoundException e) {
+                g2dClass = Class.forName("org.freehep.graphicsio.emf.EMFGraphics2D").asSubclass(Graphics2D.class);
+                g2dCtor = g2dClass.getDeclaredConstructor(OutputStream.class, Dimension.class);
+            } catch (ClassNotFoundException | NoSuchMethodException e) {
                 throw new RuntimeException("This Scilab build does not provide EMF support");
-            }
-
-            final Constructor[] ctors = g2dClass.getDeclaredConstructors();
-            Constructor ctor = null;
-            for (int i = 0; i < ctors.length; i++) {
-                ctor = ctors[i];
-                final Type[] args = ctor.getGenericParameterTypes();
-                if (args.length != 2) {
-                    continue;
-                }
-                if (args[0] != OutputStream.class) {
-                    continue;
-                }
-                if (args[1] != Dimension.class) {
-                    continue;
-                }
-
-                g2dCtor = ctor;
-                break;
             }
         }
 

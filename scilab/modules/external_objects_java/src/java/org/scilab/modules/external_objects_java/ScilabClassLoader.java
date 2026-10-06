@@ -29,8 +29,8 @@ import java.util.logging.Level;
  *
  * @author Calixte DENIZET
  */
-@SuppressWarnings("serial")
 public class ScilabClassLoader {
+    private static final long serialVersionUID = 1L;
 
     protected static Map<String, Integer> clazz = new HashMap<String, Integer>();
     protected static Map<Integer, String> zzalc = new HashMap<Integer, String>();
@@ -70,7 +70,7 @@ public class ScilabClassLoader {
                         ScilabJavaObject clone = ScilabJavaObject.arraySJO[id].clone();
                         retId = clone.id;
                     } else {
-                        Class cl = new URLClassLoader(new URL[] {url}, null).loadClass(name);
+                        Class<?> cl = new URLClassLoader(new URL[] {url}, null).loadClass(name);
                         ScilabJavaObject.removeScilabJavaObject(id);
                         sjc = new ScilabJavaClass(cl);
                         sjc.setURL(url);
@@ -83,7 +83,7 @@ public class ScilabClassLoader {
                     retId = clone.id;
                 }
             } else {
-                Class cl = ClassLoader.getSystemClassLoader().loadClass(name);
+                Class<?> cl = ClassLoader.getSystemClassLoader().loadClass(name);
                 ScilabJavaClass sjc = new ScilabJavaClass(cl);
                 sjc.setURL(getLocation(sjc.clazz));
                 clazz.put(name, sjc.id);
@@ -108,7 +108,7 @@ public class ScilabClassLoader {
 
         try {
             URL binURL = new File(binPath).toURI().toURL();
-            Class cl = new URLClassLoader(new URL[] {binURL}, null).loadClass(name);
+            Class<?> cl = new URLClassLoader(new URL[] {binURL}, null).loadClass(name);
             ScilabJavaClass sjc = new ScilabJavaClass(cl);
             sjc.setURL(getLocation(sjc.clazz));
             clazz.put(name, sjc.id);
@@ -140,7 +140,7 @@ public class ScilabClassLoader {
      * @param cl the class which we want the location
      * @return the corresponding URL
      */
-    private static final URL getLocation(Class cl) {
+    private static final URL getLocation(Class<?> cl) {
         CodeSource cs = cl.getProtectionDomain().getCodeSource();
         if (cs == null) {
             return null;

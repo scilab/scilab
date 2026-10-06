@@ -57,11 +57,11 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  */
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: MagicNumber
-@SuppressWarnings(value = { "serial" })
-public class DebugLevelDialog extends JDialog {
-    private final ScicosParameters parameters;
+public final class DebugLevelDialog extends JDialog {
+    private static final long serialVersionUID = 1L;
+    private final transient ScicosParameters parameters;
 
-    private JList debugList;
+    private JList<DebugLevel> debugList;
 
     /**
      * Default contructor
@@ -92,7 +92,7 @@ public class DebugLevelDialog extends JDialog {
      */
     private void initComponents() {
         JLabel textLabel = new JLabel(XcosMessages.DEBUG_LEVEL_LABEL);
-        debugList = new JList(DebugLevel.values());
+        debugList = new JList<>(DebugLevel.values());
         debugList.setSelectedIndex(parameters.getDebugLevel(new JavaController()));
         debugList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -140,7 +140,7 @@ public class DebugLevelDialog extends JDialog {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int value = ((DebugLevel) debugList.getSelectedValue()).getValue();
+                int value = debugList.getSelectedValue().getValue();
                 try {
                     parameters.setDebugLevel(new JavaController(), value);
                     ScilabInterpreterManagement.synchronousScilabExec("scicos_debug", value);

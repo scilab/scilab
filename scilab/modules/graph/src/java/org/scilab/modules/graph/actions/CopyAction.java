@@ -32,8 +32,8 @@ import com.mxgraph.swing.handler.mxGraphTransferHandler;
 /**
  * Copy manager
  */
-@SuppressWarnings(value = { "serial" })
 public final class CopyAction extends VertexSelectionDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = ScilabGraphMessages.COPY;
     /** Icon name of the action */
@@ -41,7 +41,7 @@ public final class CopyAction extends VertexSelectionDependantAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_C;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /**
      * Constructor

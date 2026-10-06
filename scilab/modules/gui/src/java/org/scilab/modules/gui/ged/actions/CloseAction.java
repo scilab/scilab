@@ -33,6 +33,7 @@ import org.scilab.modules.gui.utils.ClosingOperationsManager;
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
 public class CloseAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static final KeyStroke KEY = ScilabKeyStroke.getKeyStroke("OSSCKEY W");
 

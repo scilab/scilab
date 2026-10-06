@@ -43,16 +43,16 @@ import org.w3c.dom.NodeList;
  * @author Calixte DENIZET
  *
  */
-public class List extends Panel implements XComponent, XChooser, ListSelectionListener {
+public final class List extends Panel implements XComponent, XChooser, ListSelectionListener {
 
     /** Universal identifier for serialization.
      *
      */
     private static final long serialVersionUID = -6127289363733321915L;
 
-    private ActionListener actionListener;
+    private transient ActionListener actionListener;
     private Model model;
-    private JList list;
+    private JList<String> list;
     private boolean dontChange;
 
     /** Constructor.
@@ -62,7 +62,7 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
     public List(final Node peer) {
         super(peer);
         model = new Model(peer);
-        list = new JList(model);
+        list = new JList<>(model);
         list.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.getSelectionModel().addListSelectionListener(this);
         JScrollPane scrollPane = new JScrollPane(list);
@@ -182,7 +182,7 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
     /**
      * Scans DOM nodes and translate it into list model.
      */
-    static class Model extends AbstractListModel {
+    static class Model extends AbstractListModel<String> {
 
         /**
          * Serialization ID.
@@ -192,7 +192,7 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
         /** Data source.
          *
          */
-        private NodeList nodelist;
+        private transient NodeList nodelist;
 
         public Model(Node peer) {
             setNodeList(peer.getChildNodes());
@@ -205,7 +205,7 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
         /**
          * {@inheritDoc}
          */
-        public Object getElementAt(int index) {
+        public String getElementAt(int index) {
             int count = index;
             for (int i = 0; i < nodelist.getLength(); i++) {
                 Node node = nodelist.item(i);

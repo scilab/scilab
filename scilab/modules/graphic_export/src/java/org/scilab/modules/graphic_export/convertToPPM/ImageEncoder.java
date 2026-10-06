@@ -76,7 +76,7 @@ public abstract class ImageEncoder implements ImageConsumer {
 
     private static final ColorModel rgbModel = ColorModel.getRGBdefault();
 
-    protected Hashtable props = null;
+    protected Hashtable<?, ?> props = null;
 
     // / Constructor.
     // @param img The image to encode.
@@ -169,7 +169,7 @@ public abstract class ImageEncoder implements ImageConsumer {
         this.height = height;
     }
 
-    public void setProperties(Hashtable props) {
+    public void setProperties(Hashtable<?, ?> props) {
         this.props = props;
     }
 

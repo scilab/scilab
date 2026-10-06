@@ -30,8 +30,8 @@ import javax.swing.table.TableCellEditor;
 /**
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public class RowHeaderCellEditor extends AbstractCellEditor implements TableCellEditor {
+    private static final long serialVersionUID = 1L;
 
     private JLabel label;
     private int row;

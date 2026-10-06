@@ -64,8 +64,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 
     /**
      * Constructor for a graphical tab
-     * @param name - name of the Tab
-     * @param uuid an uuid which will be used to restore the tab
+     * @param name name of the Tab
      * @param figureId index of the displayed figure
      */
     protected ScilabTab(String name, int figureId) {
@@ -112,7 +111,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
     /**
      * Gets the title of a Scilab tab
      * @return the title of the frame
-     * @see org.scilab.modules.gui.tab.Tab#getTitle()
      */
     public String getName() {
         return ScilabBridge.getName(this);
@@ -129,7 +127,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
 
     /**
      * Draws a Scilab tab
-     * @see org.scilab.modules.gui.UIElement#draw()
      */
     public void draw() {
         ScilabBridge.draw(this);
@@ -138,7 +135,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
     /**
      * Gets the dimensions (width and height) of a Scilab tab
      * @return the dimension of the tab
-     * @see org.scilab.modules.gui.UIElement#getDims()
      */
     public Size getDims() {
         return ScilabBridge.getDims(this);
@@ -147,7 +143,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
     /**
      * Gets the position (X-coordinate and Y-coordinate) of a Scilab tab
      * @return the position of the tab
-     * @see org.scilab.modules.gui.UIElement#getPosition()
      */
     public Position getPosition() {
         return ScilabBridge.getPosition(this);
@@ -156,7 +151,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
     /**
      * Gets the visibility status of a Scilab frame
      * @return the visibility status of the frame (true if the frame is visible, false if not)
-     * @see org.scilab.modules.gui.UIElement#isVisible()
      */
     public boolean isVisible() {
         return ScilabBridge.isVisible(this);
@@ -164,8 +158,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 
     /**
      * Sets the dimensions (width and height) of a Scilab frame
-     * @param newSize the dimensiosn we want to set to the tab
-     * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+     * @param newSize the dimensions we want to set to the tab
      */
     public void setDims(Size newSize) {
         ScilabBridge.setDims(this, newSize);
@@ -174,7 +167,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
     /**
      * Sets the position (X-coordinate and Y-coordinate) of a Scilab frame
      * @param newPosition the position we want to set to the tab
-     * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
     public void setPosition(Position newPosition) {
         ScilabBridge.setPosition(this, newPosition);
@@ -183,7 +175,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
     /**
      * Sets the visibility status of a Scilab frame
      * @param newVisibleState the visibility status we want to set to the frame (true to set the frame visible, false else)
-     * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
      */
     public void setVisible(boolean newVisibleState) {
         ScilabBridge.setVisible(this, newVisibleState);

@@ -126,11 +126,12 @@ public final class Modelica {
      * @throws JAXBException
      *             on error
      */
-    @SuppressWarnings("unchecked")
     public Model load(File file) throws JAXBException {
         // bytes, so that the parser applies the declared encoding, UTF-8 by default
         try (InputStream in = new FileInputStream(file)) {
-            return ((JAXBElement<Model>) unmarshaller.unmarshal(in)).getValue();
+            @SuppressWarnings("unchecked")
+            JAXBElement<Model> jaxbElement = (JAXBElement<Model>) unmarshaller.unmarshal(in);
+            return jaxbElement.getValue();
         } catch (IOException e) {
             Logger.getLogger(Modelica.class.getName()).severe(e.toString());
             return null;

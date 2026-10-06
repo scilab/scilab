@@ -34,8 +34,8 @@ import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
  * @author Allan SIMON
  *
  */
-@SuppressWarnings(value = { "serial" })
 public class RecentFileAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
 
     private static Map<SciNotes, Menu> menus = new HashMap<SciNotes, Menu>();
 

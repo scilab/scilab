@@ -17,8 +17,9 @@ package org.scilab.modules.renderer.JoGLView.util;
 /**
  * @author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
 public class OutOfMemoryException extends Exception {
+
+    private static final long serialVersionUID = 1L;
 
     public OutOfMemoryException() {
         super("no more memory");

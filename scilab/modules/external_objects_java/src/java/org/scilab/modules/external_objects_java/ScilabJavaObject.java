@@ -53,15 +53,14 @@ import java.util.logging.SimpleFormatter;
  * Main class to communicate with Scilab via jni interface generated with Giws.
  * @autor Calixte DENIZET
  */
-@SuppressWarnings(value = {"unchecked", "serial"})
 public class ScilabJavaObject {
 
     private static final int INITIALCAPACITY = 1024;
-    private static final Map<Class, Integer> unwrappableType = new HashMap<Class, Integer>(51);
-    private static final Map<Class, Integer> listBaseType = new HashMap<Class, Integer>(9);
-    private static final Class[] returnType = new Class[1];
+    private static final Map<Class<?>, Integer> unwrappableType = new HashMap<>(51);
+    private static final Map<Class<?>, Integer> listBaseType = new HashMap<>(9);
+    private static final Class<?>[] returnType = new Class<?>[1];
 
-    static final Map<Class, Class> primTypes = new HashMap<Class, Class>(8);
+    static final Map<Class<?>, Class<?>> primTypes = new HashMap<>(8);
 
     private static int currentPos = 1;
     private static FreePlace freePlace = new FreePlace();
@@ -156,7 +155,7 @@ public class ScilabJavaObject {
     }
 
     protected Object object;
-    protected Class clazz;
+    protected Class<?> clazz;
     protected int id;
 
     /**
@@ -172,7 +171,7 @@ public class ScilabJavaObject {
      * @param obj the Java Object to wrap
      * @param clazz the Java Object class
      */
-    public ScilabJavaObject(Object obj, Class clazz) {
+    public ScilabJavaObject(Object obj, Class<?> clazz) {
         this.object = obj;
         this.clazz = clazz;
 
@@ -392,7 +391,7 @@ public class ScilabJavaObject {
                 throw new ScilabJavaException("Invalid Java object");
             }
 
-            Class clazz = arraySJO[id].clazz;
+            Class<?> clazz = arraySJO[id].clazz;
             final boolean isClass = arraySJO[id].object == clazz;
 
             if (fieldPath.length == 0) {
@@ -438,7 +437,7 @@ public class ScilabJavaObject {
      * @param clazz the base class
      * @return names
      */
-    private static final String[] getFieldsAndMethods(final Class clazz, final boolean staticOnly) {
+    private static final String[] getFieldsAndMethods(final Class<?> clazz, final boolean staticOnly) {
         if (clazz.isArray()) {
             return new String[] {"length"};
         }
@@ -648,7 +647,7 @@ public class ScilabJavaObject {
 
                 try {
                     final Field f = arraySJO[id].clazz.getField(fieldName);
-                    final Class cl = f.getType();
+                    final Class<?> cl = f.getType();
                     if (cl == int.class) {
                         return new ScilabJavaObject(f.getInt(arraySJO[id].object), int.class).id;
                     } else if (cl == double.class) {
@@ -682,7 +681,7 @@ public class ScilabJavaObject {
                     return new ScilabJavaObject(retValue).id;
                 }
 
-                final Class cl = retValue.getClass();
+                final Class<?> cl = retValue.getClass();
                 if (cl == int.class) {
                     return new ScilabJavaObject(retValue, int.class).id;
                 } else if (cl == double.class) {
@@ -877,9 +876,9 @@ public class ScilabJavaObject {
                 for (int i = 0; i < args.length; i++) {
                     Object a = args[i] == 0 ? null : arraySJO[args[i]].object;
                     if (o instanceof Map) {
-                        o = ((Map) o).get(a);
+                        o = ((Map<?, ?>) o).get(a);
                     } else if (o instanceof List) {
-                        List l = (List) o;
+                        List<?> l = (List<?>) o;
                         int pos = -1;
                         if (a instanceof Double) {
                             // Scilab index begins at 1
@@ -950,9 +949,9 @@ public class ScilabJavaObject {
                 for (int i = 0; i < keys.length - 1; i++) {
                     Object a = keys[i] == 0 ? null : arraySJO[keys[i]].object;
                     if (o instanceof Map) {
-                        o = ((Map) o).get(a);
+                        o = ((Map<?, ?>) o).get(a);
                     } else if (o instanceof List) {
-                        List l = (List) o;
+                        List<?> l = (List<?>) o;
                         int pos = -1;
                         if (a instanceof Double) {
                             // Scilab index begins at 1
@@ -988,9 +987,9 @@ public class ScilabJavaObject {
                 int last = keys[keys.length - 1];
                 Object a = last == 0 ? null : arraySJO[last].object;
                 if (o instanceof Map) {
-                    ((Map) o).put(a, arraySJO[value].object);
+                    ScilabJavaArray.mapPut((Map<?, ?>) o, a, arraySJO[value].object);
                 } else if (o instanceof List) {
-                    List l = (List) o;
+                    List<?> l = (List<?>) o;
                     int pos = -1;
                     if (a instanceof Double) {
                         // Scilab index begins at 1
@@ -1006,11 +1005,11 @@ public class ScilabJavaObject {
 
                     // the last element should be add-ed instead of set-ed
                     if (pos >= 0 && pos < l.size()) {
-                        l.set(pos, arraySJO[value].object);
+                        ScilabJavaArray.listSet(l, pos, arraySJO[value].object);
                     } else if (pos < 0) {
-                        l.add(0, arraySJO[value].object);
+                        ScilabJavaArray.listAdd(l, 0, arraySJO[value].object);
                     } else {
-                        l.add(pos, arraySJO[value].object);
+                        ScilabJavaArray.listAdd(l, pos, arraySJO[value].object);
                     }
                 } else if (o.getClass().isArray()) {
                     int pos = -1;
@@ -1060,7 +1059,7 @@ public class ScilabJavaObject {
             }
 
             final int idC = ScilabClassLoader.loadJavaClass(className, false);
-            final Class clazz = (Class) arraySJO[idC].object;
+            final Class<?> clazz = (Class<?>) arraySJO[idC].object;
             try {
                 int idR = new ScilabJavaObject(clazz.cast(arraySJO[id].object), clazz).id;
                 removeScilabJavaObject(idC);
@@ -1084,7 +1083,7 @@ public class ScilabJavaObject {
                 logger.log(Level.INFO, "Cast object id=" + id + " to class with id=" + classId);
             }
 
-            final Class clazz = (Class) arraySJO[classId].object;
+            final Class<?> clazz = (Class<?>) arraySJO[classId].object;
             try {
                 return new ScilabJavaObject(clazz.cast(arraySJO[id].object), clazz).id;
             } catch (ClassCastException e) {
@@ -1150,7 +1149,6 @@ public class ScilabJavaObject {
         freePlace = new FreePlace();
         ScilabClassLoader.clazz.clear();
         System.gc();
-        System.runFinalization();
     }
 
     /**
@@ -1476,7 +1474,7 @@ public class ScilabJavaObject {
      */
     public static final Object unwrapRowDouble(final int id) {
         if (arraySJO[id].object instanceof List) {
-            return ScilabJavaArray.toDoubleArray((List<Double>) arraySJO[id].object);
+            return ScilabJavaArray.toDoubleArray((List<?>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Double[]) {
             return ScilabJavaArray.toPrimitive((Double[]) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof DoubleBuffer && !((DoubleBuffer) arraySJO[id].object).isDirect()) {
@@ -1512,7 +1510,7 @@ public class ScilabJavaObject {
      */
     public static final Object unwrapRowInt(final int id) {
         if (arraySJO[id].object instanceof List) {
-            return ScilabJavaArray.toIntArray((List<Integer>) arraySJO[id].object);
+            return ScilabJavaArray.toIntArray((List<?>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Integer[]) {
             return ScilabJavaArray.toPrimitive((Integer[]) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof IntBuffer && !((IntBuffer) arraySJO[id].object).isDirect()) {
@@ -1548,7 +1546,7 @@ public class ScilabJavaObject {
      */
     public static final Object unwrapRowShort(final int id) {
         if (arraySJO[id].object instanceof List) {
-            return ScilabJavaArray.toShortArray((List<Short>) arraySJO[id].object);
+            return ScilabJavaArray.toShortArray((List<?>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Short[]) {
             return ScilabJavaArray.toPrimitive((Short[]) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof ShortBuffer && !((ShortBuffer) arraySJO[id].object).isDirect()) {
@@ -1584,7 +1582,7 @@ public class ScilabJavaObject {
      */
     public static final Object unwrapRowByte(final int id) {
         if (arraySJO[id].object instanceof List) {
-            return ScilabJavaArray.toByteArray((List<Byte>) arraySJO[id].object);
+            return ScilabJavaArray.toByteArray((List<?>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Byte[]) {
             return ScilabJavaArray.toPrimitive((Byte[]) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof ByteBuffer && !((ByteBuffer) arraySJO[id].object).isDirect()) {
@@ -1620,7 +1618,7 @@ public class ScilabJavaObject {
      */
     public static final String[] unwrapRowString(final int id) {
         if (arraySJO[id].object instanceof List) {
-            return ScilabJavaArray.toStringArray((List<String>) arraySJO[id].object);
+            return ScilabJavaArray.toStringArray((List<?>) arraySJO[id].object);
         }
 
         return (String[]) (arraySJO[id].object);
@@ -1648,7 +1646,7 @@ public class ScilabJavaObject {
      */
     public static final boolean[] unwrapRowBoolean(final int id) {
         if (arraySJO[id].object instanceof List) {
-            return ScilabJavaArray.toBooleanArray((List<Boolean>) arraySJO[id].object);
+            return ScilabJavaArray.toBooleanArray((List<?>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Boolean[]) {
             return ScilabJavaArray.toPrimitive((Boolean[]) arraySJO[id].object);
         }
@@ -1682,7 +1680,7 @@ public class ScilabJavaObject {
      */
     public static final Object unwrapRowChar(final int id) {
         if (arraySJO[id].object instanceof List) {
-            return ScilabJavaArray.toCharArray((List<Character>) arraySJO[id].object);
+            return ScilabJavaArray.toCharArray((List<?>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Character[]) {
             return ScilabJavaArray.toPrimitive((Character[]) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof CharBuffer && !((CharBuffer) arraySJO[id].object).isDirect()) {
@@ -1718,7 +1716,7 @@ public class ScilabJavaObject {
      */
     public static final Object unwrapRowFloat(final int id) {
         if (arraySJO[id].object instanceof List) {
-            return ScilabJavaArray.toFloatArray((List<Float>) arraySJO[id].object);
+            return ScilabJavaArray.toFloatArray((List<?>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Double[]) {
             return ScilabJavaArray.toPrimitive((Float[]) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof FloatBuffer && !((FloatBuffer) arraySJO[id].object).isDirect()) {
@@ -1754,7 +1752,7 @@ public class ScilabJavaObject {
      */
     public static final Object unwrapRowLong(final int id) {
         if (arraySJO[id].object instanceof List) {
-            return ScilabJavaArray.toLongArray((List<Long>) arraySJO[id].object);
+            return ScilabJavaArray.toLongArray((List<?>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Long[]) {
             return ScilabJavaArray.toPrimitive((Long[]) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof LongBuffer && !((LongBuffer) arraySJO[id].object).isDirect()) {
@@ -1791,11 +1789,11 @@ public class ScilabJavaObject {
         if (t != null) {
             return t;
         } else if (arraySJO[id].object instanceof List) {
-            List l = (List) arraySJO[id].object;
+            List<?> l = (List<?>) arraySJO[id].object;
             if (l.size() == 0 || l.get(0) == null) {
                 return -1;
             } else {
-                Class cl = l.get(0).getClass();
+                Class<?> cl = l.get(0).getClass();
                 Integer i = listBaseType.get(cl);
                 if (i != null) {
                     for (Object o : l) {

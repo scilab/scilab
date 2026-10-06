@@ -19,6 +19,7 @@ package org.scilab.modules.graphic_objects.xmlloader;
  * CSS parser exception
  */
 public class CSSParserException extends Exception {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor

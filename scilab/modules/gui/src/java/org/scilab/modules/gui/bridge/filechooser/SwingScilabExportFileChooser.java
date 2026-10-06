@@ -48,8 +48,8 @@ import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
  * @author Sylvestre Koumar
  *
  */
-@SuppressWarnings(value = { "serial" })
-public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
+public final class SwingScilabExportFileChooser extends SwingScilabFileChooser {
+    private static final long serialVersionUID = 1L;
 
     private static final int NB_FILE_MASKS = 12;
 
@@ -83,14 +83,27 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 
     /**
      * Default constructor
-     * @param figureId id of the exported figure
+     * package-private: use {@link #create(Integer)} so that {@link #init()}
+     * is never forgotten.
+     * @param figureUID id of the exported figure
      */
-    public SwingScilabExportFileChooser(Integer figureUID) {
+    SwingScilabExportFileChooser(Integer figureUID) {
         super();
         this.figureUID = figureUID;
+    }
+
+    /**
+     * Creates and fully initializes a new export file chooser for the given figure.
+     * @param figureUID id of the exported figure
+     * @return the created export file chooser
+     */
+    public static SwingScilabExportFileChooser create(Integer figureUID) {
+        SwingScilabExportFileChooser fc = new SwingScilabExportFileChooser(figureUID);
+        fc.init();
         JFrame parentWindow = (JFrame) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (JComponent) SwingView.getFromId(figureUID));
-        setParentFrame(parentWindow);
-        exportCustomFileChooser(figureUID);
+        fc.setParentFrame(parentWindow);
+        fc.exportCustomFileChooser(figureUID);
+        return fc;
     }
 
     /**

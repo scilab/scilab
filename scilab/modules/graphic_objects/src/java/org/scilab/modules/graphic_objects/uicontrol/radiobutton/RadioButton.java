@@ -26,7 +26,7 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 /**
  * @author Bruno JOFRET
  */
-public class RadioButton extends Uicontrol {
+public final class RadioButton extends Uicontrol {
 
     /**
      * Constructor

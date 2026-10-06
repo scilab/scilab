@@ -42,16 +42,16 @@ import org.scilab.modules.preferences.XConfigManager;
  * @author Calixte DENIZET
  *
  */
-public class FontSelector extends Panel implements XComponent, XChooser {
+public final class FontSelector extends Panel implements XComponent, XChooser {
 
     /** Universal identifier for serialization.
      *
      */
     private static final long serialVersionUID = -4842434795956015959L;
-    private ActionListener actionListener;
+    private transient ActionListener actionListener;
     private JTextField textField;
     private JButton button;
-    private Font font = new Font("Monospaced", Font.PLAIN, 12);
+    private transient Font font = new Font("Monospaced", Font.PLAIN, 12);
     private int defaultSize;
 
     /** Define the set of actuators.

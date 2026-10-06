@@ -26,7 +26,7 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 /**
  * @author Bruno JOFRET
  */
-public class PushButton extends Uicontrol {
+public final class PushButton extends Uicontrol {
 
     private static final double BUTTON_RED_BACKGROUND = 0.6;
     private static final double BUTTON_GREEN_BACKGROUND = 0.6;

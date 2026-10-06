@@ -25,7 +25,8 @@ import org.scilab.modules.gui.ged.graphic_objects.properties.GraphicObject;
 *
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class DataProperties extends SimpleSection {
+public final class DataProperties extends SimpleSection {
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static DataProperties instance;
     private Datatip datatip = new Datatip();
@@ -37,6 +38,7 @@ public class DataProperties extends SimpleSection {
     */
     public DataProperties(Integer objectID) {
         super(MessagesGED.data_properties, "datatip");
+        initializeSection();
         instance = this;
         sectionPanel = getSectionPanel();
         initComponents(objectID);

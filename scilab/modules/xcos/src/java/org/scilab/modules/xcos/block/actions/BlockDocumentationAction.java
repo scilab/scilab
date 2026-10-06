@@ -40,8 +40,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * View Xcos documentation
  */
-@SuppressWarnings(value = { "serial" })
 public final class BlockDocumentationAction extends VertexSelectionDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.BLOCK_DOCUMENTATION;
     /** Icon name of the action */
@@ -49,7 +49,7 @@ public final class BlockDocumentationAction extends VertexSelectionDependantActi
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_H;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /**
      * Constructor

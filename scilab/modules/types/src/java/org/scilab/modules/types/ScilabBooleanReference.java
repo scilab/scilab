@@ -35,10 +35,21 @@ import java.nio.IntBuffer;
  * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabBooleanReference extends ScilabBoolean {
+    private static final long serialVersionUID = 1L;
 
-    private final IntBuffer intBuffer;
-    private final int nbRows;
-    private final int nbCols;
+    private transient IntBuffer intBuffer;
+    private int nbRows;
+    private int nbCols;
+
+    /**
+     * Public no-arg constructor required by the Externalizable contract.
+     * Not used in practice: readResolve() converts this to a ScilabBoolean.
+     */
+    public ScilabBooleanReference() {
+        this.intBuffer = null;
+        this.nbRows = 0;
+        this.nbCols = 0;
+    }
 
     /**
      * Create an object from an array of array of boolean

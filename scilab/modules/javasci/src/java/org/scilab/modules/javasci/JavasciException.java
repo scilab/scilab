@@ -23,6 +23,7 @@ package org.scilab.modules.javasci;
  * This class provides a general exception class for Javasci v2 API.
  */
 public abstract class JavasciException extends Exception {
+    private static final long serialVersionUID = 1L;
 
 
     /**
@@ -30,6 +31,7 @@ public abstract class JavasciException extends Exception {
      * initialization
      */
     public static class InitializationException extends JavasciException {
+        private static final long serialVersionUID = 1L;
 
         public InitializationException(String message) {
             super(message);
@@ -46,6 +48,7 @@ public abstract class JavasciException extends Exception {
      * This class provides a exception class when an unsupported type is used
      */
     public static class UnsupportedTypeException extends JavasciException {
+        private static final long serialVersionUID = 1L;
 
         public UnsupportedTypeException(String message) {
             super(message);
@@ -58,17 +61,18 @@ public abstract class JavasciException extends Exception {
      * This should be very very rare.
      */
     public static class UnknownTypeException extends JavasciException {
+        private static final long serialVersionUID = 1L;
 
         public UnknownTypeException(String message) {
             super(message);
         }
-
     }
 
     /**
      * This class provides a exception class when Scilab is already running
      */
     public static class AlreadyRunningException extends JavasciException {
+        private static final long serialVersionUID = 1L;
 
         public AlreadyRunningException(String message) {
             super(message);
@@ -80,11 +84,11 @@ public abstract class JavasciException extends Exception {
      * This class provides a exception class when an internal error occurs
      */
     public static class ScilabInternalException extends JavasciException {
+        private static final long serialVersionUID = 1L;
 
         public ScilabInternalException(String message) {
             super(message);
         }
-
     }
 
     /**
@@ -92,24 +96,23 @@ public abstract class JavasciException extends Exception {
      * @since 5.4.0
      */
     public static class ScilabErrorException extends JavasciException {
+        private static final long serialVersionUID = 1L;
 
         public ScilabErrorException(String message, int errorCode) {
             super(message + "\nCode: " + errorCode);
         }
-
     }
-
 
     /**
      * This class provides a exception class when an non-existing variable is
      * accessed.
      */
     public static class UndefinedVariableException extends JavasciException {
+        private static final long serialVersionUID = 1L;
 
         public UndefinedVariableException(String message) {
             super(message);
         }
-
     }
 
     /**

@@ -17,6 +17,7 @@ import javax.swing.JList;
 import com.artenum.rosetta.ui.CompletionItemListCellRenderer;
 
 public class SciCompletionItemListCellRenderer extends CompletionItemListCellRenderer {
+    private static final long serialVersionUID = 1L;
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {

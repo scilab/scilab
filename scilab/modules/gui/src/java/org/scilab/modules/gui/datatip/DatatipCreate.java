@@ -192,7 +192,7 @@ public class DatatipCreate {
             controller.setProperty(uid, GraphicObjectProperties.__GO_DATATIP_INTERP_MODE__, interpMode);
         } else {
             Integer[] tips = (Integer[]) controller.getProperty(uid, GraphicObjectProperties.__GO_DATATIPS__);
-            Boolean b = new Boolean(interpMode);
+            Boolean b = Boolean.valueOf(interpMode);
             for (int i = 0; i < tips.length; i++) {
                 controller.setProperty(tips[i], GraphicObjectProperties.__GO_DATATIP_INTERP_MODE__, b);
             }

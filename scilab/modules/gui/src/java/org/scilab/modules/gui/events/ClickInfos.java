@@ -34,7 +34,6 @@ public final class ClickInfos {
      * SINGLETON
      */
     private ClickInfos() {
-        init();
     }
 
     /**

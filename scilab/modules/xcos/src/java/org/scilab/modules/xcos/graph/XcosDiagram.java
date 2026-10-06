@@ -28,6 +28,7 @@ import java.lang.reflect.Constructor;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -150,7 +151,52 @@ public class XcosDiagram extends ScilabGraph {
 
     public XcosDiagram(final JavaController controller, final ScicosObjectOwner owner, String uid) {
         super(new XcosGraphModel(controller, owner, uid), Xcos.getInstance().getStyleSheet());
+    }
 
+    /**
+     * Construct a fully initialized diagram, deferring initialization until the
+     * constructor has returned (to avoid this-escape) but running it
+     * synchronously — unlike a SwingUtilities.invokeLater deferral, the
+     * returned diagram is immediately usable (component created, handlers and
+     * undo/redo installed).
+     *
+     * @param controller the shared controller
+     * @param diagramId the diagram MVC ID
+     * @param kind DIAGRAM or BLOCK for a root diagram or a super-block
+     * @param uid the string UID that will be used on the default parent
+     * @return a new initialized XcosDiagram
+     */
+    public static XcosDiagram create(final JavaController controller, final long diagramId, final Kind kind, String uid) {
+        final XcosDiagram diagram = new XcosDiagram(controller, diagramId, kind, uid);
+        diagram.initializeDiagram();
+        return diagram;
+    }
+
+    /**
+     * Construct a fully initialized diagram, deferring initialization until the
+     * constructor has returned (to avoid this-escape) but running it
+     * synchronously.
+     *
+     * @param controller the shared controller
+     * @param owner the diagram owner
+     * @param uid the string UID that will be used on the default parent
+     * @return a new initialized XcosDiagram
+     */
+    public static XcosDiagram create(final JavaController controller, final ScicosObjectOwner owner, String uid) {
+        final XcosDiagram diagram = new XcosDiagram(controller, owner, uid);
+        diagram.initializeDiagram();
+        return diagram;
+    }
+
+    /**
+     * Initialize diagram after construction is complete to avoid this-escape.
+     *
+     * This must be called once, after the constructor has returned (e.g. from a
+     * factory or subclass constructor tail), never from the constructor itself.
+     */
+    protected void initializeDiagram() {
+        // install the graph-level handlers (undo/redo, change tracking) first
+        initializeHandlers();
         // set the default parent (the JGraphX layer) defined on the model
         setDefaultParent(getModel().getChildAt(getModel().getRoot(), 0));
 
@@ -259,33 +305,29 @@ public class XcosDiagram extends ScilabGraph {
      * @param klass the class instance to work on
      * @return list of typed block
      */
-    @SuppressWarnings("unchecked")
-    private <T extends ContextUpdate> List<T> getAllTypedBlock(Class<T> klass) {
-        final List<T> list = new ArrayList<T>();
+    private List<ContextUpdate> getAllTypedBlock(Class<? extends ContextUpdate> klass) {
+        final List<ContextUpdate> list = new ArrayList<ContextUpdate>();
 
         int blockCount = getModel().getChildCount(getDefaultParent());
 
         for (int i = 0; i < blockCount; i++) {
             Object cell = getModel().getChildAt(getDefaultParent(), i);
             if (klass.isInstance(cell)) {
-                // According to the test we are sure that the cell is an
-                // instance of T. Thus we can safely cast it.
-                list.add((T) cell);
+                // klass.isInstance(cell) guarantees cell is a ContextUpdate
+                list.add((ContextUpdate) cell);
             }
         }
         return list;
     }
 
     /**
-     * @param <T>
-     * @param <T> The type to work on
      * @param klasses the class instance list to work on
      * @return list of typed block
      */
-    private <T extends ContextUpdate> List<T> getAllTypedBlock(Class<T>[] klasses) {
-        final List<T> list = new ArrayList<T>();
-        for (Class<T> klass : klasses) {
-            list.addAll(getAllTypedBlock(klass));
+    private List<ContextUpdate> getAllTypedBlockFromRawArray(Class<?>[] klasses) {
+        final List<ContextUpdate> list = new ArrayList<ContextUpdate>();
+        for (Class<?> klass : klasses) {
+            list.addAll(getAllTypedBlock(klass.asSubclass(ContextUpdate.class)));
         }
         return list;
     }
@@ -297,19 +339,18 @@ public class XcosDiagram extends ScilabGraph {
      * @param controller the shared controller
      * @return the context
      */
-    @SuppressWarnings("unchecked")
     public final Map<String, List<ContextUpdate>> fillContext(final Map<String, List<ContextUpdate>> context, final JavaController controller) {
         if (!context.containsKey(IN)) {
-            context.put(IN, iparSort(getAllTypedBlock(new Class[] {ExplicitInBlock.class, ImplicitInBlock.class}), controller));
+            context.put(IN, iparSort(getAllTypedBlockFromRawArray(new Class<?>[] {ExplicitInBlock.class, ImplicitInBlock.class}), controller));
         }
         if (!context.containsKey(OUT)) {
-            context.put(OUT, iparSort(getAllTypedBlock(new Class[] {ExplicitOutBlock.class, ImplicitOutBlock.class}), controller));
+            context.put(OUT, iparSort(getAllTypedBlockFromRawArray(new Class<?>[] {ExplicitOutBlock.class, ImplicitOutBlock.class}), controller));
         }
         if (!context.containsKey(EIN)) {
-            context.put(EIN, iparSort(getAllTypedBlock(new Class[] {EventInBlock.class}), controller));
+            context.put(EIN, iparSort(getAllTypedBlockFromRawArray(new Class<?>[] {EventInBlock.class}), controller));
         }
         if (!context.containsKey(EOUT)) {
-            context.put(EOUT, iparSort(getAllTypedBlock(new Class[] {EventOutBlock.class}), controller));
+            context.put(EOUT, iparSort(getAllTypedBlockFromRawArray(new Class<?>[] {EventOutBlock.class}), controller));
         }
 
         return context;
@@ -2227,7 +2268,7 @@ public class XcosDiagram extends ScilabGraph {
             // create a temporary hidden root diagram
             String[] uid = {""};
             controller.getObjectProperty(root.getUID(), Kind.DIAGRAM, ObjectProperties.UID, uid);
-            return new XcosDiagram(controller, root.getUID(), Kind.DIAGRAM, uid[0]);
+            return XcosDiagram.create(controller, root.getUID(), Kind.DIAGRAM, uid[0]);
         }
 
 
@@ -2668,4 +2709,5 @@ public class XcosDiagram extends ScilabGraph {
     public int countChildren() {
         return getModel().getChildCount(this.getDefaultParent());
     }
+
 }

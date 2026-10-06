@@ -24,7 +24,8 @@ import org.scilab.modules.gui.ged.graphic_objects.properties.Arc;
 *
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class DataProperties extends SimpleSection {
+public final class DataProperties extends SimpleSection {
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static DataProperties instance;
     private Arc arc = new Arc();
@@ -35,6 +36,7 @@ public class DataProperties extends SimpleSection {
     */
     public DataProperties(Integer objectID) {
         super(MessagesGED.data_properties, "arc");
+        initializeSection();
         instance = this;
         sectionPanel = getSectionPanel();
         initComponents(objectID);

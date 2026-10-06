@@ -28,7 +28,7 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
  *
  * @see java.awt.Component
  */
-public class PaletteComponent extends ScilabComponent {
+public final class PaletteComponent extends ScilabComponent {
 
     private static final long serialVersionUID = 1592816691330208090L;
 

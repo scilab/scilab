@@ -43,6 +43,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class CameraProperties extends ContentLayout {
+    private static final long serialVersionUID = 1L;
     private JTextField cRotationAngles;
     private JTextField cAlpha;
     private JTextField cTheta;
@@ -57,7 +58,7 @@ public class CameraProperties extends ContentLayout {
      */
     public void cubeScaling(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lCubeScaling = new JLabel();
-        final JComboBox cCubeScaling = new JComboBox();
+        final JComboBox<String> cCubeScaling = new JComboBox<>();
         addLabelComboBox(panel, lCubeScaling, MessagesGED.cube_scaling,
                          cCubeScaling, new String[] {MessagesGED.off , MessagesGED.on},
                          LEFTMARGIN, COLUMN, ROW);
@@ -85,7 +86,7 @@ public class CameraProperties extends ContentLayout {
      */
     public void isometricView(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lIsoView = new JLabel();
-        final JComboBox cIsoView = new JComboBox();
+        final JComboBox<String> cIsoView = new JComboBox<>();
 
         addLabelComboBox(panel, lIsoView, MessagesGED.isometric_view,
                          cIsoView, new String[] {MessagesGED.off , MessagesGED.on},
@@ -208,7 +209,7 @@ public class CameraProperties extends ContentLayout {
      */
     public void view(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lView = new JLabel();
-        final JComboBox cView = new JComboBox();
+        final JComboBox<String> cView = new JComboBox<>();
 
         addLabelComboBox(panel, lView, MessagesGED.view,
                          cView, new String[] {MessagesGED._2d , MessagesGED._3d},

@@ -28,8 +28,8 @@ import org.scilab.modules.xcos.Kind;
 /**
  * Implement a round block with inputs spread around the block.
  */
-@SuppressWarnings(value = { "serial" })
 public class RoundBlock extends BasicBlock {
+    private static final long serialVersionUID = 1L;
     /**
      * Default constructor
      */

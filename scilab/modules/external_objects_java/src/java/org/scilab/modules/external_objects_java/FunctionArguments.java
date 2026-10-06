@@ -84,8 +84,8 @@ public final class FunctionArguments {
             @Override
             public boolean canConvert(Class<?> from, Class<?> to) {
                 if (from.isArray() && to.isArray()) {
-                    final Class _from = ScilabJavaArray.getArrayBaseType(from);
-                    final Class _to = ScilabJavaArray.getArrayBaseType(to);
+                    final Class<?> _from = ScilabJavaArray.getArrayBaseType(from);
+                    final Class<?> _to = ScilabJavaArray.getArrayBaseType(to);
                     return ScilabJavaObject.primTypes.get(_from) == _to;
                 }
                 return false;
@@ -109,7 +109,17 @@ public final class FunctionArguments {
         registerConverter(new Converter() {
             @Override
             public Object convert(Object original, Class<?> to) {
-                return Enum.valueOf((Class) to, (String) original);
+                String name = (String) original;
+                Object[] constants = to.getEnumConstants();
+                if (constants == null) {
+                    throw new IllegalArgumentException(to.getCanonicalName() + " is not an enum type");
+                }
+                for (Object constant : constants) {
+                    if (((Enum<?>) constant).name().equals(name)) {
+                        return constant;
+                    }
+                }
+                throw new IllegalArgumentException("No enum constant " + to.getCanonicalName() + "." + name);
             }
 
             @Override
@@ -202,11 +212,11 @@ public final class FunctionArguments {
      * @param base the base Class
      * @return the converted object
      */
-    public static final Object convert(Object x, Class base) {
+    public static final Object convert(Object x, Class<?> base) {
         if (x == null) {
             return null;
         }
-        final Class clazz = x.getClass();
+        final Class<?> clazz = x.getClass();
         if (base.isAssignableFrom(clazz)) {
             return x;
         }
@@ -219,7 +229,7 @@ public final class FunctionArguments {
         return x;
     }
 
-    /**
+    /*
      * To find the "correct" method we proceed as follow:
      * i) We calculate the distance between the Class of the arguments.
      *    For a Class B which derivates from A (A.isAssignableFrom(B) == true), the distance between A and B is the number of
@@ -246,7 +256,7 @@ public final class FunctionArguments {
      * @param args the arguments
      * @return a valid method wrapped in an array or a method and the modified args (variable args) wrapped in an array
      */
-    public static final Object[] findMethod(String name, MethodDescriptor[] descriptors, Class[] argsClass, Object[] args) throws NoSuchMethodException {
+    public static final Object[] findMethod(String name, MethodDescriptor[] descriptors, Class<?>[] argsClass, Object[] args) throws NoSuchMethodException {
         String internName = name.intern();
         Method better = null;
         boolean mustConv = false;
@@ -258,7 +268,7 @@ public final class FunctionArguments {
         for (MethodDescriptor desc : descriptors) {
             if (desc.getName() == internName) {
                 Method f = desc.getMethod();
-                Class[] types = f.getParameterTypes();
+                Class<?>[] types = f.getParameterTypes();
                 refBools[0] = false;
                 long d = compareClassArgs(types, argsClass, args, refBools, toConv);
                 if (d != Long.MIN_VALUE && d < sqd) {
@@ -281,8 +291,8 @@ public final class FunctionArguments {
         if (better != null) {
             if (!toConvert.isEmpty()) {
                 // Contains int.class arguments and we passed double.class args
-                Class[] types = better.getParameterTypes();
-                Class base = types[types.length - 1].getComponentType();
+                Class<?>[] types = better.getParameterTypes();
+                Class<?> base = types[types.length - 1].getComponentType();
                 for (Map.Entry<Integer, Converter> entry : toConvert.entrySet()) {
                     int i = entry.getKey();
                     if (i >= 0) {
@@ -297,12 +307,12 @@ public final class FunctionArguments {
 
             if (isVarArgs) {
                 // Variable arguments
-                Class[] types = better.getParameterTypes();
+                Class<?>[] types = better.getParameterTypes();
                 Object o;
                 if (args.length == 1 && types.length == 1 && args[0] == null) {
                     o = null;
                 } else {
-                    Class base = types[types.length - 1].getComponentType();
+                    Class<?> base = types[types.length - 1].getComponentType();
                     o = Array.newInstance(base, args.length - types.length + 1);
 
                     // Don't use System.arraycopy since it does not handle unboxing
@@ -331,18 +341,18 @@ public final class FunctionArguments {
      * @param args the arguments
      * @return a valid method wrapped in an array or a method and the modified args (variable args) wrapped in an array
      */
-    public static final Object[] findConstructor(Constructor[] functions, Class[] argsClass, Object[] args) throws NoSuchMethodException {
+    public static final Object[] findConstructor(Constructor<?>[] functions, Class<?>[] argsClass, Object[] args) throws NoSuchMethodException {
         // Essentially a clone of findMethod.
-        Constructor better = null;
+        Constructor<?> better = null;
         boolean mustConv = false;
         boolean isVarArgs = false;
         long sqd = Long.MAX_VALUE;
         boolean[] refBools = new boolean[1];
         Map<Integer, Converter> toConvert = null;
         Map<Integer, Converter> toConv = new HashMap<Integer, Converter>();
-        for (Constructor f : functions) {
+        for (Constructor<?> f : functions) {
             if (Modifier.isPublic(f.getModifiers())) {
-                Class[] types = f.getParameterTypes();
+                Class<?>[] types = f.getParameterTypes();
                 refBools[0] = false;
                 long d = compareClassArgs(types, argsClass, args, refBools, toConv);
                 if (d != Long.MIN_VALUE && d < sqd) {
@@ -365,8 +375,8 @@ public final class FunctionArguments {
         if (better != null) {
             if (!toConvert.isEmpty()) {
                 // Contains int.class arguments and we passed double.class args
-                Class[] types = better.getParameterTypes();
-                Class base = types[types.length - 1].getComponentType();
+                Class<?>[] types = better.getParameterTypes();
+                Class<?> base = types[types.length - 1].getComponentType();
                 for (Map.Entry<Integer, Converter> entry : toConvert.entrySet()) {
                     int i = entry.getKey();
                     if (i >= 0) {
@@ -380,12 +390,12 @@ public final class FunctionArguments {
             }
             if (isVarArgs) {
                 // Variable arguments
-                Class[] types = better.getParameterTypes();
+                Class<?>[] types = better.getParameterTypes();
                 Object o;
                 if (args.length == 1 && types.length == 1 && args[0] == null) {
                     o = null;
                 } else {
-                    Class base = types[types.length - 1].getComponentType();
+                    Class<?> base = types[types.length - 1].getComponentType();
                     o = Array.newInstance(base, args.length - types.length + 1);
                     // Don't use System.arraycopy since it does not handle unboxing
                     for (int i = 0; i < args.length - types.length + 1; i++) {
@@ -414,7 +424,7 @@ public final class FunctionArguments {
      * @param bools references on boolean
      * @return the distance
      */
-    private static final long compareClassArgs(Class[] A, Class[] B, Object[] arr, boolean[] bools, Map<Integer, Converter> toConvert) {
+    private static final long compareClassArgs(Class<?>[] A, Class<?>[] B, Object[] arr, boolean[] bools, Map<Integer, Converter> toConvert) {
         if (A.length > B.length) {
             return Long.MIN_VALUE;
         }
@@ -422,7 +432,7 @@ public final class FunctionArguments {
         long s = 0;
         int end = A.length;
         if (A.length > 0 && A[A.length - 1].isArray() && (A.length < B.length || (A.length == 1 && B.length == 1 && (B[0] == null || !B[0].isArray())))) {
-            Class base = A[A.length - 1].getComponentType();
+            Class<?> base = A[A.length - 1].getComponentType();
             // this is a variable arguments method
             bools[0] = true;
             end--;

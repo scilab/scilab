@@ -23,7 +23,8 @@ import org.scilab.modules.gui.ged.graphic_objects.properties.Axes;
 * Construction and startup of all components of the section: Box.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Box extends SimpleSection {
+public final class Box extends SimpleSection {
+    private static final long serialVersionUID = 1L;
     private JPanel sectionPanel;
     private static Box instance;
     private Axes axes = new Axes();
@@ -34,6 +35,7 @@ public class Box extends SimpleSection {
     */
     public Box(Integer objectID) {
         super(MessagesGED.box, "axes");
+        initializeSection();
         instance = this;
         sectionPanel = getSectionPanel();
         initComponents(objectID);

@@ -90,7 +90,7 @@ public class Text extends ClippableTextObject {
     private Alignment alignment;
 
     /** Specifies whether a box is drawn */
-    private boolean box;
+    protected boolean box;
 
     /** Text box dimensions (2-element array) */
     private double[] textBox;

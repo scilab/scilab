@@ -29,8 +29,8 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * CloseAction class
  * @author Calixte DENIZET
  */
-@SuppressWarnings(value = { "serial" })
 public final class CloseAction extends CommonCallBack {
+    private static final long serialVersionUID = 1L;
 
     private static final String KEY = "OSSCKEY Q";
     private static final String CLOSE = "Close";

@@ -103,14 +103,14 @@ public final class WebBrowser implements XConfigurationListener {
                     if (webprefs.defaultMailer) {
                         Desktop.getDesktop().mail(new URI(mail));
                     } else {
-                        Runtime.getRuntime().exec(webprefs.cmdMailer + " " + new URI(mail).toString());
+                        new ProcessBuilder((webprefs.cmdMailer + " " + new URI(mail).toString()).trim().split("\\s+")).start();
                     }
                 }
             } else if (protocol.equals("mailto")) {
                 if (webprefs.defaultMailer) {
                     Desktop.getDesktop().mail(new URI(url));
                 } else {
-                    Runtime.getRuntime().exec(webprefs.cmdMailer + " " + new URI(url).toString());
+                    new ProcessBuilder((webprefs.cmdMailer + " " + new URI(url).toString()).trim().split("\\s+")).start();
                 }
             } else {
                 if (webprefs.defaultBrowser) {
@@ -118,7 +118,7 @@ public final class WebBrowser implements XConfigurationListener {
                     // So to handle different protocol in URI, user must config its OS to handle them.
                     Desktop.getDesktop().browse(new URI(url));
                 } else {
-                    Runtime.getRuntime().exec(webprefs.cmdBrowser + " " + new URI(url).toString());
+                    new ProcessBuilder((webprefs.cmdBrowser + " " + new URI(url).toString()).trim().split("\\s+")).start();
                 }
             }
         } catch (Exception e) {

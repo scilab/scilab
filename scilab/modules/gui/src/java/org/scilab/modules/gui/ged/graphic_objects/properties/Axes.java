@@ -48,6 +48,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Axes extends ContentLayout {
+    private static final long serialVersionUID = 1L;
     private JTextField cAxesBounds;
     private JTextField cAxesBoundsHeight;
     private JTextField cAxesBoundsWidth;
@@ -75,7 +76,7 @@ public class Axes extends ContentLayout {
      */
     public void autoClear(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lAutoClear = new JLabel();
-        final JComboBox cAutoClear = new JComboBox();
+        final JComboBox<String> cAutoClear = new JComboBox<>();
         addLabelComboBox(panel, lAutoClear, MessagesGED.auto_clear,
                          cAutoClear, new String[] {MessagesGED.off , MessagesGED.on},
                          LEFTMARGIN, COLUMN, ROW);
@@ -103,7 +104,7 @@ public class Axes extends ContentLayout {
      */
     public void autoScale(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lAutoScale = new JLabel();
-        final JComboBox cAutoScale = new JComboBox();
+        final JComboBox<String> cAutoScale = new JComboBox<>();
 
         addLabelComboBox(panel, lAutoScale, MessagesGED.auto_scale,
                          cAutoScale, new String[] {MessagesGED.off , MessagesGED.on},
@@ -407,7 +408,7 @@ public class Axes extends ContentLayout {
     public void axisLocation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         //x_location
         JLabel lLocationX = new JLabel();
-        final JComboBox cLocationX = new JComboBox();
+        final JComboBox<String> cLocationX = new JComboBox<>();
         addLabelComboBox(panel, lLocationX, MessagesGED.x_location, cLocationX,
                          new String[] {"bottom", "top", "middle", "origin"},
                          LEFTMARGIN, COLUMN, ROW++);
@@ -421,7 +422,7 @@ public class Axes extends ContentLayout {
         });
         //y_location
         JLabel lLocationY = new JLabel();
-        final JComboBox cLocationY = new JComboBox();
+        final JComboBox<String> cLocationY = new JComboBox<>();
         addLabelComboBox(panel, lLocationY, MessagesGED.y_location, cLocationY,
                          new String[] {"middle", "origin", "left", "right"},
                          LEFTMARGIN, COLUMN, ROW++);
@@ -452,7 +453,7 @@ public class Axes extends ContentLayout {
      */
     public void box(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lBox = new JLabel();
-        final JComboBox cBox = new JComboBox();
+        final JComboBox<String> cBox = new JComboBox<>();
 
         addLabelComboBox(panel, lBox, MessagesGED.box,
                          cBox, new String[] {MessagesGED.off, MessagesGED.on,
@@ -482,7 +483,7 @@ public class Axes extends ContentLayout {
      */
     public void filled(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lFilled = new JLabel();
-        final JComboBox cFilled = new JComboBox();
+        final JComboBox<String> cFilled = new JComboBox<>();
         addLabelComboBox(panel, lFilled, MessagesGED.filled,
                          cFilled, new String[] {MessagesGED.off , MessagesGED.on},
                          LEFTMARGIN, COLUMN, ROW);
@@ -510,7 +511,7 @@ public class Axes extends ContentLayout {
      */
     public void gridPosition(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lGridPosition = new JLabel();
-        final JComboBox cGridPosition = new JComboBox();
+        final JComboBox<String> cGridPosition = new JComboBox<>();
 
         addLabelComboBox(panel, lGridPosition, MessagesGED.grid_position,
                          cGridPosition, new String[] {MessagesGED.background, MessagesGED.foreground},
@@ -1108,7 +1109,7 @@ public class Axes extends ContentLayout {
 
         /* X axes */
         JLabel lXTightLimits = new JLabel();
-        final JComboBox cXTightLimits = new JComboBox();
+        final JComboBox<String> cXTightLimits = new JComboBox<>();
 
         addLabelComboBox(panel, lXTightLimits, MessagesGED.x_tight_limits,
                          cXTightLimits, new String[] {MessagesGED.off , MessagesGED.on},
@@ -1128,7 +1129,7 @@ public class Axes extends ContentLayout {
 
         /* Y axes */
         JLabel lYTightLimits = new JLabel();
-        final JComboBox cYTightLimits = new JComboBox();
+        final JComboBox<String> cYTightLimits = new JComboBox<>();
 
         addLabelComboBox(panel, lYTightLimits, MessagesGED.y_tight_limits,
                          cYTightLimits, new String[] {MessagesGED.off , MessagesGED.on},
@@ -1148,7 +1149,7 @@ public class Axes extends ContentLayout {
 
         /* Z axes */
         JLabel lZTightLimits = new JLabel();
-        final JComboBox cZTightLimits = new JComboBox();
+        final JComboBox<String> cZTightLimits = new JComboBox<>();
 
         addLabelComboBox(panel, lZTightLimits, MessagesGED.z_tight_limits,
                          cZTightLimits, new String[] {MessagesGED.off , MessagesGED.on},

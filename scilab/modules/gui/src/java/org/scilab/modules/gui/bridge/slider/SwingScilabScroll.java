@@ -49,7 +49,7 @@ import org.scilab.modules.gui.widget.Widget;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabScroll extends JScrollBar implements SwingViewObject, Widget {
+public final class SwingScilabScroll extends JScrollBar implements SwingViewObject, Widget {
 
     private static final long serialVersionUID = -4262320156090829309L;
 
@@ -62,9 +62,9 @@ public class SwingScilabScroll extends JScrollBar implements SwingViewObject, Wi
 
     private CommonCallBack callback;
 
-    private AdjustmentListener adjustmentListener;
+    private transient AdjustmentListener adjustmentListener;
 
-    private Border defaultBorder = null;
+    private transient Border defaultBorder = null;
 
     /**
      * Constructor

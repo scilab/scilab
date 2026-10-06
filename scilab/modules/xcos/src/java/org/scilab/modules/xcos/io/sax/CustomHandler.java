@@ -50,7 +50,6 @@ class CustomHandler implements ScilabHandler {
     }
 
     @Override
-    @SuppressWarnings({ "fallthrough" })
     public Object startElement(HandledElement found, final Attributes atts) {
         long uid = 0l;
         String v;
@@ -132,47 +131,60 @@ class CustomHandler implements ScilabHandler {
 
                 saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.PROPERTIES, properties);
 
-                // no break on purpose, we decode non-root specific properties later
+                return decodeSharedDiagramProperties(uid, atts);
             case SuperBlockDiagram:
-                final Kind kind;
-                XcosCell parent;
-                if (uid == 0l) {
-                    parent = saxHandler.lookupForParentXcosCellElement();
-                    uid = parent.getUID();
-                    kind = parent.getKind();
-                } else {
-                    kind = Kind.DIAGRAM;
-                    parent = new XcosCell(saxHandler.controller, uid, kind, null, null, "", "");
-                }
-
-                /*
-                 * Decode the properties shared between a DIAGRAM and a BLOCK
-                 */
-                VectorOfInt colors = new VectorOfInt();
-                saxHandler.controller.getObjectProperty(uid, kind, ObjectProperties.COLOR, colors);
-                v = atts.getValue("background");
-                if (v != null) {
-                    colors.set(0, Integer.valueOf(v));
-                }
-                v = atts.getValue("gridEnabled");
-                if (v != null) {
-                    colors.set(1, Integer.valueOf(v));
-                }
-                saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.COLOR, colors);
-
-                v = atts.getValue("title");
-                if (v != null && !v.isEmpty()) {
-                    saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.NAME, v);
-                }
-
-                /*
-                 * Update some states
-                 */
-                saxHandler.allChildren.push(new HashMap<>());
-                return parent;
+                return decodeSharedDiagramProperties(uid, atts);
             default:
                 throw new IllegalArgumentException();
         }
+    }
+
+    /**
+     * Decode the properties shared between a DIAGRAM and a BLOCK, then
+     * update the handler state.
+     *
+     * @param uid the element UID (0 to look up the parent)
+     * @param atts the SAX attributes
+     * @return the parent XcosCell
+     */
+    private Object decodeSharedDiagramProperties(long uid, final Attributes atts) {
+        String v;
+        final Kind kind;
+        XcosCell parent;
+        if (uid == 0l) {
+            parent = saxHandler.lookupForParentXcosCellElement();
+            uid = parent.getUID();
+            kind = parent.getKind();
+        } else {
+            kind = Kind.DIAGRAM;
+            parent = new XcosCell(saxHandler.controller, uid, kind, null, null, "", "");
+        }
+
+        /*
+         * Decode the properties shared between a DIAGRAM and a BLOCK
+         */
+        VectorOfInt colors = new VectorOfInt();
+        saxHandler.controller.getObjectProperty(uid, kind, ObjectProperties.COLOR, colors);
+        v = atts.getValue("background");
+        if (v != null) {
+            colors.set(0, Integer.valueOf(v));
+        }
+        v = atts.getValue("gridEnabled");
+        if (v != null) {
+            colors.set(1, Integer.valueOf(v));
+        }
+        saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.COLOR, colors);
+
+        v = atts.getValue("title");
+        if (v != null && !v.isEmpty()) {
+            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.NAME, v);
+        }
+
+        /*
+         * Update some states
+         */
+        saxHandler.allChildren.push(new HashMap<>());
+        return parent;
     }
 
     @Override

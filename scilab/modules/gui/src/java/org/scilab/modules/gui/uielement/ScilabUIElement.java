@@ -65,9 +65,9 @@ public abstract class ScilabUIElement implements UIElement {
      */
     private Layout textLayout;
 
-    /***********************/
-    /* GETTERS AND SETTERS */
-    /***********************/
+    // =======================
+    // GETTERS AND SETTERS
+    // =======================
 
     /**
      * Gets the background layout of an UIElement
@@ -171,9 +171,9 @@ public abstract class ScilabUIElement implements UIElement {
         return infoBar;
     }
 
-    /*******************************/
-    /* UIElement interface methods */
-    /*******************************/
+    // ===============================
+    // UIElement interface methods
+    // ===============================
 
     /**
      * Draws an UIElement

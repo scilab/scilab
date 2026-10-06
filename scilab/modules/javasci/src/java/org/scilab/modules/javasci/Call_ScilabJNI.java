@@ -7,6 +7,7 @@
  * ----------------------------------------------------------------------------- */
 
 package org.scilab.modules.javasci;
+import org.scilab.modules.localization.NativeLibraryLoader;
 
 
 /* It is generated code. Disable checkstyle */
@@ -17,6 +18,7 @@ package org.scilab.modules.javasci;
    * @see org.scilab.modules.javasci.Scilab
    * @author DIGITEO - Sylvestre LEDRU
    */
+
 class Call_ScilabJNI {
 
   /**
@@ -29,9 +31,9 @@ class Call_ScilabJNI {
   static {
     try {
     if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-        System.loadLibrary("javasci");
+        NativeLibraryLoader.loadLibrary("javasci");
     } else {
-        System.loadLibrary("javasci2");
+        NativeLibraryLoader.loadLibrary("javasci2");
         }
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");

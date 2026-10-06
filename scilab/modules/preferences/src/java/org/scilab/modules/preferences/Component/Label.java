@@ -54,7 +54,14 @@ public class Label extends JLabel implements XComponent {
      */
     public Label(final Node peer) {
         super();
+    }
 
+    /** Finish initialization after construction to avoid this-escape from the
+     * constructor (overridable Swing methods are deferred here).
+     * @param peer the corresponding view DOM node
+     */
+    @Override
+    public void init(final Node peer) {
         String text = XConfigManager.getAttribute(peer, "text");
         text(text);
 

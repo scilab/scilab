@@ -41,8 +41,9 @@ import java.awt.BorderLayout;
 /**
  * @author Pierre Lando
  */
-@SuppressWarnings(value = { "serial" })
 public final class ClippedTetrahedron extends ExampleFrame {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Frame title.

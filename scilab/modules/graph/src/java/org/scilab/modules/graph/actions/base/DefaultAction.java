@@ -44,7 +44,8 @@ import com.mxgraph.swing.mxGraphComponent;
  * Default action for a Scilab Graph
  */
 public abstract class DefaultAction extends CommonCallBack {
-    private final WeakReference<ScilabGraph> scilabGraph;
+    private static final long serialVersionUID = 1L;
+    private final transient WeakReference<ScilabGraph> scilabGraph;
 
     /**
      * Default constructor.
@@ -67,8 +68,28 @@ public abstract class DefaultAction extends CommonCallBack {
     public DefaultAction(ScilabGraph scilabGraph) {
         super("");
         this.scilabGraph = new WeakReference<ScilabGraph>(scilabGraph);
+    }
 
+    /**
+     * Initialize action properties after construction is complete to avoid this-escape
+     */
+    public void initializeAction() {
         installProperties();
+        installConstraints();
+    }
+
+    /**
+     * Hook for subclasses to install graph-dependent constraints (e.g. selection
+     * listeners) after construction is complete, avoiding this-escape from the
+     * constructor. Default implementation does nothing.
+     */
+    protected void installConstraints() { }
+
+    /**
+     * @return the ScilabGraph associated with this action at construction time.
+     */
+    protected final ScilabGraph getScilabGraph() {
+        return scilabGraph.get();
     }
 
     /**

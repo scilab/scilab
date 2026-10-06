@@ -24,8 +24,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Align block on the center
  */
-@SuppressWarnings(value = { "serial" })
 public final class AlignBlockActionCenter extends AlignBlockAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.ALIGN_CENTER;
     /** Icon name of the action */

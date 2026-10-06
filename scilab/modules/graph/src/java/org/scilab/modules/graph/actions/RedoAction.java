@@ -37,8 +37,8 @@ import com.mxgraph.util.mxUndoManager;
 /**
  * Redo manager
  */
-@SuppressWarnings(value = { "serial" })
-public class RedoAction extends DefaultAction {
+public final class RedoAction extends DefaultAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = ScilabGraphMessages.REDO;
     /** Icon name of the action */
@@ -46,7 +46,7 @@ public class RedoAction extends DefaultAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_Y;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
     /**
      * Manage enable modification
@@ -111,9 +111,18 @@ public class RedoAction extends DefaultAction {
      */
     public RedoAction(ScilabGraph scilabGraph) {
         super(scilabGraph);
+    }
 
-        RedoConstraint c = new RedoConstraint(scilabGraph);
-        c.install(this, scilabGraph);
+    /**
+     * Install the redo constraint after construction to avoid this-escape.
+     */
+    @Override
+    protected void installConstraints() {
+        ScilabGraph g = getScilabGraph();
+        if (g != null) {
+            RedoConstraint c = new RedoConstraint(g);
+            c.install(this, g);
+        }
     }
 
     /**

@@ -41,16 +41,16 @@ import org.w3c.dom.Node;
  * @author Calixte DENIZET
  *
  */
-public class TextArea extends Panel implements XComponent, XChooser, DocumentListener {
+public final class TextArea extends Panel implements XComponent, XChooser, DocumentListener {
 
     /** Universal identifier for serialization.
      *
      */
     private static final long serialVersionUID = -7007541669965737408L;
 
-    private JTextArea textarea;
-    private JScrollPane scrollPane;
-    private ActionListener actionListener;
+    private transient JTextArea textarea;
+    private transient JScrollPane scrollPane;
+    private transient ActionListener actionListener;
 
     /** Define the set of actuators.
      *

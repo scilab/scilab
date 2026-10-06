@@ -35,7 +35,7 @@ import org.w3c.dom.NodeList;
  * @author Calixte DENIZET
  *
  */
-public class HTMLTextArea extends JTextPane implements XComponent {
+public final class HTMLTextArea extends JTextPane implements XComponent {
 
     /** Universal identifier for serialization.
      *

@@ -28,8 +28,8 @@ import org.scilab.modules.xcos.Kind;
 /**
  * The VoltageSensor block has only one specificity : it's port position.
  */
-@SuppressWarnings(value = { "serial" })
 public class VoltageSensorBlock extends BasicBlock {
+    private static final long serialVersionUID = 1L;
 
     /** Default constructor */
     public VoltageSensorBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {

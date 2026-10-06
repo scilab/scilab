@@ -32,8 +32,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Block rotation handling
  */
-@SuppressWarnings(value = { "serial" })
 public class RotateAction extends VertexSelectionDependantAction {
+    private static final long serialVersionUID = 1L;
     /** Name of the action */
     public static final String NAME = XcosMessages.ROTATE;
     /** Icon name of the action */
@@ -42,7 +42,7 @@ public class RotateAction extends VertexSelectionDependantAction {
     public static final int MNEMONIC_KEY = KeyEvent.VK_R;
     /** Accelerator key for the action */
     public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit()
-            .getMenuShortcutKeyMask();
+            .getMenuShortcutKeyMaskEx();
 
     /**
      * Constructor
