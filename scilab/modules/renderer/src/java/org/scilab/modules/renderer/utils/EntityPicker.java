@@ -113,7 +113,7 @@ public class EntityPicker {
         } else if (index >= datax.length - 1) {
             return new DatatipCommon.Segment(datax.length - 2, datax[datax.length - 2], datax[datax.length - 1], datay[datay.length - 2], datay[datay.length - 1], dataz[dataz.length - 2], dataz[dataz.length - 1]);
         } else {
-            return new DatatipCommon.Segment(index, datax[index], datax[index + 1], datay[index], datay[index + 1], datay[index], datay[index + 1]);
+            return new DatatipCommon.Segment(index, datax[index], datax[index + 1], datay[index], datay[index + 1], dataz[index], dataz[index + 1]);
         }
     }
 
