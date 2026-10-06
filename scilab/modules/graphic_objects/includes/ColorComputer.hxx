@@ -119,11 +119,20 @@ public :
      * @param[in] the colormap's size.
      * @param[out] a pointer to the array into which the resulting color is output (its R, G, B components are written consecutively).
      * @param[in] a boolean to indicate if the color is clamped (by default true).
+     * If false, the first component of the output is set to -1 when s is not in [0, colormapSize[
+     * (or is Nan): there is no color for it.
      */
     template <typename T>
     inline static void getDirectColor(T s, double* colormap, int colormapSize, float* returnedColor, bool clamped = true)
     {
         int index = 0;
+
+        if (!clamped && (!DecompositionUtils::isANumber(s) || s < (T) 0 || s >= (T) colormapSize))
+        {
+            /* Not clamped: indices outside the colormap give no color */
+            returnedColor[0] = -1;
+            return;
+        }
 
         if (s <= (T) BLACK_LOWER_INDEX)
         {
@@ -143,15 +152,7 @@ public :
         {
             if (s > (T)(colormapSize - 1))
             {
-                if (clamped)
-                {
-                    s = (T) (colormapSize - 1);
-                }
-                else
-                {
-                    returnedColor[0] = -1;
-                    return;
-                }
+                s = (T) (colormapSize - 1);
             }
 
             index = (int) s;
@@ -173,6 +174,8 @@ public :
      * @param[in] the colormap's size.
      * @param[out] a pointer to the array into which the resulting color is output (its R, G, B components are written consecutively).
      * @param[in] a boolean to indicate if the color is clamped (by default true).
+     * If false, the output is fully transparent (all components set to 0) when s is not in
+     * [0, colormapSize[ (or is Nan).
      */
     template <typename T>
     inline static void getDirectByteColor(T s, double* colormap, int colormapSize, unsigned char* returnedColor, bool clamped = true)

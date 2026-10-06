@@ -167,8 +167,7 @@ int MatPlotDecomposer::fillTextureData(int id, unsigned char* buffer, int buffer
         {
             for (int i = x ; i < x + width ; i++)
             {
-                ColorComputer::getDirectByteColor(value[j + i * textureHeight] - 1, colormap, colormapSize, &buffer[k]);
-                buffer[k + 3] = 255;
+                ColorComputer::getDirectByteColor(value[j + i * textureHeight] - 1, colormap, colormapSize, &buffer[k], false);
                 k += 4;
             }
         }
