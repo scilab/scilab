@@ -149,6 +149,7 @@ libscihelptools_la_src_web_DATA = \
 src/web/docsearch.js \
 src/web/doczoom.js \
 src/web/index.html \
+src/web/linkstatus.js \
 src/web/scilab-init.js \
 src/web/scilab.min.css \
 src/web/scilab.min.js \

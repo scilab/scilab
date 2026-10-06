@@ -284,6 +284,7 @@
             + '<link rel="stylesheet" href="file:///' + XSLT_DIR + '/style.css">'
             + '<script src="file:///' + XSLT_DIR + '/doczoom.js"><\/script>'
             + '<script src="file:///' + XSLT_DIR + '/docsearch.js"><\/script>'
+            + '<script src="file:///' + XSLT_DIR + '/linkstatus.js"><\/script>'
             + '</head><body>'
             + '<article class="refentry" style="max-width:52rem;margin:0 auto;padding:1.5rem 2rem">'
             + '<h1 style="font-size:1.5rem;margin:0 0 1rem">' + escapeHtml(title) + '</h1>'
@@ -617,6 +618,29 @@
         zoomDoc(delta);
     });
 
+    // ================================================================
+    // Link status
+    // ================================================================
+    // Target of the link under the mouse in the page (linkstatus.js), shown
+    // in the info bar of the help window.
+
+    var linkStatus = "";
+
+    function setLinkStatus(target) {
+        if (target === linkStatus) return;
+        linkStatus = target;
+        if (typeof helpBrowserQuery === "function") {
+            helpBrowserQuery({
+                request: JSON.stringify({type: "linkStatus", target: target}),
+                onSuccess: function () {},
+                onFailure: function () {}
+            });
+        }
+    }
+
+    // A new page has nothing hovered yet
+    frame.addEventListener("load", function () { setLinkStatus(""); });
+
     // Listen for messages from iframe via postMessage
     window.addEventListener("message", function (e) {
         if (!e.data || !e.data.type) return;
@@ -647,6 +671,8 @@
                     onFailure: function () {}
                 });
             }
+        } else if (e.data.type === "linkStatus" && e.source === frame.contentWindow) {
+            setLinkStatus(typeof e.data.target === "string" ? e.data.target : "");
         } else if (e.data.type === "navigateById" && e.data.id) {
             resolveScilabLink(e.data.id, e.data.linkType || "");
         } else if (e.data.type === "execCode" && e.data.code && typeof helpBrowserQuery === "function") {
@@ -944,6 +970,7 @@
             + '<link rel="stylesheet" href="file:///' + XSLT_DIR + '/style.css">'
             + '<script src="file:///' + XSLT_DIR + '/doczoom.js"><\/script>'
             + '<script src="file:///' + XSLT_DIR + '/docsearch.js"><\/script>'
+            + '<script src="file:///' + XSLT_DIR + '/linkstatus.js"><\/script>'
             + '</head><body>'
             + '<article class="refentry" style="max-width:52rem;margin:0 auto;padding:1.5rem 2rem">'
             + '<h1 style="font-size:1.3rem;margin:0 0 1rem">Search results for &ldquo;' + escapeHtml(query) + '&rdquo;</h1>';

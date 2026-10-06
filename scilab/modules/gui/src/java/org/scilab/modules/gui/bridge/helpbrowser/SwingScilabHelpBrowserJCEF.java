@@ -61,7 +61,9 @@ import org.scilab.modules.commons.xml.ScilabXPathFactory;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.commons.xml.XConfigurationEvent;
 import org.scilab.modules.commons.xml.XConfigurationListener;
+import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
+import org.scilab.modules.gui.textbox.TextBox;
 
 /**
  * JCEF-based Scilab Help Browser.
@@ -86,6 +88,7 @@ import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
  *   - fullTextSearch: ranked search of the pages in an in-memory index
  *     (HelpSearchIndex), built in the background
  *   - execCode / editCode / copyCode / openXcos / openExternal: page actions
+ *   - linkStatus: target of the hovered link, shown in the info bar
  */
 public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
 
@@ -1437,6 +1440,10 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
                         handleOpenExternal(request, callback);
                         return true;
 
+                    case "linkStatus":
+                        handleLinkStatus(request, callback);
+                        return true;
+
                     case "execCode":
                         handleExecCode(request, callback);
                         return true;
@@ -1635,6 +1642,27 @@ public class SwingScilabHelpBrowserJCEF extends SwingScilabHelpBrowser {
                     // ignore
                 }
             }
+            callback.success("");
+        }
+
+        /**
+         * Show the target of the link under the mouse (or focused) in the
+         * info bar of the help window, as the status bar of a web browser:
+         * the user sees where a link leads before following it.
+         * An empty target clears it.
+         */
+        private void handleLinkStatus(String request, CefQueryCallback callback) {
+            String target = extractJsonString(request, "target");
+            final String text = (target != null) ? target : "";
+            SwingUtilities.invokeLater(() -> {
+                HelpBrowser helpBrowser = ScilabHelpBrowser.getHelpBrowserWithoutCreation();
+                if (helpBrowser instanceof ScilabHelpBrowser) {
+                    TextBox infoBar = ((ScilabHelpBrowser) helpBrowser).getInfoBar();
+                    if (infoBar != null) {
+                        infoBar.setText(text);
+                    }
+                }
+            });
             callback.success("");
         }
 

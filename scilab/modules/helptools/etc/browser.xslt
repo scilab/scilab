@@ -23,7 +23,7 @@
 
     <!-- Web shell directory (modules/helptools/src/web), holding style.css,
          the Scilab grammar/theme for highlight.js (scilab.min.js/css),
-         scilab-init.js, doczoom.js and docsearch.js. Set by the Java browser
+         scilab-init.js, doczoom.js, docsearch.js and linkstatus.js. Set by the Java browser
          to an absolute file:// URL. -->
     <xsl:param name="base-path" select="'.'"/>
     <!-- Source XML file directory, used to resolve relative image paths. -->
@@ -90,6 +90,7 @@
             <script src="{$base-path}/scilab-init.js">/* enrich grammar + highlight */</script>
             <script src="{$base-path}/doczoom.js">/* Ctrl+wheel zoom of the document only */</script>
             <script src="{$base-path}/docsearch.js">/* find in page, driven by the shell */</script>
+            <script src="{$base-path}/linkstatus.js">/* target of the hovered link, shown by the shell */</script>
             <script>
                 /* Cross-reference navigation: notify parent shell via postMessage */
                 document.addEventListener("click", function(e) {
