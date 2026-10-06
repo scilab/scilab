@@ -28,4 +28,9 @@ if getos() <> "Darwin"
     ged(9,0);
     
     // this last two commands should not fail
+
+    // The ged widgets queue property updates. Run them here, pause being the
+    // only way to flush that queue, else they run after the figure is closed.
+    TCL_EvalStr("ScilabEval ""resume""");
+    pause
 end
