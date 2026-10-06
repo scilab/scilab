@@ -687,7 +687,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
                         int offset = polyline.getMarkOffset();
                         int stride = polyline.getMarkStride();
-                        if (polyline.getColorSet() && (polyline.getNumMarkForegrounds() > 0) || (polyline.getNumMarkBackgrounds() > 0)) {
+                        if (polyline.getColorSet() && ((polyline.getNumMarkForegrounds() > 0) || (polyline.getNumMarkBackgrounds() > 0))) {
                             ElementsBuffer colors = dataManager.getColorBuffer(polyline.getIdentifier());
                             Color auxColor;
                             if (polyline.getNumMarkBackgrounds() > 0) {

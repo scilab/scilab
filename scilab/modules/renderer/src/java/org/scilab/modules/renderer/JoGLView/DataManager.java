@@ -95,7 +95,10 @@ public class DataManager {
                 GraphicObjectProperties.__GO_CLOSED__,
                 GraphicObjectProperties.__GO_FILL_MODE__,
                 GraphicObjectProperties.__GO_INTERP_COLOR_VECTOR__,
-                GraphicObjectProperties.__GO_INTERP_COLOR_MODE__
+                GraphicObjectProperties.__GO_INTERP_COLOR_MODE__,
+                GraphicObjectProperties.__GO_MARK_FOREGROUNDS__,
+                GraphicObjectProperties.__GO_MARK_BACKGROUNDS__,
+                GraphicObjectProperties.__GO_COLOR_SET__
             ));
 
     /**
