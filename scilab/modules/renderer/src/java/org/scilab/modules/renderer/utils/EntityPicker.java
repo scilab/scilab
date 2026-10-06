@@ -290,11 +290,46 @@ public class EntityPicker {
     }
 
     public static double[] getNearestSegmentIndex(Integer uid, double x, double y, double z) {
-        return getNearestSegmentIndex(DatatipCommon.getPolylineDataMatrix(uid, false), x, y, z);
+        double[][] data = DatatipCommon.getPolylineDataMatrix(uid, false);
+        double[] point = new double[] {x, y, z};
+        toLogScale(uid, data, point);
+        return getNearestSegmentIndex(data, point[0], point[1], point[2]);
     }
 
     public static double[] getNearestSegmentIndex(Integer uid, double x, double y) {
-        return getNearestSegmentIndex(DatatipCommon.getPolylineDataMatrix(uid, true), x, y);
+        double[][] data = DatatipCommon.getPolylineDataMatrix(uid, true);
+        double[] point = new double[] {x, y};
+        toLogScale(uid, data, point);
+        return getNearestSegmentIndex(data, point[0], point[1]);
+    }
+
+    /**
+     * Apply log10 to the coordinates along the axes with a logarithmic scale,
+     * so that the segment ratio is computed as the polyline is displayed.
+     * @param uid the polyline uid.
+     * @param data the polyline data (modified).
+     * @param point the point coordinates (modified).
+     */
+    private static void toLogScale(Integer uid, double[][] data, double[] point) {
+        final Integer axes = (Integer) GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_PARENT_AXES__);
+        if (axes == null || axes == 0) {
+            return;
+        }
+
+        final int[] logFlagProperties = {GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__,
+                                         GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__,
+                                         GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__
+                                        };
+        for (int k = 0; k < point.length; k++) {
+            final Object logFlag = GraphicController.getController().getProperty(axes, logFlagProperties[k]);
+            // a non-positive point has no log: keep the linear search on this axis
+            if (logFlag instanceof Boolean && (Boolean) logFlag && point[k] > 0) {
+                point[k] = Math.log10(point[k]);
+                for (int i = 0; i < data.length; i++) {
+                    data[i][k] = Math.log10(data[i][k]);
+                }
+            }
+        }
     }
 
     /**

@@ -244,9 +244,10 @@ public class Datatip extends Text {
     /**
      * Calculate the current tip data based on the given array
      * @param data the data array
+     * @param logFlag true if the corresponding axis has a logarithmic scale
      * @return the tip data
      */
-    private double calcTipData(final double[] data) {
+    private double calcTipData(final double[] data, final boolean logFlag) {
         if (data.length < dataIndex + 2) {
             if (data.length >= 1) {
                 return data[data.length - 1];
@@ -259,7 +260,28 @@ public class Datatip extends Text {
         final double pt0 = data[dataIndex];
         final double pt1 = data[dataIndex + 1];
 
+        // ratio is the position on the segment as displayed: with a log scale,
+        // the interpolation is linear in log10 of the data
+        if (logFlag && pt0 > 0 && pt1 > 0) {
+            return pt0 * Math.pow(pt1 / pt0, ratio);
+        }
+
         return pt0 + (pt1 - pt0) * ratio;
+    }
+
+    /**
+     * Get the log flag of the given axis of the parent axes
+     * @param logFlagProperty __GO_X_AXIS_LOG_FLAG__, __GO_Y_AXIS_LOG_FLAG__ or __GO_Z_AXIS_LOG_FLAG__
+     * @return true if the axis has a logarithmic scale
+     */
+    private boolean getAxisLogFlag(final int logFlagProperty) {
+        final Integer axes = getParentAxes();
+        if (axes == null || axes == 0) {
+            return false;
+        }
+
+        final Object logFlag = GraphicController.getController().getProperty(axes, logFlagProperty);
+        return logFlag instanceof Boolean && (Boolean) logFlag;
     }
 
     /**
@@ -268,7 +290,7 @@ public class Datatip extends Text {
      */
     public double getTipDataX() {
         final double[] dataX = (double[]) PolylineData.getDataX(getParent());
-        return calcTipData(dataX);
+        return calcTipData(dataX, getAxisLogFlag(GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__));
     }
 
     /**
@@ -277,7 +299,7 @@ public class Datatip extends Text {
      */
     public double getTipDataY() {
         final double[] dataY = (double[]) PolylineData.getDataY(getParent());
-        return calcTipData(dataY);
+        return calcTipData(dataY, getAxisLogFlag(GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__));
     }
 
     /**
@@ -286,7 +308,7 @@ public class Datatip extends Text {
      */
     public double getTipDataZ() {
         final double[] dataZ = (double[]) PolylineData.getDataZ(getParent());
-        return calcTipData(dataZ);
+        return calcTipData(dataZ, getAxisLogFlag(GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__));
     }
 
     /**
