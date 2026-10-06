@@ -264,9 +264,15 @@
                         exemples illustrés.
                     </para>
                     <para>
-                        <literal>Axes($)</literal> adresse le repère graphique définissant l'axe
-                        commun, la grille, et la légende associées. C'est le repère actif au retour
-                        de <literal>cutaxes()</literal>.
+                        <literal>Axes($)</literal> adresse le repère graphique commun, portant le
+                        titre général, les légendes des axes et la grille de l'axe continu. Ses
+                        axes sont tracés dans la couleur du fond, uniquement pour réserver la place
+                        des graduations. C'est le repère actif au retour de <literal>cutaxes()</literal>.
+                    </para>
+                    <para>
+                        L'axe continu est tracé par <literal>Axes(1)</literal> : ses graduations,
+                        son échelle, sa position, etc. doivent être réglées via
+                        <literal>Axes(1)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -673,6 +679,15 @@ axes = cutaxes(x0, "y",intervals, "ticksmode","alt", "widths","isoscaled");
                         Publication initiale dans Scilab, proposée par S. Gougeon. cutaxes()
                         était auparavant publiée en module externe ATOMS depuis 2018, sous le nom
                         plotplots().
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        L'axe continu est désormais tracé par <literal>Axes(1)</literal> au lieu de
+                        <literal>Axes($)</literal>.
                     </para>
                 </revdescription>
             </revision>

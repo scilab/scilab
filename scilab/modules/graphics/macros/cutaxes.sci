@@ -151,26 +151,31 @@ function [Axes, hcurves] = cutaxes(varargin)
     // Transfering titles of the initial axes
     if fromAxes then
         prop = ["text" "font_foreground" "font_style" "font_angle" "user_data" ..
-                "fractional_font" "font_size" "auto_position" "position" ..
+                "fractional_font" "font_size" ..
                 "fill_mode" "foreground" "background" "auto_rotation"]
         for p = prop
             execstr("ax0.title."+p+"=x0.title."+p);
             execstr("ax0.x_label."+p+"=x0.x_label."+p);
             execstr("ax0.y_label."+p+"=x0.y_label."+p);
         end
+        // An automatic position is meaningless until x0 is drawn, and
+        // setting it would freeze it: only user-set positions are copied.
+        for t = ["title" "x_label" "y_label"]
+            if x0(t).auto_position == "off" then
+                ax0(t).position = x0(t).position;
+            end
+        end
     end
 
     plot2d([],[],0, "011"," ", [xmin ymin xmax ymax])
 
     if cutaxis=="x"
-        ax0.axes_visible(1) = "off"
         ax0.grid = [-1 color("grey70")] // y-grid only
         if ax0.y_label.text==""
             ylabel(".")   // to enlarge the margin to anticipate a true legend
         end
         margins = ax0.margins;
     else
-        ax0.axes_visible(2) = "off"
         ax0.grid = [color("grey70") -1] // x-grid only
         if ax0.x_label.text==""
             xlabel(".")   // to enlarge the margin to anticipate a true legend
@@ -310,6 +315,12 @@ function [Axes, hcurves] = cutaxes(varargin)
         ax_i.axes_visible(iba) = "on"
         Axes = [Axes ax_i]
     end
+    // ax0 keeps both axes, drawn in the background color, so that its labels
+    // leave room for the tick labels. The first subaxes draws the shared one.
+    ax0.axes_visible = ["on" "on" "off"]
+    ax0.font_color = fig.background
+    ax0.foreground = fig.background
+    Axes(1).axes_visible(3-iba) = "on"
     if del_x0 then
         delete(x0)
     end

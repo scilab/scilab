@@ -250,8 +250,14 @@
                         the grids, etc. See examples for illustrations.
                     </para>
                     <para>
-                        <literal>Axes($)</literal> points to the common continuous axes.
+                        <literal>Axes($)</literal> points to the common axes, bearing the general
+                        title, the axis labels and the grid of the continuous axis. Its rulers are
+                        drawn in the background color, only to leave room for the ticks labels.
                         <literal>cutaxes()</literal> sets it as the current axes before returning.
+                    </para>
+                    <para>
+                        The continuous axis is drawn by <literal>Axes(1)</literal>: its ticks,
+                        scale, location, etc. must be set through <literal>Axes(1)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -646,6 +652,15 @@ axes = cutaxes(x0, "y",intervals, "ticksmode","alt", "widths","isoscaled");
                     <para>
                         Initial release in Scilab, proposed by S. Gougeon. cutaxes() was formerly
                         named plotplots() and available as an ATOMS external module since 2018.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        The continuous axis is now drawn by <literal>Axes(1)</literal> instead of
+                        <literal>Axes($)</literal>.
                     </para>
                 </revdescription>
             </revision>
