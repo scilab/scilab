@@ -106,4 +106,21 @@ assert_checkequal(filesin, filesout);
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        "zstd" compression support added.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>2024.0.0</revnumber>
+                <revremark>Function added.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

@@ -24,7 +24,7 @@ if test "$with_libarchive_include" != '' -a "$libarchive_library" != 'no'; then
     LIBARCHIVE_VERSION=""
 elif $WITH_DEVTOOLS; then # Scilab thirdparties
     LIBARCHIVE_CFLAGS="-I$DEVTOOLS_INCDIR"
-    LIBARCHIVE_LIBS="-L$DEVTOOLS_LIBDIR -larchive -lcrypto -lscixml2 -lscilzma -lsciz"
+    LIBARCHIVE_LIBS="-L$DEVTOOLS_LIBDIR -larchive -lcrypto -lscixml2 -lscilzma -lsciz -lscizstd"
     LIBARCHIVE_VERSION=""
 fi
 

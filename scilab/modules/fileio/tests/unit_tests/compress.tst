@@ -48,6 +48,16 @@ load(work_dir+"/out/rand100.sod");
 deletefile(work_dir+"/out/rand100.sod");
 assert_checkequal(r100, expected);
 
+// tar.zst, set format + compression + level
+// note: the .zst extension is not managed by libarchive, so format and
+// compression options are mandatory to create a zstd archive
+compress(work_dir+"/rand100l22.tar.zst", work_dir+"/rand100.sod", format="tar", compression="zstd", level=22);
+decompress(work_dir+"/rand100l22.tar.zst", work_dir+"/out");
+clear r100;
+load(work_dir+"/out/rand100.sod");
+deletefile(work_dir+"/out/rand100.sod");
+assert_checkequal(r100, expected);
+
 /*** zip ***/
 // auto detect, wildcard
 filesin  = compress("TMPDIR/fileio_tests.zip", "SCI/modules/fileio/tests/unit_tests/*.tst");

@@ -19,6 +19,7 @@ int fillArchiveOpt(struct archive* ar, types::optional_list& opt, const char* fn
 {
     int res = 0;
     int level = -1;
+    int levelMax = 9;
     bool bFormat = false;
     bool bCompression = false;
     bool bPassword = false;
@@ -92,6 +93,11 @@ int fillArchiveOpt(struct archive* ar, types::optional_list& opt, const char* fn
                     case ARCHIVE_WARN: Sciwarning("%s: Warning: %s", fname, archive_error_string(ar)); break;
                     default: Scierror(999, _("%s: %s\n"), fname, archive_error_string(ar)); return 1;
                 }
+
+                if(compression[pCompression] == ARCHIVE_FILTER_ZSTD)
+                {
+                    levelMax = 22;
+                }
             }
 
             bCompression = true;
@@ -128,14 +134,14 @@ int fillArchiveOpt(struct archive* ar, types::optional_list& opt, const char* fn
         {
             if(o.second->isDouble() == false || o.second->getAs<types::Double>()->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%s: Scalar expected.\n"), fname, "password");
+                Scierror(999, _("%s: Wrong type for input argument #%s: Scalar expected.\n"), fname, "level");
                 return 1;
             }
 
             level = (int)o.second->getAs<types::Double>()->get(0);
-            if(level < 0 || level > 9)
+            if(level < 0)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%s: A value between %d and %d expected.\n"), fname, "password", 0, 9);
+                Scierror(999, _("%s: Wrong value for input argument #%s: A positive value expected.\n"), fname, "level");
                 return 1;
             }
         }
@@ -153,9 +159,11 @@ int fillArchiveOpt(struct archive* ar, types::optional_list& opt, const char* fn
     {
         if(!bFormat && !bCompression)
         {
-            // Sets both filters and format based on the output filename. 
-            // Supported extensions: .7z, .zip, .jar, .cpio, .iso, .a, .ar, 
+            // Sets both filters and format based on the output filename.
+            // Supported extensions: .7z, .zip, .jar, .cpio, .iso, .a, .ar,
             //                       .tar, .tgz, .tar.gz, .tar.bz2, .tar.xz
+            // Note: libarchive does not manage the .zst extension, use the
+            // format and compression options to create zstd archives.
             char* f = wide_string_to_UTF8(filename);
             int res = archive_write_set_format_filter_by_ext(ar, f);
             FREE(f);
@@ -174,6 +182,12 @@ int fillArchiveOpt(struct archive* ar, types::optional_list& opt, const char* fn
 
         if(level >= 0)
         {
+            if(level > levelMax)
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%s: A value between %d and %d expected.\n"), fname, "level", 0, levelMax);
+                return 1;
+            }
+
             std::string option = "compression-level=" + std::to_string(level);
             res = archive_write_set_options(ar, option.data());
             if (res != ARCHIVE_OK)

@@ -68,7 +68,7 @@
                             <term>compression</term>
                             <listitem>
                                 <para>
-                                    A string with one of the following values: none, gzip, lzma, xz.
+                                    A string with one of the following values: none, gzip, lzma, xz, zstd.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -76,7 +76,7 @@
                             <term>level</term>
                             <listitem>
                                 <para>
-                                    A constant with a value between 0 and 9.
+                                    A constant with a value between 0 and 9 (up to 22 with the zstd compression).
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -149,5 +149,22 @@ disp("size of rand100l9.tar.xz: " + string(l9size))
                 <link linkend="save">save</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        "zstd" compression support added.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>2024.0.0</revnumber>
+                <revremark>Function added.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

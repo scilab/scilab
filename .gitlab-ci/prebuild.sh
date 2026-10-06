@@ -274,6 +274,7 @@ make_all() {
     build_tk
     build_matio
     build_openssl
+    build_zstd
     build_curl
     build_ncurses
     build_openxlsx
@@ -418,6 +419,10 @@ make_binary_directory() {
     rm -f "$LIBTHIRDPARTYDIR"/liblzma.* "$LIBTHIRDPARTYDIR"/libscilzma.*
     rm -f "$LIBTHIRDPARTYDIR"/redist/liblzma.* "$LIBTHIRDPARTYDIR"/redist/libscilzma.*
     cp -d "$INSTALLUSRDIR"/lib/libscilzma.* "$LIBTHIRDPARTYDIR/redist/"
+
+    rm -f "$LIBTHIRDPARTYDIR"/libzstd.* "$LIBTHIRDPARTYDIR"/libscizstd.*
+    rm -f "$LIBTHIRDPARTYDIR"/redist/libzstd.* "$LIBTHIRDPARTYDIR"/redist/libscizstd.*
+    cp -d "$INSTALLUSRDIR"/lib/libscizstd.* "$LIBTHIRDPARTYDIR/redist/"
 
     rm -f "$LIBTHIRDPARTYDIR"/libxml2.* "$LIBTHIRDPARTYDIR"/libscixml2.*
     rm -f "$LIBTHIRDPARTYDIR"/redist/libxml2.* "$LIBTHIRDPARTYDIR"/redist/libscixml2.*
@@ -772,6 +777,27 @@ build_lzma() {
     patchelf --set-soname libscilzma.so.1 "libscilzma.so.$XZ_VERSION"
 }
 
+build_zstd() {
+    cd "$BUILDDIR" || exit 1
+
+    INSTALL_DIR=$BUILDDIR/zstd-$ARROW_ZSTD_VERSION/install_dir
+
+    tar -xzf "$DOWNLOADDIR/zstd-$ARROW_ZSTD_VERSION.tar.gz"
+    cd "zstd-$ARROW_ZSTD_VERSION" || exit 1
+    make -C lib "-j$(nproc)"
+    make -C lib install PREFIX="$INSTALL_DIR"
+
+    cp -a "$INSTALL_DIR"/include/* "$INSTALLUSRDIR/include/"
+
+    # Rename libzstd to libscizstd
+    cp "$INSTALL_DIR/lib/libzstd.so.$ARROW_ZSTD_VERSION" "$INSTALLUSRDIR/lib/libscizstd.so.$ARROW_ZSTD_VERSION"
+    cd "$INSTALLUSRDIR/lib" || exit 1
+    ln -sf "libscizstd.so.$ARROW_ZSTD_VERSION" libzstd.so
+    ln -sf "libscizstd.so.$ARROW_ZSTD_VERSION" libscizstd.so.1
+    ln -sf libscizstd.so.1 libscizstd.so
+    patchelf --set-soname libscizstd.so.1 "libscizstd.so.$ARROW_ZSTD_VERSION"
+}
+
 build_openssl() {
     cd "$BUILDDIR" || exit 1
 
@@ -944,6 +970,7 @@ build_curl() {
         --without-ca-bundle --with-ca-fallback \
         --with-ssl="$INSTALLUSRDIR" --without-nss \
         --with-zlib="$INSTALLUSRDIR" \
+        --with-zstd="$INSTALLUSRDIR" \
 	    --disable-ldap \
         --without-libpsl \
         --prefix= \
@@ -1038,7 +1065,6 @@ build_arrow() {
     export ARROW_ZLIB_URL=file://$DOWNLOADDIR/zlib-$ZLIB_VERSION.tar.gz
     sed -i 's/9a93b2b7dfdac77ceba5a558a580e74667dd6fede4585b91eefb60f03b72df23/c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1/' thirdparty/versions.txt
     export ARROW_SNAPPY_URL=file://$DOWNLOADDIR/snappy-$ARROW_SNAPPY_VERSION.tar.gz
-    export ARROW_ZSTD_URL=file://$DOWNLOADDIR/zstd-$ARROW_ZSTD_VERSION.tar.gz
     # Selected options similar to https://github.com/microsoft/vcpkg/blob/5825c5878e2ccab9b3c3128e4529a3b4a86776b4/ports/arrow/portfile.cmake
     cmake -B build . --install-prefix="$INSTALL_DIR" \
         -DCMAKE_BUILD_TYPE=Release \
@@ -1050,7 +1076,8 @@ build_arrow() {
         -DARROW_WITH_SNAPPY=ON \
         -DSnappy_SOURCE=BUNDLED \
         -DARROW_WITH_ZSTD=ON \
-        -Dzstd_SOURCE=BUNDLED \
+        -Dzstd_SOURCE=SYSTEM \
+        -DZSTD_ROOT="$INSTALLUSRDIR" \
         -G "Unix Makefiles"
     cmake --build build/
     cmake --build build/ --target install

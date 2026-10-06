@@ -73,7 +73,8 @@ static std::map<std::wstring, int> compression = {
     {L"none", ARCHIVE_FILTER_NONE},
     {L"gzip", ARCHIVE_FILTER_GZIP},
     {L"lzma", ARCHIVE_FILTER_LZMA},
-    {L"xz", ARCHIVE_FILTER_XZ}
+    {L"xz", ARCHIVE_FILTER_XZ},
+    {L"zstd", ARCHIVE_FILTER_ZSTD}
     // {L"bzip2", ARCHIVE_FILTER_BZIP2},
     // {L"compress", ARCHIVE_FILTER_COMPRESS},
     // {L"program", ARCHIVE_FILTER_PROGRAM},
