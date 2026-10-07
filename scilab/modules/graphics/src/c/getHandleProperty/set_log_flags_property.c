@@ -41,6 +41,7 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "Sciwarning.h"
+#include "Axes.h"
 
 /*--------------------------------------------------------------------------*/
 char ** ReBuildUserTicks(char old_logflag, char new_logflag, double* u_xgrads, int *u_nxgrads, char ** u_xlabels);
@@ -162,6 +163,13 @@ int set_log_flags_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTy
             || (flags[1] != 'n' && flags[1] != 'l'))
     {
         Scierror(999, _("%s: Wrong value for argument: '%s' or '%s' expected.\n"), "flags", "n", "l");
+        return SET_PROPERTY_ERROR;
+    }
+
+    /* Matplot only has a bounding rectangle, its x and y coordinates are always linear */
+    if ((flags[0] == 'l' || flags[1] == 'l') && hasMatplotChild(iObjUID))
+    {
+        Scierror(999, _("Wrong value for '%s' property: Logarithmic scale cannot be used with Matplot.\n"), "log_flags");
         return SET_PROPERTY_ERROR;
     }
 

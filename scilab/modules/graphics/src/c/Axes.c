@@ -241,4 +241,64 @@ int getBooleanLogFlag(char logFlag)
     }
 }
 /*--------------------------------------------------------------------------------*/
+/*
+ * Returns TRUE if the object or one of its descendants is a Matplot
+ */
+BOOL hasMatplotChild(int iObjUID)
+{
+    int iType = -1;
+    int* piType = &iType;
+    int iChildrenCount = 0;
+    int* piChildrenCount = &iChildrenCount;
+    int* piChildrenUID = NULL;
+    BOOL found = FALSE;
+    int i = 0;
+
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **) &piType);
+    if (iType == __GO_MATPLOT__)
+    {
+        return TRUE;
+    }
+
+    getGraphicObjectProperty(iObjUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);
+    if (iChildrenCount == 0)
+    {
+        return FALSE;
+    }
+
+    getGraphicObjectProperty(iObjUID, __GO_CHILDREN__, jni_int_vector, (void **) &piChildrenUID);
+    if (piChildrenUID == NULL)
+    {
+        return FALSE;
+    }
+
+    for (i = 0; i < iChildrenCount && !found; ++i)
+    {
+        found = hasMatplotChild(piChildrenUID[i]);
+    }
+
+    releaseGraphicObjectProperty(__GO_CHILDREN__, piChildrenUID, jni_int_vector, iChildrenCount);
+
+    return found;
+}
+/*--------------------------------------------------------------------------------*/
+/*
+ * Returns TRUE if the x or y axis of the Axes uses a logarithmic scale
+ */
+BOOL hasXYLogScale(int iSubwinUID)
+{
+    int iLogFlag = 0;
+    int* piLogFlag = &iLogFlag;
+
+    getGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **) &piLogFlag);
+    if (piLogFlag != NULL && iLogFlag)
+    {
+        return TRUE;
+    }
+
+    piLogFlag = &iLogFlag;
+    getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **) &piLogFlag);
+    return (piLogFlag != NULL && iLogFlag) ? TRUE : FALSE;
+}
+/*--------------------------------------------------------------------------------*/
 

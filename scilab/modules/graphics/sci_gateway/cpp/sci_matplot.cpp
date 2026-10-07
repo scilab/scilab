@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
@@ -43,6 +43,7 @@ extern "C"
 #include "os_string.h"
 #include "CurrentObject.h"
 #include "HandleManagement.h"
+#include "Axes.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -207,7 +208,13 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
         }
     }
 
-    getOrCreateDefaultSubwin();
+    // Matplot only has a bounding rectangle, its x and y coordinates are always linear
+    if (hasXYLogScale(getOrCreateDefaultSubwin()))
+    {
+        Scierror(999, _("%s: Logarithmic scale cannot be used.\n"), fname);
+        internal_cleanup(strf, nax, frameflag, axesflag);
+        return types::Function::Error;
+    }
 
     if (strf == NULL)
     {

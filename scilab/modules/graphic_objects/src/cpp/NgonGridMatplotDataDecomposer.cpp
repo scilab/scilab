@@ -252,6 +252,12 @@ void NgonGridMatplotDataDecomposer::fillColors(int id, float* buffer, int buffer
         return;
     }
 
+    /* Indexed images have no converted data: they are only rendered as a texture, not on log axes */
+    if (data == NULL)
+    {
+        return;
+    }
+
     colormapSize = ColorComputer::getClosestColormap(id, &colormap);
  
 #if PER_VERTEX_VALUES

@@ -80,5 +80,15 @@ GRAPHICS_IMPEXP char getTextLogFlag(int logFlag);
  */
 GRAPHICS_IMPEXP int getBooleanLogFlag(char logFlag);
 
+/*
+ * Returns TRUE if the object or one of its descendants is a Matplot
+ */
+GRAPHICS_IMPEXP BOOL hasMatplotChild(int iObjUID);
+
+/*
+ * Returns TRUE if the x or y axis of the Axes uses a logarithmic scale
+ */
+GRAPHICS_IMPEXP BOOL hasXYLogScale(int iSubwinUID);
+
 /*-----------------------------------------------------------------------------*/
 #endif /*__SCI_AXES_H_*/
