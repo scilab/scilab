@@ -2206,18 +2206,15 @@ public class XcosDiagram extends ScilabGraph {
                         }
 
                         instance.setLastError("");
-                    } catch (Exception e) {
+                    } catch (Throwable e) {
+                        // Xcos.xcos() waits for a non-null error, report any failure
                         e.printStackTrace();
 
                         Throwable ex = e;
-                        while (ex instanceof RuntimeException) {
+                        while (ex instanceof RuntimeException && ex.getCause() != null) {
                             ex = ex.getCause();
                         }
-                        try {
-                            instance.setLastError(ex.getMessage());
-                        } catch (NullPointerException exp) {
-                            exp.printStackTrace();
-                        }
+                        instance.setLastError(ex.getMessage() != null ? ex.getMessage() : ex.toString());
                     }
                     instance.notify();
                 }

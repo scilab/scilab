@@ -801,31 +801,49 @@ public final class Xcos {
     @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
     public static void xcos(final String file, final long diagramId) {
         final Xcos instance = getInstance();
-        instance.lastError = null;
 
         /* load scicos libraries (macros) */
         InterpreterManagement.callScilabExecstr(LOAD_XCOS_LIBS_LOAD_SCICOS);
 
         synchronized (instance) {
-            /*
-             * Open the file
-             */
-            try {
-                SwingUtilities.invokeAndWait(new Runnable() {
-                    @Override
-                    public void run() {
-                        // open on EDT
-                        instance.open(file, diagramId);
-                    }
-                });
-            } catch (InvocationTargetException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            instance.lastError = null;
         }
-        if (instance.lastError != null && !instance.lastError.isEmpty()) {
-            throw new RuntimeException(instance.lastError);
+
+        /*
+         * Open the file, the lock must not be held: open() synchronizes on the EDT
+         */
+        try {
+            SwingUtilities.invokeAndWait(new Runnable() {
+                @Override
+                public void run() {
+                    // open on EDT
+                    instance.open(file, diagramId);
+                }
+            });
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        /*
+         * Wait for the loading to report errors. Not for COSF: its loading
+         * executes on the interpreter, which is the current thread.
+         */
+        if (file == null || XcosFileType.findFileType(file) == XcosFileType.COSF) {
+            return;
+        }
+        synchronized (instance) {
+            try {
+                while (instance.lastError == null) {
+                    instance.wait();
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            if (instance.lastError != null && !instance.lastError.isEmpty()) {
+                throw new RuntimeException(instance.lastError);
+            }
         }
     }
 
