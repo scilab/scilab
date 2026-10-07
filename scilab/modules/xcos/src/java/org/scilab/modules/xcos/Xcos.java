@@ -472,9 +472,9 @@ public final class Xcos {
             }
 
             /*
-             * Load the file
+             * Load the file, or the cells of the given diagram
              */
-            if (file != null)
+            if (file != null || diagramId != 0)
             {
                 diag.transformAndLoadFile(controller, file);
             }

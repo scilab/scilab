@@ -2201,11 +2201,8 @@ public class XcosDiagram extends ScilabGraph {
                         if (f != null && filetype != null) {
                             filetype.load(file, XcosDiagram.this);
                         } else {
+                            // the diagram comes from Scilab: keep its own simulation parameters
                             XcosCellFactory.insertChildren(controller, XcosDiagram.this);
-                            // upgrade hard-coded diagram settings to the configured ones
-                            XcosOptions.getSimulation();
-                            ScicosObjectOwner root = Xcos.findRoot(controller, XcosDiagram.this);
-                            controller.setObjectProperty(root.getUID(), root.getKind(), ObjectProperties.PROPERTIES, ScicosParameters.DEFAULT_PARAMETERS);
                         }
 
                         instance.setLastError("");
