@@ -274,6 +274,44 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManag
 }
 
 
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_putCallbackInScilabQueue(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jint jresult = 0 ;
+  char *arg1 = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (int)putCallbackInScilabQueue(arg1);
+  jresult = (jint)result; 
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_requestCallbackExec(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jint jresult = 0 ;
+  char *arg1 = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (int)requestCallbackExec(arg1);
+  jresult = (jint)result; 
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_callScilabExecstr(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   char *arg1 = 0 ;
@@ -323,6 +361,18 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_action_1binding_InterpreterMa
     jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
     free(result);
   }
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_getScilabDebugState(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)getScilabDebugState();
+  jresult = (jint)result; 
   return jresult;
 }
 

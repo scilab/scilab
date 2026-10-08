@@ -53,6 +53,18 @@ msgid "Execution aborted.\n"
 msgstr ""
 
 #
+# File: modules/ast/src/cpp/ast/debugmanager.cpp, line: 98
+#, c-format
+msgid "%s: execution is already paused.\n"
+msgstr ""
+
+#
+# File: modules/ast/src/cpp/ast/debugmanager.cpp, line: 107
+#, c-format
+msgid "%s: no debugged execution to pause.\n"
+msgstr ""
+
+#
 # File: modules/ast/src/cpp/ast/consoledebugger.cpp, line: 107
 #, c-format
 msgid "debugger stop on error in file %ls line %d\n"

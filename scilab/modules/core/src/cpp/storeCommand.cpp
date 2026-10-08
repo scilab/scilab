@@ -34,8 +34,9 @@ struct CommandRec
     int       m_isPrioritary;         /* 1 if the command is prioritary */
     int       m_isInterruptible;      /* 1 if the command execution can be interrupted */
     command_origin_t     m_iCommandOrigin;       /* Indicate who have stored the command (ie: console, tcl) */
-    CommandRec(char* command, ast::Exp* tree, int isPrioritary, int isInterruptible, command_origin_t iCmdOrigin) :
-        m_command(command), m_tree(tree), m_isPrioritary(isPrioritary), m_isInterruptible(isInterruptible), m_iCommandOrigin(iCmdOrigin) {}
+    command_mode_t       m_iCommandMode;         /* Whether the command is debugged, or takes the mode around it */
+    CommandRec(char* command, ast::Exp* tree, int isPrioritary, int isInterruptible, command_origin_t iCmdOrigin, command_mode_t iCmdMode = MODE_INHERIT) :
+        m_command(command), m_tree(tree), m_isPrioritary(isPrioritary), m_isInterruptible(isInterruptible), m_iCommandOrigin(iCmdOrigin), m_iCommandMode(iCmdMode) {}
 };
 
 static std::list<CommandRec> commandQueue;
@@ -139,7 +140,7 @@ int StoreCommand(const char *command)
     return Succeded;
 }
 
-int StoreConsoleCommand(const char *command, int iWaitFor)
+static int storeConsoleCommand(const char *command, int iWaitFor, command_mode_t iCmdMode)
 {
     ThreadManagement::LockStoreCommand();
     ast::Exp* tree = nullptr;
@@ -154,7 +155,8 @@ int StoreConsoleCommand(const char *command, int iWaitFor)
                                         tree,
                                         /*is prioritary*/ 1,
                                         /* is interruptible*/ 1,
-                                        /* cmd origin */ CONSOLE);
+                                        /* cmd origin */ CONSOLE,
+                                        iCmdMode);
 
     // Awake Scilab to execute a new command
     ThreadManagement::SendCommandStoredSignal();
@@ -172,6 +174,16 @@ int StoreConsoleCommand(const char *command, int iWaitFor)
     }
 
     return Succeded;
+}
+
+int StoreConsoleCommand(const char *command, int iWaitFor)
+{
+    return storeConsoleCommand(command, iWaitFor, MODE_INHERIT);
+}
+
+int StoreNormalConsoleCommand(const char *command, int iWaitFor)
+{
+    return storeConsoleCommand(command, iWaitFor, MODE_NORMAL);
 }
 
 int StoreDebuggerCommand(const char *command, int iWaitFor)
@@ -199,6 +211,41 @@ int StoreDebuggerCommand(const char *command, int iWaitFor)
         // make this wait before unlock the Store Command will prevent
         // dead lock in case where another thread get this command
         // and execute it before this thread is waiting for.
+        ThreadManagement::WaitForDebuggerExecDoneSignal();
+    }
+    else
+    {
+        ThreadManagement::UnlockStoreCommand();
+    }
+
+    return Succeded;
+}
+
+int StoreDebuggedCommand(const char *command, int iPrioritary, int iWaitFor)
+{
+    ThreadManagement::LockStoreCommand();
+    ast::Exp* tree = nullptr;
+    parse_state status = parseCommand(command, &tree);
+    if(status != Succeded)
+    {
+        ThreadManagement::UnlockStoreCommand();
+        return status;
+    }
+
+    std::list<CommandRec>& queue = iPrioritary ? commandQueuePrioritary : commandQueue;
+    queue.emplace_back(os_strdup(command),
+                       tree,
+                       iPrioritary,
+                       /* is interruptible*/ 1,
+                       /* cmd origin */ DEBUGGER,
+                       MODE_DEBUG);
+
+    // Awake Scilab to execute a new command
+    ThreadManagement::SendCommandStoredSignal();
+
+    if (iWaitFor)
+    {
+        // same as StoreDebuggerCommand: wait before unlocking
         ThreadManagement::WaitForDebuggerExecDoneSignal();
     }
     else
@@ -249,6 +296,13 @@ int isEmptyCommandQueuePrioritary(void)
     return isEmpty;
 }
 
+command_origin_t getPrioritaryCommandOrigin(void)
+{
+    // read without the lock, as isEmptyCommandQueuePrioritary: only the
+    // interpreter removes commands
+    return commandQueuePrioritary.empty() ? NONE : commandQueuePrioritary.front().m_iCommandOrigin;
+}
+
 /*
  * Gets the next command to execute
  * and remove it from the queue
@@ -262,7 +316,8 @@ void* GetCommand()
     {
         runMe = new Runner(commandQueuePrioritary.front().m_tree,
             commandQueuePrioritary.front().m_iCommandOrigin,
-            commandQueuePrioritary.front().m_isInterruptible);
+            commandQueuePrioritary.front().m_isInterruptible,
+            commandQueuePrioritary.front().m_iCommandMode);
 
         // std::cout << commandQueuePrioritary.front().m_command << std::endl;
         FREE(commandQueuePrioritary.front().m_command);
@@ -272,7 +327,8 @@ void* GetCommand()
     {
         runMe = new Runner(commandQueue.front().m_tree, 
             commandQueue.front().m_iCommandOrigin,
-            commandQueue.front().m_isInterruptible);
+            commandQueue.front().m_isInterruptible,
+            commandQueue.front().m_iCommandMode);
 
         // std::cout << commandQueue.front().m_command << std::endl;
         FREE(commandQueue.front().m_command);

@@ -22,20 +22,7 @@
 /*--------------------------------------------------------------------------*/
 int putCommandInScilabQueue(char *command)
 {
-    if(isEnableDebug())
-    {
-        if(isDebugInterrupted())
-        {
-            return 1;
-        }
-
-        // 0 : don't pause the thread
-        return debuggerManagerExecute(command, 0);
-    }
-    else
-    {
-        return StoreCommand(command);
-    }
+    return StoreCommandWithFlags(command, 0, 1, INTERNAL);
 }
 /*--------------------------------------------------------------------------*/
 /*
@@ -46,20 +33,17 @@ int putCommandInScilabQueue(char *command)
 */
 int requestScilabExec(char *command)
 {
-    if(isEnableDebug())
-    {
-        if(isDebugInterrupted())
-        {
-            return 1;
-        }
-
-        // 0 : don't pause the thread
-        return debuggerManagerExecute(command, 0);
-    }
-    else
-    {
-        return StorePrioritaryCommand(command);
-    }
+    return StoreCommandWithFlags(command, 1, 0, INTERNAL);
+}
+/*--------------------------------------------------------------------------*/
+int putCallbackInScilabQueue(char *command)
+{
+    return StoreCommand(command);
+}
+/*--------------------------------------------------------------------------*/
+int requestCallbackExec(char *command)
+{
+    return StorePrioritaryCommand(command);
 }
 /*--------------------------------------------------------------------------*/
 int callScilabExecstr(const char *command)
@@ -81,5 +65,10 @@ void startScilabOutputCapture(int silent)
 char* stopScilabOutputCapture(void)
 {
     return scilabStopOutputCapture();
+}
+/*--------------------------------------------------------------------------*/
+int getScilabDebugState(void)
+{
+    return getDebugState();
 }
 /*--------------------------------------------------------------------------*/

@@ -17,6 +17,8 @@
 #include "core_gw.hxx"
 #include "function.hxx"
 #include "configvariable.hxx"
+#include "debugmanager.hxx"
+#include "runner.hxx"
 
 extern "C"
 {
@@ -29,16 +31,17 @@ extern "C"
 
 types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if (ConfigVariable::getEnableDebug() == true)
-    {
-        sciprint(_("%s: function is disabled in debug mode.\n"), "pause");
-        return types::Function::OK;
-    }
-
     if (in.size() != 0)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "pause", 0);
         return types::Function::Error;
+    }
+
+    // In debug mode the pause is a stop of the debugger.
+    if (debugger::DebuggerManager::isDebugMode())
+    {
+        debugger::DebuggerManager::getInstance()->pause(StaticRunner::isCalledFromConsoleLine());
+        return types::Function::OK;
     }
 
     // add pause in list of macro called

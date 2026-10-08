@@ -35,8 +35,19 @@ public class SaveAndExecuteFileAction extends ExecuteFileIntoScilabAction {
      * @param editor SciNotes
      */
     public SaveAndExecuteFileAction(String name, SciNotes editor) {
+        this(name, editor, false);
+    }
+
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor SciNotes
+     * @param debug whether the file is run in debug mode
+     */
+    public SaveAndExecuteFileAction(String name, SciNotes editor, boolean debug) {
         super(name, editor);
         saveBefore = true;
+        this.debug = debug;
     }
 
     /**

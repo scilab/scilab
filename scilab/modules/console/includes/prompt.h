@@ -24,8 +24,12 @@
 #undef SCIPROMPT
 #endif
 #define SCIPROMPT "--> "
+/* debug mode: Scilab code is typed, debugged or, while stopped, not */
 #define SCIPROMPTDEBUG "debug> "
 #define SCIPROMPTBREAK "break> "
+/* debug(): debugger commands are typed */
+#define SCIPROMPTCONSOLEDEBUG "(debug) "
+#define SCIPROMPTCONSOLEBREAK "(break) "
 
 #ifdef SCIPROMPT_PAUSE
 #undef SCIPROMPT_PAUSE
@@ -41,6 +45,8 @@
 
 /*--------------------------------------------------------------------------*/
 CONSOLE_IMPEXP void setPreviousLevel(int pause);
+
+CONSOLE_IMPEXP void RefreshConsolePrompt(void);
 
 CONSOLE_IMPEXP const char* GetCurrentPrompt();
 

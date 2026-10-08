@@ -41,12 +41,16 @@ public final class Signal {
      */
     public static void wait(String index) {
         Object data = new Object();
-        waiters.put(index, data);
-
         synchronized (data) {
+            waiters.put(index, data);
             try {
-                data.wait();
+                while (waiters.get(index) == data) {
+                    data.wait();
+                }
             } catch (InterruptedException e) {
+                if (waiters.get(index) == data) {
+                    waiters.remove(index);
+                }
                 Logger.getLogger(Signal.class.getName()).severe(e.toString());
             }
         }
@@ -73,8 +77,33 @@ public final class Signal {
         }
 
         synchronized (data) {
-            data.notify();
+            if (waiters.get(index) != data) {
+                return;
+            }
+            waiters.remove(index);
+            data.notifyAll();
         }
-        waiters.remove(index);
+    }
+
+    /**
+     * Notify an existing waiter without waiting for one to appear.
+     *
+     * @param index waiter identifier
+     * @return true when a waiter was released
+     */
+    public static boolean notifyIfWaiting(String index) {
+        Object data = waiters.get(index);
+        if (data == null) {
+            return false;
+        }
+
+        synchronized (data) {
+            if (waiters.get(index) != data) {
+                return false;
+            }
+            waiters.remove(index);
+            data.notifyAll();
+            return true;
+        }
     }
 }

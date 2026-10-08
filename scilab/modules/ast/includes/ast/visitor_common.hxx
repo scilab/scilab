@@ -64,6 +64,14 @@ types::InternalType* callOverload(const std::wstring& strType, types::InternalTy
 types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs, types::InternalType* _pVar, types::InternalType* _pInsert);
 
 EXTERN_AST void callOnPrompt(void);
+
+// Run the prioritary commands that wait, between two instructions: _location
+// is the instruction about to run.
+EXTERN_AST void runPendingCommands(const Location& _location);
+
+// Ctrl+C: pause where the execution is, as if "pause" were written before
+// the instruction at _location.
+EXTERN_AST void pauseHere(const Location& _location);
 EXTERN_AST ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg = std::wstring(L""));
 
 void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _bLF);

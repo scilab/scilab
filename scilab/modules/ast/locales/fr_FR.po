@@ -41,6 +41,14 @@ msgid "Execution aborted.\n"
 msgstr "Exécution arrêtée.\n"
 
 #, c-format
+msgid "%s: execution is already paused.\n"
+msgstr "%s : l'exécution est déjà en pause.\n"
+
+#, c-format
+msgid "%s: no debugged execution to pause.\n"
+msgstr "%s : aucune exécution déboguée à mettre en pause.\n"
+
+#, c-format
 msgid "debugger stop on error in file %ls line %d\n"
 msgstr "halte du débogger à l'erreur du fichier %ls ligne %d\n"
 

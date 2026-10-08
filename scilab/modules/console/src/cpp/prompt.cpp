@@ -19,6 +19,7 @@
 extern "C"
 {
 #include "prompt.h"
+#include "SetConsolePrompt.h"
 #include "sciprint.h"
 #include "configvariable_interface.h"
 #include "localization.h"
@@ -33,19 +34,29 @@ static BOOL dispWarningLevelPrompt = TRUE;
 /*------------------------------------------------------------------------*/
 /* setprlev : set the current prompt string */
 /*------------------------------------------------------------------------*/
+/* The prompt of the debugger, NULL outside debug mode. */
+static const char* getDebuggerPrompt()
+{
+    //debugger commands are typed under debug(), Scilab code otherwise
+    if (isDebugConsoleMode())
+    {
+        return isDebugInterrupted() ? SCIPROMPTCONSOLEBREAK : SCIPROMPTCONSOLEDEBUG;
+    }
+
+    if (isDebugMode())
+    {
+        return isDebugInterrupted() ? SCIPROMPTBREAK : SCIPROMPTDEBUG;
+    }
+
+    return NULL;
+}
+/*------------------------------------------------------------------------*/
 void setPreviousLevel(int pause)
 {
-    //debugger prompt first !
-    if (isEnableDebug())
+    //debugger prompt first
+    if (getDebuggerPrompt())
     {
-        if (isDebugInterrupted())
-        {
-            Sci_Prompt = SCIPROMPTBREAK;
-        }
-        else
-        {
-            Sci_Prompt = SCIPROMPTDEBUG;
-        }
+        Sci_Prompt = getDebuggerPrompt();
     }
     else if (pause == 0)
     {
@@ -83,6 +94,31 @@ void setPreviousLevel(int pause)
         // bug 5513
         // when we change prompt to halt level, we change also temp. prompt
         SetTemporaryPrompt(Sci_Prompt.data());
+    }
+}
+/*------------------------------------------------------------------------*/
+void RefreshConsolePrompt(void)
+{
+    // a terminal cannot change a printed prompt
+    if (getScilabMode() != SCILAB_STD)
+    {
+        return;
+    }
+
+    const char* debuggerPrompt = getDebuggerPrompt();
+    if (debuggerPrompt)
+    {
+        SetConsolePrompt(debuggerPrompt);
+    }
+    else if (getPauseLevel() > 0)
+    {
+        char t[PROMPT_SIZE_MAX];
+        snprintf(t, sizeof(t), SCIPROMPT_INTERRUPT, getPauseLevel());
+        SetConsolePrompt(t);
+    }
+    else
+    {
+        SetConsolePrompt(temporaryPrompt.empty() ? SCIPROMPT : temporaryPrompt.data());
     }
 }
 /*------------------------------------------------------------------------*/

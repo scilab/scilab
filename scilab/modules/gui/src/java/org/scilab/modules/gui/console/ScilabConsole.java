@@ -23,6 +23,7 @@ import java.io.PrintStream;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.dockable.ScilabDockable;
+import org.scilab.modules.gui.utils.DebugModeIndicator;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ScilabPrintStream;
@@ -37,6 +38,9 @@ public class ScilabConsole extends ScilabDockable implements Console {
     private static Console instance;
 
     private SimpleConsole component;
+
+    /** What the status bar says of the debugger, empty outside debug mode. */
+    private String debugState = "";
 
     /**
      * Constructor
@@ -213,6 +217,12 @@ public class ScilabConsole extends ScilabDockable implements Console {
      */
     public void setPrompt(String prompt) {
         ScilabBridge.setPrompt(this, prompt);
+        // The prompt is set again each time the debugger changes of state.
+        String state = DebugModeIndicator.getState();
+        if (!state.equals(debugState)) {
+            debugState = state;
+            DebugModeIndicator.show(getInfoBar(), !state.isEmpty(), state);
+        }
     }
 
     /**

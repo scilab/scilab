@@ -35,34 +35,43 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
+    debugger::DebuggerManager* manager = debugger::DebuggerManager::getInstance();
+
     //debugger already active
-    if (ConfigVariable::getEnableDebug())
+    if (manager->isDebugConsole())
     {
         return types::Function::OK;
     }
 
-    //debugger cannot be launch inside a pause
-    if (ConfigVariable::getPauseLevel())
+    // The console can join a debugged execution, running or stopped: there
+    // the pause is the stop of the debugger. Otherwise its commands would
+    // start a debug run inside a user pause or a function.
+    if (manager->isDebugging() == false)
     {
-        Scierror(999, _("%s: Debugger cannot be activated in pause\n"), fname);
-        return types::Function::Error;
+        //debugger cannot be launch inside a pause
+        if (ConfigVariable::getPauseLevel())
+        {
+            Scierror(999, _("%s: Debugger cannot be activated in pause\n"), fname);
+            return types::Function::Error;
+        }
+
+        //debugger can be lauch only on console scope level
+        if (symbol::Context::getInstance()->getScopeLevel() != SCOPE_CONSOLE)
+        {
+            Scierror(999, _("%s: Debugger can be activated only at console scope level\n"), fname);
+            return types::Function::Error;
+        }
     }
 
-    //debugger can be lauch only on console scope level
-    if (symbol::Context::getInstance()->getScopeLevel() != SCOPE_CONSOLE)
-    {
-        Scierror(999, _("%s: Debugger can be activated only at console scope level\n"), fname);
-        return types::Function::Error;
-    }
-
-    debugger::DebuggerManager* manager = debugger::DebuggerManager::getInstance();
-    if(manager->getDebugger("console") == NULL)
+    if(manager->hasDebugger("console") == false)
     {
         //register console debugger as debugger
         manager->addDebugger("console", new debugger::ConsoleDebugger());
     }
 
-    ConfigVariable::setEnableDebug(true);
-    ConfigVariable::setDefaultVisitor(new ast::DebuggerVisitor());
+    // debug() is the console debugger: it owns the prompt and the typed lines.
+    manager->setDebugConsole(true);
+    // and Scilab is in debug mode from now on, with or without a run
+    debugger::DebuggerManager::holdDebugMode(debugger::DebuggerManager::ConsoleHolder, true);
     return types::Function::OK;
 }

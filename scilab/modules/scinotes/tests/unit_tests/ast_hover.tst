@@ -21,8 +21,13 @@
 // 6. globalValue hover shows its current Scilab value.
 // 7. handlers.callback resolves the complete field expression and displays
 //    acoshm help rather than generic information about a field.
+// 8. Select "globalValue / 2" on the halfValue line and hover the
+//    selection: it shows 21.
+// 9. Hover localValue and value inside the functions: no value is shown,
+//    they only exist while the function runs.
 
 globalValue = 42;
+halfValue = globalValue / 2;
 handlers.callback = acoshm;
 externalBefore = 12;
 

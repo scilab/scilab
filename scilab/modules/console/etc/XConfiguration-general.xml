@@ -116,8 +116,16 @@
                     <action key="OSSCKEY L" description="_(Load in Scilab)" name="scinotes-load-scilab"/>
                     <action key="OSSCKEY Shift E" description="_(Execute in Scilab)" name="scinotes-execute-scilab"/>
                     <action key="OSSCKEY E" description="_(Evaluate selection)" name="scinotes-evaluate-selection"/>
-                    <action key="F5" description="_(Save and execute)" name="scinotes-save-execute"/>
-                    <action key="OSSCKEY F5" description="_(Save and execute all)" name="scinotes-save-execute-all"/>
+                    <action key="OSSCKEY F5" description="_(Save and execute)" name="scinotes-save-execute"/>
+                    <action key="" description="_(Save and execute all)" name="scinotes-save-execute-all"/>
+                    <action key="F5" description="_(Debug: start or continue)" name="scinotes-debug-continue"/>
+                    <action key="F6" description="_(Debug: pause)" name="scinotes-debug-pause"/>
+                    <action key="F10" description="_(Debug: step over)" name="scinotes-debug-step-over"/>
+                    <action key="F11" description="_(Debug: step in)" name="scinotes-debug-step-in"/>
+                    <action key="Shift F11" description="_(Debug: step out)" name="scinotes-debug-step-out"/>
+                    <action key="Shift F5" description="_(Debug: stop)" name="scinotes-debug-disconnect"/>
+                    <action key="F9" description="_(Debug: toggle breakpoint)" name="scinotes-debug-toggle-breakpoint"/>
+                    <action key="OSSCKEY F10" description="_(Debug: run to cursor)" name="scinotes-debug-run-to-cursor"/>
                     <action key="OSSCKEY F" description="_(Find)" name="scinotes-find"/>
                     <action key="OSSCKEY K" description="_(Find next)" name="scinotes-find-next"/>
                     <action key="OSSCKEY Shift K" description="_(Find previous)" name="scinotes-find-previous"/>

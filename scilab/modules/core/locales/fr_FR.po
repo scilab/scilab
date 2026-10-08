@@ -783,6 +783,22 @@ msgstr "%s appelé sous %s"
 msgid "%s called at line %s of macro %s"
 msgstr "%s appelé à la ligne %s de la macro %s"
 
+#, c-format
+msgid "%s called from the console during line %s of %s"
+msgstr "%s appelé depuis la console pendant la ligne %s de %s"
+
+#, c-format
+msgid "%s called by a callback during line %s of %s"
+msgstr "%s appelé par un callback pendant la ligne %s de %s"
+
+#, c-format
+msgid "%s called from the console during line %s of macro %s"
+msgstr "%s appelé depuis la console pendant la ligne %s de la macro %s"
+
+#, c-format
+msgid "%s called by a callback during line %s of macro %s"
+msgstr "%s appelé par un callback pendant la ligne %s de la macro %s"
+
 #
 # File: sci_gateway/c/sci_who.c, line: 303
 msgid "User variables are:"

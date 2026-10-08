@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
+import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
@@ -90,8 +91,13 @@ public final class LoadIntoScilabAction extends DefaultAction {
                     out = new OutputStreamWriter(fos , "UTF-8");
                     out.write(text);
                     out.flush();
-                    String cmdToExec = "exec('" + tmpFullFilename + "', 1)";
-                    InterpreterManagement.requestScilabExec(cmdToExec);
+                    // Same route as the other Execute entries: the debug
+                    // session runs the file when there is one, with echo.
+                    if (!ExecuteFileIntoScilabAction.executeThroughDap(getEditor(), tmpFullFilename, true, false)
+                            && !ExecuteFileIntoScilabAction.refuseWhileDebugging(getEditor())) {
+                        String cmdToExec = "exec('" + tmpFullFilename + "', 1)";
+                        InterpreterManagement.requestScilabExec(cmdToExec);
+                    }
                 } catch (IOException e) {
                     ScilabModalDialog.show(getEditor(), SciNotesMessages.COULD_NOT_FIND_TMPFILE);
                 } finally {
@@ -116,7 +122,9 @@ public final class LoadIntoScilabAction extends DefaultAction {
      * @return MenuItem
      */
     public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
-        return createMenu(label, null, new LoadIntoScilabAction(label, editor), key);
+        MenuItem item = createMenu(label, null, new LoadIntoScilabAction(label, editor), key);
+        DebugCommandAction.registerExecuteControl(editor, (JComponent) item.getAsSimpleMenuItem());
+        return item;
     }
 
     /**

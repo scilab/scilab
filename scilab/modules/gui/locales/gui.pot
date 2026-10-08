@@ -5046,3 +5046,18 @@ msgstr ""
 # File: modules/gui/macros/x_matrix.sci, line: 57
 msgid "<html>(quotes <b> '</b> inside texts must be doubled)"
 msgstr ""
+
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/utils/DebugModeIndicator.java, line: 46
+msgid "Debug mode"
+msgstr ""
+
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/utils/DebugModeIndicator.java, line: 46
+msgid "Debug mode: execution running"
+msgstr ""
+
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/utils/DebugModeIndicator.java, line: 44
+msgid "Debug mode: execution paused"
+msgstr ""

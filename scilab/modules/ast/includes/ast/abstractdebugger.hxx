@@ -18,6 +18,7 @@
 
 #include <string>
 #include <map>
+#include <memory>
 
 #include <types.hxx>
 
@@ -46,11 +47,12 @@ public:
     virtual void onErrorInFile(const std::wstring& filemane) = 0;//when an error is trigger in a file
     virtual void onErrorInScript(const std::wstring& funcname) = 0;//when an error is trigger in a script
     virtual void onQuit() = 0; //when debugger is killed or replace by another one
+    virtual void onDebugMode(bool /*held*/) {} //when Scilab enters or leaves debug mode at rest
 
     virtual void updateBreakpoints() = 0;
 
 };
 
-typedef std::map<std::string, AbstractDebugger*> Debuggers;
+typedef std::map<std::string, std::shared_ptr<AbstractDebugger>> Debuggers;
 }
 #endif /* !__ABSTRACT_DEBUGGER_HXX__ */

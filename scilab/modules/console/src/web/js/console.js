@@ -604,7 +604,7 @@ async function fromJava(msg) {
             pasteAction(msg.data1);
             break;
         case "prompt":
-            $(".prompt").text(msg.data1);
+            setPrompt(msg.data1);
             break;
         case "debug":
         {
@@ -1022,6 +1022,31 @@ function cutCopyOrInterruptAction(action, e) {
                 e.preventDefault();
             }
         }
+    }
+}
+
+/*
+ * Leaving a stop of the debugger while the console waits for input comes from
+ * the debugger, whose step stops again within milliseconds: show it a moment
+ * later, or the prompt would blink. A command typed in the console, such as
+ * resume or abort, hides the input until its end and is shown at once.
+ */
+let promptTimer = null;
+
+function isStopPrompt(prompt) {
+    return prompt === "break> " || prompt === "(break) ";
+}
+
+function setPrompt(prompt) {
+    clearTimeout(promptTimer);
+    promptTimer = null;
+    if (isInputEnabled() && isStopPrompt($(".prompt").text()) && !isStopPrompt(prompt)) {
+        promptTimer = setTimeout(() => {
+            promptTimer = null;
+            $(".prompt").text(prompt);
+        }, 200);
+    } else {
+        $(".prompt").text(prompt);
     }
 }
 

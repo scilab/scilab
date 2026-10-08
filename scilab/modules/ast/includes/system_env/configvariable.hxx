@@ -514,12 +514,8 @@ public:
     static void setScilabCommand(int _isciCmd);
     static int isScilabCommand();
 
-    //debugger information
-    static bool m_bEnabledebug;
+    //default visitor
     static std::unique_ptr<ast::ConstVisitor> m_defaultvisitor;
-
-    static bool getEnableDebug();
-    static void setEnableDebug(bool _enable);
 
     static void setDefaultVisitor(ast::ConstVisitor* _default);
     static ast::ConstVisitor* getDefaultVisitor();

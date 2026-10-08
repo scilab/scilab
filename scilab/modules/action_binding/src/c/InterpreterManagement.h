@@ -24,7 +24,9 @@
 
 /**
  * Put a command in Scilab command queue so that Scilab executes it.
- * The command is displayed in Scilab Window
+ * The command is displayed in Scilab Window.
+ * For the needs of Scilab itself: the command is never debugged. The callback
+ * of a user interface goes through putCallbackInScilabQueue.
  *
  * @param command the command to execute
  * @return execution status
@@ -43,6 +45,25 @@ int putCommandInScilabQueue(char *command);
  * @return execution status
  */
 int requestScilabExec(char *command);
+
+/**
+ * Put the callback of a user interface in Scilab command queue.
+ * It is debugged when Scilab is in debug mode; while the debugger is stopped,
+ * it runs at once, not debugged, as a line typed in the console.
+ *
+ * @param command the command to execute
+ * @return execution status
+ */
+int putCallbackInScilabQueue(char *command);
+
+/**
+ * Same as putCallbackInScilabQueue, for a callback executed as soon as
+ * possible and that may not be interrupted by another one.
+ *
+ * @param command the command to execute
+ * @return execution status
+ */
+int requestCallbackExec(char *command);
 
 /** 
  * Call a Scilab command (in the currrent interpreter) and wait for its execution to end before returning.
@@ -69,6 +90,12 @@ void startScilabOutputCapture(int silent);
  * @return captured output as a UTF-8 string (caller must free), or NULL
  */
 char* stopScilabOutputCapture(void);
+/*
+ * What a user interface shows of the debugger
+ * @return 0 outside debug mode, 1 in debug mode with nothing running, 2 while
+ * a debugged execution runs, 3 while it is stopped
+ */
+int getScilabDebugState(void);
 
 /*--------------------------------------------------------------------------*/
 

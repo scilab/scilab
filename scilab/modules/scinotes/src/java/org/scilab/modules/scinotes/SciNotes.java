@@ -38,6 +38,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -148,6 +149,8 @@ public final class SciNotes extends SwingScilabDockablePanel {
     private static final String ALL_SCILAB = "all";
     private static final String ALL_FILES = "*.*";
     private static final String DOT = ".";
+    private static final String XCONF_ACTION_NAME = "name";
+    private static final String XCONF_ACTION_KEY = "key";
 
     private static final String DEFAULTACTIONPATH = "org.scilab.modules.scinotes.actions";
 
@@ -204,7 +207,8 @@ public final class SciNotes extends SwingScilabDockablePanel {
         });
 
         Document doc = ScilabXMLUtilities.readDocument(System.getenv("SCI") + "/modules/console/etc/Actions-Configuration.xml");
-        actionToName = XConfiguration.get(doc, "name", String.class, "action", String.class, XPATH_SCINOTES_ACTION);
+        actionToName = XConfiguration.get(doc, XCONF_ACTION_NAME, String.class,
+            "action", String.class, XPATH_SCINOTES_ACTION);
         XConfiguration.addXConfigurationListener(new SciNotesConfiguration());
     }
 
@@ -292,7 +296,18 @@ public final class SciNotes extends SwingScilabDockablePanel {
     public static Map<String, KeyStroke> getActionKeys() {
         if (actionKeys == null) {
             Document doc = XConfiguration.getXConfigurationDocument();
-            actionKeys = XConfiguration.get(doc, "name", String.class, "key", KeyStroke.class, XPATH_SCINOTES_KEY);
+            actionKeys = new HashMap<String, KeyStroke>(
+                XConfiguration.get(doc, XCONF_ACTION_NAME, String.class,
+                    XCONF_ACTION_KEY, KeyStroke.class, XPATH_SCINOTES_KEY));
+
+            Map<String, KeyStroke> defaults = XConfiguration.get(XConfiguration.createDocument(),
+                XCONF_ACTION_NAME, String.class, XCONF_ACTION_KEY, KeyStroke.class, XPATH_SCINOTES_KEY);
+            // Older profiles keep their configured values and receive only unknown actions.
+            for (Map.Entry<String, KeyStroke> entry : defaults.entrySet()) {
+                if (!actionKeys.containsKey(entry.getKey())) {
+                    actionKeys.put(entry.getKey(), entry.getValue());
+                }
+            }
         }
 
         return actionKeys;
@@ -2097,6 +2112,7 @@ public final class SciNotes extends SwingScilabDockablePanel {
                 if (otherPane != null) {
                     otherPane.close();
                 }
+                ((MonacoEditorPane) pane).activateInSharedBrowser();
             }
         }
     }

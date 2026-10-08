@@ -133,6 +133,20 @@
             <menuitem action="scinotes-save-execute-all" label="Save and execute all files"/>
         </menu>
 
+        <menu label="Debug" mnemonic="D">
+            <menuitem action="scinotes-debug-continue" label="Debug or resume"/>
+            <menuitem action="scinotes-debug-pause" label="Pause"/>
+            <separator/>
+            <menuitem action="scinotes-debug-step-over" label="Step Over"/>
+            <menuitem action="scinotes-debug-step-in" label="Step In"/>
+            <menuitem action="scinotes-debug-step-out" label="Step Out"/>
+            <menuitem action="scinotes-debug-run-to-cursor" label="Run to Cursor"/>
+            <separator/>
+            <menuitem action="scinotes-debug-disconnect" label="Stop Debugging"/>
+            <separator/>
+            <menuitem action="scinotes-debug-toggle-breakpoint" label="Toggle Breakpoint"/>
+        </menu>
+
         <menu label="?">
             <menuitem action="scinotes-help" label="Scinotes help"/>
             <menuitem action="scinotes-help-keyword" label="Help on ;Help on selection"/>
@@ -193,6 +207,13 @@
         <button action="scinotes-execute-scilab" tooltip="Execute" icon="media-playback-start"/>
         <button action="scinotes-save-execute" tooltip="Save and execute" icon="save-and-execute"/>
         <button action="scinotes-save-execute-all" tooltip="Save and execute all" icon="execute-all"/>
+        <separator/>
+        <button action="scinotes-debug-continue" tooltip="Debug or resume" icon="debug-start"/>
+        <button action="scinotes-debug-pause" tooltip="Pause" icon="debug-pause"/>
+        <button action="scinotes-debug-step-over" tooltip="Step Over" icon="debug-step-over"/>
+        <button action="scinotes-debug-step-in" tooltip="Step In" icon="debug-step-into"/>
+        <button action="scinotes-debug-step-out" tooltip="Step Out" icon="debug-step-out"/>
+        <button action="scinotes-debug-disconnect" tooltip="Stop Debugging" icon="debug-stop"/>
         <separator/>
         <button action="scinotes-general-settings" tooltip="Scinotes General settings" icon="preferences-system"/>
         <separator/>

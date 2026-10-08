@@ -74,7 +74,12 @@ function startMonaco(vsBase) {
             language: "scilab",
             theme: "scinotes-light",
             automaticLayout: true,
-            glyphMargin: false,
+            // Monaco lays the margin out as
+            // glyphMargin | lineNumbers | linesDecorations | content and the
+            // order is not configurable, so the breakpoint gutter has to be
+            // the glyph margin to sit left of the numbers. Its width is a
+            // whole line height, about what the decorations column cost.
+            glyphMargin: true,
             lineDecorationsWidth: 4,
             lineNumbersMinChars: 3,
             contextmenu: false,
@@ -108,6 +113,9 @@ function startMonaco(vsBase) {
         configureShortcuts(state.pendingShortcutConfig);
         configureLatexPreview();
         configureLsp(state.pendingLspConfig);
+        configureDap(state.pendingDapConfig);
+        // Breakpoints can be placed before any debug session exists.
+        configureDapEditor();
         configureContextMenu();
         configureFocusHandling();
         configureOpenUrlHandling();
@@ -136,6 +144,11 @@ function startMonaco(vsBase) {
             recordUndoableEdit(e);
             // The Java replicas get the edit from the model itself, see
             // installDocumentModel() in monaco-shared-history.js.
+            var activeDocument = typeof getActiveDocumentEntry === "function"
+                ? getActiveDocumentEntry() : null;
+            if (activeDocument && typeof window.SciNotesMonacoTrackBreakpointLines === "function") {
+                window.SciNotesMonacoTrackBreakpointLines(activeDocument.id);
+            }
             notifyModifiedState();
             notifyUndoStateSoon();
         });

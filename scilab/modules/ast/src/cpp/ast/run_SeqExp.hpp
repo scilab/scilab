@@ -50,19 +50,31 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
         if (ConfigVariable::isExecutionBreak())
         {
             ConfigVariable::resetExecutionBreak();
+            // Debug mode has no pause level: what runs without the debugger
+            // is abandoned, with everything around it.
+            if (debugger::DebuggerManager::isDebugMode())
+            {
+                throw ast::InternalAbort();
+            }
+
             if (ConfigVariable::isPrintInteractive())
             {
                 ClearTemporaryPrompt();
             }
 
-            StorePrioritaryCommand("pause");
+            if (StaticRunner_isInterruptibleCommand() == 1)
+            {
+                pauseHere(e.getLocation());
+            }
+            else
+            {
+                // once the command that cannot be interrupted is done
+                StoreCommandWithFlags("pause", 1, 0, INTERNAL);
+            }
         }
 
         // interrupt me to execute a prioritary command
-        while (isEmptyCommandQueuePrioritary() == 0 && StaticRunner_isInterruptibleCommand() == 1)
-        {
-            StaticRunner_launch();
-        }
+        runPendingCommands(e.getLocation());
 
         if (file)
         {
@@ -79,19 +91,31 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
         if (ConfigVariable::isExecutionBreak())
         {
             ConfigVariable::resetExecutionBreak();
+            // Debug mode has no pause level: what runs without the debugger
+            // is abandoned, with everything around it.
+            if (debugger::DebuggerManager::isDebugMode())
+            {
+                throw ast::InternalAbort();
+            }
+
             if (ConfigVariable::isPrintInteractive())
             {
                 ClearTemporaryPrompt();
             }
 
-            StorePrioritaryCommand("pause");
+            if (StaticRunner_isInterruptibleCommand() == 1)
+            {
+                pauseHere((*it)->getLocation());
+            }
+            else
+            {
+                // once the command that cannot be interrupted is done
+                StoreCommandWithFlags("pause", 1, 0, INTERNAL);
+            }
         }
 
         // interrupt me to execute a prioritary command
-        while (isEmptyCommandQueuePrioritary() == 0 && StaticRunner_isInterruptibleCommand() == 1)
-        {
-            StaticRunner_launch();
-        }
+        runPendingCommands((*it)->getLocation());
 
         //printf input expression line following mode configuration
         if (file && ConfigVariable::isPrintInput())

@@ -50,6 +50,31 @@ public  static int requestScilabExec(String command) {
 
   
  /**
+   * Put the callback of a user interface in Scilab command queue.
+   * It is debugged when Scilab is in debug mode; while the debugger is stopped,
+   * it runs at once, not debugged, as a line typed in the console.
+   *
+   * @param command the command to execute
+   * @return execution status
+   */
+public  static int putCallbackInScilabQueue(String command) {
+    return InterpreterManagementJNI.putCallbackInScilabQueue(command);
+  }
+
+  
+ /**
+   * Same as putCallbackInScilabQueue, for a callback executed as soon as possible
+   * and that may not be interrupted by another one.
+   *
+   * @param command the command to execute
+   * @return execution status
+   */
+public  static int requestCallbackExec(String command) {
+    return InterpreterManagementJNI.requestCallbackExec(command);
+  }
+
+  
+ /**
    * call the command, directly in the interpreter. This only works if the Scilab execution thread is running.
    *
    * @param command the command to execute
@@ -84,6 +109,15 @@ public  static void startScilabOutputCapture(int silent) {
   */
 public  static String stopScilabOutputCapture() {
     return InterpreterManagementJNI.stopScilabOutputCapture();
+  }
+  
+
+ /**
+  * What a user interface shows of the debugger
+  * @return 0 outside debug mode, 1 in debug mode with nothing running, 2 while a debugged execution runs, 3 while it is stopped
+  */
+public  static int getScilabDebugState() {
+    return InterpreterManagementJNI.getScilabDebugState();
   }
 
 }

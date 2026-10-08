@@ -17,7 +17,8 @@
         <title>Description</title>
         <para>
             <literal>debug</literal> met Scilab en mode débogage pour les fonctions écrites en
-            langage Scilab. Le prompt devient alors <literal>debug> </literal>.
+            langage Scilab. Le prompt devient alors <literal>(debug) </literal>, et
+            <literal>(break) </literal> pendant qu'une exécution est arrêtée.
         </para>
         <para>
             Ce mode permet de définir et gérer des points d'arrêt au sein des fonctions,
@@ -47,6 +48,8 @@
         <para>
             <literal>(q)uit: </literal>
             Quitte l'environnement de débogage et revient au mode normal de Scilab.
+            Une exécution arrêtée par le débogueur est abandonnée, sauf si un autre débogueur
+            est attaché : elle lui est alors laissée.
         </para>
         <para>
             <literal>(w)here ou bt: </literal>

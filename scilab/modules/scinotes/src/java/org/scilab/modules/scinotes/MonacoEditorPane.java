@@ -19,6 +19,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.KeyboardFocusManager;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -83,9 +84,14 @@ import org.cef.misc.BoolRef;
 import org.cef.misc.EventFlags;
 import org.cef.network.CefRequest.TransitionType;
 import org.scilab.modules.commons.OS;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.ScilabCefPanel;
+import org.scilab.modules.commons.gui.ScilabGUIUtilities;
 import org.scilab.modules.commons.utils.WebBrowser;
+import org.scilab.modules.gui.utils.DebugModeIndicator;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
@@ -95,6 +101,8 @@ import org.scilab.modules.scinotes.actions.CCloseTabInNewWindowAction;
 import org.scilab.modules.scinotes.actions.CloseAction;
 import org.scilab.modules.scinotes.actions.CopyAsHTMLAction;
 import org.scilab.modules.scinotes.actions.CopyAsHTMLWithLineNumberAction;
+import org.scilab.modules.scinotes.actions.DebugCommandAction;
+import org.scilab.modules.scinotes.actions.DebugContinueAction;
 import org.scilab.modules.scinotes.actions.EncodingAction;
 import org.scilab.modules.scinotes.actions.EvaluateSelectionAction;
 import org.scilab.modules.scinotes.actions.ExecuteFileIntoScilabAction;
@@ -206,6 +214,7 @@ public class MonacoEditorPane extends ScilabEditorPane {
     private ScilabEditorPane definitionOrigin;
     private String pendingText;
     private int pendingRevealLine;
+    private int revealRequests;
     private Point lastContextMenuPoint = new Point(0, 0);
     private JPopupMenu activeContextMenu;
     private transient AWTEventListener contextMenuDismissListener;
@@ -227,6 +236,7 @@ public class MonacoEditorPane extends ScilabEditorPane {
     /** Owns the single native browser used by all Monaco tabs in one SciNotes window. */
     private static final class SharedBrowser {
         private static final String DOCUMENT_MESSAGE_PREFIX = "document:";
+        private static final String DEBUG_STOP_ACTION = "scinotes-debug-disconnect";
 
         private final SciNotes editor;
         private final ScilabCefPanel cefPanel;
@@ -241,6 +251,17 @@ public class MonacoEditorPane extends ScilabEditorPane {
         private volatile boolean monacoReady;
         private volatile boolean initialDocumentAdopted;
         private volatile boolean disposed;
+        /*
+         * The page runs one debug client for the whole window: its state
+         * belongs here, not to the pane that happened to be active when it
+         * was reported. A split or its removal replaces the panes of a tab.
+         */
+        private volatile boolean dapCanContinue;
+        private volatile boolean dapCanExecute;
+        private volatile boolean dapCanDebug;
+        private volatile boolean dapDebugMode;
+        private volatile boolean dapSessionReady;
+        private volatile String dapSessionState = "";
 
         SharedBrowser(SciNotes editor) {
             this.editor = editor;
@@ -324,6 +345,16 @@ public class MonacoEditorPane extends ScilabEditorPane {
                 }
                 pane = getPane(request.substring(DOCUMENT_MESSAGE_PREFIX.length(), separator));
                 paneRequest = request.substring(separator + 1);
+            }
+            // Addressed to the window whatever document it names, even none.
+            if (paneRequest != null && paneRequest.startsWith("dapState:")) {
+                final String payload = paneRequest.substring("dapState:".length());
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        updateDapState(payload);
+                    }
+                });
+                return;
             }
             if (pane != null && !pane.browserDisposed) {
                 pane.handleMessage(paneRequest);
@@ -470,12 +501,74 @@ public class MonacoEditorPane extends ScilabEditorPane {
             }
         }
 
+        /**
+         * Apply the command availability computed by the page's debug client
+         * to the controls of this window.
+         * @param payload serialized command availability
+         */
+        private void updateDapState(String payload) {
+            MonacoDapState state;
+            try {
+                state = new Gson().fromJson(payload, MonacoDapState.class);
+            } catch (JsonSyntaxException e) {
+                System.err.println("SciNotes DAP: invalid state payload: " + e.getMessage());
+                return;
+            }
+            if (state == null || disposed) {
+                return;
+            }
+
+            dapCanContinue = state.canContinue;
+            dapCanExecute = state.canExecute;
+            dapCanDebug = state.canDebug;
+            dapSessionReady = state.sessionReady;
+            dapSessionState = state.state == null ? "" : state.state;
+            if (!"running".equals(dapSessionState) && !"stopped".equals(dapSessionState)
+                    && editor.getInfoBar() != null
+                    && SciNotesMessages.DEBUG_SESSION_BUSY.equals(editor.getInfoBar().getText())) {
+                ScilabEditorPane pane = editor.getTextPane();
+                editor.getInfoBar().setText(pane == null ? "" : pane.getInfoBarText());
+            }
+            DebugCommandAction.updateAvailability(editor, state.canContinue || state.canDebug,
+                state.canPause, state.canStepOver, state.canStepIn, state.canStepOut,
+                state.canDisconnect, state.canExecute);
+            dapDebugMode = state.debugMode;
+            // The status bar says Scilab is in debug mode, and what the
+            // debugger says after its own text. It is a text area: a message
+            // on several lines, as Scilab errors are, would make it grow and
+            // push the editor.
+            showDebuggerState(state.message == null ? "" : state.message.replaceAll("\\s+", " ").trim());
+        }
+
+        /**
+         * @param message what the debugger says, empty for nothing
+         */
+        void showDebuggerState(String message) {
+            String state = message;
+            // In debug mode, the key that leaves it comes with the state.
+            KeyStroke key = dapDebugMode ? SciNotes.getActionKeys().get(DEBUG_STOP_ACTION) : null;
+            if (key != null) {
+                String keyText = KeyEvent.getKeyText(key.getKeyCode());
+                if (key.getModifiers() != 0) {
+                    keyText = InputEvent.getModifiersExText(key.getModifiers()) + "+" + keyText;
+                }
+                String hint = String.format(SciNotesMessages.DEBUG_LEAVE_HINT, keyText);
+                state = state.isEmpty() ? hint : state + " (" + hint + ")";
+            }
+            DebugModeIndicator.show(editor.getInfoBar(), dapDebugMode, state);
+        }
+
         void loadStarted() {
             if (disposed) {
                 return;
             }
             ready = false;
             monacoReady = false;
+            dapCanContinue = false;
+            dapCanExecute = false;
+            dapCanDebug = false;
+            dapSessionReady = false;
+            dapSessionState = "";
             for (MonacoEditorPane pane : new ArrayList<MonacoEditorPane>(panes)) {
                 pane.browserReady = false;
             }
@@ -668,6 +761,14 @@ public class MonacoEditorPane extends ScilabEditorPane {
         MONACO_BRIDGED_ACTIONS.put("scinotes-evaluate-selection", "evaluateSelection");
         MONACO_BRIDGED_ACTIONS.put("scinotes-save-execute", "saveAndExecuteFile");
         MONACO_BRIDGED_ACTIONS.put("scinotes-save-execute-all", "saveAndExecuteAllFiles");
+        MONACO_BRIDGED_ACTIONS.put("scinotes-debug-continue", "debugContinue");
+        MONACO_BRIDGED_ACTIONS.put("scinotes-debug-pause", "debugPause");
+        MONACO_BRIDGED_ACTIONS.put("scinotes-debug-step-over", "debugStepOver");
+        MONACO_BRIDGED_ACTIONS.put("scinotes-debug-step-in", "debugStepIn");
+        MONACO_BRIDGED_ACTIONS.put("scinotes-debug-step-out", "debugStepOut");
+        MONACO_BRIDGED_ACTIONS.put("scinotes-debug-disconnect", "debugDisconnect");
+        MONACO_BRIDGED_ACTIONS.put("scinotes-debug-toggle-breakpoint", "debugToggleBreakpoint");
+        MONACO_BRIDGED_ACTIONS.put("scinotes-debug-run-to-cursor", "debugRunToCursor");
     }
 
     /**
@@ -894,6 +995,7 @@ public class MonacoEditorPane extends ScilabEditorPane {
         applyDisplayOptions();
         configureShortcuts();
         configureLsp();
+        configureDap();
         browser.executeJavaScript("window.SciNotesMonacoAdoptInitialDocument("
             + quoteJs(getMonacoDocumentId()) + ", " + quoteJs(getDocumentUri()) + ", "
             + documentRevision + ", " + isDocumentClean() + ", " + (!isEditable())
@@ -904,6 +1006,7 @@ public class MonacoEditorPane extends ScilabEditorPane {
         updateAnchorDecorations();
         updateReadOnlyState();
         revealPendingLine();
+        syncDapDocument();
     }
 
     private void createMonacoDocument() {
@@ -916,6 +1019,7 @@ public class MonacoEditorPane extends ScilabEditorPane {
             + isDocumentClean() + ", " + (!isEditable()) + ");", browser.getURL(), 1);
         monacoDocumentCreated = true;
         joinSharedHistory(true);
+        syncDapDocument();
     }
 
     private void selectMonacoDocument() {
@@ -934,6 +1038,7 @@ public class MonacoEditorPane extends ScilabEditorPane {
         if (getUUID() == null) {
             return;
         }
+        removeDapDocument();
         browser.executeJavaScript("window.SciNotesMonacoCloseDocument("
             + quoteJs(getMonacoDocumentId()) + ");", browser.getURL(), 1);
         monacoDocumentCreated = false;
@@ -951,8 +1056,16 @@ public class MonacoEditorPane extends ScilabEditorPane {
 
     @Override
     public void setName(String name) {
+        boolean wired = sharedBrowser != null && browserReady && monacoDocumentCreated
+            && getUUID() != null;
+        String previousSourcePath = wired ? getSavedSourcePath() : "";
+        if (wired) {
+            // Preserve Monaco's live decoration lines before Save As replaces
+            // the text model and before the persisted path is migrated.
+            prepareDapBreakpointsForSave();
+        }
         super.setName(name);
-        if (sharedBrowser != null && browserReady && monacoDocumentCreated && getUUID() != null) {
+        if (wired) {
             browser.executeJavaScript("window.SciNotesMonacoRenameDocument("
                 + quoteJs(getMonacoDocumentId()) + ", " + quoteJs(getDocumentUri())
                 + ");", browser.getURL(), 1);
@@ -961,6 +1074,15 @@ public class MonacoEditorPane extends ScilabEditorPane {
              * own text to that file, so it is not the one to be updated.
              */
             joinSharedHistory(false);
+            String sourcePath = getSavedSourcePath();
+            if (!previousSourcePath.isEmpty() && !sourcePath.isEmpty()
+                    && !previousSourcePath.equals(sourcePath)
+                    && SciNotesDapManager.getEndpoint() != null) {
+                // The old file keeps its breakpoints: once no tab shows it,
+                // the browser declares it from the store.
+                SciNotesBreakpointStore.getInstance().copy(previousSourcePath, sourcePath);
+            }
+            syncDapDocument();
         }
         updateFileWatch();
         indexDocument();
@@ -1555,9 +1677,14 @@ public class MonacoEditorPane extends ScilabEditorPane {
     @Override
     public void init(final int pos) {
         super.init(pos);
+        // Opening a file at a line (a debug stop, a definition) asks for it
+        // before this runs: that line wins over the caret the tab starts with.
+        final int requests = revealRequests;
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                revealLine(pos);
+                if (revealRequests == requests) {
+                    revealLine(pos);
+                }
             }
         });
     }
@@ -1755,6 +1882,18 @@ public class MonacoEditorPane extends ScilabEditorPane {
     }
 
     /**
+     * Give the shared browser to this pane. For a pane that replaces the
+     * panes of its tab (a split removed): the focus request that would do it
+     * can land before the old panes are closed, and closing them hands the
+     * browser back to one of them.
+     */
+    void activateInSharedBrowser() {
+        if (!browserDisposed) {
+            sharedBrowser.activate(this);
+        }
+    }
+
+    /**
      * Turn this pane into a live secondary view of {@code primary}'s Monaco
      * model instead of an independent document. Called by
      * {@code SciNotes.splitTab()} on the "other" half of a split: the shared
@@ -1834,6 +1973,15 @@ public class MonacoEditorPane extends ScilabEditorPane {
                     }
                 }
             });
+        } else if (request.startsWith("dapBreakpoints:")) {
+            final String payload = request.substring("dapBreakpoints:".length());
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    persistBreakpointsFromMonaco(payload);
+                }
+            });
+        } else if ("dapExecutionEnded:".equals(request)) {
+            ScilabInterpreterManagement.releaseAbortedScilabExecs();
         } else if (request.startsWith("contextMenu:")) {
             final String payload = request.substring("contextMenu:".length());
             SwingUtilities.invokeLater(new Runnable() {
@@ -1868,6 +2016,13 @@ public class MonacoEditorPane extends ScilabEditorPane {
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
                     openUrlAt(payload);
+                }
+            });
+        } else if (request.startsWith("dapStopped:")) {
+            final String payload = request.substring("dapStopped:".length());
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    revealStoppedSource(payload);
                 }
             });
         } else if (request.startsWith("openDefinition:")) {
@@ -2340,6 +2495,22 @@ public class MonacoEditorPane extends ScilabEditorPane {
             saveAndExecuteFile();
         } else if ("saveAndExecuteAllFiles".equals(bridge)) {
             saveAndExecuteAllFiles();
+        } else if ("debugContinue".equals(bridge)) {
+            debugOrContinue();
+        } else if ("debugPause".equals(bridge)) {
+            runDebuggerCommand("pause");
+        } else if ("debugStepOver".equals(bridge)) {
+            runDebuggerCommand("next");
+        } else if ("debugStepIn".equals(bridge)) {
+            runDebuggerCommand("stepIn");
+        } else if ("debugStepOut".equals(bridge)) {
+            runDebuggerCommand("stepOut");
+        } else if ("debugDisconnect".equals(bridge)) {
+            runDebuggerCommand("disconnect");
+        } else if ("debugToggleBreakpoint".equals(bridge)) {
+            toggleBreakpointAtCaret();
+        } else if ("debugRunToCursor".equals(bridge)) {
+            runToCursor();
         } else if ("openDevTools".equals(bridge)) {
             openDevTools();
         }
@@ -3167,6 +3338,14 @@ public class MonacoEditorPane extends ScilabEditorPane {
         }
     }
 
+    /** Continue the stopped execution, or save the current file and debug it. */
+    public void debugOrContinue() {
+        SciNotes ed = getEditor();
+        if (ed != null) {
+            new DebugContinueAction("", ed).doAction();
+        }
+    }
+
     /** Save and execute all opened files through the existing SciNotes action. */
     public void saveAndExecuteAllFiles() {
         SciNotes ed = getEditor();
@@ -3207,6 +3386,142 @@ public class MonacoEditorPane extends ScilabEditorPane {
         } catch (NumberFormatException e) {
             // Ignore malformed bridge messages.
         }
+    }
+
+    /**
+     * Open or activate the source the debugger stopped in. The browser owns
+     * the stopped-line decoration; Java only has to make the right tab the
+     * visible one, exactly as it does for a definition jump.
+     */
+    private void revealStoppedSource(String payload) {
+        if (payload == null) {
+            return;
+        }
+
+        int separator = payload.lastIndexOf(':');
+        if (separator <= 0) {
+            return;
+        }
+
+        try {
+            String path = URLDecoder.decode(payload.substring(0, separator), "UTF-8");
+            int line = Math.max(1, Integer.parseInt(payload.substring(separator + 1)));
+            File source = new File(path);
+            if (!source.isFile()) {
+                return;
+            }
+
+            SciNotes ed = getEditor();
+            if (ed != null) {
+                // The stop happens while the console may hold the focus: the
+                // step keys must reach the editor.
+                Component owner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+                if (owner == null || !SwingUtilities.isDescendingFrom(owner, ed)) {
+                    ScilabGUIUtilities.toFront(ed, SciNotesMessages.SCILAB_EDITOR);
+                }
+                ed.openFile(source.getPath(), line, null);
+            }
+        } catch (NumberFormatException e) {
+            // Ignore malformed bridge messages.
+        } catch (UnsupportedEncodingException e) {
+            // Ignore malformed bridge messages.
+        }
+    }
+
+    /**
+     * Send one validated execution command to the DAP client in the shared browser.
+     * @param command DAP command name
+     */
+    public void runDapCommand(String command) {
+        if (!browserDisposed && sharedBrowser.monacoReady && command != null) {
+            browser.executeJavaScript("window.SciNotesMonacoDebugCommand("
+                + quoteJs(command) + ");", browser.getURL(), 1);
+        }
+    }
+
+    /** Add or remove a breakpoint on the line of the caret, as a click in the margin does. */
+    public void toggleBreakpointAtCaret() {
+        if (browserReady) {
+            browser.executeJavaScript("window.SciNotesMonacoToggleBreakpointAtCaret();", browser.getURL(), 1);
+        }
+    }
+
+    /**
+     * Run up to the line of the caret: continue a stopped execution, or save
+     * the file and run it with the debugger when nothing runs. The page stops
+     * there as on a breakpoint it sets for that one run. Nothing during a
+     * run, as for the steps.
+     */
+    public void runToCursor() {
+        if (browserDisposed || !browserReady || !sharedBrowser.monacoReady) {
+            return;
+        }
+
+        if (sharedBrowser.dapCanContinue) {
+            browser.executeJavaScript("window.SciNotesMonacoRunToCursor(true);", browser.getURL(), 1);
+        } else if (sharedBrowser.dapCanDebug) {
+            browser.executeJavaScript("window.SciNotesMonacoRunToCursor(false);", browser.getURL(), 1);
+            SciNotes ed = getEditor();
+            if (ed != null) {
+                new SaveAndExecuteFileAction("", ed, true).doAction();
+            }
+        }
+    }
+
+    /**
+     * Run a command of the debugger: pause, stop or a step. Outside debug mode
+     * there is nothing for it to act on, and the status bar says so.
+     * @param command DAP command name
+     */
+    public void runDebuggerCommand(String command) {
+        if (!sharedBrowser.dapDebugMode) {
+            sharedBrowser.showDebuggerState(SciNotesMessages.DEBUG_NOT_IN_DEBUG_MODE);
+            return;
+        }
+        runDapCommand(command);
+    }
+
+    /**
+     * Run one file through the debug session rather than handing it to the
+     * interpreter from Java: the session sees the run begin, debugged or not.
+     * @param path file to run
+     * @param echo whether the file is executed with echo
+     * @param debug whether the file is run in debug mode
+     * @return true when the debug session took the run
+     */
+    public boolean executeFileThroughDap(String path, boolean echo, boolean debug) {
+        boolean free = debug ? sharedBrowser.dapCanDebug : sharedBrowser.dapCanExecute;
+        if (browserDisposed || !sharedBrowser.monacoReady || !sharedBrowser.dapSessionReady
+                || !free || path == null || path.isEmpty()) {
+            return false;
+        }
+
+        browser.executeJavaScript("window.SciNotesMonacoExecuteFile("
+            + quoteJs(path) + ", " + echo + ", " + debug + ");", browser.getURL(), 1);
+        return true;
+    }
+
+    /**
+     * Continue the current execution when the debugger is stopped.
+     * @return true when Continue was requested
+     */
+    /**
+     * Whether the debug session holds the interpreter: a run in progress, or
+     * stopped on a breakpoint. Another run handed to Scilab meanwhile would
+     * wait behind the stopped one, or nest into it.
+     * @return true while the session is running or stopped
+     */
+    public boolean isDebugSessionBusy() {
+        String state = sharedBrowser.dapSessionState;
+        return !browserDisposed && ("running".equals(state) || "stopped".equals(state));
+    }
+
+    public boolean continueDapExecution() {
+        if (browserDisposed || !sharedBrowser.dapCanContinue) {
+            return false;
+        }
+        runDapCommand("continue");
+        return true;
     }
 
     private void openDefinition(String payload) {
@@ -3373,6 +3688,216 @@ public class MonacoEditorPane extends ScilabEditorPane {
         browser.executeJavaScript("window.SciNotesMonacoConfigureLsp(" + getLspConfiguration(endpoint) + ");", browser.getURL(), 1);
     }
 
+    private void configureDap() {
+        if (!browserReady) {
+            return;
+        }
+
+        SciNotesDapManager.Endpoint endpoint = SciNotesDapManager.getOrStartEndpoint();
+        if (endpoint == null) {
+            return;
+        }
+
+        browser.executeJavaScript("window.SciNotesMonacoConfigureDap(" + getDapConfiguration(endpoint) + ");", browser.getURL(), 1);
+        syncDapStore();
+    }
+
+    /**
+     * Push this tab's canonical source path and its persisted breakpoints to the
+     * Monaco document registry. The browser keeps them per model and replays the
+     * complete per-source list to DAP, so switching tabs never loses them.
+     */
+    private void syncDapDocument() {
+        if (!browserReady || !monacoDocumentCreated || getUUID() == null
+                || SciNotesDapManager.getEndpoint() == null) {
+            return;
+        }
+
+        String sourcePath = getSavedSourcePath();
+        browser.executeJavaScript("window.SciNotesMonacoSetDocumentBreakpoints("
+            + quoteJs(getMonacoDocumentId()) + ", " + quoteJs(getDocumentUri()) + ", "
+            + quoteJs(sourcePath) + ", "
+            + SciNotesBreakpointStore.getInstance().getBreakpointsJson(sourcePath)
+            + ");", browser.getURL(), 1);
+    }
+
+    /**
+     * Hand the stored list of one file to every other tab showing it. All
+     * SciNotes windows of a Scilab share one durable store, so a breakpoint set
+     * in one of them belongs to the others as much: without this they would
+     * only learn it from the debug session, and draw it as somebody else's.
+     * @param sourcePath canonical path of the file whose list just changed
+     */
+    private void refreshBreakpointsInOtherPanes(String sourcePath) {
+        if (sourcePath == null || sourcePath.isEmpty()) {
+            return;
+        }
+
+        for (SciNotes editor : SciNotes.getSciNotesList()) {
+            for (int index = 0; index < editor.getTabPane().getTabCount(); index++) {
+                ScilabEditorPane pane = editor.getTextPane(index);
+                if (pane == this || !(pane instanceof MonacoEditorPane)) {
+                    continue;
+                }
+
+                MonacoEditorPane monacoPane = (MonacoEditorPane) pane;
+                if (!sourcePath.equals(monacoPane.getSavedSourcePath())) {
+                    continue;
+                }
+
+                // A modified document owns its lines until it is saved: the
+                // store still describes the file on disk, not what it shows.
+                if (((ScilabDocument) monacoPane.getDocument()).isContentModified()) {
+                    continue;
+                }
+
+                monacoPane.syncDapDocument();
+            }
+        }
+    }
+
+    /**
+     * Whether some open tab holds that file at that saved path.
+     * @param sourcePath canonical path to look for
+     * @return true when a Monaco tab shows that file
+     */
+    private static boolean isSourcePathOpen(String sourcePath) {
+        for (SciNotes editor : SciNotes.getSciNotesList()) {
+            for (int index = 0; index < editor.getTabPane().getTabCount(); index++) {
+                ScilabEditorPane pane = editor.getTextPane(index);
+                if (pane instanceof MonacoEditorPane
+                        && sourcePath.equals(((MonacoEditorPane) pane).getSavedSourcePath())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Hand the whole durable store to this window's browser. Breakpoints belong
+     * to their file, not to an open tab: the debug session must know every line
+     * the store holds, so one still stops the execution when no editor shows
+     * that file, and the stop then opens it.
+     */
+    private void syncDapStore() {
+        if (!browserReady || getUUID() == null || SciNotesDapManager.getEndpoint() == null) {
+            return;
+        }
+
+        browser.executeJavaScript("window.SciNotesMonacoSetStoredBreakpoints("
+            + SciNotesBreakpointStore.getInstance().getAllBreakpointsJson()
+            + ");", browser.getURL(), 1);
+    }
+
+    /**
+     * Hand the store to every open SciNotes window: they share it, and each has
+     * its own browser to tell.
+     */
+    private static void syncDapStoreEverywhere() {
+        for (SciNotes editor : SciNotes.getSciNotesList()) {
+            for (int index = 0; index < editor.getTabPane().getTabCount(); index++) {
+                ScilabEditorPane pane = editor.getTextPane(index);
+                if (pane instanceof MonacoEditorPane) {
+                    // One browser per window: the first Monaco tab reaches it.
+                    ((MonacoEditorPane) pane).syncDapStore();
+                    break;
+                }
+            }
+        }
+    }
+
+    /** Capture breakpoint decorations before a successful save refreshes the store. */
+    private void prepareDapBreakpointsForSave() {
+        if (browserReady && monacoDocumentCreated && getUUID() != null) {
+            browser.executeJavaScript("window.SciNotesMonacoPrepareDocumentBreakpointsForSave("
+                + quoteJs(getMonacoDocumentId()) + ");", browser.getURL(), 1);
+        }
+    }
+
+    /**
+     * Persist the breakpoints Monaco owns for a document that just obtained a
+     * saved path. Until then the store has nothing under that path, so the
+     * browser is the authority and hands its pending lines over here.
+     */
+    private void persistBreakpointsFromMonaco(String payload) {
+        try {
+            MonacoBreakpointPayload parsed = new Gson().fromJson(payload, MonacoBreakpointPayload.class);
+            if (parsed == null || parsed.sourcePath == null || parsed.sourcePath.isEmpty()) {
+                return;
+            }
+            /*
+             * The bridge addresses a message with the browser's active
+             * document, which is not always the document the payload is about:
+             * a click in a split view or in a background tab publishes under
+             * another document's name. The payload carries the file it
+             * describes, and the store is keyed by that path, so persist what
+             * it says provided some open tab still has that file saved there -
+             * which is also what protects the store from a payload made
+             * obsolete by a Save As.
+             */
+            if (!isSourcePathOpen(parsed.sourcePath)) {
+                return;
+            }
+
+            List<SciNotesBreakpointStore.Breakpoint> breakpoints =
+                new ArrayList<SciNotesBreakpointStore.Breakpoint>();
+            if (parsed.breakpoints != null) {
+                for (MonacoBreakpoint breakpoint : parsed.breakpoints) {
+                    if (breakpoint != null && breakpoint.line > 0) {
+                        breakpoints.add(new SciNotesBreakpointStore.Breakpoint(breakpoint.line,
+                            breakpoint.enabled, breakpoint.condition, breakpoint.hitCondition));
+                    }
+                }
+            }
+            SciNotesBreakpointStore.getInstance().replaceBreakpoints(parsed.sourcePath, breakpoints);
+            refreshBreakpointsInOtherPanes(parsed.sourcePath);
+            syncDapStoreEverywhere();        } catch (JsonSyntaxException e) {
+            System.err.println("SciNotes DAP: invalid breakpoint payload: " + e.getMessage());
+        }
+    }
+
+    /** Wire format of the breakpoint list reported by monaco-dap.js. */
+    private static final class MonacoBreakpointPayload {
+        private String sourcePath;
+        private List<MonacoBreakpoint> breakpoints;
+    }
+
+    private static final class MonacoBreakpoint {
+        private int line;
+        private boolean enabled;
+        private String condition;
+        private String hitCondition;
+    }
+
+    /** Transient command availability reported by the browser DAP client. */
+    private static final class MonacoDapState {
+        private boolean canContinue;
+        private boolean canPause;
+        private boolean canStepOver;
+        private boolean canStepIn;
+        private boolean canStepOut;
+        private boolean canDisconnect;
+        private boolean canExecute;
+        private boolean canDebug;
+        private boolean debugMode;
+        private boolean sessionReady;
+        private String state;
+        private String message;
+    }
+
+    /** Drop this tab from the browser-side DAP registry; breakpoints stay persisted. */
+    private void removeDapDocument() {
+        // Not browserReady: a closing pane has already dropped it, and this
+        // runs while it unregisters.
+        if (!sharedBrowser.monacoReady || getUUID() == null || SciNotesDapManager.getEndpoint() == null) {
+            return;
+        }
+
+        browser.executeJavaScript("window.SciNotesMonacoRemoveDocumentBreakpoints("
+            + quoteJs(getMonacoDocumentId()) + ");", browser.getURL(), 1);
+    }
+
     public void applyDisplayOptions() {
         if (browserReady) {
             browser.executeJavaScript("window.SciNotesMonacoApplyOptions(" + getDisplayOptionsConfiguration() + ");", browser.getURL(), 1);
@@ -3396,10 +3921,20 @@ public class MonacoEditorPane extends ScilabEditorPane {
      * @param digest the contents written to disk, as {@link #contentDigest}
      */
     private void markMonacoSaved(String digest) {
+        if (splitPrimary != null) {
+            // The document of a split names its secondary half as its pane,
+            // but the Monaco document belongs to the primary one.
+            splitPrimary.markMonacoSaved(digest);
+            return;
+        }
         if (browserReady && monacoDocumentCreated) {
+            prepareDapBreakpointsForSave();
             browser.executeJavaScript("window.SciNotesMonacoMarkDocumentSaved("
                 + quoteJs(getMonacoDocumentId()) + ", " + quoteJs(digest)
                 + ");", browser.getURL(), 1);
+            // The file now exists at its canonical path, so its breakpoints can
+            // be verified and installed for real.
+            syncDapDocument();
         }
     }
 
@@ -3478,6 +4013,7 @@ public class MonacoEditorPane extends ScilabEditorPane {
         if (lineNumber <= 0) {
             return;
         }
+        revealRequests++;
         if (splitPrimary == null && (!browserReady || !monacoDocumentCreated
                 || sharedBrowser.getActivePane() != this)) {
             pendingRevealLine = lineNumber;
@@ -4067,6 +4603,71 @@ public class MonacoEditorPane extends ScilabEditorPane {
         builder.append(",\"enableSignatureHelp\":true");
         builder.append('}');
         return builder.toString();
+    }
+
+    /**
+     * Connection-level DAP configuration only. It is sent once for the browser
+     * shared by one SciNotes window; per-document breakpoints are pushed
+     * separately by syncDapDocument() because one browser hosts every tab.
+     */
+    private String getDapConfiguration(SciNotesDapManager.Endpoint endpoint) {
+        StringBuilder builder = new StringBuilder();
+        builder.append('{');
+        builder.append("\"url\":").append(quoteJs(endpoint.getUrl()));
+        builder.append(",\"sessionId\":").append(quoteJs(endpoint.getSessionId()));
+        // The page has no translations of its own: its texts come from here,
+        // under the keys of DAP_TEXTS in monaco-dap.js and DAP_CLIENT_TEXTS
+        // in dap-client.js.
+        String[][] messages = {
+            {"breakpoint", SciNotesMessages.DEBUG_BREAKPOINT},
+            {"breakpointDisabled", SciNotesMessages.DEBUG_BREAKPOINT_DISABLED},
+            {"breakpointForeign", SciNotesMessages.DEBUG_BREAKPOINT_FOREIGN},
+            {"breakpointNoCode", SciNotesMessages.DEBUG_BREAKPOINT_NO_CODE},
+            {"breakpointHitCount", SciNotesMessages.DEBUG_BREAKPOINT_HIT_COUNT},
+            {"breakpointNoFile", SciNotesMessages.DEBUG_BREAKPOINT_NO_FILE},
+            {"stoppedHere", SciNotesMessages.DEBUG_STOPPED_HERE},
+            {"stoppedHereOnBreakpoint", SciNotesMessages.DEBUG_STOPPED_HERE_ON_BREAKPOINT},
+            {"stopped", SciNotesMessages.DEBUG_STOPPED},
+            {"stoppedOnError", SciNotesMessages.DEBUG_STOPPED_ON_ERROR},
+            {"pausedOnBreakpoint", SciNotesMessages.DEBUG_PAUSED_ON_BREAKPOINT},
+            {"paused", SciNotesMessages.DEBUG_PAUSED},
+            {"running", SciNotesMessages.DEBUG_RUNNING},
+            {"completed", SciNotesMessages.DEBUG_COMPLETED},
+            {"connectionLost", SciNotesMessages.DEBUG_CONNECTION_LOST},
+            {"connectionFailed", SciNotesMessages.DEBUG_CONNECTION_FAILED},
+            {"noResponse", SciNotesMessages.DEBUG_NO_RESPONSE},
+            {"fileChangedSinceRun", SciNotesMessages.DEBUG_FILE_CHANGED_SINCE_RUN}
+        };
+        builder.append(",\"messages\":{");
+        for (int i = 0; i < messages.length; i++) {
+            if (i > 0) {
+                builder.append(',');
+            }
+            builder.append(quoteJs(messages[i][0])).append(':').append(quoteJs(messages[i][1]));
+        }
+        builder.append('}');
+        builder.append('}');
+        return builder.toString();
+    }
+
+    private String getSavedSourcePath() {
+        String name = getName();
+        if (name == null || name.isEmpty()) {
+            return "";
+        }
+
+        File source = new File(name);
+        if (!source.isFile()) {
+            return "";
+        }
+        try {
+            // SciNotesBreakpointStore keys on the canonical path. Sending
+            // anything else would let one file appear as two browser-side
+            // groups whenever a symlink or a relative segment is involved.
+            return source.getCanonicalPath();
+        } catch (IOException e) {
+            return source.getAbsolutePath();
+        }
     }
 
     private String getDocumentUri() {

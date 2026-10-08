@@ -1385,6 +1385,108 @@ msgid "Choose the search base directory"
 msgstr ""
 
 #
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 349
+msgid "Breakpoint"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 350
+msgid "Breakpoint (disabled)"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 351
+msgid "Breakpoint owned by another debug client"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 352
+msgid "Unreachable breakpoint"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 353
+msgid "Invalid hit count"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 354
+msgid "Unsaved file"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 352
+msgid "Execution paused here"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 353
+msgid "Execution paused here (breakpoint)"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 355
+msgid "Execution paused on an error"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 356
+msgid "Paused on breakpoint"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 357
+msgid "Execution paused"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 361
+msgid "Execution running"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 368
+#, c-format
+msgid "%s to leave debug mode"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 358
+msgid "Execution completed"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 359
+msgid "Connection to the debugger lost"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 360
+msgid "Connection to the debugger failed"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 361
+#, c-format
+msgid "The debugger did not respond to %s"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 362
+msgid "This file has changed since it was run: Scilab executes the code as it was, and the lines shown may not match it."
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 363
+msgid "Scilab is not in debug mode"
+msgstr ""
+
+#
+# File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 364
+msgid "Scilab is running or paused in the debugger: resume or stop it first."
+msgstr ""
+
+#
 # File: modules/scinotes/src/noscinotes/noscinotes.c, line: 25
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"

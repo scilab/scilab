@@ -57,7 +57,10 @@ window.SciNotesMonacoEnableSplit = function(primaryDocumentId) {
         state.secondaryEditor = monaco.editor.create(container, {
             model: entry.model,
             automaticLayout: true,
-            glyphMargin: false,
+            // The glyph margin holds the breakpoints; the numbering in effect
+            // is the one an anchor blanks its cell in.
+            glyphMargin: true,
+            lineNumbers: getCurrentLineNumbersOption(),
             lineDecorationsWidth: 4,
             lineNumbersMinChars: 3,
             contextmenu: false,
@@ -172,6 +175,9 @@ window.SciNotesMonacoDisableSplit = function(forget) {
         if (state.lspClient && state.lspClient.detachEditorView) {
             state.lspClient.detachEditorView(state.secondaryEditor);
         }
+        if (typeof detachDapEditorView === "function") {
+            detachDapEditorView();
+        }
         state.secondaryEditor.dispose();
         state.secondaryEditor = null;
     }
@@ -222,6 +228,9 @@ function attachSecondaryViewFeatures(editor) {
     }
     if (state.lspClient && state.lspClient.attachEditorView) {
         state.lspClient.attachEditorView(editor);
+    }
+    if (typeof attachDapEditorView === "function") {
+        attachDapEditorView(editor);
     }
 }
 

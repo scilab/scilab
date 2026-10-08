@@ -15,10 +15,36 @@ function whereami()
     //!
     [linn,mac]=where()
     nn=prod(size(linn))
-    lm=max(length(mac))
+    lm=max(length(mac(mac <> "<console>" & mac <> "<callback>")))
     txt=[]
-    for k=2:nn
-        if mac(k)=="exec" then
+    k=2
+    while k<=nn
+        if (mac(k)=="<console>" | mac(k)=="<callback>") & k<nn then
+            // a command run between two instructions: what it called, where
+            // it comes from, and what was running then
+            if mac(k+1)=="exec" | mac(k+1)=="execstr" then
+                if mac(k)=="<console>" then
+                    fmt=gettext("%s called from the console during line %s of %s")
+                else
+                    fmt=gettext("%s called by a callback during line %s of %s")
+                end
+                if mac(k+1)=="exec" then
+                    running="exec_file"
+                else
+                    running="execstr"
+                end
+            else
+                if mac(k)=="<console>" then
+                    fmt=gettext("%s called from the console during line %s of macro %s")
+                else
+                    fmt=gettext("%s called by a callback during line %s of macro %s")
+                end
+                running=mac(k+1)
+            end
+            txt=[txt;
+            msprintf(fmt,part(mac(k-1),1:lm), string(linn(k+1)), running)]
+            k=k+1
+        elseif mac(k)=="exec" then
             txt=[txt;
             msprintf(gettext("%s called at line %s of %s"),part(mac(k-1),1:lm), string(linn(k)), "exec_file")]
         elseif mac(k)=="execstr" then
@@ -31,6 +57,7 @@ function whereami()
             txt=[txt;
             msprintf(gettext("%s called at line %s of macro %s"), part(mac(k-1),1:lm), string(linn(k)),mac(k))]
         end
+        k=k+1
     end
     write(%io(2),txt)
 endfunction

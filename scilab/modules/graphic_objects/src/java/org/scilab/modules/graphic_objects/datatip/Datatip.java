@@ -476,7 +476,7 @@ public class Datatip extends Text {
                                "clear(\"GDZa786XBSq7899SHKp\");" +
                                "error(msprintf(\"" + errMsg + "\", \"display_function\"));" +
                                "end;";
-        InterpreterManagement.requestScilabExec(updateCommand);
+        InterpreterManagement.requestCallbackExec(updateCommand);
     }
 
     public Boolean getTipBoxMode() {

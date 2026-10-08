@@ -32,6 +32,14 @@ void EvalVisitor::visit(const SeqExp& e)
     int iErrorLine = ConfigVariable::getLastErrorLine();
     int iError = ConfigVariable::getLastErrorNumber();
     bool bError = ConfigVariable::isError();
+    /*
+     * The call stack of an error is part of that state. Evaluating for a watch,
+     * a hover or a completion reports its failure through _strLastError; it
+     * must not leave a call stack behind, because the next real error only
+     * fills that record when it is empty, and the debugger would then show the
+     * evaluation's stack instead of its own.
+     */
+    bool bWhereError = ConfigVariable::getWhereError().empty() == false;
 
     ConfigVariable::setLastErrorMessage(L"");
     try
@@ -48,6 +56,11 @@ void EvalVisitor::visit(const SeqExp& e)
     _strLastError = scilab::UTF8::toUTF8(ConfigVariable::getLastErrorMessage());
 
     // set back the error state
+    if (bWhereError == false)
+    {
+        ConfigVariable::resetWhereError();
+    }
+
     ConfigVariable::setLastErrorMessage(wstError);
     ConfigVariable::setLastErrorFunction(wstErrorFunction);
     ConfigVariable::setLastErrorLine(iErrorLine);

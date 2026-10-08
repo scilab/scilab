@@ -425,7 +425,7 @@ msgid "The file %s has been modified by another program ! Overwrite it ?"
 msgstr "Le fichier %s a été modifié par un autre programme. L'écraser ?"
 
 msgid "Warning: the file has been modified by another program !"
-msgstr "Attention : Le fichier a été modifié par un autre programme !"
+msgstr "Attention : fichier modifié par un autre programme !"
 
 msgid "Reload"
 msgstr "Recharger"
@@ -829,6 +829,108 @@ msgstr "Expression rationnelle (mot)"
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 327
 msgid "Choose the search base directory"
 msgstr "Sélectionner le répertoire de base pour la recherche"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 349
+msgid "Breakpoint"
+msgstr "Point d'arrêt"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 350
+msgid "Breakpoint (disabled)"
+msgstr "Point d'arrêt (désactivé)"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 351
+msgid "Breakpoint owned by another debug client"
+msgstr "Point d'arrêt posé par un autre client de débogage"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 352
+msgid "Unreachable breakpoint"
+msgstr "Point d'arrêt inatteignable"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 353
+msgid "Invalid hit count"
+msgstr "Nombre de passages invalide"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 354
+msgid "Unsaved file"
+msgstr "Fichier non enregistré"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 352
+msgid "Execution paused here"
+msgstr "Exécution en pause ici"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 353
+msgid "Execution paused here (breakpoint)"
+msgstr "Exécution en pause ici (point d'arrêt)"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 355
+msgid "Execution paused on an error"
+msgstr "Pause sur erreur"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 356
+msgid "Paused on breakpoint"
+msgstr "Pause sur point d'arrêt"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 357
+msgid "Execution paused"
+msgstr "Exécution en pause"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 361
+msgid "Execution running"
+msgstr "Exécution en cours"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 368
+#, c-format
+msgid "%s to leave debug mode"
+msgstr "%s : quitter le debug"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 358
+msgid "Execution completed"
+msgstr "Exécution terminée"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 359
+msgid "Connection to the debugger lost"
+msgstr "Connexion au débogueur perdue"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 360
+msgid "Connection to the debugger failed"
+msgstr "Échec de la connexion au débogueur"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 361
+#, c-format
+msgid "The debugger did not respond to %s"
+msgstr "Le débogueur n'a pas répondu à %s"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 362
+msgid "This file has changed since it was run: Scilab executes the code as it was, and the lines shown may not match it."
+msgstr "Fichier modifié depuis son lancement : Scilab exécute l'ancien code, les lignes affichées peuvent différer."
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 363
+msgid "Scilab is not in debug mode"
+msgstr "Scilab n'est pas en mode débogage"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 364
+msgid "Scilab is running or paused in the debugger: resume or stop it first."
+msgstr "Scilab est en cours d'exécution ou en pause dans le débogueur : reprenez ou arrêtez l'exécution d'abord."
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"

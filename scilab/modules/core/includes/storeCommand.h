@@ -22,7 +22,15 @@ enum command_origin_t
     NONE,
     CONSOLE,  // command from console
     TCLSCI,   // command from tclsci using ScilabEval interpreter
-    DEBUGGER  // command from debugger
+    DEBUGGER, // command from debugger
+    INTERNAL  // command of the Scilab desktop for its own needs: never debugged
+};
+
+enum command_mode_t
+{
+    MODE_INHERIT, // the mode of the execution around the command, or the one of Scilab
+    MODE_DEBUG,   // run with the debugger
+    MODE_NORMAL   // run without it, whatever the mode around
 };
 
 enum parse_state
@@ -61,12 +69,31 @@ int StoreCommand(const char *command);
 int StoreConsoleCommand(const char *command, int iWaitFor);
 
 /**
+ * Store a console command that is never debugged, whatever the mode of Scilab
+ *
+ * @param command : the command
+ * @param iWaitFor : wait for the command execution end before return
+ * @return <ReturnValue>
+ */
+int StoreNormalConsoleCommand(const char *command, int iWaitFor);
+
+/**
  * Store a prioritary and interruptible command and wait for it's execution
  *
  * @param command : the command
   * @return <ReturnValue>
  */
 int StoreDebuggerCommand(const char *command, int iWaitFor);
+
+/**
+ * Store an interruptible command to run in debug mode
+ *
+ * @param command : the command
+ * @param iPrioritary : 1 if it is a prioritary command
+ * @param iWaitFor : wait for the command execution end before return
+ * @return <ReturnValue>
+ */
+int StoreDebuggedCommand(const char *command, int iPrioritary, int iWaitFor);
 
 /**
  * Store a prioritary and non-interruptible command
@@ -88,6 +115,12 @@ void* GetCommand();
 * @return 1 if empty , 0 is not empty
 */
 int isEmptyCommandQueue(void);
+
+/**
+ * Who stored the next prioritary command
+ * @return its origin, NONE when the queue is empty
+ */
+enum command_origin_t getPrioritaryCommandOrigin(void);
 
 /**
  * check if command queue prioritary is empty

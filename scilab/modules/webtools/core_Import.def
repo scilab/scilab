@@ -20,6 +20,9 @@ scichdir
 StoreCommand
 StorePrioritaryCommand
 StoreConsoleCommand
+StoreNormalConsoleCommand
+StaticRunner_isRunning
+checkCommand
 RuntimeAccess_tryLockRead
 RuntimeAccess_unlockRead
 RuntimeAccess_addStableCallback

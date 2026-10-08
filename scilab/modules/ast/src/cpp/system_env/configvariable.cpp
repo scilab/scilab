@@ -18,6 +18,8 @@
 #include "cell.hxx"
 #include "context.hxx"
 #include "execvisitor.hxx"
+#include "debuggervisitor.hxx"
+#include "debugmanager.hxx"
 #include "macrofile.hxx"
 #include "threadId.hxx"
 #include "threadmanagement.hxx"
@@ -1242,8 +1244,12 @@ void ConfigVariable::whereErrorToString(std::wostringstream& ostr)
     bool isExecstr = false;
     bool isExecfile = false;
 
+    // the file names are adapted for the display only: the debugger reads
+    // the call stack of the error after having asked for its text
+    auto whereError = m_WhereError;
+
     // get max length of functions name and check if exec or execstr have been called.
-    for (auto& where : m_WhereError)
+    for (auto& where : whereError)
     {
         if (isExecstr == false && where.m_function_name == L"execstr")
         {
@@ -1295,7 +1301,7 @@ void ConfigVariable::whereErrorToString(std::wostringstream& ostr)
     // print call stack
     ostr << std::left;
     ostr.fill(L' ');
-    for (auto& where : m_WhereError)
+    for (auto& where : whereError)
     {
         ostr.width(iMaxLen);
         if (where.m_line == 0)
@@ -1538,19 +1544,8 @@ int ConfigVariable::isScilabCommand()
 ** \}
 */
 
-//debugger information
-bool ConfigVariable::m_bEnabledebug = false;
+//default visitor
 std::unique_ptr<ast::ConstVisitor> ConfigVariable::m_defaultvisitor(new ast::ExecVisitor());
-
-bool ConfigVariable::getEnableDebug()
-{
-    return m_bEnabledebug;
-}
-
-void ConfigVariable::setEnableDebug(bool _enable)
-{
-    m_bEnabledebug = _enable;
-}
 
 void ConfigVariable::setDefaultVisitor(ast::ConstVisitor* _default)
 {
@@ -1559,6 +1554,11 @@ void ConfigVariable::setDefaultVisitor(ast::ConstVisitor* _default)
 
 ast::ConstVisitor* ConfigVariable::getDefaultVisitor()
 {
+    if (debugger::DebuggerManager::isDebugExecution())
+    {
+        return new ast::DebuggerVisitor();
+    }
+
     return m_defaultvisitor->clone();
 }
 

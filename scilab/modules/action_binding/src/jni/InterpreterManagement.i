@@ -112,6 +112,31 @@ public ";
 int requestScilabExec(char *command);
 
 /* JavaDoc */
+%javamethodmodifiers putCallbackInScilabQueue(char *command) "
+ /**
+   * Put the callback of a user interface in Scilab command queue.
+   * It is debugged when Scilab is in debug mode; while the debugger is stopped,
+   * it runs at once, not debugged, as a line typed in the console.
+   *
+   * @param command the command to execute
+   * @return execution status
+   */
+public ";
+int putCallbackInScilabQueue(char *command);
+
+/* JavaDoc */
+%javamethodmodifiers requestCallbackExec(char *command) "
+ /**
+   * Same as putCallbackInScilabQueue, for a callback executed as soon as possible
+   * and that may not be interrupted by another one.
+   *
+   * @param command the command to execute
+   * @return execution status
+   */
+public ";
+int requestCallbackExec(char *command);
+
+/* JavaDoc */
 %javamethodmodifiers callScilabExecstr(const char *command) "
  /**
    * call the command, directly in the interpreter. This only works if the Scilab execution thread is running.
@@ -148,3 +173,12 @@ void startScilabOutputCapture(int silent);
   */
 public ";
 char* stopScilabOutputCapture(void);
+
+/* JavaDoc */
+%javamethodmodifiers getScilabDebugState(void) "
+ /**
+  * What a user interface shows of the debugger
+  * @return 0 outside debug mode, 1 in debug mode with nothing running, 2 while a debugged execution runs, 3 while it is stopped
+  */
+public ";
+int getScilabDebugState(void);

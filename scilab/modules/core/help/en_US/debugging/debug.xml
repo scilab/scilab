@@ -17,7 +17,8 @@
         <title>Description</title>
         <para>
             <literal>debug</literal> enters the debug's mode for functions written in Scilab language.
-            The prompt becomes <literal>debug> </literal>.
+            The prompt becomes <literal>(debug) </literal>, and <literal>(break) </literal>
+            while an execution is stopped.
         </para>
         <para>
             This mode allows you to manage <literal>breakpoints</literal>,
@@ -44,6 +45,8 @@
         <para>
             <literal>(q)uit:</literal>
             Leaves the debug mode and returns to the normal Scilab mode.
+            An execution stopped by the debugger is aborted, unless another debugger is
+            attached: the execution is then left to it.
         </para>
         <para>
             <literal>(w)here or bt:</literal>

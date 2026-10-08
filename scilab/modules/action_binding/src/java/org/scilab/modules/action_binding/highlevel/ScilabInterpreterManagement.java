@@ -335,6 +335,21 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
     }
 
     /**
+     * Release executions whose interpreter command ended without reaching its
+     * trailing notification.
+     */
+    public static void releaseAbortedScilabExecs() {
+        synchronized (runningTasks) {
+            Iterator<String> iterator = runningTasks.iterator();
+            while (iterator.hasNext()) {
+                if (Signal.notifyIfWaiting(iterator.next())) {
+                    iterator.remove();
+                }
+            }
+        }
+    }
+
+    /**
      * Construct a new Scilab command calling function with args as arguments.
      *
      * This method will escape any {@link CharSequence} instance but not char

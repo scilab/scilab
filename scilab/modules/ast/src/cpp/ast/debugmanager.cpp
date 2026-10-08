@@ -29,146 +29,243 @@ extern "C"
 #include "storeCommand.h"
 #include "pause.h"
 #include "FileExist.h"
+#include "prompt.h"
+#include "sciprint.h"
+#include "localization.h"
 }
 
 namespace debugger
 {
-std::unique_ptr<DebuggerManager> DebuggerManager::me(nullptr);
+// Not a member: a thread_local data member cannot be exported from a DLL.
+static thread_local bool debugExecution = false;
+std::atomic<int> DebuggerManager::debugExecutions(0);
+std::atomic<int> DebuggerManager::debugHolders(0);
 
-//singleton
+//singleton: the initialization of a local static is thread safe
 DebuggerManager* DebuggerManager::getInstance()
 {
-    if (me.get() == nullptr)
+    static DebuggerManager me;
+    return &me;
+}
+
+bool DebuggerManager::enterExecutionMode(bool _debug)
+{
+    const bool previous = debugExecution;
+    debugExecution = _debug;
+    if (_debug && ++debugExecutions == 1)
     {
-        me.reset(new DebuggerManager());
+        // Scilab may enter debug mode with this execution
+        RefreshConsolePrompt();
     }
 
-    return me.get();
+    return previous;
+}
+
+void DebuggerManager::leaveExecutionMode(bool _previous)
+{
+    const bool wasDebug = debugExecution;
+    debugExecution = _previous;
+    if (wasDebug && --debugExecutions == 0)
+    {
+        // and leave it with it
+        RefreshConsolePrompt();
+    }
+}
+
+bool DebuggerManager::isDebugExecution()
+{
+    return debugExecution;
+}
+
+void DebuggerManager::holdDebugMode(DebugHolder _holder, bool _hold)
+{
+    const bool wasHeld = isDebugModeHeld();
+    if (_hold)
+    {
+        debugHolders |= _holder;
+    }
+    else
+    {
+        debugHolders &= ~_holder;
+    }
+
+    if (wasHeld != isDebugModeHeld())
+    {
+        RefreshConsolePrompt();
+        getInstance()->sendDebugMode(isDebugModeHeld());
+    }
+}
+
+void DebuggerManager::pause(bool _fromConsoleLine)
+{
+    if (interrupted)
+    {
+        sciprint(_("%s: execution is already paused.\n"), "pause");
+    }
+    else if (isDebugExecution() == false)
+    {
+        // beside the debugged execution: as the Pause button
+        requestPause();
+    }
+    else if (_fromConsoleLine && isNestedDebugging() == false)
+    {
+        // typed while nothing else runs
+        sciprint(_("%s: no debugged execution to pause.\n"), "pause");
+    }
+    else
+    {
+        // In the debugged code, or in a line typed during a run, which is
+        // debugged too: stop on this call. What follows it runs once the
+        // execution is resumed.
+        requestPauseHere();
+    }
 }
 
 void DebuggerManager::addDebugger(const std::string& _name, AbstractDebugger* _debug)
 {
-    debuggers[_name] = _debug;
+    // one it replaces is destroyed out of the lock, as a removed one
+    std::shared_ptr<AbstractDebugger> added(_debug);
+    std::lock_guard<std::mutex> lock(debuggers_lock);
+    debuggers[_name].swap(added);
 }
 
 void DebuggerManager::removeDebugger(const std::string& _name)
 {
-    if (getDebugger(_name))
+    // destroyed out of the lock: nothing is known of what its end does
+    std::shared_ptr<AbstractDebugger> removed;
     {
-        debuggers.erase(_name);
+        std::lock_guard<std::mutex> lock(debuggers_lock);
+        auto it = debuggers.find(_name);
+        if (it != debuggers.end())
+        {
+            removed = it->second;
+            debuggers.erase(it);
+        }
     }
 }
 
-AbstractDebugger* DebuggerManager::getDebugger(const std::string& _name)
+bool DebuggerManager::hasDebugger(const std::string& _name) const
 {
-    const auto& d = debuggers.find(_name);
-    if (d != debuggers.end())
-    {
-        return debuggers[_name];
-    }
-
-    return NULL;
+    std::lock_guard<std::mutex> lock(debuggers_lock);
+    return debuggers.find(_name) != debuggers.end();
 }
 
-int DebuggerManager::getDebuggerCount()
+int DebuggerManager::getDebuggerCount() const
 {
+    std::lock_guard<std::mutex> lock(debuggers_lock);
     return (int)debuggers.size();
 }
 
-Debuggers& DebuggerManager::getAllDebugger()
+std::vector<std::shared_ptr<AbstractDebugger>> DebuggerManager::getDebuggers() const
 {
-    return debuggers;
+    std::lock_guard<std::mutex> lock(debuggers_lock);
+    std::vector<std::shared_ptr<AbstractDebugger>> list;
+    list.reserve(debuggers.size());
+    for (const auto& it : debuggers)
+    {
+        list.push_back(it.second);
+    }
+
+    return list;
 }
 
 void DebuggerManager::sendStop(int index)
 {
     currentBreakPoint = index;
-    for (const auto& it : debuggers)
+    for (const auto& it : getDebuggers())
     {
-        it.second->onStop(index);
+        it->onStop(index);
     }
 }
 
 void DebuggerManager::sendExecution()
 {
-    for (const auto& it : debuggers)
+    for (const auto& it : getDebuggers())
     {
-        it.second->onExecution();
+        it->onExecution();
     }
 }
 
 void DebuggerManager::sendExecutionReleased()
 {
-    for (const auto& it : debuggers)
+    for (const auto& it : getDebuggers())
     {
-        it.second->onExecutionReleased();
+        it->onExecutionReleased();
     }
 }
 
 void DebuggerManager::sendPrint(const std::string& variable)
 {
-    for (const auto& it : debuggers)
+    for (const auto& it : getDebuggers())
     {
-        it.second->onPrint(variable);
+        it->onPrint(variable);
     }
 }
 
 void DebuggerManager::sendShow(int bp)
 {
-    for (const auto& it : debuggers)
+    for (const auto& it : getDebuggers())
     {
-        it.second->onShow(bp);
+        it->onShow(bp);
     }
 }
 
 void DebuggerManager::sendResume()
 {
     currentBreakPoint = -1;
-    for (const auto& it : debuggers)
+    for (const auto& it : getDebuggers())
     {
-        it.second->onResume();
+        it->onResume();
     }
 }
 
 void DebuggerManager::sendAbort()
 {
     currentBreakPoint = -1;
-    for (const auto& it : debuggers)
+    for (const auto& it : getDebuggers())
     {
-        it.second->onAbort();
+        it->onAbort();
     }
 }
 
 void DebuggerManager::sendErrorInFile(const std::wstring& filename) const
 {
-    for (const auto& it : debuggers)
+    for (const auto& it : getDebuggers())
     {
-        it.second->onErrorInFile(filename);
+        it->onErrorInFile(filename);
     }
 }
 
 void DebuggerManager::sendErrorInScript(const std::wstring& funcname) const
 {
-    for (const auto& it : debuggers)
+    for (const auto& it : getDebuggers())
     {
-        it.second->onErrorInScript(funcname);
+        it->onErrorInScript(funcname);
     }
 }
 
 void DebuggerManager::sendQuit()
 {
     currentBreakPoint = -1;
-    for (const auto& it : debuggers)
+    for (const auto& it : getDebuggers())
     {
-        it.second->onQuit();
+        it->onQuit();
+    }
+}
+
+void DebuggerManager::sendDebugMode(bool _held)
+{
+    for (const auto& it : getDebuggers())
+    {
+        it->onDebugMode(_held);
     }
 }
 
 void DebuggerManager::sendUpdate() const
 {
-    for (const auto& it : debuggers)
+    for (const auto& it : getDebuggers())
     {
-        it.second->updateBreakpoints();
+        it->updateBreakpoints();
     }
 }
 
@@ -340,12 +437,13 @@ Breakpoints& DebuggerManager::getAllBreakPoint()
 
 void DebuggerManager::generateCallStack()
 {
-    clearCallStack();
+    // readers get the previous call stack, or this one whole
+    CallStack generated;
 
     std::wostringstream ostr;
     ast::PrintVisitor pp(ostr, true, true, true);
     getExp()->accept(pp);
-    callstack.exp = scilab::UTF8::toUTF8(ostr.str());
+    generated.exp = scilab::UTF8::toUTF8(ostr.str());
 
     // - When stopped on error, generate the call stack from whereError
     //   because "where" may have been unstacked (ie: parsing error in exec)
@@ -378,7 +476,7 @@ void DebuggerManager::generateCallStack()
             cs.push_back(row);
         }
 
-        callstack.stack = cs;
+        generated.stack = cs;
         ConfigVariable::resetWhereError();
     }
     else
@@ -412,8 +510,11 @@ void DebuggerManager::generateCallStack()
             cs.push_back(row);
         }
 
-        callstack.stack = cs;
+        generated.stack = cs;
     }
+
+    std::lock_guard<std::mutex> lock(callstack_lock);
+    callstack = std::move(generated);
 }
 
 bool DebuggerManager::callstackAddFile(StackRow* _row, const std::wstring& _fileName)
@@ -471,8 +572,8 @@ char* DebuggerManager::execute(const std::string& command)
 
     // inform debuggers
     sendExecution();
-    // execute command and wait
-    StoreCommandWithFlags(command.data(), 0, 1, DEBUGGER);
+    // store the command to run in debug mode, without waiting for it
+    StoreDebuggedCommand(command.data(), 0, 0);
 
     return nullptr;
 }
@@ -490,24 +591,20 @@ char* DebuggerManager::executeNow(const std::string& command, int iWaitForIt)
 
     // inform debuggers
     sendExecution();
-    // execute command and wait
-    StoreDebuggerCommand(command.data(), iWaitForIt);
+    // execute command in debug mode and wait
+    StoreDebuggedCommand(command.data(), 1, iWaitForIt);
 
     return nullptr;
 }
 
 void DebuggerManager::resume(int iWait) //resume execution
 {
-    //inform debuggers
-    sendResume();
-
-    // reset callstack
-    clearCallStack();
-
+    // debuggers are informed by internal_stop when the pause is left
     StoreDebuggerCommand("resume", iWait);
 }
 
-void DebuggerManager::requestPause() //ask for pause
+// request a pause before the next expression
+void DebuggerManager::requestPause()
 {
     // pause on execution only if a command is running
     if (interrupted == false)
@@ -521,9 +618,24 @@ bool DebuggerManager::isPauseRequested() //pause execution
     return request_pause;
 }
 
-void DebuggerManager::resetPauseRequest() //pause execution
+// request a pause on the expression being executed, once it is done
+void DebuggerManager::requestPauseHere()
+{
+    if (interrupted == false)
+    {
+        request_pause_here = true;
+    }
+}
+
+bool DebuggerManager::isPauseHereRequested()
+{
+    return request_pause_here;
+}
+
+void DebuggerManager::resetPauseRequest()
 {
     request_pause = false;
+    request_pause_here = false;
 }
 
 void DebuggerManager::abort() //abort execution
@@ -564,9 +676,10 @@ int DebuggerManager::get_current_level()
     
 }
 
-void DebuggerManager::internal_stop()
+void DebuggerManager::internal_stop(const std::function<void()>& _announce)
 {
     interrupted = true;
+    RefreshConsolePrompt();
 
     // Create a fake pause call to retrieve good lines in
     // where or whereami when stopped on breakpoint.
@@ -580,6 +693,8 @@ void DebuggerManager::internal_stop()
     ConfigVariable::macroFirstLine_begin(2);
 
     generateCallStack();
+    // Only now: a debugger asks for the call stack as soon as it is told.
+    _announce();
     // release the debugger thread
     ThreadManagement::SendDebuggerExecDoneSignal();
     sendExecutionReleased();
@@ -587,6 +702,11 @@ void DebuggerManager::internal_stop()
     try
     {
         pause_interpreter();
+
+        // Here rather than in resume(): a `resume` typed in the console leaves
+        // the pause too, without going through it.
+        sendResume();
+        clearCallStack();
     }
     catch (const ast::InternalAbort& ia)
     {
@@ -595,37 +715,36 @@ void DebuggerManager::internal_stop()
         // which is running inside a pause
         ConfigVariable::where_end();
         interrupted = false;
+        RefreshConsolePrompt();
         throw ia;
     }
 
     ConfigVariable::macroFirstLine_end();
     ConfigVariable::where_end();
     interrupted = false;
+    RefreshConsolePrompt();
 }
 
 void DebuggerManager::stop(const ast::Exp* pExp, int index)
 {
     //send stop information to all debuggers
     setExp(pExp);
-    sendStop(index);
     // because stop is used only in the debuggervisitor the pause
     // will be executed in the main thread (where is executed the command)
-    internal_stop();
+    internal_stop([this, index]() { sendStop(index); });
     clearExp();
 }
 
 void DebuggerManager::errorInFile(const std::wstring filename, const ast::Exp* pExp)
 {
     setExp(pExp);
-    sendErrorInFile(filename);
-    internal_stop();
+    internal_stop([this, &filename]() { sendErrorInFile(filename); });
     clearExp();
 }
 void DebuggerManager::errorInScript(const std::wstring funcname, const ast::Exp* pExp)
 {
     setExp(pExp);
-    sendErrorInScript(funcname);
-    internal_stop();
+    internal_stop([this, &funcname]() { sendErrorInScript(funcname); });
     clearExp();
 }
 

@@ -82,8 +82,24 @@ EXTERN_AST int getEntryPointPosition(wchar_t* _pwstEntryPointName);
 typedef void (*dynlib_ptr)();
 EXTERN_AST dynlib_ptr getEntryPointFromPosition(int position);
 
-EXTERN_AST int isEnableDebug();
+EXTERN_AST int getPauseLevel(void);
+
+/* Whether a debugged execution is going on, running or stopped. */
+EXTERN_AST int isDebugMode();
+
+/*
+ * True only when the console is itself the debugger interface (debug()).
+ * An external debugger such as DAP leaves the console alone.
+ */
+EXTERN_AST int isDebugConsoleMode();
 EXTERN_AST int isDebugInterrupted();
+
+/*
+ * What a user interface shows of the debugger: 0 outside debug mode, 1 in
+ * debug mode with nothing running, 2 while a debugged execution runs, 3 while
+ * it is stopped.
+ */
+EXTERN_AST int getDebugState();
 EXTERN_AST int debuggerManagerExecute(const char* command, int iWaitForIt);
 
 EXTERN_AST int isExecutionBreak();

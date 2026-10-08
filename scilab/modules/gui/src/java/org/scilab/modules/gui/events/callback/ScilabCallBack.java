@@ -69,9 +69,9 @@ public abstract class ScilabCallBack extends CommonCallBack {
                 Thread launchMe = new Thread() {
                     public void run() {
                         if (isInterruptible()) {
-                            InterpreterManagement.putCommandInScilabQueue(getCommand());
+                            InterpreterManagement.putCallbackInScilabQueue(getCommand());
                         } else {
-                            InterpreterManagement.requestScilabExec(getCommand());
+                            InterpreterManagement.requestCallbackExec(getCommand());
                         }
                     }
                 };
@@ -99,7 +99,7 @@ public abstract class ScilabCallBack extends CommonCallBack {
             public void callBack() {
                 Thread launchMe = new Thread() {
                     public void run() {
-                        InterpreterManagement.putCommandInScilabQueue(getCommand());
+                        InterpreterManagement.putCallbackInScilabQueue(getCommand());
                     }
                 };
                 launchMe.start();

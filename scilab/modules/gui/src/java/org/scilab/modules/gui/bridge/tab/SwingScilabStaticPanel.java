@@ -136,7 +136,7 @@ public final class SwingScilabStaticPanel extends SwingScilabScrollPane implemen
                                            + "gcbo = getcallbackobject(" + id + ");"
                                            + resizeFcn
                                            + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
-                    InterpreterManagement.requestScilabExec(resizeCommand);
+                    InterpreterManagement.requestCallbackExec(resizeCommand);
                 } else if (hasLayout == false) {
                     for (Component comp : getWidgetPane().getComponents()) {
                         if (comp instanceof Widget) {

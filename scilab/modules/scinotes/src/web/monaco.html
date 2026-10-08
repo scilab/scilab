@@ -6,6 +6,15 @@
     <title>SciNotes Monaco</title>
     <style>
         /*
+         * Anchor marker: a real anchor rather than a ribbon, because SciNotes
+         * anchors are not bookmarks, and in a colour that cannot be read as a
+         * warning the way the previous amber could.
+         */
+        :root {
+            --scinotes-anchor-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='8' cy='3.2' r='1.9'/%3E%3Cpath d='M8 5.1V14'/%3E%3Cpath d='M4.8 7.4h6.4'/%3E%3Cpath d='M2.6 10.1a5.4 5.4 0 0 0 10.8 0'/%3E%3C/svg%3E");
+        }
+
+        /*
          * The find widget hangs its tooltips outside .monaco-editor, where
          * Monaco no longer applies its UI font; same list as Monaco uses.
          */
@@ -130,25 +139,225 @@
             border-width: 1px !important;
         }
 
+        /*
+         * Same family as the anchor marker, so the line reads as a marker and
+         * not as a warning.
+         */
         .scinotes-anchor-line {
-            background: rgba(250, 214, 80, 0.18);
+            background: rgba(47, 111, 143, 0.12);
         }
 
         /*
-         * An anchor, and the local numbering, paint a background behind the
-         * number. Right aligned, its digits touch the edge of that background,
-         * hence the pixel; the box keeps its width, so the numbers stay in
-         * place when nothing is painted behind them.
+         * The local numbering paints a background behind the number. Right
+         * aligned, its digits touch the edge of that background, hence the
+         * pixel; the box keeps its width, so the numbers stay in place when
+         * nothing is painted behind them.
          */
         .monaco-editor .margin-view-overlays .line-numbers {
             box-sizing: border-box !important;
             padding-right: 3px !important;
         }
 
-        .scinotes-anchor-line-number {
-            background: #fafba4;
-            color: #315b62 !important;
-            font-weight: 600;
+        /*
+         * An anchor replaces its line number with a ribbon marker. The cell is
+         * emptied by the lineNumbers callback and the marker drawn here, so it
+         * is placed by layout rather than by font metrics. SciNotes has named
+         * anchors (Set an anchor / Navigator), and no bookmark concept; the
+         * name stays reachable through the decoration's hover message.
+         */
+        .monaco-editor .margin-view-overlays .line-numbers.scinotes-anchor-line-number {
+            display: flex;
+            align-items: center;
+            /* Sits where the last digit would, so it lines up with the numbers. */
+            justify-content: flex-end;
+            top: 0;
+        }
+
+        .monaco-editor .margin-view-overlays .line-numbers.scinotes-anchor-line-number::before {
+            content: "";
+            width: 13px;
+            height: 13px;
+            /*
+             * Drawn as a mask rather than a background image, so the colour
+             * stays a CSS property instead of being baked into the data URI.
+             */
+            background-color: #2f6f8f;
+            -webkit-mask-image: var(--scinotes-anchor-icon);
+            mask-image: var(--scinotes-anchor-icon);
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            -webkit-mask-size: contain;
+            mask-size: contain;
+        }
+
+        /*
+         * Breakpoints own the glyph margin. The marks are codicons, the icon
+         * font Monaco embeds, which the `codicon-*` class of each decoration
+         * applies to the cell; colour carries the state. The code points are
+         * written out because a cell shared by two marks carries both classes,
+         * and only one ::before can win.
+         */
+        .monaco-editor .glyph-margin-widgets .cgmr.scinotes-breakpoint,
+        .monaco-editor .glyph-margin-widgets .cgmr.scinotes-stopped-glyph {
+            /* `.codicon[class*=codicon-]` would make it inline-block. */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .monaco-editor .glyph-margin-widgets .cgmr.scinotes-breakpoint::before {
+            content: "\ea71"; /* debug-breakpoint */
+        }
+
+        .scinotes-breakpoint-verified {
+            color: #d64a4a;
+        }
+
+        /* Not installed yet: unsaved file, no debug session, or refused. */
+        .scinotes-breakpoint-pending {
+            color: #b98b8b;
+        }
+
+        .scinotes-breakpoint-disabled {
+            color: #9a9a9a;
+        }
+
+        /*
+         * A breakpoint another client of the debug session owns. Scilab runs
+         * the union of every client's list, so the line does stop; it is drawn
+         * hollow because it is not this editor's to remove.
+         */
+        .monaco-editor .glyph-margin-widgets .cgmr.scinotes-breakpoint-external {
+            color: #d64a4a;
+        }
+
+        .monaco-editor .glyph-margin-widgets .cgmr.scinotes-breakpoint-external::before {
+            content: "\eabc"; /* debug-breakpoint-unverified: the hollow ring */
+            opacity: 0.7;
+        }
+
+        /*
+         * Follows the pointer: shows where a click would place a breakpoint.
+         * Only the dot fades, not the cell, which may also hold a stop.
+         */
+        .scinotes-breakpoint-hover {
+            color: #d64a4a;
+        }
+
+        .monaco-editor .glyph-margin-widgets .cgmr.scinotes-breakpoint-hover:not(.scinotes-stopped-glyph)::before,
+        .monaco-editor .glyph-margin-widgets .cgmr.scinotes-breakpoint-hover.scinotes-stopped-glyph::after {
+            opacity: 0.35;
+        }
+
+        /* The line the debugger stopped on, from the glyph cell to the code. */
+        .scinotes-stopped-line {
+            background: rgba(232, 179, 57, 0.22);
+        }
+
+        /* The chevron injected in the code, before the instruction being executed. */
+        .scinotes-stopped-mark {
+            display: inline-block;
+            width: 7px;
+            height: 11px;
+            margin-right: 2px;
+            vertical-align: middle;
+            background: #f0b400;
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+        }
+
+        .scinotes-stopped-mark-error {
+            background: #d64a4a;
+        }
+
+        /*
+         * The stop in the margin. Monaco merges the glyphs of a line into one
+         * element carrying all their classes, so a stop on a breakpoint is a
+         * single cell: the banner takes ::before and the breakpoint moves to
+         * ::after as the small dot drawn inside it. The ::after keeps the
+         * cell's `color`, which is the breakpoint's state; the banner sets its
+         * own.
+         */
+        .monaco-editor .glyph-margin-widgets .cgmr.scinotes-stopped-glyph::before,
+        .monaco-editor .glyph-margin-widgets .cgmr.scinotes-breakpoint.scinotes-stopped-glyph::before {
+            content: "\eb8b"; /* debug-stackframe */
+            color: #f0b400;
+            /* Thickens the outline of the glyph. */
+            -webkit-text-stroke: 0.8px currentColor;
+        }
+
+        .monaco-editor .glyph-margin-widgets .cgmr.scinotes-stopped-glyph-error::before,
+        .monaco-editor .glyph-margin-widgets .cgmr.scinotes-breakpoint.scinotes-stopped-glyph-error::before {
+            color: #d64a4a;
+        }
+
+        .monaco-editor .glyph-margin-widgets .cgmr.scinotes-breakpoint.scinotes-stopped-glyph::after {
+            content: "\eb8a"; /* circle-small-filled */
+            font-size: 24px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /*
+         * Scilab stops on one instruction, not on a whole line, and reports
+         * its column. A line holding several instructions marks the one being
+         * executed, from its first character to the end of the line.
+         */
+        .scinotes-stopped-instruction {
+            background: rgba(232, 179, 57, 0.34);
+        }
+
+        /*
+         * A stop on an exception is the same layout in red: the run is not
+         * paused where the user asked, it broke.
+         */
+        .scinotes-stopped-line-error {
+            background: rgba(214, 74, 74, 0.16);
+        }
+
+        .scinotes-stopped-instruction-error {
+            background: rgba(214, 74, 74, 0.26);
+        }
+
+        /*
+         * The message of an error stop, injected after its line: it belongs to
+         * the decoration, never to the document, so it is neither editable nor
+         * copied with the code.
+         */
+        .scinotes-stopped-error-text {
+            color: #b83b3b;
+            font-style: italic;
+        }
+
+        /*
+         * Across the top of the file stopped in, once it no longer holds the
+         * code being run. The height is DAP_STALE_NOTICE_HEIGHT in
+         * monaco-dap.js, by which the text is moved down.
+         */
+        .monaco-editor .overlayWidgets .scinotes-dap-stale-notice {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-sizing: border-box;
+            height: 22px;
+            padding: 0 10px;
+            border-bottom: 1px solid #d9a400;
+            background: #fff4cc;
+            color: #5c4400;
+            font: 12px sans-serif;
+            /* After `font`, which resets it. The border takes one pixel. */
+            line-height: 21px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .scinotes-local-function-line-number-1 {
@@ -195,10 +404,12 @@
             cursor: pointer !important;
         }
 
-        /*
-         * Hovers: Monaco sizes the box on its contents; a narrower markdown
-         * wraps sooner and the box follows.
-         */
+        /* Hovers use the editor font (monaco-bridge.js, publishHoverFont()). */
+        .monaco-hover .monaco-hover-content {
+            font-size: var(--scinotes-hover-font-size, 12px);
+            line-height: var(--scinotes-hover-line-height, 1.35);
+        }
+
         .monaco-hover .markdown-hover {
             max-width: 460px;
         }
@@ -235,6 +446,8 @@
     <script src="file:///SCI/thirdparty/web/mathjax/tex-mml-svg.js"></script>
     <script src="monaco-latex.js"></script>
     <script src="monaco-lsp.js"></script>
+    <script src="dap-client.js"></script>
+    <script src="monaco-dap.js"></script>
     <script src="monaco-bootstrap.js"></script>
 </body>
 </html>

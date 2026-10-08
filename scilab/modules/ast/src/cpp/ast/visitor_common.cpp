@@ -31,10 +31,12 @@
 #include "user.hxx"
 
 #include "alltypes.hxx"
+#include "runner.hxx"
 
 extern "C"
 {
 #include "storeCommand.h"
+#include "pause.h"
 }
 
 // #define DEBUG_REF
@@ -2827,3 +2829,73 @@ types::Macro* parseFunctionDec(const ast::FunctionDec& e)
     return pMacro;
 }
 /*--------------------------------------------------------------------------*/
+
+// Stands for something that is not a function in the call stack. Created once
+// and kept: an empty macro cannot be destroyed.
+static types::Macro* callStackLabel(const wchar_t* _name)
+{
+    types::Macro* label = new types::Macro();
+    label->setName(_name);
+    return label;
+}
+
+/*
+ * A command run between two instructions of an execution gets an entry of its
+ * own in the call stack, as execstr has: the lines of what it calls are
+ * counted from its own text, not from the function it interrupts. The entry
+ * says where the command comes from, the console or a callback.
+ */
+class InterleavedCommandEntry
+{
+public:
+    InterleavedCommandEntry(const Location& _location)
+    {
+        static types::Macro* console = callStackLabel(L"<console>");
+        static types::Macro* callback = callStackLabel(L"<callback>");
+        ConfigVariable::where_begin(_location.first_line + 1 - ConfigVariable::getMacroFirstLines(),
+                                    getPrioritaryCommandOrigin() == CONSOLE ? console : callback, _location);
+        // not a file: nothing to stop on in the command itself
+        ConfigVariable::setFileNameToLastWhere(nullptr);
+        ConfigVariable::macroFirstLine_begin(1);
+    }
+
+    ~InterleavedCommandEntry()
+    {
+        ConfigVariable::macroFirstLine_end();
+        ConfigVariable::where_end();
+    }
+};
+
+void runPendingCommands(const Location& _location)
+{
+    while (isEmptyCommandQueuePrioritary() == 0 && StaticRunner_isInterruptibleCommand() == 1)
+    {
+        InterleavedCommandEntry entry(_location);
+        StaticRunner_launch();
+    }
+}
+
+// The call stack of a pause, as the pause function sets it.
+class PauseEntry
+{
+public:
+    PauseEntry(const Location& _location)
+    {
+        static types::Macro* pause = callStackLabel(L"pause");
+        ConfigVariable::where_begin(_location.first_line + 1 - ConfigVariable::getMacroFirstLines(), pause, _location);
+        ConfigVariable::setFileNameToLastWhere(nullptr);
+        ConfigVariable::macroFirstLine_begin(2);
+    }
+
+    ~PauseEntry()
+    {
+        ConfigVariable::macroFirstLine_end();
+        ConfigVariable::where_end();
+    }
+};
+
+void pauseHere(const Location& _location)
+{
+    PauseEntry entry(_location);
+    pause_interpreter();
+}

@@ -18,6 +18,7 @@
 package org.scilab.modules.scinotes.actions;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
@@ -28,8 +29,10 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.scinotes.MonacoEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
+import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.InterpreterManagement;
@@ -52,6 +55,9 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
 
     protected boolean saveBefore;
 
+    /** Whether the file is run in debug mode, stopping on its breakpoints. */
+    protected boolean debug;
+
     /**
      * Constructor
      * @param name the name of the action
@@ -66,7 +72,17 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
      * @param editor the Scilab editor
      */
     protected void executeFile(SciNotes editor, String filePath) {
-        if (filePath == null) {
+        if (filePath == null || filePath.isEmpty()) {
+            return;
+        }
+
+        // The debug session runs the file itself when there is one, debugged
+        // or not: the session knows the run began. The path is passed raw, the
+        // endpoint quotes it.
+        if (allowDapExecution() && executeThroughDap(editor, filePath, false, debug)) {
+            return;
+        }
+        if (refuseWhileDebugging(editor)) {
             return;
         }
 
@@ -113,6 +129,45 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
     }
 
     /**
+     * Whether this action may hand its file to the debug session. Running
+     * several files in a row needs sequencing the session does not offer yet.
+     * @return true when the debug session may take the run
+     */
+    protected boolean allowDapExecution() {
+        return true;
+    }
+
+    /**
+     * Hand one file to the debug session of this window.
+     * @param editor SciNotes
+     * @param filePath file to run
+     * @param echo whether the file is executed with echo
+     * @param debug whether the file is run in debug mode
+     * @return true when the session took the run
+     */
+    public static boolean executeThroughDap(SciNotes editor, String filePath, boolean echo, boolean debug) {
+        ScilabEditorPane pane = editor == null ? null : editor.getTextPane();
+        return pane instanceof MonacoEditorPane
+            && ((MonacoEditorPane) pane).executeFileThroughDap(filePath, echo, debug);
+    }
+
+    /**
+     * Keep a run out of the interpreter while the debug session holds it,
+     * and say why in the info bar.
+     * @param editor SciNotes
+     * @return true when the run must not start
+     */
+    public static boolean refuseWhileDebugging(SciNotes editor) {
+        ScilabEditorPane pane = editor == null ? null : editor.getTextPane();
+        if (pane instanceof MonacoEditorPane && ((MonacoEditorPane) pane).isDebugSessionBusy()) {
+            editor.getInfoBar().setText(SciNotesMessages.DEBUG_SESSION_BUSY);
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
      * createButton
      * @param tooltip the tooltip
      * @param icon an icon name searched in SCI/modules/gui/images/icons/
@@ -120,7 +175,9 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
      * @return PushButton
      */
     public static JButton createButton(String tooltip, String icon, SciNotes editor) {
-        return createButton(tooltip, icon, new ExecuteFileIntoScilabAction(tooltip, editor));
+        JButton button = createButton(tooltip, icon, new ExecuteFileIntoScilabAction(tooltip, editor));
+        DebugCommandAction.registerExecuteControl(editor, button);
+        return button;
     }
 
     /**
@@ -131,6 +188,8 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
      * @return MenuItem
      */
     public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
-        return createMenu(label, null, new ExecuteFileIntoScilabAction(label, editor), key);
+        MenuItem item = createMenu(label, null, new ExecuteFileIntoScilabAction(label, editor), key);
+        DebugCommandAction.registerExecuteControl(editor, (JComponent) item.getAsSimpleMenuItem());
+        return item;
     }
 }

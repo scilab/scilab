@@ -240,7 +240,13 @@ public abstract class SciConsole extends JPanel {
                         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(req[1]), null);
                         return true;
                     case "paste":
-                        return pasteAction();
+                        // Not from this thread, the one of the browsers: when
+                        // one of them owns the clipboard, as after a copy in
+                        // SciNotes, it has to answer from here.
+                        SwingUtilities.invokeLater(() -> {
+                            pasteAction();
+                        });
+                        return true;
                     case "devtools":
                         cefPanel.openDevTools();
                         return true;
@@ -316,7 +322,7 @@ public abstract class SciConsole extends JPanel {
                         return false;
                     }
                     case "interrupt": {
-                        InterpreterManagement.requestScilabExec("pause;");
+                        InterpreterManagement.interruptScilab();
                         return true;
                     }
                     case "interruptcommand": {

@@ -331,7 +331,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
                 if (resizeFcn != null && !resizeFcn.equals("")) {
                     String resizeCommand = "if exists(\"gcbo\") then %oldgcbo = gcbo; end;" + "gcbo = getcallbackobject(" + id + ");" + resizeFcn
                                            + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
-                    InterpreterManagement.requestScilabExec(resizeCommand);
+                    InterpreterManagement.requestCallbackExec(resizeCommand);
                 } else if (hasLayout == false) {
                     for (Component comp : getWidgetPane().getComponents()) {
                         if (comp instanceof Widget) {
@@ -361,7 +361,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
                                           + "gcbo = getcallbackobject(" + getId() + ");"
                                           + closeRequestFcn + ";fire_closing_finished();"
                                           + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
-                    InterpreterManagement.requestScilabExec(closeCommand);
+                    InterpreterManagement.requestCallbackExec(closeCommand);
                     return -1;
                 } else {
                     closeAction.actionPerformed(null);

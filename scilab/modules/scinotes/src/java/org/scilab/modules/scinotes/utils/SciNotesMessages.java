@@ -346,4 +346,25 @@ public class SciNotesMessages {
     public static final String LINEBYLINE = Messages.gettext("Line by line");
     public static final String WORDREGEX = Messages.gettext("Regular expression (Word)");
     public static final String CHOOSEBASEDIR = Messages.gettext("Choose the search base directory");
+    public static final String DEBUG_BREAKPOINT = Messages.gettext("Breakpoint");
+    public static final String DEBUG_BREAKPOINT_DISABLED = Messages.gettext("Breakpoint (disabled)");
+    public static final String DEBUG_BREAKPOINT_FOREIGN = Messages.gettext("Breakpoint owned by another debug client");
+    public static final String DEBUG_BREAKPOINT_NO_CODE = Messages.gettext("Unreachable breakpoint");
+    public static final String DEBUG_BREAKPOINT_HIT_COUNT = Messages.gettext("Invalid hit count");
+    public static final String DEBUG_BREAKPOINT_NO_FILE = Messages.gettext("Unsaved file");
+    public static final String DEBUG_STOPPED_HERE = Messages.gettext("Execution paused here");
+    public static final String DEBUG_STOPPED_HERE_ON_BREAKPOINT = Messages.gettext("Execution paused here (breakpoint)");
+    public static final String DEBUG_STOPPED = Messages.gettext("Execution paused");
+    public static final String DEBUG_STOPPED_ON_ERROR = Messages.gettext("Execution paused on an error");
+    public static final String DEBUG_PAUSED_ON_BREAKPOINT = Messages.gettext("Paused on breakpoint");
+    public static final String DEBUG_PAUSED = Messages.gettext("Execution paused");
+    public static final String DEBUG_RUNNING = Messages.gettext("Execution running");
+    public static final String DEBUG_COMPLETED = Messages.gettext("Execution completed");
+    public static final String DEBUG_CONNECTION_LOST = Messages.gettext("Connection to the debugger lost");
+    public static final String DEBUG_CONNECTION_FAILED = Messages.gettext("Connection to the debugger failed");
+    public static final String DEBUG_NO_RESPONSE = Messages.gettext("The debugger did not respond to %s");
+    public static final String DEBUG_FILE_CHANGED_SINCE_RUN = Messages.gettext("This file has changed since it was run: Scilab executes the code as it was, and the lines shown may not match it.");
+    public static final String DEBUG_NOT_IN_DEBUG_MODE = Messages.gettext("Scilab is not in debug mode");
+    public static final String DEBUG_LEAVE_HINT = Messages.gettext("%s to leave debug mode");
+    public static final String DEBUG_SESSION_BUSY = Messages.gettext("Scilab is running or paused in the debugger: resume or stop it first.");
 }

@@ -20,5 +20,7 @@
 // 6. Color, hover and navigation must remain equivalent to the static case.
 // 7. Repeat with the library tab already open and after closing that tab.
 
+1+1
+
 squareResult = monacoCrossFileSquare(5);
 cubeResult = monacoCrossFileCube(3);

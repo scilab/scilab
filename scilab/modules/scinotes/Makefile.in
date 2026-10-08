@@ -733,6 +733,8 @@ libsciscinotes_la_web_DATA = \
     src/web/monaco-scilab-language.js \
     src/web/monaco-latex.js \
     src/web/monaco-lsp.js \
+    src/web/dap-client.js \
+    src/web/monaco-dap.js \
     src/web/monaco-bootstrap.js
 
 

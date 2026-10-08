@@ -1209,15 +1209,11 @@ void LspEndpoint::handleHover(const json& json_msg)
             }
         }
         break;
-        case types::InternalType::ScilabSingleStruct:
-        case types::InternalType::ScilabStruct:
-        {
-            doc = getStructuredVariableSummary(pIT, true);
-        }
-        break;
         default:
         {
-            doc = getVariableDisplayValue(pIT);
+            resp["result"] = nullptr;
+            sendMessage(resp.dump());
+            return;
         }
     }
 

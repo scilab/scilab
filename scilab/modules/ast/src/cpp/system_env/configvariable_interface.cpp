@@ -237,14 +237,39 @@ void setForceQuit(int force)
     ConfigVariable::setForceQuit(force != 0);
 }
 
-int isEnableDebug()
+int getPauseLevel(void)
 {
-    return ConfigVariable::getEnableDebug() ? 1 : 0;
+    return ConfigVariable::getPauseLevel();
+}
+
+int isDebugMode()
+{
+    return debugger::DebuggerManager::isDebugMode() ? 1 : 0;
+}
+
+int isDebugConsoleMode()
+{
+    return debugger::DebuggerManager::getInstance()->isDebugConsole() ? 1 : 0;
 }
 
 int isDebugInterrupted()
 {
     return debugger::DebuggerManager::getInstance()->isInterrupted() ? 1 : 0;
+}
+
+int getDebugState()
+{
+    if (debugger::DebuggerManager::getInstance()->isInterrupted())
+    {
+        return 3;
+    }
+
+    if (debugger::DebuggerManager::isDebugging())
+    {
+        return 2;
+    }
+
+    return debugger::DebuggerManager::isDebugMode() ? 1 : 0;
 }
 
 int debuggerManagerExecute(const char* command, int iWaitForIt)

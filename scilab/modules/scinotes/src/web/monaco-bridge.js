@@ -93,6 +93,14 @@ window.SciNotesMonacoConfigureLsp = function(config) {
     }
 };
 
+window.SciNotesMonacoConfigureDap = function(config) {
+    var state = window.SciNotesMonacoState;
+    state.pendingDapConfig = config || null;
+    if (state.editor && typeof configureDap === "function") {
+        configureDap(state.pendingDapConfig);
+    }
+};
+
 window.SciNotesMonacoSetAnchors = function(anchors) {
     var state = window.SciNotesMonacoState;
     var editor = state.editor;
@@ -102,23 +110,36 @@ window.SciNotesMonacoSetAnchors = function(anchors) {
 
     anchors = anchors || [];
     state.lastAnchors = anchors;
-    setViewDecorations("anchorDecorations", anchors.map(function(anchor) {
+    // The line-number callback runs for every rendered line, so it needs a
+    // plain lookup rather than a walk over the decoration list.
+    state.anchorLines = {};
+    var decorations = [];
+    anchors.forEach(function(anchor) {
         var line = Math.max(1, anchor.line || 1);
         var label = anchor.name || "";
-        return {
+        state.anchorLines[line] = true;
+        decorations.push({
             range: new monaco.Range(line, 1, line, 1),
             options: {
                 isWholeLine: true,
                 className: "scinotes-anchor-line",
-                lineNumberClassName: "scinotes-anchor-line-number",
                 hoverMessage: { value: label ? "Anchor: " + label : "Anchor" },
                 overviewRuler: {
-                    color: "#d6a800",
+                    color: "#2f6f8f",
                     position: monaco.editor.OverviewRulerLane.Left
                 }
             }
-        };
-    }));
+        }, {
+            // Collapsed, so that a wrapped line shows its anchor on its first
+            // row only, where its number would be.
+            range: new monaco.Range(line, 1, line, 1),
+            options: {
+                lineNumberClassName: "scinotes-anchor-line-number"
+            }
+        });
+    });
+    setViewDecorations("anchorDecorations", decorations);
+    refreshLineNumberMarkers();
 };
 
 window.SciNotesMonacoFocus = function() {
@@ -546,6 +567,21 @@ window.SciNotesMonacoNotifyUndoState = function() {
     notifyUndoState();
 };
 
+/*
+ * The editor font of the hovers. Monaco gives it to the hover of the text only;
+ * the one of the margin (a breakpoint's message) kept the page's larger font.
+ * monaco.html applies these to every hover.
+ */
+function publishHoverFont(editor) {
+    var fontInfo = editor.getOption(monaco.editor.EditorOption.fontInfo);
+    if (!fontInfo || !fontInfo.fontSize) {
+        return;
+    }
+    var root = document.documentElement.style;
+    root.setProperty("--scinotes-hover-font-size", fontInfo.fontSize + "px");
+    root.setProperty("--scinotes-hover-line-height", String(fontInfo.lineHeight / fontInfo.fontSize));
+}
+
 function applyEditorOptions(options) {
     var state = window.SciNotesMonacoState;
     var editor = state.editor;
@@ -581,12 +617,19 @@ function applyEditorOptions(options) {
     }
 
     var localLineNumbers = options.lineNumbers && options.lineNumbers.mode === "local";
+    var storedLineNumbers = null;
     if (!localLineNumbers) {
         state.astLocalLineNumbersActive = false;
         editorOptions.lineNumbers = getLineNumbersOption(options.lineNumbers);
     } else if (!state.astLocalLineNumbersActive) {
-        // Display stable absolute numbers until the first AST ranges arrive.
-        editorOptions.lineNumbers = "on";
+        storedLineNumbers = getStoredAstLineNumbers();
+        if (storedLineNumbers) {
+            state.astLocalLineNumbersActive = true;
+            editorOptions.lineNumbers = getLineNumbersOption(storedLineNumbers);
+        } else {
+            // Display stable absolute numbers until the first AST ranges arrive.
+            editorOptions.lineNumbers = getLineNumbersOption("on");
+        }
     }
 
     if (typeof options.autoClosingPairs === "boolean") {
@@ -595,13 +638,16 @@ function applyEditorOptions(options) {
     }
 
     editor.updateOptions(editorOptions);
+    publishHoverFont(editor);
     if (state.secondaryEditor) {
         // Keep the split's second view (see monaco-split.js) in visual sync;
         // it does not go through this function on its own.
         state.secondaryEditor.updateOptions(editorOptions);
     }
     state.localLineNumberFallback = options.lineNumbers;
-    if (!localLineNumbers || !state.astLocalLineNumbersActive) {
+    if (storedLineNumbers) {
+        applyLocalFunctionDecorations(storedLineNumbers);
+    } else if (!localLineNumbers || !state.astLocalLineNumbersActive) {
         applyLocalFunctionDecorations(null);
     }
     var model = editor.getModel();
@@ -613,7 +659,8 @@ function applyEditorOptions(options) {
     }
 }
 
-function getLineNumbersOption(lineNumbers) {
+/* The numbering itself, before any debug marker is composed over it. */
+function getLineNumbersBase(lineNumbers) {
     if (!lineNumbers || typeof lineNumbers === "string") {
         return lineNumbers || "on";
     }
@@ -629,6 +676,61 @@ function getLineNumbersOption(lineNumbers) {
     }
     return "on";
 }
+
+/*
+ * An anchor takes the line-number cell over: its bookmark replaces the digits.
+ * Breakpoints own a gutter of their own, and a debugger stop marks the code
+ * itself, so neither competes for that cell.
+ */
+function composeLineNumbers(base) {
+    if (base === "off") {
+        return "off";
+    }
+
+    return function(originalLineNumber) {
+        if (window.SciNotesMonacoState.anchorLines[originalLineNumber]) {
+            // Empty cell: the bookmark is drawn by the decoration's CSS.
+            // Monaco still renders the element because a class is attached.
+            return "";
+        }
+        if (typeof base === "function") {
+            return base(originalLineNumber);
+        }
+        return String(originalLineNumber);
+    };
+}
+
+function getLineNumbersOption(lineNumbers) {
+    var base = getLineNumbersBase(lineNumbers);
+    // Remembered so a breakpoint toggle can recompose the marker over whatever
+    // numbering is in effect, without having to work out where it came from.
+    window.SciNotesMonacoState.lineNumbersBase = base;
+    return composeLineNumbers(base);
+}
+
+/*
+ * The line-number callback in effect, for a view created after the numbering
+ * was chosen: the split's second half.
+ */
+function getCurrentLineNumbersOption() {
+    var base = window.SciNotesMonacoState.lineNumbersBase;
+    return composeLineNumbers(base === undefined ? "on" : base);
+}
+
+/*
+ * Monaco caches what the line-number callback returned, and changing the
+ * anchors alters no model content, so nothing would repaint on its own.
+ * Passing a new function identity forces the margin to be laid out again.
+ */
+function refreshLineNumberMarkers() {
+    var state = window.SciNotesMonacoState;
+    if (!state.editor) {
+        return;
+    }
+    setViewLineNumbers(getCurrentLineNumbersOption());
+}
+
+window.SciNotesMonacoRefreshLineNumberMarkers = refreshLineNumberMarkers;
 
 function applyLocalFunctionDecorations(lineNumbers) {
     var state = window.SciNotesMonacoState;
@@ -690,6 +792,16 @@ function getLocalLevelRanges(lineNumbers) {
     return ranges;
 }
 
+/*
+ * The local numbering the shown document already carries. Every analysis
+ * stores it, whatever the numbering in use, and changing the preference
+ * starts no new analysis.
+ */
+function getStoredAstLineNumbers() {
+    var entry = typeof getActiveDocumentEntry === "function" ? getActiveDocumentEntry() : null;
+    return entry && entry.astLineNumbers ? entry.astLineNumbers : null;
+}
+
 window.SciNotesMonacoApplyLineNumbers = function(lineNumbers) {
     var state = window.SciNotesMonacoState;
     var editor = state.editor;
@@ -701,7 +813,12 @@ window.SciNotesMonacoApplyLineNumbers = function(lineNumbers) {
         if (state.astLocalLineNumbersActive) {
             return;
         }
-        setViewLineNumbers("on");
+        var stored = getStoredAstLineNumbers();
+        if (stored) {
+            applyStoredAstLineNumbers(stored);
+            return;
+        }
+        setViewLineNumbers(getLineNumbersOption("on"));
         applyLocalFunctionDecorations(null);
         return;
     }

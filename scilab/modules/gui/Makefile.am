@@ -315,6 +315,12 @@ images/icons/16x16/actions/case-sensitive.png \
 images/icons/16x16/actions/clear.png \
 images/icons/16x16/actions/code-navigator.png \
 images/icons/16x16/actions/color-fill.png \
+images/icons/16x16/actions/debug-pause.png \
+images/icons/16x16/actions/debug-start.png \
+images/icons/16x16/actions/debug-step-into.png \
+images/icons/16x16/actions/debug-step-out.png \
+images/icons/16x16/actions/debug-step-over.png \
+images/icons/16x16/actions/debug-stop.png \
 images/icons/16x16/actions/deselect_all.png \
 images/icons/16x16/actions/document-new.png \
 images/icons/16x16/actions/document-open.png \

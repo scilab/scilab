@@ -28,10 +28,10 @@ extern "C"
 class CORE_IMPEXP Runner
 {
 public :
-    Runner(ast::Exp* _theProgram) : m_theProgram(_theProgram), m_iCommandOrigin(NONE), m_isInterruptible(true)
+    Runner(ast::Exp* _theProgram) : m_theProgram(_theProgram), m_iCommandOrigin(NONE), m_isInterruptible(true), m_iCommandMode(MODE_INHERIT), m_iPauseLevel(0), m_iCallDepth(0)
     { }
 
-    Runner(ast::Exp* _theProgram, command_origin_t _iCommandOrigin, bool _isInterruptible) : m_theProgram(_theProgram), m_iCommandOrigin(_iCommandOrigin), m_isInterruptible(_isInterruptible)
+    Runner(ast::Exp* _theProgram, command_origin_t _iCommandOrigin, bool _isInterruptible, command_mode_t _iCommandMode = MODE_INHERIT) : m_theProgram(_theProgram), m_iCommandOrigin(_iCommandOrigin), m_isInterruptible(_isInterruptible), m_iCommandMode(_iCommandMode), m_iPauseLevel(0), m_iCallDepth(0)
     { }
 
     ~Runner()
@@ -59,10 +59,40 @@ public :
         return m_isInterruptible;
     }
 
+    command_mode_t getCommandMode()
+    {
+        return m_iCommandMode;
+    }
+
+    // The pause level this command was started at.
+    int getPauseLevel()
+    {
+        return m_iPauseLevel;
+    }
+
+    void setPauseLevel(int _iPauseLevel)
+    {
+        m_iPauseLevel = _iPauseLevel;
+    }
+
+    // The depth of the call stack this command was started at.
+    int getCallDepth()
+    {
+        return m_iCallDepth;
+    }
+
+    void setCallDepth(int _iCallDepth)
+    {
+        m_iCallDepth = _iCallDepth;
+    }
+
 private :
     ast::Exp* m_theProgram;
     command_origin_t m_iCommandOrigin;
     bool m_isInterruptible;
+    command_mode_t m_iCommandMode;
+    int m_iPauseLevel;
+    int m_iCallDepth;
 };
 
 // static members to manage execution
@@ -76,6 +106,9 @@ public:
 
     static bool isRunning(void);
     static bool isInterruptibleCommand(void);
+    // Whether the function being called is written in the line typed in the
+    // console, not in what that line calls.
+    static bool isCalledFromConsoleLine(void);
 
     static void setDumpStack(bool _bValue);
     static void setExecAst(bool _bValue);

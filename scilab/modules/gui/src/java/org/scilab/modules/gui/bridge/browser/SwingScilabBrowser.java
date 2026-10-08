@@ -404,10 +404,10 @@ public final class SwingScilabBrowser extends JPanel implements SwingViewObject,
             switch (callbackType) {
                 case CallBack.SCILAB_INSTRUCTION:
                 case CallBack.SCILAB_FUNCTION:
-                    return InterpreterManagement.putCommandInScilabQueue(str);
+                    return InterpreterManagement.putCallbackInScilabQueue(str);
                 case CallBack.SCILAB_NOT_INTERRUPTIBLE_INSTRUCTION:
                 case CallBack.SCILAB_NOT_INTERRUPTIBLE_FUNCTION:
-                    return InterpreterManagement.requestScilabExec(str);
+                    return InterpreterManagement.requestCallbackExec(str);
             }
         }
 

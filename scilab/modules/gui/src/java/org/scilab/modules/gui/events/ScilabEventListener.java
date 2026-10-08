@@ -60,10 +60,10 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
         // @FIXME : choose to send it to scilab or to display it
         //
         if (useHandle) {
-            InterpreterManagement.requestScilabExec(callback + "(getcallbackobject(" + windowsUID + ")," + mouseX + ',' + mouseY + ',' + eventTranslator.getClickAction() + ')');
+            InterpreterManagement.requestCallbackExec(callback + "(getcallbackobject(" + windowsUID + ")," + mouseX + ',' + mouseY + ',' + eventTranslator.getClickAction() + ')');
         } else {
             int windowsId = (Integer) GraphicController.getController().getProperty(windowsUID, __GO_ID__);
-            InterpreterManagement.requestScilabExec(callback + '(' + windowsId + ',' + mouseX + ',' + mouseY + ',' + eventTranslator.getClickAction() + ')');
+            InterpreterManagement.requestCallbackExec(callback + '(' + windowsId + ',' + mouseX + ',' + mouseY + ',' + eventTranslator.getClickAction() + ')');
         }
         //
         //System.out.println("call " + callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.getClickAction()+')');
@@ -73,10 +73,10 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
         // @FIXME : choose to send it to scilab or to display it
         //
         if (useHandle) {
-            InterpreterManagement.requestScilabExec(callback + "(getcallbackobject(" + windowsUID + ")," + mouseX + ',' + mouseY + ',' + eventTranslator.javaClick2Scilab() + ')');
+            InterpreterManagement.requestCallbackExec(callback + "(getcallbackobject(" + windowsUID + ")," + mouseX + ',' + mouseY + ',' + eventTranslator.javaClick2Scilab() + ')');
         } else {
             int windowsId = (Integer) GraphicController.getController().getProperty(windowsUID, __GO_ID__);
-            InterpreterManagement.requestScilabExec(callback + '(' + windowsId + ',' + mouseX + ',' + mouseY + ',' + eventTranslator.javaClick2Scilab() + ')');
+            InterpreterManagement.requestCallbackExec(callback + '(' + windowsId + ',' + mouseX + ',' + mouseY + ',' + eventTranslator.javaClick2Scilab() + ')');
         }
         //
         //System.out.println("invoke " + callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.javaClick2Scilab()+')');

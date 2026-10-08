@@ -16,6 +16,7 @@
 package org.scilab.modules.scinotes.actions;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -43,6 +44,17 @@ public class SaveAndExecuteAllFilesAction extends SaveAndExecuteFileAction {
     /**
      * doAction
      */
+    /**
+     * The debug session runs one file at a time and refuses a second one while
+     * the first is running, so this action keeps handing its files to the
+     * interpreter until the client can queue them.
+     * @return false
+     */
+    @Override
+    protected boolean allowDapExecution() {
+        return false;
+    }
+
     public void doAction() {
         SciNotes editor = getEditor();
         int n = editor.getTabPane().getTabCount();
@@ -69,7 +81,9 @@ public class SaveAndExecuteAllFilesAction extends SaveAndExecuteFileAction {
      * @return PushButton
      */
     public static JButton createButton(String tooltip, String icon, SciNotes editor) {
-        return createButton(tooltip, icon, new SaveAndExecuteAllFilesAction(tooltip, editor));
+        JButton button = createButton(tooltip, icon, new SaveAndExecuteAllFilesAction(tooltip, editor));
+        DebugCommandAction.registerExecuteControl(editor, button);
+        return button;
     }
 
     /**
@@ -80,6 +94,8 @@ public class SaveAndExecuteAllFilesAction extends SaveAndExecuteFileAction {
      * @return MenuItem
      */
     public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
-        return createMenu(label, null, new SaveAndExecuteAllFilesAction(label, editor), key);
+        MenuItem item = createMenu(label, null, new SaveAndExecuteAllFilesAction(label, editor), key);
+        DebugCommandAction.registerExecuteControl(editor, (JComponent) item.getAsSimpleMenuItem());
+        return item;
     }
 }

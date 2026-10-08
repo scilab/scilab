@@ -44,7 +44,7 @@ void DebuggerVisitor::visit(const CallExp &e)
 
     visitprivate(e);
 
-    if(ConfigVariable::getEnableDebug() && manager->isStepOut())
+    if(manager->isStepOut())
     {
         if(manager->getSourceFile())
         {
@@ -101,8 +101,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
 
         //debugger check !
         int iBreakPoint = -1;
-        if (ConfigVariable::getEnableDebug() &&
-            manager->isInterrupted() == false) // avoid stopping execution if an execution is already paused
+        if (manager->isInterrupted() == false) // avoid stopping execution if an execution is already paused
         {
             bool stopExecution = false;
             bool hasSourceFile = manager->getSourceFile();
@@ -269,6 +268,13 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                 }
             }
 
+            // Ctrl+C: as the Pause button
+            if (ConfigVariable::isExecutionBreak())
+            {
+                ConfigVariable::resetExecutionBreak();
+                stopExecution = true;
+            }
+
             if(stopExecution || manager->isPauseRequested())
             {
                 manager->resetPauseRequest();
@@ -281,10 +287,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
         }
 
         // interrupt me to execute a prioritary command
-        while (isEmptyCommandQueuePrioritary() == 0 && StaticRunner_isInterruptibleCommand() == 1)
-        {
-            StaticRunner_launch();
-        }
+        runPendingCommands(exp->getLocation());
 
         //copy from runvisitor::seqexp
         try
@@ -369,6 +372,18 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                 pIT->killMe();
             }
 
+            // "pause" was called by this instruction: stop on it, still in
+            // its scope even when it is the last one of a function
+            if (manager->isPauseHereRequested())
+            {
+                manager->resetPauseRequest();
+                manager->stop(exp, -1);
+                if (manager->isAborted())
+                {
+                    throw ast::InternalAbort();
+                }
+            }
+
             if ((&e)->isBreakable() && exp->isBreak())
             {
                 const_cast<SeqExp *>(&e)->setBreak();
@@ -394,7 +409,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
             // Do it at the end of the seqexp will make the debugger stop
             // even if the caller is at the last line
             // ie: the caller is followed by endfunction
-            if(ConfigVariable::getEnableDebug() && manager->isStepOut())
+            if(manager->isStepOut())
             {
                 if(manager->getSourceFile())
                 {
@@ -420,6 +435,17 @@ void DebuggerVisitor::visit(const SeqExp  &e)
 
             ConfigVariable::fillWhereError(ie.GetErrorLocation());
 
+            // The stop consumes the call stack of the error, and leaving it
+            // abandons the execution without going back to the one that
+            // displays an error: it is displayed from here.
+            std::wostringstream whereError;
+            ConfigVariable::whereErrorToString(whereError);
+            auto displayError = [&whereError, &ie]()
+            {
+                scilabErrorW(whereError.str().c_str());
+                scilabErrorW(ie.GetErrorMessage().c_str());
+            };
+
             const auto& lWhereError = ConfigVariable::getWhereError();
 
             //where can be empty on last stepout or on first calling expression
@@ -427,21 +453,30 @@ void DebuggerVisitor::visit(const SeqExp  &e)
             {
                 const std::wstring filename = lWhereError[0].m_file_name;
 
-                if (filename.empty())
+                try
                 {
-                    //error in a console script
-                    std::wstring functionName = lWhereError[0].m_function_name;
-                    manager->errorInScript(functionName, exp);
+                    if (filename.empty())
+                    {
+                        //error in a console script
+                        std::wstring functionName = lWhereError[0].m_function_name;
+                        manager->errorInScript(functionName, exp);
+                    }
+                    else
+                    {
+                        manager->errorInFile(filename, exp);
+                    }
                 }
-                else
+                catch (const ast::InternalAbort& ia)
                 {
-                    manager->errorInFile(filename, exp);
+                    displayError();
+                    throw ia;
                 }
             }
 
             // Debugger just restart after been stopped on an error.
             if (manager->isAborted())
             {
+                displayError();
                 throw ast::InternalAbort();
             }
 
@@ -453,7 +488,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
         setResult(NULL);
     }
 
-    if (ConfigVariable::getEnableDebug() && e.getParent() == NULL && e.getExecFrom() == SeqExp::SCRIPT && (manager->isStepNext() || manager->isStepIn()))
+    if (e.getParent() == NULL && e.getExecFrom() == SeqExp::SCRIPT && (manager->isStepNext() || manager->isStepIn()))
     {
         const std::vector<ConfigVariable::WhereEntry>& lWhereAmI = ConfigVariable::getWhere();
         if (lWhereAmI.size())

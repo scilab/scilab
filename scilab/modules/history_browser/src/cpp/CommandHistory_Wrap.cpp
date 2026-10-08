@@ -32,14 +32,27 @@ void CommandHistoryAppendLine (char* _pstLine)
     {
         if (strlen(_pstLine) != 0)
         {
+            JavaVM* vm = getScilabJavaVM();
+
+            // Lines also come from threads Java does not know, as the one of
+            // a debug adapter. The call attaches them: left attached, a thread
+            // that outlives the interpreter keeps the Java machine from
+            // stopping at exit.
+            JNIEnv* env = nullptr;
+            const bool wasDetached = vm->GetEnv((void**)&env, JNI_VERSION_1_6) == JNI_EDETACHED;
+
             try
             {
-                CommandHistory::appendLine(getScilabJavaVM(), _pstLine);
+                CommandHistory::appendLine(vm, _pstLine);
             }
             catch (const GiwsException::JniException& e)
             {
                 // don't do anything, something gets really wrong there!
-                return;
+            }
+
+            if (wasDetached)
+            {
+                vm->DetachCurrentThread();
             }
         }
     }

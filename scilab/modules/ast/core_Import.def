@@ -9,6 +9,7 @@ StaticRunner_isInterruptibleCommand
 StoreConsoleCommand
 StorePrioritaryCommand
 StoreDebuggerCommand
+StoreDebuggedCommand
 StoreCommandWithFlags
 parseCommand
 parseCommandWithRecovery
@@ -24,4 +25,5 @@ getScilabVersionAsString
 hasUIControlStyle
 hasHandleType
 isEmptyCommandQueuePrioritary
+getPrioritaryCommandOrigin
 isEmptyCommandQueue

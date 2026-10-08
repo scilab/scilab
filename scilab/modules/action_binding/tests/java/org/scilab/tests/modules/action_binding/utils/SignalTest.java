@@ -68,4 +68,21 @@ public class SignalTest {
         tWaiter.join();
         tNotifier.join();
     }
+
+    @Test(timeout = 10000)
+    public void notifyIfWaitingDoesNotWaitForMissingSignal() {
+        Assert.assertFalse(Signal.notifyIfWaiting("missing"));
+    }
+
+    @Test(timeout = 10000)
+    public void notifyIfWaitingReleasesExistingWaiter() throws InterruptedException {
+        Thread tWaiter = new Thread(waiter);
+        tWaiter.start();
+
+        while (!Signal.notifyIfWaiting(signal)) {
+            Thread.yield();
+        }
+
+        tWaiter.join();
+    }
 }

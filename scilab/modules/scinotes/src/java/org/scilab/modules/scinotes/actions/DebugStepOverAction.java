@@ -1,0 +1,30 @@
+/*
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Cédric DELAMARRE
+ */
+
+package org.scilab.modules.scinotes.actions;
+
+import javax.swing.JButton;
+import javax.swing.KeyStroke;
+
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.scinotes.SciNotes;
+
+/** Advance a stopped execution without entering calls. */
+public final class DebugStepOverAction extends DebugCommandAction {
+
+    private static final long serialVersionUID = 1416929877617356195L;
+
+    public DebugStepOverAction(String name, SciNotes editor) {
+        super(name, editor, "next");
+    }
+
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createDebugMenu(label, editor, key, new DebugStepOverAction(label, editor));
+    }
+
+    public static JButton createButton(String tooltip, String icon, SciNotes editor) {
+        return createDebugButton(tooltip, icon, editor, new DebugStepOverAction(tooltip, editor));
+    }
+}

@@ -84,6 +84,32 @@ int StaticRunner::launch()
 
     int iPauseLvl = ConfigVariable::getPauseLevel();
 
+    // Debugged when stored as such, or as what it interrupts: an execution,
+    // else Scilab itself. Never in a stop of the debugger or a normal pause.
+    const bool inDebugRun = manager->isDebugging();
+    const bool inUserPause = inDebugRun == false && iPauseLvl > 0;
+    const bool surroundingMode = pRunSave ? manager->isDebugExecution() : manager->isDebugMode();
+    bool debugged = false;
+    if (manager->isInterrupted() == false && inUserPause == false
+        && runMe->getCommandOrigin() != INTERNAL && runMe->getCommandMode() != MODE_NORMAL)
+    {
+        debugged = runMe->getCommandMode() == MODE_DEBUG || surroundingMode;
+    }
+
+    runMe->setPauseLevel(iPauseLvl);
+    runMe->setCallDepth((int)ConfigVariable::getWhere().size());
+
+    // Debuggers are told of an execution from a prompt to the next one, not
+    // of a command run inside another; a debug run tells them itself.
+    const bool fromPrompt = pRunSave == nullptr || iPauseLvl > pRunSave->getPauseLevel();
+    const bool reported = fromPrompt && inDebugRun == false;
+    if (reported)
+    {
+        manager->sendExecution();
+    }
+
+    debugger::ExecutionModeGuard modeGuard(debugged);
+
     try
     {
         int level = ConfigVariable::getRecursionLevel();
@@ -176,8 +202,14 @@ int StaticRunner::launch()
         // send the good signal about the end of execution
         sendExecDoneSignal();
 
-        // send information about execution done to debuggers
-        manager->sendExecutionReleased();
+        if (reported)
+        {
+            // a pause asked too late must not stop the next run
+            manager->resetPauseRequest();
+
+            // send information about execution done to debuggers
+            manager->sendExecutionReleased();
+        }
 
         delete m_CurrentRunner;
 
@@ -225,11 +257,22 @@ int StaticRunner::launch()
         sendExecDoneSignal();
     }
 
-    // send information about execution done to debuggers
-    manager->sendExecutionReleased();
+    if (reported)
+    {
+        // The prompt is not back yet when a command is waiting behind this
+        // one, nor when this one resumed a paused execution.
+        if (iPauseLvl == ConfigVariable::getPauseLevel() && isEmptyCommandQueue())
+        {
+            // send information about execution done to debuggers
+            manager->sendExecutionReleased();
+        }
 
-    //clean debugger step flag if debugger is not interrupted ( end of debug )
-    manager->resetStep();
+        //clean debugger step flag if debugger is not interrupted ( end of debug )
+        manager->resetStep();
+
+        // a pause asked too late must not stop the next run
+        manager->resetPauseRequest();
+    }
 
     delete m_CurrentRunner;
 
@@ -274,6 +317,13 @@ bool StaticRunner::isRunning(void)
 bool StaticRunner::isInterruptibleCommand()
 {
     return m_CurrentRunner->isInterruptible();
+}
+
+bool StaticRunner::isCalledFromConsoleLine()
+{
+    // the call stack holds this call only, above what the line interrupted
+    return m_CurrentRunner && m_CurrentRunner->getCommandOrigin() == CONSOLE
+        && (int)ConfigVariable::getWhere().size() <= m_CurrentRunner->getCallDepth() + 1;
 }
 
 void StaticRunner::setDumpStack(bool _bValue)

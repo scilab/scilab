@@ -43,6 +43,14 @@
         <entry type="java" action="EvaluateSelectionAction" name="scinotes-evaluate-selection"/>
         <entry type="java" action="SaveAndExecuteFileAction" name="scinotes-save-execute"/>
         <entry type="java" action="SaveAndExecuteAllFilesAction" name="scinotes-save-execute-all"/>
+        <entry type="java" action="DebugContinueAction" name="scinotes-debug-continue"/>
+        <entry type="java" action="DebugPauseAction" name="scinotes-debug-pause"/>
+        <entry type="java" action="DebugStepOverAction" name="scinotes-debug-step-over"/>
+        <entry type="java" action="DebugStepInAction" name="scinotes-debug-step-in"/>
+        <entry type="java" action="DebugStepOutAction" name="scinotes-debug-step-out"/>
+        <entry type="java" action="DebugDisconnectAction" name="scinotes-debug-disconnect"/>
+        <entry type="java" action="DebugToggleBreakpointAction" name="scinotes-debug-toggle-breakpoint"/>
+        <entry type="java" action="DebugRunToCursorAction" name="scinotes-debug-run-to-cursor"/>
         <entry type="java" action="FindAction" name="scinotes-find"/>
         <entry type="java" action="FindNextAction" name="scinotes-find-next"/>
         <entry type="java" action="FindPreviousAction" name="scinotes-find-previous"/>

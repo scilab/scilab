@@ -19,6 +19,7 @@
 
 #include "argumentvisitor.hxx"
 #include "configvariable.hxx"
+#include "debugmanager.hxx"
 #include "context.hxx"
 #include "listinsert.hxx"
 #include "macro.hxx"
@@ -165,9 +166,8 @@ Macro::Macro(const std::wstring& _stName, std::vector<symbol::Variable*>& _input
     m_body->setReturnable();
     m_stPath = L"";
 
-    // Do not enable debug for Macro called when checking arguments (calling sci2exp)
-    bool isDebug = ConfigVariable::getEnableDebug();
-    ConfigVariable::setEnableDebug(false);
+    // Do not debug the macros called when checking arguments (calling sci2exp)
+    debugger::ExecutionModeGuard normalMode(false);
     try
     {
         updateArguments();
@@ -177,8 +177,6 @@ Macro::Macro(const std::wstring& _stName, std::vector<symbol::Variable*>& _input
         cleanup();
         throw ie;
     }
-
-    ConfigVariable::setEnableDebug(isDebug);
 }
 
 Macro::Macro(const std::wstring& _stName, Classdef* def, std::vector<symbol::Variable*>& _inputArgs, std::vector<symbol::Variable*>& _outputArgs, ast::SeqExp& _body, const std::wstring& _stModule) : Callable(),
@@ -201,11 +199,9 @@ Macro::Macro(const std::wstring& _stName, Classdef* def, std::vector<symbol::Var
     m_stPath = L"";
     parent = def;
 
-    // Do not enable debug for Macro called when checking arguments (calling sci2exp)
-    bool isDebug = ConfigVariable::getEnableDebug();
-    ConfigVariable::setEnableDebug(false);
+    // Do not debug the macros called when checking arguments (calling sci2exp)
+    debugger::ExecutionModeGuard normalMode(false);
     updateArguments();
-    ConfigVariable::setEnableDebug(isDebug);
 }
 
 Macro::~Macro()

@@ -16,6 +16,8 @@
 package org.scilab.modules.gui.bridge.textbox;
 
 import java.awt.Color;
+import java.awt.Insets;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
@@ -40,7 +42,12 @@ public final class SwingScilabTextBox extends JTextArea implements SimpleTextBox
 
     private static final long serialVersionUID = 3632560416759268432L;
 
+    private static final String TRAILER_SEPARATOR = "  |  ";
+
     private transient Border defaultBorder = null;
+
+    private String text = "";
+    private String trailer = "";
 
     /**
      * Constructor
@@ -57,7 +64,45 @@ public final class SwingScilabTextBox extends JTextArea implements SimpleTextBox
      * @param newText the text to set to the Text Widget
      */
     public void setText(String newText) {
-        super.setText(newText);
+        text = newText == null ? "" : newText;
+        showText();
+    }
+
+    /**
+     * Keep a text after the one of this Text Widget: setText() changes what
+     * comes before it, not this text.
+     * @param newTrailer the text to keep, empty or null for none
+     */
+    public void setTrailer(String newTrailer) {
+        trailer = newTrailer == null ? "" : newTrailer;
+        showText();
+    }
+
+    private void showText() {
+        String shown;
+        if (trailer.isEmpty()) {
+            shown = text;
+        } else {
+            shown = text.isEmpty() ? trailer : text + TRAILER_SEPARATOR + trailer;
+        }
+        super.setText(shown);
+        setToolTipText(shown.isEmpty() ? null : shown);
+    }
+
+    /**
+     * The whole text, only when the bar is too narrow to show it.
+     * @param event the mouse event
+     * @return the text of the bar, or null when it fits
+     */
+    @Override
+    public String getToolTipText(MouseEvent event) {
+        String shown = super.getText();
+        Insets insets = getInsets();
+        int available = getWidth() - insets.left - insets.right;
+        if (shown.indexOf('\n') < 0 && getFontMetrics(getFont()).stringWidth(shown) <= available) {
+            return null;
+        }
+        return super.getToolTipText(event);
     }
 
     public void setEmptyText() {
@@ -66,10 +111,10 @@ public final class SwingScilabTextBox extends JTextArea implements SimpleTextBox
 
     /**
      * Gets the text of a Text Widget
-     * @return the text of the Text Widget
+     * @return the text of the Text Widget, without the one kept after it
      */
     public String getText() {
-        return super.getText();
+        return text;
     }
 
     /**

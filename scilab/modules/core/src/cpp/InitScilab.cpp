@@ -732,7 +732,9 @@ void* scilabReadAndStore(void*)
                 command = pstNewCommand;
             }
 
-            if (ConfigVariable::getEnableDebug())
+            // Only the console debugger turns typed lines into debugger
+            // commands. Under DAP the console keeps executing Scilab code.
+            if (debugger::DebuggerManager::getInstance()->isDebugConsole())
             {
                 executeDebuggerCommand(command);
                 FREE(command);
@@ -1450,9 +1452,14 @@ static void executeDebuggerCommand(std::string _command)
     {
         // quit debugger
         manager->sendQuit();
-        ConfigVariable::setEnableDebug(false);
-        ConfigVariable::setDefaultVisitor(new ast::ExecVisitor());
-        manager->abort();
+        manager->setDebugConsole(false);
+        debugger::DebuggerManager::holdDebugMode(debugger::DebuggerManager::ConsoleHolder, false);
+        // An execution going on is left to the other debuggers: it is only
+        // aborted when this one, which is told of it, is the last.
+        if (manager->getDebuggerCount() == 1)
+        {
+            manager->abort();
+        }
         manager->removeDebugger("console");
     }
     else if(cmd.compare("s")     == 0 ||
