@@ -747,7 +747,7 @@ void* scilabReadAndStore(void*)
             }
 
             parser.parse(command);
-   
+
             if (timed)
             {
                 _timer.check(L"Parsing");
@@ -774,10 +774,10 @@ void* scilabReadAndStore(void*)
         {
             FREE(command);
             command = NULL;
-            scilabForcedWriteW(parserErrorMsg);
+            scilab_printW(parserErrorMsg, SCI_MSG_ERROR);
             ConfigVariable::setLastErrorNumber(999);
             ConfigVariable::setLastErrorMessage(parserErrorMsg);
-    
+
             continue;
         }
 
@@ -930,7 +930,7 @@ static int batchMain(ScilabEngineInfo* _pSEI)
     }
     else
     {
-        scilabWriteW(parser->getErrorMessage());
+        scilab_printW(parser->getErrorMessage(), SCI_MSG_ERROR);
     }
 
 #ifdef DEBUG
@@ -1154,8 +1154,9 @@ static void executeDebuggerCommand(std::string _command)
         char* error = manager->executeNow(_command.erase(0, _command.find(" ")).data());
         if(error)
         {
-            sciprint("Debugger execution failed\n\n%s\n", error);
+            scilab_print((std::string("Debugger execution failed\n\n") + error + "\n").data(), SCI_MSG_ERROR);
             vCommand.clear();
+            FREE(error);
             return;
         }
     }
@@ -1236,7 +1237,7 @@ static void executeDebuggerCommand(std::string _command)
             {
                 delete bp;
                 bp = nullptr;
-                sciprint("parsing condition failed\n\n%s\n", error);
+                scilab_print((std::string("parsing condition failed\n\n") + error + "\n").data(), SCI_MSG_ERROR);
                 FREE(error);
                 vCommand.clear();
                 return;

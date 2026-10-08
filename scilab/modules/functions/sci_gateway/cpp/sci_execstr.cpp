@@ -289,7 +289,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
 
         if (bMute == false)
         {
-            scilabForcedWriteW(ie.GetErrorMessage().c_str());
+            scilab_printW(ie.GetErrorMessage().c_str(), SCI_MSG_ERROR);
         }
 
         std::wostringstream ostr;

@@ -27,6 +27,8 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
+#include "charEncoding.h"
+#include "sci_malloc.h"
 }
 
 types::Function::ReturnValue sci_kinsol(types::typed_list &in, types::optional_list &opt, int _iRetCount, types::typed_list &out)
@@ -68,7 +70,9 @@ types::Function::ReturnValue sci_kinsol(types::typed_list &in, types::optional_l
         }
         else if (manager->getDisplay() != L"none")
         {
-            sciprint("\n%s: %s", "kinsol", ie.GetErrorMessage().c_str());
+            char* pstMsg = wide_string_to_UTF8(ie.GetErrorMessage().c_str());
+            sciprint("\n%s: %s", "kinsol", pstMsg);
+            FREE(pstMsg);
         }
     }
     catch (ast::InternalAbort& ia)

@@ -92,13 +92,26 @@ const std::string LoggerView::toDisplay(enum LogLevel level)
     return "";
 }
 
+static int toSeverity(enum LogLevel level)
+{
+    if (level >= LOG_ERROR)
+    {
+        return SCI_MSG_ERROR;
+    }
+    if (level == LOG_WARNING)
+    {
+        return SCI_MSG_WARNING;
+    }
+    return SCI_MSG_OUTPUT;
+}
+
 void LoggerView::log(enum LogLevel level, const std::string& msg)
 {
     if (level >= this->m_level)
     {
         if (USE_SCILAB_WRITE)
         {
-            scilabForcedWrite((LoggerView::toDisplay(level) + msg).data());
+            scilab_print((LoggerView::toDisplay(level) + msg).data(), toSeverity(level));
         }
         else
         {
@@ -162,16 +175,14 @@ void LoggerView::log(enum LogLevel level, const wchar_t* msg, ...)
 
         if (USE_SCILAB_WRITE)
         {
-            scilabForcedWrite(LoggerView::toDisplay(level).data());
-            scilabForcedWriteW(str);
+            scilab_print(LoggerView::toDisplay(level).data(), toSeverity(level));
+            scilab_printW(str, toSeverity(level));
         }
         else
         {
             std::cerr << LoggerView::toDisplay(level);
             std::wcerr << str;
         }
-
-        delete[] str;
     }
 }
 
@@ -186,8 +197,8 @@ void LoggerView::log(enum LogLevel level, const std::function <std::to_chars_res
             *result.ptr = '\0';
             if (USE_SCILAB_WRITE)
             {
-                scilabForcedWrite(LoggerView::toDisplay(level).c_str());
-                scilabForcedWrite(buffer.data());
+                scilab_print(LoggerView::toDisplay(level).c_str(), toSeverity(level));
+                scilab_print(buffer.data(), toSeverity(level));
             }
             else
             {
@@ -213,8 +224,8 @@ void LoggerView::log(enum LogLevel level, const std::function <std::to_chars_res
             *result.ptr = '\0';
             if (USE_SCILAB_WRITE)
             {
-                scilabForcedWrite(LoggerView::toDisplay(level).c_str());
-                scilabForcedWrite(buffer.data());
+                scilab_print(LoggerView::toDisplay(level).c_str(), toSeverity(level));
+                scilab_print(buffer.data(), toSeverity(level));
             }
             else
             {
