@@ -464,12 +464,21 @@ public abstract class SciConsole extends JPanel {
 
             int keyCode = entry.getKey().getKeyCode();
             boolean isCTRL = (entry.getKey().getModifiers() & InputEvent.CTRL_DOWN_MASK) == InputEvent.CTRL_DOWN_MASK;
-            isCTRL |= (entry.getKey().getModifiers() & InputEvent.META_DOWN_MASK) == InputEvent.META_DOWN_MASK;
+            boolean isMETA = (entry.getKey().getModifiers() & InputEvent.META_DOWN_MASK) == InputEvent.META_DOWN_MASK;
 
             boolean isALT  = (entry.getKey().getModifiers() & InputEvent.ALT_DOWN_MASK) == InputEvent.ALT_DOWN_MASK;
             String action = entry.getValue();
 
-            sendToHTML("shortcut", action, keyCode, isCTRL, isALT);
+            /* mods bit 1 = matches a literal Ctrl press, bit 2 = matches a literal Meta/Cmd press.
+             * OSSCKEY resolves to exactly one of Ctrl (Windows/Linux) or Meta (macOS) at parse time,
+             * never both, so this faithfully carries over whichever single modifier the configured
+             * KeyStroke actually has - it must NOT match "either", otherwise a literal Ctrl press on
+             * macOS would also trigger the "classic menu shortcut" actions (Copy/Cut/Select all/...),
+             * which have always been Cmd-only there; only Ctrl+A/Ctrl+E are meant to be recognized as
+             * literal Ctrl on the console (beginning/end of line, handled natively by the browser). */
+            int mods = (isCTRL ? 1 : 0) | (isMETA ? 2 : 0);
+
+            sendToHTML("shortcut", action, keyCode, mods, isALT);
         }
         sendToHTML("sort-shortcut");
     }

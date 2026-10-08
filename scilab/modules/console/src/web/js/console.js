@@ -211,7 +211,8 @@ $(document).ready(async () => {
         }
         else
         {
-            let s = shortcuts.filter(s => e.keyCode == s.keyCode && s.isALT == e.altKey && (e.ctrlKey || e.metaKey) == s.isCTRL);
+            let s = shortcuts.filter(s => e.keyCode == s.keyCode && s.isALT == e.altKey &&
+                (s.mods == 0 ? (!e.ctrlKey && !e.metaKey) : (((s.mods & 1) && e.ctrlKey) || ((s.mods & 2) && e.metaKey))));
             if (s.length != 0) {
                 if (Object.keys(actionBinding).includes(s[0].action)) {
                     log("FINER", "action", s[0].action);
@@ -639,13 +640,13 @@ async function fromJava(msg) {
             shortcuts = [];
             break;
         case "sort-shortcut":
-            shortcuts.sort((a, b) => a.keyCode - b.keyCode || a.isCTRL - b.isCTRL || a.isALT - b.isALT || a.action.localeCompare(b.action));
+            shortcuts.sort((a, b) => a.keyCode - b.keyCode || a.mods - b.mods || a.isALT - b.isALT || a.action.localeCompare(b.action));
             break;
         case "shortcut":
             shortcuts.push({
                 keyCode: msg.data2,
                 action: msg.data1,
-                isCTRL: msg.data3,
+                mods: msg.data3,
                 isALT: msg.data4
              });
 
