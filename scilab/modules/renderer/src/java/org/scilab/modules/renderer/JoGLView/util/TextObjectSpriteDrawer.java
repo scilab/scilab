@@ -107,18 +107,35 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
      * this from the constructor).
      * Called once right after instantiation, before the drawer is used.
      * Must run after the subclass has configured appearance, alignment and thickness.
+     * The font size is the text object's one.
+     * @param colorMap the color map to use
+     * @param textObject the text object to draw
+     */
+    public void init(final ColorMap colorMap, final TextObject textObject) {
+        init(colorMap, textObject, computeFont(textObject), 1.0);
+    }
+
+    /**
+     * Finish initialization after construction (entity matrix filling would leak
+     * this from the constructor).
+     * Called once right after instantiation, before the drawer is used.
+     * Must run after the subclass has configured appearance, alignment and thickness.
+     * The font size is derived from the size 1 font and the scale factor.
      * @param colorMap the color map to use
      * @param textObject the text object to draw
      * @param scaleFactor the scale factor to apply
      */
     public void init(final ColorMap colorMap, final TextObject textObject, double scaleFactor) {
+        init(colorMap, textObject, computeFont(textObject, scaleFactor), scaleFactor);
+    }
+
+    private void init(final ColorMap colorMap, final TextObject textObject, Font font, double scaleFactor) {
         Integer[] dimensions = textObject.getTextArrayDimensions();
         int columnNumber = dimensions[1];
         int lineNumber = dimensions[0];
 
         boolean fractionalFont = textObject.getFontFractional();
         Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor(), textObject.getFont().getColorAlpha().floatValue());
-        Font font = computeFont(textObject, scaleFactor);
 
         /* Fill the entity matrix */
         loadDeps(textObject);

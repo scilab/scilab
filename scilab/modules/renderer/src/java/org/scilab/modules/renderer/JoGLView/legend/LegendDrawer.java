@@ -675,7 +675,7 @@ public class LegendDrawer {
         Texture texture = textureMap.get(legend.getIdentifier());
         if (texture == null) {
             this.legendSpriteDrawer = new LegendSpriteDrawer(colorMap, legend);
-            this.legendSpriteDrawer.init(colorMap, legend, 1.0);
+            this.legendSpriteDrawer.init(colorMap, legend);
             texture = textureManager.createTexture();
             texture.setDrawer(legendSpriteDrawer);
             textureMap.put(legend.getIdentifier(), texture);

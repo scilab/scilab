@@ -539,7 +539,7 @@ public class TextManager {
             spriteDrawer.init(colorMap, text, 1.0);
         } else {
             spriteDrawer = new TextSpriteDrawer(colorMap, text);
-            spriteDrawer.init(colorMap, text, 1.0);
+            spriteDrawer.init(colorMap, text);
         }
 
         return spriteDrawer.getTextureSize();
@@ -553,7 +553,7 @@ public class TextManager {
      */
     protected Texture createSprite(final ColorMap colorMap, final Text textObject) {
         TextSpriteDrawer spriteDrawer = new TextSpriteDrawer(colorMap, textObject);
-        spriteDrawer.init(colorMap, textObject, 1.0);
+        spriteDrawer.init(colorMap, textObject);
         Texture texture = textureManager.createTexture();
         texture.setMagnificationFilter(Texture.Filter.LINEAR);
         texture.setMinifyingFilter(Texture.Filter.LINEAR);

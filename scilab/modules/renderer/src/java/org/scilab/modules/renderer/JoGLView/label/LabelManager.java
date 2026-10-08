@@ -385,7 +385,7 @@ public class LabelManager {
      */
     private Texture createSprite(final ColorMap colorMap, final Label label) {
         LabelSpriteDrawer spriteDrawer = new LabelSpriteDrawer(colorMap, label);
-        spriteDrawer.init(colorMap, label, 1.0);
+        spriteDrawer.init(colorMap, label);
         Texture sprite = textureManager.createTexture();
         sprite.setMagnificationFilter(Texture.Filter.LINEAR);
         sprite.setMinifyingFilter(Texture.Filter.LINEAR);
