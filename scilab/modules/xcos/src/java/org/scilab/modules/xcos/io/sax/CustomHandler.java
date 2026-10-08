@@ -26,6 +26,7 @@ import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfInt;
+import org.scilab.modules.xcos.VectorOfScicosID;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
@@ -221,6 +222,28 @@ class CustomHandler implements ScilabHandler {
                 for (UnresolvedReference unresolvedReference : entry.getValue()) {
                     unresolvedReference.resolve(saxHandler.controller, uid, saxHandler.controller.getKind(uid));
                 }
+            }
+        }
+
+        for (Long uid : allLocalChildren.values()) {
+            if (saxHandler.controller.getKind(uid) == Kind.BLOCK) {
+                removePortsHoles(uid);
+            }
+        }
+    }
+
+    /**
+     * Ports are inserted at their "ordering" index ; files written by older versions might contain
+     * non-contiguous orderings (eg. a single port numbered 2) which leave invalid ports in the vector.
+     */
+    private void removePortsHoles(long block) {
+        for (ObjectProperties p : new ObjectProperties[] {ObjectProperties.INPUTS, ObjectProperties.OUTPUTS, ObjectProperties.EVENT_INPUTS, ObjectProperties.EVENT_OUTPUTS}) {
+            VectorOfScicosID ports = new VectorOfScicosID();
+            saxHandler.controller.getObjectProperty(block, Kind.BLOCK, p, ports);
+            if (ports.contains(0l)) {
+                while (ports.remove(0l)) {
+                }
+                saxHandler.controller.setObjectProperty(block, Kind.BLOCK, p, ports);
             }
         }
     }

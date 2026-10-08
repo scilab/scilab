@@ -62,6 +62,8 @@ std::string adapterName(const object_properties_t /*port_kind*/)
             [[fallthrough]];
         case LABEL:
             [[fallthrough]];
+        case NAME:
+            [[fallthrough]];
         case STYLE:
             return "graphics";
         case DATATYPE_ROWS:
@@ -104,6 +106,8 @@ std::string adapterFieldName(const object_properties_t port_kind)
             postfix = "_implicit";
             break;
         case LABEL:
+            [[fallthrough]];
+        case NAME:
             postfix = "_label";
             break;
         case STYLE:
@@ -146,6 +150,26 @@ std::string adapterFieldName(const object_properties_t port_kind)
 }
 
 /*
+ * Check that a block port identifier references an existing port, emit a warning otherwise.
+ */
+template<object_properties_t p>
+bool checkValidPort(const Controller& controller, model::Block* adaptee, const object_properties_t port_kind, ScicosID id)
+{
+    model::BaseObject* o = controller.getBaseObject(id);
+    if (o != nullptr && o->kind() == PORT)
+    {
+        return true;
+    }
+
+    std::string adapter = adapterName<p>(port_kind);
+    std::string field = adapterFieldName<p>(port_kind);
+    std::string uid;
+    controller.getObjectProperty(adaptee, UID, uid);
+    get_or_allocate_logger()->log(LOG_WARNING, _("Invalid model for field %s.%s: Block \"%s\" references a non-existing port.\n"), adapter.data(), field.data(), uid.data());
+    return false;
+}
+
+/*
  * Return a Scilab encoded value for a property.
  */
 template<typename Adaptor, object_properties_t p>
@@ -177,7 +201,10 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
                 std::string s;
-                controller.getObjectProperty(*it, PORT, p, s);
+                if (checkValidPort<p>(controller, adaptee, port_kind, *it))
+                {
+                    controller.getObjectProperty(*it, PORT, p, s);
+                }
                 o->set(i, s.data());
             }
             return o;
@@ -200,8 +227,12 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
             types::Double* o = new types::Double((int)ids.size(), 1, &data);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
-                std::vector<int> v;
-                controller.getObjectProperty(*it, PORT, DATATYPE, v);
+                // default datatype of a model::Port
+                std::vector<int> v = {-1, 1, 1};
+                if (checkValidPort<p>(controller, adaptee, port_kind, *it))
+                {
+                    controller.getObjectProperty(*it, PORT, DATATYPE, v);
+                }
                 data[i] = v[datatypeIndex];
             }
             return o;
@@ -212,7 +243,11 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
             types::Double* o = new types::Double((int)ids.size(), 1, &data);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
-                controller.getObjectProperty(*it, PORT, p, data[i]);
+                data[i] = -1;
+                if (checkValidPort<p>(controller, adaptee, port_kind, *it))
+                {
+                    controller.getObjectProperty(*it, PORT, p, data[i]);
+                }
             }
             return o;
         }
@@ -227,8 +262,11 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
             types::String* o = new types::String((int)ids.size(), 1);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
-                bool v;
-                controller.getObjectProperty(*it, PORT, p, v);
+                bool v = false;
+                if (checkValidPort<p>(controller, adaptee, port_kind, *it))
+                {
+                    controller.getObjectProperty(*it, PORT, p, v);
+                }
                 o->set(i, (v == false) ? L"E" : L"I");
             }
             return o;
@@ -258,8 +296,11 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
 
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
-                ScicosID id;
-                controller.getObjectProperty(*it, PORT, p, id);
+                ScicosID id = ScicosID();
+                if (checkValidPort<p>(controller, adaptee, port_kind, *it))
+                {
+                    controller.getObjectProperty(*it, PORT, p, id);
+                }
 
                 if (id == ScicosID())
                 {
@@ -423,6 +464,11 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
 
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
                 {
+                    if (!checkValidPort<p>(controller, adaptee, port_kind, *it))
+                    {
+                        continue;
+                    }
+
                     std::vector<int> newDataType;
                     controller.getObjectProperty(*it, PORT, DATATYPE, newDataType);
 
@@ -621,6 +667,10 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     std::deque<model::Port*> oldPorts;
     for (ScicosID pre : previousPorts)
     {
+        if (!checkValidPort<p>(controller, adaptee, port_kind, pre))
+        {
+            return false;
+        }
         oldPorts.emplace_back(controller.getBaseObject<model::Port>(pre));
     }
 
