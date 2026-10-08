@@ -2817,6 +2817,32 @@ public class MonacoEditorPane extends ScilabEditorPane {
             + quoteJs(text) + ");", browser.getURL(), 1);
     }
 
+    /**
+     * Start a group of document edits that Monaco undoes in one step (an
+     * edit of the assistant: removal plus insertion, or several
+     * replacements). Must be paired with {@link #endEditGroup()}; the edits
+     * are forwarded in order, so the group brackets them in Monaco too.
+     */
+    public void beginEditGroup() {
+        if (splitPrimary != null) {
+            // A split half shares its primary's document, which forwards the edits
+            splitPrimary.beginEditGroup();
+        } else if (browserReady) {
+            browser.executeJavaScript("window.SciNotesMonacoBeginEditGroup("
+                + quoteJs(getMonacoDocumentId()) + ");", browser.getURL(), 1);
+        }
+    }
+
+    /** End a group started by {@link #beginEditGroup()}. */
+    public void endEditGroup() {
+        if (splitPrimary != null) {
+            splitPrimary.endEditGroup();
+        } else if (browserReady) {
+            browser.executeJavaScript("window.SciNotesMonacoEndEditGroup("
+                + quoteJs(getMonacoDocumentId()) + ");", browser.getURL(), 1);
+        }
+    }
+
     /** Route undo to Monaco, which owns the live text and the undo stack. */
     public void undo() {
         if (browserReady) {

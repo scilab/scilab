@@ -62,6 +62,19 @@ OUTPUT_STREAM_IMPEXP void scilabWarningW(const wchar_t* _pwstText);
 OUTPUT_STREAM_IMPEXP void scilabForcedWriteW(const wchar_t* _pwsText);
 OUTPUT_STREAM_IMPEXP void scilabForcedWrite(const char* _pstText);
 
+/**
+ * Start capturing all output that would normally go to the console.
+ * @param silent if non-zero, output is captured only (not forwarded to the console)
+ */
+OUTPUT_STREAM_IMPEXP void scilabStartOutputCapture(int silent);
+
+/**
+ * Stop capturing output and return the captured text.
+ * Caller must free() the returned string.
+ * @return captured output as a UTF-8 string (caller must free), or NULL if not capturing
+ */
+OUTPUT_STREAM_IMPEXP char* scilabStopOutputCapture(void);
+
 #ifdef __cplusplus
 }
 #endif

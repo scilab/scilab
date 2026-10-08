@@ -120,6 +120,8 @@
             <menuitem action="scinotes-selection-new-tab" label="Copy selection in a new tab"/>
             <separator/>
             <menuitem action="scinotes-split" label="Split View;Off;Split in two columns;Split in two rows"/>
+            <separator/>
+            <menuitem action="scinotes-assistant" label="Scilab Assistant"/>
         </menu>
 
         <menu label="Execute" mnemonic="X">
@@ -195,6 +197,7 @@
         <button action="scinotes-general-settings" tooltip="Scinotes General settings" icon="preferences-system"/>
         <separator/>
         <button action="scinotes-help" tooltip="Scinotes help" icon="help-browser"/>
+        <!-- The assistant button is at the right end of the tab strip (SciNotesContents) -->
     </ToolBar>
 
 </Configuration>

@@ -83,5 +83,6 @@
         <entry type="java" action="SetFontAction" name="scinotes-set-font"/>
         <entry type="java" action="SetColorsAction" name="scinotes-set-colors"/>
         <entry type="java" action="GeneralSettingsAction" name="scinotes-general-settings"/>
+        <entry type="java" action="OpenAssistantAction" name="scinotes-assistant"/>
     </scinotes>
 </map>

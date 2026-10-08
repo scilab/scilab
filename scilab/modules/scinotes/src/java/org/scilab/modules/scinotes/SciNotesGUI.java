@@ -72,6 +72,7 @@ public final class SciNotesGUI {
     private static final String TOOLTIP = "tooltip";
     private static final String ICON = "icon";
     private static final String BUTTON = "button";
+    private static final String FILLER = "filler";
     private static final String DOT = ".";
 
     private static final String DEFAULTACTIONPATH = "org.scilab.modules.scinotes.actions";
@@ -211,6 +212,11 @@ public final class SciNotesGUI {
                 ((SwingScilabToolBar) toolBar.getAsSimpleToolBar()).add(button);
             } else if (SEPARATOR.equals(node.getNodeName())) {
                 toolBar.addSeparator();
+            } else if (FILLER.equals(node.getNodeName())) {
+                javax.swing.JPanel filler = new javax.swing.JPanel();
+                filler.setOpaque(false);
+                filler.setMaximumSize(new java.awt.Dimension(Integer.MAX_VALUE, 0));
+                ((SwingScilabToolBar) toolBar.getAsSimpleToolBar()).add(filler);
             }
         }
         mapToolBar.put(editor, toolBar);

@@ -181,9 +181,23 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
+	"$(DESTDIR)$(libsciscinotes_la_assistantdir)" \
+	"$(DESTDIR)$(libsciscinotes_la_assistantetcdir)" \
+	"$(DESTDIR)$(libsciscinotes_la_assistantlibsdir)" \
 	"$(DESTDIR)$(libsciscinotes_la_etcdir)" \
 	"$(DESTDIR)$(libsciscinotes_la_rootdir)" \
 	"$(DESTDIR)$(libsciscinotes_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libsciscinotes_la_skill_argumentsdir)" \
+	"$(DESTDIR)$(libsciscinotes_la_skill_classdefdir)" \
+	"$(DESTDIR)$(libsciscinotes_la_skill_controldir)" \
+	"$(DESTDIR)$(libsciscinotes_la_skill_dataimportdir)" \
+	"$(DESTDIR)$(libsciscinotes_la_skill_debugdir)" \
+	"$(DESTDIR)$(libsciscinotes_la_skill_graphicsdir)" \
+	"$(DESTDIR)$(libsciscinotes_la_skill_guidir)" \
+	"$(DESTDIR)$(libsciscinotes_la_skill_optimizationdir)" \
+	"$(DESTDIR)$(libsciscinotes_la_skill_signaldir)" \
+	"$(DESTDIR)$(libsciscinotes_la_skill_simulationdir)" \
+	"$(DESTDIR)$(libsciscinotes_la_skill_toolboxdir)" \
 	"$(DESTDIR)$(libsciscinotes_la_webdir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libsciscinotes_algo_la_LIBADD =
@@ -295,8 +309,22 @@ am__can_run_installinfo = \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
-DATA = $(libsciscinotes_la_etc_DATA) $(libsciscinotes_la_root_DATA) \
+DATA = $(libsciscinotes_la_assistant_DATA) \
+	$(libsciscinotes_la_assistantetc_DATA) \
+	$(libsciscinotes_la_assistantlibs_DATA) \
+	$(libsciscinotes_la_etc_DATA) $(libsciscinotes_la_root_DATA) \
 	$(libsciscinotes_la_sci_gateway_DATA) \
+	$(libsciscinotes_la_skill_arguments_DATA) \
+	$(libsciscinotes_la_skill_classdef_DATA) \
+	$(libsciscinotes_la_skill_control_DATA) \
+	$(libsciscinotes_la_skill_dataimport_DATA) \
+	$(libsciscinotes_la_skill_debug_DATA) \
+	$(libsciscinotes_la_skill_graphics_DATA) \
+	$(libsciscinotes_la_skill_gui_DATA) \
+	$(libsciscinotes_la_skill_optimization_DATA) \
+	$(libsciscinotes_la_skill_signal_DATA) \
+	$(libsciscinotes_la_skill_simulation_DATA) \
+	$(libsciscinotes_la_skill_toolbox_DATA) \
 	$(libsciscinotes_la_web_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
@@ -707,6 +735,33 @@ libsciscinotes_la_web_DATA = \
     src/web/monaco-lsp.js \
     src/web/monaco-bootstrap.js
 
+
+#### scinotes : assistant knowledge & skill files ####
+libsciscinotes_la_assistantetcdir = $(mydatadir)/etc/assistant
+libsciscinotes_la_assistantetc_DATA = etc/assistant/scilab-knowledge.md \
+    etc/assistant/agents.json
+libsciscinotes_la_skill_argumentsdir = $(mydatadir)/etc/assistant/skills/arguments
+libsciscinotes_la_skill_arguments_DATA = etc/assistant/skills/arguments/SKILL.md
+libsciscinotes_la_skill_classdefdir = $(mydatadir)/etc/assistant/skills/classdef
+libsciscinotes_la_skill_classdef_DATA = etc/assistant/skills/classdef/SKILL.md
+libsciscinotes_la_skill_controldir = $(mydatadir)/etc/assistant/skills/control
+libsciscinotes_la_skill_control_DATA = etc/assistant/skills/control/SKILL.md
+libsciscinotes_la_skill_dataimportdir = $(mydatadir)/etc/assistant/skills/data-import
+libsciscinotes_la_skill_dataimport_DATA = etc/assistant/skills/data-import/SKILL.md
+libsciscinotes_la_skill_debugdir = $(mydatadir)/etc/assistant/skills/debug
+libsciscinotes_la_skill_debug_DATA = etc/assistant/skills/debug/SKILL.md
+libsciscinotes_la_skill_graphicsdir = $(mydatadir)/etc/assistant/skills/graphics
+libsciscinotes_la_skill_graphics_DATA = etc/assistant/skills/graphics/SKILL.md
+libsciscinotes_la_skill_guidir = $(mydatadir)/etc/assistant/skills/gui
+libsciscinotes_la_skill_gui_DATA = etc/assistant/skills/gui/SKILL.md
+libsciscinotes_la_skill_optimizationdir = $(mydatadir)/etc/assistant/skills/optimization
+libsciscinotes_la_skill_optimization_DATA = etc/assistant/skills/optimization/SKILL.md
+libsciscinotes_la_skill_signaldir = $(mydatadir)/etc/assistant/skills/signal
+libsciscinotes_la_skill_signal_DATA = etc/assistant/skills/signal/SKILL.md
+libsciscinotes_la_skill_simulationdir = $(mydatadir)/etc/assistant/skills/simulation
+libsciscinotes_la_skill_simulation_DATA = etc/assistant/skills/simulation/SKILL.md
+libsciscinotes_la_skill_toolboxdir = $(mydatadir)/etc/assistant/skills/toolbox
+libsciscinotes_la_skill_toolbox_DATA = etc/assistant/skills/toolbox/SKILL.md
 SCINOTES_JNI_SOURCES = \
     src/jni/ScilabKeywords_wrap.c \
     src/jni/SciNotesLspJNI.cpp
@@ -786,6 +841,16 @@ libsciscinotes_la_LIBADD = \
 #### scinotes : gateway declaration ####
 libsciscinotes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciscinotes_la_sci_gateway_DATA = sci_gateway/scinotes_gateway.xml
+
+#### scinotes : assistant resources ####
+libsciscinotes_la_assistantdir = $(mydatadir)/gui/assistant
+libsciscinotes_la_assistant_DATA = \
+gui/assistant/index.html \
+gui/assistant/app.js \
+gui/assistant/style.css
+
+libsciscinotes_la_assistantlibsdir = $(mydatadir)/gui/assistant/libs
+libsciscinotes_la_assistantlibs_DATA = gui/assistant/libs/highlight-scilab.css
 @BUILD_HELP_TRUE@@GUI_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -1154,6 +1219,69 @@ clean-libtool:
 	-rm -rf src/cpp/.libs src/cpp/_libs
 	-rm -rf src/jni/.libs src/jni/_libs
 	-rm -rf src/noscinotes/.libs src/noscinotes/_libs
+install-libsciscinotes_la_assistantDATA: $(libsciscinotes_la_assistant_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_assistant_DATA)'; test -n "$(libsciscinotes_la_assistantdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_assistantdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_assistantdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_assistantdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_assistantdir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_assistantDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_assistant_DATA)'; test -n "$(libsciscinotes_la_assistantdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_assistantdir)'; $(am__uninstall_files_from_dir)
+install-libsciscinotes_la_assistantetcDATA: $(libsciscinotes_la_assistantetc_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_assistantetc_DATA)'; test -n "$(libsciscinotes_la_assistantetcdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_assistantetcdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_assistantetcdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_assistantetcdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_assistantetcdir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_assistantetcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_assistantetc_DATA)'; test -n "$(libsciscinotes_la_assistantetcdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_assistantetcdir)'; $(am__uninstall_files_from_dir)
+install-libsciscinotes_la_assistantlibsDATA: $(libsciscinotes_la_assistantlibs_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_assistantlibs_DATA)'; test -n "$(libsciscinotes_la_assistantlibsdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_assistantlibsdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_assistantlibsdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_assistantlibsdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_assistantlibsdir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_assistantlibsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_assistantlibs_DATA)'; test -n "$(libsciscinotes_la_assistantlibsdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_assistantlibsdir)'; $(am__uninstall_files_from_dir)
 install-libsciscinotes_la_etcDATA: $(libsciscinotes_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libsciscinotes_la_etc_DATA)'; test -n "$(libsciscinotes_la_etcdir)" || list=; \
@@ -1217,6 +1345,237 @@ uninstall-libsciscinotes_la_sci_gatewayDATA:
 	@list='$(libsciscinotes_la_sci_gateway_DATA)'; test -n "$(libsciscinotes_la_sci_gatewaydir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libsciscinotes_la_sci_gatewaydir)'; $(am__uninstall_files_from_dir)
+install-libsciscinotes_la_skill_argumentsDATA: $(libsciscinotes_la_skill_arguments_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_skill_arguments_DATA)'; test -n "$(libsciscinotes_la_skill_argumentsdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_skill_argumentsdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_skill_argumentsdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_skill_argumentsdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_skill_argumentsdir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_skill_argumentsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_skill_arguments_DATA)'; test -n "$(libsciscinotes_la_skill_argumentsdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_skill_argumentsdir)'; $(am__uninstall_files_from_dir)
+install-libsciscinotes_la_skill_classdefDATA: $(libsciscinotes_la_skill_classdef_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_skill_classdef_DATA)'; test -n "$(libsciscinotes_la_skill_classdefdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_skill_classdefdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_skill_classdefdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_skill_classdefdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_skill_classdefdir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_skill_classdefDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_skill_classdef_DATA)'; test -n "$(libsciscinotes_la_skill_classdefdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_skill_classdefdir)'; $(am__uninstall_files_from_dir)
+install-libsciscinotes_la_skill_controlDATA: $(libsciscinotes_la_skill_control_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_skill_control_DATA)'; test -n "$(libsciscinotes_la_skill_controldir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_skill_controldir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_skill_controldir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_skill_controldir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_skill_controldir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_skill_controlDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_skill_control_DATA)'; test -n "$(libsciscinotes_la_skill_controldir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_skill_controldir)'; $(am__uninstall_files_from_dir)
+install-libsciscinotes_la_skill_dataimportDATA: $(libsciscinotes_la_skill_dataimport_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_skill_dataimport_DATA)'; test -n "$(libsciscinotes_la_skill_dataimportdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_skill_dataimportdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_skill_dataimportdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_skill_dataimportdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_skill_dataimportdir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_skill_dataimportDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_skill_dataimport_DATA)'; test -n "$(libsciscinotes_la_skill_dataimportdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_skill_dataimportdir)'; $(am__uninstall_files_from_dir)
+install-libsciscinotes_la_skill_debugDATA: $(libsciscinotes_la_skill_debug_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_skill_debug_DATA)'; test -n "$(libsciscinotes_la_skill_debugdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_skill_debugdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_skill_debugdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_skill_debugdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_skill_debugdir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_skill_debugDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_skill_debug_DATA)'; test -n "$(libsciscinotes_la_skill_debugdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_skill_debugdir)'; $(am__uninstall_files_from_dir)
+install-libsciscinotes_la_skill_graphicsDATA: $(libsciscinotes_la_skill_graphics_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_skill_graphics_DATA)'; test -n "$(libsciscinotes_la_skill_graphicsdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_skill_graphicsdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_skill_graphicsdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_skill_graphicsdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_skill_graphicsdir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_skill_graphicsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_skill_graphics_DATA)'; test -n "$(libsciscinotes_la_skill_graphicsdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_skill_graphicsdir)'; $(am__uninstall_files_from_dir)
+install-libsciscinotes_la_skill_guiDATA: $(libsciscinotes_la_skill_gui_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_skill_gui_DATA)'; test -n "$(libsciscinotes_la_skill_guidir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_skill_guidir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_skill_guidir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_skill_guidir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_skill_guidir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_skill_guiDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_skill_gui_DATA)'; test -n "$(libsciscinotes_la_skill_guidir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_skill_guidir)'; $(am__uninstall_files_from_dir)
+install-libsciscinotes_la_skill_optimizationDATA: $(libsciscinotes_la_skill_optimization_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_skill_optimization_DATA)'; test -n "$(libsciscinotes_la_skill_optimizationdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_skill_optimizationdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_skill_optimizationdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_skill_optimizationdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_skill_optimizationdir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_skill_optimizationDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_skill_optimization_DATA)'; test -n "$(libsciscinotes_la_skill_optimizationdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_skill_optimizationdir)'; $(am__uninstall_files_from_dir)
+install-libsciscinotes_la_skill_signalDATA: $(libsciscinotes_la_skill_signal_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_skill_signal_DATA)'; test -n "$(libsciscinotes_la_skill_signaldir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_skill_signaldir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_skill_signaldir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_skill_signaldir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_skill_signaldir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_skill_signalDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_skill_signal_DATA)'; test -n "$(libsciscinotes_la_skill_signaldir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_skill_signaldir)'; $(am__uninstall_files_from_dir)
+install-libsciscinotes_la_skill_simulationDATA: $(libsciscinotes_la_skill_simulation_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_skill_simulation_DATA)'; test -n "$(libsciscinotes_la_skill_simulationdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_skill_simulationdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_skill_simulationdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_skill_simulationdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_skill_simulationdir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_skill_simulationDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_skill_simulation_DATA)'; test -n "$(libsciscinotes_la_skill_simulationdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_skill_simulationdir)'; $(am__uninstall_files_from_dir)
+install-libsciscinotes_la_skill_toolboxDATA: $(libsciscinotes_la_skill_toolbox_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciscinotes_la_skill_toolbox_DATA)'; test -n "$(libsciscinotes_la_skill_toolboxdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciscinotes_la_skill_toolboxdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciscinotes_la_skill_toolboxdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscinotes_la_skill_toolboxdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscinotes_la_skill_toolboxdir)" || exit $$?; \
+	done
+
+uninstall-libsciscinotes_la_skill_toolboxDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscinotes_la_skill_toolbox_DATA)'; test -n "$(libsciscinotes_la_skill_toolboxdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciscinotes_la_skill_toolboxdir)'; $(am__uninstall_files_from_dir)
 install-libsciscinotes_la_webDATA: $(libsciscinotes_la_web_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libsciscinotes_la_web_DATA)'; test -n "$(libsciscinotes_la_webdir)" || list=; \
@@ -1329,7 +1688,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciscinotes_la_etcdir)" "$(DESTDIR)$(libsciscinotes_la_rootdir)" "$(DESTDIR)$(libsciscinotes_la_sci_gatewaydir)" "$(DESTDIR)$(libsciscinotes_la_webdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciscinotes_la_assistantdir)" "$(DESTDIR)$(libsciscinotes_la_assistantetcdir)" "$(DESTDIR)$(libsciscinotes_la_assistantlibsdir)" "$(DESTDIR)$(libsciscinotes_la_etcdir)" "$(DESTDIR)$(libsciscinotes_la_rootdir)" "$(DESTDIR)$(libsciscinotes_la_sci_gatewaydir)" "$(DESTDIR)$(libsciscinotes_la_skill_argumentsdir)" "$(DESTDIR)$(libsciscinotes_la_skill_classdefdir)" "$(DESTDIR)$(libsciscinotes_la_skill_controldir)" "$(DESTDIR)$(libsciscinotes_la_skill_dataimportdir)" "$(DESTDIR)$(libsciscinotes_la_skill_debugdir)" "$(DESTDIR)$(libsciscinotes_la_skill_graphicsdir)" "$(DESTDIR)$(libsciscinotes_la_skill_guidir)" "$(DESTDIR)$(libsciscinotes_la_skill_optimizationdir)" "$(DESTDIR)$(libsciscinotes_la_skill_signaldir)" "$(DESTDIR)$(libsciscinotes_la_skill_simulationdir)" "$(DESTDIR)$(libsciscinotes_la_skill_toolboxdir)" "$(DESTDIR)$(libsciscinotes_la_webdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1406,9 +1765,24 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libsciscinotes_la_etcDATA \
+install-data-am: install-data-local \
+	install-libsciscinotes_la_assistantDATA \
+	install-libsciscinotes_la_assistantetcDATA \
+	install-libsciscinotes_la_assistantlibsDATA \
+	install-libsciscinotes_la_etcDATA \
 	install-libsciscinotes_la_rootDATA \
 	install-libsciscinotes_la_sci_gatewayDATA \
+	install-libsciscinotes_la_skill_argumentsDATA \
+	install-libsciscinotes_la_skill_classdefDATA \
+	install-libsciscinotes_la_skill_controlDATA \
+	install-libsciscinotes_la_skill_dataimportDATA \
+	install-libsciscinotes_la_skill_debugDATA \
+	install-libsciscinotes_la_skill_graphicsDATA \
+	install-libsciscinotes_la_skill_guiDATA \
+	install-libsciscinotes_la_skill_optimizationDATA \
+	install-libsciscinotes_la_skill_signalDATA \
+	install-libsciscinotes_la_skill_simulationDATA \
+	install-libsciscinotes_la_skill_toolboxDATA \
 	install-libsciscinotes_la_webDATA
 
 install-dvi: install-dvi-am
@@ -1463,9 +1837,23 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libsciscinotes_la_etcDATA \
+uninstall-am: uninstall-libsciscinotes_la_assistantDATA \
+	uninstall-libsciscinotes_la_assistantetcDATA \
+	uninstall-libsciscinotes_la_assistantlibsDATA \
+	uninstall-libsciscinotes_la_etcDATA \
 	uninstall-libsciscinotes_la_rootDATA \
 	uninstall-libsciscinotes_la_sci_gatewayDATA \
+	uninstall-libsciscinotes_la_skill_argumentsDATA \
+	uninstall-libsciscinotes_la_skill_classdefDATA \
+	uninstall-libsciscinotes_la_skill_controlDATA \
+	uninstall-libsciscinotes_la_skill_dataimportDATA \
+	uninstall-libsciscinotes_la_skill_debugDATA \
+	uninstall-libsciscinotes_la_skill_graphicsDATA \
+	uninstall-libsciscinotes_la_skill_guiDATA \
+	uninstall-libsciscinotes_la_skill_optimizationDATA \
+	uninstall-libsciscinotes_la_skill_signalDATA \
+	uninstall-libsciscinotes_la_skill_simulationDATA \
+	uninstall-libsciscinotes_la_skill_toolboxDATA \
 	uninstall-libsciscinotes_la_webDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -1482,18 +1870,46 @@ uninstall-am: uninstall-libsciscinotes_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
+	install-libsciscinotes_la_assistantDATA \
+	install-libsciscinotes_la_assistantetcDATA \
+	install-libsciscinotes_la_assistantlibsDATA \
 	install-libsciscinotes_la_etcDATA \
 	install-libsciscinotes_la_rootDATA \
 	install-libsciscinotes_la_sci_gatewayDATA \
+	install-libsciscinotes_la_skill_argumentsDATA \
+	install-libsciscinotes_la_skill_classdefDATA \
+	install-libsciscinotes_la_skill_controlDATA \
+	install-libsciscinotes_la_skill_dataimportDATA \
+	install-libsciscinotes_la_skill_debugDATA \
+	install-libsciscinotes_la_skill_graphicsDATA \
+	install-libsciscinotes_la_skill_guiDATA \
+	install-libsciscinotes_la_skill_optimizationDATA \
+	install-libsciscinotes_la_skill_signalDATA \
+	install-libsciscinotes_la_skill_simulationDATA \
+	install-libsciscinotes_la_skill_toolboxDATA \
 	install-libsciscinotes_la_webDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-am uninstall-libsciscinotes_la_etcDATA \
+	uninstall-am uninstall-libsciscinotes_la_assistantDATA \
+	uninstall-libsciscinotes_la_assistantetcDATA \
+	uninstall-libsciscinotes_la_assistantlibsDATA \
+	uninstall-libsciscinotes_la_etcDATA \
 	uninstall-libsciscinotes_la_rootDATA \
 	uninstall-libsciscinotes_la_sci_gatewayDATA \
+	uninstall-libsciscinotes_la_skill_argumentsDATA \
+	uninstall-libsciscinotes_la_skill_classdefDATA \
+	uninstall-libsciscinotes_la_skill_controlDATA \
+	uninstall-libsciscinotes_la_skill_dataimportDATA \
+	uninstall-libsciscinotes_la_skill_debugDATA \
+	uninstall-libsciscinotes_la_skill_graphicsDATA \
+	uninstall-libsciscinotes_la_skill_guiDATA \
+	uninstall-libsciscinotes_la_skill_optimizationDATA \
+	uninstall-libsciscinotes_la_skill_signalDATA \
+	uninstall-libsciscinotes_la_skill_simulationDATA \
+	uninstall-libsciscinotes_la_skill_toolboxDATA \
 	uninstall-libsciscinotes_la_webDATA \
 	uninstall-pkglibLTLIBRARIES
 

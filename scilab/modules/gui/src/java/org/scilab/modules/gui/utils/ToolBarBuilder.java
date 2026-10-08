@@ -136,6 +136,7 @@ public final class ToolBarBuilder {
         protected static final String TRUE = "true";
         protected static final String TOOLTIPTEXT = "tooltiptext";
         protected static final String TOGGLE = "toggle";
+        protected static final String FILLER = "filler";
 
         private final Document dom;
         private final Collection<String> internalMethodNames;
@@ -263,6 +264,12 @@ public final class ToolBarBuilder {
                     } else if (button.getNodeName().equals(SEPARATOR)) {
                         // The child is a separator
                         tb.addSeparator();
+                    } else if (button.getNodeName().equals(FILLER)) {
+                        // Horizontal filler to push subsequent buttons to the right
+                        javax.swing.JPanel filler = new javax.swing.JPanel();
+                        filler.setOpaque(false);
+                        filler.setMaximumSize(new java.awt.Dimension(Integer.MAX_VALUE, 0));
+                        ((SwingScilabToolBar) tb.getAsSimpleToolBar()).add(filler);
                     }
                     // Get next child
                     button = button.getNextSibling();

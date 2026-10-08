@@ -58,6 +58,18 @@ int callScilabExecstr(const char *command);
 */
 int interruptScilab(void);
 
+/**
+ * Start capturing all Scilab output (stdout + stderr).
+ * @param silent if non-zero, output is captured only (not forwarded to the console)
+ */
+void startScilabOutputCapture(int silent);
+
+/**
+ * Stop capturing output and return the captured text.
+ * @return captured output as a UTF-8 string (caller must free), or NULL
+ */
+char* stopScilabOutputCapture(void);
+
 /*--------------------------------------------------------------------------*/
 
 #endif /* __INTERPRETERMANAGEMENT_H__ */

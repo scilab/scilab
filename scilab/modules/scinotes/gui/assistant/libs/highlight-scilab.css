@@ -1,0 +1,47 @@
+/*
+ * highlight.js theme for the Scilab Assistant code blocks.
+ *
+ * Light theme: the SciNotes default palette (same colors as the help browser,
+ * helptools/src/web/scilab.min.css), on a white background.
+ * Dark theme ([data-theme="dark"]): a lightened palette.
+ */
+
+/* Light theme — SciNotes defaults */
+.hljs-keyword { color: #A020F0; }                       /* structure: function, if, for, end... */
+.hljs-built_in { color: #32B9B9; }                      /* primitives: sin, plot, disp */
+.hljs-literal { color: #DA70D6; }                       /* constants: %pi, %t, %eps */
+.hljs-number { color: #BC8F8F; }
+.hljs-string { color: #BC8F8F; }
+.hljs-comment { color: #01A801; font-style: italic; }
+.hljs-operator { color: #5C5C5C; }
+.hljs-title,                                            /* function name */
+.hljs-function .hljs-title { color: #000000; font-weight: bold; }
+.hljs-params,                                           /* input/output arguments */
+.hljs-function .hljs-params { color: #834310; font-weight: bold; }
+.hljs-meta,                                             /* macros */
+.hljs-type { color: #AE5CB0; }
+.hljs-symbol { color: #FFAA00; }                        /* special: $, : */
+.hljs-punctuation { color: #4A55DB; }                   /* brackets */
+.hljs-variable { color: #000000; }                      /* identifiers */
+
+/* Dark theme */
+[data-theme="dark"] .hljs-comment,
+[data-theme="dark"] .hljs-quote { color: #6b7f99; font-style: italic; }
+[data-theme="dark"] .hljs-keyword,
+[data-theme="dark"] .hljs-selector-tag,
+[data-theme="dark"] .hljs-type { color: #c792ea; font-weight: bold; }
+[data-theme="dark"] .hljs-function .hljs-title,
+[data-theme="dark"] .hljs-title,
+[data-theme="dark"] .hljs-title.function_ { color: #82aaff; font-weight: normal; }
+[data-theme="dark"] .hljs-string,
+[data-theme="dark"] .hljs-symbol { color: #c3e88d; }
+[data-theme="dark"] .hljs-number { color: #f78c6c; }
+[data-theme="dark"] .hljs-variable,
+[data-theme="dark"] .hljs-params,
+[data-theme="dark"] .hljs-function .hljs-params { color: #f07178; font-weight: normal; }
+[data-theme="dark"] .hljs-built_in,
+[data-theme="dark"] .hljs-builtin-name,
+[data-theme="dark"] .hljs-meta { color: #ffcb6b; }
+[data-theme="dark"] .hljs-operator { color: #89ddff; }
+[data-theme="dark"] .hljs-literal { color: #ff5370; }
+[data-theme="dark"] .hljs-punctuation { color: #d4d4d4; }

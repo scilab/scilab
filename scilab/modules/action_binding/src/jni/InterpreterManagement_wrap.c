@@ -296,11 +296,33 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManag
 SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_interruptScilab(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   int result;
-  
+
   (void)jenv;
   (void)jcls;
   result = (int)interruptScilab();
-  jresult = (jint)result; 
+  jresult = (jint)result;
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_startScilabOutputCapture(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  (void)jenv;
+  (void)jcls;
+  startScilabOutputCapture((int)jarg1);
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_stopScilabOutputCapture(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  char *result;
+
+  (void)jenv;
+  (void)jcls;
+  result = stopScilabOutputCapture();
+  if (result) {
+    jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+    free(result);
+  }
   return jresult;
 }
 

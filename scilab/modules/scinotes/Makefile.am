@@ -47,6 +47,44 @@ libsciscinotes_la_web_DATA = \
     src/web/monaco-lsp.js \
     src/web/monaco-bootstrap.js
 
+#### scinotes : assistant knowledge & skill files ####
+libsciscinotes_la_assistantetcdir = $(mydatadir)/etc/assistant
+libsciscinotes_la_assistantetc_DATA = etc/assistant/scilab-knowledge.md \
+    etc/assistant/agents.json
+
+libsciscinotes_la_skill_argumentsdir = $(mydatadir)/etc/assistant/skills/arguments
+libsciscinotes_la_skill_arguments_DATA = etc/assistant/skills/arguments/SKILL.md
+
+libsciscinotes_la_skill_classdefdir = $(mydatadir)/etc/assistant/skills/classdef
+libsciscinotes_la_skill_classdef_DATA = etc/assistant/skills/classdef/SKILL.md
+
+libsciscinotes_la_skill_controldir = $(mydatadir)/etc/assistant/skills/control
+libsciscinotes_la_skill_control_DATA = etc/assistant/skills/control/SKILL.md
+
+libsciscinotes_la_skill_dataimportdir = $(mydatadir)/etc/assistant/skills/data-import
+libsciscinotes_la_skill_dataimport_DATA = etc/assistant/skills/data-import/SKILL.md
+
+libsciscinotes_la_skill_debugdir = $(mydatadir)/etc/assistant/skills/debug
+libsciscinotes_la_skill_debug_DATA = etc/assistant/skills/debug/SKILL.md
+
+libsciscinotes_la_skill_graphicsdir = $(mydatadir)/etc/assistant/skills/graphics
+libsciscinotes_la_skill_graphics_DATA = etc/assistant/skills/graphics/SKILL.md
+
+libsciscinotes_la_skill_guidir = $(mydatadir)/etc/assistant/skills/gui
+libsciscinotes_la_skill_gui_DATA = etc/assistant/skills/gui/SKILL.md
+
+libsciscinotes_la_skill_optimizationdir = $(mydatadir)/etc/assistant/skills/optimization
+libsciscinotes_la_skill_optimization_DATA = etc/assistant/skills/optimization/SKILL.md
+
+libsciscinotes_la_skill_signaldir = $(mydatadir)/etc/assistant/skills/signal
+libsciscinotes_la_skill_signal_DATA = etc/assistant/skills/signal/SKILL.md
+
+libsciscinotes_la_skill_simulationdir = $(mydatadir)/etc/assistant/skills/simulation
+libsciscinotes_la_skill_simulation_DATA = etc/assistant/skills/simulation/SKILL.md
+
+libsciscinotes_la_skill_toolboxdir = $(mydatadir)/etc/assistant/skills/toolbox
+libsciscinotes_la_skill_toolbox_DATA = etc/assistant/skills/toolbox/SKILL.md
+
 SCINOTES_JNI_SOURCES = \
     src/jni/ScilabKeywords_wrap.c \
     src/jni/SciNotesLspJNI.cpp
@@ -142,10 +180,18 @@ libsciscinotes_la_LIBADD = \
 libsciscinotes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciscinotes_la_sci_gateway_DATA = sci_gateway/scinotes_gateway.xml
 
+#### scinotes : assistant resources ####
+libsciscinotes_la_assistantdir = $(mydatadir)/gui/assistant
+libsciscinotes_la_assistant_DATA = \
+gui/assistant/index.html \
+gui/assistant/app.js \
+gui/assistant/style.css
+
+libsciscinotes_la_assistantlibsdir = $(mydatadir)/gui/assistant/libs
+libsciscinotes_la_assistantlibs_DATA = gui/assistant/libs/highlight-scilab.css
+
 if GUI
-if BUILD_HELP
-    USEANT=1
-endif
+USEANT=1
 endif
 
 include $(top_srcdir)/Makefile.incl.am

@@ -995,9 +995,10 @@ public final class ConfigSciNotesManager {
     public static void removeEditorUUID(String editorUUID) {
         readDocument();
 
+        // Backward: the NodeLists are live, removing an item shifts the next ones
         Element root = document.getDocumentElement();
         NodeList eis = root.getElementsByTagName(EDITORUUID);
-        for (int i = 0; i < eis.getLength(); i++) {
+        for (int i = eis.getLength() - 1; i >= 0; i--) {
             Element ei = (Element) eis.item(i);
             if (ei.getAttribute("uuid").equals(editorUUID)) {
                 root.removeChild(ei);
@@ -1007,7 +1008,7 @@ public final class ConfigSciNotesManager {
         root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
         if (root != null) {
             NodeList openFiles = root.getElementsByTagName(DOCUMENT);
-            for (int i = 0; i < openFiles.getLength(); ++i) {
+            for (int i = openFiles.getLength() - 1; i >= 0; i--) {
                 Element of = (Element) openFiles.item(i);
                 if (of.getAttribute(EDITORINST).equals(editorUUID)) {
                     root.removeChild(of);

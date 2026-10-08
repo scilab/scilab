@@ -320,10 +320,15 @@ window.SciNotesMonacoApplyDocumentEdit = function(id, expectedRevision, newRevis
     var model = entry.model;
     var start = model.getPositionAt(offset);
     var end = model.getPositionAt(offset + length);
+    // Inside a group (SciNotesMonacoBeginEditGroup), the edits share one
+    // undo step: the group closes the step itself
+    var grouped = entry.javaEditGroup > 0;
     entry.revision = newRevision;
     model.__scinotesJavaOrigin = entry.id;
     try {
-        model.pushStackElement();
+        if (!grouped) {
+            model.pushStackElement();
+        }
         // Stripping the indentation of a blank line here would be an edit
         // the Java replica of this tab never receives.
         model._trimAutoWhitespaceLines = null;
@@ -332,7 +337,9 @@ window.SciNotesMonacoApplyDocumentEdit = function(id, expectedRevision, newRevis
             text: text || "",
             forceMoveMarkers: true
         }], function() { return null; });
-        model.pushStackElement();
+        if (!grouped) {
+            model.pushStackElement();
+        }
     } finally {
         model.__scinotesJavaOrigin = null;
     }
@@ -341,6 +348,33 @@ window.SciNotesMonacoApplyDocumentEdit = function(id, expectedRevision, newRevis
         state.documentRevision = newRevision;
     }
     return true;
+};
+
+/*
+ * A group of Java edits undone in one step: an edit of the assistant is a
+ * removal plus an insertion (or several replacements), which must not be
+ * undone half by half. Groups may nest; the outermost one closes the step.
+ */
+window.SciNotesMonacoBeginEditGroup = function(id) {
+    var entry = getDocumentRegistry()[id];
+    if (!entry) {
+        return;
+    }
+    if (!entry.javaEditGroup) {
+        entry.model.pushStackElement();
+    }
+    entry.javaEditGroup = (entry.javaEditGroup || 0) + 1;
+};
+
+window.SciNotesMonacoEndEditGroup = function(id) {
+    var entry = getDocumentRegistry()[id];
+    if (!entry || !entry.javaEditGroup) {
+        return;
+    }
+    entry.javaEditGroup--;
+    if (!entry.javaEditGroup) {
+        entry.model.pushStackElement();
+    }
 };
 
 window.SciNotesMonacoSetDocumentValue = function(id, value, revision, clean, readOnly) {

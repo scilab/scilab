@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Antoine ELIAS
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="scinotes_assistant" xml:lang="en">
+    <refnamediv>
+        <refname>scinotes_assistant</refname>
+        <refpurpose>SciNotes AI assistant: chat with an AI coding agent that reads your code, runs it in Scilab and edits your files</refpurpose>
+    </refnamediv>
+
+    <refsection>
+        <title>Description</title>
+        <para>
+            The assistant is a side panel of <link linkend="scinotes">SciNotes</link>. You describe
+            what you need in plain language; an AI agent writes the Scilab code, runs it in your
+            Scilab session, looks at the plots it produces, reads the help pages, and edits the file
+            open in the editor.
+        </para>
+        <para>
+            Scilab does not ship an AI model, and installs nothing. The assistant talks to an AI
+            agent program that you install and log in to with your own account (subscription or API
+            key). It uses the open <link xlink:href="https://agentclientprotocol.com">Agent Client
+            Protocol</link> (ACP), the protocol code editors use to work with AI agents: any agent
+            that supports it can be used, those listed below are known to Scilab. The agent talks to
+            its provider's servers; Scilab gives it a set of tools (run code, read variables, capture
+            figures, read and edit the editor file...) through a local
+            <link xlink:href="https://modelcontextprotocol.io">MCP</link> server.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Supported AI agents</title>
+        <para>
+            Install at least one of these agents, then log in once in a terminal. Scilab finds the
+            program automatically; the <emphasis>Settings</emphasis> page shows whether it is found.
+        </para>
+        <informaltable border="1">
+            <tr>
+                <th>Agent</th>
+                <th>Program</th>
+                <th>Install</th>
+                <th>Log in</th>
+                <th>Validated with</th>
+            </tr>
+            <tr>
+                <td><link xlink:href="https://docs.anthropic.com/en/docs/claude-code/overview">Claude</link> (Anthropic)</td>
+                <td><literal>claude-agent-acp</literal></td>
+                <td><literal>npm install -g @agentclientprotocol/claude-agent-acp</literal> (Node.js required)</td>
+                <td>run <literal>claude</literal> (Claude Code) once, or set <literal>ANTHROPIC_API_KEY</literal></td>
+                <td>0.85.1</td>
+            </tr>
+            <tr>
+                <td><link xlink:href="https://developers.openai.com/codex/cli">Codex</link> (OpenAI)</td>
+                <td><literal>codex-acp</literal></td>
+                <td><literal>npm install -g @agentclientprotocol/codex-acp</literal> (Node.js required)</td>
+                <td><literal>codex login</literal> (Codex CLI), or set <literal>OPENAI_API_KEY</literal></td>
+                <td>2.1.1</td>
+            </tr>
+            <tr>
+                <td><link xlink:href="https://github.com/github/copilot-cli">GitHub Copilot</link></td>
+                <td><literal>copilot --acp</literal></td>
+                <td>
+                    <para><literal>npm install -g @github/copilot</literal></para>
+                    <para>or <literal>winget install GitHub.Copilot</literal> (Windows), <literal>brew install copilot-cli</literal> (macOS)</para>
+                </td>
+                <td><literal>copilot login</literal> (GitHub Copilot subscription required)</td>
+                <td>1.0.88</td>
+            </tr>
+            <tr>
+                <td><link xlink:href="https://cursor.com/cli">Cursor</link></td>
+                <td><literal>cursor-agent acp</literal></td>
+                <td>
+                    <para>Windows: <literal>irm 'https://cursor.com/install?win32=true' | iex</literal></para>
+                    <para>Linux/macOS: <literal>curl https://cursor.com/install -fsS | bash</literal></para>
+                </td>
+                <td><literal>agent login</literal></td>
+                <td>2026.08.25</td>
+            </tr>
+            <tr>
+                <td><link xlink:href="https://github.com/google-gemini/gemini-cli">Gemini CLI</link> (Google)</td>
+                <td><literal>gemini --acp</literal></td>
+                <td><literal>npm install -g @google/gemini-cli</literal></td>
+                <td>run <literal>gemini</literal> once, or set <literal>GEMINI_API_KEY</literal></td>
+                <td>not validated</td>
+            </tr>
+            <tr>
+                <td><link xlink:href="https://antigravity.google">Antigravity</link> (Google)</td>
+                <td><literal>agy_acp_server</literal></td>
+                <td>
+                    <para>
+                        download the Antigravity ACP server zip for your system:
+                        <link xlink:href="https://dl.google.com/agy-extensions/releases/windows/agy-acp-server-1.3.0-windows-x86_64.zip">Windows</link>
+                        (<link xlink:href="https://dl.google.com/agy-extensions/releases/windows/agy-acp-server-1.3.0-windows-arm64.zip">ARM</link>),
+                        <link xlink:href="https://dl.google.com/agy-extensions/releases/macos/agy-acp-server-1.3.0-darwin-arm64.zip">macOS Apple silicon</link>,
+                        <link xlink:href="https://dl.google.com/agy-extensions/releases/macos/agy-acp-server-1.3.0-darwin-x86_64.zip">macOS Intel</link>,
+                        <link xlink:href="https://dl.google.com/agy-extensions/releases/linux/agy-acp-server-1.3.0-linux-x86_64.zip">Linux</link>
+                        (<link xlink:href="https://dl.google.com/agy-extensions/releases/linux/agy-acp-server-1.3.0-linux-arm64.zip">ARM</link>)
+                        (newest version: <link xlink:href="https://cdn.agentclientprotocol.com/registry/v1/latest/registry.json">ACP
+                        registry</link>, entry <literal>antigravity-acp</literal>)
+                    </para>
+                    <para>
+                        unzip it, and give the path of <literal>agy_acp_server.exe</literal> (Windows) or
+                        <literal>agy_acp_server.par</literal> (macOS, Linux) in the
+                        <emphasis>Settings</emphasis> page
+                    </para>
+                </td>
+                <td>sign in from the <emphasis>Settings</emphasis> page (Google account)</td>
+                <td>1.2.1</td>
+            </tr>
+            <tr>
+                <td><link xlink:href="https://github.com/mistralai/mistral-vibe">Vibe</link> (Mistral AI)</td>
+                <td><literal>vibe-acp</literal></td>
+                <td>
+                    <literal>uv tool install mistral-vibe</literal> or
+                    <literal>pip install mistral-vibe</literal> (Python 3.12 or later)
+                </td>
+                <td><literal>vibe --setup</literal>, or set <literal>MISTRAL_API_KEY</literal></td>
+                <td>2.25.8</td>
+            </tr>
+        </informaltable>
+        <para>
+            The agents update themselves. Scilab only relies on the protocol, so a newer version
+            normally works; the "Validated with" column gives the version known to work. What each
+            agent offers depends on its own support of the protocol: the list of models, the effort
+            levels, the token count, images in requests. For example, GitHub Copilot does not let
+            Scilab choose the model (it routes each request itself), and Cursor and Antigravity do
+            not report the tokens used.
+        </para>
+        <para>
+            Where Scilab looks for each program: the folders given in the agents catalogue (see
+            <emphasis>The agents catalogue</emphasis>), then the <literal>PATH</literal>, and on Linux
+            and macOS the usual install folders: <literal>~/.local/bin</literal>,
+            <literal>/opt/homebrew/bin</literal>, <literal>/usr/local/bin</literal>,
+            <literal>~/.npm-global/bin</literal>, <literal>~/.volta/bin</literal>,
+            <literal>~/.bun/bin</literal> and the node versions of <literal>~/.nvm</literal> (Scilab
+            started from the macOS Dock or a desktop menu does not get the <literal>PATH</literal> of
+            your shell). For a program installed elsewhere, give its full path in the
+            <emphasis>Settings</emphasis> page.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Opening the assistant and choosing an agent</title>
+        <para>
+            Click the <emphasis>Scilab Assistant</emphasis> button at the right end of the SciNotes
+            tabs, or use the <emphasis>Window &gt; Scilab Assistant</emphasis> menu. The panel opens
+            next to the editor; use the button or the menu again to close it.
+        </para>
+        <para>
+            The first time SciNotes opens, the assistant opens with it. Then SciNotes remembers
+            whether you left the panel open or closed it: once closed, it opens only on demand.
+            Drag the left border of the panel to resize it; its width is kept too.
+        </para>
+        <para>
+            The gear button of the panel (or the "agent · model · effort" chip under the input box)
+            opens the <emphasis>Settings</emphasis> page. Its list shows, for each agent, whether its
+            program is installed. When an agent is chosen, Scilab starts it at once: the page shows
+            its version and the models it offers, and your first request does not wait for it to
+            start. When the program is missing, the page shows how to install it. Then:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis>Model</emphasis>: one of the models the agent offers, or a model name typed
+                    in. Until you choose one, the agent uses its own default, shown in the field.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis>Effort</emphasis>: how much the model reasons before answering, for the
+                    agents that offer it.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis>Executable</emphasis>: the path of the agent program when it is not found
+                    automatically (<emphasis>Save</emphasis>; <emphasis>Auto-detect</emphasis>
+                    forgets it).
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            <emphasis>Add an agent…</emphasis>, at the end of the agent list, adds any other ACP agent
+            (see the <link xlink:href="https://agentclientprotocol.com/get-started/agents">list of ACP
+            agents</link>): give its name, its program (a name found on the <literal>PATH</literal>
+            or a full path), the arguments that start its ACP mode, and environment variables if it
+            needs some. Scilab starts it right away to check that it answers. For example, OpenCode:
+            program <literal>opencode</literal>, arguments <literal>acp</literal>. The agents you
+            added have a <emphasis>Remove this agent</emphasis> button.
+        </para>
+        <para>
+            These choices are stored in <literal>SCIHOME/assistant/assistant.json</literal>. The page
+            also has the <emphasis>Open the assistant with SciNotes</emphasis> and
+            <emphasis>Log conversations to disk</emphasis> options (see <emphasis>Files and
+            privacy</emphasis>). Its <emphasis>?</emphasis> button opens this help page. An agent
+            left unused for 15 minutes is stopped; it starts again on the next request.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Permissions and sign-in</title>
+        <para>
+            The assistant runs the Scilab tools (run code, read variables, capture figures, edit the
+            editor file...) without asking: this is its job. The agent can also read and search
+            files. Anything else the agent wants to do with its own tools — write or change a file,
+            run a system command, fetch a web page, delete or move a file — is asked first: a card
+            appears in the activity feed, with what the agent wants to do (the command, the file or
+            the address) and its choices, usually <emphasis>Allow</emphasis>,
+            <emphasis>Always allow</emphasis> (for the rest of the conversation) and
+            <emphasis>Reject</emphasis>. The agent waits for your answer; a rejected request is
+            reported in its answer. Stopping the request withdraws the question.
+        </para>
+        <para>
+            Some agents decide by themselves which actions they ask about: Codex, for instance,
+            reviews its actions on its own servers and rarely asks. Your own settings of an agent
+            (for example the permissions allowed in Claude Code) apply too.
+        </para>
+        <para>
+            When an agent needs you to sign in, a card offers its sign-in methods: one may open a
+            browser page, another asks you to run a command in a terminal (then click
+            <emphasis>I've signed in</emphasis>). The <emphasis>Settings</emphasis> page offers the
+            same buttons when the agent reports that it is not signed in.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>The agents catalogue</title>
+        <para>
+            How to find and start each agent is not in the code: it comes from
+            <literal>SCI/modules/scinotes/etc/assistant/agents.json</literal>. For each agent: its
+            name, its program names, the arguments that start its ACP mode, extra folders where to
+            look for it, environment variables, and the installation steps shown when it is missing.
+        </para>
+        <para>
+            Unfold <emphasis>Command line</emphasis> in the <emphasis>Settings</emphasis> page to see
+            and change the arguments and environment variables of the agent, and the command run.
+            Edit a field to change it, <emphasis>↺ default</emphasis> to undo it,
+            <emphasis>Reset all</emphasis> to undo every change of the agent.
+            <emphasis>Copy</emphasis> copies the command, for example to ask for help on the Scilab
+            forum. <emphasis>Paste a fix…</emphasis> applies a fix given as JSON, for one or several
+            agents; an unknown name with a <literal>command</literal> adds an agent:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+{"claude": {"env": {"ENABLE_TOOL_SEARCH": "false"}},
+ "opencode": {"name": "OpenCode", "command": ["opencode"], "args": ["acp"]}}
+]]></programlisting>
+        <para>
+            The changes are saved in <literal>SCIHOME/assistant/agents.json</literal>, which holds only
+            what differs from the defaults (same format; it can also be edited by hand, and is read
+            again when it changes). A <emphasis>customized</emphasis> mark, and a dot on the chip under
+            the input box, show that an agent was changed.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Using the assistant</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Editor context</emphasis>: the assistant knows the file active in
+                    SciNotes and the selected lines when you send your request (they are shown above the
+                    input box). Select code and ask "explain this", "optimize this", "why does this
+                    fail?"... Its edits apply to that file, even if you switch to another tab while it
+                    works; each edit is saved, and is undone by a single Ctrl+Z in the editor. If you
+                    close that file while it works, it stops editing instead of writing into another
+                    file; if you delete it, its changes stay in the editor without recreating the file;
+                    if you edit the file yourself meanwhile, it re-reads it instead of overwriting your
+                    changes, and a file with unsaved changes is never reloaded from disk.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Your Scilab session</emphasis>: the code it runs executes in your
+                    session and in the current directory (<link linkend="pwd">pwd</link>), and can use and
+                    change your variables. New files are created in the current directory.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Files</emphasis>: type <literal>@</literal> to reference a file of
+                    the current directory ("plot the columns of @data/measures.csv"). Attach files with the
+                    paperclip button, by drag and drop, or paste an image (15 MB at most per file).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Code blocks</emphasis> of the answers have
+                    <emphasis>Run</emphasis>, <emphasis>Insert</emphasis> (at the cursor of the editor) and
+                    <emphasis>Copy</emphasis> buttons.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Stop</emphasis>: while the assistant works, the send button
+                    becomes a stop button. A request is limited to 60 steps; when it stops on this limit,
+                    reply "continue".
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Conversations</emphasis> are saved automatically: the history
+                    button lists the last 20, to resume, rename or delete them. The <emphasis>+</emphasis>
+                    button starts a new conversation. When a conversation is resumed, the agent picks up
+                    where it left off; if it cannot (its own record of the conversation is gone, or you
+                    changed agent in the middle of a conversation), it is given the previous messages so
+                    that the conversation goes on.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Enter sends the request, Shift+Enter inserts a new line, the up and down arrows
+                    recall your previous requests.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+
+    <refsection>
+        <title>Skills</title>
+        <para>
+            Skills are instruction files that teach the assistant how to handle a domain in Scilab.
+            Scilab ships skills for graphics, GUIs, data import, signal processing, control systems,
+            simulation (ODE, DAE), optimization, debugging, toolboxes, classdef and arguments blocks.
+            The skills matching the words of your request are loaded automatically (the activity feed
+            shows "Skill loaded: ..."); the assistant can load the others when needed.
+        </para>
+        <para>
+            You can add your own skills, or replace a built-in one, in
+            <literal>SCIHOME/assistant/skills/&lt;name&gt;/SKILL.md</literal> (see
+            <link linkend="SCIHOME">SCIHOME</link>). A skill is a Markdown file starting with a header:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+---
+name: mylab
+description: Conventions of my lab: data formats, plotting style, helper functions.
+triggers: lab, measure, bench, mylab
+---
+
+# My lab conventions
+- Measurement files are CSV with a header line, read them with csvRead(..., ",", ".", "double", [], [], [], 1)
+- ...
+ ]]></programlisting>
+        <para>
+            <literal>triggers</literal> is a comma-separated list of words or phrases (case and accents
+            ignored) that load the skill automatically. Skills are re-read at each request: no restart
+            is needed after an edit.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Files and privacy</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Your requests, the content of the active file, the files you reference or attach, and
+                    the results of the code run by the assistant are sent to the provider of the agent,
+                    under the terms of your account with that provider.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The Scilab code the assistant runs is not confirmed first (see
+                    <emphasis>Permissions and sign-in</emphasis>): it can create or modify files from
+                    Scilab. Review what it did, and keep your work under version control.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The MCP server that gives the tools to the agent listens on the local machine only
+                    (127.0.0.1), on a port chosen at each Scilab session. Scilab gives it to the agent
+                    for each conversation: the configuration files of the agents are not modified. An
+                    agent that only accepts local programs as MCP servers gets a small Java bridge
+                    started with the Java of Scilab.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Files written by the assistant in <literal>SCIHOME/assistant/</literal>: saved
+                    conversations (<literal>conversations/</literal>), your skills
+                    (<literal>skills/</literal>), settings (<literal>assistant.json</literal>), your
+                    changes to the agents catalogue (<literal>agents.json</literal>) and, when the
+                    <emphasis>Log conversations to disk</emphasis> option is on (default), full transcripts
+                    of the conversations (<literal>logs/</literal>, 50 MB at most, oldest removed first).
+                    These logs stay on your machine; turn the option off if you do not want them.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The agents keep their own record of the conversations, in their own folders (for
+                    instance <literal>~/.claude</literal> for Claude).
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+
+    <refsection>
+        <title>Troubleshooting</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">"&lt;Name&gt; not found"</emphasis>: install the agent (see the
+                    table), check that its program runs in a terminal, then click the refresh button of
+                    the <emphasis>Settings</emphasis> page, or give the path of the program there.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Not signed in</emphasis> (the <emphasis>Settings</emphasis> page
+                    shows "sign-in required", or the answer reports an authentication error): use the
+                    sign-in buttons, or run the login command of the table in a terminal, then retry.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">An agent answers but cannot use the Scilab tools</emphasis>, or
+                    fails after an update: compare its version, shown in the <emphasis>Settings</emphasis>
+                    page, with the "Validated with" column. Most agents can install a given version,
+                    e.g. <literal>npm install -g @agentclientprotocol/claude-agent-acp@0.85.1</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Diagnostic logs</emphasis>: the exchanges with the agent (ACP
+                    messages) are written in <literal>TMPDIR/assistant.log</literal> (see
+                    <link linkend="TMPDIR">TMPDIR</link>); the conversation transcripts are in
+                    <literal>SCIHOME/assistant/logs/</literal>. Join them to a bug report.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scinotes">scinotes</link>
+            </member>
+            <member>
+                <link linkend="SCIHOME">SCIHOME</link>
+            </member>
+            <member>
+                <link linkend="TMPDIR">TMPDIR</link>
+            </member>
+        </simplelist>
+    </refsection>
+
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>Introduction of the SciNotes AI assistant.</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

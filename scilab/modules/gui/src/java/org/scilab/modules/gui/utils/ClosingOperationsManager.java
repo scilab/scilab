@@ -133,6 +133,9 @@ public class ClosingOperationsManager {
         }
     }
 
+    /** True while close() destroys the tabs because Scilab exits. */
+    private static boolean closingScilab = false;
+
     /**
      * Start a closing operation on root
      *
@@ -525,6 +528,7 @@ public class ClosingOperationsManager {
                         break;
                     }
                 }
+                closingScilab = console != null;
 
                 // We remove the tabs which have a callback and no
                 // ClosingOperation
@@ -676,10 +680,20 @@ public class ClosingOperationsManager {
                         e.printStackTrace();
                     }
                 }
+                closingScilab = false;
             }
         }
 
         return ret;
+    }
+
+    /**
+     * @return true while the tabs are closed because Scilab exits (the
+     *         console is closed with them), false when some tabs are closed
+     *         and Scilab goes on
+     */
+    public static boolean isClosingScilab() {
+        return closingScilab;
     }
 
     /**

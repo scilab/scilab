@@ -78,6 +78,7 @@ function ret = tbx_generate_pofile(tbx_name, tbx_path)
     srcFiles = [srcFiles ; getFilesList("sci_gateway", EXTENSIONS)];
     srcFiles = [srcFiles ; getFilesList("macros", EXTENSIONS_MACROS)];
     srcFiles = [srcFiles ; getFilesList("etc", EXTENSIONS_MACROS)];
+    srcFiles = [srcFiles ; getFilesList("classes", EXTENSIONS_MACROS)];
 
     //manage xml preferences files
     xmlFiles = getFilesList("etc", EXTENSIONS_XML);
@@ -134,7 +135,7 @@ function ret = tbx_generate_pofile(tbx_name, tbx_path)
     """Content-Transfer-Encoding: 8bit\n""";""];
 
     potFile = mgetl(TARGETDIR + potFilename);
-    
+
     // We need C strings format to be used as gettext key as in updateLocalization.sh
     // "" -> \"
     // '' -> '
@@ -149,7 +150,7 @@ function ret = tbx_generate_pofile(tbx_name, tbx_path)
     if isdef("xmlTmpFile", "l") then
         potFile = strsubst(potFile, "#: "+xmlTmpFile, "#: A-XML-file");
     end
-    
+
     potFile = [header ; potFile];
     mputl(potFile, TARGETDIR + potFilename);
 

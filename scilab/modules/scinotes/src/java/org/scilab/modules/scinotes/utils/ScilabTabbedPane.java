@@ -20,6 +20,7 @@ import java.awt.Container;
 import java.awt.DefaultFocusTraversalPolicy;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
@@ -62,6 +63,8 @@ import javax.swing.JRootPane;
 import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.plaf.InsetsUIResource;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
@@ -120,8 +123,12 @@ public final class ScilabTabbedPane extends JTabbedPane implements DragGestureLi
         }
     }
 
+    private static final String TAB_AREA_INSETS = "TabbedPane.tabAreaInsets";
+
     private SciNotes editor;
     private int draggedIndex;
+    /** Room kept free at the end of the tab runs, see setTrailingSpace(). */
+    private int trailingSpace;
 
     /**
      * Constructor
@@ -154,6 +161,42 @@ public final class ScilabTabbedPane extends JTabbedPane implements DragGestureLi
                 }
             }
         });
+    }
+
+    /**
+     * Keep some room free at the end of the tab runs, for a component that
+     * the parent overlays there (the assistant button): the tabs wrap
+     * before it instead of sliding under it.
+     * @param width the width to keep free
+     */
+    public void setTrailingSpace(int width) {
+        trailingSpace = width;
+        updateUI();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void updateUI() {
+        if (trailingSpace <= 0) {
+            super.updateUI();
+            return;
+        }
+
+        // The UI reads the tab area insets from the defaults when installed
+        // (the UIs built on BasicTabbedPaneUI: Windows, Metal...),
+        // so they are widened for this pane only, while it is installed.
+        Object old = UIManager.get(TAB_AREA_INSETS);
+        Object lafValue = UIManager.getLookAndFeelDefaults().get(TAB_AREA_INSETS);
+        Insets in = old instanceof Insets ? (Insets) old : new Insets(0, 0, 0, 0);
+        UIManager.put(TAB_AREA_INSETS, new InsetsUIResource(in.top, in.left, in.bottom, in.right + trailingSpace));
+        try {
+            super.updateUI();
+        } finally {
+            // null removes the override when there was none
+            UIManager.put(TAB_AREA_INSETS, old == lafValue ? null : old);
+        }
     }
 
     /**

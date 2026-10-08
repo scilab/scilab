@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scilab Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="libs/highlight-scilab.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                </svg>
+                <span>Scilab Assistant</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <button id="settings-btn" class="icon-btn" title="AI providers">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+            </button>
+            <div class="conv-menu-wrapper">
+                <button id="conv-menu-btn" class="icon-btn" title="Conversations">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/>
+                    </svg>
+                </button>
+                <div id="conv-dropdown" class="conv-dropdown" hidden></div>
+            </div>
+            <button id="clear-btn" class="icon-btn" title="New conversation">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Chat Container -->
+    <main class="chat-container" id="chat-container">
+        <div id="sticky-prompt" class="sticky-prompt" hidden></div>
+        <div id="messages" class="messages">
+            <div class="message assistant">
+                <div class="message-content">
+                    <p>I can read and edit your code, run it, and help you debug.</p>
+                    <p>Select code and ask me about it, or just describe what you need.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Settings page (overlay): AI provider, model, effort, command line, options -->
+    <section id="config-view" class="config-view" hidden>
+        <div class="config-header">
+            <button id="config-back" class="icon-btn" title="Back to chat">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+                </svg>
+            </button>
+            <span class="config-title">Settings</span>
+            <button id="config-help" class="icon-btn config-help" title="Help: supported AI tools, installation, privacy">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+            </button>
+        </div>
+        <div id="config-list" class="config-list"></div>
+    </section>
+
+    <!-- Input Area -->
+    <footer class="input-area">
+        <div class="composer-shell">
+            <div id="file-preview" class="file-preview" hidden></div>
+            <div id="image-preview" class="image-preview" hidden></div>
+            <div id="mention-dropdown" class="mention-dropdown" hidden></div>
+            <div class="input-container">
+                <textarea id="prompt-input" class="prompt-input"
+                    placeholder="Ask me anything about Scilab..."
+                    rows="1"></textarea>
+            </div>
+            <div class="composer-meta">
+                <div class="composer-left">
+                    <button id="attach-btn" class="icon-btn" title="Attach file or image">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </button>
+                    <input type="file" id="file-input" multiple hidden>
+                    <button id="provider-chip" class="provider-chip" title="Agent settings: provider, model, effort">
+                        <span id="provider-chip-label" class="provider-chip-label">AI provider&hellip;</span>
+                        <svg class="provider-chip-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </button>
+                    <span id="editor-context-sep" class="composer-sep" hidden></span>
+                    <span id="editor-context" class="editor-context" hidden>
+                        <svg class="editor-context-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                        </svg>
+                        <span id="editor-context-file" class="editor-context-file"></span>
+                        <span id="editor-context-selection" class="editor-context-selection"></span>
+                    </span>
+                </div>
+                <button id="send-btn" class="send-btn" title="Send (Enter)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Thirdparty libraries: Java passes their folder (?js=...), which is
+        // not at the same place in a source tree and in a Linux/macOS install
+        (function () {
+            var js = new URLSearchParams(location.search).get('js') || '../../../../thirdparty/web/';
+            ['marked/marked.umd.js', 'highlightjs/highlight.min.js', 'dompurify/purify.min.js'].forEach(function (f) {
+                document.write('<script src="' + js + '/' + f + '"><\/script>');
+            });
+        })();
+    </script>
+    <!-- Scilab grammar of the help browser (the thirdparty highlight.js build has none) -->
+    <script src="../../../helptools/src/web/scilab.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -68,4 +68,22 @@ public  static int interruptScilab() {
     return InterpreterManagementJNI.interruptScilab();
   }
 
+
+ /**
+  * Start capturing all Scilab output (stdout + stderr).
+  * @param silent if non-zero, output is captured only (not forwarded to the console)
+  */
+public  static void startScilabOutputCapture(int silent) {
+    InterpreterManagementJNI.startScilabOutputCapture(silent);
+  }
+
+
+ /**
+  * Stop capturing output and return the captured text.
+  * @return captured output as a string, or null
+  */
+public  static String stopScilabOutputCapture() {
+    return InterpreterManagementJNI.stopScilabOutputCapture();
+  }
+
 }

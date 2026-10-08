@@ -18,16 +18,21 @@ package org.scilab.modules.scinotes.utils;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.commons.gui.ScilabCefPanel;
+import org.scilab.modules.commons.gui.ScilabLAF;
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.actions.OpenAssistantAction;
 
 /**
  * Content pane for SciNotes.
@@ -36,7 +41,10 @@ import org.scilab.modules.scinotes.SciNotes;
 public final class SciNotesContents extends JPanel {
     private static final long serialVersionUID = 1L;
 
+    private static final int ASSISTANT_BUTTON_GAP = 2;
+
     private ScilabTabbedPane stp;
+    private final JButton assistantButton;
     private final JLayeredPane editorLayer;
     private Component bottom;
     private ScilabCefPanel browserOverlay;
@@ -89,10 +97,13 @@ public final class SciNotesContents extends JPanel {
     public SciNotesContents(final SciNotes editor) {
         super(new BorderLayout());
         stp = new ScilabTabbedPane(editor);
+        assistantButton = createAssistantButton(editor);
+        stp.setTrailingSpace(assistantButton.getPreferredSize().width + 2 * ASSISTANT_BUTTON_GAP);
         editorLayer = new JLayeredPane() {
             @Override
             public void doLayout() {
                 stp.setBounds(0, 0, getWidth(), getHeight());
+                layoutAssistantButton();
                 layoutBrowserOverlay();
             }
 
@@ -107,6 +118,8 @@ public final class SciNotesContents extends JPanel {
             }
         };
         editorLayer.add(stp, JLayeredPane.DEFAULT_LAYER);
+        // Over the tab strip, never over the editor area of the native browser
+        editorLayer.add(assistantButton, JLayeredPane.MODAL_LAYER);
         add(editorLayer, BorderLayout.CENTER);
         addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
@@ -234,6 +247,47 @@ public final class SciNotesContents extends JPanel {
         }
         editorLayer.revalidate();
         editorLayer.repaint();
+    }
+
+    /**
+     * The assistant button, at the right end of the tab strip: in the main
+     * toolbar it was pushed to the far right of the docking window (the whole
+     * console when SciNotes is docked in it), far from the editors.
+     */
+    private static JButton createAssistantButton(SciNotes editor) {
+        JButton button = OpenAssistantAction.createButton(Messages.gettext("Scilab Assistant"), "assistant", editor);
+        ScilabLAF.setDefaultProperties(button);
+        button.setMargin(new Insets(2, 2, 2, 2));
+        // Flat as a toolbar button: the button look only on rollover
+        button.setRolloverEnabled(true);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.getModel().addChangeListener(e -> {
+            boolean rollover = button.getModel().isRollover();
+            button.setContentAreaFilled(rollover);
+            button.setBorderPainted(rollover);
+        });
+        return button;
+    }
+
+    /** Center the assistant button on the first tab run, at its right end. */
+    private void layoutAssistantButton() {
+        Dimension size = assistantButton.getPreferredSize();
+        int top = Integer.MAX_VALUE;
+        int height = size.height;
+        for (int i = 0; i < stp.getTabCount(); i++) {
+            Rectangle r = stp.getBoundsAt(i);
+            if (r != null && r.y < top) {
+                top = r.y;
+                height = r.height;
+            }
+        }
+        if (top == Integer.MAX_VALUE) {
+            top = 0;
+        }
+        int x = editorLayer.getWidth() - size.width - ASSISTANT_BUTTON_GAP;
+        int y = Math.max(0, top + (height - size.height) / 2);
+        assistantButton.setBounds(x, y, size.width, size.height);
     }
 
     private void layoutBrowserOverlay() {

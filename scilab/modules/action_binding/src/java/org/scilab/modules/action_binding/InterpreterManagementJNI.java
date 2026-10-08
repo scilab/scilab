@@ -44,4 +44,6 @@ class InterpreterManagementJNI {
   public final static native int requestScilabExec(String jarg1);
   public final static native int callScilabExecstr(String jarg1);
   public final static native int interruptScilab();
+  public final static native void startScilabOutputCapture(int jarg1);
+  public final static native String stopScilabOutputCapture();
 }

@@ -105,6 +105,10 @@ public class DefaultAction extends CommonCallBack {
             ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(keyStroke);
         }
 
+        if (icon != null) {
+            ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setIcon(new ImageIcon(FindIconHelper.findIcon(icon)));
+        }
+
         return menu;
     }
 

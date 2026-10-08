@@ -1279,6 +1279,7 @@ images/icons/16x16/actions/data_modify.png \
 images/icons/16x16/animations/process-working.png \
 images/icons/16x16/apps/accessories-text-editor.png \
 images/icons/16x16/apps/atoms-green.png \
+images/icons/16x16/apps/assistant.png \
 images/icons/16x16/apps/datatips.png \
 images/icons/16x16/apps/help-browser.png \
 images/icons/16x16/apps/rrze_table.png \
@@ -1315,6 +1316,7 @@ images/icons/32x32/actions/edit-clear.png \
 images/icons/32x32/actions/tree-diagramm.png \
 images/icons/32x32/actions/tree-diagramm-delete.png \
 images/icons/32x32/apps/accessories-text-editor.png \
+images/icons/32x32/apps/assistant.png \
 images/icons/32x32/apps/graphic-window.png \
 images/icons/32x32/apps/rrze_table.png \
 images/icons/32x32/apps/scilab.png \

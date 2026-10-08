@@ -360,6 +360,7 @@ public final class SciNotes extends SwingScilabDockablePanel {
         if (searchInFiles != null) {
             searchInFiles.addToolBar(null);
         }
+        refreshAssistantLayout();
     }
 
     /**
@@ -373,6 +374,25 @@ public final class SciNotes extends SwingScilabDockablePanel {
         }
         if (searchInFiles != null) {
             searchInFiles.changeToolBar();
+        }
+        refreshAssistantLayout();
+    }
+
+    /**
+     * Force a revalidate/repaint of the window after docking changes:
+     * heavyweight JCEF components don't repaint correctly when FlexDock
+     * rearranges the docking port.
+     */
+    private void refreshAssistantLayout() {
+        if (assistantDock != null && assistantVisible) {
+            javax.swing.SwingUtilities.invokeLater(() -> {
+                java.awt.Window w = javax.swing.SwingUtilities.getWindowAncestor(assistantDock);
+                if (w != null) {
+                    w.invalidate();
+                    w.validate();
+                    w.repaint();
+                }
+            });
         }
     }
 
@@ -1031,6 +1051,12 @@ public final class SciNotes extends SwingScilabDockablePanel {
      *            SciNotes window closed earlier
      */
     private static void launchSciNotes(boolean fresh) {
+        if (editor == null && !fresh && !scinotesList.isEmpty()) {
+            // The focused window was closed: use another open one rather
+            // than creating a window
+            editor = scinotesList.get(scinotesList.size() - 1);
+        }
+        boolean created = editor == null;
         if (editor == null) {
             List<String> uuids = fresh ? new ArrayList<String>() : ConfigSciNotesManager.getEditorsUUID();
             boolean success = false;
@@ -1085,6 +1111,18 @@ public final class SciNotes extends SwingScilabDockablePanel {
 
         ScilabGUIUtilities.toFront(editor,SciNotesMessages.SCILAB_EDITOR);
 
+        // Show the assistant with the first window, unless the user closed it
+        // last time. Deferred: the window is laid out first, so the panel
+        // gets half of its width.
+        if (created && !fresh && assistantHost == null
+                && org.scilab.modules.scinotes.assistant.AssistantPanel.isOpenWithSciNotes()) {
+            final SciNotes ed = editor;
+            SwingUtilities.invokeLater(() -> {
+                if (assistantHost == null && scinotesList.contains(ed)) {
+                    ed.toggleAssistant();
+                }
+            });
+        }
     }
 
     /**
@@ -1154,13 +1192,48 @@ public final class SciNotes extends SwingScilabDockablePanel {
      * Close SciNotes instance including all tabs.
      */
     public void closeSciNotes() {
-        saveOpenFilesForRestore();
+        if (ClosingOperationsManager.isClosingScilab() || scinotesList.size() <= 1) {
+            // Scilab exits, or the last window closes: its files are
+            // reopened with it next time
+            saveOpenFilesForRestore();
+        } else {
+            // A window closed while others stay open: forget it, else a
+            // window created later (e.g. a tab dragged out) restores its tabs
+            ConfigSciNotesManager.removeEditorUUID(uuid.toString());
+        }
 
         for (int i = 0; i < getTabPane().getTabCount(); i++) {
             ScilabEditorPane textPaneAt = getTextPane(i);
             if (textPaneAt != null) {
                 textPaneAt.destroy();
             }
+        }
+
+        // Assistant: release its browser (a live CEF browser blocks CEF shutdown)
+        java.awt.Window assistantWindow = null;
+        if (assistantPanel != null) {
+            assistantWindow = javax.swing.SwingUtilities.getWindowAncestor(contentPane);
+            // Close the browser before detaching it, as Monaco does: once
+            // closing, CefBrowserWr.removeNotify() posts no native reparent,
+            // and dispose() waits for CEF to have destroyed it
+            assistantPanel.dispose();
+            assistantPanel = null;
+        }
+        if (assistantDock != null) {
+            contentPane.remove(assistantDock);
+            assistantDock = null;
+            assistantVisible = false;
+        }
+        if (assistantHost == this) {
+            // The single assistant goes with its window: stop its tasks, the
+            // next one opens in the window asking for it
+            assistantHost = null;
+            assistantDebounceTimer.stop();
+            if (assistantTrackedPane != null) {
+                assistantTrackedPane.removeCaretListener(assistantCaretListener);
+                assistantTrackedPane = null;
+            }
+            org.scilab.modules.scinotes.assistant.AssistantPanel.shutdown();
         }
 
         FindAction.close();
@@ -1183,12 +1256,31 @@ public final class SciNotes extends SwingScilabDockablePanel {
             EncodingAction.close();
             EndOfLineAction.close();
             HelpOnTypingManager.close();
+            // Kill the AI CLIs still running and stop the assistant servers
+            org.scilab.modules.scinotes.assistant.AssistantPanel.shutdown();
         }
 
         editor = null;
+        // The assistant followed a tab of this window: back to another one
+        if (assistantHost != null) {
+            assistantHost.activeEditorChanged();
+        }
         SciNotesGUI.clean(this);
         close();
         ConfigSciNotesManager.resetDocument();
+
+        // SciNotes docked with other panels: the window stays, and the area
+        // of the native assistant browser is not repainted by itself
+        if (assistantWindow != null) {
+            final java.awt.Window w = assistantWindow;
+            javax.swing.SwingUtilities.invokeLater(() -> {
+                if (w.isDisplayable()) {
+                    w.invalidate();
+                    w.validate();
+                    w.repaint();
+                }
+            });
+        }
     }
 
     /**
@@ -1651,7 +1743,7 @@ public final class SciNotes extends SwingScilabDockablePanel {
             if (name != null) {
                 File file = new File(name);
                 name = file.getName();
-                initialDirectoryPath = file.getParent();                 
+                initialDirectoryPath = file.getParent();
             }
         }
         if (name == null) {
@@ -1686,13 +1778,13 @@ public final class SciNotes extends SwingScilabDockablePanel {
         String[] selection = sfc.getSelection();
         if (selection.length>0 && selection[0] != "") {
             String fileName = selection[0];
-                
+
             ConfigManager.saveLastOpenedDirectory(sfc.getSelectionPathName());
-            
+
             return fileName;
         }  else {
             return "";
-        }       
+        }
     }
 
     /**
@@ -2961,6 +3053,11 @@ public final class SciNotes extends SwingScilabDockablePanel {
      */
     public static void setEditor(SciNotes scinotes) {
         editor = scinotes;
+        // Called on every tab change and focus of an editor pane, in any
+        // window: the assistant follows the file the user works on
+        if (assistantHost != null) {
+            assistantHost.activeEditorChanged();
+        }
     }
 
     /**
@@ -2968,6 +3065,307 @@ public final class SciNotes extends SwingScilabDockablePanel {
      */
     public static SciNotes getEditor() {
         return editor;
+    }
+
+    /**
+     * The editor the assistant acts on: the last focused one, else the one
+     * holding the assistant, else any open one.
+     *
+     * @return the active editor, or null when no SciNotes is open
+     */
+    public static SciNotes getActiveEditor() {
+        if (editor != null && scinotesList.contains(editor)) {
+            return editor;
+        }
+        if (assistantHost != null) {
+            return assistantHost;
+        }
+        return scinotesList.isEmpty() ? null : scinotesList.get(0);
+    }
+
+    /**
+     * The SciNotes window holding the assistant, null when none. There is a
+     * single assistant for all the windows, as in VS Code: its editor tools
+     * act on the tabs of every window.
+     */
+    private static SciNotes assistantHost;
+
+    private org.scilab.modules.scinotes.assistant.AssistantPanel assistantPanel;
+    /** Right side of the window: resize handle + assistant panel. */
+    private javax.swing.JPanel assistantDock;
+    private boolean assistantVisible = false;
+    private int assistantWidth = -1;
+    private javax.swing.event.CaretListener assistantCaretListener;
+    private ScilabEditorPane assistantTrackedPane;
+    private javax.swing.Timer assistantDebounceTimer;
+
+    /** Width bounds of the assistant side panel. */
+    private static final int ASSISTANT_MIN_WIDTH = 280;
+    private static final int EDITOR_MIN_WIDTH = 200;
+
+    /**
+     * Toggle the assistant side panel, on the right side of SciNotes.
+     *
+     * The panel goes to the EAST of the SciNotes contents (not of the
+     * window, which is the whole console when SciNotes is docked in it) and
+     * is only shown/hidden afterwards: the editor layer in the CENTER (with
+     * the Monaco editors) is never removed nor re-parented. Moving it in and
+     * out of a split pane re-parented the native JCEF browsers of Monaco,
+     * which broke them at random (grey or white editors), especially while
+     * they were still being created at SciNotes startup.
+     *
+     * There is a single assistant: asked from another window, it is brought
+     * to the front if shown, else moved into the window asking for it.
+     */
+    public void toggleAssistant() {
+        if (!SwingUtilities.isEventDispatchThread()) {
+            // assistant_gui() calls it from the Scilab thread
+            SwingUtilities.invokeLater(() -> toggleAssistant());
+            return;
+        }
+        if (assistantHost != null && assistantHost != this) {
+            if (assistantHost.assistantVisible) {
+                assistantHost.showAssistant();
+                return;
+            }
+            takeAssistantFrom(assistantHost);
+        }
+        try {
+            if (assistantVisible) {
+                assistantDock.setVisible(false);
+                assistantVisible = false;
+            } else {
+                if (assistantPanel == null) {
+                    assistantPanel = new org.scilab.modules.scinotes.assistant.AssistantPanel();
+                    assistantPanel.setOnReady(() -> sendEditorContextToAssistant());
+                    assistantHost = this;
+                    // Debounce: the context is sent 300ms after the last event
+                    assistantDebounceTimer = new javax.swing.Timer(300, e -> sendEditorContextToAssistant());
+                    assistantDebounceTimer.setRepeats(false);
+                }
+                if (assistantDock == null) {
+                    assistantDock = new javax.swing.JPanel(new java.awt.BorderLayout());
+                    assistantDock.add(createAssistantResizeHandle(), java.awt.BorderLayout.LINE_START);
+                    assistantDock.add(assistantPanel, java.awt.BorderLayout.CENTER);
+                    contentPane.add(assistantDock, java.awt.BorderLayout.LINE_END);
+                }
+                if (assistantWidth <= 0) {
+                    // The width set by the user last time, else half the window
+                    assistantWidth = org.scilab.modules.scinotes.assistant.AssistantPanel.getSavedWidth();
+                }
+                if (assistantWidth <= 0) {
+                    assistantWidth = Math.max(ASSISTANT_MIN_WIDTH, contentPane.getWidth() / 2);
+                }
+                setAssistantWidth(assistantWidth);
+                assistantDock.setVisible(true);
+                assistantVisible = true;
+
+                // Follow the active editor (the first context is sent when
+                // the frontend sends 'ready')
+                activeEditorChanged();
+            }
+
+            contentPane.revalidate();
+            contentPane.repaint();
+            // Reopened with the next SciNotes only if left open
+            org.scilab.modules.scinotes.assistant.AssistantPanel.setOpenWithSciNotes(assistantVisible);
+        } catch (Exception e) {
+            System.err.println("Failed to toggle assistant: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /** Apply a width to the assistant side panel, within bounds. */
+    private void setAssistantWidth(int width) {
+        java.awt.Container parent = assistantDock.getParent();
+        int max = parent != null && parent.getWidth() > 0
+            ? parent.getWidth() - EDITOR_MIN_WIDTH : Integer.MAX_VALUE;
+        assistantWidth = Math.max(ASSISTANT_MIN_WIDTH, Math.min(width, max));
+        assistantDock.setPreferredSize(new java.awt.Dimension(assistantWidth, 0));
+    }
+
+    /** Vertical bar on the left of the assistant panel: drag it to resize the panel. */
+    private javax.swing.JComponent createAssistantResizeHandle() {
+        javax.swing.JPanel handle = new javax.swing.JPanel();
+        handle.setPreferredSize(new java.awt.Dimension(5, 0));
+        handle.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.W_RESIZE_CURSOR));
+        handle.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0,
+            javax.swing.UIManager.getColor("Separator.foreground")));
+        java.awt.event.MouseAdapter drag = new java.awt.event.MouseAdapter() {
+            private int startX;
+            private int startWidth;
+
+            @Override
+            public void mousePressed(java.awt.event.MouseEvent e) {
+                startX = e.getXOnScreen();
+                startWidth = assistantDock.getWidth();
+            }
+
+            @Override
+            public void mouseDragged(java.awt.event.MouseEvent e) {
+                setAssistantWidth(startWidth + startX - e.getXOnScreen());
+                assistantDock.revalidate();
+            }
+
+            @Override
+            public void mouseReleased(java.awt.event.MouseEvent e) {
+                // Saved once the drag ends, not on every move
+                org.scilab.modules.scinotes.assistant.AssistantPanel.saveWidth(assistantWidth);
+            }
+        };
+        handle.addMouseListener(drag);
+        handle.addMouseMotionListener(drag);
+        return handle;
+    }
+
+    /**
+     * Move the hidden assistant of another window into this one. Its browser
+     * is moved as a docking move does, not recreated: the conversation
+     * displayed and a task still running are kept.
+     *
+     * @param from the window holding the assistant
+     */
+    private void takeAssistantFrom(SciNotes from) {
+        assistantPanel = from.assistantPanel;
+        assistantWidth = from.assistantWidth;
+        from.assistantPanel = null;
+        from.assistantDebounceTimer.stop();
+        from.assistantDebounceTimer = null;
+        if (from.assistantTrackedPane != null) {
+            from.assistantTrackedPane.removeCaretListener(from.assistantCaretListener);
+            from.assistantTrackedPane = null;
+        }
+
+        // Keep the browser alive: out of a docking move, removing it from
+        // the window disposes it (see ScilabCefPanel.removeNotify())
+        ScilabCefPanel.setDockInProgress(true);
+        try {
+            from.assistantDock.remove(assistantPanel);
+            from.contentPane.remove(from.assistantDock);
+        } finally {
+            ScilabCefPanel.setDockInProgress(false);
+        }
+        from.assistantDock = null;
+        from.contentPane.revalidate();
+        from.contentPane.repaint();
+
+        assistantPanel.setOnReady(() -> sendEditorContextToAssistant());
+        assistantDebounceTimer = new javax.swing.Timer(300, e -> sendEditorContextToAssistant());
+        assistantDebounceTimer.setRepeats(false);
+        assistantHost = this;
+    }
+
+    /** Show the assistant of this window and bring the window to the front. */
+    private void showAssistant() {
+        if (!assistantVisible) {
+            toggleAssistant();
+        }
+        java.awt.Window w = SwingUtilities.getWindowAncestor(contentPane);
+        if (w instanceof java.awt.Frame && (((java.awt.Frame) w).getExtendedState() & java.awt.Frame.ICONIFIED) != 0) {
+            ((java.awt.Frame) w).setExtendedState(((java.awt.Frame) w).getExtendedState() & ~java.awt.Frame.ICONIFIED);
+        }
+        if (w != null) {
+            w.toFront();
+        }
+        assistantPanel.requestBrowserFocus();
+    }
+
+    /**
+     * The active editor changed (tab change, focus of another window) or the
+     * assistant was shown: follow the caret of the new active tab and
+     * refresh the context displayed by the assistant.
+     */
+    private void activeEditorChanged() {
+        if (!assistantVisible) {
+            return;
+        }
+        trackActivePaneCaret();
+        assistantDebounceTimer.restart();
+    }
+
+    /**
+     * Send the context of the active editor to the assistant, if any.
+     */
+    public static void refreshAssistantContext() {
+        if (assistantHost != null) {
+            assistantHost.sendEditorContextToAssistant();
+        }
+    }
+
+    /**
+     * Attach a CaretListener to the tab of the active editor, which may be in
+     * another window. Detach from the previous one if needed.
+     */
+    private void trackActivePaneCaret() {
+        if (assistantCaretListener == null) {
+            assistantCaretListener = e -> {
+                if (assistantVisible && assistantDebounceTimer != null) {
+                    assistantDebounceTimer.restart();
+                }
+            };
+        }
+
+        // Detach from previous pane
+        if (assistantTrackedPane != null) {
+            assistantTrackedPane.removeCaretListener(assistantCaretListener);
+        }
+
+        // Attach to current pane
+        SciNotes active = getActiveEditor();
+        ScilabEditorPane pane = active != null ? active.getTextPane() : null;
+        assistantTrackedPane = pane;
+        if (pane != null) {
+            pane.addCaretListener(assistantCaretListener);
+        }
+    }
+
+    /**
+     * Send the context of the active editor (filename, selection info) to the assistant frontend.
+     */
+    public void sendEditorContextToAssistant() {
+        if (assistantPanel == null || !assistantVisible) return;
+
+        SciNotes active = getActiveEditor();
+        ScilabEditorPane pane = active != null ? active.getTextPane() : null;
+        if (pane == null) {
+            assistantPanel.sendEvent("{\"type\":\"editor_context\",\"filename\":\"\",\"selection\":\"\"}");
+            return;
+        }
+
+        String filename = pane.getName();
+        if (filename == null) filename = "";
+
+        String shortName = pane.getShortName();
+        if (shortName == null || shortName.isEmpty()) shortName = "(untitled)";
+
+        String selection = pane.getSelectedText();
+        int selectionLines = 0;
+        int selStart = 0;
+        int selEnd = 0;
+        if (selection != null && !selection.isEmpty()) {
+            selStart = pane.getDocument().getDefaultRootElement()
+                .getElementIndex(pane.getSelectionStart()) + 1;
+            selEnd = pane.getDocument().getDefaultRootElement()
+                .getElementIndex(pane.getSelectionEnd()) + 1;
+            selectionLines = selEnd - selStart + 1;
+        }
+
+        StringBuilder json = new StringBuilder();
+        json.append("{\"type\":\"editor_context\"");
+        json.append(",\"filename\":\"").append(jsonEscape(filename)).append("\"");
+        json.append(",\"shortName\":\"").append(jsonEscape(shortName)).append("\"");
+        json.append(",\"selectionLines\":").append(selectionLines);
+        json.append(",\"selStart\":").append(selStart);
+        json.append(",\"selEnd\":").append(selEnd);
+        json.append("}");
+
+        assistantPanel.sendEvent(json.toString());
+    }
+
+    private static String jsonEscape(String s) {
+        if (s == null) return "";
+        return s.replace("\\", "\\\\").replace("\"", "\\\"")
+                .replace("\n", "\\n").replace("\r", "\\r").replace("\t", "\\t");
     }
 
     /**

@@ -31,6 +31,8 @@ For a high-level description of the main new features in this release, please co
 
 - The help browser, now based on JCEF (Chromium Embedded Framework), replaces JavaHelp: it renders the XML help pages directly, with highlighted code and LaTeX & MathML equations rendered by MathJax. The images of the examples are pre-generated, or generated on demand when they are not.
 - The help of a toolbox is also rendered from its XML pages: `tbx_build_help()` no longer builds a help jar, but pre-generates the images of the pages (`<scilab:image>` blocks and Xcos diagrams) into the `help/images` directory of the toolbox, for all the languages at once. `tbx_package()` ships them with the toolbox.
+- SciNotes has an AI assistant: a side panel (toolbar button or `Window > Scilab Assistant` menu) where an AI coding agent writes Scilab code, runs it in the session, checks the figures it produces and edits the file open in the editor. It talks through the Agent Client Protocol (ACP) to an AI agent installed and logged in by the user: Claude, OpenAI Codex, GitHub Copilot, Cursor, Google Antigravity, Mistral Vibe, Gemini CLI, or any other ACP agent added in its settings. The agent asks before changing files, running commands or browsing the web. Domain skills (graphics, GUIs, data import, signal processing, control, simulation, optimization, debugging, toolboxes, classdef, arguments) are shipped, and users can add their own. See `doc scinotes_assistant`.
+- The localization of a toolbox (`tbx_build_localization()`) now also extracts the messages of the `classes/` directory.
 
 ### Scilab 2026.1.0
 

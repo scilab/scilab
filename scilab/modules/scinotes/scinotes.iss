@@ -32,6 +32,9 @@ Source: modules\{#SCINOTES}\etc\{#SCINOTES}.quit; DestDir: {app}\modules\{#SCINO
 Source: modules\{#SCINOTES}\etc\{#SCINOTES}.start; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\etc\*.xml; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\etc\*.xsl; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
+Source: modules\{#SCINOTES}\etc\assistant\*.md; DestDir: {app}\modules\{#SCINOTES}\etc\assistant; Components: {#COMPN_SCINOTES}
+Source: modules\{#SCINOTES}\etc\assistant\agents.json; DestDir: {app}\modules\{#SCINOTES}\etc\assistant; Components: {#COMPN_SCINOTES}
+Source: modules\{#SCINOTES}\etc\assistant\skills\*; DestDir: {app}\modules\{#SCINOTES}\etc\assistant\skills; Flags: recursesubdirs; Components: {#COMPN_SCINOTES}
 ;
 ; Monaco-based editor surface: our glue page and the Monaco thirdparty bundle.
 Source: modules\{#SCINOTES}\src\web\*; DestDir: {app}\modules\{#SCINOTES}\src\web; Flags: recursesubdirs createallsubdirs; Components: {#COMPN_SCINOTES}
@@ -48,6 +51,8 @@ Source: modules\{#SCINOTES}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SCI
 ;
 ;
 ;Source: modules\{#SCINOTES}\demos\*.*; DestDir: {app}\modules\{#SCINOTES}\demos; Flags: recursesubdirs; Components: {#COMPN_SCINOTES}
+;
+Source: modules\{#SCINOTES}\gui\assistant\*.*; DestDir: {app}\modules\{#SCINOTES}\gui\assistant; Flags: recursesubdirs; Components: {#COMPN_SCINOTES}
 ;
 Source: modules\{#SCINOTES}\tests\*.*; DestDir: {app}\modules\{#SCINOTES}\tests; Flags: recursesubdirs; Components: {#COMPN_SCINOTES} and {#COMPN_TESTS}
 ;

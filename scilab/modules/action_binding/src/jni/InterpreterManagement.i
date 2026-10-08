@@ -130,3 +130,21 @@ int callScilabExecstr(const char *command);
   */
 public ";
 int interruptScilab(void);
+
+/* JavaDoc */
+%javamethodmodifiers startScilabOutputCapture(int silent) "
+ /**
+  * Start capturing all Scilab output (stdout + stderr).
+  * @param silent if non-zero, output is captured only (not forwarded to the console)
+  */
+public ";
+void startScilabOutputCapture(int silent);
+
+/* JavaDoc */
+%javamethodmodifiers stopScilabOutputCapture(void) "
+ /**
+  * Stop capturing output and return the captured text.
+  * @return captured output as a string, or null
+  */
+public ";
+char* stopScilabOutputCapture(void);

@@ -18,6 +18,7 @@
 #include "storeCommand.h"
 #include "callCommand.h"
 #include "configvariable_interface.h"
+#include "scilabWrite.hxx"
 /*--------------------------------------------------------------------------*/
 int putCommandInScilabQueue(char *command)
 {
@@ -70,5 +71,15 @@ int interruptScilab(void)
 {
     setExecutionBreak();
     return 0;
+}
+/*--------------------------------------------------------------------------*/
+void startScilabOutputCapture(int silent)
+{
+    scilabStartOutputCapture(silent);
+}
+/*--------------------------------------------------------------------------*/
+char* stopScilabOutputCapture(void)
+{
+    return scilabStopOutputCapture();
 }
 /*--------------------------------------------------------------------------*/
