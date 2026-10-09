@@ -65,9 +65,6 @@ n = x_choose_modeless(['item1';'item2';'item3'],['that is a comment'],'Return')
             <member>
                 <link linkend="getvalue">getvalue</link>
             </member>
-            <member>
-                <link linkend="unix_g">unix_g</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>

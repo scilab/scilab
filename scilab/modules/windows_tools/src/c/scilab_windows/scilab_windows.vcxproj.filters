@@ -118,9 +118,6 @@
     <ClInclude Include="SetHeapOptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="spawncommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="splashScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>

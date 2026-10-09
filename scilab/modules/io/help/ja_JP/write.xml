@@ -125,8 +125,7 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-if getos() == 'Windows' then unix('del asave');
-else unix('rm -f asave'); end
+deletefile('asave');
 A = rand(5,3);
 write('asave',A);
 A = read('asave',5,3);
@@ -136,8 +135,7 @@ write(%io(2),string(1:10))
 write(%io(2),strcat(string(1:10),','))
 write(%io(2),1:10,'(10(i2,3x))')
 
-if getos() == 'Windows' then unix('del foo');
-else unix('rm -f foo'); end
+deletefile('foo');
 write('foo',A)
  ]]></programlisting>
     </refsection>

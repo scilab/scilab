@@ -19,7 +19,6 @@ qpgen1sci_
 qpgen2_
 scisemidef_
 intlsqrsolve_
-intreadmps_
 hybrj1_
 hybrd1_
 lmder_
@@ -31,7 +30,5 @@ qnbd_
 gcbd_
 ctonb_
 ctcab_
-rdmpsz_ 
-rdmps1_
 fuclid_
 mcsec_

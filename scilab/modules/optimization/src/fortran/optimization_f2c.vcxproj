@@ -453,8 +453,6 @@ cd ..
     <ClCompile Include="minpack\qrsolv.c" />
     <ClCompile Include="minpack\r1mpyq.c" />
     <ClCompile Include="minpack\r1updt.c" />
-    <ClCompile Include="rdmps1.c" />
-    <ClCompile Include="rdmpsz.c" />
     <ClCompile Include="rednor.c" />
     <ClCompile Include="relvar.c" />
     <ClCompile Include="rlbd.c" />
@@ -520,8 +518,6 @@ cd ..
     <f2c_rule Include="minpack\qrsolv.f" />
     <f2c_rule Include="minpack\r1mpyq.f" />
     <f2c_rule Include="minpack\r1updt.f" />
-    <f2c_rule Include="rdmps1.f" />
-    <f2c_rule Include="rdmpsz.f" />
     <f2c_rule Include="rednor.f" />
     <f2c_rule Include="relvar.f" />
     <f2c_rule Include="rlbd.f" />

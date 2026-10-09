@@ -21,18 +21,7 @@ std::unordered_map<std::wstring, std::wstring> getDeprecated()
 {
     return {
         // Scilab 2027.0.0 => 2027.1.0
-        {L"tbx_make(tbx_path, section, languages)", L"tbx_make(tbx_path, section)"},
-
-        // Scilab 2026.0.1 => 2027.0.0
-        {L"read_mps", L"'quapro' toolbox"},
-
-        // Scilab 2026.0.0 => 2027.0.0
-        {L"dos", L"host"},
-        {L"unix", L"host"},
-        {L"unix_g", L"host"},
-        {L"unix_s", L"host"},
-        {L"unix_w", L"host"},
-        {L"unix_x", L"host"}
+        {L"tbx_make(tbx_path, section, languages)", L"tbx_make(tbx_path, section)"}
     };
 }
 
@@ -57,6 +46,17 @@ char** getDeprecatedNames(int* size)
 std::unordered_map<std::wstring, std::wstring> getDeleted()
 {
     return {
+        // Scilab 2026.1.0 => 2027.0.0
+        {L"readmps", L"'quapro' toolbox"},
+
+        // Scilab 2026.0.0 => 2027.0.0
+        {L"dos", L"host"},
+        {L"unix", L"host"},
+        {L"unix_g", L"host"},
+        {L"unix_s", L"host"},
+        {L"unix_w", L"host"},
+        {L"unix_x", L"host"},
+
         // Scilab 2026.0.0 => 2026.1.0
         {L"demo_begin", L"exec"},
         {L"demo_run", L"exec"},

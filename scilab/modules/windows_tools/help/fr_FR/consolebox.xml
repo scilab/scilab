@@ -104,9 +104,8 @@
             ferme la session Scilab immédiatement.
         </para>
         <para>
-            <literal>host</literal> et <literal>unix</literal> affichent leurs résultats d'exécution
-            dans la consolebox. <literal>dos, unix_g, unix_w, unix_x, unix_s</literal> interceptent
-            les résultats donnés par Windows et en suppriment l'affichage dans la consolebox.
+            <literal>host</literal> affiche ses résultats d'exécution dans la consolebox, sauf s'ils
+            sont redirigés avec <literal>echo=%t</literal> ou récupérés dans ses arguments de sortie.
         </para>
         <important>
             <para>
@@ -142,18 +141,16 @@ sleep(5,"s")
 consolebox on
 consolebox()
 
-// Les instructions passées à host() ou unix() affichent leurs sorties dans la consolebox :
+// Les instructions passées à host() affichent leurs sorties dans la consolebox :
 host("echo Texte à afficher")
 host cls   // efface le contenu affiché dans la consolebox
 host set   // liste toutes les variables d'environnement Windows définies
 
-// Les autres fonctions unix_#() interceptent les résultats donnés par Windows,
+// host() peut aussi intercepter les résultats donnés par Windows,
 //  au lieu de les afficher dans la consolebox :
 host cls
-unix_w("echo Texte à afficher") // "Texte à afficher" s'affiche dans la console Scilab
-unix_x set;          // Une fenêtre s'ouvre et affiche les résultats.
-                     //  Rien dans la consolebox.
-r = unix_g("set");   // Les variables d'environnement Windows sont retournées dans r.
+host("echo Texte à afficher", echo=%t) // "Texte à afficher" s'affiche dans la console Scilab
+[_, r] = host("set"); // Les variables d'environnement Windows sont retournées dans r.
 r                    //  Rien n'est affiché dans la consolebox.
  ]]></programlisting>
     </refsection>

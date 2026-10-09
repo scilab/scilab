@@ -13,10 +13,6 @@
         <refname>host</refname>
         <refpurpose>executes a Windows, Linux, or MacOS command</refpurpose>
     </refnamediv>
-    <refnamediv xml:id="unix">
-        <refname>unix</refname>
-        <refpurpose>alias de host()</refpurpose>
-    </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>[status, stdout, stderr] = host(commands, echo=%f)</synopsis>

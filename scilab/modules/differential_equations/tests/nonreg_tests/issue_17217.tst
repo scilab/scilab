@@ -15,5 +15,5 @@
 // <-- Short Description -->
 // Calling impl with wrong input size crashes Scilab.
 
-msgerr = msprintf(gettext("%s: Wrong size for input argument #%d and #%d: Same size expected.\n"), "%_impl", 1, 2);
-assert_checkerror("y = %_impl([1;0], [-0.04;0.04;0], 0, 0.4, ""resid"", ""aplusp"");", msgerr);
+msgerr = msprintf(gettext("%s: Wrong size for input argument #%d and #%d: Same size expected.\n"), "%_impl", 2, 3);
+assert_checkerror("y = %_impl(""stiff"", [1;0], [-0.04;0.04;0], 0, 0.4, ""resid"", ""aplusp"");", msgerr);

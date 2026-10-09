@@ -198,8 +198,7 @@ am__objects_3 = src/fortran/gcbd.lo src/fortran/qpgen2.lo \
 	src/fortran/fprf2.lo src/fortran/icse.lo src/fortran/rlbd.lo \
 	src/fortran/calmaj.lo src/fortran/calbx.lo \
 	src/fortran/rednor.lo src/fortran/zgcbd.lo \
-	src/fortran/qpgen1sci.lo src/fortran/rdmps1.lo \
-	src/fortran/rdmpsz.lo
+	src/fortran/qpgen1sci.lo
 am__objects_4 = src/fortran/minpack/lmdif.lo \
 	src/fortran/minpack/qrfac.lo src/fortran/minpack/hybrj1.lo \
 	src/fortran/minpack/dogleg.lo src/fortran/minpack/lmder.lo \
@@ -223,8 +222,7 @@ libscioptimization_la_DEPENDENCIES = libscioptimization-algo.la \
 am__objects_5 = sci_gateway/cpp/libscioptimization_la-sci_optim.lo \
 	sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo \
 	sci_gateway/cpp/libscioptimization_la-sci_semidef.lo \
-	sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo \
-	sci_gateway/cpp/libscioptimization_la-sci_readmps.lo
+	sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo
 am__objects_6 = sci_gateway/c/libscioptimization_la-sci_qld.lo \
 	sci_gateway/c/libscioptimization_la-sci_qp_solve.lo
 am__objects_7 = sci_gateway/fortran/Ex-optim.lo \
@@ -254,7 +252,6 @@ am__depfiles_remade =  \
 	sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_fsolve.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_optim.Plo \
-	sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_semidef.Plo \
 	src/c/$(DEPDIR)/libscioptimization_algo_la-sp.Plo \
 	src/cpp/$(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Plo \
@@ -744,9 +741,7 @@ OPTIMIZATION_FORTRAN_SOURCES = \
     src/fortran/calbx.f \
     src/fortran/rednor.f \
     src/fortran/zgcbd.f \
-    src/fortran/qpgen1sci.f \
-    src/fortran/rdmps1.f \
-    src/fortran/rdmpsz.f
+    src/fortran/qpgen1sci.f
 
 MINPACK_SOURCES = \
     src/fortran/minpack/lmdif.f \
@@ -776,8 +771,7 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_optim.cpp \
     sci_gateway/cpp/sci_fsolve.cpp \
     sci_gateway/cpp/sci_semidef.cpp \
-    sci_gateway/cpp/sci_lsqrsolve.cpp \
-    sci_gateway/cpp/sci_readmps.cpp
+    sci_gateway/cpp/sci_lsqrsolve.cpp
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_qld.c \
@@ -1099,10 +1093,6 @@ src/fortran/zgcbd.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/qpgen1sci.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/rdmps1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/rdmpsz.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/minpack/$(am__dirstamp):
 	@$(MKDIR_P) src/fortran/minpack
 	@: > src/fortran/minpack/$(am__dirstamp)
@@ -1164,9 +1154,6 @@ sci_gateway/cpp/libscioptimization_la-sci_semidef.lo:  \
 sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/libscioptimization_la-sci_readmps.lo:  \
-	sci_gateway/cpp/$(am__dirstamp) \
-	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c
 	@: > sci_gateway/c/$(am__dirstamp)
@@ -1221,7 +1208,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_fsolve.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_optim.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_semidef.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioptimization_algo_la-sp.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Plo@am__quote@ # am--include-marker
@@ -1351,13 +1337,6 @@ sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo: sci_gateway/cpp/sci_lsqr
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_lsqrsolve.cpp' object='sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo `test -f 'sci_gateway/cpp/sci_lsqrsolve.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_lsqrsolve.cpp
-
-sci_gateway/cpp/libscioptimization_la-sci_readmps.lo: sci_gateway/cpp/sci_readmps.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscioptimization_la-sci_readmps.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Tpo -c -o sci_gateway/cpp/libscioptimization_la-sci_readmps.lo `test -f 'sci_gateway/cpp/sci_readmps.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_readmps.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Tpo sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_readmps.cpp' object='sci_gateway/cpp/libscioptimization_la-sci_readmps.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscioptimization_la-sci_readmps.lo `test -f 'sci_gateway/cpp/sci_readmps.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_readmps.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
@@ -1591,7 +1570,6 @@ distclean: distclean-am
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_fsolve.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_optim.Plo
-	-rm -f sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_semidef.Plo
 	-rm -f src/c/$(DEPDIR)/libscioptimization_algo_la-sp.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Plo
@@ -1650,7 +1628,6 @@ maintainer-clean: maintainer-clean-am
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_fsolve.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_optim.Plo
-	-rm -f sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_semidef.Plo
 	-rm -f src/c/$(DEPDIR)/libscioptimization_algo_la-sp.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Plo

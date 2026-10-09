@@ -71,9 +71,6 @@ n=x_choose(['item1';'item2';'item3'],['ceci est un commentaire'],'Terminer')
             <member>
                 <link linkend="getvalue">getvalue</link>
             </member>
-            <member>
-                <link linkend="unix_g">unix_g</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>

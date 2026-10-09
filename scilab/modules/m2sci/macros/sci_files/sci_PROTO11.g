@@ -16,37 +16,18 @@ function  tree = sci_MFUN(tree)
     // Input: tree = Matlab funcall tree
     // Output: tree = Scilab equivalent for tree
 
+    tree.name = "SFUN"
+
+    // -echo
     if rhs==2 then
-        tree.rhs(2) = null()
+        tree.rhs(2) = Equal(list(Variable("echo", Infer())), Cste(%t), "")
     end
 
-    if lhs==1 then
-        V = gettempvar(2)
-        S = tree.lhs(1)
-        if S.name=="ans" then
-            S = gettempvar(1)
-            tree.lhs = list(V,S)
-        else
-            tree.lhs = list(V,S)
-        end
-        m2sci_insert(Equal(tree.lhs,tree))
-        tree = list()
+    tree.lhs(1).dims = list(1,1)
+    tree.lhs(1).type = Type(Double,Real)
 
-        if rhs==2 then
-            m2sci_insert(Equal(list(), Funcall("disp",1,list(S),list())), 1)
-        end
-    else
-        tree.lhs = list(tree.lhs($:-1:1))
-
-        if rhs==2 then
-            m2sci_insert(Equal(list(), Funcall("disp",1,list(tree.lhs(1),tree.lhs(2)),list())), 1)
-        end
-
-        tree.lhs(1).dims = list(Unknown,Unknown)
-        tree.lhs(1).type = Type(String,Char)
-
-        tree.lhs(2).dims = list(1,1)
-        tree.lhs(2).type = Type(Double,Real)
-
+    if lhs==2 then
+        tree.lhs(2).dims = list(Unknown,Unknown)
+        tree.lhs(2).type = Type(String,Char)
     end
 endfunction

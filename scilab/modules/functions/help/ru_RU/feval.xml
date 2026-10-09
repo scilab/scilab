@@ -90,7 +90,7 @@ feval(1:10,1:5,'parab')   //См. файл ffeval.f
 feval(1:10,'parab')
 // Для динамической связи (см. пример ftest в ffeval.f)
 // можете использовать команду link (параметры зависят от машины):
-// unix('make ftest.o');link('ftest.o','ftest'); feval(1:10,1:5,'ftest')
+// host('make ftest.o');link('ftest.o','ftest'); feval(1:10,1:5,'ftest')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

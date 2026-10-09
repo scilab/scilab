@@ -82,14 +82,10 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
     std::wostringstream os;
     bool bCatch = false;
 
-    // flag for dae
-    types::Bool* pBFlag     = NULL;
-    bool bFlag = false;
-
     // *** check the minimal number of input args. ***
-    if (in.size() < 6 || in.size() > 12)
+    if (in.size() < 7 || in.size() > 11)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "%_impl", 6, 12);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "%_impl", 7, 11);
         return types::Function::Error;
     }
 
@@ -101,38 +97,29 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
     }
 
     // *** Get the methode. ***
-    if (in[0]->isString())
+    if (in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
     {
-        pStrType = in[0]->getAs<types::String>();
-        wcsType = pStrType->get(0);
-        iPos++;
-    }
-    else if (in[0]->isBool())
-    {
-        pBFlag = in[0]->getAs<types::Bool>();
-        bFlag = pBFlag->get(0);
-        iPos++;
-        pStrType = in[iPos]->getAs<types::String>();
-        wcsType = pStrType->get(0);
-        iPos++;
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "%_impl", 1);
+        return types::Function::Error;
     }
 
-    if (iPos)
+    pStrType = in[0]->getAs<types::String>();
+    wcsType = pStrType->get(0);
+    iPos++;
+
+    if (wcscmp(wcsType, L"adams") == 0)
     {
-        if (wcscmp(wcsType, L"adams") == 0)
-        {
-            meth = 1;
-            maxord = 12;
-        }
-        else if (wcscmp(wcsType, L"stiff") == 0)
-        {
-            meth = 2;
-        }
-        else
-        {
-            Scierror(999, _("%s: Wrong value for input argument #%d: It must be one of the following strings: adams or stiff.\n"), "%_impl", 1);
-            return types::Function::Error;
-        }
+        meth = 1;
+        maxord = 12;
+    }
+    else if (wcscmp(wcsType, L"stiff") == 0)
+    {
+        meth = 2;
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: It must be one of the following strings: adams or stiff.\n"), "%_impl", 1);
+        return types::Function::Error;
     }
 
     // *** check type of input args and get it. ***
@@ -230,7 +217,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 pDblAtol = in[iPos]->getAs<types::Double>();
                 if (pDblAtol->getSize() != pDblY0->getSize() && pDblAtol->isScalar() == false)
                 {
-                    Scierror(267, _("%s: Arg %d and arg %d must have equal dimensions.\n"), "%_impl", pStrType ? 2 : 1, iPos + 1);
+                    Scierror(267, _("%s: Arg %d and arg %d must have equal dimensions.\n"), "%_impl", 2, iPos + 1);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     free(pdYData);
                     free(YSize);
@@ -242,7 +229,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 pDblRtol = in[iPos]->getAs<types::Double>();
                 if (pDblRtol->getSize() != pDblY0->getSize() && pDblRtol->isScalar() == false)
                 {
-                    Scierror(267, _("%s: Arg %d and arg %d must have equal dimensions.\n"), "%_impl", pStrType ? 2 : 1, iPos + 1);
+                    Scierror(267, _("%s: Arg %d and arg %d must have equal dimensions.\n"), "%_impl", 2, iPos + 1);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     free(pdYData);
                     free(YSize);
@@ -533,7 +520,8 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
     int itask   = 1;
     int jt = bFuncJac ? 1 : 2;
     int jacType = 10 * meth + jt;
-    int s = bFlag ? 2 : 1;
+    // dae() expects [y; ydot]
+    int s = 2;
 
     pDblYOut = new types::Double(pDblY0->getRows() * s, pDblT->getSize());
 
@@ -776,12 +764,9 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
         {
             pDblYOut->set(s * i * (*YSize) + j, pdYData[j]);
         }
-        if (bFlag)
+        for (int j = 0; j < *YSize; j++)
         {
-            for (int j = 0; j < *YSize; j++)
-            {
-                pDblYOut->set(s * i * (*YSize) + j + *YSize, pDblYdot0->get(j));
-            }
+            pDblYOut->set(s * i * (*YSize) + j + *YSize, pDblYdot0->get(j));
         }
     }
 

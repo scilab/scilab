@@ -32,10 +32,10 @@ scilab &lt;Options&gt;
             peut être affichée dans le terminal de l'OS, en utilisant <literal>--help</literal> :
         </para>
         <programlisting><![CDATA[
-            unix_w(SCI+"/bin/scilab --help 2>&1")
+            host(SCI+"/bin/scilab --help 2>&1", echo=%t)
      ]]></programlisting>
         <screen><![CDATA[
---> unix_w(SCI+"/bin/scilab --help 2>&1")
+--> host(SCI+"/bin/scilab --help 2>&1", echo=%t)
 Usage: Scilab <options>
       -args arg1 arg2..: Send directly some arg1 arg2 .. data to the session.
                          arg1 arg2 .. values can then be read through sciargs().

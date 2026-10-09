@@ -167,9 +167,9 @@ sci_upper.sci: sci_PROTO10.g
 
 # Files generated from file : sci_PROTO11.g
 sci_dos.sci: sci_PROTO11.g
-	@./GEN $? dos unix_g > $@
+	@./GEN $? dos host > $@
 sci_unix.sci: sci_PROTO11.g
-	@./GEN $? unix unix_g > $@
+	@./GEN $? unix host > $@
 
 # Files generated from file : sci_PROTO12.g
 sci_who.sci: sci_PROTO12.g

@@ -189,12 +189,6 @@
     <ClCompile Include="minpack\r1updt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rdmps1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rdmpsz.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="rednor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -384,12 +378,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="minpack\r1updt.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="rdmps1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="rdmpsz.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="rednor.f">

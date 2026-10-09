@@ -160,12 +160,6 @@ powershell("echo $env:USERNAME'' uses powershell in Scilab'' ; Get-Date")
             <member>
                 <link linkend="host">host</link>
             </member>
-            <member>
-                <link linkend="dos">dos</link>
-            </member>
-            <member>
-                <link linkend="unix_g">unix_g</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>

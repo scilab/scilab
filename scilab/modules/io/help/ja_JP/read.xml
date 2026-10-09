@@ -118,8 +118,7 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-if getos() == 'Windows' then unix('del foo');
-else unix('rm -f foo'); end
+deletefile('foo');
 A=rand(3,5); write('foo',A);
 B=read('foo',3,5)
 B=read('foo',-1,5)

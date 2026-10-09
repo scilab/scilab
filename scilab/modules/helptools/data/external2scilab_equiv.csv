@@ -237,7 +237,7 @@ tukeywin;window;
 typeinfo;typeof;// Octave
 uisetcolor;uigetcolor;
 uitable;uicontrol;
-unix;unix_g;
+unix;host;
 upper;convstr;
 urlread;getURL;
 var;variance;

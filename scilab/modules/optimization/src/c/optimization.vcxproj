@@ -296,7 +296,6 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="..\..\sci_gateway\cpp\sci_fsolve.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_lsqrsolve.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_optim.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_readmps.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_semidef.cpp" />
     <ClCompile Include="..\cpp\checkoptimerror.cpp" />
     <ClCompile Include="..\cpp\optimizationfunctions.cpp" />

@@ -76,13 +76,6 @@ function varargout=legend(varargin)
         tmpH=varargin(k0);
         if size(tmpH,"*") == 1 && tmpH.type=="Axes"
             H = getvalidchildren(tmpH)($:-1:1);
-        elseif tmpH.type=="Compound"
-            for k=1:size(tmpH,"*")
-                H = [H; getvalidchildren(tmpH(k))($:-1:1)];
-            end
-            msg = msprintf(_("%s: using a Compound or a Compound array as first argument is obsolete. "),"legend");
-            msg = [msg, msprintf(_("This feature will be permanently removed in Scilab %s"), "2026.0.0")]
-            warning(msg);
         elseif  tmpH.type == "Polyline"
             H = tmpH;
         else

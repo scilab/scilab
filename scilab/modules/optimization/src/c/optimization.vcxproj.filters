@@ -44,9 +44,6 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_optim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_readmps.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_semidef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

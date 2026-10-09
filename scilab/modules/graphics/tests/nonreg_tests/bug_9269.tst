@@ -25,20 +25,20 @@ l=legend("is blue ?","is red ?","is black ?");
 assert_checkequal(l.links.foreground,[2 5 1]); // blue red black
 
 scf(0);clf();
-plot(x,y1,"b-v"); h1 = gce(); // first curve (in blue)
-plot(x,y2,"r--^"); h2 = gce();// second curve (in red)
-plot(x,y3,"k--o"); h3 = gce();// third curve (in black)
-l= legend([h1,h2,h3],"is blue ?","is red ?","is black ?");
+plot(x,y1,"b-v"); h1 = gce().children($:-1:1); // first curve (in blue)
+plot(x,y2,"r--^"); h2 = gce().children($:-1:1);// second curve (in red)
+plot(x,y3,"k--o"); h3 = gce().children($:-1:1);// third curve (in black)
+l= legend([h1;h2;h3],"is blue ?","is red ?","is black ?");
 assert_checkequal(l.links.foreground,[2 5 1]); // blue red black
 
 delete(l)
-l= legend([h1,h2,h3],"is blue ?","is red ?","is black ?");
+l= legend([h1;h2;h3],"is blue ?","is red ?","is black ?");
 assert_checkequal(l.links.foreground,[2 5 1]); // blue red black
 
 scf(0);clf();
-plot(x,y1,"b-v",x,y2,"r--^"); h1 = gce(); // first curve (in blue) and second (in red)
-plot(x,y3,"k--o"); h3 = gce();// third curve (in black)
-l=legend([h1,h3],"is blue ?","is red ?","is black ?");
+plot(x,y1,"b-v",x,y2,"r--^"); h1 = gce().children($:-1:1); // first curve (in blue) and second (in red)
+plot(x,y3,"k--o"); h3 = gce().children($:-1:1);// third curve (in black)
+l=legend([h1;h3],"is blue ?","is red ?","is black ?");
 assert_checkequal(l.links.foreground,[2 5 1]); // blue red black
 
 

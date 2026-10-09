@@ -377,7 +377,6 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClInclude Include="..\..\..\includes\MutexClosingScilab.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SetHeapOptions.h" />
-    <ClInclude Include="spawncommand.h" />
     <ClInclude Include="splashScreen.h" />
     <ClInclude Include="TextToPrint.h" />
     <ClInclude Include="WindowShow.h" />

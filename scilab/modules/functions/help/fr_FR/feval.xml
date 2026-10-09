@@ -75,7 +75,7 @@ feval(1:10,1:5,'parab')   // voir le fichier ffeval.f
 feval(1:10,'parab')
 // Pour le lien dynamique (voir l'exemple ftest dans ffeval.f)
 // on peut utiliser la commande "link"
-// unix('make ftest.o');link('ftest.o','ftest'); feval(1:10,1:5,'ftest')
+// host('make ftest.o');link('ftest.o','ftest'); feval(1:10,1:5,'ftest')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

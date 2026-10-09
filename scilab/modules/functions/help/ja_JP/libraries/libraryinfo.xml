@@ -123,12 +123,8 @@
  SCI\modules\io\macros\
 
  f  =
-!input      !
-!unix_g     !
-!unix_w     !
 !%_sodload  !
-!unix_x     !
-!unix_s     !
+!scilab     !
 ]]></screen>
         <para/>
         <para>
@@ -149,7 +145,7 @@ libname = xmlGetValues("//scilablib", "name", p+"/lib")
 
  iolib  =
 Functions files location : SCI\modules\io\macros\.
-input  unix_g  unix_w  %_sodload  unix_x  unix_s
+%_sodload  scilab
 
 --> // Catch info into variables:
 --> p = string(iolib)(1)
@@ -158,12 +154,8 @@ input  unix_g  unix_w  %_sodload  unix_x  unix_s
 
 --> f = string(iolib)(2:$)
  f  =
-!input      !
-!unix_g     !
-!unix_w     !
 !%_sodload  !
-!unix_x     !
-!unix_s     !
+!scilab     !
 
 --> libname = xmlGetValues("//scilablib", "name", p+"/lib")
  libname  =

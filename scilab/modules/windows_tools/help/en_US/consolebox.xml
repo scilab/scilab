@@ -104,9 +104,8 @@
             upper-right corner is disabled. Killing it kills Scilab session.
         </para>
         <para>
-            <literal>host</literal> and <literal>unix</literal> display their results in the
-            consolebox. <literal>unix_g, unix_w, unix_x, unix_s</literal> catch results returned
-            by the OS and cancel any display in the consolebox.
+            <literal>host</literal> displays its results in the consolebox, unless they are
+            redirected with <literal>echo=%t</literal> or caught in its output arguments.
         </para>
         <important>
             <para>
@@ -139,17 +138,16 @@ sleep(5,"s")
 consolebox on
 consolebox
 
-// Instructions passed to host() or unix() are echoed in the consolebox:
+// Instructions passed to host() are echoed in the consolebox:
 host("echo Test of output") // displays "Test of output" in the consolebox
 host cls   // clears the consolebox screen
 host set   // lists all defined MS Windows environnement variables
 
-// Other unix_#() commands catch results returned by the Operating System,
+// host() can also catch results returned by the Operating System,
 //  instead of displaying them in the consolebox:
 host cls
-unix_w("echo Test of output") // "Test of output" is now displayed in Scilab console
-unix_x set;          // Results are displayed in a messagebox. Nothing in consolebox
-r = unix_g("set");   // Environment variables are returned in r.
+host("echo Test of output", echo=%t) // "Test of output" is now displayed in Scilab console
+[_, r] = host("set"); // Environment variables are returned in r.
 r                    //   Nothing is displayed in the consolebox
  ]]></programlisting>
     </refsection>

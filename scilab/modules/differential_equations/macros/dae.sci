@@ -692,25 +692,23 @@ function [varargout] = dae(varargin)
             error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 1, 2));
         end
 
-        flag = %t; // must be removed when impl will be removed in 2026.0.0
-
         if rhs == 6 then // Call without optional arguments
             [typ, x0, t0, t, %res, surface] = varargin(:)
             y0 = x0(:, 1);
             ydot0 = x0(:, 2);
             if lhs == 1 then
-                y = %_impl(flag, typ, y0, ydot0, t0, t, %res, surface);
+                y = %_impl(typ, y0, ydot0, t0, t, %res, surface);
             else
-                [y, hd] = %_impl(flag, typ, y0, ydot0, t0, t, %res, surface);
+                [y, hd] = %_impl(typ, y0, ydot0, t0, t, %res, surface);
             end
         elseif rhs == 10 then // Call with all the optional arguments
             [typ, x0, t0, t, rtol, atol, %res, jac, surface, hd] = varargin(:)
             y0 = x0(:, 1);
             ydot0 = x0(:, 2);
             if lhs == 1 then
-                y = %_impl(flag, typ, y0, ydot0, t0, t, atol, rtol, %res, surface, jac, hd);
+                y = %_impl(typ, y0, ydot0, t0, t, atol, rtol, %res, surface, jac, hd);
             else
-                [y, hd] = %_impl(flag, typ, y0, ydot0, t0, t, atol, rtol, %res, surface, jac, hd);
+                [y, hd] = %_impl(typ, y0, ydot0, t0, t, atol, rtol, %res, surface, jac, hd);
             end
 
         elseif rhs == 7 then
@@ -719,9 +717,9 @@ function [varargout] = dae(varargin)
                 y0 = x0(:, 1);
                 ydot0 = x0(:, 2);
                 if lhs == 1 then
-                    y = %_impl(flag, typ, y0, ydot0, t0, t, atol, %res, surface);
+                    y = %_impl(typ, y0, ydot0, t0, t, atol, %res, surface);
                 else
-                    [y, hd] = %_impl(flag, typ, y0, ydot0, t0, t, atol, %res, surface);
+                    [y, hd] = %_impl(typ, y0, ydot0, t0, t, atol, %res, surface);
                 end
 
             elseif type(varargin(7)) == 1 then
@@ -730,9 +728,9 @@ function [varargout] = dae(varargin)
                 ydot0 = x0(:, 2);
 
                 if lhs == 1 then
-                    y = %_impl(flag, typ, y0, ydot0, t0, t, %res, surface, hd);
+                    y = %_impl(typ, y0, ydot0, t0, t, %res, surface, hd);
                 else
-                    [y, hd] = %_impl(flag, typ, y0, ydot0, t0, t, %res, surface, hd);
+                    [y, hd] = %_impl(typ, y0, ydot0, t0, t, %res, surface, hd);
                 end
 
             else
@@ -741,9 +739,9 @@ function [varargout] = dae(varargin)
                 ydot0 = x0(:, 2);
 
                 if lhs == 1 then
-                    y = %_impl(flag, typ, y0, ydot0, t0, t, %res, surface, jac);;
+                    y = %_impl(typ, y0, ydot0, t0, t, %res, surface, jac);;
                 else
-                    [y, hd] = %_impl(flag, typ, y0, ydot0, t0, t, %res, surface, jac);;
+                    [y, hd] = %_impl(typ, y0, ydot0, t0, t, %res, surface, jac);;
                 end
             end
         elseif rhs == 8 then
@@ -754,9 +752,9 @@ function [varargout] = dae(varargin)
                     ydot0 = x0(:, 2);
 
                     if lhs == 1 then
-                        y = %_impl(flag, typ, y0, ydot0, t0, t, atol, rtol, %res, surface);
+                        y = %_impl(typ, y0, ydot0, t0, t, atol, rtol, %res, surface);
                     else
-                        [y, hd] = %_impl(flag, typ, y0, ydot0, t0, t, atol, rtol, %res, surface);
+                        [y, hd] = %_impl(typ, y0, ydot0, t0, t, atol, rtol, %res, surface);
                     end
                 elseif type(varargin(8)) == 1 then
                     [typ, x0, t0, t, atol, %res, surface, hd] = varargin(:)
@@ -764,9 +762,9 @@ function [varargout] = dae(varargin)
                     ydot0 = x0(:, 2);
 
                     if lhs == 1 then
-                        y = %_impl(flag, typ, y0, ydot0, t0, t, atol, %res, surface, hd);
+                        y = %_impl(typ, y0, ydot0, t0, t, atol, %res, surface, hd);
                     else
-                        [y, hd] = %_impl(flag, typ, y0, ydot0, t0, t, atol, %res, surface, hd);
+                        [y, hd] = %_impl(typ, y0, ydot0, t0, t, atol, %res, surface, hd);
                     end
                 else
                     [typ, x0, t0, t, atol, %res, jac, surface] = varargin(:)
@@ -774,9 +772,9 @@ function [varargout] = dae(varargin)
                     ydot0 = x0(:, 2);
 
                     if lhs == 1 then
-                        y = %_impl(flag, typ, y0, ydot0, t0, t, atol, %res, surface, jac);
+                        y = %_impl(typ, y0, ydot0, t0, t, atol, %res, surface, jac);
                     else
-                        [y, hd] = %_impl(flag, typ, y0, ydot0, t0, t, atol, %res, surface, jac);
+                        [y, hd] = %_impl(typ, y0, ydot0, t0, t, atol, %res, surface, jac);
                     end
                 end
             else
@@ -785,9 +783,9 @@ function [varargout] = dae(varargin)
                 ydot0 = x0(:, 2);
 
                 if lhs == 1 then
-                    y = %_impl(flag, typ, y0, ydot0, t0, t, %res, surface, jac, hd);
+                    y = %_impl(typ, y0, ydot0, t0, t, %res, surface, jac, hd);
                 else
-                    [y, hd] = %_impl(flag, typ, y0, ydot0, t0, t, %res, surface, jac, hd);
+                    [y, hd] = %_impl(typ, y0, ydot0, t0, t, %res, surface, jac, hd);
                 end
             end
         elseif rhs == 9 then
@@ -798,9 +796,9 @@ function [varargout] = dae(varargin)
                     ydot0 = x0(:, 2);
 
                     if lhs == 1 then
-                        y = %_impl(flag, typ, y0, ydot0, t0, t, atol, rtol, %res, surface, hd);
+                        y = %_impl(typ, y0, ydot0, t0, t, atol, rtol, %res, surface, hd);
                     else
-                        [y, hd] = %_impl(flag, typ, y0, ydot0, t0, t, atol, rtol, %res, surface, hd);
+                        [y, hd] = %_impl(typ, y0, ydot0, t0, t, atol, rtol, %res, surface, hd);
                     end
                 else
                     [typ, x0, t0, t, rtol, atol, %res, jac, surface] = varargin(:)
@@ -808,9 +806,9 @@ function [varargout] = dae(varargin)
                     ydot0 = x0(:, 2);
 
                     if lhs == 1 then
-                        y = %_impl(flag, typ, y0, ydot0, t0, t, atol, rtol, %res, surface, jac);
+                        y = %_impl(typ, y0, ydot0, t0, t, atol, rtol, %res, surface, jac);
                     else
-                        [y, hd] = %_impl(flag, typ, y0, ydot0, t0, t, atol, rtol, %res, surface, jac);
+                        [y, hd] = %_impl(typ, y0, ydot0, t0, t, atol, rtol, %res, surface, jac);
                     end
                 end
             else
@@ -819,9 +817,9 @@ function [varargout] = dae(varargin)
                 ydot0 = x0(:, 2);
 
                 if lhs == 1 then
-                    y = %_impl(flag, typ, y0, ydot0, t0, t, atol, %res, surface, jac, hd);
+                    y = %_impl(typ, y0, ydot0, t0, t, atol, %res, surface, jac, hd);
                 else
-                    [y, hd] = %_impl(flag, typ, y0, ydot0, t0, t, atol, %res, surface, jac, hd);
+                    [y, hd] = %_impl(typ, y0, ydot0, t0, t, atol, %res, surface, jac, hd);
                 end
             end
 

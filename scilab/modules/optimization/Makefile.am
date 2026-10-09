@@ -49,9 +49,7 @@ OPTIMIZATION_FORTRAN_SOURCES = \
     src/fortran/calbx.f \
     src/fortran/rednor.f \
     src/fortran/zgcbd.f \
-    src/fortran/qpgen1sci.f \
-    src/fortran/rdmps1.f \
-    src/fortran/rdmpsz.f
+    src/fortran/qpgen1sci.f
 
 MINPACK_SOURCES = \
     src/fortran/minpack/lmdif.f \
@@ -81,8 +79,7 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_optim.cpp \
     sci_gateway/cpp/sci_fsolve.cpp \
     sci_gateway/cpp/sci_semidef.cpp \
-    sci_gateway/cpp/sci_lsqrsolve.cpp \
-    sci_gateway/cpp/sci_readmps.cpp
+    sci_gateway/cpp/sci_lsqrsolve.cpp
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_qld.c \

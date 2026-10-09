@@ -37,10 +37,21 @@
                 </td>
                 <td>
                     <programlisting role="no-scilab-exec"><![CDATA[
-[cmdOut, status] = unix_g(command)
+[status, cmdOut] = host(command)
                  ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
+    </refsection>
+    <refsection>
+        <title>Particular cases</title>
+        <para>
+            Matlab returns standard output and standard error merged in <literal>cmdOut</literal>,
+            whereas Scilab returns standard error in a third output argument.
+        </para>
+        <para>
+            Matlab <emphasis role="bold">-echo</emphasis> option is converted to
+            <literal>echo=%t</literal>.
+        </para>
     </refsection>
 </refentry>

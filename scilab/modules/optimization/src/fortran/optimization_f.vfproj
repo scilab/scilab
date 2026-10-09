@@ -118,8 +118,6 @@
 			<File RelativePath=".\minpack\qrsolv.f"/>
 			<File RelativePath=".\minpack\r1mpyq.f"/>
 			<File RelativePath=".\minpack\r1updt.f"/>
-			<File RelativePath=".\rdmps1.f"/>
-			<File RelativePath=".\rdmpsz.f"/>
 			<File RelativePath=".\rednor.f"/>
 			<File RelativePath=".\relvar.f"/>
 			<File RelativePath=".\rlbd.f"/>

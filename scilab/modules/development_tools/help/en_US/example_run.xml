@@ -61,7 +61,7 @@
                         in the source package of any standard module.
                         Example of the template toolbox_skeleton module:
                         <programlisting role="example"><![CDATA[
-unix_w("dir /b /s """ + WSCI + "/contrib/toolbox_skeleton/help""")
+host("dir /b /s """ + WSCI + "/contrib/toolbox_skeleton/help""", echo=%t)
                       ]]></programlisting>
                     </para>
                 </listitem>
