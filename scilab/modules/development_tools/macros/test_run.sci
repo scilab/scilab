@@ -1154,6 +1154,12 @@ function status = test_single(_module, _testPath, _testName)
                     toRemove = grep(txt, "Info: GLDrawableHelper.reshape: pre-exisiting GL error 0x500");
                     txt(toRemove) = [];
                 end
+
+                if ~isempty(txt) then
+                    // VMware OpenGL driver falling back to software rendering
+                    toRemove = grep(txt, "vm3dgl:");
+                    txt(toRemove) = [];
+                end
             end
 
             if isempty(txt) then
