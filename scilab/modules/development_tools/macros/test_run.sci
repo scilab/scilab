@@ -1024,11 +1024,15 @@ function status = test_single(_module, _testPath, _testName)
     //execute test
     [returnStatus, res, err] = host(strcat(CMD_ARRAY, " "));
 
+    // the error output check below reads tmp_err, whatever the return status
+    if or(err <> "") then
+        mputl(err, tmp_err);
+    end
+
     //Check return status
     if (returnStatus <> 0)
-        // In case of failure, save res & err to file
+        // In case of failure, save res to file
         mputl(res, tmp_res);
-        mputl(err, tmp_err);
 
         details = [ launchthecommand(testFile); ..
         checkthefile(tmp_dia)];
