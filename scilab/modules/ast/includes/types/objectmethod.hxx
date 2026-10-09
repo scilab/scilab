@@ -17,7 +17,8 @@ namespace types
 class EXTERN_AST ObjectMethod : public Callable
 {
 public:
-    ObjectMethod(Object* obj, const std::wstring& funcname, Callable* call);
+    // obj is the instance (method) or the classdef (static method) the call runs in
+    ObjectMethod(InternalType* obj, const std::wstring& funcname, Callable* call);
     virtual ~ObjectMethod();
     virtual std::wstring getTypeStr() const override
     {
@@ -63,10 +64,7 @@ public:
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e);
 
 private:
-    void setParent();
-
-private:
-    Object* object;
+    InternalType* object;
     Callable* callable;
     std::wstring name;
 };

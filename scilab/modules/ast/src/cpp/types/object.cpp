@@ -33,10 +33,8 @@ Object::Object(Classdef* classdef) : def(classdef), parent(nullptr), bHasToStrin
 }
 
 //copy cstor called by clone
-Object::Object(const Object& obj)
+Object::Object(const Object& obj) : Object(obj.getClassdef())
 {
-    def = obj.getClassdef();
-    loadClassdef(def);
     for (auto&& prop : obj.getProperties())
     {
         InternalType* old = properties[prop.first];
@@ -186,12 +184,11 @@ Classdef* Object::getScopeClassdef()
 
 bool Object::extract(const std::wstring& name, InternalType*& out)
 {
-    Classdef* ref = getScopeClassdef();
     AccessModifier access;
 
-    if (ref->getAccessProperty(name, access))
+    if (def->getAccessProperty(name, access))
     {
-        if (access == AccessModifier::PUBLIC || (scope.size() > 0 && access != AccessModifier::NONE))
+        if (def->isAccessible(name))
         {
             out = getProperty(name);
             if (out == nullptr)
@@ -208,13 +205,13 @@ bool Object::extract(const std::wstring& name, InternalType*& out)
         }
     }
 
-    if (ref->getAccessMethod(name, access))
+    if (def->getAccessMethod(name, access))
     {
-        if (access == AccessModifier::PUBLIC || (scope.size() > 0 && access != AccessModifier::NONE))
+        if (def->isAccessible(name))
         {
             if (def->isStaticMethod(name))
             {
-                out = def->getStatic(name);
+                out = def->getStaticMethod(name);
             }
             else
             {
@@ -294,11 +291,11 @@ Object* Object::insert(typed_list* _pArgs, InternalType* _pSource, const ast::Ex
 bool Object::setProperty(const std::wstring& prop, InternalType* value)
 {
     AccessModifier access;
-    if (getScopeClassdef()->getAccessProperty(prop, access))
+    if (def->getAccessProperty(prop, access))
     {
-        if (access == AccessModifier::PUBLIC ||
-            (scope.size() > 0 && access != AccessModifier::NONE))
+        if (def->isAccessible(prop))
         {
+            value = def->checkProperty(prop, value);
             if (properties.find(prop) != properties.end())
             {
                 InternalType* old = properties[prop];
@@ -346,18 +343,15 @@ Function::ReturnValue Object::callConstructor(typed_list& in, optional_list& opt
 
     if (attr.access != AccessModifier::PUBLIC)
     {
-        InternalType* obj = symbol::Context::getInstance()->getCurrentObject();
-        if (obj == nullptr)
+        // non-public constructor: only from the class itself (static factory, ...)
+        // or from a derived class when protected
+        Classdef* caller = Classdef::getCallerClassdef();
+        if (caller == nullptr ||
+            (caller != def && (attr.access != AccessModifier::PROTECTED || def->isAncestorOf(caller) == false)))
         {
-            if (attr.access != AccessModifier::PUBLIC)
-            {
-                wchar_t szError[128];
-                os_swprintf(szError, 128, _W("Constructor of \'%ls\' is not accessible.\n").c_str(), def->getName().data());
-                throw ast::InternalError(szError);
-            }
-        }
-        else
-        {
+            wchar_t szError[128];
+            os_swprintf(szError, 128, _W("Constructor of \'%ls\' is not accessible.\n").c_str(), def->getName().data());
+            throw ast::InternalError(szError);
         }
     }
 
@@ -412,14 +406,7 @@ Function::ReturnValue Object::callMethod(const std::wstring& method, Callable* c
         return Function::OK_NoResult;
     }
 
-    if (call->isMacro())
-    {
-        call->getAs<Macro>()->setParent(this);
-    }
-    else if (call->isMacroFile())
-    {
-        call->getAs<MacroFile>()->getMacro()->setParent(this);
-    }
+    MacroParentScope parentScope(call, this);
 
     if (ConfigVariable::increaseRecursion())
     {

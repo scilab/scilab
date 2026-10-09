@@ -23,6 +23,7 @@
 #include "context.hxx"
 #include "listinsert.hxx"
 #include "macro.hxx"
+#include "macrofile.hxx"
 #include "macrovarvisitor.hxx"
 #include "mlist.hxx"
 #include "parser.hxx"
@@ -207,6 +208,32 @@ Macro::Macro(const std::wstring& _stName, Classdef* def, std::vector<symbol::Var
 Macro::~Macro()
 {
     cleanup();
+}
+
+MacroParentScope::MacroParentScope(Callable* call, InternalType* parent) : macro(nullptr), previous(nullptr)
+{
+    if (call->isMacro())
+    {
+        macro = call->getAs<Macro>();
+    }
+    else if (call->isMacroFile())
+    {
+        macro = call->getAs<MacroFile>()->getMacro();
+    }
+
+    if (macro)
+    {
+        previous = macro->getParent();
+        macro->setParent(parent);
+    }
+}
+
+MacroParentScope::~MacroParentScope()
+{
+    if (macro)
+    {
+        macro->setParent(previous);
+    }
 }
 
 void Macro::cleanup()

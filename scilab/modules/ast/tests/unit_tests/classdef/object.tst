@@ -261,3 +261,52 @@ res = a + int8(10);
 assert_checkequal(res.value, [11 12 13 14]);
 res = int8(10) + b;
 assert_checkequal(res.value, [14 13 12 11]);
+
+// -------------------------------------------------------------
+// clone
+// -------------------------------------------------------------
+classdef T_Clone
+    properties
+        v = 1
+    end
+
+    properties (Static)
+        shown = 0
+    end
+
+    methods
+        function disp()
+            T_Clone.shown = this.v;
+        end
+    end
+end
+
+o = T_Clone();
+o.v = 2;
+c = o.clone();
+assert_checkequal(c.v, 2);
+c.v = 3;
+assert_checkequal(o.v, 2);
+// display of the copy uses the disp method
+disp(c);
+assert_checkequal(T_Clone.shown, 3);
+
+// -------------------------------------------------------------
+// function used as method: `this` only during the call
+// -------------------------------------------------------------
+function r = T_hasThis(varargin)
+    r = isdef("this", "l");
+end
+
+classdef T_FuncMethod
+    methods
+        has = T_hasThis
+        not = T_hasThis
+    end
+end
+
+o = T_FuncMethod();
+assert_checktrue(o.has());
+assert_checkfalse(T_hasThis());
+assert_checktrue(~o);
+assert_checkfalse(T_hasThis());

@@ -18,7 +18,7 @@ extern "C"
 
 namespace types
 {
-ObjectMethod::ObjectMethod(Object* obj, const std::wstring& funcname, Callable* call) : Callable(), object(obj), callable(call), name(funcname)
+ObjectMethod::ObjectMethod(InternalType* obj, const std::wstring& funcname, Callable* call) : Callable(), object(obj), callable(call), name(funcname)
 {
     obj->IncreaseRef();
 }
@@ -39,7 +39,7 @@ bool ObjectMethod::invoke(typed_list & in, optional_list & opt, int _iRetCount, 
         return ret != Callable::ReturnValue::Error;
     }
 
-    setParent();
+    MacroParentScope scope(callable, object);
     return callable->invoke(in, opt, _iRetCount, out, e);
 }
 
@@ -53,19 +53,7 @@ Callable::ReturnValue ObjectMethod::call(typed_list& in, optional_list& opt, int
         return ret;
     }
 
-    setParent();
+    MacroParentScope scope(callable, object);
     return callable->call(in, opt, _iRetCount, out);
-}
-
-void ObjectMethod::setParent()
-{
-    if (callable->isMacro())
-    {
-        callable->getAs<Macro>()->setParent(object);
-    }
-    else if (callable->isMacroFile())
-    {
-        callable->getAs<MacroFile>()->getMacro()->setParent(object);
-    }
 }
 } // namespace type

@@ -63,6 +63,20 @@ p = Point(3, 4);   p.norm()   // 5
 p.move(1, 1);                 // p is now (4, 5)
 ```
 
+Static methods have no `this`: they reach static members through the class
+name (`Point.count`), whatever their visibility, and can call a private
+constructor (factory methods). To work on an object, pass it as argument.
+In instance methods, `this.count` and `Point.count` are the same shared
+value: prefer the class name. The constructor is never static: keep it in a
+plain `methods` block (in a `methods (Static)` block the class definition
+fails with "Constructor of 'X' can not be static").
+
+Property declarations (2027.0+) accept the `arguments` block syntax: size
+`(1,3)`, type `double`/`int8`/`string`/..., validators `{mustBePositive}`,
+`{mustBeInRange(x, 0, 10)}` (only the property itself and constants as
+arguments). They apply to the default value and to every assignment, with
+the same expansion/transposition/conversion as for function arguments.
+
 | MATLAB habit | Scilab classdef |
 |---|---|
 | `function obj = Point(a, b)` constructor | `function Point(a, b)` — no output, assign `this.x` |
@@ -78,11 +92,14 @@ method returning `Point(this.x, this.y)`).
 
 ## Visibility, errors
 
-- `private`: only inside this class's methods; `protected`: + subclasses;
-  `public` (default). Access from outside a private property:
-  "Wrong extraction: property 'x' is not accessible."
-- Assigning an UNDECLARED property (`p.z = 3`) is silently accepted: check
-  property names carefully, typos create new fields instead of failing.
+- `private`: only inside this class's methods; `protected`: + all
+  subclasses (any depth); `public` (default). Access from outside a private
+  property: "Wrong extraction: property 'x' is not accessible."
+- Rights belong to the class of the running method, not to the object: a
+  method can read private members of ANOTHER instance of its class, but a
+  plain function called from a method cannot read private members of `this`.
+- Assigning an UNDECLARED property (`p.z = 3`) fails: "Wrong insertion:
+  property 'z' does not exist."
 - `typeof(p)` returns the class name ("Point"); `isfield` does not work on
   objects — use `or(properties(p) == "z")`.
 
@@ -107,10 +124,9 @@ classdef Savings < Account
     end
 end
 ```
-- A class meant to be subclassed must declare as `protected` (not
-  `private`) every property its own methods assign: when `this` is a
-  subclass instance, even the parent's constructor gets "Wrong insertion:
-  property 'x' is not accessible" on a private property.
+- Parent methods (constructor included) keep access to the parent's private
+  properties when `this` is a subclass instance; subclass methods do not:
+  declare `protected` what subclasses must use.
 
 ## Enumerations
 
@@ -131,6 +147,9 @@ classdef Color
 end
 c = Color.RED;
 ```
+
+The constructor of an enumeration can be private: values are built by the
+class itself.
 
 ## Operator overloading — methods with RESERVED names
 
@@ -173,9 +192,8 @@ name (`disp()`, ...).
 ### Concatenation `[a, b]` / `[a; b]`
 
 Objects cannot be concatenated natively: WITHOUT `horzcat`/`vertcat`
-methods, `[a, b]` is not supported (today it even crashes Scilab instead of
-raising an error — never run it). The class decides what concatenation
-means by defining them:
+methods, `[a, b]` raises "Undefined operation for the given operands". The
+class decides what concatenation means by defining them:
 ```scilab
 function r = horzcat(a, b)            // [a, b, c] chains: horzcat(horzcat(a, b), c)
     if typeof(a) == "list" then r = a; else r = list(a); end

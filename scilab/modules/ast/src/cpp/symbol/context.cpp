@@ -86,7 +86,7 @@ void Context::scope_begin(types::InternalType* object, const std::wstring& metho
         varStack.push(new VarList());
     }
 
-    scope_object_begin(object->getAs<types::Object>(), method);
+    scope_object_begin(object, method);
 }
 
 void Context::clearAll()

@@ -122,6 +122,42 @@ end
 
 expect_err("CycleA()");
 expect_err("CycleB()");
+// the error is the same at each access
+msg = msprintf(_("Inheritance cycle detected for class ''%s''.\n"), "CycleA");
+assert_checkerror("CycleA()", msg);
+assert_checkerror("CycleA()", msg);
+
+// =============================================================
+// Failure while loading a class: same error at each access
+// =============================================================
+classdef LoadFail
+    properties (Static)
+        k (1,1) {mustBePositive} = -1
+    end
+end
+
+classdef LoadFailChild < LoadFail
+end
+
+msg = msprintf(_("%s: Wrong value for property ''%s'': Positive numbers expected.\n"), "LoadFail", "k");
+assert_checkerror("LoadFail.k", msg);
+assert_checkerror("LoadFail.k", msg);
+assert_checkerror("LoadFailChild()", msg);
+assert_checkerror("LoadFailChild()", msg);
+
+// parent defined after a first failure
+classdef LateChild < LateParent
+end
+
+assert_checkerror("LateChild()", msprintf(_("''%s'' does not exist\n"), "LateParent"));
+
+classdef LateParent
+    properties
+        v = 3
+    end
+end
+
+assert_checkequal(LateChild().v, 3);
 
 // =============================================================
 // Concatenation of objects without horzcat/vertcat: error, no crash
@@ -176,3 +212,38 @@ classdef OnlyComments
 end
 
 assert_checktrue(isa(OnlyComments(), "OnlyComments"));
+
+// enumeration with a private constructor
+classdef PrivEnum
+    properties
+        v
+    end
+
+    enumeration
+        One(1)
+        Two(2)
+    end
+
+    methods (Private)
+        function PrivEnum(x)
+            this.v = x;
+        end
+    end
+end
+
+assert_checkequal(PrivEnum.Two.v, 2);
+expect_err("PrivEnum(3)");
+
+// enumeration of a parent class reached through a derived class first
+classdef BaseEnum
+    enumeration
+        Red
+        Green
+    end
+end
+
+classdef DerivedEnum < BaseEnum
+end
+
+assert_checktrue(isa(DerivedEnum.Red, "BaseEnum"));
+assert_checktrue(DerivedEnum.Red == BaseEnum.Red);

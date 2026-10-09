@@ -1486,6 +1486,7 @@ void RunVisitorT<T>::visitprivate(const ClassDec & e)
                     attr.arg.default_value = dec->getArgumentDefaultValue();
                 }
 
+                types::Classdef::parsePropertyArgument(e.getSymbol().getName() + L"." + name, *dec, attr.arg);
                 props[name] = attr;
             }
         }
@@ -1545,6 +1546,24 @@ void RunVisitorT<T>::visitprivate(const ClassDec & e)
         for (auto&& me : method->getMethods())
         {
             if (me->isCommentExp()) continue;
+
+            // the constructor initializes an instance (this), it can not be static
+            std::wstring methodName;
+            if (me->isFunctionDec())
+            {
+                methodName = me->getAs<ast::FunctionDec>()->getSymbol().getName();
+            }
+            else if (me->isAssignExp() && me->getAs<ast::AssignExp>()->getLeftExp().isSimpleVar())
+            {
+                methodName = me->getAs<ast::AssignExp>()->getLeftExp().getAs<ast::SimpleVar>()->getSymbol().getName();
+            }
+
+            if (staticFlag && methodName == e.getSymbol().getName())
+            {
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("%ls: Constructor of \'%ls\' can not be static.\n").c_str(), L"'classdef'", methodName.data());
+                throw InternalError(szError, 999, me->getLocation());
+            }
 
             if (me->isFunctionDec())
             {

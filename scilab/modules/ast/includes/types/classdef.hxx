@@ -16,6 +16,11 @@
 #include "internal.hxx"
 #include "arguments.hxx"
 
+namespace ast
+{
+class ArgumentDec;
+}
+
 namespace types
 {
 
@@ -90,6 +95,11 @@ public:
 
     bool getAccessProperty(const std::wstring& name, AccessModifier& access);
     bool getAccessMethod(const std::wstring& name, AccessModifier& access);
+    // class defining the property or method, nullptr if it does not exist
+    Classdef* getOwner(const std::wstring& name, AccessModifier& access);
+    bool isAccessible(const std::wstring& name);
+    // class of the running code (method or static method), nullptr outside of classes
+    static Classdef* getCallerClassdef();
 
     std::vector<std::tuple<std::wstring, Classdef*>> getSuperclass() const;
 
@@ -112,8 +122,13 @@ public:
     bool hasStatic(const std::wstring& name);
     bool setStatic(const std::wstring& name, InternalType* pIT);
     bool isStaticMethod(const std::wstring& name);
+    InternalType* getStaticMethod(const std::wstring& name);
 
     InternalType* instantiateProperty(const std::wstring& name, const OBJ_ATTR& attr);
+    // size, type and validators of a property: x (1,1) double {mustBePositive} = 1
+    static void parsePropertyArgument(const std::wstring& where, const ast::ArgumentDec& dec, ARG& arg);
+    // value converted to the declared size and type, error if a validator fails
+    InternalType* checkProperty(const std::wstring& name, InternalType* value);
     Object* createEmptyInstance();
 
 private:
@@ -128,6 +143,7 @@ private:
     bool initializing;
 
     void LoadClassdef();
+    void resetLoading();
     void internalCall(typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e);
 
     std::vector<Object*> objects;

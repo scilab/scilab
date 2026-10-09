@@ -311,3 +311,131 @@ classdef D < B & C
 end
 
 assert_checkequal(D().test(), "A");
+
+// -------------------------------------------------------------
+// Non-public constructor called from static or other classes
+// -------------------------------------------------------------
+classdef CFactory
+    methods (Private)
+        function CFactory()
+        end
+    end
+
+    methods (Static)
+        function o = make()
+            o = CFactory();
+        end
+    end
+end
+
+classdef CProtFactory < CProt
+    methods (Static)
+        function o = makeParent()
+            o = CProt();
+        end
+    end
+end
+
+classdef COther
+    methods (Static)
+        function o = makeStatic()
+            o = CFactory();
+        end
+    end
+
+    methods
+        function o = makeMethod()
+            o = CFactory();
+        end
+    end
+end
+
+// private constructor: only from the class itself
+check_exec("o = CFactory.make();");
+expect_err("CFactory();");
+expect_err("COther.makeStatic();");
+expect_err("COther().makeMethod();");
+
+// protected constructor: from a derived class
+check_exec("o = CProtFactory.makeParent();");
+
+// -------------------------------------------------------------
+// Access rights are those of the class of the running code
+// -------------------------------------------------------------
+classdef Secret
+    properties (Private)
+        v = 1
+    end
+
+    properties (Protected)
+        p = 2
+    end
+
+    methods
+        function r = peek(other)
+            r = other.v;
+        end
+
+        function r = run(f)
+            r = f(this);
+        end
+    end
+
+    methods (Static)
+        function r = readProt(obj)
+            r = obj.p;
+        end
+    end
+end
+
+function r = stealSecret(o)
+    r = o.v;
+end
+
+// another instance of the same class
+check_exec("[r] = Secret().peek(Secret());", "r");
+assert_checkequal(r, 1);
+
+// static method on an instance of its class
+check_exec("[r] = Secret.readProt(Secret());", "r");
+assert_checkequal(r, 2);
+
+// a function called from a method is not part of the class
+expect_err("Secret().run(stealSecret);");
+
+// -------------------------------------------------------------
+// Protected members are visible to all derived classes
+// -------------------------------------------------------------
+classdef ProtL1
+    properties (Protected)
+        p = 1
+    end
+
+    methods (Protected)
+        function r = prot()
+            r = "prot";
+        end
+    end
+end
+
+classdef ProtL2 < ProtL1
+end
+
+classdef ProtL3 < ProtL2
+    methods
+        function r = getP()
+            r = this.p;
+        end
+
+        function r = callProt()
+            r = this.prot();
+        end
+    end
+end
+
+check_exec("[r] = ProtL3().getP();", "r");
+assert_checkequal(r, 1);
+check_exec("[r] = ProtL3().callProt();", "r");
+assert_checkequal(r, "prot");
+expect_err("ProtL3().p");
+expect_err("ProtL3().prot()");

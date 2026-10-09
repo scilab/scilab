@@ -352,6 +352,24 @@ test_uint(int64(vref), uint32(vref))
 test_uint(uint64(vref), uint32(vref))
 test_uint(string(vref), uint32(vref))
 
+//* -> each integer type
+function [a, b, c, d, e, f, g, h] = test_inttypes(a, b, c, d, e, f, g, h)
+    arguments
+        a int8
+        b uint8
+        c int16
+        d uint16
+        e int32
+        f uint32
+        g int64
+        h uint64
+    end
+end
+
+vref = [0 1 2;3 4 5];
+[a, b, c, d, e, f, g, h] = test_inttypes(vref, vref, vref, vref, vref, vref, vref, vref);
+assert_checkequal(list(a, b, c, d, e, f, g, h), list(int8(vref), uint8(vref), int16(vref), uint16(vref), int32(vref), uint32(vref), int64(vref), uint64(vref)));
+
 //* -> bool
 function test_bool(x, ref)
     arguments

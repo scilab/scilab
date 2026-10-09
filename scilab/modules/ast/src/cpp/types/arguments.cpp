@@ -469,7 +469,7 @@ std::map<std::wstring, std::function<types::InternalType*(types::InternalType*, 
     {L"int8", toInt<types::Int8>},
     {L"uint8", toInt<types::UInt8>},
     {L"int16", toInt<types::Int16>},
-    {L"uint6", toInt<types::UInt16>},
+    {L"uint16", toInt<types::UInt16>},
     {L"int32", toInt<types::Int32>},
     {L"uint32", toInt<types::UInt32>},
     {L"int64", toInt<types::Int64>},
@@ -1162,6 +1162,50 @@ std::map<std::wstring, std::tuple<std::string, int>> errorValidators = {
 std::tuple<std::string, int> getErrorValidator(const std::wstring& name)
 {
     return errorValidators[name];
+}
+
+// classdef properties: "%s: ... property '%s'..." with class and property names
+std::map<std::wstring, std::tuple<std::string, int>> errorPropertyValidators = {
+    {L"mustBePositive", {"%s: Wrong value for property '%s': Positive numbers expected.\n", 2}},
+    {L"mustBeNonpositive", {"%s: Wrong value for property '%s': Non positive numbers expected.\n", 2}},
+    {L"mustBeNonnegative", {"%s: Wrong value for property '%s': Non negative numbers expected.\n", 2}},
+    {L"mustBeNegative", {"%s: Wrong value for property '%s': Negative numbers expected.\n", 2}},
+    {L"mustBeFinite", {"%s: Wrong value for property '%s': Finite numbers expected.\n", 2}},
+    {L"mustBeNonNan", {"%s: Wrong value for property '%s': Nan are not allowed.\n", 2}},
+    {L"mustBeNonzero", {"%s: Wrong value for property '%s': Zero are not allowed.\n", 2}},
+    {L"mustBeNonsparse", {"%s: Wrong value for property '%s': Sparse are not allowed.\n", 2}},
+    {L"mustBeReal", {"%s: Wrong value for property '%s': Real numbers expected.\n", 2}},
+    {L"mustBeInteger", {"%s: Wrong value for property '%s': Integer numbers expected.\n", 2}},
+    {L"mustBeMember", {"%s: Wrong value for property '%s': Must be in %s.\n", 3}},
+    {L"mustBeGreaterThan", {"%s: Wrong value for property '%s': Must be > %s.\n", 3}},
+    {L"mustBeGreaterThanOrEqual", {"%s: Wrong value for property '%s': Must be >= %s.\n", 3}},
+    {L"mustBeLessThan", {"%s: Wrong value for property '%s': Must be < %s.\n", 3}},
+    {L"mustBeLessThanOrEqual", {"%s: Wrong value for property '%s': Must be <= %s.\n", 3}},
+    {L"mustBeA", {"%s: Wrong type for property '%s': Must be in %s.\n", 3}},
+    {L"mustBeNumeric", {"%s: Wrong type for property '%s': Must be numeric values.\n", 2}},
+    {L"mustBeNumericOrLogical", {"%s: Wrong type for property '%s': Must be numeric values or boolean.\n", 2}},
+    {L"mustBeNumericOrBoolean", {"%s: Wrong type for property '%s': Must be numeric values or boolean.\n", 2}},
+    {L"mustBeNonempty", {"%s: Wrong type for property '%s': Must not be empty.\n", 2}},
+    {L"mustBeScalar", {"%s: Wrong type for property '%s': Must be a scalar.\n", 2}},
+    {L"mustBeScalarOrEmpty", {"%s: Wrong type for property '%s': Must be a scalar or empty.\n", 2}},
+    {L"mustBeVector", {"%s: Wrong type for property '%s': Must be a vector.\n", 2}},
+    {L"mustBeRow", {"%s: Wrong type for property '%s': Must be a row vector.\n", 2}},
+    {L"mustBeColumn", {"%s: Wrong type for property '%s': Must be a column vector.\n", 2}},
+    {L"mustBeSquare", {"%s: Wrong type for property '%s': Must be a square matrix.\n", 2}},
+    {L"mustBeInRange", {"%s: Wrong value for property '%s': Must be in range [%s, %s].\n", 4}},
+    {L"mustBeFile", {"%s: Wrong type for property '%s': Must be a file.\n", 2}},
+    {L"mustBeFolder", {"%s: Wrong type for property '%s': Must be a folder.\n", 2}},
+    {L"mustBeNonzeroLengthText", {"%s: Wrong type for property '%s': Must not be an empty string.\n", 2}},
+    {L"mustBeValidVariableName", {"%s: Wrong type for property '%s': Must be a valid variable name.\n", 2}},
+    {L"mustBeEqualDims", {"%s: Wrong size for property '%s': Must be of the same dimensions of %s.\n", 3}},
+    {L"mustBeSameType", {"%s: Wrong type for property '%s': Must be same type of %s.\n", 3}},
+    {L"mustBeEqualDimsOrEmpty", {"%s: Wrong size for property '%s': Must be of the same dimensions of %s or empty.\n", -3}},
+    {L"mustBeEqualDimsOrScalar", {"%s: Wrong size for property '%s': Must be of the same dimensions of %s or scalar.\n", -3}},
+};
+
+std::tuple<std::string, int> getPropertyErrorValidator(const std::wstring& name)
+{
+    return errorPropertyValidators[name];
 }
 
 // < 0 to print varaible/constant content

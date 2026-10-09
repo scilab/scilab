@@ -346,3 +346,13 @@ assert_checkequal(Persistent.data, 99);
 p2 = Persistent();
 assert_checkequal(p2.data, 99);
 
+// =============================================================
+// a constructor can not be static
+// =============================================================
+msg = msprintf(_("%s: Constructor of ''%s'' can not be static.\n"), "''classdef''", "StaticCtor");
+assert_checkerror("execstr(""classdef StaticCtor; methods (Static); function StaticCtor(); end; end; end"")", msg);
+
+function StaticCtorFunc()
+end
+assert_checkerror("execstr(""classdef StaticCtor; methods (Static); StaticCtor = StaticCtorFunc; end; end"")", msg);
+

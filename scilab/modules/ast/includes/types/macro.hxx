@@ -135,7 +135,7 @@ class EXTERN_AST Macro : public Callable
         return m_captured;
     }
 
-    void setParent(Object* p)
+    void setParent(InternalType* p)
     {
         parent = p;
         if (p)
@@ -170,6 +170,19 @@ class EXTERN_AST Macro : public Callable
     //bool mustAsParent;
 
     void cleanup();
+};
+
+// a macro runs in the context of its parent (object or classdef): set it for the duration
+// of a call only, the macro can be shared (inherited method, function assigned as method, ...)
+class EXTERN_AST MacroParentScope
+{
+public:
+    MacroParentScope(Callable* call, InternalType* parent);
+    ~MacroParentScope();
+
+private:
+    Macro* macro;
+    InternalType* previous;
 };
 }
 

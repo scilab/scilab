@@ -103,7 +103,7 @@ end
                         <para>
                             <varname>Static</varname>: elements are shared across all instances of this class and can be accessed
                             via the class name (<literal>MyClass.prop</literal>) or via an instance (<literal>obj.prop</literal>).
-                            Static methods do not receive <literal>this</literal>.
+                            Static methods do not receive <literal>this</literal> (see "Static members" below).
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -132,6 +132,12 @@ end
             A default value can be added to initialize variable during instantiation (default <literal>[]</literal>).
         </para>
         <para>
+            As in an <link linkend="arguments">arguments</link> block, a property can declare its size, its type and
+            validation functions. They are applied to the default value and to each assignment: the value is expanded,
+            transposed or converted if needed, and an error is raised if it does not match.
+            Validation functions can only refer to the property itself and to constants.
+        </para>
+        <para>
             Properties can also be declared <literal>Static</literal>. Static properties are shared across all instances
             and can be accessed via the class name or via any instance.
         </para>
@@ -140,6 +146,8 @@ end
 classdef <classname>
     properties (<modifier>)
         var1 = []
+        var2 (1,1) double {mustBePositive} = 1
+        var3 {mustBeInRange(var3, 0, 10)} = 5
     end
 
     properties (Static)
@@ -159,6 +167,8 @@ end
         <para>
             Methods can also be declared <literal>Static</literal>. Static methods do not receive <literal>this</literal>
             and can be called via the class name (<literal>MyClass.method()</literal>) or via an instance (<literal>obj.method()</literal>).
+            In a static method, static members of the class are accessed via the class name (<literal>MyClass.member</literal>),
+            whatever their visibility.
         </para>
         <programlisting role="no-scilab-exec"><![CDATA[
 classdef <classname>
@@ -179,7 +189,95 @@ end
 
         ]]></programlisting>
         <para>Note: <literal>externalfunc</literal> can be a macro or a C/C++ gateway.</para>
-        <para>In C/C++ gateway, <code>use symbol::Context::getInstance()-&gt;getCurrentObject()</code> to get <literal>this</literal></para>
+        <para>
+            In C/C++ gateway, use <code>symbol::Context::getInstance()-&gt;getCurrentObject()</code> to get <literal>this</literal>
+            (the classdef for a static method).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Static members</title>
+        <para>
+            A static property holds a single value shared by the class, all its instances and its derived classes.
+            A static method is not bound to an instance: it does not receive <literal>this</literal>.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Outside the class: <literal>MyClass.prop</literal>, <literal>MyClass.method()</literal>,
+                    or through any instance: <literal>obj.prop</literal>, <literal>obj.method()</literal>.
+                    Private and protected static members are not accessible.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    In an instance method: <literal>MyClass.prop</literal> or <literal>this.prop</literal>,
+                    both refer to the same shared value. The class name makes clear that the value is shared.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    In a static method: there is no <literal>this</literal>, always use the class name
+                    (<literal>MyClass.prop</literal>, <literal>MyClass.method()</literal>), whatever the visibility
+                    of the member. <literal>this.prop</literal> raises "Undefined variable: this".
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Instance properties do not exist in a static method: to work on an object, pass it as argument
+                    (<literal>function r = f(obj)</literal>). As the method belongs to the class, private and protected
+                    members of <literal>obj</literal> are accessible.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    A derived class shares the static members of its parents: <literal>Derived.prop</literal> and
+                    <literal>Base.prop</literal> are the same value.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The constructor is always an instance method: declare it in a <literal>methods</literal> block
+                    without the <literal>Static</literal> modifier and use <literal>this</literal> to initialize the object.
+                    A constructor declared in a <literal>methods (Static)</literal> block raises an error at the
+                    definition of the class.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <programlisting role="example"><![CDATA[
+classdef Account
+    properties (Static, Private)
+        count = 0       // shared: number of accounts
+    end
+
+    properties (Private)
+        balance = 0     // one value per instance
+    end
+
+    methods
+        function Account(b)                 // constructor: instance method
+            this.balance = b;               // instance property: this
+            Account.count = Account.count + 1;  // static property: class name
+        end
+    end
+
+    methods (Static)
+        function r = total()
+            r = Account.count;              // no this in a static method
+        end
+
+        function r = balanceOf(acc)
+            r = acc.balance;                // an instance is given as argument
+        end
+    end
+end
+
+a1 = Account(100);
+a2 = Account(50);
+Account.total()         // 2
+a1.total()              // 2, same value through an instance
+Account.balanceOf(a2)   // 50
+// Account.count        // error: private static property
+        ]]></programlisting>
     </refsection>
     <refsection>
         <title>Enumeration</title>
@@ -602,6 +700,14 @@ Counter.count
                 <revdescription>
                     <para>
                         <literal>Static</literal> modifier added for properties and methods.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        Size, type and validation functions of properties are applied.
                     </para>
                 </revdescription>
             </revision>
