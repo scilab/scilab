@@ -107,10 +107,9 @@ public class XcosCell extends mxCell {
      * constructor would let partially-initialized subclasses escape (and is
      * reported by the {@code this-escape} lint).
      *
-     * The value is deliberately not synchronized here as it is a read-only
-     * view of the model state in every construction path (see
-     * {@link XcosCellFactory#createBlock}); {@link #setMVCValue(JavaController, Object)}
-     * remains the overridable post-construction synchronization hook.
+     * The value is not synchronized here, as {@link #setMVCValue(JavaController, Object)}
+     * is overridable. A caller that brings a new value stores it in the model
+     * itself (e.g. the SAX handlers, {@link org.scilab.modules.xcos.block.AfficheBlock}).
      *
      * @param controller the controller
      * @param value the value

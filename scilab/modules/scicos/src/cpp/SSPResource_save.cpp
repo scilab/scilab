@@ -116,47 +116,54 @@ int ioclose(void* context)
     return 0;
 };
 
-// known port description
-struct known_t
+using all_port_t = SSPResource::ChildrenCategories::all_port_t;
+
+static inline void unique(std::vector<all_port_t>& all_ports)
 {
-    model::BaseObject* o;
-    std::string name;
-    int index;
-    bool generated;
+    std::stable_sort(all_ports.begin(), all_ports.end(), [](const all_port_t& a, const all_port_t& b)
+                        { return a.name < b.name; });
 
-    friend void unique(std::vector<known_t>& all_known)
+    // Ensure port names are unique, number it like foo1, foo2, foo3, etc..
+    // This will ensure multiple unnamed input, with generated "in" label will have increased indexes
+    auto it = all_ports.begin();
+    auto next = it != all_ports.end() ? it + 1 : it;
+    for (; next != all_ports.end(); ++it, ++next)
     {
-        std::stable_sort(all_known.begin(), all_known.end(), [](const known_t& a, const known_t& b)
-                         { return a.name < b.name; });
-
-        // Ensure port names are unique, number it like foo1, foo2, foo3, etc..
-        // This will ensure multiple unamed input, with generated "in" label will have increased indexes
-        auto it = all_known.begin();
-        auto next = it != all_known.end() ? it + 1 : it;
-        for (; next != all_known.end(); ++it, ++next)
+        if (it->name != "" && it->name == next->name)
         {
-            if (it->name != "" && it->name == next->name)
+            std::string shared_name = it->name;
+            int counter = 1;
+
+            it->name = shared_name + std::to_string(counter++);
+            it->generated = true;
+            for (; next != all_ports.end() && shared_name == next->name; next++, counter++)
             {
-                std::string shared_name = it->name;
-                int counter = 1;
+                next->name = shared_name + std::to_string(counter);
+                next->generated = true;
+            }
 
-                it->name = shared_name + std::to_string(counter++);
-                it->generated = true;
-                for (; next != all_known.end() && shared_name == next->name; next++, counter++)
-                {
-                    next->name = shared_name + std::to_string(counter);
-                    next->generated = true;
-                }
-
-                it = next - 1;
-                if (next == all_known.end())
-                {
-                    break;
-                }
+            it = next - 1;
+            if (next == all_ports.end())
+            {
+                break;
             }
         }
     }
-};
+
+    // sort back to keep original id() order
+    std::sort(all_ports.begin(), all_ports.end(), [](const all_port_t& a, const all_port_t& b)
+    {
+        if (a.inner_port != nullptr && b.inner_port != nullptr)
+        {
+            return a.inner_port->id() < b.inner_port->id();
+        }
+        if (a.outter_port != nullptr && b.outter_port != nullptr)
+        {
+            return a.outter_port->id() < b.outter_port->id();
+        }
+        return a.block_index < b.block_index;
+    });
+}
 
 template<typename T>
 inline std::string to_string(T v)
@@ -477,25 +484,6 @@ SSPResource::Result SSPResource::writeSystemStructureFile(void* context)
     return Result::Ok();
 }
 
-SSPResource::Result SSPResource::ChildrenCategories::get_port(Controller& controller, model::BaseObject* o, object_properties_t p, model::BaseObject*& port, int index)
-{
-    std::vector<ScicosID> ports{ScicosID()};
-    if (!controller.getObjectProperty(o, p, ports))
-    {
-        return Result::Error(o, p);
-    }
-    if (ports.size() < index)
-    {
-        return Result::Error(o, p);
-    }
-    port = controller.getBaseObject(ports[index - 1]);
-    if (port == nullptr)
-    {
-        return Result::Error(o, p);
-    }
-    return Result::Ok();
-}
-
 SSPResource::Result SSPResource::ChildrenCategories::decode_ipar_or_exprs(Controller& controller, model::BaseObject* o, int& index)
 {
     if (!controller.getObjectProperty(o, IPAR, _vecIntShared))
@@ -533,16 +521,138 @@ SSPResource::Result SSPResource::ChildrenCategories::decode_ipar_or_exprs(Contro
     return Result::Ok();
 }
 
+SSPResource::Result SSPResource::ChildrenCategories::store_port(Controller& controller, model::BaseObject* o, object_properties_t p, size_t index, std::string& name, const std::string& prefix)
+{
+    SSPResource::Result status = Result::Ok();
+    std::vector<ScicosID> ports = {ScicosID()};
+
+    int port_index;
+    status = decode_ipar_or_exprs(controller, o, port_index);
+    if (status.error())
+    {
+        return status;
+    }
+
+    model::BaseObject* inner_port;
+    if (!controller.getObjectProperty(o, opposite_property(p), ports))
+    {
+        return Result::Error(o, opposite_property(p));
+    }
+    if (ports.size() < 1)
+    {
+        return Result::Error(o, opposite_property(p));
+    }
+    inner_port = controller.getBaseObject(ports[0]);
+    if (inner_port == nullptr)
+    {
+        return Result::Error(o, opposite_property(p));
+    }
+
+    bool generated = false;
+    if (name == "")
+    {
+        name = prefix;
+        generated = true;
+    }
+
+    enum portKind port_k = (enum portKind) port_from_property(p);
+    all_ports.push_back({port_k, port_index, generated, inner_port, nullptr, o, index + 1, name});
+    max_indexes[port_k] = std::max(max_indexes[port_k], port_index + 1);
+
+    return Result::Ok();
+}
+
+SSPResource::Result SSPResource::ChildrenCategories::assign_outter_ports(Controller& controller, model::BaseObject* parent)
+{
+    if (parent->kind() != BLOCK)
+    {
+        // only blocks have outter ports
+        return Result::Ok();
+    }
+
+    // categorize all_ports per kind
+    std::map<enum portKind, std::vector<size_t>> all_ports_idx = {
+        {PORT_IN, {}},
+        {PORT_OUT, {}},
+        {PORT_EIN, {}},
+        {PORT_EOUT, {}}
+    };
+    for (size_t i = 0; i < all_ports.size(); i++)
+    {
+        all_ports_idx[all_ports[i].kind].push_back(i);
+    }
+
+    // generated name prefixes, indexed by enum portKind
+    const std::string prefixes[] = {"", "#in", "#out", "#clkin", "#clkout"};
+
+    // outter ports from parent
+    std::vector<ScicosID> outter_ports_ids;
+    for (auto& pair : all_ports_idx)
+    {
+        if (!controller.getObjectProperty(parent, property_from_port(pair.first), outter_ports_ids))
+        {
+            return Result::Error(parent, property_from_port(pair.first));
+        }
+
+        // assign by port_index, keeping gaps ; ignore extra or duplicated inner blocks
+        std::vector<bool> assigned(outter_ports_ids.size(), false);
+        for (size_t idx : pair.second)
+        {
+            int i = all_ports[idx].port_index - 1;
+            if (i < 0 || i >= (int) outter_ports_ids.size() || assigned[i])
+            {
+                continue;
+            }
+            assigned[i] = true;
+            all_ports[idx].outter_port = controller.getBaseObject(outter_ports_ids[i]);
+            if (all_ports[idx].outter_port == nullptr)
+            {
+                return Result::Error(parent, property_from_port(pair.first));
+            }
+            names.insert({all_ports[idx].outter_port, all_ports[idx].name});
+        }
+
+        // outter ports without inner block are still connectors, with a generated name
+        for (size_t i = 0; i < outter_ports_ids.size(); i++)
+        {
+            if (assigned[i])
+            {
+                continue;
+            }
+
+            int counter = (int) i + 1;
+            std::string name;
+            do
+            {
+                name = prefixes[pair.first] + std::to_string(counter++);
+            }
+            while (std::any_of(all_ports.begin(), all_ports.end(), [&name](const all_port_t& p) { return p.name == name; }));
+
+            model::BaseObject* outter_port = controller.getBaseObject(outter_ports_ids[i]);
+            if (outter_port == nullptr)
+            {
+                return Result::Error(parent, property_from_port(pair.first));
+            }
+            all_ports.push_back({pair.first, (int) i + 1, true, nullptr, outter_port, nullptr, 0, name});
+            names.insert({outter_port, name});
+            used_names.insert(name);
+        }
+        max_indexes[pair.first] = std::max(max_indexes[pair.first], (int) outter_ports_ids.size() + 1);
+    }
+
+    return Result::Ok();
+}
+
 SSPResource::Result SSPResource::ChildrenCategories::load_children(Controller& controller, model::BaseObject* parent, const std::vector<ScicosID>& children)
 {
     Result status = Result::Ok();
 
     std::string name;
     std::string interfaceFunction;
+    std::vector<ScicosID> ports;
 
     canvas = SystemCanvas::default_xcos_ccordinates();
 
-    std::vector<known_t> all_known;
     for (size_t i = 0; i < children.size(); i++)
     {
         model::BaseObject* o = controller.getBaseObject(children[i]);
@@ -569,40 +679,13 @@ SSPResource::Result SSPResource::ChildrenCategories::load_children(Controller& c
                 else if ((parent->kind() == BLOCK) && (interfaceFunction == "IN_f" || interfaceFunction == "INIMPL_f"))
                 {
                     // on Block containing an IN_f, it is treated as a Connector
-
-                    int index;
-                    status = decode_ipar_or_exprs(controller, o, index);
+                    status = store_port(controller, o, INPUTS, (int) i, name, "#in");
                     if (status.error())
                     {
                         return status;
                     }
-
-                    model::BaseObject* outter_port;
-                    status = get_port(controller, parent, INPUTS, outter_port, index);
-                    if (status.error())
-                    {
-                        return status;
-                    }
-
-                    model::BaseObject* inner_port;
-                    status = get_port(controller, o, OUTPUTS, inner_port, 1);
-                    if (status.error())
-                    {
-                        return status;
-                    }
-
-                    bool generated = false;
-                    if (name == "")
-                    {
-                        name = "#in";
-                        generated = true;
-                    }
-
-                    all_known.push_back({inner_port, name, index, generated});
-                    all_ports.push_back({PORT_IN, index, inner_port, outter_port, o, i+1});
-                    max_indexes[PORT_IN]++;
                 }
-                else if (interfaceFunction == "SSPInputConnector")
+                else if ((parent->kind() == DIAGRAM) && interfaceFunction == "SSPInputConnector")
                 {
                     int index;
                     if (!controller.getObjectProperty(o, EXPRS, _vecStrShared))
@@ -614,85 +697,40 @@ SSPResource::Result SSPResource::ChildrenCategories::load_children(Controller& c
                         return Result::Error(o, EXPRS);
                     }
                     model::BaseObject* port;
-                    status = get_port(controller, o, OUTPUTS, port, 1);
-                    if (status.error())
+                    if (!controller.getObjectProperty(o, OUTPUTS, ports))
                     {
-                        return status;
+                        return Result::Error(o, OUTPUTS);
+                    }
+                    if (ports.size() < 1)
+                    {
+                        return Result::Error(o, OUTPUTS);
+                    }
+                    port = controller.getBaseObject(ports[0]);
+                    if (port == nullptr)
+                    {
+                        return Result::Error(o, OUTPUTS);
                     }
 
                     index = max_indexes[PORT_IN]++;
-                    all_known.push_back({port, _vecStrShared[0], index, false});
-                    all_ports.push_back({PORT_IN, index, port, nullptr, o, 0});
+                    all_ports.push_back({PORT_IN, index, false, port, nullptr, o, 0, _vecStrShared[0]});
                 }
                 else if ((parent->kind() == BLOCK) && (interfaceFunction == "CLKINV_f" || interfaceFunction == "CLKIN_f"))
                 {
-                    int index;
-                    status = decode_ipar_or_exprs(controller, o, index);
+                    status = store_port(controller, o, EVENT_INPUTS, i, name, "#clkin");
                     if (status.error())
                     {
                         return status;
                     }
-
-                    model::BaseObject* outter_port;
-                    status = get_port(controller, parent, EVENT_INPUTS, outter_port, index);
-                    if (status.error())
-                    {
-                        return status;
-                    }
-
-                    model::BaseObject* inner_port;
-                    status = get_port(controller, o, EVENT_OUTPUTS, inner_port, 1);
-                    if (status.error())
-                    {
-                        return status;
-                    }
-
-                    bool generated = false;
-                    if (name == "")
-                    {
-                        name = "#clkin";
-                        generated = true;
-                    }
-
-                    all_known.push_back({inner_port, name, index, generated});
-                    all_ports.push_back({PORT_EIN, index, inner_port, outter_port, o, i+1});
-                    max_indexes[PORT_EIN]++;
                 }
                 else if ((parent->kind() == BLOCK) && (interfaceFunction == "OUT_f" || interfaceFunction == "OUTIMPL_f"))
                 {
-                    int index;
-                    status = decode_ipar_or_exprs(controller, o, index);
+                    status = store_port(controller, o, OUTPUTS, i, name, "#out");
                     if (status.error())
                     {
                         return status;
                     }
-
-                    model::BaseObject* outter_port;
-                    status = get_port(controller, parent, OUTPUTS, outter_port, index);
-                    if (status.error())
-                    {
-                        return status;
-                    }
-
-                    model::BaseObject* inner_port;
-                    status = get_port(controller, o, INPUTS, inner_port, 1);
-                    if (status.error())
-                    {
-                        return status;
-                    }
-
-                    bool generated = false;
-                    if (name == "")
-                    {
-                        name = "#out";
-                        generated = true;
-                    }
-
-                    all_known.push_back({inner_port, name, index, generated});
-                    all_ports.push_back({PORT_OUT, index, inner_port, outter_port, o, i+1});
-                    max_indexes[PORT_OUT]++;
                 }
-                else if (interfaceFunction == "SSPOutputConnector")
+                else if ((parent->kind() == DIAGRAM) && interfaceFunction == "SSPOutputConnector")
                 {
                     int index;
                     if (!controller.getObjectProperty(o, EXPRS, _vecStrShared))
@@ -704,49 +742,30 @@ SSPResource::Result SSPResource::ChildrenCategories::load_children(Controller& c
                         return Result::Error(o, EXPRS);
                     }
                     model::BaseObject* port;
-                    status = get_port(controller, o, INPUTS, port, 1);
-                    if (status.error())
+                    if (!controller.getObjectProperty(o, INPUTS, ports))
                     {
-                        return status;
+                        return Result::Error(o, INPUTS);
+                    }
+                    if (ports.size() < 1)
+                    {
+                        return Result::Error(o, INPUTS);
+                    }
+                    port = controller.getBaseObject(ports[0]);
+                    if (port == nullptr)
+                    {
+                        return Result::Error(o, INPUTS);
                     }
 
                     index = max_indexes[PORT_OUT]++;
-                    all_known.push_back({port, _vecStrShared[0], index, false});
-                    all_ports.push_back({PORT_OUT, index, port, nullptr, o, 0});
+                    all_ports.push_back({PORT_OUT, index, false, port, nullptr, o, 0, _vecStrShared[0]});
                 }
                 else if ((parent->kind() == BLOCK) && (interfaceFunction == "CLKOUTV_f" || interfaceFunction == "CLKOUT_f"))
                 {
-                    int index;
-                    status = decode_ipar_or_exprs(controller, o, index);
+                    status = store_port(controller, o, EVENT_OUTPUTS, i, name, "#clkout");
                     if (status.error())
                     {
                         return status;
                     }
-
-                    model::BaseObject* outter_port;
-                    status = get_port(controller, parent, EVENT_OUTPUTS, outter_port, index);
-                    if (status.error())
-                    {
-                        return status;
-                    }
-
-                    model::BaseObject* inner_port;
-                    status = get_port(controller, o, EVENT_INPUTS, inner_port, 1);
-                    if (status.error())
-                    {
-                        return status;
-                    }
-
-                    bool generated = false;
-                    if (name == "")
-                    {
-                        name = "#clkout";
-                        generated = true;
-                    }
-
-                    all_known.push_back({inner_port, name, index, generated});
-                    all_ports.push_back({PORT_EOUT, index, inner_port, outter_port, o, i+1});
-                    max_indexes[PORT_EOUT]++;
                 }
                 else
                 {
@@ -791,18 +810,20 @@ SSPResource::Result SSPResource::ChildrenCategories::load_children(Controller& c
     }
 
     // generate valid names for un-named connectors
-    unique(all_known);
+    unique(all_ports);
 
-    // add all ports by name
-    for (auto it = all_known.begin(); it != all_known.end(); ++it)
+    // add all ports with a generated name
+    for (auto it = all_ports.begin(); it != all_ports.end(); ++it)
     {
         if (it->name == "")
         {
-            return Result::Error(it->o, NAME);
+            return Result::Error(it->inner_port, NAME);
         }
-
-        names.insert({it->o, it->name});
-        used_names.insert(it->name);
+        if (it->generated)
+        {
+            names.insert({it->inner_port, it->name});
+            used_names.insert(it->name);
+        }
     }
 
     return Result::Ok();
@@ -811,7 +832,6 @@ SSPResource::Result SSPResource::ChildrenCategories::load_ports(Controller& cont
 {
     int index = 0;
 
-    std::vector<known_t> all_known;
     struct port_t
     {
         object_properties_t block_property;
@@ -849,27 +869,23 @@ SSPResource::Result SSPResource::ChildrenCategories::load_ports(Controller& cont
                 generated = true;
             }
 
-            all_known.push_back({port, _strShared, index, generated});
-            all_ports.push_back({m.kind, index, nullptr, port, o, 0});
+            all_ports.push_back({m.kind, index, generated, nullptr, port, nullptr, 0, _strShared});
         }
 
         max_indexes[m.kind] = index + 1;
     }
 
     // generate valid names for un-named connectors
-    unique(all_known);
+    unique(all_ports);
 
-    // add all ports with a generated name
-    for (auto it = all_known.begin(); it != all_known.end(); ++it)
+    // add all ports by name
+    for (auto it = all_ports.begin(); it != all_ports.end(); ++it)
     {
         if (it->name == "")
         {
-            return Result::Error(it->o, NAME);
+            return Result::Error(it->outter_port, NAME);
         }
-        if (it->generated)
-        {
-            names.insert({it->o, it->name});
-        }
+        names.insert({it->outter_port, it->name});
     }
 
     return Result::Ok();
@@ -1137,6 +1153,11 @@ SSPResource::Result SSPResource::writeSystem(xmlTextWriterPtr writer, model::Bas
     {
         return status;
     }
+    status = c.assign_outter_ports(controller, o);
+    if (status.error())
+    {
+        return status;
+    }
 
     /*
      * Serialize outter ports on sub-systems, the inner I/O blocks will match the interface
@@ -1178,7 +1199,7 @@ SSPResource::Result SSPResource::writeSystem(xmlTextWriterPtr writer, model::Bas
         return status;
     }
 
-    status = writeAnnotations(writer, o);
+    status = writeAnnotations(writer, o, c);
     if (status.error())
     {
         return status;
@@ -1211,69 +1232,10 @@ SSPResource::Result SSPResource::writeConnectors(xmlTextWriterPtr writer, Childr
         return status;
     }
 
+    // names are always set, by load_children() or load_ports()
     for (const ChildrenCategories::all_port_t& o : categories.all_ports)
     {
-        _strShared = "";
-
-        // look for a generated one, on Component this is always the case, done by load_ports()
-        auto it = categories.names.find(o.outter_port);
-        if (it != categories.names.end())
-        {
-            _strShared = it->second;
-        }
-        // if not present, retrieve it from the inner port
-        if (_strShared == "" && o.inner_port != nullptr)
-        {
-            auto it = categories.names.find(o.inner_port);
-            if (it != categories.names.end())
-            {
-                _strShared = it->second;
-            }
-        }
-
-        bool modelName = false;
-        // if not present, retrieve it from the port
-        if (_strShared == "")
-        {
-            if (!controller.getObjectProperty(o.outter_port, NAME, _strShared))
-            {
-                // this should probably be an assert
-                return Result::Error(o.outter_port, NAME);
-            }
-            modelName = true;
-        }
-        // on I/O blocks, the name is set on the block
-        if (_strShared == "")
-        {
-            if (!controller.getObjectProperty(o.block, NAME, _strShared))
-            {
-                // this should probably be an assert
-                return Result::Error(o.block, NAME);
-            }
-            modelName = true;
-        }
-        // for names on the model, ensure the name is unique and store it inside the known names
-        if (modelName && _strShared != "")
-        {
-            auto used_names_it = categories.used_names.find(_strShared);
-            if (used_names_it == categories.used_names.end())
-            {
-                categories.used_names.insert(used_names_it, _strShared);
-                categories.names.insert({o.outter_port, _strShared});
-            }
-            else
-            {
-                // already used, will be generated
-                _strShared = "";
-            }
-        }
-        // generate a name
-        if (_strShared == "")
-        {
-            _strShared = categories.retrieve_name(controller, o.outter_port);
-        }
-
-        status = writeConnector(writer, o, _strShared, categories.max_indexes);
+        status = writeConnector(writer, o, o.name, categories.max_indexes);
         if (status.error())
         {
             return status;
@@ -1348,6 +1310,30 @@ SSPResource::Result SSPResource::writeConnector(xmlTextWriterPtr writer, const C
         if (status.error())
         {
             return status;
+        }
+        if (o.block != nullptr)
+        {
+            status = Result::FromXML(xmlTextWriterWriteFormatComment(writer, "block ScicosID %lld", o.block->id()));
+            if (status.error())
+            {
+                return status;
+            }
+        }
+        if (o.inner_port != nullptr)
+        {
+            status = Result::FromXML(xmlTextWriterWriteFormatComment(writer, "inner_port ScicosID %lld", o.inner_port->id()));
+            if (status.error())
+            {
+                return status;
+            }
+        }
+        if (o.outter_port != nullptr)
+        {
+            status = Result::FromXML(xmlTextWriterWriteFormatComment(writer, "outter_port ScicosID %lld", o.outter_port->id()));
+            if (status.error())
+            {
+                return status;
+            }
         }
     }
 
@@ -1550,18 +1536,18 @@ SSPResource::Result SSPResource::writeConnectorGeometry(xmlTextWriterPtr writer,
     {
         case PORT_IN:
             x = 0.;
-            y = 1. - static_cast<double>(o.index) / max_indexes[PORT_IN];
+            y = 1. - static_cast<double>(o.port_index) / max_indexes[PORT_IN];
             break;
         case PORT_OUT:
             x = 1.;
-            y = 1. - static_cast<double>(o.index) / max_indexes[PORT_OUT];
+            y = 1. - static_cast<double>(o.port_index) / max_indexes[PORT_OUT];
             break;
         case PORT_EIN:
-            x = static_cast<double>(o.index) / max_indexes[PORT_EIN];
+            x = static_cast<double>(o.port_index) / max_indexes[PORT_EIN];
             y = 1;
             break;
         case PORT_EOUT:
-            x = static_cast<double>(o.index) / max_indexes[PORT_EOUT];
+            x = static_cast<double>(o.port_index) / max_indexes[PORT_EOUT];
             y = 0;
             break;
         default:
@@ -1891,7 +1877,7 @@ SSPResource::Result SSPResource::writeComponent(xmlTextWriterPtr writer, model::
         return status;
     }
 
-    status = writeAnnotations(writer, component);
+    status = writeAnnotations(writer, component, c);
     if (status.error())
     {
         return status;
@@ -1909,7 +1895,7 @@ SSPResource::Result SSPResource::writeComponent(xmlTextWriterPtr writer, model::
     return Result::Ok();
 }
 
-SSPResource::Result SSPResource::writeComponentObjectProperties(xmlTextWriterPtr writer, model::BaseObject* component)
+SSPResource::Result SSPResource::writeComponentObjectProperties(xmlTextWriterPtr writer, model::BaseObject* component, const ChildrenCategories& categories)
 {
     Result status = Result::Ok();
 
@@ -2075,10 +2061,28 @@ SSPResource::Result SSPResource::writeComponentObjectProperties(xmlTextWriterPtr
         if (_vecIDShared.size() > 0)
         {
             ChildrenCategories c{_strShared, _vecDblShared, _vecIntShared, _vecStrShared, _vecIDShared};
+            // add inner children
             status = c.load_children(controller, component, _vecIDShared);
             if (status.error())
             {
                 return status;
+            }
+
+            // assign each outter_port to their corresponding inner port
+            status = c.assign_outter_ports(controller, component);
+            if (status.error())
+            {
+                return status;
+            }
+
+            // inner connections refer to the component connectors, named by load_ports()
+            for (auto& p : c.all_ports)
+            {
+                auto it = categories.names.find(p.outter_port);
+                if (p.outter_port != nullptr && it != categories.names.end())
+                {
+                    p.name = it->second;
+                }
             }
 
             status = writeElements(writer, c);
@@ -2269,7 +2273,7 @@ SSPResource::Result SSPResource::writeConnection(xmlTextWriterPtr writer, model:
     if (it != categories.all_ports.end())
     {
         // local ioBlock is resolved, do not need to resolve startElement
-        _strShared = categories.get_name(controller, sourcePort);
+        _strShared = it->name;
     }
     else
     {
@@ -2306,7 +2310,7 @@ SSPResource::Result SSPResource::writeConnection(xmlTextWriterPtr writer, model:
     if (it != categories.all_ports.end())
     {
         // local ioBlock is resolved, do not need to resolve endElement
-        _strShared = categories.get_name(controller, destinationPort);
+        _strShared = it->name;
     }
     else
     {
@@ -2381,7 +2385,7 @@ SSPResource::Result SSPResource::writeConnection(xmlTextWriterPtr writer, model:
         return status;
     }
 
-    status = writeAnnotations(writer, connection);
+    status = writeAnnotations(writer, connection, categories);
     if (status.error())
     {
         return status;
@@ -2554,6 +2558,17 @@ SSPResource::Result SSPResource::writeNote(xmlTextWriterPtr writer, model::BaseO
 {
     Result status = Result::Ok();
 
+    // verbose for debugging
+    auto logger = get_or_allocate_logger();
+    if (logger->getLevel() <= LOG_DEBUG)
+    {
+        status = Result::FromXML(xmlTextWriterWriteFormatComment(writer, "ScicosID %lld", o->id()));
+        if (status.error())
+        {
+            return status;
+        }
+    }
+
     status = Result::FromXML(xmlTextWriterStartElementNS(writer, rawKnownStr[e_ssd], rawKnownStr[e_Note], nullptr));
     if (status.error())
     {
@@ -2608,7 +2623,7 @@ SSPResource::Result SSPResource::writeNote(xmlTextWriterPtr writer, model::BaseO
         }
     }
 
-    status = writeAnnotations(writer, o);
+    status = writeAnnotations(writer, o, categories);
     if (status.error())
     {
         return status;
@@ -2762,7 +2777,7 @@ SSPResource::Result SSPResource::writeAnnotations(xmlTextWriterPtr writer)
     return Result::Ok();
 }
 
-SSPResource::Result SSPResource::writeAnnotations(xmlTextWriterPtr writer, model::BaseObject* o)
+SSPResource::Result SSPResource::writeAnnotations(xmlTextWriterPtr writer, model::BaseObject* o, const ChildrenCategories& categories)
 {
     Result status = Result::Ok();
 
@@ -2849,7 +2864,7 @@ SSPResource::Result SSPResource::writeAnnotations(xmlTextWriterPtr writer, model
 
     if (o->kind() == BLOCK)
     {
-        status = writeComponentObjectProperties(writer, o);
+        status = writeComponentObjectProperties(writer, o, categories);
         if (status.error())
         {
             return status;
@@ -3174,48 +3189,51 @@ SSPResource::Result SSPResource::writeAnnotations(xmlTextWriterPtr writer, const
     }
 
     // write the Geometry from the inner block
-    status = Result::FromXML(xmlTextWriterStartElementNS(writer, rawKnownStr[e_xcos], rawKnownStr[e_geometry], nullptr));
-    if (status.error())
+    if (all_port_info.block != nullptr)
     {
-        return status;
-    }
-    if (!controller.getObjectProperty(all_port_info.block, GEOMETRY, _vecDblShared))
-    {
-        return Result::Error(all_port_info.block, GEOMETRY);
-    }
-    if (_vecDblShared.size() != 4)
-    {
-        return Result::Error(all_port_info.block, GEOMETRY);
-    }
-    status = Result::FromXML(xmlTextWriterWriteAttribute(writer, rawKnownStr[e_x], BAD_CAST(to_string(_vecDblShared[0]).c_str())));
-    if (status.error())
-    {
-        return status;
-    }
-    status = Result::FromXML(xmlTextWriterWriteAttribute(writer, rawKnownStr[e_y], BAD_CAST(to_string(_vecDblShared[1]).c_str())));
-    if (status.error())
-    {
-        return status;
-    }
-    status = Result::FromXML(xmlTextWriterWriteAttribute(writer, rawKnownStr[e_width], BAD_CAST(to_string(_vecDblShared[2]).c_str())));
-    if (status.error())
-    {
-        return status;
-    }
-    status = Result::FromXML(xmlTextWriterWriteAttribute(writer, rawKnownStr[e_height], BAD_CAST(to_string(_vecDblShared[3]).c_str())));
-    if (status.error())
-    {
-        return status;
-    }
-    status = Result::FromXML(xmlTextWriterEndElement(writer));
-    if (status.error())
-    {
-        return status;
-    }
-    status = writeAnnotationObjectProperty(writer, all_port_info.block, STYLE, e_style, _strShared);
-    if (status.error())
-    {
-        return status;
+        status = Result::FromXML(xmlTextWriterStartElementNS(writer, rawKnownStr[e_xcos], rawKnownStr[e_geometry], nullptr));
+        if (status.error())
+        {
+            return status;
+        }
+        if (!controller.getObjectProperty(all_port_info.block, GEOMETRY, _vecDblShared))
+        {
+            return Result::Error(all_port_info.block, GEOMETRY);
+        }
+        if (_vecDblShared.size() != 4)
+        {
+            return Result::Error(all_port_info.block, GEOMETRY);
+        }
+        status = Result::FromXML(xmlTextWriterWriteAttribute(writer, rawKnownStr[e_x], BAD_CAST(to_string(_vecDblShared[0]).c_str())));
+        if (status.error())
+        {
+            return status;
+        }
+        status = Result::FromXML(xmlTextWriterWriteAttribute(writer, rawKnownStr[e_y], BAD_CAST(to_string(_vecDblShared[1]).c_str())));
+        if (status.error())
+        {
+            return status;
+        }
+        status = Result::FromXML(xmlTextWriterWriteAttribute(writer, rawKnownStr[e_width], BAD_CAST(to_string(_vecDblShared[2]).c_str())));
+        if (status.error())
+        {
+            return status;
+        }
+        status = Result::FromXML(xmlTextWriterWriteAttribute(writer, rawKnownStr[e_height], BAD_CAST(to_string(_vecDblShared[3]).c_str())));
+        if (status.error())
+        {
+            return status;
+        }
+        status = Result::FromXML(xmlTextWriterEndElement(writer));
+        if (status.error())
+        {
+            return status;
+        }
+        status = writeAnnotationObjectProperty(writer, all_port_info.block, STYLE, e_style, _strShared);
+        if (status.error())
+        {
+            return status;
+        }
     }
 
     // write the block_index to load in order CHILDREN using the ipar attribute
@@ -3239,10 +3257,13 @@ SSPResource::Result SSPResource::writeAnnotations(xmlTextWriterPtr writer, const
     }
 
     // write block LABEL
-    status = writeAnnotationLabel(writer, all_port_info.block);
-    if (status.error())
+    if (all_port_info.block != nullptr)
     {
-        return status;
+        status = writeAnnotationLabel(writer, all_port_info.block);
+        if (status.error())
+        {
+            return status;
+        }
     }
 
     status = Result::FromXML(xmlTextWriterEndElement(writer));

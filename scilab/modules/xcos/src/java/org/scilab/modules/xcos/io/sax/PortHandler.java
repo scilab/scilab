@@ -163,7 +163,7 @@ class PortHandler implements ScilabHandler {
          * Associate to the parent block : now or later
          */
 
-        int ordering = 0;
+        Integer ordering = null;
         Long parent = 0l;
 
         v = atts.getValue("ordering");
@@ -180,8 +180,19 @@ class PortHandler implements ScilabHandler {
                 VectorOfScicosID associatedPorts = new VectorOfScicosID();
                 shared.controller.getObjectProperty(parent, Kind.BLOCK, relatedProperty, associatedPorts);
 
-                associatedPorts.resize(Math.max(associatedPorts.size(), ordering + 1));
-                associatedPorts.set(ordering, uid);
+                if (associatedPorts.contains(uid)) {
+                    // already associated
+                } else if (ordering == null) {
+                    associatedPorts.add(uid);
+                } else if (ordering >= associatedPorts.size()) {
+                    // fill the gap with 0
+                    associatedPorts.resize(ordering + 1);
+                    associatedPorts.set(ordering, uid);
+                } else if (associatedPorts.get(ordering) == 0l) {
+                    associatedPorts.set(ordering, uid);
+                } else {
+                    associatedPorts.add(ordering, uid);
+                }
 
                 shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.SOURCE_BLOCK, parent);
                 shared.controller.setObjectProperty(parent, Kind.BLOCK, relatedProperty, associatedPorts);
@@ -192,7 +203,7 @@ class PortHandler implements ScilabHandler {
                     refList = new ArrayList<>();
                     shared.unresolvedReferences.put(v, refList);
                 }
-                refList.add(new UnresolvedReference(new ScicosObjectOwner(uid, Kind.PORT), ObjectProperties.SOURCE_BLOCK, relatedProperty, ordering));
+                refList.add(new UnresolvedReference(new ScicosObjectOwner(uid, Kind.PORT), ObjectProperties.SOURCE_BLOCK, relatedProperty, ordering != null ? ordering : 0));
             }
         }
 

@@ -26,5 +26,9 @@ for o = scs_m.objs
         assert_checkequal(round(o.graphics.sz / 10) * 10, o.graphics.sz);
         // should be aligned on grid
         assert_checkequal(round(geom / 10) * 10, geom);
+    elseif typeof(o) == "Text" then
+        // check text
+        assert_checktrue(o.graphics.exprs(1) <> "Text");
+        assert_checkequal(o.graphics.exprs(2:3), ["2";"1"]);
     end
 end

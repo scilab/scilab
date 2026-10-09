@@ -17,7 +17,6 @@
 package org.scilab.modules.xcos.io.sax;
 
 import java.util.Arrays;
-import java.util.regex.Pattern;
 
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
@@ -41,14 +40,13 @@ import org.scilab.modules.xcos.block.custom.RoundBlock;
 import org.scilab.modules.xcos.block.custom.Summation;
 import org.scilab.modules.xcos.block.custom.VoltageSensorBlock;
 import org.scilab.modules.xcos.graph.model.BlockInterFunction;
+import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.io.HandledElement;
 import org.xml.sax.Attributes;
 
 import com.mxgraph.util.mxUtils;
 
 class BlockHandler implements ScilabHandler {
-    private static Pattern validCIdentifier = null;
-
     private final XcosSAXHandler saxHandler;
 
     /**
@@ -72,15 +70,15 @@ class BlockHandler implements ScilabHandler {
         final long uid = saxHandler.controller.createObject(kind);
 
         String value = atts.getValue("value");
-        if (validCIdentifier == null) {
-            validCIdentifier = Pattern.compile("[a-zA-Z_][a-zA-Z0-9_]*");
-        }
-        if (value != null && validCIdentifier.matcher(value).matches()) {
-            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.NAME, value);
-        }
         if (value != null) {
+            if (kind == Kind.BLOCK && XcosCell.isValidCIdentifier(value)) {
+                saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.NAME, value);
+            }
             // escape any html style / head
             value = mxUtils.getBodyMarkup(value, false);
+            if (kind == Kind.ANNOTATION) {
+                saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, value);
+            }
         }
         String description = atts.getValue("description");
         if (description != null) {

@@ -211,13 +211,22 @@ public:
 
     struct all_port_t
     {
+        // kinf of the port
         enum portKind kind;
-        int index;
+        // index of the port (in the INPUTS, OUTPUTS, EVENT_INPUTS, EVENT_OUTPUTS)
+        int port_index;
+        // true if the name was generated
+        bool generated;
+        // port inside the block
         model::BaseObject* inner_port;
+        // port inside the block
         model::BaseObject* outter_port;
         // inner I/O block or SSPInput, SSPOutput outter block
         model::BaseObject* block;
+        // index of the I/O block
         size_t block_index;
+        // name, set or generated
+        std::string name;
     };
 
     // All outter ports
@@ -232,7 +241,7 @@ public:
     // all graphical elements
     std::vector<model::BaseObject*> graphical_elements;
 
-    // names for generated blocks/ports
+    // names for generated blocks
     std::map<model::BaseObject*, std::string> names;
     std::unordered_set<std::string> used_names;
 
@@ -247,7 +256,9 @@ public:
     // decode Block IPAR or EXPRS to its index
     Result decode_ipar_or_exprs(Controller& controller, model::BaseObject* o, int& index);
     // Get the associated port
-    Result get_port(Controller& controller, model::BaseObject* o, object_properties_t p, model::BaseObject*& port, int index);
+    Result store_port(Controller& controller, model::BaseObject* o, object_properties_t p, size_t index, std::string& name, const std::string& prefix);
+    // assign all outter_ports to their corresponding port_index
+    Result assign_outter_ports(Controller& controller, model::BaseObject* parent);
     // fill the categories with all children
     Result load_children(Controller& controller, model::BaseObject* parent, const std::vector<ScicosID>& children);
     // fill the categories with outer ports
@@ -459,7 +470,7 @@ private:
     Result writeParameterBindings(xmlTextWriterPtr writer);
     Result writeElements(xmlTextWriterPtr writer, ChildrenCategories& categories);
     Result writeComponent(xmlTextWriterPtr writer, model::BaseObject* c, ChildrenCategories& categories);
-    Result writeComponentObjectProperties(xmlTextWriterPtr writer, model::BaseObject* component);
+    Result writeComponentObjectProperties(xmlTextWriterPtr writer, model::BaseObject* component, const ChildrenCategories& categories);
     template<typename T>
     Result writeAnnotationObjectProperty(xmlTextWriterPtr writer, model::BaseObject* o, enum object_properties_t prop, enum xcosNames element, T& shared)
     {
@@ -539,7 +550,7 @@ private:
     Result writeUnit(xmlTextWriterPtr writer, model::Datatype* d);
     Result writeBaseUnit(xmlTextWriterPtr writer, model::Datatype* d);
     Result writeAnnotations(xmlTextWriterPtr writer);
-    Result writeAnnotations(xmlTextWriterPtr writer, model::BaseObject* o);
+    Result writeAnnotations(xmlTextWriterPtr writer, model::BaseObject* o, const ChildrenCategories& categories);
     Result writeAnnotationLabel(xmlTextWriterPtr writer, model::BaseObject* o);
     Result writeAnnotations(xmlTextWriterPtr writer, const ChildrenCategories::all_port_t &o);
 
