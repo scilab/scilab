@@ -104,8 +104,6 @@ ZLIB_VERSION=1.2.11
 XZ_VERSION=5.4.4
 JOGL_VERSION=2.5.0
 JCEF_VERSION=d3de827+cef-146.0.10+g8219561+chromium-146.0.7680.179
-MONACO_EDITOR_VERSION=0.55.1
-OPENXLSX_VERSION=0.3.2
 LIBARCHIVE_VERSION=3.7.1
 RAPIDJSON_VERSION=24b5e7a
 LIBXSLT_VERSION=1.1.35
@@ -156,8 +154,6 @@ make_versions() {
     echo "XZ_VERSION              = $XZ_VERSION"
     echo "JOGL_VERSION            = $JOGL_VERSION"
     echo "JCEF_VERSION           = $JCEF_VERSION"
-    echo "MONACO_EDITOR_VERSION   = $MONACO_EDITOR_VERSION"
-    echo "OPENXLSX_VERSION        = $OPENXLSX_VERSION"
     echo "LIBARCHIVE_VERSION      = $LIBARCHIVE_VERSION"
     echo "RAPIDJSON_VERSION       = $RAPIDJSON_VERSION"
     echo "LIBXSLT_VERSION         = $LIBXSLT_VERSION"
@@ -209,10 +205,6 @@ download_dependencies() {
     [ ! -f jcpp-v$JOGL_VERSION.tar.xz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/jcpp-v$JOGL_VERSION.tar.xz
     [ ! -f jogl-v$JOGL_VERSION.tar.xz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/jogl-v$JOGL_VERSION.tar.xz
 
-    [ ! -f monaco-editor-$MONACO_EDITOR_VERSION.tgz ] && curl -L -o monaco-editor-$MONACO_EDITOR_VERSION.tgz https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/monaco-editor-$MONACO_EDITOR_VERSION.tgz
-
-    [ ! -f OpenXLSX-$OPENXLSX_VERSION.tar.gz ] && curl -LO https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/OpenXLSX-$OPENXLSX_VERSION.tar.gz
-
     # This archive contains .jar and directories that have been copied from Scilab prerequirements
     # JavaFX/openjfx is only shipped as JARs, no rebuild is needed for now
     curl -L --time-cond thirdparty.zip -o thirdparty.zip "https://oos.eu-west-2.outscale.com/scilab-releases-dev/prerequirements-sources/thirdparty-scilab-branch-${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}.zip"
@@ -262,7 +254,6 @@ make_all() {
     build_ant
     build_gluegen
     build_jogl
-    build_monaco
     build_openblas
     build_eigen
     build_zlib
@@ -280,7 +271,6 @@ make_all() {
     build_zstd
     build_curl
     build_ncurses
-    build_openxlsx
     build_libarchive
     build_rapidjson
     build_libxslt
@@ -401,9 +391,6 @@ make_binary_directory() {
     cp -d "$INSTALLUSRDIR"/lib/libbtf.* "$LIBTHIRDPARTYDIR/"
     rm -f "$LIBTHIRDPARTYDIR"/libklu.*
     cp -d "$INSTALLUSRDIR"/lib/libklu.* "$LIBTHIRDPARTYDIR/"
-
-    rm -f "$LIBTHIRDPARTYDIR"/libOpenXLSX.*
-    cp -d "$INSTALLUSRDIR"/lib/libOpenXLSX.* "$LIBTHIRDPARTYDIR/"
 
     rm -f "$LIBTHIRDPARTYDIR"/libxslt*.*
     cp -d "$INSTALLUSRDIR"/lib/libxslt*.* "$LIBTHIRDPARTYDIR/"
@@ -1289,51 +1276,6 @@ build_jogl() {
     cd "$BUILDDIR/jogl-v$JOGL_VERSION" || exit 1
     cp -a -t "$INSTALLROOTDIR/lib/thirdparty" build/lib/libjogl_desktop.so build/lib/libnativewindow_awt.so build/lib/libnativewindow_drm.so build/lib/libnativewindow_x11.so build/lib/libnewt_drm.so build/lib/libnewt_head.so
     cp -a build/jar/jogl-all.jar "$INSTALLROOTDIR/thirdparty"
-}
-
-build_monaco() {
-    # Monaco editor: web assets for the SciNotes editor, shipped offline under
-    # thirdparty (not committed in Scilab sources). No build step: just extract
-    # the minified AMD bundle (package/min/vs) from the npm tarball.
-    cd "$BUILDDIR" || exit 1
-    rm -rf monaco-editor-pkg
-    mkdir -p monaco-editor-pkg
-    tar -xzf "$DOWNLOADDIR/monaco-editor-$MONACO_EDITOR_VERSION.tgz" -C monaco-editor-pkg
-
-    MONACODIR="$INSTALLROOTDIR/thirdparty/web/monaco-editor"
-    rm -rf "$MONACODIR"
-    mkdir -p "$MONACODIR"
-    cp -a monaco-editor-pkg/package/min/vs "$MONACODIR/vs"
-    cp -a monaco-editor-pkg/package/LICENSE "$MONACODIR/LICENSE"
-    cp -a monaco-editor-pkg/package/ThirdPartyNotices.txt "$MONACODIR/ThirdPartyNotices.txt"
-    echo "$MONACO_EDITOR_VERSION" > "$MONACODIR/version.txt"
-}
-
-build_openxlsx() {
-    cd "$BUILDDIR" || exit 1
-
-    INSTALL_DIR=$BUILDDIR/OpenXLSX-$OPENXLSX_VERSION/install_dir
-
-    tar -xzf "$DOWNLOADDIR/OpenXLSX-$OPENXLSX_VERSION.tar.gz"
-    cd OpenXLSX-$OPENXLSX_VERSION || exit 1
-
-    mkdir -p build
-    cd build || exit 1
-    cmake .. -DCMAKE_INSTALL_PREFIX="$INSTALL_DIR" \
-        -DBUILD_SHARED_LIBS=ON \
-        -G "Unix Makefiles"
-    cmake --build . --parallel --target OpenXLSX --config Release
-
-    cd ../
-    cp -a OpenXLSX/headers "$INSTALLUSRDIR/include/OpenXLSX"
-
-    cd build/output || exit 1
-    gcc -shared -o libOpenXLSX.so \
-        -Wl,--whole-archive       \
-        libOpenXLSX.a             \
-        -Wl,--no-whole-archive
-
-    cp -a libOpenXLSX.so "$INSTALLUSRDIR/lib/"
 }
 
 build_libxslt() {
