@@ -19,6 +19,8 @@ RUN apt-get update && apt-get install -y \
   libxi6 \
   libgtk-3-0 \
   locales gcc g++ gfortran make gettext \
+  libnspr4 \
+  libnss3 \
   && rm -rf /var/lib/apt/lists/*
 
 # Generate locale
