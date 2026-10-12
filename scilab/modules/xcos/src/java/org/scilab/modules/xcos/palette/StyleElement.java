@@ -20,10 +20,8 @@ package org.scilab.modules.xcos.palette;
 import static java.util.Arrays.asList;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -153,22 +151,17 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
      *             in case of invalid path argument
      */
     private String validateURL(final String url) {
-        URL u;
         File f;
         try {
-            u = URI.create(url).toURL();
-
-            try {
-                f = new File(u.toURI());
-            } catch (URISyntaxException e) {
-                f = new File(u.getPath());
-            }
-        } catch (MalformedURLException | IllegalArgumentException e1) {
-            throw new RuntimeException(e1);
+            f = new File(new URI(url));
+        } catch (URISyntaxException | IllegalArgumentException e) {
+            // xcosPalAddBlock passes raw paths ("file:///C:\dir\a b.svg"),
+            // which are not valid URIs on Windows
+            f = new File(url.replaceFirst("^file:/*(?=[A-Za-z]:)|^file:", ""));
         }
 
         if (f.exists()) {
-            return u.toString();
+            return f.toURI().toString();
         } else {
             throw new RuntimeException(String.format(XcosMessages.IMAGE_URL_DOESNT_EXIST, url));
         }
