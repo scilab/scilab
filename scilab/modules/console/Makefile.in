@@ -770,6 +770,7 @@ libsciconsole_la_cssdir = $(mydatadir)/src/web/css
 libsciconsole_la_css_DATA = \
 	src/web/css/console.css \
 	src/web/css/codicon.css
+
 libsciconsole_la_jsdir = $(mydatadir)/src/web/js
 libsciconsole_la_js_DATA = src/web/js/console.js
 

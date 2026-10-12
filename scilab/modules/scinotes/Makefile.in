@@ -741,6 +741,7 @@ libsciscinotes_la_web_DATA = \
 libsciscinotes_la_assistantetcdir = $(mydatadir)/etc/assistant
 libsciscinotes_la_assistantetc_DATA = etc/assistant/scilab-knowledge.md \
     etc/assistant/agents.json
+
 libsciscinotes_la_skill_argumentsdir = $(mydatadir)/etc/assistant/skills/arguments
 libsciscinotes_la_skill_arguments_DATA = etc/assistant/skills/arguments/SKILL.md
 libsciscinotes_la_skill_classdefdir = $(mydatadir)/etc/assistant/skills/classdef
@@ -852,7 +853,7 @@ gui/assistant/style.css
 
 libsciscinotes_la_assistantlibsdir = $(mydatadir)/gui/assistant/libs
 libsciscinotes_la_assistantlibs_DATA = gui/assistant/libs/highlight-scilab.css
-@BUILD_HELP_TRUE@@GUI_TRUE@USEANT = 1
+@GUI_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
