@@ -145,6 +145,9 @@
             <menuitem action="scinotes-debug-disconnect" label="Stop Debugging"/>
             <separator/>
             <menuitem action="scinotes-debug-toggle-breakpoint" label="Toggle Breakpoint"/>
+            <menuitem action="scinotes-debug-enable-all-breakpoints" label="Enable All Breakpoints"/>
+            <menuitem action="scinotes-debug-disable-all-breakpoints" label="Disable All Breakpoints"/>
+            <menuitem action="scinotes-debug-remove-all-breakpoints" label="Remove All Breakpoints"/>
         </menu>
 
         <menu label="?">

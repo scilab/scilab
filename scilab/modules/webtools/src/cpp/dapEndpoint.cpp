@@ -16,11 +16,13 @@
 #endif
 
 #include <algorithm>
+#include <chrono>
 #include <regex>
 #include <cctype>
 #include <filesystem>
 #include <fstream>
 #include <set>
+#include <thread>
 
 #include "tcpSession.hxx"
 #include "dapEndpoint.hxx"
@@ -110,6 +112,41 @@ static std::set<std::string> s_UserVariables = {
 
 static json response(const json _query);
 static json event(const std::string& _command);
+
+// The runtime as RuntimeTryLockGuard takes it, waiting a moment for a reader
+// that holds it: the language server reads it for the same mouse position.
+class RuntimeWaitLockGuard
+{
+public:
+    explicit RuntimeWaitLockGuard(std::chrono::milliseconds delay) : m_locked(false)
+    {
+        const auto deadline = std::chrono::steady_clock::now() + delay;
+        while((m_locked = RuntimeAccess_tryLockRead() != 0) == false
+            && std::chrono::steady_clock::now() < deadline)
+        {
+            std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        }
+    }
+
+    ~RuntimeWaitLockGuard()
+    {
+        if(m_locked)
+        {
+            RuntimeAccess_unlockRead();
+        }
+    }
+
+    bool ownsLock() const
+    {
+        return m_locked;
+    }
+
+    RuntimeWaitLockGuard(const RuntimeWaitLockGuard&) = delete;
+    RuntimeWaitLockGuard& operator=(const RuntimeWaitLockGuard&) = delete;
+
+private:
+    bool m_locked;
+};
 
 static bool isHitCount(const std::string& text)
 {
@@ -445,6 +482,7 @@ void DapEndpoint::onTcpMessage(const std::shared_ptr<ClientContext>& client, con
     {
         publishDebugMode();
     }
+    flushPendingOutput();
 }
 
 void DapEndpoint::onWsMessage(const std::shared_ptr<ClientContext>& client, const std::vector<uint8_t>& data)
@@ -459,6 +497,7 @@ void DapEndpoint::onWsMessage(const std::shared_ptr<ClientContext>& client, cons
     {
         publishDebugMode();
     }
+    flushPendingOutput();
 }
 
 void DapEndpoint::manageMessage(ClientContext& client, const std::string& msg)
@@ -857,6 +896,7 @@ void DapEndpoint::manageMessage(ClientContext& client, const std::string& msg)
                 }
 
                 std::string cmd = "exec(\""+m_file_to_execute+"\");";
+                m_executed_file = m_file_to_execute;
                 // Consumed: a later configurationDone must not replay it.
                 m_file_to_execute.clear();
                 char* error = startRun(cmd, m_debug_mode);
@@ -924,6 +964,7 @@ void DapEndpoint::manageMessage(ClientContext& client, const std::string& msg)
 
                 const bool echo = args.value("echo", false);
                 const std::string cmd = "exec(\"" + quoted + "\", " + (echo ? "1" : "-1") + ");";
+                m_executed_file = file;
                 char* error = startRun(cmd, args.value("debug", true));
                 if(error)
                 {
@@ -1030,9 +1071,9 @@ void DapEndpoint::manageMessage(ClientContext& client, const std::string& msg)
             }
 
             // keep alive, send information as if we stopped on the last line of the executed file. (variable list)
-            if(cs.stack.empty() && startFrame == 0 && m_keep_alive && m_file_to_execute.empty() == false)
+            if(cs.stack.empty() && startFrame == 0 && m_keep_alive && m_executed_file.empty() == false)
             {
-                std::ifstream myfile(m_file_to_execute);
+                std::ifstream myfile(m_executed_file);
                 auto count = std::count_if(std::istreambuf_iterator<char>{myfile}, {}, [](char c) { return c == '\n'; });
 
                 // count + 2: set more than the number of line to go to the last executed file line without highlight it.
@@ -1041,7 +1082,7 @@ void DapEndpoint::manageMessage(ClientContext& client, const std::string& msg)
                     {"name", "exec"},
                     {"line", count + 2},
                     {"column", 0},
-                    {"source", {{ "path", m_file_to_execute }}}
+                    {"source", {{ "path", m_executed_file }}}
                 });
 
                 resp["body"]["stackFrames"].push_back(obj);
@@ -1454,8 +1495,10 @@ void DapEndpoint::manageMessage(ClientContext& client, const std::string& msg)
             else
             {
                 // A participant leaves alone: the debug session goes on for the
-                // others, and Scilab is none of its business.
+                // others, and Scilab is none of its business. Its own session
+                // is over though, and it is the only one to be told.
                 detachClient(client);
+                sendMessage(client, event("terminated").dump());
             }
         }
         break;
@@ -2092,11 +2135,18 @@ json DapEndpoint::getVariable(int _iRef, const std::string& valueField)
  */
 void DapEndpoint::evaluateForHover(json& resp, const json& args)
 {
-    RuntimeTryLockGuard runtimeGuard;
-    if(m_is_running || runtimeGuard.ownsLock() == false)
+    if(m_is_running)
     {
         resp["success"] = false;
         resp["message"] = "notStopped"; // value predefined in dap spec
+        return;
+    }
+
+    RuntimeWaitLockGuard runtimeGuard(std::chrono::milliseconds(300));
+    if(runtimeGuard.ownsLock() == false)
+    {
+        resp["success"] = false;
+        resp["message"] = "notStopped";
         return;
     }
 
@@ -2597,6 +2647,7 @@ void DapEndpoint::endSession(bool terminateScilab)
     m_execution_done = false;
     m_debug_mode = true;
     m_file_to_execute.clear();
+    m_executed_file.clear();
     m_working_directory.clear();
 
     if(terminateScilab)
@@ -2917,21 +2968,49 @@ void DapEndpoint::broadcastMessage(const std::string& msg, const ClientContext* 
 
 void DapEndpoint::output(const std::string text)
 {
-    json console = event("output");
-    console["body"] = {
-        {"category", "stdout"},
-        {"output", text}
-    };
-    broadcastMessage(console.dump());
+    sendOutput("stdout", text);
 }
 void DapEndpoint::error(const std::string text)
 {
+    sendOutput("stderr", text);
+}
+
+void DapEndpoint::sendOutput(const std::string& category, const std::string& text)
+{
     json console = event("output");
     console["body"] = {
-        {"category", "stderr"},
+        {"category", category},
         {"output", text}
     };
+
+    // Called by the interpreter thread: never wait for a request being
+    // handled, it may be waiting for the interpreter itself. The text is
+    // kept for the end of that request.
+    std::unique_lock<std::recursive_mutex> lock(m_clients_mutex, std::try_to_lock);
+    if(lock.owns_lock() == false)
+    {
+        std::lock_guard<std::mutex> pending(m_pending_output_mutex);
+        m_pending_output.push_back(console.dump());
+        return;
+    }
+
+    flushPendingOutput();
     broadcastMessage(console.dump());
+}
+
+// The caller owns m_clients_mutex.
+void DapEndpoint::flushPendingOutput()
+{
+    std::vector<std::string> pending;
+    {
+        std::lock_guard<std::mutex> lock(m_pending_output_mutex);
+        pending.swap(m_pending_output);
+    }
+
+    for(const std::string& message : pending)
+    {
+        broadcastMessage(message);
+    }
 }
 
 void DapEndpoint::setRunning(bool _bRunning)

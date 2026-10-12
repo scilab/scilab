@@ -335,7 +335,7 @@ public abstract class SciConsole extends JPanel {
                             command = req[1];
                         }
 
-                        append(defaultPrompt + command + LF);
+                        append(defaultPrompt + command + LF, "echo");
                         sendCommandsToScilab("", false, false);
                         return true;
                     }
@@ -674,7 +674,7 @@ public abstract class SciConsole extends JPanel {
 
             command = queue.take();
             if (displayQueue.take()) {
-                append(defaultPrompt + command + LF);
+                append(defaultPrompt + command + LF, "echo");
             }
         } catch (InterruptedException e) {
             /*

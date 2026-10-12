@@ -494,6 +494,14 @@ function updateDapBreakpointDecorations(documentId) {
             }
             var hover = breakpoint.message
                 || getDapText(breakpoint.enabled ? "breakpoint" : "breakpointDisabled");
+            if (breakpoint.condition) {
+                hover += "\n\n" + getDapText("breakpointCondition") + ": `" + breakpoint.condition + "`";
+            }
+            if (breakpoint.hitCondition) {
+                hover += "\n\n" + getDapText("breakpointHitEvery") + ": " + breakpoint.hitCondition;
+            }
+            var conditional = breakpoint.condition || breakpoint.hitCondition
+                ? " scinotes-breakpoint-conditional" : "";
 
             return {
                 // Collapsed, not whole-line: a glyph is drawn on every view
@@ -503,7 +511,7 @@ function updateDapBreakpointDecorations(documentId) {
                     // The codicon class is what gives the cell the codicon
                     // font (`.codicon[class*=codicon-]` in Monaco's CSS).
                     glyphMarginClassName: "scinotes-breakpoint scinotes-breakpoint-" + status
-                        + " codicon-debug-breakpoint",
+                        + conditional + " codicon-debug-breakpoint",
                     glyphMarginHoverMessage: { value: hover },
                     overviewRuler: {
                         color: "#d64a4a",
@@ -614,6 +622,10 @@ var DAP_TEXTS = {
     breakpointNoCode: "Unreachable breakpoint",
     breakpointHitCount: "Invalid hit count",
     breakpointNoFile: "Unsaved file",
+    breakpointEnabled: "Enabled",
+    breakpointCondition: "Condition",
+    breakpointHitEvery: "Pause every N passes",
+    breakpointEditorClose: "Close",
     stoppedHere: "Execution paused here",
     stoppedHereOnBreakpoint: "Execution paused here (breakpoint)",
     fileChangedSinceRun: "This file has changed since it was run: Scilab executes the code "
@@ -915,6 +927,7 @@ function toggleDapBreakpoint(lineNumber) {
         documents[documentId] = entry;
     }
     entry.breakpoints = entry.breakpoints || [];
+    closeDapBreakpointEditor(false);
     captureDapBreakpointDecorationLines(documentId);
 
     var index = findDapBreakpoint(entry, lineNumber);
@@ -941,6 +954,303 @@ function toggleDapBreakpoint(lineNumber) {
         }
         persistDapBreakpoints(entry);
     }
+    return true;
+}
+
+/*
+ * Change the state, the condition or the hit count of a breakpoint, then
+ * publish it as a toggle does.
+ *
+ * @param documentId the document holding it
+ * @param breakpoint the breakpoint, or the one that replaced it on its line
+ * @param changes the fields to set
+ * @return the breakpoint changed, null when it is gone
+ */
+function updateDapBreakpoint(documentId, breakpoint, changes) {
+    var state = window.SciNotesMonacoState;
+    var entry = getDapDocuments()[documentId];
+    if (!entry || !breakpoint) {
+        return null;
+    }
+    captureDapBreakpointDecorationLines(documentId);
+
+    var breakpoints = entry.breakpoints || [];
+    var index = breakpoints.indexOf(breakpoint);
+    if (index < 0) {
+        // A refresh from the store rebuilt the list: the line still names it.
+        index = findDapBreakpoint(entry, breakpoint.line);
+    }
+    if (index < 0) {
+        return null;
+    }
+
+    var current = breakpoints[index];
+    Object.keys(changes).forEach(function(key) {
+        current[key] = changes[key];
+    });
+    current.verified = false;
+    current.message = "";
+    delete current.actualLine;
+
+    refreshDapPresentation(documentId);
+    if (isDapDocumentClean(documentId)) {
+        if (state.dapClient && entry.sourcePath) {
+            state.dapClient.syncSource(entry.sourcePath);
+        }
+        persistDapBreakpoints(entry);
+    }
+    return current;
+}
+
+/* What the adapter accepts as a hit count: a whole number, or nothing. */
+function isDapHitCount(text) {
+    return /^[0-9]{0,9}$/.test(text);
+}
+
+/* Whether a DOM node belongs to the open breakpoint panel. */
+function isDapBreakpointEditorTarget(node) {
+    var panel = window.SciNotesMonacoState.dapBreakpointEditor;
+    return !!(panel && node && panel.domNode.contains(node));
+}
+
+/*
+ * Close the breakpoint panel, dropping what was typed and not validated.
+ *
+ * @param restoreFocus whether the view it was in takes the focus back
+ */
+function closeDapBreakpointEditor(restoreFocus) {
+    var state = window.SciNotesMonacoState;
+    var panel = state.dapBreakpointEditor;
+    if (!panel) {
+        return;
+    }
+    state.dapBreakpointEditor = null;
+    panel.listeners.forEach(function(listener) {
+        listener.dispose();
+    });
+    panel.editor.removeContentWidget(panel.widget);
+    if (restoreFocus) {
+        panel.editor.focus();
+    }
+}
+
+/*
+ * A right click on a breakpoint opens a panel under its line: its state, and
+ * a condition or a hit count. It is a content widget, which belongs to one
+ * view: of a split, only the one that was clicked shows it.
+ *
+ * @param editor the view that was clicked
+ * @param target what Monaco found under the pointer
+ * @return true when the click was on a breakpoint and the panel is open
+ */
+function openDapBreakpointEditor(editor, target) {
+    if (!editor || !target || !target.position
+            || target.type !== monaco.editor.MouseTargetType.GUTTER_GLYPH_MARGIN) {
+        return false;
+    }
+
+    var state = window.SciNotesMonacoState;
+    var documentId = state.activeDocumentId;
+    var entry = getDapActiveEntry();
+    if (!entry || getDapDocumentModel(entry) !== editor.getModel()) {
+        return false;
+    }
+    captureDapBreakpointDecorationLines(documentId);
+    var index = findDapBreakpoint(entry, target.position.lineNumber);
+    if (index < 0) {
+        return false;
+    }
+    var breakpoint = entry.breakpoints[index];
+
+    closeDapBreakpointEditor(false);
+    setDapHoverLine(0, editor);
+
+    var domNode = document.createElement("div");
+    domNode.className = "scinotes-breakpoint-editor";
+
+    function addChoice(row, input, text) {
+        var label = document.createElement("label");
+        var caption = document.createElement("span");
+        caption.textContent = text;
+        label.appendChild(input);
+        label.appendChild(caption);
+        row.appendChild(label);
+    }
+
+    function addRow() {
+        var row = document.createElement("div");
+        row.className = "scinotes-breakpoint-editor-row";
+        domNode.appendChild(row);
+        return row;
+    }
+
+    var enabledInput = document.createElement("input");
+    enabledInput.type = "checkbox";
+    enabledInput.checked = breakpoint.enabled !== false;
+    addChoice(addRow(), enabledInput, getDapText("breakpointEnabled"));
+
+    // One or the other: the debugger has a single way of combining them.
+    var kinds = {};
+    var kindRow = addRow();
+    [["condition", "breakpointCondition"], ["hitCondition", "breakpointHitEvery"]].forEach(function(kind) {
+        var radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "scinotes-breakpoint-editor-kind";
+        kinds[kind[0]] = radio;
+        addChoice(kindRow, radio, getDapText(kind[1]));
+    });
+    kinds[!breakpoint.condition && breakpoint.hitCondition ? "hitCondition" : "condition"].checked = true;
+
+    function getKind() {
+        return kinds.hitCondition.checked ? "hitCondition" : "condition";
+    }
+
+    var valueInput = document.createElement("input");
+    valueInput.type = "text";
+    valueInput.spellcheck = false;
+    valueInput.value = breakpoint[getKind()] || "";
+    addRow().appendChild(valueInput);
+
+    var close = document.createElement("button");
+    close.className = "scinotes-breakpoint-editor-close";
+    close.type = "button";
+    close.title = getDapText("breakpointEditorClose");
+    close.textContent = "×";
+    domNode.appendChild(close);
+
+    // A condition is code: the field is typed in the font of the text, with the
+    // fallbacks Monaco adds to it (Java's "Monospaced" is no CSS font).
+    var fontInfo = editor.getOption(monaco.editor.EditorOption.fontInfo);
+    if (fontInfo && typeof fontInfo.getMassagedFontFamily === "function") {
+        valueInput.style.fontFamily = fontInfo.getMassagedFontFamily();
+    }
+
+    // Monaco anchors a content widget in the text: shift it back under the mark.
+    var layout = editor.getLayoutInfo();
+    domNode.style.marginLeft = (layout.glyphMarginLeft - layout.contentLeft) + "px";
+
+    function closeOnOutsideClick(event) {
+        if (!domNode.contains(event.target)) {
+            save();
+            closeDapBreakpointEditor(false);
+        }
+    }
+    document.addEventListener("mousedown", closeOnOutsideClick, true);
+
+    var position = { lineNumber: breakpoint.line, column: 1 };
+    var panel = {
+        editor: editor,
+        domNode: domNode,
+        breakpoint: breakpoint,
+        widget: {
+            // Outside the clipped text area, or the margin would cut it.
+            allowEditorOverflow: true,
+            getId: function() {
+                return "scinotes.dap.breakpoint.editor";
+            },
+            getDomNode: function() {
+                return domNode;
+            },
+            getPosition: function() {
+                return {
+                    position: position,
+                    preference: [
+                        monaco.editor.ContentWidgetPositionPreference.BELOW,
+                        monaco.editor.ContentWidgetPositionPreference.ABOVE
+                    ]
+                };
+            }
+        },
+        // The panel names a line of this text: it does not outlive either.
+        listeners: [
+            editor.onDidChangeModel(function() {
+                closeDapBreakpointEditor(false);
+            }),
+            editor.onDidChangeModelContent(function() {
+                closeDapBreakpointEditor(false);
+            }),
+            {
+                dispose: function() {
+                    document.removeEventListener("mousedown", closeOnOutsideClick, true);
+                }
+            }
+        ]
+    };
+
+    function apply(changes) {
+        panel.breakpoint = updateDapBreakpoint(documentId, panel.breakpoint, changes);
+        if (!panel.breakpoint) {
+            closeDapBreakpointEditor(true);
+        }
+        return !!panel.breakpoint;
+    }
+
+    function isValueValid() {
+        return getKind() !== "hitCondition" || isDapHitCount(valueInput.value.trim());
+    }
+
+    /*
+     * Give the breakpoint what the field holds, under the kind chosen; the
+     * other kind is emptied.
+     * @return false when the field is not valid, or the breakpoint is gone
+     */
+    function save() {
+        if (!panel.breakpoint || !isValueValid()) {
+            return false;
+        }
+        var changes = { condition: "", hitCondition: "" };
+        changes[getKind()] = valueInput.value.trim();
+        if (changes.condition === (panel.breakpoint.condition || "")
+                && changes.hitCondition === (panel.breakpoint.hitCondition || "")) {
+            return true;
+        }
+        return apply(changes);
+    }
+
+    enabledInput.addEventListener("change", function() {
+        apply({ enabled: enabledInput.checked });
+    });
+    Object.keys(kinds).forEach(function(kind) {
+        kinds[kind].addEventListener("change", function() {
+            valueInput.value = panel.breakpoint && panel.breakpoint[getKind()] || "";
+            valueInput.classList.remove("invalid");
+            valueInput.focus();
+        });
+    });
+    valueInput.addEventListener("input", function() {
+        valueInput.classList.toggle("invalid", !isValueValid());
+    });
+    close.addEventListener("click", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        closeDapBreakpointEditor(true);
+    });
+    domNode.addEventListener("keydown", function(event) {
+        // Typed in the panel, not in the text under it.
+        event.stopPropagation();
+        if (event.key === "Escape") {
+            event.preventDefault();
+            closeDapBreakpointEditor(true);
+        } else if (event.key === "Enter") {
+            event.preventDefault();
+            if (!isValueValid()) {
+                valueInput.classList.add("invalid");
+                valueInput.focus();
+            } else if (save()) {
+                closeDapBreakpointEditor(true);
+            }
+        }
+    });
+
+    state.dapBreakpointEditor = panel;
+    editor.addContentWidget(panel.widget);
+    // Once Monaco has laid the widget out: a hidden field cannot take the focus.
+    setTimeout(function() {
+        if (state.dapBreakpointEditor === panel) {
+            valueInput.focus();
+            valueInput.select();
+        }
+    }, 0);
     return true;
 }
 
@@ -997,6 +1307,10 @@ function attachDapEditorView(editor) {
 /* That view is going away: forget its listeners and its ghost. */
 function detachDapEditorView() {
     var state = window.SciNotesMonacoState;
+    var panel = state.dapBreakpointEditor;
+    if (panel && panel.editor === state.secondaryEditor) {
+        closeDapBreakpointEditor(false);
+    }
     var listeners = state.secondaryDapGutterListeners || [];
     for (var i = 0; i < listeners.length; i++) {
         listeners[i].dispose();
@@ -1153,6 +1467,39 @@ function getDapCaretPosition() {
 window.SciNotesMonacoToggleBreakpointAtCaret = function() {
     var position = getDapCaretPosition();
     return position ? toggleDapBreakpoint(position.lineNumber) : false;
+};
+
+/*
+ * Enable or disable the breakpoints of every document of this window. Java
+ * rewrites the store alongside and hands it back, which publishes the sources.
+ */
+window.SciNotesMonacoSetAllBreakpointsEnabled = function(enabled) {
+    closeDapBreakpointEditor(false);
+    var documents = getDapDocuments();
+    Object.keys(documents).forEach(function(id) {
+        (documents[id].breakpoints || []).forEach(function(breakpoint) {
+            if (breakpoint.enabled === enabled) {
+                return;
+            }
+            breakpoint.enabled = enabled;
+            breakpoint.verified = false;
+            breakpoint.message = "";
+            delete breakpoint.actualLine;
+        });
+        refreshDapPresentation(id);
+    });
+    return true;
+};
+
+/* Remove the breakpoints of every document of this window; Java empties the store. */
+window.SciNotesMonacoRemoveAllBreakpoints = function() {
+    closeDapBreakpointEditor(false);
+    var documents = getDapDocuments();
+    Object.keys(documents).forEach(function(id) {
+        documents[id].breakpoints = [];
+        refreshDapPresentation(id);
+    });
+    return true;
 };
 
 /* A run that never starts (save cancelled, Scilab busy) gives its line up. */
@@ -1640,9 +1987,18 @@ window.SciNotesMonacoRemoveDocumentBreakpoints = function(id) {
  */
 window.SciNotesMonacoSetStoredBreakpoints = function(stored) {
     var state = window.SciNotesMonacoState;
+    var previous = Object.keys(getDapStoredBreakpoints());
     state.dapStoredBreakpoints = stored && typeof stored === "object" ? stored : {};
     if (state.dapClient && typeof state.dapClient.syncAllSources === "function") {
         state.dapClient.syncAllSources();
+        // A file that left the store and that no tab shows is not a known
+        // source any more: its empty list retires it from the session.
+        var known = getDapSourcePaths();
+        previous.forEach(function(sourcePath) {
+            if (sourcePath && known.indexOf(sourcePath) < 0) {
+                state.dapClient.syncSource(sourcePath);
+            }
+        });
     }
     return true;
 };

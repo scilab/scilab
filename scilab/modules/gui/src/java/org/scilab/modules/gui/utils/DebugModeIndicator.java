@@ -23,6 +23,7 @@ import org.scilab.modules.localization.Messages;
 public final class DebugModeIndicator {
 
     private static final Color BACKGROUND = new Color(255, 204, 102);
+    private static final Color ERROR_BACKGROUND = new Color(255, 153, 153);
 
     // the states InterpreterManagement.getScilabDebugState() returns
     private static final int AT_REST = 1;
@@ -56,6 +57,18 @@ public final class DebugModeIndicator {
      * @param state what the debugger says, empty for nothing
      */
     public static void show(final TextBox infoBar, final boolean debugMode, final String state) {
+        show(infoBar, debugMode, false, state);
+    }
+
+    /**
+     * Same, in the colour of an error when the execution is stopped on one.
+     * @param infoBar the status bar, may be null
+     * @param debugMode whether Scilab is in debug mode
+     * @param error whether the execution is stopped on an error
+     * @param state what the debugger says, empty for nothing
+     */
+    public static void show(final TextBox infoBar, final boolean debugMode, final boolean error,
+            final String state) {
         if (infoBar == null) {
             return;
         }
@@ -63,7 +76,7 @@ public final class DebugModeIndicator {
         if (!SwingUtilities.isEventDispatchThread()) {
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-                    show(infoBar, debugMode, state);
+                    show(infoBar, debugMode, error, state);
                 }
             });
             return;
@@ -79,7 +92,7 @@ public final class DebugModeIndicator {
             ((JComponent) component).setOpaque(debugMode);
         }
         if (debugMode) {
-            infoBar.setBackground(BACKGROUND);
+            infoBar.setBackground(error ? ERROR_BACKGROUND : BACKGROUND);
         } else {
             infoBar.resetBackground();
         }

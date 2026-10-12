@@ -446,7 +446,7 @@ int semantic_token_type(const std::string& word, int& modifiers,
             modifiers |= SEMANTIC_MODIFIER_SCILAB_RUNTIME;
             // Protected runtime names are exposed as readonly semantic
             // variables, matching Scilab's predef("names") classification.
-            if (pCtx->isprotected(symbolName))
+            if (isRuntimeValueProtected(wword))
             {
                 modifiers |= SEMANTIC_MODIFIER_READONLY;
             }

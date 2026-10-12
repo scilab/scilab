@@ -1361,20 +1361,26 @@ void ConfigVariable::fillWhereError(const Location& _Location)
             iTmpLine = _Location.first_line - getMacroFirstLines() + 1;
         }
 
+        // An entry records the scope of the code making the call, as it does
+        // its line: the scope a callable runs in is the one in effect here
+        // for the innermost, and the one of the entry above for the others.
+        int iTmpScope = symbol::Context::getInstance()->getScopeLevel();
+
         m_WhereError.reserve(m_Where.size());
         for (auto where = m_Where.rbegin(); where != m_Where.rend(); ++where)
         {
             if (where->m_file_name != nullptr)
             {
-                m_WhereError.push_back({iTmpLine, iTmpLoc, where->call->getFirstLine(), where->m_scope_lvl, where->call->getName(), *where->m_file_name});
+                m_WhereError.push_back({iTmpLine, iTmpLoc, where->call->getFirstLine(), iTmpScope, where->call->getName(), *where->m_file_name});
             }
             else
             {
-                m_WhereError.push_back({iTmpLine, iTmpLoc, where->call->getFirstLine(), where->m_scope_lvl, where->call->getName(), L""});
+                m_WhereError.push_back({iTmpLine, iTmpLoc, where->call->getFirstLine(), iTmpScope, where->call->getName(), L""});
             }
 
             iTmpLine = where->m_line;
             iTmpLoc  = where->m_Location;
+            iTmpScope = where->m_scope_lvl;
         }
 
         // fill lasterror function name and line

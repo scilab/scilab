@@ -29,6 +29,11 @@ function configureShortcuts(config) {
 
     var shortcuts = config && config.shortcuts ? config.shortcuts : [];
     state.shortcutKeydownListener = function(event) {
+        // The fields of the breakpoint panel take their keys themselves.
+        if (typeof isDapBreakpointEditorTarget === "function"
+                && isDapBreakpointEditorTarget(event.target)) {
+            return;
+        }
         // Resolved per key: in a split tab, the view being typed in.
         var editor = getViewEditor();
         // SciNotes maps Tab to indentation. Give a visible Monaco completion

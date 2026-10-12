@@ -106,7 +106,7 @@ void RuntimeSnapshot::capture()
 
         RuntimeSymbolSnapshot info;
         info.name = scilab::UTF8::toUTF8(wideName);
-        info.readonly = context->isprotected(symbolName);
+        info.readonly = isRuntimeValueProtected(wideName);
         if (value->isMacro())
         {
             info.kind = RuntimeSymbolKind::Macro;

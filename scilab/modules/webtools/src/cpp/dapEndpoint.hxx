@@ -144,6 +144,8 @@ public:
     void execDebuggerDone();
     // Tell the clients whether Scilab is in debug mode while nothing runs.
     void publishDebugMode();
+    void sendOutput(const std::string& category, const std::string& text);
+    void flushPendingOutput();
 
     void setRunning(bool _bRunning);
     bool isRunning();
@@ -225,8 +227,13 @@ private:
     bool m_scinotes_holds_debug = false;
     bool m_published_debug_mode = false;
     std::atomic<bool> m_debug_mode_to_publish{false};
+    // Output written while a request was being handled, sent once it is.
+    std::mutex m_pending_output_mutex;
+    std::vector<std::string> m_pending_output;
     bool m_spawned;
     std::string m_file_to_execute;
+    // The last file run, which a kept-alive session still shows once it is done.
+    std::string m_executed_file;
     std::string m_working_directory;
     int m_iPort;
 

@@ -96,6 +96,30 @@ public final class SciNotesBreakpointStore {
         }
     }
 
+    /** Enable or disable every breakpoint of every source, and persist it. */
+    public synchronized void setAllEnabled(boolean enabled) {
+        boolean changed = false;
+        for (List<Breakpoint> breakpoints : data.sources.values()) {
+            for (Breakpoint breakpoint : breakpoints) {
+                if (breakpoint.enabled != enabled) {
+                    breakpoint.enabled = enabled;
+                    changed = true;
+                }
+            }
+        }
+        if (changed) {
+            save();
+        }
+    }
+
+    /** Forget the breakpoints of every source, and persist it. */
+    public synchronized void removeAll() {
+        if (!data.sources.isEmpty()) {
+            data.sources.clear();
+            save();
+        }
+    }
+
     public synchronized String getBreakpointsJson(String sourcePath) {
         return COMPACT_GSON.toJson(getBreakpoints(sourcePath));
     }

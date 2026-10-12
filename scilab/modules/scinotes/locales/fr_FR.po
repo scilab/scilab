@@ -861,6 +861,21 @@ msgid "Unsaved file"
 msgstr "Fichier non enregistré"
 
 #
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 355
+msgid "Enabled"
+msgstr "Activé"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 356
+msgid "Condition"
+msgstr "Condition"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 357
+msgid "Pause every N passes"
+msgstr "Pause tous les N passages"
+
+#
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 352
 msgid "Execution paused here"
 msgstr "Exécution en pause ici"

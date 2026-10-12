@@ -352,6 +352,9 @@ public class SciNotesMessages {
     public static final String DEBUG_BREAKPOINT_NO_CODE = Messages.gettext("Unreachable breakpoint");
     public static final String DEBUG_BREAKPOINT_HIT_COUNT = Messages.gettext("Invalid hit count");
     public static final String DEBUG_BREAKPOINT_NO_FILE = Messages.gettext("Unsaved file");
+    public static final String DEBUG_BREAKPOINT_ENABLED = Messages.gettext("Enabled");
+    public static final String DEBUG_BREAKPOINT_CONDITION = Messages.gettext("Condition");
+    public static final String DEBUG_BREAKPOINT_HIT_EVERY = Messages.gettext("Pause every N passes");
     public static final String DEBUG_STOPPED_HERE = Messages.gettext("Execution paused here");
     public static final String DEBUG_STOPPED_HERE_ON_BREAKPOINT = Messages.gettext("Execution paused here (breakpoint)");
     public static final String DEBUG_STOPPED = Messages.gettext("Execution paused");

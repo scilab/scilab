@@ -99,6 +99,14 @@ bool isRuntimeValueAvailable(types::InternalType* value)
     return callable == nullptr || !isNonNwniModule(callable->getModule().c_str());
 }
 
+bool isRuntimeValueProtected(const std::wstring& name)
+{
+    // Context::isprotected() only answers for the current scope, and a pause
+    // or a macro opens one above the scope holding the predefined variables.
+    symbol::Variable* variable = symbol::Context::getInstance()->getOrCreate(symbol::Symbol(name));
+    return variable->empty() == false && variable->top()->protect;
+}
+
 static bool appendRuntimeFieldCompletions(types::InternalType* value, json& fields)
 {
     if(value->isStruct())

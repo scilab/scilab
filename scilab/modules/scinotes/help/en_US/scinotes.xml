@@ -159,362 +159,192 @@
     </refsection>
     <refsection xml:id="scinotes_menus_shortcuts">
         <title>Menus and Shortcuts</title>
+        <para>
+            The shortcuts below are the default ones. On macOS, <literal>Ctrl</literal> is replaced
+            by <literal>Cmd</literal>. All of them can be customized in the Shortcuts section
+            of the Scilab preferences.
+        </para>
         <itemizedlist>
             <listitem>
                 <para>Menu File</para>
                 <informaltable border="1">
                     <tr>
-                        <td>
-                            <para>Command</para>
-                        </td>
-                        <td>
-                            <para>Shortcut</para>
-                        </td>
-                        <td>
-                            <para>Description</para>
-                        </td>
+                        <td><para>Command</para></td>
+                        <td><para>Shortcut</para></td>
+                        <td><para>Description</para></td>
                     </tr>
-                    <tr>
-                        <td>New...</td>
-                        <td>&lt;CTRL-N&gt;</td>
-                        <td>
-                            <para>Open a new file</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Open...</td>
-                        <td>&lt;CTRL-O&gt;</td>
-                        <td>
-                            <para>Open an existing file</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Recent Files</td>
-                        <td/>
-                        <td>
-                            <para>Display files recently opened</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Save</td>
-                        <td>&lt;CTRL-S&gt;</td>
-                        <td>
-                            <para>Save a file</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Save as...</td>
-                        <td>&lt;CTRL-MAJ-S&gt;</td>
-                        <td>
-                            <para>Save a file as</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Page Setup</td>
-                        <td/>
-                        <td>
-                            <para>Setup page for printing</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Print Preview</td>
-                        <td>&lt;CTRL-MAJ-P&gt;</td>
-                        <td>
-                            <para>Open a print preview window</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Print...</td>
-                        <td>&lt;CTRL-P&gt;</td>
-                        <td>
-                            <para>Print a file</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Close</td>
-                        <td>&lt;CTRL-W&gt;</td>
-                        <td>
-                            <para>Close a file</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Quit</td>
-                        <td>&lt;CTRL-Q&gt;</td>
-                        <td>
-                            <para>Close Editor</para>
-                        </td>
-                    </tr>
+                    <tr><td>New</td><td>Ctrl+N</td><td><para>Open a new empty file</para></td></tr>
+                    <tr><td>Open</td><td>Ctrl+O</td><td><para>Open an existing file</para></td></tr>
+                    <tr><td>Open recent</td><td/><td><para>Reopen a recently opened file</para></td></tr>
+                    <tr><td>Working directories</td><td/><td><para>Add or remove favorite directories</para></td></tr>
+                    <tr><td>Open file in ...</td><td/><td><para>Open a file located in the current or in a favorite directory</para></td></tr>
+                    <tr><td>Save file in ...</td><td/><td><para>Save the file in the current or in a favorite directory</para></td></tr>
+                    <tr><td>Reload</td><td>Ctrl+Shift+R</td><td><para>Reload the file from the disk</para></td></tr>
+                    <tr><td>Restore opened files on start-up</td><td/><td><para>Reopen at start-up the files opened at the end of the previous session</para></td></tr>
+                    <tr><td>Open function source file</td><td>Ctrl+Shift+O</td><td><para>Open the source file of the function under the caret</para></td></tr>
+                    <tr><td>Open URL</td><td>Ctrl+U</td><td><para>Open the URL under the caret</para></td></tr>
+                    <tr><td>Save</td><td>Ctrl+S</td><td><para>Save the file</para></td></tr>
+                    <tr><td>Save as</td><td>Ctrl+Shift+S</td><td><para>Save the file under a new name</para></td></tr>
+                    <tr><td>Save All</td><td/><td><para>Save all the opened files</para></td></tr>
+                    <tr><td>Overwrite</td><td/><td><para>Save the file even if it has been modified on the disk</para></td></tr>
+                    <tr><td>Export</td><td/><td><para>Export the file to HTML, PDF, PNG, ...</para></td></tr>
+                    <tr><td>Page Setup</td><td/><td><para>Setup the page for printing</para></td></tr>
+                    <tr><td>Print Preview</td><td>Ctrl+Shift+P</td><td><para>Open a print preview window</para></td></tr>
+                    <tr><td>Print</td><td>Ctrl+P</td><td><para>Print the file</para></td></tr>
+                    <tr><td>Close</td><td>Ctrl+W</td><td><para>Close the file</para></td></tr>
+                    <tr><td>Close All</td><td/><td><para>Close all the files</para></td></tr>
+                    <tr><td>Close All But This</td><td/><td><para>Close all the files except the current one</para></td></tr>
+                    <tr><td>Exit Scinotes</td><td>Ctrl+Q</td><td><para>Close the editor</para></td></tr>
                 </informaltable>
             </listitem>
             <listitem>
                 <para>Menu Edit</para>
                 <informaltable border="1">
                     <tr>
-                        <td>
-                            <para>Command</para>
-                        </td>
-                        <td>
-                            <para>Shortcut</para>
-                        </td>
-                        <td>
-                            <para>Description</para>
-                        </td>
+                        <td><para>Command</para></td>
+                        <td><para>Shortcut</para></td>
+                        <td><para>Description</para></td>
                     </tr>
-                    <tr>
-                        <td>Undo</td>
-                        <td>&lt;CTRL-Z&gt;</td>
-                        <td>
-                            <para>Undo action</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Redo</td>
-                        <td>&lt;CTRL-Y&gt;</td>
-                        <td>
-                            <para>Redo action</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Cut</td>
-                        <td>&lt;CTRL-X&gt;</td>
-                        <td>
-                            <para>Cut the selection</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Copy</td>
-                        <td>&lt;CTRL-C&gt;</td>
-                        <td>
-                            <para>Copy the selection</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Paste</td>
-                        <td>&lt;CTRL-V&gt;</td>
-                        <td>
-                            <para>Paste the selection</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Select All</td>
-                        <td>&lt;CTRL-A&gt;</td>
-                        <td>
-                            <para>Select the entire document</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Delete</td>
-                        <td/>
-                        <td>
-                            <para>Delete the selection</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Comment Selection</td>
-                        <td>&lt;CTRL-D&gt;</td>
-                        <td>
-                            <para>Comment selected lines</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Uncomment Selection</td>
-                        <td>&lt;CTRL-MAJ-D&gt;</td>
-                        <td>
-                            <para>Uncomment selected lines</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tabify Selection</td>
-                        <td>&lt;TAB&gt;</td>
-                        <td>
-                            <para>Tabify selected lines</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Untabify Selection</td>
-                        <td>&lt;MAJ-TAB&gt;</td>
-                        <td>
-                            <para>Untabify selected lines</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Indent</td>
-                        <td>&lt;CTRL-I&gt;</td>
-                        <td>
-                            <para>Indent selected lines</para>
-                        </td>
-                    </tr>
+                    <tr><td>Undo</td><td>Ctrl+Z</td><td><para>Undo the last action</para></td></tr>
+                    <tr><td>Redo</td><td>Ctrl+Y</td><td><para>Redo the last undone action</para></td></tr>
+                    <tr><td>Cut</td><td>Ctrl+X</td><td><para>Cut the selection</para></td></tr>
+                    <tr><td>Copy</td><td>Ctrl+C</td><td><para>Copy the selection</para></td></tr>
+                    <tr><td>Copy as HTML with line number</td><td>Ctrl+Shift+C</td><td><para>Copy the selection as colorized HTML, with line numbers</para></td></tr>
+                    <tr><td>Paste</td><td>Ctrl+V</td><td><para>Paste the clipboard content</para></td></tr>
+                    <tr><td>Delete</td><td>Delete</td><td><para>Delete the selection</para></td></tr>
+                    <tr><td>Columns actions &gt; Paste Column</td><td>Ctrl+Shift+V</td><td><para>Paste the clipboard lines as a column at the caret position</para></td></tr>
+                    <tr><td>Columns actions &gt; Repeat on the Column</td><td>Ctrl+Shift+Z</td><td><para>Repeat the selection on the column</para></td></tr>
+                    <tr><td>Select All</td><td>Ctrl+A</td><td><para>Select the whole document</para></td></tr>
+                    <tr><td>Select current block</td><td>Ctrl+B</td><td><para>Select the block (function, loop, ...) containing the caret</para></td></tr>
+                    <tr><td>Search &gt; Find/Replace</td><td>Ctrl+F</td><td><para>Find and/or replace a text</para></td></tr>
+                    <tr><td>Search &gt; Find Next</td><td>Ctrl+K</td><td><para>Find the next occurrence</para></td></tr>
+                    <tr><td>Search &gt; Find Previous</td><td>Ctrl+Shift+K</td><td><para>Find the previous occurrence</para></td></tr>
+                    <tr><td>Search &gt; Incremental Search</td><td>F3</td><td><para>Search while typing, in a bar at the bottom of the editor</para></td></tr>
+                    <tr><td>Search &gt; Find files</td><td>Ctrl+Shift+B</td><td><para>Search files by name in a directory</para></td></tr>
+                    <tr><td>Search &gt; Find word in files</td><td>Ctrl+Shift+F</td><td><para>Search a word in the files of a directory</para></td></tr>
+                    <tr><td>Search &gt; Set anchor</td><td>Ctrl+M</td><td><para>Set an anchor on the current line</para></td></tr>
+                    <tr><td>Search &gt; Go to next anchor</td><td>Ctrl+Shift+&lt;</td><td><para>Move the caret to the next anchor</para></td></tr>
+                    <tr><td>Search &gt; Go to previous anchor</td><td>Ctrl+&lt;</td><td><para>Move the caret to the previous anchor</para></td></tr>
+                    <tr><td>Search &gt; Remove anchor</td><td>Ctrl+Shift+M</td><td><para>Remove the anchor of the current line</para></td></tr>
+                    <tr><td>Search &gt; Code Navigator</td><td>Ctrl+G</td><td><para>Navigate through functions and anchors, or go to a given line</para></td></tr>
                 </informaltable>
             </listitem>
             <listitem>
-                <para>Menu Search</para>
+                <para>Menu Format</para>
                 <informaltable border="1">
                     <tr>
-                        <td>
-                            <para>Command</para>
-                        </td>
-                        <td>
-                            <para>Shortcut</para>
-                        </td>
-                        <td>
-                            <para>Description</para>
-                        </td>
+                        <td><para>Command</para></td>
+                        <td><para>Shortcut</para></td>
+                        <td><para>Description</para></td>
                     </tr>
-                    <tr>
-                        <td>Find/Replace</td>
-                        <td>&lt;CTRL-F&gt;</td>
-                        <td>
-                            <para>Find and/or Replace an element</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Goto line</td>
-                        <td>&lt;CTRL-G&gt;</td>
-                        <td>
-                            <para>Goto line</para>
-                        </td>
-                    </tr>
+                    <tr><td>Shift Right</td><td>Tab</td><td><para>Indent the selected lines</para></td></tr>
+                    <tr><td>Shift Left</td><td>Shift+Tab</td><td><para>Unindent the selected lines</para></td></tr>
+                    <tr><td>Correct Indentation</td><td>Ctrl+I</td><td><para>Indent the selected lines according to the Scilab syntax</para></td></tr>
+                    <tr><td>Remove trailing spaces</td><td>Ctrl+Shift+W</td><td><para>Remove the trailing white spaces</para></td></tr>
+                    <tr><td>Generate comments for help_from_sci</td><td>Ctrl+Shift+G</td><td><para>Insert a help comments template for the function (see <link linkend="help_from_sci">help_from_sci</link>)</para></td></tr>
+                    <tr><td>Comment Selection</td><td>Ctrl+D</td><td><para>Comment the selected lines</para></td></tr>
+                    <tr><td>Uncomment Selection</td><td>Ctrl+Shift+D</td><td><para>Uncomment the selected lines</para></td></tr>
+                    <tr><td>Change the case &gt; Make Selection Lowercase</td><td>Ctrl+J</td><td><para>Convert the selection to lowercase</para></td></tr>
+                    <tr><td>Change the case &gt; Make Selection Uppercase</td><td>Ctrl+Shift+J</td><td><para>Convert the selection to uppercase</para></td></tr>
+                    <tr><td>Change the case &gt; Capitalize Selection</td><td>Ctrl+Shift+A</td><td><para>Capitalize the selection</para></td></tr>
+                    <tr><td>Single to double quote strings</td><td/><td><para>Replace all simple quoted strings by double quoted ones</para></td></tr>
                 </informaltable>
             </listitem>
             <listitem>
-                <para>Menu View</para>
+                <para>Menu Options</para>
                 <informaltable border="1">
                     <tr>
-                        <td>
-                            <para>Command</para>
-                        </td>
-                        <td>
-                            <para>Shortcut</para>
-                        </td>
-                        <td>
-                            <para>Description</para>
-                        </td>
+                        <td><para>Command</para></td>
+                        <td><para>Shortcut</para></td>
+                        <td><para>Description</para></td>
                     </tr>
-                    <tr>
-                        <td>Show/Hide Toolbar</td>
-                        <td/>
-                        <td>
-                            <para>Option to show or hide the toolbar</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Highlight current line</td>
-                        <td>&lt;CTRL-J&gt;</td>
-                        <td>
-                            <para>Highlight the current line</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Line Numbers</td>
-                        <td>&lt;CTRL-B&gt;</td>
-                        <td>
-                            <para>Display document's line numbers</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Set Colors...</td>
-                        <td/>
-                        <td>
-                            <para>Color settings for documents</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Set Fonts...</td>
-                        <td/>
-                        <td>
-                            <para>Font settings for documents</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Reset default font</td>
-                        <td/>
-                        <td>
-                            <para>Reset default font settings for documents</para>
-                        </td>
-                    </tr>
+                    <tr><td>Current file encoding</td><td/><td><para>Encoding of the file (default is UTF-8)</para></td></tr>
+                    <tr><td>Line Endings</td><td/><td><para>End of line characters of the file (Windows, Unix, Mac)</para></td></tr>
+                    <tr><td>Preferences &gt; Set font</td><td/><td><para>Font settings</para></td></tr>
+                    <tr><td>Preferences &gt; Set colors</td><td/><td><para>Color settings</para></td></tr>
+                    <tr><td>Preferences &gt; Scinotes General settings</td><td/><td><para>Open the SciNotes preferences</para></td></tr>
+                    <tr><td>Auto-completion on &gt; (, [, ...</td><td>Ctrl+H</td><td><para>Automatically close parentheses, brackets and quotes</para></td></tr>
+                    <tr><td>Auto-completion on &gt; if, function, ...</td><td>Ctrl+Shift+H</td><td><para>Automatically close blocks (end, endfunction, ...)</para></td></tr>
+                    <tr><td>Line numbering</td><td/><td><para>Hide the line numbers, or display them as normal or local (relative to the current function) numbering</para></td></tr>
                 </informaltable>
             </listitem>
             <listitem>
-                <para>Menu Document</para>
+                <para>Menu Window</para>
                 <informaltable border="1">
                     <tr>
-                        <td>
-                            <para>Command</para>
-                        </td>
-                        <td>
-                            <para>Shortcut</para>
-                        </td>
-                        <td>
-                            <para>Description</para>
-                        </td>
+                        <td><para>Command</para></td>
+                        <td><para>Shortcut</para></td>
+                        <td><para>Description</para></td>
                     </tr>
-                    <tr>
-                        <td>Syntax Type</td>
-                        <td/>
-                        <td>
-                            <para>Syntax type settings (default type is Scilab)</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Encoding</td>
-                        <td/>
-                        <td>
-                            <para>Encoding settings (default type is UTF-8
-                                Encoding)
-                            </para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Colorize</td>
-                        <td/>
-                        <td>
-                            <para>Colorize the document</para>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Auto Indent</td>
-                        <td/>
-                        <td>
-                            <para>Activate the automatic indentation</para>
-                        </td>
-                    </tr>
+                    <tr><td>Copy tab in new window</td><td>Ctrl+Shift+T</td><td><para>Open the current file in a new SciNotes window</para></td></tr>
+                    <tr><td>Detach tab in new window</td><td>Ctrl+Shift+X</td><td><para>Move the current tab to a new SciNotes window</para></td></tr>
+                    <tr><td>Copy selection in a new tab</td><td/><td><para>Create a new file containing the selection</para></td></tr>
+                    <tr><td>Split View</td><td/><td><para>Split the current view in two columns or in two rows</para></td></tr>
+                    <tr><td>Scilab Assistant</td><td/><td><para>Show or hide the AI assistant panel (see <link linkend="scinotes_assistant">scinotes_assistant</link>)</para></td></tr>
                 </informaltable>
             </listitem>
             <listitem>
                 <para>Menu Execute</para>
                 <informaltable border="1">
                     <tr>
-                        <td>
-                            <para>Command</para>
-                        </td>
-                        <td>
-                            <para>Shortcut</para>
-                        </td>
-                        <td>
-                            <para>Description</para>
-                        </td>
+                        <td><para>Command</para></td>
+                        <td><para>Shortcut</para></td>
+                        <td><para>Description</para></td>
                     </tr>
+                    <tr><td>... file with no echo</td><td>Ctrl+Shift+E</td><td><para>Execute the file without displaying its instructions in the console</para></td></tr>
+                    <tr><td>... file with echo</td><td>Ctrl+L</td><td><para>Execute the file, displaying its instructions in the console</para></td></tr>
+                    <tr><td>... the selection with echo</td><td>Ctrl+E</td><td><para>Execute the selection, or the text until the caret when nothing is selected</para></td></tr>
+                    <tr><td>Save and execute</td><td>Ctrl+F5</td><td><para>Save the file, then execute it</para></td></tr>
+                    <tr><td>Save and execute all files</td><td/><td><para>Save all the files, then execute them</para></td></tr>
+                </informaltable>
+            </listitem>
+            <listitem>
+                <para>Menu Debug (see <link linkend="scinotes_debugger">scinotes_debugger</link>)</para>
+                <informaltable border="1">
                     <tr>
-                        <td>Load Into Scilab</td>
-                        <td>&lt;CTRL-L&gt;</td>
-                        <td>
-                            <para>Load the entire document into the Scilab console</para>
-                        </td>
+                        <td><para>Command</para></td>
+                        <td><para>Shortcut</para></td>
+                        <td><para>Description</para></td>
                     </tr>
+                    <tr><td>Debug or resume</td><td>F5</td><td><para>Start debugging the file, or resume the execution</para></td></tr>
+                    <tr><td>Pause</td><td>F6</td><td><para>Pause the execution</para></td></tr>
+                    <tr><td>Step Over</td><td>F10</td><td><para>Execute the current line</para></td></tr>
+                    <tr><td>Step In</td><td>F11</td><td><para>Enter the function called on the current line</para></td></tr>
+                    <tr><td>Step Out</td><td>Shift+F11</td><td><para>Run until the current function returns</para></td></tr>
+                    <tr><td>Run to Cursor</td><td>Ctrl+F10</td><td><para>Run until the line of the caret</para></td></tr>
+                    <tr><td>Stop Debugging</td><td>Shift+F5</td><td><para>Abort the debugging session</para></td></tr>
+                    <tr><td>Toggle Breakpoint</td><td>F9</td><td><para>Set or remove a breakpoint on the current line</para></td></tr>
+                    <tr><td>Enable All Breakpoints</td><td/><td><para>Enable all the breakpoints</para></td></tr>
+                    <tr><td>Disable All Breakpoints</td><td/><td><para>Disable all the breakpoints</para></td></tr>
+                    <tr><td>Remove All Breakpoints</td><td/><td><para>Remove all the breakpoints</para></td></tr>
+                </informaltable>
+            </listitem>
+            <listitem>
+                <para>Menu ?</para>
+                <informaltable border="1">
                     <tr>
-                        <td>Evaluate Selection</td>
-                        <td/>
-                        <td>
-                            <para>Load the selection into the Scilab console</para>
-                        </td>
+                        <td><para>Command</para></td>
+                        <td><para>Shortcut</para></td>
+                        <td><para>Description</para></td>
                     </tr>
+                    <tr><td>Scinotes help</td><td>F1</td><td><para>Open this help page</para></td></tr>
+                    <tr><td>Help on ...</td><td>Ctrl+F1</td><td><para>Open the help page of the keyword under the caret, or of the selection</para></td></tr>
+                    <tr><td>About</td><td>Shift+F1</td><td><para>Display information about SciNotes</para></td></tr>
+                </informaltable>
+            </listitem>
+            <listitem>
+                <para>Other shortcuts</para>
+                <informaltable border="1">
                     <tr>
-                        <td>Execute Into Scilab</td>
-                        <td>&lt;CTRL-E&gt;</td>
-                        <td>
-                            <para>If the file exist, execute the content of the file</para>
-                        </td>
+                        <td><para>Command</para></td>
+                        <td><para>Shortcut</para></td>
+                        <td><para>Description</para></td>
                     </tr>
+                    <tr><td>Complete</td><td>Ctrl+Space</td><td><para>Complete the word under the caret (also in the contextual menu)</para></td></tr>
+                    <tr><td>Next tab</td><td>Ctrl+Page Down</td><td><para>Go to the next tab</para></td></tr>
+                    <tr><td>Previous tab</td><td>Ctrl+Page Up</td><td><para>Go to the previous tab</para></td></tr>
+                    <tr><td>Next paragraph</td><td>Ctrl+Down</td><td><para>Move the caret to the next paragraph</para></td></tr>
+                    <tr><td>Previous paragraph</td><td>Ctrl+Up</td><td><para>Move the caret to the previous paragraph</para></td></tr>
                 </informaltable>
             </listitem>
         </itemizedlist>
@@ -609,6 +439,12 @@ end
             </member>
             <member>
                 <link linkend="console">console</link>
+            </member>
+            <member>
+                <link linkend="scinotes_debugger">scinotes_debugger</link>
+            </member>
+            <member>
+                <link linkend="scinotes_assistant">scinotes_assistant</link>
             </member>
         </simplelist>
     </refsection>

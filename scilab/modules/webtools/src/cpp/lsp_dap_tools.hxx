@@ -47,6 +47,7 @@ json getFieldCompletion(const std::string& token, const std::string& exp);
 json getSignatures(const std::string& _word, int _activParam, const std::string& _sheetFile);
 std::string getDoc(const std::string& _word, const std::string& _sheetFile);
 bool isRuntimeValueAvailable(types::InternalType* value);
+bool isRuntimeValueProtected(const std::wstring& name);
 // json getLintInfo(const std::string&);
 std::string eval(const std::string& _command, types::InternalType** _pIT);
 bool parseDocument(const std::vector<std::string>& lines, ast::Exp** tree);

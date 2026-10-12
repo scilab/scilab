@@ -211,6 +211,11 @@
             content: "\ea71"; /* debug-breakpoint */
         }
 
+        /* A condition or a hit count: it does not stop on every pass. */
+        .monaco-editor .glyph-margin-widgets .cgmr.scinotes-breakpoint.scinotes-breakpoint-conditional::before {
+            content: "\eaa7"; /* debug-breakpoint-conditional */
+        }
+
         .scinotes-breakpoint-verified {
             color: #d64a4a;
         }
@@ -392,6 +397,81 @@
             position: absolute;
             top: 3px;
             right: 5px;
+            padding: 2px 5px;
+            border: 0;
+            background: transparent;
+            color: #555555;
+            cursor: pointer;
+            font: 16px sans-serif;
+        }
+
+        /* The panel a right click on a breakpoint opens under its line. */
+        .scinotes-breakpoint-editor {
+            display: flex;
+            flex-direction: column;
+            width: 380px;
+            padding: 12px 34px 12px 14px;
+            border: 1px solid #c8c8c8;
+            border-radius: 4px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+            color: #000000;
+            /* The font of the hovers: the page's, at the size of the text. */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI",
+                HelveticaNeue-Light, system-ui, Ubuntu, "Droid Sans", sans-serif;
+            font-size: var(--scinotes-hover-font-size, 12px);
+            line-height: 1.5;
+        }
+
+        .scinotes-breakpoint-editor-row,
+        .scinotes-breakpoint-editor-row label {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .scinotes-breakpoint-editor-row {
+            gap: 22px;
+        }
+
+        .scinotes-breakpoint-editor-row + .scinotes-breakpoint-editor-row {
+            margin-top: 10px;
+        }
+
+        .scinotes-breakpoint-editor-row label {
+            gap: 7px;
+        }
+
+        .scinotes-breakpoint-editor-row input[type="text"] {
+            flex: 1;
+            min-width: 0;
+            padding: 4px 6px;
+            border: 1px solid #b0b0b0;
+            border-radius: 2px;
+            font: inherit;
+            /* monaco-dap.js sets the editor's font: this is when it cannot. */
+            font-family: monospace;
+        }
+
+        .scinotes-breakpoint-editor-row input[type="text"]:focus {
+            border-color: #3a7bd5;
+            outline: none;
+        }
+
+        .scinotes-breakpoint-editor-row input[type="text"].invalid {
+            border-color: #d64a4a;
+            background: #fdecec;
+        }
+
+        .scinotes-breakpoint-editor-row input[type="checkbox"],
+        .scinotes-breakpoint-editor-row input[type="radio"] {
+            margin: 0;
+        }
+
+        .scinotes-breakpoint-editor-close {
+            position: absolute;
+            top: 6px;
+            right: 7px;
             padding: 2px 5px;
             border: 0;
             background: transparent;

@@ -531,6 +531,17 @@ async function fromJava(msg) {
             break;
         }
         case "output":
+            if (msg.data2 == "echo") {
+                // msg.data2 is the style of the text. "echo" is the prompt and
+                // the command just validated, copied to the output: plain text,
+                // which must start a line as the input line did, even after an
+                // output without line break.
+                msg.data2 = "monospace";
+                if (!outputEndsLine()) {
+                    msg.data1 = "\n" + msg.data1;
+                }
+            }
+
             if (output.length > 0 && output[output.length-1].style == msg.data2) {
                 output[output.length-1].text += msg.data1
             } else {
@@ -655,6 +666,14 @@ async function fromJava(msg) {
             log("WARNING", "unmanaged msg", msg.type);
             break;
         }
+}
+
+/** Whether the output, pending text included, is empty or ends with a line break */
+function outputEndsLine() {
+    let text = output.length > 0
+        ? output[output.length-1].text
+        : $(".output").children(":last-child").text();
+    return text.length == 0 || /[\r\n]$/.test(text);
 }
 
 /**  Convert carriage returns and new lines */

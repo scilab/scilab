@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Antoine ELIAS
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="scinotes_debugger" xml:lang="en">
+    <refnamediv>
+        <refname>scinotes_debugger</refname>
+        <refpurpose>SciNotes debugger: breakpoints, step by step execution and values of the variables in the editor</refpurpose>
+    </refnamediv>
+
+    <refsection>
+        <title>Description</title>
+        <para>
+            <link linkend="scinotes">SciNotes</link> runs a file with the debugger: the execution
+            stops on the breakpoints of its lines and of the functions it calls, then goes on step
+            by step. While it is stopped, the editor shows the line about to run, the mouse shows the
+            values of the variables, and the console runs commands in the stopped function.
+        </para>
+        <para>
+            The commands are in the <emphasis>Debug</emphasis> menu, and the main ones in the
+            toolbar:
+        </para>
+        <informaltable border="1">
+            <tr>
+                <th>Command</th>
+                <th>Shortcut</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <td>Debug or resume</td>
+                <td>F5</td>
+                <td>Save the file and run it with the debugger; when stopped, go on to the next stop.</td>
+            </tr>
+            <tr>
+                <td>Pause</td>
+                <td>F6</td>
+                <td>Stop a debugged execution where it is.</td>
+            </tr>
+            <tr>
+                <td>Step Over</td>
+                <td>F10</td>
+                <td>Run the current line, functions called included, and stop on the next one.</td>
+            </tr>
+            <tr>
+                <td>Step In</td>
+                <td>F11</td>
+                <td>Run the current line, stopping in the first function it calls.</td>
+            </tr>
+            <tr>
+                <td>Step Out</td>
+                <td>Shift+F11</td>
+                <td>Run until the current function returns, and stop in its caller.</td>
+            </tr>
+            <tr>
+                <td>Run to Cursor</td>
+                <td>Ctrl+F10</td>
+                <td>Run until the line of the cursor (see below).</td>
+            </tr>
+            <tr>
+                <td>Stop Debugging</td>
+                <td>Shift+F5</td>
+                <td>Abort the execution and leave the debug mode.</td>
+            </tr>
+            <tr>
+                <td>Toggle Breakpoint</td>
+                <td>F9</td>
+                <td>Add or remove a breakpoint on the line of the cursor.</td>
+            </tr>
+            <tr>
+                <td>Enable All Breakpoints, Disable All Breakpoints, Remove All Breakpoints</td>
+                <td/>
+                <td>Act on the breakpoints of every file.</td>
+            </tr>
+        </informaltable>
+        <para>
+            On macOS, Ctrl is Cmd. The shortcuts are changed in the preferences, like the other
+            shortcuts of Scilab. <emphasis>Save and execute</emphasis>, which used F5, now uses
+            Ctrl+F5 and runs the file without the debugger.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Debug mode</title>
+        <para>
+            F5 puts Scilab in debug mode, and Scilab stays in it when the execution ends: the status
+            bars of SciNotes and of the console turn orange, and the prompt of the console becomes
+            <literal>debug&gt;</literal>. In debug mode, the breakpoints also stop a function called
+            from the console, or by the callback of a graphical user interface: write the function in
+            SciNotes, run its file once with F5, then call it as usual.
+        </para>
+        <para>
+            Stop Debugging (Shift+F5), or running a file without the debugger (<emphasis>Save and
+            execute</emphasis>, or the <emphasis>Execute</emphasis> menu), leaves the debug mode.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Breakpoints</title>
+        <para>
+            Click in the margin left of the line numbers, or press F9, to add or remove a breakpoint
+            on a line. A dot shows it:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>red: Scilab stops on it;</para>
+            </listitem>
+            <listitem>
+                <para>
+                    pale: not in effect yet. The file is not saved, or the line cannot be reached (its
+                    tooltip says why);
+                </para>
+            </listitem>
+            <listitem>
+                <para>grey: disabled;</para>
+            </listitem>
+            <listitem>
+                <para>with a mark inside: it stops on a condition, or every N passes;</para>
+            </listitem>
+            <listitem>
+                <para>a red ring: set by another debug client, it cannot be changed from SciNotes.</para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            A breakpoint on a line with no code (blank, comment, <literal>end</literal>) moves to the
+            next line that runs code. On a line with several instructions, it stops before the first
+            one.
+        </para>
+        <para>
+            Right-click a breakpoint to change it:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para><emphasis>Enabled</emphasis>: a disabled breakpoint stays in the file but does not stop.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis>Condition</emphasis>: a Scilab expression, evaluated where the breakpoint
+                    is. The execution stops when it is true, for example <literal>i == 10</literal> or
+                    <literal>x &lt; 0</literal>. An expression that fails, or that gives no value, stops
+                    too.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis>Pause every N passes</emphasis>: a whole number. The execution stops once
+                    every N times the line is reached: with 100, on the 100th pass, the 200th, and so on.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            A breakpoint has a condition or a number of passes, not both. Enter or a click outside the
+            panel applies the change, Escape or its × button discards it.
+        </para>
+        <para>
+            The breakpoints belong to the files, not to the tabs: they stay when a file is closed, and
+            a breakpoint in a file that is not open still stops the execution, which opens it. They
+            are kept from one session to the next in <literal>SCIHOME/scinotes-breakpoints.json</literal>
+            (see <link linkend="SCIHOME">SCIHOME</link>). <emphasis>Save as</emphasis> copies the
+            breakpoints of a file to the new one.
+        </para>
+        <para>
+            The breakpoints follow their lines when the file is edited, but Scilab only gets them when
+            the file is saved: Scilab runs the file as it is on disk.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>When the execution stops</title>
+        <para>
+            The line about to run is highlighted, with an arrow in the margin. On a line with several
+            instructions, a mark shows the next one. The window comes to the front, opening the file
+            if needed, so that the shortcuts reach it. With several SciNotes windows, the file is shown
+            in the one that has it open.
+        </para>
+        <para>
+            Rest the mouse on a variable to see its value; a field (<literal>s.a.b</literal>) or a
+            selection on one line is evaluated too. The value is the one of the function stopped in,
+            and when nothing runs, the one of the console. Nothing is shown while the execution
+            runs.
+        </para>
+        <para>
+            The console prompt becomes <literal>break&gt;</literal>. A command typed in the console
+            runs in the stopped function: it can display or change its variables. The
+            <link linkend="browsevar">variable browser</link> shows them too. In the console,
+            <link linkend="resume">resume</link> goes on and <link linkend="abort">abort</link> ends
+            the execution; in debug mode, <link linkend="pause">pause</link> in the code, or Ctrl+C in
+            the console, stops it like F6.
+        </para>
+        <para>
+            The status bar of SciNotes tells the state: <emphasis>Execution running</emphasis>,
+            <emphasis>Paused on breakpoint</emphasis>, <emphasis>Execution paused</emphasis>,
+            <emphasis>Execution completed</emphasis>, and the key that leaves the debug mode.
+        </para>
+        <para>
+            If the file was changed since it was run, a yellow banner says so: Scilab runs the code as
+            it was, and the lines shown may not match it.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Stop on an error</title>
+        <para>
+            In debug mode, an error stops the execution on the line that raised it, before it is
+            reported: the line and the status bar turn red, and the error message is shown at the end
+            of the line. The variables can be read as on a breakpoint, but the steps are disabled:
+            F5 or Shift+F5 end the execution, and the error is then displayed in the console. An
+            error caught by <link linkend="try">try</link> or by
+            <literal><link linkend="execstr">execstr</link>(..., "errcatch")</literal> does not stop.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Run to cursor</title>
+        <para>
+            Ctrl+F10 runs until the line of the cursor, as if it had a breakpoint used once. When the
+            execution is stopped, it goes on to that line. When nothing runs, the file is saved and run
+            with the debugger. It is refused when the file was changed since the stopped execution
+            started.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Remarks</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    The breakpoints set with <link linkend="debug">debug</link> in the console stop the
+                    execution, and SciNotes shows the stop, but they do not appear in the margin.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    SciNotes has no view of the call stack or of the variables: use the console and the
+                    variable browser.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    A function of a library stops on the breakpoints of its <literal>.sci</literal>
+                    file, when it is next to the <literal>.bin</literal> file the library loads.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Other clients of the Debug Adapter Protocol, such as Visual Studio Code with the
+                    Scilab extension, can debug Scilab too (see <link linkend="debug">debug</link>).
+                    Their breakpoints are shown in SciNotes as red rings.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scinotes">scinotes</link>
+            </member>
+            <member>
+                <link linkend="debug">debug</link>
+            </member>
+            <member>
+                <link linkend="pause">pause</link>
+            </member>
+            <member>
+                <link linkend="resume">resume</link>
+            </member>
+            <member>
+                <link linkend="abort">abort</link>
+            </member>
+            <member>
+                <link linkend="browsevar">browsevar</link>
+            </member>
+        </simplelist>
+    </refsection>
+
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>Introduction of the SciNotes debugger.</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

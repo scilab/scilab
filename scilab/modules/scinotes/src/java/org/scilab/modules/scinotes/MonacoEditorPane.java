@@ -260,6 +260,7 @@ public class MonacoEditorPane extends ScilabEditorPane {
         private volatile boolean dapCanExecute;
         private volatile boolean dapCanDebug;
         private volatile boolean dapDebugMode;
+        private volatile boolean dapStoppedOnError;
         private volatile boolean dapSessionReady;
         private volatile String dapSessionState = "";
 
@@ -533,6 +534,7 @@ public class MonacoEditorPane extends ScilabEditorPane {
                 state.canPause, state.canStepOver, state.canStepIn, state.canStepOut,
                 state.canDisconnect, state.canExecute);
             dapDebugMode = state.debugMode;
+            dapStoppedOnError = state.stoppedOnError;
             // The status bar says Scilab is in debug mode, and what the
             // debugger says after its own text. It is a text area: a message
             // on several lines, as Scilab errors are, would make it grow and
@@ -555,7 +557,7 @@ public class MonacoEditorPane extends ScilabEditorPane {
                 String hint = String.format(SciNotesMessages.DEBUG_LEAVE_HINT, keyText);
                 state = state.isEmpty() ? hint : state + " (" + hint + ")";
             }
-            DebugModeIndicator.show(editor.getInfoBar(), dapDebugMode, state);
+            DebugModeIndicator.show(editor.getInfoBar(), dapDebugMode, dapStoppedOnError, state);
         }
 
         void loadStarted() {
@@ -769,6 +771,9 @@ public class MonacoEditorPane extends ScilabEditorPane {
         MONACO_BRIDGED_ACTIONS.put("scinotes-debug-disconnect", "debugDisconnect");
         MONACO_BRIDGED_ACTIONS.put("scinotes-debug-toggle-breakpoint", "debugToggleBreakpoint");
         MONACO_BRIDGED_ACTIONS.put("scinotes-debug-run-to-cursor", "debugRunToCursor");
+        MONACO_BRIDGED_ACTIONS.put("scinotes-debug-enable-all-breakpoints", "debugEnableAllBreakpoints");
+        MONACO_BRIDGED_ACTIONS.put("scinotes-debug-disable-all-breakpoints", "debugDisableAllBreakpoints");
+        MONACO_BRIDGED_ACTIONS.put("scinotes-debug-remove-all-breakpoints", "debugRemoveAllBreakpoints");
     }
 
     /**
@@ -2511,6 +2516,12 @@ public class MonacoEditorPane extends ScilabEditorPane {
             toggleBreakpointAtCaret();
         } else if ("debugRunToCursor".equals(bridge)) {
             runToCursor();
+        } else if ("debugEnableAllBreakpoints".equals(bridge)) {
+            setAllBreakpointsEnabled(true);
+        } else if ("debugDisableAllBreakpoints".equals(bridge)) {
+            setAllBreakpointsEnabled(false);
+        } else if ("debugRemoveAllBreakpoints".equals(bridge)) {
+            removeAllBreakpoints();
         } else if ("openDevTools".equals(bridge)) {
             openDevTools();
         }
@@ -3411,7 +3422,7 @@ public class MonacoEditorPane extends ScilabEditorPane {
                 return;
             }
 
-            SciNotes ed = getEditor();
+            SciNotes ed = getStoppedSourceEditor(source);
             if (ed != null) {
                 // The stop happens while the console may hold the focus: the
                 // step keys must reach the editor.
@@ -3426,6 +3437,30 @@ public class MonacoEditorPane extends ScilabEditorPane {
         } catch (UnsupportedEncodingException e) {
             // Ignore malformed bridge messages.
         }
+    }
+
+    /**
+     * The window to show a stop in. Each SciNotes window has its own debug
+     * client and hears the same stop: they must all pick the same window, the
+     * first one to handle it opening the file there and the others only
+     * bringing it back. The last focused window when it has the file open,
+     * else another one that has it, else the last focused one.
+     * @param source the file the debugger stopped in
+     * @return the window, null when no SciNotes is open
+     */
+    private static SciNotes getStoppedSourceEditor(File source) {
+        SciNotes active = SciNotes.getActiveEditor();
+        if (active != null && active.isFileOpened(source)) {
+            return active;
+        }
+
+        for (SciNotes ed : SciNotes.getSciNotesList()) {
+            if (ed.isFileOpened(source)) {
+                return ed;
+            }
+        }
+
+        return active;
     }
 
     /**
@@ -3807,6 +3842,44 @@ public class MonacoEditorPane extends ScilabEditorPane {
         }
     }
 
+    /**
+     * Enable or disable every breakpoint: those of the store and those the
+     * tabs of every window hold, saved or not.
+     * @param enabled the state given to all of them
+     */
+    public static void setAllBreakpointsEnabled(boolean enabled) {
+        SciNotesBreakpointStore.getInstance().setAllEnabled(enabled);
+        runDapScriptEverywhere("window.SciNotesMonacoSetAllBreakpointsEnabled(" + enabled + ");");
+        syncDapStoreEverywhere();
+    }
+
+    /** Remove every breakpoint: those of the store and those the tabs of every window hold. */
+    public static void removeAllBreakpoints() {
+        SciNotesBreakpointStore.getInstance().removeAll();
+        runDapScriptEverywhere("window.SciNotesMonacoRemoveAllBreakpoints();");
+        syncDapStoreEverywhere();
+    }
+
+    /**
+     * Run a script in the browser of every open SciNotes window.
+     * @param script the JavaScript to run
+     */
+    private static void runDapScriptEverywhere(String script) {
+        for (SciNotes editor : SciNotes.getSciNotesList()) {
+            for (int index = 0; index < editor.getTabPane().getTabCount(); index++) {
+                ScilabEditorPane pane = editor.getTextPane(index);
+                if (pane instanceof MonacoEditorPane) {
+                    // One browser per window: the first Monaco tab reaches it.
+                    MonacoEditorPane monacoPane = (MonacoEditorPane) pane;
+                    if (!monacoPane.browserDisposed && monacoPane.sharedBrowser.monacoReady) {
+                        monacoPane.browser.executeJavaScript(script, monacoPane.browser.getURL(), 1);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
     /** Capture breakpoint decorations before a successful save refreshes the store. */
     private void prepareDapBreakpointsForSave() {
         if (browserReady && monacoDocumentCreated && getUUID() != null) {
@@ -3881,6 +3954,7 @@ public class MonacoEditorPane extends ScilabEditorPane {
         private boolean canExecute;
         private boolean canDebug;
         private boolean debugMode;
+        private boolean stoppedOnError;
         private boolean sessionReady;
         private String state;
         private String message;
@@ -4625,6 +4699,10 @@ public class MonacoEditorPane extends ScilabEditorPane {
             {"breakpointNoCode", SciNotesMessages.DEBUG_BREAKPOINT_NO_CODE},
             {"breakpointHitCount", SciNotesMessages.DEBUG_BREAKPOINT_HIT_COUNT},
             {"breakpointNoFile", SciNotesMessages.DEBUG_BREAKPOINT_NO_FILE},
+            {"breakpointEnabled", SciNotesMessages.DEBUG_BREAKPOINT_ENABLED},
+            {"breakpointCondition", SciNotesMessages.DEBUG_BREAKPOINT_CONDITION},
+            {"breakpointHitEvery", SciNotesMessages.DEBUG_BREAKPOINT_HIT_EVERY},
+            {"breakpointEditorClose", SciNotesMessages.CLOSE},
             {"stoppedHere", SciNotesMessages.DEBUG_STOPPED_HERE},
             {"stoppedHereOnBreakpoint", SciNotesMessages.DEBUG_STOPPED_HERE_ON_BREAKPOINT},
             {"stopped", SciNotesMessages.DEBUG_STOPPED},

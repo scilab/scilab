@@ -944,7 +944,9 @@ function configureContextMenu() {
         var currentEditor = getEditorAtNode(event.target);
         var currentDomNode = currentEditor && currentEditor.getDomNode();
         if (!currentEditor || !currentDomNode
-                || isInsideMonacoHover(event.target, currentDomNode)) {
+                || isInsideMonacoHover(event.target, currentDomNode)
+                || (typeof isDapBreakpointEditorTarget === "function"
+                    && isDapBreakpointEditorTarget(event.target))) {
             return;
         }
         state.secondaryViewActive = currentEditor === state.secondaryEditor;
@@ -958,6 +960,11 @@ function configureContextMenu() {
         event.stopPropagation();
 
         var target = currentEditor.getTargetAtClientPoint(event.clientX, event.clientY);
+        // A breakpoint answers the click with its own panel.
+        if (typeof openDapBreakpointEditor === "function"
+                && openDapBreakpointEditor(currentEditor, target)) {
+            return;
+        }
         var position = target && target.position ? target.position : currentEditor.getPosition();
         if (!position) {
             return;

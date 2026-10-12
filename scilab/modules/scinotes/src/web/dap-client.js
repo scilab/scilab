@@ -98,6 +98,7 @@ function createDapClient(options) {
             pending: pendingControl || "",
             // A stop is debug mode whoever started the run.
             debugMode: debugMode || stopped,
+            stoppedOnError: stopped && exception,
             canContinue: ready && stopped,
             canPause: ready && running && debugMode,
             canStepOver: ready && stopped && !exception,

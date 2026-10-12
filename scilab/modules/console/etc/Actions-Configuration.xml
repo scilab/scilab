@@ -51,6 +51,9 @@
         <entry type="java" action="DebugDisconnectAction" name="scinotes-debug-disconnect"/>
         <entry type="java" action="DebugToggleBreakpointAction" name="scinotes-debug-toggle-breakpoint"/>
         <entry type="java" action="DebugRunToCursorAction" name="scinotes-debug-run-to-cursor"/>
+        <entry type="java" action="DebugEnableAllBreakpointsAction" name="scinotes-debug-enable-all-breakpoints"/>
+        <entry type="java" action="DebugDisableAllBreakpointsAction" name="scinotes-debug-disable-all-breakpoints"/>
+        <entry type="java" action="DebugRemoveAllBreakpointsAction" name="scinotes-debug-remove-all-breakpoints"/>
         <entry type="java" action="FindAction" name="scinotes-find"/>
         <entry type="java" action="FindNextAction" name="scinotes-find-next"/>
         <entry type="java" action="FindPreviousAction" name="scinotes-find-previous"/>

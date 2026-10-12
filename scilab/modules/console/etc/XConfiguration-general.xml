@@ -126,6 +126,9 @@
                     <action key="Shift F5" description="_(Debug: stop)" name="scinotes-debug-disconnect"/>
                     <action key="F9" description="_(Debug: toggle breakpoint)" name="scinotes-debug-toggle-breakpoint"/>
                     <action key="OSSCKEY F10" description="_(Debug: run to cursor)" name="scinotes-debug-run-to-cursor"/>
+                    <action key="" description="_(Debug: enable all breakpoints)" name="scinotes-debug-enable-all-breakpoints"/>
+                    <action key="" description="_(Debug: disable all breakpoints)" name="scinotes-debug-disable-all-breakpoints"/>
+                    <action key="" description="_(Debug: remove all breakpoints)" name="scinotes-debug-remove-all-breakpoints"/>
                     <action key="OSSCKEY F" description="_(Find)" name="scinotes-find"/>
                     <action key="OSSCKEY K" description="_(Find next)" name="scinotes-find-next"/>
                     <action key="OSSCKEY Shift K" description="_(Find previous)" name="scinotes-find-previous"/>

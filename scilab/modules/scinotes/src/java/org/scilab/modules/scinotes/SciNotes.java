@@ -2379,6 +2379,23 @@ public final class SciNotes extends SwingScilabDockablePanel {
     }
 
     /**
+     * @param file
+     *            a file
+     * @return true when the file is open in a tab of this window
+     */
+    public boolean isFileOpened(File file) {
+        String path = fileToCanonicalFile(file).getAbsolutePath();
+        for (int i = 0; i < tabPane.getTabCount(); i++) {
+            ScilabEditorPane textPaneAt = getTextPane(i);
+            if (textPaneAt != null && path.equals(textPaneAt.getName())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Load a file inside SciNotes.
      *
      * @param file
