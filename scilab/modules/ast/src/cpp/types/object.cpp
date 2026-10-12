@@ -80,6 +80,11 @@ Object::~Object()
 void Object::loadClassdef(Classdef* def, int level)
 {
     def->addObject(this);
+    updateProperties();
+}
+
+void Object::updateProperties()
+{
     auto props = def->getProperties();
 
     //remove properties from previous classdef that not exist in current classdef
@@ -158,32 +163,10 @@ bool Object::toString(std::wostringstream& ostr)
     return false;
 }
 
-Classdef* Object::getScopeClassdef()
-{
-    // access rights are those of the class defining the running method
-    // (inherited method or parent constructor), not of the object class
-    if (scope.size() > 0)
-    {
-        const auto& methods = def->getMethods();
-        auto it = methods.find(scope.top());
-        if (it != methods.end())
-        {
-            return std::get<1>(it->second);
-        }
-
-        const auto& constructors = def->getConstructors();
-        auto itc = constructors.find(scope.top());
-        if (itc != constructors.end())
-        {
-            return std::get<1>(itc->second);
-        }
-    }
-
-    return def;
-}
-
 bool Object::extract(const std::wstring& name, InternalType*& out)
 {
+    // class unloaded by the redefinition of a parent: reports its loading error
+    def->LoadClassdef();
     AccessModifier access;
 
     if (def->getAccessProperty(name, access))
@@ -199,8 +182,8 @@ bool Object::extract(const std::wstring& name, InternalType*& out)
         }
         else
         {
-            wchar_t szError[128];
-            os_swprintf(szError, 128, _W("Wrong extraction: property '%ls' is not accessible.\n").c_str(), name.data());
+            wchar_t szError[bsiz];
+            os_swprintf(szError, bsiz, _W("Wrong extraction: property '%ls' is not accessible.\n").c_str(), name.data());
             throw ast::InternalError(szError);
         }
     }
@@ -215,14 +198,14 @@ bool Object::extract(const std::wstring& name, InternalType*& out)
             }
             else
             {
-                out = new ObjectMethod(this, name, def->getMethod(name));
+                out = new ObjectMethod({this, def->getOwner(name, access)}, name, def->getMethod(name));
             }
             return true;
         }
         else
         {
-            wchar_t szError[128];
-            os_swprintf(szError, 128, _W("Wrong extraction: method '%ls' is not accessible.\n").c_str(), name.data());
+            wchar_t szError[bsiz];
+            os_swprintf(szError, bsiz, _W("Wrong extraction: method '%ls' is not accessible.\n").c_str(), name.data());
             throw ast::InternalError(szError);
         }
     }
@@ -290,6 +273,7 @@ Object* Object::insert(typed_list* _pArgs, InternalType* _pSource, const ast::Ex
 
 bool Object::setProperty(const std::wstring& prop, InternalType* value)
 {
+    def->LoadClassdef();
     AccessModifier access;
     if (def->getAccessProperty(prop, access))
     {
@@ -312,22 +296,22 @@ bool Object::setProperty(const std::wstring& prop, InternalType* value)
             }
             else
             {
-                wchar_t szError[128];
-                os_swprintf(szError, 128, _W("Wrong insertion: property '%ls' does not exist.\n").c_str(), prop.data());
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("Wrong insertion: property '%ls' does not exist.\n").c_str(), prop.data());
                 throw ast::InternalError(szError);
             }
         }
         else
         {
-            wchar_t szError[128];
-            os_swprintf(szError, 128, _W("Wrong insertion: property '%ls' is not accessible.\n").c_str(), prop.data());
+            wchar_t szError[bsiz];
+            os_swprintf(szError, bsiz, _W("Wrong insertion: property '%ls' is not accessible.\n").c_str(), prop.data());
             throw ast::InternalError(szError);
         }
     }
     else
     {
-        wchar_t szError[128];
-        os_swprintf(szError, 128, _W("Wrong insertion: property '%ls' does not exist.\n").c_str(), prop.data());
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("Wrong insertion: property '%ls' does not exist.\n").c_str(), prop.data());
         throw ast::InternalError(szError);
     }
     return false;
@@ -335,59 +319,69 @@ bool Object::setProperty(const std::wstring& prop, InternalType* value)
 
 Function::ReturnValue Object::callConstructor(typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e)
 {
-    OBJ_ATTR attr = def->getConstructor();
-    if (attr.callable == nullptr)
-    {
-        return Function::OK_NoResult;
-    }
-
-    if (attr.access != AccessModifier::PUBLIC)
-    {
-        // non-public constructor: only from the class itself (static factory, ...)
-        // or from a derived class when protected
-        Classdef* caller = Classdef::getCallerClassdef();
-        if (caller == nullptr ||
-            (caller != def && (attr.access != AccessModifier::PROTECTED || def->isAncestorOf(caller) == false)))
-        {
-            wchar_t szError[128];
-            os_swprintf(szError, 128, _W("Constructor of \'%ls\' is not accessible.\n").c_str(), def->getName().data());
-            throw ast::InternalError(szError);
-        }
-    }
-
-    Function::ReturnValue ret = callMethod(def->getName(), attr.callable, in, opt, _iRetCount, out, e);
-    return ret == Function::Error ? ret : Function::OK;
+    std::set<Classdef*> done;
+    return runConstructor(def, symbol::Context::getInstance()->getCurrentClass(), in, opt, _iRetCount, out, e, done);
 }
 
 Function::ReturnValue Object::callSuperclassContructor(Classdef* super, typed_list & in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e)
 {
-    OBJ_ATTR attr = super->getConstructor();
+    std::set<Classdef*> done;
+    return runConstructor(super, symbol::Context::getInstance()->getCurrentClass(), in, opt, _iRetCount, out, e, done);
+}
+
+Function::ReturnValue Object::runConstructor(Classdef* cls, Classdef* caller, typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e, std::set<Classdef*>& done)
+{
+    OBJ_ATTR attr = cls->getConstructor();
+    if (Classdef::canAccess(attr.access, cls, caller) == false)
+    {
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("Constructor of \'%ls\' is not accessible.\n").c_str(), cls->getName().data());
+        throw ast::InternalError(szError);
+    }
+
+    done.insert(cls);
+
+    // parents not initialized by this constructor: before it, without argument, once (diamond)
+    for (auto&& parent : cls->getImplicitSupers())
+    {
+        if (done.count(parent) == 0)
+        {
+            if (Classdef::canAccess(parent->getConstructor().access, parent, cls) == false)
+            {
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("Constructor of \'%ls\' is not accessible.\n").c_str(), parent->getName().data());
+                throw ast::InternalError(szError);
+            }
+
+            typed_list in0;
+            optional_list opt0;
+            typed_list out0;
+            try
+            {
+                runConstructor(parent, cls, in0, opt0, 0, out0, e, done);
+            }
+            catch (const ast::InternalError& ie)
+            {
+                // usually a parent constructor that needs arguments
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("%ls: implicit call of the constructor of '%ls' without argument failed, call it in the constructor.\n").c_str(), cls->getName().data(), parent->getName().data());
+                throw ast::InternalError(szError + ie.GetErrorMessage(), ie.GetErrorNumber(), ie.GetErrorLocation());
+            }
+        }
+    }
+
     if (attr.callable == nullptr)
     {
         return Function::OK_NoResult;
     }
 
-    if (scope.size() == 0 || scope.top() == L"" || scope.top() == def->getName())
-    {
-        if (attr.access == AccessModifier::PRIVATE || attr.access == AccessModifier::NONE)
-        {
-            wchar_t szError[128];
-            os_swprintf(szError, 128, _W("Constructor of \'%ls\' is not accessible.\n").c_str(), super->getName().data());
-            throw ast::InternalError(szError);
-        }
-    }
-
-    Function::ReturnValue ret = callMethod(super->getName(), attr.callable, in, opt, _iRetCount, out, e);
-    if (ret == Function::Error)
-    {
-        return Function::Error;
-    }
-
-    return Function::OK;
+    Function::ReturnValue ret = callMethod(cls->getName(), attr.callable, in, opt, _iRetCount, out, e, true);
+    return ret == Function::Error ? ret : Function::OK;
 }
 
 Function::ReturnValue Object::callMethod(const std::wstring& method, typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e)
 {
+    def->LoadClassdef();
     Callable* call = def->getMethod(method);
     if (call == nullptr)
     {
@@ -398,7 +392,7 @@ Function::ReturnValue Object::callMethod(const std::wstring& method, typed_list&
     return callMethod(method, call, in, opt, _iRetCount, out, e);
 }
 
-Function::ReturnValue Object::callMethod(const std::wstring& method, Callable* call, typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e)
+Function::ReturnValue Object::callMethod(const std::wstring& method, Callable* call, typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e, bool constructor)
 {
     if (call == nullptr)
     {
@@ -406,56 +400,8 @@ Function::ReturnValue Object::callMethod(const std::wstring& method, Callable* c
         return Function::OK_NoResult;
     }
 
-    MacroParentScope parentScope(call, this);
-
-    if (ConfigVariable::increaseRecursion())
-    {
-        //reset previous error before call function
-        ConfigVariable::resetError();
-        //update verbose";" flag
-        ConfigVariable::setVerbose(e.isVerbose());
-        // add line and function name in where
-        int iFirstLine = e.getLocation().first_line;
-        ConfigVariable::where_begin(iFirstLine + 1 - ConfigVariable::getMacroFirstLines(), call, e.getLocation());
-        Callable::ReturnValue res = Callable::OK;
-
-        scope.push(def->getMethodClassdef(method));
-        try
-        {
-            res = call->call(in, opt, _iRetCount, out);
-        }
-        catch (ast::InternalError & ie)
-        {
-            scope.pop();
-            ConfigVariable::where_end();
-            ConfigVariable::decreaseRecursion();
-            throw ie;
-        }
-        catch (ast::InternalAbort & ia)
-        {
-            scope.pop();
-            ConfigVariable::where_end();
-            ConfigVariable::decreaseRecursion();
-            throw ia;
-        }
-
-        scope.pop();
-
-        // remove function name in where
-        ConfigVariable::where_end();
-        ConfigVariable::decreaseRecursion();
-
-        if (res == Callable::Error)
-        {
-            throw ast::InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
-        }
-
-        return res;
-    }
-    else
-    {
-        throw ast::RecursionException();
-    }
+    symbol::ObjectScope object{this, def->getMethodOwner(method), constructor};
+    return call->invokeCall(e, [&]() { return ObjectMethod::callIn(object, call, in, opt, _iRetCount, out); });
 }
 
 bool Object::hasMethod(const std::wstring& method)

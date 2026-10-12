@@ -17,13 +17,11 @@
 #include <algorithm>
 #include <iostream>
 
-#include "argumentvisitor.hxx"
 #include "configvariable.hxx"
 #include "debugmanager.hxx"
 #include "context.hxx"
 #include "listinsert.hxx"
 #include "macro.hxx"
-#include "macrofile.hxx"
 #include "macrovarvisitor.hxx"
 #include "mlist.hxx"
 #include "parser.hxx"
@@ -50,8 +48,7 @@ Macro::Macro(std::vector<symbol::Variable*>& _inputArgs, ast::SeqExp& _body, con
     m_Varargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargin"))),
     m_Varargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargout"))),
     m_isLambda(true),
-    m_captured(captured),
-    parent(nullptr)
+    m_captured(captured)
 {
     setName(L"anonymous");
     setModule(_stModule);
@@ -154,8 +151,7 @@ Macro::Macro(const std::wstring& _stName, std::vector<symbol::Variable*>& _input
     m_Nargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargout"))),
     m_Varargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargin"))),
     m_Varargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargout"))),
-    m_isLambda(false),
-    parent(nullptr)
+    m_isLambda(false)
 {
     setName(_stName);
     setModule(_stModule);
@@ -180,60 +176,9 @@ Macro::Macro(const std::wstring& _stName, std::vector<symbol::Variable*>& _input
     }
 }
 
-Macro::Macro(const std::wstring& _stName, Classdef* def, std::vector<symbol::Variable*>& _inputArgs, std::vector<symbol::Variable*>& _outputArgs, ast::SeqExp& _body, const std::wstring& _stModule) : Callable(),
-      m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(_body.clone()),
-      m_Nargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargin"))),
-      m_Nargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargout"))),
-      m_Varargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargin"))),
-      m_Varargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargout"))),
-      m_isLambda(false),
-      parent(nullptr)
-{
-    setName(_stName);
-    setModule(_stModule);
-    m_pDblArgIn = new Double(1);
-    m_pDblArgIn->IncreaseRef(); // never delete
-    m_pDblArgOut = new Double(1);
-    m_pDblArgOut->IncreaseRef(); // never delete
-
-    m_body->setReturnable();
-    m_stPath = L"";
-    parent = def;
-
-    // Do not debug the macros called when checking arguments (calling sci2exp)
-    debugger::ExecutionModeGuard normalMode(false);
-    updateArguments();
-}
-
 Macro::~Macro()
 {
     cleanup();
-}
-
-MacroParentScope::MacroParentScope(Callable* call, InternalType* parent) : macro(nullptr), previous(nullptr)
-{
-    if (call->isMacro())
-    {
-        macro = call->getAs<Macro>();
-    }
-    else if (call->isMacroFile())
-    {
-        macro = call->getAs<MacroFile>()->getMacro();
-    }
-
-    if (macro)
-    {
-        previous = macro->getParent();
-        macro->setParent(parent);
-    }
-}
-
-MacroParentScope::~MacroParentScope()
-{
-    if (macro)
-    {
-        macro->setParent(previous);
-    }
 }
 
 void Macro::cleanup()
@@ -385,6 +330,12 @@ bool Macro::toString(std::wostringstream& ostr)
 
 Callable::ReturnValue Macro::call(typed_list& in, optional_list& opt, int _iRetCount, typed_list& out)
 {
+    // a function does not see the object of its caller
+    return call(in, opt, _iRetCount, out, symbol::ObjectScope());
+}
+
+Callable::ReturnValue Macro::call(typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const symbol::ObjectScope& object)
+{
     int rhs = (int)in.size();
     bool bVarargout = false;
 
@@ -393,11 +344,20 @@ Callable::ReturnValue Macro::call(typed_list& in, optional_list& opt, int _iRetC
     ReturnValue RetVal = Callable::OK;
     symbol::Context* pContext = symbol::Context::getInstance();
 
-    // open a new scope
-    pContext->scope_begin(parent, getName());
-    if (parent != nullptr && parent->isObject())
+    // name in messages: Class.method for a method (constructor: its class)
+    std::wstring wname = m_wstName;
+    if (object.cls && object.cls->getName() != m_wstName)
     {
-        pContext->put(symbol::Symbol(L"this"), parent);
+        wname = object.cls->getName() + L"." + m_wstName;
+    }
+
+    std::string name = scilab::UTF8::toUTF8(wname);
+
+    // open a new scope
+    pContext->scope_begin(object);
+    if (object.self != nullptr && object.self->isObject())
+    {
+        pContext->put(symbol::Symbol(L"this"), object.self);
     }
 
     // store the line number where is stored this macro in file.
@@ -490,7 +450,7 @@ Callable::ReturnValue Macro::call(typed_list& in, optional_list& opt, int _iRetC
 
         if (m_arguments.size() != 0 && opt.size() != 0)
         {
-            Scierror(999, _("%s: Named argument are not compatible with arguments block.\n"), scilab::UTF8::toUTF8(m_wstName).data());
+            Scierror(999, _("%s: Named argument are not compatible with arguments block.\n"), name.data());
 
             pContext->scope_end();
             ConfigVariable::fillWhereError(getBody()->getLocation());
@@ -530,17 +490,17 @@ Callable::ReturnValue Macro::call(typed_list& in, optional_list& opt, int _iRetC
                     std::wstring msg;
                     if (expectedmin != expectedmax)
                     {
-                        msg = formatError(_("%s: Wrong number of input arguments: %d to %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), expectedmin, expectedmax);
+                        msg = formatError(_("%s: Wrong number of input arguments: %d to %d expected.\n"), name.data(), expectedmin, expectedmax);
                     }
                     else
                     {
                         if (bVarargin)
                         {
-                            msg = formatError(_("%s: Wrong number of input argument(s): at least %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), (int)m_arguments.size());
+                            msg = formatError(_("%s: Wrong number of input argument(s): at least %d expected.\n"), name.data(), (int)m_arguments.size());
                         }
                         else
                         {
-                            msg = formatError(_("%s: Wrong number of input argument(s): %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), (int)m_arguments.size());
+                            msg = formatError(_("%s: Wrong number of input argument(s): %d expected.\n"), name.data(), (int)m_arguments.size());
                         }
                     }
 
@@ -567,7 +527,7 @@ Callable::ReturnValue Macro::call(typed_list& in, optional_list& opt, int _iRetC
                         InternalType* pIT = ((ast::RunVisitor*)exec.get())->getResult();
                         if (pIT == nullptr || pIT->isAssignable() == false)
                         {
-                            throw ast::InternalError(formatError(_("%s: Unable to evaluate default value.\n"), scilab::UTF8::toUTF8(m_wstName).data()), 999, arg.default_value->getLocation());
+                            throw ast::InternalError(formatError(_("%s: Unable to evaluate default value.\n"), name.data()), 999, arg.default_value->getLocation());
                         }
 
                         pIT->IncreaseRef();
@@ -600,7 +560,7 @@ Callable::ReturnValue Macro::call(typed_list& in, optional_list& opt, int _iRetC
                     {
                         if (skipArgs == nullptr)
                         {
-                            throw ast::InternalError(formatError(_("%s: Wrong size of input argument #%d: %ls expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), i + 1, arg.dimsStr().c_str()));
+                            throw ast::InternalError(formatError(_("%s: Wrong size of input argument #%d: %ls expected.\n"), name.data(), i + 1, arg.dimsStr().c_str()));
                         }
 
                         // no error and send "bad formatted var to function, following 'skipArguments' status"
@@ -616,7 +576,7 @@ Callable::ReturnValue Macro::call(typed_list& in, optional_list& opt, int _iRetC
                     types::InternalType* p = nullptr;
                     try
                     {
-                        p = convertor.convertor(cur);
+                        p = convertor.convertor(cur, wname);
                     }
                     catch (const ast::InternalError&)
                     {
@@ -661,11 +621,53 @@ Callable::ReturnValue Macro::call(typed_list& in, optional_list& opt, int _iRetC
                     const ARG& arg = it->second;
                     for (auto&& validator : arg.validators)
                     {
-                        types::typed_list args;
-                        for (auto&& input : validator.inputs)
+                        // values evaluated for this call, released after the check
+                        struct Evaluated
                         {
-                            int index = std::get<0>(input);
-                            args.push_back(index != -1 ? values[index] : std::get<1>(input));
+                            std::vector<types::InternalType*> values;
+                            ~Evaluated()
+                            {
+                                for (auto&& v : values)
+                                {
+                                    v->DecreaseRef();
+                                    v->killMe();
+                                }
+                            }
+                        } evaluated;
+
+                        types::typed_list args;
+                        for (int k = 0; k < validator.inputs.size(); ++k)
+                        {
+                            int index = std::get<0>(validator.inputs[k]);
+                            if (index == -2)
+                            {
+                                // in the scope of the function: this and inputs are defined
+                                ast::Exp* expr = validator.callTime.at(k);
+                                std::wstring error = formatError(_("%s: Unable to evaluate argument.\n"), name.data());
+                                std::unique_ptr<ast::ConstVisitor> exec(ConfigVariable::getDefaultVisitor());
+                                try
+                                {
+                                    expr->accept(*exec);
+                                }
+                                catch (const ast::InternalError& ie)
+                                {
+                                    // with the cause (undefined variable, unknown field, ...)
+                                    throw ast::InternalError(error + ie.GetErrorMessage(), 999, expr->getLocation());
+                                }
+
+                                types::InternalType* pIT = ((ast::RunVisitor*)exec.get())->getResult();
+                                if (pIT == nullptr)
+                                {
+                                    throw ast::InternalError(error, 999, expr->getLocation());
+                                }
+
+                                pIT->IncreaseRef();
+                                evaluated.values.push_back(pIT);
+                                args.push_back(pIT);
+                                continue;
+                            }
+
+                            args.push_back(index != -1 ? values[index] : std::get<1>(validator.inputs[k]));
                         }
 
                         if (validator.validator(args) == false)
@@ -675,10 +677,10 @@ Callable::ReturnValue Macro::call(typed_list& in, optional_list& opt, int _iRetC
                             for (int k = 0; k < validator.errorArgs.size() && k < 3; ++k)
                             {
                                 int pos = std::get<0>(validator.errorArgs[k]);
-                                strs[k] = pos != -1 ? scilab::UTF8::toUTF8(var2str(values[pos])) : std::get<1>(validator.errorArgs[k]);
+                                strs[k] = pos != -1 ? scilab::UTF8::toUTF8(var2str(args[pos])) : std::get<1>(validator.errorArgs[k]);
                             }
 
-                            throw ast::InternalError(formatError(_(std::get<0>(validator.error).data()), scilab::UTF8::toUTF8(m_wstName).data(), i + 1, strs[0].data(), strs[1].data(), strs[2].data()), 999, arg.loc);
+                            throw ast::InternalError(formatError(_(std::get<0>(validator.error).data()), name.data(), i + 1, strs[0].data(), strs[1].data(), strs[2].data()), 999, arg.loc);
                         }
                     }
                 }
@@ -1218,13 +1220,26 @@ void Macro::updateArguments()
                     ARG_CONVERTOR argConv;
                     std::wstring name = dec->getArgumentType()->getAs<ast::SimpleVar>()->getSymbol().getName();
                     auto f = getTypeConvertor(name);
-                    if (f == nullptr)
+                    if (f)
                     {
-                        throw ast::InternalError(formatError(_("%s: Unknown conversion function '%s'\n"), scilab::UTF8::toUTF8(m_wstName).data(), scilab::UTF8::toUTF8(name).data()), 999, dec->getArgumentType()->getLocation());
+                        argConv.convertor = [f](types::InternalType* x, const std::wstring& fname)
+                        { return f(x, fname); };
+                    }
+                    else
+                    {
+                        // classdef: an object of this class or of a derived one
+                        int pos = static_cast<int>(m_arguments.size()) + 1;
+                        argConv.convertor = [name, pos](types::InternalType* x, const std::wstring& fname)
+                        {
+                            if (isOfClassType(x, name, fname) == false)
+                            {
+                                throw ast::InternalError(formatError(_("%s: Wrong type for input argument #%d: %s expected.\n"), scilab::UTF8::toUTF8(fname).data(), pos, scilab::UTF8::toUTF8(name).data()));
+                            }
+
+                            return x;
+                        };
                     }
 
-                    argConv.convertor = [f, this](types::InternalType* x)
-                    { return f(x, m_wstName); };
                     arg.convertors.push_back(argConv);
                 }
 
@@ -1240,166 +1255,19 @@ void Macro::updateArguments()
                 }
 
                 // validators
+                ValidatorContext ctx;
+                ctx.where = scilab::UTF8::toUTF8(m_wstName);
+                // position of the argument (comment lines of the block are not arguments)
+                ctx.self = static_cast<int>(m_arguments.size());
+                ctx.input = [&inputNames](const std::wstring& n)
+                {
+                    auto it = std::find(inputNames.begin(), inputNames.end(), n);
+                    return it == inputNames.end() ? -1 : static_cast<int>(it - inputNames.begin());
+                };
+
                 for (auto&& v : dec->getArgumentValidators()->getExps())
                 {
-                    if (v->isSimpleVar())
-                    {
-                        std::vector<int> rhs;
-                        std::wstring name = v->getAs<ast::SimpleVar>()->getSymbol().getName();
-                        std::function<int(typed_list&)> f;
-                        std::tie(f, rhs) = getFunctionValidator(name);
-
-                        if (f == nullptr)
-                        {
-                            throw ast::InternalError(formatError(_("%s: Unknown validation function '%s'\n"), scilab::UTF8::toUTF8(m_wstName).data(), scilab::UTF8::toUTF8(name).data()), 999, dec->getArgumentType()->getLocation());
-                        }
-
-                        if (rhs[0] != 1)
-                        {
-                            throw ast::InternalError(formatError(_("%s: Wrong number of input argument(s): %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), 1), 999, dec->getArgumentType()->getLocation());
-                        }
-
-                        ARG_VALIDATOR argValidator;
-                        argValidator.validator = f;
-                        argValidator.inputs.push_back({i, nullptr});
-
-                        argValidator.error = getErrorValidator(name);
-                        auto args = getErrorArgs(name);
-                        for (int k = 0; k < args.size(); ++k)
-                        {
-                            if (std::get<0>(args[k]) != -1)
-                            {
-                                // never occur
-                                sciprint("arg != -1");
-                                argValidator.errorArgs.push_back({-1, "arg != -1"});
-                            }
-                            else
-                            {
-                                int pos = std::get<0>(argValidator.inputs[std::get<0>(args[k])]) + 1;
-                                argValidator.errorArgs.push_back({pos, ""});
-                            }
-                        }
-
-                        arg.validators.push_back(argValidator);
-                    }
-                    else // CallExp
-                    {
-                        ast::CallExp* c = v->getAs<ast::CallExp>();
-                        std::vector<int> rhs;
-                        std::wstring name = (&c->getName())->getAs<ast::SimpleVar>()->getSymbol().getName();
-                        std::function<int(typed_list&)> f;
-                        std::tie(f, rhs) = getFunctionValidator(name);
-                        int size = static_cast<int>(c->getArgs().size());
-
-                        if (f == nullptr)
-                        {
-                            throw ast::InternalError(formatError(_("%s: \"%ls\" is not a validation function.\n"), scilab::UTF8::toUTF8(m_wstName).data(), name.c_str()), 999, dec->getArgumentType()->getLocation());
-                        }
-
-                        if (rhs.size() == 1)
-                        {
-                            if (rhs[0] != size && rhs[0] != -1)
-                            {
-                                throw ast::InternalError(formatError(_("%s: Wrong number of input argument(s): %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), rhs[0]), 999, dec->getArgumentType()->getLocation());
-                            }
-                        }
-                        else
-                        {
-                            if (size < rhs[0] || size > rhs[1])
-                            {
-                                throw ast::InternalError(formatError(_("%s: Wrong number of input argument(s): between %d and %d expected.\n"), scilab::UTF8::toUTF8(m_wstName).data(), rhs[0], rhs[1]), 999, dec->getArgumentType()->getLocation());
-                            }
-                        }
-
-                        ARG_VALIDATOR argValidator;
-                        argValidator.validator = f;
-                        ast::exps_t inputs = c->getArgs();
-                        for (int i = 0; i < size; ++i)
-                        {
-                            if (inputs[i]->isSimpleVar())
-                            {
-                                std::vector<std::wstring> allowedVar = {L"%eps", L"%i", L"%inf", L"%nan", L"this"};
-                                std::wstring name = inputs[i]->getAs<ast::SimpleVar>()->getSymbol().getName();
-                                if (std::find(allowedVar.begin(), allowedVar.end(), name) == allowedVar.end())
-                                {
-                                    if (std::find(inputNames.begin(), inputNames.end(), name) == inputNames.end())
-                                    {
-                                        throw ast::InternalError(formatError(_("%s: Identifier '%s' must be an input argument.\n"), scilab::UTF8::toUTF8(m_wstName).data(), scilab::UTF8::toUTF8(name).data()), 999, dec->getArgumentType()->getLocation());
-                                    }
-
-                                    int pos = static_cast<int>(std::find(inputNames.begin(), inputNames.end(), inputs[i]->getAs<ast::SimpleVar>()->getSymbol().getName()) - inputNames.begin());
-                                    argValidator.inputs.push_back({pos, nullptr});
-                                }
-                                else
-                                {
-                                    types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(name));
-                                    if (pIT == nullptr)
-                                    {
-                                        argValidator.inputs.push_back({-1, nullptr});
-                                    }
-                                    else
-                                    {
-                                        pIT->IncreaseRef();
-                                        argValidator.inputs.push_back({-1, pIT});
-                                    }
-                                }
-                            }
-                            else // constant
-                            {
-                                if (checkArgument(inputs[i]) == false)
-                                {
-                                    throw ast::InternalError(formatError(_("%s: argument must be constant expression.\n"), scilab::UTF8::toUTF8(m_wstName).data()), 999, dec->getArgumentType()->getLocation());
-                                }
-
-                                std::unique_ptr<ast::ConstVisitor> exec(ConfigVariable::getDefaultVisitor());
-                                try
-                                {
-                                    inputs[i]->accept(*exec);
-                                }
-                                catch (const ast::InternalError& /*ie*/)
-                                {
-                                    throw ast::InternalError(formatError(_("%s: Unable to evaluate argument.\n"), scilab::UTF8::toUTF8(m_wstName).data()), 999, inputs[i]->getLocation());
-                                }
-
-                                types::InternalType* pIT = ((ast::RunVisitor*)exec.get())->getResult();
-                                if (pIT == nullptr || pIT->isAssignable() == false)
-                                {
-                                    throw ast::InternalError(formatError(_("%s: Unable to evaluate argument.\n"), scilab::UTF8::toUTF8(m_wstName).data()), 999, inputs[i]->getLocation());
-                                }
-
-                                pIT->IncreaseRef();
-                                argValidator.inputs.push_back({-1, pIT});
-                            }
-                        }
-
-                        argValidator.error = getErrorValidator(name);
-                        auto args = getErrorArgs(name);
-                        for (int k = 0; k < args.size(); ++k)
-                        {
-                            int idx = std::get<0>(args[k]);
-                            if (idx > 0) // #num of variable
-                            {
-                                int pos = std::get<0>(argValidator.inputs[idx]) + 1;
-                                argValidator.errorArgs.push_back({-1, std::to_string(pos)});
-                            }
-                            else // content of variable
-                            {
-                                types::InternalType* pIT = std::get<1>(argValidator.inputs[std::abs(idx)]);
-                                if (pIT) // data from variable
-                                {
-                                    std::wstring output = var2str(pIT);
-                                    argValidator.errorArgs.push_back({-1, scilab::UTF8::toUTF8(output)});
-                                }
-                                else // use var content of variable as message information
-                                {
-                                    int pos = std::get<0>(argValidator.inputs[std::abs(idx)]);
-                                    argValidator.errorArgs.push_back({pos, ""});
-                                }
-                            }
-                        }
-
-                        arg.validators.push_back(argValidator);
-                    }
+                    arg.validators.push_back(buildValidator(v, ctx));
                 }
 
                 m_arguments[name] = arg;
@@ -1411,13 +1279,6 @@ void Macro::updateArguments()
             }
         }
     }
-}
-
-bool Macro::checkArgument(ast::Exp* exp)
-{
-    ast::ArgumentVisitor v;
-    exp->accept(v);
-    return v.getStatus();
 }
 
 bool Macro::checkStaticDims(const std::vector<std::tuple<std::vector<int>, symbol::Variable*>>& dims)

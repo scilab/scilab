@@ -10,6 +10,7 @@
 #define __OBJECT_HXX__
 
 #include <map>
+#include <set>
 #include "function.hxx"
 #include "classdef.hxx"
 #include "double.hxx"
@@ -66,7 +67,7 @@ public:
 
     Function::ReturnValue callConstructor(typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e);
     Function::ReturnValue callMethod(const std::wstring& method, typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e);
-    Function::ReturnValue callMethod(const std::wstring& method, Callable* call, typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e);
+    Function::ReturnValue callMethod(const std::wstring& method, Callable* call, typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e, bool constructor = false);
     Function::ReturnValue callSuperclassContructor(Classdef* super, typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e);
 
     bool extract(const std::wstring& name, InternalType*& out);
@@ -81,27 +82,25 @@ public:
     }
 
     void loadClassdef(Classdef* def, int level = 0);
+    // properties of the classdef: removed ones are dropped, new ones instantiated
+    void updateProperties();
     Classdef* getClassdef() const { return def; }
     void updateClassdef(Classdef* classdef);
 
     void setParent(Object* p) { parent = p; }
     Object* getParent() { return parent; }
 
-
-    void scope_begin(const std::wstring& method) { scope.push(method); }
-    void scope_end() { scope.pop(); }
-
     InternalType* serialize();
     bool deserialize(InternalType* data);
 
     bool getMemory(long long* _piSize, long long* _piSizePlusType);
-
-    Classdef* getScopeClassdef();
   private:
+    // constructor of cls (class of the object or a parent) called from caller, after the implicit
+    // call of the parents it does not initialize itself (done: classes already initialized)
+    Function::ReturnValue runConstructor(Classdef* cls, Classdef* caller, typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e, std::set<Classdef*>& done);
 
     Classdef* def;
     std::map<std::wstring, InternalType*> properties;
-    std::stack<std::wstring> scope;
     Object* parent;
     bool bHasToString;
 };

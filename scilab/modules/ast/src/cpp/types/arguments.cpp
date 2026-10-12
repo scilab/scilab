@@ -11,8 +11,15 @@
 #include <cwctype>
 
 #include "arguments.hxx"
+#include "argumentvisitor.hxx"
+#include "configvariable.hxx"
+#include "runvisitor.hxx"
+#include "context.hxx"
+#include "object.hxx"
 #include "overload.hxx"
 #include "opexp.hxx"
+#include "fieldexp.hxx"
+#include "simplevar.hxx"
 #include "int.hxx"
 #include "string.hxx"
 #include "symbol.hxx"
@@ -37,6 +44,12 @@ extern "C"
 
 std::wstring var2str(types::InternalType* pIT)
 {
+    // objects have no expression: their class name
+    if (pIT->isObject())
+    {
+        return pIT->getTypeStr();
+    }
+
     types::InternalType* pCall = symbol::Context::getInstance()->get(symbol::Symbol(L"sci2exp"));
     if (pCall && pCall->isCallable())
     {
@@ -46,7 +59,19 @@ std::wstring var2str(types::InternalType* pIT)
         types::typed_list out;
 
         pIT->IncreaseRef();
-        if (pCall->getAs<types::Callable>()->call(in, opt, 1, out) == types::Function::OK)
+        types::Function::ReturnValue ret = types::Function::Error;
+        try
+        {
+            ret = pCall->getAs<types::Callable>()->call(in, opt, 1, out);
+        }
+        catch (const ast::InternalError&)
+        {
+            // type not managed by sci2exp: its name
+            pIT->DecreaseRef();
+            return pIT->getTypeStr();
+        }
+
+        if (ret == types::Function::OK)
         {
             if (out.size() == 1 && out[0]->isString())
             {
@@ -487,6 +512,258 @@ std::function<types::InternalType*(types::InternalType*, const std::wstring& nam
     }
 
     return typeConvertors[name];
+}
+
+// this, or field of a variable (this.max, opts.max, MyClass.max): evaluated at each call
+bool isCallTimeArgument(ast::Exp* e)
+{
+    if (e->isSimpleVar())
+    {
+        return e->getAs<ast::SimpleVar>()->getSymbol().getName() == L"this";
+    }
+
+    if (e->isFieldExp() == false)
+    {
+        return false;
+    }
+
+    while (e->isFieldExp())
+    {
+        ast::FieldExp* f = e->getAs<ast::FieldExp>();
+        if (f->getTail()->isSimpleVar() == false)
+        {
+            return false;
+        }
+
+        e = f->getHead();
+    }
+
+    return e->isSimpleVar();
+}
+
+// source of a call time argument: this or a.b.c
+std::wstring callTimeArgumentText(ast::Exp* e)
+{
+    if (e->isFieldExp())
+    {
+        ast::FieldExp* f = e->getAs<ast::FieldExp>();
+        return callTimeArgumentText(f->getHead()) + L"." + f->getTail()->getAs<ast::SimpleVar>()->getSymbol().getName();
+    }
+
+    return e->getAs<ast::SimpleVar>()->getSymbol().getName();
+}
+
+std::wstring callTimeArgumentRoot(ast::Exp* e)
+{
+    while (e->isFieldExp())
+    {
+        e = e->getAs<ast::FieldExp>()->getHead();
+    }
+
+    return e->getAs<ast::SimpleVar>()->getSymbol().getName();
+}
+
+namespace
+{
+// constant parameter of a validator, evaluated when it is defined
+types::InternalType* evalConstant(ast::Exp* e, const std::string& where)
+{
+    ast::ArgumentVisitor check;
+    e->accept(check);
+    if (check.getStatus() == false)
+    {
+        throw ast::InternalError(formatError(_("%s: argument must be constant expression.\n"), where.data()), 999, e->getLocation());
+    }
+
+    std::unique_ptr<ast::ConstVisitor> exec(ConfigVariable::getDefaultVisitor());
+    types::InternalType* pIT = nullptr;
+    try
+    {
+        e->accept(*exec);
+        pIT = ((ast::RunVisitor*)exec.get())->getResult();
+    }
+    catch (const ast::InternalError&)
+    {
+    }
+
+    if (pIT == nullptr || pIT->isAssignable() == false)
+    {
+        throw ast::InternalError(formatError(_("%s: Unable to evaluate argument.\n"), where.data()), 999, e->getLocation());
+    }
+
+    // kept by the validator
+    pIT->IncreaseRef();
+    return pIT;
+}
+}
+
+ARG_VALIDATOR buildValidator(ast::Exp* v, const ValidatorContext& ctx)
+{
+    const char* where = ctx.where.data();
+    ARG_VALIDATOR validator;
+    std::wstring name;
+    std::vector<int> rhs;
+
+    if (v->isSimpleVar())
+    {
+        // short form: the checked value is the only parameter
+        name = v->getAs<ast::SimpleVar>()->getSymbol().getName();
+        std::tie(validator.validator, rhs) = getFunctionValidator(name);
+        if (validator.validator == nullptr)
+        {
+            throw ast::InternalError(formatError(_("%s: Unknown validation function '%s'\n"), where, scilab::UTF8::toUTF8(name).data()), 999, v->getLocation());
+        }
+
+        if (rhs[0] != 1)
+        {
+            throw ast::InternalError(formatError(_("%s: Wrong number of input argument(s): %d expected.\n"), where, 1), 999, v->getLocation());
+        }
+
+        validator.inputs.push_back({ctx.self, nullptr});
+    }
+    else if (v->isCallExp() && v->getAs<ast::CallExp>()->getName().isSimpleVar())
+    {
+        ast::CallExp* c = v->getAs<ast::CallExp>();
+        name = c->getName().getAs<ast::SimpleVar>()->getSymbol().getName();
+        std::tie(validator.validator, rhs) = getFunctionValidator(name);
+        if (validator.validator == nullptr)
+        {
+            throw ast::InternalError(formatError(_("%s: \"%ls\" is not a validation function.\n"), where, name.data()), 999, v->getLocation());
+        }
+
+        int size = static_cast<int>(c->getArgs().size());
+        if (rhs.size() == 1 && rhs[0] != size && rhs[0] != -1)
+        {
+            throw ast::InternalError(formatError(_("%s: Wrong number of input argument(s): %d expected.\n"), where, rhs[0]), 999, v->getLocation());
+        }
+
+        if (rhs.size() > 1 && (size < rhs[0] || size > rhs[1]))
+        {
+            throw ast::InternalError(formatError(_("%s: Wrong number of input argument(s): between %d and %d expected.\n"), where, rhs[0], rhs[1]), 999, v->getLocation());
+        }
+
+        for (auto&& in : c->getArgs())
+        {
+            // an input
+            if (in->isSimpleVar() && ctx.input(in->getAs<ast::SimpleVar>()->getSymbol().getName()) != -1)
+            {
+                validator.inputs.push_back({ctx.input(in->getAs<ast::SimpleVar>()->getSymbol().getName()), nullptr});
+                continue;
+            }
+
+            // evaluated when checked: this, field of this, of an input or of a class
+            if (isCallTimeArgument(in) && (ctx.property == false || ctx.input(callTimeArgumentRoot(in)) == -1))
+            {
+                if (ctx.property)
+                {
+                    // a check would not follow the changes of the object
+                    if (callTimeArgumentRoot(in) == L"this")
+                    {
+                        throw ast::InternalError(formatError(_("%s: The validation of a property can not use the object.\n"), where), 999, in->getLocation());
+                    }
+
+                    validator.callTime[static_cast<int>(validator.inputs.size())] = in->clone();
+                }
+                else
+                {
+                    // part of the body of the function
+                    validator.callTime[static_cast<int>(validator.inputs.size())] = in;
+                }
+
+                validator.inputs.push_back({-2, nullptr});
+                continue;
+            }
+
+            // in a function, a name must be an input or a predefined constant
+            if (ctx.property == false && in->isSimpleVar())
+            {
+                std::vector<std::wstring> allowedVar = {L"%eps", L"%i", L"%inf", L"%nan"};
+                std::wstring var = in->getAs<ast::SimpleVar>()->getSymbol().getName();
+                if (std::find(allowedVar.begin(), allowedVar.end(), var) == allowedVar.end())
+                {
+                    throw ast::InternalError(formatError(_("%s: Identifier '%s' must be an input argument.\n"), where, scilab::UTF8::toUTF8(var).data()), 999, in->getLocation());
+                }
+            }
+
+            validator.inputs.push_back({-1, evalConstant(in, ctx.where)});
+        }
+    }
+    else
+    {
+        throw ast::InternalError(formatError(_("%s: argument must be constant expression.\n"), where), 999, v->getLocation());
+    }
+
+    // error message parameters: #position (functions), the content of a constant,
+    // or the content of the validator parameter when checked
+    validator.error = ctx.property ? getPropertyErrorValidator(name) : getErrorValidator(name);
+    for (auto&& e : getErrorArgs(name))
+    {
+        int idx = std::get<0>(e);
+        if (std::abs(idx) >= static_cast<int>(validator.inputs.size()))
+        {
+            continue;
+        }
+
+        int index = std::get<0>(validator.inputs[std::abs(idx)]);
+        types::InternalType* pIT = std::get<1>(validator.inputs[std::abs(idx)]);
+        if (idx > 0 && ctx.property == false && index == -2)
+        {
+            validator.errorArgs.push_back({-1, scilab::UTF8::toUTF8(callTimeArgumentText(validator.callTime[idx]))});
+        }
+        else if (idx > 0 && ctx.property == false && index >= 0)
+        {
+            validator.errorArgs.push_back({-1, std::to_string(index + 1)});
+        }
+        else if (pIT)
+        {
+            validator.errorArgs.push_back({-1, scilab::UTF8::toUTF8(var2str(pIT))});
+        }
+        else
+        {
+            validator.errorArgs.push_back({std::abs(idx), ""});
+        }
+    }
+
+    return validator;
+}
+
+bool isOfBuiltinType(types::InternalType* x, const std::wstring& type)
+{
+    static const std::map<std::wstring, types::InternalType::ScilabType> types = {
+        {L"double", types::InternalType::ScilabDouble},
+        {L"constant", types::InternalType::ScilabDouble},
+        {L"int", types::InternalType::ScilabInt32},
+        {L"uint", types::InternalType::ScilabUInt32},
+        {L"int8", types::InternalType::ScilabInt8},
+        {L"uint8", types::InternalType::ScilabUInt8},
+        {L"int16", types::InternalType::ScilabInt16},
+        {L"uint16", types::InternalType::ScilabUInt16},
+        {L"int32", types::InternalType::ScilabInt32},
+        {L"uint32", types::InternalType::ScilabUInt32},
+        {L"int64", types::InternalType::ScilabInt64},
+        {L"uint64", types::InternalType::ScilabUInt64},
+        {L"bool", types::InternalType::ScilabBool},
+        {L"boolean", types::InternalType::ScilabBool},
+        {L"string", types::InternalType::ScilabString}};
+
+    auto it = types.find(type);
+    return it != types.end() && x->getType() == it->second;
+}
+
+bool isOfClassType(types::InternalType* x, const std::wstring& type, const std::wstring& name)
+{
+    if (x->isObject() && x->getAs<types::Object>()->isA(type))
+    {
+        return true;
+    }
+
+    // known at call time only: the class can be defined after the function
+    if (symbol::Context::getInstance()->getClassdef(type) == nullptr)
+    {
+        throw ast::InternalError(formatError(_("%s: Unknown conversion function '%s'\n"), scilab::UTF8::toUTF8(name).data(), scilab::UTF8::toUTF8(type).data()));
+    }
+
+    return false;
 }
 
 bool andBool(types::InternalType* pIT)
@@ -1377,58 +1654,39 @@ types::InternalType* expandvar(types::InternalType* x, const std::vector<std::tu
     return x;
 }
 
-types::InternalType* checksize(types::InternalType* x, const std::vector<std::tuple<std::vector<int>, symbol::Variable*>>& dims, bool isStatic)
+namespace
+{
+// dimensions of x, false if it has none
+bool getDims(types::InternalType* x, std::vector<int>& dims1)
 {
     if (x->isGenericType() == false)
     {
-        return nullptr;
+        return false;
     }
 
-    types::GenericType* g = x->getAs<types::GenericType>();
-
-    std::vector<int> dims1;
     if (x->isArrayOf())
     {
+        types::GenericType* g = x->getAs<types::GenericType>();
         dims1.assign(g->getDimsArray(), g->getDimsArray() + g->getDims());
+        return true;
     }
-    else
+
+    types::typed_list in1 = {x};
+    types::typed_list out1;
+    if (Overload::call(L"size", in1, 1, out1) != types::Function::OK)
     {
-        types::typed_list in1 = {x};
-        types::typed_list out1;
-        if (Overload::call(L"size", in1, 1, out1) != types::Function::OK)
-        {
-            return nullptr;
-        }
-
-        types::Double* p1 = out1[0]->getAs<types::Double>();
-        dims1.assign(p1->get(), p1->get() + p1->getSize());
-        p1->killMe();
+        return false;
     }
 
-    if (dims1.size() > dims.size())
-    {
-        return nullptr;
-    }
+    types::Double* p1 = out1[0]->getAs<types::Double>();
+    dims1.assign(p1->get(), p1->get() + p1->getSize());
+    p1->killMe();
+    return true;
+}
 
-    if (dims.size() == 1 && std::get<1>(dims[0]) == nullptr)
-    {
-        auto&& d = std::get<0>(dims[0]);
-        for (int i = 0; i < d.size(); ++i)
-        {
-            if (d[i] == dims1[0])
-            {
-                return x;
-            }
-        }
-
-        return nullptr;
-    }
-
-    if (g->isScalar())
-    {
-        return expandvar(x, dims, isStatic);
-    }
-
+// dims1 is one of the declared dimensions (alternatives, ':' or input), as is
+bool matchDims(const std::vector<int>& dims1, const std::vector<std::tuple<std::vector<int>, symbol::Variable*>>& dims)
+{
     bool status = true;
     for (int i = 0; i < dims.size(); ++i)
     {
@@ -1469,7 +1727,36 @@ types::InternalType* checksize(types::InternalType* x, const std::vector<std::tu
         status &= ok;
     }
 
-    if (status)
+    return status;
+}
+
+// one declared dimension: number of elements
+bool matchLength(const std::vector<int>& dims1, const std::vector<std::tuple<std::vector<int>, symbol::Variable*>>& dims)
+{
+    auto&& d = std::get<0>(dims[0]);
+    return std::find(d.begin(), d.end(), dims1[0]) != d.end();
+}
+}
+
+types::InternalType* checksize(types::InternalType* x, const std::vector<std::tuple<std::vector<int>, symbol::Variable*>>& dims, bool isStatic)
+{
+    std::vector<int> dims1;
+    if (getDims(x, dims1) == false || dims1.size() > dims.size())
+    {
+        return nullptr;
+    }
+
+    if (dims.size() == 1 && std::get<1>(dims[0]) == nullptr)
+    {
+        return matchLength(dims1, dims) ? x : nullptr;
+    }
+
+    if (x->getAs<types::GenericType>()->isScalar())
+    {
+        return expandvar(x, dims, isStatic);
+    }
+
+    if (matchDims(dims1, dims))
     {
         return x;
     }
@@ -1481,6 +1768,22 @@ types::InternalType* checksize(types::InternalType* x, const std::vector<std::tu
     }
 
     return nullptr;
+}
+
+bool hasDims(types::InternalType* x, const std::vector<std::tuple<std::vector<int>, symbol::Variable*>>& dims)
+{
+    std::vector<int> dims1;
+    if (getDims(x, dims1) == false || dims1.size() > dims.size())
+    {
+        return false;
+    }
+
+    if (dims.size() == 1 && std::get<1>(dims[0]) == nullptr)
+    {
+        return matchLength(dims1, dims);
+    }
+
+    return matchDims(dims1, dims);
 }
 
 std::vector<std::vector<int>> todims(const std::vector<std::tuple<std::vector<int>, symbol::Variable*>>& dims)

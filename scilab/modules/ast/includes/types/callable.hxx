@@ -17,6 +17,7 @@
 #ifndef __CALLABLE_HXX__
 #define __CALLABLE_HXX__
 
+#include <functional>
 #include <string>
 #include "internal.hxx"
 
@@ -54,6 +55,8 @@ public :
     virtual ReturnValue call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) = 0;
 
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e)  override;
+    // recursion, "where" and errors around a call of this callable, throws on error
+    ReturnValue invokeCall(const ast::Exp & e, const std::function<ReturnValue()>& doCall);
 
     virtual bool isInvokable() const override
     {

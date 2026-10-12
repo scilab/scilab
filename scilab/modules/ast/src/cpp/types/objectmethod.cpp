@@ -18,42 +18,57 @@ extern "C"
 
 namespace types
 {
-ObjectMethod::ObjectMethod(InternalType* obj, const std::wstring& funcname, Callable* call) : Callable(), object(obj), callable(call), name(funcname)
+ObjectMethod::ObjectMethod(const symbol::ObjectScope& object, const std::wstring& funcname, Callable* call) : Callable(), object(object), callable(call), name(funcname)
 {
-    obj->IncreaseRef();
+    object.self->IncreaseRef();
+    // kept alive if the class is redefined while the method is stored
+    object.cls->IncreaseRef();
 }
 
 ObjectMethod::~ObjectMethod()
 {
-    object->DecreaseRef();
-    object->killMe();
+    object.self->DecreaseRef();
+    object.self->killMe();
+    object.cls->DecreaseRef();
+    object.cls->killMe();
 }
 
 bool ObjectMethod::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e)
 {
-    if (callable->isFunction())
-    {
-        symbol::Context::getInstance()->scope_object_begin(object, callable->getName());
-        Callable::ReturnValue ret = callable->call(in, opt, _iRetCount, out);
-        symbol::Context::getInstance()->scope_object_end();
-        return ret != Callable::ReturnValue::Error;
-    }
-
-    MacroParentScope scope(callable, object);
-    return callable->invoke(in, opt, _iRetCount, out, e);
+    callable->invokeCall(e, [&]() { return callIn(object, callable, in, opt, _iRetCount, out); });
+    return true;
 }
 
 Callable::ReturnValue ObjectMethod::call(typed_list& in, optional_list& opt, int _iRetCount, typed_list& out)
 {
-    if (callable->isFunction())
+    return callIn(object, callable, in, opt, _iRetCount, out);
+}
+
+Callable::ReturnValue ObjectMethod::callIn(const symbol::ObjectScope& object, Callable* call, typed_list& in, optional_list& opt, int _iRetCount, typed_list& out)
+{
+    if (call->isMacro())
     {
-        symbol::Context::getInstance()->scope_object_begin(object, callable->getName());
-        Callable::ReturnValue ret = callable->call(in, opt, _iRetCount, out);
-        symbol::Context::getInstance()->scope_object_end();
-        return ret;
+        return call->getAs<Macro>()->call(in, opt, _iRetCount, out, object);
     }
 
-    MacroParentScope scope(callable, object);
-    return callable->call(in, opt, _iRetCount, out);
+    if (call->isMacroFile())
+    {
+        return call->getAs<MacroFile>()->call(in, opt, _iRetCount, out, object);
+    }
+
+    // gateway: getCurrentObject() gives the object
+    symbol::Context* ctx = symbol::Context::getInstance();
+    ctx->scope_object_begin(object);
+    try
+    {
+        Callable::ReturnValue ret = call->call(in, opt, _iRetCount, out);
+        ctx->scope_object_end();
+        return ret;
+    }
+    catch (...)
+    {
+        ctx->scope_object_end();
+        throw;
+    }
 }
 } // namespace type

@@ -34,6 +34,16 @@ extern "C"
 
 namespace symbol
 {
+/** \brief Object (instance, or classdef in a static method) and class defining the running method.
+** Empty outside of methods. */
+struct ObjectScope
+{
+    types::InternalType* self = nullptr;
+    types::Classdef* cls = nullptr;
+    // running a constructor (of cls)
+    bool constructor = false;
+};
+
 
 /** \brief Define class Context.
 */
@@ -42,7 +52,7 @@ class EXTERN_AST Context
 public:
     typedef std::map<Symbol, Variable*> VarList;
     typedef std::stack<VarList*> VarStack;
-    typedef std::stack<types::InternalType*> ObjectStack;
+    typedef std::stack<ObjectScope> ObjectStack;
     typedef std::map<Symbol, types::Classdef*> Classes;
 
     static Context* getInstance(void);
@@ -52,7 +62,7 @@ public:
     /** Open a context scope i.e
     ** open the heap table one
     ** and the env table too. */
-    void scope_begin(types::InternalType* object = nullptr, const std::wstring& method = L"");
+    void scope_begin(const ObjectScope& object = ObjectScope());
 
     /** Close a context scope i.e
     ** close the heap table one
@@ -99,8 +109,13 @@ public:
     int getScopedVars(std::list<Variable*>& lst, int iLevel);
     int getGlobalVars(std::list<Variable*>& lst);
     int getLocalVars(std::list<Variable*>& lst, int iLevel = -1);
+    // instance (classdef in a static method) of the running method, nullptr outside of methods
     types::InternalType* getCurrentObject();
-    void scope_object_begin(types::InternalType* object, const std::wstring& method);
+    // class defining the running method, nullptr outside of methods
+    types::Classdef* getCurrentClass();
+    // frame of the running method (empty outside of methods)
+    const ObjectScope& getCurrentScope();
+    void scope_object_begin(const ObjectScope& object);
     void scope_object_end();
     
     /* global functions */

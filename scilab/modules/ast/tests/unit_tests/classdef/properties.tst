@@ -32,40 +32,42 @@ classdef PropCheck
     end
 end
 
-// default values are checked and converted
+// default values (written in the class) are checked and converted
 p = PropCheck();
 assert_checkequal(p.x, 1);
 assert_checkequal(p.v, [0 0 0]);
 assert_checkequal(p.r, 5);
 
+// assigned values are checked, not converted: what is read is what was written
 // size
 p.x = 3;
 assert_checkequal(p.x, 3);
-msg = msprintf(strsubst(_("%s: Wrong size of property ''%s'': %ls expected.\n"), "%ls", "%s"), "PropCheck", "x", "1 x 1");
-assert_checkerror("p = PropCheck(); p.x = [1 2]", msg);
-p.v = 4;
-assert_checkequal(p.v, [4 4 4]);
-p.v = [1;2;3];
-assert_checkequal(p.v, [1 2 3]);
+size_msg = strsubst(_("%s: Wrong size of property ''%s'': %ls expected.\n"), "%ls", "%s");
+assert_checkerror("p = PropCheck(); p.x = [1 2]", msprintf(size_msg, "PropCheck", "x", "1 x 1"));
+assert_checkerror("p = PropCheck(); p.x(2) = 7", msprintf(size_msg, "PropCheck", "x", "1 x 1"));
+assert_checkerror("p = PropCheck(); p.v = 4", msprintf(size_msg, "PropCheck", "v", "1 x 3"));
+assert_checkerror("p = PropCheck(); p.v = [1;2;3]", msprintf(size_msg, "PropCheck", "v", "1 x 3"));
+p.v = [1 2 3];
 p.v(2) = 7;
 assert_checkequal(p.v, [1 7 3]);
-assert_checkerror("p = PropCheck(); p.x(2) = 7", msg);
 
-// type conversion
-p.x = %t;
-assert_checkequal(p.x, 1);
-p.n = 3;
+// type
+type_msg = _("%s: Wrong type for property ''%s'': %s expected.\n");
+assert_checkerror("p = PropCheck(); p.x = %t", msprintf(type_msg, "PropCheck", "x", "double"));
+assert_checkerror("p = PropCheck(); p.x = ""12""", msprintf(type_msg, "PropCheck", "x", "double"));
+assert_checkerror("p = PropCheck(); p.n = 3", msprintf(type_msg, "PropCheck", "n", "int8"));
+assert_checkerror("p = PropCheck(); p.s = 12", msprintf(type_msg, "PropCheck", "s", "string"));
+p.n = int8(3);
 assert_checkequal(p.n, int8(3));
-p.s = 12;
+p.s = "12";
 assert_checkequal(p.s, "12");
-assert_checkerror("p = PropCheck(); p.x = ""str""", msprintf(strsubst(_("%ls: Unable to convert ""%ls"" to %s.\n"), "%ls", "%s"), "PropCheck.x", "str", "double"));
 
 // validators
 positive = _("%s: Wrong value for property ''%s'': Positive numbers expected.\n");
 msg = msprintf(positive, "PropCheck", "x");
 assert_checkerror("p = PropCheck(); p.x = -5", msg);
 assert_checkerror("p.setX(-1)", msg);
-assert_checkequal(p.x, 1);
+assert_checkequal(p.x, 3);
 p.r = 3;
 assert_checkequal(p.r, 3);
 assert_checkerror("p = PropCheck(); p.r = 11", msprintf(_("%s: Wrong value for property ''%s'': Must be in range [%s, %s].\n"), "PropCheck", "r", "0", "10"));
@@ -97,6 +99,35 @@ end
 
 assert_checkerror("PropBadDefault()", msprintf(positive, "PropBadDefault", "x"));
 
+// static property of a class as validator parameter: evaluated at each check
+classdef PropLimit
+    properties (Static)
+        MAX = 10
+    end
+
+    properties
+        x {mustBeLessThan(x, PropLimit.MAX)} = 1
+    end
+end
+
+pl = PropLimit();
+pl.x = 5;
+assert_checkequal(pl.x, 5);
+assert_checkerror("pl = PropLimit(); pl.x = 20", msprintf(_("%s: Wrong value for property ''%s'': Must be < %s.\n"), "PropLimit", "x", "10"));
+PropLimit.MAX = 100;
+pl.x = 20;
+assert_checkequal(pl.x, 20);
+
+// the object can not be used
+assert_checkerror("execstr([""classdef PropThis""; ""properties""; ""m = 1""; ""x {mustBeLessThan(x, this.m)} = 0""; ""end""; ""end""])", msprintf(_("%s: The validation of a property can not use the object.\n"), "PropThis.x"));
+
 // errors in declarations
 assert_checkerror("execstr(""classdef PropUnknownValidator; properties; x {mustBeFoo} = 1; end; end"")", msprintf(_("%s: Unknown validation function ''%s''\n"), "PropUnknownValidator.x", "mustBeFoo"));
-assert_checkerror("execstr(""classdef PropUnknownType; properties; x foo = 1; end; end"")", msprintf(_("%s: Unknown conversion function ''%s''\n"), "PropUnknownType.x", "foo"));
+// unknown type: can be a classdef defined later, checked with the value
+classdef PropUnknownType
+    properties
+        x foo = 1
+    end
+end
+
+assert_checkerror("PropUnknownType()", msprintf(_("%s: Unknown conversion function ''%s''\n"), "PropUnknownType.x", "foo"));

@@ -98,8 +98,8 @@ public:
     // class defining the property or method, nullptr if it does not exist
     Classdef* getOwner(const std::wstring& name, AccessModifier& access);
     bool isAccessible(const std::wstring& name);
-    // class of the running code (method or static method), nullptr outside of classes
-    static Classdef* getCallerClassdef();
+    // access to a member declared in owner, from a method of caller (nullptr outside of methods)
+    static bool canAccess(AccessModifier access, Classdef* owner, Classdef* caller);
 
     std::vector<std::tuple<std::wstring, Classdef*>> getSuperclass() const;
 
@@ -112,9 +112,20 @@ public:
     bool extract(const std::wstring& name, InternalType*& out);
     Classdef* insert(typed_list* _pArgs, InternalType* _pSource);
 
-    std::wstring getMethodClassdef(const std::wstring& name);
+    // class defining the method or constructor name
+    Classdef* getMethodOwner(const std::wstring& name);
 
     bool isAncestorOf(const Classdef* maybeDerived);
+    // direct parent
+    bool isSubclassOf(const Classdef* parent) const;
+    // parents whose constructor is not called by the constructor of this class
+    const std::vector<Classdef*>& getImplicitSupers() const { return implicitSupers; }
+
+    // loads the parents and builds the member tables, once
+    void LoadClassdef();
+    bool isLoaded() const { return initialized; }
+    // back to the declarations, reloaded at next use (parent class redefined)
+    void unload();
 
     void addStaticProperty(const std::wstring& name, const OBJ_ATTR& attr);
     void addStaticMethod(const std::wstring& name, const OBJ_ATTR& attr);
@@ -127,8 +138,9 @@ public:
     InternalType* instantiateProperty(const std::wstring& name, const OBJ_ATTR& attr);
     // size, type and validators of a property: x (1,1) double {mustBePositive} = 1
     static void parsePropertyArgument(const std::wstring& where, const ast::ArgumentDec& dec, ARG& arg);
-    // value converted to the declared size and type, error if a validator fails
-    InternalType* checkProperty(const std::wstring& name, InternalType* value);
+    // value of the declared size and type, error if a validator fails. Only a default value
+    // (written by the class) is converted: an assigned value is stored as given
+    InternalType* checkProperty(const std::wstring& name, InternalType* value, bool convert = false);
     Object* createEmptyInstance();
 
 private:
@@ -139,10 +151,10 @@ private:
     std::vector<std::wstring> superclass;
     std::map<std::wstring, InternalType*> instances;
     std::vector<std::tuple<std::wstring, Classdef*>> supers;
+    std::vector<Classdef*> implicitSupers;
     bool initialized;
     bool initializing;
 
-    void LoadClassdef();
     void resetLoading();
     void internalCall(typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e);
 
@@ -154,7 +166,6 @@ private:
     std::map<std::wstring, std::tuple<OBJ_ATTR, Classdef*>> properties;
     std::map<std::wstring, std::tuple<OBJ_ATTR, Classdef*>> constructors;
 
-    AccessModifier reduceAccess(AccessModifier access);
   public:
 
     void addHelpers();

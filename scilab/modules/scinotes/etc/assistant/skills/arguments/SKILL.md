@@ -35,6 +35,9 @@ Each line: `name (dims) type {validators} = default`, every part optional.
   — use `{mustBeVector}` then `x = x(:)'` if both orientations are wanted.
 - types: `double`, `boolean`, `string`, `int8`...`uint64`; convertible
   inputs are converted (an `int8` given for `double` becomes double).
+  A classdef name is also a type (2027.0+): object of this class or of a
+  subclass, no conversion. Unknown type names are reported at the first
+  call ("f: Unknown conversion function 'float'"), not at definition.
 - Errors are raised automatically with clear messages, e.g.
   "f: Wrong value for input argument #2: Integer numbers expected."
 
@@ -55,12 +58,14 @@ Call form (extra parameters, argument repeated):
 `mustBeA(x, ["double", "string"])`, `mustBeEqualDims(x, y [, dims])`,
 `mustBeEqualDimsOrScalar(x, y)`, `mustBeSameType(x, y)`.
 
-Validator parameters must be a CONSTANT or the plain NAME of another input
-— never an expression:
+Validator parameters must be a CONSTANT, the plain NAME of another input,
+or (2027.0+) a value evaluated at each call: a field of an input
+(`opts.max`) and, in classdef methods, `this`, `this.balance` or a static
+property `MyClass.limit`. Other expressions are refused:
 - `n double {mustBeLessThanOrEqual(n, nmax)}` with `nmax` an input: OK
   ("Must be <= 5");
-- `mustBeLessThanOrEqual(n, size(x, "*"))` or `this.balance`: rejected when
-  the function is defined ("argument must be constant expression").
+- `mustBeLessThanOrEqual(n, size(x, "*"))`: rejected when the function is
+  defined ("argument must be constant expression").
 Derived checks (n <= length(x)...) go in the body:
 `if n > size(x, "*") then error(...); end`. An invalid validator
 expression is also reported at definition ("f: Unable to evaluate argument.").
@@ -99,7 +104,7 @@ Works the same; `this` is implicit and not declared:
 ```scilab
 function add(v)
     arguments
-        v (1, 1) double {mustBePositive}
+        v (1, 1) double {mustBePositive, mustBeLessThanOrEqual(v, this.limit)}
     end
     this.total = this.total + v;
 end

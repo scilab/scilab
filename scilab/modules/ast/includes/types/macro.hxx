@@ -44,8 +44,6 @@ class EXTERN_AST Macro : public Callable
     Macro(const std::wstring& _stName, std::vector<symbol::Variable*>& _inputArgs, std::vector<symbol::Variable*>& _outputArgs, ast::SeqExp& _body, const std::wstring& _stModule);
     //lambda
     Macro(std::vector<symbol::Variable*>& _inputArgs, ast::SeqExp& _body, const std::wstring& _stModule, std::unordered_map<std::wstring, types::InternalType*> captured = {});
-    //static for classdef
-    Macro(const std::wstring& _stName, Classdef* def, std::vector<symbol::Variable*>& _inputArgs, std::vector<symbol::Variable*>& _outputArgs, ast::SeqExp& _body, const std::wstring& _stModule);
 
     virtual ~Macro();
 
@@ -79,6 +77,8 @@ class EXTERN_AST Macro : public Callable
     bool toString(std::wostringstream& ostr) override;
 
     Callable::ReturnValue call(typed_list& in, optional_list& opt, int _iRetCount, typed_list& out) override;
+    // call as method of an object (or of a classdef for a static method)
+    Callable::ReturnValue call(typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const symbol::ObjectScope& object);
 
     inline void cleanCall(symbol::Context* pContext, int oldPromptMode);
 
@@ -128,25 +128,10 @@ class EXTERN_AST Macro : public Callable
     }
 
     void updateArguments();
-    bool checkArgument(ast::Exp* exp);
     bool checkStaticDims(const std::vector<std::tuple<std::vector<int>, symbol::Variable*>>& dims);
     inline const std::unordered_map<std::wstring, types::InternalType*>& getCaptured()
     {
         return m_captured;
-    }
-
-    void setParent(InternalType* p)
-    {
-        parent = p;
-        if (p)
-        {
-            //mustAsParent = true;
-        }
-    }
-
-    InternalType* getParent()
-    {
-        return parent;
     }
 
   private:
@@ -166,23 +151,8 @@ class EXTERN_AST Macro : public Callable
     /*lambda*/
     bool m_isLambda;
     std::unordered_map<std::wstring, types::InternalType*> m_captured;
-    InternalType* parent;
-    //bool mustAsParent;
 
     void cleanup();
-};
-
-// a macro runs in the context of its parent (object or classdef): set it for the duration
-// of a call only, the macro can be shared (inherited method, function assigned as method, ...)
-class EXTERN_AST MacroParentScope
-{
-public:
-    MacroParentScope(Callable* call, InternalType* parent);
-    ~MacroParentScope();
-
-private:
-    Macro* macro;
-    InternalType* previous;
 };
 }
 

@@ -123,6 +123,44 @@ end
 
             ]]></programlisting>
         </para>
+        <para>
+            The constructor of a direct parent is called by its name, without output, in the constructor of the
+            derived class: <literal>A(args)</literal> initializes the <literal>A</literal> part of <literal>this</literal>
+            (<literal>x = A(args)</literal> builds another object). This call is only allowed in the constructor of a direct
+            subclass.
+        </para>
+        <para>
+            The constructor of a parent that is not called this way is called implicitly, without argument, before the
+            constructor of the derived class, and also when the derived class has no constructor. In a diamond inheritance,
+            a common parent is initialized once. A parent constructor that needs arguments must be called explicitly.
+        </para>
+        <programlisting role="example"><![CDATA[
+classdef Shape
+    properties
+        name = ""
+    end
+    methods
+        function Shape(n)
+            this.name = n;
+        end
+    end
+end
+
+classdef Circle < Shape
+    properties
+        r = 0
+    end
+    methods
+        function Circle(r)
+            Shape("circle");    // initialization of the Shape part
+            this.r = r;
+        end
+    end
+end
+
+c = Circle(2);
+c.name      // "circle"
+        ]]></programlisting>
     </refsection>
     <refsection>
         <title>Properties</title>
@@ -133,9 +171,16 @@ end
         </para>
         <para>
             As in an <link linkend="arguments">arguments</link> block, a property can declare its size, its type and
-            validation functions. They are applied to the default value and to each assignment: the value is expanded,
-            transposed or converted if needed, and an error is raised if it does not match.
-            Validation functions can only refer to the property itself and to constants.
+            validation functions, checked on the default value and on each assignment. The default value, written in the
+            class, is expanded, transposed or converted if needed (<literal>n int8 = 1</literal>). An assigned value is not
+            converted: it must already have the declared type and size, otherwise an error is raised. What is read from a
+            property is what was assigned to it.
+            The type can be a classdef name: the value must be an object of this class or of a derived one.
+            Parameters of validation functions can be the property itself, constants, and static properties of classes
+            (<literal>MyClass.MAX</literal>), evaluated at each check. They can not use the object (<literal>this</literal>)
+            nor its other properties: the check of a property would not follow their changes. Such a constraint is checked
+            by a method setting the property, whose <link linkend="arguments">arguments</link> block can use
+            <literal>this</literal>.
         </para>
         <para>
             Properties can also be declared <literal>Static</literal>. Static properties are shared across all instances
@@ -191,7 +236,7 @@ end
         <para>Note: <literal>externalfunc</literal> can be a macro or a C/C++ gateway.</para>
         <para>
             In C/C++ gateway, use <code>symbol::Context::getInstance()-&gt;getCurrentObject()</code> to get <literal>this</literal>
-            (the classdef for a static method).
+            (the classdef for a static method) and <code>getCurrentClass()</code> to get the class defining the method.
         </para>
     </refsection>
     <refsection>
@@ -497,6 +542,11 @@ Color.BLUE
                 <para>ex: insert_s (insertion of a double in the object).</para>
                 <para>generic one will be used if specific one does not exist.</para>
                 <para>Search order is: specific (insert_s), generic (insert), scilab standard (%type1_i_type2)</para>
+                <para>
+                    For an operator between two operands, the methods of the left operand are searched first, then those of
+                    the right operand. <literal>&amp;&amp;</literal> and <literal>||</literal> use the <literal>and</literal>
+                    and <literal>or</literal> methods, as <literal>&amp;</literal> and <literal>|</literal>.
+                </para>
             </listitem>
         </itemizedlist>
         <programlisting role="example"><![CDATA[
@@ -707,7 +757,22 @@ Counter.count
                 <revnumber>2027.0.0</revnumber>
                 <revdescription>
                     <para>
-                        Size, type and validation functions of properties are applied.
+                        Size, type and validation functions of properties are applied. Default values are converted
+                        to the declared type and size, assigned values are not.
+                    </para>
+                    <para>
+                        Change of behavior: the constructor of a parent that is not called by the constructor of the
+                        derived class (or when the derived class has no constructor) is now called implicitly, without
+                        argument. A parent constructor that needs arguments must be called explicitly, and a parent with a
+                        private constructor can not be derived anymore. Calling a parent constructor <literal>A()</literal>
+                        is only allowed in the constructor of a direct subclass (it reinitialized the object from any method).
+                    </para>
+                    <para>
+                        Change of behavior: protected members are visible to all derived classes (they were visible to
+                        direct subclasses only), and a method can access private members of other instances of its class.
+                    </para>
+                    <para>
+                        A constructor declared in a <literal>methods (Static)</literal> block is an error.
                     </para>
                 </revdescription>
             </revision>

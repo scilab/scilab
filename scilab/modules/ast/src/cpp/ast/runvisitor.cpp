@@ -1186,22 +1186,8 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
     types::InternalType * pValue = getResult();
     types::InternalType * pReturn = NULL;
 
-    if (pValue->isObject() && pValue->getAs<types::Object>()->hasMethod(L"not"))
+    if (callObjectUnaryOperator(L"not", pValue, e))
     {
-        types::typed_list in, out;
-        types::optional_list opt;
-
-        pValue->IncreaseRef();
-        in.push_back(pValue);
-        if (pValue->getAs<types::Object>()->callMethod(L"not", in, opt, 1, out, e) != types::Function::OK)
-        {
-            cleanInOut(in, out);
-            CoverageInstance::stopChrono((void*)&e);
-            throw InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
-        }
-
-        setResult(out);
-        cleanIn(in, out);
         CoverageInstance::stopChrono((void*)&e);
         return;
     }
@@ -1240,6 +1226,38 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
 }
 
 template <class T>
+bool RunVisitorT<T>::callObjectUnaryOperator(const std::wstring& name, types::InternalType* value, const Exp& e)
+{
+    if (value->isObject() == false)
+    {
+        return false;
+    }
+
+    types::typed_list in = {value};
+    types::typed_list out;
+    try
+    {
+        if (Overload::callMethodOperator(name, in, out, e.getLocation()) == false)
+        {
+            return false;
+        }
+    }
+    catch (...)
+    {
+        CoverageInstance::stopChrono((void*)&e);
+        throw;
+    }
+
+    if (out[0] != value)
+    {
+        value->killMe();
+    }
+
+    setResult(out[0]);
+    return true;
+}
+
+template <class T>
 void RunVisitorT<T>::visitprivate(const TransposeExp &e)
 {
     CoverageInstance::invokeAndStartChrono((void*)&e);
@@ -1267,42 +1285,8 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
     const bool bConjug = e.getConjugate() == TransposeExp::_Conjugate_;
 
 
-    if (bConjug && pValue->isObject() && pValue->getAs<types::Object>()->hasMethod(L"ctranspose"))
+    if (callObjectUnaryOperator(bConjug ? L"ctranspose" : L"transpose", pValue, e))
     {
-        types::typed_list in, out;
-        types::optional_list opt;
-
-        pValue->IncreaseRef();
-        in.push_back(pValue);
-        if (pValue->getAs<types::Object>()->callMethod(L"ctranspose", in, opt, 1, out, e) != types::Function::OK)
-        {
-            cleanInOut(in, out);
-            CoverageInstance::stopChrono((void*)&e);
-            throw InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
-        }
-
-        setResult(out);
-        cleanIn(in, out);
-        CoverageInstance::stopChrono((void*)&e);
-        return;
-    }
-
-    if (bConjug == false && pValue->isObject() && pValue->getAs<types::Object>()->hasMethod(L"transpose"))
-    {
-        types::typed_list in, out;
-        types::optional_list opt;
-
-        pValue->IncreaseRef();
-        in.push_back(pValue);
-        if (pValue->getAs<types::Object>()->callMethod(L"transpose", in, opt, 1, out, e) != types::Function::OK)
-        {
-            cleanInOut(in, out);
-            CoverageInstance::stopChrono((void*)&e);
-            throw InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
-        }
-
-        setResult(out);
-        cleanIn(in, out);
         CoverageInstance::stopChrono((void*)&e);
         return;
     }
@@ -1483,7 +1467,8 @@ void RunVisitorT<T>::visitprivate(const ClassDec & e)
                 // default value
                 if (dec->getArgumentDefaultValue()->isNilExp() == false)
                 {
-                    attr.arg.default_value = dec->getArgumentDefaultValue();
+                    // the definition is deleted after its execution (exec, console)
+                    attr.arg.default_value = dec->getArgumentDefaultValue()->clone();
                 }
 
                 types::Classdef::parsePropertyArgument(e.getSymbol().getName() + L"." + name, *dec, attr.arg);

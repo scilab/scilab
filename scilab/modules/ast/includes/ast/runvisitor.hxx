@@ -420,6 +420,8 @@ public :
     void visitprivate(const VarDec & e);
 
     types::InternalType* callOverloadOpExp(OpExp::Oper _oper, types::InternalType* _paramL, types::InternalType* _paramR, const Location& _Location);
+    // unary operator implemented by a classdef method (not, transpose, ctranspose): result set if true
+    bool callObjectUnaryOperator(const std::wstring& name, types::InternalType* value, const Exp& e);
     types::InternalType* callOverloadMatrixExp(const std::wstring& strType, types::InternalType* _paramL, types::InternalType* _paramR, const Location& _Location);
 };
 }

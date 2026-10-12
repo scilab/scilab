@@ -310,3 +310,39 @@ assert_checktrue(o.has());
 assert_checkfalse(T_hasThis());
 assert_checktrue(~o);
 assert_checkfalse(T_hasThis());
+
+// -------------------------------------------------------------
+// operators: logical ones, method of the right operand
+// -------------------------------------------------------------
+classdef T_Logic
+    methods
+        function r = and(a, b)
+            r = "and";
+        end
+
+        function r = or(a, b)
+            r = "or";
+        end
+
+        function r = mtimes(a, b)
+            r = "T_Logic.mtimes";
+        end
+
+        function r = horzcat(a, b)
+            r = "T_Logic.horzcat";
+        end
+    end
+end
+
+classdef T_Plain
+end
+
+l = T_Logic();
+p = T_Plain();
+assert_checkequal(l & l, "and");
+assert_checkequal(l | l, "or");
+assert_checkequal(l && l, "and");
+assert_checkequal(l || l, "or");
+// left operand without the method: the right one is used
+assert_checkequal(p * l, "T_Logic.mtimes");
+assert_checkequal([p, l], "T_Logic.horzcat");

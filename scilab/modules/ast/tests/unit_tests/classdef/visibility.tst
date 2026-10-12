@@ -359,6 +359,43 @@ expect_err("COther().makeMethod();");
 // protected constructor: from a derived class
 check_exec("o = CProtFactory.makeParent();");
 
+// parent constructors called through an intermediate class:
+// rights are those of the class of the running constructor
+classdef CPrivL2 < CPriv
+    methods
+        function CPrivL2()
+            CPriv();
+        end
+    end
+end
+
+classdef CPrivL3 < CPrivL2
+    methods
+        function CPrivL3()
+            CPrivL2();
+        end
+    end
+end
+
+classdef CProtL2 < CProt
+    methods
+        function CProtL2()
+            CProt();
+        end
+    end
+end
+
+classdef CProtL3 < CProtL2
+    methods
+        function CProtL3()
+            CProtL2();
+        end
+    end
+end
+
+expect_err("CPrivL3();");
+check_exec("CProtL3();");
+
 // -------------------------------------------------------------
 // Access rights are those of the class of the running code
 // -------------------------------------------------------------

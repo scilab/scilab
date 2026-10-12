@@ -42,6 +42,13 @@ public:
 
     static std::wstring getNameFromOper(const int);
     static std::pair<std::wstring, int> getMethodFromOper(const int _oper);
+
+    /**
+     ** operator implemented by a method of a classdef operand (plus, plus_s, uminus, and, ...):
+     ** left operand first, name_<type of the other operand> before name.
+     ** false if no operand implements it (or returns a result)
+     */
+    static bool callMethodOperator(const std::wstring& name, types::typed_list& in, types::typed_list& out, const Location& location);
 };
 
 #endif /* !__OVERLOAD_HXX__ */

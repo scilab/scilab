@@ -22,6 +22,7 @@
 #include "macrofile.hxx"
 #include "variables.hxx"
 #include "configvariable.hxx"
+#include "scilabexception.hxx"
 
 extern "C"
 {
@@ -73,7 +74,7 @@ void Context::destroyInstance(void)
     }
 }
 
-void Context::scope_begin(types::InternalType* object, const std::wstring& method)
+void Context::scope_begin(const ObjectScope& object)
 {
     m_iLevel++;
     if (m_iLevel == SCOPE_CONSOLE)
@@ -86,7 +87,7 @@ void Context::scope_begin(types::InternalType* object, const std::wstring& metho
         varStack.push(new VarList());
     }
 
-    scope_object_begin(object, method);
+    scope_object_begin(object);
 }
 
 void Context::clearAll()
@@ -410,17 +411,52 @@ bool Context::addClassdef(types::Classdef* def)
 {
     Symbol s = Symbol(def->getName());
     def->IncreaseRef();
-    if (classes.find(s) != classes.end())
+    auto it = classes.find(s);
+    if (it == classes.end())
     {
-        for (auto&& obj : classes[s]->getObjects())
+        classes[s] = def;
+        return true;
+    }
+
+    types::Classdef* old = it->second;
+
+    // loaded classes built on the old definition refer to it: they are rebuilt on the new one
+    std::vector<types::Classdef*> derived;
+    for (auto&& c : classes)
+    {
+        if (c.second != old && c.second->isLoaded() && old->isAncestorOf(c.second))
         {
-            obj->updateClassdef(def);
+            derived.push_back(c.second);
         }
-        classes[s]->DecreaseRef();
-        classes[s]->killMe();
+    }
+
+    for (auto&& obj : old->getObjects())
+    {
+        obj->updateClassdef(def);
     }
 
     classes[s] = def;
+
+    // all unloaded before reloading: a derived class must not reload on a stale parent
+    for (auto&& d : derived)
+    {
+        d->unload();
+    }
+
+    for (auto&& d : derived)
+    {
+        try
+        {
+            d->LoadClassdef();
+        }
+        catch (const ast::InternalError&)
+        {
+            // left unloaded, the error is reported at the next use of the class
+        }
+    }
+
+    old->DecreaseRef();
+    old->killMe();
     return true;
 }
 
@@ -783,38 +819,33 @@ int Context::protectedVars(std::list<std::wstring>& vars)
     return variables.getProtectedVarsName(vars);
 }
 
-void Context::scope_object_begin(types::InternalType* object, const std::wstring& method)
+void Context::scope_object_begin(const ObjectScope& object)
 {
-    if (object && object->isObject())
-    {
-        object->getAs<types::Object>()->scope_begin(method);
-    }
-
     objects.push(object);
 }
 
 types::InternalType* Context::getCurrentObject()
 {
-    if (objects.size() != 0)
-    {
-        return objects.top();
-    }
+    return objects.empty() ? nullptr : objects.top().self;
+}
 
-    return nullptr;
+types::Classdef* Context::getCurrentClass()
+{
+    return objects.empty() ? nullptr : objects.top().cls;
+}
+
+const ObjectScope& Context::getCurrentScope()
+{
+    static const ObjectScope none;
+    return objects.empty() ? none : objects.top();
 }
 
 void Context::scope_object_end()
 {
-    if (objects.size() != 0)
+    if (objects.empty() == false)
     {
-        types::InternalType* p = objects.top();
-        if (p != nullptr && p->isObject())
-        {
-            p->getAs<types::Object>()->scope_end();
-        }
+        objects.pop();
     }
-
-    objects.pop();
 }
 
 void Context::unrefLibrary(types::InternalType* lib)

@@ -312,11 +312,74 @@ std::pair<std::wstring, int> Overload::getMethodFromOper(const int _oper)
             return {std::wstring(L"and"), 2};
         case ast::OpExp::logicalOr:
             return {std::wstring(L"or"), 2};
+        // same methods as & and |, as for overloading functions (%x_h_x, %x_g_x)
         case ast::OpExp::logicalShortCutAnd:
-            return {std::wstring(L"shortand"), 2};
+            return {std::wstring(L"and"), 2};
         case ast::OpExp::logicalShortCutOr:
-            return {std::wstring(L"shortor"), 2};
+            return {std::wstring(L"or"), 2};
         default:
             return {std::wstring(L"???"), 2};
     }
+}
+
+bool Overload::callMethodOperator(const std::wstring& name, types::typed_list& in, types::typed_list& out, const Location& location)
+{
+    for (size_t i = 0; i < in.size(); ++i)
+    {
+        if (in[i]->isObject() == false)
+        {
+            continue;
+        }
+
+        types::Object* obj = in[i]->getAs<types::Object>();
+
+        // typed variant first: plus_s for object + double as for double + object
+        std::wstring method = name;
+        if (in.size() == 2 && obj->hasMethod(name + L"_" + in[1 - i]->getShortTypeStr()))
+        {
+            method = name + L"_" + in[1 - i]->getShortTypeStr();
+        }
+
+        if (obj->hasMethod(method) == false)
+        {
+            continue;
+        }
+
+        // operands are owned by the caller
+        types::typed_list args(in.begin(), in.end());
+        types::optional_list opt;
+        for (auto&& a : args)
+        {
+            a->IncreaseRef();
+        }
+
+        types::Function::ReturnValue ret = types::Function::Error;
+        try
+        {
+            ret = obj->callMethod(method, args, opt, 1, out, ast::CommentExp(location, new std::wstring(L"")));
+        }
+        catch (...)
+        {
+            for (auto&& a : args)
+            {
+                a->DecreaseRef();
+            }
+
+            throw;
+        }
+
+        for (auto&& a : args)
+        {
+            a->DecreaseRef();
+        }
+
+        if (ret == types::Function::OK && out.size() == 1)
+        {
+            return true;
+        }
+
+        out.clear();
+    }
+
+    return false;
 }

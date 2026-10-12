@@ -71,10 +71,15 @@ bool MacroFile::toString(std::wostringstream& ostr)
 
 Callable::ReturnValue MacroFile::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out)
 {
+    return call(in, opt, _iRetCount, out, symbol::ObjectScope());
+}
+
+Callable::ReturnValue MacroFile::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, const symbol::ObjectScope& object)
+{
     parse();
     if (m_pMacro)
     {
-        return m_pMacro->call(in, opt, _iRetCount, out);
+        return m_pMacro->call(in, opt, _iRetCount, out, object);
     }
     else
     {

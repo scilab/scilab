@@ -25,6 +25,12 @@ namespace types
 
 bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e)
 {
+    invokeCall(e, [&]() { return call(in, opt, _iRetCount, out); });
+    return true;
+}
+
+Callable::ReturnValue Callable::invokeCall(const ast::Exp & e, const std::function<ReturnValue()>& doCall)
+{
     //check recursion before try catch, to make difference with errors
     if (ConfigVariable::increaseRecursion())
     {
@@ -39,7 +45,7 @@ bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, type
 
         try
         {
-            ret = call(in, opt, _iRetCount, out);
+            ret = doCall();
             ConfigVariable::where_end();
             ConfigVariable::decreaseRecursion();
         }
@@ -60,11 +66,12 @@ bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, type
         {
             throw ast::InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
         }
+
+        return ret;
     }
     else
     {
         throw ast::RecursionException();
     }
-    return true;
 }
 }

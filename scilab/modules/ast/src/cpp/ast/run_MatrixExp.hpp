@@ -136,12 +136,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     ((poRow->isObject() && poRow->getAs<types::Object>()->hasMethod(L"horzcat")) ||
                      (pIT->isObject() && pIT->getAs<types::Object>()->hasMethod(L"horzcat"))))
                 {
-                    types::Object* obj = poRow->isObject()
-                        ? poRow->getAs<types::Object>()
-                        : pIT->getAs<types::Object>();
-
                     types::typed_list in;
-                    types::optional_list opt;
                     types::typed_list out;
 
                     in.push_back(poRow);
@@ -152,7 +147,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 
                     try
                     {
-                        if (obj->callMethod(L"horzcat", in, opt, 1, out, e) == types::Function::OK && out.size() == 1)
+                        if (Overload::callMethodOperator(L"horzcat", in, out, e.getLocation()))
                         {
                             poRow = out[0];
                         }
@@ -400,12 +395,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             if ((poResult->isObject() && poResult->getAs<types::Object>()->hasMethod(L"vertcat")) ||
                 (poRow->isObject() && poRow->getAs<types::Object>()->hasMethod(L"vertcat")))
             {
-                types::Object* obj = poResult->isObject()
-                    ? poResult->getAs<types::Object>()
-                    : poRow->getAs<types::Object>();
-
                 types::typed_list in;
-                types::optional_list opt;
                 types::typed_list out;
 
                 in.push_back(poResult);
@@ -416,7 +406,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 
                 try
                 {
-                    if (obj->callMethod(L"vertcat", in, opt, 1, out, e) == types::Function::OK && out.size() == 1)
+                    if (Overload::callMethodOperator(L"vertcat", in, out, e.getLocation()))
                     {
                         poResult = out[0];
                     }

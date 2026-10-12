@@ -10,6 +10,7 @@
 #define __OBJECTMETHOD_HXX__
 
 #include "callable.hxx"
+#include "context.hxx"
 #include "object.hxx"
 
 namespace types
@@ -17,8 +18,8 @@ namespace types
 class EXTERN_AST ObjectMethod : public Callable
 {
 public:
-    // obj is the instance (method) or the classdef (static method) the call runs in
-    ObjectMethod(InternalType* obj, const std::wstring& funcname, Callable* call);
+    // object: instance (classdef for a static method) and class defining the method
+    ObjectMethod(const symbol::ObjectScope& object, const std::wstring& funcname, Callable* call);
     virtual ~ObjectMethod();
     virtual std::wstring getTypeStr() const override
     {
@@ -63,8 +64,11 @@ public:
     virtual ReturnValue call(typed_list& in, optional_list& opt, int _iRetCount, typed_list& out);
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e);
 
+    // call as method of object: `this` in a macro, current object in a gateway
+    static ReturnValue callIn(const symbol::ObjectScope& object, Callable* call, typed_list& in, optional_list& opt, int _iRetCount, typed_list& out);
+
 private:
-    InternalType* object;
+    symbol::ObjectScope object;
     Callable* callable;
     std::wstring name;
 };

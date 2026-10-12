@@ -73,9 +73,14 @@ fails with "Constructor of 'X' can not be static").
 
 Property declarations (2027.0+) accept the `arguments` block syntax: size
 `(1,3)`, type `double`/`int8`/`string`/..., validators `{mustBePositive}`,
-`{mustBeInRange(x, 0, 10)}` (only the property itself and constants as
-arguments). They apply to the default value and to every assignment, with
-the same expansion/transposition/conversion as for function arguments.
+`{mustBeInRange(x, 0, 10)}`, type can be a class name. Validator parameters:
+the property itself, constants, static properties `MyClass.MAX` (evaluated
+at each check) — NOT `this` or other properties ("can not use the object"):
+check such constraints in a setter method with an `arguments` block. The
+DEFAULT value is converted/expanded like a function argument
+(`n int8 = 1` gives int8(1)), but an ASSIGNED value is NOT converted: it must
+already have the declared type and size (`p.n = 3` on an int8 property
+fails: "Wrong type for property 'n': int8 expected"; write `int8(3)`).
 
 | MATLAB habit | Scilab classdef |
 |---|---|
@@ -124,6 +129,12 @@ classdef Savings < Account
     end
 end
 ```
+  Without output only (`x = Account(...)` builds another object), and only
+  in the constructor of a DIRECT subclass (elsewhere: "can only be called
+  from the constructor of a direct subclass"). A parent constructor not
+  called this way (or when the child has no constructor) is called
+  implicitly WITHOUT argument before the child constructor (2027.0+): a
+  parent constructor that needs arguments must be called explicitly.
 - Parent methods (constructor included) keep access to the parent's private
   properties when `this` is a subclass instance; subclass methods do not:
   declare `protected` what subclasses must use.
@@ -169,7 +180,9 @@ arguments (no `this`), one of them is the object:
 Type-specific variants take priority: `plus_s` (object + double), `plus_i`
 (integers)... then `plus`, then Scilab's `%type_op_type` overloads. The
 `_s` variant handles both orders (`v * 3` and `3 * v`): test `isa(a, ...)`
-to know which operand is the object.
+to know which operand is the object. With two objects, the left operand's
+methods are searched first, then the right one's. `&&` / `||` call `and` /
+`or` like `&` / `|`.
 
 ```scilab
 function r = plus(a, b)
@@ -239,5 +252,8 @@ end
   re-running it after an edit REDEFINES the class, and existing instances
   pick up the new methods. `clear ClassName` does not remove the class.
 - Arguments of methods can be validated with an `arguments` block (see
-  the arguments skill) — `this` is not declared in it.
+  the arguments skill) — `this` is not declared in it. A class name can be
+  used as type (`o Point`: object of Point or a subclass, no conversion),
+  and validators can use `this`, `this.max` or `Point.max`, evaluated at
+  each call: `v {mustBeLessThan(v, this.max)}`.
 - Keep one class per file for anything reusable and `exec` it before use.

@@ -247,3 +247,239 @@ end
 
 assert_checktrue(isa(DerivedEnum.Red, "BaseEnum"));
 assert_checktrue(DerivedEnum.Red == BaseEnum.Red);
+
+// =============================================================
+// Redefinition of a parent class: derived classes and their objects follow
+// =============================================================
+classdef RedefBase
+    properties
+        a = 1
+    end
+
+    properties (Static)
+        s = 10
+    end
+
+    methods
+        function r = getA()
+            r = this.a;
+        end
+    end
+end
+
+classdef RedefChild < RedefBase
+    properties
+        c = 5
+    end
+end
+
+classdef RedefGrand < RedefChild
+end
+
+child = RedefChild();
+grand = RedefGrand();
+stored = child.getA;
+assert_checkequal(child.getA(), 1);
+assert_checkequal(RedefChild.s, 10);
+
+classdef RedefBase
+    properties
+        a = 2
+        b = 3
+    end
+
+    properties (Static)
+        s = 20
+    end
+
+    methods
+        function r = getA()
+            r = this.a * 100;
+        end
+
+        function r = getB()
+            r = this.b;
+        end
+    end
+end
+
+// existing objects: new methods, new properties, values kept
+assert_checkequal(child.getA(), 100);
+assert_checkequal(child.getB(), 3);
+assert_checkequal(child.c, 5);
+assert_checkequal(grand.getA(), 100);
+assert_checkequal(RedefChild.s, 20);
+// new objects
+n = RedefGrand();
+assert_checkequal([n.a, n.b, n.c], [2 3 5]);
+// a method stored before the redefinition can still be called
+assert_checkequal(stored(), 1);
+
+// a parent that fails to load: same error from derived classes and their objects
+classdef RedefBase
+    properties
+        a = 1
+    end
+
+    properties (Static)
+        k (1,1) {mustBePositive} = -1
+    end
+end
+
+msg = msprintf(_("%s: Wrong value for property ''%s'': Positive numbers expected.\n"), "RedefBase", "k");
+assert_checkerror("RedefChild()", msg);
+assert_checkerror("c = child.c", msg);
+
+// fixed parent: everything is reloaded
+classdef RedefBase
+    properties
+        a = 7
+    end
+end
+
+assert_checkequal(RedefChild().a, 7);
+assert_checkequal(child.c, 5);
+
+// =============================================================
+// Parent constructors
+// =============================================================
+classdef CtorA
+    properties
+        trace = ""
+    end
+
+    methods
+        function CtorA()
+            this.trace = this.trace + "A";
+        end
+    end
+end
+
+// not called by the constructor: called implicitly, before it
+classdef CtorImplicit < CtorA
+    methods
+        function CtorImplicit()
+            this.trace = this.trace + "B";
+        end
+    end
+end
+
+assert_checkequal(CtorImplicit().trace, "AB");
+
+// called explicitly: where it is called, once
+classdef CtorExplicit < CtorA
+    methods
+        function CtorExplicit()
+            this.trace = this.trace + "b";
+            CtorA();
+            this.trace = this.trace + "B";
+        end
+    end
+end
+
+assert_checkequal(CtorExplicit().trace, "bAB");
+
+// no constructor: parents are initialized
+classdef CtorNone < CtorA
+end
+
+assert_checkequal(CtorNone().trace, "A");
+
+// x = CtorA() builds another object
+classdef CtorOther < CtorA
+    properties
+        other = []
+    end
+
+    methods
+        function CtorOther()
+            this.other = CtorA();
+            this.trace = this.trace + "B";
+        end
+    end
+end
+
+o = CtorOther();
+assert_checkequal(o.trace, "AB");
+assert_checkequal(o.other.trace, "A");
+
+// diamond: the common parent is initialized once
+classdef CtorLeft < CtorA
+end
+
+classdef CtorRight < CtorA
+end
+
+classdef CtorDiamond < CtorLeft & CtorRight
+end
+
+assert_checkequal(CtorDiamond().trace, "A");
+
+// explicit call only from the constructor of a direct subclass
+msg = msprintf(_("Constructor of ''%s'' can only be called from the constructor of a direct subclass.\n"), "CtorA");
+
+classdef CtorInMethod < CtorA
+    methods
+        function again()
+            CtorA();
+        end
+    end
+end
+
+assert_checkerror("o = CtorInMethod(); o.again()", msg);
+
+classdef CtorGrand < CtorImplicit
+    methods
+        function CtorGrand()
+            CtorA();
+        end
+    end
+end
+
+assert_checkerror("CtorGrand()", msg);
+
+// parent constructor with arguments: must be called explicitly
+classdef CtorArgs
+    properties
+        v = 0
+    end
+
+    methods
+        function CtorArgs(v)
+            this.v = v;
+        end
+    end
+end
+
+classdef CtorArgsMissing < CtorArgs
+end
+
+classdef CtorArgsGiven < CtorArgs
+    methods
+        function CtorArgsGiven()
+            CtorArgs(5);
+        end
+    end
+end
+
+assert_checkequal(CtorArgsGiven().v, 5);
+assert_checkerror("CtorArgsMissing()", [msprintf(_("%s: implicit call of the constructor of ''%s'' without argument failed, call it in the constructor.\n"), "CtorArgsMissing", "CtorArgs"); msprintf(_("Undefined variable: %s\n"), "v")]);
+
+// private parent constructor: the class can not be instantiated
+classdef CtorPrivate
+    methods (Private)
+        function CtorPrivate()
+        end
+    end
+end
+
+classdef CtorPrivateChild < CtorPrivate
+end
+
+assert_checkerror("CtorPrivateChild()", msprintf(_("Constructor of ''%s'' is not accessible.\n"), "CtorPrivate"));
+
+// =============================================================
+// Default values of a class defined by execstr (definition deleted after execution)
+// =============================================================
+execstr("classdef ExecDefined; properties; v = [4 5 6] + 0; end; end");
+assert_checkequal(ExecDefined().v, [4 5 6]);

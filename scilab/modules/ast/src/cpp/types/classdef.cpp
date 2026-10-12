@@ -11,12 +11,59 @@
 #include "objectmethod.hxx"
 #include "context.hxx"
 #include "runvisitor.hxx"
-#include "argumentvisitor.hxx"
 #include "configvariable.hxx"
+#include "macro.hxx"
+#include "macrofile.hxx"
 
 extern "C"
 {
 #include "sciprint.h"
+}
+
+namespace
+{
+// statement name(...) in a constructor: explicit call of the constructor of the parent name
+bool callsConstructor(const ast::Exp* e, const std::wstring& name)
+{
+    if (e->isFunctionDec())
+    {
+        return false;
+    }
+
+    if (e->isCallExp() && e->getParent() && e->getParent()->isSeqExp())
+    {
+        const ast::Exp& f = e->getAs<ast::CallExp>()->getName();
+        if (f.isSimpleVar() && f.getAs<ast::SimpleVar>()->getSymbol().getName() == name)
+        {
+            return true;
+        }
+    }
+
+    for (auto&& sub : e->getExps())
+    {
+        if (sub && callsConstructor(sub, name))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool callsConstructor(types::Callable* ctor, const std::wstring& name)
+{
+    types::Macro* macro = nullptr;
+    if (ctor->isMacro())
+    {
+        macro = ctor->getAs<types::Macro>();
+    }
+    else if (ctor->isMacroFile())
+    {
+        macro = ctor->getAs<types::MacroFile>()->getMacro();
+    }
+
+    return macro && callsConstructor(macro->getBody(), name);
+}
 }
 
 namespace types
@@ -40,9 +87,7 @@ void Classdef::LoadClassdef()
 
     if (initializing)
     {
-        char msg[128];
-        os_sprintf(msg, _("Inheritance cycle detected for class '%s'.\n"), scilab::UTF8::toUTF8(name).data());
-        throw ast::InternalError(scilab::UTF8::toWide(msg));
+        throw ast::InternalError(formatError(_("Inheritance cycle detected for class '%s'.\n"), scilab::UTF8::toUTF8(name).data()));
     }
 
     initializing = true;
@@ -69,9 +114,7 @@ void Classdef::LoadClassdef()
         }
         else
         {
-            char msg[128];
-            os_sprintf(msg, _("'%s' does not exist\n"), scilab::UTF8::toUTF8(s).data());
-            throw ast::InternalError(scilab::UTF8::toWide(msg));
+            throw ast::InternalError(formatError(_("'%s' does not exist\n"), scilab::UTF8::toUTF8(s).data()));
         }
     }
 
@@ -84,8 +127,6 @@ void Classdef::LoadClassdef()
         for (auto&& v : supermethods)
         {
             OBJ_ATTR attr = std::get<0>(v.second);
-            // reduce level
-            attr.access = reduceAccess(attr.access);
             this->methods[v.first] = {attr, def};
         }
 
@@ -93,7 +134,6 @@ void Classdef::LoadClassdef()
         for (auto&& v : superproperties)
         {
             OBJ_ATTR attr = std::get<0>(v.second);
-            attr.access = reduceAccess(attr.access);
             this->properties[v.first] = {attr, def};
         }
 
@@ -101,7 +141,6 @@ void Classdef::LoadClassdef()
         for (auto&& v : superconstructors)
         {
             OBJ_ATTR attr = std::get<0>(v.second);
-            attr.access = reduceAccess(attr.access);
             this->constructors[v.first] = {attr, def};
         }
     }
@@ -129,6 +168,16 @@ void Classdef::LoadClassdef()
     }
 
     addHelpers();
+
+    // parents not initialized by the constructor itself: called implicitly, in declaration order
+    auto ctor = meths.find(getName());
+    for (auto s = supers.rbegin(); s != supers.rend(); ++s)
+    {
+        if (ctor == meths.end() || ctor->second.callable == nullptr || callsConstructor(ctor->second.callable, std::get<0>(*s)) == false)
+        {
+            implicitSupers.push_back(std::get<1>(*s));
+        }
+    }
     //showMethodTable();
 
     //default empty constructor information
@@ -156,13 +205,22 @@ void Classdef::LoadClassdef()
         }
     }
 
-    //clean constructor information
+    // declarations are kept to reload the class when a parent is redefined
     guard.def = nullptr;
-    props.clear();
-    meths.clear();
-    superclass.clear();
     initializing = false;
     initialized = true;
+
+    // reload: existing objects follow the new layout
+    for (auto&& obj : objects)
+    {
+        obj->updateProperties();
+    }
+}
+
+void Classdef::unload()
+{
+    resetLoading();
+    initialized = false;
 }
 
 void Classdef::resetLoading()
@@ -191,6 +249,7 @@ void Classdef::resetLoading()
 
     instances.clear();
     supers.clear();
+    implicitSupers.clear();
     methods.clear();
     properties.clear();
     constructors.clear();
@@ -302,6 +361,19 @@ Classdef::~Classdef()
             it->killMe();
         }
     }
+
+    // default values and validator expressions are copies of the definition, which does not outlive its execution
+    for (auto&& p : props)
+    {
+        delete p.second.arg.default_value;
+        for (auto&& v : p.second.arg.validators)
+        {
+            for (auto&& c : v.callTime)
+            {
+                delete c.second;
+            }
+        }
+    }
 }
 
 std::vector<std::tuple<std::wstring, Classdef*>> Classdef::getSuperclass() const
@@ -327,82 +399,45 @@ bool Classdef::isAncestorOf(const Classdef* derived)
     return false;
 }
 
-bool Classdef::invoke(typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e)
+bool Classdef::isSubclassOf(const Classdef* parent) const
 {
-    AccessModifier ctorAccess;
-    if (getAccessMethod(getName(), ctorAccess))
+    for (auto&& s : supers)
     {
-        switch (ctorAccess)
+        if (std::get<1>(s) == parent)
         {
-            case AccessModifier::PUBLIC:
-            {
-                internalCall(in, opt, _iRetCount, out, e);
-                return true;
-            }
-            case AccessModifier::PROTECTED:
-            {
-                types::InternalType* pIT = symbol::Context::getInstance()->getCurrentObject();
-                if (pIT != nullptr && pIT->isObject())
-                {
-                    types::Object* currentObj = pIT->getAs<types::Object>();
-                    if (currentObj)
-                    {
-                        types::Classdef* caller = currentObj->getClassdef();
-                        if (caller == this || isAncestorOf(caller))
-                        {
-                            internalCall(in, opt, _iRetCount, out, e);
-                            return true;
-                        }
-                    }
-                }
-                break;
-            }
-            case AccessModifier::PRIVATE:
-            {
-                //continue to error
-                break;
-            }
-            default: {}
-        }
-
-        wchar_t szError[128];
-        os_swprintf(szError, 128, _W("Wrong call: constructor of '%ls' is not accessible.\n").c_str(), name.data());
-        throw ast::InternalError(szError);
-    }
-
-    /*
-    if (methods[name].access != AccessModifier::PUBLIC)
-    {
-        InternalType* pIT = symbol::Context::getInstance()->getCurrentObject();
-        if (pIT == nullptr || (pIT->isClassdef() && pIT != this) || (pIT->isObject() && pIT->getAs<Object>()->getClassdef() != this))
-        {
-            wchar_t szError[128];
-            os_swprintf(szError, 128, _W("Wrong call: constructor of '%ls' is not accessible.\n").c_str(), name.data());
-            throw ast::InternalError(szError);
+            return true;
         }
     }
-    */
 
     return false;
 }
 
+bool Classdef::invoke(typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e)
+{
+    // access to the constructor is checked when it is called
+    internalCall(in, opt, _iRetCount, out, e);
+    return true;
+}
+
 void Classdef::internalCall(typed_list& in, optional_list& opt, int _iRetCount, typed_list& out, const ast::Exp& e)
 {
-    //call of class constructor in constructor (A < B  A() { B() }
-    InternalType* current = symbol::Context::getInstance()->getCurrentObject();
-    if (current && current->isObject())
+    // statement A() in a method of an object derived from A: initialization of its A part,
+    // only from the constructor of a direct subclass (class B < A, function B(), A(), end)
+    const symbol::ObjectScope& current = symbol::Context::getInstance()->getCurrentScope();
+    if (_iRetCount == 0 && current.self && current.self->isObject() && isAncestorOf(current.self->getAs<Object>()->getClassdef()))
     {
-        if (_iRetCount == 0) //not an assignation
+        if (current.constructor == false || current.cls->isSubclassOf(this) == false)
         {
-            Object* obj = current->getAs<Object>();
-            if (isAncestorOf(obj->getClassdef()))
-            {
-                obj->IncreaseRef();
-                obj->callSuperclassContructor(this, in, opt, _iRetCount, out, e);
-                obj->DecreaseRef();
-                return;
-            }
+            wchar_t szError[bsiz];
+            os_swprintf(szError, bsiz, _W("Constructor of '%ls' can only be called from the constructor of a direct subclass.\n").c_str(), getName().data());
+            throw ast::InternalError(szError);
         }
+
+        Object* obj = current.self->getAs<Object>();
+        obj->IncreaseRef();
+        obj->callSuperclassContructor(this, in, opt, _iRetCount, out, e);
+        obj->DecreaseRef();
+        return;
     }
 
     Object* obj = createEmptyInstance();
@@ -441,28 +476,28 @@ Classdef* Classdef::insert(typed_list* _pArgs, InternalType* _pSource)
                     value->killMe();
                 }
 
-                wchar_t szError[128];
-                os_swprintf(szError, 128, _W("Wrong insertion: property '%ls' is not a static property.\n").c_str(), field.data());
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("Wrong insertion: property '%ls' is not a static property.\n").c_str(), field.data());
                 throw ast::InternalError(szError);
             }
             else
             {
-                wchar_t szError[128];
-                os_swprintf(szError, 128, _W("Wrong insertion: property '%ls' is not accessible.\n").c_str(), field.data());
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("Wrong insertion: property '%ls' is not accessible.\n").c_str(), field.data());
                 throw ast::InternalError(szError);
             }
         }
         else
         {
-            wchar_t szError[128];
-            os_swprintf(szError, 128, _W("Wrong insertion: property '%ls' does not exist.\n").c_str(), field.data());
+            wchar_t szError[bsiz];
+            os_swprintf(szError, bsiz, _W("Wrong insertion: property '%ls' does not exist.\n").c_str(), field.data());
             throw ast::InternalError(szError);
         }
     }
     else
     {
-        wchar_t szError[128];
-        os_swprintf(szError, 128, _W("Wrong insertion: invalid index.\n").c_str());
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("Wrong insertion: invalid index.\n").c_str());
         throw ast::InternalError(szError);
     }
 
@@ -523,43 +558,23 @@ bool Classdef::isAccessible(const std::wstring& name)
 {
     AccessModifier access;
     Classdef* owner = getOwner(name, access);
-    if (owner == nullptr || access == AccessModifier::PUBLIC)
-    {
-        return true;
-    }
-
-    // access rights are those of the class of the running code,
-    // the member must be the same one seen from this class
-    Classdef* caller = getCallerClassdef();
-    if (caller == nullptr)
-    {
-        return false;
-    }
-
-    AccessModifier callerAccess;
-    return caller->getOwner(name, callerAccess) == owner && callerAccess != AccessModifier::NONE;
+    return owner == nullptr || canAccess(access, owner, symbol::Context::getInstance()->getCurrentClass());
 }
 
-Classdef* Classdef::getCallerClassdef()
+bool Classdef::canAccess(AccessModifier access, Classdef* owner, Classdef* caller)
 {
-    InternalType* current = symbol::Context::getInstance()->getCurrentObject();
-    if (current == nullptr)
+    // rights are those of the class defining the running method
+    switch (access)
     {
-        return nullptr;
+        case AccessModifier::PUBLIC:
+            return true;
+        case AccessModifier::PROTECTED:
+            return caller != nullptr && owner->isAncestorOf(caller);
+        case AccessModifier::PRIVATE:
+            return caller == owner;
+        default:
+            return false;
     }
-
-    if (current->isObject())
-    {
-        return current->getAs<Object>()->getScopeClassdef();
-    }
-
-    // static method
-    if (current->isClassdef())
-    {
-        return current->getAs<Classdef>();
-    }
-
-    return nullptr;
 }
 
 bool Classdef::extract(const std::wstring& name, InternalType*& out)
@@ -572,8 +587,8 @@ bool Classdef::extract(const std::wstring& name, InternalType*& out)
     {
         if (isAccessible(name) == false)
         {
-            wchar_t szError[128];
-            os_swprintf(szError, 128, _W("Wrong extraction: '%ls' is not accessible.\n").c_str(), name.data());
+            wchar_t szError[bsiz];
+            os_swprintf(szError, bsiz, _W("Wrong extraction: '%ls' is not accessible.\n").c_str(), name.data());
             throw ast::InternalError(szError);
         }
 
@@ -591,7 +606,7 @@ bool Classdef::extract(const std::wstring& name, InternalType*& out)
         obj->IncreaseRef();
 
         // enumeration values are built by the class itself (constructor can be private)
-        symbol::Context::getInstance()->scope_object_begin(this, getName());
+        symbol::Context::getInstance()->scope_object_begin({this, this});
         try
         {
             obj->callConstructor(e->second, opt, 0, out1, ast::CommentExp(Location(), new std::wstring(L"")));
@@ -631,20 +646,22 @@ Callable* Classdef::getMethod(const std::wstring& name)
     return std::get<0>(methods[name]).callable;
 }
 
-std::wstring Classdef::getMethodClassdef(const std::wstring& name)
+Classdef* Classdef::getMethodOwner(const std::wstring& name)
 {
-    if (name == getName())
+    // constructors are named after their class
+    auto c = constructors.find(name);
+    if (c != constructors.end())
     {
-        return name;
+        return std::get<1>(c->second);
     }
 
-    auto p = methods.find(name);
-    if (p != methods.end())
+    auto m = methods.find(name);
+    if (m != methods.end())
     {
-        return std::get<1>(p->second)->getName();
+        return std::get<1>(m->second);
     }
 
-    return L"";
+    return this;
 }
 
 std::vector<std::wstring> Classdef::getPublicProperties()
@@ -739,7 +756,7 @@ InternalType* Classdef::getStaticMethod(const std::wstring& name)
     }
 
     // run in the context of the class defining the method (no `this`)
-    return new ObjectMethod(owner, name, call->getAs<Callable>());
+    return new ObjectMethod({owner, owner}, name, call->getAs<Callable>());
 }
 
 bool Classdef::hasStatic(const std::wstring& name)
@@ -803,9 +820,7 @@ InternalType* Classdef::instantiateProperty(const std::wstring& name, const OBJ_
         InternalType* pIT = exec->getResult();
         if (pIT == nullptr || pIT->isAssignable() == false)
         {
-            char msg[128];
-            os_sprintf(msg, _("%s: Unable to evaluate default value.\n"), scilab::UTF8::toUTF8(name).data());
-            throw ast::InternalError(scilab::UTF8::toWide(msg), 999, attr.arg.default_value->getLocation());
+            throw ast::InternalError(formatError(_("%s: Unable to evaluate default value.\n"), scilab::UTF8::toUTF8(name).data()), 999, attr.arg.default_value->getLocation());
         }
 
         pIT->IncreaseRef();
@@ -814,7 +829,7 @@ InternalType* Classdef::instantiateProperty(const std::wstring& name, const OBJ_
 
         try
         {
-            return checkProperty(name, pIT);
+            return checkProperty(name, pIT, true);
         }
         catch (const ast::InternalError&)
         {
@@ -866,6 +881,7 @@ void Classdef::parsePropertyArgument(const std::wstring& where, const ast::Argum
     if (dims.size() != 0)
     {
         arg.dimsConvertor = [dims](InternalType* x) { return checksize(x, dims, false); };
+        arg.dimsCheck = [dims](InternalType* x) { return hasDims(x, dims); };
         arg.dimsStr = [dims]() { return dims2str(dims); };
     }
 
@@ -873,120 +889,44 @@ void Classdef::parsePropertyArgument(const std::wstring& where, const ast::Argum
     if (dec.getArgumentType()->isSimpleVar())
     {
         std::wstring type = dec.getArgumentType()->getAs<ast::SimpleVar>()->getSymbol().getName();
-        auto f = getTypeConvertor(type);
-        if (f == nullptr)
-        {
-            throw ast::InternalError(formatError(_("%s: Unknown conversion function '%s'\n"), name.data(), scilab::UTF8::toUTF8(type).data()), 999, dec.getArgumentType()->getLocation());
-        }
-
         ARG_CONVERTOR conv;
-        conv.convertor = [f, where](InternalType* x) { return f(x, where); };
-        arg.convertors.push_back(conv);
-    }
-
-    // validators: the property itself (0) or constants (-1)
-    for (auto&& v : dec.getArgumentValidators()->getExps())
-    {
-        ARG_VALIDATOR validator;
-        std::wstring vname;
-        std::vector<int> rhs;
-        if (v->isSimpleVar())
+        conv.type = type;
+        auto f = getTypeConvertor(type);
+        if (f)
         {
-            vname = v->getAs<ast::SimpleVar>()->getSymbol().getName();
-            std::tie(validator.validator, rhs) = getFunctionValidator(vname);
-            if (validator.validator == nullptr)
-            {
-                throw ast::InternalError(formatError(_("%s: Unknown validation function '%s'\n"), name.data(), scilab::UTF8::toUTF8(vname).data()), 999, v->getLocation());
-            }
-
-            if (rhs[0] != 1)
-            {
-                throw ast::InternalError(formatError(_("%s: Wrong number of input argument(s): %d expected.\n"), name.data(), 1), 999, v->getLocation());
-            }
-
-            validator.inputs.push_back({0, nullptr});
-        }
-        else if (v->isCallExp() && v->getAs<ast::CallExp>()->getName().isSimpleVar())
-        {
-            ast::CallExp* c = v->getAs<ast::CallExp>();
-            vname = c->getName().getAs<ast::SimpleVar>()->getSymbol().getName();
-            std::tie(validator.validator, rhs) = getFunctionValidator(vname);
-            if (validator.validator == nullptr)
-            {
-                throw ast::InternalError(formatError(_("%s: \"%ls\" is not a validation function.\n"), name.data(), vname.data()), 999, v->getLocation());
-            }
-
-            int size = static_cast<int>(c->getArgs().size());
-            if (rhs.size() == 1 && rhs[0] != size && rhs[0] != -1)
-            {
-                throw ast::InternalError(formatError(_("%s: Wrong number of input argument(s): %d expected.\n"), name.data(), rhs[0]), 999, v->getLocation());
-            }
-
-            if (rhs.size() > 1 && (size < rhs[0] || size > rhs[1]))
-            {
-                throw ast::InternalError(formatError(_("%s: Wrong number of input argument(s): between %d and %d expected.\n"), name.data(), rhs[0], rhs[1]), 999, v->getLocation());
-            }
-
-            for (auto&& in : c->getArgs())
-            {
-                if (in->isSimpleVar() && in->getAs<ast::SimpleVar>()->getSymbol().getName() == prop)
-                {
-                    validator.inputs.push_back({0, nullptr});
-                    continue;
-                }
-
-                ast::ArgumentVisitor check;
-                in->accept(check);
-                if (check.getStatus() == false)
-                {
-                    throw ast::InternalError(formatError(_("%s: argument must be constant expression.\n"), name.data()), 999, in->getLocation());
-                }
-
-                std::unique_ptr<ast::ConstVisitor> exec(ConfigVariable::getDefaultVisitor());
-                InternalType* pIT = nullptr;
-                try
-                {
-                    in->accept(*exec);
-                    pIT = ((ast::RunVisitor*)exec.get())->getResult();
-                }
-                catch (const ast::InternalError&)
-                {
-                }
-
-                if (pIT == nullptr || pIT->isAssignable() == false)
-                {
-                    throw ast::InternalError(formatError(_("%s: Unable to evaluate argument.\n"), name.data()), 999, in->getLocation());
-                }
-
-                // shared by derived classes, kept alive
-                pIT->IncreaseRef();
-                validator.inputs.push_back({-1, pIT});
-            }
+            conv.convertor = [f](InternalType* x, const std::wstring& n) { return f(x, n); };
         }
         else
         {
-            throw ast::InternalError(formatError(_("%s: argument must be constant expression.\n"), name.data()), 999, v->getLocation());
-        }
-
-        // error message arguments: constant content or the property value
-        validator.error = getPropertyErrorValidator(vname);
-        for (auto&& e : getErrorArgs(vname))
-        {
-            int idx = std::abs(std::get<0>(e));
-            if (idx >= (int)validator.inputs.size())
+            // classdef: an object of this class or of a derived one
+            std::string cls = scilab::UTF8::toUTF8(where.substr(0, where.size() - prop.size() - 1));
+            conv.convertor = [type, cls, prop](InternalType* x, const std::wstring& n)
             {
-                continue;
-            }
+                if (isOfClassType(x, type, n) == false)
+                {
+                    throw ast::InternalError(formatError(_("%s: Wrong type for property '%s': %s expected.\n"), cls.data(), scilab::UTF8::toUTF8(prop).data(), scilab::UTF8::toUTF8(type).data()));
+                }
 
-            InternalType* pIT = std::get<1>(validator.inputs[idx]);
-            validator.errorArgs.push_back(pIT ? std::make_tuple(-1, scilab::UTF8::toUTF8(var2str(pIT))) : std::make_tuple(0, std::string()));
+                return x;
+            };
         }
 
-        arg.validators.push_back(validator);
+        arg.convertors.push_back(conv);
+    }
+
+    // validators: the property itself (0), constants, static properties of classes
+    ValidatorContext ctx;
+    ctx.where = name;
+    ctx.self = 0;
+    ctx.input = [prop](const std::wstring& n) { return n == prop ? 0 : -1; };
+    ctx.property = true;
+    for (auto&& v : dec.getArgumentValidators()->getExps())
+    {
+        arg.validators.push_back(buildValidator(v, ctx));
     }
 }
 
-InternalType* Classdef::checkProperty(const std::wstring& name, InternalType* value)
+InternalType* Classdef::checkProperty(const std::wstring& name, InternalType* value, bool convert)
 {
     auto p = properties.find(name);
     if (p == properties.end())
@@ -1000,10 +940,10 @@ InternalType* Classdef::checkProperty(const std::wstring& name, InternalType* va
     InternalType* cur = value;
     try
     {
-        // check size + expand + transpose
+        // check size (+ expand + transpose a default value)
         if (arg.dimsConvertor)
         {
-            InternalType* x = arg.dimsConvertor(cur);
+            InternalType* x = convert ? arg.dimsConvertor(cur) : (arg.dimsCheck(cur) ? cur : nullptr);
             if (x == nullptr)
             {
                 throw ast::InternalError(formatError(_("%s: Wrong size of property '%s': %ls expected.\n"), cls.data(), prop.data(), arg.dimsStr().c_str()));
@@ -1014,7 +954,19 @@ InternalType* Classdef::checkProperty(const std::wstring& name, InternalType* va
 
         for (auto&& convertor : arg.convertors)
         {
-            InternalType* x = convertor.convertor(cur);
+            // an assigned value must already be of the type: what is read is what was written
+            if (convert == false)
+            {
+                bool ok = getTypeConvertor(convertor.type) ? isOfBuiltinType(cur, convertor.type) : isOfClassType(cur, convertor.type, getName() + L"." + name);
+                if (ok == false)
+                {
+                    throw ast::InternalError(formatError(_("%s: Wrong type for property '%s': %s expected.\n"), cls.data(), prop.data(), scilab::UTF8::toUTF8(convertor.type).data()));
+                }
+
+                continue;
+            }
+
+            InternalType* x = convertor.convertor(cur, getName() + L"." + name);
             if (x && x != cur)
             {
                 if (cur != value)
@@ -1028,10 +980,51 @@ InternalType* Classdef::checkProperty(const std::wstring& name, InternalType* va
 
         for (auto&& validator : arg.validators)
         {
-            typed_list args;
-            for (auto&& input : validator.inputs)
+            // values evaluated for this check, released after it
+            struct Evaluated
             {
-                args.push_back(std::get<0>(input) == 0 ? cur : std::get<1>(input));
+                std::vector<InternalType*> values;
+                ~Evaluated()
+                {
+                    for (auto&& v : values)
+                    {
+                        v->DecreaseRef();
+                        v->killMe();
+                    }
+                }
+            } evaluated;
+
+            typed_list args;
+            for (int k = 0; k < validator.inputs.size(); ++k)
+            {
+                int index = std::get<0>(validator.inputs[k]);
+                if (index == -2)
+                {
+                    ast::Exp* expr = validator.callTime.at(k);
+                    std::unique_ptr<ast::ConstVisitor> exec(ConfigVariable::getDefaultVisitor());
+                    std::wstring error = formatError(_("%s: Unable to evaluate argument.\n"), (cls + "." + prop).data());
+                    try
+                    {
+                        expr->accept(*exec);
+                    }
+                    catch (const ast::InternalError& ie)
+                    {
+                        throw ast::InternalError(error + ie.GetErrorMessage(), 999, expr->getLocation());
+                    }
+
+                    InternalType* pIT = ((ast::RunVisitor*)exec.get())->getResult();
+                    if (pIT == nullptr)
+                    {
+                        throw ast::InternalError(error, 999, expr->getLocation());
+                    }
+
+                    pIT->IncreaseRef();
+                    evaluated.values.push_back(pIT);
+                    args.push_back(pIT);
+                    continue;
+                }
+
+                args.push_back(index == 0 ? cur : std::get<1>(validator.inputs[k]));
             }
 
             if (validator.validator(args) == false)
@@ -1039,7 +1032,8 @@ InternalType* Classdef::checkProperty(const std::wstring& name, InternalType* va
                 std::string strs[3];
                 for (int k = 0; k < validator.errorArgs.size() && k < 3; ++k)
                 {
-                    strs[k] = std::get<0>(validator.errorArgs[k]) == 0 ? scilab::UTF8::toUTF8(var2str(cur)) : std::get<1>(validator.errorArgs[k]);
+                    int pos = std::get<0>(validator.errorArgs[k]);
+                    strs[k] = pos != -1 ? scilab::UTF8::toUTF8(var2str(args[pos])) : std::get<1>(validator.errorArgs[k]);
                 }
 
                 throw ast::InternalError(formatError(_(std::get<0>(validator.error).data()), cls.data(), prop.data(), strs[0].data(), strs[1].data(), strs[2].data()));
@@ -1057,20 +1051,6 @@ InternalType* Classdef::checkProperty(const std::wstring& name, InternalType* va
     }
 
     return cur;
-}
-
-AccessModifier Classdef::reduceAccess(AccessModifier access)
-{
-    // protected members stay visible to all derived classes, private ones are not inherited
-    switch (access)
-    {
-        case AccessModifier::PRIVATE:
-            access = AccessModifier::NONE;
-            break;
-        default: {}
-    }
-
-    return access;
 }
 
 void Classdef::addHelpers()

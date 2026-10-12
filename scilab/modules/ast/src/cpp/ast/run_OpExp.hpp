@@ -88,43 +88,11 @@ void RunVisitorT<T>::visitprivate(const OpExp& e)
             }
         }
 
-        // overload operation directly in classdef (plus, minus, ...)
-        if (pITL->isObject() || pITR->isObject())
+        // classdef operand: its methods (plus, minus, ...) then overloading, before generic operations
+        bool unary = e.getOper() == OpExp::unaryMinus || e.getOper() == OpExp::unaryPlus;
+        if (pITR->isObject() || (unary == false && pITL->isObject()))
         {
-            types::Object* obj = pITL->isObject() ? pITL->getAs<types::Object>() : pITR->getAs<types::Object>();
-
-            std::pair<std::wstring, int> method = Overload::getMethodFromOper(e.getOper()); 
-            std::wstring method_type = method.first + L"_" + (pITL->isObject() ? pITR->getShortTypeStr() : pITL->getShortTypeStr());
-            if (obj->hasMethod(method_type) == false)
-            {
-                method_type = method.first;
-            }
-
-            if (obj->hasMethod(method_type))
-            {
-                types::typed_list in;
-                types::optional_list opt;
-                types::typed_list out;
-
-                if (method.second == 2)
-                {
-                    in.push_back(pITL);
-                    pITL->IncreaseRef();
-                }
-
-                in.push_back(pITR);
-                pITR->IncreaseRef();
-
-                types::Function::ReturnValue ret = obj->callMethod(method_type, in, opt, 1, out, e);
-                if (ret == types::Function::OK && out.size() == 1)
-                {
-                    pResult = out[0];
-                    cleanIn(in, out);
-                    setResult(pResult);
-                    CoverageInstance::stopChrono((void*)&e);
-                    return;
-                }
-            }
+            pResult = callOverloadOpExp(e.getOper(), pITL, pITR, e.getLocation());
         }
 
         if (pResult == NULL)
@@ -506,11 +474,28 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
 {
     types::typed_list in;
     types::typed_list out;
+    bool unary = _oper == OpExp::unaryMinus || _oper == OpExp::unaryPlus;
+
+    // operator implemented by a method of a classdef operand
+    if (_paramR->isObject() || (unary == false && _paramL->isObject()))
+    {
+        types::typed_list operands;
+        if (unary == false)
+        {
+            operands.push_back(_paramL);
+        }
+
+        operands.push_back(_paramR);
+        if (Overload::callMethodOperator(Overload::getMethodFromOper(_oper).first, operands, out, _location))
+        {
+            return out[0];
+        }
+    }
 
     /*
     ** Special case for unary minus => will call %{type_s}
     */
-    if (_oper == OpExp::unaryMinus || _oper == OpExp::unaryPlus)
+    if (unary)
     {
         _paramR->IncreaseRef();
         in.push_back(_paramR);

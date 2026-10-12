@@ -88,15 +88,14 @@ body = [...
 
 checkbody(body)
 
-// type
-body = [...
-"function test1(x)"
-"    arguments"
-"        x float"
-"    end"
-"end"];
+// unknown type: can be a classdef defined later, checked at call
+function test_unknown_type(x)
+    arguments
+        x float
+    end
+end
 
-checkbody(body)
+assert_checkerror("test_unknown_type(1)", msprintf(_("%s: Unknown conversion function ''%s''\n"), "test_unknown_type", "float"));
 
 // default value
 body = [...
@@ -558,4 +557,17 @@ endfunction
 
 msg = "test_long_message: Wrong value for input argument #1: Must be in [""alpha_option_one"",""beta_option_two"",""gamma_option_three"",""delta_option_four"",""epsilon_option_five"",""zeta_option_six""].";
 assert_checkerror("test_long_message(""nope"")", msg);
+
+// comment lines in the block: the validator checks its own argument
+function r = test_comment_lines(a, b)
+    arguments
+        // first argument
+        a
+        b {mustBePositive}
+    end
+    r = b;
+end
+
+assert_checkequal(test_comment_lines(-1, 2), 2);
+assert_checkerror("test_comment_lines(1, -2)", msprintf(_("%s: Wrong value for input argument #%d: Positive numbers expected.\n"), "test_comment_lines", 2));
 

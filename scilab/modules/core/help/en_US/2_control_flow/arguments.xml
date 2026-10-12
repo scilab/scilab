@@ -58,6 +58,11 @@
                     <para>
                         <literal>datatype</literal> can be <literal>double</literal>, <literal>(u)int(8/16/32/64)</literal>, <literal>boolean</literal>, <literal>string</literal>.
                     </para>
+                    <para>
+                        It can also be the name of a <link linkend="classdef">classdef</link>: the input must then be an object
+                        of this class or of a derived class, without conversion. As the class can be defined after the function,
+                        the name is checked at each call.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -87,6 +92,15 @@
                             </para>
                         </listitem>
                     </itemizedlist>
+                    <para>
+                        Parameters of validators are inputs, constants, or values evaluated at each call:
+                        a field of an input (<literal>opts.max</literal>) and, in a <link linkend="classdef">classdef</link> method,
+                        <literal>this</literal>, a property of the object (<literal>this.max</literal>) or a static property
+                        (<literal>MyClass.max</literal>).
+                    </para>
+                    <para>
+                        <code>x double {mustBeLessThan(x, this.max)}</code>
+                    </para>
                     <para>
                         <link linkend="arguments_validators">List of validators</link>
                     </para>
@@ -150,6 +164,15 @@
                 <revremark>
                     Introduction in Scilab.
                 </revremark>
+            </revision>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        classdef names as datatype. Validator parameters evaluated at each call: field of an input,
+                        <literal>this</literal>, property of the object or static property in classdef methods.
+                    </para>
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>
