@@ -6,6 +6,10 @@ freehep-graphicsio-emf.jar=@FREEHEP_GRAPHICSIO_EMF@
 
 freehep-graphicsio.jar=@FREEHEP_GRAPHICSIO@
 
+freehep-graphicsbase.jar=@FREEHEP_GRAPHICSBASE@
+
+freehep-io.jar=@FREEHEP_IO@
+
 commons-logging.jar=@COMMONS_LOGGING@
 
 flexdock.jar=@FLEXDOCK@

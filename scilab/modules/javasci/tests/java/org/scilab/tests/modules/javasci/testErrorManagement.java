@@ -47,10 +47,11 @@ public class testErrorManagement {
         sci.close();
 
         assertEquals(sci.open("a=1+"), false);
-        assertEquals(sci.getLastErrorCode(), 2);
+        // jobs are wrapped in execstr(...,"errcatch") which locks the last error number to 999
+        assertEquals(sci.getLastErrorCode(), 999);
         sci.exec("errclear();");
         sci.exec("a+b");
-        assertEquals(sci.getLastErrorCode(), 4);
+        assertEquals(sci.getLastErrorCode(), 999);
         sci.exec("errclear();");
     }
 

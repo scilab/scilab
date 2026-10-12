@@ -19,6 +19,22 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifndef _MSC_VER
+#include <dlfcn.h>
+
+/*
+ * The engine lazily dlopens gateway libraries which resolve engine symbols
+ * from the process global scope. A JNI library is loaded in a local scope,
+ * so promote the aggregate library (already loaded as a dependency) to the
+ * global scope to keep the gateway loading working.
+ */
+__attribute__((constructor))
+static void promoteEngineToGlobalScope(void)
+{
+    dlopen("libscilab.so", RTLD_LAZY | RTLD_GLOBAL);
+}
+#endif
+
 #define ENABLE_HELPERS
 #include "javasci2_helper.h"
 #include "api_scilab.h"

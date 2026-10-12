@@ -292,7 +292,14 @@ std::wstring TList::getTypeStr() const
         return L"";
     }
 
-    return getFieldNames()->get(0);
+    types::InternalType* pIT = (*m_plData)[0];
+    if (pIT->isString() == false)
+    {
+        // malformed tlist without field names (e.g. built through api_scilab)
+        return L"tlist";
+    }
+
+    return pIT->getAs<types::String>()->get(0);
 }
 
 std::wstring TList::getShortTypeStr() const

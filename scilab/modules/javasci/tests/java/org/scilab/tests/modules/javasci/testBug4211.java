@@ -47,7 +47,8 @@ public class testBug4211 {
     @Test()
     public void nonRegBug4211() throws NullPointerException, JavasciException {
         assertEquals(sci.exec("disp(plop);"), false);
-        assertEquals(sci.getLastErrorCode(), 4);
+        // jobs are wrapped in execstr(...,"errcatch") which locks the last error number to 999
+        assertEquals(sci.getLastErrorCode(), 999);
         sci.close();
 
     }

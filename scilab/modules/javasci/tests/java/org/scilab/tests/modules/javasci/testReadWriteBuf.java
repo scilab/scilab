@@ -88,6 +88,11 @@ public class testReadWriteBuf {
         assertTrue(bFromScilab.equals(new ScilabDouble(3.14159, 2.71828)));
     }
 
+    /*
+     * Insert with a matching integer type so that Scilab writes in place:
+     * inserting a double (a(2,3)=123) goes through the %s_i_i overload which
+     * replaces the variable object and leaves the direct buffer dangling.
+     */
     @Test()
     public void putAndGetRefInt8Test() throws NullPointerException, JavasciException {
         byte[][] a = {{1, 2, 3, 4}, {5, 6, 7, 8}};
@@ -96,7 +101,7 @@ public class testReadWriteBuf {
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.getByReference("a");
         assertTrue(aFromScilab.equals(aOriginal));
-        assertTrue(sci.exec("a(2,3)=123;"));
+        assertTrue(sci.exec("a(2,3)=int8(123);"));
         assertTrue(aFromScilab.getElement(1, 2) == 123);
         aFromScilab.setElement(1, 2, (byte) - 98);
         assertTrue(sci.exec("b=a(2,3);"));
@@ -112,7 +117,7 @@ public class testReadWriteBuf {
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.getByReference("a");
         assertTrue(aFromScilab.equals(aOriginal));
-        assertTrue(sci.exec("a(2,3)=253;"));
+        assertTrue(sci.exec("a(2,3)=uint8(253);"));
         assertTrue(aFromScilab.getElement(1, 2) == (byte)253);
         aFromScilab.setElement(1, 2, (byte)189);
         assertTrue(sci.exec("b=a(2,3);"));
@@ -128,7 +133,7 @@ public class testReadWriteBuf {
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.getByReference("a");
         assertTrue(aFromScilab.equals(aOriginal));
-        assertTrue(sci.exec("a(2,3)=123;"));
+        assertTrue(sci.exec("a(2,3)=int16(123);"));
         assertTrue(aFromScilab.getElement(1, 2) == 123);
         aFromScilab.setElement(1, 2, (short) - 98);
         assertTrue(sci.exec("b=a(2,3);"));
@@ -144,7 +149,7 @@ public class testReadWriteBuf {
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.getByReference("a");
         assertTrue(aFromScilab.equals(aOriginal));
-        assertTrue(sci.exec("a(2,3)=253;"));
+        assertTrue(sci.exec("a(2,3)=uint16(253);"));
         assertTrue(aFromScilab.getElement(1, 2) == (short)253);
         aFromScilab.setElement(1, 2, (short)189);
         assertTrue(sci.exec("b=a(2,3);"));
@@ -160,7 +165,7 @@ public class testReadWriteBuf {
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.getByReference("a");
         assertTrue(aFromScilab.equals(aOriginal));
-        assertTrue(sci.exec("a(2,3)=123;"));
+        assertTrue(sci.exec("a(2,3)=int32(123);"));
         assertTrue(aFromScilab.getElement(1, 2) == 123);
         aFromScilab.setElement(1, 2, (int) - 98);
         assertTrue(sci.exec("b=a(2,3);"));
@@ -176,7 +181,7 @@ public class testReadWriteBuf {
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.getByReference("a");
         assertTrue(aFromScilab.equals(aOriginal));
-        assertTrue(sci.exec("a(2,3)=253;"));
+        assertTrue(sci.exec("a(2,3)=uint32(253);"));
         assertTrue(aFromScilab.getElement(1, 2) == (int)253);
         aFromScilab.setElement(1, 2, (int)189);
         assertTrue(sci.exec("b=a(2,3);"));

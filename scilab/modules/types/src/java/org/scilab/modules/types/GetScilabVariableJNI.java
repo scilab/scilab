@@ -7,7 +7,6 @@
  * ----------------------------------------------------------------------------- */
 
 package org.scilab.modules.types;
-import org.scilab.modules.localization.NativeLibraryLoader;
 
 
 /* It is generated code. Disable checkstyle */
@@ -30,9 +29,9 @@ class GetScilabVariableJNI {
   static {
     try {
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-           NativeLibraryLoader.loadLibrary("typesjni");
+           System.loadLibrary("typesjni");
         } else {
-           NativeLibraryLoader.loadLibrary("scilab");
+           System.loadLibrary("scilab");
         }
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");

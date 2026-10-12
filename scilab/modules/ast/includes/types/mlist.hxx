@@ -40,6 +40,7 @@ public :
     {
         return ScilabMList;
     }
+    std::wstring                    getTypeStr() const override;
     bool                            isMList() override
     {
         return true;

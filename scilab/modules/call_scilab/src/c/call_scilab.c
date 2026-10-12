@@ -157,6 +157,12 @@ int Call_ScilabOpen(char* SCIpath, BOOL advancedMode, char* ScilabStartup, int S
     pGlobalSEI->iNoJvm = getScilabMode() == SCILAB_NWNI;
 
     setForceQuit(0);
+    /* do not install fatal signal handlers: they longjmp to the interactive
+     * console loop, which does not exist in an embedded engine, and they
+     * would override the host process handlers (eg. a JVM) */
+#ifndef _MSC_VER
+    setenv("SCI_DISABLE_EXCEPTION_CATCHING", "1", 0);
+#endif
     ierr = StartScilabEngine(pGlobalSEI);
 
     if (InitStringToScilab)

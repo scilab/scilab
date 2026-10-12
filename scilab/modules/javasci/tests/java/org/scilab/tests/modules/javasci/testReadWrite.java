@@ -256,7 +256,8 @@ public class testReadWrite {
         assertEquals(sci.getVariableType("myDate"), ScilabTypeEnum.sci_mlist);
 
         ScilabMList myDate = (ScilabMList)sci.get("myDate");
-        assertTrue(myDate.toString().equals("mlist([\"st\", \"dims\", \"day\", \"month\", \"year\"], int32([1, 1]), [25.0], [\"DEC\"], [2006.0])"));
+        // 1x1 real doubles are printed as plain integers since Scilab 6
+        assertTrue(myDate.toString().equals("mlist([\"st\", \"dims\", \"day\", \"month\", \"year\"], int32([1, 1]), 25, [\"DEC\"], 2006)"));
         assertEquals(myDate.getHeight(), 1);
         assertEquals(myDate.getWidth(), 5);
         assertTrue(myDate.getVarName().equals("myDate"));

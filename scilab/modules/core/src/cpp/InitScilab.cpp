@@ -48,6 +48,7 @@ extern "C"
 #include "machine.h"
 #include "InitializeLocalization.h"
 #include "elem_common.h"
+#include "fromjava.h"
 #include "InitializeJVM.h"
 #include "TerminateJVM.h"
 #include "InitializeGUI.h"
@@ -984,6 +985,13 @@ static void checkForLinkerErrors(void)
     */
 #define LINKER_ERROR_1 "Scilab startup function detected that the function proposed to the engine is the wrong one. Usually, it comes from a linker problem in your distribution/OS.\n"
 #define LINKER_ERROR_2 "If you do not know what it means, please report a bug on https://gitlab.com/scilab/scilab/-/issues. If you do, you probably know that you should change the link order in SCI/modules/Makefile.am\n"
+
+    if (IsFromJava())
+    {
+        /* the engine is embedded in a host JVM (javasci): the Java VM is provided
+           by the host process, the JVM library link order check does not apply */
+        return;
+    }
 
 
     if (getScilabMode() != SCILAB_NWNI)

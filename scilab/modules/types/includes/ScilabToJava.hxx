@@ -33,6 +33,11 @@ extern "C"
 
 using namespace org_scilab_modules_types;
 
+namespace types
+{
+class Struct;
+}
+
 namespace org_modules_types
 {
 
@@ -118,6 +123,18 @@ class ScilabToJava
            * @param pvApiCtx a pointer to the context
            */
     static bool sendItems(const std::string & name, const int nbItems, std::vector<int> & indexes, int * addr, bool swaped, bool byref, int handlerId, void * pvApiCtx);
+
+    /**
+     * Send a struct in the Java environment as its "st" mlist counterpart
+     *
+     * @param name the variable name
+     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
+     * @param pStruct the struct to send
+     * @param swaped true if the matrix is stored row by row
+           * @param handlerId the handler id
+           * @param pvApiCtx a pointer to the context
+           */
+    static bool sendStruct(const std::string & name, std::vector<int> & indexes, types::Struct * pStruct, bool swaped, int handlerId, void * pvApiCtx);
 
     /**
      * Send a variable in the Java environment

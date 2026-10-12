@@ -61,7 +61,12 @@ public class ClassPath {
     public static void addURL(final URL u, int i) {
         switch (i) {
             case 0: /* Load now */
-            	((ScilabClassLoader) ClassLoader.getSystemClassLoader()).addURL(u);
+                ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
+                if (systemClassLoader instanceof ScilabClassLoader) {
+                    ((ScilabClassLoader) systemClassLoader).addURL(u);
+                }
+                /* else: JVM embedded in a host application (javasci): the
+                   classpath is managed by the host, nothing to add */
                 break;
             case 1: /* Load later (background) */
                 queued.add(u);

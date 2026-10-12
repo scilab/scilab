@@ -39,6 +39,12 @@
         <pathelement location="${cobertura.jar}"/>
     </path>
 
+    <!-- Module jars required at runtime by the engine embedded in advanced mode -->
+    <path id="unittest.runtime.classpath">
+        <pathelement location="${library.ui_data.dir}/${library.ui_data.name}"/>
+        <pathelement location="${library.external_objects_java.dir}/${library.external_objects_java.name}"/>
+    </path>
+
     <!-- Clean test -->
     <target name="clean-test" description="Clean test files">
         <delete dir="${build.test.dir}"/>
@@ -162,20 +168,33 @@
         <property name="junit.forkMode" value="perBatch"/>
     </target>
 
-    <!-- Define the library path for native libraries -->
-    <property name="library_path" value="${base.dir}/modules/.libs/"/>
-    <property name="library_path" value="${library_path}:${base.dir}/modules/javasci/.libs/"/>
-    <property name="library_path" value="${library_path}:${base.dir}/modules/types/.libs/"/>
-    <property name="library_path" value="${library_path}:${base.dir}/modules/localization/.libs/"/>
-    <property name="library_path" value="${library_path}:${base.dir}/modules/commons/.libs/"/>
-    <property name="library_path" value="${library_path}:${base.dir}/modules/action_binding/.libs/"/>
-    <property name="library_path" value="${library_path}:${base.dir}/thirdparty/"/>
-    <property name="library_path" value="${library_path}:${base.dir}/bin/"/>
-    <property name="library_path" value="${library_path}:${base.dir}/tools/tesseract"/>
-    <property name="library_path" value="${library_path}:/usr/lib/jni/"/>
-    <property name="library_path" value="${library_path}:/usr/lib64/jni"/>
-    <property name="library_path" value="${library_path}:/usr/lib/java/"/>
-    <property name="library_path" value="${library_path}:/usr/lib64/java"/>
+    <!-- Define the library path for native libraries.
+         Ant properties are immutable: build the value once from a path. -->
+    <path id="native.libs.path">
+        <!-- source tree layout -->
+        <pathelement location="${modules.dir}/.libs"/>
+        <dirset dir="${modules.dir}" includes="*/.libs"/>
+        <!-- installed layout (see bin/scilab SCILIB) -->
+        <pathelement location="${base.dir}/lib/scilab"/>
+        <pathelement location="${base.dir}/lib64/scilab"/>
+        <pathelement location="${base.dir}/lib/thirdparty"/>
+        <pathelement location="${base.dir}/lib/thirdparty/jcef"/>
+        <pathelement location="${base.dir}/lib/thirdparty/redist"/>
+        <pathelement location="${base.dir}/thirdparty/"/>
+        <pathelement location="${base.dir}/bin/"/>
+        <pathelement location="${base.dir}/tools/tesseract"/>
+        <pathelement location="/usr/local/lib"/>
+        <pathelement location="/usr/lib/jni/"/>
+        <pathelement location="/usr/lib64/jni"/>
+        <pathelement location="/usr/lib/java/"/>
+        <pathelement location="/usr/lib64/java"/>
+    </path>
+    <pathconvert refid="native.libs.path" property="library_path" setonempty="false"/>
+    <!-- keep the paths exported by the environment (custom toolchains...) -->
+    <property environment="env"/>
+    <condition property="env.library_path" value=":${env.LD_LIBRARY_PATH}" else="">
+        <isset property="env.LD_LIBRARY_PATH"/>
+    </condition>
 
     <target name="test" depends="existing-tests, compile-test, validate, detectForkMode" if="test-present">
         <mkdir dir="${report.xml.test.dir}" />
@@ -191,6 +210,7 @@
 
             <classpath>
                 <path refid="unittest.classpath"/>
+                <path refid="unittest.runtime.classpath"/>
                 <path refid="compile.classpath"/>
                 <pathelement location="${cobertura.jar}"/>
                 <pathelement location="${classes.test.dir}"/>
@@ -200,6 +220,11 @@
 
             <!-- Where ${basedir} is the module base directory -->
             <env key="SCI" value="${basedir}/../.."/>
+            <!-- the OS dynamic linker needs the path to resolve JNI libraries dependencies -->
+            <env key="LD_LIBRARY_PATH" value="${library_path}${env.library_path}"/>
+            <!-- Tcl/Tk init scripts for the embedded GUI startup (see bin/scilab) -->
+            <env key="TCL_LIBRARY" value="${basedir}/../tclsci/tcl/tcl8.5"/>
+            <env key="TK_LIBRARY" value="${basedir}/../tclsci/tcl/tk8.5"/>
             <jvmarg value="-DtestngTests=1"/>
             <jvmarg value="-Djava.library.path=${library_path}"/>
 

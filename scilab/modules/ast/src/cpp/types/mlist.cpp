@@ -52,6 +52,16 @@ MList::~MList()
     DecreaseRef();
 }
 
+std::wstring MList::getTypeStr() const
+{
+    if (getSize() > 0 && (*m_plData)[0]->isString())
+    {
+        return TList::getTypeStr();
+    }
+    // malformed mlist without field names (e.g. built through api_scilab)
+    return L"mlist";
+}
+
 bool MList::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
     *_piSize = 0;

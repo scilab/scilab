@@ -88,6 +88,8 @@
         <pathelement location="${freehep-graphics2d.jar}"/>
         <pathelement location="${freehep-graphicsio-emf.jar}"/>
         <pathelement location="${freehep-graphicsio.jar}"/>
+        <pathelement location="${freehep-graphicsbase.jar}"/>
+        <pathelement location="${freehep-io.jar}"/>
         <pathelement location="${jakarta.activation-api.jar}"/>
         <pathelement location="${javax.annotation-api.jar}"/>
         <pathelement location="${jaxb-api.jar}"/>

@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import java.awt.GraphicsEnvironment;
 
@@ -33,6 +35,7 @@ import org.scilab.modules.javasci.JavasciException.InitializationException;
 import org.scilab.modules.javasci.JavasciException.UnsupportedTypeException;
 import org.scilab.modules.javasci.JavasciException.UndefinedVariableException;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabInteger;
 import org.scilab.modules.types.ScilabTypeEnum;
 import org.scilab.modules.commons.ScilabCommons;
@@ -53,6 +56,7 @@ import javax.swing.JPanel;
 public class testBug9544 {
     private Scilab sci;
     private Test_sci x;
+    private CountDownLatch clicked = new CountDownLatch(1);
 
     /*
      * This method will be called for each test.
@@ -70,7 +74,30 @@ public class testBug9544 {
     @Test()
     public void nonRegBug9544Working() throws NullPointerException, JavasciException, IOException {
         if (!GraphicsEnvironment.isHeadless()) {
-            x = new Test_sci();
+            x = new Test_sci(false);
+            // wait for the Swing callback completion to avoid closing the engine with a job in flight
+            try {
+                clicked.await(30, TimeUnit.SECONDS);
+            } catch (InterruptedException e) {
+                fail("interrupted while waiting for the Swing callback");
+            }
+        }
+    }
+
+    @Test()
+    public void nonRegBug9544PlotFromThread() throws NullPointerException, JavasciException, IOException {
+        if (!GraphicsEnvironment.isHeadless()) {
+            x = new Test_sci(true);
+            try {
+                clicked.await(30, TimeUnit.SECONDS);
+            } catch (InterruptedException e) {
+                fail("interrupted while waiting for the plot thread");
+            }
+            // the synchronous exec above covers plot(): Z proves the whole job ran
+            assertTrue(sci.exec("Z = X .* Y;"));
+            ScilabDouble z = (ScilabDouble) sci.get("Z");
+            assertTrue(z.equals(new ScilabDouble(new double[][] {{3.0, 8.0}})));
+            assertTrue(sci.exec("delete(gcf());"));
         }
     }
 
@@ -94,9 +121,10 @@ public class testBug9544 {
 
         private Scilab sci;
 
+        private boolean plot;
 
-
-        public Test_sci() { /*throws IOException*/
+        public Test_sci(boolean plot) { /*throws IOException*/
+            this.plot = plot;
             try {
                 sci = new Scilab(true);
             } catch (org.scilab.modules.javasci.JavasciException f) {
@@ -132,8 +160,31 @@ public class testBug9544 {
                 List<String> commands = new ArrayList<String>();
                 commands.add("X = [1,2];");
                 commands.add("Y = [3,4];");
-                commands.add("plot(X,Y);");
-                assertTrue(sci.exec(commands.toArray(new String[commands.size()])));
+                if (plot) {
+                    // the engine will block on the event dispatch thread while the
+                    // graphics are created: run the job on a worker thread so that
+                    // the event dispatch thread stays free
+                    commands.add("plot(X, Y);");
+                    commands.add("Z = X .* Y;");
+                    new Thread(new Runnable() {
+                        public void run() {
+                            try {
+                                assertTrue(sci.exec(commands.toArray(new String[commands.size()])));
+                            } finally {
+                                clicked.countDown();
+                            }
+                        }
+                    }).start();
+                    return;
+                }
+                // no graphics command here: the engine would wait for the event dispatch
+                // thread, which is itself blocked in this synchronous exec
+                commands.add("Z = X .* Y;");
+                try {
+                    assertTrue(sci.exec(commands.toArray(new String[commands.size()])));
+                } finally {
+                    clicked.countDown();
+                }
             }
 
         }

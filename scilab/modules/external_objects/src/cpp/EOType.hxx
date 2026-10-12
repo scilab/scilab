@@ -23,18 +23,7 @@ namespace org_modules_external_objects
 class EOType : public types::UserType
 {
 public :
-    EOType(int envId, bool isNew) : id(envId), isNew(isNew)
-    {
-        if (pFunc == nullptr)
-        {
-            symbol::Context* ctx = symbol::Context::getInstance();
-            types::InternalType* pIT = ctx->get(symbol::Symbol(ScilabObjects::_INVOKE_));
-            if (pIT && pIT->isCallable())
-            {
-                pFunc = pIT->getAs<types::Callable>();
-            }
-        }
-    }
+    EOType(int envId, bool isNew) : id(envId), isNew(isNew) {}
     virtual ~EOType() {}
 
     inline std::wstring getTypeStr() const override
@@ -86,7 +75,6 @@ public :
     bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, const ast::Exp & /*e*/) override;
 
 private:
-    static types::Callable* pFunc;
     int id;
     bool isNew;
 

@@ -15,6 +15,8 @@
  */
 
 #include "ScilabToJava.hxx"
+#include "double.hxx"
+#include "struct.hxx"
 #ifdef _MSC_VER
 #pragma warning(disable: 4800)
 #endif
@@ -410,6 +412,12 @@ bool ScilabToJava::sendVariable(const std::string & name, std::vector<int> & ind
             listtype = 'l';
             break;
         case sci_mlist :
+            if (((types::InternalType *)addr)->getType() == types::InternalType::ScilabStruct)
+            {
+                // api_scilab gives structs the mlist type for Scilab 5 compatibility,
+                // they are sent to Java as their "st" mlist counterpart
+                return sendStruct(name, indexes, (types::Struct *)addr, swaped, handlerId, pvApiCtx);
+            }
             listtype = 'm';
             break;
         case sci_tlist :
@@ -462,6 +470,40 @@ inline bool ScilabToJava::sendItems(const std::string & name, const int nbItems,
     }
 
     return true;
+}
+
+// A struct is sent to Java as its "st" mlist counterpart
+inline bool ScilabToJava::sendStruct(const std::string & name, std::vector<int> & indexes, types::Struct * pStruct, bool swaped, int handlerId, void * pvApiCtx)
+{
+    int nbItems = 2;
+    if (pStruct->getSize() > 0)
+    {
+        nbItems += pStruct->get(0)->getNumFields();
+    }
+
+    types::typed_list args;
+    types::Double * index = new types::Double(1, nbItems);
+    for (int i = 0; i < nbItems; i++)
+    {
+        index->set(i, i + 1);
+    }
+    args.push_back(index);
+
+    types::typed_list items = pStruct->extractFields(&args);
+    index->killMe();
+
+    sendVariable(name, (int)items.size(), indexes, 'm', false, handlerId);
+    bool b = true;
+    for (int i = 0; i < (int)items.size(); i++)
+    {
+        indexes.push_back(i + 1);
+        b = sendVariable(name, indexes, (int *)items[i], swaped, false, handlerId, pvApiCtx) && b;
+        indexes.pop_back();
+        items[i]->killMe();
+    }
+    closeList(indexes, handlerId);
+
+    return b;
 }
 
 inline int * ScilabToJava::getIndexesPointer(std::vector<int> & indexes)
