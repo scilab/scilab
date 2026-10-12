@@ -44,6 +44,16 @@ public abstract class ConvexObject extends AbstractDrawable3DObject implements C
     }
 
     /**
+     * Constructor
+     * @param vertices the vertices
+     * @param colors the colors
+     * @param validate false to skip the degenerate and NaN/Inf vertices checks
+     */
+    protected ConvexObject(Vector3d[] vertices, Color[] colors, boolean validate) throws InvalidPolygonException {
+        super(vertices, colors, validate);
+    }
+
+    /**
      * Abstract method
      * Break this ConvexObject against the ConvexObject o
      * @param o a ConvexObject

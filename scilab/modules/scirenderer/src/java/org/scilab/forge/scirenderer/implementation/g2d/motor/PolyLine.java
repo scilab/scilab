@@ -48,7 +48,8 @@ public class PolyLine extends ConvexObject {
      * @param stroke the stroke to used
      */
     public PolyLine(Vector3d[] vertices, Color[] colors, G2DStroke stroke) throws InvalidPolygonException {
-        super(vertices, colors);
+        // getPolyLines() already splits at NaN/Inf points
+        super(vertices, colors, false);
         if (vertices.length <= 1) {
             throw new InvalidPolygonException("A polyline cannot have one or zero point");
         }
@@ -144,20 +145,6 @@ public class PolyLine extends ConvexObject {
      */
     public List<ConvexObject> breakObject(ConvexObject o) {
         return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected boolean isDegenerate() {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected boolean isNanOrInf() {
-        return false;
     }
 
     /**

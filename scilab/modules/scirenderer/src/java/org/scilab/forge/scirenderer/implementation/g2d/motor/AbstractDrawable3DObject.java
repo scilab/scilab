@@ -50,13 +50,25 @@ public abstract class AbstractDrawable3DObject {
      * @param vertices the vertices
      */
     public AbstractDrawable3DObject(Vector3d[] vertices, Color[] colors) throws InvalidPolygonException {
+        this(vertices, colors, true);
+    }
+
+    /**
+     * Constructor
+     * @param vertices the vertices
+     * @param colors the colors
+     * @param validate false for objects allowed to repeat a vertex (a polyline may go through a point twice)
+     */
+    protected AbstractDrawable3DObject(Vector3d[] vertices, Color[] colors, boolean validate) throws InvalidPolygonException {
         if (vertices == null || vertices.length == 0) {
             throw new InvalidPolygonException("Invalid 3D Object: no vertices was given");
         }
-        
-        // Validate vertices before assigning to final fields to avoid this-escape
-        validateVerticesStatic(vertices);
-        
+
+        // A flag rather than an overridable check, to avoid this-escape
+        if (validate) {
+            validateVerticesStatic(vertices);
+        }
+
         this.vertices = vertices;
         if (colors != null && AbstractDrawable3DObject.isMonochromatic(colors)) {
             this.color = colors[0];
@@ -386,17 +398,6 @@ public abstract class AbstractDrawable3DObject {
         }
 
         return c1;
-    }
-
-    /**
-     * @return true if there are two vertices which are indentical
-     */
-    protected boolean isDegenerate() {
-        return isDegenerateStatic(vertices);
-    }
-
-    protected boolean isNanOrInf() {
-        return isNanOrInfStatic(vertices);
     }
 
     public static final boolean isNanOrInf(final Vector3d v) {
