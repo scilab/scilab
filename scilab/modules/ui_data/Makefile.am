@@ -33,6 +33,12 @@ libsciui_data_la_etc_DATA = \
 	etc/XConfiguration-variables.xml \
 	etc/XConfiguration-variables.xsl
 
+#### ui_data : News feed web page ####
+libsciui_data_la_webdir = $(mydatadir)/src/web
+libsciui_data_la_web_DATA = \
+	src/web/newsfeed.html \
+	src/web/newsfeed.css
+
 UI_DATA_JNI_SOURCES = \
     src/jni/BrowseVar.cpp \
     src/jni/EditVar.cpp \

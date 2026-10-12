@@ -2,6 +2,7 @@
  * Scilab ( https://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2016 - Scilab Enterprises - Simon Marchetto
  * Copyright (C) 2016 - Scilab Enterprises - Clement David
+ * Copyright (C) 2026 - Dassault Systèmes S.E. - Clément DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -20,22 +21,16 @@ import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.utils.WebBrowser;
 
+import com.google.gson.Gson;
+
+import org.scilab.modules.commons.gui.ScilabCefPanel;
+
 import javax.swing.JPanel;
-import javax.swing.JEditorPane;
-import javax.swing.JScrollPane;
-import javax.swing.text.html.HTMLEditorKit;
-import javax.swing.text.Document;
-import javax.swing.event.HyperlinkEvent;
-import javax.swing.event.HyperlinkListener;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+import javax.swing.Timer;
 
 import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.io.File;
-import java.text.SimpleDateFormat;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -47,13 +42,16 @@ import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import org.cef.browser.CefBrowser;
+import org.cef.browser.CefFrame;
+import org.cef.handler.CefLoadHandlerAdapter;
+
 /**
  * News feed widget Displays one news at a time.
  * Controlled by NewsFeedController
- * Displays news in HTML format (JEditorPane/HTMLEditorKit)
- * Loads styles from CSS newsfeed.css (in directory ui_data/etc or SCIHOME)
+ * Displays news in HTML format using JCEF browser
  */
-public final class NewsFeedWidget extends JPanel implements NewsFeedEventListener, HyperlinkListener {
+public final class NewsFeedWidget extends JPanel implements NewsFeedEventListener {
     private static final long serialVersionUID = 1L;
     private static final String NEWS_DATE_HTML_ID = "news_date";
     private static final String NEWS_CONTENT_HTML_ID = "news_content";
@@ -62,31 +60,24 @@ public final class NewsFeedWidget extends JPanel implements NewsFeedEventListene
     private static final String NEWS_DESCRIPTION_HTML_ID = "news_description";
 
     private final transient NewsFeedController newsFeedController;
-    private final transient JEditorPane editorPane;
-    private final transient JScrollPane scrollPane;
     private final transient JPanel headerPane;
     private final JButton headerButton;
+    private final ScilabCefPanel cefPanel;
 
     public NewsFeedWidget(NewsFeedController newsFeedController) {
         this.newsFeedController = newsFeedController;
 
-        editorPane = new JEditorPane();
-        editorPane.setEditable(false);
-        editorPane.setContentType("text/html");
+        cefPanel = new ScilabCefPanel(getURL());
 
-        // use current look & feel font
-        editorPane.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
-        Font font = UIManager.getFont("Label.font");
-        editorPane.setFont(font);
-
-        HTMLEditorKit htmlEditorKit = new HTMLEditorKit();
-        editorPane.setEditorKit(htmlEditorKit);
-        Document doc = htmlEditorKit.createDefaultDocument();
-        editorPane.setDocument(doc);
-
-        htmlEditorKit.getStyleSheet().importStyleSheet(getStyleSheetURL());
-
-        editorPane.addHyperlinkListener(this);
+        // Report errors when loading the news feed page, and display an error message in this case
+        cefPanel.getClient().addLoadHandler(new CefLoadHandlerAdapter() 
+        {   
+            @Override
+            public void onLoadError(CefBrowser browser, CefFrame frame, ErrorCode errorCode, String errorText, String failedUrl) {
+                Logger.getLogger(NewsFeedWidget.class.getName()).log(Level.SEVERE, "Failed to load news feed page: {0} ({1})", new Object[]{errorText, failedUrl});
+                displayError(NewsFeedUIMessages.NEWS_FEED_UNAVAILABLE_ERROR);
+            }
+        });
 
         headerButton = new JButton();
         headerPane = new JPanel(new BorderLayout());
@@ -104,14 +95,19 @@ public final class NewsFeedWidget extends JPanel implements NewsFeedEventListene
             }
         }), BorderLayout.EAST);
 
-        scrollPane = new JScrollPane(editorPane);
-
         setLayout(new BorderLayout());
         add(headerPane, BorderLayout.NORTH);
-        add(scrollPane, BorderLayout.CENTER);
-        
-        // at startup, display an error message
-        displayError(NewsFeedUIMessages.NEWS_FEED_UNAVAILABLE_ERROR);
+        add(cefPanel, BorderLayout.CENTER);
+    }
+
+    private static final String getURL() {
+        String url;
+        try {
+            url = new File(ScilabConstants.SCI, "/modules/ui_data/src/web/newsfeed.html").toURI().toURL().toExternalForm();
+        } catch (MalformedURLException e) {
+            url = "about:blank";
+        }
+        return url;
     }
     
     public void newsFeedEventReceived(NewsFeedEvent evt) {
@@ -123,15 +119,6 @@ public final class NewsFeedWidget extends JPanel implements NewsFeedEventListene
             case NewsFeedEvent.NEWSFEED_ERROR: {
                 displayError(((NewsFeedErrorEvent) evt).getErrorMessage());
                 break;
-            }
-        }
-    }
-
-    public void hyperlinkUpdate(HyperlinkEvent event) {
-        if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-            URL url = event.getURL();
-            if (url != null) {
-                WebBrowser.openUrl(url, event.getDescription());
             }
         }
     }
@@ -148,7 +135,7 @@ public final class NewsFeedWidget extends JPanel implements NewsFeedEventListene
         if (news.getContent() != null) {
             // if given, use RSS item content
             newsHtmlBuilder.append(getDivHtml(news.getContent(), NEWS_CONTENT_HTML_ID));
-        } else {
+        } else if (news.getDescription() != null) {
             // otherwise get content from description
             newsHtmlBuilder.append(getDivHtml(news.getDescription(), NEWS_DESCRIPTION_HTML_ID));
         }
@@ -209,40 +196,30 @@ public final class NewsFeedWidget extends JPanel implements NewsFeedEventListene
     }
 
     private String getHTML(StringBuilder htmlBuilder) {
-        htmlBuilder.insert(0, "<html><body>");
-        htmlBuilder.append("</body></html>");
         return htmlBuilder.toString();
     }
 
     private void display(final Action titleAction, final String htmlContent) {
-        try	{
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    headerButton.setAction(titleAction);
-                    headerButton.setToolTipText(titleAction.getValue(Action.NAME).toString());
+        // Load HTML content into JCEF browser
+        if (htmlContent == null || htmlContent.isEmpty()) {
+            return;
+        }
 
-                    editorPane.setText(htmlContent);
-                    // reset position to the upper left
-                    editorPane.setCaretPosition(0);
-                }
-            });
-        } catch (Exception e) {
+        if (!cefPanel.getBrowser().hasDocument())
+        {
+            // wait for the loading and then display the content
+            Timer t = new Timer(2000, (ActionEvent e) -> display(titleAction, htmlContent));
+            t.setRepeats(false);
+            t.start();
+            return;
         }
-    }
 
-    private URL getStyleSheetURL() {
-        File settingsFile = new File(ScilabConstants.SCIHOME + "/newsfeed.css");
-        if (!settingsFile.exists()) {
-            settingsFile = new File(ScilabConstants.SCI + "/modules/ui_data/etc/newsfeed.css");
-        }
-        if (settingsFile.exists()) {
-            try {
-                return settingsFile.toURI().toURL();
-            } catch (MalformedURLException e) {
-                return null;
-            }
-        } else {
-            return null;
-        }
+        // load content using javascript
+        headerButton.setAction(titleAction);
+        headerButton.setToolTipText(titleAction.getValue(Action.NAME).toString());
+
+        StringBuilder jsStr = new StringBuilder("document.body.innerHTML = ");
+        new Gson().toJson(htmlContent, jsStr);
+        cefPanel.executeJS(jsStr.toString(), null);
     }
 }

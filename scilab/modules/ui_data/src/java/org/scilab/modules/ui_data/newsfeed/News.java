@@ -15,11 +15,7 @@
 
 package org.scilab.modules.ui_data.newsfeed;
 
-import java.io.File;
-import java.net.URI;
 import java.util.Date;
-
-import org.scilab.modules.commons.ScilabConstants;
 
 /**
  * News data
@@ -37,23 +33,7 @@ public class News {
         this.title = "Discover Scilab community";
         this.date = new Date();
         
-        URI uri = new File(ScilabConstants.SCI, "modules/graphics/demos/matplot/puffin.png").toURI();
-        String icon = "<IMG src=\"file://"+uri.getRawPath()+"\" height=\"80\" width=\"80\" />";
-        this.description = "<HTML>"
-                        + "<TABLE>"
-                        + "<TR valign=baseline>"
-                        + "<TD>"
-                        + icon
-                        + "<TD>"
-                        + "<P>Scilab is open source.<P>"
-                        + "<P>Giving back support or use cases is appreciated.<P>"
-                        + "</TABLE>"
-                        + "<UL>"
-                        + "<LI>Add and improve functions on <A href=\"https://gitlab.com/scilab/scilab\">GitLab</a>.</LI>"
-                        + "<LI>View and edit <A href=\"https://help.scilab.org\">help pages</a>.</LI>"
-                        + "<LI>Publish toolboxes on <A href=\"https://atoms.scilab.org\">ATOMS</a>.</LI>"
-                        + "<LI>Post questions on <A href=\"https://scilab.discourse.group/\">Discourse</a>.</LI>"
-                        + "</UL>";
+        this.description = null;
         this.content = null;
         this.mediaContent = null;
         this.link = null;

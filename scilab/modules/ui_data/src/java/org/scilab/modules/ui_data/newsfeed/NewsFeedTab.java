@@ -45,7 +45,7 @@ import java.util.ListIterator;
  * Main class to display a news feed in a tab Dockable panel (jflexdock) For
  * now, manages one tab only
  */
-public class NewsFeedTab extends SwingScilabDockablePanel implements SimpleTab {
+public class NewsFeedTab extends SwingScilabDockablePanel {
     private static final long serialVersionUID = 1L;
 
     public static final String NEWSFEED_UUID = "DC0957B3-81DA-4E39-B0B5-E93B35412162";

@@ -22,6 +22,8 @@ import javax.swing.Timer;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 /**
@@ -64,8 +66,8 @@ public final class NewsFeedController implements ActionListener {
         } else {
             newsChangeTimer = new Timer(ONE_SECOND, this);
             newsChangeTimer.setRepeats(false);
+            newsChangeTimer.setInitialDelay(ONE_SECOND);
         }
-        newsChangeTimer.setInitialDelay(ONE_SECOND);
 
         if (feedUpdateTimeInterval != NO_TIME_INTERVAL) {
             feedUpdateTimer = new Timer(feedUpdateTimeInterval, this);
@@ -103,6 +105,14 @@ public final class NewsFeedController implements ActionListener {
 
     public News getCurrentNews() {
         return currentNews;
+    }
+
+    public void resetCurrentNews() {
+        if (news.isEmpty()) {
+            currentNews = new News();
+        } else {
+            currentNews = news.get(0);
+        }
     }
 
     public void addNewsFeedEventListener(NewsFeedEventListener listener) {
@@ -158,8 +168,6 @@ public final class NewsFeedController implements ActionListener {
     }
 
     public void updateNewsFeed() {
-        news = new ArrayList<>();
-
         try {
             newsFetcher.readSettings();
 
@@ -167,11 +175,37 @@ public final class NewsFeedController implements ActionListener {
                 return;
             }
 
-            // TODO : update only if RSS feed has new news
-            newsFetcher.fetchNews(this, news);
+            newsFetcher.fetchNews(this, new ArrayList<>());
         } catch (Exception e) {
             System.err.println(e);
             fireNewsFeedErrorEvent(NewsFeedUIMessages.NEWS_FEED_UNAVAILABLE_ERROR);
+        }
+    }
+
+    public void updateToFetchedNews(List<News> fetched) {
+        // on network issue, do not update the feed
+        if (fetched.isEmpty()) {
+            return;
+        }
+
+        // on newly fetched news, force update
+        if (news.isEmpty()) {
+            currentNews = fetched.get(0);
+            news = fetched;
+            fireNewsFeedEvent(NewsFeedEvent.NEWS_CHANGED);
+            return;
+        }
+
+        // update the feed if there is more recent news
+        News recentOld = Collections.max(news, Comparator.comparing(News::getDate));
+        News recentFetched = Collections.max(fetched, Comparator.comparing(News::getDate));
+        
+        if (recentFetched.getDate().after(recentOld.getDate()))
+        {
+            news = fetched;
+            currentNews = fetched.get(0);
+            
+            fireNewsFeedEvent(NewsFeedEvent.NEWS_CHANGED);
         }
     }
 

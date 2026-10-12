@@ -1,0 +1,17 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+}
+
+h1 {
+    font-size: 1.5em;
+}
+
+ul {
+    margin-block-start: 0.3em;
+    margin-block-end: 0.5em;
+}
+
+code {
+    font-size: 1.3em;
+}
