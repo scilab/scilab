@@ -5,6 +5,7 @@
 
 // <-- XCOS TEST -->
 // <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 //
 // <-- Short Description -->
 // xcos(file) waits for the loading and reports its errors to the caller
