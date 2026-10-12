@@ -8,6 +8,7 @@
 #include <vector>
 #include <filesystem>
 #include <mutex>
+#include <atomic>
 
 #include <libxslt/xslt.h>
 #include <libxslt/transform.h>
@@ -40,7 +41,7 @@ extern "C"
 static std::unordered_map<std::string, types::Struct*> g_linksByLanguage;
 static std::mutex g_linksMutex;
 
-std::once_flag g_xmlInitOnce;
+std::atomic<bool> g_xmlInitialized{false};
 
 // One compiled stylesheet per file, reparsed only when the file changes. A
 // compiled stylesheet can be applied concurrently by several threads, so the
@@ -58,11 +59,20 @@ static thread_local xsltStylesheetPtr t_stylesheet = nullptr;
 //used in initscilab
 void ensureLibxmlInitialized()
 {
-    std::call_once(g_xmlInitOnce, []()
+    if (g_xmlInitialized.exchange(true))
     {
-        xmlInitParser();
-        xsltInit();
-    });
+        return;
+    }
+
+    xmlInitParser();
+    xsltInit();
+}
+
+//used in initscilab
+void shutdownXslt()
+{
+    xsltCleanupGlobals();
+    g_xmlInitialized = false;
 }
 
 std::string normalizeSeparators(const std::string& value)

@@ -603,8 +603,9 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     /* TerminateCorePart2 end */
 
     /*
-    * Cleanup function for the XML library.
+    * Cleanup function for the XML libraries.
     */
+    shutdownXslt();
     xmlCleanupParser();
 
     /* Cleanup the parser state */

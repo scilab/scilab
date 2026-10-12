@@ -29,5 +29,6 @@ CORE_IMPEXP bool loadStyleSheet(const std::string& sciPath);
 CORE_IMPEXP std::string buildAbsolutePath(const std::string& sciPath, std::string stored, bool* isScilab = nullptr);
 
 void ensureLibxmlInitialized();
+void shutdownXslt();
 
 #endif /* !__INLINEHELP_HXX__ */
