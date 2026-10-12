@@ -90,7 +90,7 @@ public final class MainPanel extends JPanel {
     private javax.swing.JCheckBox generateJacobianButton;
     private javax.swing.JButton solveButton;
     private javax.swing.JLabel solver;
-    private javax.swing.JComboBox<String> solverComboBox;
+    private javax.swing.JComboBox<ComputationMethod> solverComboBox;
     private javax.swing.JProgressBar solverWaitBar;
     private javax.swing.JPanel variableStatusBar;
     private javax.swing.JPanel extendedStatus;
@@ -242,12 +242,7 @@ public final class MainPanel extends JPanel {
         solver.setText(ModelicaMessages.SOLVER + " :");
         control.add(solver);
 
-        ModelicaController.ComputationMethod[] methods = ModelicaController.ComputationMethod.values();
-        String[] methodNames = new String[methods.length];
-        for (int i = 0; i < methods.length; i++) {
-            methodNames[i] = methods[i].name();
-        }
-        solverComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(methodNames));
+        solverComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(ComputationMethod.values()));
         solverComboBox.setToolTipText(ModelicaMessages.INITIAL_COMPUTING_METHOD);
         control.add(solverComboBox);
 

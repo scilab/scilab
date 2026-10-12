@@ -97,7 +97,7 @@ public final class ModelicaController {
     private boolean valid;
     private boolean parameterEmbedded;
     private boolean jacobianEnable;
-    private ComputationMethod computeMethod;
+    private ComputationMethod computeMethod = ComputationMethod.Kinsol;
 
     private final EventListenerList listenerList = new EventListenerList();
     private transient ChangeEvent changeEvent; // = null
@@ -261,7 +261,7 @@ public final class ModelicaController {
      *            the computeMethod to set
      */
     public void setComputeMethod(ComputationMethod computeMethod) {
-        if (this.computeMethod != null && !this.computeMethod.equals(computeMethod)) {
+        if (computeMethod != null && this.computeMethod != computeMethod) {
             this.computeMethod = computeMethod;
 
             fireChange();
