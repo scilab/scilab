@@ -161,6 +161,12 @@ public final class ScilabCefPanel extends JPanel {
     /** Max time (ms) dispose() waits for closing browsers. */
     private static final long CLOSING_BROWSERS_TIMEOUT_MS = 500;
 
+    /** Max time (ms) a docking move waits for CEF to detach the native view. */
+    private static final long DETACH_TIMEOUT_MS = 500;
+    /** Counts the native reparents CEF reported done (onAfterParentChanged). */
+    private final transient Object parentChangeLock = new Object();
+    private int parentChanges = 0;
+
     /**
      * Invisible heavyweight AWT Canvas whose sole purpose is to own a
      * native HWND that can steal OS keyboard focus from Chromium's HWND.
@@ -371,6 +377,16 @@ public final class ScilabCefPanel extends JPanel {
             if (b != browser && devToolsRequested && devToolsBrowser == null) {
                 devToolsRequested = false;
                 devToolsBrowser = b;
+            }
+        }
+
+        @Override
+        public void onAfterParentChanged(CefBrowser b) {
+            if (b == browser) {
+                synchronized (parentChangeLock) {
+                    parentChanges++;
+                    parentChangeLock.notifyAll();
+                }
             }
         }
 
@@ -1240,6 +1256,7 @@ public final class ScilabCefPanel extends JPanel {
         // A docking move must let JCEF temporarily detach and reparent its
         // native child without closing the browser.
         if (isDocking > 0) {
+            detachNativeView();
             super.removeNotify();
             return;
         }
@@ -1253,6 +1270,76 @@ public final class ScilabCefPanel extends JPanel {
          */
         dispose();
         super.removeNotify();
+    }
+
+    /**
+     * CefBrowser_N internals used by detachNativeView() (checked against
+     * JCEF 146), resolved on first use.
+     */
+    private static final class CefBrowserInternals {
+        static final java.lang.reflect.Method SET_PARENT;
+        static final java.lang.reflect.Field IS_CLOSING;
+        static final java.lang.reflect.Field IS_CLOSED;
+
+        static {
+            try {
+                Class<?> c = Class.forName("org.cef.browser.CefBrowser_N");
+                SET_PARENT = c.getDeclaredMethod("setParent", long.class, Component.class);
+                IS_CLOSING = c.getDeclaredField("isClosing_");
+                IS_CLOSED = c.getDeclaredField("isClosed_");
+                SET_PARENT.setAccessible(true);
+                IS_CLOSING.setAccessible(true);
+                IS_CLOSED.setAccessible(true);
+            } catch (ReflectiveOperationException e) {
+                throw new IllegalStateException(e);
+            }
+        }
+
+        /** Mirrors the guard that makes CefBrowser_N.setParent() a no-op. */
+        static boolean isClosingOrClosed(CefBrowser b) throws IllegalAccessException {
+            return IS_CLOSING.getBoolean(b) || IS_CLOSED.getBoolean(b);
+        }
+    }
+
+    /**
+     * Windows: JCEF only posts the detach of its native view to the CEF UI
+     * thread, while AWT destroys the parent window right away. If the
+     * destruction wins, Chromium never renders this browser again.
+     */
+    private void detachNativeView() {
+        CefBrowser b = browser;
+        if (OS.get() != OS.WINDOWS || b == null || !isDisplayable() || ScilabBrowser.isShutdown()) {
+            return;
+        }
+        synchronized (parentChangeLock) {
+            int before = parentChanges;
+            try {
+                if (CefBrowserInternals.isClosingOrClosed(b)) {
+                    // setParent() would silently do nothing: no
+                    // onAfterParentChanged to wait for
+                    return;
+                }
+                CefBrowserInternals.SET_PARENT.invoke(b, 0L, null);
+            } catch (ReflectiveOperationException | RuntimeException | LinkageError e) {
+                // LinkageError: CefBrowserInternals failed to initialize
+                log.warning("Cannot detach the browser: " + e);
+                return;
+            }
+            long end = System.currentTimeMillis() + DETACH_TIMEOUT_MS;
+            long remaining = DETACH_TIMEOUT_MS;
+            while (parentChanges == before && remaining > 0) {
+                try {
+                    parentChangeLock.wait(remaining);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    return;
+                }
+                remaining = end - System.currentTimeMillis();
+            }
+            if (parentChanges == before) {
+                log.warning("Browser not detached in time");
+            }
+        }
     }
 
     /**
