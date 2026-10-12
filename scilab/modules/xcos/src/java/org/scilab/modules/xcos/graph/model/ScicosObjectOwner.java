@@ -15,13 +15,17 @@
 
 package org.scilab.modules.xcos.graph.model;
 
+import java.lang.ref.Cleaner;
+
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 
 /**
  * Helper class to own a Scicos MVC object from the Java world.
  */
-public class ScicosObjectOwner {
+public final class ScicosObjectOwner {
+    private static final Cleaner CLEANER = Cleaner.create();
+
     final long uid;
     final Kind kind;
 
@@ -39,6 +43,8 @@ public class ScicosObjectOwner {
         this.kind = kind;
 
         controller.referenceObject(uid);
+        // Release the reference once unreachable; the action must not capture this.
+        CLEANER.register(this, () -> new JavaController().deleteObject(uid));
     }
 
     public long getUID() {
