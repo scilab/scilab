@@ -39,7 +39,6 @@ mputl(["<?xml version=""1.0"" encoding=""UTF-8""?>"
        "plot3d() // should link on plot3d"
        "]]></programlisting>"
        "</refentry>"], tmpfile);
-jar = xmltojar(tmpdir, 'mytbx', 'en_US');
 tmpdir = TMPDIR + "/testlinks/demos";
 mkdir(tmpdir);
 tmpfile = tmpdir + "/mytbxdemo.sce";
@@ -48,5 +47,5 @@ tmpdir = TMPDIR + "/testlinks/macros";
 mkdir(tmpdir);
 tmpfile = tmpdir + "/fooexec.sce";
 mputl("about;", tmpfile);
-add_help_chapter('mytbx', TMPDIR + "/testlinks/jar")
+add_help_chapter('mytbx', TMPDIR + "/testlinks")
 doc('mytbx_foo')

@@ -4,109 +4,24 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- NO CHECK ERROR OUTPUT -->
-// <-- NEED JVM -->
+// <-- NO CHECK REF -->
 
-// xmltojar
+// xmltojar is obsolete: it builds no jar anymore and forwards each help
+// directory to tbx_build_help. Fixture: SCI/modules/helptools/examples.
 
-// TEST 1 (french help and english help are complete)
-// =============================================================================
-
-tmpPath = TMPDIR + "/examples";
+tmpPath = TMPDIR + "/xmltojar";
 copyfile("SCI/modules/helptools/examples", tmpPath);
-my_module_path = pathconvert(tmpPath + "/example_1",%f,%f);
 
-// Build the french help
+for ex = ["example_1" "example_2" "example_3"]
+    my_module_path = pathconvert(tmpPath + "/" + ex, %f, %f);
+    for lang = ["fr_FR" "en_US"]
+        r = xmltojar(my_module_path + "/help/" + lang, ex + " [" + lang + "]", lang);
+        assert_checkequal(r, []);
+    end
+    assert_checkfalse(isdir(my_module_path + "/jar"));
+end
 
-setlanguage("fr_FR");
-my_french_help_dir    =  my_module_path+"/help/fr_FR";
-my_french_help_title  =  "TEST 1 [fr_FR]";
-xmltojar(my_french_help_dir,my_french_help_title,"fr_FR");
+// No argument: Scilab's own help, nothing to build anymore
+assert_checkequal(xmltojar(), []);
 
-jar_info =  fileinfo(my_module_path+"/jar/scilab_fr_FR_help.jar");
-if jar_info == [] then pause, end       // file existence
-if jar_info(1) < 5000 then pause, end   // file size
-
-clean_help(my_french_help_dir);
-
-// Build the english help
-
-setlanguage("en_US");
-my_english_help_dir    =  my_module_path+"/help/en_US";
-my_english_help_title  =  "TEST 1 [en_US]";
-xmltojar(my_english_help_dir,my_english_help_title,'en_US');
-
-jar_info =  fileinfo(my_module_path+"/jar/scilab_en_US_help.jar");
-if jar_info == [] then pause, end       // file existence
-if jar_info(1) < 5000 then pause, end   // file size
-
-clean_help(my_english_help_dir);
-
-
-
-// TEST 2 (example_2_function_2 and example_2_function_4 are missing in the
-//         french help)
-// =============================================================================
-
-my_module_path = pathconvert(tmpPath + "/example_2",%f,%f);
-
-// Build the french help
-
-setlanguage("fr_FR");
-my_french_help_dir    =  my_module_path+"/help/fr_FR";
-my_french_help_title  =  "TEST 2 [fr_FR]";
-xmltojar(my_french_help_dir,my_french_help_title,'fr_FR');
-
-jar_info =  fileinfo(my_module_path+"/jar/scilab_fr_FR_help.jar");
-if jar_info == [] then pause, end       // file existence
-if jar_info(1) < 5000 then pause, end   // file size
-
-clean_help(my_french_help_dir);
-
-// Build the english help
-
-setlanguage("en_US");
-my_english_help_dir    =  my_module_path+"/help/en_US";
-my_english_help_title  =  "TEST 2 [en_US]";
-xmltojar(my_english_help_dir,my_english_help_title,'en_US');
-
-jar_info =  fileinfo(my_module_path+"/jar/scilab_en_US_help.jar");
-if jar_info == [] then pause, end       // file existence
-if jar_info(1) < 5000 then pause, end   // file size
-
-clean_help(my_english_help_dir);
-
-
-
-// TEST 3 (example_3_function_3 and example_3_function_4 are missing in the
-//         english help)
-// =============================================================================
-
-my_module_path = pathconvert(tmpPath + "/example_3",%f,%f);
-
-// Build the french help
-
-setlanguage("fr_FR");
-my_french_help_dir    =  my_module_path+"/help/fr_FR";
-my_french_help_title  =  "TEST 3 [fr_FR]";
-xmltojar(my_french_help_dir,my_french_help_title,"fr_FR");
-
-jar_info =  fileinfo(my_module_path+"/jar/scilab_fr_FR_help.jar");
-if jar_info == [] then pause, end       // file existence
-if jar_info(1) < 5000 then pause, end   // file size
-
-clean_help(my_french_help_dir);
-
-// Build the english help
-
-setlanguage("en_US");
-my_english_help_dir    =  my_module_path+"/help/en_US";
-my_english_help_title  =  "TEST 3 [en_US]";
-xmltojar(my_english_help_dir,my_english_help_title,"en_US","fr_FR");
-
-jar_info =  fileinfo(my_module_path+"/jar/scilab_en_US_help.jar");
-if jar_info == [] then pause, end       // file existence
-if jar_info(1) < 5000 then pause, end   // file size
-
-clean_help(my_english_help_dir);
-
+rmdir(tmpPath, "s");

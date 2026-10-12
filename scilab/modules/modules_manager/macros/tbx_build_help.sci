@@ -13,19 +13,15 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-// This function used to build a JavaHelp jar (scilab_<lang>_help.jar) via
-// xmltojar. Since the migration to the JCEF help browser the help is rendered
-// directly from the DocBook XML sources (<toolbox>/help/<lang>/*.xml), so no
-// jar is built anymore. What is left to do at build time is pre-generating the
-// images described by the <scilab:image> blocks and the .zcos diagrams of the
-// pages, into <toolbox>/help/images: the user does not pay for their
-// generation on every first display, and an example broken by an API change
-// shows up here rather than as a missing image in the browser. The index of
-// the inline help (<toolbox>/inline/<lang>/links.json) is also built here.
+// The help browser renders the XML pages directly: at build time, only the
+// images of the <scilab:image> blocks and .zcos diagrams are pre-generated,
+// into <toolbox>/help/images, so that a broken example shows up here rather
+// than as a missing image. The inline help index (<toolbox>/inline/<lang>/
+// links.json) is also built here.
 //
-// As for the jar before it, the generation runs in another Scilab loading the
-// freshly built toolbox (its etc/*.start): the examples call the functions of
-// the toolbox, which is not loaded in the session running the builder.
+// The generation runs in another Scilab loading the freshly built toolbox
+// (its etc/*.start): the examples call functions of the toolbox, which is not
+// loaded in the session running the builder.
 //
 // The images of every language are generated at once. The historical calling
 // convention -- one call per language, from each help/<lang>/build_help.sce --

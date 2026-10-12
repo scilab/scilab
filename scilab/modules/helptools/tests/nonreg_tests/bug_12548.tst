@@ -25,4 +25,4 @@ mkdir(pathDest);
 
 mputl(help_skeleton("bug_12548"), fullfile(pathDest, "bug_12548.xml"));
 
-assert_checktrue(execstr("xmltoformat(""javaHelp"",pathDest, ""bug help"")","errcatch")==0);
+assert_checktrue(execstr("xmltoformat(""html"",pathDest, ""bug help"")","errcatch")==0);

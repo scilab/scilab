@@ -32,7 +32,7 @@
         var linkend = a.getAttribute("data-linkend");
         if (linkend) {
             // type="remote": "<location>/<url>" opens the URL (see
-            // handleScilabLink, SwingScilabHelpBrowserJCEF)
+            // handleScilabLink, SwingScilabHelpBrowser)
             var slash = linkend.indexOf("/");
             if (a.getAttribute("data-link-type") === "remote" && slash >= 0) {
                 return linkend.substring(slash + 1);

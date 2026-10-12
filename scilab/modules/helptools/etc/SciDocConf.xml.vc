@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 
-<!-- id is used to identify the jar file (JavaHelp only) -->
-<scidoc id="scilab">
+<scidoc>
 
   <!-- Path to the CSS file for the doc style -->
   <css doc="${SCI}/modules/helptools/data/css/style.css" />
 
   <!-- These files are used to give the structure of a the documentation files -->
-  <templates javahelp="${SCI}/modules/helptools/data/template/template_javahelp.html"
-             html="${SCI}/modules/helptools/data/template/template_html.html"
+  <templates html="${SCI}/modules/helptools/data/template/template_html.html"
              chm="${SCI}/modules/helptools/data/template/template_chm.html"
              web="${SCI}/modules/helptools/data/template/template_web.html" />
 

@@ -65,7 +65,6 @@ jmethodID voidsetWorkingLanguagejstringjava_lang_StringID; // cache method id
 jmethodID voidsetExportFormatjstringjava_lang_StringID; // cache method id
 jmethodID voidsetIsToolboxjbooleanbooleanID; // cache method id
 jmethodID jstringprocessjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-jmethodID voidgenerateJavahelpjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID; // cache method id
 
 
 
@@ -136,8 +135,6 @@ void setExportFormat(char const* format);
 void setIsToolbox(bool isToolbox);
 
 char* process(char const* sourceDoc, char const* styleSheet);
-
-static void generateJavahelp(JavaVM * jvm_, char const* outputDir, char const* language, bool isToolbox);
 
 
                         /**

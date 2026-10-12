@@ -11,13 +11,11 @@ public interface Converter {
      */
     public static enum Backend {
         /* Docbook converters */
-        JAVAHELP,
         HTML,
         WEB,
         CHM,
         FO,
         /* Containers */
-        JAR_ONLY,
         PDF,
         PS
     }

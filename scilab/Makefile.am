@@ -314,11 +314,6 @@ doc-images:
 	rm -rf $(top_srcdir)/modules/helptools/images/
 	$(MAKE) doc
 
-# The JavaHelp documentation jars (built here via xmltojar: targets doc,
-# doc-fr_FR..doc-ja_JP and doc-images) are obsolete -- the JCEF help browser
-# renders the DocBook help XML directly. The online HTML documentation is
-# still produced by the doc-web target below.
-
 doc: $(SCILAB_BUILD_HOME_FILE) javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
 	@if test -x $(top_builddir)/scilab-bin; then \
@@ -560,9 +555,6 @@ if GENERATE_LOCALIZATION_FILES
 	done
 endif
 ################ INSTALL DOCUMENTATION #################
-# The JavaHelp documentation jars (scilab_*_help.jar) and the images jar
-# (scilab_images.jar) are no longer built or installed: the JCEF help browser
-# renders the DocBook help XML directly from each module's help/ directory.
 # Documentation (images archive)
 if BUILD_HELP
 	if ls -lLd $(top_builddir)/$(PATHTODOCFILES)/$(DOCIMAGES) >/dev/null 2>&1; then \

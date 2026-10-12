@@ -12,24 +12,24 @@
 
 function generated_files = xmltojar(dirs,titles,directory_language,default_language)
 
-    lhs=argn(1);
+    warnobsolete("tbx_build_help", "2027.1.0");
+
     rhs=argn(2);
-
-    select rhs
-
-    case 0 then
-        generated_files = xmltoformat("javaHelp");
-    case 1 then
-        generated_files = xmltoformat("javaHelp",dirs);
-    case 2 then
-        generated_files = xmltoformat("javaHelp",dirs,titles);
-    case 3 then
-        generated_files = xmltoformat("javaHelp",dirs,titles,directory_language);
-    case 4 then
-        generated_files = xmltoformat("javaHelp",dirs,titles,directory_language,default_language);
-    else
+    if rhs > 4 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At most %d expected.\n"),"xmltojar",4));
+    end
 
+    // No jar is built anymore: the help browser renders the XML pages.
+    // Only the images of the given help directories are pre-generated.
+    generated_files = [];
+    if rhs < 1 then
+        return
+    end
+    if rhs < 2 | size(titles, "*") <> size(dirs, "*") then
+        titles = basename(dirs);
+    end
+    for k = 1:size(dirs, "*")
+        tbx_build_help(titles(k), dirs(k));
     end
 
 endfunction

@@ -55,7 +55,6 @@
             <artifact name="gluegen-rt" type="jar" ext="jar" m:classifier="natives-macosx-universal"/>
         </dependency>
         -->
-        <!-- COPY --><!--<dependency org="" name="jhall" rev="2.0"/>-->
         <!-- COPY --><!--<dependency org="" name="jrosetta-api" rev="1.0.4"/>-->
         <!-- COPY --><!--<dependency org="" name="jrosetta-engine" rev="1.0.4"/>-->
         <dependency org="org.apache.lucene" name="lucene-core" rev="9.10.0" conf="*->default"/>

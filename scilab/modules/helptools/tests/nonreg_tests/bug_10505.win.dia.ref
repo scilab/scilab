@@ -38,7 +38,7 @@ mputl(["<?xml version=""1.0"" encoding=""UTF-8""?>"
        "</refsection>"
        "</refentry>"], tmpfile);
 cd(tmpdir);
-jar = xmltojar('.', 'foo', 'en_US');
+html = xmltohtml('.', 'foo', 'en_US');
 Building the links file [inline] in TMPDIR/inline/en_US.
-Building the manual file [javaHelp] in TMPDIR\testxml\en_US.
-if ~isfile(jar) then bugmes();quit;end
+Building the manual file [html] in TMPDIR\testxml\en_US.
+if ~isfile(html) then bugmes();quit;end

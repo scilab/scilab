@@ -92,7 +92,6 @@ voidsetWorkingLanguagejstringjava_lang_StringID=NULL;
 voidsetExportFormatjstringjava_lang_StringID=NULL;
 voidsetIsToolboxjbooleanbooleanID=NULL;
 jstringprocessjstringjava_lang_Stringjstringjava_lang_StringID=NULL;
-voidgenerateJavahelpjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID=NULL;
 
 
 }
@@ -121,7 +120,6 @@ voidsetWorkingLanguagejstringjava_lang_StringID=NULL;
 voidsetExportFormatjstringjava_lang_StringID=NULL;
 voidsetIsToolboxjbooleanbooleanID=NULL;
 jstringprocessjstringjava_lang_Stringjstringjava_lang_StringID=NULL;
-voidgenerateJavahelpjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID=NULL;
 
 
 }
@@ -288,44 +286,6 @@ return myStringBuffer;
  } else { 
 curEnv->DeleteLocalRef(res);
 return NULL;
-}
-}
-
-void SciDocMain::generateJavahelp (JavaVM * jvm_, char const* outputDir, char const* language, bool isToolbox){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidgenerateJavahelpjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "generateJavahelp", "(Ljava/lang/String;Ljava/lang/String;Z)V" ) ;
-if (voidgenerateJavahelpjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "generateJavahelp");
-}
-
-jstring outputDir_ = curEnv->NewStringUTF( outputDir );
-if (outputDir != NULL && outputDir_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jstring language_ = curEnv->NewStringUTF( language );
-if (language != NULL && language_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jboolean isToolbox_ = (static_cast<bool>(isToolbox) ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallStaticVoidMethod(cls, voidgenerateJavahelpjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID ,outputDir_, language_, isToolbox_);
-                        curEnv->DeleteLocalRef(outputDir_);
-curEnv->DeleteLocalRef(language_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 

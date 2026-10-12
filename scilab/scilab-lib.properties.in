@@ -24,8 +24,6 @@ javafx-base.jar=@JAVAFX_BASE@
 javafx-swing.jar=@JAVAFX_SWING@
 javafx-graphics.jar=@JAVAFX_GRAPHICS@
 
-jhall.jar=@JHALL@
-
 lucene-core.jar=@LUCENE@
 
 lucene-analyzers-common.jar=@LUCENE_ANALYZER@

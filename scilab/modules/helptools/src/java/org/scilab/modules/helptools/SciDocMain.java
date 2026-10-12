@@ -91,7 +91,7 @@ public final class SciDocMain {
 
     /**
      * Defines the export format
-     * @param format the format (among the list CHM, HTML, PDF, JH, PS)
+     * @param format the format (among the list CHM, HTML, WEB, FO, PDF, PS)
      */
     public void setExportFormat(String format) {
         final String f = format.toUpperCase().replace('-', '_');
@@ -129,12 +129,6 @@ public final class SciDocMain {
             ImageConverter imgConvert = new ImageConverter();
 
             switch (format) {
-                case JAVAHELP:
-                    if (!isToolbox) {
-                        imgConvert.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
-                    }
-                    converter = new JavaHelpDocbookTagConverter(sourceDoc, this, imgConvert);
-                    break;
                 case HTML:
                     converter = new HTMLDocbookTagConverter(sourceDoc, this, imgConvert);
                     break;
@@ -152,9 +146,6 @@ public final class SciDocMain {
                     break;
                 case FO:
                     converter = new FODocbookTagConverter(sourceDoc, this, imgConvert);
-                    break;
-                case JAR_ONLY:
-                    converter = new JarOnlyConverter(this);
                     break;
                 case PDF:
                 case PS:

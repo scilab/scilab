@@ -50,8 +50,6 @@ import org.xml.sax.SAXParseException;
  */
 public class HTMLDocbookTagConverter extends DocbookTagConverter implements TemplateFiller {
 
-    public static enum GenerationType { WEB, JAVAHELP, CHM, HTML };
-
     private static final String SCILAB_URI = "http://www.scilab.org";
     private static final String LATEXBASENAME = "_LaTeX_";
     private static final String VERSION = Messages.gettext("Version");
@@ -640,21 +638,15 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         return buffer.toString();
     }
 
-    private boolean isLinkedImage() {
-        Stack<DocbookElement> stack = getStack();
-        return stack.size() >= 3 && stack.get(stack.size() - 3).getName().equals("link");
-    }
-
     @Override
     public String generateImageCode(String code, String fileName, Map<String, String> attrs) {
         String alignAttr = attrs.get("align");
-        boolean addDiv = getGenerationType() != Backend.JAVAHELP || !isLinkedImage();
         final StringBuilder buffer = new StringBuilder(128);
-        if (addDiv && alignAttr != null) {
+        if (alignAttr != null) {
             buffer.append("<div style=\'text-align:").append(alignAttr).append("\'>");
         }
         buffer.append("<img src=\'").append(fileName).append("\'/>");
-        if (addDiv && alignAttr != null) {
+        if (alignAttr != null) {
             buffer.append("</div>");
         }
 
@@ -664,8 +656,6 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             /* Provide a tooltip */
             return "<div rel='tooltip' title='" + code + "'>" + buffer.toString() + "</div>";
         } else {
-            /* No tooltip in the javahelp browser ...
-             * too limited html capabilities */
             return buffer.toString();
         }
     }
@@ -698,12 +688,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             alt = " alt=\'" + alt + "\'";
         }
 
-        if (getGenerationType() == Backend.JAVAHELP && isLinkedImage()) {
-            // Java HTML renderer is not good... so when  the image is linked, we remove the div
-            return "<img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'" + alt + "/>>";
-        } else {
-            return "<" + div + align + "><img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'" + alt + "/></" + div + ">";
-        }
+        return "<" + div + align + "><img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'" + alt + "/></" + div + ">";
     }
 
     @Override
@@ -714,15 +699,11 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         String heightAttr= attrs.get("height");  // officially named "depth" as imagedata attribute
         String styleAttr = attrs.get("style");
         String altAttr = attrs.get("alt");       // for example: LaTeX content as text
-        boolean addDiv = getGenerationType() != Backend.JAVAHELP || !isLinkedImage();
         final StringBuilder buffer = new StringBuilder(128);
-        if (addDiv && alignAttr != null) {
+        if (alignAttr != null) {
             buffer.append("<div style=\'text-align:").append(alignAttr).append("\'>\n");
         }
         buffer.append("<img src=\'").append(fileName).append("\' ");
-        if (!addDiv && alignAttr != null) {
-            buffer.append("align=\'").append(alignAttr).append("\' ");
-        }
         if (idAttr != null){
             buffer.append("id=\'").append(idAttr).append("\' ");
         }
@@ -742,7 +723,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             buffer.append("alt=\'").append(altAttr).append("\'");
         }
         buffer.append("/>\n");
-        if (addDiv && alignAttr != null) {
+        if (alignAttr != null) {
             buffer.append("</div>\n");
         }
 
@@ -1321,7 +1302,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         String type = attributes.get("type");
         String id;
         if (type != null && type.equals("scilab")) {
-            if (this.type == Backend.JAVAHELP || this.type == Backend.HTML) {
+            if (this.type == Backend.HTML) {
                 id = resolvScilabLink(link);
             } else {
                 return contents;
@@ -1339,9 +1320,6 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
                     if (linkToTheWeb) {
                         id += ".html";
                     }
-                }
-                if (this.type == Backend.JAVAHELP) {
-                    id = urlBase + link;
                 }
             } else {
                 error(new SAXParseException("Invalid internal link to " + link, getDocumentLocator()));

@@ -427,7 +427,6 @@ JCEF = @JCEF@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
-JHALL = @JHALL@
 JLATEXMATH = @JLATEXMATH@
 JLATEXMATH_FONT_CYRILLIC = @JLATEXMATH_FONT_CYRILLIC@
 JLATEXMATH_FONT_GREEK = @JLATEXMATH_FONT_GREEK@
@@ -731,7 +730,6 @@ data/configuration/scilab_macros.txt
 libscihelptools_la_data_templatedir = $(mydatadir)/data/template
 libscihelptools_la_data_template_DATA = data/template/template_chm.html \
 data/template/template_html.html \
-data/template/template_javahelp.html \
 data/template/template_web.html
 
 libscihelptools_la_data_cssdir = $(mydatadir)/data/css
@@ -1612,7 +1610,7 @@ data/configuration/scilab_primitives.txt:
 	touch $@
 
 mostlyclean-local:
-	rm -rf web javaHelp html pdf inline
+	rm -rf web html pdf inline
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test

@@ -16,20 +16,28 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmltojar" xml:lang="en">
     <refnamediv>
         <refname>xmltojar</refname>
-        <refpurpose>converts xml Scilab help files to javaHelp format</refpurpose>
+        <refpurpose>converts xml Scilab help files to javaHelp format. <emphasis role="bold">This function is obsolete.</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>xmltojar(dirs [,titles [,dir_language [default_language]]]]])</synopsis>
+        <synopsis>generated_files = xmltojar(dirs [,titles [,dir_language [,default_language]]])</synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
+                <term>generated_files</term>
+                <listitem>
+                    <para>
+                        <literal>[]</literal>: no file is generated anymore.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>dirs</term>
                 <listitem>
-                    <para>vector of strings: a set of directory paths for which html
-                        manuals are to be generated or <literal>[] </literal>
+                    <para>vector of strings: a set of help directories
+                        (<literal>&lt;toolbox&gt;/help/&lt;lang&gt;</literal>) or <literal>[]</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -62,87 +70,48 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>converts xml Scilab help files contained in a set of directories
-            into jar files.
+        <para>
+            <emphasis role="bold">This function is obsolete and will be removed in Scilab 2027.1.0.
+            Please use <link linkend="tbx_build_help">tbx_build_help</link> instead.</emphasis>
         </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example">
-            <![CDATA[
-// example_1/
-// `-- help
-//     |-- en_US
-//     |   |-- example_1_function_1.xml
-//     |   |-- example_1_function_2.xml
-//     |   `-- example_1_function_3.xml
-//     `-- fr_FR
-//         |-- example_1_function_1.xml
-//         |-- example_1_function_2.xml
-//         `-- example_1_function_3.xml
-//     `-- zh_TW
-//         |-- example_1_function_1.xml
-//         |-- example_1_function_2.xml
-//         `-- example_1_function_3.xml
-
-tmpPath = TMPDIR + "/examples";
-copyfile("SCI/modules/helptools/examples", tmpPath);
-my_module_path = pathconvert(tmpPath + "/example_1",%f,%f);
-
-// Build the french help
-// =============================================================================
-my_french_help_dir    =  my_module_path+'/help/fr_FR';
-my_french_help_title  =  'Example 1 [fr_FR]';
-xmltojar(my_french_help_dir,my_french_help_title,'fr_FR');
-
-// Build the english help
-// =============================================================================
-my_english_help_dir   =  my_module_path+'/help/en_US';
-my_english_help_title =  'Example 1 [en_US]';
-xmltojar(my_english_help_dir,my_english_help_title,'en_US');
-
-// Build the chinese help
-// =============================================================================
-my_chinese_help_dir   =  my_module_path+'/help/zh_TW';
-my_chinese_help_title =  'Example 1 [zh_TW]';
-xmltojar(my_chinese_help_dir,my_chinese_help_title,'zh_TW');
-
-// Add french, english or chinese help chapters
-// =============================================================================
-
-if getlanguage() == 'fr_FR' then
-  add_help_chapter(my_french_help_title,my_module_path+"/jar");
-
-elseif getlanguage() == 'zh_TW' then
-  add_help_chapter(my_chinese_help_title,my_module_path+"/jar");
-
-else
-  add_help_chapter(my_english_help_title,my_module_path+"/jar");
-end
-
-// See the result in the help browser
-// =============================================================================
-doc();
-
-// Del french and english help chapters
-// =============================================================================
-if getlanguage() == 'fr_FR' then
-  del_help_chapter(my_french_help_title);
-else
-  del_help_chapter(my_english_help_title);
-end
- ]]>
-        </programlisting>
+        <para>
+            The help browser renders the XML help files directly: no jar file is built anymore.
+            <literal>xmltojar</literal> now calls <link linkend="tbx_build_help">tbx_build_help</link>
+            on each directory of <literal>dirs</literal>, which pre-generates the images of the pages,
+            and returns <literal>[]</literal>. <literal>dir_language</literal> and
+            <literal>default_language</literal> are ignored.
+        </para>
+        <para>
+            To display a help chapter, give its directory, or the root directory of its toolbox,
+            to <link linkend="add_help_chapter">add_help_chapter</link>.
+        </para>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="doc">doc</link>
+                <link linkend="tbx_build_help">tbx_build_help</link>
             </member>
             <member>
                 <link linkend="add_help_chapter">add_help_chapter</link>
             </member>
+            <member>
+                <link linkend="doc">doc</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                        No jar is built anymore. <literal>xmltojar</literal> is tagged obsolete and will be
+                        removed in Scilab 2027.1.0: use <literal>tbx_build_help</literal> instead.
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

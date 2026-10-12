@@ -89,7 +89,7 @@ function hash = ghi_code_md5(code, lang)
 endfunction
 
 function ok = ghi_generate_xcos(zcosPath, pngPath)
-    // same rendering as SwingScilabHelpBrowserJCEF.resolveXcosImage
+    // same rendering as SwingScilabHelpBrowser.resolveXcosImage
     ok = %t;
     try
         loadXcosLibs();
@@ -101,7 +101,7 @@ function ok = ghi_generate_xcos(zcosPath, pngPath)
 endfunction
 
 function ok = ghi_generate(code, pngPath)
-    // same rendering wrapper as SwingScilabHelpBrowserJCEF.generateScilabImage
+    // same rendering wrapper as SwingScilabHelpBrowser.generateScilabImage
     __oldwins__ = winsid();
     __olddrv__ = driver();
     __oldseed__ = rand("seed");

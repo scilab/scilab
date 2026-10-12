@@ -119,8 +119,8 @@ types::Function::ReturnValue sci_helpbrowser(types::typed_list &in, int _iRetCou
             return types::Function::Error;
     }
 
-    /* We load SciNotes when calling javahelp because we have no way to know
-     * to load it when using Javahelp because it can call SciNotes directly */
+    /* The help browser can open SciNotes directly ("edit code" action),
+     * without going through Scilab which would load it on use. */
     if (!loadedDep)
     {
         loadOnUseClassPath("SciNotes");

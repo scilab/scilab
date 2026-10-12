@@ -249,7 +249,7 @@ tbx_make("path/to/mytoolbox", ["macros", "help", "src"])
                 <link linkend="man">man</link>
             </member>
             <member>
-                <link linkend="xmltojar">xmltojar</link>
+                <link linkend="tbx_build_help">tbx_build_help</link>
             </member>
             <member>
                 <link linkend="tbx_builder_help">tbx_builder_help</link>

@@ -26,11 +26,5 @@
             <param type="String" name="styleSheet" />
         </method>
 
-        <method name="generateJavahelp" returnType="void" modifier="static">
-            <param type="String" name="outputDir" />
-            <param type="String" name="language" />
-            <param type="boolean" name="isToolbox" />
-        </method>
-
     </object>
 </package>

@@ -583,7 +583,6 @@ make_jar() {
         jcef-146.0.10.jar                   \
         jgoodies-looks-2.7.0.jar            \
         jgraphx-2.1.0.7.jar                 \
-        jhall-2.0.jar                       \
         jlatexmath-1.0.7.jar                \
         jlatexmath-font-cyrillic-1.0.7.jar  \
         jlatexmath-font-greek-1.0.7.jar     \

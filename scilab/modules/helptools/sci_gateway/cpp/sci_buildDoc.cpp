@@ -35,7 +35,7 @@ extern "C"
 #define PATHTOCSS "/modules/helptools/css/javahelp.css"
 #define PATHTOBUILDDOC "/modules/helptools/build/doc/scilab_%s_help/"
 #define PATHTOMASTERXML "/modules/helptools/master_%s_help.xml"
-#define DEFAULTEXPORT "JH"
+#define DEFAULTEXPORT "html"
 #ifdef _MSC_VER
     static void __slashToAntislash(std::string * in)
     {
@@ -224,16 +224,8 @@ extern "C"
         else                    /* Scilab help */
         {
             /* Update the path with the localization */
-            if (exportFormat != "jar-only")
-            {
-                outputDirectoryTMP =
-                    std::string("/modules/helptools/") + std::string(exportFormat) + std::string("/scilab_") + language + std::string("_help/");
-            }
-            else
-            {
-                outputDirectoryTMP =
-                    std::string("/modules/helptools/") + std::string("javaHelp") + std::string("/scilab_") + language + std::string("_help/");
-            }
+            outputDirectoryTMP =
+                std::string("/modules/helptools/") + std::string(exportFormat) + std::string("/scilab_") + language + std::string("_help/");
 
             outputDirectory = SciPath + outputDirectoryTMP;
         }

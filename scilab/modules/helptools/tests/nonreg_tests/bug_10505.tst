@@ -39,5 +39,5 @@ mputl(["<?xml version=""1.0"" encoding=""UTF-8""?>"
        "</refsection>"
        "</refentry>"], tmpfile);
 cd(tmpdir);
-jar = xmltojar('.', 'foo', 'en_US');
-if ~isfile(jar) then pause, end
+html = xmltohtml('.', 'foo', 'en_US');
+if ~isfile(html) then pause, end

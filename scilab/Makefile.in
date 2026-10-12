@@ -687,7 +687,6 @@ JCEF = @JCEF@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
-JHALL = @JHALL@
 JLATEXMATH = @JLATEXMATH@
 JLATEXMATH_FONT_CYRILLIC = @JLATEXMATH_FONT_CYRILLIC@
 JLATEXMATH_FONT_GREEK = @JLATEXMATH_FONT_GREEK@
@@ -2356,11 +2355,6 @@ doc-images:
 	rm -rf $(top_srcdir)/modules/helptools/images/
 	$(MAKE) doc
 
-# The JavaHelp documentation jars (built here via xmltojar: targets doc,
-# doc-fr_FR..doc-ja_JP and doc-images) are obsolete -- the JCEF help browser
-# renders the DocBook help XML directly. The online HTML documentation is
-# still produced by the doc-web target below.
-
 doc: $(SCILAB_BUILD_HOME_FILE) javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@	@if test -x $(top_builddir)/scilab-bin; then \
 @BUILD_HELP_TRUE@		cd $(top_builddir);\
@@ -2561,9 +2555,6 @@ install-data-local:
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(INSTALL_DATA) $(top_builddir)/locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	done
 ################ INSTALL DOCUMENTATION #################
-# The JavaHelp documentation jars (scilab_*_help.jar) and the images jar
-# (scilab_images.jar) are no longer built or installed: the JCEF help browser
-# renders the DocBook help XML directly from each module's help/ directory.
 # Documentation (images archive)
 @BUILD_HELP_TRUE@	if ls -lLd $(top_builddir)/$(PATHTODOCFILES)/$(DOCIMAGES) >/dev/null 2>&1; then \
 @BUILD_HELP_TRUE@		echo "$(INSTALL_DATA) $(top_builddir)/$(PATHTODOCFILES)/$(DOCIMAGES) $(DESTDIR)$(pkgdatadir)/$(PATHTODOCFILES)" ; \

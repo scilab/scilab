@@ -107,7 +107,6 @@ data/configuration/scilab_primitives.txt:
 libscihelptools_la_data_templatedir = $(mydatadir)/data/template
 libscihelptools_la_data_template_DATA = data/template/template_chm.html \
 data/template/template_html.html \
-data/template/template_javahelp.html \
 data/template/template_web.html
 libscihelptools_la_data_cssdir = $(mydatadir)/data/css
 libscihelptools_la_data_css_DATA = data/css/scilab_code.css \
@@ -162,7 +161,7 @@ libscihelptools_la_toolsdir = $(mydatadir)/tools
 libscihelptools_la_tools_DATA = tools/generate_help_images.sce
 
 mostlyclean-local:
-	rm -rf web javaHelp html pdf inline
+	rm -rf web html pdf inline
 
 include $(top_srcdir)/Makefile.incl.am
 

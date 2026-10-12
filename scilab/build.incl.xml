@@ -71,7 +71,6 @@
         <pathelement location="${jrosetta-API.jar}"/>
         <pathelement location="${jrosetta-engine.jar}"/>
         <pathelement location="${jogl2.jar}"/>
-        <pathelement location="${jhall.jar}"/>
         <pathelement location="${jgraphx.jar}"/>
         <pathelement location="${library.scirenderer.dir}/${library.scirenderer.name}"/>
         <pathelement location="${lucene-core.jar}"/>

@@ -16,8 +16,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
@@ -29,8 +27,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.lucene.document.Document;
@@ -39,6 +35,7 @@ import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 
+import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 
@@ -59,14 +56,14 @@ public final class PaletteIndexer {
      */
     public PaletteIndexer(PaletteSearchManager psm) {
         mgr = psm;
-        // javaHelp directories
+        // XML help pages of the blocks: current language first, en_US for the missing ones
         roots = new ArrayList<>();
-
-        // for local builds
-        roots.add(new File(ScilabConstants.SCI.getAbsolutePath() + "/modules/helptools/javaHelp"));
-
-        // for binary version
-        roots.add(new File(ScilabConstants.SCI.getAbsolutePath() + "/modules/helptools/jar"));
+        String help = ScilabConstants.SCI.getAbsolutePath() + "/modules/xcos/help/";
+        String lang = ScilabCommons.getlanguage();
+        if (lang != null && !lang.isEmpty() && !lang.equals("en_US")) {
+            roots.add(new File(help + lang));
+        }
+        roots.add(new File(help + "en_US"));
     }
 
     public void createIndex(Map<String, PaletteBlock> blockNameToPalette) {
@@ -85,22 +82,13 @@ public final class PaletteIndexer {
                     @Override
                     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                         String fname = file.getFileName().toString();
-                        int dot = fname.lastIndexOf('.');
-                        if (dot <= 0) {
+                        if (!fname.endsWith(".xml")) {
                             return FileVisitResult.CONTINUE;
                         }
 
-                        String basename = fname.substring(0, dot);
-                        if (fname.endsWith(".jar")) {
-                            try (JarFile jf = new JarFile(file.toFile())) {
-                                index(file.toAbsolutePath().toUri().toString(), basename, jf, blockNameToPalette);
-                            }
-                        } else if (fname.endsWith(".html")) {
-                            // this is a regular file
-                            if (blocks.contains(basename)) {
-                                blocks.remove(basename);
-                                index(basename, file.toUri().toURL());
-                            }
+                        String basename = fname.substring(0, fname.length() - 4);
+                        if (blocks.remove(basename)) {
+                            index(basename, file.toUri().toURL());
                         }
 
                         return FileVisitResult.CONTINUE;
@@ -117,48 +105,6 @@ public final class PaletteIndexer {
         } catch (IOException ex) {
             Logger.getLogger(PaletteIndexer.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    private void index(String fileURI, String basename, JarFile jf, Map<String, PaletteBlock> blockNameToTreePath) {
-        class Entry {
-
-            Entry(JarEntry jarEntry) {
-                je = jarEntry;
-            }
-
-            JarEntry je;
-            String blk;
-            URL url;
-
-            boolean block() {
-                int slash = je.getName().lastIndexOf('/') + 1;
-                int dot = je.getName().lastIndexOf('.');
-                if (slash < 0 || dot < 0) {
-                    return false;
-                }
-
-                blk = je.getName().substring(slash, dot);
-                return true;
-            }
-
-            boolean url() {
-                try {
-                    // we have to generate a url in the form before indexing
-                    // jar:file:/modules/helptools/jar/scilab_en_US_help.jar!/scilab_en_US_help/blockName.html
-                    url = URI.create("jar:" + fileURI + "!/" + basename + '/' + blk + ".html").toURL();
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(PaletteIndexer.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                return true;
-            }
-        }
-
-        jf.stream()
-        .map(je -> new Entry(je))
-        .filter(e -> e.block())
-        .filter(e -> blockNameToTreePath.containsKey(e.blk))
-        .filter(e -> e.url())
-        .forEach(e -> index(e.blk, e.url));
     }
 
     private void index(String basename, URL url) {

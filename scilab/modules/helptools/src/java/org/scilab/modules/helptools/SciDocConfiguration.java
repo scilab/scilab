@@ -80,7 +80,7 @@ public final class SciDocConfiguration {
     }
 
     /**
-     * @param kind should be javahelp, chm, html or web
+     * @param kind should be chm, html or web
      * @return the template file path
      */
     public String getTemplate(String kind) {

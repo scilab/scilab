@@ -207,10 +207,9 @@ end
     <refsection>
         <title>How to create a help chapter</title>
         <para>Create a directory and write down a set of XML files build as
-            described above. Then start Scilab and execute <literal>xmltojar
-            </literal>
-            (see <link linkend="xmltojar">xmltojar</link> for more details)
-            .
+            described above. The help browser renders them directly, nothing has
+            to be built. For a toolbox, <link linkend="tbx_build_help">tbx_build_help</link>
+            pre-generates the images of its pages.
         </para>
     </refsection>
     <refsection>
@@ -730,7 +729,7 @@ end
                 <link linkend="help_from_sci">help_from_sci</link>
             </member>
             <member>
-                <link linkend="xmltojar">xmltojar</link>
+                <link linkend="tbx_build_help">tbx_build_help</link>
             </member>
             <member>
                 <link linkend="add_help_chapter">add_help_chapter</link>

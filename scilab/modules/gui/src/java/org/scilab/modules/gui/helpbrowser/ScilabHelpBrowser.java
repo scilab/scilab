@@ -38,7 +38,7 @@ import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.gui.ScilabGUIUtilities;
 import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowserJCEF;
+import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
@@ -147,7 +147,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
         if (language == null) {
             language = ScilabCommons.getlanguage();
         }
-        component = new SwingScilabHelpBrowserJCEF(helps, language);
+        component = new SwingScilabHelpBrowser(helps, language);
     }
 
     /**
@@ -179,7 +179,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
                         if (cs == c && ((chr == '-' || chr == '_' || chr == '=' || chr == '+' || chr == '0')
                                         && (e.getModifiersEx() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()) != 0)) {
-                            SwingScilabHelpBrowserJCEF browser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
+                            SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
                             if (chr == '-' || chr == '_') {
                                 browser.decreaseFont();
                             } else if (chr == '0') {
@@ -197,13 +197,13 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
         // Navigate to last viewed page if available
         if (lastID != null && !lastID.isEmpty()) {
-            ((SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component).searchKeywork(lastID);
+            ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).searchKeywork(lastID);
         }
 
         // Toolbar: document zoom buttons
         ToolBar toolbar = ScilabToolBar.createToolBar();
         SwingScilabToolBar swingToolbar = (SwingScilabToolBar) toolbar.getAsSimpleToolBar();
-        final SwingScilabHelpBrowserJCEF jcefBrowser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
+        final SwingScilabHelpBrowser jcefBrowser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
         swingToolbar.add(createToolButton("zoom-out", Messages.gettext("Zoom Out"), new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 jcefBrowser.decreaseFont();
@@ -279,7 +279,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
             // A new help chapter was registered (e.g. a toolbox loaded after the
             // browser was opened): refresh the TOC in the running browser.
             ScilabHelpBrowser.helps = helps;
-            ((SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component).refresh(helps);
+            ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).refresh(helps);
         }
 
         ScilabGUIUtilities.toFront((SwingScilabDockablePanel) helpTab.getAsSimpleTab(), Messages.gettext("Help Browser"));
@@ -307,7 +307,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * @return the current displayed url as String
      */
     public String getCurrentURL() {
-        SwingScilabHelpBrowserJCEF browser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
+        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
         return browser.getCurrentURL();
     }
 
@@ -315,7 +315,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * @return the current displayed id
      */
     public String getCurrentID() {
-        SwingScilabHelpBrowserJCEF browser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
+        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
         return browser.getCurrentID();
     }
 
@@ -323,7 +323,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * Increase the font of the help viewer
      */
     public void increaseFont() {
-        SwingScilabHelpBrowserJCEF browser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
+        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
         browser.increaseFont();
     }
 
@@ -331,7 +331,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * Decrease the font of the help viewer
      */
     public void decreaseFont() {
-        SwingScilabHelpBrowserJCEF browser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
+        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
         browser.decreaseFont();
     }
 
@@ -339,7 +339,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * Reset the font of the help viewer to its default size
      */
     public void resetFont() {
-        SwingScilabHelpBrowserJCEF browser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
+        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
         browser.resetFont();
     }
 
@@ -347,7 +347,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * Show the search field
      */
     public void showSearchField() {
-        SwingScilabHelpBrowserJCEF browser = (SwingScilabHelpBrowserJCEF) ((ScilabHelpBrowser) instance).component;
+        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
         browser.showSearchField();
     }
 

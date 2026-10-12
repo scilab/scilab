@@ -1188,15 +1188,6 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                    LDFLAGS=$LDFLAGS_save
                 fi
 
-                # Jhall
-                AC_JAVA_CHECK_JAR([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
-                # Named differently under Mandriva or Fedora
-                if test -z "$PACKAGE_JAR_FILE"; then
-                    AC_JAVA_CHECK_JAR([javahelp2],[javax.help.JHelp],[Scilab Help Browser])
-                fi
-                JHALL=$PACKAGE_JAR_FILE
-                AC_SUBST(JHALL)
-
                 # Lucene Apache - core
                 AC_JAVA_CHECK_JAR([lucene-core],[org.apache.lucene.store.ByteBuffersDirectory],[Lucene])
                 LUCENE=$PACKAGE_JAR_FILE
@@ -2667,7 +2658,6 @@ echo "  JOGL 2 LIBS (JNI) ... = $JOGL2_LIBS"
 echo "  Gluegen 2 ........... = $GLUEGEN2_RT"
 echo "  Gluegen 2 LIBS (JNI)  = $GLUEGEN2_RT_LIBS"
 echo "  Jeuclid (MathML) .... = $JEUCLID_CORE"
-echo "  Jhall  .............. = $JHALL"
 echo "  Jrosetta (API) ...... = $JROSETTA_API"
 echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
 echo "  Commons Logging ..... = $COMMONS_LOGGING"

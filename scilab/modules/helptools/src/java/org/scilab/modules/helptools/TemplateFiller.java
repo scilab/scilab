@@ -16,7 +16,7 @@
 package org.scilab.modules.helptools;
 
 /**
- * Class to convert DocBook to JavaHelp
+ * Fills the HTML page templates
  * @author Calixte DENIZET
  */
 public interface TemplateFiller {

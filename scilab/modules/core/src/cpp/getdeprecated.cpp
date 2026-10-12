@@ -21,7 +21,8 @@ std::unordered_map<std::wstring, std::wstring> getDeprecated()
 {
     return {
         // Scilab 2027.0.0 => 2027.1.0
-        {L"tbx_make(tbx_path, section, languages)", L"tbx_make(tbx_path, section)"}
+        {L"tbx_make(tbx_path, section, languages)", L"tbx_make(tbx_path, section)"},
+        {L"xmltojar", L"tbx_build_help"},
     };
 }
 

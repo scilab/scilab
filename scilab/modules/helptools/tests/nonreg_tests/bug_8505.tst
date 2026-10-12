@@ -25,5 +25,5 @@ mkdir(pathDest);
 
 mputl(help_skeleton("bug_8505"), fullfile(pathDest, "bug_8505.xml"));
 
-r = xmltojar(pathDest, "bug help");
+r = xmltohtml(pathDest, "bug help");
 assert_checktrue(isfile(r));

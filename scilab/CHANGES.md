@@ -122,6 +122,7 @@ Obsolete functions or features
 All these functions and features will be removed in Scilab 2027.1.0 (May 2028):
 
 - `tbx_make(tbx_path, "help", languages)`: the `languages` option is obsolete, the images of the help pages are generated for all languages at once at build time, or on the fly when missing.
+- `xmltojar()`: no jar is built anymore, it only pre-generates the images of the help pages. Use `tbx_build_help()` instead.
 
 ### Scilab 2026.1.0
 
@@ -193,6 +194,7 @@ Known incompatibilities
 ### Scilab 2027.0.0
 
 - Help jars (`scilab_<lang>_help.jar`) are no longer built, neither for Scilab nor for toolboxes. A toolbox whose `etc/*.start` registers its help chapter only when its `jar` directory exists, as the former toolbox skeleton did, must now test its `help` directory, and can give its root directory to `add_help_chapter()`.
+- `xmltoformat()` no longer supports the `"javaHelp"` format, and the JavaHelp library (`jhall.jar`) is no longer needed.
 
 ### Scilab 2026.1.0
 

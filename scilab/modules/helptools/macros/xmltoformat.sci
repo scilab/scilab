@@ -18,9 +18,9 @@
 
 function generated_files = xmltoformat(output_format,dirs,titles,directory_language,default_language)
     // =========================================================================
-    // + output_format : "javaHelp", "pdf", "chm", "ps"
+    // + output_format : "html", "web", "chm", "pdf", "ps"
     //
-    // + dirs : A set of directories for which help files (jar, pdf, chm, ...) are
+    // + dirs : A set of directories for which help files (html, pdf, chm, ...) are
     //        genereated
     //
     // + titles : associated title strings (optional or [])
@@ -415,10 +415,6 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     //  * update the format extension (eg. the created dir)
     //  * handle the second pass build (container management or second transform)
     select output_format
-    case "javaHelp" then
-        formatDescriptor = output_format;
-        output_format_ext = "jar";
-        second_pass_format = "jar-only";
     case "web"
         formatDescriptor = output_format;
         output_format_ext = "html";
@@ -499,7 +495,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         // Save the current directory
         cur_dir = pwd();
 
-        // Change Scilab current directory so that Java Indexer works
+        // buildDoc runs from its working directory
         if ~chdir(buildDoc_dir) then
             error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",buildDoc_dir));
         end
@@ -575,7 +571,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             // Save the current directory
             cur_dir = pwd();
 
-            // Change Scilab current directory so that Java Indexer works
+            // buildDoc runs from its working directory
             if ~chdir(buildDoc_dir) then
                 chdir(cur_dir);
                 error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",buildDoc_dir));
@@ -583,8 +579,6 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             // process the build
             fileToExec = buildDoc(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
-            // In case of HTML or jar requested: HTML files are now available
-            // Not yet the jar.
 
             if fileToExec ~= [] then
                 exec(fileToExec, -1);
@@ -597,7 +591,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
                 x2f_tune_rtl_html(path, directory_language_c(k));
             end
 
-            // if javaHelp: => building now the jar from the HTML
+            // pdf, ps: built now from the fo files
             if ~isempty(second_pass_format) then
                 buildDoc(second_pass_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
             end
@@ -688,15 +682,13 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
                 buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + directory_language(k) + "_help." + output_format_ext,%f,%f);
             end
 
-            // Change Scilab current directory so that Java Indexer works
+            // buildDoc runs from its working directory
             if ~chdir(buildDoc_dir) then
                 error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",buildDoc_dir));
             end
 
             // process the build
             fileToExec = buildDoc(output_format,this_tree("master_document"),directory_language(k),dirs(k));
-            // In case of HTML or jar requested: HTML files are now available
-            // Not yet the jar.
 
             if fileToExec ~= [] then
                 exec(fileToExec, -1);
@@ -709,7 +701,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
                 x2f_tune_rtl_html(path, directory_language(k));
             end
 
-            // if javaHelp: => building now the jar from the HTML
+            // pdf, ps: built now from the fo files
             if ~isempty(second_pass_format) then
                 buildDoc(second_pass_format,this_tree("master_document"),directory_language(k),dirs(k));
             end
