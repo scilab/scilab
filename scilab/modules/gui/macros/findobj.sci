@@ -27,14 +27,19 @@ function h =  findobj(varargin)
                 error(msprintf(msg, "findobj", 1));
             end
             iPos = 2;
-        elseif typeof(varargin(1) <> "string")
+        elseif and(typeof(varargin(1)) <> ["string", "ce"])
              msg = gettext("%s: Wrong type for argument #%d: A string expected.\n");
              error(msprintf(msg, "findobj", 1));
         end
     end
 
+    // findobj("name") or findobj(h, "name"): a property name without value matches nothing
+    if rhs == iPos && typeof(varargin(iPos)) == "string" && isscalar(varargin(iPos)) && part(varargin(iPos), 1) <> "-"
+        return
+    end
+
     if isempty(searchHandles)
-        if rhs == 2 then
+        if rhs == 2 && typeof(varargin(1)) == "string" then
             if strcmp(varargin(1), "tag", "i") == 0 then
                 h = get(varargin(2));
                 return
@@ -74,6 +79,10 @@ function hFound = findMatchingChild(handles, testString, depth)
         end
         if depth > 0
             children = get(handles(index), "children"); // Does the child have a children property
+            // Children are stacked most recent first: visit Figures in creation order, as winsid() does
+            if get(handles(index),"type") == "Root" & ~isempty(children)
+                children = children($:-1:1);
+            end
             if get(handles(index),"type") == "Axes" // Title and Label entities of Axes are children
                 children = [children
                             get(handles(index),"Title")

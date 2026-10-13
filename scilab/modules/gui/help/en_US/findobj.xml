@@ -75,8 +75,31 @@
             <literal>findobj("-property", propertyName, ...)</literal> returns the handles of objects having the property <literal>propertyName</literal>. Other conditions can be added.
         </para>
         <para>
-            By default the search starts from the Root window and <literal>findobj(searchHandles, ...)</literal> restricts the search to the given handles. The depth of the search is by default infinite and can be restricted by <literal>findobj(searchHandles, '-depth', d, ...)</literal>. A value of 0 restricts the search to objects given in <literal>searchHandles</literal> and does not search within descendants, this is equivalent to the <literal>"flat"</literal> optional string.
+            By default the search starts from the <literal>Root</literal> object and
+            <literal>findobj(searchHandles, ...)</literal> restricts the search to the given handles.
+            The depth of the search is by default infinite and can be restricted by
+            <literal>findobj(searchHandles, '-depth', d, ...)</literal>. A value of 0 restricts the
+            search to objects given in <literal>searchHandles</literal> and does not search within
+            descendants, this is equivalent to the <literal>"-flat"</literal> optional string.
         </para>
+        <para>
+            The <literal>Console</literal> object is a child of <literal>Root</literal>, so the
+            default search also reaches the menus created by
+            <link linkend="addmenu">addmenu</link>.
+        </para>
+        <para>
+            Depths are counted from the starting handles. When no search handle is given, the search
+            starts from the <literal>Root</literal> object, so figures are at depth 1 and their axes
+            and uicontrols at depth 2: <literal>findobj("-flat", ...)</literal> then tests the
+            <literal>Root</literal> object only, and a search written for Scilab 2026.1.0 and before
+            must count one level more. To exclude the <literal>Root</literal> and
+            <literal>Console</literal> objects from a search whose conditions they could satisfy,
+            give the handles of the figures, which come in creation order:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+figs = findobj("type", "Figure", "-depth", 1);
+h = findobj(figs, "-flat", "-property", "tag");
+ ]]></programlisting>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -113,6 +136,22 @@ h2 = findobj("-property","thickness")
 // Change the thickness of such objects
 h2.thickness = 2
  ]]></programlisting>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>2027.0.0</revnumber>
+                <revdescription>
+                    <para>
+                    The search starts from the <literal>Root</literal> object instead of the opened
+                    figures: depths are shifted by one, and the <literal>Root</literal> and
+                    <literal>Console</literal> objects can be returned. A property name given
+                    without a value returns <literal>[]</literal> instead of raising an error.
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

@@ -16,6 +16,6 @@
 //    Scilab crashes when you enter findobj().
 //    I know that it is not usefull but, the bug exists.
 
-assert_checktrue(isempty(findobj()));
+assert_checktrue(findobj() == get(0));
 assert_checktrue(findobj("test") == []);
 assert_checktrue(findobj("Param1", "Param2") == []);

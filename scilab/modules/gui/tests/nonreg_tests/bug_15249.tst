@@ -16,6 +16,8 @@
 // <-- Short Description -->
 // findobj("toto") yields an error after https://gitlab.com/scilab/scilab/-/issues/7117
 
+// A property name without value matches nothing: findobj returns []
+
 clf
-refMsg = msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"), "findobj", 2);
-assert_checkerror("findobj(""toto"")", refMsg);
+assert_checkequal(findobj("toto"), []);
+assert_checkequal(findobj(gcf(), "toto"), []);
