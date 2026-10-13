@@ -99,6 +99,19 @@ end
 
 assert_checkerror("PropBadDefault()", msprintf(positive, "PropBadDefault", "x"));
 
+// default value evaluated out of the definition: function call, variable
+propDefault = 7;
+classdef PropCallDefault
+    properties
+        z = zeros(2, 3)
+        v = propDefault
+    end
+end
+
+pd = PropCallDefault();
+assert_checkequal(pd.z, zeros(2, 3));
+assert_checkequal(pd.v, 7);
+
 // static property of a class as validator parameter: evaluated at each check
 classdef PropLimit
     properties (Static)

@@ -141,7 +141,7 @@ void RunVisitorT<T>::visitprivate(const SimpleVar & e)
         //  a; //<=> a=a;
         //  a(2) = 18;
         //endfunction
-        if (e.getParent()->isSeqExp())
+        if (e.getParent() && e.getParent()->isSeqExp())
         {
             if (ctx->getScopeLevel() > 1 && var->empty() == false && var->top()->m_iLevel != ctx->getScopeLevel())
             {
