@@ -19,7 +19,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y curl autoconf make gcc g++ bzip2
 
 # Set environment variables
-ENV GCC_VERSION 11.4.0
+ENV GCC_VERSION 12.5.0
 ENV PATCHELF_VERSION 0.17.2
 ENV OCAML_VERSION 4.13.1
 ENV OCAML_FINDLIB_VERSION 1.9.1
@@ -95,8 +95,8 @@ RUN	[ -d "$INSTALLDIR/lib64" ] && LIBDIR="lib64" || LIBDIR="lib"; \
 	cp -a $INSTALLDIR/$LIBDIR/libgfortran.so.5.0.0 $INSTALLDIR/lib/libscigfortran.so.5 ; \
 	patchelf --set-soname libscigomp.so.1 $INSTALLDIR/$LIBDIR/libgomp.so.1.0.0 && \
 	cp -a $INSTALLDIR/$LIBDIR/libgomp.so.1.0.0 $INSTALLDIR/lib/libscigomp.so.1 ; \
-	patchelf --set-soname libscistdc++.so.6 $INSTALLDIR/$LIBDIR/libstdc++.so.6.0.29 && \
-	cp -a $INSTALLDIR/$LIBDIR/libstdc++.so.6.0.29 $INSTALLDIR/lib/libscistdc++.so.6 ; \
+	patchelf --set-soname libscistdc++.so.6 $INSTALLDIR/$LIBDIR/libstdc++.so.6.0.30 && \
+	cp -a $INSTALLDIR/$LIBDIR/libstdc++.so.6.0.30 $INSTALLDIR/lib/libscistdc++.so.6 ; \
     patchelf --set-soname libscigcc_s.so.1 $INSTALLDIR/$LIBDIR/libgcc_s.so.1 && \
 	cp -a $INSTALLDIR/$LIBDIR/libgcc_s.so.1 $INSTALLDIR/lib/libscigcc_s.so.1 ;
 

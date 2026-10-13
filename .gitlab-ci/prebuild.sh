@@ -1313,6 +1313,9 @@ build_cppserver() {
     mv asio-asio-"$(echo $ASIO_VERSION | tr "." "-")" asio
     unzip -q "$DOWNLOADDIR/CppCommon-$CPPCOMMON_VERSION.zip"
     mv CppCommon-$CPPCOMMON_VERSION CppCommon
+    # CppCommon 1.0.6.0: std::array::fill() is not constexpr in C++17
+    sed -i -e "s/constexpr UUID() : _data() { _data.fill(0); }/constexpr UUID() : _data() {}/" \
+        CppCommon/include/system/uuid.h
     cd CppCommon/modules || exit 1
     unzip -q "$DOWNLOADDIR/fmt-$FMT_VERSION.zip"
     mv fmt-$FMT_VERSION fmt

@@ -332,7 +332,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
                     *work = nullptr;
                     delete[] ptr->workt;
                     FREE(ptr->work);
-                    delete[] ptr;
+                    delete ptr;
                     return;
                 }
             }

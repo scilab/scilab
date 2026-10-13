@@ -77,8 +77,7 @@ private:
     FILE* _fd;
     bool _follow;
     struct curl_slist* _headers;
-    struct curl_httppost* _formpost;
-    struct curl_httppost* _lastptr;
+    curl_mime* _form;
 };
 
 #endif /* !__SCICURL_HXX__ */

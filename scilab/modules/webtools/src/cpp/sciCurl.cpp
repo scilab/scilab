@@ -36,8 +36,7 @@ SciCurl::SciCurl()
     _fd         = nullptr;
     _follow     = false;
     _headers    = nullptr;
-    _formpost   = nullptr;
-    _lastptr    = nullptr;
+    _form       = nullptr;
 }
 
 SciCurl::~SciCurl()
@@ -51,9 +50,9 @@ SciCurl::~SciCurl()
         curl_slist_free_all(_headers);
     }
 
-    if(_formpost)
+    if(_form)
     {
-        curl_formfree(_formpost);
+        curl_mime_free(_form);
     }
 }
 
@@ -341,37 +340,35 @@ int SciCurl::setTimeOut(double second)
 
 void SciCurl::addFileToForm(const std::string& name, const std::string& file, const std::string& filename)
 {
-    if (filename.empty())
+    if (_form == nullptr)
     {
-        curl_formadd(&_formpost,
-                     &_lastptr,
-                     CURLFORM_COPYNAME, name.c_str(),
-                     CURLFORM_FILE, file.c_str(),
-                     CURLFORM_END);
+        _form = curl_mime_init(_curl);
     }
-    else
+
+    curl_mimepart* part = curl_mime_addpart(_form);
+    curl_mime_name(part, name.c_str());
+    curl_mime_filedata(part, file.c_str());
+    if (!filename.empty())
     {
-        curl_formadd(&_formpost,
-                     &_lastptr,
-                     CURLFORM_COPYNAME, name.c_str(),
-                     CURLFORM_FILE, file.c_str(),
-                     CURLFORM_FILENAME, filename.c_str(),
-                     CURLFORM_END);
+        curl_mime_filename(part, filename.c_str());
     }
 }
 
 void SciCurl::addContentToForm(const char* name, const char* data)
 {
-    curl_formadd(&_formpost,
-                &_lastptr,
-                CURLFORM_COPYNAME, name,
-                CURLFORM_COPYCONTENTS, data,
-                CURLFORM_END);
+    if (_form == nullptr)
+    {
+        _form = curl_mime_init(_curl);
+    }
+
+    curl_mimepart* part = curl_mime_addpart(_form);
+    curl_mime_name(part, name);
+    curl_mime_data(part, data, CURL_ZERO_TERMINATED);
 }
 
 void SciCurl::setForm()
 {
-    curl_easy_setopt(_curl, CURLOPT_HTTPPOST, _formpost);
+    curl_easy_setopt(_curl, CURLOPT_MIMEPOST, _form);
 }
 
 void SciCurl::setCustomCookies(const char* cookies)

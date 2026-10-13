@@ -281,7 +281,9 @@ int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym,
             }
 
             // LU decomposition
-            IPVT = (int*) calloc(N, sizeof(int));
+            // Max() also prevents the "alloc-size-larger-than" GCC warning: N address is
+            // passed to Fortran routines so its value range is unknown when it is read back
+            IPVT = (int*) calloc(Max(N, 0), sizeof(int));
             C2F(dgetrf)(&N, &N, AMSB, &N, IPVT, &INFO_LU);
             if (INFO_LU < 0)
             {
@@ -592,7 +594,7 @@ int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym,
             }
 
             // LU decomposition
-            IPVT = (int*) calloc(N, sizeof(int));
+            IPVT = (int*) calloc(Max(N, 0), sizeof(int));
             C2F(zgetrf) (&N, &N, AMSBC, &N, IPVT, &INFO_LU);
             if (INFO_LU < 0)
             {

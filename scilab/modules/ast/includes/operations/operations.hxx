@@ -17,6 +17,7 @@
 #include "double.hxx"
 #include "opexp.hxx"
 #include <functional>
+#include <memory>
 
 #include "dynlib_ast.h"
 
@@ -112,7 +113,9 @@ inline ExpandPlan makeExpandPlan(T* l, U* r, O*& o, const std::wstring& op)
 template<class Fn>
 inline void expandApply(const ExpandPlan& plan, Fn&& fn)
 {
-    std::vector<int> idx(plan.dimsO.size(), 0);
+    // a plain std::vector<int> here gives a false positive on GCC 12
+    // (-Wfree-nonheap-object on the inlined deallocation call)
+    std::unique_ptr<int[]> idx(new int[plan.dimsO.size()]());
     int iL = 0, iR = 0;
     for (int iO = 0; iO < plan.size; ++iO)
     {

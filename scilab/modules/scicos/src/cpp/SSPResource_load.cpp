@@ -3330,7 +3330,8 @@ int SSPResource::processElement(xmlTextReaderPtr reader, const xmlChar* nsURI)
             {
                 // the root diagram should be decoded
                 model::BaseObject* o = controller.getBaseObject(root);
-                processed = {o};
+                // reset the processed stack to the root diagram only
+                processed.assign(1, o);
 
                 return loadSystemStructureDescription(reader, o);
             }
