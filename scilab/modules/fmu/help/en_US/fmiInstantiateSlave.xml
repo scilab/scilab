@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiInstantiateSlave">
+  <refnamediv>
+    <refname>fmiInstantiateSlave</refname>
+    <refpurpose>Creation an instance of a co-simulation slave.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      instance = fmiInstantiateSlave(fmu)
+      instance = fmiInstantiateSlave(fmu, timeout)
+      instance = fmiInstantiateSlave(fmu, timeout, logger)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+        <varlistentry>
+        <term>fmu</term>
+            <listitem>
+                <para>tlist, a FMI 1.0 co-simulation model that can be received by <link linkend="importFMU">importFMU</link>.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+        <term>timeout</term>
+            <listitem>
+                <para>real scalar, communication timeout in milliseconds, 5 by default.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+        <term>logger</term>
+            <listitem>
+                <para>boolean, enable the FMU debug logging, <literal>%t</literal> by default.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+        <term>instance</term>
+            <listitem>
+                <para>tlist, an instance of the slave, see <link linkend="fmiInstantiateModel">fmiInstantiateModel</link>.</para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiInstantiateSlave</literal> returns a new instance of a co-simulation slave. The slave is not visible and not interactive.
+            This function must be called successfully, before any of the other FMI co-simulation functions can be called.
+        </para>
+  </refsection>
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiInitializeSlave">fmiInitializeSlave</link>
+            </member>
+            <member>
+                <link linkend="fmiFreeSlaveInstance">fmiFreeSlaveInstance</link>
+            </member>
+        </simplelist>
+  </refsection>
+</refentry>

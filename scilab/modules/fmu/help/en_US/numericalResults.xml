@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="numericalResults">
+    <refnamediv>
+        <refname>Comparison of numerical results of simulation</refname>
+        <refpurpose>This page contains the analyse of simulation error for the generated FMUs.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Simulation error for the different Xcos solvers</title>
+        <para>We will analyse the simulation error for the FMU PID controller. We design a system with a PID controller.
+          On this diagram we have two generated FMUs (for Model Exchange and Co-Simulation) which have been generated from Xcos PID block. 
+          We will simulate with different solvers in order to compare the simulation results. 
+          The results of simulation of FMUs will be compared with the results of Xcos PID block.
+    </para>
+    <para>
+        <link type="scilab" linkend="scilab.xcos/fmu/tests/unit_tests/XcosPIDcontrollerHelpPage.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../tests/unit_tests/XcosPIDcontrollerHelpPage.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
+    </para>
+    </refsection>
+    <refsection>
+        <title>Simulation with the fixed-size step methods</title>
+        <para>
+            In the following tables, we have the errors that were received after the comparison with the simulation results of Xcos PID block.
+        </para>
+    <para>
+        <informaltable border="1">
+            <tr>
+                <td align="center"> </td>
+                <td align="center">
+                    <emphasis>Mean error</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis>Standard deviation</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis>Min</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis>Max</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis>Order</emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" colspan="6"> <emphasis>Dormand-Prince</emphasis> </td>
+            </tr>   
+            <tr>
+                <td align="center">
+                    <emphasis>FMU for Model Exchange</emphasis>
+                </td>
+                <td align="center"> 0.0009646 </td>
+                <td align="center"> 0.0024503 </td>
+                <td align="center"> 0 </td>
+                <td align="center"> 1.1003015 </td>
+                <td align="center"> 1.0002757 </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <emphasis>FMU for Co-Simulation</emphasis>
+                </td>
+                <td align="center"> 0.0010303 </td>
+                <td align="center"> 0.0026149 </td>
+                <td align="center"> 0 </td>
+                <td align="center"> 1.1008595 </td>
+                <td align="center"> 1.0002744 </td>
+            </tr>
+            <tr>
+                <td align="center" colspan="6"> <emphasis>Runge-Kutta</emphasis> </td>
+            </tr>
+            <tr> 
+                <td align="center">
+                    <emphasis>FMU for Model Exchange</emphasis>
+                </td>
+                <td align="center"> 0.0006739 </td>
+                <td align="center"> 0.0017135 </td>
+                <td align="center"> 0 </td>
+                <td align="center"> 1.0977626 </td>
+                <td align="center"> 1.0002757 </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <emphasis>FMU for Co-Simulation</emphasis>
+                </td>
+                <td align="center"> 0.0027873 </td>
+                <td align="center"> 0.0070039 </td>
+                <td align="center"> 0 </td>
+                <td align="center"> 1.1169099 </td>
+                <td align="center"> 1.0002715 </td>
+            </tr>
+        </informaltable>
+    </para>
+    </refsection>
+    <refsection>
+        <title>Simulation with the variable-size step methods</title>
+        <para>
+        <informaltable border="1">
+            <tr>
+                <td align="center"> </td>
+                <td align="center">
+                    <emphasis>Mean error</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis>Standard deviation</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis>Min</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis>Max</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis>Order</emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" colspan="6"> <emphasis>LSodar</emphasis> </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <emphasis>FMU for Model Exchange</emphasis>
+                </td>
+                <td align="center"> 0.0008094 </td>
+                <td align="center"> 0.0025042 </td>
+                <td align="center"> 0 </td>
+                <td align="center"> 1.0899767 </td>
+                <td align="center"> 1.0002757 </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <emphasis>FMU for Co-Simulation</emphasis>
+                </td>
+                <td align="center"> 0.0002562 </td>
+                <td align="center"> 0.0005055 </td>
+                <td align="center"> 0 </td>
+                <td align="center"> 1.0934054 </td>
+                <td align="center"> 1.0003286 </td>
+            </tr>
+            <tr>
+                <td align="center" colspan="6"> <emphasis>CVODE-BDF-NEWTON</emphasis> </td>
+            </tr>
+            <tr> 
+                <td align="center">
+                    <emphasis>FMU for Model Exchange</emphasis>
+                </td>
+                <td align="center"> 0.0038599 </td>
+                <td align="center"> 0.0099237 </td>
+                <td align="center"> 0 </td>
+                <td align="center"> 1.0808262 </td>
+                <td align="center"> 1.0013951 </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <emphasis>FMU for Co-Simulation</emphasis>
+                </td>
+                <td align="center"> 0.0004579 </td>
+                <td align="center"> 0.0010252 </td>
+                <td align="center"> 0 </td>
+                <td align="center"> 1.0954875 </td>
+                <td align="center"> 1.0002918 </td>
+            </tr>
+            <tr>
+                <td align="center" colspan="6"> <emphasis>CVODE-BDF-FUNCTIONAL</emphasis> </td>
+            </tr>   
+            <tr>
+                <td align="center">
+                    <emphasis>FMU for Model Exchange</emphasis>
+                </td>
+                <td align="center"> 0.0000025 </td>
+                <td align="center"> 0.0000030 </td>
+                <td align="center"> 3 </td>
+                <td align="center"> 1.0915449 </td>
+                <td align="center"> 1.0002757 </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <emphasis>FMU for Co-Simulation</emphasis>
+                </td>
+                <td align="center"> 0.0005118 </td>
+                <td align="center"> 0.0012158 </td>
+                <td align="center"> 0 </td>
+                <td align="center"> 1.0959081 </td>
+                <td align="center"> 1.0002919 </td>
+            </tr>
+            <tr>
+                <td align="center" colspan="6"> <emphasis>CVODE-ADAMS-NEWTON</emphasis> </td>
+            </tr>
+            <tr> 
+                <td align="center">
+                    <emphasis>FMU for Model Exchange</emphasis>
+                </td>
+                <td align="center"> 0.0034273 </td>
+                <td align="center"> 0.0089805 </td>
+                <td align="center"> 0 </td>
+                <td align="center"> 1.0834061 </td>
+                <td align="center"> 1.0023902 </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <emphasis>FMU for Co-Simulation</emphasis>
+                </td>
+                <td align="center"> 0.0004833 </td>
+                <td align="center"> 0.0010910 </td>
+                <td align="center"> 0 </td>
+                <td align="center"> 1.095673 </td>
+                <td align="center"> 1.0003073 </td>
+            </tr>
+            <tr>
+                <td align="center" colspan="6"> <emphasis>CVODE-ADAMS-FUNCTIONAL</emphasis> </td>
+            </tr>
+            <tr> 
+                <td align="center">
+                    <emphasis>FMU for Model Exchange</emphasis>
+                </td>
+                <td align="center"> 0.0000241 </td>
+                <td align="center"> 0.0000390 </td>
+                <td align="center"> 0 </td>
+                <td align="center"> 1.091729 </td>
+                <td align="center"> 1.0002757 </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <emphasis>FMU for Co-Simulation</emphasis>
+                </td>
+                <td align="center"> 0.0005477 </td>
+                <td align="center"> 0.0011522 </td>
+                <td align="center"> 0 </td>
+                <td align="center"> 1.0956803 </td>
+                <td align="center"> 1.0003743 </td>
+            </tr>
+        </informaltable>
+    </para>
+    </refsection>
+    <refsection>
+        <title>Conclusion</title>
+        <para>
+        On this page we compared the simulation results of generated FMUs. By analysing the results, we could say that the better solver for the FMUs ME is CVODE-BDF with FUNCTIONAL iterations. 
+        For the FMUs CS we have almost the same value of errors for all kind of solvers, this is explained by the fact that the FMUs for Co-Simulation have there own solvers to perform numerical integration.
+        All of the above results was obtained with the simulation that has been done with default parameters for the relative and absolute tolerances. 
+        So, by configuring the parameters of the tolerance a user is able to reduce the simulation errors.  
+    </para>
+    </refsection>
+    <refsection>
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="Comparisons">Xcos Solvers</link>
+            </member>
+            <member>
+                <link linkend="exportFMU">Export FMUs from Xcos</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

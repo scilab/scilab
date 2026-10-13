@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiSetContinuousStates">
+  <refnamediv>
+    <refname>fmiSetContinuousStates</refname>
+    <refpurpose>Set a new continuous state vector.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      fmiSetContinuousStates(instance, values)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+		<varlistentry>
+		<term>instance</term>	
+			<listitem>
+				<para>tlist, an <link linkend="fmiInstantiateModel">instance</link> of a model.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>values</term>	
+			<listitem>
+				<para>real vector, continuous states.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiSetContinuousStates</literal> is the function that sets a new (continuous) state vector and re-initializes caching of variables 
+			that depend on the states. The length of vector <literal>values</literal> must be less or equal to the number of continuous states. 
+			This number can be retrieved from <link linkend="fmiModelDescription">fmiModelDescription</link>.    
+        </para>
+  </refsection>    
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiInitialize">fmiInitialize</link>
+            </member>
+			<member>
+                <link linkend="fmiCompletedIntegrStep">fmiCompletedIntegrStep</link>
+            </member>
+            <member>
+                <link linkend="fmiInstantiateModel">fmiInstantiateModel</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

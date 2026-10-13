@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiInstantiateModel">
+  <refnamediv>
+    <refname>fmiInstantiateModel</refname>
+    <refpurpose>Creation an instance of a model.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      instance = fmiInstantiateModel(fmu)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+		<varlistentry>
+		<term>fmu</term>	
+			<listitem>
+				<para>tlist, a model that can be received by <link linkend="importFMU">importFMU</link>.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>instance</term>	
+			<listitem>
+				<para>tlist, an instance of a model.</para>
+					<simplelist type="inline">
+                        <member>
+                            <literal>instance.instanceName</literal> : string, a name of the model.
+                        </member>
+                        <member>
+                            <literal>instance.modelInstance</literal> : pointer, contains an instance of a model.
+                        </member>
+                        <member>
+                            <literal>instance.isInitialized</literal> : boolean, a check of an initialization of a model. If true, we have some restrictions for a calling of 
+							<link linkend="fmiGetReal">fmiGetXXX</link> functions. 
+                        </member>
+                    </simplelist>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiInstantiateModel</literal> is the function which returns a new instance of a model. A model can be instantiated many times. 
+			This function must be called successfully, before any of the FMI standard functions can be called.
+        </para>
+  </refsection>    
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiInitialize">fmiInitialize</link>
+            </member>
+			<member>
+                <link linkend="fmiSetDebugLogging">fmiSetDebugLogging</link>
+            </member>
+            <member>
+                <link linkend="fmiGetReal">fmiGetReal</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

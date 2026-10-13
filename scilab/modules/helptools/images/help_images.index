@@ -409,6 +409,7 @@ xcos_49a1b6445ec04b37755862667501aa2e  Threshold_ZeroCrossing.zcos.png
 a40f858552177eed2eef14dbc6302acf  VARIABLE_DELAY_1.png
 xcos_372a077bc155231ad662c816aff9075f  VARIABLE_DELAY_en_US.zcos.png
 xcos_dd4bd9809fcf16f4e1daa0be0203d625  WRITEAU_f_Example.zcos.png
+xcos_055eee0658942ca60160e22e67cd2ad5  XcosPIDcontrollerHelpPage.zcos.png
 563cb7f71328e6722ab8793b28816bda  acos_1.png
 575d2713f12ea58dff038cbe319d58be  acos_1.png
 7feaaa1e15c2532eac7ad743988fdca7  acos_1.png
@@ -905,6 +906,9 @@ ea06b0ae80e7cad605e0e1ed3cc2a781  group_1.png
 772cb9dc8f90c553a9dee60e732dca75  hallchart_1.png
 bb4a18ae0d827c3677391140254a2a02  hallchart_2.png
 1d04f1938d271b27dfd061239fdd0ea1  hallchart_3.png
+xcos_cf050b6551958c5ef3c2fa197d70febe  helpPage.zcos.png
+xcos_6630a96870d45bdff01c57f36d3b212e  helpPageFMU.zcos.png
+xcos_ada402ab0fe55d0ba7aff5ae1b25cc26  helpPageSuper.zcos.png
 363dda0dc5e24b4092f17de52bb8dde4  hilbert_1.png
 c28606ba15a27d86f58dea9b8f6cf6e0  hilbert_1.png
 2e02e3b88fb53222662ba024e5a202fc  histplot_1.png

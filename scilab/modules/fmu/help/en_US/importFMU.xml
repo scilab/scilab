@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="importFMU">
+  <refnamediv>
+    <refname>importFMU</refname>
+    <refpurpose>Decompressing the model and parsing of XML description file.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      fmu = importFMU(path)
+    </synopsis>
+	<synopsis>
+      [fmu, obj] = importFMU(path)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+	<variablelist>
+		<varlistentry>  
+		<term>path</term>	
+			<listitem>
+				<para>string, a path for a model.</para>
+			</listitem>
+		</varlistentry>  
+		<varlistentry>  
+		<term>fmu</term>	
+			<listitem>
+				<para>tlist, model.</para>
+				<simplelist type="inline">
+					<member>
+						<literal>fmu.modelFileName</literal> : string, a file name.
+					</member>
+					<member>
+						<literal>fmu.xmlFile</literal> : string, a path for XML description.
+					</member>
+					<member>
+						<literal>fmu.libraryFile</literal> : string, a path for binary file.
+					</member>
+					<member>
+						<literal>fmu.userPath</literal> : string, a relative path for model.
+					</member>
+					<member>
+						<literal>fmu.simulationLibrary</literal> : pointer, a dynamic linked library.
+					</member>
+					<member>
+						<literal>fmu.descriptionFMU</literal> : tlist, main attributes of XML description.
+					</member>
+					<member>
+						<literal>fmu.fmiType</literal> : string, a type of FMU (me - Model Exchange, cs - Co-Simulation).
+					</member>
+                    <member>
+						<literal>fmu.modelVariables</literal> : tlist, main attributes of XML description.
+					</member>
+					<member>
+						<literal>fmu.setValues</literal> : struct, configuration of parameters, start values of variables for fmiSimulate.
+					</member>
+					<member>
+						<literal>fmu.getValues</literal> : struct, getting the results of simulation for fmiSimulate.
+					</member>
+				</simplelist>
+             </listitem>
+		</varlistentry>
+		<varlistentry>  
+		<term>obj</term>	
+			<listitem>
+				<para>data structure of a model containing any information for a model file.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>importFMU</literal> is the function which decompress a model at TMP Folder with the same name 
+			as the name of FMU file. Also, this function returns full information for all model variables(<literal>fmu.modelVariables</literal> ). 
+			This function returns <literal>tlist</literal> for a model containing: <literal>modelFileName, 
+			simulationLibrary, xmlDescription</literal>. It's possible to use this function to obtain more information about a model file(second output argument <literal>obj</literal>).   
+        </para>
+  </refsection>    
+  <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+			//Decompressing the model "SCADE_CruiseControl__CruiseControl_FMU". Creation a variable fmu of type tlist Scilab. 
+			fmu = importFMU(pwd()+fullfile("\tests\unit_tests\SCADE_CruiseControl__CruiseControl_FMU.fmu"))
+			//Decompressing FMU model "SCADE_CruiseControl__CruiseControl_FMU". Creation a variable fmu of type tlist Scilab and obj a data structure. 
+			[fmu, obj] = importFMU(pwd()+fullfile("\tests\unit_tests\SCADE_CruiseControl__CruiseControl_FMU.fmu"))
+		</programlisting>
+  </refsection> 
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiModelDescription">fmiModelDescription</link>
+            </member>
+			<member>
+                <link linkend="fmiModelVariables">fmiModelVariables</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

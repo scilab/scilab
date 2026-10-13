@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmu_ulink">
+    <refnamediv>
+        <refname>fmu_ulink</refname>
+        <refpurpose>(Internal) Freeing the loaded FMU library.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            fmu_ulink(library)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>	
+            <varlistentry>
+                <term>library</term>
+                <listitem>
+                    <para>
+                        handle to the library that has been loaded with <link linkend="fmu_link">fmu_link</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <warning><para>Internal function which is used by Scilab macros that implements standard FMI functions.</para></warning>
+        <para>
+            <literal>fmu_ulink</literal> is the function which frees the loaded dynamic library
+            <literal>.dll</literal> for Windows and <literal>.so</literal> for Linux. If this 
+            function succeeds, the return value is not NULL. If it fails, the return 
+            value is the last error that has been received for dynamic library.
+        </para>
+    </refsection>
+     
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmu_call">fmu_call</link>
+            </member>
+            <member>
+                <link linkend="fmu_link">fmu_link</link>
+            </member>
+        </simplelist>
+    </refsection>
+     
+</refentry>

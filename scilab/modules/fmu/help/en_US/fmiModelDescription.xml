@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiModelDescription">
+  <refnamediv>
+    <refname>fmiModelDescription</refname>
+    <refpurpose>Information about main attributes of fmiModelDescription.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      description = fmiModelDescription(fmu)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+		<varlistentry>
+		<term>fmu</term>	
+			<listitem>
+				<para>tlist, a model that can be received by <link linkend="importFMU">importFMU</link>.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>description</term>	
+			<listitem>
+				<para>tlist, a structure containing all information for fmiModelDescription.</para>
+				<simplelist type="inline">
+                    <member>
+                       <literal>description.fmiVersion</literal> : string, a version of FMI.
+                    </member>
+                    <member>
+                        <literal>description.fmiType</literal> : string, a type of FMU (Model Exchange or Co-Simulation).
+                    </member>
+                    <member>
+                        <literal>description.modelName</literal> : string, a name of the model as used in the modelling environment that generated the xml-file.
+                    </member>
+                    <member>
+                        <literal>description.modelIdentifier</literal> : string that is used as prefix in the C-function names of the model.
+                    </member>
+                    <member>
+                        <literal>description.guid</literal> : string, a "Globally Unique IDentifier" is a string that is used to check if the xml-file is compatible with the C-functions of the model.
+                    </member>
+                    <member>
+                        <literal>description.description</literal> : string, short description of the model.
+                    </member>
+                    <member>
+                        <literal>description.author</literal> : string, gives the name and organization of the model author.
+                    </member>
+                    <member>
+                        <literal>description.version</literal> : string, a version of the model (e.g. "1.1").
+                    </member>
+                    <member>
+                        <literal>description.generationTool</literal> : string, a name of the tool that generated the xml-file.
+                    </member>
+                    <member>
+                        <literal>description.generationDateAndTime</literal> : string, a date and time when the xml-file was generated.
+                    </member>
+                    <member>
+                        <literal>description.variableNamingConvention</literal> : string, a type of naming convention for variables and types definitions of model from XML description file.
+                    </member>
+                    <member>
+                        <literal>description.numberOfContinuousStates</literal> : double, a number of (fixed) continuous states.
+                    </member>
+                    <member>
+                        <literal>description.numberOfEventIndicators</literal> : double, a number of (fixed) event indicators.
+                    </member>
+                    <member>
+                        <literal>description.UnitDefinitions</literal> : double, a number of "Unit Definitions" of model.
+                    </member>
+                    <member>
+                        <literal>description.TypeDefinitions</literal> : double, a number of "Type Definitions" of model.
+                    </member>
+                    <member>
+                        <literal>description.VendorAnnotations</literal> : double, a number of "Vendor Annotations" of model.
+                    </member>
+                    <member>
+                        <literal>description.ModelVariables</literal> : double, a number of "Model Variables" of model.
+                    </member>
+                    <member>
+                        <literal>description.DefaultExperiment</literal> : tlist that consists of the optional default "start time", "stop time" and "relative tolerance" for the first simulation of the model.
+                    </member>
+                    <member>
+                        <literal>description.DirectDependency</literal> : tlist that consists of the information about the dependency of an output from its inputs of model.
+                    </member>
+                    <member>
+                        <literal>description.Implementation</literal> : tlist that consists of the information about the implementation of model (only for Co-Simulation).
+                    </member>
+				</simplelist>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiModelDescription</literal> is the function that returns the description of the model according to the root-level schema of XML file. 
+        </para>
+  </refsection>    
+  <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+			//Decompressing the model "SCADE_CruiseControl__CruiseControl_FMU". Creation a variable "fmu" of type tlist Scilab. 
+			fmu = importFMU(pwd()+fullfile("\tests\unit_tests\SCADE_CruiseControl__CruiseControl_FMU.fmu"))
+			//The convention of FMU model variables and type definitions.
+			description = fmiModelDescription(fmu)
+		</programlisting>
+  </refsection> 
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiModelVariables">fmiModelVariables</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

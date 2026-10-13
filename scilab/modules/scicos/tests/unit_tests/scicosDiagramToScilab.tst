@@ -22,7 +22,7 @@ function assert_check(scs_m)
     assert_checkequal(scs_m.objs(1).graphics.out_label, ["wB";"phiB";"M_mot";"I"])
 
     printf("checking scs_m.objs(2)\n")
-    assert_checkequal(scs_m.objs(2).gui, "SimpleFMU")
+    assert_checkequal(scs_m.objs(2).gui, "FMU_WRAPPER")
     assert_checkequal(scs_m.objs(2).graphics.exprs, ["stimuli_model.fmu";"TMPDIR/resources/stimuli_model";"me 2.0"])
     assert_checkequal(scs_m.objs(2).graphics.out_label, ["U";"M_load"])
 
@@ -55,13 +55,13 @@ function assert_check(scs_m)
     assert_checkequal(length(inner.objs), 17);
 
     printf("checking scs_m.objs(1).model.rpar.objs(1)\n")
-    assert_checkequal(inner.objs(1).gui, "SimpleFMU")
+    assert_checkequal(inner.objs(1).gui, "FMU_WRAPPER")
     assert_checkequal(inner.objs(1).graphics.exprs, ["edrive_mass.fmu";"TMPDIR/resources/edrive_mass";"me 2.0"])
     assert_checkequal(inner.objs(1).graphics.in_label, ["M_A";"M_B"])
     assert_checkequal(inner.objs(1).graphics.out_label, ["wA";"phiA";"wB";"phiB"])
 
     printf("checking scs_m.objs(1).model.rpar.objs(2)\n")
-    assert_checkequal(inner.objs(2).gui, "SimpleFMU")
+    assert_checkequal(inner.objs(2).gui, "FMU_WRAPPER")
     assert_checkequal(inner.objs(2).graphics.exprs, ["emachine_model.fmu";"TMPDIR/resources/emachine_model";"me 2.0"])
     assert_checkequal(inner.objs(2).graphics.in_label, ["w";"phi";"U"])
     assert_checkequal(inner.objs(2).graphics.out_label, ["M";"I"])

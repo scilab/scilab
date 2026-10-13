@@ -33,7 +33,8 @@ notTested = ["SUPER_f", "DSUPER", ..              // Specific blocks
 "TKSCALE", "BARXY", ..
 "SLIDER_f", "WFILE_f", "func_block", "SOM_f", ..  // Deprecated blocks
 "MPBLOCK", "c_block", "fortran_block", ..       // blocks with code generation
-"CBLOCK", "CBLOCK4", "scifunc_block", "scifunc_block_m"];
+"CBLOCK", "CBLOCK4", "scifunc_block", "scifunc_block_m", ..
+"FMU_WRAPPER", "SimpleFMU", "FMInterface"];   // file dialog based blocks
 invalidFunctions = unique(gsort(["csuper", "junk", ..
 "clkfrom", "clkgoto", ..
 "goto", "from", "gotomo", "frommo", ..

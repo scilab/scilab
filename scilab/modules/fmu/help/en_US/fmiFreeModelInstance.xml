@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiFreeModelInstance">
+  <refnamediv>
+    <refname>fmiFreeModelInstance</refname>
+    <refpurpose>Freeing an instance of a model.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      fmiFreeModelInstance(instance)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+		<varlistentry>
+		<term>instance</term>	
+			<listitem>
+				<para>tlist, an <link linkend="fmiInstantiateModel">instance</link> of a model.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiFreeModelInstance</literal> is the function that disposes the given model instance and deallocates all  
+			allocated memory and other resources that have been allocated by the functions of the FMI for current instance.  
+        </para>
+  </refsection>    
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiTerminate">fmiTerminate</link>
+            </member>
+			<member>
+                <link linkend="fmiSetDebugLogging">fmiSetDebugLogging</link>
+            </member>
+            <member>
+                <link linkend="fmiInitialize">fmiInitialize</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

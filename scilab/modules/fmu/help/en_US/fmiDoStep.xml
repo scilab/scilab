@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiDoStep">
+  <refnamediv>
+    <refname>fmiDoStep</refname>
+    <refpurpose>Computation of a communication step of a co-simulation slave.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      status = fmiDoStep(instance, currentTime, stepSize)
+      status = fmiDoStep(instance, currentTime, stepSize, newStep)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+        <varlistentry>
+        <term>instance</term>
+            <listitem>
+                <para>tlist, an initialized <link linkend="fmiInitializeSlave">instance</link> of a slave.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+        <term>currentTime</term>
+            <listitem>
+                <para>real scalar, current communication point.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+        <term>stepSize</term>
+            <listitem>
+                <para>real scalar, communication step size.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+        <term>newStep</term>
+            <listitem>
+                <para>boolean, <literal>%f</literal> if the previous step is repeated, <literal>%t</literal> by default.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+        <term>status</term>
+            <listitem>
+                <para>integer, the FMI status: 0 for fmiOK, 1 for fmiWarning, 2 for fmiDiscard, 3 for fmiError, 4 for fmiFatal, 5 for fmiPending.</para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiDoStep</literal> computes the slave from <literal>currentTime</literal> to <literal>currentTime + stepSize</literal>.
+            The inputs are set with <link linkend="fmiSetReal">fmiSetXXX</link> functions before the step, the outputs are read with
+            <link linkend="fmiGetReal">fmiGetXXX</link> functions after the step.
+        </para>
+  </refsection>
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiInitializeSlave">fmiInitializeSlave</link>
+            </member>
+            <member>
+                <link linkend="fmiTerminateSlave">fmiTerminateSlave</link>
+            </member>
+        </simplelist>
+  </refsection>
+</refentry>

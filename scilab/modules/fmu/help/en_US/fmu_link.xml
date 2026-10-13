@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:ns5="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmu_link">
+    <refnamediv>
+        <refname>fmu_link</refname>
+        <refpurpose>(Internal) Loading the FMU library into the address space of the calling process.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            library = fmu_link(path, identifier)
+            [library, fmuImpl] = fmu_link(path, identifier)
+            library = fmu_link(path, identifier, fmuImpl)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>path</term>
+                <listitem>
+                    <para>string, a path for the library.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>identifier</term>
+                <listitem>
+                    <para>
+                        <link linkend="fmiModelDescription">identifier</link> of FMU model.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmuImpl</term>
+                <listitem>
+                    <para>
+                        A string identifying the FMU implementation like <code>"me 1.0"</code> for Model Exchange 1.0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>library</term>
+                <listitem>
+                    <para>handle to the library.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <warning><para>Internal function which is used by Scilab macros that implement standard FMI functions.</para></warning>
+        <para>
+            <literal>fmu_link</literal> is the function that loads the specified library
+            <literal>.dll</literal> for Windows and <literal>.so</literal> for Linux. If this 
+            function succeeds, the return value is a handle to the library. If it fails, the return 
+            value is the last error that has been received for the dynamic library.
+        </para>
+        <para>Without the <literal>fmuImpl</literal> input arguments, the API will be detected and returned to let the user call the right functions. In the case of a multi-version shared library, an error is issued and you have to select the implementation you expect.</para>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmu_call">fmu_call</link>
+            </member>
+            <member>
+                <link linkend="fmu_ulink">fmu_ulink</link>
+            </member>
+        </simplelist>
+    </refsection>
+
+</refentry>

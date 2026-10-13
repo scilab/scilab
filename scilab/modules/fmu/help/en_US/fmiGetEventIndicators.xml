@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiGetEventIndicators">
+  <refnamediv>
+    <refname>fmiGetEventIndicators</refname>
+    <refpurpose>Compute event indicators.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      values = fmiGetEventIndicators(instance)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+		<varlistentry>
+		<term>instance</term>	
+			<listitem>
+				<para>tlist, an <link linkend="fmiInstantiateModel">instance</link> of a model.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>values</term>	
+			<listitem>
+				<para>real vector, event indicators.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiGetEventIndicators</literal> is the function that computes event indicators at the current 
+			time instant and for the current states. A state event is triggered when the domain of an event indicator changes. 
+			The event indicators are returned as a vector <literal>values</literal> elements.     
+        </para>
+  </refsection>    
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiGetDerivatives">fmiGetDerivatives</link>
+            </member>
+			<member>
+                <link linkend="fmiCompletedIntegrStep">fmiCompletedIntegrStep</link>
+            </member>
+            <member>
+                <link linkend="fmiGetStateValueRefs">fmiGetStateValueRefs</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

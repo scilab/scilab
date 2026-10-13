@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiTerminate">
+  <refnamediv>
+    <refname>fmiTerminate</refname>
+    <refpurpose>Terminate a model evaluation.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      fmiTerminate(instance)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+		<varlistentry>
+		<term>instance</term>	
+			<listitem>
+				<para>tlist, an <link linkend="fmiInstantiateModel">instance</link> of a model.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiTerminate</literal> is the function which terminates the model evaluation at the end of a simulation or after a desired stop 
+			of the integration before the simulation end. It releases all resources that have been allocated since <link linkend="fmiInitialize">fmiInitialize</link> has been called.
+			After calling of this function, the final values of all variables can be inquired with the <link linkend="fmiGetReal">fmiGetXXX</link> functions.  
+        </para>
+  </refsection>    
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiFreeModelInstance">fmiFreeModelInstance</link>
+            </member>
+			<member>
+                <link linkend="fmiSetDebugLogging">fmiSetDebugLogging</link>
+            </member>
+            <member>
+                <link linkend="fmiInitialize">fmiInitialize</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

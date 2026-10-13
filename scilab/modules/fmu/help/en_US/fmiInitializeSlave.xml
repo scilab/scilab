@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiInitializeSlave">
+  <refnamediv>
+    <refname>fmiInitializeSlave</refname>
+    <refpurpose>Initialization of a co-simulation slave.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      instance = fmiInitializeSlave(instance, startTime)
+      instance = fmiInitializeSlave(instance, startTime, stopTime)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+        <varlistentry>
+        <term>instance</term>
+            <listitem>
+                <para>tlist, an <link linkend="fmiInstantiateSlave">instance</link> of a slave.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+        <term>startTime</term>
+            <listitem>
+                <para>real scalar, start time of the simulation.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+        <term>stopTime</term>
+            <listitem>
+                <para>real scalar, optional stop time of the simulation.</para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiInitializeSlave</literal> initializes the slave and returns the initialized instance. The start values of the
+            variables can be set with <link linkend="fmiSetReal">fmiSetXXX</link> functions before calling this function.
+            If the initialization fails, the instance is freed and an error is raised.
+        </para>
+  </refsection>
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiInstantiateSlave">fmiInstantiateSlave</link>
+            </member>
+            <member>
+                <link linkend="fmiDoStep">fmiDoStep</link>
+            </member>
+        </simplelist>
+  </refsection>
+</refentry>

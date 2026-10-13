@@ -64,6 +64,7 @@
 #include BinariesSourcePath + "\modules\optimization\optimization.iss"
 #include BinariesSourcePath + "\modules\polynomials\polynomials.iss"
 #include BinariesSourcePath + "\modules\scicos\scicos.iss"
+#include BinariesSourcePath + "\modules\fmu\fmu.iss"
 #include BinariesSourcePath + "\modules\scicos_blocks\scicos_blocks.iss"
 #include BinariesSourcePath + "\modules\statistics\statistics.iss"
 #include BinariesSourcePath + "\modules\signal_processing\signal_processing.iss"

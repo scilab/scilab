@@ -112,7 +112,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../dynamic_link/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/system_env;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/types;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;..\..\..\..\fmu\includes;..\..\..\..\fmu\src\c;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../dynamic_link/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/system_env;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/types;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -148,7 +148,7 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../dynamic_link/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/system_env;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/types;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;..\..\..\..\fmu\includes;..\..\..\..\fmu\src\c;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../dynamic_link/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/system_env;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/types;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -184,7 +184,7 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../dynamic_link/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/system_env;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/types;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;..\..\..\..\fmu\includes;..\..\..\..\fmu\src\c;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../dynamic_link/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/system_env;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/types;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -218,7 +218,7 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../dynamic_link/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/system_env;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/types;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;..\..\..\..\fmu\includes;..\..\..\..\fmu\src\c;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../dynamic_link/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/system_env;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/types;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -259,7 +259,7 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../dynamic_link/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/system_env;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/types;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;..\..\..\..\fmu\includes;..\..\..\..\fmu\src\c;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../dynamic_link/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/system_env;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/types;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -300,7 +300,7 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../dynamic_link/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/system_env;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/types;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;..\..\..\..\fmu\includes;..\..\..\..\fmu\src\c;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../dynamic_link/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/system_env;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/types;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -343,6 +343,13 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     <ClCompile Include="..\acosh_blk.c" />
     <ClCompile Include="..\..\cpp\affich2.cpp" />
     <ClCompile Include="..\..\cpp\scoUtils.cpp" />
+    <ClCompile Include="..\..\cpp\fmu_sim_utility.cpp" />
+    <ClCompile Include="..\..\cpp\fmu_simulate_me.cpp" />
+    <ClCompile Include="..\..\cpp\fmu_simulate_cs.cpp" />
+    <ClCompile Include="..\..\cpp\fmu2_simulate_me.cpp" />
+    <ClCompile Include="..\..\cpp\fmu2_simulate_cs.cpp" />
+    <ClCompile Include="..\..\cpp\fmu3_simulate_me.cpp" />
+    <ClCompile Include="..\..\cpp\fmu3_simulate_cs.cpp" />
     <ClCompile Include="..\andlog.c" />
     <ClCompile Include="..\asin_blk.c" />
     <ClCompile Include="..\asinh_blk.c" />
@@ -667,6 +674,7 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     <ClInclude Include="..\scicos_evalhermite.h" />
     <ClInclude Include="..\scicos_indexfinder.h" />
     <ClInclude Include="..\..\cpp\scoUtils.h" />
+    <ClInclude Include="..\..\cpp\fmu_sim_utility.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\core_Import.def" />
@@ -687,6 +695,9 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     <ProjectReference Include="..\..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\fmu\fmu.vcxproj">
+      <Project>{79AB7CF8-226E-474E-9A9F-19925346F0B9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
@@ -717,6 +728,9 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     <ProjectReference Include="..\..\..\..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\differential_equations\src\patched_sundials\patched_sundials.vcxproj">
       <Project>{c781737a-7c97-4cf9-acbc-f68c2bbf0ffa}</Project>

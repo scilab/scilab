@@ -59,6 +59,7 @@
 <!-- comments -->
 <module name="scicos" activate="@XCOS_ENABLE@"/>
 <module name="scicos_blocks" activate="@XCOS_ENABLE@"/>
+<module name="fmu" activate="yes"/>
 <!-- comments -->
 <module name="fftw" activate="@FFTW_ENABLE@"/>
 <module name="umfpack" activate="@UMFPACK_ENABLE@"/>

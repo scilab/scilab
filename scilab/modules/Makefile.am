@@ -98,6 +98,8 @@ if GUI
 SUBDIRS += external_objects_java
 endif
 
+SUBDIRS += fmu
+
 if XCOS
 SUBDIRS += scicos_blocks scicos xcos
 else
@@ -212,6 +214,7 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
 	$(top_builddir)/modules/randlib/libscirandlib.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
+	$(top_builddir)/modules/fmu/libscifmu.la \
 	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/modules/sound/libscisound.la \

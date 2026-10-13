@@ -1,0 +1,37 @@
+Copyright:
+Copyright (C) - 2013-2017 - Scilab Enterprises
+Copyright (C) - 2016-2016 - German Aerospace Center (DLR)
+Copyright (C) - 2017-2020 - ESI Group
+Copyright (C) - 2024-2026 - Dassault Systèmes
+
+License:
+
+This module is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+For more information, see the COPYING file which you should have received
+along with this program.
+
+
+FMI header files:
+=================
+
+Files:
+includes/fmiModelFunctions.h
+includes/fmiModelTypes.h
+src/c/fmi2Functions.h
+src/c/fmi2FunctionTypes.h
+src/c/fmi2TypesPlatform.h
+src/c/fmi3Functions.h
+src/c/fmi3FunctionTypes.h
+src/c/fmi3PlatformTypes.h
+src/c/fmiFunctions.h
+src/c/fmiFunctionTypes.h
+src/c/fmiPlatformTypes.h
+
+Copyright:
+2011 MODELISAR consortium,
+2012-2013 Modelica Association Project "FMI"
+All rights reserved.
+
+License:
+BSD 2-Clause License

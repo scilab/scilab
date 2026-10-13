@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiInitialize">
+  <refnamediv>
+    <refname>fmiInitialize</refname>
+    <refpurpose>Initialization of a model.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+       [eventInfo, initializedInstance] = fmiInitialize(instance, toleranceControlled, relativeTolerance)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+		<varlistentry>
+		<term>instance</term>	
+			<listitem>
+				<para>tlist, an <link linkend="fmiInstantiateModel">instance</link> of a model.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>toleranceControlled</term>	
+			<listitem>
+				<para>boolean, if <literal>%t</literal> then the model is called with a numerical integration scheme where the step size is controlled by using <literal>relativeTolerance</literal>.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>relativeTolerance</term>	
+			<listitem>
+				<para>real, relative tolerance for error estimation.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>eventInfo</term>	
+			<listitem>
+				<para>mlist, occured events.</para>
+					<simplelist type="inline">
+                        <member>
+                            <literal>eventInfo.iterationConverged</literal> : boolean, is only meaningful when returns from <link linkend="fmiEventUpdate">fmiEventUpdate</link> if not, it is <literal>%t</literal>.
+                        </member>
+                        <member>
+                            <literal>eventInfo.stateValueReferencesChanged</literal> : boolean, is only meaningful when returns from <link linkend="fmiEventUpdate">fmiEventUpdate</link> if not, it is <literal>%t</literal>.
+							If <literal>%t</literal> when <literal>iterationConverged = true</literal>, then the meaning of the states has changed. The valueReferences of the new states can be inquired 
+							with <link linkend="fmiGetStateValueRefs">fmiGetStateValueRefs</link> and the nominal values of the new states can be inquired 
+							with <link linkend="fmiGetNominalContStates">fmiGetNominalContStates</link>.
+						</member>
+                        <member>
+                            <literal>eventInfo.stateValuesChanged</literal> : boolean, is only meaningful when returns from <link linkend="fmiEventUpdate">fmiEventUpdate</link> if not it is <literal>%t</literal>. 
+							If <literal>%t</literal> when <literal>iterationConverged = true</literal>, then at least one element of the continuous state vector has changed it's value, e.g., 
+							since at initial time, or due to an impulse. 
+							The new values of the states must be inquired with function <link linkend="fmiGetContinuousStates">fmiGetContinuousStates</link>.
+                        </member>
+						<member>
+                            <literal>eventInfo.terminateSimulation</literal> : boolean, if <literal>%t</literal>, the simulation should be terminated (successfully). It is assumed that 
+							an appropriate message is printed by the FMU to explain the reason for the termination.
+                        </member>
+                        <member>
+                            <literal>eventInfo.upcomingTimeEvent</literal> : boolean, if <literal>%t</literal>, then the simulation shall integrate at most until <literal>time = nextEventTime</literal>, 
+							and shall call <link linkend="fmiEventUpdate">fmiEventUpdate</link> at this time instant. If integration is stopped before 
+							<literal>nextEventTime</literal>, e.g., due to a state event, the definition of <literal>nextEventTime</literal> becomes obsolete.
+                        </member>
+                        <member>
+                            <literal>eventInfo.nextEventTime</literal> : real, a time for a next event. 
+                        </member>
+                    </simplelist>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>initializedInstance</term>	
+			<listitem>
+				<para>tlist, a new instance of a model that have been initialized.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiInitialize</literal> is the function which initializes the model, i.e., computes initial values for all variables. 
+			Before calling this function, <link linkend="fmiSetTime">fmiSetTime</link> must be called, and all variables with <literal>start</literal> values or 
+			with <literal>causality = input</literal> can be set with the <link linkend="fmiSetReal">fmiSetXXX</link> functions (the Scalar Variable attributes are defined in the Model Description File (XML), 
+			see <link linkend="fmiModelDescription">fmiModelDescription</link> and <link linkend="fmiModelVariables">fmiModelVariables</link>). 
+			Setting other variables is not allowed (with exception of <literal>causality = none</literal>). 
+			Currently, this function can only be called once for one instance. Note, even if it can only be called once, an event can be triggered 
+			and then event iteration via <link linkend="fmiEventUpdate">fmiEventUpdate</link> is possible at the initial time.
+        </para>
+  </refsection>    
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiInstantiateModel">fmiInstantiateModel</link>
+            </member>
+			<member>
+                <link linkend="importFMU">importFMU</link>
+            </member>
+            <member>
+                <link linkend="fmiGetStateValueRefs">fmiGetStateValueRefs</link>
+            </member>
+			 <member>
+				<link xlink:href="http://www.fmi-standard.org">Official site of the Functional Mockup Interfaces.</link>
+			</member>
+		</simplelist>
+  </refsection> 
+</refentry>

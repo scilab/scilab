@@ -335,6 +335,7 @@ images/palettes/EXTRACTBITS.png \
 images/palettes/EXTRACTOR.png \
 images/palettes/EXTTRI.png \
 images/palettes/Extract_Activation.png \
+images/palettes/FMU_WRAPPER.png \
 images/palettes/FROM.png \
 images/palettes/FROMMO.png \
 images/palettes/FROMWSB.png \

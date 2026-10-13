@@ -29,6 +29,7 @@ defaultlibs  = defaultlibs + "lib";
 notTested = ["DSUPER" "SUPER_f" "TEXT_f" "PAL_f" ,..   // Specific blocks
 , ..                                       // native blocks
 "CBLOCK" "CBLOCK4" "c_block" "fortran_block",..
+"FMU_WRAPPER" "SimpleFMU" "FMInterface", ..  // file dialog based blocks
 ,..                                        // not interface function
 "WFILE_f", "func_block", ..                // Deprecated blocks
 "tkscaleblk", "m_sin", "bplatform2", "anim_pen" ,..

@@ -334,14 +334,21 @@ SCICOS_BLOCKS_C_SOURCES = \
 
 SCICOS_BLOCKS_CXX_SOURCES = \
     src/cpp/affich2.cpp \
-    src/cpp/fromws_c.cpp
+    src/cpp/fromws_c.cpp \
+    src/cpp/fmu_simulate_me.cpp \
+    src/cpp/fmu_simulate_cs.cpp \
+    src/cpp/fmu2_simulate_me.cpp \
+    src/cpp/fmu2_simulate_cs.cpp \
+    src/cpp/fmu3_simulate_me.cpp \
+    src/cpp/fmu3_simulate_cs.cpp
 
 NON_BLOCK_C_SOURCES = \
     src/c/scicos_evalhermite.c \
     src/c/scicos_indexfinder.c
 
 NON_BLOCK_CXX_SOURCES = \
-    src/cpp/scoUtils.cpp
+    src/cpp/scoUtils.cpp \
+    src/cpp/fmu_sim_utility.cpp
 
 NON_BLOCK_JNI_SOURCES = \
     src/cpp/HelpersJNI.cpp \
@@ -449,6 +456,8 @@ libsciscicos_blocks_algo_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/renderer/includes/ \
     -I$(top_srcdir)/modules/scicos/includes/ \
+    -I$(top_srcdir)/modules/fmu/includes/ \
+    -I$(top_srcdir)/modules/fmu/src/c/ \
     -I$(top_srcdir)/modules/string/includes/ \
     $(HDF5_CFLAGS) \
     $(AM_CPPFLAGS)
@@ -478,10 +487,10 @@ libsciscicos_blocks_cli_la_LIBADD =
 
 if XCOS
 libsciscicos_blocks_cli_la_SOURCES += $(NON_BLOCK_CLI_SOURCES)
-libsciscicos_blocks_cli_la_LIBADD += libsciscicos_blocks-algo.la
+libsciscicos_blocks_cli_la_LIBADD += libsciscicos_blocks-algo.la $(top_builddir)/modules/fmu/libscifmu.la
 if GUI
 libsciscicos_blocks_la_SOURCES += $(NON_BLOCK_JNI_SOURCES)
-libsciscicos_blocks_la_LIBADD += libsciscicos_blocks-algo.la
+libsciscicos_blocks_la_LIBADD += libsciscicos_blocks-algo.la $(top_builddir)/modules/fmu/libscifmu.la
 endif
 endif
 

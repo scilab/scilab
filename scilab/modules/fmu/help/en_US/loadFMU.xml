@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="loadFMU">
+  <refnamediv>
+    <refname>loadFMU</refname>
+    <refpurpose>load an FMU file returning its raw content.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      [workdir, xml] = loadFMU(filepath)
+      [workdir, xml, libname] loadFMU(filepath)
+      [workdir, xml, libname, modelIdentifier, fmuImpl] = loadFMU(filepath, workdir)
+      [workdir, xml, libname, modelIdentifier] = loadFMU(filepath, workdir, fmuImpl)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+	<variablelist>
+		<varlistentry>  
+		    <term>filepath</term>	
+			<listitem>
+				<para>string, a path for a model.</para>
+			</listitem>
+		</varlistentry>  
+		<varlistentry>  
+		    <term>workdir</term>	
+			<listitem>
+				<para>string, a path to the extracted file content.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>  
+		    <term>fmuImpl</term>	
+			<listitem>
+				<para>string, the FMU versioned implementation like <code>"me 1.0"</code> for Model Exchange 1.0. Multiple values can be returned if the FMU supports multiple versions.</para>
+			</listitem>
+		</varlistentry>  
+		<varlistentry>  
+		    <term>xml</term>	
+			<listitem>
+				<para><link linkend="xmlDocument">xmlDocument</link>, the XML content of <literal>modelDescription.xml</literal>.</para>
+			</listitem>
+		</varlistentry>  
+		<varlistentry>  
+		    <term>libname</term>	
+			<listitem>
+				<para>string, a path to the library used for the simulation.</para>
+			</listitem>
+		</varlistentry> 
+		<varlistentry>  
+		    <term>modelIdentifier</term>	
+			<listitem>
+				<para>string, the model identifier to pass to <link linkend="fmu_link">fmu_link</link>.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>loadFMU</literal> is the function which decompress a model at <link linkend="TMPDIR">TMPDIR</link> Folder with the same name 
+			as the name of the FMU file. It also extracts the XML information of the <literal>modelDescription.xml</literal> file which contains all the information about the FMU as well as returns the path to the shared library associated with the current operating system and architecture.
+        </para>
+        <para>
+            The <literal>workdir</literal> can be passed around the function to retrieve part of the information at different times without unzipping the FMU multiple times.
+        </para>
+        <para>
+            To link and use an FMU, you shoud pass <literal>libname, modelIdentifier, fmuImpl</literal> output arguments to <link linkend="fmu_link">fmu_link</link> and use <link linkend="fmu_call">fmu_call</link>to manipulate the FMU.
+        </para>
+  </refsection>    
+  <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            [?, p] = libraryinfo("xcos_fmulib");
+
+			// Decompressing the model "SCADE_CruiseControl__CruiseControl_FMU".
+            filepath = fullfile(p, "..", "tests", "unit_tests", "SCADE_CruiseControl__CruiseControl_FMU.fmu");
+			[workdir, xml] = loadFMU(filepath);
+
+            // check the xml, retrieve the inputs and outputs
+            in = xmlXPath(xml, "//ScalarVariable[@causality=""input""]")
+            out = xmlXPath(xml, "//ScalarVariable[@causality=""output""]")
+
+            // link the FMU, retrieve the type and version
+            [workdir, xml, libname, modelIdentifier, fmuImpl] = loadFMU(filepath, workdir);
+
+            disp(fmuImpl)
+		</programlisting>
+        <programlisting role="example">
+            [?, p] = libraryinfo("xcos_fmulib");
+
+            FMUs = listfiles(fullfile(p, "..", "tests", "unit_tests", "*.fmu"));
+
+            // display fmuImpl for each FMU
+            st = struct();
+            for filepath=FMUs'
+                try
+                    [workdir, xml, libname, modelIdentifier, fmuImpl] = loadFMU(filepath);
+                    
+                    st(fmuImpl)($+1) = modelIdentifier;
+                    
+                    rmdir(workdir,'s');
+                catch
+                    st("invalid") = modelIdentifier;
+                end
+            end
+            disp(st)
+		</programlisting>
+  </refsection> 
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmu_link">fmu_link</link>
+            </member>
+            <member>
+                <link linkend="fmu_ulink">fmu_ulink</link>
+            </member>
+            <member>
+                <link linkend="importFMU">importFMU</link>
+            </member>
+			<member>
+                <link linkend="fmiModelVariables">fmiModelVariables</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

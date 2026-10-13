@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiSetDebugLogging">
+  <refnamediv>
+    <refname>fmiSetDebugLogging</refname>
+    <refpurpose>Set a debug logging for a model.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      fmiSetDebugLogging(instance, logging)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+		<varlistentry>
+		<term>instance</term>	
+			<listitem>
+				<para>tlist, an <link linkend="fmiInstantiateModel">instance</link> of a model.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>logging</term>	
+			<listitem>
+				<para>boolean, <literal>%t</literal> enable a logging, <literal>%f</literal> disable a logging.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiSetDebugLogging</literal> is the function that enables or disables a logging of some information about the standard FMI functions calling. 
+			If enabled, a log message will be printed into the console of Scilab.  
+        </para>
+  </refsection>    
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiInitialize">fmiInitialize</link>
+            </member>
+			<member>
+                <link linkend="fmiInstantiateModel">fmiInstantiateModel</link>
+            </member>
+            <member>
+                <link linkend="fmiFreeModelInstance">fmiFreeModelInstance</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

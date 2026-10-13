@@ -1,0 +1,147 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) - 2014 - Scilab Enterprises - Vladislav Trubkin
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//
+//
+// Test of numerical results of Xcos PID controller. Comparison with FMU checker
+// results.
+path = fmigetPath();
+assert_checktrue(importXcosDiagram(fullfile(path, "tests", "unit_tests", "expXcosPIDnumerical.zcos")));
+xcosSolver = [ ...
+    "***Lsodar***"
+    "***CVode BDF Newton***"
+    "***CVode BDF Functional***"
+    "***CVode ADAMS Newton***"
+    "***CVode ADAMS Functional***"
+    "***Dormand-Prince***"
+    "***Runge-Kutta***"];
+// load comparison function
+exec(fullfile(path, "tests", "unit_tests", "check_results.sce"), -1);
+// read FMU checker results
+outME = csvRead(fullfile(path, "tests", "unit_tests", "expXcosPIDMEnumericalFMUcheckOut.csv"), ";");
+outCS = csvRead(fullfile(path, "tests", "unit_tests", "expXcosPIDCSnumericalFMUcheckOut.csv"), ";");
+// delete headers
+outME = outME(3:$,:);
+outCS = outCS(2:$,:);
+// FMUchecker time
+assert_checkequal(outME(:,1), outCS(:,1));
+outputs = struct();
+outputs.time = outME(:,1);
+// FMUchecker values
+outputs.values = [outME(:,2), outCS(:,2)];
+// compare Xcos superblock results with FMUchecker results
+// PIDrefs == Xcos superblock results
+// outputs == FMUchecker results for Xcos FMUs 
+disp("//*********Xcos superblock and FMUchecker*********//");
+  "//*********Xcos superblock and FMUchecker*********//"
+outName = ["super_MEFMUchecker"; "super_CSFMUchecker"];
+for i=1:7
+    scs_m.props.tol(6) = i-1;
+    xcos_simulate(scs_m, 4);
+    check_results(PIDrefs, outputs, outName, xcosSolver(i));
+end
+Type of solver: ***Lsodar***
+  super_MEFMUchecker   mean  0.0008521 std  0.0051648 min  0.0000000 max  1.1365228 order  1.0002644
+  super_CSFMUchecker   mean  0.0000787 std  0.0004763 min  0.0000000 max  1.0956953 order  1.0002644
+Type of solver: ***CVode BDF Newton***
+  super_MEFMUchecker   mean  0.0008637 std  0.0052245 min  0.0000000 max  1.1365228 order  1.0002644
+  super_CSFMUchecker   mean  0.0000904 std  0.0005381 min  0.0000000 max  1.0956953 order  1.0002644
+Type of solver: ***CVode BDF Functional***
+  super_MEFMUchecker   mean  0.0008579 std  0.0051951 min  0.0000000 max  1.1365228 order  1.0002644
+  super_CSFMUchecker   mean  0.0000845 std  0.0005068 min  0.0000000 max  1.0956953 order  1.0002644
+Type of solver: ***CVode ADAMS Newton***
+  super_MEFMUchecker   mean  0.0008546 std  0.0051721 min  0.0000000 max  1.1365228 order  1.0002644
+  super_CSFMUchecker   mean  0.0000812 std  0.0004838 min  0.0000000 max  1.0956953 order  1.0002644
+Type of solver: ***CVode ADAMS Functional***
+  super_MEFMUchecker   mean  0.0008561 std  0.0051863 min  0.0000000 max  1.1365228 order  1.0002644
+  super_CSFMUchecker   mean  0.0000827 std  0.0004977 min  0.0000000 max  1.0956953 order  1.0002644
+Type of solver: ***Dormand-Prince***
+  super_MEFMUchecker   mean  0.0008497 std  0.0051596 min  0.0000000 max  1.1365228 order  1.0002644
+  super_CSFMUchecker   mean  0.0000763 std  0.0004713 min  0.0000000 max  1.0956953 order  1.0002644
+Type of solver: ***Runge-Kutta***
+  super_MEFMUchecker   mean  0.0008496 std  0.0051596 min  0.0000000 max  1.1365228 order  1.0002644
+  super_CSFMUchecker   mean  0.0000762 std  0.0004712 min  0.0000000 max  1.0956953 order  1.0002644
+// compare FMUchecker results with Xcos import FMU
+disp("//*********FMUchecker and Xcos import FMU*********//");
+  "//*********FMUchecker and Xcos import FMU*********//"
+outName = ["xcosME_MEFMUchecker"; "xcosCS_CSFMUchecker"];
+outRefs = struct();
+outRefs.time = outputs.time;
+// ME FMUchecker
+outRefs.values = outputs.values(:,1);
+for i=1:7
+    scs_m.props.tol(6) = i-1;
+    xcos_simulate(scs_m, 4);
+    check_results(outRefs, PIDresults, outName(1), xcosSolver(i));
+end
+Type of solver: ***Lsodar***
+  xcosME_MEFMUchecker  mean  0.0008899 std  0.0053988 min  0.0000000 max  1.0901578 order  1.0002644
+Type of solver: ***CVode BDF Newton***
+  xcosME_MEFMUchecker  mean  0.0009776 std  0.0062791 min  0.0000000 max  1.0878167 order  1.0002798
+Type of solver: ***CVode BDF Functional***
+  xcosME_MEFMUchecker  mean  0.0008567 std  0.0051933 min  0.0000000 max  1.0914866 order  1.0002644
+Type of solver: ***CVode ADAMS Newton***
+  xcosME_MEFMUchecker  mean  0.0009014 std  0.0055776 min  0.0000000 max  1.0891164 order  1.0002919
+Type of solver: ***CVode ADAMS Functional***
+  xcosME_MEFMUchecker  mean  0.0008544 std  0.0051820 min  0.0000000 max  1.0916333 order  1.0002644
+Type of solver: ***Dormand-Prince***
+  xcosME_MEFMUchecker  mean  0.0007301 std  0.0044540 min  0.0000000 max  1.1003015 order  1.0002644
+Type of solver: ***Runge-Kutta***
+  xcosME_MEFMUchecker  mean  0.0007652 std  0.0046535 min  0.0000000 max  1.0977626 order  1.0002644
+// CS FMUchecker
+outRefs.values = outputs.values(:,1);
+for i=1:7
+    scs_m.props.tol(6) = i-1;
+    xcos_simulate(scs_m, 4);
+    check_results(outRefs, PIDresults, outName(2), xcosSolver(i));
+end
+Type of solver: ***Lsodar***
+  xcosCS_CSFMUchecker  mean  0.0008899 std  0.0053988 min  0.0000000 max  1.0901578 order  1.0002644
+Type of solver: ***CVode BDF Newton***
+  xcosCS_CSFMUchecker  mean  0.0009776 std  0.0062791 min  0.0000000 max  1.0878167 order  1.0002798
+Type of solver: ***CVode BDF Functional***
+  xcosCS_CSFMUchecker  mean  0.0008567 std  0.0051933 min  0.0000000 max  1.0914866 order  1.0002644
+Type of solver: ***CVode ADAMS Newton***
+  xcosCS_CSFMUchecker  mean  0.0009014 std  0.0055776 min  0.0000000 max  1.0891164 order  1.0002919
+Type of solver: ***CVode ADAMS Functional***
+  xcosCS_CSFMUchecker  mean  0.0008544 std  0.0051820 min  0.0000000 max  1.0916333 order  1.0002644
+Type of solver: ***Dormand-Prince***
+  xcosCS_CSFMUchecker  mean  0.0007301 std  0.0044540 min  0.0000000 max  1.1003015 order  1.0002644
+Type of solver: ***Runge-Kutta***
+  xcosCS_CSFMUchecker  mean  0.0007652 std  0.0046535 min  0.0000000 max  1.0977626 order  1.0002644
+// compare Xcos superblock results with Xcos import FMU
+disp("//*********Xcos superblock and Xcos import FMU*********//");
+  "//*********Xcos superblock and Xcos import FMU*********//"
+outName = ["xcosME_superXcos"; "xcosCS_superXcos"];
+for i=1:7
+    scs_m.props.tol(6) = i-1;
+    xcos_simulate(scs_m, 4);
+    check_results(PIDrefs, PIDresults, outName, xcosSolver(i));
+end
+Type of solver: ***Lsodar***
+  xcosME_superXcos     mean  0.0000716 std  0.0007240 min  0.0000000 max  1.0901578 order  1.0002644
+  xcosCS_superXcos     mean  0.0018150 std  0.0132456 min  0.0000000 max  1.0931701 order  1.0002629
+Type of solver: ***CVode BDF Newton***
+  xcosME_superXcos     mean  0.0004310 std  0.0035083 min  0.0000000 max  1.0878167 order  1.0002798
+  xcosCS_superXcos     mean  0.0009480 std  0.0064073 min  0.0000000 max  1.0929463 order  1.0002642
+Type of solver: ***CVode BDF Functional***
+  xcosME_superXcos     mean  0.0000012 std  0.0000061 min  0.0000000 max  1.0914866 order  1.0002644
+  xcosCS_superXcos     mean  0.0035599 std  0.0289907 min  0.0000000 max  1.0924273 order  1.0002639
+Type of solver: ***CVode ADAMS Newton***
+  xcosME_superXcos     mean  0.0002482 std  0.0019315 min  0.0000000 max  1.0891164 order  1.0002919
+  xcosCS_superXcos     mean  0.0011875 std  0.0081963 min  0.0000000 max  1.0934516 order  1.0002642
+Type of solver: ***CVode ADAMS Functional***
+  xcosME_superXcos     mean  0.0000018 std  0.0000085 min  0.0000000 max  1.0916333 order  1.0002644
+  xcosCS_superXcos     mean  0.0038090 std  0.0318054 min  0.0000000 max  1.0926504 order  1.0002639
+Type of solver: ***Dormand-Prince***
+  xcosME_superXcos     mean  0.0001608 std  0.0010630 min  0.0000000 max  1.1003015 order  1.0002644
+  xcosCS_superXcos     mean  0.0000228 std  0.0001431 min  0.0000000 max  1.0930657 order  1.0002644
+Type of solver: ***Runge-Kutta***
+  xcosME_superXcos     mean  0.0001123 std  0.0007432 min  0.0000000 max  1.0977626 order  1.0002644
+  xcosCS_superXcos     mean  0.0000379 std  0.0002344 min  0.0000000 max  1.0937854 order  1.0002644

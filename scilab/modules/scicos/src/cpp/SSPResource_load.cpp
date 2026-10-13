@@ -1985,8 +1985,8 @@ int SSPResource::loadElementGeometry(xmlTextReaderPtr reader, model::BaseObject*
     std::string style;
     controller.getObjectProperty(o, INTERFACE_FUNCTION, style);
 
-    // special style for any FMU block and where the fmu_wrapper toolbox is not already loaded
-    if (style == std::string("SimpleFMU"))
+    // special style for any FMU block
+    if (style == std::string("FMU_WRAPPER"))
     {
         style += ";blockWithLabel;displayedLabel=FMU %1$s";
     }
@@ -2602,7 +2602,7 @@ int SSPResource::loadComponent(xmlTextReaderPtr reader, model::BaseObject* o)
                     case e_application_x_fmu_sharedlibrary: // fallthrough
                     default:
                     {
-                        controller.setObjectProperty(o, INTERFACE_FUNCTION, std::string("SimpleFMU"));
+                        controller.setObjectProperty(o, INTERFACE_FUNCTION, std::string("FMU_WRAPPER"));
                         break;
                     }
 

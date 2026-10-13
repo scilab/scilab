@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmu_call">
+    <refnamediv>
+        <refname>fmu_call</refname>
+        <refpurpose>(Internal) Call FMI model exported functions.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            [status, ...] = fmu_call(library, 'fmiXXX', instance, ...);
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>library</term>
+                <listitem>
+                    <para>handle to the library.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>'fmiXXX'</term>
+                <listitem>
+                    <para>string, name of a standard FMI function.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>instance</term>
+                <listitem>
+                    <para>
+                        pointer, an <link linkend="fmiInstantiateModel">instance</link> of the FMU model.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>status</term>
+                <listitem>
+                    <para>double, returns status of standard FMI function call. The values are :
+                        <simplelist type="inline">
+                            <member>
+                                <literal>0, fmiOk</literal>
+                            </member>
+                            <member>
+                                <literal>1, fmiWarning</literal> there are things not quite right, but the computation can continue.
+                            </member>
+                            <member>
+                                <literal>2, fmiDiscard</literal> it is recommended to perform a smaller
+                                step size and evaluate the model equations again. 
+                            </member>
+                            <member>
+                                <literal>3, fmiError</literal> the model encountered an error, the simulation cannot be continued with this model instance and function fmiFreeModelInstance(..) must be called.
+                            </member>
+                            <member>
+                                <literal>4, fmiFatal</literal> the model computations are irreparably corrupted for all model instances.
+                            </member>
+                        </simplelist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>...</term>
+                <listitem>
+                    <para>Any FMI function argument is a Scilab type, C output argument (passed by reference) are passed as Scilab output arguments.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <warning><para>Internal function which is used by Scilab macros that implement standards FMI functions.</para></warning>
+        <para>
+            <literal>fmu_call</literal> is the function which calls a function provided by the dynamic library (<literal>.dll</literal> for Windows and <literal>.so</literal> for Linux) of an FMU.
+            If this function succeeds, the status return value indicates the success or fails of the FMI function call.
+        </para>
+    </refsection>
+    
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmu_link">fmu_link</link>
+            </member>
+            <member>
+                <link linkend="fmu_ulink">fmu_ulink</link>
+            </member>
+        </simplelist>
+    </refsection>
+    
+</refentry>

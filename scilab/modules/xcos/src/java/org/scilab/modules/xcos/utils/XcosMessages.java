@@ -137,6 +137,7 @@ public final class XcosMessages {
     /* Tools menu */
     public static final String TOOLS = Messages.gettext("Tools");
     public static final String CODE_GENERATION = Messages.gettext("Code generation");
+    public static final String EXPORT_FMU = Messages.gettext("Export FMU");
 
     /* Help menu */
     public static final String HELP = Messages.gettext("?");

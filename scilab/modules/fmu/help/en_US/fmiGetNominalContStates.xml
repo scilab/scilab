@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiGetNominalContStates">
+  <refnamediv>
+    <refname>fmiGetNominalContStates</refname>
+    <refpurpose>Get the nominal values of the continuous states.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      values = fmiGetNominalContStates(instance)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+		<varlistentry>
+		<term>instance</term>	
+			<listitem>
+				<para>tlist, an <link linkend="fmiInstantiateModel">instance</link> of a model.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>values</term>	
+			<listitem>
+				<para>real vector, nominal continuous states.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiGetNominalContStates</literal> is the function which returns the nominal values of the continuous states. 
+			This function should always be called after <link linkend="fmiInitialize">fmiInitialize</link>, 
+			and if <literal>eventInfo->stateValueReferencesChanged = fmiTrue</literal> in <link linkend="fmiEventUpdate">fmiEventUpdate</link>, 
+			since then the association of the continuous states to variables has changed and therefore also their nominal values. 
+			If the FMU does not have any information about the nominal value of a continuous state, a nominal value <literal>values[i] = 1.0</literal> will be returned.    
+        </para>
+  </refsection>    
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiSetContinuousStates">fmiSetContinuousStates</link>
+            </member>
+			<member>
+                <link linkend="fmiGetContinuousStates">fmiGetContinuousStates</link>
+            </member>
+            <member>
+                <link linkend="fmiGetStateValueRefs">fmiGetStateValueRefs</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

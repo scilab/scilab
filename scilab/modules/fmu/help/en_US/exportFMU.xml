@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="exportFMU">
+    <refnamediv>
+        <refname>Export FMU from Xcos</refname>
+        <refpurpose>Export FMUs for Model Exchange and Co-Simulation Version 1.0</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Xcos model can be exported as an FMU for Model Exchange or for Co-Simulation. 
+            Actually, only generation of FMUs version 1.0 of FMI is supported. 
+            Code generation works by translation the Xcos super-block in FMU. Generated model can be imported in Xcos or in an another simulation tool.  
+        </para>
+        <para>
+            <emphasis>Note: Before importing the FMU in another tool, you have to add Scilab DLLs to your PATH environment variable.</emphasis>
+        </para>
+    </refsection>
+    <refsection xml:id="step_exportFMU">
+        <title>Export FMU step by step :</title>
+        <itemizedlist>
+            <listitem>
+                    <para>
+                        <link linkend="Create_block">Create a Xcos model</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="Create_super">Create a super-block</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="Config_fmu">Configure the FMU</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="Check_fmu">Check the generated FMU</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="Load_FMU">Import generated FMU in Xcos</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="Limit_fmu">Limitations at the current version of Xcos FMU generator</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+    </refsection>
+    <refsection xml:id="Create_block">
+        <title>Create a Xcos model</title>
+        <para>
+            Creation of a simple Xcos model (integration and compute the absolute value of the input).    
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/fmu/tests/unit_tests/helpPage.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../tests/unit_tests/helpPage.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+    </refsection>
+    <refsection xml:id="Create_super">
+        <title>Create a super-block</title>
+        <para>
+            A FMU generation is done through the Xcos super-block. First of all the user should do «selection to super-block». 
+            Note: inputs and outputs of your super-block must be connected (e.g. input is connected with a sinus, output with a scope).   
+            A single click on the super-block helps to select the block for further FMU generation.   
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/fmu/tests/unit_tests/helpPageSuper.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../tests/unit_tests/helpPageSuper.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+         
+    </refsection>
+    <refsection xml:id="Config_fmu">
+        <title>Configure an FMU</title>
+        <para>
+            Open menu « Tools -> export FMU ». When dialog box appears, the user should set some parameters concerning the FMU generation.   
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../images/FMIexportDialogBox.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+         
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Model name</emphasis>
+                </para>
+                <para> string, which defines the name of FMU. 
+                    This name will be used for the main identifier of model and the name of archived FMU file.       
+                </para>
+                <para> Properties : Type 'string' of size -1 </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Created model path</emphasis>
+                </para>
+                <para> string, a path where will be stocked generated model. 
+                    If a path does not exist, Xcos FMU generator will create it.       
+                </para>
+                <para> Properties : Type 'string' of size -1 </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Model type (me or cs)</emphasis>
+                </para>
+                <para> string, type of future FMU for generation; me : FMU for FMI for Model Exchange; cs : FMU for FMI for  Co-Simulation. 
+                    For more information, see : <link xlink:href="http://www.fmi-standard.org">Official site of the Functional Mockup Interfaces.</link>     
+                </para>
+                <para> Properties : Type 'string' of size -1 </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Model description</emphasis>
+                </para>
+                <para> string, a short description of FMU that will be added in the generated C-code and also in Xml-description of generated FMU.
+                </para>
+                <para> Properties : Type 'string' of size -1 </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Author</emphasis>
+                </para>
+                <para>  string, the name of author that generates a FMU. This name will be added in C-code and in the Xml-description.      
+                </para>
+                <para> Properties : Type 'string' of size -1 </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Version</emphasis>
+                </para>
+                <para> Version : string, the version of model (par example: 0.1 or 0.2 if any FMUs for the same super-block have been created). 
+                    This version will be added in C-code and in the Xml-description file.     
+                </para>
+                <para> Properties : Type 'string' of size -1 </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection xml:id="Check_fmu">
+        <title>Check of generated FMU</title>
+        <para>
+            If an FMU has been generated successfully, you will see the the following dialog box. 
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../images/FMIexportOK.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>
+            Otherwise, you will see the following dialog box. 
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../images/FMIexportNOK.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>
+            In this case, see the console of Scilab to find the error message.  
+        </para>
+    </refsection>
+    <refsection xml:id="Load_FMU">
+        <title>Import generated FMU in Xcos</title>
+        <para> Generated model can be imported in Xcos using of current FMU import wrapper. 
+            For more information, please, see <link linkend="FMU_WRAPPER">Import FMU.</link> We connect a sinus to the inputs and the scopes to the outputs.
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/fmu/tests/unit_tests/helpPageFMU.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../tests/unit_tests/helpPageFMU.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+         
+    </refsection>
+    <refsection xml:id="Limit_fmu">
+        <title>Limitations at the current version of Xcos FMU generator</title>
+        <para>
+            Only explicit blocks are allowed for FMU generation. It is not always possible to provide an equivalent methodology in FMU generated in Xcos, 
+            for example the blocks with output activation ports are not supported yet for code generation. Also, some difference of the simulation results 
+            can be incurred for the Xcos blocks with input activation ports (par example: palette "discrete time systems").  
+            Another limitation: only scalar inputs could be used for the FMUs that will be generated in Xcos. Also, one important limitation in the FMU generation 
+            is that the blocks with input/output activation ports are not supported for Co-Simulation models. 
+            In order to use FMUs for Co-Simulation generated in Xcos in another simulation tool the users must have installed Scilab on their PC.    
+        </para>
+        <para>
+            <emphasis role="bold"> There are also some Xcos blocks that can not be used for FMU generation(Model Exchange and Co-Simulation):</emphasis>
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Commonly Used Blocks:</emphasis>
+                </para>
+                <para> ANDBLK, CMSCOPE_f, CSCOPXY </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Continuous time systems:</emphasis>
+                </para>
+                <para> TIME_DELAY, VARIABLE_DELAY, PDE </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Discontinuities:</emphasis>
+                </para>
+                <para> DELAYV_F </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Discrete time systems:</emphasis>
+                </para>
+                <para> AUTOMAT, DELAYV_F </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Lookup Tables:</emphasis>
+                </para>
+                <para> INTRP2BLK_f </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Event handling:</emphasis>
+                </para>
+                <para> CLOCK_c, VirtualCLK0, ANDBLK, ANDLOG_f, CEVENTSCOPE, CLKGotoTagVisibility, CLKOUTV_f, CLKSOMV_f, 
+                    EDGE_TRIGGER, END_c, ESELECT_f, EVTDLY_c, EVTGEN_f, EVTVARDLY, Extract_Activation, HALT_f, IFTHEL_f, M_freq, MCLOCK_f, MFCLCK_f, freq_div 
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Electrical</emphasis>
+                </para>
+                <para> All blocks </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Zero crossing detection</emphasis>
+                </para>
+                <para> All blocks </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Signal Routing</emphasis>
+                </para>
+                <para> FROMMO, GOTOMMO, GotoTagVisibilityMO, GotoTagVisibility, ISELECT_m, RELAY_f, SELECT_m </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Implicit</emphasis>
+                </para>
+                <para> All blocks </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Sinks</emphasis>
+                </para>
+                <para> AFFICH_m, BARXY, CANIMXY, CANIMXY3D, CFSCOPE, CLKOUTV_f, CMAT3D, CMATVIEW, CMSCOPE, CSCOPE, CSCOPXY, CSCOPXY3D, END_c, HALT_f, OUTIMPL_f, 
+                    TOWS_c, WRITEAU_f, WRITEC_f
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Sources</emphasis>
+                </para>
+                <para> CLKINV_f, CLOCK_c, READAU_f, READC_f, RFILE_f, Sigbuilder, TKSCALE</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Thermo-Hydraulics</emphasis>
+                </para>
+                <para> All blocks </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Demonstrations Blocks</emphasis>
+                </para>
+                <para> All blocks </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">User-Defined Functions</emphasis>
+                </para>
+                <para> CBLOCK, CBLOCK4, DEBUG, MBLOCK, PDE, c_block, fortran_block, generic_block3, scifunc_block_m </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link xlink:href="http://www.fmi-standard.org">Official site of the Functional Mock-up Interfaces.</link>
+            </member>
+            <member>
+                <link linkend="FMU_WRAPPER">FMI interface</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

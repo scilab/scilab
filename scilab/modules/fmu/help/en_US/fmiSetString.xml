@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiSetString">
+  <refnamediv>
+    <refname>fmiSetString</refname>
+    <refpurpose>Set string values.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      fmiSetString(instance, references, values)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+		<varlistentry>
+		<term>instance</term>	
+			<listitem>
+				<para>tlist, an <link linkend="fmiInstantiateModel">instance</link> of a model.</para>
+			</listitem>
+		</varlistentry>	
+		<varlistentry>
+		<term>references</term>	
+			<listitem>
+				<para>real vector, a handle of the variables that defines the variables that will be set.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>values</term>	
+			<listitem>
+				<para>string vector, values of parameters, inputs, start values.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiSetString</literal> is the function that sets independent parameters, inputs, start values and re-initializes 
+			caching of variables that depend on these variables. This function can be called on inputs <literal>causality = input</literal>, 
+			after calling <link linkend="fmiInstantiateModel">fmiInstantiateModel </link>
+			and before <link linkend="fmiFreeModelInstance">fmiFreeModelInstance</link>. Additionally, this functions can be called 
+			on variables that have a <literal>start</literal> value, after calling <link linkend="fmiInstantiateModel">fmiInstantiateModel</link> and before calling 
+			<link linkend="fmiInitialize">fmiInitialize</link>.
+        </para>
+  </refsection>    
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiSetReal">fmiSetReal</link>
+            </member>
+			<member>
+                <link linkend="fmiSetInteger">fmiSetInteger</link>
+            </member>
+            <member>
+                <link linkend="fmiSetBoolean">fmiSetBoolean</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="FMU_WRAPPER">
+  <refnamediv>
+    <refname>FMU_WRAPPER</refname>
+    <refpurpose>Import FMU in Xcos using Functional Mock-up Interface</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+      <para>
+         <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/FMU_WRAPPER.png" align="center" valign="middle"/>
+            </imageobject>
+         </inlinemediaobject>
+      </para>
+  </refsection>
+  <refsection xml:id="Contents_FMU_WRAPPER">
+     <title>Contents</title>
+    <itemizedlist>
+        <listitem>
+            <para>
+                <link linkend="Description_FMU_WRAPPER">Description</link>
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                <link linkend="Dialogbox_FMU_WRAPPER">Dialog box</link>
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                <link linkend="Defaultproperties_FMU_WRAPPER">Default properties</link>
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                <link linkend="Interfacingfunction_FMU_WRAPPER">Interfacing function</link>
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                <link linkend="Computationalfunction_FMU_WRAPPER">Computational function</link>
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                <link linkend="Limit_FMU_WRAPPER">Limitations at the current version of import FMU in Xcos</link>
+            </para>
+        </listitem>
+    </itemizedlist>
+   </refsection>
+   <refsection xml:id="Description_FMU_WRAPPER">
+        <title>Description</title>
+            <para>
+                The block "FMU_WRAPPER" provides a simple way to use the Functional Mock-up Interface for Model Exchange or CoSimulation.
+				Using this block, the user will be able to simulate dynamic system models provided as Functional Mock-up Units.
+				The supported FMI versions are 1.0, 2.0.x and 3.0.x.
+				It is possible to use several instances of a model and to connect any models hierarchically together.
+				Before the simulation the model should be loaded: double-click on the block, select your FMU file; the input and output
+				ports of the block are then generated from the FMU model description.
+			</para>
+            <para>
+                The <literal>SimpleFMU</literal> and <literal>FMInterface</literal> blocks are provided as macros for compatibility with
+				older diagrams; they are no longer available from the palette.
+            </para>
+   </refsection>
+	<refsection xml:id="Dialogbox_FMU_WRAPPER">
+        <title>Dialog box</title>
+            <para>
+                Double-clicking on an empty block opens a file selector to load an FMU. A first dialog box then configures the block:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para><emphasis role="bold">FMU file</emphasis>: path to the <literal>.fmu</literal> file. Files located under
+                    <literal>fmigetPath()</literal> are stored relative to it.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">FMU directory</emphasis>: directory where the FMU is extracted.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">FMU implementation</emphasis>: <literal>"me 1.0"</literal>, <literal>"cs 1.0"</literal>,
+                    <literal>"me 2.0"</literal>, <literal>"cs 2.0"</literal>, <literal>"me 3.0"</literal> or <literal>"cs 3.0"</literal>,
+                    for Model Exchange or Co-Simulation of the given FMI version.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Enable logging ?</emphasis>: <literal>%t</literal> to enable the FMU debug logging.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Relative tolerance</emphasis>: tolerance passed to the FMU, <literal>0</literal> to use the FMU default.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Integer as Real</emphasis>, <emphasis role="bold">Boolean as Real</emphasis>,
+                    <emphasis role="bold">Enumeration as Real</emphasis>: <literal>%t</literal> to map these ports to double,
+                    <literal>%f</literal> to use integer ports.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">String maximum length</emphasis>: size of the buffer used for string variables.</para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                Further dialog boxes, up to 10 entries each, let the user set the start value of each parameter
+                (FMI 1.0 <literal>variability="parameter"</literal>, FMI 2.0 and 3.0 <literal>causality="parameter"</literal> or
+                <literal>initial="exact"</literal>). The FMU start values are proposed by default.
+            </para>
+   </refsection>
+   <refsection xml:id="Defaultproperties_FMU_WRAPPER">
+        <title>Default properties</title>
+            <para>
+                The default properties of the block ​​depend on a model that was loaded for simulation.
+            </para>
+   </refsection>
+   <refsection xml:id="Interfacingfunction_FMU_WRAPPER">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/Misc/FMU_WRAPPER.sci </para>
+            </listitem>
+        </itemizedlist>
+   </refsection>
+   <refsection xml:id="Computationalfunction_FMU_WRAPPER">
+        <title>Computational functions</title>
+        <itemizedlist>
+            <listitem>
+                <para> fmu_simulate_me </para>
+            </listitem>
+            <listitem>
+                <para> fmu_simulate_cs </para>
+            </listitem>
+            <listitem>
+                <para> fmu2_simulate_me </para>
+            </listitem>
+            <listitem>
+                <para> fmu2_simulate_cs </para>
+            </listitem>
+            <listitem>
+                <para> fmu3_simulate_me </para>
+            </listitem>
+            <listitem>
+                <para> fmu3_simulate_cs </para>
+            </listitem>
+        </itemizedlist>
+   </refsection>
+   <refsection xml:id="Limit_FMU_WRAPPER">
+        <title>Limitations at the current version of import FMU.</title>
+        <para>
+              Strings are not supported for input/output ports. Also, complex values are not supported. For big FMUs (for example, with more than 5000 variables)
+			  it may take some more time for the loading of these models in Xcos. The wait bar will be displayed during the loading.
+        </para>
+	</refsection>
+	<refsection>
+	<title>See Also</title>
+    <simplelist type="inline">
+        <member>
+		   <link xlink:href="http://www.fmi-standard.org">Official site of the Functional Mock-up Interfaces.</link>
+		</member>
+		<member>
+            <link linkend="loadFMU"/>
+        </member>
+	</simplelist>
+  </refsection>
+</refentry>

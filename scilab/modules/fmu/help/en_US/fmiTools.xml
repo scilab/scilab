@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiTools">
+  <refnamediv>
+    <refname>FMI Support</refname>
+    <refpurpose>Modelling and simulation environments that support FMI Version 1.0</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Tools</title>
+	<informaltable border="1" cellpadding="4" cellspacing="0">
+			<tr>
+				<td rowspan="2"> <emphasis>Tool name</emphasis> </td>
+				<td colspan="2"> <emphasis>Model Exchange</emphasis> </td>
+                <td colspan="2"> <emphasis>Co-Simulation</emphasis> </td>
+            </tr>
+			<tr>
+				<td> <emphasis>Export</emphasis> </td> <td> <emphasis>Import</emphasis> </td>
+				<td> <emphasis>Export</emphasis> </td> <td> <emphasis>Import</emphasis> </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.mscsoftware.com/product/adams">Adams</link> </td>
+				<td> no </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.lmsintl.com/LMS-Imagine-Lab-AMESim">AMESim</link> </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://ansys.com">ANSYS Simplorer</link> </td>
+				<td> non </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> no </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.3ds.com/products-services">ASim - AUTOSAR Simulation</link> </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> no </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.atego.com/products/technology-overview">Atego Ace</link> </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.ipg.de/index.php?id=carmaker">CarMaker</link> </td>
+				<td> no </td>
+				<td> no </td>
+				<td> no </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.3ds.com/products-services">CATIA</link> </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.3ds.com/terms/product-portfolio/controlbuild-products">ControlBuild</link> </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> no </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://site.cosimate.com">CosiMate</link> </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.cybernetica.biz/v3/products/CENIT/index.html">Cybernetica</link> </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.3ds.com/products-services">Dymola</link> </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.modelon.com/products/fmi-add-in-for-excel">FMI Add-in for Excel</link> </td>
+				<td> no </td>
+				<td> no </td>
+				<td> no </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.claytex.com/products/fmi-blockset-for-simulink">FMI Blockset for Simulink</link> </td>
+				<td> no </td>
+				<td> no </td>
+				<td> no </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.jmodelica.org/FMILibrary">FMI Library</link> </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> no </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.modelon.com/products/fmi-toolbox-for-carmaker">FMI Toolbox for CarMaker</link> </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> no </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.modelon.com/products/fmi-toolbox-for-matlab">FMI Toolbox for Matlab</link> </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> no </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.qtronic.de/en/fmusdk.html">FMU SDK 1.0.2</link> </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://vif.tugraz.at/en/products/icos">ICOS</link> </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="https://bitbucket.org/siani/javafmi/wiki/Home">JavaFMI</link> </td>
+				<td> no </td>
+				<td> no </td>
+				<td> no </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.jmodelica.org">JModelica</link> </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.lmsintl.com/simulation/virtuallab/motion">LMS Virtual.Lab Motion</link> </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.maplesoft.com/products/maplesim/modelica.aspx">MapleSim</link> </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> no </td>
+				<td> no </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.berner-mattner.com/en/berner-mattner-home/products/messina/index.html">MESSINA</link> </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> no </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://en.tongyuan.cc">MWorks</link> </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> no </td>
+				<td> no </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="https://openmodelica.org/">OpenModelica</link> </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> no </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="https://openmodelica.org/">OPTIMICA Studio</link> </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> no </td>
+				<td> no </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.esterel-technologies.com/products/scade-suite">SCADE Suite</link> </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> no </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.scilab.org/scilab/about">Scilab</link> </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> no </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.qtronic.com/en/silver.html">Silver</link> </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.simpack.com/mbs-software-products.html">SIMPACK</link> </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.itisim.com/simulationx/download/download-simulationx">SimulationX</link> </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.tlk-thermo.com/en/software-products/fmi-suite.html">TLK FMI Suite</link> </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.twt-gmbh.de/de/forschung/projekte/projekte">TWT Co-Simulation Framework</link> </td>
+				<td> no </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> yes </td>
+			</tr>
+			<tr>
+				<td> <link xlink:href="http://www.d2t.com/en/powertrain-engineering/virtual-powertrain/xmod-simulation-platform/features">xMOD</link> </td>
+				<td> no </td>
+				<td> yes </td>
+				<td> no </td>
+				<td> yes </td>
+			</tr>
+		</informaltable>
+	</refsection>
+	<refsection>
+		<title>See Also</title>
+		<simplelist type="inline">
+			<member>
+			   <link xlink:href="http://www.fmi-standard.org">Official site of the Functional Mock-up Interfaces.</link>
+			</member>
+			<member>
+				<link linkend="FMU_WRAPPER">Import FMU in Xcos</link>
+			</member>
+			<member>
+				<link linkend="exportFMU">Export FMU from Xcos</link>
+			</member>
+		</simplelist>
+	</refsection>
+</refentry>

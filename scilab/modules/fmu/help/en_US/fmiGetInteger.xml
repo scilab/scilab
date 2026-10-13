@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiGetInteger">
+  <refnamediv>
+    <refname>fmiGetInteger</refname>
+    <refpurpose>Get integer values.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      values = fmiGetInteger(instance, references)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+		<varlistentry>
+		<term>instance</term>	
+			<listitem>
+				<para>tlist, an <link linkend="fmiInstantiateModel">instance</link> of a model.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>references</term>	
+			<listitem>
+				<para>real vector, a handle of the variables that defines the variables that will be get.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>values</term>	
+			<listitem>
+				<para>integer vector, actual values of integer variables.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiGetInteger</literal> is the function which returns actual values of integer variables by providing the variable handles <literal>(references)</literal>. 
+			This functions is especially used to get the actual values of output variables if a model is connected with other models. 
+			Furthermore, the actual value of every integer variable defined in the Model Description File (XML) can be determined at every time instant 
+			(for details see function <link linkend="fmiModelVariables">fmiModelVariables</link>).     
+        </para>
+  </refsection>    
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiGetReal">fmiGetReal</link>
+            </member>
+			<member>
+                <link linkend="fmiGetString">fmiGetString</link>
+            </member>
+            <member>
+                <link linkend="fmiGetBoolean">fmiGetBoolean</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

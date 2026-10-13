@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiEventUpdate">
+  <refnamediv>
+    <refname>fmiEventUpdate</refname>
+    <refpurpose>Get an occurred event.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      eventInfo = fmiEventUpdate(instance, intermediateResults)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+		<varlistentry>
+		<term>instance</term>	
+			<listitem>
+				<para>tlist, an <link linkend="fmiInstantiateModel">instance</link> of a model.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>intermediateResults</term>	
+			<listitem>
+				<para>boolean, intermediateResults = <literal>%t</literal> or <literal>%f</literal>.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>callEventUpdate</term>	
+			<listitem>
+				<para>mlist, an information about an event. For more details see <link linkend="fmiInitialize">fmiInitialize</link>.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiEventUpdate</literal> is the function that is called after time, state or step event occurred. This function returns with 
+			<literal>eventInfo</literal> (for details see function <link linkend="fmiInitialize">fmiInitialize</link>). 
+			If <literal>intermediateResults = false</literal>, the function returns once new consistent state has been found and the integration can be restarted. 
+			If the argument is <literal>true</literal>, then the function returns for every event iteration that is performed internally, 
+			in order to allow to get result variables after every iteration with the <link linkend="fmiGetReal">fmiGetXXX</link> functions above. 
+			The function has to be called successively then until <literal>eventInfo->iterationConverged = true</literal> and has 
+			to return the final status of <literal>eventInfo->stateValueReferencesChanged</literal> and of 
+			<literal>eventInfo->stateValuesChanged</literal>.      
+        </para>
+  </refsection>    
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiGetDerivatives">fmiGetDerivatives</link>
+            </member>
+			<member>
+                <link linkend="fmiGetEventIndicators">fmiGetEventIndicators</link>
+            </member>
+            <member>
+                <link linkend="fmiGetStateValueRefs">fmiGetStateValueRefs</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

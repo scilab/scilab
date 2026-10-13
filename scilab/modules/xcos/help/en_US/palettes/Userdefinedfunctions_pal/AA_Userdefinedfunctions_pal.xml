@@ -50,6 +50,15 @@
             </link>
             </para>
             <para>
+            <link linkend="FMU_WRAPPER">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/FMU_WRAPPER.png"/>
+                </imageobject>
+            </inlinemediaobject>
+            </link>
+            </para>
+            <para>
             <link linkend="MBLOCK">
             <inlinemediaobject>
                 <imageobject>
@@ -129,6 +138,9 @@
             </member>
             <member>
                 <link linkend="CBLOCK">CBLOCK</link>
+            </member>
+            <member>
+                <link linkend="FMU_WRAPPER">FMU_WRAPPER</link>
             </member>
             <member>
                 <link linkend="fortran_block">fortran_block</link>

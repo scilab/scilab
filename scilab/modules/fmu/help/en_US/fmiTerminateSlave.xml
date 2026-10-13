@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiTerminateSlave">
+  <refnamediv>
+    <refname>fmiTerminateSlave</refname>
+    <refpurpose>Termination of a co-simulation slave.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      fmiTerminateSlave(instance)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+        <varlistentry>
+        <term>instance</term>
+            <listitem>
+                <para>tlist, an <link linkend="fmiInstantiateSlave">instance</link> of a slave.</para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiTerminateSlave</literal> terminates the simulation of the slave. The final values of the variables can still be read
+            with <link linkend="fmiGetReal">fmiGetXXX</link> functions. If the termination fails, the instance is freed and an error is raised.
+        </para>
+  </refsection>
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiDoStep">fmiDoStep</link>
+            </member>
+            <member>
+                <link linkend="fmiFreeSlaveInstance">fmiFreeSlaveInstance</link>
+            </member>
+        </simplelist>
+  </refsection>
+</refentry>

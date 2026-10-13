@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiSimulate">
+  <refnamediv>
+    <refname>fmiSimulate</refname>
+    <refpurpose>Simulation of fmu in Scilab.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      out = fmiSimulate(fmu)
+    </synopsis>
+	<synopsis>
+      out = fmiSimulate(fmu, time, logging)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+	<variablelist>
+		<varlistentry>  
+		<term>fmu</term>	
+			<listitem>
+				<para>tlist, a model.</para>
+			</listitem>
+		</varlistentry>  
+		<varlistentry> 
+		<term>time</term>	
+			<listitem>
+				<para>a 1-by-3 matrix of doubles, first number: strart time; second number: fixed step; third number: end of simulatoin. Exemple ([0; 0.01; 10]).</para>
+			</listitem>
+		</varlistentry>  
+		<varlistentry> 
+		<term>logging</term>	
+			<listitem>
+				<para>boolean, %f disable or %t enable debug logging. For more information <link linkend="fmiSetDebugLogging">fmiSetDebugLogging</link></para>
+			</listitem>
+		</varlistentry>  
+		<varlistentry>  
+		<term>out</term>	
+			<listitem>
+				<para>tlist, results of simulation.</para>
+				<simplelist type="inline">
+					<member>
+						<literal>out.Real.result</literal> : list, results for real variables.
+					</member>
+					<member>
+						<literal>out.Integer.result</literal> : list, results for integer variables.
+					</member>
+					<member>
+						<literal>out.Boolean.result</literal> : list, results for boolean variables.
+					</member>
+				</simplelist>
+             </listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiSimulate</literal> is the simulation function for models. The configuration of the values of variables proceeds via the structures "setValues" and "getValues" in the model
+			(e.g. fmu.setValues, where "fmu" can be retrieved with the function <link linkend="importFMU">importFMU</link>). If no changes were done in "setValues" or "getValues" 
+			then a simulation will be done with default values for all variables and parameters. The results of simlation will be received only for variables with start values.
+			In the case if this function was called with one argument "fmu", the simualtion will be done with default values of time and debug logging. 
+        </para>
+  </refsection>    
+  <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+		// out = fmiSimulate(model) simulation with default values of the time and the debug logging
+		// out = fmiSimulate(model,[0,0.001,100],%t) start time = 0, dtime = 0.001, end time = 100, %t debug logging 'On'
+		
+		// User values for simulation: 
+		// fmu = importFMU("path for a model");
+		// fmu.setValues it is the structure to set the values for a simulation
+		// fmu.getValues it is the structure to get the values of a siumulation
+		
+		// Set Real values: 
+		// All names of set values must be the names of real parameters, variables
+		// fmu.setValues.realNames = ["name1","name2","name3"]
+		// fmu.setValues.realValues = [1,2,3]
+		// number 1 corresponds to the "name1"; number 2 corresponds to the "name2" ....
+		
+		// Set Integer values:
+		// All names of set values must be the names of integer parameters, variables
+		// fmu.setValues.integerNames = ["name1","name2","name3"]
+		// fmu.setValues.integerValues = [1,2,3]
+		// number 1 corresponds to the "name1"; number 2 corresponds to the "name2" ....  
+		
+		// Set Boolean values:
+		// All the names of set values must be the names of boolean parameters, variables
+		// fmu.setValues.booleanNames = ["name1","name2","name3"]
+		// fmu.setValues.booleanValues = [%t,%f,%t]
+		// %t corresponds to the "name1"; %f corresponds to the "name2" ....  
+		
+		// Set String values
+		// at the moment has no any effect
+		
+		// get Values of the simulation
+		// Get Real values
+		// fmu.getValues.realNames = ["name1","name2","name3"]
+		// Get Integer values
+		// fmu.getValues.integerNames = ["name1","name2","name3"]
+		// Get Boolean values
+		// fmu.getValues.booleanNames = ["name1","name2","name3"]
+		
+		// Get String values
+		// not supported yet
+		
+		// Names must have the same types as the names of fields
+		// (e.g. fmu.getValues.realNames = ["name1","name2","name3"] where name1, name2, name3 are the names of real parameters, variables, constants)
+
+		// set Inputs values 
+		// It is possible to set the inputs as a functions of the time
+		// Loading the names of inputs in the structure is done at the moment of the import of FMU in Scilab(function importFMU)
+		// if fmu.setValues.inputs = [] the model has no inputs.
+		// else fmu.setValues.inputs = ["input1","input2","input3"...]
+		// All types of inputs are in the same vector.
+		// For every input there are the fields to set the values: fmu.setValues.input_1_values for "input1", fmu.setValues.input_2_values for "input2" ...
+		// fmu.setValues.input_1_values must be a vector with two rows where the first row are the values for a variable, 
+		// the second row are the values of the time. Two rows must have the same size. 
+		</programlisting>
+  </refsection> 
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="FMU_WRAPPER">FMU_WRAPPER</link>
+            </member>
+			<member>
+                <link linkend="importFMU">importFMU</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

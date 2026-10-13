@@ -34,6 +34,7 @@ output_stream
 xcos
 scicos
 scicos_blocks
+fmu
 spreadsheet
 shell
 console

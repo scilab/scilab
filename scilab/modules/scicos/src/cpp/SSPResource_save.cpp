@@ -291,7 +291,7 @@ SSPResource::Result SSPResource::save(const char* uri)
             break;
         }
 
-        // resolve FMU fullpath, use SimpleFMU.sci from fmu-wrapper toolbox as reference
+        // resolve FMU fullpath, use FMU_WRAPPER.sci as reference
         std::string filepath = f;
         if (!FileExist(filepath.c_str()))
         {
@@ -304,7 +304,17 @@ SSPResource::Result SSPResource::save(const char* uri)
         }
         if (!FileExist(filepath.c_str()))
         {
-            char* tmp = getFullFilename(("TMPDIR/resources/" + f).c_str());
+            char* tmp = expandPathVariable(("TMPDIR/resources/" + f).c_str());
+            if (tmp != nullptr)
+            {
+                filepath = tmp;
+                FREE(tmp);
+            }
+        }
+        if (!FileExist(filepath.c_str()))
+        {
+            // fmigetPath()
+            char* tmp = expandPathVariable(("SCI/modules/fmu/" + f).c_str());
             if (tmp != nullptr)
             {
                 filepath = tmp;
@@ -1793,8 +1803,8 @@ SSPResource::Result SSPResource::writeComponent(xmlTextWriterPtr writer, model::
     }
 
     // special case: for FMU blocks, make it available to other tools following the SSP specification
-    bool isSimpleFMU = _strShared == "SimpleFMU";
-    if (isSimpleFMU)
+    bool isFMU = _strShared == "FMU_WRAPPER" || _strShared == "SimpleFMU";
+    if (isFMU)
     {
         status = Result::FromXML(xmlTextWriterWriteAttribute(writer, rawKnownStr[e_type], rawKnownStr[e_application_x_fmu_sharedlibrary]));
         if (status.error())

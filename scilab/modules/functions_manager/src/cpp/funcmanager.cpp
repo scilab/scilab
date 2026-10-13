@@ -371,6 +371,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap[L"xml"] = std::pair<GW_MOD, GW_MOD>(&XmlModule::Load, &XmlModule::Unload);
     m_ModuleMap[L"scicos"] = std::pair<GW_MOD, GW_MOD>(&ScicosModule::Load, &ScicosModule::Unload);
     m_ModuleMap[L"xcos"] = std::pair<GW_MOD, GW_MOD>(&XcosModule::Load, &XcosModule::Unload);
+    m_ModuleMap[L"fmu"] = std::pair<GW_MOD, GW_MOD>(&FmuModule::Load, &FmuModule::Unload);
     m_ModuleMap[L"fftw"] = std::pair<GW_MOD, GW_MOD>(&FFTWModule::Load, &FFTWModule::Unload);
     m_ModuleMap[L"mpi"] = std::pair<GW_MOD, GW_MOD>(&MPIModule::Load, &MPIModule::Unload);
     m_ModuleMap[L"external_objects"] = std::pair<GW_MOD, GW_MOD>(&ExternalObjectsModule::Load, &ExternalObjectsModule::Unload);

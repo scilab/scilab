@@ -2383,6 +2383,7 @@ modules/hdf5/Makefile
 modules/fftw/Makefile
 modules/umfpack/Makefile
 modules/scicos/Makefile
+modules/fmu/Makefile
 modules/scicos_blocks/Makefile
 modules/functions/Makefile
 modules/dynamic_link/Makefile

@@ -847,6 +847,9 @@
             <block name="DEBUG">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/DEBUG.png"/>
             </block>
+            <block name="FMU_WRAPPER">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/FMU_WRAPPER.png"/>
+            </block>
             <block name="MBLOCK">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/MBLOCK.png"/>
             </block>

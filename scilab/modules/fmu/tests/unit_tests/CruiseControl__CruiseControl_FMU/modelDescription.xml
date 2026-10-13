@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<fmiModelDescription 
+  fmiVersion="1.0"
+  modelName="CruiseControl__CruiseControl_FMU"
+  modelIdentifier="CruiseControl__CruiseControl_FMU"
+  guid="{8c4e810f-3df3-4a00-8276-176fa3c9f004}"
+  numberOfContinuousStates="0"
+  numberOfEventIndicators="0">
+<ModelVariables>
+<ScalarVariable name="On" valueReference="0" description="On" causality = "input">
+  <Boolean start="false"/>
+</ScalarVariable>
+<ScalarVariable name="Off" valueReference="1" description="Off" causality = "input">
+  <Boolean start="false"/>
+</ScalarVariable>
+<ScalarVariable name="Resume" valueReference="2" description="Resume" causality = "input">
+  <Boolean start="false"/>
+</ScalarVariable>
+<ScalarVariable name="Set" valueReference="3" description="Set" causality = "input">
+  <Boolean start="false"/>
+</ScalarVariable>
+<ScalarVariable name="QuickAccel" valueReference="4" description="QuickAccel" causality = "input">
+  <Boolean start="false"/>
+</ScalarVariable>
+<ScalarVariable name="QuickDecel" valueReference="5" description="QuickDecel" causality = "input">
+  <Boolean start="false"/>
+</ScalarVariable>
+<ScalarVariable name="Accel" valueReference="0" description="Accel" causality = "input">
+  <Real start="0.0"/>
+</ScalarVariable>
+<ScalarVariable name="Brake" valueReference="1" description="Brake" causality = "input">
+  <Real start="0.0"/>
+</ScalarVariable>
+<ScalarVariable name="Speed" valueReference="2" description="Speed" causality = "input">
+  <Real start="0.0"/>
+</ScalarVariable>
+<ScalarVariable name="CruiseSpeed" valueReference="3" description="CruiseSpeed" causality = "output">
+  <Real start="0.0"/>
+</ScalarVariable>
+<ScalarVariable name="ThrottleCmd" valueReference="4" description="ThrottleCmd" causality = "output">
+  <Real start="0.0"/>
+</ScalarVariable>
+<ScalarVariable name="CruiseState" valueReference="0" description="CruiseState" causality = "output">
+  <Integer start="0"/>
+</ScalarVariable>
+</ModelVariables>
+</fmiModelDescription>

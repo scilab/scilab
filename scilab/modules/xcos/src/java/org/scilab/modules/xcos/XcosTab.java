@@ -103,6 +103,7 @@ import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
 import org.scilab.modules.xcos.block.actions.CodeGenerationAction;
+import org.scilab.modules.xcos.block.actions.ExportFMUAction;
 import org.scilab.modules.xcos.block.actions.FilledColorAction;
 import org.scilab.modules.xcos.block.actions.FlipAction;
 import org.scilab.modules.xcos.block.actions.MirrorAction;
@@ -316,7 +317,7 @@ public class XcosTab extends SwingScilabDockablePanel {
         boolean restored = false;
         if (uuid.isPresent()) {
             restored = WindowsConfigurationManager.restoreUUID(graph.getGraphTab());
-        } 
+        }
         if (!restored) {
             create(graph);
         }
@@ -344,7 +345,7 @@ public class XcosTab extends SwingScilabDockablePanel {
         {
             String temp;
             try {
-                temp = graph.getSavedFile().toURI().toURL().toExternalForm();  
+                temp = graph.getSavedFile().toURI().toURL().toExternalForm();
             } catch (MalformedURLException e) {
                 temp = null;
             }
@@ -388,7 +389,7 @@ public class XcosTab extends SwingScilabDockablePanel {
 
         graph.updateTabTitle();
         graph.fireEvent(new mxEventObject(mxEvent.ROOT));
-        
+
         ActiveDockableTracker.requestDockableActivation(tab);
     }
 
@@ -405,7 +406,7 @@ public class XcosTab extends SwingScilabDockablePanel {
         ClosingOperationsManager.registerClosingOperation(tab, new ClosingOperation(graph));
 
         WindowsConfigurationManager.registerEndedRestoration(tab, new EndedRestoration(graph));
-        
+
         ScilabTabFactory.getInstance().addToCache(tab);
         return tab;
     }
@@ -588,6 +589,7 @@ public class XcosTab extends SwingScilabDockablePanel {
         menuBar.add(tools);
 
         tools.add(CodeGenerationAction.createMenu(diagram));
+        tools.add(ExportFMUAction.createMenu(diagram));
 
         // add external action to the tools menu
         final List<ExternalAction> externalActions = Xcos.getInstance().getExternalActions();

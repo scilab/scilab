@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiGetModelTypesPlatform">
+  <refnamediv>
+    <refname>fmiGetModelTypesPlatform</refname>
+    <refpurpose>Name of the set of platforms.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      platform = fmiGetModelTypesPlatform(fmu)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+		<varlistentry>  
+        <term>fmu</term>	
+             <listitem>
+                 <para>tlist, a model that can be received by <link linkend="importFMU">importFMU</link>.</para>
+             </listitem>
+        </varlistentry>	
+		<varlistentry>
+		<term>platform</term>	
+			<listitem>
+				<para>string, a name of platform.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiGetModelTypesPlatform</literal> is the function which returns the name of the set of compatible platforms of the <literal>"fmiModelTypes.h"</literal> header file 
+			which was used to compile the functions of the "Model Exchange Interface". The function returns a pointer to the static variable <literal>"fmiModelTypesPlatform"</literal> defined in FMI header file. 
+        </para>
+  </refsection>    
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiGetVersion">fmiGetVersion</link>
+            </member>
+			<member>
+                <link linkend="fmiModelDescription">fmiModelDescription</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

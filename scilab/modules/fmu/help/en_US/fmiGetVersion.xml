@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiGetVersion">
+  <refnamediv>
+    <refname>fmiGetVersion</refname>
+    <refpurpose>Version of FMI.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      version = fmiGetVersion(fmu)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+		<varlistentry>  
+        <term>fmu</term>	
+             <listitem>
+                 <para>tlist, a model that can be received by <link linkend="importFMU">importFMU</link>.</para>
+             </listitem>
+        </varlistentry>	
+		<varlistentry>
+		<term>version</term>	
+			<listitem>
+				<para>string, a version of FMI.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiGetVersion</literal> is the function which returns the version of the <literal>"fmiModelFunctions.h"</literal> header file which was used to compile the functions of the 
+			"Model Exchange Interface". The function returns <literal>"fmiVersion"</literal> which is defined in this header file. The standard header file as documented in this specification has version <literal>"1.0"</literal>.  
+        </para>
+  </refsection>    
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiGetModelTypesPlatform">fmiGetModelTypesPlatform</link>
+            </member>
+			<member>
+                <link linkend="fmiModelDescription">fmiModelDescription</link>
+            </member>
+        </simplelist>
+  </refsection> 
+</refentry>

@@ -35,7 +35,8 @@ NON_BLOCK_C_SOURCES = ["scoGetProperty.c",
 
 NON_BLOCK_CPP_SOURCES = ["scoUtils.cpp",
 "HelpersJNI.cpp",
-"HelpersCLI.cpp"];
+"HelpersCLI.cpp",
+"fmu_sim_utility.cpp"];
 
 BLOCK_C_SOURCES(grep(BLOCK_C_SOURCES,NON_BLOCK_C_SOURCES)) = [];
 BLOCKS_C = strsubst(BLOCK_C_SOURCES,".c","");

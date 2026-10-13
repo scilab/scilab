@@ -187,6 +187,7 @@ windows_advanced:
           - call_scilab
           - external_objects
           - external_objects_java
+          - fmu
           - graphic_export
           - graphic_objects
           - graphics

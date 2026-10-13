@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fmiFreeSlaveInstance">
+  <refnamediv>
+    <refname>fmiFreeSlaveInstance</refname>
+    <refpurpose>Destruction of a co-simulation slave instance.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      fmiFreeSlaveInstance(instance)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+        <varlistentry>
+        <term>instance</term>
+            <listitem>
+                <para>tlist, an <link linkend="fmiInstantiateSlave">instance</link> of a slave.</para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+        <title>Description</title>
+        <para>
+            <literal>fmiFreeSlaveInstance</literal> frees the memory and the resources of the slave and unlinks its library.
+            The instance can no longer be used.
+        </para>
+  </refsection>
+  <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fmiTerminateSlave">fmiTerminateSlave</link>
+            </member>
+            <member>
+                <link linkend="fmu_ulink">fmu_ulink</link>
+            </member>
+        </simplelist>
+  </refsection>
+</refentry>
