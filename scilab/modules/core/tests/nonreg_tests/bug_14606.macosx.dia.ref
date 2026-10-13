@@ -51,43 +51,43 @@ clear bug_14606_lib
 bug_14606_lib=lib(libdir); // output variable is compulsory otherwise Scilab crashes after next line
 bug_14606_macro_file(1,1);
 whos -name bug_14606
-Name                     Type           Size           Bytes        
- 
-bug_14606_bool           boolean        10x10          608          
-bug_14606_cell           ce             1x3            2390         
-bug_14606_double         constant       10x10          1008         
-bug_14606_handle         handle         1x2            224          
-bug_14606_int16          int16          10x10          408          
-bug_14606_int32          int32          10x10          608          
-bug_14606_int64          int64          10x10          1008         
-bug_14606_int8           int8           10x10          308          
-bug_14606_lib            library                       376          
-bug_14606_list           list           3              2528         
-bug_14606_macro          function                      506          
-bug_14606_macro_file     function                      506          
-bug_14606_mlist          mlist_14606    Nan            1064         
-bug_14606_pointer        pointer                       192          
-bug_14606_poly           polynomial     2x2            312          
-bug_14606_rat            rational       2x2            1292         
-bug_14606_sparse         sparse         3x3            232          
-bug_14606_sparseboolean  boolean sparse 3x3            202          
-bug_14606_struct         st             1x1            1668         
-bug_14606_syslin         state-space    1x1            1856         
-bug_14606_tlist          tlist_14606    Nan            1064         
-bug_14606_uint16         uint16         10x10          408          
-bug_14606_uint32         uint32         10x10          608          
-bug_14606_uint64         uint64         10x10          1008         
-bug_14606_uint8          uint8          10x10          308          
+Name                     Type           Size           Bytes
+
+bug_14606_bool           boolean        10x10          608
+bug_14606_cell           ce             1x3            2390
+bug_14606_double         constant       10x10          1008
+bug_14606_handle         handle         1x2            224
+bug_14606_int16          int16          10x10          408
+bug_14606_int32          int32          10x10          608
+bug_14606_int64          int64          10x10          1008
+bug_14606_int8           int8           10x10          308
+bug_14606_lib            library                       376
+bug_14606_list           list           3              2528
+bug_14606_macro          function                      498
+bug_14606_macro_file     function                      498
+bug_14606_mlist          mlist_14606    Nan            1064
+bug_14606_pointer        pointer                       192
+bug_14606_poly           polynomial     2x2            312
+bug_14606_rat            rational       2x2            1292
+bug_14606_sparse         sparse         3x3            232
+bug_14606_sparseboolean  boolean sparse 3x3            202
+bug_14606_struct         st             1x1            1668
+bug_14606_syslin         state-space    1x1            1856
+bug_14606_tlist          tlist_14606    Nan            1064
+bug_14606_uint16         uint16         10x10          408
+bug_14606_uint32         uint32         10x10          608
+bug_14606_uint64         uint64         10x10          1008
+bug_14606_uint8          uint8          10x10          308
 ludel(bug_14606_pointer)
 bug_14606_var=zeros(10,10);
 global bug_14606_var
 whos -name bug_14606_var
-Name                     Type           Size           Bytes        
- 
-bug_14606_var            constant       10x10          1008         
-bug_14606_var            constant*      10x10          1008         
+Name                     Type           Size           Bytes
+
+bug_14606_var            constant       10x10          1008
+bug_14606_var            constant*      10x10          1008
 clear bug_14606_var
 whos -name bug_14606_var
-Name                     Type           Size           Bytes        
- 
-bug_14606_var            constant*      10x10          1008         
+Name                     Type           Size           Bytes
+
+bug_14606_var            constant*      10x10          1008
