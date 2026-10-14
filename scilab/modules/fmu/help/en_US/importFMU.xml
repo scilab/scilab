@@ -79,12 +79,12 @@
   </refsection>    
   <refsection>
         <title>Examples</title>
-        <programlisting role="example">
-			//Decompressing the model "SCADE_CruiseControl__CruiseControl_FMU". Creation a variable fmu of type tlist Scilab. 
-			fmu = importFMU(pwd()+fullfile("\tests\unit_tests\SCADE_CruiseControl__CruiseControl_FMU.fmu"))
-			//Decompressing FMU model "SCADE_CruiseControl__CruiseControl_FMU". Creation a variable fmu of type tlist Scilab and obj a data structure. 
-			[fmu, obj] = importFMU(pwd()+fullfile("\tests\unit_tests\SCADE_CruiseControl__CruiseControl_FMU.fmu"))
-		</programlisting>
+        <programlisting role="example"><![CDATA[
+//Decompressing the model "SCADE_CruiseControl__CruiseControl_FMU". Creation a variable "fmu" of type tlist Scilab. 
+fmu = importFMU(fullfile(SCI, "modules", "fmu", "tests", "unit_tests", "SCADE_CruiseControl__CruiseControl_FMU.fmu"))
+//Decompressing FMU model "SCADE_CruiseControl__CruiseControl_FMU". Creation a variable fmu of type tlist Scilab and obj a data structure. 
+[fmu, obj] = importFMU(fullfile(SCI, "modules", "fmu", "tests", "unit_tests", "SCADE_CruiseControl__CruiseControl_FMU.fmu"))
+		]]></programlisting>
   </refsection> 
   <refsection role="see also">
         <title>See Also</title>

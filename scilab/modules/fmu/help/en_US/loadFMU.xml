@@ -69,42 +69,38 @@
   </refsection>    
   <refsection>
         <title>Examples</title>
-        <programlisting role="example">
-            [?, p] = libraryinfo("xcos_fmulib");
+        <programlisting role="example"><![CDATA[
+// Decompressing the model "SCADE_CruiseControl__CruiseControl_FMU".
+filepath = fullfile(SCI, "modules", "fmu", "tests", "unit_tests", "SCADE_CruiseControl__CruiseControl_FMU.fmu");
+[workdir, xml] = loadFMU(filepath);
 
-			// Decompressing the model "SCADE_CruiseControl__CruiseControl_FMU".
-            filepath = fullfile(p, "..", "tests", "unit_tests", "SCADE_CruiseControl__CruiseControl_FMU.fmu");
-			[workdir, xml] = loadFMU(filepath);
+// check the xml, retrieve the inputs and outputs
+in = xmlXPath(xml, "//ScalarVariable[@causality=""input""]")
+out = xmlXPath(xml, "//ScalarVariable[@causality=""output""]")
 
-            // check the xml, retrieve the inputs and outputs
-            in = xmlXPath(xml, "//ScalarVariable[@causality=""input""]")
-            out = xmlXPath(xml, "//ScalarVariable[@causality=""output""]")
+// link the FMU, retrieve the type and version
+[workdir, xml, libname, modelIdentifier, fmuImpl] = loadFMU(filepath, workdir);
 
-            // link the FMU, retrieve the type and version
-            [workdir, xml, libname, modelIdentifier, fmuImpl] = loadFMU(filepath, workdir);
+disp(fmuImpl)
+		]]></programlisting>
+        <programlisting role="example"><![CDATA[
+FMUs = listfiles(fullfile(SCI, "modules", "fmu", "tests", "unit_tests", "*.fmu"));
 
-            disp(fmuImpl)
-		</programlisting>
-        <programlisting role="example">
-            [?, p] = libraryinfo("xcos_fmulib");
-
-            FMUs = listfiles(fullfile(p, "..", "tests", "unit_tests", "*.fmu"));
-
-            // display fmuImpl for each FMU
-            st = struct();
-            for filepath=FMUs'
-                try
-                    [workdir, xml, libname, modelIdentifier, fmuImpl] = loadFMU(filepath);
-                    
-                    st(fmuImpl)($+1) = modelIdentifier;
-                    
-                    rmdir(workdir,'s');
-                catch
-                    st("invalid") = modelIdentifier;
-                end
-            end
-            disp(st)
-		</programlisting>
+// display fmuImpl for each FMU
+st = struct();
+for filepath=FMUs'
+    try
+        [workdir, xml, libname, modelIdentifier, fmuImpl] = loadFMU(filepath);
+        
+        st(fmuImpl)($+1) = modelIdentifier;
+        
+        rmdir(workdir,'s');
+    catch
+        st("invalid") = modelIdentifier;
+    end
+end
+disp(st)
+		]]></programlisting>
   </refsection> 
   <refsection role="see also">
         <title>See Also</title>

@@ -11,7 +11,7 @@
 
 //fmiModelDescription
 
-function %fmiDescr_p(model)
+function %fmiDescript_p(model)
     fn=getfield(1,model)
     txt=[]
     for k=2:size(fn,"*")

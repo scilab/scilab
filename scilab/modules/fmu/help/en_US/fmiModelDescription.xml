@@ -97,12 +97,12 @@
   </refsection>    
   <refsection>
         <title>Examples</title>
-        <programlisting role="example">
-			//Decompressing the model "SCADE_CruiseControl__CruiseControl_FMU". Creation a variable "fmu" of type tlist Scilab. 
-			fmu = importFMU(pwd()+fullfile("\tests\unit_tests\SCADE_CruiseControl__CruiseControl_FMU.fmu"))
-			//The convention of FMU model variables and type definitions.
-			description = fmiModelDescription(fmu)
-		</programlisting>
+        <programlisting role="example"><![CDATA[
+//Decompressing the model "SCADE_CruiseControl__CruiseControl_FMU". Creation a variable "fmu" of type tlist Scilab. 
+fmu = importFMU(fullfile(SCI, "modules", "fmu", "tests", "unit_tests", "SCADE_CruiseControl__CruiseControl_FMU.fmu"));
+//The convention of FMU model variables and type definitions.
+description = fmiModelDescription(fmu)
+		]]></programlisting>
   </refsection> 
   <refsection role="see also">
         <title>See Also</title>
