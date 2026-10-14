@@ -822,7 +822,8 @@ build_tcl() {
 
     tar -xzf "$DOWNLOADDIR/tcl$TCL_VERSION-src.tar.gz"
     cd tcl$TCL_VERSION/unix || exit 1
-    ./configure --prefix=
+    # cache the stack direction: the probe is miscompiled by gcc >= 12 with -O2 (tail-call)
+    ./configure --prefix= tcl_cv_stack_grows_up=no
     make "-j$(nproc)"
     make install DESTDIR="$INSTALL_DIR"
 

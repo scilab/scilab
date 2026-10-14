@@ -17,7 +17,7 @@ function tkged()
 
     // hierarchical viewer
     TK_send_handles_list(ged_cur_fig_handle)
-    TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(h)))
+    TCL_SetVar("curgedindex", string(Get_handle_pos_in_list(h)))
 
     //color_map array for color sample display
     f=getparfig(h);
