@@ -173,7 +173,7 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
     }
 
     @Override
-    public final void draw(DrawingTools drawingTools) throws SciRendererException {
+    public final synchronized void draw(DrawingTools drawingTools) throws SciRendererException {
 
         if (isEnable()) {
             for (AxesZoom axesZoom : axesZoomList) {
@@ -211,9 +211,28 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
             component.removeMouseListener(this);
             component.removeMouseMotionListener(this);
             component.removeKeyListener(this);
+            disposeGeometries();
         }
         updateInfoMessage(null);
         getDrawerVisitor().getCanvas().redraw();
+    }
+
+    /**
+        * Release the geometries buffers: the buffers manager holds them until
+        * disposed, and a new rubber box is built for each interaction.
+        * Synchronized with draw(), which runs on the GL thread.
+        */
+    private synchronized void disposeGeometries() {
+        if (helpersGeometry != null) {
+            helpersGeometry.dispose();
+            helpersGeometry = null;
+        }
+        if (cubeGeometry != null) {
+            BuffersManager bufferManager = getDrawerVisitor().getCanvas().getBuffersManager();
+            bufferManager.dispose(cubeGeometry.getVertices());
+            bufferManager.dispose(cubeGeometry.getWireIndices());
+            cubeGeometry = null;
+        }
     }
 
     @Override

@@ -54,6 +54,13 @@ public final class HelpersGeometry extends DefaultGeometry {
         setVertices(vertexBuffer);
     }
 
+    /**
+     * Release the vertex buffer: the buffers manager holds it until then.
+     */
+    public void dispose() {
+        bufferManager.dispose(vertexBuffer);
+    }
+
     public void updateVertex(Axes axes, PointComputer pointAComputer, Vector3d secondPoint, RubberBox.Status status) {
         if ((pointAComputer != null) && (pointAComputer.getFirstAxisIndex() != -1)) {
             FloatBuffer data;
