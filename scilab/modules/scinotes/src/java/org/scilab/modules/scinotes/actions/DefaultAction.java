@@ -22,13 +22,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabCefPanel;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
+import org.scilab.modules.scinotes.MonacoEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
@@ -67,6 +72,30 @@ public class DefaultAction extends CommonCallBack {
      */
     public SciNotes getEditor() {
         return editor;
+    }
+
+    /**
+     * On macOS, run an Edit menu command in the browser of this window holding
+     * the keyboard focus when it is not the editor (e.g. the assistant): the
+     * menu bar takes Cmd+V and the like before Chromium sees them.
+     * @param command the command
+     * @return true if that browser ran it
+     */
+    protected boolean runInFocusedBrowser(ScilabCefPanel.EditCommand command) {
+        if (OS.get() != OS.MAC) {
+            return false;
+        }
+        ScilabCefPanel focused = ScilabCefPanel.getFocusedPanel();
+        if (editor == null || focused == null || !focused.isShowing()
+                || SwingUtilities.getWindowAncestor(focused) != SwingUtilities.getWindowAncestor(editor)) {
+            return false;
+        }
+        ScilabEditorPane pane = editor.getTextPane();
+        if (pane instanceof MonacoEditorPane && ((MonacoEditorPane) pane).isMonacoBrowser(focused)) {
+            return false;
+        }
+        focused.runEditCommand(command);
+        return true;
     }
 
     /**

@@ -26,6 +26,7 @@ import java.io.StringReader;
 import javax.swing.JButton;
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.commons.gui.ScilabCefPanel;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.MonacoEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
@@ -54,6 +55,10 @@ public class PasteAction extends DefaultAction {
      * Action !
      */
     public void doAction() {
+        if (runInFocusedBrowser(ScilabCefPanel.EditCommand.PASTE)) {
+            return;
+        }
+
         if (getEditor().getTextPane() instanceof MonacoEditorPane) {
             ((MonacoEditorPane) getEditor().getTextPane()).paste();
             return;

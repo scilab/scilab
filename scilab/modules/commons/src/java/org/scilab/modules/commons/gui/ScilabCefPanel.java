@@ -730,6 +730,52 @@ public final class ScilabCefPanel extends JPanel {
         blurBrowser();
     }
 
+    /** Commands of the Edit menus, run by Chromium on the focused element. */
+    public enum EditCommand { UNDO, REDO, CUT, COPY, PASTE, SELECT_ALL }
+
+    /** @return the panel whose browser holds the keyboard focus, or null */
+    public static ScilabCefPanel getFocusedPanel() {
+        return CefFocusCoordinator.getFocused();
+    }
+
+    /**
+     * Run an Edit menu command in the focused frame of the page: on macOS the
+     * menu bar takes Cmd+V and the like before Chromium sees them.
+     */
+    public void runEditCommand(EditCommand command) {
+        CefBrowser currentBrowser = browser;
+        if (currentBrowser == null) {
+            return;
+        }
+        CefFrame frame = currentBrowser.getFocusedFrame();
+        if (frame == null) {
+            frame = currentBrowser.getMainFrame();
+        }
+        if (frame == null) {
+            return;
+        }
+        switch (command) {
+            case UNDO:
+                frame.undo();
+                break;
+            case REDO:
+                frame.redo();
+                break;
+            case CUT:
+                frame.cut();
+                break;
+            case COPY:
+                frame.copy();
+                break;
+            case PASTE:
+                frame.paste();
+                break;
+            case SELECT_ALL:
+                frame.selectAll();
+                break;
+        }
+    }
+
     /** Enable or disable DevTools (CtrlShiftI) */
     public void setDebug(boolean enabled) {
         this.debug = enabled;

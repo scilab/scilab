@@ -22,6 +22,7 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.commons.gui.ScilabCefPanel;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.MonacoEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
@@ -53,6 +54,10 @@ public final class CutAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
+        if (runInFocusedBrowser(ScilabCefPanel.EditCommand.CUT)) {
+            return;
+        }
+
         if (getEditor().getTextPane() instanceof MonacoEditorPane) {
             ((MonacoEditorPane) getEditor().getTextPane()).cut();
             return;

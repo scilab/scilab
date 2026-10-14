@@ -3110,6 +3110,11 @@ public class MonacoEditorPane extends ScilabEditorPane {
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(transferable, transferable);
     }
 
+    /** @return true if this panel shows the Monaco browser */
+    public boolean isMonacoBrowser(ScilabCefPanel panel) {
+        return panel == cefPanel;
+    }
+
     /** Paste through Java's clipboard API, then insert into Monaco. */
     public void paste() {
         if (!browserReady || !isEditable()) {

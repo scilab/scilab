@@ -145,6 +145,11 @@ final class CefFocusCoordinator {
         return focused == panel;
     }
 
+    /** @return the panel whose browser holds the native focus, or null */
+    static ScilabCefPanel getFocused() {
+        return focused;
+    }
+
     /** A new focus request: cancels a transfer or an activation still pending. */
     static void newRequest() {
         generation.incrementAndGet();

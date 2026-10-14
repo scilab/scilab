@@ -18,6 +18,7 @@ package org.scilab.modules.scinotes.actions;
 import javax.swing.JButton;
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.commons.gui.ScilabCefPanel;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
 
@@ -42,6 +43,10 @@ public final class UndoAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
+        if (runInFocusedBrowser(ScilabCefPanel.EditCommand.UNDO)) {
+            return;
+        }
+
         getEditor().undo();
     }
 

@@ -20,6 +20,7 @@ package org.scilab.modules.scinotes.actions;
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
+import org.scilab.modules.commons.gui.ScilabCefPanel;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.MonacoEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
@@ -46,6 +47,10 @@ public final class SelectAllAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
+        if (runInFocusedBrowser(ScilabCefPanel.EditCommand.SELECT_ALL)) {
+            return;
+        }
+
         if (getEditor().getTextPane() instanceof MonacoEditorPane) {
             ((MonacoEditorPane) getEditor().getTextPane()).selectAll();
             return;

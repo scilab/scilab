@@ -30,6 +30,7 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.TransferHandler;
 
+import org.scilab.modules.commons.gui.ScilabCefPanel;
 import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.MonacoEditorPane;
@@ -60,6 +61,10 @@ public class CopyAsHTMLAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
+        if (!printLineNumber && runInFocusedBrowser(ScilabCefPanel.EditCommand.COPY)) {
+            return;
+        }
+
         if (!printLineNumber && getEditor().getTextPane() instanceof MonacoEditorPane) {
             ((MonacoEditorPane) getEditor().getTextPane()).copy();
             return;
