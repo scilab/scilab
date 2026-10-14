@@ -113,6 +113,11 @@ clear startModule;
   shows up by reloading it in the browser — no rebuild needed.
 - `tbx_make(..., "help")` only prepares links (`inline/<lang>/links.json`)
   and images; functions used in `<scilab:image>` must be built first.
+- Obsolete since 2027.0 (removed in 2027.1): `xmltojar()` (use
+  `tbx_build_help()`) and the `languages` argument of
+  `tbx_make(path, "help", languages)` (images are made for all languages).
+- Old `.start` files register help only `if isdir(root_tlbx + "/jar")`:
+  no jar is built anymore, so test `help` and pass the root as above.
 - Model new pages on shipped ones (`SCI/modules/<module>/help/en_US/*.xml`
   or the skeleton's). Minimal valid page:
 ```xml

@@ -196,25 +196,44 @@ gca()                // get current axes
 - Property access: `gca().font_size = 3` or `set(gca(), "font_size", 3)`
 - Scilab graphic properties use underscores: `font_size`, `line_style`, `mark_size`
 
-## Renamed functions (since Scilab 2024/2025)
-The following functions have been renamed. Use the NEW names — the old names are deprecated:
-| Old name (DO NOT USE) | New name |
-|-----------------------|----------|
-| `jetcolormap(n)` | `jet(n)` |
-| `hotcolormap(n)` | `hot(n)` |
-| `graycolormap(n)` | `gray(n)` |
-| `coolcolormap(n)` | `cool(n)` |
-| `bonecolormap(n)` | `bone(n)` |
-| `coppercolormap(n)` | `copper(n)` |
-| `pinkcolormap(n)` | `pink(n)` |
-| `springcolormap(n)` | `spring(n)` |
-| `summercolormap(n)` | `summer(n)` |
-| `autumncolormap(n)` | `autumn(n)` |
-| `wintercolormap(n)` | `winter(n)` |
-| `hsvcolormap(n)` | `hsv(n)` |
-| `rainbowcolormap(n)` | `rainbow(n)` |
-| `oceancolormap(n)` | `ocean(n)` |
-| `whitecolormap(n)` | `white(n)` |
+## Removed functions (Scilab 2027.0) — NEVER generate them
+These no longer exist: calling them is an error. When fixing an old script,
+replace them:
+| Removed (DO NOT USE) | Use instead | Removed in |
+|----------------------|-------------|------------|
+| `unix_g`, `unix_s`, `unix_w`, `unix_x`, `unix`, `dos` | `host` (see below) | 2027.0 |
+| `readmps` | `quapro` ATOMS toolbox | 2027.0 |
+| `demo_begin`, `demo_run`, `demo_end` | `exec` | 2026.1 |
+| `demo_choose`, `demo_file_choice`, `demo_function_choice` | `x_choose` | 2026.1 |
+| `demo_compiler` | `haveacompiler` | 2026.1 |
+| `dassl`, `dasrt`, `daskr`, `impl` | `dae` (or `ida`) | 2026.0 |
+| `captions` | `legend` | 2026.0 |
+| `princomp` | `pca` | 2026.0 |
+| `testmatrix` | `magic`, `invhilb`, `frank` | 2026.0 |
+| `jetcolormap(n)`, `hotcolormap(n)`, ... (all `*colormap`) | `jet(n)`, `hot(n)`, ... (drop the suffix) | 2026.0 |
+| `getURL`, `splitURL` | `http_get`, `url_split` | 2025.0 |
+| `sound` | `playsnd` | 2025.0 |
+| `xget`, `xset` | graphic handle properties (`gcf()`, `gca()`) | 2024.0 |
+| `plotframe`, `fplot2d` | `plot2d`, `plot` | 2024.0 / 2023.0 |
+| `xdel`, `xname` | `close`, `gcf().figure_name` | 2023.0 |
+
+OS commands: `host` is the ONLY way to run a shell command:
+```scilab
+[status, out, err] = host("ls -l")   // out, err: column vectors of lines
+[status, out] = host("make")          // 2 outputs: stdout+stderr merged, in order
+host("ping localhost", echo=%t)       // print outputs live in the console
+```
+- `unix_g(cmd)` → `[status, out] = host(cmd)`; `unix_s(cmd)` → check
+  `host(cmd) == 0`; `unix_w`/`unix_x` → `host(cmd, echo=%t)` (or
+  `messagebox(out)`).
+- `host` runs `sh` on Linux/macOS and `cmd.exe` on Windows (`powershell()`
+  also exists on Windows); test `getos() == "Windows"` for OS-specific commands.
+
+## Obsolete functions (still work in 2027.0, removed in 2027.1)
+Do not use them in new code; `getdeprecated()` lists them at runtime:
+- `xmltojar()` → `tbx_build_help()` (no help jar is built anymore).
+- `tbx_make(path, "help", languages)` → `tbx_make(path, "help")`: help
+  images are generated for all languages at once.
 
 ## Script vs Function files
 - `.sce` files: scripts (executed line by line)
