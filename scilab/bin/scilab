@@ -800,6 +800,9 @@ case $OS in
         if test -d "$SCI/modules/scicos/.libs/"; then
             DYLD_LIBRARY_PATH=$SCI/modules/scicos/.libs/${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}
         fi
+        if test -d "$SCI/modules/fmu/.libs/"; then
+            DYLD_LIBRARY_PATH=$SCI/modules/fmu/.libs/${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}
+        fi
         export DYLD_LIBRARY_PATH
 
         # Now, check that I can run Scilab on this version of Mac OS X and
