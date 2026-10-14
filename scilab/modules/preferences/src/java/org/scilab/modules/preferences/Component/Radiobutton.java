@@ -51,7 +51,6 @@ public final class Radiobutton extends SwingScilabRadioButton implements XCompon
      */
     public Radiobutton(final Node peer) {
         super();
-        setOpaque(false);
         refresh(peer);
     }
 
@@ -64,6 +63,7 @@ public final class Radiobutton extends SwingScilabRadioButton implements XCompon
     @Override
     public void init(final Node peer) {
         init();
+        setOpaque(false);
     }
 
     /** Refresh the component by the use of actuators.

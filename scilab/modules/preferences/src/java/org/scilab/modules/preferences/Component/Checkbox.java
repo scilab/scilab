@@ -52,7 +52,6 @@ public final class Checkbox extends SwingScilabCheckBox implements XComponent, X
      */
     public Checkbox(final Node peer) {
         super();
-        setOpaque(false);
         setRequestFocusEnabled(true);
         setFocusable(true);
 
@@ -68,6 +67,7 @@ public final class Checkbox extends SwingScilabCheckBox implements XComponent, X
     @Override
     public void init(final Node peer) {
         init();
+        setOpaque(false);
     }
 
     /** Refresh the component by the use of actuators.
