@@ -42,6 +42,7 @@ public class SwingScilabDockingWindow extends SwingScilabWindow {
         // lightweight and receives no mouse event over it, so without this the
         // console cannot be a drop target.
         System.setProperty("heavyweight.dockables", "true");
+        DragTargetTracker.install();
 
         DefaultDockingStrategy.setDefaultResizeWeight(0.5);
         DefaultDockingStrategy.keepConstantPercentage(true);
