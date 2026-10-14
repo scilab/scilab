@@ -20,6 +20,9 @@ import java.beans.PropertyChangeListener;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Supplier;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -44,6 +47,8 @@ import org.scilab.modules.commons.OS;
  * focus, and its dock is the one marked active.
  */
 final class CefFocusCoordinator {
+
+    private static final Logger log = Logger.getLogger("org.scilab.modules.commons.gui.CefFocusCoordinator");
 
     /**
      * Delay (ms) before an application without active window drops the
@@ -97,6 +102,7 @@ final class CefFocusCoordinator {
         if (DockablePropertySet.ACTIVE.equals(e.getPropertyName()) && Boolean.FALSE.equals(e.getNewValue())) {
             final ScilabCefPanel panel = focused;
             final View view = markedView;
+            debug(log, () -> "marked view deactivated: " + state());
             if (WINDOWS) {
                 if (panel != null) {
                     lost(panel);
@@ -110,6 +116,7 @@ final class CefFocusCoordinator {
             // FlexDock deactivates the old dock before activating the new one
             SwingUtilities.invokeLater(() -> {
                 Dockable active = ActiveDockableTracker.getActiveDockable(view);
+                log.fine(() -> "marked view deactivated, active dock " + describe(active) + ": " + state());
                 if (focused == panel && active != null && active != view) {
                     lost(panel);
                     handOverNativeFocus(panel);
@@ -130,12 +137,58 @@ final class CefFocusCoordinator {
 
     private CefFocusCoordinator() { }
 
+    // ====================================================================
+    // Logging
+    // ====================================================================
+
+    /** @return a short identity of a component and of the dock it lies in */
+    static String describe(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        String name = o.getClass().getName();
+        String s = name.substring(name.lastIndexOf('.') + 1) + "@" + Integer.toHexString(System.identityHashCode(o));
+        if (o instanceof Component) {
+            Component c = (Component) o;
+            View dock = c instanceof View ? (View) c : (View) SwingUtilities.getAncestorOfClass(View.class, c);
+            if (dock != null) {
+                s += "[" + dock.getTitle() + "]";
+            }
+            if (!c.isShowing()) {
+                s += "(not showing)";
+            }
+        }
+        return s;
+    }
+
+    /** @return the current Swing focus owner, described */
+    static String focusOwner() {
+        return describe(KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner());
+    }
+
+    /** @return the coordinator state, described */
+    static String state() {
+        return "focused=" + describe(focused) + " marked=" + describe(markedView)
+               + " generation=" + generation.get() + " swingOwner=" + focusOwner()
+               + " thread=" + Thread.currentThread().getName();
+    }
+
+    /** Log at FINE; at FINER, with the call stack. */
+    static void debug(Logger logger, Supplier<String> message) {
+        if (logger.isLoggable(Level.FINER)) {
+            logger.log(Level.FINER, new Throwable("call stack"), message);
+        } else if (logger.isLoggable(Level.FINE)) {
+            logger.fine(message);
+        }
+    }
+
     static void register(ScilabCefPanel panel) {
         panels.add(panel);
         listen();
     }
 
     static void unregister(ScilabCefPanel panel) {
+        log.fine(() -> "unregister " + describe(panel) + ": " + state());
         panels.remove(panel);
         lost(panel);
     }
@@ -162,6 +215,7 @@ final class CefFocusCoordinator {
      * Called from the CEF threads (onGotFocus) and the EDT (clicks).
      */
     static void gained(ScilabCefPanel panel) {
+        debug(log, () -> "gained " + describe(panel) + ": " + state());
         for (ScilabCefPanel other : panels) {
             if (other != panel) {
                 other.focusRequestDone();
@@ -192,6 +246,8 @@ final class CefFocusCoordinator {
              * ping-pong between Java and Chromium. A dock activated meanwhile
              * drops the focus there (MARKED_VIEW_DEACTIVATION).
              */
+            log.fine(() -> "gained " + describe(panel) + ": already focused, activationPending="
+                     + activationPending + " activated=" + activated);
             return;
         }
         if (previous != panel) {
@@ -204,10 +260,14 @@ final class CefFocusCoordinator {
         SwingUtilities.invokeLater(() -> {
             activationPending = false;
             if (focused != panel || expected != generation.get()) {
+                log.fine(() -> "gained " + describe(panel) + ": dock activation cancelled, expected generation "
+                         + expected + ": " + state());
                 return;
             }
 
             View dock = (View) SwingUtilities.getAncestorOfClass(View.class, panel);
+            log.fine(() -> "gained " + describe(panel) + ": activating dock " + describe(dock)
+                     + " active=" + (dock != null && dock.isActive()) + ": " + state());
             if (dock != null) {
                 mark(dock);
                 // On X11, asking the Swing focus for the dock makes the Java
@@ -234,6 +294,7 @@ final class CefFocusCoordinator {
      * transfer, so that no stale state makes it take the focus back later.
      */
     static void lost(ScilabCefPanel panel) {
+        debug(log, () -> "lost " + describe(panel) + ": " + state());
         panel.focusRequestDone();
         if (focused == panel) {
             focused = null;
@@ -251,6 +312,7 @@ final class CefFocusCoordinator {
      * Called from the CEF threads.
      */
     static void pageFocusChanged(ScilabCefPanel panel, boolean pageFocused) {
+        log.fine(() -> "pageFocusChanged " + describe(panel) + " pageFocused=" + pageFocused + ": " + state());
         panel.setPageFocused(pageFocused);
         if (pageFocused && focused != panel) {
             // On X11 Chromium does not always report the focus going from
@@ -279,6 +341,7 @@ final class CefFocusCoordinator {
      * (resize masking); its next focus gain marks it again.
      */
     static void hidden(ScilabCefPanel panel) {
+        log.fine(() -> "hidden " + describe(panel) + ": " + state());
         if (focused == panel) {
             unmark();
         }
@@ -314,6 +377,8 @@ final class CefFocusCoordinator {
         final KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         final Timer check = new Timer(APP_DEACTIVATION_MS, e -> {
             ScilabCefPanel panel = focused;
+            log.fine(() -> "application deactivation check, active window " + describe(manager.getActiveWindow())
+                     + ": " + state());
             if (manager.getActiveWindow() == null && panel != null) {
                 lost(panel);
             }
@@ -346,6 +411,8 @@ final class CefFocusCoordinator {
         ScilabCefPanel current = focused;
         ScilabCefPanel clicked = (ScilabCefPanel) (target instanceof ScilabCefPanel
                                  ? target : SwingUtilities.getAncestorOfClass(ScilabCefPanel.class, target));
+        final Component pressed = target;
+        log.fine(() -> "mousePressed on " + describe(pressed) + ", browser " + describe(clicked) + ": " + state());
         if (clicked != null && panels.contains(clicked) && clicked.isShowing()) {
             if (current != null && current != clicked) {
                 // Chromium moves the native focus to the clicked browser by
@@ -383,6 +450,8 @@ final class CefFocusCoordinator {
 
         // A click on another component: release Chromium focus and give it
         // to the target.
+        final Component focusTarget = target;
+        log.fine(() -> "mousePressed: focus moves from " + describe(current) + " to " + describe(focusTarget));
         lost(current);
         current.blurBrowser();
         // Only steal native focus when both components are in the
@@ -404,31 +473,38 @@ final class CefFocusCoordinator {
         final int expected = generation.get();
         SwingUtilities.invokeLater(() -> {
             if (focused != null || expected != generation.get()) {
+                log.fine(() -> "handOverNativeFocus " + describe(panel) + ": cancelled, expected generation "
+                         + expected + ": " + state());
                 return;
             }
             KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
             // No active window: Scilab lost the focus, nothing to hand over
             if (manager.getActiveWindow() == null) {
+                log.fine("handOverNativeFocus: no active window");
                 return;
             }
             // The dock FlexDock activated: the Swing focus is still moving
             // into it, the focus owner can be null or the dock itself.
             Dockable active = ActiveDockableTracker.getActiveDockable(panel);
             if (!(active instanceof View)) {
+                log.fine(() -> "handOverNativeFocus: active dock is not a view: " + describe(active));
                 return;
             }
             View dock = (View) active;
             if (SwingUtilities.getWindowAncestor(dock) != SwingUtilities.getWindowAncestor(panel)) {
+                log.fine(() -> "handOverNativeFocus: active dock " + describe(dock) + " in another window");
                 return;
             }
             if (holdsBrowser(dock)) {
                 // Its content hands the focus over to its browser, which takes
                 // the native focus from Chromium by itself
+                log.fine(() -> "handOverNativeFocus: to the browser dock " + describe(dock) + ": " + state());
                 dock.requestFocusInWindow();
                 return;
             }
             Component owner = manager.getFocusOwner();
             Component target = owner != null && SwingUtilities.isDescendingFrom(owner, dock) ? owner : dock;
+            log.fine(() -> "handOverNativeFocus: transfer to " + describe(target) + ": " + state());
             transfer(panel.getNativeFocusSink(), target, expected);
         });
     }
@@ -455,17 +531,23 @@ final class CefFocusCoordinator {
             @Override
             public void run() {
                 if (focused != null || expected != generation.get()) {
+                    log.fine(() -> "transfer to " + describe(target) + ": cancelled after " + attempts
+                             + " attempts, expected generation " + expected + ": " + state());
                     return;
                 }
                 if (sink.hasFocus()) {
+                    log.fine(() -> "transfer to " + describe(target) + ": sink focused after " + attempts + " attempts");
                     target.requestFocusInWindow();
                 } else if (++attempts < SINK_ATTEMPTS) {
                     // If the focus sink failed, try again after the next repaint cycle.
                     sink.requestFocus();
                     SwingUtilities.invokeLater(this);
+                } else {
+                    log.fine(() -> "transfer to " + describe(target) + ": sink never focused: " + state());
                 }
             }
         }
+        debug(log, () -> "transfer to " + describe(target) + " through sink " + describe(sink) + ": " + state());
         sink.requestFocus();
         SwingUtilities.invokeLater(new Sink());
     }
@@ -480,6 +562,7 @@ final class CefFocusCoordinator {
             return;
         }
         unmark();
+        log.fine(() -> "mark " + describe(view));
         markedView = view;
         view.putClientProperty(ScilabCefPanel.CEF_NATIVE_FOCUS_PROPERTY, Boolean.TRUE);
         if (view.getDockingProperties() != null) {
@@ -497,6 +580,7 @@ final class CefFocusCoordinator {
         if (view == null) {
             return;
         }
+        log.fine(() -> "unmark " + describe(view));
         markedView = null;
         view.putClientProperty(ScilabCefPanel.CEF_NATIVE_FOCUS_PROPERTY, null);
         if (view.getDockingProperties() != null) {

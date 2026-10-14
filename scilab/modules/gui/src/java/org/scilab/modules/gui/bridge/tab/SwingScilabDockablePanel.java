@@ -385,13 +385,26 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         // A state rather than a one-shot flag: FlexDock does not request the
         // focus when the dockable is already active, and a leftover flag then
         // swallowed the next real focus gain (e.g. a click on the title bar).
+        if (log.isLoggable(Level.FINER)) {
+            log.log(Level.FINER, "SwingScilabDockablePanel focusGained " + getTitle() + " on " + e.getComponent().getClass().getName()
+                    + " temporary=" + e.isTemporary() + " cause=" + e.getCause() + " opposite="
+                    + (e.getOppositeComponent() == null ? "null" : e.getOppositeComponent().getClass().getName()),
+                    new Throwable("call stack"));
+        } else if (log.isLoggable(Level.FINE)) {
+            log.fine("SwingScilabDockablePanel focusGained " + getTitle() + " on " + e.getComponent().getClass().getName()
+                     + " temporary=" + e.isTemporary() + " cause=" + e.getCause());
+        }
         if (Boolean.TRUE.equals(getClientProperty(ScilabCefPanel.CEF_NATIVE_FOCUS_PROPERTY))) {
+            log.fine(() -> "SwingScilabDockablePanel focusGained " + getTitle()
+                     + ": not redirected, its browser holds the native focus");
             return;
         }
 
         Container content = getContentPane();
         Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
         if (focusOwner != null && content != null && SwingUtilities.isDescendingFrom(focusOwner, content)) {
+            log.fine(() -> "SwingScilabDockablePanel focusGained " + getTitle()
+                     + ": not redirected, focus owner already in the content " + focusOwner.getClass().getName());
             return;
         }
 
@@ -418,7 +431,8 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         }
         if (target != null) {
             if (log.isLoggable(Level.FINE)) {
-                log.fine("SwingScilabDockablePanel focus redirected to " + target);
+                log.fine("SwingScilabDockablePanel " + getTitle() + " focus redirected to " + target.getClass().getName()
+                         + "@" + Integer.toHexString(System.identityHashCode(target)) + " showing=" + target.isShowing());
             }
             target.requestFocus();
         } else {

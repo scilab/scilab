@@ -259,6 +259,9 @@ public final class ScilabCefPanel extends JPanel {
         @Override
         public boolean onSetFocus(CefBrowser b, CefFocusHandler.FocusSource source) {
             if (b != browser) return false;
+            log.fine(() -> "onSetFocus " + CefFocusCoordinator.describe(ScilabCefPanel.this) + " source=" + source
+                     + " blocked=" + (source == CefFocusHandler.FocusSource.FOCUS_SOURCE_NAVIGATION)
+                     + ": " + CefFocusCoordinator.state());
             // Recursion is cut upstream, by ScilabFocusHandler.
             // Block navigation/JS-triggered focus grabs.
             // Allow FOCUS_SOURCE_SYSTEM so clicking on the browser
@@ -269,12 +272,14 @@ public final class ScilabCefPanel extends JPanel {
         @Override
         public void onGotFocus(CefBrowser b) {
             if (b != browser) return;
+            log.fine(() -> "onGotFocus " + CefFocusCoordinator.describe(ScilabCefPanel.this));
             CefFocusCoordinator.gained(ScilabCefPanel.this);
         }
 
         @Override
         public void onTakeFocus(CefBrowser b, boolean next) {
             if (b != browser) return;
+            log.fine(() -> "onTakeFocus " + CefFocusCoordinator.describe(ScilabCefPanel.this) + " next=" + next);
             CefFocusCoordinator.lost(ScilabCefPanel.this);
             // Tab traversal out of the browser
             SwingUtilities.invokeLater(() -> {
@@ -295,6 +300,8 @@ public final class ScilabCefPanel extends JPanel {
         @Override
         public void onLoadEnd(CefBrowser b, CefFrame frame, int httpStatusCode) {
             if (b == browser && frame != null && frame.isMain()) {
+                log.fine(() -> "onLoadEnd " + CefFocusCoordinator.describe(ScilabCefPanel.this)
+                         + ": resize masking enabled");
                 browserLoaded = true;
                 scheduleSnapshotRefresh();
                 if (!CefFocusCoordinator.WINDOWS) {
@@ -567,9 +574,43 @@ public final class ScilabCefPanel extends JPanel {
         addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
+                log.fine(() -> "panel focusGained " + CefFocusCoordinator.describe(ScilabCefPanel.this)
+                         + " temporary=" + e.isTemporary() + " cause=" + e.getCause()
+                         + " opposite=" + CefFocusCoordinator.describe(e.getOppositeComponent()));
                 if (!e.isTemporary()) {
                     requestBrowserFocus();
                 }
+            }
+        });
+
+        // The browser component hidden while it owns the focus: AWT moves
+        // the focus to the next component of the window.
+        browser.getUIComponent().addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentHidden(ComponentEvent e) {
+                log.fine(() -> "browser component hidden " + CefFocusCoordinator.describe(ScilabCefPanel.this)
+                         + ": " + CefFocusCoordinator.state());
+            }
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                log.fine(() -> "browser component shown " + CefFocusCoordinator.describe(ScilabCefPanel.this)
+                         + ": " + CefFocusCoordinator.state());
+            }
+        });
+        browser.getUIComponent().addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                log.fine(() -> "browser component focusGained " + CefFocusCoordinator.describe(ScilabCefPanel.this)
+                         + " temporary=" + e.isTemporary() + " cause=" + e.getCause()
+                         + " opposite=" + CefFocusCoordinator.describe(e.getOppositeComponent()));
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                log.fine(() -> "browser component focusLost " + CefFocusCoordinator.describe(ScilabCefPanel.this)
+                         + " temporary=" + e.isTemporary() + " cause=" + e.getCause()
+                         + " opposite=" + CefFocusCoordinator.describe(e.getOppositeComponent()));
             }
         });
 
@@ -663,11 +704,14 @@ public final class ScilabCefPanel extends JPanel {
         // makes the Java window take it back from Chromium (e.g. a click in
         // SciNotes, which calls this method, then often needed a second one)
         if (!CefFocusCoordinator.WINDOWS && (CefFocusCoordinator.hasFocus(this) || pageFocused)) {
+            log.fine(() -> "reclaimSwingFocus " + CefFocusCoordinator.describe(this) + ": skipped, page focused");
             return;
         }
         final Component ui = currentBrowser.getUIComponent();
         final KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         final Component from = manager.getFocusOwner();
+        CefFocusCoordinator.debug(log, () -> "reclaimSwingFocus " + CefFocusCoordinator.describe(this)
+                                  + " from=" + CefFocusCoordinator.describe(from) + ": " + CefFocusCoordinator.state());
         // Already the owner: asking again can bounce the focus onto an
         // ancestor (see requestBrowserFocus()). No owner at all: the window
         // is inactive, or Chromium's own native window holds the keyboard.
@@ -689,6 +733,8 @@ public final class ScilabCefPanel extends JPanel {
             public void actionPerformed(java.awt.event.ActionEvent event) {
                 Component owner = manager.getFocusOwner();
                 if (owner != from || browser == null || ++attempts > 10) {
+                    log.fine(() -> "reclaimSwingFocus retry stopped after " + attempts + " attempts, owner="
+                             + CefFocusCoordinator.describe(owner));
                     retry.stop();
                     return;
                 }
@@ -699,6 +745,10 @@ public final class ScilabCefPanel extends JPanel {
     }
 
     public void requestBrowserFocus() {
+        CefFocusCoordinator.debug(log, () -> "requestBrowserFocus " + CefFocusCoordinator.describe(this)
+                                  + " hasFocus=" + CefFocusCoordinator.hasFocus(this)
+                                  + " browserFocusRequested=" + browserFocusRequested
+                                  + " resizing=" + resizing + ": " + CefFocusCoordinator.state());
         if (CefFocusCoordinator.hasFocus(this)) {
             // Already focused: skip. Calling requestFocusInWindow() again on
             // an already-focused heavyweight peer is redundant and was
@@ -712,7 +762,9 @@ public final class ScilabCefPanel extends JPanel {
         if (currentBrowser == null) {
             return;
         }
-        currentBrowser.getUIComponent().requestFocusInWindow();
+        boolean accepted = currentBrowser.getUIComponent().requestFocusInWindow();
+        log.fine(() -> "requestBrowserFocus " + CefFocusCoordinator.describe(this) + ": Swing request accepted="
+                 + accepted + ", CEF setFocus(true) " + (browserFocusRequested ? "already pending" : "sent"));
 
         if (!browserFocusRequested) {
             browserFocusRequested = true;
@@ -725,6 +777,7 @@ public final class ScilabCefPanel extends JPanel {
      * Used when ownership of an editor interaction moves to another browser.
      */
     public void releaseBrowserFocus() {
+        CefFocusCoordinator.debug(log, () -> "releaseBrowserFocus " + CefFocusCoordinator.describe(this));
         CefFocusCoordinator.lost(this);
         CefFocusCoordinator.newRequest();
         blurBrowser();
@@ -1040,25 +1093,57 @@ public final class ScilabCefPanel extends JPanel {
     /** Swap in the cover. @return false if there is no snapshot to mask with. */
     private boolean showCover() {
         BufferedImage snapshot = cachedSnapshot;
+        Component ui = browser == null ? null : browser.getUIComponent();
+        CefFocusCoordinator.debug(log, () -> "showCover " + CefFocusCoordinator.describe(this)
+                                  + " snapshot=" + (snapshot != null)
+                                  + " browserIsFocusOwner=" + (ui != null && ui.isFocusOwner())
+                                  + " size=" + getWidth() + "x" + getHeight() + ": " + CefFocusCoordinator.state());
         if (snapshot == null) {
             return false;
         }
         resizeCover.setSnapshot(snapshot);
         cardPanel.setBackground(resizeCover.getBackground());
+        // CardLayout hides the browser before showing the cover: AWT would
+        // then move the focus to the next component of the window (e.g. the
+        // file browser). Show the cover and ask it the focus first: a
+        // pending focus request disables that transfer.
+        boolean moveFocus = ui != null && ui.isFocusOwner();
+        if (moveFocus) {
+            resizeCover.setVisible(true);
+            resizeCover.requestFocusInWindow();
+        }
         cardLayout.show(cardPanel, CARD_COVER);
+        if (moveFocus) {
+            ui.setVisible(false);
+            cardPanel.validate();
+        }
         resizeCover.paintImmediately(0, 0, resizeCover.getWidth(), resizeCover.getHeight());
+        log.fine(() -> "showCover " + CefFocusCoordinator.describe(this) + ": browser hidden, coverTakesFocus="
+                 + moveFocus + " swingOwner=" + CefFocusCoordinator.focusOwner());
         return true;
     }
 
     /** Swap the live browser back in and let JCEF reposition its native view. */
     private void hideCover() {
+        // The cover holds the focus the browser had (see showCover): give it
+        // back the same way, the browser shown and asked first.
+        Component ui = browser == null ? null : browser.getUIComponent();
+        boolean coverHadFocus = ui != null && resizeCover.isFocusOwner();
+        if (coverHadFocus) {
+            ui.setVisible(true);
+            ui.requestFocusInWindow();
+        }
         cardLayout.show(cardPanel, CARD_BROWSER);
+        if (coverHadFocus) {
+            resizeCover.setVisible(false);
+            cardPanel.validate();
+        }
         refreshBrowserGeometry();
-        if (CefFocusCoordinator.hasFocus(this) && browser != null) {
-            Component ui = browser.getUIComponent();
-            if (ui != null) {
-                ui.requestFocusInWindow();
-            }
+        log.fine(() -> "hideCover " + CefFocusCoordinator.describe(this) + ": browser shown, coverHadFocus="
+                 + coverHadFocus + " hasFocus=" + CefFocusCoordinator.hasFocus(this)
+                 + ": " + CefFocusCoordinator.state());
+        if (!coverHadFocus && CefFocusCoordinator.hasFocus(this) && ui != null) {
+            ui.requestFocusInWindow();
         }
         // Re-arm a snapshot for the next gesture, once the browser has settled.
         scheduleSnapshotRefresh();
@@ -1092,6 +1177,9 @@ public final class ScilabCefPanel extends JPanel {
         }
         lastResizeStepMs = System.currentTimeMillis();
         if (!resizing) {
+            log.fine(() -> "onResizeTick " + CefFocusCoordinator.describe(this) + ": start masking, size="
+                     + getWidth() + "x" + getHeight() + " mouseDown=" + mouseDown
+                     + " sinceMouseRelease=" + (System.currentTimeMillis() - lastMouseReleaseMs) + "ms");
             if (!showCover()) {
                 return;
             }
@@ -1105,6 +1193,8 @@ public final class ScilabCefPanel extends JPanel {
         if (!resizing) {
             return;
         }
+        log.fine(() -> "endResize " + CefFocusCoordinator.describe(this) + " size=" + getWidth() + "x" + getHeight()
+                 + " mouseDown=" + mouseDown);
         resizing = false;
         if (resizeSettleTimer != null) {
             resizeSettleTimer.stop();
@@ -1204,6 +1294,8 @@ public final class ScilabCefPanel extends JPanel {
 
         ResizeCover() {
             setBackground(Color.WHITE);
+            // Holds the focus of the browser it masks (see showCover)
+            setFocusable(true);
         }
 
         void setSnapshot(BufferedImage image) {
@@ -1299,6 +1391,8 @@ public final class ScilabCefPanel extends JPanel {
      */
     @Override
     public void removeNotify() {
+        CefFocusCoordinator.debug(log, () -> "removeNotify " + CefFocusCoordinator.describe(this)
+                                  + " isDocking=" + isDocking + ": " + CefFocusCoordinator.state());
         // A docking move must let JCEF temporarily detach and reparent its
         // native child without closing the browser.
         if (isDocking > 0) {
