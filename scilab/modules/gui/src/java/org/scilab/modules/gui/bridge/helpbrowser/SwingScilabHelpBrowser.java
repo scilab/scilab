@@ -207,13 +207,7 @@ public final class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBr
             @Override
             public boolean onBeforePopup(CefBrowser b, CefFrame frame, String targetUrl,
                     String targetFrameName) {
-                if (targetUrl != null && (targetUrl.startsWith("http://") || targetUrl.startsWith("https://"))) {
-                    try {
-                        Desktop.getDesktop().browse(URI.create(targetUrl));
-                    } catch (IOException e) {
-                        // ignore
-                    }
-                }
+                openInSystemBrowser(targetUrl);
                 return true; // block popup, we handle it
             }
         });
@@ -1384,6 +1378,22 @@ public final class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBr
         }
     }
 
+    /**
+     * Open a link outside the help browser: web pages in the system browser,
+     * local files (CHANGES.html from the home page, a PDF...) with their
+     * default application. Other schemes are ignored.
+     */
+    private static void openInSystemBrowser(String url) {
+        if (url == null || !(url.startsWith("http://") || url.startsWith("https://") || url.startsWith("file:"))) {
+            return;
+        }
+        try {
+            Desktop.getDesktop().browse(URI.create(url));
+        } catch (IOException | IllegalArgumentException | UnsupportedOperationException e) {
+            // ignore
+        }
+    }
+
     // ================================================================
     // JS -> Java message handler
     // ================================================================
@@ -1634,14 +1644,7 @@ public final class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBr
         }
 
         private void handleOpenExternal(String request, CefQueryCallback callback) {
-            String url = extractJsonString(request, "url");
-            if (url != null && (url.startsWith("http://") || url.startsWith("https://"))) {
-                try {
-                    Desktop.getDesktop().browse(URI.create(url));
-                } catch (IOException e) {
-                    // ignore
-                }
-            }
+            openInSystemBrowser(extractJsonString(request, "url"));
             callback.success("");
         }
 
