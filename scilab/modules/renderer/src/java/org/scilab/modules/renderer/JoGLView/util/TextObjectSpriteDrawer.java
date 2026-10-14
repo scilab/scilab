@@ -54,7 +54,6 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
     private static final int SPACEWIDTH = (int) Math.ceil(new TextEntity("_").getSize().getWidth()) - 2;
 
     private Appearance appearance;
-    private int thickness;
     private final Object[][] entities;
     private float alignmentFactor;
 
@@ -106,7 +105,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
      * Finish initialization after construction (entity matrix filling would leak
      * this from the constructor).
      * Called once right after instantiation, before the drawer is used.
-     * Must run after the subclass has configured appearance, alignment and thickness.
+     * Must run after the subclass has configured appearance and alignment.
      * The font size is the text object's one.
      * @param colorMap the color map to use
      * @param textObject the text object to draw
@@ -119,7 +118,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
      * Finish initialization after construction (entity matrix filling would leak
      * this from the constructor).
      * Called once right after instantiation, before the drawer is used.
-     * Must run after the subclass has configured appearance, alignment and thickness.
+     * Must run after the subclass has configured appearance and alignment.
      * The font size is derived from the size 1 font and the scale factor.
      * @param colorMap the color map to use
      * @param textObject the text object to draw
@@ -141,8 +140,8 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         loadDeps(textObject);
         fillEntityMatrix(textObject, fractionalFont, textColor, font);
 
-        this.width  = (int)((double)sum(columnWidth) + scaleFactor * (double)(HMARGIN * (columnNumber + 1)) + 2 * thickness + scaleFactor * (double)(SPACEWIDTH * (columnNumber - 1)));
-        this.height = (int)((double)sum(lineHeight)  + scaleFactor * (double)(VMARGIN * (lineNumber + 1)) + 2 * thickness);
+        this.width  = (int)((double)sum(columnWidth) + scaleFactor * (double)(HMARGIN * (columnNumber + 1)) + scaleFactor * (double)(SPACEWIDTH * (columnNumber - 1)));
+        this.height = (int)((double)sum(lineHeight)  + scaleFactor * (double)(VMARGIN * (lineNumber + 1)));
     }
 
     /**
@@ -289,10 +288,10 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         final int currentSpaceWidth = getSpaceWidth();
 
         // Draw text.
-        int x = currentHMargin + thickness;
+        int x = currentHMargin;
         int column = 0;
         for (Object[] entitiesLine : entities) {
-            int y = currentVMargin + thickness;
+            int y = currentVMargin;
             int line = 0;
             for (Object entity : entitiesLine) {
                 if (entity != null) {
@@ -368,10 +367,6 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
 
     protected void setAppearance(Appearance appearance) {
         this.appearance = appearance;
-    }
-
-    protected void setThickness(int thickness) {
-        this.thickness = thickness;
     }
 
     public int getHMargin() {

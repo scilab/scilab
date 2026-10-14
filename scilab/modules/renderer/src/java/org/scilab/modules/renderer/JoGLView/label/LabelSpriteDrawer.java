@@ -46,7 +46,6 @@ public final class LabelSpriteDrawer extends TextObjectSpriteDrawer implements T
 
         Appearance appearance = computeAppearance(colorMap, label);
         setAppearance(appearance);
-        setThickness((int) Math.ceil(appearance.getLineWidth()));
     }
 
     /**

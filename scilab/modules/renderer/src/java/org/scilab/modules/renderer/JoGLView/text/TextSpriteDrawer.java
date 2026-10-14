@@ -44,7 +44,6 @@ class TextSpriteDrawer extends TextObjectSpriteDrawer implements TextureDrawer {
         Appearance appearance = computeAppearance(colorMap, textObject);
 
         setAppearance(appearance);
-        setThickness((int) Math.ceil(appearance.getLineWidth()));
     }
 
     /**
@@ -60,7 +59,6 @@ class TextSpriteDrawer extends TextObjectSpriteDrawer implements TextureDrawer {
         Appearance appearance = computeAppearance(colorMap, textObject);
 
         setAppearance(appearance);
-        setThickness((int) Math.ceil(appearance.getLineWidth()));
 
         this.scaleFactor = scaleFactor;
     }

@@ -41,7 +41,6 @@ public class LegendSpriteDrawer extends TextObjectSpriteDrawer implements Textur
         super(colorMap, legend);
         Appearance appearance = computeAppearance(colorMap, legend);
         setAppearance(appearance);
-        setThickness((int) Math.ceil(appearance.getLineWidth()));
     }
 
     /**
