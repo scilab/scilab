@@ -5930,20 +5930,19 @@ endfunction
 function ok = build_model(name, files, filepath, cflags, ldflags)
     ok = %t;
     if getos() <> "Windows" then
-        if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
-            //binary version
-            cflags = cflags + " -I" + SCI + "/../../include/scilab/scicos/";
-            cflags = cflags + " -I" + SCI + "/../../include/scilab/scicos_blocks/";
-            cflags = cflags + " -I" + SCI + "/../../include/scilab/dynamic_link/";
-            ldflags = ldflags + SCI + "/lib/scilab/.libs/libsciscicos_blocks.so";
-            ldflags = ldflags + SCI + "/lib/scilab/.libs/libsciscicos.so";
-        else
+        if isfile(SCI+"/modules/scicos/.libs/libsciscicos.so") then
             //source version
             cflags = cflags + " -I" + SCI + "/modules/scicos/includes/";
             cflags = cflags + " -I" + SCI + "/modules/scicos_blocks/includes/";
             cflags = cflags + " -I" + SCI + "/modules/dynamic_link/includes/";
-            ldflags = ldflags + SCI + "/modules/scicos_blocks/.libs/libsciscicos_blocks.so";
-            ldflags = ldflags + SCI + "/modules/scicos_blocks/.libs/libsciscicos.so";
+            // -Wl, prefix: libtool drops uninstalled shared libraries from the link line
+            ldflags = ldflags + " -Wl," + SCI + "/modules/scicos_blocks/.libs/libsciscicos_blocks.so";
+            ldflags = ldflags + " -Wl," + SCI + "/modules/scicos/.libs/libsciscicos.so";
+        else
+            //installed version: headers are in $(includedir)/scilab, libraries in $(libdir)/scilab
+            cflags = cflags + " -I" + SCI + "/../../include/scilab/";
+            ldflags = ldflags + " " + SCI + "/../../lib/scilab/libsciscicos_blocks.so";
+            ldflags = ldflags + " " + SCI + "/../../lib/scilab/libsciscicos.so";
         end
     else
         // Load dynamic_link Internal lib if it's not already loaded
@@ -5966,8 +5965,16 @@ function ok = build_model(name, files, filepath, cflags, ldflags)
     oldpwd = pwd()
     chdir(filepath);
 
+    // generate a Makefile then build the shared library
+    if getos() == "Windows" then
+        script = "dlwGenerateMakefile(""lib"" + name, [], files, libs, name, %f, ldflags, cflags, """", """");";
+    else
+        script = "ilib_gen_Make_unix(name, files, libs, name, ldflags, cflags, """", """");";
+    end
+    script = script + " libn = ilib_compile(""lib"" + name, ""Makefile"", files, ldflags, cflags, """", """");";
+
     ierr = [];
-    ierr = execstr("libn =ilib_for_link(name,files,libs,""c"","""","""",name,"""",cflags)", "errcatch");
+    ierr = execstr(script, "errcatch");
     chdir(oldpwd);
     if ierr <> 0 then
         ok = %f;
@@ -5978,7 +5985,7 @@ endfunction
 
 // creating a FMU zip model
 function ok = zip_model(fmuFileName)
-    ok = %f; zip = 0;
+    ok = %f;
     oldpwd = pwd();
     currentDir = rpat;
     chdir(currentDir);
@@ -5989,49 +5996,41 @@ function ok = zip_model(fmuFileName)
     movefile(currentDir+filesep()+"fmiModelFunctions.h",currentDir+filesep()+"sources"+filesep()+"fmiModelFunctions.h");
     movefile(currentDir+filesep()+"fmiModelTypes.h",currentDir+filesep()+"sources"+filesep()+"fmiModelTypes.h");
     if getos() == "Windows" then
+        so = ".dll";
         if win64() then
-            mkdir("binaries\win64");
-            movefile(currentDir+filesep()+"lib"+rdnom+"_fmiGetVersion.dll",...
-            currentDir+"\binaries\win64\"+rdnom+".dll");
-            // zip fmu
-            zip = host(SCI+"\tools\zip\zip.exe "+rdnom+".fmu " +"modelDescription.xml "...
-            +"sources\"+fmuFileName+" sources\fmiModelFunctions.h sources\fmiModelTypes.h binaries\win64\"+rdnom+".dll");
+            arch = "win64";
         else
-            mkdir("binaries\win32");
-            movefile(currentDir+filesep()+"lib"+rdnom+"_fmiGetVersion.dll",...
-            currentDir+"\binaries\win32\"+rdnom+".dll");
-            zip = host(SCI+"\tools\zip\zip.exe "+rdnom+".fmu " +"modelDescription.xml "...
-            +"sources\"+fmuFileName+" sources\fmiModelFunctions.h sources\fmiModelTypes.h binaries\win32\"+rdnom+".dll");
+            arch = "win32";
         end
     else
+        so = ".so";
         [sys,vers] = getversion();
         if vers(2) == "x64" then
-            mkdir("binaries/linux64");
-            movefile(currentDir+filesep()+"lib"+rdnom+"_fmiGetVersion.so",...
-            currentDir+"/binaries/linux64/"+rdnom+".so");
-            zip = host("zip "+rdnom+".fmu " +"modelDescription.xml "...
-            +"sources/"+fmuFileName+" sources/fmiModelFunctions.h sources/fmiModelTypes.h binaries/linux64/"+rdnom+".so");
+            arch = "linux64";
         else
-            mkdir(currentDir+filesep()+"binaries/linux32");
-            movefile(currentDir+filesep()+"lib"+rdnom+"_fmiGetVersion.so",...
-            currentDir+"/binaries/linux32/"+rdnom+".so");
-            zip = host("zip "+rdnom+".fmu " +"modelDescription.xml "...
-            +"sources/"+fmuFileName+" sources/fmiModelFunctions.h sources/fmiModelTypes.h binaries/linux32/"+rdnom+".so");
+            arch = "linux32";
         end
     end
-    if zip <> 0 then
+    mkdir(fullfile("binaries", arch));
+    movefile(currentDir+filesep()+"lib"+rdnom+"_fmiGetVersion"+so,...
+    fullfile(currentDir,"binaries",arch,rdnom+so));
+    // zip fmu
+    files = ["modelDescription.xml",...
+    "sources"+filesep()+fmuFileName,...
+    "sources"+filesep()+"fmiModelFunctions.h",...
+    "sources"+filesep()+"fmiModelTypes.h",...
+    fullfile("binaries",arch,rdnom+so)];
+    try
+        compress(rdnom+".fmu", files, format="zip");
+    catch
+        chdir(oldpwd);
         error(999, msprintf("FMU archive file has not been created.\n"));
-        chdir(oldpwd);
-    else
-        mdelete("modelDescription.xml");
-        rmdir("sources","s");
-        rmdir("binaries","s");
-        exec("cleaner.sce", -1);
-        mdelete("loader.sce");
-        mdelete("cleaner.sce");
-        chdir(oldpwd);
-        ok = %t;
     end
+    mdelete("modelDescription.xml");
+    rmdir("sources","s");
+    rmdir("binaries","s");
+    chdir(oldpwd);
+    ok = %t;
 endfunction
 
 // Generating the XML description for the FMU
