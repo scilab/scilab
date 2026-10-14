@@ -34,5 +34,10 @@ function check_results(refs, outputs, outName, solver)
         err = [calc_err(i, refs, outputs), outMin(i), outMax(i), outputs.values($, i)];
         mprintf("  %-20s mean %10.7f std %10.7f min %10.7f max %10.7f order %10.7f\n", ..
                 outName(i), err(1), err(2), err(3), err(4), err(5));
+
+        // solvers and platforms differ at 1e-3 on the mean error
+        assert_checkalmostequal(err(1), 0, [], 1e-2);
+        assert_checkalmostequal(err(2), 0, [], 5e-2);
+        assert_checkalmostequal(err(5), refs.values($), 1e-4);
     end
 endfunction

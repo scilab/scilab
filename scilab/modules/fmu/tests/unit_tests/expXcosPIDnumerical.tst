@@ -9,6 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
 //
+// <-- NO CHECK REF -->
 
 // Test of numerical results of Xcos PID controller. Comparison with FMU checker
 // results.
@@ -69,10 +70,11 @@ for i=1:7
     check_results(outRefs, PIDresults, outName(1), xcosSolver(i));
 end
 // CS FMUchecker
-outRefs.values = outputs.values(:,1);
+outRefs.values = outputs.values(:,2);
 for i=1:7
     scs_m.props.tol(6) = i-1;
     xcos_simulate(scs_m, 4);
+    PIDresults.values = PIDresults.values(:,2);
     check_results(outRefs, PIDresults, outName(2), xcosSolver(i));
 end
 
