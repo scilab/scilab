@@ -6,7 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
-// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 //
 // <-- Non-regression test for bug 17479 -->
 //
