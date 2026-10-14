@@ -93,93 +93,77 @@
     </nav>
 
     <div class="refsection">
-        <h2>Welcome to Scilab 2026.0.0</h2>
+        <h2>Welcome to Scilab 2027.0.0</h2>
         <p class="para">
-            Scilab 2026.0.0 is a new stable release of Scilab, the open-source
+            Scilab 2027.0.0 is a new stable release of Scilab, the open-source
             platform for numerical computation.
         </p>
         <p class="para">
-            Here is a tour of the changes since Scilab 2025.1.0.
+            Here is a short tour of the main changes since Scilab 2026.1.0. The
+            complete list is detailed in the
+            <a target="_blank" href="CHANGES.html">CHANGES</a> file.
         </p>
-        <p class="para">
-            To view it in the documentation browser, enter <code>doc("2026.1.0")</code>
-            in the console, and browse related pages.
-        </p>
-        <h3>Feature changes and additions</h3>
+        <h3>Main new features</h3>
         <ul>
-            <li>New functions:
-                <ul>
-                    <li><code>cdftnc()</code>: Cumulative distribution function of the non-central student's T distribution.</li>
-                    <li><code>check_help()</code>: Validate Scilab XML help files against the Scilab Relax NG schema.</li>
-                    <li><code>dbscan()</code>: Density-based clustering.</li>
-                    <li><code>enumeration()</code>: Get the enumeration of a classdef or an object.</li>
-                    <li><code>estimate_bandwidth()</code>: Estimate an appropriate bandwidth for mean shift clustering.</li>
-                    <li><code>help()</code>: Display an inline summary of a documentation page in Scilab console.</li>
-                    <li><code>gallery()</code>: Generate test matrices.</li>
-                    <li><code>gradient()</code>: Compute numerical gradient.</li>
-                    <li><code>isa()</code>: Check variable type.</li>
-                    <li><code>ishermitian()</code>: Check whether a matrix is hermitian.</li>
-                    <li><code>issymmetric()</code>: Check whether a matrix is symmetric.</li>
-                    <li><code>meanshift()</code>: Mean shift clustering algorithm.</li>
-                    <li><code>methods()</code>: Get accessible methods of a classdef or an object.</li>
-                    <li><code>parquetRead()</code>: Read a Parquet or Arrow file and return a table.</li>
-                    <li><code>parquetWrite()</code>: Write a table in a Parquet or Arrow file.</li>
-                    <li><code>pdist()</code>: Pairwise distances between observations.</li>
-                    <li><code>pdist2()</code>: Pairwise distances between two sets of observations.</li>
-                    <li><code>properties()</code>: Get accessible properties of a classdef or an object.</li>
-                    <li><code>sortrows()</code>: Sort rows of a vector, matrix, table, or timeseries.</li>
-                    <li><code>spset()</code>: Set non-zero entries of a sparse matrix.</li>
-                    <li><code>squareform()</code>: Conversion between a distance vector and a symmetric distance matrix.</li>
-                    <li><code>summary()</code>: Summary of <code>table</code> or <code>timeseries</code> variables (properties, statistics...).</li>
-                    <li><code>xcosDiagramExport()</code>: Export an Xcos diagram to an image.</li>
-                    <li><code>xlsxInfo()</code>: Get information about an Excel file.</li>
-                    <li><code>xlsxRead()</code>: Read data from an Excel file and return a matrix or cell.</li>
-                    <li><code>xlsxSheet()</code>: Manage sheets in an Excel file.</li>
-                    <li><code>xlsxWrite()</code>: Write data (matrix or cell) to an Excel file.</li>
-                </ul>
+            <li><strong>SciNotes</strong>, the Scilab editor, is now web-based: completion, hover help,
+                go to definition, syntax diagnostics and LaTeX preview. It embeds a
+                <strong>debugger</strong> (breakpoints, step by step execution, values of the
+                variables on hover; see <code>doc scinotes_debugger</code>) and an
+                <strong>AI assistant</strong> that writes Scilab code and runs it in the session
+                (see <code>doc scinotes_assistant</code>).
             </li>
-            <li>Features improvements:
-                <ul>
-                    <li>New web-based GUIs for ATOMS &amp; Scilab Demonstration using "browser" uicontrols.</li>
-                    <li>Objects defined using <code>classdef</code> now support static properties and methods.</li>
-                    <li><code>csvTextScan()</code> now manages a "substitute" option as <code>csvRead()</code> to enable replacement of particular strings in the read file.</li>
-                    <li><code>dbscan()</code> now accepts two more input arguments to specify metric distances and parameters.</li>
-                    <li><code>dbscan()</code>, <code>kmeans()</code> and <code>meanshift()</code> now use <code>pdist2()</code> for better performances.</li>
-                    <li><code>format()</code> now supports engineering notation (similar to the exponential notation but with exponent value divisible by three).</li>
-                    <li><code>gallery()</code> can now generate "minij" (Symmetric positive definite matrix) and "moler" (Moler symmetric positive definite matrix) test matrices.</li>
-                    <li><code>host()</code> has been rewritten and is now used as a backend for all other functions that perform system calls (<code>dos()</code>, <code>unix()</code>, <code>unix_g()</code>, <code>unix_s()</code>, <code>unix_w()</code>, and <code>unix_x()</code>), which are now obsolete.</li>
-                    <li><code>intersect()</code> now manages <code>duration</code>, <code>datetime</code>, <code>table</code>, and <code>timeseries</code> types.</li>
-                    <li><code>lib()</code> can now load a library without exposing its symbols (default behavior remains unchanged).</li>
-                    <li><code>setdiff()</code> now manages <code>duration</code>, <code>datetime</code>, <code>table</code>, and <code>timeseries</code> types.</li>
-                    <li><code>table()</code>, and <code>timeseries()</code> now manage integers.</li>
-                    <li><code>union()</code> now manages <code>duration</code>, <code>datetime</code>, <code>table</code>, and <code>timeseries</code> types.</li>
-                    <li>Options names are now case-insensitive for <code>duration()</code>, <code>calendarDuration()</code>, <code>datetime()</code>, <code>timeseries()</code>, <code>table()</code> functions.</li>
-                    <li>"use_vectorized" parameter is now available for <code>optim_ga()</code>, <code>optim_moga()</code>, <code>optim_nsga()</code>, <code>optim_nsga2()</code> to indicate that the cost function is vectorized (called with the whole population at once).</li>
-                </ul>
+            <li>The <strong>console</strong> is now web-based: LaTeX rendering of strings, files
+                executed by drag &amp; drop, pasted code executed at once, and warnings and
+                errors visually distinct from the regular output.
             </li>
-            <li>Language evolutions:
-                <ul>
-                    <li>Classes/Objects can now be defined and used in Scilab based on the new <code>classdef</code>, <code>enumeration</code>, <code>properties</code> &amp; <code>methods</code> keywords.</li>
-                    <li>The <code>end</code> keyword can now be used to specify the last row/column index of an array, similarly to <code>$</code>.</li>
-                    <li>Arithmetic operators now perform <strong>automatic expansion</strong> with no memory overhead: a singleton dimension is automatically replicated to match the other operand, making manual expansion (using <code>.*.</code> or <code>repmat()</code>) unnecessary for most case. See <code>doc operator_expand</code>.</li>
-                </ul>
+            <li>The <strong>help browser</strong> is now web-based: highlighted code, LaTeX &amp;
+                MathML equations, improved search, and a menu on each page to jump to its sections.
             </li>
-            <li>Graphics:
-                <ul>
-                    <li>Axes handles can now have their own colormap. If not provided, then the parent figure colormap is used (as in previous versions).</li>
-                </ul>
-            </li>
-            <li>Xcos:
-                <ul>
-                    <li>Diagrams are saved as <a target="_blank" href="https://ssp-standard.org/">SSP</a> (System Structure and Parametrization) files by default. This setting can be edited in user preferences.</li>
-                    <li>Users are now enabled to save their diagrams as COSF files.</li>
-                    <li>COS format is no longer associated with Xcos under Windows.</li>
-                    <li>SSP files are associated with Scilab during installation under Windows.</li>
-                </ul>
+            <li><strong>Xcos</strong>: the former fmu-wrapper ATOMS toolbox is now the built-in
+                <code>fmu</code> module, to import and simulate FMUs (FMI 1/2/3) with
+                <code>importFMU()</code> and <code>fmiSimulate()</code>.
             </li>
         </ul>
+        <h3>New functions</h3>
+        <ul>
+            <li><code>agglomerative()</code>: Agglomerative hierarchical clustering.</li>
+            <li><code>between()</code>: Calendar difference between two <code>datetime</code> values.</li>
+            <li><code>caldiff()</code>: Calendar successive differences.</li>
+            <li><code>linkage()</code>: Agglomerative hierarchical cluster tree.</li>
+            <li><code>silhouette()</code>: Silhouette values of a clustering.</li>
+            <li><code>sprkode()</code>: SUNDIALS symplectic Runge-Kutta ODE solver.</li>
+        </ul>
+        <h3>Language evolutions</h3>
+        <ul>
+            <li>Comparison and element-wise logical operators now perform the same
+                <strong>automatic expansion</strong> as arithmetic operators.
+                See <code>doc operator_expand</code>.
+            </li>
+            <li><code>classdef</code> has been extended: class names can be used as argument or
+                property types, and validator parameters are evaluated at call time.
+                See <code>doc classdef</code>.
+            </li>
+        </ul>
+        <h3>Graphics</h3>
+        <ul>
+            <li>Transparency is now managed, through new <code>*_alpha</code> properties of the
+                graphic entities and new options of <code>plot()</code>, <code>surf()</code>,
+                <code>scatter()</code> and <code>scatter3d()</code>.
+                See <code>doc polyline_properties</code> for example.
+            </li>
+            <li>New <code>Root</code> and <code>Console</code> graphic objects: <code>get(0)</code>
+                returns the <code>Root</code> object, whose children are the figures and the
+                <code>Console</code>.
+            </li>
+        </ul>
+        <h3>Removed functions</h3>
+        <ul>
+            <li><code>dos()</code> and the <code>unix*()</code> functions: use <code>host()</code> instead.</li>
+            <li><code>readmps()</code>: use the <code>quapro</code> toolbox instead.</li>
+        </ul>
         <p class="para">
-            Detailed information about those improvements can be found in the <a target="_blank" href="CHANGES.html">CHANGES</a> file.
+            Many other improvements, obsolete features and bug fixes are listed in the
+            <a target="_blank" href="CHANGES.html">CHANGES</a> file.
         </p>
     </div>
     <hr/>
@@ -194,16 +178,15 @@
             some <a target="_blank" href="https://www.scilab.org/tutorials">documentation
                 and tutorials</a>.</p>
     </div>
-    <hr/>
-    <div class="refsection">
-        <h3>Other resources</h3>
-        <p class="para"><a target="_blank" href="https://www.scilab.org/">Scilab Website</a> — Consult Scilab official website</p>
-        <p class="para"><a target="_blank" href="https://gitlab.com/scilab/scilab/-/wikis/home">Wiki</a> — Consult documentation, tricks, etc.</p>
-        <p class="para"><a target="_blank" href="https://gitlab.com/scilab/scilab/-/issues">Issues</a> — Report bugs and wishes about Scilab</p>
-        <p class="para"><a target="_blank" href="https://gitlab.com/scilab/forge/">Forge</a> — Browse and publish Scilab modules</p>
-        <p class="para"><a target="_blank" href="https://scilab.discourse.group/">Discourse</a> — Communicate and exchange with the community</p>
-        <p class="para"><a target="_blank" href="https://atoms.scilab.org/">ATOMS</a> — Browse Scilab packaged modules</p>
-        <p class="para"><a target="_blank" href="https://fileexchange.scilab.org/">File Exchange</a> — Exchange your scripts, results, and files.</p>
-    </div>
+    <nav class="navbar">
+        <a target="_blank" href="https://www.scilab.org/">Scilab Website</a>
+        <a target="_blank" href="https://help.scilab.org/">Online Help</a>
+        <a target="_blank" href="https://gitlab.com/scilab/scilab">GitLab</a>
+        <a target="_blank" href="https://gitlab.com/scilab/scilab/-/wikis/home">Wiki</a>
+        <a target="_blank" href="https://gitlab.com/scilab/scilab/-/issues">Issues</a>
+        <a target="_blank" href="https://scilab.discourse.group/">Discourse</a>
+        <a target="_blank" href="https://atoms.scilab.org/">ATOMS</a>
+        <a target="_blank" href="https://fileexchange.scilab.org/">File Exchange</a>
+    </nav>
 </body>
 </html>
