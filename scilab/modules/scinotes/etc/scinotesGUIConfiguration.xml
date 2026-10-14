@@ -121,7 +121,7 @@
             <separator/>
             <menuitem action="scinotes-split" label="Split View;Off;Split in two columns;Split in two rows"/>
             <separator/>
-            <menuitem action="scinotes-assistant" label="Scilab Assistant"/>
+            <menuitem action="scinotes-assistant" label="Assistant"/>
         </menu>
 
         <menu label="Execute" mnemonic="X">

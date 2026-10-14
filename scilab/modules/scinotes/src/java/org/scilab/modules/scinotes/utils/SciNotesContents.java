@@ -255,7 +255,7 @@ public final class SciNotesContents extends JPanel {
      * console when SciNotes is docked in it), far from the editors.
      */
     private static JButton createAssistantButton(SciNotes editor) {
-        JButton button = OpenAssistantAction.createButton(Messages.gettext("Scilab Assistant"), "assistant", editor);
+        JButton button = OpenAssistantAction.createButton(Messages.gettext("Assistant"), "assistant", editor);
         ScilabLAF.setDefaultProperties(button);
         button.setMargin(new Insets(2, 2, 2, 2));
         // Flat as a toolbar button: the button look only on rollover

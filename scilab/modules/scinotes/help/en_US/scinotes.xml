@@ -280,7 +280,7 @@
                     <tr><td>Detach tab in new window</td><td>Ctrl+Shift+X</td><td><para>Move the current tab to a new SciNotes window</para></td></tr>
                     <tr><td>Copy selection in a new tab</td><td/><td><para>Create a new file containing the selection</para></td></tr>
                     <tr><td>Split View</td><td/><td><para>Split the current view in two columns or in two rows</para></td></tr>
-                    <tr><td>Scilab Assistant</td><td/><td><para>Show or hide the AI assistant panel (see <link linkend="scinotes_assistant">scinotes_assistant</link>)</para></td></tr>
+                    <tr><td>Assistant</td><td/><td><para>Show or hide the AI assistant panel (see <link linkend="scinotes_assistant">scinotes_assistant</link>)</para></td></tr>
                 </informaltable>
             </listitem>
             <listitem>

@@ -154,8 +154,8 @@
     <refsection>
         <title>Opening the assistant and choosing an agent</title>
         <para>
-            Click the <emphasis>Scilab Assistant</emphasis> button at the right end of the SciNotes
-            tabs, or use the <emphasis>Window &gt; Scilab Assistant</emphasis> menu. The panel opens
+            Click the <emphasis>Assistant</emphasis> button at the right end of the SciNotes
+            tabs, or use the <emphasis>Window &gt; Assistant</emphasis> menu. The panel opens
             next to the editor; use the button or the menu again to close it.
         </para>
         <para>
