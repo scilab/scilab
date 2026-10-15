@@ -513,7 +513,7 @@ make_jar() {
     mv javafx-graphics-${JAVAFX_VERSION}-linux.jar javafx-graphics-${JAVAFX_VERSION}.jar 
     mv javafx-swing-${JAVAFX_VERSION}-linux.jar javafx-swing-${JAVAFX_VERSION}.jar
     ## Extract native libs
-    unzip -q javafx-graphics-${JAVAFX_VERSION}.jar libglass.so libprism_sw.so libprism_es2.so -d "$LIBTHIRDPARTYDIR"
+    unzip -q javafx-graphics-${JAVAFX_VERSION}.jar libglass.so libprism_sw.so libprism_es2.so libglassgtk3.so -d "$LIBTHIRDPARTYDIR"
     ## Remove native libs from archive
     zip -d javafx-graphics-${JAVAFX_VERSION}.jar '*.so'
 
