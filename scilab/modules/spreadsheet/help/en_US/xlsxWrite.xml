@@ -85,7 +85,7 @@
     <refsection>
         <title>Description</title>
         <para>Write data to an Excel (.xlsx) file. Accepts matrices or cells. 
-            To write table and timeseries to an Excel file, use <link linkend="readtable">readtable</link> and <link linkend="readtimeseries">readtimeseries</link> functions.</para>
+            To write table and timeseries to an Excel file, use <link linkend="writetable">writetable</link> and <link linkend="writetimeseries">writetimeseries</link> functions.</para>
         <para>The function uses key-value pairs to specify options. All parameters except data and filename are optional and can be combined in any order.</para>
         <para><emphasis role="bold">File and sheet handling:</emphasis></para>
         <itemizedlist>

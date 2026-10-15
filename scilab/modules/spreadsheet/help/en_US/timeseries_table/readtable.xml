@@ -108,18 +108,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <emphasis role="bold">readtable</emphasis> function creates a table from a file. Each column of file is stored in variables. 
+            The <literal>readtable</literal> function creates a table from a file. Each column of file is stored in variables. 
             If however the columns have no name, then the default variable names are used (["Var1", ..., "VarN"]). 
             Accepted file formats are .txt, .dat, .csv and .xlsx.
         </para>
         <para>
-            readtable detects the format file thanks to <link linkend="detectImportOptions">detectImportOptions</link> function. opts contains all information on the file.
+            <literal>readtable</literal> detects the format file thanks to <link linkend="detectImportOptions">detectImportOptions</link> function. opts contains all information on the file.
         </para>
         <para>
-            To extract only the necessary variables (columns), use <emphasis role="bold">t = readtable(filename, "VariableNames", value)</emphasis>.
+            To extract only the necessary variables (columns), use <literal>t = readtable(filename, "VariableNames", value)</literal>.
         </para>
         <para>
-            <emphasis role="bold">t = readtable(filename, ..., "ReadRowNames", val)</emphasis> creates a table with row names, i.e, the first 
+            <literal role="bold">t = readtable(filename, ..., "ReadRowNames", val)</literal> creates a table with row names, i.e, the first 
             column of file is stored in RowNames property of t.
         </para>
     </refsection>

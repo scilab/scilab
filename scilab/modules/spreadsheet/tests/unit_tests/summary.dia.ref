@@ -1103,6 +1103,29 @@ s = summary(x, 2);
 assert_checkequal(s.True, [2; 2]);
 assert_checkequal(s.False, [1; 1]);
 // strings
+x = ["a" "b" "a"];
+summary(x)
+ [Size type]: [1x3 string]
+                 Col1   Col2   Col3
+                 ____   ____   ____
+                                   
+             a   1      0      1   
+             b   0      1      0   
+   <undefined>   0      0      0   
+s = summary(x);
+assert_checkequal(s.Values, ["a" "b"]);
+assert_checkequal(s.Counts, [1 0 1; 0 1 0]);
+summary(x')
+ [Size type]: [3x1 string]
+                 Col1
+                 ____
+                     
+             a   2   
+             b   1   
+   <undefined>   0   
+s = summary(x');
+assert_checkequal(s.Values, ["a"; "b"]);
+assert_checkequal(s.Counts, [2; 1]);
 x = ["a" "b" "a" ;
      "b" "b" "c"];
 summary(x)

@@ -211,6 +211,17 @@ assert_checkequal(s.False, [1; 1]);
 
 
 // strings
+x = ["a" "b" "a"];
+summary(x)
+s = summary(x);
+assert_checkequal(s.Values, ["a" "b"]);
+assert_checkequal(s.Counts, [1 0 1; 0 1 0]);
+
+summary(x')
+s = summary(x');
+assert_checkequal(s.Values, ["a"; "b"]);
+assert_checkequal(s.Counts, [2; 1]);
+
 x = ["a" "b" "a" ;
      "b" "b" "c"];
 

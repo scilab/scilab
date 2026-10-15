@@ -111,16 +111,15 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <emphasis role="bold">writetable</emphasis> function writes a table into a text file, where data are separated by comma. 
+            The <literal>writetable</literal> function writes a table into a text file, where data are separated by comma. 
             Accepted file formats are .txt, .dat, .csv and .xlsx.
         </para>
         <para>
-            <emphasis role="bold">writetable(t)</emphasis> writes table t into the file table.txt saved in TMPDIR.
+            <literal>writetable(t)</literal> writes table t into the file table.txt saved in TMPDIR.
         </para>
         <para>
-            <emphasis role="bold">writetable(t, filename, OptionName, Value) can be used to specify the column delimiter, to write 
+            <literal>writetable(t, filename, OptionName, Value)</literal> can be used to specify the column delimiter, to write 
                 the row names and the variable names into the file.
-            </emphasis>
         </para>
     </refsection>
     <refsection>

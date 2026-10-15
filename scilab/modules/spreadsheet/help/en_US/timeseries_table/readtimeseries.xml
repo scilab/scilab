@@ -132,15 +132,15 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <emphasis role="bold">readtimeseries</emphasis> function creates a timeseries from a file. Each column of file is stored in variables. 
+            The <literal>readtimeseries</literal> function creates a timeseries from a file. Each column of file is stored in variables. 
             If however the columns have no name, then the default variable names are used (["Time", "Var1", ..., "VarN"]). 
             Accepted file formats are .txt, .dat .csv, and .xlsx.
         </para>
         <para>
-            readtimeseries detects the format file thanks to <link linkend="detectImportOptions"></link> function. opts contains all information on the file.
+            <literal>readtimeseries</literal> detects the format file thanks to <link linkend="detectImportOptions"></link> function. opts contains all information on the file.
         </para>
         <para>
-            To extract only the necessary variables (columns), use <emphasis role="bold">ts = readtimeseries(filename, "VariableNames", value)</emphasis>.
+            To extract only the necessary variables (columns), use <literal>ts = readtimeseries(filename, "VariableNames", value)</literal>.
         </para>
     </refsection>
     <refsection>

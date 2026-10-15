@@ -157,6 +157,9 @@ function varargout = summary(t, varargin)
                     end
 
                 case "string"
+                    if isrow(st.Values) then
+                        st.Values = st.Values';
+                    end
                     if dim == "r" then
                         tt = matrix2table([st.Counts; st.NumMissing], ...
                             "RowNames", [st.Values; "<undefined>"], ...

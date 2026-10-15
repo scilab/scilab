@@ -101,17 +101,16 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <emphasis role="bold">writetimeseries</emphasis> function writes a timeseries into a text file, where data are separated by comma (default value).
-            It is possible to specify the delimiter to be applied: <emphasis role="bold">writetimeseries(ts, filename, "Delimiter", delim)</emphasis>
+            The <literal>writetimeseries</literal> function writes a timeseries into a text file, where data are separated by comma (default value).
+            It is possible to specify the delimiter to be applied: <literal>writetimeseries(ts, filename, "Delimiter", delim)</literal>
             Accepted file formats are .txt, .dat, .csv and .xlsx.
         </para>
         <para>
-            <emphasis role="bold">writetimeseries(ts)</emphasis> writes timeseries ts into the file timeseries.txt saved in TMPDIR.
+            <literal>writetimeseries(ts)</literal> writes timeseries ts into the file timeseries.txt saved in TMPDIR.
         </para>
         <para>
-            <emphasis role="bold">writetimeseries(ts, filename, OptionName, Value) can be used to specify the column delimiter and to write 
+            <literal>writetimeseries(ts, filename, OptionName, Value)</literal> can be used to specify the column delimiter and to write 
                 the variable names into the file.
-            </emphasis>
         </para>
     </refsection>
     <refsection>

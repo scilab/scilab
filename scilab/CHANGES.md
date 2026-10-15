@@ -53,7 +53,7 @@ For a high-level description of the main new features in this release, please co
 - `assert_checkalmostequal()`, `assert_checkequal()`, `assert_checkfalse()`, `assert_checkfilesequal()` and `assert_checktrue()` accept an optional custom error message as last input argument.
 - `compress()` and `decompress()` now support "zstd" compression.
 - `parquetRead()` and `parquetWrite()` now manage `timeseries`, and `parquetWrite()` accepts an optional compression argument ("gzip", "snappy", "zstd" or "uncompressed").
-- `pca()` now accepts an "Algorithm" option ("svd" or "eigs").
+- `pca()` now accepts an "Algorithm" option ("svd" or "eig").
 - `summary()` now supports matrices of doubles, integers, booleans, strings, durations and datetimes.
 
 ### Language evolutions
