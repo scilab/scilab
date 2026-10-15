@@ -81,7 +81,6 @@ function tt = readtable(varargin)
     else
         f = mgetl(filename);
     end
-    disp(f)
 
     if nargin == 2 || rhs >= 2 then
         opts = varargin(2);
@@ -108,11 +107,9 @@ function tt = readtable(varargin)
     end
 
     variableNames = opts.variableNames;
-    disp(opts.variableNames)
     if variableNames == [] then
         variableNames = ["Var" + string(1:size(variableTypes, "*"))];
     end
-    disp(variableNames)
     
     fmt = opts.inputFormat;
 
@@ -134,7 +131,6 @@ function tt = readtable(varargin)
     end
 
     mat = mat(:, _kk);
-    disp(variableNames)
 
     if onlyDouble then
         tt = table(mat, "VariableNames", variableNames);
